@@ -1,0 +1,32 @@
+{
+ "architecture": {
+  "32bit": {
+   "hash": "7d67ec28d1c24ba4f5bb2b8ce2a0b22caf46f3a632e37142706f536c3afaa710",
+   "pre_install": "Move-Item \"$dir\\bitmana-windows-386.exe\" \"$dir\\bitmana.exe\"",
+   "url": "https://ghproxy.com/https://github.com/bitmanahq/bitmana/releases/download/1.1.20210422/bitmana-windows-386.exe"
+  },
+  "64bit": {
+   "hash": "d7136ab44d581a12e87066c38d119a96e1c93e22393bf27f0b75cddc38b6f3d4",
+   "pre_install": "Move-Item \"$dir\\bitmana-windows-amd64.exe\" \"$dir\\bitmana.exe\"",
+   "url": "https://ghproxy.com/https://github.com/bitmanahq/bitmana/releases/download/1.1.20210422/bitmana-windows-amd64.exe"
+  }
+ },
+ "autoupdate": {
+  "architecture": {
+   "32bit": {
+    "url": "https://ghproxy.com/https://github.com/bitmanahq/bitmana/releases/download/$version/bitmana-windows-386.exe"
+   },
+   "64bit": {
+    "url": "https://ghproxy.com/https://github.com/bitmanahq/bitmana/releases/download/$version/bitmana-windows-amd64.exe"
+   }
+  }
+ },
+ "bin": "bitmana.exe",
+ "checkver": {
+  "regex": "/bitmanahq/bitmana/tree/([v\\d.]+)",
+  "url": "https://github.com/bitmanahq/bitmana/releases"
+ },
+ "description": "Bitmana PaaS is a next generation platform that has Load Balancing, Auto-scaling, Docker, Kubernetes.",
+ "homepage": "https://bitmana.io",
+ "version": "1.1.20210422"
+}

@@ -1,0 +1,61 @@
+{
+    "architecture": {
+        "64bit": {
+            "bin": [
+                "IDE\\bin\\clion64.exe",
+                [
+                    "IDE\\bin\\clion64.exe",
+                    "clion"
+                ]
+            ],
+            "hash": [
+                "bc99e5a2753216f9cf136b660cfc1c11a3aa6b944c3617ad47ffdd9cbde1142a",
+                "2255673952a7909596b8783f6e913d2301f91f0def0275fcfbc6371b0ca021f8"
+            ],
+            "shortcuts": [
+                [
+                    "IDE\\bin\\clion64.exe",
+                    "JetBrains\\CLion"
+                ]
+            ],
+            "url": [
+                "https://download.jetbrains.com/cpp/CLion-2022.3.2.win.zip",
+                "https://ghproxy.com/https://raw.githubusercontent.com/Ash258/Scoop-JetBrains/main/scripts/portable.ps1"
+            ]
+        }
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://download.jetbrains.com/cpp/CLion-$matchHead.win.zip"
+            }
+        },
+        "hash": {
+            "url": "$url.sha256"
+        }
+    },
+    "changelog": "https://www.jetbrains.com/clion/whatsnew/",
+    "checkver": {
+        "regex": "version\":\"(?<ver>[\\d.]+)\".*\"build\":\"(?<build>[\\d.]+)\"",
+        "replace": "${ver}-${build}",
+        "url": "https://data.services.jetbrains.com/products/releases?code=CL&latest=true&platform=zip&type=release"
+    },
+    "description": "CLion. Cross-Platform IDE for C and C++ by JetBrains.",
+    "extract_to": "IDE",
+    "homepage": "https://www.jetbrains.com/cpp/",
+    "installer": {
+        "script": [
+            "& \"$dir\\portable.ps1\" $dir $persist_dir",
+            "Remove-Item \"$dir\\IDE\\`$*\", \"$dir\\portable.ps1\" -Force -Recurse"
+        ]
+    },
+    "license": {
+        "identifier": "Proprietary",
+        "url": "https://www.jetbrains.com/store/license.html"
+    },
+    "persist": [
+        "IDE\\bin\\idea.properties",
+        "profile"
+    ],
+    "version": "2022.3.2-223.8617.54"
+}

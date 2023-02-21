@@ -1,0 +1,37 @@
+{
+    "version": "2.4.0",
+    "description": "iMonitor (冰镜) is a endpoint behavior monitoring and analysis software based on iMonitorSDK.",
+    "homepage": "https://imonitorsdk.com/imonitor",
+    "license": "AGPL-3.0-only",
+    "architecture": {
+        "64bit": {
+            "url": "https://ghproxy.com/https://github.com/wecooperate/iMonitor/releases/download/2.4.0/iMonitor64.exe#/dl.7z",
+            "hash": "522ea635bcd48ab7a51df1348264e10ffa721f5d6a272a6d525da14aecba89d7"
+        },
+        "32bit": {
+            "url": "https://ghproxy.com/https://github.com/wecooperate/iMonitor/releases/download/2.4.0/iMonitor32.exe#/dl.7z",
+            "hash": "14f6bfb59025c775ff977ac26770674f233be6ab6580843ec3cccf2bef6b31e3"
+        }
+    },
+    "bin": "iMonitor.exe",
+    "shortcuts": [
+        [
+            "iMonitor.exe",
+            "iMonitor"
+        ]
+    ],
+    "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\uninst*\" -Force -Recurse",
+    "checkver": {
+        "github": "https://github.com/wecooperate/iMonitor"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/wecooperate/iMonitor/releases/download/$version/iMonitor64.exe#/dl.7z"
+            },
+            "32bit": {
+                "url": "https://ghproxy.com/https://github.com/wecooperate/iMonitor/releases/download/$version/iMonitor32.exe#/dl.7z"
+            }
+        }
+    }
+}

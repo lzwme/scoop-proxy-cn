@@ -1,0 +1,30 @@
+{
+    "version": "1.2.7",
+    "description": "httpx is a fast and multi-purpose HTTP toolkit that allows running multiple probes using the retryablehttp library. It is designed to maintain result reliability with an increased number of threads",
+    "homepage": "https://projectdiscovery.io",
+    "license": "MIT",
+    "architecture": {
+        "32bit": {
+            "url": "https://ghproxy.com/https://github.com/projectdiscovery/httpx/releases/download/v1.2.7/httpx_1.2.7_windows_386.zip",
+            "hash": "a72e0f43c688c801052bd7ac0a04e86e3fd8c776d2bd056fceaa5db3adff9bfd"
+        },
+        "64bit": {
+            "url": "https://ghproxy.com/https://github.com/projectdiscovery/httpx/releases/download/v1.2.7/httpx_1.2.7_windows_amd64.zip",
+            "hash": "82c8a87046cecf01e9156d488232236084557b4e12e4320646e078c8513bca6a"
+        }
+    },
+    "bin": "httpx.exe",
+    "checkver": {
+        "github": "https://github.com/projectdiscovery/httpx"
+    },
+    "autoupdate": {
+        "architecture": {
+            "32bit": {
+                "url": "https://ghproxy.com/https://github.com/projectdiscovery/httpx/releases/download/v$version/httpx_$version_windows_386.zip"
+            },
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/projectdiscovery/httpx/releases/download/v$version/httpx_$version_windows_amd64.zip"
+            }
+        }
+    }
+}

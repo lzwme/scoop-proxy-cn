@@ -1,0 +1,40 @@
+{
+ "architecture": {
+  "64bit": {
+   "hash": "1304bb7072073ac2f5c47886e2f688930918cc4fb25986d1b6ffe230bedf354b",
+   "url": "https://ghproxy.com/https://github.com/paolo-projects/auto-unlocker/releases/download/v2.0.0a/Unlocker-v2.0.0a-x64.zip"
+  }
+ },
+ "autoupdate": {
+  "architecture": {
+   "64bit": {
+    "url": "https://ghproxy.com/https://github.com/paolo-projects/auto-unlocker/releases/download/v$version/Unlocker-v$version-x64.zip"
+   }
+  }
+ },
+ "checkver": {
+  "regex": "releases/tag/v(.+?)\"",
+  "url": "https://github.com/paolo-projects/auto-unlocker/releases/"
+ },
+ "description": "VMWare Auto Unlocker. Create/use macOS virtual machines inside VMware.",
+ "homepage": "https://github.com/paolo-projects/auto-unlocker",
+ "installer": {
+  "args": "--install",
+  "file": "Unlocker.exe",
+  "keep": true
+ },
+ "license": {
+  "identifier": "GPL-3.0-only",
+  "url": "https://github.com/paolo-projects/auto-unlocker/blob/master/LICENSE"
+ },
+ "persist": "backup",
+ "pre_install": "if (-not (is_admin)) { throw 'Administrator privileges are required' }",
+ "suggest": {
+  "VMware Workstation": "Ash258/VMware"
+ },
+ "uninstaller": {
+  "args": "--uninstall",
+  "file": "Unlocker"
+ },
+ "version": "2.0.0a"
+}

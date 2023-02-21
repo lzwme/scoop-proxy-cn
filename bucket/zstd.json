@@ -1,0 +1,23 @@
+{
+    "version": "1.5.4",
+    "description": "High compression ratios compression algorithm",
+    "homepage": "https://facebook.github.io/zstd/",
+    "license": "BSD-3-Clause",
+    "architecture": {
+        "64bit": {
+            "url": "https://ghproxy.com/https://github.com/facebook/zstd/releases/download/v1.5.4/zstd-v1.5.4-win64.zip",
+            "hash": "0f4e67626f8d758a219c24e780a556a88a7baf4793e95802e55a789f9a4d3cc6"
+        }
+    },
+    "bin": "zstd.exe",
+    "checkver": {
+        "github": "https://github.com/facebook/zstd"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/facebook/zstd/releases/download/v$version/zstd-v$version-win64.zip"
+            }
+        }
+    }
+}

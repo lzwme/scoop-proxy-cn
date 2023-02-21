@@ -1,0 +1,13 @@
+{
+ "$schema": "https://github.com/lukesampson/scoop/raw/master/schema.json",
+ "bin": "scripts/pm.ps1",
+ "extract_to": "tmp",
+ "pre_install": [
+  "Get-Childitem \u2013Path $dir/tmp -Recurse | ForEach-Object {",
+  "   Move-Item \u2013Path $dir/tmp/$_ $dir/scripts",
+  "}",
+  "Remove-Item -Recurse \u2013Path $dir/tmp"
+ ],
+ "url": "https://gist.github.com/Cologler/2d3c152a9ef829c16174a161206732e4/archive/master.zip",
+ "version": "1"
+}

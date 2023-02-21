@@ -1,0 +1,52 @@
+{
+    "version": "4.2ga8",
+    "description": "The Windows console version of x3270, an IBM 3270 terminal emulator for the X Window System and Windows.",
+    "homepage": "http://x3270.bgp.nu/",
+    "license": {
+        "identifier": "Freeware",
+        "url": "https://x3270.miraheze.org/wiki/X3270_license"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://sourceforge.net/projects/x3270/files/x3270/4.2ga8/wc3270-4.2ga8-noinstall-64.zip",
+            "hash": "sha1:48016251a55c5a1b869e61beaa762cf4ec6cab29"
+        },
+        "32bit": {
+            "url": "https://sourceforge.net/projects/x3270/files/x3270/4.2ga8/wc3270-4.2ga8-noinstall-32.zip",
+            "hash": "sha1:d7708a812ec520ec452b2c2daa9dec8cb701ef1a"
+        }
+    },
+    "bin": [
+        "wc3270.exe",
+        "wc3270wiz.exe",
+        "ws3270.exe",
+        "catf.exe",
+        "x3270if.exe",
+        "wpr3287.exe",
+        "pr3287.exe"
+    ],
+    "shortcuts": [
+        [
+            "wc3270.exe",
+            "wc3270"
+        ],
+        [
+            "wc3270.exe",
+            "wc3270 Session Wizard"
+        ]
+    ],
+    "checkver": {
+        "url": "https://sourceforge.net/projects/x3270/rss",
+        "regex": "wc3270-([\\d\\w.]+)-noinstall-64.zip"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://sourceforge.net/projects/x3270/files/x3270/$version/wc3270-$version-noinstall-64.zip"
+            },
+            "32bit": {
+                "url": "https://sourceforge.net/projects/x3270/files/x3270/$version/wc3270-$version-noinstall-32.zip"
+            }
+        }
+    }
+}

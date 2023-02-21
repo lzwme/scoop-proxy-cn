@@ -1,0 +1,30 @@
+{
+ "autoupdate": {
+  "url": "https://storage-cdn.wemod.com/app/releases/stable/WeMod-$version.exe#/dl.7z"
+ },
+ "checkver": {
+  "jsonpath": "$[?(@.name == 'wemod-stable')].redirect",
+  "regex": "WeMod-([\\d.]+)\\.exe",
+  "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/header.json"
+ },
+ "description": "Free cheats & trainers for your favorite PC games in one easy app.",
+ "hash": "5bb1c20f4c1b10efc7eb27fab28ff019c39c298f4bd0d292ed2cde403f15203a",
+ "homepage": "https://www.wemod.com/",
+ "license": {
+  "identifier": "Proprietary",
+  "url": "https://www.wemod.com/terms"
+ },
+ "pre_install": [
+  "$nupkg=(Get-ChildItem $dir\\*full.nupkg).Name",
+  "Get-ChildItem \"$dir\" -Exclude \"$nupkg\" | Remove-Item -ErrorAction 'SilentlyContinue' -Force -Recurse",
+  "Expand-7zipArchive \"$dir\\$nupkg\" -ExtractDir 'lib\\net45' -Removal"
+ ],
+ "shortcuts": [
+  [
+   "WeMod.exe",
+   "WeMod"
+  ]
+ ],
+ "url": "https://storage-cdn.wemod.com/app/releases/stable/WeMod-8.3.12.exe#/dl.7z",
+ "version": "8.3.12"
+}

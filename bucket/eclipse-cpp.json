@@ -1,0 +1,34 @@
+{
+    "version": "2022-12",
+    "description": "Eclipse IDE for C and C++ Developers",
+    "homepage": "https://www.eclipse.org",
+    "license": "EPL-1.0",
+    "architecture": {
+        "64bit": {
+            "url": "http://download.eclipse.org/technology/epp/downloads/release/2022-12/R/eclipse-cpp-2022-12-R-win32-x86_64.zip",
+            "hash": "sha512:39c5fd5528ff6e84b0dea0fed1be1ecb20b0416a94097d574fa248c8a2cb7f63885595c59f951ae51acc8adac53ffd25c529b79fd9fad8ce857756da9ae14d03"
+        }
+    },
+    "extract_dir": "eclipse",
+    "shortcuts": [
+        [
+            "eclipse.exe",
+            "Eclipse IDE for C and C++ Developers"
+        ]
+    ],
+    "checkver": {
+        "url": "https://download.eclipse.org/technology/epp/downloads/release/release.xml",
+        "xpath": "/packages/present",
+        "regex": "([\\d-]+)"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "http://download.eclipse.org/technology/epp/downloads/release/$version/R/eclipse-cpp-$version-R-win32-x86_64.zip"
+            }
+        },
+        "hash": {
+            "url": "$url.sha512"
+        }
+    }
+}

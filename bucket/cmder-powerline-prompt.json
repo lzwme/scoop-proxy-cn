@@ -1,0 +1,36 @@
+{
+ "autoupdate": {
+  "extract_dir": "cmder-powerline-prompt-$version",
+  "url": "https://ghproxy.com/https://github.com/chrisant996/cmder-powerline-prompt/archive/$version.zip"
+ },
+ "checkver": {
+  "re": "/releases/tag/([\\w.]+)",
+  "url": "https://github.com/chrisant996/cmder-powerline-prompt/releases/latest"
+ },
+ "extract_dir": "cmder-powerline-prompt-v.06cc7a",
+ "hash": "d389b0a433ae9831c55a5dc1523bbd041bca0e5ccc7f3f790eb2c361bd18381f",
+ "homepage": "https://github.com/chrisant996/cmder-powerline-prompt",
+ "installer": {
+  "script": [
+   "if (Get-Command clink -ErrorAction SilentlyContinue) {",
+   "   clink installscripts $dir",
+   "} elseif ($Env:CMDER_ROOT) {",
+   "   & $Env:CMDER_ROOT\\vendor\\clink\\clink.bat installscripts $dir",
+   "} else {",
+   "   \"Clink or Cmder installation not found. Please manually install these scripts\"",
+   "}"
+  ]
+ },
+ "license": "",
+ "uninstaller": {
+  "script": [
+   "if (Get-Command clink -ErrorAction SilentlyContinue) {",
+   "   clink uninstallscripts $dir",
+   "} elseif ($Env:CMDER_ROOT) {",
+   "   & $Env:CMDER_ROOT\\vendor\\clink\\clink.bat uninstallscripts $dir",
+   "}"
+  ]
+ },
+ "url": "https://ghproxy.com/https://github.com/chrisant996/cmder-powerline-prompt/archive/v.06cc7a.zip",
+ "version": "v.06cc7a"
+}

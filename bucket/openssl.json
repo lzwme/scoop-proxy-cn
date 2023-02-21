@@ -1,0 +1,39 @@
+{
+    "version": "3.0.8",
+    "description": "TLS/SSL toolkit",
+    "homepage": "https://slproweb.com/products/Win32OpenSSL.html",
+    "license": "Apache-2.0",
+    "architecture": {
+        "64bit": {
+            "url": "https://slproweb.com/download/Win64OpenSSL-3_0_8.exe",
+            "hash": "57073a63cd8e875d2ffbf3c33ddcd567e25b72f98ecb1c9fd90c3824e443c536"
+        },
+        "32bit": {
+            "url": "https://slproweb.com/download/Win32OpenSSL-3_0_8.exe",
+            "hash": "c603ed69c88990900870261853e4d260e92dc96c9285cf0fe78d108731ad13dc"
+        }
+    },
+    "innosetup": true,
+    "env_add_path": "bin",
+    "env_set": {
+        "OPENSSL_CONF": "$dir\\bin\\cnf\\openssl.cnf",
+        "OPENSSL_LIB_DIR": "$dir\\lib",
+        "OPENSSL_INCLUDE_DIR": "$dir\\include",
+        "OPENSSL_MODULES": "$dir\\bin"
+    },
+    "checkver": "Win32 OpenSSL v([^\\s]+)",
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://slproweb.com/download/Win64OpenSSL-$underscoreVersion.exe"
+            },
+            "32bit": {
+                "url": "https://slproweb.com/download/Win32OpenSSL-$underscoreVersion.exe"
+            }
+        },
+        "hash": {
+            "url": "https://ghproxy.com/https://raw.githubusercontent.com/slproweb/opensslhashes/master/win32_openssl_hashes.json",
+            "jsonpath": "$.files.['$basename'].sha256"
+        }
+    }
+}

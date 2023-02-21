@@ -1,0 +1,23 @@
+{
+ "autoupdate": {
+  "url": "http://uc.maximus.in.ua/files/uCalendar$cleanVersionu$matchBuild.7z"
+ },
+ "checkver": {
+  "regex": "FF00FF.+?(?<version>[\\d.]+).+Update (?<build>[\\d.]+)",
+  "url": "http://uc.maximus.in.ua/download.php"
+ },
+ "description": "Ultimate Calendar \u2013 is easy to use calendar with rich features and settings.",
+ "hash": "08818c5ecd4ccd1588de644da6e695856f625ba88382479a2ba8cdbfe07e9ae5",
+ "homepage": "http://uc.maximus.in.ua/",
+ "license": "Freeware",
+ "persist": "uCalendar.ini",
+ "pre_install": "if(!(Test-Path \"$dir/uCalendar.ini\")) { Add-Content \"$dir/uCalendar.ini\" $null }",
+ "shortcuts": [
+  [
+   "uCalendar.exe",
+   "uCalendar"
+  ]
+ ],
+ "url": "http://uc.maximus.in.ua/files/uCalendar1812u2.7z",
+ "version": "1.8.1.2"
+}

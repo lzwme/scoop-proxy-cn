@@ -1,0 +1,31 @@
+{
+ "autoupdate": {
+  "url": "https://ghproxy.com/https://github.com/googlefonts/Inconsolata/releases/download/v$version/fonts_ttf.zip"
+ },
+ "checkver": "github",
+ "description": "Development repo of Inconsolata Fonts by Raph Levien",
+ "hash": "626e8ee07501dbb544b50aa59ac2e4b9ec86b810670158a59c7a3cbaf475548a",
+ "homepage": "https://github.com/googlefonts/Inconsolata",
+ "installer": {
+  "script": [
+   "if(!(is_admin)) { error \"Admin rights are required.\"; exit 1 }",
+   "Get-ChildItem $dir -Filter '*.ttf' -Recurse | ForEach-Object {",
+   "  New-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $_.Name -Force | Out-Null",
+   "  Copy-Item $_.FullName -destination \"$env:windir\\Fonts\"",
+   "}"
+  ]
+ },
+ "license": "OFL-1.1",
+ "uninstaller": {
+  "script": [
+   "if(!(is_admin)) { error \"Admin rights are required.\"; exit 1 }",
+   "Get-ChildItem $dir -filter '*.ttf' -Recurse | ForEach-Object {",
+   "  Remove-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
+   "  Remove-Item \"$env:windir\\Fonts\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
+   "}",
+   "Write-Host \"'Inconsolata' TTF files have been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
+  ]
+ },
+ "url": "https://ghproxy.com/https://github.com/googlefonts/Inconsolata/releases/download/v3.000/fonts_ttf.zip",
+ "version": "3.000"
+}

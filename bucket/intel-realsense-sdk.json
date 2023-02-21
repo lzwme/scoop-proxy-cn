@@ -1,0 +1,51 @@
+{
+ "autoupdate": {
+  "url": "https://ghproxy.com/https://github.com/IntelRealSense/librealsense/releases/download/v$majorVersion.$minorVersion.$patchVersion/Intel.RealSense.SDK-WIN10-$version.exe#/setup.exe"
+ },
+ "bin": [
+  "tools\\realsense-viewer.exe",
+  "tools\\rs-align.exe",
+  "tools\\rs-align-advanced.exe",
+  "tools\\rs-ar-basic.exe",
+  "tools\\rs-callback.exe",
+  "tools\\rs-capture.exe",
+  "tools\\rs-convert.exe",
+  "tools\\rs-data-collect.exe",
+  "tools\\rs-depth-quality.exe",
+  "tools\\rs-enumerate-devices.exe",
+  "tools\\rs-fw-logger.exe",
+  "tools\\rs-fw-update.exe",
+  "tools\\rs-hello-realsense.exe",
+  "tools\\rs-measure.exe",
+  "tools\\rs-motion.exe",
+  "tools\\rs-multicam.exe",
+  "tools\\rs-pointcloud.exe",
+  "tools\\rs-pose.exe",
+  "tools\\rs-pose-predict.exe",
+  "tools\\rs-post-processing.exe",
+  "tools\\rs-record-playback.exe",
+  "tools\\rs-save-to-disk.exe",
+  "tools\\rs-sensor-control.exe",
+  "tools\\rs-software-device.exe",
+  "tools\\rs-trajectory.exe"
+ ],
+ "checkver": {
+  "regex": "Intel\\.RealSense\\.SDK-WIN10-([\\d.]+)\\.exe",
+  "url": "https://github.com/IntelRealSense/librealsense/releases"
+ },
+ "description": "SDK for Intel RealSense Depth Camera and Lidars",
+ "hash": "981082aaccd84cb6d33b1272feadf86f35f36043af31c70ca4922e3bc2f27ed1",
+ "homepage": "https://www.intelrealsense.com/sdk-2/",
+ "installer": {
+  "script": [
+   "Invoke-ExternalCommand \"$dir\\setup.exe\" -ArgumentList @('/SILENT', \"/dir=`\"$dir`\"\") -RunAs | Out-Null",
+   "Remove-Item \"$dir\\setup.exe\""
+  ]
+ },
+ "license": "Apache-2.0",
+ "uninstaller": {
+  "script": "Invoke-ExternalCommand \"$dir\\unins000.exe\" -ArgumentList @('/SILENT') -RunAs | Out-Null"
+ },
+ "url": "https://ghproxy.com/https://github.com/IntelRealSense/librealsense/releases/download/v2.51.1/Intel.RealSense.SDK-WIN10-2.51.1.4348.exe#/setup.exe",
+ "version": "2.51.1.4348"
+}

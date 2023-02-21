@@ -1,0 +1,35 @@
+{
+    "version": "0.11.2",
+    "description": "A Prometheus exporter for metrics in the InfluxDB format used since 0.9.0.",
+    "homepage": "https://github.com/prometheus/influxdb_exporter",
+    "license": "Apache-2.0",
+    "architecture": {
+        "64bit": {
+            "url": "https://ghproxy.com/https://github.com/prometheus/influxdb_exporter/releases/download/v0.11.2/influxdb_exporter-0.11.2.windows-amd64.tar.gz",
+            "hash": "3bcb97c2155273b43cbd7db7ddce52d7e26911379433d94164c327bcf8554df3",
+            "extract_dir": "influxdb_exporter-0.11.2.windows-amd64"
+        },
+        "32bit": {
+            "url": "https://ghproxy.com/https://github.com/prometheus/influxdb_exporter/releases/download/v0.11.2/influxdb_exporter-0.11.2.windows-386.tar.gz",
+            "hash": "d45c4536c55afee65f826f49fbebaa4e9fecda790c66e20fd1cadc8d55739400",
+            "extract_dir": "influxdb_exporter-0.11.2.windows-386"
+        }
+    },
+    "bin": "influxdb_exporter.exe",
+    "checkver": "github",
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/prometheus/influxdb_exporter/releases/download/v$version/influxdb_exporter-$version.windows-amd64.tar.gz",
+                "extract_dir": "influxdb_exporter-$version.windows-amd64"
+            },
+            "32bit": {
+                "url": "https://ghproxy.com/https://github.com/prometheus/influxdb_exporter/releases/download/v$version/influxdb_exporter-$version.windows-386.tar.gz",
+                "extract_dir": "influxdb_exporter-$version.windows-386"
+            }
+        },
+        "hash": {
+            "url": "$baseurl/sha256sums.txt"
+        }
+    }
+}

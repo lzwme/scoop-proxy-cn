@@ -1,0 +1,42 @@
+{
+    "version": "2.12.14",
+    "description": "阿里云小白羊版 第三方的阿里云盘客户端",
+    "homepage": "https://github.com/liupan1890/aliyunpan",
+    "license": "Unknown",
+    "url": "https://link.jscdn.cn/lanzou/aHR0cHM6Ly93d2UubGFuem91aS5jb20vaVdKeEQwMzdpazlp.7z",
+    "hash": "8467a10afa28daf514645eed93d1fd9c27fd347c0dd42979687ae38a036fb081",
+    "extract_dir": "阿里云盘小白羊版v2",
+    "installer": {
+        "script": [
+            "    # Rename",
+            "Get-ChildItem -r \"$dir\\阿里云盘小白羊版*.exe\" | Rename-Item -newname \"$dir\\阿里云盘小白羊版.exe\"",
+            "# handle runtime cache",
+            "if (!(Test-Path $persist_dir)) {",
+            "    New-Item $persist_dir -Type Directory -Force | Out-Null",
+            "}",
+            "$runtimeCache = \"$env:APPDATA\\alixby\"",
+            "$runtimeCachePersist = \"$persist_dir\\appdata\"",
+            "if (Test-Path $runtimeCachePersist) {",
+            "    Remove-Item $runtimeCache -Force -Recurse -ErrorAction SilentlyContinue",
+            "    New-Item -Type Junction -Path $runtimeCache -Target $runtimeCachePersist | Out-Null",
+            "} else {",
+            "    if (Test-Path $runtimeCache) {",
+            "        Move-Item $runtimeCache $runtimeCachePersist -Force",
+            "        New-Item -Type Junction -Path $runtimeCache -Target $runtimeCachePersist | Out-Null",
+            "    }",
+            "}"
+        ]
+    },
+    "uninstaller": {
+        "script": [
+            "$runtimeCache = \"$env:APPDATA\\alixby\"",
+            "$runtimeCachePersist = \"$persist_dir\\appdata\"",
+            "if (!(Test-Path $runtimeCachePersist)) {",
+            "    Move-Item $runtimeCache $runtimeCachePersist -Force",
+            "} else {",
+            "    Remove-Item $runtimeCache -Force -Recurse -ErrorAction SilentlyContinue",
+            "}"
+        ]
+    },
+    "shortcuts": [["阿里云盘小白羊版.exe", "阿里云盘小白羊版"]]
+}

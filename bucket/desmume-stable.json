@@ -1,0 +1,70 @@
+{
+ "architecture": {
+  "64bit": {
+   "bin": [
+    [
+     "DeSmuME_0.9.13_x64.exe",
+     "desmume-stable"
+    ]
+   ],
+   "hash": "cbf710b8e6b29f0904e289a9b9a895548a2d7c7af5a3145c8279b97a69a09276",
+   "shortcuts": [
+    [
+     "DeSmuME_0.9.13_x64.exe",
+     "desmume-stable"
+    ]
+   ],
+   "url": "https://ghproxy.com/https://github.com/TASEmulators/desmume/releases/download/release_0_9_13/desmume-0.9.13-win64.zip"
+  }
+ },
+ "autoupdate": {
+  "architecture": {
+   "64bit": {
+    "bin": [
+     [
+      "DeSmuME_$version_x64.exe",
+      "desmume-stable"
+     ]
+    ],
+    "hash": "e858159f6bbeff6704bfba0959a29c22ffe8aaf2763ee5f983b487db23ba5247",
+    "shortcuts": [
+     [
+      "DeSmuME_$version_x64.exe",
+      "desmume-stable"
+     ]
+    ],
+    "url": "https://ghproxy.com/https://github.com/TASEmulators/desmume/releases/download/release_$underscoreVersion/desmume-$version-win64.zip"
+   }
+  }
+ },
+ "checkver": {
+  "github": "https://github.com/TASEmulators/desmume",
+  "regex": "release_([^_]*)_([^_]*)_([^_\"]*)",
+  "replace": "${1}.${2}.${3}"
+ },
+ "description": "Most used NDS emulator",
+ "homepage": "https://desmume.org/",
+ "license": {
+  "identifier": "GPL-2.0"
+ },
+ "notes": "No wifi emulation, most likey will never be",
+ "persist": [
+  "AviFiles",
+  "Battery",
+  "Cheats",
+  "Firmware",
+  "Lua",
+  "Roms",
+  "Screenshots",
+  "SramImportExport",
+  "States",
+  "StateSlots",
+  "desmume.ini"
+ ],
+ "pre_install": [
+  "if (!(Test-Path \"$persist_dir\\desmume.ini\")) {",
+  "    New-Item \"$dir\\desmume.ini\" -Type File | Out-Null",
+  "}"
+ ],
+ "version": "0.9.13"
+}

@@ -1,0 +1,35 @@
+{
+    "version": "0.8.4",
+    "description": "du(1) - File space usage analyzer",
+    "homepage": "https://github.com/bootandy/dust",
+    "license": "Apache-2.0",
+    "architecture": {
+        "64bit": {
+            "url": "https://ghproxy.com/https://github.com/bootandy/dust/releases/download/v0.8.4/dust-v0.8.4-x86_64-pc-windows-msvc.zip",
+            "hash": "13f52ac1e059d748fcc2ab99f926c50772bc30d741456452adf9dc51918ee3af",
+            "extract_dir": "dust-v0.8.4-x86_64-pc-windows-msvc"
+        },
+        "32bit": {
+            "url": "https://ghproxy.com/https://github.com/bootandy/dust/releases/download/v0.8.4/dust-v0.8.4-i686-pc-windows-msvc.zip",
+            "hash": "c85718ba27327be32eba211e53d2f140169f2c009c8c352d143ee3eeb5ff11dc",
+            "extract_dir": "dust-v0.8.4-i686-pc-windows-msvc"
+        }
+    },
+    "bin": "dust.exe",
+    "checkver": {
+        "url": "https://api.github.com/repos/bootandy/dust/releases",
+        "regex": "dust-v([\\d.]+)-x86_64-pc-windows-msvc\\.zip"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/bootandy/dust/releases/download/v$version/dust-v$version-x86_64-pc-windows-msvc.zip",
+                "extract_dir": "dust-v$version-x86_64-pc-windows-msvc"
+            },
+            "32bit": {
+                "url": "https://ghproxy.com/https://github.com/bootandy/dust/releases/download/v$version/dust-v$version-i686-pc-windows-msvc.zip",
+                "extract_dir": "dust-v$version-i686-pc-windows-msvc"
+            }
+        }
+    }
+}

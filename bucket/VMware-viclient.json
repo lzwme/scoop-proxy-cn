@@ -1,0 +1,24 @@
+{
+ "autoupdate": {
+  "hash": {
+   "regex": "$sha256",
+   "url": "$url.sha256"
+  },
+  "url": "https://scoop-zapps.ziiyc.com/d/VMware-viclient/VMware-viclient-$version.exe#/setup.exe"
+ },
+ "checkver": {
+  "regex": "([\\d.]+)",
+  "url": "https://ghproxy.com/https://raw.githubusercontent.com/kkzzhizhou/scoop-zapps/master/versions/VMware-viclient.latest"
+ },
+ "description": "VMware vSphere Client",
+ "hash": "36224467f8b0dc26738828b65f351e5728cff88dab2c0224119df81f8c47b9e4",
+ "installer": {
+  "keep": true,
+  "script": "Start-Process -Wait \"$dir\\setup.exe\" \"/S /v/qb\" -Verb RunAs"
+ },
+ "uninstaller": {
+  "script": "Start-Process -Wait MsiExec.exe \"/x {593390AC-CACE-4278-AA77-350012BF10B1} /qb\" -Verb RunAs"
+ },
+ "url": "https://scoop-zapps.ziiyc.com/d/VMware-viclient/VMware-viclient-6.0.0.5112508.exe#/setup.exe",
+ "version": "6.0.0.5112508"
+}

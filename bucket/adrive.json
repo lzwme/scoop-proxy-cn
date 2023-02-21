@@ -1,0 +1,38 @@
+{
+ "autoupdate": {
+  "hash": {
+   "jsonpath": "$[?(@.name == 'aDrive')].hash",
+   "mode": "json",
+   "url": "https://ghproxy.com/https://raw.githubusercontent.com/Ryanjiena/MetaVersion/main/alibaba.json"
+  },
+  "url": "https://yunpan.aliyun.com/downloads/apps/desktop/aDrive-$version.exe#/installer.exe"
+ },
+ "checkver": {
+  "jsonpath": "$[?(@.name == 'aDrive')].version",
+  "url": "https://ghproxy.com/https://raw.githubusercontent.com/Ryanjiena/MetaVersion/main/alibaba.json"
+ },
+ "description": "aDrive is a fast, non-intrusive, secure and easy-to-share personal netdisk where you can store, manage and explore things, and build a flourishing digital world.",
+ "hash": "sha512:1e0b8c7dba9154fe7c0c29bd0b3eec5c6bafe49d3b1520165cf6e258969e94349729f95e3dbb1827b98d79d8b957e2f33d3d3c1aa6ad1bdcc53188bfe8240aad",
+ "homepage": "https://www.aliyundrive.com/",
+ "installer": {
+  "script": [
+   "ensure \"$persist_dir\" | Out-Null",
+   "New-Item \"$env:AppData\\aDrive\" -ItemType Junction -Target \"$persist_dir\" | Out-Null",
+   "Start-Process \"$dir\\installer.exe\" -WorkingDirectory \"$dir\" -ArgumentList \"/S /D=$dir\" -Wait"
+  ]
+ },
+ "license": {
+  "identifier": "Proprietary",
+  "url": "https://terms.alicdn.com/legal-agreement/terms/suit_bu1_dingtalk/suit_bu1_dingtalk202103191654_76478.html"
+ },
+ "persist": "User Data",
+ "post_install": "Remove-Item \"$dir\\installer.exe\" -ErrorAction 'SilentlyContinue' -Force -Recurse",
+ "uninstaller": {
+  "script": [
+   "Remove-Item \"$env:AppData\\aDrive\" -ErrorAction 'SilentlyContinue' -Force -Recurse",
+   "Start-Process \"$dir\\Uninstall.exe\" -WorkingDirectory \"$dir\" -ArgumentList \"/S\" -Wait"
+  ]
+ },
+ "url": "https://yunpan.aliyun.com/downloads/apps/desktop/aDrive-3.12.1.exe#/installer.exe",
+ "version": "3.12.1"
+}

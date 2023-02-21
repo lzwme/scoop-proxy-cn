@@ -1,0 +1,36 @@
+{
+    "version": "0.56.15",
+    "description": "A diagnostic tool that makes it easier to understand the state of a Kubernetes cluster by running a set of Kubernetes conformance tests and other plugins in an accessible and non-destructive manner.",
+    "homepage": "https://sonobuoy.io/",
+    "license": "Apache-2.0",
+    "architecture": {
+        "64bit": {
+            "url": "https://ghproxy.com/https://github.com/vmware-tanzu/sonobuoy/releases/download/v0.56.15/sonobuoy_0.56.15_windows_amd64.tar.gz",
+            "hash": "911a402f71d8daa89eb22f2450639373bd77340625599c9480594feffc3e2a79"
+        },
+        "32bit": {
+            "url": "https://ghproxy.com/https://github.com/vmware-tanzu/sonobuoy/releases/download/v0.56.15/sonobuoy_0.56.15_windows_386.tar.gz",
+            "hash": "2a17da87771de817454980d56a882dd1d0badc13eb568cb411d89852d2c3a949"
+        }
+    },
+    "bin": "sonobuoy.exe",
+    "suggest": {
+        "kubectl": "kubectl"
+    },
+    "checkver": {
+        "github": "https://github.com/vmware-tanzu/sonobuoy"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/vmware-tanzu/sonobuoy/releases/download/v$version/sonobuoy_$version_windows_amd64.tar.gz"
+            },
+            "32bit": {
+                "url": "https://ghproxy.com/https://github.com/vmware-tanzu/sonobuoy/releases/download/v$version/sonobuoy_$version_windows_386.tar.gz"
+            }
+        },
+        "hash": {
+            "url": "$baseurl/sonobuoy_$version_checksums.txt"
+        }
+    }
+}

@@ -1,0 +1,43 @@
+{
+ "architecture": {
+  "32bit": {
+   "hash": "sha1:db48ab057e02ab7840d6ed6521fce1078eb434b3",
+   "url": "https://ghproxy.com/https://github.com/2-App-Studio/journey-releases/releases/download/v2.14.6/journey-2.14.6-full-ia32.nupkg"
+  },
+  "64bit": {
+   "hash": "sha1:3c925536c9ff3ee3b8bed317ce046dd617f53da7",
+   "url": "https://ghproxy.com/https://github.com/2-App-Studio/journey-releases/releases/download/v2.14.6/journey-2.14.6-full-x64.nupkg"
+  }
+ },
+ "autoupdate": {
+  "architecture": {
+   "32bit": {
+    "hash": {
+     "regex": "$sha1",
+     "url": "https://ghproxy.com/https://github.com/2-App-Studio/journey-releases/releases/download/v$version/RELEASES-ia32"
+    },
+    "url": "https://ghproxy.com/https://github.com/2-App-Studio/journey-releases/releases/download/v$version/journey-$version-full-ia32.nupkg"
+   },
+   "64bit": {
+    "hash": {
+     "regex": "$sha1",
+     "url": "https://ghproxy.com/https://github.com/2-App-Studio/journey-releases/releases/download/v$version/RELEASES-x64"
+    },
+    "url": "https://ghproxy.com/https://github.com/2-App-Studio/journey-releases/releases/download/v$version/journey-$version-full-x64.nupkg"
+   }
+  }
+ },
+ "checkver": {
+  "jsonpath": "win.version",
+  "url": "https://s3.amazonaws.com/static-journey.2appstudio.com/releases/info.json"
+ },
+ "extract_dir": "lib\\net45",
+ "homepage": "https://2appstudio.com/journey/",
+ "shortcuts": [
+  [
+   "Journey.exe",
+   "Journey"
+  ]
+ ],
+ "version": "2.14.6"
+}

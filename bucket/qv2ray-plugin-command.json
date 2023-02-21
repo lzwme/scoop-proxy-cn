@@ -1,0 +1,25 @@
+{
+ "architecture": {
+  "64bit": {
+   "hash": "172fa814a779da0bcbba481c9525365849a4cfe1df78ad6e598f07af562cfc38",
+   "url": "https://ghproxy.com/https://github.com/Qv2ray/QvPlugin-Command/releases/download/v3.0.0/QvPlugin-Command.v3.0.0.Windows-x64.dll"
+  }
+ },
+ "depends": "dango/qv2ray",
+ "description": "Command plugin for Qv2ray",
+ "homepage": "https://github.com/Qv2ray/QvPlugin-Command",
+ "installer": {
+  "script": [
+   "function LinkFile([String] $file, [String] $source = $file) {",
+   "    Write-Host \"Creating hardlink for $file\"",
+   "    New-Item -Force -ItemType HardLink -Path \"$(appdir qv2ray $global)\\current\\config\\plugins\" -Name $file -Target \"$dir\\$source\" | Out-Null",
+   "}",
+   "LinkFile 'command.dll' '*.dll'"
+  ]
+ },
+ "license": "GPL-3.0-only",
+ "uninstaller": {
+  "script": "Remove-Item \"$(appdir qv2ray $global)\\current\\config\\plugins\\command.dll\" -Force"
+ },
+ "version": "3.0.0"
+}

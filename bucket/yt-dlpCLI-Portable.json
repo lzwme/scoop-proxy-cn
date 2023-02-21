@@ -1,0 +1,40 @@
+{
+    "version": "2023.02.17",
+    "description": "yt-dlp. A youtube-dl fork with additional features and fixes",
+    "homepage": "https://github.com/yt-dlp/yt-dlp",
+    "license": "Unlicense",
+    "changelog": "https://github.com/yt-dlp/yt-dlp/releases",
+    "suggest": {
+        "FFmpeg": [
+            "ffmpeg",
+            "ffmpeg-nightly"
+        ],
+        "vcredist": "extras/vcredist2010"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://ghproxy.com/https://github.com/yt-dlp/yt-dlp/releases/download/2023.02.17/yt-dlp.exe",
+            "hash": "351777b6fa3cf2d375e11b6840995132fd0d91f1b377f8ca8fe4252bc7135e7b"
+        },
+        "32bit": {
+            "url": "https://ghproxy.com/https://github.com/yt-dlp/yt-dlp/releases/download/2023.02.17/yt-dlp_x86.exe#/yt-dlp.exe",
+            "hash": "88054b9348972948038188ffa7e87fbb4c3d75a17e9277d8dd9c518570d4340d"
+        }
+    },
+    "bin": "yt-dlp.exe",
+    "checkver": "github",
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/yt-dlp/yt-dlp/releases/download/$version/yt-dlp.exe"
+            },
+            "32bit": {
+                "url": "https://ghproxy.com/https://github.com/yt-dlp/yt-dlp/releases/download/$version/yt-dlp_x86.exe#/yt-dlp.exe"
+            }
+        },
+        "hash": {
+            "url": "$baseurl/SHA2-256SUMS",
+            "regex": "$basename:$sha256"
+        }
+    }
+}

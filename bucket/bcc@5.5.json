@@ -1,0 +1,19 @@
+{
+	"#": "Borland CPP",
+	"version": "5.5",
+	"license": "Freeware",
+	"###": "NOTE: for SFTP/SCP, hostname must match within '~/.ssh/known_hosts' (all hosts are listed in *lower case*) to avoid curl failures (such as 'curl: (51) SSL peer certificate or SSH remote key was not OK'",
+	"###": " ...: to test SFTP/SCP operation, use 'curl -O <URI>', which must complete normally",
+	"###": "NOTE: SCP is usually 2-3 times faster than SFTP for downloads",
+	"###": "NOTE: some special characters may need to be encoded for curl (eg, change '#' to '%23')",
+	"url": "scp://admin@4532cm.houseofivy.net:42202/share/Archive/%23scoop.feed/Borland-BCC55-freeware.zip",
+	"hash": "sha256:f8bb3e69f58586065fbf423104a2d5326bf6abd9929320f50ac5f831fbefd285",
+	"env_add_path": "bcc55/bin",
+	"post_install": "
+        # configure bcc32 and ilink32
+        # * needed for more seemless use of `bcc32`
+        # NOTE: ilink32.cfg seems non-functional, requiring `-L<LIBDIR>` anyway
+        \"-I`\"$dir\\BCC55\\include`\"`r`n-L`\"$dir\\BCC55\\lib`\"\" | Out-File -encoding ascii \"$dir\\BCC55\\bin\\bcc32.cfg\"
+        \"-L`\"$dir\\BCC55\\lib`\"\" | Out-File -encoding ascii \"$dir\\BCC55\\bin\\ilink32.cfg\"
+        "
+}

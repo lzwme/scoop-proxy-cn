@@ -1,0 +1,32 @@
+{
+	"version": "3.3.11",
+	"license": "https://ghproxy.com/https://raw.githubusercontent.com/pester/Pester/master/LICENSE",
+	"url": "https://ghproxy.com/https://github.com/pester/pester/archive/3.3.11.tar.gz",
+	"homepage": "https://github.com/pester/Pester",
+	"hash": "bf4bf176d8bad9b8818acfe826df73d9b7a635180b10140bd08c38530e1a754e",
+	"extract_dir": "pester-3.3.11",
+	"bin": "bin\\pester.bat",
+	"post_install": "
+        $import = \"try { `$null = gcm pester -ea stop; import-module `\"`$(`$(scoop which pester)+'\\..\\..\\Pester.psd1')`\" } catch { }\"
+
+        if($profile) {
+            'adding pester to powershell profile...'
+            if(!(test-path $profile)) {
+                'powershell profile doesn''t exist. creating...'
+                $profile_dir = split-path $profile
+                if(!(test-path $profile_dir)) { mkdir $profile_dir > $null }
+                '' > $profile
+            }
+
+            $text = get-content $profile
+            if (($text | sls 'pester') -eq $null) {
+                $new_profile = @($text) + $import
+                $new_profile > $profile
+                success 'pester added to powershell profile.'
+            }
+        } else { warn 'no powershell profile found. the pester module will not be imported each session.' }
+
+        'importing pester for current session...'
+        iex \"$import\"
+    "
+}

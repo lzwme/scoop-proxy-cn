@@ -1,0 +1,28 @@
+{
+    "version": "0.38.0",
+    "description": "A general-purpose command-line fuzzy finder",
+    "homepage": "https://github.com/junegunn/fzf",
+    "license": "MIT",
+    "architecture": {
+        "64bit": {
+            "url": "https://ghproxy.com/https://github.com/junegunn/fzf/releases/download/0.38.0/fzf-0.38.0-windows_amd64.zip",
+            "hash": "32804b243e117dbf1b317fdd32f24c23c047642a394fa9ac7dabf50540dbb759"
+        },
+        "arm64": {
+            "url": "https://ghproxy.com/https://github.com/junegunn/fzf/releases/download/0.38.0/fzf-0.38.0-windows_arm64.zip",
+            "hash": "37b179d379185d44f7f0c6c8c48c42c7bc197bc33179d6e1a937c44ab6172440"
+        }
+    },
+    "bin": "fzf.exe",
+    "checkver": "github",
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/junegunn/fzf/releases/download/$version/fzf-$version-windows_amd64.zip"
+            },
+            "arm64": {
+                "url": "https://ghproxy.com/https://github.com/junegunn/fzf/releases/download/$version/fzf-$version-windows_arm64.zip"
+            }
+        }
+    }
+}

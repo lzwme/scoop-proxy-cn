@@ -1,0 +1,28 @@
+{
+    "version": "0.43.0",
+    "description": "Load and performance regression testing tool for cloud native backend infrastructure",
+    "homepage": "https://k6.io",
+    "license": "AGPL-3.0",
+    "architecture": {
+        "64bit": {
+            "url": "https://ghproxy.com/https://github.com/grafana/k6/releases/download/v0.43.0/k6-v0.43.0-windows-amd64.zip",
+            "hash": "1e201aec091a627ded477f9d68f13e36c2e1721514aeedcad24a6230a09c9f8b",
+            "extract_dir": "k6-v0.43.0-windows-amd64"
+        }
+    },
+    "bin": "k6.exe",
+    "checkver": {
+        "github": "https://github.com/grafana/k6"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/grafana/k6/releases/download/v$version/k6-v$version-windows-amd64.zip",
+                "extract_dir": "k6-v$version-windows-amd64"
+            }
+        },
+        "hash": {
+            "url": "$baseurl/k6-v$version-checksums.txt"
+        }
+    }
+}

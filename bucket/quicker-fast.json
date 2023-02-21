@@ -1,0 +1,49 @@
+{
+    "##": "This package is not ported to the official buckets because ReadMe file written in English is not available. Extracting the .msi using 7-zip (which is by default in Scoop) causes path error. Therefore renaming it to .msi_.",
+    "architecture": {
+        "32bit": {
+            "hash": "f6136b54b9d6752431ab54ff4472a86cdfb6e4fac36e225733856b983a0ef936",
+            "url": "https://getquicker.net/download/item/fast_x86#/quicker.msi"
+        },
+        "64bit": {
+            "hash": "505fd2bfd50941deba6a3e26c5ec50932543db026fb2ea3d1be2faa7a52140db",
+            "url": "https://getquicker.net/download/item/fast_x64#/quicker.msi"
+        }
+    },
+    "autoupdate": {
+        "architecture": {
+            "32bit": {
+                "url": "https://getquicker.net/download/item/fast_x86#/quicker.msi"
+            },
+            "64bit": {
+                "url": "https://getquicker.net/download/item/fast_x64#/quicker.msi"
+            }
+        }
+    },
+    "bin": "Quicker\\Quicker.exe",
+    "checkver": {
+        "regex": "(?sm)<h5>.*?<small.*?>.*?([\\d.]+).*?</small>",
+        "url": "https://getquicker.net/Download"
+    },
+    "depends": "uniextract2",
+    "description": "Make key shortcuts for programs, folders, URLs, and commands (fast update channel)",
+    "homepage": "https://getquicker.net/",
+    "installer": {
+        "script": [
+            "uniextract \"$original_dir\\quicker.msi_\" \"$dir\"",
+            "Start-Sleep 10"
+        ]
+    },
+    "license": {
+        "identifier": "Shareware",
+        "url": "https://getquicker.net/Forum/ViewTopic/341"
+    },
+    "persist": "Quicker\\Quicker.exe.config",
+    "shortcuts": [
+        [
+            "Quicker\\Quicker.exe",
+            "Quicker"
+        ]
+    ],
+    "version": "1.36.32.0"
+}

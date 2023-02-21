@@ -1,0 +1,48 @@
+{
+    "version": "0.53-1",
+    "description": "The \"vanilla\" distribution of Pure Data (aka Pd Vanilla) is an open source visual programming language for multimedia.",
+    "homepage": "https://puredata.info/",
+    "license": {
+        "identifier": "Standard-Improved-BSD",
+        "url": "http://msp.ucsd.edu/Software/LICENSE.txt"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "http://msp.ucsd.edu/Software/pd-0.53-1.msw.zip",
+            "hash": "c15fc13536547845e55567c3c450bf6e09e71fccc934e0e2203c3c37856a9e8e",
+            "extract_dir": "pd-0.53-1"
+        },
+        "32bit": {
+            "url": "http://msp.ucsd.edu/Software/pd-0.53-1-i386.msw.zip",
+            "hash": "566651b62d9d4456c6ec1179a317449bf3b46413e1c3fa936d555ae697169c66",
+            "extract_dir": "pd-0.53-1-i386"
+        }
+    },
+    "bin": [
+        "bin\\pd.com",
+        "bin\\pdsend.exe",
+        "bin\\pdreceive.exe"
+    ],
+    "shortcuts": [
+        [
+            "bin\\pd.exe",
+            "Pure Data"
+        ]
+    ],
+    "checkver": {
+        "url": "http://msp.ucsd.edu/software.html",
+        "regex": "CURRENT STABLE RELEASE, version ([\\d.-]+)"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "http://msp.ucsd.edu/Software/pd-$version.msw.zip",
+                "extract_dir": "pd-$version"
+            },
+            "32bit": {
+                "url": "http://msp.ucsd.edu/Software/pd-$version-i386.msw.zip",
+                "extract_dir": "pd-$version-i386"
+            }
+        }
+    }
+}

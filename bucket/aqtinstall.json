@@ -1,0 +1,28 @@
+{
+    "version": "3.1.2",
+    "description": "A command line tool for downloading Qt binaries, documents and sources.",
+    "homepage": "https://github.com/miurahr/aqtinstall",
+    "license": "MIT",
+    "architecture": {
+        "64bit": {
+            "url": "https://ghproxy.com/https://github.com/miurahr/aqtinstall/releases/download/v3.1.2/aqt_x64.exe#/aqt.exe",
+            "hash": "613c9b6e4130ccfb2424f85e47df1b6abfb2dea5ea6526eeba856981b0e7b0fc"
+        },
+        "32bit": {
+            "url": "https://ghproxy.com/https://github.com/miurahr/aqtinstall/releases/download/v3.1.2/aqt_x86.exe#/aqt.exe",
+            "hash": "5246ff597b5c18d111bc26fa34f3ac1f5f6670bc6d4937868730355fdb5164a0"
+        }
+    },
+    "bin": "aqt.exe",
+    "checkver": "github",
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/miurahr/aqtinstall/releases/download/v$version/aqt_x64.exe#/aqt.exe"
+            },
+            "32bit": {
+                "url": "https://ghproxy.com/https://github.com/miurahr/aqtinstall/releases/download/v$version/aqt_x86.exe#/aqt.exe"
+            }
+        }
+    }
+}

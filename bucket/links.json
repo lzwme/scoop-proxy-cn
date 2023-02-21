@@ -1,0 +1,38 @@
+{
+    "version": "2.28",
+    "description": "A graphics and text mode web browser.",
+    "homepage": "http://links.twibright.com/",
+    "license": "GPL-2.0-only",
+    "architecture": {
+        "64bit": {
+            "url": "http://links.twibright.com/download/binaries/win32/Links-2.28-64bit-install.exe#/dl.7z",
+            "hash": "ae2ed0a6696d6effe518302910e09a3b8b63e62c6ea21a1517478dad88172d9f"
+        },
+        "32bit": {
+            "url": "http://links.twibright.com/download/binaries/win32/Links-2.28-32bit-install.exe#/dl.7z",
+            "hash": "daeb2f98a770c90f98354e83b9a19c23989e4006aedab60bdd34e3f3283bd2fa"
+        }
+    },
+    "pre_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall.exe\" -Recurse -Force",
+    "bin": "links.exe",
+    "shortcuts": [
+        [
+            "links-g.exe",
+            "Links WWW Browser"
+        ]
+    ],
+    "checkver": {
+        "url": "http://links.twibright.com/download/binaries/win32/?C=M;O=D",
+        "regex": "Links-([\\d.]+)-"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "http://links.twibright.com/download/binaries/win32/Links-$version-64bit-install.exe#/dl.7z"
+            },
+            "32bit": {
+                "url": "http://links.twibright.com/download/binaries/win32/Links-$version-32bit-install.exe#/dl.7z"
+            }
+        }
+    }
+}

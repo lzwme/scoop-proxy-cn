@@ -1,0 +1,32 @@
+{
+ "architecture": {
+  "32bit": {
+   "pre_install": "Remove-Item \"$dir\\XMLView64.exe\" -Force"
+  },
+  "64bit": {
+   "pre_install": [
+    "Remove-Item \"$dir\\XMLView.exe\" -Force",
+    "Get-ChildItem $dir 'XMLView*exe' | Rename-Item -NewName 'XMLView.exe' -Force"
+   ]
+  }
+ },
+ "autoupdate": {
+  "url": "https://www.mitec.cz/Downloads/XMLView.zip"
+ },
+ "checkver": {
+  "regex": "<NAME>MiTeC XML Viewer 32/64 bit\\s+([\\d.]+)<",
+  "url": "https://www.mitec.cz/Data/XML/data_downloads.xml"
+ },
+ "description": "MiTeC XML Viewer",
+ "hash": "93a22a6fad75eb806e0b2eb54116e6470c7edee6acbe299828dfb6a66dd45ce5",
+ "homepage": "https://www.mitec.cz/xmlv.html",
+ "license": "Proprietary",
+ "shortcuts": [
+  [
+   "XMLView.exe",
+   "MiTeC\\XML Viewer"
+  ]
+ ],
+ "url": "https://www.mitec.cz/Downloads/XMLView.zip",
+ "version": "6.3.0"
+}

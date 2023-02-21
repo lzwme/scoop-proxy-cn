@@ -1,0 +1,67 @@
+{
+    "version": "4.5.1.10",
+    "description": "qBittorrent Enhanced. BitTorrent client with anti-leech enhancement.",
+    "homepage": "https://github.com/c0re100/qBittorrent-Enhanced-Edition",
+    "license": {
+        "identifier": "GPL-2.0-only",
+        "url": "https://github.com/qbittorrent/qBittorrent/blob/master/COPYING"
+    },
+    "notes": "Web UI Theme https://github.com/WDaan/VueTorrent",
+    "architecture": {
+        "64bit": {
+            "url": "https://ghproxy.com/https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-4.5.1.10/qbittorrent_enhanced_4.5.1.10_X64_setup.exe#/setup.exe",
+            "hash": "d3de516d6c6c06822e68fa0082d1509d9ecac0c2ae6baf7a4ab4ffef8e34ca8f"
+        },
+        "32bit": {
+            "url": "https://ghproxy.com/https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-4.5.1.10/qbittorrent_enhanced_4.5.1.10_setup.exe#/setup.exe",
+            "hash": "c2ca4aa6fef75ebee55926ef1d61d1260ae5c5f0649dc42588b336401aab16f3"
+        }
+    },
+    "pre_download": "Assert-Administrator",
+    "pre_install": [
+        "$processname = \"qbittorrent\"",
+        "$process = Get-Process $processname -ErrorAction SilentlyContinue",
+        "if ($process) {",
+        "   $process.CloseMainWindow()",
+        "   Start-Sleep -Seconds 5",
+        "   if (!$process.HasExited) {",
+        "       Start-Sleep -Seconds 25",
+        "       $process | Stop-Process -Force",
+        "   }",
+        "}"
+    ],
+    "installer": {
+        "script": [
+            "$programname = \"qbittorrent*\"",
+            "$ProgramFiles = [Environment]::GetFolderPath(\"ProgramFiles\")",
+            "$filepath = \"$ProgramFiles\\qBittorrent\\qbittorrent.exe\"",
+            "if(((Test-Path -Path $filepath -PathType Leaf) -eq $false) -or ((Get-Command $filepath).Version -lt [System.Version]\"$version\"))",
+            "{",
+            "   &\"$dir\\setup.exe\" /S | Out-Null",
+            "   if(((Test-Path -Path $filepath -PathType Leaf) -eq $false) -or ((Get-Command $filepath).Version -lt [System.Version]\"$version\"))",
+            "   {",
+            "       exit 1",
+            "   }",
+            "}",
+            "if (Test-Path -Path \"$dir\\setup.exe\") { Remove-Item \"$dir\\setup.exe\" -Force }"
+        ]
+    },
+    "post_install": [
+        "$CommonDesktopPath = [Environment]::GetFolderPath(\"CommonDesktopDirectory\")",
+        "if (Test-Path \"$CommonDesktopPath\\qbittorrent.lnk\") {Remove-Item \"$CommonDesktopPath\\qbittorrent.lnk\" -Force}"
+    ],
+    "checkver": {
+        "url": "https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases",
+        "regex": "qBittorrent Enhanced Edition v([\\d.]+)"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-$version/qbittorrent_enhanced_$version_X64_setup.exe#/setup.exe"
+            },
+            "32bit": {
+                "url": "https://ghproxy.com/https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-$version/qbittorrent_enhanced_$version_setup.exe#/setup.exe"
+            }
+        }
+    }
+}

@@ -1,0 +1,30 @@
+{
+    "version": "2.3.5",
+    "description": "GSL library shell based on LuaJIT2",
+    "homepage": "http://www.nongnu.org/gsl-shell/",
+    "license": "GPL-3.0-or-later",
+    "architecture": {
+        "64bit": {
+            "url": "https://ghproxy.com/https://github.com/franko/gsl-shell/releases/download/v2.3.5/gsl-shell-windows-x86-64.zip",
+            "hash": "d3ef5d98fd527eaa273cc6a294e3f4b896dc47922e57471476f21347b7fa819c"
+        }
+    },
+    "extract_dir": "gsl-shell",
+    "bin": "gsl-shell.exe",
+    "shortcuts": [
+        [
+            "gsl-shell-gui.exe",
+            "GSL Shell"
+        ]
+    ],
+    "checkver": {
+        "github": "https://github.com/franko/gsl-shell"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/franko/gsl-shell/releases/download/v$version/gsl-shell-windows-x86-64.zip"
+            }
+        }
+    }
+}

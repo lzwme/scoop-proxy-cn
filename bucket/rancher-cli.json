@@ -1,0 +1,33 @@
+{
+    "version": "2.7.0",
+    "description": "Unified tool for interacting with Rancher Server",
+    "homepage": "https://github.com/rancher/cli",
+    "license": "Apache-2.0",
+    "architecture": {
+        "64bit": {
+            "url": "https://ghproxy.com/https://github.com/rancher/cli/releases/download/v2.7.0/rancher-windows-amd64-v2.7.0.zip",
+            "hash": "250143f7657f3711cdbd0dae4befca1388ac690d251d81551d9ae56419afd2bc"
+        },
+        "32bit": {
+            "url": "https://ghproxy.com/https://github.com/rancher/cli/releases/download/v2.7.0/rancher-windows-386-v2.7.0.zip",
+            "hash": "398cd0cb8d39c0d227cd8a17f3e67e167eeea5140b217fa0b580762a45f9742c"
+        }
+    },
+    "extract_dir": "rancher-v2.7.0",
+    "bin": "rancher.exe",
+    "checkver": "github",
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/rancher/cli/releases/download/v$version/rancher-windows-amd64-v$version.zip"
+            },
+            "32bit": {
+                "url": "https://ghproxy.com/https://github.com/rancher/cli/releases/download/v$version/rancher-windows-386-v$version.zip"
+            }
+        },
+        "hash": {
+            "url": "$baseurl/sha256sum.txt"
+        },
+        "extract_dir": "rancher-v$version"
+    }
+}

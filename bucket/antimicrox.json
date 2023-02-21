@@ -1,0 +1,31 @@
+{
+    "architecture": {
+        "64bit": {
+            "extract_dir": "antimicrox-3.3.3-PortableWindows-AMD64",
+            "hash": "4ffd498ef915ffd53d758b102a88ad961e6acc06acc7346074dc0f28cce70eca",
+            "url": "https://ghproxy.com/https://github.com/AntiMicroX/antimicrox/releases/download/3.3.3/antimicrox-3.3.3-PortableWindows-AMD64.zip"
+        }
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "extract_dir": "antimicrox-$version-PortableWindows-AMD64",
+                "url": "https://ghproxy.com/https://github.com/AntiMicroX/antimicrox/releases/download/$version/antimicrox-$version-PortableWindows-AMD64.zip"
+            }
+        }
+    },
+    "checkver": "github",
+    "description": "Currently maintained fork of antimicro, a gamepad to KB+M mapper",
+    "homepage": "https://github.com/AntiMicroX/antimicrox",
+    "license": "GPL-3.0-only",
+    "notes": "antimicrox_settings.ini is not persisted due to Qt QSettings behavior breaking hardlinks.",
+    "persist": "profiles",
+    "pre_install": "if (!(Test-Path \"$persist_dir\\bin\\antimicrox_settings.ini\")) { New-Item -ItemType File \"$dir\\bin\\antimicrox_settings.ini\" | Out-Null }",
+    "shortcuts": [
+        [
+            "bin\\antimicrox.exe",
+            "AntiMicroX"
+        ]
+    ],
+    "version": "3.3.3"
+}

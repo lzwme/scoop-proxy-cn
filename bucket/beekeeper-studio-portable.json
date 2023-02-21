@@ -1,0 +1,33 @@
+{
+    "architecture": {
+        "64bit": {
+            "hash": "062e397b83b5fbd93b8696af58eccdb0899f2dddcd0cb932c64f15cc93cf83aa",
+            "pre_install": [
+                "Expand-7ZipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\" -Removal",
+                "Remove-Item \"$dir\\`$*\" -Force -Recurse"
+            ],
+            "url": "https://ghproxy.com/https://github.com/beekeeper-studio/beekeeper-studio/releases/download/v3.8.9/Beekeeper-Studio-3.8.9-portable.exe#/dl.7z"
+        }
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/beekeeper-studio/beekeeper-studio/releases/download/v$version/Beekeeper-Studio-$version-portable.exe#/dl.7z"
+            }
+        }
+    },
+    "checkver": {
+        "github": "https://github.com/beekeeper-studio/beekeeper-studio"
+    },
+    "description": "Beekeeper Studio is a cross-platform SQL editor and database manager available for Linux, Mac, and Windows.",
+    "homepage": "https://github.com/beekeeper-studio/beekeeper-studio",
+    "license": "MIT",
+    "persist": "beekeeper_studio_data",
+    "shortcuts": [
+        [
+            "Beekeeper Studio.exe",
+            "Beekeeper Studio"
+        ]
+    ],
+    "version": "3.8.9"
+}

@@ -1,0 +1,51 @@
+{
+    "version": "5.10.10.1013",
+    "description": "Android emulator",
+    "homepage": "https://www.bluestacks.com/",
+    "license": {
+        "identifier": "Freeware",
+        "url": "https://www.bluestacks.com/tw/terms-and-privacy.html"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://cdn3.bluestacks.com/downloads/windows/nxt/5.10.10.1013/bc20f2d6dcedf968c6bcbd7ff2dacaf3/FullInstaller/x64/BlueStacksFullInstaller_5.10.10.1013_amd64_native.exe#/setup.exe",
+            "hash": "11004d829ef27a44f82d527442e71a3273a9b884795e12b32a2b4ee4fd218051"
+        },
+        "32bit": {
+            "url": "https://cdn3.bluestacks.com/downloads/windows/nxt/5.10.10.1013/bc20f2d6dcedf968c6bcbd7ff2dacaf3/FullInstaller/x86/BlueStacksFullInstaller_5.10.10.1013_x86_native.exe#/setup.exe",
+            "hash": "18e1f67ed71fa0e6f650a86d726e04e7d96323ed8c81662439ffd36eb5dc6bc2"
+        }
+    },
+    "installer": {
+        "script": [
+            "if (!(is_admin)) { \"$app requires admin rights to $cmd\"; break }",
+            "Start-Process -Wait \"$dir\\setup.exe\" \"-s\" -Verb RunAs",
+            "Remove-Item \"$Env:Public\\Desktop\\BlueStacks 5*.lnk\""
+        ]
+    },
+    "uninstaller": {
+        "script": [
+            "if (!(is_admin)) { \"$app requires admin rights to $cmd\"; break }",
+            "$uninstaller = (Get-ItemProperty -ErrorAction Ignore \"HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\BlueStacks_nxt\" -Name UninstallString).UninstallString",
+            "if (!$uninstaller) { $uninstaller = (Get-ItemProperty -ErrorAction Ignore \"HKLM:\\SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\BlueStacks_nxt\" -Name UninstallString).UninstallString }",
+            "if (!$uninstaller) { warn 'Could not find app info in registry' }",
+            "# Remove -tmp at the end",
+            "$uninstaller = $uninstaller.Substring(0, $uninstaller.Length - 5)",
+            "Start-Process -Wait \"$uninstaller\" \"-s\" -Verb RunAs"
+        ]
+    },
+    "checkver": {
+        "url": "https://webcache.googleusercontent.com/search?q=cache:https://support.bluestacks.com/hc/en-us/articles/4402611273485-BlueStacks-5-offline-installer",
+        "regex": "windows/nxt/([\\d.]+)/(?<sha>[0-9a-f]+)/"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://cdn3.bluestacks.com/downloads/windows/nxt/$version/$matchSha/FullInstaller/x64/BlueStacksFullInstaller_$version_amd64_native.exe#/setup.exe"
+            },
+            "32bit": {
+                "url": "https://cdn3.bluestacks.com/downloads/windows/nxt/$version/$matchSha/FullInstaller/x86/BlueStacksFullInstaller_$version_x86_native.exe#/setup.exe"
+            }
+        }
+    }
+}

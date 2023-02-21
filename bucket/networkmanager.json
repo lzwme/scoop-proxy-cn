@@ -1,0 +1,42 @@
+{
+    "version": "2022.12.20.0",
+    "description": "Tool for managing networks and network troubleshooting",
+    "homepage": "https://borntoberoot.net/NETworkManager/",
+    "license": "GPL-3.0-only",
+    "notes": [
+        "You need the .NET Desktop Runtime 6.0.1 in order to run this application.",
+        "See https://borntoberoot.net/NETworkManager/Download#system-requirements for more details."
+    ],
+    "architecture": {
+        "64bit": {
+            "url": "https://ghproxy.com/https://github.com/BornToBeRoot/NETworkManager/releases/download/2022.12.20.0/NETworkManager_2022.12.20.0_Portable.zip",
+            "hash": "5a5553bf3609749c1214b8b724857ae954c4f8881907bd0de5f1c44e48d2cefa"
+        }
+    },
+    "extract_dir": "NETworkManager",
+    "bin": "NETworkManager.exe",
+    "shortcuts": [
+        [
+            "NETworkManager.exe",
+            "NETworkManager"
+        ]
+    ],
+    "persist": [
+        "Settings",
+        "Profiles"
+    ],
+    "checkver": {
+        "github": "https://github.com/BornToBeRoot/NETworkManager"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/BornToBeRoot/NETworkManager/releases/download/$version/NETworkManager_$version_Portable.zip",
+                "hash": {
+                    "url": "https://github.com/BornToBeRoot/NETworkManager/releases/tag/$version",
+                    "find": "(?sm)$basename.*?>$sha256</"
+                }
+            }
+        }
+    }
+}

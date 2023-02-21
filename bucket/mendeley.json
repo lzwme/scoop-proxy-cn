@@ -1,0 +1,36 @@
+{
+    "version": "2.84.0",
+    "description": "Manage and share research papers, and generate bibliographies for scholarly articles.",
+    "homepage": "https://www.mendeley.com/",
+    "license": {
+        "identifier": "Freeware",
+        "url": "https://www.mendeley.com/terms/"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://static.mendeley.com/bin/desktop/mendeley-reference-manager-2.84.0.exe#/dl.7z",
+            "hash": "e01da6971d0473599fc6fa8419bafdc307cbe362d6f6531e47242cab932a0bdc"
+        }
+    },
+    "pre_install": [
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\" -Removal | Out-Null",
+        "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\uninstall*.exe\" -Force -Recurse"
+    ],
+    "shortcuts": [
+        [
+            "Mendeley Reference Manager.exe",
+            "Mendeley Reference Manager"
+        ]
+    ],
+    "checkver": {
+        "url": "https://www.mendeley.com/download-reference-manager/windows",
+        "regex": "desktop/mendeley-reference-manager-([\\d.]+)\\.exe"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://static.mendeley.com/bin/desktop/mendeley-reference-manager-$version.exe#/dl.7z"
+            }
+        }
+    }
+}

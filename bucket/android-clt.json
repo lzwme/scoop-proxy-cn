@@ -1,0 +1,38 @@
+{
+    "version": "9477386",
+    "description": "The official Android command line tools",
+    "homepage": "https://developer.android.com/studio#command-tools",
+    "license": {
+        "identifier": "Freeware",
+        "url": "https://developer.android.com/studio/terms.html"
+    },
+    "notes": "You need to launch sdkmanager with --sdk_root=$env:ANDROID_SDK_ROOT.",
+    "url": "https://dl.google.com/android/repository/commandlinetools-win-9477386_latest.zip",
+    "hash": "696431978daadd33a28841320659835ba8db8080a535b8f35e9e60701ab8b491",
+    "post_install": [
+        "if (Test-Path \"$(appdir adb $global)\") {",
+        "    New-Item \"$dir\\platform-tools\" -ItemType Junction -Target \"$(appdir adb $global)\\current\\platform-tools\" | Out-Null",
+        "}"
+    ],
+    "env_add_path": "cmdline-tools\\bin",
+    "env_set": {
+        "ANDROID_SDK_ROOT": "$dir"
+    },
+    "persist": [
+        "build-tools",
+        "emulator",
+        "extras",
+        "licenses",
+        "patcher",
+        "platforms",
+        "sources"
+    ],
+    "checkver": "commandlinetools-win-(\\d+)",
+    "autoupdate": {
+        "url": "https://dl.google.com/android/repository/commandlinetools-win-$version_latest.zip",
+        "hash": {
+            "url": "https://developer.android.com/studio",
+            "regex": "commandlinetools-win(?:.*\\n){3}.*<td>($sha256)"
+        }
+    }
+}

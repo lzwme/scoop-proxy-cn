@@ -1,0 +1,30 @@
+{
+    "version": "1.9.0",
+    "description": "A CLI to manage Trellis projects.",
+    "homepage": "https://roots.io/trellis/",
+    "license": "MIT",
+    "architecture": {
+        "64bit": {
+            "url": "https://ghproxy.com/https://github.com/roots/trellis-cli/releases/download/v1.9.0/trellis_Windows_x86_64.zip",
+            "hash": "bd3829d8b33189a921612884bab743802867da2cdc6756ff774e3d5f43aeb783"
+        },
+        "32bit": {
+            "url": "https://ghproxy.com/https://github.com/roots/trellis-cli/releases/download/v1.9.0/trellis_Windows_i386.zip",
+            "hash": "bc56a96a09bf4864fcd76309603c24db97471edaef13b73cccc68d5b37fde1d5"
+        }
+    },
+    "bin": "trellis.exe",
+    "checkver": {
+        "github": "https://github.com/roots/trellis-cli"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/roots/trellis-cli/releases/download/v$version/trellis_Windows_x86_64.zip"
+            },
+            "32bit": {
+                "url": "https://ghproxy.com/https://github.com/roots/trellis-cli/releases/download/v$version/trellis_Windows_i386.zip"
+            }
+        }
+    }
+}

@@ -1,0 +1,27 @@
+{
+    "version": "0.31",
+    "description": "A skin to make Steam look more like a native GNOME app",
+    "homepage": "https://github.com/tkashkin/Adwaita-for-Steam",
+    "license": "MIT",
+    "depends": "steam",
+    "architecture": {
+        "64bit": {
+            "url": "https://ghproxy.com/https://github.com/tkashkin/Adwaita-for-Steam/archive/master.zip",
+            "hash": "c969b550e22113146ad906b0dd065d9b0b178cdb8ddb52efd4a9ea6c61f6ebc6",
+            "extract_dir": "Adwaita-for-Steam-master"
+        }
+    },
+    "pre_install": [
+        "Remove-Item -Recurse -Force $env:SCOOP\\persist\\steam\\skins\\Adwaita | Out-Null",
+        "New-Item -Type Junction -Path $env:SCOOP\\persist\\steam\\skins\\Adwaita -Target $dir\\Adwaita | Out-Null"
+    ],
+    "checkver": {
+        "github": "https://github.com/tkashkin/Adwaita-for-Steam"
+    },
+    "autoupdate": {
+        "url": "https://ghproxy.com/https://github.com/tkashkin/Adwaita-for-Steam/archive/master.zip",
+        "hash": {
+            "mode": "download"
+        }
+    }
+}

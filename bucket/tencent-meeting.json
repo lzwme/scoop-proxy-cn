@@ -1,0 +1,43 @@
+{
+ "autoupdate": {
+  "hash": {
+   "jsonpath": "$.info-list[0].md5",
+   "mode": "json",
+   "url": "https://meeting.tencent.com/web-service/query-download-info?q=%5B%7B%22package-type%22:%22app%22,%22channel%22:%220300000000%22,%22platform%22:%22windows%22%7D%5D&nonce=AAAAAAAAAAAAAAAA"
+  },
+  "url": "https://updatecdn.meeting.qq.com/cos/$matchUrl#/dl.7z"
+ },
+ "checkver": {
+  "regex": "(?sm)url.*?updatecdn.meeting.qq.com/cos/(?<url>.*?publish.exe).*?version\":\"([\\d.]+)\"",
+  "url": "https://meeting.tencent.com/web-service/query-download-info?q=%5B%7B%22package-type%22:%22app%22,%22channel%22:%220300000000%22,%22platform%22:%22windows%22%7D%5D&nonce=AAAAAAAAAAAAAAAA"
+ },
+ "description": "\u817e\u8baf\u4f1a\u8bae",
+ "hash": "md5:c7b68b0d136b1f7dfeb35cbf52f39f97",
+ "homepage": "https://meeting.tencent.com/",
+ "installer": {
+  "script": [
+   "ensure \"$persist_dir\" | Out-Null",
+   "New-Item \"$env:APPDATA\\Tencent\\WeMeet\" -ItemType Junction -Target \"$persist_dir\" | Out-Null"
+  ]
+ },
+ "license": {
+  "identifier": "Proprietary",
+  "url": "https://meeting.tencent.com/declare.html"
+ },
+ "post_install": [
+  "Remove-Item \"$dir\\`$*\" -Recurse -Force -ErrorAction SilentlyContinue",
+  "Remove-Item \"$dir\\wemeetapp_new.exe\" -Force -ErrorAction SilentlyContinue"
+ ],
+ "pre_install": "Rename-Item -Path \"$dir\\`$_*\" -NewName \"$version\" -Force",
+ "shortcuts": [
+  [
+   "wemeetapp.exe",
+   "Tencent Meeting"
+  ]
+ ],
+ "uninstaller": {
+  "script": "Remove-Item \"$env:APPDATA\\Tencent\\WeMeet\" -ErrorAction 'SilentlyContinue' -Force -Recurse"
+ },
+ "url": "https://updatecdn.meeting.qq.com/cos/c7b68b0d136b1f7dfeb35cbf52f39f97/TencentMeeting_0300000000_3.13.5.459.publish.exe#/dl.7z",
+ "version": "3.13.5.459"
+}

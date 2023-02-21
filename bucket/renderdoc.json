@@ -1,0 +1,50 @@
+{
+    "version": "1.25",
+    "description": "A stand-alone graphics debugging tool",
+    "homepage": "https://renderdoc.org",
+    "license": "MIT",
+    "architecture": {
+        "64bit": {
+            "url": "https://renderdoc.org/stable/1.25/RenderDoc_1.25_64.msi",
+            "hash": "437c382ab99f98a0fce5127579cb8f7a305411ba627ff409b58d8f917fefc540"
+        },
+        "32bit": {
+            "url": "https://renderdoc.org/stable/1.25/RenderDoc_1.25_32.msi",
+            "hash": "dc3797ef3e4389bcfe28e9598be75794b8a1599336d5154886be8e4094d60363"
+        }
+    },
+    "extract_dir": "PFiles\\RenderDoc",
+    "bin": [
+        [
+            "qrenderdoc.exe",
+            "renderdocgui"
+        ],
+        [
+            "renderdoccmd.exe",
+            "renderdoccli"
+        ]
+    ],
+    "shortcuts": [
+        [
+            "qrenderdoc.exe",
+            "RenderDocGUI"
+        ],
+        [
+            "renderdoccmd.exe",
+            "RenderDocCLI"
+        ]
+    ],
+    "checkver": {
+        "github": "https://github.com/baldurk/renderdoc"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://renderdoc.org/stable/$version/RenderDoc_$version_64.msi"
+            },
+            "32bit": {
+                "url": "https://renderdoc.org/stable/$version/RenderDoc_$version_32.msi"
+            }
+        }
+    }
+}

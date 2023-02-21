@@ -1,0 +1,28 @@
+{
+ "autoupdate": {
+  "url": "https://ghproxy.com/https://github.com/doZennn/steam-rom-manager/releases/download/v$version/steam-rom-manager-portable-$version.exe"
+ },
+ "checkver": {
+  "github": "https://github.com/doZennn/steam-rom-manager",
+  "regex": ".*[mM]anager-portable-(?<version>[\\d\\w.]+).exe"
+ },
+ "description": "Steam ROM Manager adds non-Steam games to steam in bulk and manages their artwork assets",
+ "hash": "04d870d8541f3bd2c0a03eb86f6fda4d1da7218fbda3c7c535526d62e68734eb",
+ "homepage": "https://github.com/doZennn/steam-rom-manager",
+ "installer": {
+  "script": "Rename-Item \"$dir\\steam-rom-manager-portable-$version.exe\" 'steam-rom-manager.exe' -Force"
+ },
+ "license": {
+  "identifier": "GPL-3.0",
+  "url": "https://github.com/SteamGridDB/steam-rom-manager/blob/master/LICENSE"
+ },
+ "persist": "userData",
+ "shortcuts": [
+  [
+   "steam-rom-manager.exe",
+   "Steam Rom Manager"
+  ]
+ ],
+ "url": "https://ghproxy.com/https://github.com/doZennn/steam-rom-manager/releases/download/v2.3.40/steam-rom-manager-portable-2.3.40.exe",
+ "version": "2.3.40"
+}

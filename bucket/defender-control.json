@@ -1,0 +1,26 @@
+{
+ "autoupdate": {
+  "url": "https://www.sordum.org/files/download/d-control/dControl.zip#/dl.zip.noautoextract"
+ },
+ "checkver": {
+  "regex": "Defender Control v([\\d.]+) \u2013 What\\\u2019s New",
+  "url": "https://www.sordum.org/9480/"
+ },
+ "description": "A small Portable freeware which will allow you to disable Microsoft Defenderr in Windows 10 completely.",
+ "hash": "62442fd70bde2bf31b677447cb4216daeeeff48fcc0aac4495cabc30092a5533",
+ "homepage": "https://www.sordum.org/9480/defender-control-v2-0/",
+ "license": "Freeware",
+ "notes": "If the installation is blocked by Windows Defender, please temporarily suspend the real-time protection first.",
+ "pre_install": [
+  "Expand-7zipArchive -Path \"$dir\\dl.zip.noautoextract\" -DestinationPath \"$dir\" -ExtractDir 'dControl' -Removal",
+  "Expand-7zipArchive -Path \"$dir\\dControl.zip\" -DestinationPath \"$dir\" -ExtractDir 'dControl' '-psordum'"
+ ],
+ "shortcuts": [
+  [
+   "dControl.exe",
+   "Defender Control"
+  ]
+ ],
+ "url": "https://www.sordum.org/files/download/d-control/dControl.zip#/dl.zip.noautoextract",
+ "version": "2.1"
+}

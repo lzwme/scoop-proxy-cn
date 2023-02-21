@@ -1,0 +1,25 @@
+{
+ "autoupdate": {
+  "url": "http://irreader.fatecore.com/download/irreader-$version.zip"
+ },
+ "checkver": {
+  "regex": "irreader v((\\d+\\.\\d+\\.\\d+))",
+  "url": "http://irreader.fatecore.com/"
+ },
+ "hash": "bcc3871c72a1b576049fd0637f8e7b4003bc056c77a743fc9a70448e396b0d25",
+ "homepage": "http://irreader.fatecore.com/",
+ "installer": {
+  "script": [
+   "Expand-7zipArchive \"$dir\\irreader` $version.exe\" \"$dir\"",
+   "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-32.7z\" \"$dir\""
+  ]
+ },
+ "shortcuts": [
+  [
+   "irreader.exe",
+   "irreader"
+  ]
+ ],
+ "url": "http://irreader.fatecore.com/download/irreader-1.6.7.zip",
+ "version": "1.6.7"
+}

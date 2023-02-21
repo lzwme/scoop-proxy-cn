@@ -1,0 +1,30 @@
+{
+ "autoupdate": {
+  "url": "https://ghproxy.com/https://github.com/TeXworks/texworks/releases/download/release-$version/TeXworks-win-$version-$matchBuild.zip"
+ },
+ "bin": "TeXworks.exe",
+ "checkver": {
+  "regex": "TeXworks-win-(?<version>[\\d.]+)-(?<build>.+)?\\.zip",
+  "url": "https://github.com/TeXworks/texworks/releases/latest"
+ },
+ "description": "TeXworks is a LaTeX editor with integrated PDF viewer and a clean, simple interface.",
+ "hash": "411953f61efe281ae11306642f9b505c3901811e5822b49b6ee46aa75dc9dd0b",
+ "homepage": "http://tug.org/texworks/",
+ "persist": [
+  "setting",
+  "texworks-setup.ini"
+ ],
+ "pre_install": [
+  "if(!(Test-Path \"$dir/texworks-setup.ini\")) {",
+  "Add-Content \"$dir/texworks-setup.ini\" \"inipath = ./setting/`r`libpath = ./setting/\"",
+  "}"
+ ],
+ "shortcuts": [
+  [
+   "TeXworks.exe",
+   "TeXworks"
+  ]
+ ],
+ "url": "https://ghproxy.com/https://github.com/TeXworks/texworks/releases/download/release-0.6.7/TeXworks-win-0.6.7-202202261139-git_23c4c74.zip",
+ "version": "0.6.7"
+}

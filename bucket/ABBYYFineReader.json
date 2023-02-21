@@ -1,0 +1,36 @@
+{
+ "autoupdate": {
+  "extract_dir": "ABBYY FineReader $version",
+  "hash": {
+   "regex": "$sha256",
+   "url": "$url.sha256"
+  },
+  "url": "https://scoop-zapps.ziiyc.com/d/ABBYYFineReader/ABBYYFineReader-$version.7z#/dl.7z"
+ },
+ "checkver": {
+  "regex": "([\\d.]+)",
+  "url": "https://ghproxy.com/https://raw.githubusercontent.com/kkzzhizhou/scoop-zapps/master/versions/ABBYYFineReader.latest"
+ },
+ "description": "\u5728\u6570\u5b57\u5316\u5de5\u4f5c\u573a\u6240\u8f6c\u6362\u3001\u7f16\u8f91\u3001\u5171\u4eab\u548c\u534f\u4f5c\u5904\u7406PDF\u548c\u626b\u63cf\u4ef6",
+ "extract_dir": "ABBYY FineReader 15.0.112.2130",
+ "hash": "eb55cacf325a7420113997bb3a3fb78c7338cf1ba7c06ee8f59dbed6e2e7696a",
+ "homepage": "https://www.abbyy.cn/finereader/",
+ "installer": {
+  "script": "sudo cmd /c \"$dir\\!\u7eff\u5316.bat\""
+ },
+ "post_install": [
+  "Remove-Item \"$env:public\\Desktop\\ABBYY FineReader 15.lnk\" -ErrorAction SilentlyContinue",
+  "Remove-Item \"$env:userprofile\\Desktop\\ABBYY FineReader 15.lnk\" -ErrorAction SilentlyContinue"
+ ],
+ "shortcuts": [
+  [
+   "FineReader.exe",
+   "ABBYY FineReader 15"
+  ]
+ ],
+ "uninstaller": {
+  "script": "sudo cmd /c \"$dir\\!\u5378\u8f7d.bat\""
+ },
+ "url": "https://scoop-zapps.ziiyc.com/d/ABBYYFineReader/ABBYYFineReader-15.0.112.2130.7z#/dl.7z",
+ "version": "15.0.112.2130"
+}

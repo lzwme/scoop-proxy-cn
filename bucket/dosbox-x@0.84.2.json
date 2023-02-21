@@ -1,0 +1,41 @@
+{
+    "version": "2022.12.26",
+    "description": "Fork of DOSBox, an Intel x86-based PC emulator, complete with sound, graphics, mouse, joystick, modem, etc.",
+    "homepage": "https://dosbox-x.com",
+    "license": "GPL-2.0-or-later",
+    "architecture": {
+        "64bit": {
+            "url": "https://ghproxy.com/https://github.com/joncampbell123/dosbox-x/releases/download/dosbox-x-v2022.12.26/dosbox-x-vsbuild-win64-20221226190454.zip",
+            "hash": "f82c85058033288712ac8c36fbbd0888a6718bbb1e2934ccb4263943da3f0e20",
+            "extract_dir": "bin\\x64\\Release SDL2"
+        },
+        "32bit": {
+            "url": "https://ghproxy.com/https://github.com/joncampbell123/dosbox-x/releases/download/dosbox-x-v2022.12.26/dosbox-x-vsbuild-win32-20221226190454.zip",
+            "hash": "6ea8ed879ed5f95ca827fcad50724a0f64c01f9f81cb669c093ea402931ac326",
+            "extract_dir": "bin\\Win32\\Release SDL2"
+        }
+    },
+    "pre_install": "if (!(Test-Path \"$persist_dir\\dosbox.conf\")) { Copy-Item \"$dir\\dosbox-x.reference.conf\" \"$dir\\dosbox.conf\" }",
+    "bin": "dosbox-x.exe",
+    "shortcuts": [
+        [
+            "dosbox-x.exe",
+            "DOSBox-X"
+        ]
+    ],
+    "persist": "dosbox.conf",
+    "checkver": {
+        "github": "https://github.com/joncampbell123/dosbox-x",
+        "regex": "download/dosbox-x-v([\\d.]+)/dosbox-x-vsbuild-win64-(?<release>[\\d-]+)"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/joncampbell123/dosbox-x/releases/download/dosbox-x-v$version/dosbox-x-vsbuild-win64-$matchRelease.zip"
+            },
+            "32bit": {
+                "url": "https://ghproxy.com/https://github.com/joncampbell123/dosbox-x/releases/download/dosbox-x-v$version/dosbox-x-vsbuild-win32-$matchRelease.zip"
+            }
+        }
+    }
+}

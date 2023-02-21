@@ -1,0 +1,28 @@
+{
+    "homepage": "https://flowus.cn/",
+    "description": "a knowledge management & collaboration platform",
+    "license": "unknown",
+    "version": "1.1.4",
+    "url": "https://yunshang-desktop.oss-cn-beijing.aliyuncs.com/production/windows/ia32/FlowUs%20Setup%201.1.4.exe#dl.7z",
+    "hash": "c35918f57d48fa52f5a6c645ef249e2be25548b69ca378303b2f201f19b57279",
+    "installer": {
+        "script": [
+            "Expand-7ZipArchive \"$dir\\`$PLUGINSDIR\\app-32.7z\" \"$dir\" -Removal",
+            "Remove-Item \"$dir\\`$PLUGINSDIR\",\"$dir\\`$R0\"  -Force -Recurse"
+        ]
+    },
+    "bin": "FlowUs.exe",
+    "shortcuts": [
+        [
+            "FlowUs.exe",
+            "FlowUs"
+        ]
+    ],
+    "checkver": {
+        "url": "https://flowus.cn/download",
+        "regex": "\"winVersion\":\"([\\d.]+)\""
+    },
+    "autoupdate": {
+        "url": "https://yunshang-desktop.oss-cn-beijing.aliyuncs.com/production/windows/ia32/FlowUs%20Setup%20$version.exe#dl.7z"
+    }
+}

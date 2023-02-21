@@ -1,0 +1,21 @@
+{
+ "architecture": {
+  "64bit": {
+   "hash": "sha1:1c82200676a707cbdf1c08358f14e7f31381ad02",
+   "url": "https://files.freezer.life/0:/PC/1.1.24/Freezer%20Setup%201.1.24.exe#/dl.7z"
+  }
+ },
+ "bin": "Freezer.exe",
+ "description": "Freezer Media Player",
+ "homepage": "https://git.freezer.life/exttex/freezerpc",
+ "license": "GPL-v3",
+ "post_install": "Remove-Item \"$dir\\`$*\", \"$dir\\Uninstall*\" -Recurse",
+ "pre_install": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+ "shortcuts": [
+  [
+   "Freezer.exe",
+   "Freezer"
+  ]
+ ],
+ "version": "1.1.24"
+}

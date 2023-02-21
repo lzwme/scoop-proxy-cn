@@ -1,0 +1,38 @@
+{
+ "architecture": {
+  "64bit": {
+   "hash": "85f3e572ea55c374358b5150aa7104e47988122dcd720ff547eb2477a2cb89e7",
+   "pre_install": "copy-item -recurse \"$dir\\bin\\x64\" \"$dir\\bin\\curr_arch\"",
+   "url": "https://ghproxy.com/https://github.com/thequackdaddy/R-OpenBLAS/releases/download/v3.5.2/R-3.5.2-win.exe"
+  }
+ },
+ "autoupdate": {
+  "architecture": {
+   "64bit": {
+    "url": "https://ghproxy.com/https://github.com/thequackdaddy/R-OpenBLAS/releases/download/v$version/R-$version-win.exe"
+   }
+  }
+ },
+ "bin": [
+  "bin\\curr_arch\\r.exe",
+  "bin\\curr_arch\\rterm.exe",
+  "bin\\curr_arch\\rscript.exe"
+ ],
+ "checkver": {
+  "github": "https://github.com/thequackdaddy/R-OpenBLAS"
+ },
+ "homepage": "https://www.r-project.org",
+ "innosetup": true,
+ "license": "GPL-2.0",
+ "notes": [
+  "You'll need to type 'r.ps1' or 'r.cmd' to run R, because in Powershell 'r' runs the last command. Alternatively 'rterm' can be used to start the interactive R terminal session.",
+  "",
+  "You can remove Powershell's 'r' command with:",
+  "    rm alias:\\r",
+  "",
+  "... but this only affects your current session: if you'd like to remove it for all future sessions you need to add the command above to your Powershell profile.",
+  "",
+  "Annoying, right?! You might want to check out Pshazz (scoop install pshazz)--this has a plugin to remove some crazy aliases from Powershell, as well as many other improvements."
+ ],
+ "version": "3.5.2"
+}

@@ -1,0 +1,29 @@
+{
+  "version": "1.234.0",
+  "description": "唧唧Down - 一个用于下载bilibili视频的PC应用程序",
+  "homepage": "http://client.jijidown.com/",
+  "license": "Freeware",
+  "architecture": {
+    "64bit": {
+      "url": "https://slo-dev-team.000webhostapp.com/dl/JJDown%201.234.0.7z",
+      "hash": "8a4eb4f1cb63d61ed6bd78ce0c7c812bf8bf4bba60b4372e70c61f2dee9a4dd1"
+    }
+  },
+  "extract_to": "JJDown",
+  "pre_install": [
+    "ensure \"$persist_dir\\JJDown\\Config\" | Out-Null",
+    "ensure \"$persist_dir\\JJDown\\Download\" | Out-Null",
+    "ensure \"$persist_dir\\JJDown\\Language\" | Out-Null"
+  ],
+  "persist": [
+    "JJDown\\Config",
+    "JJDown\\Download",
+    "JJDown\\Language"
+  ],
+  "shortcuts": [
+    [
+      "JJDown\\JiJiDownForWPF.exe",
+      "JiJiDown"
+    ]
+  ]
+}

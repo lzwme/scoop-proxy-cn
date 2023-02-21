@@ -1,0 +1,35 @@
+{
+    "homepage": "https://activitywatch.net/",
+    "description": "Records what you do so that you can know how you've spent your time",
+    "version": "0.12.1",
+    "license": "MPL-2.0",
+    "architecture": {
+        "64bit": {
+            "url": "https://ghproxy.com/https://github.com/ActivityWatch/activitywatch/releases/download/v0.12.1/activitywatch-v0.12.1-windows-x86_64.zip",
+            "hash": "1d7eb9dc706f3ef3fe866e025277f8296c0744a87f31e78befaf393e70ae41ad"
+        }
+    },
+    "extract_dir": "activitywatch",
+    "bin": [
+        [
+            "aw-qt.exe",
+            "aw"
+        ]
+    ],
+    "shortcuts": [
+        [
+            "aw-qt.exe",
+            "ActivityWatch"
+        ]
+    ],
+    "checkver": {
+        "github": "https://github.com/ActivityWatch/activitywatch"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/ActivityWatch/activitywatch/releases/download/v$version/activitywatch-v$version-windows-x86_64.zip"
+            }
+        }
+    }
+}

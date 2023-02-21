@@ -1,0 +1,29 @@
+{
+    "version": "1.0.1",
+    "description": "Telescope DNS, a simple and easy-to-use DNS relay server.",
+    "homepage": "https://github.com/wolf-joe/ts-dns",
+    "license": "MIT",
+    "architecture": {
+        "64bit": {
+            "url": "https://ghproxy.com/https://github.com/wolf-joe/ts-dns/releases/download/v1.0.1/ts-dns_1.0.1_Windows_x86_64.zip",
+            "hash": "6088abd797269510d2f0eeb99be86dabd12e3de4ec2627c3df6353648cec98e8"
+        }
+    },
+    "persist": [
+        "ts-dns.toml",
+        "cnip.txt",
+        "gfwlist.txt"
+    ],
+    "bin": "ts-dns.exe",
+    "checkver": "github",
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/wolf-joe/ts-dns/releases/download/v$version/ts-dns_$version_Windows_x86_64.zip"
+            }
+        },
+        "hash": {
+            "url": "$baseurl/ts-dns_$version_checksums.txt"
+        }
+    }
+}

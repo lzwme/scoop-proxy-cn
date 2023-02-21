@@ -1,0 +1,38 @@
+{
+    "autoupdate": {
+        "hash": {
+            "regex": "SHA1: ($sha1)</span><br/><a href=\"http://www.alldup.de/download/AllDupPortable.zip",
+            "url": "http://www.alldup.info/en_download_alldup.php"
+        },
+        "url": "http://www.alldup.info/download/AllDupPortable.zip"
+    },
+    "bin": [
+        [
+            "AllDupPortable.exe",
+            "AllDup"
+        ]
+    ],
+    "checkver": {
+        "regex": "([\\d.]+)",
+        "url": "http://www.alldup.de/version/Version_AllDup.txt"
+    },
+    "description": "Duplicate file remover",
+    "hash": "995efff4f3e590164e8c0e08436fa539ca0b19e174f047755098cf8cbc11402b",
+    "homepage": "http://www.alldup.info",
+    "license": "Freeware",
+    "persist": [
+        "export",
+        "log",
+        "profile",
+        "config4.ini"
+    ],
+    "pre_install": "if (-not (Test-Path \"$persist_dir\\config4.ini\")) { New-Item \"$dir\\config4.ini\" | Out-Null }",
+    "shortcuts": [
+        [
+            "AllDupPortable.exe",
+            "AllDup"
+        ]
+    ],
+    "url": "http://www.alldup.info/download/AllDupPortable.zip",
+    "version": "4.5.31"
+}

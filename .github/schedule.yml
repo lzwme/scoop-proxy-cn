@@ -1,0 +1,19 @@
+# @see https://github.com/ScoopInstaller/GithubActions
+#.github\workflows\schedule.yml
+on:
+  workflow_dispatch:
+  schedule:
+  - cron: '*/30 * * * *'
+name: Excavator
+jobs:
+  excavate:
+    name: Excavator
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@main
+    - name: Excavator
+      uses: ScoopInstaller/GithubActions@main
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SKIP_UPDATED: '1'
+        THROW_ERROR: '0'

@@ -1,0 +1,30 @@
+{
+    "homepage": "https://anytxt.net/",
+    "description": "A local document search application",
+    "version": "1.2.941",
+    "license": "GPL-3.0-or-later",
+    "url": "https://down.sp-all.laifaxin.com/AnyTXT.Searcher.1.2.941.Win32_Win64.zip",
+    "hash": "c88956734fd688b983263be9f00d591cfd54950b8957a13564ee6acff6a68140",
+    "installer": {
+        "args": [
+            "/silent",
+            "/dir=\"$dir\""
+        ]
+    },
+    "uninstaller": {
+        "file": "unins000.exe",
+        "args": "/silent"
+    },
+    "bin": "ATGUI.exe",
+    "checkver": {
+        "url": "https://anytxt.net/download/",
+        "regex": "Version ([\\d.]+)</p>"
+    },
+    "autoupdate": {
+        "url": "https://down.sp-all.laifaxin.com/AnyTXT.Searcher.$version.Win32_Win64.zip",
+        "hash": {
+            "url": "https://anytxt.net/download/",
+            "find": "MD5: <a href=\"https://www.virustotal.com/gui/file/[\\d\\w]{32}\"> ($md5)"
+        }
+    }
+}

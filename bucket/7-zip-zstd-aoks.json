@@ -1,0 +1,48 @@
+{
+    "##": "the usual github thing doesn't work",
+    "architecture": {
+        "32bit": {
+            "hash": "a33f6026a2f8afa94ce124111e6c7067b27d854a206e4401f2f6d7e3a47f3c82",
+            "url": "https://ghproxy.com/https://github.com/mcmilk/7-Zip-zstd/releases/download/v22.01-v1.5.4-R3/Codecs-x32.7z"
+        },
+        "64bit": {
+            "hash": "6a02e0f9e1c83af0d52926fbefe0ddba5eac791e27cd7c3f4e48e2e591af6f92",
+            "url": "https://ghproxy.com/https://github.com/mcmilk/7-Zip-zstd/releases/download/v22.01-v1.5.4-R3/Codecs-x64.7z"
+        }
+    },
+    "autoupdate": {
+        "architecture": {
+            "32bit": {
+                "url": "https://ghproxy.com/https://github.com/mcmilk/7-Zip-zstd/releases/download/v$version/Codecs-x32.7z"
+            },
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/mcmilk/7-Zip-zstd/releases/download/v$version/Codecs-x64.7z"
+            }
+        }
+    },
+    "checkver": {
+        "re": "https://github.com/mcmilk/7-Zip-zstd/releases/tag/v([\\d.-].+R[1-9])",
+        "url": "https://github.com/mcmilk/7-Zip-zstd/releases/latest"
+    },
+    "depends": "scoop-aoks/7zip-aoks",
+    "description": "7-Zip support for Brotli, Fast-LZMA2, Lizard, LZ4, LZ5 and Zstandard.",
+    "homepage": "https://mcmilk.de/projects/7-Zip-zstd/",
+    "installer": {
+        "script": [
+            "if (-not (Test-Path \"$(appdir 7zip-aoks $global)\\current\\Codecs\")) {",
+            "    mkdir -Path \"$(appdir 7zip-aoks $global)\\current\" -Name Codecs",
+            "}",
+            "cp \"$dir\\*.dll\" \"$(appdir 7zip-aoks $global)\\current\\Codecs\" -Recurse"
+        ]
+    },
+    "license": "LGPL-2.1-or-later,BSD-3-Clause,Proprietary",
+    "notes": "When you update 7zip-aoks, please reinstall 7-zip-zstd-aoks.",
+    "uninstaller": {
+        "script": [
+            "foreach ($file in (ls \"$dir\\*.dll\")) {",
+            "    rm \"$(appdir 7zip-aoks $global)\\current\\Codecs\\$($file.Name)\" -Recurse",
+            "}"
+        ]
+    },
+    "version": "22.01-v1.5.4-R3"
+}

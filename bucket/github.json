@@ -1,0 +1,36 @@
+{
+    "version": "3.1.8",
+    "description": "Extend your GitHub workflow beyond your browser.",
+    "homepage": "https://desktop.github.com/",
+    "license": "MIT",
+    "architecture": {
+        "64bit": {
+            "url": "https://central.github.com/deployments/desktop/desktop/latest/win32#/dl.7z_",
+            "hash": "c5c2f39340bd4865873f1e233bd634e3049e01e5555b2820994264e17bbaee55"
+        }
+    },
+    "pre_install": [
+        "ensure \"$dir\\extract\" | Out-Null",
+        "Expand-7zipArchive \"$dir\\dl.7z_\" \"$dir\\extract\" | Out-Null",
+        "Expand-7zipArchive \"$dir\\extract\\GitHubDesktop-$version-full.nupkg\" \"$dir\" -ExtractDir 'lib\\net45' | Out-Null",
+        "Remove-Item \"$dir\\extract\", \"$dir\\dl.7z_\" -Force -Recurse"
+    ],
+    "bin": "GitHubDesktop.exe",
+    "shortcuts": [
+        [
+            "GitHubDesktop.exe",
+            "GitHub Desktop"
+        ]
+    ],
+    "checkver": {
+        "url": "https://api.github.com/repos/desktop/desktop/tags",
+        "regex": "tags/release-([\\d.]+)\""
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://central.github.com/deployments/desktop/desktop/latest/win32#/dl.7z_"
+            }
+        }
+    }
+}

@@ -1,0 +1,35 @@
+{
+    "version": "4784-g5507c8744",
+    "description": "BusyBox is a single binary that contains many common Unix tools",
+    "homepage": "https://frippery.org/busybox",
+    "license": "GPL-2.0-only",
+    "notes": "To automatically create shims for all unix commands, install 'busybox' instead.",
+    "architecture": {
+        "64bit": {
+            "url": "https://frippery.org/files/busybox/busybox-w64-FRP-4784-g5507c8744.exe#/busybox.exe",
+            "hash": "d112c583aaa10bef1af67a45bcc69d160088521747c7d77549dd7fa12dfd88e6"
+        },
+        "32bit": {
+            "url": "https://frippery.org/files/busybox/busybox-w32-FRP-4784-g5507c8744.exe#/busybox.exe",
+            "hash": "1a257708ce5c455e0a1a56023e0d91af7e894455b9d61f69d56b126928481b82"
+        }
+    },
+    "bin": "busybox.exe",
+    "checkver": {
+        "url": "https://frippery.org/busybox/",
+        "regex": ">busybox-w32-FRP-([\\w-]+)\\."
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://frippery.org/files/busybox/busybox-w64-FRP-$version.exe#/busybox.exe"
+            },
+            "32bit": {
+                "url": "https://frippery.org/files/busybox/busybox-w32-FRP-$version.exe#/busybox.exe"
+            }
+        },
+        "hash": {
+            "url": "$baseurl/SHA256SUM"
+        }
+    }
+}

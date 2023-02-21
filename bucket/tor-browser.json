@@ -1,0 +1,59 @@
+{
+    "##": "Multiple components under various open source licenses. Included HTTPS Everywhere extension is the strictest.",
+    "version": "12.0.3",
+    "description": "Web browser that connects to the internet via the Tor anonymity network",
+    "homepage": "https://www.torproject.org/",
+    "license": "GPL-3.0-or-later",
+    "architecture": {
+        "64bit": {
+            "url": "https://dist.torproject.org/torbrowser/12.0.3/torbrowser-install-win64-12.0.3_ALL.exe",
+            "hash": "8f9e526da7d1adaa5c6c7be88412e9e6c7eab9af1b5f080b0d674f5b35f5c4bf"
+        },
+        "32bit": {
+            "url": "https://dist.torproject.org/torbrowser/12.0.3/torbrowser-install-12.0.3_ALL.exe",
+            "hash": "a880112bf2927fe02dfcb7550fb1780dfec8aa5e332d2cd9897c503a018ee02f"
+        }
+    },
+    "installer": {
+        "script": [
+            "Start-Process \"$dir\\$fname\" \"/S /D=$dir\" -PassThru -NoNewWindow | Wait-Process",
+            "movedir \"$dir\\Browser\" \"$dir\" | Out-Null",
+            "Remove-Item \"$dir\\$fname\", \"$dir\\*.lnk\" -Force",
+            "# Update extensions in persisted profile",
+            "movedir \"$dir\\TorBrowser\\Data\\Browser\\profile.default\" \"$persist_dir\\TorBrowser\\Data\\Browser\\profile.default\" | Out-Null"
+        ]
+    },
+    "persist": [
+        "TorBrowser\\Data\\Browser\\profile.default",
+        "TorBrowser\\Data\\Tor"
+    ],
+    "bin": [
+        [
+            "firefox.exe",
+            "tor-browser"
+        ]
+    ],
+    "shortcuts": [
+        [
+            "firefox.exe",
+            "Tor Browser"
+        ]
+    ],
+    "checkver": {
+        "url": "https://www.torproject.org/download/",
+        "regex": "torbrowser/([\\d.]+)/torbrowser-install-win64"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://dist.torproject.org/torbrowser/$version/torbrowser-install-win64-$version_ALL.exe"
+            },
+            "32bit": {
+                "url": "https://dist.torproject.org/torbrowser/$version/torbrowser-install-$version_ALL.exe"
+            }
+        },
+        "hash": {
+            "url": "$baseurl/sha256sums-signed-build.txt"
+        }
+    }
+}

@@ -1,0 +1,37 @@
+{
+    "version": "1.31.0",
+    "description": "LDC is LLVM based D-language compiler",
+    "homepage": "https://dlang.org/",
+    "license": {
+        "identifier": "BSD-3-Clause,BSL-1.0,NCSA,MIT,GPL-2.0-or-later",
+        "url": "https://github.com/ldc-developers/ldc/blob/master/LICENSE"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://ghproxy.com/https://github.com/ldc-developers/ldc/releases/download/v1.31.0/ldc2-1.31.0-windows-x64.7z",
+            "extract_dir": "ldc2-1.31.0-windows-x64",
+            "hash": "af77c7c6d3740f66f7a878c5a335d7082433544c0bca1fa3c9d694b9e3b2a930"
+        },
+        "32bit": {
+            "url": "https://ghproxy.com/https://github.com/ldc-developers/ldc/releases/download/v1.31.0/ldc2-1.31.0-windows-x86.7z",
+            "extract_dir": "ldc2-1.31.0-windows-x86",
+            "hash": "13cb835aa7c491fb46d2e0986a14d5952f625cf14b9c95acb4b8e4645a1121cb"
+        }
+    },
+    "env_add_path": "bin",
+    "checkver": {
+        "github": "https://github.com/ldc-developers/ldc/"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/ldc-developers/ldc/releases/download/v$version/ldc2-$version-windows-x64.7z",
+                "extract_dir": "ldc2-$version-windows-x64"
+            },
+            "32bit": {
+                "url": "https://ghproxy.com/https://github.com/ldc-developers/ldc/releases/download/v$version/ldc2-$version-windows-x86.7z",
+                "extract_dir": "ldc2-$version-windows-x86"
+            }
+        }
+    }
+}

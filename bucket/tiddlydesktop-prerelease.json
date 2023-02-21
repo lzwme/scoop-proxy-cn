@@ -1,0 +1,47 @@
+{
+ "architecture": {
+  "32bit": {
+   "extract_dir": "TiddlyDesktop-win32-v0.0.15-prerelease.4",
+   "hash": "cfea79ab3bf9fd4e485544b59efad1152ecff0ea9c8e0532d12c86dcc7b16566",
+   "url": "https://ghproxy.com/https://github.com/Jermolene/TiddlyDesktop/releases/download/v0.0.15-prerelease.4/tiddlydesktop-win32-v0.0.15-prerelease.4.zip"
+  },
+  "64bit": {
+   "extract_dir": "TiddlyDesktop-win64-v0.0.15-prerelease.4",
+   "hash": "2a05d942b9a932763747e1654a77d76f1547e1c073149741fd3e61bfe6de0ad6",
+   "url": "https://ghproxy.com/https://github.com/Jermolene/TiddlyDesktop/releases/download/v0.0.15-prerelease.4/tiddlydesktop-win64-v0.0.15-prerelease.4.zip"
+  }
+ },
+ "autoupdate": {
+  "architecture": {
+   "32bit": {
+    "extract_dir": "TiddlyDesktop-win32-v$matchMajor-prerelease.$matchVer",
+    "url": "https://ghproxy.com/https://github.com/Jermolene/TiddlyDesktop/releases/download/v$version/tiddlydesktop-win32-v$matchMajor-prerelease.$matchVer.zip"
+   },
+   "64bit": {
+    "extract_dir": "TiddlyDesktop-win64-v$matchMajor-prerelease.$matchVer",
+    "url": "https://ghproxy.com/https://github.com/Jermolene/TiddlyDesktop/releases/download/v$version/tiddlydesktop-win64-v$matchMajor-prerelease.$matchVer.zip"
+   }
+  }
+ },
+ "bin": [
+  [
+   "nw.exe",
+   "tiddlydesktop"
+  ]
+ ],
+ "checkver": {
+  "regex": "/download/v(?<major>[\\d.]+)-prerelease.(?<build>\\d+)/tiddlydesktop.*?prerelease\\.(?<ver>\\d+)",
+  "replace": "${major}-prerelease.${build}",
+  "url": "https://github.com/Jermolene/TiddlyDesktop/releases/latest"
+ },
+ "description": "A custom desktop browser for TiddlyWiki 5 and TiddlyWiki Classic, based on nw.js",
+ "homepage": "https://github.com/Jermolene/TiddlyDesktop",
+ "license": "Unknown",
+ "shortcuts": [
+  [
+   "nw.exe",
+   "TiddlyDesktop"
+  ]
+ ],
+ "version": "0.0.15-prerelease.4"
+}

@@ -1,0 +1,46 @@
+{
+    "homepage": "https://www.mozilla.org/zh-CN/firefox/developer/",
+    "description": "Developer builds of Firefox: the popular open source web browser.",
+    "license": "MPL-2.0",
+    "version": "111.0b2",
+    "architecture": {
+        "64bit": {
+            "url": "https://download-installer.cdn.mozilla.net/pub/devedition/releases/111.0b2/win64/zh-CN/Firefox%20Setup%20111.0b2.exe#/dl.7z",
+            "hash": "570368b60c015fbea951d658512d83804d9f3a5de2d33d32c5289247036a053f"
+        },
+        "32bit": {
+            "url": "https://download-installer.cdn.mozilla.net/pub/devedition/releases/111.0b2/win32/zh-CN/Firefox%20Setup%20111.0b2.exe#/dl.7z",
+            "hash": "7fad999d7ceaf18e570ef90bbc1048882a342ccf88c6ad8ff94e1081bfd95ffa"
+        }
+    },
+    "extract_dir": "core",
+    "shortcuts": [
+        [
+            "firefox.exe",
+            "Firefox Developer Simplified Chinese Edition"
+        ]
+    ],
+    "checkver": {
+        "url": "https://aus5.mozilla.org/update/6/Firefox/93.0/_/WINNT_x86_64-msvc-x64/en-US/beta/_/_/_/_/update.xml",
+        "xpath": "/updates/update/patch/@URL",
+        "regex": "firefox-([\\db.]+)-"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://download-installer.cdn.mozilla.net/pub/devedition/releases/$version/win64/zh-CN/Firefox%20Setup%20$version.exe#/dl.7z",
+                "hash": {
+                    "url": "https://download-installer.cdn.mozilla.net/pub/devedition/releases/$version/SHA256SUMS",
+                    "regex": "$sha256\\s+win64/zh-CN/$basename"
+                }
+            },
+            "32bit": {
+                "url": "https://download-installer.cdn.mozilla.net/pub/devedition/releases/$version/win32/zh-CN/Firefox%20Setup%20$version.exe#/dl.7z",
+                "hash": {
+                    "url": "https://download-installer.cdn.mozilla.net/pub/devedition/releases/$version/SHA256SUMS",
+                    "regex": "$sha256\\s+win32/zh-CN/$basename"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,32 @@
+{
+	"homepage": "https://rsync.samba.org",
+	"license": "GPL3",
+	"version": "3.1.3-x32",
+	"repo": "https://github.com/WayneD/rsync",
+	"##0": "ref: <https://blog.tiger-workshop.com/add-rsync-to-git-bash-for-windows> @@ <https://archive.is/WJCrw>",
+	"##1": "ref: <https://serverfault.com/a/872557/24273> @@ <https://archive.is/rAfUl#20%>",
+	"##2": "ref: <https://zsoltfabok.com/blog/2017/03/windows-rsync> @@ <https://archive.is/D8i3C>",
+	// "architecture": {
+	//     "32bit": {
+	"url": [
+		// "scp://admin@4532cm.houseofivy.net:42202/share/Archive/%23scoop.feed/MinGit-2.17.0-busybox-32-bit.runtime-min.zip",
+		"https://ghproxy.com/https://github.com/git-for-windows/git/releases/download/v2.17.0.windows.1/MinGit-2.17.0-busybox-32-bit.zip",
+		"http://repo.msys2.org/msys/i686/libiconv-1.16-2-i686.pkg.tar.zst#.tar.7z",
+		"http://repo.msys2.org/msys/i686/openssh-8.2p1-1-i686.pkg.tar.xz",
+		"https://repo.msys2.org/msys/i686/rsync-3.1.3-1-i686.pkg.tar.xz"
+	],
+	"hash": [
+		// "sha256:32dba8b3a78cabcbb488b684769b5bbd0713a4b424677178f964b1a6a4798276",
+		"sha256:3ded3fc7245fd026cab3ef05e9cc867c138e3e858aea42f68369a0e0aad1067f",
+		"sha256:8474386392575a430b33ca0c342b9dbdb54a83ad30fe7bb30cdd8120202477eb",
+		"sha256:f315d6001ff91f3942bb0d6c53ef04a9c64d1dda761fc07ba17e37632f460aa1",
+		"sha256:e7a7e21a8c894eba97365265beb0e90a42d31109514f74a0a28d22299c856cbf"
+	],
+	"env_set": {
+		// "RSYNC_RSH": "$dir/usr/bin/ssh.exe -F $env:HOME/.ssh/config -i $env:HOME/.ssh/id_rsa -o UserKnownHostsFile=$env:HOME/.ssh/known_hosts",
+		"RSYNC_RSH": "$dir/usr/bin/ssh.exe",
+		"RSYNC_SSH": "$dir/usr/bin/ssh.exe"
+	},
+	"bin": "usr\\bin\\rsync.exe",
+	"notes": "NOTE: local paths with a leading '/' or internal ':' must instead be in Cygwin cygpath format (eg, '/c/...')"
+}

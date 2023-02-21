@@ -1,0 +1,33 @@
+{
+ "architecture": {
+  "32bit": {
+   "pre_install": "Rename-Item \"$dir\\Bandizip32.exe\" 'Bandizip.exe'"
+  },
+  "64bit": {
+   "pre_install": "Rename-Item \"$dir\\Bandizip64.exe\" 'Bandizip.exe'"
+  }
+ },
+ "bin": "Bandizip.exe",
+ "description": "a powerful archiver which provides an ultrafast processing speed and convenient features.",
+ "hash": "fb3f9db5e0a93aeca35f975cb54893bbc46eecedecf4d9b1088dbb1c378569b1",
+ "homepage": "https://www.bandisoft.com/bandizip/old/6/",
+ "installer": {
+  "script": [
+   "Get-ChildItem \"$dir\\Bandizip??.exe\" | Remove-Item",
+   "if (!(Test-Path \"$persist_dir\\Bandizip.ini\")) { New-Item \"$dir\\Bandizip.ini\" | Out-Null }"
+  ]
+ },
+ "license": {
+  "identifier": "Freeware",
+  "url": "https://en.bandisoft.com/bandizip/eula/"
+ },
+ "persist": "Bandizip.ini",
+ "shortcuts": [
+  [
+   "Bandizip.exe",
+   "Bandizip"
+  ]
+ ],
+ "url": "https://www.bandisoft.com/bandizip/dl.php?old-portable#/BANDIZIP6-PORTABLE.ZIP",
+ "version": "6.29"
+}

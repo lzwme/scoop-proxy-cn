@@ -1,0 +1,53 @@
+{
+    "version": "25.2.3",
+    "description": "A programming language used to build massively scalable soft real-time systems with requirements on high availability.",
+    "homepage": "https://www.erlang.org",
+    "license": "Apache-2.0",
+    "suggest": {
+        "Visual C/C++ Redistributable 2013": "extras/vcredist2013"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://erlang.org/download/otp_win64_25.2.3.exe#/dl.7z",
+            "hash": "07c66de47706b114909ef6019d4c2434090406db14af300dae2b821003c10a73"
+        },
+        "32bit": {
+            "url": "https://erlang.org/download/otp_win32_25.2.3.exe#/dl.7z",
+            "hash": "d9afee2378a0e375988ea9aeddf8f033e274879426da525f2c09eb64e793dbc3"
+        }
+    },
+    "installer": {
+        "file": "Install.exe",
+        "args": "-sasl"
+    },
+    "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall.exe.nsis\", \"$dir\\vcredist*\" -Force -Recurse",
+    "bin": [
+        "bin\\erl.exe",
+        "bin\\erlc.exe",
+        "bin\\escript.exe",
+        "bin\\werl.exe"
+    ],
+    "shortcuts": [
+        [
+            "bin\\werl.exe",
+            "Erlang"
+        ]
+    ],
+    "env_set": {
+        "ERLANG_HOME": "$dir"
+    },
+    "checkver": {
+        "url": "https://erlang.org/download/otp_versions_tree_app_vsns.html",
+        "regex": "otp_win64_([\\d.]+)\\.exe"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://erlang.org/download/otp_win64_$version.exe#/dl.7z"
+            },
+            "32bit": {
+                "url": "https://erlang.org/download/otp_win32_$version.exe#/dl.7z"
+            }
+        }
+    }
+}

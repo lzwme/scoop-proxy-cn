@@ -1,0 +1,75 @@
+{
+    "version": "111.0b4",
+    "description": "Beta builds of Firefox: the popular open source web browser.",
+    "homepage": "https://www.mozilla.org/en-US/firefox/beta/",
+    "license": "MPL-2.0",
+    "notes": [
+        "To set profile 'Scoop-Beta' as *DEFAULT*, or profiles/settings was lost after update:",
+        "  - Run 'Firefox Beta Profile Manager', choose 'Scoop-Beta' then click 'Start Firefox'.",
+        "  - Visit 'about:profiles' page in Firefox Beta to check *DEFAULT* profile.",
+        "For details: https://support.mozilla.org/en-US/kb/profile-manager-create-remove-switch-firefox-profiles"
+    ],
+    "architecture": {
+        "64bit": {
+            "url": "https://archive.mozilla.org/pub/firefox/releases/111.0b4/win64/en-US/Firefox%20Setup%20111.0b4.exe#/dl.7z",
+            "hash": "sha512:fbda82541eb04a7201795965492086c11ad649236fa04424dd9dfd7733fb9a1edb8a0a79b09464c48ee4211ff206bdce92687cc1dba86760b57cf5fc65ef236d"
+        },
+        "32bit": {
+            "url": "https://archive.mozilla.org/pub/firefox/releases/111.0b4/win32/en-US/Firefox%20Setup%20111.0b4.exe#/dl.7z",
+            "hash": "sha512:a8d7715e109c857a8e86a52fd842f1e71d4c4779b26941f2b7ca4dc2c77df763dfb749fa1a4795e89eacbefb5f72e086fb82458979514cc0e8991605385c3ca3"
+        }
+    },
+    "extract_dir": "core",
+    "post_install": [
+        "firefox-beta -CreateProfile \"Scoop-Beta $persist_dir\\profile\"",
+        "$Addition = \"$persist_dir\\addition\"",
+        "if (Test-Path $Addition) {",
+        "  info 'Copying additional items...'",
+        "  Copy-Item -Path $Addition\\* -Destination $dir -Force -Recurse -ErrorAction SilentlyContinue",
+        "}"
+    ],
+    "bin": [
+        [
+            "firefox.exe",
+            "firefox-beta"
+        ]
+    ],
+    "shortcuts": [
+        [
+            "firefox.exe",
+            "Firefox Beta"
+        ],
+        [
+            "firefox.exe",
+            "Firefox Beta Profile Manager",
+            "-P"
+        ]
+    ],
+    "persist": [
+        "distribution",
+        "profile"
+    ],
+    "checkver": {
+        "url": "https://aus5.mozilla.org/update/6/Firefox/93.0/_/WINNT_x86_64-msvc-x64/en-US/beta/_/_/_/_/update.xml",
+        "xpath": "/updates/update/patch/@URL",
+        "regex": "firefox-([\\db.]+)-"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://archive.mozilla.org/pub/firefox/releases/$version/win64/en-US/Firefox%20Setup%20$version.exe#/dl.7z",
+                "hash": {
+                    "url": "https://archive.mozilla.org/pub/firefox/releases/$version/SHA512SUMS",
+                    "regex": "$sha512\\s+win64/en-US/$basename"
+                }
+            },
+            "32bit": {
+                "url": "https://archive.mozilla.org/pub/firefox/releases/$version/win32/en-US/Firefox%20Setup%20$version.exe#/dl.7z",
+                "hash": {
+                    "url": "https://archive.mozilla.org/pub/firefox/releases/$version/SHA512SUMS",
+                    "regex": "$sha512\\s+win32/en-US/$basename"
+                }
+            }
+        }
+    }
+}

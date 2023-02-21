@@ -1,0 +1,32 @@
+{
+ "autoupdate": {
+  "url": "https://ghproxy.com/https://github.com/yuru7/HackGen/releases/download/v$version/HackGen_NF_v$version.zip"
+ },
+ "checkver": "github",
+ "depends": [
+  "sudo",
+  "unoun/scoop-helper"
+ ],
+ "description": "Japanese font based on Hack and GenJyuu-Gothic with Nerd Fonts",
+ "hash": "25cdd1487cc46df384d32c041303b4a04541fd61d0b973e8bb38fd1a3de65eb1",
+ "homepage": "https://github.com/yuru7/HackGen",
+ "installer": {
+  "script": [
+   "$helper = \"$(appdir scoop-helper)\\current\\scoop-font-helper.ps1\"",
+   "if (!(Test-Path $helper)) { error 'File not found'; exit 1 }",
+   ". $helper",
+   "Install-Font($dir)"
+  ]
+ },
+ "license": "OFL-1.1-RFN",
+ "uninstaller": {
+  "script": [
+   "$helper = \"$(appdir scoop-helper)\\current\\scoop-font-helper.ps1\"",
+   "if (!(Test-Path $helper)) { error 'File not found'; exit 1 }",
+   ". $helper",
+   "Uninstall-Font($dir)"
+  ]
+ },
+ "url": "https://ghproxy.com/https://github.com/yuru7/HackGen/releases/download/v2.8.0/HackGen_NF_v2.8.0.zip",
+ "version": "2.8.0"
+}

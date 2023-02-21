@@ -1,0 +1,52 @@
+{
+    "version": "0-1347",
+    "description": "Experimental emulator for the Nintendo Switch",
+    "homepage": "https://yuzu-emu.org/",
+    "license": {
+        "identifier": "GPL-2.0",
+        "url": "https://github.com/yuzu-emu/yuzu-mainline/blob/master/license.txt"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://ghproxy.com/https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-1347/yuzu-windows-msvc-20230221-9b746dc05.7z",
+            "hash": "445edf3797f7c2d0b3abbd1c04691360b04a528547e9bafa230c5d7015686f81"
+        }
+    },
+    "extract_dir": "yuzu-windows-msvc",
+    "pre_install": [
+        "if (!(Test-Path \"$persist_dir\")) {",
+        "   New-item \"$persist_dir\" -ItemType Directory | Out-Null",
+        "   New-item \"$persist_dir\\user\" -ItemType Directory | Out-Null",
+        "   if (Test-Path \"$env:APPDATA\\yuzu\") {",
+        "       Write-host \"Migrating AppData...\" -ForegroundColor yellow",
+        "       Copy-Item -Path \"$env:APPDATA\\yuzu\\*\" -Destination \"$persist_dir\\user\" -Recurse",
+        "       Remove-Item -Path \"$env:APPDATA\\yuzu\" -Recurse",
+        "   }",
+        "}"
+    ],
+    "bin": [
+        "yuzu.exe",
+        "yuzu-cmd.exe"
+    ],
+    "shortcuts": [
+        [
+            "yuzu.exe",
+            "Yuzu"
+        ]
+    ],
+    "persist": [
+        "user",
+        "plugins"
+    ],
+    "checkver": {
+        "github": "https://github.com/yuzu-emu/yuzu-mainline",
+        "regex": "download/mainline-([\\d.-]+)/yuzu-windows-msvc-(?<date>[\\d]{8})-(?<commit>[\\da-f]+).7z"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-$version/yuzu-windows-msvc-$matchDate-$matchCommit.7z"
+            }
+        }
+    }
+}

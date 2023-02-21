@@ -1,0 +1,20 @@
+{
+ "autoupdate": {
+  "url": "https://dlqn.aoscdn.com/letsview.exe#/setup.exe"
+ },
+ "checkver": {
+  "regex": "Version: ([\\d.]+)",
+  "url": "https://letsview.com/download-letsview"
+ },
+ "description": "\u514d\u8d39\u65e0\u7ebf\u6295\u5c4f\u8f6f\u4ef6,\u6709\u5c4f\u5e55\u7684\u5730\u65b9\u5c31\u6709\u5e55\u4eab",
+ "hash": "a72416ff5f0e839bd65eadc486d859f63afc6a5ff99efe5bb70894542f881511",
+ "homepage": "https://letsview.com/zh/windows",
+ "installer": {
+  "script": "Start-Process -Wait \"$dir\\setup.exe\" \"/verysilent /norestart /DIR=`\"$dir`\"\" -Verb RunAs"
+ },
+ "uninstaller": {
+  "script": "Start-Process -Wait \"$dir\\unins000.exe\" \"/verysilent /norestart\" -Verb RunAs"
+ },
+ "url": "https://dlqn.aoscdn.com/letsview.exe#/setup.exe",
+ "version": "1.1.4"
+}

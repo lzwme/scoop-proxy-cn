@@ -1,0 +1,34 @@
+{
+ "autoupdate": {
+  "url": "https://ghproxy.com/https://github.com/theleagueof/league-mono/releases/download/$version/LeagueMono-$version.zip"
+ },
+ "checkver": {
+  "github": "https://github.com/sursly/leaguemono"
+ },
+ "description": "League Mono Variable",
+ "extract_dir": "static\\TTF",
+ "hash": "3b685afec90f862193974fa6384ac5b472d9049356ee97591374573f1d929f64",
+ "homepage": "https://tylerfinck.com/leaguemonovariable/",
+ "installer": {
+  "script": [
+   "if(!(is_admin)) { error \"Admin rights are required.\"; exit 1 }",
+   "Get-ChildItem $dir -Filter '*.ttf' -Recurse | ForEach-Object {",
+   "  New-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $_.Name -Force | Out-Null",
+   "  Copy-Item $_.FullName -destination \"$env:windir\\Fonts\"",
+   "}"
+  ]
+ },
+ "license": "OFL-1.1",
+ "uninstaller": {
+  "script": [
+   "if(!(is_admin)) { error \"Admin rights are required.\"; exit 1 }",
+   "Get-ChildItem $dir -filter '*.ttf' -Recurse | ForEach-Object {",
+   "  Remove-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
+   "  Remove-Item \"$env:windir\\Fonts\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
+   "}",
+   "Write-Host \"'League Mono' TTF files have been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
+  ]
+ },
+ "url": "https://ghproxy.com/https://github.com/theleagueof/league-mono/releases/download/2.300/LeagueMono-2.300.zip",
+ "version": "2.300"
+}

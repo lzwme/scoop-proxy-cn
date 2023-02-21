@@ -1,0 +1,65 @@
+{
+    "architecture": {
+        "64bit": {
+            "hash": "4666b94241cfd5b74308af1a375054fe69d6842a86447aa4c3bda1608ab92623",
+            "url": "https://az764295.vo.msecnd.net/insider/dc619de8d9efdabd781fc5658d0051813c347055/VSCode-win32-x64-1.76.0-insider.zip"
+        }
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "hash": {
+                    "jsonpath": "$.products[?(@.platform.os == 'win32-x64-archive')].sha256hash",
+                    "mode": "json",
+                    "url": "https://code.visualstudio.com/sha?build=insider"
+                },
+                "url": "https://az764295.vo.msecnd.net/insider/$matchVersion/VSCode-win32-x64-$matchName.zip"
+            }
+        }
+    },
+    "bin": [
+        [
+            "bin\\code-insiders.cmd",
+            "code"
+        ]
+    ],
+    "checkver": {
+        "jsonpath": "$.products[?(@.platform.os == 'win32-x64-archive')]",
+        "regex": "\"name\": \"(?<name>[\\d.]+-insider)\",\\s+\"version\": \"(?<version>[\\w]{40})(?>.|\\s)+?\"timestamp\": (?<time>[\\d]{13})",
+        "replace": "${name}_${time}",
+        "url": "https://code.visualstudio.com/sha?build=insider"
+    },
+    "description": "Visual Studio Code is a lightweight but powerful source code editor (Insiders, Portable Edition).",
+    "homepage": "https://code.visualstudio.com/",
+    "license": {
+        "identifier": "Freeware",
+        "url": "https://code.visualstudio.com/License/"
+    },
+    "notes": [
+        "Visual Studio Code now supports Portable Mode! Please move the following directories:",
+        "From \"$env:USERPROFILE\\.vscode-insiders\\extensions\" to \"$env:SCOOP\\persist\\vscode-nightly\\data\\extensions\"",
+        "From \"$env:APPDATA\\Code - Insiders\" to \"$env:SCOOP\\persist\\vscode-nightly\\data\\user-data\""
+    ],
+    "persist": "data",
+    "post_install": [
+        "'vscode-install-context.reg', 'vscode-uninstall-context.reg' | ForEach-Object {",
+        "  if (Test-Path \"$bucketsdir\\$bucket\\scripts\\VSCode\\$_\") {",
+        "    $codepath = \"$dir\\Code - Insiders.exe\".Replace('\\', '\\\\')",
+        "    $content = Get-Content \"$bucketsdir\\$bucket\\scripts\\VSCode\\$_\"",
+        "    $content = $content.Replace('&install_dir', $codepath)",
+        "    $content = $content.Replace('&vscode_name', 'Code &Insiders')",
+        "    if ($global) {",
+        "      $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE')",
+        "    }",
+        "    $content | Set-Content -Path \"$dir\\$_\"",
+        "  }",
+        "}"
+    ],
+    "shortcuts": [
+        [
+            "Code - Insiders.exe",
+            "Code - Insiders"
+        ]
+    ],
+    "version": "1.76.0-insider_1676524864029"
+}

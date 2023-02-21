@@ -1,0 +1,20 @@
+{
+ "autoupdate": {
+  "url": "https://ghproxy.com/https://github.com/Otiel/BandcampDownloader/releases/download/v$version/BandcampDownloader.zip"
+ },
+ "checkver": "github",
+ "description": "A Windows app used to download albums from Bandcamp.",
+ "hash": "b6182f78adc5efd14cae6a91ce913d14b3bb4f4422b3138157d7b542c8623ae4",
+ "homepage": "https://github.com/Otiel/BandcampDownloader",
+ "license": "MIT",
+ "persist": "BandcampDownloader.ini",
+ "pre_install": "if(!(Test-Path \"$persist_dir\\BandcampDownloader.ini\")) { New-Item \"$dir\\BandcampDownloader.ini\" | Out-Null }",
+ "shortcuts": [
+  [
+   "BandcampDownloader.exe",
+   "Bandcamp Downloader"
+  ]
+ ],
+ "url": "https://ghproxy.com/https://github.com/Otiel/BandcampDownloader/releases/download/v1.4.1/BandcampDownloader.zip",
+ "version": "1.4.1"
+}

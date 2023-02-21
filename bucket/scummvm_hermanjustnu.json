@@ -1,0 +1,52 @@
+{
+    "version": "2.6.1",
+    "description": "ScummVM is a program which allows you to run certain classic graphical adventure and role-playing games",
+    "homepage": "https://www.scummvm.org/",
+    "license": {
+        "url": "https://github.com/scummvm/scummvm/blob/master/COPYING",
+        "identifier": "GPL-3.0"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://downloads.scummvm.org/frs/scummvm/2.6.1/scummvm-2.6.1-win32-x86_64.zip",
+            "hash": "c319c9415c0b63f490f787ef8ada047c35315842c6bf16f3298ea8e7e10a5ed2",
+            "extract_dir": "scummvm-2.6.1-win32-x86_64"
+        },
+        "32bit": {
+            "url": "https://downloads.scummvm.org/frs/scummvm/2.6.1/scummvm-2.6.1-win32.zip",
+            "hash": "dfdfefe86a42b36454c26bfa9b80b62db19fea15c8bf64274f745dafa5f20901",
+            "extract_dir": "scummvm-2.6.1-win32"
+        }
+    },
+    "bin": "scummvm.exe",
+    "shortcuts": [
+        [
+            "scummvm.exe",
+            "ScummVM"
+        ]
+    ],
+    "persist": [
+        "scummvm.ini",
+        "saves",
+        "themes",
+        "extras"
+    ],
+    "checkver": {
+        "github": "https://github.com/scummvm/scummvm"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://downloads.scummvm.org/frs/scummvm/$version/scummvm-$version-win32-x86_64.zip",
+                "extract_dir": "scummvm-$version-win32-x86_64"
+            },
+            "32bit": {
+                "url": "https://downloads.scummvm.org/frs/scummvm/$version/scummvm-$version-win32.zip",
+                "extract_dir": "scummvm-$version-win32"
+            }
+        },
+        "hash": {
+            "url": "$url.sha256"
+        }
+    }
+}

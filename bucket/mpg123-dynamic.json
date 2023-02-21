@@ -1,0 +1,40 @@
+{
+    "version": "1.31.0",
+    "description": "Fast console MPEG Audio Player and decoder library",
+    "license": "Freeware",
+    "homepage": "https://mpg123.org/",
+    "architecture": {
+        "64bit": {
+            "url": "https://mpg123.org/download/win64/1.31.0/mpg123-1.31.0-x86-64.zip",
+            "hash": "bd749106635df7272666a87b84a447d7602210c46de2addc855e199e0894df55",
+            "extract_dir": "mpg123-1.31.0-x86-64"
+        },
+        "32bit": {
+            "url": "https://mpg123.org/download/win32/1.31.0/mpg123-1.31.0-x86.zip",
+            "hash": "8b76a5f760eb98a3ec5c1ec1c619e4721e0e5c641286823df382330c9b3c8b1c",
+            "extract_dir": "mpg123-1.31.0-x86"
+        }
+    },
+    "bin": [
+        "mpg123.exe",
+        "out123.exe",
+        "mpg123-id3dump.exe",
+        "mpg123-strip.exe"
+    ],
+    "checkver": {
+        "url": "https://sourceforge.net/projects/mpg123/rss?path=/mpg123",
+        "regex": "mpg123-([\\d.]+).tar.bz2"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://mpg123.org/download/win64/$version/mpg123-$version-x86-64.zip",
+                "extract_dir": "mpg123-$version-x86-64"
+            },
+            "32bit": {
+                "url": "https://mpg123.org/download/win32/$version/mpg123-$version-x86.zip",
+                "extract_dir": "mpg123-$version-x86"
+            }
+        }
+    }
+}

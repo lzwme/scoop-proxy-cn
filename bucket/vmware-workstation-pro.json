@@ -1,0 +1,71 @@
+{
+    "architecture": {
+        "64bit": {
+            "hash": "6b1de8005ae088209016b7f24a21d831ba6255d302b7adbe642d4fe0dbb4939e",
+            "installer": {
+                "args": [
+                    "/s",
+                    "/v\"",
+                    "/qn",
+                    "EULAS_AGREED=1",
+                    "DATACOLLECTION=0",
+                    "DESKTOP_SHORTCUT=0",
+                    "STARTMENU_SHORTCUT=0",
+                    "AUTOSOFTWAREUPDATE=0",
+                    "INSTALLDIR=\"\"$dir\"\"",
+                    "\""
+                ],
+                "keep": true
+            },
+            "shortcuts": [
+                [
+                    "vmware.exe",
+                    "VMware Workstation Pro"
+                ],
+                [
+                    "vmplayer.exe",
+                    "VMware Workstation Player"
+                ],
+                [
+                    "vmnetcfg.exe",
+                    "Virtual Network Editor"
+                ]
+            ],
+            "uninstaller": {
+                "args": [
+                    "/s",
+                    "/v\"",
+                    "/qn",
+                    "REMOVE=ALL",
+                    "\""
+                ],
+                "file": "cosi.exe"
+            },
+            "url": "https://download3.vmware.com/software/WKST-1701-WIN/VMware-workstation-full-17.0.1-21139696.exe#/cosi.exe"
+        }
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "hash": {
+                    "jsonpath": "$.downloadFiles[0].sha256checksum",
+                    "mode": "json",
+                    "url": "https://customerconnect.vmware.com/channel/public/api/v1.0/dlg/details?locale=cn_CN&downloadGroup=WKST-$matchMajor$matchMinor$matchPatch-WIN&productId=1038"
+                },
+                "url": "https://download3.vmware.com/software/WKST-$matchMajor$matchMinor$matchPatch-WIN/VMware-workstation-full-$version.exe#/cosi.exe"
+            }
+        }
+    },
+    "checkver": {
+        "regex": "(?<major>\\d+).(?<minor>\\d+).(?<patch>\\d+).(?<flag>\\d+)",
+        "replace": "${major}.${minor}.${patch}-${flag}",
+        "url": "https://chocolatey.org/packages/vmwareworkstation"
+    },
+    "description": "VMware Workstation $version Pro for Windows. This Workstation product installation includes VMware Tools for Windows 64-bit operating systems",
+    "homepage": "https://www.vmware.com/products/workstation-pro.html",
+    "license": {
+        "identifier": "Proprietary",
+        "url": "https://www.vmware.com/content/dam/digitalmarketing/vmware/en/pdf/downloads/eula/universal_eula.pdf"
+    },
+    "version": "17.0.1-21139696"
+}

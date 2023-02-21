@@ -1,0 +1,31 @@
+{
+    "version": "0.151.0",
+    "description": "Command line interface to deploy Kubernetes Helm Charts.",
+    "homepage": "https://github.com/helmfile/helmfile",
+    "license": "MIT",
+    "architecture": {
+        "64bit": {
+            "url": "https://ghproxy.com/https://github.com/helmfile/helmfile/releases/download/v0.151.0/helmfile_0.151.0_windows_amd64.tar.gz",
+            "hash": "2c8c2d2bb7a555da3de8250f35abaa7b3a655a1a5bb093646f4af4e80a2b6a3b"
+        },
+        "32bit": {
+            "url": "https://ghproxy.com/https://github.com/helmfile/helmfile/releases/download/v0.151.0/helmfile_0.151.0_windows_386.tar.gz",
+            "hash": "1a9009fd8300af857876d9d1010ef23b2bb6747cdc6aabe0a571547e37591edc"
+        }
+    },
+    "bin": "helmfile.exe",
+    "checkver": "github",
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/helmfile/helmfile/releases/download/v$version/helmfile_$version_windows_amd64.tar.gz"
+            },
+            "32bit": {
+                "url": "https://ghproxy.com/https://github.com/helmfile/helmfile/releases/download/v$version/helmfile_$version_windows_386.tar.gz"
+            }
+        },
+        "hash": {
+            "url": "$baseurl/helmfile_$version_checksums.txt"
+        }
+    }
+}

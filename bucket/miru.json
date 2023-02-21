@@ -1,0 +1,34 @@
+{
+    "version": "3.7.4",
+    "description": "Stream anime torrents, real-time with no waiting for downloads",
+    "homepage": "https://github.com/ThaUnknown/miru",
+    "license": "GPL-3.0-or-later",
+    "architecture": {
+        "64bit": {
+            "url": "https://ghproxy.com/https://github.com/ThaUnknown/miru/releases/download/v3.7.4/win-Miru-3.7.4.exe#/dl.7z",
+            "hash": "sha512:c031b9c0ca765e69f40b6fc8b9c666c7727f9ea3ccc3953d239a6107c2a9715fd623d638593edbb2e428f4bc9d6d69e89e9fbeefefe0a23d96b6791812c0efd9"
+        }
+    },
+    "pre_install": [
+        "Expand-7zipArchive -Path \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+        "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall*\" -Recurse -Force"
+    ],
+    "checkver": "github",
+    "shortcuts": [
+        [
+            "Miru.exe",
+            "Miru"
+        ]
+    ],
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/ThaUnknown/miru/releases/download/v$version/win-Miru-$version.exe#/dl.7z",
+                "hash": {
+                    "url": "$baseurl/latest.yml",
+                    "regex": "sha512:\\s+$base64"
+                }
+            }
+        }
+    }
+}

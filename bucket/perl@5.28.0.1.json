@@ -1,0 +1,33 @@
+{
+	"homepage": "http://strawberryperl.com",
+	"version": "5.28.0.1",
+	"license": "GPL",
+	"architecture": {
+		"64bit": {
+			"url": "http://strawberryperl.com/download/5.28.0.1/strawberry-perl-5.28.0.1-64bit-portable.zip",
+			"hash": "sha1:22a773ae058119a02577e97447fa298926cee67e"
+		},
+		"32bit": {
+			"url": "http://strawberryperl.com/download/5.28.0.1/strawberry-perl-5.28.0.1-32bit-portable.zip",
+			"hash": "sha1:4366c4d616d94154f0c82e74f9e1ee26ea5fe220"
+		}
+	},
+	"post_install": "
+        # enable idiomatic access to user's home directory
+        ## remove HomeDir section from portable.perl (disables Portable.pm override of File::HomeDir)
+        ## NOTE: conversion to byte[] (via char[]) avoids adding an extra trailing newline to the output file
+        [byte[]][char[]]((Get-Content -raw $dir\\portable.perl) -replace \"(?ms)^HomeDir:.*?^(?=\\S)\",\"\") | Set-Content $dir\\portable.perl -encoding byte
+        # rewrite portable ar, cc, dlltool, and ld locations
+        [byte[]][char[]]((Get-Content -raw $dir\\portable.perl) -replace '(?ms)^(Config:.*?$)(\\s+archlib:.*?$)',('$1'+\"`n  ar: c/bin/ar\"+'$2') ) | Set-Content $dir\\portable.perl -encoding byte
+        [byte[]][char[]]((Get-Content -raw $dir\\portable.perl) -replace '(?ms)^(\\s+binexp:.*?$)(\\s+incpath:.*?$)',('$1'+\"`n  cc: c/bin/gcc`n  cpp: 'c/bin/gcc -E'`n  cpprun: 'c/bin/gcc -E'`n  cppstdin: 'c/bin/gcc -E'`n  dlltool: c/bin/dlltool\"+'$2') ) | Set-Content $dir\\portable.perl -encoding byte
+        [byte[]][char[]]((Get-Content -raw $dir\\portable.perl) -replace '(?ms)^(\\s+ld:.*?$)(\\s+_libpthfix_part1:.*?$)',(\"  _ld_prefix: c/bin`n\"+'  ld: $$_ld_prefix\\g++'+'$2') ) | Set-Content $dir\\portable.perl -encoding byte
+        # copy c/bin DLLs to perl/bin directory for apps which might depend on DLLs in the strawberry standard c directory (eg, Net::SSLeay which requires 'LIBEAY32__.DLL' and 'SSLEAY32__.DLL' via '.../vendor/lib/auto/Net/SSLeay/SSLeay.xs.dll')
+        Copy-Item \"$dir\\c\\bin\\*.dll\" \"$dir\\perl\\bin\"
+        # rename any clashing executable
+        # * `pip` (from Perl Installation Program, if present); reserved for Python
+        Move-Item \"$dir\\perl\\bin\\pip\" \"$dir\\perl\\bin\\perl-pip\" -ea silent
+        Move-Item \"$dir\\perl\\bin\\pip.bat\" \"$dir\\perl\\bin\\perl-pip.bat\" -ea silent
+        ",
+	"env_add_path": ["perl\\site\\bin", "perl\\bin"],
+	"bin": ["c\\bin\\dmake.exe", "c\\bin\\gmake.exe"]
+}

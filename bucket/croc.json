@@ -1,0 +1,40 @@
+{
+    "version": "9.6.3",
+    "description": "Easily and securely send things from one computer to another.",
+    "homepage": "https://schollz.com/software/croc6",
+    "license": "MIT",
+    "architecture": {
+        "64bit": {
+            "url": "https://ghproxy.com/https://github.com/schollz/croc/releases/download/v9.6.3/croc_9.6.3_Windows-64bit.zip",
+            "hash": "4d2685978567fe9a6c89f820e7d5ca19ee8194824bd255f3c218a66a0cc5b753"
+        },
+        "32bit": {
+            "url": "https://ghproxy.com/https://github.com/schollz/croc/releases/download/v9.6.3/croc_9.6.3_Windows-32bit.zip",
+            "hash": "b6d4eb0030bf16cb3735cbe3e9dbcf19abc87ff20c2936e072092e242e7a8f3a"
+        },
+        "arm64": {
+            "url": "https://ghproxy.com/https://github.com/schollz/croc/releases/download/v9.6.3/croc_9.6.3_Windows-ARM64.zip",
+            "hash": "d39e7a70d40bc180c1e9dbcf47779d6f7e0e007f33ecb3b0316907d64f63b100"
+        }
+    },
+    "bin": "croc.exe",
+    "checkver": {
+        "github": "https://github.com/schollz/croc"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/schollz/croc/releases/download/v$version/croc_$version_Windows-64bit.zip"
+            },
+            "32bit": {
+                "url": "https://ghproxy.com/https://github.com/schollz/croc/releases/download/v$version/croc_$version_Windows-32bit.zip"
+            },
+            "arm64": {
+                "url": "https://ghproxy.com/https://github.com/schollz/croc/releases/download/v$version/croc_$version_Windows-ARM64.zip"
+            }
+        },
+        "hash": {
+            "url": "$baseurl/croc_$version_checksums.txt"
+        }
+    }
+}

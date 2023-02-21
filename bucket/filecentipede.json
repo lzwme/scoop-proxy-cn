@@ -1,0 +1,47 @@
+{
+    "architecture": {
+        "64bit": {
+            "hash": "f0bdef157f45ae1652ede116ebe98d889d163e5c094e88a076e917989742fe1e",
+            "url": "https://github.com/filecxx/FileCentipede/raw/main/release/filecxx_latest_win_x64.zip"
+        }
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/filecxx/FileCentipede/raw/main/release/filecxx_latest_win_x64.zip"
+            }
+        }
+    },
+    "checkver": {
+        "url": "http://www.filecxx.com/release/FileCentipede_pad.xml",
+        "xpath": "/XML_DIZ_INFO/Program_Info/Program_Version"
+    },
+    "description": "File centipede is an internet file download manager with enhanced features, it's fast, customizable, user-friendly, multi-protocol supported, contains lots of useful auxiliary tools, and it's free with no ads, you can also use it to download audio and videos from websites, increase your download speeds by up to 1.1 times, it's the best internet download manager you can find(so far).",
+    "homepage": "http://www.filecxx.com",
+    "license": {
+        "identifier": "Freeware"
+    },
+    "notes": "If the BT DHT is 0 from the bottom of the software, and there is no speed for downloading magnet links and torrents, this is caused by the Windows firewall. You should try to close the filec process or restart your computer.",
+    "pre_install": [
+        "'libicu.dat', 'data_windows.db', 'data_windows.db-shm', 'data_windows.db-wal', 'ip.mmdb', 'fileu_win32.conf' | ForEach-Object {",
+        "    if (Test-Path \"$persist_dir\\$_\") { Copy-Item \"$persist_dir\\$_\" \"$dir\\lib\\\" | Out-Null }",
+        "}"
+    ],
+    "shortcuts": [
+        [
+            "fileu.exe",
+            "FileCentipede"
+        ]
+    ],
+    "uninstaller": {
+        "script": [
+            "'libicu.dat', 'data_windows.db', 'data_windows.db-shm', 'data_windows.db-wal', 'ip.mmdb', 'fileu_win32.conf' | ForEach-Object {",
+            "    if (Test-Path \"$dir\\$_\") {",
+            "        ensure \"$persist_dir\" | Out-Null",
+            "        Copy-Item \"$dir\\lib\\$_\" \"$persist_dir\\\" | Out-Null",
+            "    }",
+            "}"
+        ]
+    },
+    "version": "2.82"
+}

@@ -1,0 +1,92 @@
+{
+    "version": "4.158",
+    "description": "An open-source Simplified Chinese font. Combination of LXGW WenKai Lite (霞鹜文楷 Lite) and Ysabeau Office",
+    "homepage": "https://github.com/lxgw/LxgwBright",
+    "license": "OFL-1.1",
+    "url": [
+        "https://ghproxy.com/https://raw.githubusercontent.com/lxgw/LxgwBright/main/LXGWBright/LXGWBright-Italic.otf",
+        "https://ghproxy.com/https://raw.githubusercontent.com/lxgw/LxgwBright/main/LXGWBright/LXGWBright-Medium.otf",
+        "https://ghproxy.com/https://raw.githubusercontent.com/lxgw/LxgwBright/main/LXGWBright/LXGWBright-MediumItalic.otf",
+        "https://ghproxy.com/https://raw.githubusercontent.com/lxgw/LxgwBright/main/LXGWBright/LXGWBright-Regular.otf",
+        "https://ghproxy.com/https://raw.githubusercontent.com/lxgw/LxgwBright/main/LXGWBright/LXGWBright-SemiLight.otf",
+        "https://ghproxy.com/https://raw.githubusercontent.com/lxgw/LxgwBright/main/LXGWBright/LXGWBright-SemiLightItalic.otf"
+    ],
+    "hash": [
+        "a57b1e78f611eb682291ae8edad059745b748e6b7f4ba783fa515251fe1c8c78",
+        "446d4709a21b9d4bc20234f2393e9a1347e816429f702d50e84659652a53d10c",
+        "2468c70f0eb39a054178df8fcb18d328dfc110ff357f51167054cec94a93fdea",
+        "65cd651f24dbf18c9ae20b51135c9b64056ec90b5f2401ca7a0be4d773ff49f7",
+        "a1e421fc927e653c45cf1e2569efa07e61e19a69a30db6c55687814c0d162ead",
+        "556d13ce39bcf0caea857d40a342b74573fa6d349362f921b46bea5c49f76b9d"
+    ],
+    "installer": {
+        "script": [
+            "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
+            "$windows11Version22H2BuildNumber = 22621",
+            "$doesPerUserFontInstallationHaveIssue = $currentBuildNumber -ge $windows11Version22H2BuildNumber",
+            "if ($doesPerUserFontInstallationHaveIssue -and !$global) {",
+            "    scoop uninstall $app",
+            "    Write-Host \"\"",
+            "    Write-Host \"Currently, on Windows 11 Version 22H2 (OS Build 22621) or later,\" -Foreground DarkRed",
+            "    Write-Host \"Font installation only works when installing font for all users.\" -Foreground DarkRed",
+            "    Write-Host \"\"",
+            "    Write-Host \"Please use following commands to install '$app' Font for all users.\" -Foreground DarkRed",
+            "    Write-Host \"\"",
+            "    Write-Host \"        scoop install sudo\"",
+            "    Write-Host \"        sudo scoop install -g $app\"",
+            "    Write-Host \"\"",
+            "    Write-Host \"See https://github.com/matthewjberger/scoop-nerd-fonts/issues/198 for more details.\" -Foreground Magenta",
+            "    exit 1",
+            "}",
+            "$windows10Version1809BuildNumber = 17763",
+            "$isPerUserFontInstallationSupported = $currentBuildNumber -ge $windows10Version1809BuildNumber",
+            "if (!$isPerUserFontInstallationSupported -and !$global) {",
+            "    scoop uninstall $app",
+            "    Write-Host \"\"",
+            "    Write-Host \"For Windows version before Windows 10 Version 1809 (OS Build 17763),\" -Foreground DarkRed",
+            "    Write-Host \"Font can only be installed for all users.\" -Foreground DarkRed",
+            "    Write-Host \"\"",
+            "    Write-Host \"Please use following commands to install '$app' Font for all users.\" -Foreground DarkRed",
+            "    Write-Host \"\"",
+            "    Write-Host \"        scoop install sudo\"",
+            "    Write-Host \"        sudo scoop install -g $app\"",
+            "    Write-Host \"\"",
+            "    exit 1",
+            "}",
+            "$fontInstallDir = if ($global) { \"$env:windir\\Fonts\" } else { \"$env:LOCALAPPDATA\\Microsoft\\Windows\\Fonts\" }",
+            "$registryRoot = if ($global) { \"HKLM\" } else { \"HKCU\" }",
+            "$registryKey = \"${registryRoot}:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts\"",
+            "New-Item $fontInstallDir -ItemType Directory -ErrorAction SilentlyContinue | Out-Null",
+            "Get-ChildItem $dir -Filter '*.otf' | ForEach-Object {",
+            "    $value = if ($global) { $_.Name } else { \"$fontInstallDir\\$($_.Name)\" }",
+            "    New-ItemProperty -Path $registryKey -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $value -Force | Out-Null",
+            "    Copy-Item $_.FullName -Destination $fontInstallDir",
+            "}"
+        ]
+    },
+    "uninstaller": {
+        "script": [
+            "$fontInstallDir = if ($global) { \"$env:windir\\Fonts\" } else { \"$env:LOCALAPPDATA\\Microsoft\\Windows\\Fonts\" }",
+            "$registryRoot = if ($global) { \"HKLM\" } else { \"HKCU\" }",
+            "$registryKey = \"${registryRoot}:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts\"",
+            "Get-ChildItem $dir -Filter '*.otf' | ForEach-Object {",
+            "    Remove-ItemProperty -Path $registryKey -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
+            "    Remove-Item \"$fontInstallDir\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
+            "}",
+            "if ($cmd -eq \"uninstall\") {",
+            "    Write-Host \"Font family 'LXGW Bright' has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta",
+            "}"
+        ]
+    },
+    "checkver": "github",
+    "autoupdate": {
+        "url": [
+            "https://ghproxy.com/https://raw.githubusercontent.com/lxgw/LxgwBright/main/LXGWBright/LXGWBright-Italic.otf",
+            "https://ghproxy.com/https://raw.githubusercontent.com/lxgw/LxgwBright/main/LXGWBright/LXGWBright-Medium.otf",
+            "https://ghproxy.com/https://raw.githubusercontent.com/lxgw/LxgwBright/main/LXGWBright/LXGWBright-MediumItalic.otf",
+            "https://ghproxy.com/https://raw.githubusercontent.com/lxgw/LxgwBright/main/LXGWBright/LXGWBright-Regular.otf",
+            "https://ghproxy.com/https://raw.githubusercontent.com/lxgw/LxgwBright/main/LXGWBright/LXGWBright-SemiLight.otf",
+            "https://ghproxy.com/https://raw.githubusercontent.com/lxgw/LxgwBright/main/LXGWBright/LXGWBright-SemiLightItalic.otf"
+        ]
+    }
+}

@@ -1,0 +1,40 @@
+{
+    "version": "8.2.3",
+    "description": "A popular general-purpose scripting language that is especially suited to web development. (thread safe)",
+    "homepage": "https://windows.php.net/",
+    "license": "PHP-3.01",
+    "architecture": {
+        "64bit": {
+            "url": "https://windows.php.net/downloads/releases/php-8.2.3-Win32-vs16-x64.zip",
+            "hash": "2c3a9fcb686e51f7c1f4efa0bd230c2a6de96f9195d566c523e65eb1f1e94bb8"
+        },
+        "32bit": {
+            "url": "https://windows.php.net/downloads/releases/php-8.2.3-Win32-vs16-x86.zip",
+            "hash": "fd8ecbf9cf3d365ab75891bbe30cecf6e43616944009359fbf32630cc871c503"
+        }
+    },
+    "pre_install": "if (!(Test-Path \"$persist_dir/php.ini\")) { Copy-Item \"$dir/php.ini-production\" \"$dir/php.ini\" }",
+    "bin": [
+        "php.exe",
+        "php-cgi.exe",
+        "phpdbg.exe"
+    ],
+    "persist": "php.ini",
+    "checkver": {
+        "url": "https://windows.php.net/download/",
+        "regex": "<h3 id=\"php-[\\d.]+\".*?>.*?\\(([\\d.]+)\\)</h3>"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://windows.php.net/downloads/releases/php-$version-Win32-vs16-x64.zip"
+            },
+            "32bit": {
+                "url": "https://windows.php.net/downloads/releases/php-$version-Win32-vs16-x86.zip"
+            }
+        },
+        "hash": {
+            "url": "$baseurl/sha256sum.txt"
+        }
+    }
+}

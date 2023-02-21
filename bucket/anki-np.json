@@ -1,0 +1,48 @@
+{
+    "version": "2.1.60",
+    "description": "Powerful and intelligent flash cards",
+    "homepage": "https://apps.ankiweb.net",
+    "license": "AGPL-3.0-only",
+    "suggest": {
+        "vcredist": "extras/vcredist2008"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://ghproxy.com/https://github.com/ankitects/anki/releases/download/2.1.60/anki-2.1.60-windows-qt6.exe#/installer.exe",
+            "hash": "efd403a907ee9a206439d446af47717f1024eb5581ad6fca4da7cc7624088243"
+        }
+    },
+    "installer": {
+        "script": [
+            "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+            "Start-Process -Wait \"$dir\\installer.exe\" -ArgumentList @('/S', \"/D=$dir\") -Verb RunAs | Out-Null",
+            "Remove-Item \"$([Environment]::GetFolderPath('commonstartmenu'))\\Programs\\Anki.lnk\""
+        ]
+    },
+    "uninstaller": {
+        "script": [
+            "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+            "Start-Process -Wait \"$dir\\uninstall.exe\" -ArgumentList '/S' -Verb RunAs | Out-Null"
+        ]
+    },
+    "bin": "anki.exe",
+    "shortcuts": [
+        [
+            "anki.exe",
+            "Anki"
+        ]
+    ],
+    "checkver": {
+        "github": "https://github.com/ankitects/anki"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/ankitects/anki/releases/download/$version/anki-$version-windows-qt6.exe#/installer.exe"
+            }
+        },
+        "hash": {
+            "url": "$baseurl/anki-$version-checksums.txt"
+        }
+    }
+}

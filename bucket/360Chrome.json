@@ -1,0 +1,28 @@
+{
+ "autoupdate": {
+  "url": "http://down.360safe.com/cse/360cse_$version.exe#/dl.7z"
+ },
+ "checkver": {
+  "regex": "360cse_([\\d.]+).exe",
+  "url": "https://browser.360.cn/ee/"
+ },
+ "description": "360\u6781\u901f\u6d4f\u89c8\u5668\u6700\u521d\u662f\u7531\u4e16\u754c\u4e4b\u7a97\u6d4f\u89c8\u5668\u56e2\u961f\u57fa\u4e8e Chromium \u5185\u6838\u5f00\u53d1\u7684\u4e00\u6b3e\u6781\u901f\u53cc\u6838\u6d4f\u89c8\u5668\uff0c\u652f\u6301 Chromium \u53ca IE \u5185\u6838\uff0c\u63d0\u4f9b\u4e86\u6781\u901f\u6a21\u5f0f\u3001\u517c\u5bb9\u6a21\u5f0f\u3001IE\u6a21\u5f0f\u4e09\u79cd\u6d4f\u89c8\u6a21\u5f0f\u3002",
+ "hash": "5b60b597f94732d8fc707144d5572a0709d6739ad0583406166c6d7756f1a95f",
+ "homepage": "https://browser.360.cn/ee/",
+ "installer": {
+  "script": [
+   "Expand-7ZipArchive \"$dir\\chrome.7z\" \"$dir\" -Removal",
+   "Move-Item \"$dir\\Chrome-bin\\*\" \"$dir\" -Force",
+   "Remove-Item \"$dir\\Chrome-bin\" -Force -Recurse"
+  ]
+ },
+ "persist": "User Data",
+ "shortcuts": [
+  [
+   "360chrome.exe",
+   "360\u6781\u901f\u6d4f\u89c8\u5668"
+  ]
+ ],
+ "url": "http://down.360safe.com/cse/360cse_13.5.1060.0.exe#/dl.7z",
+ "version": "13.5.1060.0"
+}

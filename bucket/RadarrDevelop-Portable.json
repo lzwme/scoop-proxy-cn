@@ -1,0 +1,38 @@
+{
+    "version": "4.4.2.6956",
+    "description": "Radarr Develop. is a movie collection manager for Usenet and BitTorrent users",
+    "homepage": "https://github.com/Radarr/Radarr",
+    "license": "MIT",
+    "changelog": "https://github.com/Radarr/Radarr/releases",
+    "architecture": {
+        "64bit": {
+            "url": "https://ghproxy.com/https://github.com/Radarr/Radarr/releases/download/v4.4.2.6956/Radarr.develop.4.4.2.6956.windows-core-x64.zip",
+            "hash": "3f859086fae918018c0cd636e101281b340ca093bbf344f0f532fc6f1deb9f37"
+        },
+        "32bit": {
+            "url": "https://ghproxy.com/https://github.com/Radarr/Radarr/releases/download/v4.4.2.6956/Radarr.develop.4.4.2.6956.windows-core-x86.zip",
+            "hash": "44379120ef7b12e804c58301340a38238359c804439b1e18d31c52c5c6636252"
+        }
+    },
+    "extract_dir": "Radarr",
+    "shortcuts": [
+        [
+            "Radarr.exe",
+            "Radarr Develop"
+        ]
+    ],
+    "checkver": {
+        "url": "https://github.com/Radarr/Radarr/releases",
+        "regex": "/Radarr/Radarr/tree/v([\\d.]+)"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/Radarr/Radarr/releases/download/v$version/Radarr.develop.$version.windows-core-x64.zip"
+            },
+            "32bit": {
+                "url": "https://ghproxy.com/https://github.com/Radarr/Radarr/releases/download/v$version/Radarr.develop.$version.windows-core-x86.zip"
+            }
+        }
+    }
+}

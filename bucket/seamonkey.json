@@ -1,0 +1,59 @@
+{
+    "version": "2.53.15",
+    "description": "All-in-one application suite capable of web browsing, advanced e-mail, newsgroup, feed client, IRC chat and HTML editing.",
+    "homepage": "https://www.seamonkey-project.org",
+    "license": "MPL-2.0",
+    "notes": [
+        "To set profile 'Scoop' as *DEFAULT*, or profiles/settings was lost after update:",
+        "  - Run 'SeaMonkey Profile Manager', choose 'Scoop' then click 'Start SeaMonkey'.",
+        "  - Visit 'about:profiles' page in SeaMonkey to check *DEFAULT* profile.",
+        "For details: https://support.mozilla.org/en-US/kb/profile-manager-create-remove-switch-firefox-profiles"
+    ],
+    "architecture": {
+        "64bit": {
+            "url": "https://archive.mozilla.org/pub/seamonkey/releases/2.53.15/win64/en-US/seamonkey-2.53.15.en-US.win64.installer.exe#/dl.7z",
+            "hash": "sha512:87ead5b0d3698ce5679da099a0049f76569fd85bf16b9eda2b7fce02ff00e84ca0b69fe3946c396394f9eb66b2844b5ed2f74124428dbbe7564d88733fa7cb31"
+        },
+        "32bit": {
+            "url": "https://archive.mozilla.org/pub/seamonkey/releases/2.53.15/win32/en-US/seamonkey-2.53.15.en-US.win32.installer.exe#/dl.7z",
+            "hash": "sha512:17a81dc68a574aa1f5b94e1a7cf85bf4f4067d044159087af7eda4cc73eb2a6074a3474ea86a897f0345c760d1f4a09ac7397240d67c4333283132bf78659ee0"
+        }
+    },
+    "extract_dir": "core",
+    "post_install": [
+        "seamonkey -CreateProfile \"Scoop $persist_dir\\profile\"",
+        "$Addition = \"$persist_dir\\addition\"",
+        "if (Test-Path $Addition) {",
+        "  info 'Copying additional items...'",
+        "  Copy-Item -Path $Addition\\* -Destination $dir -Force -Recurse -ErrorAction SilentlyContinue",
+        "}"
+    ],
+    "bin": "seamonkey.exe",
+    "shortcuts": [
+        [
+            "seamonkey.exe",
+            "SeaMonkey"
+        ],
+        [
+            "seamonkey.exe",
+            "SeaMonkey Profile Manager",
+            "-P"
+        ]
+    ],
+    "persist": "profile",
+    "checkver": ">SeaMonkey\\s+([\\d.]+)</",
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://archive.mozilla.org/pub/seamonkey/releases/$version/win64/en-US/seamonkey-$version.en-US.win64.installer.exe#/dl.7z"
+            },
+            "32bit": {
+                "url": "https://archive.mozilla.org/pub/seamonkey/releases/$version/win32/en-US/seamonkey-$version.en-US.win32.installer.exe#/dl.7z"
+            }
+        },
+        "hash": {
+            "url": "$baseurl/seamonkey-$version.checksums",
+            "regex": "$sha512.*/en-US/$basename"
+        }
+    }
+}

@@ -1,0 +1,35 @@
+{
+ "autoupdate": {
+  "url": "https://www.ferrobackup.com/download/FtpUseInst.exe"
+ },
+ "bin": "ftpuse.exe",
+ "checkver": {
+  "re": "title=\"FTP USE command Web Page\">FTPUSE</a>\\r\\n</td>\\r\\n</tr>\\r\\n\\r\\n\\r\\n<tr>\\r\\n<td bgcolor=\"#E0E0E1\">\\r\\nPublication date\\r\\n</td>\\r\\n<td bgcolor=\"#eeeeef\">\\r\\n.+\\r\\n</td>\\r\\n</tr>\\r\\n\\r\\n<tr>\\r\\n<td bgcolor=\"#E0E0E1\">\\r\\nVersion\\r\\n</td>\\r\\n<td bgcolor=\"#eeeeef\">\\r\\n(?<version>[\\d.]+)\\r\\n</td>\\r\\n</tr>",
+  "replace": "${version}",
+  "url": "https://www.ferrobackup.com/download.html#ftpuse"
+ },
+ "description": "Map a FTP server as a Local Disk Drive",
+ "hash": "e087af89fe74eb062aa75a7d189e20e2b2be80bc815356b987e06f5de98a15c9",
+ "homepage": "https://www.ferrobackup.com/map-ftp-as-disk.html",
+ "installer": {
+  "args": [
+   "/VERYSILENT",
+   "/DIR=\"$dir\"",
+   "/SUPPRESSMSGBOXES",
+   "/NORESTART",
+   "/CLOSEAPPLICATIONS",
+   "/NORESTARTAPPLICATIONS"
+  ]
+ },
+ "license": "Freeware",
+ "uninstaller": {
+  "args": [
+   "/VERYSILENT",
+   "/SUPPRESSMSGBOXES",
+   "/NORESTART"
+  ],
+  "file": "unins000.exe"
+ },
+ "url": "https://www.ferrobackup.com/download/FtpUseInst.exe",
+ "version": "2.2"
+}

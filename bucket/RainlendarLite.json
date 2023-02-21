@@ -1,0 +1,41 @@
+{
+    "homepage": "http://www.rainlendar.net/",
+    "license": "freeware",
+    "version": "2.19.1",
+    "architecture": {
+        "64bit": {
+            "url": "https://www.rainlendar.net/download/2.19.1/Rainlendar-Lite-2.19.1-64bit.exe",
+            "hash": "cf19e5e9119ffa4e8b5f7a2e6d26bcdec8fa019604837ab7e584d68fee6120e6"
+        },
+        "32bit": {
+            "url": "https://www.rainlendar.net/download/2.19.1/Rainlendar-Lite-2.19.1-32bit.exe",
+            "hash": "37e71354a1c91dc68259b6b3a6a596b2a062d061e6f8b7480cc0a9f9cefe8898"
+        }
+    },
+    "bin": "Rainlendar2.exe",
+    "shortcuts": [
+        [
+            "Rainlendar2.exe",
+            "Rainlendar"
+        ]
+    ],
+    "checkver": "<div class=\"version-number\">([\\d.]+)</div>",
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://www.rainlendar.net/download/$version/Rainlendar-Lite-$version-64bit.exe",
+                "hash": {
+                    "url": "http://www.rainlendar.net/",
+                    "find": "\"win64LiteSha\" x-sha=\"$sha256 "
+                }
+            },
+            "32bit": {
+                "url": "https://www.rainlendar.net/download/$version/Rainlendar-Lite-$version-32bit.exe",
+                "hash": {
+                    "url": "http://www.rainlendar.net/",
+                    "find": "\"win32LiteSha\" x-sha=\"$sha256 "
+                }
+            }
+        }
+    }
+}

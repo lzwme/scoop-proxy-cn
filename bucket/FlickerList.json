@@ -1,0 +1,26 @@
+{
+ "autoupdate": {
+  "url": "https://static.vifird.com/flicker/download/stable/$version/win32_x32/Flicker%20List_Setup_$version.exe#/dl.7z"
+ },
+ "checkver": {
+  "regex": "v([\\d+\\.]+\\.\\d+)",
+  "url": "https://flicker.vifird.com/versions/"
+ },
+ "description": "A different kind of hover list software",
+ "hash": "0e580a2da64a64f829d44633937b77ee7c8036b4b0cd89ade10f985842df090c",
+ "homepage": "https://flicker.vifird.com/",
+ "installer": {
+  "script": [
+   "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-32.7z\" \"$dir\"",
+   "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall*\" -Force -Recurse"
+  ]
+ },
+ "shortcuts": [
+  [
+   "Flicker List.exe",
+   "Flicker List"
+  ]
+ ],
+ "url": "https://static.vifird.com/flicker/download/stable/4.1.0/win32_x32/Flicker%20List_Setup_4.1.0.exe#/dl.7z",
+ "version": "4.1.0"
+}

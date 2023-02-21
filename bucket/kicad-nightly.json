@@ -1,0 +1,49 @@
+{
+    "version": "31882.365c7be4ed",
+    "description": "Nightly build of KiCAD, an electronics design automation (EDA) suite.",
+    "homepage": "https://kicad-pcb.org",
+    "license": "GPL-3.0-only",
+    "architecture": {
+        "64bit": {
+            "url": "https://kicad-downloads.s3.cern.ch/windows/nightly/kicad-nightly-r31882.365c7be4ed-x86_64.exe#/dl.7z",
+            "hash": "d00107b85094ee0267abfa0d533eb223ef1e439b0c6b5d4f64c2c996ad30f661"
+        }
+    },
+    "pre_install": "Remove-Item \"$dir\\`$*\", \"$dir\\Uninst*\" -Recurse",
+    "bin": "bin\\kicad.exe",
+    "shortcuts": [
+        [
+            "bin\\kicad.exe",
+            "KiCad nightly"
+        ],
+        [
+            "bin\\eeschema.exe",
+            "Eeschema nightly"
+        ],
+        [
+            "bin\\pcbnew.exe",
+            "Pcbnew nightly"
+        ],
+        [
+            "bin\\gerbview.exe",
+            "Gerbview nightly"
+        ]
+    ],
+    "env_set": {
+        "KICAD_PTEMPLATES": "$dir\\share\\kicad\\template\\",
+        "KISYS3DMOD": "$dir\\share\\kicad\\modules\\packages3d\\",
+        "KISYSMOD": "$dir\\share\\kicad\\modules\\"
+    },
+    "checkver": {
+        "url": "https://kicad-downloads.s3.cern.ch/?prefix=windows/nightly",
+        "regex": "kicad-.*r([\\d]+.[a-f0-9]+)-x86_64",
+        "reverse": true
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://kicad-downloads.s3.cern.ch/windows/nightly/kicad-nightly-r$version-x86_64.exe#/dl.7z"
+            }
+        }
+    }
+}

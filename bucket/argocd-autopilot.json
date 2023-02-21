@@ -1,0 +1,25 @@
+{
+    "version": "0.4.12",
+    "description": "A tool which offers an opinionated way of installing Argo-CD and managing GitOps repositories.",
+    "homepage": "https://github.com/argoproj-labs/argocd-autopilot",
+    "license": "Apache-2.0",
+    "architecture": {
+        "64bit": {
+            "url": "https://ghproxy.com/https://github.com/argoproj-labs/argocd-autopilot/releases/download/v0.4.12/argocd-autopilot-windows-amd64.tar.gz",
+            "hash": "2a81295052569216851114278ac5ef02410627757e9cc546fb7a22dc5c223422"
+        }
+    },
+    "pre_install": "Rename-Item \"$dir\\argocd-autopilot-windows-amd64.exe\" 'argocd-autopilot.exe' -ErrorAction SilentlyContinue",
+    "bin": "argocd-autopilot.exe",
+    "checkver": "github",
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/argoproj-labs/argocd-autopilot/releases/download/v$version/argocd-autopilot-windows-amd64.tar.gz",
+                "hash": {
+                    "url": "https://ghproxy.com/https://github.com/argoproj-labs/argocd-autopilot/releases/download/v$version/argocd-autopilot-windows-amd64.sha256"
+                }
+            }
+        }
+    }
+}

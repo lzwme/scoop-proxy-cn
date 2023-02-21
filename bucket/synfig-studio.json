@@ -1,0 +1,39 @@
+{
+    "version": "1.4.4",
+    "description": "2D Animation Software",
+    "homepage": "https://www.synfig.org",
+    "license": "GPL-3.0-or-later",
+    "architecture": {
+        "64bit": {
+            "url": "https://www.fosshub.com/Synfig.html/SynfigStudio-1.4.4-2022.12.25-win64-b8d62.zip",
+            "hash": "d1aa00d079dc679a149db69438688cb8e1414d7369fcbac447a7b805b2dccb41"
+        },
+        "32bit": {
+            "url": "https://www.fosshub.com/Synfig.html/SynfigStudio-1.4.4-2022.12.25-win32-b8d62.zip",
+            "hash": "4457b5a3db2ebe219d3cc2d53a00683e059742b1c119f28c2ec36ea882256f9e"
+        }
+    },
+    "bin": "bin\\synfig.exe",
+    "shortcuts": [
+        [
+            "bin\\synfigstudio.exe",
+            "Synfig Studio",
+            "",
+            "share\\pixmaps\\synfig_icon.ico"
+        ]
+    ],
+    "checkver": {
+        "url": "https://www.fosshub.com/Synfig.html",
+        "regex": "SynfigStudio-([\\d.]+)-(?<date>[\\d.]+)-win64-(?<sha>[\\da-f]+)"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://www.fosshub.com/Synfig.html/SynfigStudio-$version-$matchDate-win64-$matchSha.zip"
+            },
+            "32bit": {
+                "url": "https://www.fosshub.com/Synfig.html/SynfigStudio-$version-$matchDate-win32-$matchSha.zip"
+            }
+        }
+    }
+}

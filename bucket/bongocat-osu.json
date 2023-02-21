@@ -1,0 +1,41 @@
+{
+    "architecture": {
+        "32bit": {
+            "hash": "69a2897343d3e4bc65e0f4a611c1ef073fda109f69d21895b6e9ba8d7f82fe1c",
+            "url": "https://ghproxy.com/https://github.com/kuroni/bongocat-osu/releases/download/v1.5.3/bongocat-osu_x86.zip"
+        },
+        "64bit": {
+            "hash": "2b55b69523162ca27d605e536e0c334e4ee6a79cf58693aa5efd2bc95feb8216",
+            "url": "https://ghproxy.com/https://github.com/kuroni/bongocat-osu/releases/download/v1.5.3/bongocat-osu_x64.zip"
+        }
+    },
+    "autoupdate": {
+        "architecture": {
+            "32bit": {
+                "url": "https://ghproxy.com/https://github.com/kuroni/bongocat-osu/releases/download/v$version/bongocat-osu_x86.zip"
+            },
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/kuroni/bongocat-osu/releases/download/v$version/bongocat-osu_x64.zip"
+            }
+        }
+    },
+    "checkver": {
+        "jsonpath": "$[0].tag_name",
+        "regex": "^v([\\d.]+)$",
+        "url": "https://api.github.com/repos/kuroni/bongocat-osu/releases?per_page=1"
+    },
+    "description": "An osu! Bongo Cat overlay with smooth paw movement and simple skinning ability, written in C++.",
+    "homepage": "https://github.com/kuroni/bongocat-osu",
+    "license": {
+        "identifier": "MIT"
+    },
+    "notes": "Settings: <https://github.com/kuroni/bongocat-osu/wiki/Settings>",
+    "persist": "img",
+    "shortcuts": [
+        [
+            "bongo.exe",
+            "Bongo Cat"
+        ]
+    ],
+    "version": "1.5.3"
+}

@@ -1,0 +1,55 @@
+{
+    "version": "0.15.3",
+    "description": "A full-featured Subsonic/Jellyfin compatible desktop music player",
+    "homepage": "https://github.com/jeffvli/sonixd",
+    "license": "GNU General Public License v3.0",
+    "url": "https://ghproxy.com/https://github.com/jeffvli/sonixd/releases/download/v0.15.3/Sonixd-0.15.3-win-x64.exe#/dl.7z",
+    "hash": "sha512:a837307e8bda7ff0c3732c9bcf4b140650ecb0871db2fe04154400e920671eb29c3e0b25de6f7f3a48ca4fe4f863cf35532c2c37ea11acf6157ab08ba8764d8d",
+    "installer": {
+        "script": [
+            "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+            "Remove-Item -Force -Recurse \"$dir\\`$PLUGINSDIR\"",
+            "Remove-Item -Force -Recurse \"$dir\\Uninst*\"",
+            "# handle runtime cache",
+            "if (!(Test-Path $persist_dir)) {",
+            "    New-Item $persist_dir -Type Directory -Force | Out-Null",
+            "}",
+            "$runtimeCache = \"$env:APPDATA\\Sonixd\"",
+            "$runtimeCachePersist = \"$persist_dir\\appdata\"",
+            "if (Test-Path $runtimeCachePersist) {",
+            "    Remove-Item $runtimeCache -Force -Recurse -ErrorAction SilentlyContinue",
+            "    New-Item -Type Junction -Path $runtimeCache -Target $runtimeCachePersist | Out-Null",
+            "} else {",
+            "    if (Test-Path $runtimeCache) {",
+            "        Move-Item $runtimeCache $runtimeCachePersist -Force",
+            "        New-Item -Type Junction -Path $runtimeCache -Target $runtimeCachePersist | Out-Null",
+            "    }",
+            "}"
+        ]
+    },
+    "uninstaller": {
+        "script": [
+            "$runtimeCache = \"$env:APPDATA\\Sonixd\"",
+            "$runtimeCachePersist = \"$persist_dir\\appdata\"",
+            "if (!(Test-Path $runtimeCachePersist)) {",
+            "    Move-Item $runtimeCache $runtimeCachePersist -Force",
+            "} else {",
+            "    Remove-Item $runtimeCache -Force -Recurse -ErrorAction SilentlyContinue",
+            "}"
+        ]
+    },
+    "shortcuts": [
+        [
+            "Sonixd.exe",
+            "Sonixd"
+        ]
+    ],
+    "checkver": "github",
+    "autoupdate": {
+        "url": "https://ghproxy.com/https://github.com/jeffvli/sonixd/releases/download/v$version/Sonixd-$version-win-x64.exe#/dl.7z",
+        "hash": {
+            "url": "https://ghproxy.com/https://github.com/jeffvli/sonixd/releases/download/v$version/latest.yml",
+            "regex": "$base64"
+        }
+    }
+}

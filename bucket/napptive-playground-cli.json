@@ -1,0 +1,25 @@
+{
+    "version": "4.4.0",
+    "description": "A command-line client for NAPPTIVE Playground.",
+    "homepage": "https://docs.napptive.com/playground/CLI.html",
+    "license": "Proprietary",
+    "architecture": {
+        "64bit": {
+            "url": "https://storage.googleapis.com/artifacts.playground.napptive.dev/windows/playground/playground_v4.4.0.zip",
+            "hash": "cfb3d5160575ac052b9df3fd13b2cced1002bdd935bed8616dedd64b2ccf1b46"
+        }
+    },
+    "extract_dir": "playground",
+    "bin": "playground.exe",
+    "checkver": {
+        "url": "https://storage.googleapis.com/artifacts.playground.napptive.dev/version",
+        "regex": "v([\\d.]+)"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://storage.googleapis.com/artifacts.playground.napptive.dev/windows/playground/playground_v$version.zip"
+            }
+        }
+    }
+}

@@ -1,0 +1,50 @@
+{
+    "architecture": {
+        "32bit": {
+            "extract_dir": "node-v16.19.1-win-x86",
+            "hash": "2dbb3636f7fc15f79ceed94384a8dc56d25b9cab1ed588d284f7fe5427125afc",
+            "url": "https://mirrors.tuna.tsinghua.edu.cn/nodejs-release/v16.19.1/node-v16.19.1-win-x86.7z"
+        },
+        "64bit": {
+            "extract_dir": "node-v16.19.1-win-x64",
+            "hash": "020930ed45d64055ed37cc4a607d7f352554057ccaeeedbbea41e4230062084d",
+            "url": "https://mirrors.tuna.tsinghua.edu.cn/nodejs-release/v16.19.1/node-v16.19.1-win-x64.7z"
+        }
+    },
+    "autoupdate": {
+        "architecture": {
+            "32bit": {
+                "extract_dir": "node-v$version-win-x86",
+                "url": "https://mirrors.tuna.tsinghua.edu.cn/nodejs-release/v$version/node-v$version-win-x86.7z"
+            },
+            "64bit": {
+                "extract_dir": "node-v$version-win-x64",
+                "url": "https://mirrors.tuna.tsinghua.edu.cn/nodejs-release/v$version/node-v$version-win-x64.7z"
+            }
+        },
+        "hash": {
+            "url": "$baseurl/SHASUMS256.txt.asc"
+        }
+    },
+    "checkver": {
+        "regex": "node-v(16.[\\d.]+)-win-x64.zip",
+        "url": "https://registry.npmmirror.com/-/binary/node/latest-v16.x/"
+    },
+    "description": "As an asynchronous event driven JavaScript runtime, Node is designed to build scalable network applications. (Long Term Support)",
+    "env_add_path": [
+        "bin",
+        "."
+    ],
+    "homepage": "https://nodejs.org",
+    "license": "MIT",
+    "persist": [
+        "bin",
+        "cache"
+    ],
+    "post_install": [
+        "# Set npm prefix to install modules inside bin and npm cache so they persist",
+        "Set-Content -Value \"prefix=$persist_dir\\bin`ncache=$persist_dir\\cache\" -Path \"$dir\\node_modules\\npm\\npmrc\"",
+        "npm config set registry http://mirrors.cloud.tencent.com/npm/"
+    ],
+    "version": "16.19.1"
+}

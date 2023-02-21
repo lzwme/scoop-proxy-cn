@@ -1,0 +1,21 @@
+{
+    "version": "2.2.0-961",
+    "description": "NetCoreDbg is a managed code debugger with MI interface for CoreCLR.",
+    "homepage": "https://github.com/Samsung/netcoredbg",
+    "license": "MIT",
+    "architecture": {
+        "64bit": {
+            "url": "https://ghproxy.com/https://github.com/Samsung/netcoredbg/releases/download/2.2.0-961/netcoredbg-win64.zip",
+            "hash": "ee4e3d610995067ee090b94a8bc02a36e0a7776f4c08887eeb1daffe196c941d"
+        }
+    },
+    "extract_dir": "netcoredbg",
+    "checkver": "/releases/tag/(?:v|V)?([\\d.-]+)",
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/Samsung/netcoredbg/releases/download/$version/netcoredbg-win64.zip"
+            }
+        }
+    }
+}

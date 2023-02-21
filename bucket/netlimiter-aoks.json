@@ -1,0 +1,48 @@
+{
+ "##": [
+  "https://www.netlimiter.com/docs/installation/command-line-options",
+  "https://www.advancedinstaller.com/user-guide/exe-setup-file.html",
+  "TODO:",
+  "    Properly uninstall. Some services are running."
+ ],
+ "autoupdate": {
+  "url": "https://www.netlimiter.com/files/download/nl4/netlimiter-$version.exe"
+ },
+ "checkver": {
+  "regex": "NetLimiter ([\\d.]+)",
+  "url": "https://www.netlimiter.com/releases"
+ },
+ "description": "NetLimiter. Internet traffic control and monitoring tool designed for Windows.",
+ "hash": "aad80f4cd19d1a92cbf29939d756e86847707bbfe6605c6cb79974179f5eeb25",
+ "homepage": "https://www.netlimiter.com",
+ "installer": {
+  "args": [
+   "/exenoui",
+   "/exenoupdates",
+   "/qn",
+   "APPDIR=\"$dir\"",
+   "/l*v \"$dir\\installation.log\""
+  ]
+ },
+ "license": "Freeware",
+ "notes": [
+  "Restarting system after installation is recommended.",
+  "Some functions could behave incorrectly without restart."
+ ],
+ "shortcuts": [
+  [
+   "NLClientApp.exe",
+   "NetLimiter"
+  ]
+ ],
+ "uninstaller": {
+  "script": [
+   "$ID = (Get-CimInstance Win32_Product -Filter \"Name = 'NetLimiter 4'\").IdentifyingNumber",
+   "msiexec.exe /x $ID /qn NL_CLEAN_SETTINGS=1",
+   "    # Prevent failed installation",
+   "Start-Sleep -Seconds 3"
+  ]
+ },
+ "url": "https://www.netlimiter.com/files/download/nl4/netlimiter-5.1.4.0.exe",
+ "version": "5.1.4.0"
+}

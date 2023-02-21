@@ -1,0 +1,54 @@
+{
+    "architecture": {
+        "32bit": {
+            "hash": "sha512:0a12414eddad5157f9ca24bdfac8fcad206ddff032923aec513e56c4fbd6dd264c5110cd968dee780e5e560d5e70fa9b7c9ef2a9640df5d02c33c7b17b412b2f",
+            "url": "https://archive.mozilla.org/pub/thunderbird/releases/102.8.0/win32/fa-IR/Thunderbird%20Setup%20102.8.0.exe#/dl.7z"
+        },
+        "64bit": {
+            "hash": "sha512:0a12414eddad5157f9ca24bdfac8fcad206ddff032923aec513e56c4fbd6dd264c5110cd968dee780e5e560d5e70fa9b7c9ef2a9640df5d02c33c7b17b412b2f",
+            "url": "https://archive.mozilla.org/pub/thunderbird/releases/102.8.0/win64/fa-IR/Thunderbird%20Setup%20102.8.0.exe#/dl.7z"
+        }
+    },
+    "autoupdate": {
+        "architecture": {
+            "32bit": {
+                "hash": {
+                    "regex": "$sha512\\s+win32/fa-IR/$basename",
+                    "url": "https://archive.mozilla.org/pub/thunderbird/releases/$version/SHA512SUMS"
+                },
+                "url": "https://archive.mozilla.org/pub/thunderbird/releases/$version/win32/fa-IR/Thunderbird%20Setup%20$version.exe#/dl.7z"
+            },
+            "64bit": {
+                "hash": {
+                    "regex": "$sha512\\s+win64/fa-IR/$basename",
+                    "url": "https://archive.mozilla.org/pub/thunderbird/releases/$version/SHA512SUMS"
+                },
+                "url": "https://archive.mozilla.org/pub/thunderbird/releases/$version/win64/fa-IR/Thunderbird%20Setup%20$version.exe#/dl.7z"
+            }
+        }
+    },
+    "bin": [
+        [
+            "thunderbird.exe",
+            "thunderbird-beta-fa",
+            "-profile \"$dir\\profile\""
+        ]
+    ],
+    "checkver": {
+        "regex": "thunderbird/([\\d.]+)/",
+        "url": "https://www.thunderbird.net/en-US/thunderbird/beta/all/"
+    },
+    "description": "A free email application that’s easy to set up and customize. (Beta)",
+    "extract_dir": "core",
+    "homepage": "https://www.thunderbird.net",
+    "license": "MPL-2.0",
+    "persist": "profile",
+    "shortcuts": [
+        [
+            "thunderbird.exe",
+            "Mozilla Thunderbird Beta (fa)",
+            "-profile \"$dir\\profile\""
+        ]
+    ],
+    "version": "102.8.0"
+}

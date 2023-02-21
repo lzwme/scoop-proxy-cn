@@ -1,0 +1,50 @@
+{
+ "autoupdate": {
+  "url": "https://list.gladtbam.top/d/%E8%BD%AF%E4%BB%B6/QQ/QQ_$version.7z"
+ },
+ "bin": [
+  [
+   "Bin\\QQScLauncher.exe",
+   "QQ"
+  ]
+ ],
+ "checkver": {
+  "regex": "QQ_([\\d.-]+).7z",
+  "url": "https://list.gladtbam.top/%E8%BD%AF%E4%BB%B6/QQ"
+ },
+ "depends": "sudo",
+ "description": "\u817e\u8baf QQ PC \u7248\u53bb\u5e7f\u544a\u7279\u522b\u7248\uff0c\u7531 @Dreamcast \u7ec4\u88c5\u6253\u5305\u800c\u6210\uff08\u7eff\u8272\u7248\uff09",
+ "extract_dir": "QQ",
+ "hash": "93a3288bee16f01b104deff548129827af6c9cdf4b62ab9e480e400d05b6cd4f",
+ "homepage": "https://im.qq.com",
+ "installer": {
+  "script": [
+   "Stop-Process -Name TXP*,tad*,QQP*,QQC*,QQ -Force -ErrorAction Ignore | Out-Null",
+   "sudo Start-Process -filepath \"$dir\\\u7eff\u5316.bat\" -WorkingDirectory \"$dir\" -Wait"
+  ]
+ },
+ "license": {
+  "identifier": "Proprietary",
+  "url": "https://ti.qq.com/agreement/index.html"
+ },
+ "notes": [
+  "\u9ed8\u8ba4\u7eff\u5316\u540e\u53ea\u662f\u53bb\u5e7f\u544a\u548c\u53bb\u6821\u9a8c\u548c\u5c0f\u6e05\u65b0\u7684\u4e00\u4e9b\u529f\u80fd\uff0c\u66f4\u591a\u7684\u529f\u80fd\u9700\u8981\u8fd0\u884c \"$env:SCOOP\\apps\\qq-deprecated\\current\\\u7ec4\u4ef6\u529f\u80fd\u5207\u6362.bat\"",
+  "\u7eff\u8272\u7248\u7684 \u201c\u7ec4\u4ef6\u529f\u80fd\u5207\u6362\u201d \u529f\u80fd\uff0c\u73b0\u5df2\u5b8c\u7f8e\u5b9e\u73b0\u4e86\u6240\u6709\u5b89\u88c5\u7248\u7684\u9009\u9879\u5207\u6362\u529f\u80fd\uff0c\u6309\u63d0\u793a\u64cd\u4f5c\u5373\u53ef",
+  "\u6ce8\u610f:  \u6240\u6709\u7684\u4fee\u6539\u7248\u90fd\u6709\u88ab\u9501\u7684\u98ce\u9669\uff0c\u662f\u5426\u4f7f\u7528\u81ea\u5df1\u659f\u914c\uff0c\u672c\u4eba\u4e0d\u627f\u62c5\u4efb\u4f55\u8d23\u4efb!"
+ ],
+ "shortcuts": [
+  [
+   "Bin\\QQScLauncher.exe",
+   "QQ"
+  ]
+ ],
+ "uninstaller": {
+  "script": [
+   "Stop-Process -Name TXP*,tad*,QQP*,QQC*,QQ -Force -ErrorAction Ignore | Out-Null",
+   "sudo Start-Process -filepath \"$dir\\\u5378\u8f7d.bat\" -WorkingDirectory \"$dir\" -Wait",
+   "Write-Host \"The '$app' has been uninstalled.\" -Foreground Magenta"
+  ]
+ },
+ "url": "https://list.gladtbam.top/d/%E8%BD%AF%E4%BB%B6/QQ/QQ_9.6.9.28856.7z",
+ "version": "9.6.9.28856"
+}

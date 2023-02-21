@@ -1,0 +1,31 @@
+{
+    "version": "10.7.0",
+    "description": "A development tool to help programmers write Java code that adheres to a coding standard.",
+    "homepage": "https://checkstyle.org/cmdline.html",
+    "license": "LGPL-2.1-only",
+    "url": "https://ghproxy.com/https://github.com/checkstyle/checkstyle/releases/download/checkstyle-10.7.0/checkstyle-10.7.0-all.jar#!/checkstyle.jar",
+    "hash": "2491809e36bf38db945136cb96693f06b19ad0dc091fe11f167d722f94afac4c",
+    "pre_install": "Set-Content -Encoding ASCII -Path \"$dir\\checkstyle-gui.bat\" -Value '@start javaw.exe -cp \"%~dp0checkstyle.jar\" com.puppycrawl.tools.checkstyle.gui.Main'",
+    "bin": "checkstyle.jar",
+    "shortcuts": [
+        [
+            "checkstyle-gui.bat",
+            "Checkstyle GUI"
+        ]
+    ],
+    "suggest": {
+        "JDK 11+": [
+            "java/temurin17-jdk",
+            "java/temurin11-jdk",
+            "java/zulu17-jdk",
+            "java/zulu11-jdk"
+        ]
+    },
+    "checkver": {
+        "url": "https://github.com/checkstyle/checkstyle/releases/latest",
+        "regex": "/releases/tag/checkstyle-([\\d.]+)\""
+    },
+    "autoupdate": {
+        "url": "https://ghproxy.com/https://github.com/checkstyle/checkstyle/releases/download/checkstyle-$version/checkstyle-$version-all.jar#!/checkstyle.jar"
+    }
+}

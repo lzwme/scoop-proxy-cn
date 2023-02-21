@@ -1,0 +1,36 @@
+{
+ "architecture": {
+  "32bit": {
+   "hash": "f68ce817832191f8b8c5fe5bfcaa47dcba548db995571eb220473ff92ad14d23",
+   "url": "https://download-cdn.resilio.com/stable/windows/Resilio-Sync.exe#/setup.exe"
+  },
+  "64bit": {
+   "hash": "dc9c72e709cc7a2ea74999ce3756e6f4879cd6eae50a888a1f8ca011a1d6efa3",
+   "url": "https://download-cdn.resilio.com/stable/windows64/Resilio-Sync_x64.exe#/setup.exe"
+  }
+ },
+ "autoupdate": {
+  "url": {
+   "32bit": {
+    "url": "https://download-cdn.resilio.com/stable/windows/Resilio-Sync.exe#/setup.exe"
+   },
+   "64bit": {
+    "url": "https://download-cdn.resilio.com/stable/windows64/Resilio-Sync_x64.exe#/setup.exe"
+   }
+  }
+ },
+ "checkver": {
+  "regex": "Downloads of v ([\\d.]+)",
+  "url": "https://community.chocolatey.org/packages/resilio-sync-home"
+ },
+ "homepage": "https://www.resilio.com/individuals/",
+ "installer": {
+  "keep": true,
+  "script": "Start-Process -Wait \"$dir\\setup.exe\" \"/PERFORMINSTALL /S\" -Verb RunAs"
+ },
+ "post_install": "Remove-Item \"$env:USERPROFILE\\Desktop\\Resilio` Sync.lnk\"",
+ "uninstaller": {
+  "script": "Start-Process -Wait \"$dir\\setup.exe\" \"/UNINSTALL /S /REMSETTINGS\" -Verb RunAs"
+ },
+ "version": "2.6.3.1340"
+}

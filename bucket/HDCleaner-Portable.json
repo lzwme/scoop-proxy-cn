@@ -1,0 +1,38 @@
+{
+    "version": "2.044",
+    "description": "HDCleaner. Complete cleaning for your Windows PC",
+    "homepage": "https://kurtzimmermann.com",
+    "license": "freeware",
+    "changelog": "https://kurtzimmermann.com/hdcleanerversions_en.html",
+    "architecture": {
+        "64bit": {
+            "url": "https://kurtzimmermann.com/files/HDCleanerX64.zip",
+            "hash": "220358b71d6b2e93db176587c210c812b550396ca2ddcd99d5da07833f8ee150"
+        },
+        "32bit": {
+            "url": "https://kurtzimmermann.com/files/HDCleanerX32.zip",
+            "hash": "c281c251d8f7f1ce27facc9c9bd4ec9df43bcd8a68db8fe0215fac15f0854901"
+        }
+    },
+    "persist": "Settings",
+    "shortcuts": [
+        [
+            "HDCleaner.exe",
+            "HDCleaner"
+        ]
+    ],
+    "checkver": {
+        "url": "https://kurtzimmermann.com/index_e.html",
+        "regex": "HDCleaner</h4>[\\w\\W]*?Version ([\\d.]+)"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://kurtzimmermann.com/files/HDCleanerX64.zip"
+            },
+            "32bit": {
+                "url": "https://kurtzimmermann.com/files/HDCleanerX32.zip"
+            }
+        }
+    }
+}

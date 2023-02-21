@@ -1,0 +1,59 @@
+{
+    "architecture": {
+        "32bit": {
+            "hash": "sha512:ed495484b90505546939b47b13ac94c2d855b0c00ac870404a4b766868adff28832c1e93c011c34f498a8b10e80e797d7d6d3d82ba477e93dab94be7d7aa012d",
+            "url": "https://archive.mozilla.org/pub/devedition/releases/111.0b4/win32/fa-IR/Firefox%20Setup%20111.0b4.exe#/dl.7z"
+        },
+        "64bit": {
+            "hash": "sha512:ed495484b90505546939b47b13ac94c2d855b0c00ac870404a4b766868adff28832c1e93c011c34f498a8b10e80e797d7d6d3d82ba477e93dab94be7d7aa012d",
+            "url": "https://archive.mozilla.org/pub/devedition/releases/111.0b4/win64/fa-IR/Firefox%20Setup%20111.0b4.exe#/dl.7z"
+        }
+    },
+    "autoupdate": {
+        "architecture": {
+            "32bit": {
+                "hash": {
+                    "regex": "$sha512\\s+win32/fa-IR/$basename",
+                    "url": "https://archive.mozilla.org/pub/devedition/releases/$version/SHA512SUMS"
+                },
+                "url": "https://archive.mozilla.org/pub/devedition/releases/$version/win32/fa-IR/Firefox%20Setup%20$version.exe#/dl.7z"
+            },
+            "64bit": {
+                "hash": {
+                    "regex": "$sha512\\s+win64/fa-IR/$basename",
+                    "url": "https://archive.mozilla.org/pub/devedition/releases/$version/SHA512SUMS"
+                },
+                "url": "https://archive.mozilla.org/pub/devedition/releases/$version/win64/fa-IR/Firefox%20Setup%20$version.exe#/dl.7z"
+            }
+        }
+    },
+    "bin": [
+        [
+            "firefox.exe",
+            "firefox-dev-fa",
+            "-profile \"$dir\\profile\""
+        ],
+        [
+            "firefox.exe",
+            "firefox-developer-fa",
+            "-profile \"$dir\\profile\""
+        ]
+    ],
+    "checkver": {
+        "regex": "<option value=\"desktop_developer\">([\\db.]+)",
+        "url": "https://www.mozilla.org/de/firefox/all/"
+    },
+    "description": "Developer builds of Firefox: the popular open source web browser.",
+    "extract_dir": "core",
+    "homepage": "https://www.mozilla.org/fa-IR/firefox/developer/",
+    "license": "MPL-2.0",
+    "persist": "profile",
+    "shortcuts": [
+        [
+            "firefox.exe",
+            "Firefox Developer (fa)",
+            "-profile \"$dir\\profile\""
+        ]
+    ],
+    "version": "111.0b4"
+}

@@ -1,0 +1,35 @@
+{
+    "version": "2.14.0",
+    "description": "Manages a local OpenShift 4.x cluster optimized for testing and development purposes.",
+    "homepage": "https://code-ready.github.io/crc/",
+    "license": "Apache-2.0",
+    "notes": "To acquire a pull secret, visit: https://cloud.redhat.com/openshift/install/crc/installer-provisioned",
+    "depends": "lessmsi",
+    "architecture": {
+        "64bit": {
+            "url": "https://developers.redhat.com/content-gateway/rest/mirror/pub/openshift-v4/clients/crc/2.14.0/crc-windows-installer.zip",
+            "hash": "3e933584072c31df304a684bc32ca4e1f53e809e3aaef2d7190742ea72c3526b",
+            "pre_install": [
+                "# The trailing backslash(\\) in $dir\\ is required by lessmsi.",
+                "Invoke-ExternalCommand lessmsi -ArgumentList @('x', \"$dir\\crc-windows-amd64.msi\", \"$dir\\\") | Out-Null",
+                "Copy-Item \"$dir\\SourceDir\\Red Hat OpenShift Local\\*\" \"$dir\" -Force -Recurse | Out-Null",
+                "Remove-Item \"$dir\\SourceDir\" -Force -Recurse | Out-Null"
+            ]
+        }
+    },
+    "bin": "crc.exe",
+    "checkver": {
+        "url": "https://developers.redhat.com/content-gateway/rest/mirror/pub/openshift-v4/clients/crc/latest/release-info.json",
+        "jsonpath": "$.version.crcVersion"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://developers.redhat.com/content-gateway/rest/mirror/pub/openshift-v4/clients/crc/$matchHead/crc-windows-installer.zip"
+            }
+        },
+        "hash": {
+            "url": "$url.sha256"
+        }
+    }
+}

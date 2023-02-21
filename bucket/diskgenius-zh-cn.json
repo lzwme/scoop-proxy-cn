@@ -1,0 +1,39 @@
+{
+ "architecture": {
+  "32bit": {
+   "hash": "917d271ae966ce7442c646fcf76fa929d998f526b87096ba7b4e6dd6472ed1c1",
+   "url": "https://download.geniusite.com/DG5461441_x86.zip"
+  },
+  "64bit": {
+   "hash": "76a3e82a032c1f074e70c541abb80d036ae426eb73942f30dca99f9987112604",
+   "url": "https://download.geniusite.com/DG5461441_x64.zip"
+  }
+ },
+ "autoupdate": {
+  "architecture": {
+   "32bit": {
+    "url": "https://download.geniusite.com/DG$cleanVersion_x86.zip"
+   },
+   "64bit": {
+    "url": "https://download.geniusite.com/DG$cleanVersion_x64.zip"
+   }
+  }
+ },
+ "checkver": {
+  "regex": "\\[([\\d.]+)\\]",
+  "url": "https://internal.eassos.com/update/diskgenius/update.php"
+ },
+ "description": "\u6570\u636e\u56de\u590d\u53ca\u5206\u533a\u7ba1\u7406\u8f6f\u4ef6",
+ "extract_dir": "DiskGenius",
+ "homepage": "https://diskgenius.cn",
+ "license": "Shareware",
+ "persist": "Options.ini",
+ "pre_install": "if (!(Test-Path \"$persist_dir\\Options.ini\")) { New-Item \"$dir\\Options.ini\" | Out-Null }",
+ "shortcuts": [
+  [
+   "DiskGenius.exe",
+   "DiskGenius"
+  ]
+ ],
+ "version": "5.4.6.1441"
+}

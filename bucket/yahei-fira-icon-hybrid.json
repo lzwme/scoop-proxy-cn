@@ -1,0 +1,45 @@
+{
+ "description": "\u9002\u7528\u4e8e Vim \u53ca\u7ec8\u7aef\u56fe\u6807\u7684\u4e2d\u82f1\u6587\u6df7\u5408\u5b57\u4f53",
+ "hash": "e07bdbb4ff178c84af21202c9ecf4bd8b105d0ef34c46f33f25d83cc62005d19",
+ "homepage": "https://github.com/HanleyLee/Yahei-Fira-Icon-Hybrid-Font",
+ "installer": {
+  "script": [
+   "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
+   "$windows1809BuildNumber = 17763",
+   "$isPerUserFontInstallationSupported = $currentBuildNumber -ge $windows1809BuildNumber",
+   "$isFontInstallationForAllUsers = $global -or !$isPerUserFontInstallationSupported",
+   "if ($isFontInstallationForAllUsers -and !(is_admin)) {",
+   "    error \"Administrator rights are required to install $app.\"",
+   "    exit 1",
+   "}",
+   "$fontInstallDir = if ($isFontInstallationForAllUsers) { \"$env:windir\\Fonts\" } else { \"$env:LOCALAPPDATA\\Microsoft\\Windows\\Fonts\" }",
+   "$registryRoot = if ($isFontInstallationForAllUsers) { \"HKLM\" } else { \"HKCU\" }",
+   "$registryKey = \"${registryRoot}:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts\"",
+   "New-Item $fontInstallDir -ItemType Directory -ErrorAction SilentlyContinue | Out-Null",
+   "$value = if ($isFontInstallationForAllUsers) { \"YaHeiFiraIconHybrid-Regular.ttf\" } else { \"$fontInstallDir\\YaHeiFiraIconHybrid-Regular.ttf\" }",
+   "New-ItemProperty -Path $registryKey -Name \"YaHei Fira Icon Hybrid Regular (TrueType)\" -Value $value -Force | Out-Null",
+   "Copy-Item \"$dir\\YaHeiFiraIconHybrid-Regular.ttf\" -Destination $fontInstallDir"
+  ]
+ },
+ "license": "Apache-2.0",
+ "uninstaller": {
+  "script": [
+   "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
+   "$windows1809BuildNumber = 17763",
+   "$isPerUserFontInstallationSupported = $currentBuildNumber -ge $windows1809BuildNumber",
+   "$isFontInstallationForAllUsers = $global -or !$isPerUserFontInstallationSupported",
+   "if ($isFontInstallationForAllUsers -and !(is_admin)) {",
+   "    error \"Administrator rights are required to uninstall $app.\"",
+   "    exit 1",
+   "}",
+   "$fontInstallDir = if ($isFontInstallationForAllUsers) { \"$env:windir\\Fonts\" } else { \"$env:LOCALAPPDATA\\Microsoft\\Windows\\Fonts\" }",
+   "$registryRoot = if ($isFontInstallationForAllUsers) { \"HKLM\" } else { \"HKCU\" }",
+   "$registryKey = \"${registryRoot}:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts\"",
+   "Remove-ItemProperty -Path $registryKey -Name \"YaHei Fira Icon Hybrid Regular (TrueType)\" -Force -ErrorAction SilentlyContinue",
+   "Remove-Item \"$fontInstallDir\\YaHeiFiraIconHybrid-Regular.ttf\" -Force -ErrorAction SilentlyContinue",
+   "Write-Host \"The 'YaHei Fira Icon Hybrid' Font has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
+  ]
+ },
+ "url": "https://ghproxy.com/https://raw.githubusercontent.com/hanleylee/yahei-fira-icon-hybrid-font/master/YaHeiFiraIconHybrid-Regular.ttf",
+ "version": "1.002"
+}

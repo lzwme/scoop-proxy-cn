@@ -1,0 +1,48 @@
+{
+    "version": "2.0.7",
+    "description": "Memurai Developer Edition is a Redis-compatible cache and datastore for Windows.",
+    "homepage": "https://www.memurai.com/",
+    "license": "Freeware",
+    "architecture": {
+        "64bit": {
+            "url": "https://dist.memurai.com/releases/Memurai-Developer/2.0.7/Memurai-Developer-v2.0.7.msi",
+            "hash": "8f322e82f7a49a667cc832b3d1b4f405573db9ce5fcbd700a56a9d83f3fe79fe"
+        }
+    },
+    "extract_dir": "Memurai",
+    "persist": "Samples",
+    "bin": [
+        "memurai-cli.exe",
+        "memurai-check-rdb.exe",
+        "memurai-check-aof.exe",
+        "memurai.exe",
+        [
+            "memurai-cli.exe",
+            "redis-cli"
+        ],
+        [
+            "memurai-check-rdb.exe",
+            "redis-check-rdb"
+        ],
+        [
+            "memurai-check-aof.exe",
+            "redis-check-aof"
+        ],
+        [
+            "memurai.exe",
+            "redis-server"
+        ]
+    ],
+    "notes": "The sample configuration of Memurai server located in $dir\\Sample\\memurai.conf",
+    "checkver": {
+        "url": "https://community.chocolatey.org/packages/memurai-developer",
+        "regex": "/package/memurai-developer/([\\d.]+)"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://dist.memurai.com/releases/Memurai-Developer/$version/Memurai-Developer-v$version.msi"
+            }
+        }
+    }
+}

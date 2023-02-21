@@ -1,0 +1,37 @@
+{
+ "autoupdate": {
+  "hash": {
+   "regex": "$sha256",
+   "url": "$url.sha256"
+  },
+  "url": "https://scoop-zapps.ziiyc.com/d/AdobeIllustrator/AdobeIllustrator-$version.7z#/dl.7z"
+ },
+ "checkver": {
+  "regex": "([\\d.]+)",
+  "url": "https://ghproxy.com/https://raw.githubusercontent.com/kkzzhizhou/scoop-zapps/master/versions/AdobeIllustrator.latest"
+ },
+ "depends": "sudo",
+ "extract_dir": "Illustrator",
+ "hash": "9e35a68a29598776fe5486894cd96162539d56e1c7bf56bfc12757763d17cb5f",
+ "homepage": "https://www.ghpym.com/ai2021green.html",
+ "installer": {
+  "script": "sudo cmd /c \"$dir\\Install.bat\""
+ },
+ "pre_install": [
+  "$null, $bucket = find_manifest($app)",
+  "$bucketdir = Find-BucketDirectory($bucket)",
+  "(gc \"$bucketdir\\..\\scripts\\AdobeIllustrator\\Install.bat\") | out-file -enc oem \"$dir\\Install.bat\"",
+  "(gc \"$bucketdir\\..\\scripts\\AdobeIllustrator\\Uninstall.bat\") | out-file -enc oem \"$dir\\Uninstall.bat\""
+ ],
+ "shortcuts": [
+  [
+   "Support Files\\Contents\\Windows\\Illustrator.exe",
+   "..\\Adobe\\Illustrator"
+  ]
+ ],
+ "uninstaller": {
+  "script": "sudo cmd /c \"$dir\\Uninstall.bat\""
+ },
+ "url": "https://scoop-zapps.ziiyc.com/d/AdobeIllustrator/AdobeIllustrator-25.0.0.60.7z#/dl.7z",
+ "version": "25.0.0.60"
+}

@@ -1,0 +1,34 @@
+{
+    "version": "2022-12",
+    "description": "Eclipse IDE for Eclipse Committers",
+    "homepage": "https://www.eclipse.org",
+    "license": "EPL-1.0",
+    "architecture": {
+        "64bit": {
+            "url": "http://download.eclipse.org/technology/epp/downloads/release/2022-12/R/eclipse-committers-2022-12-R-win32-x86_64.zip",
+            "hash": "sha512:00b6b42d8a11339f0b6de8b33f1dbfcdbb7d756452f9b033b2fbd017cb616e6eb5f2e480f9768745e92731d9bae0bde7c1c372ee29aa6ba1b66aad963def2ece"
+        }
+    },
+    "extract_dir": "eclipse",
+    "shortcuts": [
+        [
+            "eclipse.exe",
+            "Eclipse IDE for Eclipse Committers"
+        ]
+    ],
+    "checkver": {
+        "url": "https://download.eclipse.org/technology/epp/downloads/release/release.xml",
+        "xpath": "/packages/present",
+        "regex": "([\\d-]+)"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "http://download.eclipse.org/technology/epp/downloads/release/$version/R/eclipse-committers-$version-R-win32-x86_64.zip",
+                "hash": {
+                    "url": "$url.sha512"
+                }
+            }
+        }
+    }
+}

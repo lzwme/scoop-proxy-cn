@@ -1,0 +1,54 @@
+{
+ "architecture": {
+  "32bit": {
+   "extract_dir": "verysync-windows-386-v2.14.0",
+   "hash": "b587b06b0039c61aec7c95e1268cfa30a2fc586385c02e6a5a5b65e6bf492561",
+   "url": "http://releases-cdn.verysync.com/releases/v2.14.0/verysync-windows-386-v2.14.0.zip"
+  },
+  "64bit": {
+   "extract_dir": "verysync-windows-amd64-v2.14.0",
+   "hash": "dd886f018c7a04376391bc93dea8dc7a8ddd676274bc2dcac6da2c61106d35ad",
+   "url": "http://releases-cdn.verysync.com/releases/v2.14.0/verysync-windows-amd64-v2.14.0.zip"
+  }
+ },
+ "autoupdate": {
+  "architecture": {
+   "32bit": {
+    "extract_dir": "verysync-windows-386-v$version",
+    "hash": {
+     "regex": "($sha1)  verysync-windows-386-v1.3.1.zip",
+     "url": "http://releases-cdn.verysync.com/releases/v1.3.1/sha1sum.txt"
+    },
+    "url": "http://releases-cdn.verysync.com/releases/v$version/verysync-windows-386-v$version.zip"
+   },
+   "64bit": {
+    "extract_dir": "verysync-windows-amd64-v$version",
+    "hash": {
+     "regex": "($sha1)  verysync-windows-amd64-v1.3.1.zip",
+     "url": "http://releases-cdn.verysync.com/releases/v1.3.1/sha1sum.txt"
+    },
+    "url": "http://releases-cdn.verysync.com/releases/v$version/verysync-windows-amd64-v$version.zip"
+   }
+  }
+ },
+ "bin": [
+  [
+   "verysync.exe",
+   "verysync",
+   "-home \"$persist_dir/config\""
+  ]
+ ],
+ "checkver": {
+  "regex": "(\\d+\\.\\d+\\.\\d+)",
+  "url": "https://forum.verysync.com/forum.php?mod=forumdisplay&fid=2"
+ },
+ "homepage": "http://www.verysync.com/",
+ "persist": "config",
+ "shortcuts": [
+  [
+   "verysync.exe",
+   "\u5fae\u529b\u540c\u6b65"
+  ]
+ ],
+ "version": "2.14.0"
+}

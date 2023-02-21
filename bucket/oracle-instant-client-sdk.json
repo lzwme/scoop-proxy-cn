@@ -1,0 +1,47 @@
+{
+    "version": "21.8.0.0.0",
+    "description": "Additional header files and an example makefile for developing Oracle applications with Instant Client.",
+    "homepage": "https://www.oracle.com/database/technologies/instant-client.html",
+    "license": {
+        "identifier": "Freeware",
+        "url": "https://www.oracle.com/downloads/licenses/instant-client-lic.html"
+    },
+    "depends": "oracle-instant-client",
+    "architecture": {
+        "64bit": {
+            "url": "https://download.oracle.com/otn_software/nt/instantclient/218000/instantclient-sdk-windows.x64-21.8.0.0.0dbru.zip",
+            "hash": "43157068ffca2247937eab15642532c39d4cd15a0c2a211b29edaebfc02b8b0d"
+        },
+        "32bit": {
+            "url": "https://download.oracle.com/otn_software/nt/instantclient/218000/instantclient-sdk-nt-21.8.0.0.0dbru.zip",
+            "hash": "fc5eaf112e1a1842267b2cf291ef8c52afea5632fb94a29d303277ee625bc0e9"
+        }
+    },
+    "extract_dir": "instantclient_21_8",
+    "pre_install": [
+        "$instantclient = versiondir 'oracle-instant-client' 'current'",
+        "Copy-Item -Path \"$dir\\*\" -Destination \"$instantclient\" -Force -Recurse | Out-Null"
+    ],
+    "uninstaller": {
+        "script": [
+            "$instantclient = versiondir 'oracle-instant-client' 'current'",
+            "Get-ChildItem -Path \"$dir\" -Exclude *.json | ForEach-Object { Remove-Item -LiteralPath \"$instantclient\\$($_.Name)\" -Recurse -Force -ErrorAction SilentlyContinue }"
+        ]
+    },
+    "checkver": {
+        "url": "https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html",
+        "regex": "Version ([\\d.]+)",
+        "useragent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://download.oracle.com/otn_software/nt/instantclient/$cleanVersion/instantclient-sdk-windows.x64-$versiondbru.zip"
+            },
+            "32bit": {
+                "url": "https://download.oracle.com/otn_software/nt/instantclient/$cleanVersion/instantclient-sdk-nt-$versiondbru.zip"
+            }
+        },
+        "extract_dir": "instantclient_$majorVersion_$minorVersion"
+    }
+}

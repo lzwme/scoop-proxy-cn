@@ -1,0 +1,29 @@
+{
+ "autoupdate": {
+  "url": "https://download.cnki.net/CAJViewer%20$version.self.exe#/dl.7z"
+ },
+ "checkver": {
+  "regex": "download.cnki.net/CAJViewer%20([\\d.]+).self.exe",
+  "url": "https://cajviewer.cnki.net/download.html"
+ },
+ "description": "CAJViewer is a dedicated full-text format file viewer for China Journal Network that supports TEB, CAJ, NH, KDH and PDF. It can help you read not only the original text on the Internet, but also the full-text files downloaded from China Journal Network. Besides, the documents it printed look the same as the original.",
+ "hash": "5988a050fb0867b01deff84bd91260cb6e6c95fc999b688c1c1215d6098257ed",
+ "homepage": "https://cnki.net",
+ "installer": {
+  "script": [
+   "$installer = (Get-ChildItem \"$dir\\CAJViewer*.msi\").FullName",
+   "Start-Process msiexec -ArgumentList @('/i', \"$dir\\$installer\", '/passive', '/norestart') -Wait"
+  ]
+ },
+ "license": {
+  "identifier": "Freeware"
+ },
+ "uninstaller": {
+  "script": [
+   "$uninstaller = (Get-ChildItem \"$dir\\CAJViewer*.msi\").FullName",
+   "Start-Process msiexec -ArgumentList @('/x', \"$dir\\$unistaller\", '/passive', '/norestart') -Wait"
+  ]
+ },
+ "url": "https://download.cnki.net/CAJViewer%207.3.151.self.exe#/dl.7z",
+ "version": "7.3.151"
+}

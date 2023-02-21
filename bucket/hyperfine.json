@@ -1,0 +1,32 @@
+{
+    "version": "1.15.0",
+    "description": "A command-line benchmarking tool",
+    "homepage": "https://github.com/sharkdp/hyperfine",
+    "license": "Apache-2.0|MIT",
+    "architecture": {
+        "64bit": {
+            "url": "https://ghproxy.com/https://github.com/sharkdp/hyperfine/releases/download/v1.15.0/hyperfine-v1.15.0-x86_64-pc-windows-msvc.zip",
+            "hash": "ebfefb5ad2bb183152e0b0e929ec8002e18e31e557d40264fa4f0488afecc992",
+            "extract_dir": "hyperfine-v1.15.0-x86_64-pc-windows-msvc"
+        },
+        "32bit": {
+            "url": "https://ghproxy.com/https://github.com/sharkdp/hyperfine/releases/download/v1.15.0/hyperfine-v1.15.0-i686-pc-windows-msvc.zip",
+            "hash": "6629b6a676632374fd9a41af3166a8f4eefef7a4efc6e47ac0f06094c19542d0",
+            "extract_dir": "hyperfine-v1.15.0-i686-pc-windows-msvc"
+        }
+    },
+    "bin": "hyperfine.exe",
+    "checkver": "github",
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/sharkdp/hyperfine/releases/download/v$version/hyperfine-v$version-x86_64-pc-windows-msvc.zip",
+                "extract_dir": "hyperfine-v$version-x86_64-pc-windows-msvc"
+            },
+            "32bit": {
+                "url": "https://ghproxy.com/https://github.com/sharkdp/hyperfine/releases/download/v$version/hyperfine-v$version-i686-pc-windows-msvc.zip",
+                "extract_dir": "hyperfine-v$version-i686-pc-windows-msvc"
+            }
+        }
+    }
+}

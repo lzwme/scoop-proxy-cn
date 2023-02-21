@@ -1,0 +1,40 @@
+{
+    "homepage": "https://github.com/mcmilk/7-Zip-zstd/",
+    "description": "Multi-format compression/decompression tool with brotli and other codecs (beta version)",
+    "license": "LGPL-2.1-or-later",
+    "version": "v22.01-v1.5.4-R3",
+    "architecture": {
+        "64bit": {
+            "url": "https://ghproxy.com/https://github.com/mcmilk/7-Zip-zstd/releases/download/v22.01-v1.5.4-R3/7z22.01-zstd-x64.exe#/dl.7z",
+            "hash": "d516b1ebd5b0315cca19eb13f83fe6db2e1d4cbe8b5e5cdb1c23a66a5a662951"
+        },
+        "32bit": {
+            "url": "https://ghproxy.com/https://github.com/mcmilk/7-Zip-zstd/releases/download/v22.01-v1.5.4-R3/7z22.01-zstd-x32.exe#/dl.7z",
+            "hash": "e5025088121d1562375356e7e779d39f03dbd119f32e52d42ebad866fa7bc6db"
+        }
+    },
+    "bin": [
+        "7z.exe",
+        "7zG.exe"
+    ],
+    "checkver": {
+        "url": "https://api.github.com/repos/mcmilk/7-Zip-zstd/releases",
+        "jsonpath": "$[0].tag_name"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/mcmilk/7-Zip-zstd/releases/download/$version/7z$matchHead-zstd-x64.exe#/dl.7z"
+            },
+            "32bit": {
+                "url": "https://ghproxy.com/https://github.com/mcmilk/7-Zip-zstd/releases/download/$version/7z$matchHead-zstd-x32.exe#/dl.7z"
+            }
+        }
+    },
+    "shortcuts": [
+        [
+            "7zFM.exe",
+            "7-Zip"
+        ]
+    ]
+}

@@ -1,0 +1,29 @@
+{
+ "autoupdate": {
+  "url": "https://ghproxy.com/https://github.com/kkzzhizhou/nextcloud-uploader/releases/download/v$version/nextcloud-uploader.zip"
+ },
+ "bin": "nextcloud-uploader.exe",
+ "checkver": {
+  "github": "https://github.com/kkzzhizhou/nextcloud-uploader"
+ },
+ "description": "Upload files to Nextcloud",
+ "hash": "8eb2f439ab962cb0e4450376bb158d94c33539ff59988276f8b723de1f8ab6a9",
+ "homepage": "https://blog.ziiyc.com/nextcloud-uploader",
+ "notes": "Before use this program, you need edit the config.json.",
+ "persist": "data",
+ "post_install": [
+  "nextcloud-uploader.exe -i",
+  "nextcloud-uploader.exe -a"
+ ],
+ "shortcuts": [
+  [
+   "nextcloud-uploader.exe",
+   "Nextcloud Uploader"
+  ]
+ ],
+ "uninstaller": {
+  "script": "nextcloud-uploader.exe -u"
+ },
+ "url": "https://ghproxy.com/https://github.com/kkzzhizhou/nextcloud-uploader/releases/download/v1.0.3/nextcloud-uploader.zip",
+ "version": "1.0.3"
+}

@@ -1,0 +1,26 @@
+{
+ "autoupdate": {
+  "url": "http://ftp.jaist.ac.jp/pub/mergedoc/pleiades/$majorVersion.$minorVersion/pleiades-$fileVersion-java-win-64bit-jre_$date.zip#/dl.7z"
+ },
+ "checkver": {
+  "re": "((?<fileVersion>[\\d]{4}-[\\d]{2})\\.(?<date>[\\d]{8}))",
+  "url": "http://mergedoc.osdn.jp/pleiades_distros2022.html"
+ },
+ "extract_dir": "pleiades",
+ "hash": "md5:635bb7e38d8c6592e5ff4ed99d55981d",
+ "homepage": "http://mergedoc.osdn.jp/",
+ "license": "https://www.eclipse.org/legal/epl-v10.html",
+ "persist": [
+  "eclipse\\configuration",
+  "workspace"
+ ],
+ "post_install": "        $shortcuts = @(arch_specific 'shortcuts' $manifest $arch)        $shortcutName = $shortcuts[0].item(1)        $scoop_startmenu_folder = shortcut_folder $global        $wsShell = New-Object -ComObject WScript.Shell        $shortcut = $wsShell.CreateShortcut(\"$scoop_startmenu_folder\\$shortcutName.lnk\")        $shortcut.WorkingDirectory = \"$dir\\eclipse\"        $shortcut.Save()    ",
+ "shortcuts": [
+  [
+   "eclipse/eclipse.exe",
+   "Pleiades All in One Platform 2022-09.20220914"
+  ]
+ ],
+ "url": "http://ftp.jaist.ac.jp/pub/mergedoc/pleiades/2022/pleiades-2022-09-platform-mac-jre_20220914.dmg#/dl.7z",
+ "version": "2022-09.20220914"
+}

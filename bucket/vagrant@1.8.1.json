@@ -1,0 +1,18 @@
+{
+	"homepage": "http://www.vagrantup.com/",
+	"version": "1.8.1",
+	"license": "MIT",
+	"url": "https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1.msi",
+	"hash": "6468cc140f6f236c3ac4bc0bbb1cc2177114249bc344e0aba8c826eae9cc6eb2",
+	"extract_dir": "HashiCorp/Vagrant",
+	"bin": "bin\\vagrant.exe",
+	"checkver": {
+		"url": "http://www.vagrantup.com/downloads.html",
+		"re": "latest\\s+version\\s+of\\s+Vagrant\\s+\\(([^\\)]+)\\)"
+	},
+	"depends": "curl",
+	"post_install": "
+        # overwrite vagrant copy of `curl`
+        copy-item (scoop which curl) \"$dir\\embedded\\bin\\curl.exe\" | out-null
+        "
+}

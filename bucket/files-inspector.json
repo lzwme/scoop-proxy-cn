@@ -1,0 +1,33 @@
+{
+    "architecture": {
+        "32bit": {
+            "pre_install": "Get-ChildItem \"$dir\\*,2.*\" -Recurse | Rename-Item -NewName { $_.FullName -replace ',2\\.', '.' }"
+        },
+        "64bit": {
+            "pre_install": "Get-ChildItem \"$dir\\*,1.*\" -Recurse | Rename-Item -NewName { $_.FullName -replace ',1\\.', '.' }"
+        }
+    },
+    "autoupdate": {
+        "url": "https://www.chemtable.com/files/fi/files-inspector-setup.exe"
+    },
+    "bin": "FilesInspector.exe",
+    "checkver": {
+        "regex": "<title>Files Inspector ([\\d.]+)"
+    },
+    "description": "Files Inspector. A free Utility for freeing up disk space manually.",
+    "hash": "aa54b57260073e6f9013fa47a8c06f71a74df12bc22b8053e4648cdf7950075c",
+    "homepage": "https://www.chemtable.com/files-inspector.htm",
+    "innosetup": true,
+    "license": {
+        "identifier": "Freeware"
+    },
+    "post_install": "Get-ChildItem \"$dir\\*,[0-9].*\" -Recurse | Remove-Item -ErrorAction SilentlyContinue -Force",
+    "shortcuts": [
+        [
+            "FilesInspector.exe",
+            "Files Inspector"
+        ]
+    ],
+    "url": "https://www.chemtable.com/files/fi/files-inspector-setup.exe",
+    "version": "3.25"
+}

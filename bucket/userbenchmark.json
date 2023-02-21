@@ -1,0 +1,25 @@
+{
+    "version": "3.4.8.0",
+    "description": "UserBenchmark - Speed test your PC in less than a minute.",
+    "homepage": "https://www.userbenchmark.com/",
+    "license": "Unknown",
+    "url": "https://www.userbenchmark.com/resources/download/UserBenchmark.zip",
+    "hash": "86e5841cc3364404ea27a1a9c67d96ac8df54f1e602ce434f61554658fdba8de",
+    "extract_dir": "UserBenchmark",
+    "pre_install": "ensure \"$persist_dir\" | Out-Null; Copy-Item \"$persist_dir\\User\\*\" \"$dir\\User\" -Recurse -ErrorAction 'SilentlyContinue'",
+    "bin": "UserBenchmark.exe",
+    "shortcuts": [
+        [
+            "UserBenchmark.exe",
+            "UserBenchmark"
+        ]
+    ],
+    "pre_uninstall": "Copy-Item \"$dir\\User\" \"$persist_dir\\User\" -Recurse -ErrorAction 'SilentlyContinue'",
+    "checkver": {
+        "url": "https://www.filehorse.com/download-userbenchmark/",
+        "regex": "<p>UserBenchmark\\s([\\d.]+)"
+    },
+    "autoupdate": {
+        "url": "https://www.userbenchmark.com/resources/download/UserBenchmark.zip"
+    }
+}

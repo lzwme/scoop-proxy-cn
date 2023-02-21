@@ -1,0 +1,41 @@
+{
+ "autoupdate": {
+  "url": "https://deac-fra.dl.sourceforge.net/project/diff-ext/Binaries/$version/diff-ext-$version.exe#/diff-ext.exe"
+ },
+ "bin": "diff-ext-setup.exe",
+ "checkver": {
+  "regex": "<td>Windows Explorer</td>\\r\\n.+<td>([\\d.-]+)</td>",
+  "url": "http://diff-ext.sourceforge.net/"
+ },
+ "description": "Diff-ext is an extension for the Windows Explorer which allows to launch diff/merge tools on selected files",
+ "hash": "01fc15031e8a535feae228abbe7f30971ddd666702adb722ed026e804a76092e",
+ "homepage": "https://sourceforge.net/projects/diff-ext/",
+ "installer": {
+  "args": [
+   "/VERYSILENT",
+   "/DIR=\"$dir\"",
+   "/SUPPRESSMSGBOXES",
+   "/NORESTART",
+   "/CLOSEAPPLICATIONS",
+   "/NORESTARTAPPLICATIONS"
+  ],
+  "file": "diff-ext.exe"
+ },
+ "license": "BSD-2-Clause",
+ "shortcuts": [
+  [
+   "diff-ext-setup.exe",
+   "diff-ext Setup"
+  ]
+ ],
+ "uninstaller": {
+  "args": [
+   "/VERYSILENT",
+   "/SUPPRESSMSGBOXES",
+   "/NORESTART"
+  ],
+  "file": "unins000.exe"
+ },
+ "url": "https://deac-fra.dl.sourceforge.net/project/diff-ext/Binaries/1.9.2/diff-ext-1.9.2.exe#/diff-ext.exe",
+ "version": "1.9.2"
+}

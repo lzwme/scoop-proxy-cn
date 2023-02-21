@@ -1,0 +1,37 @@
+{
+ "autoupdate": {
+  "hash": {
+   "regex": "$sha256",
+   "url": "$url.sha256"
+  },
+  "url": "https://scoop-zapps.ziiyc.com/d/AdobePhotoshopCC/AdobePhotoshopCC-$version.exe#/dl.7z"
+ },
+ "bin": [
+  [
+   "Photoshop.exe",
+   "Photoshop"
+  ]
+ ],
+ "checkver": {
+  "regex": "([\\d.]+)",
+  "url": "https://ghproxy.com/https://raw.githubusercontent.com/kkzzhizhou/scoop-zapps/master/versions/AdobePhotoshopCC.latest"
+ },
+ "depends": "sudo",
+ "description": "zdBryan Photoshop\u7cbe\u7b80\u7248\u672c",
+ "extract_dir": "Photoshop",
+ "hash": "4393a93999056bdd4067ab6b7e1f8f7132d1f6ed9dd19fa949516043867c0538",
+ "installer": {
+  "script": "sudo cmd /c \"$dir\\!)\u7eff\u5316.bat\""
+ },
+ "shortcuts": [
+  [
+   "photoshop.exe",
+   "..\\Adobe\\Photoshop"
+  ]
+ ],
+ "uninstaller": {
+  "script": "sudo cmd /c \"$dir\\!)\u5378\u8f7d.bat\""
+ },
+ "url": "https://scoop-zapps.ziiyc.com/d/AdobePhotoshopCC/AdobePhotoshopCC-21.2.4.323.exe#/dl.7z",
+ "version": "21.2.4.323"
+}

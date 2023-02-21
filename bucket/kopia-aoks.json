@@ -1,0 +1,29 @@
+{
+ "architecture": {
+  "64bit": {
+   "extract_dir": "kopia-0.12.1-windows-x64",
+   "hash": "8af685fb15f5eda0f7fc98354d6a7ebb4600e55bf6899bd35453cb6a89b4f682",
+   "url": "https://ghproxy.com/https://github.com/kopia/kopia/releases/download/v0.12.1/kopia-0.12.1-windows-x64.zip"
+  }
+ },
+ "autoupdate": {
+  "architecture": {
+   "64bit": {
+    "extract_dir": "kopia-$version-windows-x64",
+    "hash": {
+     "regex": "$sha256\\s+$basename",
+     "url": "$baseurl/checksums.txt"
+    },
+    "url": "https://ghproxy.com/https://github.com/kopia/kopia/releases/download/v$version/kopia-$version-windows-x64.zip"
+   }
+  }
+ },
+ "bin": "kopia.exe",
+ "checkver": {
+  "github": "https://github.com/kopia/kopia"
+ },
+ "description": "Fast and Secure Open-Source Backup.",
+ "homepage": "https://kopia.io/",
+ "license": "Apache-2.0",
+ "version": "0.12.1"
+}

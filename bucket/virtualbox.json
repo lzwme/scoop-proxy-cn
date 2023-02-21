@@ -1,0 +1,33 @@
+{
+    "version": "7.0.6",
+    "description": "Powerful x86 and AMD64/Intel64 virtualization product for enterprise as well as home use.",
+    "homepage": "https://www.virtualbox.org/",
+    "license": "GPL-2.0-only",
+    "architecture": {
+        "64bit": {
+            "url": "https://download.virtualbox.org/virtualbox/7.0.6/VirtualBox-7.0.6-155176-Win.exe#/VBoxSetup.exe",
+            "hash": "a4142ecf52657bd6e06b66573919ac342ef460a61f4ee7d35c235c54640c3a39"
+        }
+    },
+    "installer": {
+        "args": "--msiparams INSTALLDIR=\"$dir\" VBOX_INSTALLDESKTOPSHORTCUT=0",
+        "keep": "true"
+    },
+    "uninstaller": {
+        "file": "setup.exe"
+    },
+    "checkver": {
+        "url": "https://www.virtualbox.org/wiki/Downloads",
+        "regex": "VirtualBox-(?<version>[\\d.]+)-(?<revision>[\\d]+)-Win.exe"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://download.virtualbox.org/virtualbox/$version/VirtualBox-$version-$matchRevision-Win.exe#/VBoxSetup.exe"
+            }
+        },
+        "hash": {
+            "url": "https://www.virtualbox.org/download/hashes/$version/SHA256SUMS"
+        }
+    }
+}

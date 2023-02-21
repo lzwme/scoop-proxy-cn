@@ -1,0 +1,42 @@
+{
+    "architecture": {
+        "32bit": {
+            "hash": "90d51d882593df01e2dcb2883b1ef6e95d88088206f696ffcc06c3372100ec3d",
+            "url": "https://ghproxy.com/https://github.com/stefankueng/grepWin/releases/download/2.0.13/grepWin-2.0.13_portable.zip"
+        },
+        "64bit": {
+            "hash": "b5b64d0aed388adbb27f75cb9d6bd2f6e3f658fe52f61fed4ec088b1a5f5ed65",
+            "url": "https://ghproxy.com/https://github.com/stefankueng/grepWin/releases/download/2.0.13/grepWin-x64-2.0.13_portable.zip"
+        }
+    },
+    "autoupdate": {
+        "architecture": {
+            "32bit": {
+                "url": "https://ghproxy.com/https://github.com/stefankueng/grepWin/releases/download/$version/grepWin-$version_portable.zip"
+            },
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/stefankueng/grepWin/releases/download/$version/grepWin-x64-$version_portable.zip"
+            }
+        }
+    },
+    "bin": "grepWin.exe",
+    "checkver": {
+        "github": "https://github.com/stefankueng/grepWin"
+    },
+    "description": "Regular expression search and replace tool in files.",
+    "homepage": "https://tools.stefankueng.com/grepWin.html",
+    "license": "GPL-3.0-only",
+    "persist": "grepwin.ini",
+    "pre_install": [
+        "Get-ChildItem $dir 'grepWin*exe' | Rename-Item -NewName 'grepWin.exe' -Force",
+        "if (!(Test-Path \"$persist_dir\\grepwin.ini\")) {Set-Content \"$dir\\grepwin.ini\" (@('[global]', '[Software\\grepWin\\History]') -join \"`r`n\") -Encoding ASCII}"
+    ],
+    "shortcuts": [
+        [
+            "grepWin.exe",
+            "grepWin",
+            "/portable"
+        ]
+    ],
+    "version": "2.0.13"
+}

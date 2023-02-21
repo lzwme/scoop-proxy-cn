@@ -1,0 +1,62 @@
+{
+    "architecture": {
+        "32bit": {
+            "hash": [
+                "96f3576cbf86185228ffee241c97d6b3f8d34d4ead30ee1dfe542b8c171e3901",
+                "97517cd4250bec5f11906667dbcac25fb683c18625a4eb66cbd5f9930a576713"
+            ],
+            "url": [
+                "https://ghproxy.com/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/0.20.16/Clash.for.Windows-0.20.16-ia32-win.7z",
+                "https://ghproxy.com/https://github.com/BoyceLig/Clash_Chinese_Patch/releases/download/0.20.16/app.7z"
+            ]
+        },
+        "64bit": {
+            "hash": [
+                "d1eabf1b8414886cf6ec43747c4d0892ec197586e2b32c7a36a41ec1227bc788",
+                "97517cd4250bec5f11906667dbcac25fb683c18625a4eb66cbd5f9930a576713"
+            ],
+            "url": [
+                "https://ghproxy.com/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/0.20.16/Clash.for.Windows-0.20.16-win.7z",
+                "https://ghproxy.com/https://github.com/BoyceLig/Clash_Chinese_Patch/releases/download/0.20.16/app.7z"
+            ]
+        }
+    },
+    "autoupdate": {
+        "architecture": {
+            "32bit": {
+                "url": [
+                    "https://ghproxy.com/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/$version/Clash.for.Windows-$version-ia32-win.7z",
+                    "https://ghproxy.com/https://github.com/BoyceLig/Clash_Chinese_Patch/releases/download/$version/app.7z"
+                ]
+            },
+            "64bit": {
+                "url": [
+                    "https://ghproxy.com/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/$version/Clash.for.Windows-$version-win.7z",
+                    "https://ghproxy.com/https://github.com/BoyceLig/Clash_Chinese_Patch/releases/download/$version/app.7z"
+                ]
+            }
+        }
+    },
+    "bin": "Clash for Windows.exe",
+    "checkver": {
+        "github": "https://github.com/BoyceLig/Clash_Chinese_Patch"
+    },
+    "description": "Clash For Windows CN Portable",
+    "homepage": "https://github.com/Fndroid/clash_for_windows_pkg",
+    "license": {
+        "identifier": "Freeware"
+    },
+    "notes": [
+        "Wiki: <https://github.com/Fndroid/clash_for_windows_pkg/wiki>",
+        "Docs: <https://docs.cfw.lbyczf.com/contents/quickstart.html>"
+    ],
+    "persist": "data",
+    "post_install": "Move-Item \"$dir\\app.asar\" \"$dir\\resources\" -Force",
+    "shortcuts": [
+        [
+            "Clash for Windows.exe",
+            "Clash for Windows"
+        ]
+    ],
+    "version": "0.20.16"
+}

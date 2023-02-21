@@ -1,0 +1,47 @@
+{
+    "version": "1.1.5",
+    "description": "The universal proxy platform.",
+    "homepage": "https://sing-box.sagernet.org",
+    "license": {
+        "identifier": "Freeware",
+        "url": "https://github.com/SagerNet/sing-box/blob/main/LICENSE"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://ghproxy.com/https://github.com/SagerNet/sing-box/releases/download/v1.1.5/sing-box-1.1.5-windows-amd64.zip",
+            "extract_dir": "sing-box-1.1.5-windows-amd64",
+            "hash": "e430ae774cc24c0b9295c8b1f25849b48aff6fdb5de4b3a673265ac39e3e06c9"
+        },
+        "32bit": {
+            "url": "https://ghproxy.com/https://github.com/SagerNet/sing-box/releases/download/v1.1.5/sing-box-1.1.5-windows-386.zip",
+            "extract_dir": "sing-box-1.1.5-windows-386",
+            "hash": "0cc843fbf9607d7eb56f1989b49a5f466715dbbffe118c838c9cf56544cca7e7"
+        },
+        "arm64": {
+            "url": "https://ghproxy.com/https://github.com/SagerNet/sing-box/releases/download/v1.1.5/sing-box-1.1.5-windows-arm64.zip",
+            "extract_dir": "sing-box-1.1.5-windows-arm64",
+            "hash": "b3c2116adda95fc50e7c603478ea4a12bbdf2ddeaad9dcf2a800b3accaf9ea0c"
+        }
+    },
+    "bin": "sing-box.exe",
+    "persist": "config",
+    "checkver": {
+        "github": "https://github.com/SagerNet/sing-box"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/SagerNet/sing-box/releases/download/v$version/sing-box-$version-windows-amd64.zip",
+                "extract_dir": "sing-box-$version-windows-amd64"
+            },
+            "32bit": {
+                "url": "https://ghproxy.com/https://github.com/SagerNet/sing-box/releases/download/v$version/sing-box-$version-windows-386.zip",
+                "extract_dir": "sing-box-$version-windows-386"
+            },
+            "arm64": {
+                "url": "https://ghproxy.com/https://github.com/SagerNet/sing-box/releases/download/v$version/sing-box-$version-windows-arm64.zip",
+                "extract_dir": "sing-box-$version-windows-arm64"
+            }
+        }
+    }
+}

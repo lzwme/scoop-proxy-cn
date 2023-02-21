@@ -1,0 +1,88 @@
+{
+ "autoupdate": {
+  "url": [
+   "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-Black.ttf",
+   "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-BlackItalic.ttf",
+   "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-Bold.ttf",
+   "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-BoldItalic.ttf",
+   "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-ExtraBold.ttf",
+   "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-ExtraBoldItalic.ttf",
+   "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-ExtraLight.ttf",
+   "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-ExtraLightItalic.ttf",
+   "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-Italic.ttf",
+   "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-Light.ttf",
+   "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-LightItalic.ttf",
+   "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-Medium.ttf",
+   "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-MediumItalic.ttf",
+   "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-Regular.ttf",
+   "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-SemiBold.ttf",
+   "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-SemiBoldItalic.ttf",
+   "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-Thin.ttf",
+   "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-ThinItalic.ttf"
+  ]
+ },
+ "checkver": "github",
+ "description": "Urbanist is a low-contrast, geometric sans-serif inspired by Modernist design and typography.",
+ "hash": [
+  "25f3fc5bf27e9f82736021280f33b4d05fcc6e27c59544fd167bd745ed07c09d",
+  "d7a50fb12f4a2e07e7e03de6574c0b4a96848b4245e1ea22b1a4ad0192392a2a",
+  "2439dcbba0ccbec7dfbc333438f3c182e08fb1fa3b8bef7ce4462474d7ccfc49",
+  "053190e041d57f99a96aea680196674ad613453b0f15099184f633332149be9f",
+  "cd0d0c7750210fab63a8398f84aae9cca6fd1959e5857104e8c530c38541043b",
+  "a2739dc49b1c5c7ce8f836811aab08366bef07e78ed47894a52c52b4ab2901e3",
+  "5b534b1044b8993f1b68bce9e7b8c0f5b694e51073a99d73df5cc46cab9a5437",
+  "a9090f13907ae633d8b15b3fcc73973804a528d5b6b6cd1e896a0aebb0979377",
+  "1d5bf4b04809198d8a19c446d52882f6f60959624999fd617568527b72b17124",
+  "173c7aec9bcc0f8341f627805f36a5902fcfc7d089c360561305e79eb8fb92d0",
+  "03e6a467a9eabf25de5832b8b2e4e553ba9f93912c8faa758a510c59354b5751",
+  "88cdaf1066d7b201fc61f749ebd3f3510b35453809f71b92e4963c2c6d613288",
+  "4192d6cd951de03c12def73a756a9a9b6565b1df93b49c4fe4a6f4b17b500906",
+  "bfb434b6116bf9dbe7b3ab6ab4be4b81e2533521300df4578741fe795fc5a16b",
+  "4e4596257e9b6ce9343d5f93421969d41160cefe55eea9d0611e626a25155ab2",
+  "cf401d2ad3d4bafc08e65451e9c00b5574e380a7bccef19db63fcc46d40e541d",
+  "4fcfc2174b35ba6fb32dda12244eec2f72162cac83a7951c71c96ca6d4648946",
+  "bcc4dc0260dbde41ee6654f04b215e467cdf2b993d3517cb2e4633b9e8a11a24"
+ ],
+ "homepage": "https://github.com/coreyhu/Urbanist",
+ "installer": {
+  "script": [
+   "if(!(is_admin)) { error \"Admin rights are required.\"; exit 1 }",
+   "Get-ChildItem $dir -Filter '*.ttf' -Recurse | ForEach-Object {",
+   "  New-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $_.Name -Force | Out-Null",
+   "  Copy-Item $_.FullName -destination \"$env:windir\\Fonts\"",
+   "}"
+  ]
+ },
+ "license": "OFL-1.1",
+ "uninstaller": {
+  "script": [
+   "if(!(is_admin)) { error \"Admin rights are required.\"; exit 1 }",
+   "Get-ChildItem $dir -filter '*.ttf' -Recurse | ForEach-Object {",
+   "  Remove-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
+   "  Remove-Item \"$env:windir\\Fonts\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
+   "}",
+   "Write-Host \"'Urbanist' static TTF files have been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
+  ]
+ },
+ "url": [
+  "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-Black.ttf",
+  "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-BlackItalic.ttf",
+  "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-Bold.ttf",
+  "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-BoldItalic.ttf",
+  "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-ExtraBold.ttf",
+  "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-ExtraBoldItalic.ttf",
+  "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-ExtraLight.ttf",
+  "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-ExtraLightItalic.ttf",
+  "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-Italic.ttf",
+  "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-Light.ttf",
+  "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-LightItalic.ttf",
+  "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-Medium.ttf",
+  "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-MediumItalic.ttf",
+  "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-Regular.ttf",
+  "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-SemiBold.ttf",
+  "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-SemiBoldItalic.ttf",
+  "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-Thin.ttf",
+  "https://github.com/coreyhu/Urbanist/raw/master/fonts/ttf/Urbanist-ThinItalic.ttf"
+ ],
+ "version": "1.303"
+}

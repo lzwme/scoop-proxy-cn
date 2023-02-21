@@ -1,0 +1,30 @@
+{
+ "autoupdate": {
+  "url": "https://cafemenu-dl.xivcdn.com/act/update/download/$version_sfx.exe#/dl.7z"
+ },
+ "checkver": {
+  "regex": "([\\d.]+)_sfx\\.exe",
+  "script": "(Invoke-WebRequest -Uri 'https://cafemenu.lv5.one/act/update/download?channel=release&variant=sfx&version=latest' -MaximumRedirection 0 -SkipHttpErrorCheck -ErrorAction:SilentlyContinue).Headers.Location"
+ },
+ "description": "ACT \u56fd\u670d\u6574\u5408\uff0c\u81ea\u5e26\u8d85\u65b9\u4fbf\u63d2\u4ef6\u4e2d\u5fc3\u7684 Advanced Combat Tracker \u6574\u5408\u7248\u3002",
+ "hash": "4ea9a9bda544dfc546484031c1c2f46aeeb1e0e967186373c6d0102b9b5b06ce",
+ "homepage": "https://ffcafe.org/act/",
+ "license": {
+  "identifier": "Freeware"
+ },
+ "persist": [
+  "AppData",
+  "Backup",
+  "Dpshow",
+  "Plugins",
+  "Temp"
+ ],
+ "shortcuts": [
+  [
+   "CafeACT.exe",
+   "CafeACT"
+  ]
+ ],
+ "url": "https://cafemenu-dl.xivcdn.com/act/update/download/3.9.8.1_sfx.exe#/dl.7z",
+ "version": "3.9.8.1"
+}

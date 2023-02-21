@@ -1,0 +1,25 @@
+{
+ "autoupdate": {
+  "url": "https://download.teamlink.co/TeamLink+Setup.exe#/dl.7z"
+ },
+ "checkver": {
+  "regex": "<h1>TeamLink\\s([\\d.]+)",
+  "url": "https://www.apktoy.com/teamlink/app.cybrook.teamlink"
+ },
+ "description": "Video and Web meeting for Free",
+ "hash": "7153dc15da9d51085b7824cd2ce10a4d6036043465ab0f018b86886ca2dba4ff",
+ "homepage": "https://www.teamlink.co/",
+ "license": "GPL-3.0-only",
+ "pre_install": [
+  "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+  "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall TeamLink.exe\" -Recurse -Force"
+ ],
+ "shortcuts": [
+  [
+   "TeamLink.exe",
+   "TeamLink"
+  ]
+ ],
+ "url": "https://download.teamlink.co/TeamLink+Setup.exe#/dl.7z",
+ "version": "2.1.0.981"
+}

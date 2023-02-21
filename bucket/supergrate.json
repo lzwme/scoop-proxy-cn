@@ -1,0 +1,43 @@
+{
+ "architecture": {
+  "32bit": {
+   "extract_dir": "Release",
+   "hash": "a6333671265a209c9f581ce879f8f0c391d473e95920fec8ce71eddfff845ed4",
+   "pre_install": [
+    "Move-Item \"$dir\\Release\\SuperGrate.exe\" \"$dir\"",
+    "Remove-Item \"$dir\\Release*\" -Force -Recurse"
+   ],
+   "url": "https://ghproxy.com/https://github.com/belowaverage-org/SuperGrate/releases/download/1.3.5.1/Release.zip"
+  },
+  "64bit": {
+   "extract_dir": "Release",
+   "hash": "a6333671265a209c9f581ce879f8f0c391d473e95920fec8ce71eddfff845ed4",
+   "pre_install": [
+    "Move-Item \"$dir\\Release_64\\SuperGrate.exe\" \"$dir\"",
+    "Remove-Item \"$dir\\Release*\" -Force -Recurse"
+   ],
+   "url": "https://ghproxy.com/https://github.com/belowaverage-org/SuperGrate/releases/download/1.3.5.1/Release.zip"
+  }
+ },
+ "autoupdate": {
+  "architecture": {
+   "32bit": {
+    "url": "https://ghproxy.com/https://github.com/belowaverage-org/SuperGrate/releases/download/$version/Release.zip"
+   },
+   "64bit": {
+    "url": "https://ghproxy.com/https://github.com/belowaverage-org/SuperGrate/releases/download/$version/Release.zip"
+   }
+  }
+ },
+ "checkver": "github",
+ "description": "A GUI that assists Microsoft's User State Migration Utility in performing remote migrations over a network connection.",
+ "homepage": "https://github.com/belowaverage-org/SuperGrate",
+ "license": "GPL-3.0-only",
+ "shortcuts": [
+  [
+   "SuperGrate.exe",
+   "SuperGrate"
+  ]
+ ],
+ "version": "1.3.5.1"
+}

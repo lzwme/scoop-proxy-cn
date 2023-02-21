@@ -1,0 +1,24 @@
+{
+	"version": "1.31.0",
+	"description": "Cross-platform Node.js version manager",
+	"homepage": "https://github.com/Schniz/fnm",
+	"license": "GPLv3",
+	"url": "https://ghproxy.com/https://github.com/Schniz/fnm/releases/download/v1.31.0/fnm-windows.zip",
+	"hash": "sha256:129fe531372727ccbc922a8845168941f91d0762e6d26dea24acbe04cc054996",
+	"bin": "fnm.exe",
+	"env_set": {
+		"FNM_HOME": "$HOME\\.fnm",
+		"FNM_LOGLEVEL": "info",
+		"FNM_MULTISHELL_PATH": "",
+		"FNM_NODE_DIST_MIRROR": "https://nodejs.org/dist"
+	},
+	"post_install": "
+        # * FNM_MULTISHELL_PATH is reset by `fnm`; use this 'post_install' to setup FNM's preferred value
+        & $dir\\fnm.exe env | select-string -pattern \"env:FNM\" | out-string | invoke-expression
+        $val = $env:FNM_MULTISHELL_PATH
+        env FNM_MULTISHELL_PATH -t $global $val
+        env FNM_MULTISHELL_PATH $val
+        ensure_in_path \"$env:FNM_MULTISHELL_PATH\" $global
+        ",
+	"uninstaller": { "script": "remove_from_path \"$env:FNM_MULTISHELL_PATH\" $global" }
+}

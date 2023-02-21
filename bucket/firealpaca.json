@@ -1,0 +1,42 @@
+{
+    "version": "2.9.1",
+    "description": "A digital painting software that is widely suitable for beginners to advanced users.",
+    "homepage": "https://firealpaca.com/",
+    "license": "Freeware",
+    "architecture": {
+        "64bit": {
+            "url": "https://firealpaca.com/download/win64_zip#/dl.zip",
+            "hash": "b64a4b37adab9cda858e6fb33d9012b545685f00245653a8d09bb1aff959256d",
+            "extract_dir": "FireAlpacaWin64_2_9_1"
+        },
+        "32bit": {
+            "url": "https://firealpaca.com/download/win_zip#/dl.zip",
+            "hash": "c20cc666a50e4c05149c0a66b1bb612e46053dfbbeb655b76b515827fb866be6",
+            "extract_dir": "FireAlpacaWin32_2_9_1"
+        }
+    },
+    "bin": "FireAlpaca.exe",
+    "shortcuts": [
+        [
+            "FireAlpaca.exe",
+            "FireAlpaca"
+        ]
+    ],
+    "notes": "FireAlpaca is NOT portable.",
+    "checkver": {
+        "url": "https://firealpaca.com/download/",
+        "regex": "(?i)FireAlpaca ([\\d.]+) DOWNLOAD"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://firealpaca.com/download/win64_zip#/dl.zip",
+                "extract_dir": "FireAlpacaWin64_$underscoreVersion"
+            },
+            "32bit": {
+                "url": "https://firealpaca.com/download/win_zip#/dl.zip",
+                "extract_dir": "FireAlpacaWin32_$underscoreVersion"
+            }
+        }
+    }
+}

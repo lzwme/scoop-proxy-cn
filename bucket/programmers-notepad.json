@@ -1,0 +1,32 @@
+{
+ "autoupdate": {
+  "url": "https://ghproxy.com/https://github.com/simonsteele/pn/releases/download/v2.4.2/portable-pn2421440.zip"
+ },
+ "bin": [
+  [
+   "pn.exe",
+   "pn"
+  ]
+ ],
+ "checkver": {
+  "regex": "/releases/download/v([\\d.]+)/portable-pn(?<build>[\\d]+).zip",
+  "url": "https://github.com/simonsteele/pn/releases/latest"
+ },
+ "description": "A simple podcast app",
+ "hash": "f73f42247d6acc1c7373ff3d4b03bcbd6c7175071e2475246ef1b5b72715f6b2",
+ "homepage": "http://www.pnotepad.org",
+ "license": "Apache-2.0",
+ "persist": [
+  "settings",
+  "config.xml"
+ ],
+ "pre_install": "if(!(Test-Path \"$dir/config.xml\")) { Add-Content \"$dir/config.xml\" $null }",
+ "shortcuts": [
+  [
+   "pn.exe",
+   "Programmer's Notepad"
+  ]
+ ],
+ "url": "https://ghproxy.com/https://github.com/simonsteele/pn/releases/download/v2.4.2/portable-pn2421440.zip",
+ "version": "2.4.2"
+}

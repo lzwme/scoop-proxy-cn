@@ -1,0 +1,22 @@
+{
+ "bin": "mymenu.exe",
+ "description": "Creates CSM themes from MYM files.",
+ "hash": "6c9d5eec69b99c5e1f5e14bdf013d44b7c31827d90af3ad4f75f3872800a0f89",
+ "homepage": "https://wiidatabase.de/downloads/pc-tools/mymenu/",
+ "installer": {
+  "script": [
+   "Expand-InnoArchive \"$dir\\MyMenu Setup.exe\" -Removal",
+   "Remove-Item \"$dir\\*,*\" -Force",
+   "Remove-Item \"$dir\\unins000.dat\" -Force"
+  ]
+ },
+ "license": "Unknown",
+ "shortcuts": [
+  [
+   "mymenu.exe",
+   "MyMenu"
+  ]
+ ],
+ "url": "https://static.wiidatabase.de/MyMenu.zip",
+ "version": "1.3"
+}

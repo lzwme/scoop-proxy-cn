@@ -1,0 +1,31 @@
+{
+ "autoupdate": {
+  "url": "https://ghproxy.com/https://github.com/soopercool101/BrawlCrate/releases/download/v$version/BrawlCrate.v$version.x86.exe#/dl.7z"
+ },
+ "bin": "BrawlCrate.exe",
+ "checkver": {
+  "regex": "BrawlCrate.v([\\d-a-z.]+).x86.exe",
+  "url": "https://github.com/soopercool101/BrawlCrate/releases/latest"
+ },
+ "description": "BrawlCrate is a BrawlBox fork with a variety of features aiming to improve ease of modding for Super Smash Bros. Brawl.",
+ "hash": "dba9e28ee6d36451dde9f7d335af824261b54e1938f396b8f1d83e90a2f43192",
+ "homepage": "https://github.com/soopercool101/BrawlCrate",
+ "license": "MIT",
+ "persist": [
+  "CustomLists",
+  "BrawlAPI"
+ ],
+ "pre_install": [
+  "Remove-Item \"$dir\\Updater.exe\" -Force -Recurse",
+  "if (Test-Path \"$persist_dir\\CustomLists\") { Remove-Item \"$dir\\CustomLists\" -Force -Recurse }",
+  "if (Test-Path \"$persist_dir\\BrawlAPI\") { Remove-Item \"$dir\\BrawlAPI\" -Force -Recurse }"
+ ],
+ "shortcuts": [
+  [
+   "BrawlCrate.exe",
+   "BrawlCrate"
+  ]
+ ],
+ "url": "https://ghproxy.com/https://github.com/soopercool101/BrawlCrate/releases/download/v0.38/BrawlCrate.v0.38.x86.exe#/dl.7z",
+ "version": "0.38"
+}

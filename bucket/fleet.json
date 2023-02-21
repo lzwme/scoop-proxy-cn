@@ -1,0 +1,34 @@
+{
+    "version": "1.15.69",
+    "description": "Hybrid IDE and text editor",
+    "homepage": "https://www.jetbrains.com/fleet/",
+    "license": "Unknown",
+    "notes": "Currently using preview as RC, until proper RC release is done",
+    "architecture": {
+        "64bit": {
+            "url": "https://download.jetbrains.com/fleet/installers/windows_x64/Fleet-1.15.69.zip",
+            "hash": "e0eb7777672ae76ce8ea92e2c5894447293194c15b974b9302de9a592d8710fb"
+        }
+    },
+    "bin": "Fleet.exe",
+    "shortcuts": [
+        [
+            "Fleet.exe",
+            "Fleet"
+        ]
+    ],
+    "checkver": {
+        "url": "https://data.services.jetbrains.com/products/releases?code=FL&latest=true&type=preview",
+        "jsonpath": "$.FL..version"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://download.jetbrains.com/fleet/installers/windows_x64/Fleet-$version.zip"
+            }
+        },
+        "hash": {
+            "url": "$url.sha256"
+        }
+    }
+}

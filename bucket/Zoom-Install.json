@@ -1,0 +1,70 @@
+{
+    "version": "5.13.7.12602",
+    "description": "Zoom provides videotelephony and online chat services through a cloud-based peer-to-peer software platform and is used for teleconferencing, telecommuting, distance education, and social relations.",
+    "homepage": "https://zoom.us/",
+    "license": "Proprietary",
+    "architecture": {
+        "64bit": {
+            "url": "https://www.zoom.us/client/5.13.7.12602/ZoomInstallerFull.msi?archType=x64#/setup.msi_",
+            "hash": "2d3e3a34d8bc23f207fe50dc71704b5116146dc2595f40152ba6800dbc70b2fa"
+        },
+        "32bit": {
+            "url": "https://www.zoom.us/client/5.13.7.12602/ZoomInstallerFull.msi#/setup.msi_",
+            "hash": "168f22340ad29af07cfffc5472432c4f90285e80d8e9f2dfae3d22ced2936e49"
+        }
+    },
+    "pre_download": "Assert-Administrator",
+    "pre_install": [
+        "$processname = \"Zoom*\"",
+        "$process = Get-Process $processname -ErrorAction SilentlyContinue",
+        "if ($process) {",
+        "   $process.CloseMainWindow()",
+        "   Start-Sleep -Seconds 5",
+        "   if (!$process.HasExited) {",
+        "       Start-Sleep -Seconds 25",
+        "       $process | Stop-Process -Force",
+        "   }",
+        "}"
+    ],
+    "installer": {
+        "script": [
+            "$programname = \"Zoom*\"",
+            "$installpath = \"$dir\\setup.msi_\"",
+            "$ProgramFiles = [Environment]::GetFolderPath(\"ProgramFiles\")",
+            "$programsVersion = \"$majorVersion.$minorVersion.$patchVersion\"",
+            "if((Get-Command \"$ProgramFiles\\Zoom\\bin\\zoom.exe\").Version -lt $version)",
+            "{",
+            "   Invoke-ExternalCommand sudo msiexec -ArgumentList @('/i', \"$dir\\setup.msi_\", '/qn', '/norestart', 'MSIRESTARTMANAGERCONTROL=”Disable”', 'ZoomAutoUpdate=\"true\"') -RunAs | Out-Null",
+            "   if((Get-Command \"$ProgramFiles\\Zoom\\bin\\zoom.exe\").Version -lt $version)",
+            "   {",
+            "       exit 1",
+            "   }",
+            "}",
+            "$CommonDesktopPath = [Environment]::GetFolderPath(\"CommonDesktopDirectory\")",
+            "if (Test-Path -Path \"$CommonDesktopPath\\Zoom.lnk\")",
+            "{",
+            "   Remove-Item \"$CommonDesktopPath\\Zoom.lnk\" -Force",
+            "}",
+            "if (Test-Path -Path \"$dir\\setup.msi_\") { Remove-Item \"$dir\\setup.msi_\" -Force }"
+        ]
+    },
+    "post_install": [
+        "$programname = \"Zoom\"",
+        "$CommonDesktopPath = [Environment]::GetFolderPath(\"CommonDesktopDirectory\")",
+        "if (Test-Path \"$CommonDesktopPath\\$programname.lnk\") {Remove-Item \"$CommonDesktopPath\\$programname.lnk\" -Force}"
+    ],
+    "checkver": {
+        "url": "https://launcher.zoom.us/upgrade?os=win",
+        "regex": "Current-version=([\\d.]+)"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://www.zoom.us/client/$version/ZoomInstallerFull.msi?archType=x64#/setup.msi_"
+            },
+            "32bit": {
+                "url": "https://www.zoom.us/client/$version/ZoomInstallerFull.msi#/setup.msi_"
+            }
+        }
+    }
+}

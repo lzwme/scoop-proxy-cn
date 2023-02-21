@@ -1,0 +1,28 @@
+{
+ "autoupdate": {
+  "url": "$matchUrl#/dl.7z"
+ },
+ "bin": "YoudaoDict.exe",
+ "checkver": {
+  "jsonpath": "$[?(@.name == 'youdao-dict')].version_redirect",
+  "regex": "([\\d.]+)#(?<url>.*)",
+  "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/header.json"
+ },
+ "description": "Youdao Dictionary has typical acoustic translation, smart screen word identification, real-time synchronization with network up-to-date vocabulary, and other word look-up features.",
+ "hash": "5027f16777728d404baea9fffd825d28b008084670209978b387399abbcbf549",
+ "homepage": "https://cidian.youdao.com",
+ "license": {
+  "identifier": "Proprietary",
+  "url": "http://xue.youdao.com/sw/m/1191866"
+ },
+ "post_install": "@('$PLUGINSDIR', '[NSIS].nsi', 'uninst.exe', '$_67_') | ForEach-Object { Remove-Item \"$dir\\$_\" -ErrorAction 'SilentlyContinue' -Force -Recurse }",
+ "pre_install": "Expand-7ZipArchive \"$dir\\`$PLUGINSDIR\\dict.7z\" \"$dir\"",
+ "shortcuts": [
+  [
+   "YoudaoDict.exe",
+   "Youdao\\Youdao Dict"
+  ]
+ ],
+ "url": "https://codown.youdao.com/cidian/static/9.1/20221027/YoudaoDictSetup.exe#/dl.7z",
+ "version": "9.1.2.0"
+}

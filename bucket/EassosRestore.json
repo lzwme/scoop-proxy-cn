@@ -1,0 +1,25 @@
+{
+ "autoupdate": {
+  "url": "http://download.eassos.cn/OKRSetup$cleanVersion.exe#/setup.exe"
+ },
+ "checkver": {
+  "regex": "V(\\d+\\.\\d+\\.\\d+\\.\\d+):",
+  "url": "https://www.eassos.cn/onekeyrestore/download.php"
+ },
+ "depends": "autoconfirm",
+ "description": "\u6613\u6570\u4e00\u952e\u8fd8\u539f\uff0c\u662f\u6613\u6570\u79d1\u6280\u81ea\u4e3b\u7814\u53d1\u7684\u7cfb\u7edf\u5907\u4efd\u4e0e\u8fd8\u539f\u8f6f\u4ef6",
+ "hash": "3eb93968e27bd18f5a8334493eee4cade067803f1182ce30d720067b49c23b9a",
+ "homepage": "https://www.eassos.cn/onekeyrestore/",
+ "installer": {
+  "script": "Start-Process -Wait \"$dir\\setup.exe\" \"/VERYSILENT /DIR=$dir /NORESTART\" -Verb RunAs"
+ },
+ "post_install": "Remove-Item \"$env:PUBLIC\\Desktop\\\u6613\u6570\u4e00\u952e\u8fd8\u539f.lnk\"",
+ "uninstaller": {
+  "script": [
+   "Start-Process autoconfirm.exe \u5378\u8f7d\u6613\u6570\u4e00\u952e\u8fd8\u539f",
+   "Start-Process -Wait \"$dir\\unins000.exe\" \"/SILENT\" -Verb RunAs"
+  ]
+ },
+ "url": "http://download.eassos.cn/OKRSetup493830.exe#/setup.exe",
+ "version": "4.9.3.830"
+}

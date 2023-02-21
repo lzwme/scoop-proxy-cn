@@ -1,0 +1,35 @@
+{
+    "architecture": {
+        "32bit": {
+            "hash": "1be83cd7df490bd9a980f4a890a75c3543cfe3668886e60f5d1b43f6bed617a9",
+            "url": "https://spacedesk.net/downloads/spacedesk_driver_Win_10_32_v1057_BETA.msi#/setup.msi_"
+        },
+        "64bit": {
+            "hash": "77a9b0782f1709e6f938c4ab6156d1c885412821645e44a61263508791bdbd2a",
+            "url": "https://spacedesk.net/downloads/spacedesk_driver_Win_10_64_v1057_BETA.msi#/setup.msi_"
+        }
+    },
+    "autoupdate": {
+        "architecture": {
+            "32bit": {
+                "url": "https://spacedesk.net/downloads/spacedesk_driver_Win_10_32_v$version.msi#/setup.msi_"
+            },
+            "64bit": {
+                "url": "https://spacedesk.net/downloads/spacedesk_driver_Win_10_64_v$version.msi#/setup.msi_"
+            }
+        }
+    },
+    "checkver": {
+        "regex": "64_v(.*).msi",
+        "url": "https://ghproxy.com/https://raw.githubusercontent.com/kkzzhizhou/scoop-zapps/master/versions/SpacedeskDriver.latest"
+    },
+    "description": "Multi Monitor App",
+    "homepage": "https://spacedesk.net/",
+    "installer": {
+        "script": "Start-Process -Wait msiexec \"/i `\"$dir\\setup.msi_`\" /qn INSTALLFOLDER=`\"$dir`\"\" -Verb RunAs"
+    },
+    "uninstaller": {
+        "script": "Start-Process -Wait msiexec \"/x `\"$dir\\setup.msi_`\" /qn\" -Verb RunAs"
+    },
+    "version": "1057_BETA"
+}

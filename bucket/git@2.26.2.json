@@ -1,0 +1,61 @@
+{
+    "version": "2.39.2.windows.1",
+    "homepage": "https://gitforwindows.org",
+    "description": "Distributed version control system.",
+    "license": "GPL-2.0-only",
+    "architecture": {
+        "64bit": {
+            "url": "https://ghproxy.com/https://github.com/git-for-windows/git/releases/download/v2.39.2.windows.1/PortableGit-2.39.2-64-bit.7z.exe#/dl.7z",
+            "hash": "20e3959d4e310a79b5cf4138797aa247d473d1f7b077a6c433cbfc4ddc5486f1"
+        },
+        "32bit": {
+            "url": "https://ghproxy.com/https://github.com/git-for-windows/git/releases/download/v2.39.2.windows.1/PortableGit-2.39.2-32-bit.7z.exe#/dl.7z",
+            "hash": "84ea6be01df896f6d50192ba4cda85c38ab995154f7aa9d3849492a15f21b500"
+        }
+    },
+    "bin": [
+        "cmd\\git.exe",
+        "cmd\\gitk.exe",
+        "cmd\\git-gui.exe",
+        "usr\\bin\\tig.exe",
+        "git-bash.exe"
+    ],
+    "shortcuts": [
+        [
+            "git-bash.exe",
+            "Git Bash",
+            "--cd-to-home"
+        ],
+        [
+            "cmd\\git-gui.exe",
+            "Git GUI"
+        ]
+    ],
+    "post_install": [
+        "# ref: [PortableGit post-install]<https://github.com/git-for-windows/build-extra/tree/33ce2964376587bbe7fcf97789470701178087af/portable/root>[`@`](https://archive.is/BSBYG)",
+        "#  ... from CMD: `start \"\" /min \"%COMSPEC%\" /d/c \"DIR\\post-install.bat\"`",
+        "if (test-path \"$dir\\post-install.bat\") { start-process \"$dir\\post-install.bat\" -WindowStyle hidden }",
+        "git config --global credential.helper manager"
+    ],
+    "checkver": {
+        "github": "https://github.com/git-for-windows/git",
+        "regex": "v([\\w.]+)/PortableGit-(?<ver>[\\d\\w.]+)-64-bit"
+    },
+    "env_set": {
+        "GIT_INSTALL_ROOT": "$dir"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/git-for-windows/git/releases/download/v$version/PortableGit-$matchVer-64-bit.7z.exe#/dl.7z"
+            },
+            "32bit": {
+                "url": "https://ghproxy.com/https://github.com/git-for-windows/git/releases/download/v$version/PortableGit-$matchVer-32-bit.7z.exe#/dl.7z"
+            }
+        },
+        "hash": {
+            "url": "https://github.com/git-for-windows/git/releases/latest",
+            "regex": "<td>$basename</td>\\s*<td>$sha256</td>"
+        }
+    }
+}

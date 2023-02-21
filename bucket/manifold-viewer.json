@@ -1,0 +1,31 @@
+{
+    "version": "9.0.179",
+    "description": "File viewer for Manifold - a parallel GIS, ETL, data science and DBMS tool",
+    "homepage": "https://manifold.net/",
+    "license": "Freeware",
+    "suggest": {
+        "Microsoft Visual C++ Redistributable 2015-2022": "extras/vcredist2022"
+    },
+    "url": "https://manifold.net/updates/manifold-viewer-9.0.179.zip",
+    "hash": "e3e5cceacbbd62d47270bc04b77eba3deb87e676c1bd847417474ade25388d49",
+    "extract_dir": "manifold-viewer-9.0.179",
+    "architecture": {
+        "64bit": {
+            "bin": "manifold.exe",
+            "shortcuts": [
+                [
+                    "manifold.exe",
+                    "Manifold 9 Viewer"
+                ]
+            ]
+        }
+    },
+    "checkver": {
+        "url": "https://manifold.net/updates/download_viewer.shtml",
+        "regex": "https://manifold.net/updates/manifold-viewer-([\\d.]+).zip"
+    },
+    "autoupdate": {
+        "url": "https://manifold.net/updates/manifold-viewer-$version.zip",
+        "extract_dir": "manifold-viewer-$version"
+    }
+}

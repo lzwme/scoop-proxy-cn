@@ -1,0 +1,51 @@
+{
+    "version": "1.25.2",
+    "description": "Manage multiple rust installations with ease",
+    "homepage": "https://rustup.rs",
+    "license": "MIT|Apache-2.0",
+    "notes": "This package defaults to using the GCC toolchain on install/update; use \"rustup set default-host\" to configure it",
+    "architecture": {
+        "64bit": {
+            "url": "https://static.rust-lang.org/rustup/archive/1.25.2/x86_64-pc-windows-msvc/rustup-init.exe",
+            "hash": "f7ddacce04969a59f7080a64c466b936d7c2ae661b4fda44be8fe54aac0972ec"
+        },
+        "32bit": {
+            "url": "https://static.rust-lang.org/rustup/archive/1.25.2/i686-pc-windows-msvc/rustup-init.exe",
+            "hash": "1fd95ff35e7383c5bd3b5f01c038e9be818e0a00f5a3a70afeaa2185bb585e90"
+        }
+    },
+    "installer": {
+        "script": [
+            "[Environment]::SetEnvironmentVariable('CARGO_HOME', \"$persist_dir\\.cargo\", 'Process')",
+            "[Environment]::SetEnvironmentVariable('RUSTUP_HOME', \"$persist_dir\\.rustup\", 'Process')",
+            "$host_arch = if ($architecture -eq '64bit') {'x86_64'} else {'i686'}",
+            "Invoke-ExternalCommand -Path \"$dir\\rustup-init.exe\" -Args @('-y', '--no-modify-path', '--default-host', \"$host_arch-pc-windows-gnu\") | Out-Null"
+        ]
+    },
+    "env_add_path": ".cargo\\bin",
+    "env_set": {
+        "CARGO_HOME": "$persist_dir\\.cargo",
+        "RUSTUP_HOME": "$persist_dir\\.rustup"
+    },
+    "persist": [
+        ".cargo",
+        ".rustup"
+    ],
+    "checkver": {
+        "url": "https://ghproxy.com/https://raw.githubusercontent.com/rust-lang-nursery/rustup.rs/master/Cargo.toml",
+        "regex": "version = \"([\\d.]+)\""
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://static.rust-lang.org/rustup/archive/$version/x86_64-pc-windows-msvc/rustup-init.exe"
+            },
+            "32bit": {
+                "url": "https://static.rust-lang.org/rustup/archive/$version/i686-pc-windows-msvc/rustup-init.exe"
+            }
+        },
+        "hash": {
+            "url": "$url.sha256"
+        }
+    }
+}

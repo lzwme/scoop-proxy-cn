@@ -1,0 +1,31 @@
+{
+    "version": "1.10.2",
+    "description": "A neofetch-like tool for fetching system information and displaying them in a pretty way",
+    "homepage": "https://github.com/LinusDierheimer/fastfetch",
+    "license": "MIT",
+    "architecture": {
+        "64bit": {
+            "url": "https://ghproxy.com/https://github.com/LinusDierheimer/fastfetch/releases/download/1.10.2/fastfetch-1.10.2-win64.zip",
+            "hash": "38720c1dbf5e2d57654e143e04005140afcc4438eb91efe1886b985a15bd9cb2"
+        },
+        "32bit": {
+            "url": "https://ghproxy.com/https://github.com/LinusDierheimer/fastfetch/releases/download/1.10.2/fastfetch-1.10.2-win32.zip",
+            "hash": "5c67d00e28e0df7f17ffd1e2331065c54bdb637537301271a52b5959e598447b"
+        }
+    },
+    "bin": [
+        "fastfetch.exe",
+        "flashfetch.exe"
+    ],
+    "checkver": "github",
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://ghproxy.com/https://github.com/LinusDierheimer/fastfetch/releases/download/$version/fastfetch-$version-win64.zip"
+            },
+            "32bit": {
+                "url": "https://ghproxy.com/https://github.com/LinusDierheimer/fastfetch/releases/download/$version/fastfetch-$version-win32.zip"
+            }
+        }
+    }
+}

@@ -1,0 +1,47 @@
+{
+ "autoupdate": {
+  "hash": {
+   "regex": "$sha256",
+   "url": "$url.sha256"
+  },
+  "url": "https://scoop-zapps.ziiyc.com/d/Xftp7p/Xftp-$versionp.exe#/setup.exe"
+ },
+ "checkver": {
+  "regex": "([\\d.]+)",
+  "url": "https://ghproxy.com/https://raw.githubusercontent.com/kkzzhizhou/scoop-zapps/master/versions/xftp7p.latest"
+ },
+ "depends": [
+  "sudo",
+  "vcredist2012",
+  "vcredist2019"
+ ],
+ "description": "\u4e1a\u754c\u6700\u5f3a\u5927\u7684SSH\u5ba2\u6237\u673a",
+ "hash": "fe9586c0cc6f25866df73ac255d71eae10cd9abf952aa8209b0a3b028bc264ab",
+ "homepage": "https://www.netsarang.com/zh/xftp/",
+ "installer": {
+  "keep": true,
+  "script": [
+   "Start-Process -Wait \"$dir\\setup.exe\" \"/b$dir /S /v/qn\" -Verb RunAs",
+   "Start-Process -Wait msiexec \"/i `\"$dir\\xftp` 7.msi`\" INSTALLDIR=`\"$dir`\" /qb\" -Verb RunAs"
+  ]
+ },
+ "post_install": [
+  "$null, $bucket = find_manifest($app)",
+  "$bucketdir = Find-BucketDirectory($bucket)",
+  "$userdir = $env:USERPROFILE.Replace('\\', '\\\\')",
+  "$escdir = $dir -replace \"\\\\\",\"\\\\\"",
+  "(gc \"$bucketdir\\..\\scripts\\xftp7p\\register.reg.templ\") | % { $_ -replace 'USERPROFILE', \"$userdir\" } | out-file -enc oem \"$dir\\register.reg\"",
+  "sudo regedit /s $dir\\register.reg"
+ ],
+ "shortcuts": [
+  [
+   "xftp.exe",
+   "xftp"
+  ]
+ ],
+ "uninstaller": {
+  "script": "Start-Process -Wait msiexec \"/x `\"$dir\\xftp` 7.msi`\" /qb\" -Verb RunAs"
+ },
+ "url": "https://scoop-zapps.ziiyc.com/d/Xftp7p/Xftp-7.0.0106p.exe#/setup.exe",
+ "version": "7.0.0106"
+}
