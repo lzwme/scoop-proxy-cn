@@ -45,7 +45,7 @@ const CONSTS = {
   ],
   filter: /audacity_installer|\.gitkeep|__/,
 };
-const descFilesCache = new Set();
+const destFilesCache = new Set();
 
 async function checkout(repo, dirName) {
   if (!fs.existsSync(CONSTS.tmpDir)) fs.mkdirSync(CONSTS.tmpDir);
@@ -60,7 +60,7 @@ async function checkout(repo, dirName) {
   }
 }
 
-async function syncDir(src, desc) {
+async function syncDir(src, dest) {
   let total = 0;
   const basename = path.basename(src);
 
@@ -69,8 +69,8 @@ async function syncDir(src, desc) {
   const stats = fs.statSync(src);
 
   if (stats.isFile()) {
-    if (descFilesCache.has(String(desc).toLowerCase())) return total;
-    descFilesCache.add(String(desc).toLowerCase());
+    if (destFilesCache.has(String(dest).toLowerCase())) return total;
+    destFilesCache.add(String(dest).toLowerCase());
 
     const ext = path.extname(src);
 
@@ -91,20 +91,20 @@ async function syncDir(src, desc) {
           .replaceAll('https://ghproxy.com/https://ghproxy.com', 'https://ghproxy.com');
       }
 
-      fs.writeFileSync(desc, content, 'utf8');
+      fs.writeFileSync(dest, content, 'utf8');
     } else {
-      fs.writeFileSync(desc, fs.readFileSync(src));
+      fs.writeFileSync(dest, fs.readFileSync(src));
     }
 
     return ++total;
   }
 
   if (stats.isDirectory()) {
-    if (!fs.existsSync(desc)) fs.mkdirSync(desc, { recursive: true });
+    if (!fs.existsSync(dest)) fs.mkdirSync(dest, { recursive: true });
 
     const list = fs.readdirSync(src);
     for (let filename of list) {
-      total += await syncDir(path.resolve(src, filename), path.resolve(desc, filename));
+      total += await syncDir(path.resolve(src, filename), path.resolve(dest, filename));
     }
   }
 
@@ -157,7 +157,7 @@ async function sync() {
     gitCommit();
   }
 
-  console.log('Done!', bucketFiles, scriptsFiles, `Total: ${descFilesCache.size}`);
+  console.log('Done!', bucketFiles, scriptsFiles, `Total: ${destFilesCache.size}`);
 }
 
 sync();
