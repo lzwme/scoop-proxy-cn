@@ -45,6 +45,7 @@ const CONSTS = {
   ],
   filter: /audacity_installer|\.gitkeep|__/,
 };
+const descFilesCache = new Set();
 
 async function checkout(repo, dirName) {
   if (!fs.existsSync(CONSTS.tmpDir)) fs.mkdirSync(CONSTS.tmpDir);
@@ -68,7 +69,8 @@ async function syncDir(src, desc) {
   const stats = fs.statSync(src);
 
   if (stats.isFile()) {
-    if (fs.existsSync(desc)) return total;
+    if (descFilesCache.has(String(desc).toLowerCase())) return total;
+    descFilesCache.add(String(desc).toLowerCase());
 
     const ext = path.extname(src);
 
@@ -155,7 +157,7 @@ async function sync() {
     gitCommit();
   }
 
-  console.log('Done!', bucketFiles, scriptsFiles);
+  console.log('Done!', bucketFiles, scriptsFiles, `Total: ${descFilesCache.size}`);
 }
 
 sync();
