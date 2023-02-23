@@ -578,8 +578,8 @@ $SCOOP_CONFIG_HOME = $env:XDG_CONFIG_HOME, "$env:USERPROFILE\.config" | Select-O
 $SCOOP_CONFIG_FILE = "$SCOOP_CONFIG_HOME\scoop\config.json"
 
 # TODO: Use a specific version of Scoop and the main bucket
-$SCOOP_PACKAGE_REPO = "https://github.com/ScoopInstaller/Scoop/archive/master.zip"
-$SCOOP_MAIN_BUCKET_REPO = "https://github.com/ScoopInstaller/Main/archive/master.zip"
+$SCOOP_PACKAGE_REPO = "https://ghproxy.com/https://github.com/ScoopInstaller/Scoop/archive/master.zip"
+$SCOOP_MAIN_BUCKET_REPO = "https://ghproxy.com/https://github.com/ScoopInstaller/Main/archive/master.zip"
 
 # Quit if anything goes wrong
 $oldErrorActionPreference = $ErrorActionPreference
