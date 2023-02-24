@@ -1,6 +1,7 @@
 import { execSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
+import { semverCompare } from './utils.mjs';
 
 const isDebug = process.argv.slice(2).includes('--debug');
 const isCI = process.env.SYNC != null;
@@ -45,7 +46,7 @@ const CONSTS = {
   ],
   filter: /audacity_installer|\.gitkeep|__/,
 };
-const destFilesCache = new Set();
+const destFilesCache = new Map();
 
 async function checkout(repo, dirName) {
   if (!fs.existsSync(CONSTS.tmpDir)) fs.mkdirSync(CONSTS.tmpDir);
@@ -67,17 +68,39 @@ async function syncDir(src, dest) {
   if (!fs.existsSync(src) || CONSTS.filter.test(basename)) return total;
 
   const stats = fs.statSync(src);
+  const ext = path.extname(src);
+  let content = '';
 
   if (stats.isFile()) {
-    if (destFilesCache.has(String(dest).toLowerCase())) return total;
-    destFilesCache.add(String(dest).toLowerCase());
-
-    const ext = path.extname(src);
+    const destLowerCase = String(dest).toLowerCase();
+    if (destFilesCache.has(destLowerCase)) {
+      if ('.json' === ext) {
+        dest = destFilesCache.get(destLowerCase); // 使用旧路径
+        try {
+          // json 文件比较版本
+          content = fs.readFileSync(src, 'utf8').trim();
+          const srcVersion = JSON.parse(content).version;
+          const destVersion = JSON.parse(fs.readFileSync(dest, 'utf8')).version;
+          if (semverCompare(srcVersion, destVersion) > -1) return total;
+          // console.debug(`[sync]overwide old version: \x1B[33m${srcVersion}\x1B[39m -> \x1B[32m${destVersion} \x1b[36m${src.slice(CONSTS.tmpDir.length + 1)}\x1b[39m`);
+        } catch (e) {
+          console.error('[error]try compare version failed!', src, dest, e.message);
+          return total;
+        }
+      } else {
+        return total;
+      }
+    }
+    destFilesCache.set(destLowerCase, dest);
 
     if (['.json', '.ps1', '.sh'].includes(ext)) {
-      let content = fs.readFileSync(src, 'utf8');
+      if (!content) content = fs.readFileSync(src, 'utf8');
 
-      if ('.json' === ext) content = content.replaceAll('\r\n', '\n');
+      if ('.json' === ext) {
+        try {
+          content = JSON.stringify(JSON.parse(content.trim()), null, 2);
+        } catch {}
+      }
 
       if (basename.startsWith('nodejs')) {
         content = content
@@ -87,7 +110,6 @@ async function syncDir(src, dest) {
           .replace(/(https:\/\/github\.com.+\/releases\/download\/)/img, 'https://ghproxy.com/$1')
           .replace(/(https:\/\/github\.com.+\/archive\/)/img, 'https://ghproxy.com/$1')
           .replace(/(https\:\/\/raw\.githubusercontent\.com)/img, 'https://ghproxy.com/$1')
-          // todo: nodejs、and more...
           .replaceAll('https://ghproxy.com/https://ghproxy.com', 'https://ghproxy.com');
       }
 
