@@ -1,37 +1,37 @@
 {
- "autoupdate": {
-  "url": "https://download.zerotier.com/dist/ZeroTier%20One.msi#/setup.msi_"
- },
- "checkver": {
-  "regex": "Version ([\\w.]+)",
-  "url": "https://github.com/zerotier/ZeroTierOne/blob/master/RELEASE-NOTES.md"
- },
- "description": "ZeroTier is a smart programmable Ethernet switch for planet Earth",
- "hash": "9203890d8533d341580600b93f3f5685240bdae10f4319748567dda1a69634fb",
- "homepage": "https://www.zerotier.com/",
- "installer": {
-  "script": [
-   "# if (!(is_admin)) {",
-   "#     error \"Administrator rights are required to install $app.\"",
-   "#     exit 1",
-   "# }",
-   "",
-   "Start-Process -Wait msiexec \"/i `\"$dir\\setup.msi_`\" /qn INSTALLFOLDER=`\"$dir`\"\" -Verb RunAs",
-   "# If the Corsair directory is empty, delete it",
-   "# Remove-Item \"$env:ProgramData\\Microsoft\\Windows\\Start Menu\\Corsair\\iCUE.lnk\"",
-   "# Remove-Item -ErrorAction Ignore \"$env:ProgramData\\Microsoft\\Windows\\Start Menu\\Corsair\""
-  ]
- },
- "uninstaller": {
-  "script": [
-   "# if (!(is_admin)) {",
-   "#     error \"Administrator rights are required to uninstall $app.\"",
-   "#     exit 1",
-   "# }",
-   "",
-   "Start-Process -Wait msiexec \"/x `\"$dir\\setup.msi_`\" /qn\" -Verb RunAs"
-  ]
- },
- "url": "https://download.zerotier.com/dist/ZeroTier%20One.msi#/setup.msi_",
- "version": "1.10.2"
+  "autoupdate": {
+    "url": "https://download.zerotier.com/dist/ZeroTier%20One.msi#/setup.msi_"
+  },
+  "checkver": {
+    "regex": "Version ([\\w.]+)",
+    "url": "https://github.com/zerotier/ZeroTierOne/blob/master/RELEASE-NOTES.md"
+  },
+  "description": "ZeroTier is a smart programmable Ethernet switch for planet Earth",
+  "hash": "9203890d8533d341580600b93f3f5685240bdae10f4319748567dda1a69634fb",
+  "homepage": "https://www.zerotier.com/",
+  "installer": {
+    "script": [
+      "# if (!(is_admin)) {",
+      "#     error \"Administrator rights are required to install $app.\"",
+      "#     exit 1",
+      "# }",
+      "",
+      "Start-Process -Wait msiexec \"/i `\"$dir\\setup.msi_`\" /qn INSTALLFOLDER=`\"$dir`\"\" -Verb RunAs",
+      "# If the Corsair directory is empty, delete it",
+      "# Remove-Item \"$env:ProgramData\\Microsoft\\Windows\\Start Menu\\Corsair\\iCUE.lnk\"",
+      "# Remove-Item -ErrorAction Ignore \"$env:ProgramData\\Microsoft\\Windows\\Start Menu\\Corsair\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "# if (!(is_admin)) {",
+      "#     error \"Administrator rights are required to uninstall $app.\"",
+      "#     exit 1",
+      "# }",
+      "",
+      "Start-Process -Wait msiexec \"/x `\"$dir\\setup.msi_`\" /qn\" -Verb RunAs"
+    ]
+  },
+  "url": "https://download.zerotier.com/dist/ZeroTier%20One.msi#/setup.msi_",
+  "version": "1.10.2"
 }

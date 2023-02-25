@@ -1,46 +1,46 @@
 {
-    "version": "112.0.5615.0-r1109002",
-    "description": "An open-source browser project that aims to build a safer, faster, and more stable way for all users to experience the web.",
-    "homepage": "https://www.chromium.org",
-    "license": "BSD-3-Clause",
-    "architecture": {
-        "64bit": {
-            "url": "https://storage.googleapis.com/chromium-browser-snapshots/Win_x64/1109002/chrome-win.zip",
-            "hash": "b62c73dddf3dca430b62e466e43e29df7aea6fd1274596bdd3d50c17132a73be"
-        }
-    },
-    "extract_dir": "chrome-win",
-    "bin": [
-        [
-            "chrome.exe",
-            "chromium-dev",
-            "--user-data-dir=\"$dir\\User Data\""
-        ]
-    ],
-    "shortcuts": [
-        [
-            "chrome.exe",
-            "Chromium (Dev)",
-            "--user-data-dir=\"$dir\\User Data\""
-        ]
-    ],
-    "post_install": [
-        "if (!(Test-Path \"$dir\\User Data\\*\") -and (Test-Path \"$env:LocalAppData\\Chromium\\User Data\")) {",
-        "    info '[Portable Mode]: Copying user data...'",
-        "    Copy-Item \"$env:LocalAppData\\Chromium\\User Data\\*\" \"$dir\\User Data\" -Recurse",
-        "}"
-    ],
-    "persist": "User Data",
-    "checkver": {
-        "url": "https://chromium.woolyss.com/api/?os=windows&bit=64&editor=%22The%20Chromium%20Authors%22&out=string",
-        "regex": "version=(?<chromeVersion>[\\d.]+);revision=(?<build>[\\d]+)",
-        "replace": "${chromeVersion}-r${build}"
-    },
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://storage.googleapis.com/chromium-browser-snapshots/Win_x64/$matchBuild/chrome-win.zip"
-            }
-        }
+  "version": "112.0.5615.0-r1109252",
+  "description": "An open-source browser project that aims to build a safer, faster, and more stable way for all users to experience the web.",
+  "homepage": "https://www.chromium.org",
+  "license": "BSD-3-Clause",
+  "architecture": {
+    "64bit": {
+      "url": "https://storage.googleapis.com/chromium-browser-snapshots/Win_x64/1109252/chrome-win.zip",
+      "hash": "e8dd1ad400cd1a99627b91f455f0ad9e3d16442e8af0adfa2a58a806b9985297"
     }
+  },
+  "extract_dir": "chrome-win",
+  "bin": [
+    [
+      "chrome.exe",
+      "chromium-dev",
+      "--user-data-dir=\"$dir\\User Data\""
+    ]
+  ],
+  "shortcuts": [
+    [
+      "chrome.exe",
+      "Chromium (Dev)",
+      "--user-data-dir=\"$dir\\User Data\""
+    ]
+  ],
+  "post_install": [
+    "if (!(Test-Path \"$dir\\User Data\\*\") -and (Test-Path \"$env:LocalAppData\\Chromium\\User Data\")) {",
+    "    info '[Portable Mode]: Copying user data...'",
+    "    Copy-Item \"$env:LocalAppData\\Chromium\\User Data\\*\" \"$dir\\User Data\" -Recurse",
+    "}"
+  ],
+  "persist": "User Data",
+  "checkver": {
+    "url": "https://chromium.woolyss.com/api/?os=windows&bit=64&editor=%22The%20Chromium%20Authors%22&out=string",
+    "regex": "version=(?<chromeVersion>[\\d.]+);revision=(?<build>[\\d]+)",
+    "replace": "${chromeVersion}-r${build}"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://storage.googleapis.com/chromium-browser-snapshots/Win_x64/$matchBuild/chrome-win.zip"
+      }
+    }
+  }
 }

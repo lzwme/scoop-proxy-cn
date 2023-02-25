@@ -1,24 +1,24 @@
 {
-    "version": "6.0",
-    "description": "Safely compacts the size of the ever-growing WSL vhdx images.",
-    "homepage": "https://github.com/okibcn/wslcompact",
-    "license": "GPL-3.0-only",
-    "notes": [
-        "Type wslcompact -h before using it for the first time to learn how it works.",
-        "Visit https://github.com/okibcn/wslcompact for more information."
-    ],
-    "url": "https://ghproxy.com/https://github.com/okibcn/wslcompact/releases/download/6.0/WslCompact-v6.0.zip",
-    "hash": "d5746c149fa2a64456e7b10a04f6cdd42a10b6eeb3e2e96d0eb6ee131bdae54c",
-    "bin": "wslcompact.ps1",
-    "pre_install": [
-        "(get-content \"$dir/wslcompact/WslCompact.psm1\") -replace '^Export.*', 'WslCompact @args' | Set-Content \"$dir/wslcompact.ps1\"",
-        "Remove-Item \"$dir/wslcompact\" -Recurse -Force"
-    ],
-    "checkver": {
-        "github": "https://api.github.com/repos/okibcn/wslcompact",
-        "regex": "v([\\d\\.\\-]+)\\.zip"
-    },
-    "autoupdate": {
-        "url": "https://ghproxy.com/https://github.com/okibcn/wslcompact/releases/download/$version/WslCompact-v$version.zip"
-    }
+  "version": "6.0",
+  "description": "Safely compacts the size of the ever-growing WSL vhdx images.",
+  "homepage": "https://github.com/okibcn/wslcompact",
+  "license": "GPL-3.0-only",
+  "notes": [
+    "Type wslcompact -h before using it for the first time to learn how it works.",
+    "Visit https://github.com/okibcn/wslcompact for more information."
+  ],
+  "url": "https://ghproxy.com/https://github.com/okibcn/wslcompact/releases/download/6.0/WslCompact-v6.0.zip",
+  "hash": "d5746c149fa2a64456e7b10a04f6cdd42a10b6eeb3e2e96d0eb6ee131bdae54c",
+  "bin": "wslcompact.ps1",
+  "pre_install": [
+    "(get-content \"$dir/wslcompact/WslCompact.psm1\") -replace '^Export.*', 'WslCompact @args' | Set-Content \"$dir/wslcompact.ps1\"",
+    "Remove-Item \"$dir/wslcompact\" -Recurse -Force"
+  ],
+  "checkver": {
+    "github": "https://api.github.com/repos/okibcn/wslcompact",
+    "regex": "v([\\d\\.\\-]+)\\.zip"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/okibcn/wslcompact/releases/download/$version/WslCompact-v$version.zip"
+  }
 }

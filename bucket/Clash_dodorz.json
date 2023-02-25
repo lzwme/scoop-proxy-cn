@@ -1,34 +1,34 @@
 {
-    "version": "1.13.0",
-    "description": "A rule-based tunnel",
-    "homepage": "https://github.com/Dreamacro/clash",
-    "license": "MIT",
-    "architecture": {
-        "64bit": {
-            "url": "https://ghproxy.com/https://github.com/Dreamacro/clash/releases/download/v1.13.0/clash-windows-amd64-v1.13.0.zip",
-            "hash": "8189a1d99547ab95c5abd5d69ca8a71811313bcce27e318a47a5fe1d981c7d10",
-            "installer": {
-                "script": "Rename-Item \"$dir\\clash-windows-amd64.exe\" \"$dir\\clash.exe\""
-            }
-        },
-        "32bit": {
-            "url": "https://ghproxy.com/https://github.com/Dreamacro/clash/releases/download/v1.13.0/clash-windows-386-v1.13.0.zip",
-            "hash": "0a0625c909ef5acc528c9eeeafd0985a4daf2cae430c38011fcfd1a7ff4ade56",
-            "installer": {
-                "script": "Rename-Item \"$dir\\clash-windows-386.exe\" \"$dir\\clash.exe\""
-            }
-        }
+  "version": "1.13.0",
+  "description": "A rule-based tunnel",
+  "homepage": "https://github.com/Dreamacro/clash",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/Dreamacro/clash/releases/download/v1.13.0/clash-windows-amd64-v1.13.0.zip",
+      "hash": "8189a1d99547ab95c5abd5d69ca8a71811313bcce27e318a47a5fe1d981c7d10",
+      "installer": {
+        "script": "Rename-Item \"$dir\\clash-windows-amd64.exe\" \"$dir\\clash.exe\""
+      }
     },
-    "bin": "clash.exe",
-    "checkver": "github",
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://ghproxy.com/https://github.com/Dreamacro/clash/releases/download/v$version/clash-windows-amd64-v$version.zip"
-            },
-            "32bit": {
-                "url": "https://ghproxy.com/https://github.com/Dreamacro/clash/releases/download/v$version/clash-windows-386-v$version.zip"
-            }
-        }
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/Dreamacro/clash/releases/download/v1.13.0/clash-windows-386-v1.13.0.zip",
+      "hash": "0a0625c909ef5acc528c9eeeafd0985a4daf2cae430c38011fcfd1a7ff4ade56",
+      "installer": {
+        "script": "Rename-Item \"$dir\\clash-windows-386.exe\" \"$dir\\clash.exe\""
+      }
     }
+  },
+  "bin": "clash.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/Dreamacro/clash/releases/download/v$version/clash-windows-amd64-v$version.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/Dreamacro/clash/releases/download/v$version/clash-windows-386-v$version.zip"
+      }
+    }
+  }
 }

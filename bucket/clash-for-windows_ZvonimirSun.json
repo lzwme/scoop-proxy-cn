@@ -1,35 +1,35 @@
 {
-    "homepage": "https://docs.cfw.lbyczf.com/",
-    "description": "A Windows GUI based on Clash https://docs.cfw.lbyczf.com/",
-    "version": "0.20.16",
-    "license": "MIT",
-    "architecture": {
-        "64bit": {
-            "url": "https://ghproxy.com/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/0.20.16/Clash.for.Windows.Setup.0.20.16.exe#/clash.7z",
-            "hash": "ae578b4c93045248a8dcb26546fbe7649c0c40be938d4fe255e84d6491199f28",
-            "installer": {
-                "script": [
-                    "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
-                    "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall*\" -Force -Recurse"
-                ]
-            }
-        }
-    },
-    "shortcuts": [
-        [
-            "Clash for Windows.exe",
-            "Clash for Windows"
+  "homepage": "https://docs.cfw.lbyczf.com/",
+  "description": "A Windows GUI based on Clash https://docs.cfw.lbyczf.com/",
+  "version": "0.20.16",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/0.20.16/Clash.for.Windows.Setup.0.20.16.exe#/clash.7z",
+      "hash": "ae578b4c93045248a8dcb26546fbe7649c0c40be938d4fe255e84d6491199f28",
+      "installer": {
+        "script": [
+          "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+          "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall*\" -Force -Recurse"
         ]
-    ],
-    "persist": "data",
-    "checkver": {
-        "github": "https://github.com/Fndroid/clash_for_windows_pkg"
-    },
-    "autoupdate": {
-        "url": "https://ghproxy.com/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/$version/Clash.for.Windows.Setup.$version.exe#/clash.7z",
-        "hash": {
-            "url": "$baseurl/sha256sum",
-            "regex": "^exe: $sha256"
-        }
+      }
     }
+  },
+  "shortcuts": [
+    [
+      "Clash for Windows.exe",
+      "Clash for Windows"
+    ]
+  ],
+  "persist": "data",
+  "checkver": {
+    "github": "https://github.com/Fndroid/clash_for_windows_pkg"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/$version/Clash.for.Windows.Setup.$version.exe#/clash.7z",
+    "hash": {
+      "url": "$baseurl/sha256sum",
+      "regex": "^exe: $sha256"
+    }
+  }
 }

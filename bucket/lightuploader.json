@@ -1,52 +1,52 @@
 {
- "architecture": {
-  "32bit": {
-   "hash": "fc17bb5c0e6d38d8e8bc026b095d54883c8d9b5a74b447f1f14fd39c529c17a6",
-   "url": "https://ghproxy.com/https://github.com/gaowanliang/LightUploader/releases/download/v2.0.2-fix2/LightUploader_Windows_i386.zip"
-  },
-  "64bit": {
-   "hash": "91eee2632b7e1b8e2ba0ce6d877814d78e98c7703e66e015ee660d7ebdab0d9e",
-   "url": "https://ghproxy.com/https://github.com/gaowanliang/LightUploader/releases/download/v2.0.2-fix2/LightUploader_Windows_x86_64.zip"
-  }
- },
- "autoupdate": {
   "architecture": {
-   "32bit": {
-    "url": "https://ghproxy.com/https://github.com/gaowanliang/LightUploader/releases/download/v$version/LightUploader_Windows_i386.zip"
-   },
-   "64bit": {
-    "url": "https://ghproxy.com/https://github.com/gaowanliang/LightUploader/releases/download/v$version/LightUploader_Windows_x86_64.zip"
-   }
+    "32bit": {
+      "hash": "fc17bb5c0e6d38d8e8bc026b095d54883c8d9b5a74b447f1f14fd39c529c17a6",
+      "url": "https://ghproxy.com/https://github.com/gaowanliang/LightUploader/releases/download/v2.0.2-fix2/LightUploader_Windows_i386.zip"
+    },
+    "64bit": {
+      "hash": "91eee2632b7e1b8e2ba0ce6d877814d78e98c7703e66e015ee660d7ebdab0d9e",
+      "url": "https://ghproxy.com/https://github.com/gaowanliang/LightUploader/releases/download/v2.0.2-fix2/LightUploader_Windows_x86_64.zip"
+    }
   },
-  "hash": {
-   "mode": "extract",
-   "regex": "$sha256\\s+$basename",
-   "url": "https://ghproxy.com/https://github.com/gaowanliang/LightUploader/releases/download/v$version/checksums.txt"
-  }
- },
- "bin": "LightUploader.exe",
- "checkver": {
-  "jsonpath": "$.tag_name",
-  "regex": "v(.*)",
-  "url": "https://api.github.com/repos/gaowanliang/LightUploader/releases/latest"
- },
- "description": "A lightweight, universal cloud drive upload tool for all platforms.",
- "homepage": "https://github.com/gaowanliang/LightUploader",
- "license": {
-  "identifier": "MIT",
-  "url": "https://github.com/gaowanliang/LightUploader/blob/main/LICENSE"
- },
- "pre_install": [
-  "if (Test-Path \"$persist_dir\\*.json\") {",
-  "    Get-ChildItem \"$persist_dir\\\" | ForEach-Object {  Copy-Item \"$persist_dir\\$($_.Name)\" \"$dir\\\" -Force | Out-Null }",
-  "}"
- ],
- "uninstaller": {
-  "script": [
-   "if (Test-Path \"$dir\\*.json\") {",
-   "    Get-ChildItem \"$dir\\\" -Exclude *install.json, *manifest.json | ForEach-Object {  Copy-Item \"$dir\\$($_.Name)\" \"$persist_dir\\\" -Force | Out-Null }",
-   "}"
-  ]
- },
- "version": "2.0.2-fix2"
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/gaowanliang/LightUploader/releases/download/v$version/LightUploader_Windows_i386.zip"
+      },
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/gaowanliang/LightUploader/releases/download/v$version/LightUploader_Windows_x86_64.zip"
+      }
+    },
+    "hash": {
+      "mode": "extract",
+      "regex": "$sha256\\s+$basename",
+      "url": "https://ghproxy.com/https://github.com/gaowanliang/LightUploader/releases/download/v$version/checksums.txt"
+    }
+  },
+  "bin": "LightUploader.exe",
+  "checkver": {
+    "jsonpath": "$.tag_name",
+    "regex": "v(.*)",
+    "url": "https://api.github.com/repos/gaowanliang/LightUploader/releases/latest"
+  },
+  "description": "A lightweight, universal cloud drive upload tool for all platforms.",
+  "homepage": "https://github.com/gaowanliang/LightUploader",
+  "license": {
+    "identifier": "MIT",
+    "url": "https://github.com/gaowanliang/LightUploader/blob/main/LICENSE"
+  },
+  "pre_install": [
+    "if (Test-Path \"$persist_dir\\*.json\") {",
+    "    Get-ChildItem \"$persist_dir\\\" | ForEach-Object {  Copy-Item \"$persist_dir\\$($_.Name)\" \"$dir\\\" -Force | Out-Null }",
+    "}"
+  ],
+  "uninstaller": {
+    "script": [
+      "if (Test-Path \"$dir\\*.json\") {",
+      "    Get-ChildItem \"$dir\\\" -Exclude *install.json, *manifest.json | ForEach-Object {  Copy-Item \"$dir\\$($_.Name)\" \"$persist_dir\\\" -Force | Out-Null }",
+      "}"
+    ]
+  },
+  "version": "2.0.2-fix2"
 }

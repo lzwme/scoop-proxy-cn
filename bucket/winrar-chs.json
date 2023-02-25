@@ -1,59 +1,59 @@
 {
- "architecture": {
-  "32bit": {
-   "hash": "8535906acf1145a057b29d7020f849210a3fa7da287557d6b730d0a76ba07b01",
-   "url": "https://www.win-rar.com/fileadmin/winrar-versions/winrar/winrar-x32-611sc.exe#/dl.7z"
-  },
-  "64bit": {
-   "hash": "f6ee6a90ebc33b5babe2c8bef23a1344612c6fabf33ac35a523f1583a967d8a6",
-   "url": "https://www.win-rar.com/fileadmin/winrar-versions/winrar/winrar-x64-611sc.exe#/dl.7z"
-  }
- },
- "autoupdate": {
   "architecture": {
-   "32bit": {
-    "url": "https://www.win-rar.com/fileadmin/winrar-versions/winrar/winrar-x32-$cleanVersionsc.exe#/dl.7z"
-   },
-   "64bit": {
-    "url": "https://www.win-rar.com/fileadmin/winrar-versions/winrar/winrar-x64-$cleanVersionsc.exe#/dl.7z"
-   }
-  }
- },
- "bin": [
-  "Rar.exe",
-  "UnRAR.exe",
-  "WinRAR.exe"
- ],
- "checkver": "WinRAR ([\\d.]+)",
- "description": "WinRAR is a powerful archive manager. It can backup your data and reduce the size of email attachments, decompress RAR, ZIP and other files downloaded from Internet and create new archives in RAR and ZIP file format.",
- "homepage": "https://www.win-rar.com",
- "installer": {
-  "script": [
-   "Copy-Item \"$bucketsdir\\tian\\scripts\\winrar\\Windows_11_x64_.theme.rar\" \"$dir\\Windows_11_x64_.theme.rar\" -ErrorAction 'SilentlyContinue' -Force | Out-Null",
-   "Copy-Item \"$bucketsdir\\tian\\scripts\\winrar\\Win11_kentaP.2.0_64x.theme.rar\" \"$dir\\Win11_kentaP.2.0_64x.theme.rar\" -ErrorAction 'SilentlyContinue' -Force | Out-Null",
-   "Copy-Item \"$bucketsdir\\tian\\scripts\\winrar\\Win11_DARK.kentaP.2.0_64x.theme.rar\" \"$dir\\Win11_DARK.kentaP.2.0_64x.theme.rar\" -ErrorAction 'SilentlyContinue' -Force | Out-Null",
-   "Copy-Item \"$bucketsdir\\tian\\scripts\\winrar\\winrar-custom-settings.reg\" \"$dir\\winrar-custom-settings.reg\" -ErrorAction 'SilentlyContinue' -Force | Out-Null",
-   "sudo regedit /s \"$dir\\winrar-custom-settings.reg\""
-  ]
- },
- "license": {
-  "identifier": "Shareware",
-  "url": "https://www.win-rar.com/gtb_priv.html?&L=0"
- },
- "notes": [
-  "Set up context menu within settings window.",
-  "You can find themes for WinRAR: <https://www.rarlab.com/themes.htm>",
-  "- Windows 11 Winrar Theme(by InfinityBrazil): '$dir\\Windows_11_x64_.theme.rar'",
-  "- Windows 11 WinRAR theme 2.0(by kentapainter): '$dir\\Win11_kentaP.2.0_64x.theme.rar'",
-  "- Windows 11 WinRAR theme darkmode(by kentapainter): '$dir\\Win11_DARK.kentaP.2.0_64x.theme.rar'"
- ],
- "persist": "rarreg.key",
- "pre_install": "if (!(Test-Path \"$persist_dir\\rarreg.key\")) { Copy-Item \"$bucketsdir\\tian\\scripts\\winrar\\rarreg.key\" \"$dir\\rarreg.key\" -ErrorAction 'SilentlyContinue' -Force | Out-Null }",
- "shortcuts": [
-  [
-   "WinRAR.exe",
-   "WinRAR"
-  ]
- ],
- "version": "6.11"
+    "32bit": {
+      "hash": "8535906acf1145a057b29d7020f849210a3fa7da287557d6b730d0a76ba07b01",
+      "url": "https://www.win-rar.com/fileadmin/winrar-versions/winrar/winrar-x32-611sc.exe#/dl.7z"
+    },
+    "64bit": {
+      "hash": "f6ee6a90ebc33b5babe2c8bef23a1344612c6fabf33ac35a523f1583a967d8a6",
+      "url": "https://www.win-rar.com/fileadmin/winrar-versions/winrar/winrar-x64-611sc.exe#/dl.7z"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://www.win-rar.com/fileadmin/winrar-versions/winrar/winrar-x32-$cleanVersionsc.exe#/dl.7z"
+      },
+      "64bit": {
+        "url": "https://www.win-rar.com/fileadmin/winrar-versions/winrar/winrar-x64-$cleanVersionsc.exe#/dl.7z"
+      }
+    }
+  },
+  "bin": [
+    "Rar.exe",
+    "UnRAR.exe",
+    "WinRAR.exe"
+  ],
+  "checkver": "WinRAR ([\\d.]+)",
+  "description": "WinRAR is a powerful archive manager. It can backup your data and reduce the size of email attachments, decompress RAR, ZIP and other files downloaded from Internet and create new archives in RAR and ZIP file format.",
+  "homepage": "https://www.win-rar.com",
+  "installer": {
+    "script": [
+      "Copy-Item \"$bucketsdir\\tian\\scripts\\winrar\\Windows_11_x64_.theme.rar\" \"$dir\\Windows_11_x64_.theme.rar\" -ErrorAction 'SilentlyContinue' -Force | Out-Null",
+      "Copy-Item \"$bucketsdir\\tian\\scripts\\winrar\\Win11_kentaP.2.0_64x.theme.rar\" \"$dir\\Win11_kentaP.2.0_64x.theme.rar\" -ErrorAction 'SilentlyContinue' -Force | Out-Null",
+      "Copy-Item \"$bucketsdir\\tian\\scripts\\winrar\\Win11_DARK.kentaP.2.0_64x.theme.rar\" \"$dir\\Win11_DARK.kentaP.2.0_64x.theme.rar\" -ErrorAction 'SilentlyContinue' -Force | Out-Null",
+      "Copy-Item \"$bucketsdir\\tian\\scripts\\winrar\\winrar-custom-settings.reg\" \"$dir\\winrar-custom-settings.reg\" -ErrorAction 'SilentlyContinue' -Force | Out-Null",
+      "sudo regedit /s \"$dir\\winrar-custom-settings.reg\""
+    ]
+  },
+  "license": {
+    "identifier": "Shareware",
+    "url": "https://www.win-rar.com/gtb_priv.html?&L=0"
+  },
+  "notes": [
+    "Set up context menu within settings window.",
+    "You can find themes for WinRAR: <https://www.rarlab.com/themes.htm>",
+    "- Windows 11 Winrar Theme(by InfinityBrazil): '$dir\\Windows_11_x64_.theme.rar'",
+    "- Windows 11 WinRAR theme 2.0(by kentapainter): '$dir\\Win11_kentaP.2.0_64x.theme.rar'",
+    "- Windows 11 WinRAR theme darkmode(by kentapainter): '$dir\\Win11_DARK.kentaP.2.0_64x.theme.rar'"
+  ],
+  "persist": "rarreg.key",
+  "pre_install": "if (!(Test-Path \"$persist_dir\\rarreg.key\")) { Copy-Item \"$bucketsdir\\tian\\scripts\\winrar\\rarreg.key\" \"$dir\\rarreg.key\" -ErrorAction 'SilentlyContinue' -Force | Out-Null }",
+  "shortcuts": [
+    [
+      "WinRAR.exe",
+      "WinRAR"
+    ]
+  ],
+  "version": "6.11"
 }

@@ -1,119 +1,119 @@
 {
- "architecture": {
-  "64bit": {
-   "extract_dir": "v2rayA-744282e1b2186a65bbfac21ecfaf83a21e8f6ece",
-   "hash": "e5fdebd9dd2130bbecc092c4dbdd3f7b831ee4d86e1ffeef91392f4f2b498b5d",
-   "url": "https://ghproxy.com/https://github.com/v2rayA/v2rayA/archive/2f394f0e9d80240bdab7ca81244f5b223a56e557.zip"
-  }
- },
- "autoupdate": {
-  "extract_dir": "v2rayA-$matchSha",
-  "url": "https://ghproxy.com/https://github.com/v2rayA/v2rayA/archive/$matchSha.zip"
- },
- "bin": [
-  [
-   "v2rayaWin-git.exe",
-   "v2raya-git",
-   "--lite"
+  "architecture": {
+    "64bit": {
+      "extract_dir": "v2rayA-744282e1b2186a65bbfac21ecfaf83a21e8f6ece",
+      "hash": "e5fdebd9dd2130bbecc092c4dbdd3f7b831ee4d86e1ffeef91392f4f2b498b5d",
+      "url": "https://ghproxy.com/https://github.com/v2rayA/v2rayA/archive/2f394f0e9d80240bdab7ca81244f5b223a56e557.zip"
+    }
+  },
+  "autoupdate": {
+    "extract_dir": "v2rayA-$matchSha",
+    "url": "https://ghproxy.com/https://github.com/v2rayA/v2rayA/archive/$matchSha.zip"
+  },
+  "bin": [
+    [
+      "v2rayaWin-git.exe",
+      "v2raya-git",
+      "--lite"
+    ],
+    [
+      "v2rayaWin-git.exe",
+      "v2rayaWin-git"
+    ],
+    "start-v2raya-git.ps1",
+    "stop-v2raya-git.ps1"
   ],
-  [
-   "v2rayaWin-git.exe",
-   "v2rayaWin-git"
+  "checkver": {
+    "regex": "(?s)>(\\d+)-(\\d+)-(\\d+)T.*?/(?<sha>(?<short>[0-9a-f]{7})[0-9a-f]{33})",
+    "replace": "0.${1}.${2}.${3}.${short}",
+    "url": "https://github.com/v2rayA/v2rayA/commits/master.atom"
+  },
+  "depends": [
+    "v2ray",
+    "yarn",
+    "nodejs-lts",
+    "go"
   ],
-  "start-v2raya-git.ps1",
-  "stop-v2raya-git.ps1"
- ],
- "checkver": {
-  "regex": "(?s)>(\\d+)-(\\d+)-(\\d+)T.*?/(?<sha>(?<short>[0-9a-f]{7})[0-9a-f]{33})",
-  "replace": "0.${1}.${2}.${3}.${short}",
-  "url": "https://github.com/v2rayA/v2rayA/commits/master.atom"
- },
- "depends": [
-  "v2ray",
-  "yarn",
-  "nodejs-lts",
-  "go"
- ],
- "description": "v2rayA is a V2Ray client supporting global transparent proxy(Linux Only), compatible with SS, SSR, Trojan(trojan-go), PingTunnel protocols.",
- "env_set": {
-  "V2RAYA_V2RAY_BIN": "$(scoop prefix v2ray)\\v2ray.exe"
- },
- "homepage": "https://github.com/v2rayA/v2raya",
- "installer": {
-  "script": [
-   "Push-Location $dir",
-   "# zip web files",
-   "Function Gzip-File([ValidateScript({Test-Path $_})][string]$File){",
-   "    $srcFile = Get-Item -Path $File",
-   "    $newFileName = \"$($srcFile.FullName).gz\"",
-   "    try",
-   "    {",
-   "        $srcFileStream = New-Object System.IO.FileStream($srcFile.FullName,([IO.FileMode]::Open),([IO.FileAccess]::Read),([IO.FileShare]::Read))",
-   "        $dstFileStream = New-Object System.IO.FileStream($newFileName,([IO.FileMode]::Create),([IO.FileAccess]::Write),([IO.FileShare]::None))",
-   "        $gzip = New-Object System.IO.Compression.GZipStream($dstFileStream,[System.IO.Compression.CompressionMode]::Compress)",
-   "        $srcFileStream.CopyTo($gzip)",
-   "    } ",
-   "    catch",
-   "    {",
-   "        Write-Host \"$_.Exception.Message\" -ForegroundColor Red",
-   "    }",
-   "    finally",
-   "    {",
-   "        $gzip.Dispose()",
-   "        $srcFileStream.Dispose()",
-   "        $dstFileStream.Dispose()",
-   "    }",
-   "}",
-   "# Disable CGO",
-   "${env:CGO_ENABLED} = \"0\"",
-   "# Set AMD64 CPU Version",
-   "# See https://go.dev/doc/go1.18 for more informations",
-   "${env:GOAMD64} = \"v2\"",
-   "## Set yarn's output path",
-   "${env:OUTPUT_DIR} = \"$dir/service/server/router/web\"",
-   "# Build v2rayA",
-   "Set-Location -Path \"$dir/gui\"",
-   "yarn; yarn build",
-   "Get-ChildItem \"$dir/service/server/router/web\" -recurse |Where-Object{$_.PSIsContainer -eq $False}|ForEach-Object -Process{",
-   "    if($_.Extension -ne \".png\" -and $_.Extension -ne \".gz\" -and $_.Name -ne \"index.html\"){",
-   "        Gzip-File($_.FullName)",
-   "        Remove-Item -Path $_.FullName",
-   "    }",
-   "}",
-   "$versions = 'Unstable-' + $version",
-   "Set-Location -Path \"$dir/service\"",
-   "go build -ldflags \"-X github.com/v2rayA/v2rayA/conf.Version=$versions -s -w\" -o \"$dir/v2rayaWin-git.exe\"",
-   "Pop-Location"
-  ]
- },
- "license": {
-  "identifier": "AGPL-3.0-only",
-  "url": "https://github.com/v2rayA/v2rayA/raw/master/LICENSE"
- },
- "notes": "If you want to run both 'v2raya' and 'v2raya-git', follow the official docs to change the ports.",
- "post_install": [
-  "Set-Content \"$dir\\start-v2raya-git.ps1\" -Value 'Start-Process \"$(scoop prefix v2raya)\\v2rayaWin-git.exe\" -ArgumentList @(\"--lite\", \"--log-file v2raya.log\") -WorkingDirectory \"$env:LocalAppData\\Temp\" -WindowStyle Hidden' -Encoding Ascii",
-  "Set-Content \"$dir\\stop-v2raya-git.ps1\" -Value 'Stop-Process -Name v2rayawin-git -ErrorAction Ignore -Force' -Encoding Ascii"
- ],
- "pre_install": [
-  "info '[Portable Mode]: Copying user data...'",
-  "if (Test-Path \"$persist_dir\\*\") {",
-  "    ensure \"$env:UserProfile\\.config\\v2raya\" | Out-Null",
-  "    Copy-Item \"$persist_dir\\*\" \"$env:UserProfile\\.config\\v2raya\\\" -Recurse -Force | Out-Null",
-  "}"
- ],
- "suggest": {
-  "v2ray-rules-dat": "meta/v2ray-rules-dat"
- },
- "uninstaller": {
-  "script": [
-   "info '[Portable Mode]: Backing up user data...'",
-   "if (Test-Path \"$env:UserProfile\\.config\\v2raya\\*\") {",
-   "    ensure \"$persist_dir\" | Out-Null",
-   "    Copy-Item \"$env:UserProfile\\.config\\v2raya\\*\" \"$persist_dir\\\" -Recurse -Force | Out-Null",
-   "}",
-   "#Remove-Item \"$env:UserProfile\\.config\\v2raya\" -ErrorAction 'SilentlyContinue' -Force -Recurse"
-  ]
- },
- "version": "0.2022.11.06.2f394f0"
+  "description": "v2rayA is a V2Ray client supporting global transparent proxy(Linux Only), compatible with SS, SSR, Trojan(trojan-go), PingTunnel protocols.",
+  "env_set": {
+    "V2RAYA_V2RAY_BIN": "$(scoop prefix v2ray)\\v2ray.exe"
+  },
+  "homepage": "https://github.com/v2rayA/v2raya",
+  "installer": {
+    "script": [
+      "Push-Location $dir",
+      "# zip web files",
+      "Function Gzip-File([ValidateScript({Test-Path $_})][string]$File){",
+      "    $srcFile = Get-Item -Path $File",
+      "    $newFileName = \"$($srcFile.FullName).gz\"",
+      "    try",
+      "    {",
+      "        $srcFileStream = New-Object System.IO.FileStream($srcFile.FullName,([IO.FileMode]::Open),([IO.FileAccess]::Read),([IO.FileShare]::Read))",
+      "        $dstFileStream = New-Object System.IO.FileStream($newFileName,([IO.FileMode]::Create),([IO.FileAccess]::Write),([IO.FileShare]::None))",
+      "        $gzip = New-Object System.IO.Compression.GZipStream($dstFileStream,[System.IO.Compression.CompressionMode]::Compress)",
+      "        $srcFileStream.CopyTo($gzip)",
+      "    } ",
+      "    catch",
+      "    {",
+      "        Write-Host \"$_.Exception.Message\" -ForegroundColor Red",
+      "    }",
+      "    finally",
+      "    {",
+      "        $gzip.Dispose()",
+      "        $srcFileStream.Dispose()",
+      "        $dstFileStream.Dispose()",
+      "    }",
+      "}",
+      "# Disable CGO",
+      "${env:CGO_ENABLED} = \"0\"",
+      "# Set AMD64 CPU Version",
+      "# See https://go.dev/doc/go1.18 for more informations",
+      "${env:GOAMD64} = \"v2\"",
+      "## Set yarn's output path",
+      "${env:OUTPUT_DIR} = \"$dir/service/server/router/web\"",
+      "# Build v2rayA",
+      "Set-Location -Path \"$dir/gui\"",
+      "yarn; yarn build",
+      "Get-ChildItem \"$dir/service/server/router/web\" -recurse |Where-Object{$_.PSIsContainer -eq $False}|ForEach-Object -Process{",
+      "    if($_.Extension -ne \".png\" -and $_.Extension -ne \".gz\" -and $_.Name -ne \"index.html\"){",
+      "        Gzip-File($_.FullName)",
+      "        Remove-Item -Path $_.FullName",
+      "    }",
+      "}",
+      "$versions = 'Unstable-' + $version",
+      "Set-Location -Path \"$dir/service\"",
+      "go build -ldflags \"-X github.com/v2rayA/v2rayA/conf.Version=$versions -s -w\" -o \"$dir/v2rayaWin-git.exe\"",
+      "Pop-Location"
+    ]
+  },
+  "license": {
+    "identifier": "AGPL-3.0-only",
+    "url": "https://github.com/v2rayA/v2rayA/raw/master/LICENSE"
+  },
+  "notes": "If you want to run both 'v2raya' and 'v2raya-git', follow the official docs to change the ports.",
+  "post_install": [
+    "Set-Content \"$dir\\start-v2raya-git.ps1\" -Value 'Start-Process \"$(scoop prefix v2raya)\\v2rayaWin-git.exe\" -ArgumentList @(\"--lite\", \"--log-file v2raya.log\") -WorkingDirectory \"$env:LocalAppData\\Temp\" -WindowStyle Hidden' -Encoding Ascii",
+    "Set-Content \"$dir\\stop-v2raya-git.ps1\" -Value 'Stop-Process -Name v2rayawin-git -ErrorAction Ignore -Force' -Encoding Ascii"
+  ],
+  "pre_install": [
+    "info '[Portable Mode]: Copying user data...'",
+    "if (Test-Path \"$persist_dir\\*\") {",
+    "    ensure \"$env:UserProfile\\.config\\v2raya\" | Out-Null",
+    "    Copy-Item \"$persist_dir\\*\" \"$env:UserProfile\\.config\\v2raya\\\" -Recurse -Force | Out-Null",
+    "}"
+  ],
+  "suggest": {
+    "v2ray-rules-dat": "meta/v2ray-rules-dat"
+  },
+  "uninstaller": {
+    "script": [
+      "info '[Portable Mode]: Backing up user data...'",
+      "if (Test-Path \"$env:UserProfile\\.config\\v2raya\\*\") {",
+      "    ensure \"$persist_dir\" | Out-Null",
+      "    Copy-Item \"$env:UserProfile\\.config\\v2raya\\*\" \"$persist_dir\\\" -Recurse -Force | Out-Null",
+      "}",
+      "#Remove-Item \"$env:UserProfile\\.config\\v2raya\" -ErrorAction 'SilentlyContinue' -Force -Recurse"
+    ]
+  },
+  "version": "0.2022.11.06.2f394f0"
 }

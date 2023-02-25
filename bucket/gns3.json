@@ -1,51 +1,51 @@
 {
-    "autoupdate": {
-        "hash": {
-            "url": "https://ghproxy.com/https://github.com/GNS3/gns3-gui/releases/download/v$version/GNS3-$version-all-in-one.exe.sha256"
-        },
-        "url": "https://ghproxy.com/https://github.com/GNS3/gns3-gui/releases/download/v$version/GNS3-$version-all-in-one.exe#/dl.7z"
+  "autoupdate": {
+    "hash": {
+      "url": "https://ghproxy.com/https://github.com/GNS3/gns3-gui/releases/download/v$version/GNS3-$version-all-in-one.exe.sha256"
     },
-    "bin": [
-        "gns3.ps1",
-        "gns3server.ps1",
-        "gns3vmnet.ps1"
-    ],
-    "checkver": {
-        "github": "https://github.com/GNS3/gns3-gui"
-    },
-    "description": "An advanced network simulator to design and configure virtual networks",
-    "hash": "1f33320953fa8b2fd4261f7a080a176da6aaf3fb65556e491aadb9b6e1ffbcb8",
-    "homepage": "https://gns3.com",
-    "license": "GPL-3.0-only",
-    "notes": [
-        "Npcap needs to be installed separately and possibly vc_redist.x64",
-        "Run 'scoop install nmap' (from a elevated shell) to install 'Npcap' automatically,",
-        "bundled version is available at $dir\\npcap-*.exe,",
-        "latest version can be downloaded from https://nmap.org/npcap"
-    ],
-    "pre_install": [
-        "Move-Item \"$dir\\`$TEMP\\*\" \"$dir\"",
-        "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$TEMP\" -Recurse",
-        "foreach ($binary in @(\"gns3\", \"gns3server\", \"gns3vmnet\")) {",
-        "    Set-Content -Path \"$dir\\${binary}.ps1\" -Value @\"",
-        "if (!(Test-Path Variable:PSScriptRoot)) { `$PSScriptRoot = Split-Path `$MyInvocation.MyCommand.Path -Parent }",
-        "try {",
-        "    Push-Location `\"`$PSScriptRoot`\"",
-        "    if(`$MyInvocation.ExpectingInput) { `$input | & `\".\\${binary}.exe`\" @args } else { & `\".\\${binary}.exe`\" @args }",
-        "} finally { Pop-Location }",
-        "exit `$LASTEXITCODE",
-        "\"@",
-        "}"
-    ],
-    "shortcuts": [
-        [
-            "gns3.exe",
-            "GNS3"
-        ]
-    ],
-    "suggest": {
-        "Nmap (includes Npcap)": "nmap"
-    },
-    "url": "https://ghproxy.com/https://github.com/GNS3/gns3-gui/releases/download/v2.2.37/GNS3-2.2.37-all-in-one.exe#/dl.7z",
-    "version": "2.2.37"
+    "url": "https://ghproxy.com/https://github.com/GNS3/gns3-gui/releases/download/v$version/GNS3-$version-all-in-one.exe#/dl.7z"
+  },
+  "bin": [
+    "gns3.ps1",
+    "gns3server.ps1",
+    "gns3vmnet.ps1"
+  ],
+  "checkver": {
+    "github": "https://github.com/GNS3/gns3-gui"
+  },
+  "description": "An advanced network simulator to design and configure virtual networks",
+  "hash": "1f33320953fa8b2fd4261f7a080a176da6aaf3fb65556e491aadb9b6e1ffbcb8",
+  "homepage": "https://gns3.com",
+  "license": "GPL-3.0-only",
+  "notes": [
+    "Npcap needs to be installed separately and possibly vc_redist.x64",
+    "Run 'scoop install nmap' (from a elevated shell) to install 'Npcap' automatically,",
+    "bundled version is available at $dir\\npcap-*.exe,",
+    "latest version can be downloaded from https://nmap.org/npcap"
+  ],
+  "pre_install": [
+    "Move-Item \"$dir\\`$TEMP\\*\" \"$dir\"",
+    "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$TEMP\" -Recurse",
+    "foreach ($binary in @(\"gns3\", \"gns3server\", \"gns3vmnet\")) {",
+    "    Set-Content -Path \"$dir\\${binary}.ps1\" -Value @\"",
+    "if (!(Test-Path Variable:PSScriptRoot)) { `$PSScriptRoot = Split-Path `$MyInvocation.MyCommand.Path -Parent }",
+    "try {",
+    "    Push-Location `\"`$PSScriptRoot`\"",
+    "    if(`$MyInvocation.ExpectingInput) { `$input | & `\".\\${binary}.exe`\" @args } else { & `\".\\${binary}.exe`\" @args }",
+    "} finally { Pop-Location }",
+    "exit `$LASTEXITCODE",
+    "\"@",
+    "}"
+  ],
+  "shortcuts": [
+    [
+      "gns3.exe",
+      "GNS3"
+    ]
+  ],
+  "suggest": {
+    "Nmap (includes Npcap)": "nmap"
+  },
+  "url": "https://ghproxy.com/https://github.com/GNS3/gns3-gui/releases/download/v2.2.37/GNS3-2.2.37-all-in-one.exe#/dl.7z",
+  "version": "2.2.37"
 }

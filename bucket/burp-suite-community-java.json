@@ -1,36 +1,36 @@
 {
-    "version": "2023.2.1",
-    "homepage": "https://portswigger.net/burp",
-    "description": "An application that comes with set of tools used for penetration and security testing of web applications.",
-    "license": {
-        "identifier": "Freeware",
-        "url": "https://portswigger.net/legal"
-    },
-    "suggest": {
-        "JDK": "java/openjdk",
-        "JRE": "java/temurin-jre"
-    },
-    "url": "https://portswigger-cdn.net/burp/releases/download?product=community&version=2023.2.1&type=Jar#/burpsuite-community.jar",
-    "hash": "f92eb9b1496d10031efc0378d67cd36b1d485fda886e6794ae0fa622dfcb32df",
-    "pre_install": [
-        "$currentDir = $dir.Replace(\"$version\", 'current')",
-        "Set-Content \"$dir\\burpsuite-community.cmd\" -Value \"@start javaw -jar \"\"$currentDir\\burpsuite-community.jar\"\"\" -Encoding 'utf8' -Force"
-    ],
-    "bin": "burpsuite-community.jar",
-    "shortcuts": [
-        [
-            "burpsuite-community.cmd",
-            "Burp Suite Community Edition",
-            "",
-            "favicon.ico"
-        ]
-    ],
-    "checkver": {
-        "url": "https://portswigger.net/burp/releases/data",
-        "jsonpath": "$.ResultSet.Results..version",
-        "regex": "([\\d.]+)"
-    },
-    "autoupdate": {
-        "url": "https://portswigger-cdn.net/burp/releases/download?product=community&version=$version&type=Jar#/burpsuite-community.jar"
-    }
+  "version": "2023.2.1",
+  "homepage": "https://portswigger.net/burp",
+  "description": "An application that comes with set of tools used for penetration and security testing of web applications.",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://portswigger.net/legal"
+  },
+  "suggest": {
+    "JDK": "java/openjdk",
+    "JRE": "java/temurin-jre"
+  },
+  "url": "https://portswigger-cdn.net/burp/releases/download?product=community&version=2023.2.1&type=Jar#/burpsuite-community.jar",
+  "hash": "f92eb9b1496d10031efc0378d67cd36b1d485fda886e6794ae0fa622dfcb32df",
+  "pre_install": [
+    "$currentDir = $dir.Replace(\"$version\", 'current')",
+    "Set-Content \"$dir\\burpsuite-community.cmd\" -Value \"@start javaw -jar \"\"$currentDir\\burpsuite-community.jar\"\"\" -Encoding 'utf8' -Force"
+  ],
+  "bin": "burpsuite-community.jar",
+  "shortcuts": [
+    [
+      "burpsuite-community.cmd",
+      "Burp Suite Community Edition",
+      "",
+      "favicon.ico"
+    ]
+  ],
+  "checkver": {
+    "url": "https://portswigger.net/burp/releases/data",
+    "jsonpath": "$.ResultSet.Results..version",
+    "regex": "([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://portswigger-cdn.net/burp/releases/download?product=community&version=$version&type=Jar#/burpsuite-community.jar"
+  }
 }

@@ -1,46 +1,46 @@
 {
-    "version": "5.0.1",
-    "description": "Run the program with the specified permission level on Windows.",
-    "homepage": "https://github.com/M2Team/Privexec",
-    "license": "MIT",
-    "architecture": {
-        "64bit": {
-            "url": "https://ghproxy.com/https://github.com/M2Team/Privexec/releases/download/5.0.1/Privexec-5.0.1-win-x64.zip",
-            "hash": "9c175489bf185f5e424c61f7e513db8458eae3653d81cd96a8dd5cbf20bc7a9e",
-            "extract_dir": "Privexec-5.0.1-win-x64"
-        },
-        "32bit": {
-            "url": "https://ghproxy.com/https://github.com/M2Team/Privexec/releases/download/5.0.1/Privexec-5.0.1-win-x86.zip",
-            "hash": "c91090940cd21dd0985e65a80adbe6cc3536ba8a882976b53809519c3f6bde6e",
-            "extract_dir": "Privexec-5.0.1-win-x86"
-        }
+  "version": "5.0.1",
+  "description": "Run the program with the specified permission level on Windows.",
+  "homepage": "https://github.com/M2Team/Privexec",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/M2Team/Privexec/releases/download/5.0.1/Privexec-5.0.1-win-x64.zip",
+      "hash": "9c175489bf185f5e424c61f7e513db8458eae3653d81cd96a8dd5cbf20bc7a9e",
+      "extract_dir": "Privexec-5.0.1-win-x64"
     },
-    "shortcuts": [
-        [
-            "Privexec.exe",
-            "Privexec"
-        ],
-        [
-            "AppExec.exe",
-            "Privexec AppContainer Exec"
-        ]
-    ],
-    "bin": "wsudo.exe",
-    "persist": "Privexec.json",
-    "checkver": {
-        "url": "https://github.com/M2Team/Privexec/releases/latest",
-        "regex": "/releases/tag/([\\w-.]+)\""
-    },
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://ghproxy.com/https://github.com/M2Team/Privexec/releases/download/$version/Privexec-$matchHead-win-x64.zip",
-                "extract_dir": "Privexec-$matchHead-win-x64"
-            },
-            "32bit": {
-                "url": "https://ghproxy.com/https://github.com/M2Team/Privexec/releases/download/$version/Privexec-$matchHead-win-x86.zip",
-                "extract_dir": "Privexec-$matchHead-win-x86"
-            }
-        }
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/M2Team/Privexec/releases/download/5.0.1/Privexec-5.0.1-win-x86.zip",
+      "hash": "c91090940cd21dd0985e65a80adbe6cc3536ba8a882976b53809519c3f6bde6e",
+      "extract_dir": "Privexec-5.0.1-win-x86"
     }
+  },
+  "shortcuts": [
+    [
+      "Privexec.exe",
+      "Privexec"
+    ],
+    [
+      "AppExec.exe",
+      "Privexec AppContainer Exec"
+    ]
+  ],
+  "bin": "wsudo.exe",
+  "persist": "Privexec.json",
+  "checkver": {
+    "url": "https://github.com/M2Team/Privexec/releases/latest",
+    "regex": "/releases/tag/([\\w-.]+)\""
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/M2Team/Privexec/releases/download/$version/Privexec-$matchHead-win-x64.zip",
+        "extract_dir": "Privexec-$matchHead-win-x64"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/M2Team/Privexec/releases/download/$version/Privexec-$matchHead-win-x86.zip",
+        "extract_dir": "Privexec-$matchHead-win-x86"
+      }
+    }
+  }
 }

@@ -1,48 +1,48 @@
 {
- "architecture": {
-  "64bit": {
-   "hash": "123252db2add7af730062878737a8e989017a42a70c47f90560103800b9a9a69",
-   "url": "https://ghproxy.com/https://github.com/YanxinTang/clipboard-online/releases/download/v0.2.7/clipboard-online.exe"
-  }
- },
- "autoupdate": {
   "architecture": {
-   "64bit": {
-    "url": "https://ghproxy.com/https://github.com/YanxinTang/clipboard-online/releases/download/v$version/clipboard-online.exe"
-   }
-  }
- },
- "bin": "clipboard-online.exe",
- "checkver": "github",
- "description": "Share content between Windows and iOS/Android",
- "homepage": "https://github.com/YanxinTang/clipboard-online",
- "license": "Unknown",
- "notes": "By default, config.json and tempDir are stored in '$persist_dir'.",
- "persist": [
-  "config.json",
-  "temp"
- ],
- "pre_install": [
-  "$config = \"$persist_dir\\config.json\"",
-  "if (!(Test-Path $config)) {",
-  "    @{",
-  "         'port' = '8086'",
-  "         'authkey' = ''",
-  "         'logLevel' = 'warning'",
-  "         'tempDir' = './temp'",
-  "         'reserveHistory' = $false",
-  "         'notify' = @{",
-  "           'copy' = $false",
-  "           'paste' = $false",
-  "         }",
-  "       } | ConvertToPrettyJson | Set-Content \"$dir\\config.json\" -Encoding Ascii",
-  "}"
- ],
- "shortcuts": [
-  [
-   "clipboard-online.exe",
-   "clipboard-online"
-  ]
- ],
- "version": "0.2.7"
+    "64bit": {
+      "hash": "123252db2add7af730062878737a8e989017a42a70c47f90560103800b9a9a69",
+      "url": "https://ghproxy.com/https://github.com/YanxinTang/clipboard-online/releases/download/v0.2.7/clipboard-online.exe"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/YanxinTang/clipboard-online/releases/download/v$version/clipboard-online.exe"
+      }
+    }
+  },
+  "bin": "clipboard-online.exe",
+  "checkver": "github",
+  "description": "Share content between Windows and iOS/Android",
+  "homepage": "https://github.com/YanxinTang/clipboard-online",
+  "license": "Unknown",
+  "notes": "By default, config.json and tempDir are stored in '$persist_dir'.",
+  "persist": [
+    "config.json",
+    "temp"
+  ],
+  "pre_install": [
+    "$config = \"$persist_dir\\config.json\"",
+    "if (!(Test-Path $config)) {",
+    "    @{",
+    "         'port' = '8086'",
+    "         'authkey' = ''",
+    "         'logLevel' = 'warning'",
+    "         'tempDir' = './temp'",
+    "         'reserveHistory' = $false",
+    "         'notify' = @{",
+    "           'copy' = $false",
+    "           'paste' = $false",
+    "         }",
+    "       } | ConvertToPrettyJson | Set-Content \"$dir\\config.json\" -Encoding Ascii",
+    "}"
+  ],
+  "shortcuts": [
+    [
+      "clipboard-online.exe",
+      "clipboard-online"
+    ]
+  ],
+  "version": "0.2.7"
 }

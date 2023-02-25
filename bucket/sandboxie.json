@@ -1,48 +1,48 @@
 {
- "architecture": {
-  "32bit": {
-   "hash": "sha1:712b2244ce6d59d9f5be87fb611346fa4d180f91",
-   "url": "https://ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/1.0.10/Sandboxie-Plus-x32-v1.0.10.exe"
-  },
-  "64bit": {
-   "hash": "sha1:63a979721bb3bfbea1924253c8915f5b8f33ced3",
-   "url": "https://ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/1.0.10/Sandboxie-Plus-x64-v1.0.10.exe"
-  }
- },
- "autoupdate": {
   "architecture": {
-   "32bit": {
-    "url": "https://ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/$version/Sandboxie-Plus-x86-v$version.exe"
-   },
-   "64bit": {
-    "url": "https://ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/$version/Sandboxie-Plus-x64-v$version.exe"
-   }
-  }
- },
- "bin": "SandMan.exe",
- "checkver": {
-  "github": "https://github.com/sandboxie-plus/Sandboxie"
- },
- "description": "Run applications in a sandboxed environment",
- "homepage": "https://github.com/sandboxie-plus/Sandboxie",
- "innosetup": true,
- "license": "GPL-v3",
- "persist": [
-  "Sandboxie.ini"
- ],
- "pre_install": [
-  "if (Test-Path \"$persist_dir\\Sandboxie.ini\") {",
-  "    Copy-Item \"$persist_dir\\Sandboxie.ini\" \"$dir\"",
-  "}"
- ],
- "shortcuts": [
-  [
-   "SandMan.exe",
-   "Sandboxie Plus"
-  ]
- ],
- "uninstaller": {
-  "script": "Copy-Item \"$dir\\Sandboxie.ini\" \"$persist_dir\" -ErrorAction SilentlyContinue -Force"
- },
- "version": "1.0.10"
+    "32bit": {
+      "hash": "sha1:712b2244ce6d59d9f5be87fb611346fa4d180f91",
+      "url": "https://ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/1.0.10/Sandboxie-Plus-x32-v1.0.10.exe"
+    },
+    "64bit": {
+      "hash": "sha1:63a979721bb3bfbea1924253c8915f5b8f33ced3",
+      "url": "https://ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/1.0.10/Sandboxie-Plus-x64-v1.0.10.exe"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/$version/Sandboxie-Plus-x86-v$version.exe"
+      },
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/$version/Sandboxie-Plus-x64-v$version.exe"
+      }
+    }
+  },
+  "bin": "SandMan.exe",
+  "checkver": {
+    "github": "https://github.com/sandboxie-plus/Sandboxie"
+  },
+  "description": "Run applications in a sandboxed environment",
+  "homepage": "https://github.com/sandboxie-plus/Sandboxie",
+  "innosetup": true,
+  "license": "GPL-v3",
+  "persist": [
+    "Sandboxie.ini"
+  ],
+  "pre_install": [
+    "if (Test-Path \"$persist_dir\\Sandboxie.ini\") {",
+    "    Copy-Item \"$persist_dir\\Sandboxie.ini\" \"$dir\"",
+    "}"
+  ],
+  "shortcuts": [
+    [
+      "SandMan.exe",
+      "Sandboxie Plus"
+    ]
+  ],
+  "uninstaller": {
+    "script": "Copy-Item \"$dir\\Sandboxie.ini\" \"$persist_dir\" -ErrorAction SilentlyContinue -Force"
+  },
+  "version": "1.0.10"
 }

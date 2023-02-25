@@ -1,44 +1,44 @@
 {
-    "homepage": "https://slproweb.com/products/Win32OpenSSL.html",
-    "version": "3.0.8",
-    "license": "Apache-2.0",
-    "description": "TLS/SSL toolkit (Light)",
-    "architecture": {
-        "64bit": {
-            "url": "https://slproweb.com/download/Win64OpenSSL_Light-3_0_8.exe",
-            "hash": "43ff636f4f312bb6252929a19ff92d8c808d0800defa99c1b4e1fbbe1579b3c2"
-        },
-        "32bit": {
-            "url": "https://slproweb.com/download/Win32OpenSSL_Light-3_0_8.exe",
-            "hash": "5bf7ee8bbbd96b51ec3fff93c6ea63b461a26c121027205b1075a6214e4b81a7"
-        }
+  "homepage": "https://slproweb.com/products/Win32OpenSSL.html",
+  "version": "3.0.8",
+  "license": "Apache-2.0",
+  "description": "TLS/SSL toolkit (Light)",
+  "architecture": {
+    "64bit": {
+      "url": "https://slproweb.com/download/Win64OpenSSL_Light-3_0_8.exe",
+      "hash": "43ff636f4f312bb6252929a19ff92d8c808d0800defa99c1b4e1fbbe1579b3c2"
     },
-    "depends": "innounp",
-    "installer": {
-        "script": [
-            "Expand-InnoArchive -Path \"$dir\\$fname\"",
-            "Expand-InnoArchive -Path \"$dir\\$fname\" -DestinationPath \"$dir\\bin\" -ExtractDir '{cf}' -Removal",
-            "Rename-Item \"$dir\\bin\\SSL\" 'cnf' -Force"
-        ]
-    },
-    "bin": "bin\\openssl.exe",
-    "env_set": {
-        "OPENSSL_CONF": "$dir\\bin\\cnf\\openssl.cnf"
-    },
-    "checkver": "Win32 OpenSSL v([^\\s]+)\\s+Light",
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://slproweb.com/download/Win64OpenSSL_Light-$underscoreVersion.exe"
-            },
-            "32bit": {
-                "url": "https://slproweb.com/download/Win32OpenSSL_Light-$underscoreVersion.exe"
-            }
-        },
-        "hash": {
-            "mode": "json",
-            "jsonpath": "$.files.['$basename'].sha256",
-            "url": "https://ghproxy.com/https://raw.githubusercontent.com/slproweb/opensslhashes/master/win32_openssl_hashes.json"
-        }
+    "32bit": {
+      "url": "https://slproweb.com/download/Win32OpenSSL_Light-3_0_8.exe",
+      "hash": "5bf7ee8bbbd96b51ec3fff93c6ea63b461a26c121027205b1075a6214e4b81a7"
     }
+  },
+  "depends": "innounp",
+  "installer": {
+    "script": [
+      "Expand-InnoArchive -Path \"$dir\\$fname\"",
+      "Expand-InnoArchive -Path \"$dir\\$fname\" -DestinationPath \"$dir\\bin\" -ExtractDir '{cf}' -Removal",
+      "Rename-Item \"$dir\\bin\\SSL\" 'cnf' -Force"
+    ]
+  },
+  "bin": "bin\\openssl.exe",
+  "env_set": {
+    "OPENSSL_CONF": "$dir\\bin\\cnf\\openssl.cnf"
+  },
+  "checkver": "Win32 OpenSSL v([^\\s]+)\\s+Light",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://slproweb.com/download/Win64OpenSSL_Light-$underscoreVersion.exe"
+      },
+      "32bit": {
+        "url": "https://slproweb.com/download/Win32OpenSSL_Light-$underscoreVersion.exe"
+      }
+    },
+    "hash": {
+      "mode": "json",
+      "jsonpath": "$.files.['$basename'].sha256",
+      "url": "https://ghproxy.com/https://raw.githubusercontent.com/slproweb/opensslhashes/master/win32_openssl_hashes.json"
+    }
+  }
 }

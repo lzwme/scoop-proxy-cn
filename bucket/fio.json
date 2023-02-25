@@ -1,32 +1,32 @@
 {
-    "version": "3.33",
-    "description": "Flexible I/O Tester",
-    "homepage": "https://github.com/axboe/fio",
-    "license": "GPL-2.0-only",
-    "architecture": {
-        "64bit": {
-            "url": "https://ghproxy.com/https://github.com/axboe/fio/releases/download/fio-3.33/fio-3.33-x64.msi",
-            "hash": "9eb156d2bd33fb2233e55ea47743d5d23ccd571ff2fa9255010ce3c8e4d4c350"
-        },
-        "32bit": {
-            "url": "https://ghproxy.com/https://github.com/axboe/fio/releases/download/fio-3.33/fio-3.33-x86.msi",
-            "hash": "b86c2d06605e9212bd090fa4627610ad869ffb3f79a54e85a56c7c61012dfd61"
-        }
+  "version": "3.33",
+  "description": "Flexible I/O Tester",
+  "homepage": "https://github.com/axboe/fio",
+  "license": "GPL-2.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/axboe/fio/releases/download/fio-3.33/fio-3.33-x64.msi",
+      "hash": "9eb156d2bd33fb2233e55ea47743d5d23ccd571ff2fa9255010ce3c8e4d4c350"
     },
-    "extract_dir": "fio",
-    "bin": "fio.exe",
-    "checkver": {
-        "github": "https://github.com/axboe/fio",
-        "regex": "fio-(?<version>[\\d.]+)"
-    },
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://ghproxy.com/https://github.com/axboe/fio/releases/download/fio-$version/fio-$version-x64.msi"
-            },
-            "32bit": {
-                "url": "https://ghproxy.com/https://github.com/axboe/fio/releases/download/fio-$version/fio-$version-x86.msi"
-            }
-        }
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/axboe/fio/releases/download/fio-3.33/fio-3.33-x86.msi",
+      "hash": "b86c2d06605e9212bd090fa4627610ad869ffb3f79a54e85a56c7c61012dfd61"
     }
+  },
+  "extract_dir": "fio",
+  "bin": "fio.exe",
+  "checkver": {
+    "github": "https://github.com/axboe/fio",
+    "regex": "fio-(?<version>[\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/axboe/fio/releases/download/fio-$version/fio-$version-x64.msi"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/axboe/fio/releases/download/fio-$version/fio-$version-x86.msi"
+      }
+    }
+  }
 }

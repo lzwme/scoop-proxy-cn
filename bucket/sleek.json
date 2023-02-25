@@ -1,39 +1,39 @@
 {
-    "version": "1.3.0",
-    "description": "Open-source (FOSS) todo manager based on the todo.txt syntax",
-    "homepage": "https://github.com/ransome1/sleek",
-    "license": "MIT",
-    "architecture": {
-        "64bit": {
-            "url": "https://ghproxy.com/https://github.com/ransome1/sleek/releases/download/v1.3.0/sleek-1.3.0-win-Setup.exe#/dl.7z",
-            "hash": "sha512:c427bee10085ab9ec123db46af869fd33091bfaca91b997bc60e05806322cfdb4bfe9516912b97079e86e286c171d0c88d7249254f345f3da04e1e2f1ea0f030"
-        }
-    },
-    "pre_install": [
-        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
-        "Remove-Item \"$dir\\`$*\" -Force -Recurse",
-        "if (!(Test-Path \"$persist_dir\\user-preferences.json\")) {",
-        "    New-Item -Path \"$dir\\user-preferences.json\" | Out-Null",
-        "}"
-    ],
-    "bin": "sleek.exe",
-    "shortcuts": [
-        [
-            "sleek.exe",
-            "Sleek"
-        ]
-    ],
-    "persist": "user-preferences.json",
-    "checkver": "github",
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://ghproxy.com/https://github.com/ransome1/sleek/releases/download/v$version/sleek-$version-win-Setup.exe#/dl.7z"
-            }
-        },
-        "hash": {
-            "url": "$baseurl/latest.yml",
-            "regex": "sha512:\\s+$base64"
-        }
+  "version": "1.3.0",
+  "description": "Open-source (FOSS) todo manager based on the todo.txt syntax",
+  "homepage": "https://github.com/ransome1/sleek",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/ransome1/sleek/releases/download/v1.3.0/sleek-1.3.0-win-Setup.exe#/dl.7z",
+      "hash": "sha512:c427bee10085ab9ec123db46af869fd33091bfaca91b997bc60e05806322cfdb4bfe9516912b97079e86e286c171d0c88d7249254f345f3da04e1e2f1ea0f030"
     }
+  },
+  "pre_install": [
+    "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+    "Remove-Item \"$dir\\`$*\" -Force -Recurse",
+    "if (!(Test-Path \"$persist_dir\\user-preferences.json\")) {",
+    "    New-Item -Path \"$dir\\user-preferences.json\" | Out-Null",
+    "}"
+  ],
+  "bin": "sleek.exe",
+  "shortcuts": [
+    [
+      "sleek.exe",
+      "Sleek"
+    ]
+  ],
+  "persist": "user-preferences.json",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/ransome1/sleek/releases/download/v$version/sleek-$version-win-Setup.exe#/dl.7z"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/latest.yml",
+      "regex": "sha512:\\s+$base64"
+    }
+  }
 }

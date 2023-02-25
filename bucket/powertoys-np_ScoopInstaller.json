@@ -1,41 +1,41 @@
 {
-    "version": "0.67.1",
-    "description": "System utilities to maximize productivity.",
-    "homepage": "https://github.com/microsoft/PowerToys",
-    "license": "MIT",
-    "suggest": {
-        ".NET Desktop Runtime": "extras/windowsdesktop-runtime-lts"
-    },
-    "architecture": {
-        "64bit": {
-            "url": "https://ghproxy.com/https://github.com/microsoft/PowerToys/releases/download/v0.67.1/PowerToysSetup-0.67.1-x64.exe#/setup.exe",
-            "hash": "a5ad6bca1df8a9399a56334a96ccf49b1e55005b369493b2081388ae7bdc1fb4"
-        }
-    },
-    "installer": {
-        "args": [
-            "/silent",
-            "/norestart"
-        ],
-        "keep": true
-    },
-    "uninstaller": {
-        "file": "setup.exe",
-        "args": [
-            "/silent",
-            "/uninstall"
-        ]
-    },
-    "checkver": "github",
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://ghproxy.com/https://github.com/microsoft/PowerToys/releases/download/v$version/PowerToysSetup-$version-x64.exe#/setup.exe",
-                "hash": {
-                    "url": "https://github.com/microsoft/PowerToys/releases/tag/v$version",
-                    "regex": ">$sha256<"
-                }
-            }
-        }
+  "version": "0.67.1",
+  "description": "System utilities to maximize productivity.",
+  "homepage": "https://github.com/microsoft/PowerToys",
+  "license": "MIT",
+  "suggest": {
+    ".NET Desktop Runtime": "extras/windowsdesktop-runtime-lts"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/microsoft/PowerToys/releases/download/v0.67.1/PowerToysSetup-0.67.1-x64.exe#/setup.exe",
+      "hash": "a5ad6bca1df8a9399a56334a96ccf49b1e55005b369493b2081388ae7bdc1fb4"
     }
+  },
+  "installer": {
+    "args": [
+      "/silent",
+      "/norestart"
+    ],
+    "keep": true
+  },
+  "uninstaller": {
+    "file": "setup.exe",
+    "args": [
+      "/silent",
+      "/uninstall"
+    ]
+  },
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/microsoft/PowerToys/releases/download/v$version/PowerToysSetup-$version-x64.exe#/setup.exe",
+        "hash": {
+          "url": "https://github.com/microsoft/PowerToys/releases/tag/v$version",
+          "regex": ">$sha256<"
+        }
+      }
+    }
+  }
 }

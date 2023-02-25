@@ -1,42 +1,34 @@
 {
-    "version": "1.71",
-    "homepage": "https://www.nirsoft.net/utils/network_latency_view.html",
-    "bin": "NetworkLatencyView.exe",
-    "shortcuts": [
-        [
-            "NetworkLatencyView.exe",
-            "NirSoft\\NetworkLatencyView"
-        ]
-    ],
-    "persist": [
-        "networklatencyview_lng.ini",
-        "networklatencyview.cfg"
-    ],
-    "architecture": {
-        "64bit": {
-            "url": "https://www.nirsoft.net/utils/networklatencyview-x64.zip",
-            "hash": "2308bded7e886730443ecdf3a4495bf1553d3dceb683eb001274c2334ec2c46e"
-        },
-        "32bit": {
-            "url": "https://www.nirsoft.net/utils/networklatencyview.zip",
-            "hash": "4aa0cdd6cb0fd70f06c412500e120d92038b6992bdea607ce0e9c86f0328f3f4"
-        }
+  "homepage": "https://www.nirsoft.net/utils/network_latency_view.html",
+  "checkver": "NetworkLatencyView v(\\d+\\.\\d\\d)",
+  "version": "1.66",
+  "license": "freeware",
+  "description": "NetworkLatencyView is a simple tool for Windows that listens to the TCP connections on your system and calculates the network latency (in milliseconds) for every new TCP connection detected on your system. For every IP address, NetworkLatencyView displays up to 10 network latency values, and their average. The latency value calculated by NetworkLatencyView is very similar to the result you get from pinging to the same IP address. NetworkLatencyView also allows you to easily export the latency information to text/csv/tab-delimited/html/xml file, or copy the information to the clipboard and then paste it to Excel or other application.",
+  "architecture": {
+    "64bit": {
+      "url": "https://www.nirsoft.net/utils/networklatencyview-x64.zip",
+      "hash": "6a5d62c50889b8c12c0b16d2adaddfbee92394a893e6d34a1f4536a31cb70d97"
     },
-    "description": "Calculates the network latency (in milliseconds) for every new TCP connection.",
-    "license": "Freeware",
-    "notes": "If this application is useful to you, please consider donating to NirSoft - https://www.nirsoft.net/donate.html",
-    "checkver": {
-        "url": "https://www.nirsoft.net/pad/networklatencyview.xml",
-        "xpath": "/XML_DIZ_INFO/Program_Info/Program_Version"
-    },
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://www.nirsoft.net/utils/networklatencyview-x64.zip"
-            },
-            "32bit": {
-                "url": "https://www.nirsoft.net/utils/networklatencyview.zip"
-            }
-        }
+    "32bit": {
+      "url": "https://www.nirsoft.net/utils/networklatencyview.zip",
+      "hash": "6592d0328bae9bf6475fc3da80c30cd77dec1ade635cbfd179fe40e191eff501"
     }
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://www.nirsoft.net/utils/networklatencyview-x64.zip"
+      },
+      "32bit": {
+        "url": "https://www.nirsoft.net/utils/networklatencyview.zip"
+      }
+    }
+  },
+  "bin": "NetworkLatencyView.exe",
+  "shortcuts": [
+    [
+      "NetworkLatencyView.exe",
+      "NirSoft\\NetworkLatencyView - Calculates network latency"
+    ]
+  ]
 }

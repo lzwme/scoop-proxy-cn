@@ -1,43 +1,43 @@
 {
-    "version": "0.7.84",
-    "description": "Microsoft Xbox emulator",
-    "homepage": "https://xemu.app",
-    "license": {
-        "identifier": "GPL-2.0",
-        "url": "https://github.com/mborgerson/xemu/blob/master/LICENSE"
-    },
-    "architecture": {
-        "64bit": {
-            "url": "https://ghproxy.com/https://github.com/mborgerson/xemu/releases/download/v0.7.84/xemu-win-release.zip",
-            "hash": "e53bf39827720bf3692a5b3cab4ff08e3cfc05d86f3fd3bad66b37ffe6adac6e"
-        }
-    },
-    "pre_install": [
-        "if (!(Test-Path \"$persist_dir\")) {",
-        "   New-item \"$persist_dir\" -ItemType Directory | Out-Null",
-        "   New-item \"$persist_dir\\bios\" -ItemType Directory | Out-Null",
-        "   New-item \"$persist_dir\\data\" -ItemType Directory | Out-Null",
-        "}"
-    ],
-    "bin": "xemu.exe",
-    "shortcuts": [
-        [
-            "xemu.exe",
-            "Xemu"
-        ]
-    ],
-    "persist": [
-        "bios",
-        "data"
-    ],
-    "checkver": {
-        "github": "https://github.com/mborgerson/xemu"
-    },
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://ghproxy.com/https://github.com/mborgerson/xemu/releases/download/v$version/xemu-win-release.zip"
-            }
-        }
+  "version": "0.7.84",
+  "description": "Microsoft Xbox emulator",
+  "homepage": "https://xemu.app",
+  "license": {
+    "identifier": "GPL-2.0",
+    "url": "https://github.com/mborgerson/xemu/blob/master/LICENSE"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/mborgerson/xemu/releases/download/v0.7.84/xemu-win-release.zip",
+      "hash": "e53bf39827720bf3692a5b3cab4ff08e3cfc05d86f3fd3bad66b37ffe6adac6e"
     }
+  },
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\")) {",
+    "   New-item \"$persist_dir\" -ItemType Directory | Out-Null",
+    "   New-item \"$persist_dir\\bios\" -ItemType Directory | Out-Null",
+    "   New-item \"$persist_dir\\data\" -ItemType Directory | Out-Null",
+    "}"
+  ],
+  "bin": "xemu.exe",
+  "shortcuts": [
+    [
+      "xemu.exe",
+      "Xemu"
+    ]
+  ],
+  "persist": [
+    "bios",
+    "data"
+  ],
+  "checkver": {
+    "github": "https://github.com/mborgerson/xemu"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/mborgerson/xemu/releases/download/v$version/xemu-win-release.zip"
+      }
+    }
+  }
 }

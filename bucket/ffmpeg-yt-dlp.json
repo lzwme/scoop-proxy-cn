@@ -1,59 +1,59 @@
 {
-    "version": "5.1.2-12-20230223",
-    "description": "FFMpeg builds of latest release branch with patches necessary for smooth integration with yt-dlp",
-    "homepage": "https://github.com/yt-dlp/FFmpeg-Builds",
-    "license": "MIT",
-    "suggest": {
-        "yt-dlp": "yt-dlp"
+  "version": "5.1.2-39-20230224",
+  "description": "FFMpeg builds of latest release branch with patches necessary for smooth integration with yt-dlp",
+  "homepage": "https://github.com/yt-dlp/FFmpeg-Builds",
+  "license": "MIT",
+  "suggest": {
+    "yt-dlp": "yt-dlp"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/yt-dlp/FFmpeg-Builds/releases/download/autobuild-2023-02-24-12-54/ffmpeg-n5.1.2-39-g2953c6381a-win64-gpl-5.1.zip",
+      "hash": "da6a17876a8f22f2952de45ec6ff1fc3d490f7267fca75540d9e31ab5a959af8",
+      "extract_dir": "ffmpeg-n5.1.2-39-g2953c6381a-win64-gpl-5.1"
     },
-    "architecture": {
-        "64bit": {
-            "url": "https://ghproxy.com/https://github.com/yt-dlp/FFmpeg-Builds/releases/download/autobuild-2023-02-23-15-53/ffmpeg-n5.1.2-12-g7268323193-win64-gpl-5.1.zip",
-            "hash": "1f1bbccef0bbdea0bc8192a14c74ccfb929ee149c90857f2037bd989896107d5",
-            "extract_dir": "ffmpeg-n5.1.2-12-g7268323193-win64-gpl-5.1"
-        },
-        "32bit": {
-            "url": "https://ghproxy.com/https://github.com/yt-dlp/FFmpeg-Builds/releases/download/autobuild-2023-02-23-15-53/ffmpeg-n5.1.2-12-g7268323193-win32-gpl-5.1.zip",
-            "hash": "27f61e4d79936b68c679da198b24b6512f1a2898878d3bfe735d1c0f3ad6b697",
-            "extract_dir": "ffmpeg-n5.1.2-12-g7268323193-win32-gpl-5.1"
-        }
-    },
-    "bin": [
-        "bin\\ffmpeg.exe",
-        "bin\\ffplay.exe",
-        "bin\\ffprobe.exe"
-    ],
-    "checkver": {
-        "script": [
-            "# 32-bit file is either listed above or below the 64-bit one. Therefore we need a checkver script to match it.",
-            "$url = 'https://api.github.com/repos/yt-dlp/FFmpeg-Builds/releases'",
-            "$regex_64bit = 'autobuild-(?<buildtime>(?<builddate>\\d{4}-\\d{2}-\\d{2})-\\d{2}-\\d{2})/(?<filename>ffmpeg-n(?<ffmpegver>[\\d.-]+)-\\w+-win64-gpl-[\\d.]+)\\.zip'",
-            "$regex_32bit = $regex_64bit.replace('win64', 'win32')",
-            "$cont = $(Invoke-WebRequest($url)).Content | ConvertFrom-Json",
-            "$file_urls = @()",
-            "$cont[1].assets | ForEach-Object { $file_urls += $_.browser_download_url }",
-            "$file_urls | ForEach-Object {",
-            "    if ($_ -match $regex_64bit) {",
-            "        $ffmpegver = $matches.ffmpegver",
-            "        $buildtime = $matches.buildtime",
-            "        $builddate = $matches.builddate.Replace('-', '')",
-            "        $filename64bit = $matches.filename",
-            "    } elseif ($_ -match $regex_32bit) { $filename32bit = $matches.filename }",
-            "}",
-            "Write-Output $ffmpegver-$builddate $buildtime $filename64bit $filename32bit"
-        ],
-        "regex": "([\\w.-]+) (?<buildtime>[\\w.-]+) (?<filename64bit>[\\w.-]+) (?<filename32bit>[\\w.-]+)"
-    },
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://ghproxy.com/https://github.com/yt-dlp/FFmpeg-Builds/releases/download/autobuild-$matchBuildtime/$matchFilename64bit.zip",
-                "extract_dir": "$matchFilename64bit"
-            },
-            "32bit": {
-                "url": "https://ghproxy.com/https://github.com/yt-dlp/FFmpeg-Builds/releases/download/autobuild-$matchBuildtime/$matchFilename32bit.zip",
-                "extract_dir": "$matchFilename32bit"
-            }
-        }
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/yt-dlp/FFmpeg-Builds/releases/download/autobuild-2023-02-24-12-54/ffmpeg-n5.1.2-39-g2953c6381a-win32-gpl-5.1.zip",
+      "hash": "35551a6a483429d2dee9d52562d1bc7f0e9bf5eb6de9b3b81c133475525e679d",
+      "extract_dir": "ffmpeg-n5.1.2-39-g2953c6381a-win32-gpl-5.1"
     }
+  },
+  "bin": [
+    "bin\\ffmpeg.exe",
+    "bin\\ffplay.exe",
+    "bin\\ffprobe.exe"
+  ],
+  "checkver": {
+    "script": [
+      "# 32-bit file is either listed above or below the 64-bit one. Therefore we need a checkver script to match it.",
+      "$url = 'https://api.github.com/repos/yt-dlp/FFmpeg-Builds/releases'",
+      "$regex_64bit = 'autobuild-(?<buildtime>(?<builddate>\\d{4}-\\d{2}-\\d{2})-\\d{2}-\\d{2})/(?<filename>ffmpeg-n(?<ffmpegver>[\\d.-]+)-\\w+-win64-gpl-[\\d.]+)\\.zip'",
+      "$regex_32bit = $regex_64bit.replace('win64', 'win32')",
+      "$cont = $(Invoke-WebRequest($url)).Content | ConvertFrom-Json",
+      "$file_urls = @()",
+      "$cont[1].assets | ForEach-Object { $file_urls += $_.browser_download_url }",
+      "$file_urls | ForEach-Object {",
+      "    if ($_ -match $regex_64bit) {",
+      "        $ffmpegver = $matches.ffmpegver",
+      "        $buildtime = $matches.buildtime",
+      "        $builddate = $matches.builddate.Replace('-', '')",
+      "        $filename64bit = $matches.filename",
+      "    } elseif ($_ -match $regex_32bit) { $filename32bit = $matches.filename }",
+      "}",
+      "Write-Output $ffmpegver-$builddate $buildtime $filename64bit $filename32bit"
+    ],
+    "regex": "([\\w.-]+) (?<buildtime>[\\w.-]+) (?<filename64bit>[\\w.-]+) (?<filename32bit>[\\w.-]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/yt-dlp/FFmpeg-Builds/releases/download/autobuild-$matchBuildtime/$matchFilename64bit.zip",
+        "extract_dir": "$matchFilename64bit"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/yt-dlp/FFmpeg-Builds/releases/download/autobuild-$matchBuildtime/$matchFilename32bit.zip",
+        "extract_dir": "$matchFilename32bit"
+      }
+    }
+  }
 }

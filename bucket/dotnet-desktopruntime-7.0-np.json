@@ -1,55 +1,55 @@
 {
+  "architecture": {
+    "32bit": {
+      "hash": "sha512:8aad7c1766f11337dfeb8774b28d7462b742609f27dbf6ee0f1ad300f0bf7def00f75d47b151b433e3811dec4144521972c30f1772c86dbabc465d2e8299db7e",
+      "url": "https://dotnetcli.blob.core.windows.net/dotnet/WindowsDesktop/7.0.3/windowsdesktop-runtime-7.0.3-win-x86.exe"
+    },
+    "64bit": {
+      "hash": "sha512:3a401ba2681cd6bf88cdbc63d64dae390b53a0d49f5cc5ebdc02429e51e503e274833e9f1984c644d64713553192ec933a30d6fc98386cb87abb605e33cdb4da",
+      "url": "https://dotnetcli.blob.core.windows.net/dotnet/WindowsDesktop/7.0.3/windowsdesktop-runtime-7.0.3-win-x64.exe"
+    }
+  },
+  "autoupdate": {
     "architecture": {
-        "32bit": {
-            "hash": "sha512:8aad7c1766f11337dfeb8774b28d7462b742609f27dbf6ee0f1ad300f0bf7def00f75d47b151b433e3811dec4144521972c30f1772c86dbabc465d2e8299db7e",
-            "url": "https://dotnetcli.blob.core.windows.net/dotnet/WindowsDesktop/7.0.3/windowsdesktop-runtime-7.0.3-win-x86.exe"
+      "32bit": {
+        "hash": {
+          "jsonpath": "$.releases[0].windowsdesktop.files[?(@.name == 'windowsdesktop-runtime-win-x86.exe')].hash",
+          "url": "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/7.0/releases.json"
         },
-        "64bit": {
-            "hash": "sha512:3a401ba2681cd6bf88cdbc63d64dae390b53a0d49f5cc5ebdc02429e51e503e274833e9f1984c644d64713553192ec933a30d6fc98386cb87abb605e33cdb4da",
-            "url": "https://dotnetcli.blob.core.windows.net/dotnet/WindowsDesktop/7.0.3/windowsdesktop-runtime-7.0.3-win-x64.exe"
-        }
-    },
-    "autoupdate": {
-        "architecture": {
-            "32bit": {
-                "hash": {
-                    "jsonpath": "$.releases[0].windowsdesktop.files[?(@.name == 'windowsdesktop-runtime-win-x86.exe')].hash",
-                    "url": "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/7.0/releases.json"
-                },
-                "url": "https://dotnetcli.blob.core.windows.net/dotnet/WindowsDesktop/$version/windowsdesktop-runtime-$version-win-x86.exe"
-            },
-            "64bit": {
-                "hash": {
-                    "jsonpath": "$.releases[0].windowsdesktop.files[?(@.name == 'windowsdesktop-runtime-win-x64.exe')].hash",
-                    "url": "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/7.0/releases.json"
-                },
-                "url": "https://dotnetcli.blob.core.windows.net/dotnet/WindowsDesktop/$version/windowsdesktop-runtime-$version-win-x64.exe"
-            }
-        }
-    },
-    "bin": "dotnet.exe",
-    "checkver": {
-        "jsonpath": "$.releases[0].windowsdesktop.version",
-        "url": "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/7.0/releases.json"
-    },
-    "depends": "dark",
-    "description": "Microsoft .NET 7 Desktop Runtime.",
-    "env_set": {
-        "DOTNET_ROOT": "$dir"
-    },
-    "homepage": "https://dotnet.microsoft.com/download/dotnet-core",
-    "installer": {
-        "script": [
-            "Expand-DarkArchive \"$dir\\$fname\" \"$dir\\extracted\" -Removal",
-            "Get-ChildItem \"$dir\\extracted\\AttachedContainer\\*.msi\" | ForEach-Object { Expand-MsiArchive $_ \"$dir\" }",
-            "Move-Item \"$dir\\dotnet\\*\" \"$dir\" -Force",
-            "@('dotnet', 'extracted') | ForEach-Object { Remove-Item \"$dir\\$_\" -Recurse }"
-        ]
-    },
-    "license": {
-        "identifier": "Freeware",
-        "url": "https://www.microsoft.com/en-us/legal/intellectualproperty/copyright/default.aspx"
-    },
-    "notes": "This package only contains the .NET 7 desktop runtime, install 'dotnet-sdk' instead if you need .NET Core SDK",
-    "version": "7.0.3"
+        "url": "https://dotnetcli.blob.core.windows.net/dotnet/WindowsDesktop/$version/windowsdesktop-runtime-$version-win-x86.exe"
+      },
+      "64bit": {
+        "hash": {
+          "jsonpath": "$.releases[0].windowsdesktop.files[?(@.name == 'windowsdesktop-runtime-win-x64.exe')].hash",
+          "url": "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/7.0/releases.json"
+        },
+        "url": "https://dotnetcli.blob.core.windows.net/dotnet/WindowsDesktop/$version/windowsdesktop-runtime-$version-win-x64.exe"
+      }
+    }
+  },
+  "bin": "dotnet.exe",
+  "checkver": {
+    "jsonpath": "$.releases[0].windowsdesktop.version",
+    "url": "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/7.0/releases.json"
+  },
+  "depends": "dark",
+  "description": "Microsoft .NET 7 Desktop Runtime.",
+  "env_set": {
+    "DOTNET_ROOT": "$dir"
+  },
+  "homepage": "https://dotnet.microsoft.com/download/dotnet-core",
+  "installer": {
+    "script": [
+      "Expand-DarkArchive \"$dir\\$fname\" \"$dir\\extracted\" -Removal",
+      "Get-ChildItem \"$dir\\extracted\\AttachedContainer\\*.msi\" | ForEach-Object { Expand-MsiArchive $_ \"$dir\" }",
+      "Move-Item \"$dir\\dotnet\\*\" \"$dir\" -Force",
+      "@('dotnet', 'extracted') | ForEach-Object { Remove-Item \"$dir\\$_\" -Recurse }"
+    ]
+  },
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://www.microsoft.com/en-us/legal/intellectualproperty/copyright/default.aspx"
+  },
+  "notes": "This package only contains the .NET 7 desktop runtime, install 'dotnet-sdk' instead if you need .NET Core SDK",
+  "version": "7.0.3"
 }

@@ -1,68 +1,68 @@
 {
-    "version": "20230222",
-    "description": "A free and open source multimedia player and framework that plays most multimedia files as well as DVDs, Audio CDs, VCDs, and various streaming protocols.",
-    "homepage": "https://www.videolan.org/",
-    "license": "GPL-2.0-only",
-    "architecture": {
-        "64bit": {
-            "url": "https://artifacts.videolan.org/vlc/nightly-win64/20230222-0430/vlc-4.0.0-dev-win64-013a1e4a.7z",
-            "hash": "sha512:d30de4e63fb859639855aeb57595cbc3eb24c43d331083ca9643db805c527524ecc7735c17a5467db7580721477c993b96028f381be42133a1e88c0c9700ee6e"
-        },
-        "32bit": {
-            "url": "https://artifacts.videolan.org/vlc/nightly-win32/20230222-0427/vlc-4.0.0-dev-win32-013a1e4a.7z",
-            "hash": "sha512:3cb6f95e8759e2bb8dacff654f8158e921a2b2c9e37a0f3e716992c75fb8718b14c1143cdf5a6fae826724dcd58a87bd8ed8c33c51010a930aad5b6869a9ae77"
-        }
+  "version": "20230217",
+  "description": "A free and open source multimedia player and framework that plays most multimedia files as well as DVDs, Audio CDs, VCDs, and various streaming protocols.",
+  "homepage": "https://www.videolan.org/",
+  "license": "GPL-2.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://artifacts.videolan.org/vlc/nightly-win64/20230217-0431/vlc-4.0.0-dev-win64-ab9b509d.7z",
+      "hash": "sha512:1d9af1b8d03d47e431fb982e06ea030eb062ae3ff6acb89db508516ebc4323fa8a65af0e418ff720aa591ca5c94215f2a713a2f047533a923ddc78935180affa"
     },
-    "extract_dir": "vlc-4.0.0-dev",
-    "pre_install": [
-        "if (!(Test-Path \"$persist_dir\\portable\") -and (Test-Path \"$env:APPDATA\\vlc\")) {",
-        "    info \"Copying old '$env:APPDATA\\vlc' to '$persist_dir\\portable'\"",
-        "    ensure \"$dir\\portable\\vlc\" | Out-Null",
-        "    Copy-Item \"$env:APPDATA\\vlc\\*\" \"$dir\\portable\" -Recurse -Force",
-        "    Move-Item \"$dir\\portable\\vlc-qt-interface.ini\" \"$dir\\portable\\vlc\"",
-        "}"
-    ],
-    "bin": "vlc.exe",
-    "shortcuts": [
-        [
-            "vlc.exe",
-            "VLC media player"
-        ]
-    ],
-    "persist": "portable",
-    "checkver": {
-        "script": [
-            "$builds = 'win32', 'win64'",
-            "$scriptver = ''",
-            "$urls =  @()",
-            "foreach ($build in $builds) {",
-            "   $base_url = 'https://artifacts.videolan.org/vlc/nightly-' + $build + '/'",
-            "   $page = Invoke-WebRequest $base_url -UseBasicParsing",
-            "   $full_version = $page.links | Where-Object href -match '\\d+-\\d+' | Select-Object -first 1 -expand href",
-            "   $dl_page = Invoke-WebRequest ($base_url + $full_version) -UseBasicParsing",
-            "   $scriptver = $full_version -split '-' | Select-Object -first 1",
-            "   $dl = $full_version + ($dl_page.links | Where-Object href -match '\\.7z$' | Select-Object -first 1 -expand href)",
-            "   $urls += $dl",
-            "}",
-            "Write-Output ('version:\"' + $scriptver + '\"') ('urls:\"' + $urls + '\"')"
-        ],
-        "regex": "version:\"(?<version>\\d+)\"\\surls:\"(?<win32bitver>.+\\/)(?<win32bitfile>(?<folderversion>vlc-[\\d.]+-dev).+)\\s(?<win64bitver>.+\\/)(?<win64bitfile>.+)\""
-    },
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://artifacts.videolan.org/vlc/nightly-win64/$matchWin64bitver$matchWin64bitfile",
-                "hash": {
-                    "url": "https://artifacts.videolan.org/vlc/nightly-win64/$matchWin64bitverSHA512SUM"
-                }
-            },
-            "32bit": {
-                "url": "https://artifacts.videolan.org/vlc/nightly-win32/$matchWin32bitver$matchWin32bitfile",
-                "hash": {
-                    "url": "https://artifacts.videolan.org/vlc/nightly-win32/$matchWin32bitverSHA512SUM"
-                }
-            }
-        },
-        "extract_dir": "$matchFolderversion"
+    "32bit": {
+      "url": "https://artifacts.videolan.org/vlc/nightly-win32/20230217-0427/vlc-4.0.0-dev-win32-ab9b509d.7z",
+      "hash": "sha512:f3c03ce1d6499484f6d6392ff77c67ddf70055421d8251aa4cc97fc6cde9fc948b149064f10bb9e24e2493af829221ac9e0b2eaca3fc722b9c11b5d6073d715e"
     }
+  },
+  "extract_dir": "vlc-4.0.0-dev",
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\portable\") -and (Test-Path \"$env:APPDATA\\vlc\")) {",
+    "    info \"Copying old '$env:APPDATA\\vlc' to '$persist_dir\\portable'\"",
+    "    ensure \"$dir\\portable\\vlc\" | Out-Null",
+    "    Copy-Item \"$env:APPDATA\\vlc\\*\" \"$dir\\portable\" -Recurse -Force",
+    "    Move-Item \"$dir\\portable\\vlc-qt-interface.ini\" \"$dir\\portable\\vlc\"",
+    "}"
+  ],
+  "bin": "vlc.exe",
+  "shortcuts": [
+    [
+      "vlc.exe",
+      "VLC media player"
+    ]
+  ],
+  "persist": "portable",
+  "checkver": {
+    "script": [
+      "$builds = 'win32', 'win64'",
+      "$scriptver = ''",
+      "$urls =  @()",
+      "foreach ($build in $builds) {",
+      "   $base_url = 'https://artifacts.videolan.org/vlc/nightly-' + $build + '/'",
+      "   $page = Invoke-WebRequest $base_url -UseBasicParsing",
+      "   $full_version = $page.links | Where-Object href -match '\\d+-\\d+' | Select-Object -first 1 -expand href",
+      "   $dl_page = Invoke-WebRequest ($base_url + $full_version) -UseBasicParsing",
+      "   $scriptver = $full_version -split '-' | Select-Object -first 1",
+      "   $dl = $full_version + ($dl_page.links | Where-Object href -match '\\.7z$' | Select-Object -first 1 -expand href)",
+      "   $urls += $dl",
+      "}",
+      "Write-Output ('version:\"' + $scriptver + '\"') ('urls:\"' + $urls + '\"')"
+    ],
+    "regex": "version:\"(?<version>\\d+)\"\\surls:\"(?<win32bitver>.+\\/)(?<win32bitfile>(?<folderversion>vlc-[\\d.]+-dev).+)\\s(?<win64bitver>.+\\/)(?<win64bitfile>.+)\""
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://artifacts.videolan.org/vlc/nightly-win64/$matchWin64bitver$matchWin64bitfile",
+        "hash": {
+          "url": "https://artifacts.videolan.org/vlc/nightly-win64/$matchWin64bitverSHA512SUM"
+        }
+      },
+      "32bit": {
+        "url": "https://artifacts.videolan.org/vlc/nightly-win32/$matchWin32bitver$matchWin32bitfile",
+        "hash": {
+          "url": "https://artifacts.videolan.org/vlc/nightly-win32/$matchWin32bitverSHA512SUM"
+        }
+      }
+    },
+    "extract_dir": "$matchFolderversion"
+  }
 }

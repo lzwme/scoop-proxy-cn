@@ -1,61 +1,61 @@
 {
-    "homepage": "https://nodejs.org",
-    "version": "19.6.1",
-    "license": "MIT",
-    "architecture": {
-        "64bit": {
-            "url": "https://registry.npmmirror.com/-/binary/node/v19.6.1/node-v19.6.1-win-x64.7z",
-            "hash": "87a6dce8ebdfebbe1adeb2fc9c6a7c4a91848b7c18c955b0670e9b14110678e0",
-            "extract_dir": "node-v19.6.1-win-x64"
-        },
-        "32bit": {
-            "url": "https://registry.npmmirror.com/-/binary/node/v19.6.1/node-v19.6.1-win-x86.7z",
-            "hash": "5bad5675a6bbcf6ad3bf3cb6b2eb7b916b58ddc869800f3fdf7039faa187d780",
-            "extract_dir": "node-v19.6.1-win-x86"
-        }
+  "homepage": "https://nodejs.org",
+  "version": "19.6.1",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://registry.npmmirror.com/-/binary/node/v19.6.1/node-v19.6.1-win-x64.7z",
+      "hash": "87a6dce8ebdfebbe1adeb2fc9c6a7c4a91848b7c18c955b0670e9b14110678e0",
+      "extract_dir": "node-v19.6.1-win-x64"
     },
-    "persist": [
-        "bin",
-        "cache"
-    ],
-    "env_add_path": [
-        ".",
-        "bin"
-    ],
-    "##": "maint!: [2019-03-17] depend on `yarn` to install and update `npm` and `npx` as the current `npm` upgrade system fails (see <https://stackoverflow.com/questions/18412129/how-can-i-update-npm-on-windows/31520672#31520672>)",
-    "post_install": [
-        "",
-        "# install yarn, if needed; doing it here avoids a circular dependency between nodejs and yarn",
-        "# * finalize current install prior to installing `yarn` (which requires nodejs) to avoid circular dependency issues",
-        "env_add_path $manifest $dir $global; env_set $manifest $dir $global; save_installed_manifest $app $dir $url",
-        "$null, $bucket, $null = app_parse $app ; save_install_info @{ 'architecture' = $architecture; 'url' = $url; 'bucket' = $bucket } $dir",
-        "if ( -not $( get-command yarn -ea silent ) ) { scoop install rivy/yarn; }",
-        "env 'PATH' $env:PATH",
-        "yarn global add npm npx",
-        "# Remove broken included `npm` and `npx`; replacing them with `yarn`-installed versions",
-        "$path = \"$dir\\npm\" ; if (test-path $path) { echo $('removing ' + $path); remove-item $path }",
-        "$path = \"$dir\\npm.cmd\" ; if (test-path $path) { echo $('removing ' + $path); remove-item $path }",
-        "$path = \"$dir\\npx\" ; if (test-path $path) { echo $('removing ' + $path); remove-item $path }",
-        "$path = \"$dir\\npx.cmd\" ; if (test-path $path) { echo $('removing ' + $path); remove-item $path }",
-        "$path = \"$dir\\node_modules\\npm\" ; if (test-path $path) { echo $('removing ' + $path); remove-item $path -recurse }"
-    ],
-    "checkver": {
-        "url": "https://registry.npmmirror.com/-/binary/node/latest/",
-        "re": "node-v([\\d.]+)-x86.msi"
-    },
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://registry.npmmirror.com/-/binary/node/v$version/node-v$version-win-x64.7z",
-                "extract_dir": "node-v$version-win-x64"
-            },
-            "32bit": {
-                "url": "https://registry.npmmirror.com/-/binary/node/v$version/node-v$version-win-x86.7z",
-                "extract_dir": "node-v$version-win-x86"
-            }
-        },
-        "hash": {
-            "url": "$baseurl/SHASUMS256.txt.asc"
-        }
+    "32bit": {
+      "url": "https://registry.npmmirror.com/-/binary/node/v19.6.1/node-v19.6.1-win-x86.7z",
+      "hash": "5bad5675a6bbcf6ad3bf3cb6b2eb7b916b58ddc869800f3fdf7039faa187d780",
+      "extract_dir": "node-v19.6.1-win-x86"
     }
+  },
+  "persist": [
+    "bin",
+    "cache"
+  ],
+  "env_add_path": [
+    ".",
+    "bin"
+  ],
+  "##": "maint!: [2019-03-17] depend on `yarn` to install and update `npm` and `npx` as the current `npm` upgrade system fails (see <https://stackoverflow.com/questions/18412129/how-can-i-update-npm-on-windows/31520672#31520672>)",
+  "post_install": [
+    "",
+    "# install yarn, if needed; doing it here avoids a circular dependency between nodejs and yarn",
+    "# * finalize current install prior to installing `yarn` (which requires nodejs) to avoid circular dependency issues",
+    "env_add_path $manifest $dir $global; env_set $manifest $dir $global; save_installed_manifest $app $dir $url",
+    "$null, $bucket, $null = app_parse $app ; save_install_info @{ 'architecture' = $architecture; 'url' = $url; 'bucket' = $bucket } $dir",
+    "if ( -not $( get-command yarn -ea silent ) ) { scoop install rivy/yarn; }",
+    "env 'PATH' $env:PATH",
+    "yarn global add npm npx",
+    "# Remove broken included `npm` and `npx`; replacing them with `yarn`-installed versions",
+    "$path = \"$dir\\npm\" ; if (test-path $path) { echo $('removing ' + $path); remove-item $path }",
+    "$path = \"$dir\\npm.cmd\" ; if (test-path $path) { echo $('removing ' + $path); remove-item $path }",
+    "$path = \"$dir\\npx\" ; if (test-path $path) { echo $('removing ' + $path); remove-item $path }",
+    "$path = \"$dir\\npx.cmd\" ; if (test-path $path) { echo $('removing ' + $path); remove-item $path }",
+    "$path = \"$dir\\node_modules\\npm\" ; if (test-path $path) { echo $('removing ' + $path); remove-item $path -recurse }"
+  ],
+  "checkver": {
+    "url": "https://registry.npmmirror.com/-/binary/node/latest/",
+    "re": "node-v([\\d.]+)-x86.msi"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://registry.npmmirror.com/-/binary/node/v$version/node-v$version-win-x64.7z",
+        "extract_dir": "node-v$version-win-x64"
+      },
+      "32bit": {
+        "url": "https://registry.npmmirror.com/-/binary/node/v$version/node-v$version-win-x86.7z",
+        "extract_dir": "node-v$version-win-x86"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/SHASUMS256.txt.asc"
+    }
+  }
 }

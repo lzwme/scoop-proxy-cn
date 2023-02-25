@@ -1,48 +1,48 @@
 {
+  "architecture": {
+    "64bit": {
+      "hash": "d231b591feb3f184ecf8eebeef54f821e6aa42f6f23cf0b308ac363a4d319575",
+      "url": "https://update.code.visualstudio.com/1.75.1/win32-x64-archive/stable#/dl.7z"
+    }
+  },
+  "autoupdate": {
     "architecture": {
-        "64bit": {
-            "hash": "d231b591feb3f184ecf8eebeef54f821e6aa42f6f23cf0b308ac363a4d319575",
-            "url": "https://update.code.visualstudio.com/1.75.1/win32-x64-archive/stable#/dl.7z"
-        }
-    },
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "hash": {
-                    "jsonpath": "$.products[?(@.platform.os == 'win32-x64-archive')].sha256hash",
-                    "url": "https://code.visualstudio.com/sha?build=stable"
-                },
-                "url": "https://update.code.visualstudio.com/$version/win32-x64-archive/stable#/dl.7z"
-            }
-        }
-    },
-    "bin": [
-        [
-            "bin\\code.cmd",
-            "code"
-        ]
-    ],
-    "checkver": {
-        "jsonpath": "$.products[?(@.platform.os == 'win32-x64-archive')].name",
-        "url": "https://code.visualstudio.com/sha?build=stable"
-    },
-    "homepage": "https://code.visualstudio.com/",
-    "license": {
-        "identifier": "Freeware",
-        "url": "https://code.visualstudio.com/License/"
-    },
-    "notes": [
-        "Visual Studio Code now supports Portable Mode! Please move the following directories:",
-        "From \"$env:USERPROFILE\\.vscode\\extensions\" to \"$env:USERPROFILE\\scoop\\persist\\vscode-portable\\data\\extensions\"",
-        "From \"$env:APPDATA\\Code\" to \"$env:USERPROFILE\\scoop\\persist\\vscode-portable\\data\\user-data\"",
-        "Add Visual Studio Code as a context menu option by running: \"$dir\\vscode-install-context.reg\""
-    ],
-    "persist": "data",
-    "shortcuts": [
-        [
-            "code.exe",
-            "Visual Studio Code"
-        ]
-    ],
-    "version": "1.75.1"
+      "64bit": {
+        "hash": {
+          "jsonpath": "$.products[?(@.platform.os == 'win32-x64-archive')].sha256hash",
+          "url": "https://code.visualstudio.com/sha?build=stable"
+        },
+        "url": "https://update.code.visualstudio.com/$version/win32-x64-archive/stable#/dl.7z"
+      }
+    }
+  },
+  "bin": [
+    [
+      "bin\\code.cmd",
+      "code"
+    ]
+  ],
+  "checkver": {
+    "jsonpath": "$.products[?(@.platform.os == 'win32-x64-archive')].name",
+    "url": "https://code.visualstudio.com/sha?build=stable"
+  },
+  "homepage": "https://code.visualstudio.com/",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://code.visualstudio.com/License/"
+  },
+  "notes": [
+    "Visual Studio Code now supports Portable Mode! Please move the following directories:",
+    "From \"$env:USERPROFILE\\.vscode\\extensions\" to \"$env:USERPROFILE\\scoop\\persist\\vscode-portable\\data\\extensions\"",
+    "From \"$env:APPDATA\\Code\" to \"$env:USERPROFILE\\scoop\\persist\\vscode-portable\\data\\user-data\"",
+    "Add Visual Studio Code as a context menu option by running: \"$dir\\vscode-install-context.reg\""
+  ],
+  "persist": "data",
+  "shortcuts": [
+    [
+      "code.exe",
+      "Visual Studio Code"
+    ]
+  ],
+  "version": "1.75.1"
 }

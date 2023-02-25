@@ -1,45 +1,32 @@
 {
- "autoupdate": {
-  "url": "https://ghproxy.com/https://github.com/2dust/v2rayN/releases/download/$version/v2rayN-Core.zip"
- },
- "bin": "v2rayN.exe",
- "checkver": {
-  "jsonpath": "$[0].tag_name",
-  "url": "https://api.github.com/repos/2dust/v2rayN/releases"
- },
- "description": "A V2Ray client for Windows, support Xray core and v2fly core.",
- "extract_dir": "v2rayN-Core",
- "hash": "108fa28cb87a9beadc53d014c86ca4a7b3ddded4996ab1442837e8e0d4f0a8f7",
- "homepage": "https://github.com/2dust/v2rayN",
- "license": {
-  "identifier": "GPL-3.0-only",
-  "url": "https://github.com/2dust/v2rayN/blob/master/LICENSE"
- },
- "persist": [
-  "config.json",
-  "user-wininet.json"
- ],
- "pre_install": [
-  "if (!(Test-Path \"$persist_dir\\user-wininet.json\")) {",
-  "    New-Item -Path \"$dir\\user-wininet.json\" | Out-Null",
-  "}",
-  "if (Test-Path \"$persist_dir\\guiNConfig.json\") {",
-  "    Copy-Item \"$persist_dir\\guiNConfig.json\" \"$dir\\\" | Out-Null",
-  "}"
- ],
- "shortcuts": [
-  [
-   "v2rayN.exe",
-   "v2rayN"
-  ]
- ],
- "uninstaller": {
-  "script": [
-   "if (Test-Path \"$dir\\guiNConfig.json\") {",
-   "    Copy-Item \"$dir\\guiNConfig.json\" \"$persist_dir\\\" | Out-Null",
-   "}"
-  ]
- },
- "url": "https://ghproxy.com/https://github.com/2dust/v2rayN/releases/download/6.5/v2rayN-Core.zip",
- "version": "6.5"
+  "version": "5.39",
+  "description": "GUI client based for v2ray-core and xray-core.",
+  "homepage": "https://github.com/2dust/v2rayN",
+  "license": "GPL-3.0-only",
+  "url": "https://ghproxy.com/https://github.com/2dust/v2rayN/releases/download/5.39/v2rayN-Core.zip",
+  "hash": "1d2682bca148f92ecb118529b310e1a01cb031aaa6124ba550e0f3ca39d55931",
+  "extract_dir": "v2rayN-Core",
+  "pre_install": [
+    "foreach ($name in @('guiNConfig.json', 'user-wininet.json')) {",
+    "    if (!(Test-Path \"$persist_dir\\$name\")) {",
+    "        New-Item -Force -Path \"$dir\" -Name $name | Out-Null",
+    "    }",
+    "}"
+  ],
+  "bin": "v2rayN.exe",
+  "shortcuts": [
+    [
+      "v2rayN.exe",
+      "v2rayN"
+    ]
+  ],
+  "persist": [
+    "user-wininet.json",
+    "config.json",
+    "guiNConfig.json"
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/2dust/v2rayN/releases/download/$version/v2rayN-Core.zip"
+  }
 }

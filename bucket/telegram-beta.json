@@ -1,40 +1,40 @@
 {
- "architecture": {
-  "32bit": {
-   "hash": "20f14d05062b724f5013f8f1beada2667abc9fb0a27af41eb582835815d4b792",
-   "url": "https://ghproxy.com/https://github.com/telegramdesktop/tdesktop/releases/download/v4.1.2/tportable.4.1.2.beta.zip"
-  },
-  "64bit": {
-   "hash": "f9a15de89aa600a9f2a250954f55ca1befaa297d121345edb02d7c771839fca9",
-   "url": "https://ghproxy.com/https://github.com/telegramdesktop/tdesktop/releases/download/v4.1.2/tportable-x64.4.1.2.beta.zip"
-  }
- },
- "autoupdate": {
   "architecture": {
-   "32bit": {
-    "url": "https://ghproxy.com/https://github.com/telegramdesktop/tdesktop/releases/download/v$version/tportable.$match2"
-   },
-   "64bit": {
-    "url": "https://ghproxy.com/https://github.com/telegramdesktop/tdesktop/releases/download/v$version/tportable-x64.$match2"
-   }
-  }
- },
- "bin": "telegram-beta.cmd",
- "checkver": {
-  "regex": "/telegramdesktop/tdesktop/releases/download/v([\\d.]+)/tportable\\.([\\d\\.(?:beta)(?:zip)]+)",
-  "url": "https://github.com/telegramdesktop/tdesktop/releases/"
- },
- "description": "A messaging app with a focus on speed and security",
- "extract_dir": "Telegram",
- "homepage": "https://telegram.org",
- "license": "GPL-3.0-only",
- "persist": "tdata",
- "pre_install": "Set-Content \"$dir\\telegram-beta.cmd\" '@start \"Telegram\" /D \"%~dp0\" \"%~dp0Telegram.exe\" %*' -Encoding Ascii",
- "shortcuts": [
-  [
-   "Telegram.exe",
-   "Telegram (Beta)"
-  ]
- ],
- "version": "4.1.2"
+    "32bit": {
+      "hash": "20f14d05062b724f5013f8f1beada2667abc9fb0a27af41eb582835815d4b792",
+      "url": "https://ghproxy.com/https://github.com/telegramdesktop/tdesktop/releases/download/v4.1.2/tportable.4.1.2.beta.zip"
+    },
+    "64bit": {
+      "hash": "f9a15de89aa600a9f2a250954f55ca1befaa297d121345edb02d7c771839fca9",
+      "url": "https://ghproxy.com/https://github.com/telegramdesktop/tdesktop/releases/download/v4.1.2/tportable-x64.4.1.2.beta.zip"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/telegramdesktop/tdesktop/releases/download/v$version/tportable.$match2"
+      },
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/telegramdesktop/tdesktop/releases/download/v$version/tportable-x64.$match2"
+      }
+    }
+  },
+  "bin": "telegram-beta.cmd",
+  "checkver": {
+    "regex": "/telegramdesktop/tdesktop/releases/download/v([\\d.]+)/tportable\\.([\\d\\.(?:beta)(?:zip)]+)",
+    "url": "https://github.com/telegramdesktop/tdesktop/releases/"
+  },
+  "description": "A messaging app with a focus on speed and security",
+  "extract_dir": "Telegram",
+  "homepage": "https://telegram.org",
+  "license": "GPL-3.0-only",
+  "persist": "tdata",
+  "pre_install": "Set-Content \"$dir\\telegram-beta.cmd\" '@start \"Telegram\" /D \"%~dp0\" \"%~dp0Telegram.exe\" %*' -Encoding Ascii",
+  "shortcuts": [
+    [
+      "Telegram.exe",
+      "Telegram (Beta)"
+    ]
+  ],
+  "version": "4.1.2"
 }

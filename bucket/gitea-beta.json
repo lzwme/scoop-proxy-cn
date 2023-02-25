@@ -1,45 +1,45 @@
 {
-    "version": "1.19.0-rc0",
-    "description": "Git with a cup of tea, painless self-hosted git service. (beta channel)",
-    "homepage": "https://gitea.io/",
-    "license": "MIT",
-    "notes": "Run 'gitea web -c \"$persist_dir\\custom\\conf\\app.ini\"' to start the webserver",
-    "architecture": {
-        "64bit": {
-            "url": "https://ghproxy.com/https://github.com/go-gitea/gitea/releases/download/v1.19.0-rc0/gitea-1.19.0-rc0-windows-4.0-amd64.exe#/gitea.exe",
-            "hash": "00ab0a297cac952c879129a0368324233ff2ff525a27b3c5c8afc2f0e989856a"
-        },
-        "32bit": {
-            "url": "https://ghproxy.com/https://github.com/go-gitea/gitea/releases/download/v1.19.0-rc0/gitea-1.19.0-rc0-windows-4.0-386.exe#/gitea.exe",
-            "hash": "a875473c1e5dd3120f074ec0fc4cdfdd3567a13df2c5d0e223e588c945afa129"
-        }
+  "version": "1.19.0-rc0",
+  "description": "Git with a cup of tea, painless self-hosted git service. (beta channel)",
+  "homepage": "https://gitea.io/",
+  "license": "MIT",
+  "notes": "Run 'gitea web -c \"$persist_dir\\custom\\conf\\app.ini\"' to start the webserver",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/go-gitea/gitea/releases/download/v1.19.0-rc0/gitea-1.19.0-rc0-windows-4.0-amd64.exe#/gitea.exe",
+      "hash": "00ab0a297cac952c879129a0368324233ff2ff525a27b3c5c8afc2f0e989856a"
     },
-    "post_install": [
-        "echo 'Creating $persist_dir\\custom\\conf.app.ini'",
-        "if(!(test-path \"$persist_dir\\custom\\conf\")) { mkdir \"$persist_dir\\custom\\conf\" > $null }",
-        "if(!(test-path \"$persist_dir\\custom\\conf\\app.ini\")) {",
-        "    $gitea = \"[database]`nPATH = $persist_dir/data/gitea.db\"",
-        "    $gitea += \"`n[repository]`nROOT = $persist_dir/repositories\"",
-        "    $gitea += \"`n[log]`nROOT_PATH = $persist_dir/log\"",
-        "    echo $gitea | % {$_.replace(\"\\\",\"/\") } | out-file -encoding oem \"$persist_dir\\custom\\conf\\app.ini\"",
-        "}"
-    ],
-    "bin": "gitea.exe",
-    "checkver": {
-        "url": "https://github.com/go-gitea/gitea/releases",
-        "regex": ">v([\\d.]+(-\\w+)?)<"
-    },
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://ghproxy.com/https://github.com/go-gitea/gitea/releases/download/v$version/gitea-$version-windows-4.0-amd64.exe#/gitea.exe"
-            },
-            "32bit": {
-                "url": "https://ghproxy.com/https://github.com/go-gitea/gitea/releases/download/v$version/gitea-$version-windows-4.0-386.exe#/gitea.exe"
-            }
-        },
-        "hash": {
-            "url": "$url.sha256"
-        }
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/go-gitea/gitea/releases/download/v1.19.0-rc0/gitea-1.19.0-rc0-windows-4.0-386.exe#/gitea.exe",
+      "hash": "a875473c1e5dd3120f074ec0fc4cdfdd3567a13df2c5d0e223e588c945afa129"
     }
+  },
+  "post_install": [
+    "echo 'Creating $persist_dir\\custom\\conf.app.ini'",
+    "if(!(test-path \"$persist_dir\\custom\\conf\")) { mkdir \"$persist_dir\\custom\\conf\" > $null }",
+    "if(!(test-path \"$persist_dir\\custom\\conf\\app.ini\")) {",
+    "    $gitea = \"[database]`nPATH = $persist_dir/data/gitea.db\"",
+    "    $gitea += \"`n[repository]`nROOT = $persist_dir/repositories\"",
+    "    $gitea += \"`n[log]`nROOT_PATH = $persist_dir/log\"",
+    "    echo $gitea | % {$_.replace(\"\\\",\"/\") } | out-file -encoding oem \"$persist_dir\\custom\\conf\\app.ini\"",
+    "}"
+  ],
+  "bin": "gitea.exe",
+  "checkver": {
+    "url": "https://github.com/go-gitea/gitea/releases",
+    "regex": ">v([\\d.]+(-\\w+)?)<"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/go-gitea/gitea/releases/download/v$version/gitea-$version-windows-4.0-amd64.exe#/gitea.exe"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/go-gitea/gitea/releases/download/v$version/gitea-$version-windows-4.0-386.exe#/gitea.exe"
+      }
+    },
+    "hash": {
+      "url": "$url.sha256"
+    }
+  }
 }

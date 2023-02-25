@@ -1,24 +1,24 @@
 {
-    "description": "High-performance, embeddable, polyglot Virtual Machine for JVM-langs (Java, Scala, Kotlin), JavaScript/NodeJS, Python, Ruby, R, and LLVM-langs (C, C++, Rust)",
-    "version": "23.0.0-dev-20230222_0625",
-    "homepage": "https://www.graalvm.org/",
-    "license": "GPL-2.0",
-    "url": "https://ghproxy.com/https://github.com/graalvm/graalvm-ce-dev-builds/releases/download/23.0.0-dev-20230222_0625/graalvm-ce-java20-windows-amd64-dev.zip",
-    "hash": "0d90bdd30ccae44ba232c011a0b1abb16f386d047c59fa57965b855715bbd87f",
-    "extract_dir": "graalvm-ce-java20-23.0.0-dev",
-    "env_add_path": "bin",
-    "env_set": {
-        "JAVA_HOME": "$dir",
-        "GRAALVM_HOME": "$dir"
-    },
-    "checkver": {
-        "github": "https://github.com/graalvm/graalvm-ce-dev-builds",
-        "regex": "/(?<release>[\\d\\w.-]+)-dev-(?<build>[\\d\\w.-]+)/graalvm-ce-java(?<java>\\d[\\d]+)-windows-amd64-dev",
-        "replace": "${release}-dev-${build}",
-        "reverse": true
-    },
-    "autoupdate": {
-        "url": "https://ghproxy.com/https://github.com/graalvm/graalvm-ce-dev-builds/releases/download/$version/graalvm-ce-java$matchJava-windows-amd64-dev.zip",
-        "extract_dir": "graalvm-ce-java$matchJava-$matchRelease-dev"
-    }
+  "description": "High-performance, embeddable, polyglot Virtual Machine for JVM-langs (Java, Scala, Kotlin), JavaScript/NodeJS, Python, Ruby, R, and LLVM-langs (C, C++, Rust)",
+  "version": "23.0.0-dev-20230224_0257",
+  "homepage": "https://www.graalvm.org/",
+  "license": "GPL-2.0",
+  "url": "https://ghproxy.com/https://github.com/graalvm/graalvm-ce-dev-builds/releases/download/23.0.0-dev-20230224_0257/graalvm-ce-java20-windows-amd64-dev.zip",
+  "hash": "53a89888f3db3d319b701e71cfd24f15e0eaf2d1cac790c810debc63545e3b4c",
+  "extract_dir": "graalvm-ce-java20-23.0.0-dev",
+  "env_add_path": "bin",
+  "env_set": {
+    "JAVA_HOME": "$dir",
+    "GRAALVM_HOME": "$dir"
+  },
+  "checkver": {
+    "github": "https://github.com/graalvm/graalvm-ce-dev-builds",
+    "regex": "/(?<release>[\\d\\w.-]+)-dev-(?<build>[\\d\\w.-]+)/graalvm-ce-java(?<java>\\d[\\d]+)-windows-amd64-dev",
+    "replace": "${release}-dev-${build}",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/graalvm/graalvm-ce-dev-builds/releases/download/$version/graalvm-ce-java$matchJava-windows-amd64-dev.zip",
+    "extract_dir": "graalvm-ce-java$matchJava-$matchRelease-dev"
+  }
 }

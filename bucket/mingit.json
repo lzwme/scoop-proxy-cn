@@ -1,46 +1,46 @@
 {
-    "version": "2.39.2.windows.1",
-    "description": "Minimal Git for Windows (MinGit) is a reduced sized package designed to support application integration (like integrated development environments, graph visualizers, etc.) where full console support (colorization, pagniation, etc.) is not needed.",
-    "homepage": "https://git-for-windows.github.io/",
-    "license": "GPL-2.0-only",
-    "notes": [
-        "To get Git to recognise OpenSSH, you will need to run",
-        "",
-        "scoop install openssh",
-        "[environment]::setenvironmentvariable('GIT_SSH', (resolve-path (scoop which ssh)), 'USER')",
-        "",
-        "and then restart powershell."
-    ],
-    "architecture": {
-        "64bit": {
-            "url": "https://ghproxy.com/https://github.com/git-for-windows/git/releases/download/v2.39.2.windows.1/MinGit-2.39.2-64-bit.zip",
-            "hash": "a53b90a42d9a5e3ac992f525b5805c4dbb8a013b09a32edfdcf9a551fd8cfe2d"
-        },
-        "32bit": {
-            "url": "https://ghproxy.com/https://github.com/git-for-windows/git/releases/download/v2.39.2.windows.1/MinGit-2.39.2-32-bit.zip",
-            "hash": "f2027f51f8b12e5bd3c94782edddcfe277e26a3fc7c014707a72b04714f3b90f"
-        }
+  "version": "2.39.2.windows.1",
+  "description": "Minimal Git for Windows (MinGit) is a reduced sized package designed to support application integration (like integrated development environments, graph visualizers, etc.) where full console support (colorization, pagniation, etc.) is not needed.",
+  "homepage": "https://git-for-windows.github.io/",
+  "license": "GPL-2.0-only",
+  "notes": [
+    "To get Git to recognise OpenSSH, you will need to run",
+    "",
+    "scoop install openssh",
+    "[environment]::setenvironmentvariable('GIT_SSH', (resolve-path (scoop which ssh)), 'USER')",
+    "",
+    "and then restart powershell."
+  ],
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/git-for-windows/git/releases/download/v2.39.2.windows.1/MinGit-2.39.2-64-bit.zip",
+      "hash": "a53b90a42d9a5e3ac992f525b5805c4dbb8a013b09a32edfdcf9a551fd8cfe2d"
     },
-    "bin": "cmd\\git.exe",
-    "env_set": {
-        "GIT_INSTALL_ROOT": "$dir"
-    },
-    "checkver": {
-        "github": "https://github.com/git-for-windows/git",
-        "regex": "v([\\w.]+)/MinGit-(?<full>[\\w.]+)-64-bit"
-    },
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://ghproxy.com/https://github.com/git-for-windows/git/releases/download/v$version/MinGit-$matchFull-64-bit.zip"
-            },
-            "32bit": {
-                "url": "https://ghproxy.com/https://github.com/git-for-windows/git/releases/download/v$version/MinGit-$matchFull-32-bit.zip"
-            }
-        },
-        "hash": {
-            "url": "https://github.com/git-for-windows/git/releases/tag/v$version",
-            "regex": "<td>$basename</td>\\s*<td>$sha256</td>"
-        }
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/git-for-windows/git/releases/download/v2.39.2.windows.1/MinGit-2.39.2-32-bit.zip",
+      "hash": "f2027f51f8b12e5bd3c94782edddcfe277e26a3fc7c014707a72b04714f3b90f"
     }
+  },
+  "bin": "cmd\\git.exe",
+  "env_set": {
+    "GIT_INSTALL_ROOT": "$dir"
+  },
+  "checkver": {
+    "github": "https://github.com/git-for-windows/git",
+    "regex": "v([\\w.]+)/MinGit-(?<full>[\\w.]+)-64-bit"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/git-for-windows/git/releases/download/v$version/MinGit-$matchFull-64-bit.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/git-for-windows/git/releases/download/v$version/MinGit-$matchFull-32-bit.zip"
+      }
+    },
+    "hash": {
+      "url": "https://github.com/git-for-windows/git/releases/tag/v$version",
+      "regex": "<td>$basename</td>\\s*<td>$sha256</td>"
+    }
+  }
 }

@@ -1,39 +1,39 @@
 {
-    "version": "2.1.5",
-    "description": "A simple academic paper management tool for computer science.",
-    "homepage": "https://paperlib.app/",
-    "license": "GPL-3.0-only",
-    "architecture": {
-        "64bit": {
-            "url": "https://ghproxy.com/https://github.com/GeoffreyChen777/paperlib/releases/download/release-electron-2.1.5/Paperlib_2.1.5.exe#/dl.7z",
-            "hash": "sha512:25d333653a9356972d8e98e011d4673384a689e4e305c0e017d2433a47727c89d23d56dd45e1f5471c29acac0fe9ee5debc62b2670d8850ab77c296ca99588c2",
-            "pre_install": [
-                "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
-                "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$R0\", \"$dir\\Uninstall*\", \"$dir\\resources\\app-update.yml\"  -Force -Recurse"
-            ]
-        }
-    },
-    "bin": "Paperlib.exe",
-    "shortcuts": [
-        [
-            "Paperlib.exe",
-            "Paperlib"
-        ]
-    ],
-    "notes": "Chrome Extension: https://chrome.google.com/webstore/detail/paperlib/kgnpnfbjckgddlednhoblgfdfohhapng",
-    "checkver": {
-        "url": "https://paperlib.app/distribution/electron-win/latest.yml",
-        "regex": "Paperlib_([\\d.]+).exe"
-    },
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://ghproxy.com/https://github.com/GeoffreyChen777/paperlib/releases/download/release-electron-$version/Paperlib_$version.exe#/dl.7z",
-                "hash": {
-                    "url": "https://paperlib.app/distribution/electron-win/latest.yml",
-                    "regex": "sha512:\\s*$base64"
-                }
-            }
-        }
+  "version": "2.1.5",
+  "description": "A simple academic paper management tool for computer science.",
+  "homepage": "https://paperlib.app/",
+  "license": "GPL-3.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/GeoffreyChen777/paperlib/releases/download/release-electron-2.1.5/Paperlib_2.1.5.exe#/dl.7z",
+      "hash": "sha512:25d333653a9356972d8e98e011d4673384a689e4e305c0e017d2433a47727c89d23d56dd45e1f5471c29acac0fe9ee5debc62b2670d8850ab77c296ca99588c2",
+      "pre_install": [
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+        "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$R0\", \"$dir\\Uninstall*\", \"$dir\\resources\\app-update.yml\"  -Force -Recurse"
+      ]
     }
+  },
+  "bin": "Paperlib.exe",
+  "shortcuts": [
+    [
+      "Paperlib.exe",
+      "Paperlib"
+    ]
+  ],
+  "notes": "Chrome Extension: https://chrome.google.com/webstore/detail/paperlib/kgnpnfbjckgddlednhoblgfdfohhapng",
+  "checkver": {
+    "url": "https://paperlib.app/distribution/electron-win/latest.yml",
+    "regex": "Paperlib_([\\d.]+).exe"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/GeoffreyChen777/paperlib/releases/download/release-electron-$version/Paperlib_$version.exe#/dl.7z",
+        "hash": {
+          "url": "https://paperlib.app/distribution/electron-win/latest.yml",
+          "regex": "sha512:\\s*$base64"
+        }
+      }
+    }
+  }
 }

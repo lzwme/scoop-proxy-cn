@@ -1,40 +1,40 @@
 {
- "autoupdate": {
-  "url": "https://ghproxy.com/https://github.com/xavierfoucrier/inbox-notifier/releases/download/v$version/Inbox.Notifier.$version.exe"
- },
- "checkver": "github",
- "description": "A tray utility to receive Gmail notifications instantly in the Windows taskbar",
- "hash": "7d7d05cb52d645aeb76bad7bcaf00ee3e5daea334835fe72d60b819be28777da",
- "homepage": "https://github.com/xavierfoucrier/inbox-notifier",
- "innosetup": true,
- "license": "MIT",
- "notes": "Some data is contained within \"C:\\Users\\<username>\\AppData\\Local\\Xavier_Foucrier\".",
- "pre_install": [
-  "Get-ChildItem \"$dir\\*\" -Include @('*.exe', '*.dll', '*.json', '*.config') -Recurse | Select -ExpandProperty FullName | ForEach-Object {",
-  "    if ($architecture -eq '64bit') {",
-  "        if ($_.Contains(',1')) {Rename-Item $_ $_.Replace(',1', '')}",
-  "        if ($_.Contains(',2')) {Remove-Item $_}",
-  "        if ($_.Contains(',3')) {Remove-Item $_}",
-  "    }",
-  "    elseif ($architecture -eq '32bit') {",
-  "        if ($_.Contains(',2')) {Rename-Item $_ $_.Replace(',2', '')}",
-  "        if ($_.Contains(',3')) {Rename-Item $_ $_.Replace(',3', '')}",
-  "        if ($_.Contains(',1')) {Remove-Item $_}",
-  "    }",
-  "}",
-  "[xml]$xml = Get-Content \"$dir\\Inbox Notifier.exe.config\"",
-  "$xml.SelectSingleNode(\"/configuration/userSettings/notifier.Properties.Settings/setting[@name='Language']/value\").InnerText = 'English'",
-  "$xml.SelectSingleNode(\"/configuration/userSettings/notifier.Properties.Settings/setting[@name='UpdateService']/value\").InnerText = 'False'",
-  "$xml.SelectSingleNode(\"/configuration/userSettings/notifier.Properties.Settings/setting[@name='UpdateRequired']/value\").InnerText = 'False'",
-  "$xml.SelectSingleNode(\"/configuration/userSettings/notifier.Properties.Settings/setting[@name='UpdateDownload']/value\").InnerText = 'False'",
-  "$xml.Save(\"$dir\\Inbox Notifier.exe.config\")"
- ],
- "shortcuts": [
-  [
-   "Inbox Notifier.exe",
-   "Inbox Notifier"
-  ]
- ],
- "url": "https://ghproxy.com/https://github.com/xavierfoucrier/inbox-notifier/releases/download/v3.9.0/Inbox.Notifier.3.9.0.exe",
- "version": "3.9.0"
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/xavierfoucrier/inbox-notifier/releases/download/v$version/Inbox.Notifier.$version.exe"
+  },
+  "checkver": "github",
+  "description": "A tray utility to receive Gmail notifications instantly in the Windows taskbar",
+  "hash": "7d7d05cb52d645aeb76bad7bcaf00ee3e5daea334835fe72d60b819be28777da",
+  "homepage": "https://github.com/xavierfoucrier/inbox-notifier",
+  "innosetup": true,
+  "license": "MIT",
+  "notes": "Some data is contained within \"C:\\Users\\<username>\\AppData\\Local\\Xavier_Foucrier\".",
+  "pre_install": [
+    "Get-ChildItem \"$dir\\*\" -Include @('*.exe', '*.dll', '*.json', '*.config') -Recurse | Select -ExpandProperty FullName | ForEach-Object {",
+    "    if ($architecture -eq '64bit') {",
+    "        if ($_.Contains(',1')) {Rename-Item $_ $_.Replace(',1', '')}",
+    "        if ($_.Contains(',2')) {Remove-Item $_}",
+    "        if ($_.Contains(',3')) {Remove-Item $_}",
+    "    }",
+    "    elseif ($architecture -eq '32bit') {",
+    "        if ($_.Contains(',2')) {Rename-Item $_ $_.Replace(',2', '')}",
+    "        if ($_.Contains(',3')) {Rename-Item $_ $_.Replace(',3', '')}",
+    "        if ($_.Contains(',1')) {Remove-Item $_}",
+    "    }",
+    "}",
+    "[xml]$xml = Get-Content \"$dir\\Inbox Notifier.exe.config\"",
+    "$xml.SelectSingleNode(\"/configuration/userSettings/notifier.Properties.Settings/setting[@name='Language']/value\").InnerText = 'English'",
+    "$xml.SelectSingleNode(\"/configuration/userSettings/notifier.Properties.Settings/setting[@name='UpdateService']/value\").InnerText = 'False'",
+    "$xml.SelectSingleNode(\"/configuration/userSettings/notifier.Properties.Settings/setting[@name='UpdateRequired']/value\").InnerText = 'False'",
+    "$xml.SelectSingleNode(\"/configuration/userSettings/notifier.Properties.Settings/setting[@name='UpdateDownload']/value\").InnerText = 'False'",
+    "$xml.Save(\"$dir\\Inbox Notifier.exe.config\")"
+  ],
+  "shortcuts": [
+    [
+      "Inbox Notifier.exe",
+      "Inbox Notifier"
+    ]
+  ],
+  "url": "https://ghproxy.com/https://github.com/xavierfoucrier/inbox-notifier/releases/download/v3.9.0/Inbox.Notifier.3.9.0.exe",
+  "version": "3.9.0"
 }

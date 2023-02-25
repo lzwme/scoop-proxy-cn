@@ -1,25 +1,25 @@
 {
-    "autoupdate": {
-        "url": "https://nightly.link/crystal-lang/crystal/actions/runs/$matchRunid/crystal.zip"
-    },
-    "bin": [
-        "crystal.exe",
-        "shards.exe"
-    ],
-    "checkver": {
-        "regex": "(?sm)crystal-lang/crystal/actions/runs/(?<runid>\\d+).+datetime=\"(?<year>\\d+).(?<month>\\d+).(?<day>\\d+).*?commit/(?<sha>[0-9a-f]{7})",
-        "replace": "${year}${month}${day}.${sha}",
-        "url": "https://scoop-apps.vercel.app/crystal-lang/crystal"
-    },
-    "depends": "vswhere",
-    "description": "A language for humans and computers.",
-    "hash": "57655c5159c09ca391067cc8240d8339ada6215daab3f00e25981ee5ecb415fa",
-    "homepage": "https://crystal-lang.org/",
-    "license": {
-        "identifier": "Apache-2.0",
-        "url": "https://github.com/crystal-lang/crystal/raw/master/LICENSE"
-    },
-    "post_install": "If (Test-Path \"$env:LOCALAPPDATA\\crystal\\cache\") { Remove-Item \"$env:LOCALAPPDATA\\crystal\\cache\" -ErrorAction 'SilentlyContinue' -Recurse -Force }",
-    "url": "https://nightly.link/crystal-lang/crystal/actions/runs/4252993858/crystal.zip",
-    "version": "20230223.0727728"
+  "autoupdate": {
+    "url": "https://nightly.link/crystal-lang/crystal/actions/runs/$matchRunid/crystal.zip"
+  },
+  "bin": [
+    "crystal.exe",
+    "shards.exe"
+  ],
+  "checkver": {
+    "regex": "(?sm)crystal-lang/crystal/actions/runs/(?<runid>\\d+).+datetime=\"(?<year>\\d+).(?<month>\\d+).(?<day>\\d+).*?commit/(?<sha>[0-9a-f]{7})",
+    "replace": "${year}${month}${day}.${sha}",
+    "url": "https://scoop-apps.vercel.app/crystal-lang/crystal"
+  },
+  "depends": "vswhere",
+  "description": "A language for humans and computers.",
+  "hash": "ee3ed87c209e7c5209aa0025470e3cdde270130f227053241ed76c9579ae6f7b",
+  "homepage": "https://crystal-lang.org/",
+  "license": {
+    "identifier": "Apache-2.0",
+    "url": "https://github.com/crystal-lang/crystal/raw/master/LICENSE"
+  },
+  "post_install": "If (Test-Path \"$env:LOCALAPPDATA\\crystal\\cache\") { Remove-Item \"$env:LOCALAPPDATA\\crystal\\cache\" -ErrorAction 'SilentlyContinue' -Recurse -Force }",
+  "url": "https://nightly.link/crystal-lang/crystal/actions/runs/4260265139/crystal.zip",
+  "version": "20230224.807058a"
 }

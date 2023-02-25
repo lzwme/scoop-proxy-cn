@@ -1,33 +1,33 @@
 {
- "autoupdate": {
-  "url": "https://ghproxy.com/https://github.com/IBM/plex/releases/download/v$version/OpenType.zip"
- },
- "checkver": "github",
- "depends": [
-  "sudo",
-  "unoun/scoop-helper"
- ],
- "description": "IBM Plex typeface",
- "hash": "c936ece46d39a1cb281d3c37881c7269500fcda5c5bbedcbc7cf289898ea36fd",
- "homepage": "https://github.com/IBM/plex",
- "installer": {
-  "script": [
-   "$helper = \"$(appdir scoop-helper)\\current\\scoop-font-helper.ps1\"",
-   "if (!(Test-Path $helper)) { error 'File not found'; exit 1 }",
-   ". $helper",
-   "Install-Font($dir)"
-  ]
- },
- "license": "OFL-1.1-RFN",
- "pre_install": "Remove-Item \"$dir\\OpenType\\*\\unhinted\" -Recurse",
- "uninstaller": {
-  "script": [
-   "$helper = \"$(appdir scoop-helper)\\current\\scoop-font-helper.ps1\"",
-   "if (!(Test-Path $helper)) { error 'File not found'; exit 1 }",
-   ". $helper",
-   "Uninstall-Font($dir)"
-  ]
- },
- "url": "https://ghproxy.com/https://github.com/IBM/plex/releases/download/v6.1.1/OpenType.zip",
- "version": "6.1.1"
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/IBM/plex/releases/download/v$version/OpenType.zip"
+  },
+  "checkver": "github",
+  "depends": [
+    "sudo",
+    "unoun/scoop-helper"
+  ],
+  "description": "IBM Plex typeface",
+  "hash": "c936ece46d39a1cb281d3c37881c7269500fcda5c5bbedcbc7cf289898ea36fd",
+  "homepage": "https://github.com/IBM/plex",
+  "installer": {
+    "script": [
+      "$helper = \"$(appdir scoop-helper)\\current\\scoop-font-helper.ps1\"",
+      "if (!(Test-Path $helper)) { error 'File not found'; exit 1 }",
+      ". $helper",
+      "Install-Font($dir)"
+    ]
+  },
+  "license": "OFL-1.1-RFN",
+  "pre_install": "Remove-Item \"$dir\\OpenType\\*\\unhinted\" -Recurse",
+  "uninstaller": {
+    "script": [
+      "$helper = \"$(appdir scoop-helper)\\current\\scoop-font-helper.ps1\"",
+      "if (!(Test-Path $helper)) { error 'File not found'; exit 1 }",
+      ". $helper",
+      "Uninstall-Font($dir)"
+    ]
+  },
+  "url": "https://ghproxy.com/https://github.com/IBM/plex/releases/download/v6.1.1/OpenType.zip",
+  "version": "6.1.1"
 }

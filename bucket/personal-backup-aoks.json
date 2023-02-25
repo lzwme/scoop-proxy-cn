@@ -1,56 +1,56 @@
 {
+  "architecture": {
+    "32bit": {
+      "hash": "d5b10be3127e6a3e0f3991a51c4f0002b9d70a61ddd49a245401a5232da6a6a1",
+      "url": "https://personal-backup.rathlev-home.de/download/pb-setup-6.3.0003.exe"
+    },
+    "64bit": {
+      "hash": "d5b10be3127e6a3e0f3991a51c4f0002b9d70a61ddd49a245401a5232da6a6a1",
+      "url": "https://personal-backup.rathlev-home.de/download/pb-setup-x64-6.3.0003.exe"
+    }
+  },
+  "autoupdate": {
     "architecture": {
-        "32bit": {
-            "hash": "d5b10be3127e6a3e0f3991a51c4f0002b9d70a61ddd49a245401a5232da6a6a1",
-            "url": "https://personal-backup.rathlev-home.de/download/pb-setup-6.3.0003.exe"
+      "32bit": {
+        "hash": {
+          "find": "(?sm)pb-setup-$version.exe.sig.+<br>SHA256: ($sha256)</p>",
+          "url": "https://personal-backup.rathlev-home.de/download-e.html"
         },
-        "64bit": {
-            "hash": "d5b10be3127e6a3e0f3991a51c4f0002b9d70a61ddd49a245401a5232da6a6a1",
-            "url": "https://personal-backup.rathlev-home.de/download/pb-setup-x64-6.3.0003.exe"
-        }
-    },
-    "autoupdate": {
-        "architecture": {
-            "32bit": {
-                "hash": {
-                    "find": "(?sm)pb-setup-$version.exe.sig.+<br>SHA256: ($sha256)</p>",
-                    "url": "https://personal-backup.rathlev-home.de/download-e.html"
-                },
-                "url": "https://personal-backup.rathlev-home.de/download/pb-setup-$version.exe"
-            },
-            "64bit": {
-                "hash": {
-                    "find": "(?sm)pb-setup-x64-$version.exe.sig.+<br>SHA256: ($sha256)</p>",
-                    "url": "https://personal-backup.rathlev-home.de/download-e.html"
-                },
-                "url": "https://personal-backup.rathlev-home.de/download/pb-setup-x64-$version.exe"
-            }
-        }
-    },
-    "bin": "Persbackup.exe",
-    "checkver": {
-        "regex": "pb-setup-(?<version>[\\d.]+[\\d]).exe",
-        "url": "https://personal-backup.rathlev-home.de/download-e.html"
-    },
-    "description": "Personal Backup is a program for saving personal data to any destination folder.",
-    "homepage": "https://personal-backup.rathlev-home.de/index-e.html",
-    "innosetup": true,
-    "license": {
-        "identifier": "Freeware",
-        "url": "https://personal-backup.rathlev-home.de/license.html"
-    },
-    "persist": [
-        "pb.ini",
-        "logs",
-        "tasks"
-    ],
-    "pre_install": "if (!(Test-Path \"$persist_dir\\pb.ini\")) { New-Item \"$dir\\pb.ini\" -Force | Out-Null }",
-    "shortcuts": [
-        [
-            "Persbackup.exe",
-            "Personal Backup",
-            "/ini:%progpath%\\pb.ini /taskdir:%progpath%\\tasks /logdir:%progpath%\\logs"
-        ]
-    ],
-    "version": "6.3.0003"
+        "url": "https://personal-backup.rathlev-home.de/download/pb-setup-$version.exe"
+      },
+      "64bit": {
+        "hash": {
+          "find": "(?sm)pb-setup-x64-$version.exe.sig.+<br>SHA256: ($sha256)</p>",
+          "url": "https://personal-backup.rathlev-home.de/download-e.html"
+        },
+        "url": "https://personal-backup.rathlev-home.de/download/pb-setup-x64-$version.exe"
+      }
+    }
+  },
+  "bin": "Persbackup.exe",
+  "checkver": {
+    "regex": "pb-setup-(?<version>[\\d.]+[\\d]).exe",
+    "url": "https://personal-backup.rathlev-home.de/download-e.html"
+  },
+  "description": "Personal Backup is a program for saving personal data to any destination folder.",
+  "homepage": "https://personal-backup.rathlev-home.de/index-e.html",
+  "innosetup": true,
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://personal-backup.rathlev-home.de/license.html"
+  },
+  "persist": [
+    "pb.ini",
+    "logs",
+    "tasks"
+  ],
+  "pre_install": "if (!(Test-Path \"$persist_dir\\pb.ini\")) { New-Item \"$dir\\pb.ini\" -Force | Out-Null }",
+  "shortcuts": [
+    [
+      "Persbackup.exe",
+      "Personal Backup",
+      "/ini:%progpath%\\pb.ini /taskdir:%progpath%\\tasks /logdir:%progpath%\\logs"
+    ]
+  ],
+  "version": "6.3.0003"
 }

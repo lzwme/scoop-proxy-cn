@@ -1,26 +1,26 @@
 {
- "bin": "sakura.exe",
- "checkver": {
-  "regex": "/releases/tag/(?:v|V)?([\\d.]+)",
-  "url": "https://github.com/sakura-editor/sakura/releases/latest"
- },
- "description": "Japanese text editor for Windows",
- "extract_to": "inst",
- "hash": "494e92e6e3d751a99711815882e30497a3b0cf096bf164a2b61654c1ae51d50a",
- "homepage": "https://sakura-editor.github.io/",
- "license": "Zlib",
- "notes": "INI file will be stored in AppData\\Roaming\\sakura\\",
- "pre_install": [
-  "Expand-InnoArchive \"$dir\\inst\\sakura_install2-4-2-6048-x86.exe\" \"$dir\"",
-  "Copy-Item \"$dir\\sakura.exe,2.manifest\" \"$dir\\sakura.exe.manifest\"",
-  "Remove-Item \"$dir\\inst\" -Recurse"
- ],
- "shortcuts": [
-  [
-   "sakura.exe",
-   "SAKURA Editor"
-  ]
- ],
- "url": "https://ghproxy.com/https://github.com/sakura-editor/sakura/releases/download/v2.4.2/sakura-tag-v2.4.2-build4203-a3e63915b-Win32-Release-Installer.zip",
- "version": "2.4.2"
+  "bin": "sakura.exe",
+  "checkver": {
+    "regex": "/releases/tag/(?:v|V)?([\\d.]+)",
+    "url": "https://github.com/sakura-editor/sakura/releases/latest"
+  },
+  "description": "Japanese text editor for Windows",
+  "extract_to": "inst",
+  "hash": "494e92e6e3d751a99711815882e30497a3b0cf096bf164a2b61654c1ae51d50a",
+  "homepage": "https://sakura-editor.github.io/",
+  "license": "Zlib",
+  "notes": "INI file will be stored in AppData\\Roaming\\sakura\\",
+  "pre_install": [
+    "Expand-InnoArchive \"$dir\\inst\\sakura_install2-4-2-6048-x86.exe\" \"$dir\"",
+    "Copy-Item \"$dir\\sakura.exe,2.manifest\" \"$dir\\sakura.exe.manifest\"",
+    "Remove-Item \"$dir\\inst\" -Recurse"
+  ],
+  "shortcuts": [
+    [
+      "sakura.exe",
+      "SAKURA Editor"
+    ]
+  ],
+  "url": "https://ghproxy.com/https://github.com/sakura-editor/sakura/releases/download/v2.4.2/sakura-tag-v2.4.2-build4203-a3e63915b-Win32-Release-Installer.zip",
+  "version": "2.4.2"
 }

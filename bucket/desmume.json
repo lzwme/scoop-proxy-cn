@@ -1,48 +1,48 @@
 {
-    "autoupdate": {
-        "url": "https://nightly.link/TASEmulators/desmume/workflows/build_win/master/desmume-win-x64.zip"
-    },
-    "bin": [
-        [
-            "DeSmuME-VS2019-x64-Release.exe",
-            "DeSmuME"
-        ]
-    ],
-    "checkver": {
-        "regex": "([a-f0-9]{7})<",
-        "url": "https://github.com/TASEmulators/desmume/actions/workflows/build_win.yml?query=branch%3Amaster+is%3Asuccess"
-    },
-    "description": "Nintendo DS emulator",
-    "hash": "1c63eb113e22b409be4c7170ed8c3d77bcc986faeb47d998efa946b723dfb031",
-    "homepage": "https://desmume.org",
-    "license": {
-        "identifier": "GPL-2.0",
-        "url": "https://github.com/TASEmulators/desmume/blob/master/license.txt"
-    },
-    "persist": [
-        "AviFiles",
-        "Battery",
-        "Cheats",
-        "Firmware",
-        "Lua",
-        "Roms",
-        "Screenshots",
-        "SramImportExport",
-        "States",
-        "StateSlots",
-        "desmume.ini"
-    ],
-    "pre_install": [
-        "if (!(Test-Path \"$persist_dir\\desmume.ini\")) {",
-        "    New-Item \"$dir\\desmume.ini\" -Type File | Out-Null",
-        "}"
-    ],
-    "shortcuts": [
-        [
-            "DeSmuME-VS2019-x64-Release.exe",
-            "DeSmuME"
-        ]
-    ],
-    "url": "https://nightly.link/TASEmulators/desmume/workflows/build_win/master/desmume-win-x64.zip",
-    "version": "37683a7"
+  "autoupdate": {
+    "url": "https://nightly.link/TASEmulators/desmume/workflows/build_win/master/desmume-win-x64.zip"
+  },
+  "bin": [
+    [
+      "DeSmuME-VS2019-x64-Release.exe",
+      "DeSmuME"
+    ]
+  ],
+  "checkver": {
+    "regex": "([a-f0-9]{7})<",
+    "url": "https://github.com/TASEmulators/desmume/actions/workflows/build_win.yml?query=branch%3Amaster+is%3Asuccess"
+  },
+  "description": "Nintendo DS emulator",
+  "hash": "9c811ff425ad9dd235bfc31ea292324ec80c2d6552910d566ab48a5ffd4cf41b",
+  "homepage": "https://desmume.org",
+  "license": {
+    "identifier": "GPL-2.0",
+    "url": "https://github.com/TASEmulators/desmume/blob/master/license.txt"
+  },
+  "persist": [
+    "AviFiles",
+    "Battery",
+    "Cheats",
+    "Firmware",
+    "Lua",
+    "Roms",
+    "Screenshots",
+    "SramImportExport",
+    "States",
+    "StateSlots",
+    "desmume.ini"
+  ],
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\desmume.ini\")) {",
+    "    New-Item \"$dir\\desmume.ini\" -Type File | Out-Null",
+    "}"
+  ],
+  "shortcuts": [
+    [
+      "DeSmuME-VS2019-x64-Release.exe",
+      "DeSmuME"
+    ]
+  ],
+  "url": "https://nightly.link/TASEmulators/desmume/workflows/build_win/master/desmume-win-x64.zip",
+  "version": "fac70ce"
 }

@@ -1,61 +1,61 @@
 {
-    "version": "1.61-1143",
-    "description": "SNES (Super Nintendo Entertainment System) emulator",
-    "homepage": "http://www.snes9x.com/",
-    "license": {
-        "identifier": "Freeware",
-        "url": "https://github.com/snes9xgit/snes9x/blob/master/LICENSE"
+  "version": "1.61-1147",
+  "description": "SNES (Super Nintendo Entertainment System) emulator",
+  "homepage": "http://www.snes9x.com/",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://github.com/snes9xgit/snes9x/blob/master/LICENSE"
+  },
+  "architecture": {
+    "32bit": {
+      "url": "https://ci.appveyor.com/api/buildjobs/nl1t6pn5f3cxcvrh/artifacts/snes9x-1.61-1147-4b518d7-win32.zip",
+      "hash": "2aeae4ea87e7581beddb03170d54fd0866a93eb7fd5ca57098afa0f04e1d1c18",
+      "bin": "snes9x.exe",
+      "shortcuts": [
+        [
+          "snes9x.exe",
+          "Snes9X (dev)"
+        ]
+      ]
     },
-    "architecture": {
-        "32bit": {
-            "url": "https://ci.appveyor.com/api/buildjobs/qxlu3cb4qiplrr01/artifacts/snes9x-1.61-1143-420eb45-win32.zip",
-            "hash": "3cddd398cfa44ae8aa4f371c4c93abf1bc17b270590cac3696664ad966881aeb",
-            "bin": "snes9x.exe",
-            "shortcuts": [
-                [
-                    "snes9x.exe",
-                    "Snes9X (dev)"
-                ]
-            ]
-        },
-        "64bit": {
-            "url": "https://ci.appveyor.com/api/buildjobs/2kvhg5ygsjiyl5vx/artifacts/snes9x-1.61-1143-420eb45-win32-x64.zip",
-            "hash": "2c7966eca4d88d59f3b620b89415ed5316f3cac42a31774f622c61ed1e68e809",
-            "bin": [
-                [
-                    "snes9x-x64.exe",
-                    "snes9x"
-                ]
-            ],
-            "shortcuts": [
-                [
-                    "snes9x-x64.exe",
-                    "Snes9X (dev)"
-                ]
-            ]
-        }
-    },
-    "pre_install": [
-        "if (!(Test-Path \"$persist_dir\\snes9x.conf\")) {",
-        "    New-Item \"$dir\\snes9x.conf\" -Type File | Out-Null",
-        "}"
-    ],
-    "persist": [
-        "Saves",
-        "snes9x.conf"
-    ],
-    "checkver": {
-        "url": "https://ci.appveyor.com/api/projects/snes9x/snes9x",
-        "regex": "\"jobId\":\"(?<win32>.*?)\".*?arch=win32,.*?\"jobId\":\"(?<x64>.*?)\".*?arch=win32-x64,.*\"version\":\"(?<version>.*?)\".*\"commitId\":\"(?<commit>.{7}).*\""
-    },
-    "autoupdate": {
-        "architecture": {
-            "32bit": {
-                "url": "https://ci.appveyor.com/api/buildjobs/$matchWin32/artifacts/snes9x-$matchVersion-$matchCommit-win32.zip"
-            },
-            "64bit": {
-                "url": "https://ci.appveyor.com/api/buildjobs/$matchX64/artifacts/snes9x-$matchVersion-$matchCommit-win32-x64.zip"
-            }
-        }
+    "64bit": {
+      "url": "https://ci.appveyor.com/api/buildjobs/1n4mhfb3b2vyrv40/artifacts/snes9x-1.61-1147-4b518d7-win32-x64.zip",
+      "hash": "9c3b058a220365f2e7a609c0ed919cbc3fed4c6dbfc801ac0adf5e0a01ed296e",
+      "bin": [
+        [
+          "snes9x-x64.exe",
+          "snes9x"
+        ]
+      ],
+      "shortcuts": [
+        [
+          "snes9x-x64.exe",
+          "Snes9X (dev)"
+        ]
+      ]
     }
+  },
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\snes9x.conf\")) {",
+    "    New-Item \"$dir\\snes9x.conf\" -Type File | Out-Null",
+    "}"
+  ],
+  "persist": [
+    "Saves",
+    "snes9x.conf"
+  ],
+  "checkver": {
+    "url": "https://ci.appveyor.com/api/projects/snes9x/snes9x",
+    "regex": "\"jobId\":\"(?<win32>.*?)\".*?arch=win32,.*?\"jobId\":\"(?<x64>.*?)\".*?arch=win32-x64,.*\"version\":\"(?<version>.*?)\".*\"commitId\":\"(?<commit>.{7}).*\""
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ci.appveyor.com/api/buildjobs/$matchWin32/artifacts/snes9x-$matchVersion-$matchCommit-win32.zip"
+      },
+      "64bit": {
+        "url": "https://ci.appveyor.com/api/buildjobs/$matchX64/artifacts/snes9x-$matchVersion-$matchCommit-win32-x64.zip"
+      }
+    }
+  }
 }

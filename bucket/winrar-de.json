@@ -1,44 +1,44 @@
 {
+  "architecture": {
+    "32bit": {
+      "hash": "c16e1b37cc60a908f7237d695cfe63f0a4fe13347f1d5dbc9071caf0d3238157",
+      "url": "https://www.rarlab.com/rar/winrar-x32-620d.exe#/dl.7z"
+    },
+    "64bit": {
+      "hash": "b38d3da2ae966fa5d5b860bfc55400bcee7a16fe051d7df969fc543274326e97",
+      "url": "https://www.rarlab.com/rar/winrar-x64-620d.exe#/dl.7z"
+    }
+  },
+  "autoupdate": {
     "architecture": {
-        "32bit": {
-            "hash": "c16e1b37cc60a908f7237d695cfe63f0a4fe13347f1d5dbc9071caf0d3238157",
-            "url": "https://www.rarlab.com/rar/winrar-x32-620d.exe#/dl.7z"
-        },
-        "64bit": {
-            "hash": "b38d3da2ae966fa5d5b860bfc55400bcee7a16fe051d7df969fc543274326e97",
-            "url": "https://www.rarlab.com/rar/winrar-x64-620d.exe#/dl.7z"
-        }
-    },
-    "autoupdate": {
-        "architecture": {
-            "32bit": {
-                "url": "https://www.rarlab.com/rar/winrar-x32-$cleanVersiond.exe#/dl.7z"
-            },
-            "64bit": {
-                "url": "https://www.rarlab.com/rar/winrar-x64-$cleanVersiond.exe#/dl.7z"
-            }
-        }
-    },
-    "bin": [
-        "Rar.exe",
-        "UnRAR.exe",
-        "WinRAR.exe"
-    ],
-    "checkver": "WinRAR and RAR ([\\d.]+) release",
-    "description": "Powerful archive manager",
-    "homepage": "https://rarlab.com/",
-    "license": {
-        "identifier": "Shareware",
-        "url": "https://www.win-rar.com/gtb_priv.html?&L=0"
-    },
-    "notes": "Set up context menu within settings window.",
-    "persist": "rarreg.key",
-    "pre_install": "if (!(Test-Path \"$persist_dir\\rarreg.key\")) { New-Item \"$dir\\rarreg.key\" | Out-Null }",
-    "shortcuts": [
-        [
-            "WinRAR.exe",
-            "WinRAR"
-        ]
-    ],
-    "version": "6.20"
+      "32bit": {
+        "url": "https://www.rarlab.com/rar/winrar-x32-$cleanVersiond.exe#/dl.7z"
+      },
+      "64bit": {
+        "url": "https://www.rarlab.com/rar/winrar-x64-$cleanVersiond.exe#/dl.7z"
+      }
+    }
+  },
+  "bin": [
+    "Rar.exe",
+    "UnRAR.exe",
+    "WinRAR.exe"
+  ],
+  "checkver": "WinRAR and RAR ([\\d.]+) release",
+  "description": "Powerful archive manager",
+  "homepage": "https://rarlab.com/",
+  "license": {
+    "identifier": "Shareware",
+    "url": "https://www.win-rar.com/gtb_priv.html?&L=0"
+  },
+  "notes": "Set up context menu within settings window.",
+  "persist": "rarreg.key",
+  "pre_install": "if (!(Test-Path \"$persist_dir\\rarreg.key\")) { New-Item \"$dir\\rarreg.key\" | Out-Null }",
+  "shortcuts": [
+    [
+      "WinRAR.exe",
+      "WinRAR"
+    ]
+  ],
+  "version": "6.20"
 }

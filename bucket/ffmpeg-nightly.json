@@ -1,29 +1,29 @@
 {
-    "version": "1677071723",
-    "description": "A complete, cross-platform solution to record, convert and stream audio and video.",
-    "homepage": "https://ffmpeg.org",
-    "license": "GPL-3.0-or-later",
-    "architecture": {
-        "64bit": {
-            "url": "https://ghproxy.com/https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-win64-gpl.zip",
-            "hash": "ad9e570f504180734342ad61074cc3aceaf490890e13187a72b5ac2b3ab985e0",
-            "extract_dir": "ffmpeg-master-latest-win64-gpl"
-        }
-    },
-    "bin": [
-        "bin\\ffmpeg.exe",
-        "bin\\ffplay.exe",
-        "bin\\ffprobe.exe"
-    ],
-    "checkver": {
-        "script": "try { Get-Date (Invoke-RestMethod https://api.github.com/repositories/292087234/releases/latest).published_at -UFormat %s } catch { '' }",
-        "regex": "\\A(\\d+)\\Z"
-    },
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://ghproxy.com/https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-win64-gpl.zip"
-            }
-        }
+  "version": "1677158089",
+  "description": "A complete, cross-platform solution to record, convert and stream audio and video.",
+  "homepage": "https://ffmpeg.org",
+  "license": "GPL-3.0-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-win64-gpl.zip",
+      "hash": "ad9e570f504180734342ad61074cc3aceaf490890e13187a72b5ac2b3ab985e0",
+      "extract_dir": "ffmpeg-master-latest-win64-gpl"
     }
+  },
+  "bin": [
+    "bin\\ffmpeg.exe",
+    "bin\\ffplay.exe",
+    "bin\\ffprobe.exe"
+  ],
+  "checkver": {
+    "script": "try { Get-Date (Invoke-RestMethod https://api.github.com/repositories/292087234/releases/latest).published_at -UFormat %s } catch { '' }",
+    "regex": "\\A(\\d+)\\Z"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-win64-gpl.zip"
+      }
+    }
+  }
 }

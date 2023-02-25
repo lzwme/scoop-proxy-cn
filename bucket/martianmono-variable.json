@@ -1,31 +1,31 @@
 {
- "autoupdate": {
-  "url": "https://ghproxy.com/https://github.com/evilmartians/mono/releases/download/v$version/martian-mono-$version-variable.zip"
- },
- "checkver": "github",
- "description": "Free and open-source monospaced font from Evil Martians",
- "hash": "a526fafe51d1afba9d729c788655b0f8ac79ed836482a53211acc3955e1d2d19",
- "homepage": "https://github.com/evilmartians/mono",
- "installer": {
-  "script": [
-   "if(!(is_admin)) { error \"Admin rights are required.\"; exit 1 }",
-   "Get-ChildItem $dir -Filter '*.ttf' -Recurse | ForEach-Object {",
-   "  New-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $_.Name -Force | Out-Null",
-   "  Copy-Item $_.FullName -destination \"$env:windir\\Fonts\"",
-   "}"
-  ]
- },
- "license": "OFL-1.1",
- "uninstaller": {
-  "script": [
-   "if(!(is_admin)) { error \"Admin rights are required.\"; exit 1 }",
-   "Get-ChildItem $dir -filter '*.ttf' -Recurse | ForEach-Object {",
-   "  Remove-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
-   "  Remove-Item \"$env:windir\\Fonts\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
-   "}",
-   "Write-Host \"'Martian Mono' variable font has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
-  ]
- },
- "url": "https://ghproxy.com/https://github.com/evilmartians/mono/releases/download/v1.0.0/martian-mono-1.0.0-variable.zip",
- "version": "1.0.0"
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/evilmartians/mono/releases/download/v$version/martian-mono-$version-variable.zip"
+  },
+  "checkver": "github",
+  "description": "Free and open-source monospaced font from Evil Martians",
+  "hash": "a526fafe51d1afba9d729c788655b0f8ac79ed836482a53211acc3955e1d2d19",
+  "homepage": "https://github.com/evilmartians/mono",
+  "installer": {
+    "script": [
+      "if(!(is_admin)) { error \"Admin rights are required.\"; exit 1 }",
+      "Get-ChildItem $dir -Filter '*.ttf' -Recurse | ForEach-Object {",
+      "  New-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $_.Name -Force | Out-Null",
+      "  Copy-Item $_.FullName -destination \"$env:windir\\Fonts\"",
+      "}"
+    ]
+  },
+  "license": "OFL-1.1",
+  "uninstaller": {
+    "script": [
+      "if(!(is_admin)) { error \"Admin rights are required.\"; exit 1 }",
+      "Get-ChildItem $dir -filter '*.ttf' -Recurse | ForEach-Object {",
+      "  Remove-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
+      "  Remove-Item \"$env:windir\\Fonts\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
+      "}",
+      "Write-Host \"'Martian Mono' variable font has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
+    ]
+  },
+  "url": "https://ghproxy.com/https://github.com/evilmartians/mono/releases/download/v1.0.0/martian-mono-1.0.0-variable.zip",
+  "version": "1.0.0"
 }

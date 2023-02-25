@@ -1,43 +1,43 @@
 {
-    "architecture": {
-        "32bit": {
-            "shortcuts": [
-                [
-                    "IDE\\bin\\idea.exe",
-                    "JetBrains\\IntelliJ IDEA Ultimate (Release Candidate)"
-                ]
-            ]
-        },
-        "64bit": {
-            "shortcuts": [
-                [
-                    "IDE\\bin\\idea64.exe",
-                    "JetBrains\\IntelliJ IDEA Ultimate (Release Candidate)"
-                ]
-            ]
-        }
+  "architecture": {
+    "32bit": {
+      "shortcuts": [
+        [
+          "IDE\\bin\\idea.exe",
+          "JetBrains\\IntelliJ IDEA Ultimate (Release Candidate)"
+        ]
+      ]
     },
-    "autoupdate": {
-        "hash": {
-            "url": "$url.sha256"
-        },
-        "url": "https://download.jetbrains.com/idea/ideaIU-$preReleaseVersion.win.zip"
+    "64bit": {
+      "shortcuts": [
+        [
+          "IDE\\bin\\idea64.exe",
+          "JetBrains\\IntelliJ IDEA Ultimate (Release Candidate)"
+        ]
+      ]
+    }
+  },
+  "autoupdate": {
+    "hash": {
+      "url": "$url.sha256"
     },
-    "checkver": {
-        "regex": "version\":\"(?<ver>[\\d.]+)\".*\"build\":\"(?<build>[\\d.]+)\"",
-        "replace": "${ver}-${build}",
-        "url": "https://data.services.jetbrains.com/products/releases?code=IIU&latest=true&platform=zip&type=rc"
-    },
-    "description": "IntelliJ IDEA Ultimate Release Candidate. Cross-Platform Java IDE for professional developers by JetBrains.",
-    "extract_to": "IDE",
-    "hash": "486da6ce62ba21f4ba8561ec68c9af23fbd97adcf9de865a4ffd6beed5755737",
-    "homepage": "https://www.jetbrains.com/idea/",
-    "license": {
-        "identifier": "Proprietary",
-        "url": "https://www.jetbrains.com/store/license.html"
-    },
-    "persist": "IDE\\bin\\idea.properties",
-    "pre_install": "Remove-Item \"$dir\\IDE\\`$*\" -Force -Recurse",
-    "url": "https://download.jetbrains.com/idea/ideaIU-223.8836.14.win.zip",
-    "version": "2022.3.3-223.8836.14"
+    "url": "https://download.jetbrains.com/idea/ideaIU-$preReleaseVersion.win.zip"
+  },
+  "checkver": {
+    "regex": "version\":\"(?<ver>[\\d.]+)\".*\"build\":\"(?<build>[\\d.]+)\"",
+    "replace": "${ver}-${build}",
+    "url": "https://data.services.jetbrains.com/products/releases?code=IIU&latest=true&platform=zip&type=rc"
+  },
+  "description": "IntelliJ IDEA Ultimate Release Candidate. Cross-Platform Java IDE for professional developers by JetBrains.",
+  "extract_to": "IDE",
+  "hash": "486da6ce62ba21f4ba8561ec68c9af23fbd97adcf9de865a4ffd6beed5755737",
+  "homepage": "https://www.jetbrains.com/idea/",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://www.jetbrains.com/store/license.html"
+  },
+  "persist": "IDE\\bin\\idea.properties",
+  "pre_install": "Remove-Item \"$dir\\IDE\\`$*\" -Force -Recurse",
+  "url": "https://download.jetbrains.com/idea/ideaIU-223.8836.14.win.zip",
+  "version": "2022.3.3-223.8836.14"
 }

@@ -1,60 +1,60 @@
 {
- "architecture": {
-  "32bit": {
-   "hash": "84b61cdb50542e2e231272c9a77feb175bfc03a2bd7965ab2be83911e2ea119d",
-   "url": "https://downloads.sourceforge.net/project/lazarus/Lazarus%20Windows%2032%20bits/Lazarus%202.2.4/lazarus-2.2.4-fpc-3.2.2-win32.exe"
-  },
-  "64bit": {
-   "hash": "dea36fb0a60a36aef09128379201aa604ecdf5960f57aa89acde76964adc8f85",
-   "url": "https://downloads.sourceforge.net/project/lazarus/Lazarus%20Windows%2064%20bits/Lazarus%202.2.4/lazarus-2.2.4-fpc-3.2.2-win64.exe"
-  }
- },
- "autoupdate": {
   "architecture": {
-   "32bit": {
-    "hash": {
-     "regex": "$sha256.*$basename",
-     "url": "http://www.lazarus-ide.org/index.php?page=checksums"
+    "32bit": {
+      "hash": "84b61cdb50542e2e231272c9a77feb175bfc03a2bd7965ab2be83911e2ea119d",
+      "url": "https://downloads.sourceforge.net/project/lazarus/Lazarus%20Windows%2032%20bits/Lazarus%202.2.4/lazarus-2.2.4-fpc-3.2.2-win32.exe"
     },
-    "url": "https://downloads.sourceforge.net/project/lazarus/Lazarus%20Windows%2032%20bits/Lazarus%20$version/lazarus-$version-fpc-$matchFpc-win32.exe"
-   },
-   "64bit": {
-    "hash": {
-     "regex": "$sha256.*$basename",
-     "url": "http://www.lazarus-ide.org/index.php?page=checksums"
-    },
-    "url": "https://downloads.sourceforge.net/project/lazarus/Lazarus%20Windows%2064%20bits/Lazarus%20$version/lazarus-$version-fpc-$matchFpc-win64.exe"
-   }
-  }
- },
- "bin": [
-  "lazarus.exe",
-  "lazbuild.exe",
-  "startlazarus.exe"
- ],
- "checkver": "lazarus-([\\d.]+)-fpc-(?<fpc>[\\d.]+)-win64.exe",
- "description": "A Delphi compatible cross-platform IDE for Rapid Application Development.",
- "env_set": {
-  "LazDir": "$dir",
-  "LazarusDir": "$dir"
- },
- "homepage": "https://www.lazarus-ide.org",
- "innosetup": true,
- "license": "GPL-2.0-or-later|FPC-modified-LGPL-2.0-or-later",
- "post_install": [
-  "$fpcdir = \"$dir\\fpc\\\" + ($fname -replace '.*fpc-([\\d.]+)-.*', '$1')",
-  "& \"$fpcdir\\bin\\x86_64-win64\\fpcmkcfg.exe\" -d \"basepath=$fpcdir\" -o \"$fpcdir\\bin\\x86_64-win64\\fpc.cfg\""
- ],
- "shortcuts": [
-  [
-   "lazarus.exe",
-   "Lazarus"
+    "64bit": {
+      "hash": "dea36fb0a60a36aef09128379201aa604ecdf5960f57aa89acde76964adc8f85",
+      "url": "https://downloads.sourceforge.net/project/lazarus/Lazarus%20Windows%2064%20bits/Lazarus%202.2.4/lazarus-2.2.4-fpc-3.2.2-win64.exe"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "hash": {
+          "regex": "$sha256.*$basename",
+          "url": "http://www.lazarus-ide.org/index.php?page=checksums"
+        },
+        "url": "https://downloads.sourceforge.net/project/lazarus/Lazarus%20Windows%2032%20bits/Lazarus%20$version/lazarus-$version-fpc-$matchFpc-win32.exe"
+      },
+      "64bit": {
+        "hash": {
+          "regex": "$sha256.*$basename",
+          "url": "http://www.lazarus-ide.org/index.php?page=checksums"
+        },
+        "url": "https://downloads.sourceforge.net/project/lazarus/Lazarus%20Windows%2064%20bits/Lazarus%20$version/lazarus-$version-fpc-$matchFpc-win64.exe"
+      }
+    }
+  },
+  "bin": [
+    "lazarus.exe",
+    "lazbuild.exe",
+    "startlazarus.exe"
   ],
-  [
-   "startlazarus.exe",
-   "Lazarus (debug)",
-   "--debug"
-  ]
- ],
- "version": "2.2.4"
+  "checkver": "lazarus-([\\d.]+)-fpc-(?<fpc>[\\d.]+)-win64.exe",
+  "description": "A Delphi compatible cross-platform IDE for Rapid Application Development.",
+  "env_set": {
+    "LazDir": "$dir",
+    "LazarusDir": "$dir"
+  },
+  "homepage": "https://www.lazarus-ide.org",
+  "innosetup": true,
+  "license": "GPL-2.0-or-later|FPC-modified-LGPL-2.0-or-later",
+  "post_install": [
+    "$fpcdir = \"$dir\\fpc\\\" + ($fname -replace '.*fpc-([\\d.]+)-.*', '$1')",
+    "& \"$fpcdir\\bin\\x86_64-win64\\fpcmkcfg.exe\" -d \"basepath=$fpcdir\" -o \"$fpcdir\\bin\\x86_64-win64\\fpc.cfg\""
+  ],
+  "shortcuts": [
+    [
+      "lazarus.exe",
+      "Lazarus"
+    ],
+    [
+      "startlazarus.exe",
+      "Lazarus (debug)",
+      "--debug"
+    ]
+  ],
+  "version": "2.2.4"
 }

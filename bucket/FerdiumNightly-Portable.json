@@ -1,44 +1,44 @@
 {
-    "version": "6.2.5-nightly.9",
-    "description": "Ferdium. All-in-one messaging apps for various services",
-    "homepage": "https://github.com/ferdium/ferdium-app",
-    "license": "Apache-2.0",
-    "changelog": "https://github.com/ferdium/ferdium-app/releases",
-    "architecture": {
-        "64bit": {
-            "url": "https://ghproxy.com/https://github.com/ferdium/ferdium-app/releases/download/v6.2.5-nightly.9/Ferdium-win-Portable-6.2.5-nightly.9-x64.exe#/dl.7z",
-            "hash": "d391b662ebac80309f2b6db8cbd36823f3fcf8e8effc388c95703605b234901d",
-            "installer": {
-                "script": "Expand-7zipArchive -Path \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\""
-            }
-        },
-        "32bit": {
-            "url": "https://ghproxy.com/https://github.com/ferdium/ferdium-app/releases/download/v6.2.5-nightly.9/Ferdium-win-Portable-6.2.5-nightly.9.exe#/dl.7z",
-            "hash": "a832f022b192379861e3ff8a0956a0e012438c3931582c3f05094b3bf7a330e3",
-            "installer": {
-                "script": "Expand-7zipArchive -Path \"$dir\\`$PLUGINSDIR\\app-32.7z\" \"$dir\""
-            }
-        }
+  "version": "6.2.5-nightly.9",
+  "description": "Ferdium. All-in-one messaging apps for various services",
+  "homepage": "https://github.com/ferdium/ferdium-app",
+  "license": "Apache-2.0",
+  "changelog": "https://github.com/ferdium/ferdium-app/releases",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/ferdium/ferdium-app/releases/download/v6.2.5-nightly.9/Ferdium-win-Portable-6.2.5-nightly.9-x64.exe#/dl.7z",
+      "hash": "d391b662ebac80309f2b6db8cbd36823f3fcf8e8effc388c95703605b234901d",
+      "installer": {
+        "script": "Expand-7zipArchive -Path \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\""
+      }
     },
-    "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall*.exe\" -Recurse -Force",
-    "shortcuts": [
-        [
-            "Ferdium.exe",
-            "Ferdium"
-        ]
-    ],
-    "checkver": {
-        "url": "https://github.com/ferdium/ferdium-app/releases",
-        "regex": "/releases/tag/(?:v|V)?([\\d\\-nightly.]+)"
-    },
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://ghproxy.com/https://github.com/ferdium/ferdium-app/releases/download/v$version/Ferdium-win-Portable-$version-x64.exe#/dl.7z"
-            },
-            "32bit": {
-                "url": "https://ghproxy.com/https://github.com/ferdium/ferdium-app/releases/download/v$version/Ferdium-win-Portable-$version.exe#/dl.7z"
-            }
-        }
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/ferdium/ferdium-app/releases/download/v6.2.5-nightly.9/Ferdium-win-Portable-6.2.5-nightly.9.exe#/dl.7z",
+      "hash": "a832f022b192379861e3ff8a0956a0e012438c3931582c3f05094b3bf7a330e3",
+      "installer": {
+        "script": "Expand-7zipArchive -Path \"$dir\\`$PLUGINSDIR\\app-32.7z\" \"$dir\""
+      }
     }
+  },
+  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall*.exe\" -Recurse -Force",
+  "shortcuts": [
+    [
+      "Ferdium.exe",
+      "Ferdium"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/ferdium/ferdium-app/releases",
+    "regex": "/releases/tag/(?:v|V)?([\\d\\-nightly.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/ferdium/ferdium-app/releases/download/v$version/Ferdium-win-Portable-$version-x64.exe#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/ferdium/ferdium-app/releases/download/v$version/Ferdium-win-Portable-$version.exe#/dl.7z"
+      }
+    }
+  }
 }

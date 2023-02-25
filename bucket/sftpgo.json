@@ -1,28 +1,28 @@
 {
-    "version": "2.4.4",
-    "description": "Fully featured and highly configurable SFTP server with optional HTTP, FTP/S and WebDAV support",
-    "homepage": "https://github.com/drakkan/sftpgo",
-    "license": "AGPL-3.0-only",
-    "notes": "Register SFTPGo as Windows Service by running: \"sftpgo service install\" as Administrator",
-    "url": "https://ghproxy.com/https://github.com/drakkan/sftpgo/releases/download/v2.4.4/sftpgo_v2.4.4_windows_portable.zip",
-    "hash": "2827af1e8ea5a3b8ecc64124ba4367fa382a11c282c72e8db88100a6c586cd13",
-    "pre_install": [
-        "if ($architecture -eq '32bit') {",
-        "   Move-Item \"$dir\\x86\\sftpgo.exe\" \"$dir\\\" -Force",
-        "} elseif ($architecture -eq 'arm64') {",
-        "   Move-Item \"$dir\\arm64\\sftpgo.exe\" \"$dir\\\" -Force",
-        "}",
-        "Remove-Item \"$dir\\arm64\", \"$dir\\x86\" -Recurse -Force"
-    ],
-    "bin": "sftpgo.exe",
-    "persist": [
-        "sftpgo.db",
-        "sftpgo.json"
-    ],
-    "checkver": {
-        "github": "https://github.com/drakkan/sftpgo"
-    },
-    "autoupdate": {
-        "url": "https://ghproxy.com/https://github.com/drakkan/sftpgo/releases/download/v$version/sftpgo_v$version_windows_portable.zip"
-    }
+  "version": "2.4.4",
+  "description": "Fully featured and highly configurable SFTP server with optional HTTP, FTP/S and WebDAV support",
+  "homepage": "https://github.com/drakkan/sftpgo",
+  "license": "AGPL-3.0-only",
+  "notes": "Register SFTPGo as Windows Service by running: \"sftpgo service install\" as Administrator",
+  "url": "https://ghproxy.com/https://github.com/drakkan/sftpgo/releases/download/v2.4.4/sftpgo_v2.4.4_windows_portable.zip",
+  "hash": "2827af1e8ea5a3b8ecc64124ba4367fa382a11c282c72e8db88100a6c586cd13",
+  "pre_install": [
+    "if ($architecture -eq '32bit') {",
+    "   Move-Item \"$dir\\x86\\sftpgo.exe\" \"$dir\\\" -Force",
+    "} elseif ($architecture -eq 'arm64') {",
+    "   Move-Item \"$dir\\arm64\\sftpgo.exe\" \"$dir\\\" -Force",
+    "}",
+    "Remove-Item \"$dir\\arm64\", \"$dir\\x86\" -Recurse -Force"
+  ],
+  "bin": "sftpgo.exe",
+  "persist": [
+    "sftpgo.db",
+    "sftpgo.json"
+  ],
+  "checkver": {
+    "github": "https://github.com/drakkan/sftpgo"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/drakkan/sftpgo/releases/download/v$version/sftpgo_v$version_windows_portable.zip"
+  }
 }

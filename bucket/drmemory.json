@@ -1,41 +1,35 @@
 {
-    "version": "2.5.19327",
-    "description": "Memory monitoring tool capable of identifying memory-related programming errors such as accesses of uninitialized/unaddressable/freed memory, double frees, memory leaks, handle leaks, GDI API usage errors and accesses to un-reserved thread local storage slots.",
-    "homepage": "https://drmemory.org",
-    "license": "LGPL-2.1-only",
-    "url": "https://ghproxy.com/https://github.com/DynamoRIO/drmemory/releases/download/cronbuild-2.5.19327/DrMemory-Windows-2.5.19327.zip",
-    "hash": "160c1d6d513ed56c262176031e7f278728881183e5b041b3d6fae952514ea124",
-    "extract_dir": "DrMemory-Windows-2.5.19327",
-    "architecture": {
-        "64bit": {
-            "bin": [
-                "bin64\\drconfig.exe",
-                "bin64\\drltrace.exe",
-                "bin64\\drmemory.exe",
-                "bin64\\drstrace.exe",
-                "bin64\\symquery.exe",
-                "bin64\\vs_external_tool.exe",
-                "bin64\\winsyms.exe"
-            ]
-        },
-        "32bit": {
-            "bin": [
-                "bin\\drconfig.exe",
-                "bin\\drltrace.exe",
-                "bin\\drmemory.exe",
-                "bin\\drstrace.exe",
-                "bin\\symquery.exe",
-                "bin\\vs_external_tool.exe",
-                "bin\\winsyms.exe"
-            ]
-        }
+  "version": "2.5.0",
+  "description": "Dr. Memory is a memory monitoring tool capable of identifying memory-related programming errors.",
+  "homepage": "https://drmemory.org/",
+  "license": "LGPL-2.1-only",
+  "url": "https://ghproxy.com/https://github.com/DynamoRIO/drmemory/releases/download/release_2.5.0/DrMemory-Windows-2.5.0.zip",
+  "hash": "1be5c92a0a5ee29c1c0506ddb8d5fb9ddec15ff7c9dbba379fc633e7fe405f87",
+  "extract_dir": "DrMemory-Windows-2.5.0",
+  "architecture": {
+    "64bit": {
+      "bin": [
+        "bin64\\drmemory.exe",
+        "bin64\\drstrace.exe",
+        "bin64\\drconfig.exe",
+        "bin64\\symquery.exe"
+      ]
     },
-    "checkver": {
-        "url": "https://github.com/DynamoRIO/drmemory",
-        "regex": "tag/cronbuild-([\\d.]+)"
-    },
-    "autoupdate": {
-        "url": "https://ghproxy.com/https://github.com/DynamoRIO/drmemory/releases/download/cronbuild-$version/DrMemory-Windows-$version.zip",
-        "extract_dir": "DrMemory-Windows-$version"
+    "32bit": {
+      "bin": [
+        "bin\\drmemory.exe",
+        "bin\\drstrace.exe",
+        "bin\\drconfig.exe",
+        "bin\\symquery.exe"
+      ]
     }
+  },
+  "checkver": {
+    "url": "https://github.com/DynamoRIO/drmemory/releases",
+    "regex": "/releases/tag/release_([\\d.]+)\""
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/DynamoRIO/drmemory/releases/download/release_$version/DrMemory-Windows-$version.zip",
+    "extract_dir": "DrMemory-Windows-$version"
+  }
 }

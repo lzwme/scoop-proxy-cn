@@ -1,56 +1,56 @@
 {
-    "version": "8.4.9",
-    "description": "Text and source code editor",
-    "homepage": "https://notepad-plus-plus.org/",
-    "license": "GPL-2.0-only",
-    "architecture": {
-        "64bit": {
-            "url": "https://ghproxy.com/https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.4.9/npp.8.4.9.Installer.x64.exe#/installer.exe",
-            "hash": "6b170127061feb082ffd1b14309ef6d4a783df3c0fd51999e1786067731a49f3"
-        },
-        "32bit": {
-            "url": "https://ghproxy.com/https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.4.9/npp.8.4.9.Installer.exe#/installer.exe",
-            "hash": "ecb7f0fba2b6f362d2001822e4d23a7e734980e7089f7c139fdd6f5d08f8ef4b"
-        }
+  "version": "8.4.9",
+  "description": "Text and source code editor",
+  "homepage": "https://notepad-plus-plus.org/",
+  "license": "GPL-2.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.4.9/npp.8.4.9.Installer.x64.exe#/installer.exe",
+      "hash": "6b170127061feb082ffd1b14309ef6d4a783df3c0fd51999e1786067731a49f3"
     },
-    "installer": {
-        "script": [
-            "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
-            "Start-Process \"$dir\\installer.exe\" -ArgumentList @('/S', \"/D=$dir\") -Wait -Verb RunAs | Out-Null",
-            "Remove-Item \"$([Environment]::GetFolderPath('commonstartmenu'))\\Programs\\Notepad++.lnk\"",
-            "if (Test-Path(\"$env:AppData\\Notepad++_Scoop_backup\")) { Copy-Item \"$env:AppData\\Notepad++_Scoop_backup\\*\" \"$Env:AppData\\Notepad++\" -Force -Recurse }"
-        ]
-    },
-    "uninstaller": {
-        "script": [
-            "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
-            "if (!(Test-Path(\"$env:AppData\\Notepad++_Scoop_backup\"))) { New-Item \"$env:AppData\\Notepad++_Scoop_backup\" -ItemType Directory | Out-Null }",
-            "Copy-Item \"$Env:AppData\\Notepad++\\*\" \"$env:AppData\\Notepad++_Scoop_backup\" -Force -Recurse",
-            "Start-Process \"$dir\\uninstall.exe\" -ArgumentList '/S' -Wait -Verb RunAs | Out-Null",
-            "Stop-Process -Name explorer"
-        ]
-    },
-    "bin": "notepad++.exe",
-    "shortcuts": [
-        [
-            "notepad++.exe",
-            "Notepad++"
-        ]
-    ],
-    "checkver": {
-        "github": "https://github.com/notepad-plus-plus/notepad-plus-plus"
-    },
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://ghproxy.com/https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v$version/npp.$version.Installer.x64.exe#/installer.exe"
-            },
-            "32bit": {
-                "url": "https://ghproxy.com/https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v$version/npp.$version.Installer.exe#/installer.exe"
-            }
-        },
-        "hash": {
-            "url": "https://ghproxy.com/https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v$version/npp.$version.checksums.sha256"
-        }
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.4.9/npp.8.4.9.Installer.exe#/installer.exe",
+      "hash": "ecb7f0fba2b6f362d2001822e4d23a7e734980e7089f7c139fdd6f5d08f8ef4b"
     }
+  },
+  "installer": {
+    "script": [
+      "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+      "Start-Process \"$dir\\installer.exe\" -ArgumentList @('/S', \"/D=$dir\") -Wait -Verb RunAs | Out-Null",
+      "Remove-Item \"$([Environment]::GetFolderPath('commonstartmenu'))\\Programs\\Notepad++.lnk\"",
+      "if (Test-Path(\"$env:AppData\\Notepad++_Scoop_backup\")) { Copy-Item \"$env:AppData\\Notepad++_Scoop_backup\\*\" \"$Env:AppData\\Notepad++\" -Force -Recurse }"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+      "if (!(Test-Path(\"$env:AppData\\Notepad++_Scoop_backup\"))) { New-Item \"$env:AppData\\Notepad++_Scoop_backup\" -ItemType Directory | Out-Null }",
+      "Copy-Item \"$Env:AppData\\Notepad++\\*\" \"$env:AppData\\Notepad++_Scoop_backup\" -Force -Recurse",
+      "Start-Process \"$dir\\uninstall.exe\" -ArgumentList '/S' -Wait -Verb RunAs | Out-Null",
+      "Stop-Process -Name explorer"
+    ]
+  },
+  "bin": "notepad++.exe",
+  "shortcuts": [
+    [
+      "notepad++.exe",
+      "Notepad++"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/notepad-plus-plus/notepad-plus-plus"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v$version/npp.$version.Installer.x64.exe#/installer.exe"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v$version/npp.$version.Installer.exe#/installer.exe"
+      }
+    },
+    "hash": {
+      "url": "https://ghproxy.com/https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v$version/npp.$version.checksums.sha256"
+    }
+  }
 }

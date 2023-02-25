@@ -1,49 +1,49 @@
 {
-    "homepage": "https://nim-lang.org/",
-    "description": "A statically typed compiled systems programming language, which combines successful concepts from mature languages like Python, Ada and Modula.",
-    "version": "1.6.10",
-    "license": "MIT",
-    "architecture": {
-        "64bit": {
-            "url": "https://nim-lang.org/download/nim-1.6.10_x64.zip",
-            "hash": "826ca93a6ec7270c0d5395723b0e1e213d0286feecea5be6bd5bb8362ff4866f"
-        },
-        "32bit": {
-            "url": "https://nim-lang.org/download/nim-1.6.10_x32.zip",
-            "hash": "09bbfb855f8aa3d9f882a6c99a60ebaee063290ef07232f971c42f1ff72d3235"
-        }
+  "homepage": "https://nim-lang.org/",
+  "description": "A statically typed compiled systems programming language, which combines successful concepts from mature languages like Python, Ada and Modula.",
+  "version": "1.6.10",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://nim-lang.org/download/nim-1.6.10_x64.zip",
+      "hash": "826ca93a6ec7270c0d5395723b0e1e213d0286feecea5be6bd5bb8362ff4866f"
     },
-    "depends": "gcc",
-    "extract_dir": "nim-1.6.10",
-    "bin": [
-        "bin\\nim.exe",
-        "bin\\nimble.exe",
-        "bin\\nimgrab.exe",
-        "bin\\nimgrep.exe",
-        "bin\\nimpretty.exe",
-        "bin\\nimsuggest.exe",
-        "bin\\vccexe.exe",
-        "bin\\testament.exe"
-    ],
-    "checkver": {
-        "url": "https://nim-lang.org/install_windows.html",
-        "re": "nim-([\\d.]+)_x64"
-    },
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://nim-lang.org/download/nim-$version_x64.zip"
-            },
-            "32bit": {
-                "url": "https://nim-lang.org/download/nim-$version_x32.zip"
-            }
-        },
-        "extract_dir": "nim-$version",
-        "hash": {
-            "url": "$url.sha256"
-        }
-    },
-    "installer": {
-        "script": "add_first_in_path \"$env:USERPROFILE\\.nimble\\bin\" $global"
+    "32bit": {
+      "url": "https://nim-lang.org/download/nim-1.6.10_x32.zip",
+      "hash": "09bbfb855f8aa3d9f882a6c99a60ebaee063290ef07232f971c42f1ff72d3235"
     }
+  },
+  "depends": "gcc",
+  "extract_dir": "nim-1.6.10",
+  "bin": [
+    "bin\\nim.exe",
+    "bin\\nimble.exe",
+    "bin\\nimgrab.exe",
+    "bin\\nimgrep.exe",
+    "bin\\nimpretty.exe",
+    "bin\\nimsuggest.exe",
+    "bin\\vccexe.exe",
+    "bin\\testament.exe"
+  ],
+  "checkver": {
+    "url": "https://nim-lang.org/install_windows.html",
+    "re": "nim-([\\d.]+)_x64"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://nim-lang.org/download/nim-$version_x64.zip"
+      },
+      "32bit": {
+        "url": "https://nim-lang.org/download/nim-$version_x32.zip"
+      }
+    },
+    "extract_dir": "nim-$version",
+    "hash": {
+      "url": "$url.sha256"
+    }
+  },
+  "installer": {
+    "script": "add_first_in_path \"$env:USERPROFILE\\.nimble\\bin\" $global"
+  }
 }

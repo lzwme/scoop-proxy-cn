@@ -1,58 +1,58 @@
 {
-    "version": "110.0.5481.178",
-    "description": "Google Chrome. Fast, secure, and free web browser, built for the modern web.",
-    "homepage": "https://www.google.com/chrome/",
-    "license": {
-        "identifier": "Freeware",
-        "url": "https://www.google.com/chrome/privacy/eula_text.html"
+  "version": "110.0.5481.178",
+  "description": "Google Chrome. Fast, secure, and free web browser, built for the modern web.",
+  "homepage": "https://www.google.com/chrome/",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://www.google.com/chrome/privacy/eula_text.html"
+  },
+  "changelog": "https://chromereleases.googleblog.com/",
+  "architecture": {
+    "64bit": {
+      "url": "https://dl.google.com/tag/s/dl/chrome/install/googlechromestandaloneenterprise64.msi#/setup.msi_",
+      "hash": "c7c0b0c8c01b97152feb026a8c48c473c0825e66e602636cc2ccdcc103ca4572"
     },
-    "changelog": "https://chromereleases.googleblog.com/",
-    "architecture": {
-        "64bit": {
-            "url": "https://dl.google.com/tag/s/dl/chrome/install/googlechromestandaloneenterprise64.msi#/setup.msi_",
-            "hash": "c7c0b0c8c01b97152feb026a8c48c473c0825e66e602636cc2ccdcc103ca4572"
-        },
-        "32bit": {
-            "url": "https://dl.google.com/tag/s/dl/chrome/install/googlechromestandaloneenterprise.msi#/setup.msi_",
-            "hash": "4468c41ab29e93db24eb9151f64bcf43de50757d9b113a8a7bcf24bd13902b1a"
-        }
-    },
-    "pre_download": "Assert-Administrator",
-    "installer": {
-        "script": [
-            "$programname = \"Google Chrome*\"",
-            "$installpath = \"$dir\\setup.msi_\"",
-            "$ProgramFiles = [Environment]::GetFolderPath(\"ProgramFiles\")",
-            "$exepath = \"$ProgramFiles\\Google\\Chrome\\Application\\chrome.exe\"",
-            "$filepath = \"$ProgramFiles\\Google\\Chrome\\Application\\$version\\chrome.dll\"",
-            "if(((Test-Path -Path $filepath -PathType Leaf) -eq $false) -and ((Get-Command $exepath).Version -lt [System.Version]\"$version\"))",
-            "{",
-            "   Invoke-ExternalCommand msiexec -ArgumentList @('/i', \"$dir\\setup.msi_\", '/qn') -RunAs | Out-Null",
-            "   Start-Sleep -Seconds 30",
-            "   if(((Test-Path -Path $filepath -PathType Leaf) -eq $false) -and ((Get-Command $exepath).Version -lt [System.Version]\"$version\"))",
-            "   {",
-            "       exit 1",
-            "   }",
-            "}",
-            "Remove-Item \"$dir\\setup.msi_\" -Force"
-        ]
-    },
-    "post_install": [
-        "$CommonDesktopPath = [Environment]::GetFolderPath(\"CommonDesktopDirectory\")",
-        "if (Test-Path \"$CommonDesktopPath\\Google Chrome.lnk\") {Remove-Item \"$CommonDesktopPath\\Google Chrome.lnk\" -Force}"
-    ],
-    "checkver": {
-        "url": "https://www.majorgeeks.com/files/details/google_chrome_26_1410_64_stable.html",
-        "regex": ">Google Chrome ([\\d.]+)"
-    },
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://dl.google.com/tag/s/dl/chrome/install/googlechromestandaloneenterprise64.msi#/setup.msi_"
-            },
-            "32bit": {
-                "url": "https://dl.google.com/tag/s/dl/chrome/install/googlechromestandaloneenterprise.msi#/setup.msi_"
-            }
-        }
+    "32bit": {
+      "url": "https://dl.google.com/tag/s/dl/chrome/install/googlechromestandaloneenterprise.msi#/setup.msi_",
+      "hash": "4468c41ab29e93db24eb9151f64bcf43de50757d9b113a8a7bcf24bd13902b1a"
     }
+  },
+  "pre_download": "Assert-Administrator",
+  "installer": {
+    "script": [
+      "$programname = \"Google Chrome*\"",
+      "$installpath = \"$dir\\setup.msi_\"",
+      "$ProgramFiles = [Environment]::GetFolderPath(\"ProgramFiles\")",
+      "$exepath = \"$ProgramFiles\\Google\\Chrome\\Application\\chrome.exe\"",
+      "$filepath = \"$ProgramFiles\\Google\\Chrome\\Application\\$version\\chrome.dll\"",
+      "if(((Test-Path -Path $filepath -PathType Leaf) -eq $false) -and ((Get-Command $exepath).Version -lt [System.Version]\"$version\"))",
+      "{",
+      "   Invoke-ExternalCommand msiexec -ArgumentList @('/i', \"$dir\\setup.msi_\", '/qn') -RunAs | Out-Null",
+      "   Start-Sleep -Seconds 30",
+      "   if(((Test-Path -Path $filepath -PathType Leaf) -eq $false) -and ((Get-Command $exepath).Version -lt [System.Version]\"$version\"))",
+      "   {",
+      "       exit 1",
+      "   }",
+      "}",
+      "Remove-Item \"$dir\\setup.msi_\" -Force"
+    ]
+  },
+  "post_install": [
+    "$CommonDesktopPath = [Environment]::GetFolderPath(\"CommonDesktopDirectory\")",
+    "if (Test-Path \"$CommonDesktopPath\\Google Chrome.lnk\") {Remove-Item \"$CommonDesktopPath\\Google Chrome.lnk\" -Force}"
+  ],
+  "checkver": {
+    "url": "https://www.majorgeeks.com/files/details/google_chrome_26_1410_64_stable.html",
+    "regex": ">Google Chrome ([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://dl.google.com/tag/s/dl/chrome/install/googlechromestandaloneenterprise64.msi#/setup.msi_"
+      },
+      "32bit": {
+        "url": "https://dl.google.com/tag/s/dl/chrome/install/googlechromestandaloneenterprise.msi#/setup.msi_"
+      }
+    }
+  }
 }

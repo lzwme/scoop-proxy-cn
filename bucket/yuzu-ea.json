@@ -1,48 +1,48 @@
 {
-    "version": "EA3383",
-    "description": "Early Access channel of yuzu, an experimental emulator for the Nintendo Switch.",
-    "homepage": "https://yuzu-emu.org/",
-    "license": {
-        "identifier": "GPL-2.0",
-        "url": "https://github.com/yuzu-emu/yuzu-mainline/blob/master/license.txt"
-    },
-    "architecture": {
-        "64bit": {
-            "url": "https://ghproxy.com/https://github.com/Kryptuq/Yuzu-Early-Access-files/releases/download/EA3383/yuzu-early-access-EA3383.zip",
-            "hash": "c1de43902eefb9a54660a853e00d7b85a7ab05000f8d9fc67181a405ef16a813"
-        }
-    },
-    "extract_dir": "yuzu-early-access",
-    "bin": [
-        [
-            "yuzu.exe",
-            "yuzu-ea"
-        ],
-        [
-            "yuzu-cmd.exe",
-            "yuzu-cmd-ea"
-        ]
-    ],
-    "shortcuts": [
-        [
-            "yuzu.exe",
-            "yuzu Early Access"
-        ]
-    ],
-    "persist": [
-        "user",
-        "plugins"
-    ],
-    "notes": "Data directory is $dir\\user\\",
-    "checkver": {
-        "url": "https://github.com/Kryptuq/Yuzu-Early-Access-files/releases/latest",
-        "regex": "/releases/tag/([^/]+?)\""
-    },
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://ghproxy.com/https://github.com/Kryptuq/Yuzu-Early-Access-files/releases/download/$version/yuzu-early-access-$version.zip"
-            }
-        }
+  "version": "EA3383",
+  "description": "Early Access channel of yuzu, an experimental emulator for the Nintendo Switch.",
+  "homepage": "https://yuzu-emu.org/",
+  "license": {
+    "identifier": "GPL-2.0",
+    "url": "https://github.com/yuzu-emu/yuzu-mainline/blob/master/license.txt"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/Kryptuq/Yuzu-Early-Access-files/releases/download/EA3383/yuzu-early-access-EA3383.zip",
+      "hash": "c1de43902eefb9a54660a853e00d7b85a7ab05000f8d9fc67181a405ef16a813"
     }
+  },
+  "extract_dir": "yuzu-early-access",
+  "bin": [
+    [
+      "yuzu.exe",
+      "yuzu-ea"
+    ],
+    [
+      "yuzu-cmd.exe",
+      "yuzu-cmd-ea"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "yuzu.exe",
+      "yuzu Early Access"
+    ]
+  ],
+  "persist": [
+    "user",
+    "plugins"
+  ],
+  "notes": "Data directory is $dir\\user\\",
+  "checkver": {
+    "url": "https://github.com/Kryptuq/Yuzu-Early-Access-files/releases/latest",
+    "regex": "/releases/tag/([^/]+?)\""
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/Kryptuq/Yuzu-Early-Access-files/releases/download/$version/yuzu-early-access-$version.zip"
+      }
+    }
+  }
 }

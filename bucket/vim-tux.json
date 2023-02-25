@@ -1,109 +1,109 @@
 {
-    "version": "9.0.1341",
-    "description": "A highly configurable text editor for efficiently creating and changing any kind of text. (tux build)",
-    "homepage": "https://tuxproject.de/projects/vim",
-    "license": "Vim",
-    "notes": "Add gVim as a context menu option by running: \"$dir\\install-context.reg\"",
-    "suggest": {
-        "vimtutor": "vimtutor"
+  "version": "9.0.1311",
+  "description": "A highly configurable text editor for efficiently creating and changing any kind of text. (tux build)",
+  "homepage": "https://tuxproject.de/projects/vim",
+  "license": "Vim",
+  "notes": "Add gVim as a context menu option by running: \"$dir\\install-context.reg\"",
+  "suggest": {
+    "vimtutor": "vimtutor"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://tuxproject.de/projects/vim/complete-x64.7z",
+      "hash": "ec66fa331fd21a3fb80825118af0343be83b9edf7985b7a6ddc78f2166fee224"
     },
-    "architecture": {
-        "64bit": {
-            "url": "https://tuxproject.de/projects/vim/complete-x64.7z",
-            "hash": "7ce1a4901768f39d8782232a4f2bb95a39620a17e3619cd7b58d0595ff57a057"
-        },
-        "32bit": {
-            "url": "https://tuxproject.de/projects/vim/complete-x86.7z",
-            "hash": "ade2bf4cbd3ed3dc8de4b9b51b01be421aac747eb4fe872328f9f50334c1c5ab"
-        }
-    },
-    "post_install": [
-        "'install-context.reg', 'uninstall-context.reg' | ForEach-Object {",
-        "    $vimpath = \"$dir\\gVim.exe\".Replace('\\', '\\\\')",
-        "    $content = (Get-Content \"$bucketsdir\\versions\\scripts\\vim\\$_\").Replace('$vim', $vimpath)",
-        "    if ($global) { $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE') }",
-        "    Set-Content \"$dir\\$_\" $content",
-        "}"
-    ],
-    "bin": [
-        "vim.exe",
-        [
-            "vim.exe",
-            "vi"
-        ],
-        [
-            "vim.exe",
-            "ex",
-            "-e"
-        ],
-        [
-            "vim.exe",
-            "view",
-            "-R"
-        ],
-        [
-            "vim.exe",
-            "rvim",
-            "-Z"
-        ],
-        [
-            "vim.exe",
-            "rview",
-            "-RZ"
-        ],
-        [
-            "vim.exe",
-            "vimdiff",
-            "-d"
-        ],
-        "gvim.exe",
-        [
-            "gvim.exe",
-            "gview",
-            "-R"
-        ],
-        [
-            "gvim.exe",
-            "evim",
-            "-y"
-        ],
-        [
-            "gvim.exe",
-            "eview",
-            "-Ry"
-        ],
-        [
-            "gvim.exe",
-            "rgvim",
-            "-Z"
-        ],
-        [
-            "gvim.exe",
-            "rgview",
-            "-RZ"
-        ],
-        [
-            "gvim.exe",
-            "gvimdiff",
-            "-d"
-        ],
-        "xxd.exe"
-    ],
-    "shortcuts": [
-        [
-            "gvim.exe",
-            "gVim"
-        ]
-    ],
-    "checkver": "Vim ([\\d.]+)",
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://tuxproject.de/projects/vim/complete-x64.7z"
-            },
-            "32bit": {
-                "url": "https://tuxproject.de/projects/vim/complete-x86.7z"
-            }
-        }
+    "32bit": {
+      "url": "https://tuxproject.de/projects/vim/complete-x86.7z",
+      "hash": "9f10fadf478d4b88c554f4610b8389315ff5c1687d2292eb353ddf02a8b34efb"
     }
+  },
+  "post_install": [
+    "'install-context.reg', 'uninstall-context.reg' | ForEach-Object {",
+    "    $vimpath = \"$dir\\gVim.exe\".Replace('\\', '\\\\')",
+    "    $content = (Get-Content \"$bucketsdir\\versions\\scripts\\vim\\$_\").Replace('$vim', $vimpath)",
+    "    if ($global) { $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE') }",
+    "    Set-Content \"$dir\\$_\" $content",
+    "}"
+  ],
+  "bin": [
+    "vim.exe",
+    [
+      "vim.exe",
+      "vi"
+    ],
+    [
+      "vim.exe",
+      "ex",
+      "-e"
+    ],
+    [
+      "vim.exe",
+      "view",
+      "-R"
+    ],
+    [
+      "vim.exe",
+      "rvim",
+      "-Z"
+    ],
+    [
+      "vim.exe",
+      "rview",
+      "-RZ"
+    ],
+    [
+      "vim.exe",
+      "vimdiff",
+      "-d"
+    ],
+    "gvim.exe",
+    [
+      "gvim.exe",
+      "gview",
+      "-R"
+    ],
+    [
+      "gvim.exe",
+      "evim",
+      "-y"
+    ],
+    [
+      "gvim.exe",
+      "eview",
+      "-Ry"
+    ],
+    [
+      "gvim.exe",
+      "rgvim",
+      "-Z"
+    ],
+    [
+      "gvim.exe",
+      "rgview",
+      "-RZ"
+    ],
+    [
+      "gvim.exe",
+      "gvimdiff",
+      "-d"
+    ],
+    "xxd.exe"
+  ],
+  "shortcuts": [
+    [
+      "gvim.exe",
+      "gVim"
+    ]
+  ],
+  "checkver": "Vim ([\\d.]+)",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://tuxproject.de/projects/vim/complete-x64.7z"
+      },
+      "32bit": {
+        "url": "https://tuxproject.de/projects/vim/complete-x86.7z"
+      }
+    }
+  }
 }

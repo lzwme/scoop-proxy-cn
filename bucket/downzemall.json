@@ -1,49 +1,49 @@
 {
- "architecture": {
-  "32bit": {
-   "hash": "5835cc764a20276aa7b8357b0bb617fec598933421f4a48d70e879b1ece768e6",
-   "url": "https://ghproxy.com/https://github.com/setvisible/DownZemAll/releases/download/v2.5.8/DownZemAll_v2.5.8_windows-mingw-x86.zip"
-  },
-  "64bit": {
-   "hash": "2d926c6514695c74796b2344ce8c70e71856892a906d9acf123314914207186b",
-   "url": "https://ghproxy.com/https://github.com/setvisible/DownZemAll/releases/download/v2.5.8/DownZemAll_v2.5.8_windows-mingw-x64.zip"
-  }
- },
- "autoupdate": {
   "architecture": {
-   "32bit": {
-    "url": "https://ghproxy.com/https://github.com/setvisible/DownZemAll/releases/download/v2.5.8/DownZemAll_v$version_windows-mingw-x86.zip"
-   },
-   "64bit": {
-    "url": "https://ghproxy.com/https://github.com/setvisible/DownZemAll/releases/download/v2.5.8/DownZemAll_v$version_windows-mingw-x64.zip"
-   }
-  }
- },
- "checkver": "github",
- "description": "Standalone recreation of DownThemAll! on Qt5",
- "homepage": "https://github.com/setvisible/DownZemAll",
- "installer": {
-  "script": "sudo \"$dir\\install.bat\""
- },
- "license": "LGPL-3.0-only",
- "notes": [
-  "DownZemAll! stores its settings at \"HKCU\\SOFTWARE\\Sebastien Vavassori\\DownZemAll!\".",
-  "Stream cache is left at \"C:\\Users\\<username>\\.cache\"."
- ],
- "persist": "queue.json",
- "pre_install": [
-  "if(!(Test-Path \"$persist_dir\\queue.json\")) { New-Item \"$dir\\queue.json\" | Out-Null }",
-  "if(!(Test-Path \"HKCU:\\SOFTWARE\\Sebastien Vavassori\\DownZemAll!\\Preference\")) { New-Item -Path \"HKCU:\\SOFTWARE\\Sebastien Vavassori\\DownZemAll!\\Preference\" -Force | Out-Null }",
-  "if(Test-Path \"HKCU:\\SOFTWARE\\Sebastien Vavassori\\DownZemAll!\\Preference\") { New-ItemProperty -Path \"HKCU:\\SOFTWARE\\Sebastien Vavassori\\DownZemAll!\\Preference\" -Name CheckUpdate_int -Value 0 -PropertyType String -Force | Out-Null }"
- ],
- "shortcuts": [
-  [
-   "DownZemAll.exe",
-   "DownZemAll!"
-  ]
- ],
- "uninstaller": {
-  "script": "sudo \"$dir\\uninstall.bat\""
- },
- "version": "2.5.8"
+    "32bit": {
+      "hash": "5835cc764a20276aa7b8357b0bb617fec598933421f4a48d70e879b1ece768e6",
+      "url": "https://ghproxy.com/https://github.com/setvisible/DownZemAll/releases/download/v2.5.8/DownZemAll_v2.5.8_windows-mingw-x86.zip"
+    },
+    "64bit": {
+      "hash": "2d926c6514695c74796b2344ce8c70e71856892a906d9acf123314914207186b",
+      "url": "https://ghproxy.com/https://github.com/setvisible/DownZemAll/releases/download/v2.5.8/DownZemAll_v2.5.8_windows-mingw-x64.zip"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/setvisible/DownZemAll/releases/download/v2.5.8/DownZemAll_v$version_windows-mingw-x86.zip"
+      },
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/setvisible/DownZemAll/releases/download/v2.5.8/DownZemAll_v$version_windows-mingw-x64.zip"
+      }
+    }
+  },
+  "checkver": "github",
+  "description": "Standalone recreation of DownThemAll! on Qt5",
+  "homepage": "https://github.com/setvisible/DownZemAll",
+  "installer": {
+    "script": "sudo \"$dir\\install.bat\""
+  },
+  "license": "LGPL-3.0-only",
+  "notes": [
+    "DownZemAll! stores its settings at \"HKCU\\SOFTWARE\\Sebastien Vavassori\\DownZemAll!\".",
+    "Stream cache is left at \"C:\\Users\\<username>\\.cache\"."
+  ],
+  "persist": "queue.json",
+  "pre_install": [
+    "if(!(Test-Path \"$persist_dir\\queue.json\")) { New-Item \"$dir\\queue.json\" | Out-Null }",
+    "if(!(Test-Path \"HKCU:\\SOFTWARE\\Sebastien Vavassori\\DownZemAll!\\Preference\")) { New-Item -Path \"HKCU:\\SOFTWARE\\Sebastien Vavassori\\DownZemAll!\\Preference\" -Force | Out-Null }",
+    "if(Test-Path \"HKCU:\\SOFTWARE\\Sebastien Vavassori\\DownZemAll!\\Preference\") { New-ItemProperty -Path \"HKCU:\\SOFTWARE\\Sebastien Vavassori\\DownZemAll!\\Preference\" -Name CheckUpdate_int -Value 0 -PropertyType String -Force | Out-Null }"
+  ],
+  "shortcuts": [
+    [
+      "DownZemAll.exe",
+      "DownZemAll!"
+    ]
+  ],
+  "uninstaller": {
+    "script": "sudo \"$dir\\uninstall.bat\""
+  },
+  "version": "2.5.8"
 }

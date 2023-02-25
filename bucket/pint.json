@@ -1,32 +1,32 @@
 {
-    "version": "0.40.0",
-    "description": "Prometheus rule linter",
-    "homepage": "https://github.com/cloudflare/pint",
-    "license": "Apache-2.0",
-    "architecture": {
-        "64bit": {
-            "url": "https://ghproxy.com/https://github.com/cloudflare/pint/releases/download/v0.40.0/pint-0.40.0-windows-amd64.tar.gz",
-            "hash": "b09b40f3dc170829dd62f737267873a8e9504b41e2f16dfd9e390b46150f520d"
-        },
-        "32bit": {
-            "url": "https://ghproxy.com/https://github.com/cloudflare/pint/releases/download/v0.40.0/pint-0.40.0-windows-386.tar.gz",
-            "hash": "26e186c1a8a723b49421c7a9934cbe1232a2ac155a1b0a997902a36a97ae6e9e"
-        }
+  "version": "0.40.0",
+  "description": "Prometheus rule linter",
+  "homepage": "https://github.com/cloudflare/pint",
+  "license": "Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/cloudflare/pint/releases/download/v0.40.0/pint-0.40.0-windows-amd64.tar.gz",
+      "hash": "b09b40f3dc170829dd62f737267873a8e9504b41e2f16dfd9e390b46150f520d"
     },
-    "pre_install": "Get-ChildItem \"$dir\" 'pint-windows-*.exe' | Select-Object -First 1 | Rename-Item -NewName 'pint.exe'",
-    "bin": "pint.exe",
-    "checkver": "github",
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://ghproxy.com/https://github.com/cloudflare/pint/releases/download/v$version/pint-$version-windows-amd64.tar.gz"
-            },
-            "32bit": {
-                "url": "https://ghproxy.com/https://github.com/cloudflare/pint/releases/download/v$version/pint-$version-windows-386.tar.gz"
-            }
-        },
-        "hash": {
-            "url": "$baseurl/checksums.txt"
-        }
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/cloudflare/pint/releases/download/v0.40.0/pint-0.40.0-windows-386.tar.gz",
+      "hash": "26e186c1a8a723b49421c7a9934cbe1232a2ac155a1b0a997902a36a97ae6e9e"
     }
+  },
+  "pre_install": "Get-ChildItem \"$dir\" 'pint-windows-*.exe' | Select-Object -First 1 | Rename-Item -NewName 'pint.exe'",
+  "bin": "pint.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/cloudflare/pint/releases/download/v$version/pint-$version-windows-amd64.tar.gz"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/cloudflare/pint/releases/download/v$version/pint-$version-windows-386.tar.gz"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/checksums.txt"
+    }
+  }
 }

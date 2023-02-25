@@ -1,27 +1,27 @@
 {
-    "version": "2.12.4",
-    "description": "An ultralight service mesh for Kubernetes.",
-    "homepage": "https://linkerd.io/",
-    "license": "Apache-2.0",
-    "architecture": {
-        "64bit": {
-            "url": "https://ghproxy.com/https://github.com/linkerd/linkerd2/releases/download/stable-2.12.4/linkerd2-cli-stable-2.12.4-windows.exe#/linkerd.exe",
-            "hash": "b4101d400e703c82c7857f63e955bf31877e1ceb513f1153ff4fcb6769f85209"
-        }
-    },
-    "bin": "linkerd.exe",
-    "checkver": {
-        "url": "https://api.github.com/repos/linkerd/linkerd2/releases",
-        "regex": "download/stable-([\\d.]+)/link"
-    },
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://ghproxy.com/https://github.com/linkerd/linkerd2/releases/download/stable-$version/linkerd2-cli-stable-$version-windows.exe#/linkerd.exe"
-            }
-        },
-        "hash": {
-            "url": "$url.sha256"
-        }
+  "version": "2.12.4",
+  "description": "An ultralight service mesh for Kubernetes.",
+  "homepage": "https://linkerd.io/",
+  "license": "Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/linkerd/linkerd2/releases/download/stable-2.12.4/linkerd2-cli-stable-2.12.4-windows.exe#/linkerd.exe",
+      "hash": "b4101d400e703c82c7857f63e955bf31877e1ceb513f1153ff4fcb6769f85209"
     }
+  },
+  "bin": "linkerd.exe",
+  "checkver": {
+    "url": "https://api.github.com/repos/linkerd/linkerd2/releases",
+    "regex": "download/stable-([\\d.]+)/link"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/linkerd/linkerd2/releases/download/stable-$version/linkerd2-cli-stable-$version-windows.exe#/linkerd.exe"
+      }
+    },
+    "hash": {
+      "url": "$url.sha256"
+    }
+  }
 }

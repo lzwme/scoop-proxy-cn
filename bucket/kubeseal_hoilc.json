@@ -1,27 +1,27 @@
 {
-    "version": "0.19.5",
-    "description": "A Kubernetes tool for one-way encrypted Secrets.",
-    "homepage": "https://github.com/bitnami-labs/sealed-secrets",
-    "license": "Apache-2.0",
-    "architecture": {
-        "64bit": {
-            "url": "https://ghproxy.com/https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.19.5/kubeseal-0.19.5-windows-amd64.tar.gz",
-            "hash": "26a9b379f3a3c40b64533cf49a2443de79fa08e085758e0de19da9f8b504cb86"
-        }
-    },
-    "bin": "kubeseal.exe",
-    "checkver": {
-        "url": "https://github.com/bitnami-labs/sealed-secrets/releases",
-        "regex": "/download/v([\\d.]+)/kubeseal"
-    },
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://ghproxy.com/https://github.com/bitnami-labs/sealed-secrets/releases/download/v$version/kubeseal-$version-windows-amd64.tar.gz"
-            }
-        },
-        "hash": {
-            "url": "$baseurl/sealed-secrets_$version_checksums.txt"
-        }
+  "version": "0.19.5",
+  "description": "A Kubernetes tool for one-way encrypted Secrets.",
+  "homepage": "https://github.com/bitnami-labs/sealed-secrets",
+  "license": "Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.19.5/kubeseal-0.19.5-windows-amd64.tar.gz",
+      "hash": "26a9b379f3a3c40b64533cf49a2443de79fa08e085758e0de19da9f8b504cb86"
     }
+  },
+  "bin": "kubeseal.exe",
+  "checkver": {
+    "url": "https://github.com/bitnami-labs/sealed-secrets/releases",
+    "regex": "/download/v([\\d.]+)/kubeseal"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/bitnami-labs/sealed-secrets/releases/download/v$version/kubeseal-$version-windows-amd64.tar.gz"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/sealed-secrets_$version_checksums.txt"
+    }
+  }
 }

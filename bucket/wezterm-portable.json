@@ -1,37 +1,37 @@
 {
- "architecture": {
-  "64bit": {
-   "hash": "86b2db1a44d4a5b262885b299c0e03fe6bdaad2172d1e6a5f69f4c16cbcc305d",
-   "url": "https://ghproxy.com/https://github.com/wez/wezterm/releases/download/20220905-102802-7d4b8249/WezTerm-windows-20220905-102802-7d4b8249.zip"
-  }
- },
- "autoupdate": {
   "architecture": {
-   "64bit": {
-    "url": "https://ghproxy.com/https://github.com/wez/wezterm/releases/download/$matchPath/WezTerm-windows-$version.zip"
-   }
+    "64bit": {
+      "hash": "86b2db1a44d4a5b262885b299c0e03fe6bdaad2172d1e6a5f69f4c16cbcc305d",
+      "url": "https://ghproxy.com/https://github.com/wez/wezterm/releases/download/20220905-102802-7d4b8249/WezTerm-windows-20220905-102802-7d4b8249.zip"
+    }
   },
-  "extract_dir": "WezTerm-windows-$version"
- },
- "bin": "wezterm.exe",
- "checkver": {
-  "regex": "/releases/tag/(.+)?\"",
-  "url": "https://github.com/wez/wezterm/tags"
- },
- "description": "GPU-accelerated terminal emulator",
- "extract_dir": "WezTerm-windows-20220905-102802-7d4b8249",
- "homepage": "https://github.com/wez/wezterm",
- "license": "Apache-2.0",
- "persist": [
-  "colors",
-  "wezterm.lua"
- ],
- "pre_install": "if(!(Test-Path \"$dir/wezterm.lua\")) { Add-Content \"$dir/wezterm.lua\" $null }",
- "shortcuts": [
-  [
-   "wezterm-gui.exe",
-   "WezTerm"
-  ]
- ],
- "version": "20220905-102802-7d4b8249"
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/wez/wezterm/releases/download/$matchPath/WezTerm-windows-$version.zip"
+      }
+    },
+    "extract_dir": "WezTerm-windows-$version"
+  },
+  "bin": "wezterm.exe",
+  "checkver": {
+    "regex": "/releases/tag/(.+)?\"",
+    "url": "https://github.com/wez/wezterm/tags"
+  },
+  "description": "GPU-accelerated terminal emulator",
+  "extract_dir": "WezTerm-windows-20220905-102802-7d4b8249",
+  "homepage": "https://github.com/wez/wezterm",
+  "license": "Apache-2.0",
+  "persist": [
+    "colors",
+    "wezterm.lua"
+  ],
+  "pre_install": "if(!(Test-Path \"$dir/wezterm.lua\")) { Add-Content \"$dir/wezterm.lua\" $null }",
+  "shortcuts": [
+    [
+      "wezterm-gui.exe",
+      "WezTerm"
+    ]
+  ],
+  "version": "20220905-102802-7d4b8249"
 }

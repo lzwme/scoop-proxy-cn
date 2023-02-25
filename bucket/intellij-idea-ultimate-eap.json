@@ -1,43 +1,43 @@
 {
-    "architecture": {
-        "32bit": {
-            "shortcuts": [
-                [
-                    "IDE\\bin\\idea.exe",
-                    "JetBrains\\IntelliJ IDEA Ultimate (Early Access Program)"
-                ]
-            ]
-        },
-        "64bit": {
-            "shortcuts": [
-                [
-                    "IDE\\bin\\idea64.exe",
-                    "JetBrains\\IntelliJ IDEA Ultimate (Early Access Program)"
-                ]
-            ]
-        }
+  "architecture": {
+    "32bit": {
+      "shortcuts": [
+        [
+          "IDE\\bin\\idea.exe",
+          "JetBrains\\IntelliJ IDEA Ultimate (Early Access Program)"
+        ]
+      ]
     },
-    "autoupdate": {
-        "hash": {
-            "url": "$url.sha256"
-        },
-        "url": "https://download.jetbrains.com/idea/ideaIU-$preReleaseVersion.win.zip"
+    "64bit": {
+      "shortcuts": [
+        [
+          "IDE\\bin\\idea64.exe",
+          "JetBrains\\IntelliJ IDEA Ultimate (Early Access Program)"
+        ]
+      ]
+    }
+  },
+  "autoupdate": {
+    "hash": {
+      "url": "$url.sha256"
     },
-    "checkver": {
-        "regex": "version\":\"(?<ver>[\\d.]+)\".*\"build\":\"(?<build>[\\d.]+)\"",
-        "replace": "${ver}-${build}",
-        "url": "https://data.services.jetbrains.com/products/releases?code=IIU&latest=true&platform=zip&type=eap"
-    },
-    "description": "IntelliJ IDEA Ultimate Early Access Program. Cross-Platform Java IDE for professional developers by JetBrains.",
-    "extract_to": "IDE",
-    "hash": "1f8a02fb9504c284bdb7872ed44351f77deb62f6a3478ae5bae9b091102cdca4",
-    "homepage": "https://www.jetbrains.com/idea/",
-    "license": {
-        "identifier": "Proprietary",
-        "url": "https://www.jetbrains.com/legal/agreements/user_eap.html"
-    },
-    "persist": "IDE\\bin\\idea.properties",
-    "pre_install": "Remove-Item \"$dir\\IDE\\`$*\" -Force -Recurse",
-    "url": "https://download.jetbrains.com/idea/ideaIU-231.7665.28.win.zip",
-    "version": "2023.1-231.7665.28"
+    "url": "https://download.jetbrains.com/idea/ideaIU-$preReleaseVersion.win.zip"
+  },
+  "checkver": {
+    "regex": "version\":\"(?<ver>[\\d.]+)\".*\"build\":\"(?<build>[\\d.]+)\"",
+    "replace": "${ver}-${build}",
+    "url": "https://data.services.jetbrains.com/products/releases?code=IIU&latest=true&platform=zip&type=eap"
+  },
+  "description": "IntelliJ IDEA Ultimate Early Access Program. Cross-Platform Java IDE for professional developers by JetBrains.",
+  "extract_to": "IDE",
+  "hash": "1f8a02fb9504c284bdb7872ed44351f77deb62f6a3478ae5bae9b091102cdca4",
+  "homepage": "https://www.jetbrains.com/idea/",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://www.jetbrains.com/legal/agreements/user_eap.html"
+  },
+  "persist": "IDE\\bin\\idea.properties",
+  "pre_install": "Remove-Item \"$dir\\IDE\\`$*\" -Force -Recurse",
+  "url": "https://download.jetbrains.com/idea/ideaIU-231.7665.28.win.zip",
+  "version": "2023.1-231.7665.28"
 }

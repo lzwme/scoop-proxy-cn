@@ -1,32 +1,32 @@
 {
-    "version": "20230222033725",
-    "description": "Geosite and domain data for V2Ray (official)",
-    "homepage": "https://github.com/v2fly/domain-list-community",
-    "license": "MIT",
-    "depends": "mochi/v2ray",
-    "url": "https://download.fastgit.org/v2fly/domain-list-community/releases/download/20230222033725/dlc.dat",
-    "hash": "bbe88e721976fd13a3c5d29f2296119f6fac93ae1c9200f62515d753884e3397",
-    "installer": {
-        "script": [
-            "if (-not (Test-Path \"$persist_dir\\v2ray-domain-list-community\")) {",
-            "    Copy-Item \"$(appdir v2ray $global)\\current\\geosite.dat\" -Destination \"$dir\\geosite.dat.bak\"",
-            "}",
-            "function LinkFile([String] $file, [String] $source = $file) {",
-            "    Write-Host \"Creating hardlink for $file\"",
-            "    New-Item -Force -ItemType HardLink -Path \"$(appdir v2ray $global)\\current\" -Name $file -Target \"$dir\\$source\" | Out-Null",
-            "}",
-            "LinkFile 'geosite.dat' 'dlc.dat'"
-        ]
-    },
-    "uninstaller": {
-        "script": "Copy-Item \"$dir\\geosite.dat.bak\" -Destination \"$(appdir v2ray $global)\\current\\geosite.dat\" -Force"
-    },
-    "persist": "geosite.dat.bak",
-    "checkver": "github",
-    "autoupdate": {
-        "url": "https://download.fastgit.org/v2fly/domain-list-community/releases/download/$version/dlc.dat",
-        "hash": {
-            "url": "$url.sha256sum"
-        }
+  "version": "20230223064004",
+  "description": "Geosite and domain data for V2Ray (official)",
+  "homepage": "https://github.com/v2fly/domain-list-community",
+  "license": "MIT",
+  "depends": "mochi/v2ray",
+  "url": "https://download.fastgit.org/v2fly/domain-list-community/releases/download/20230223064004/dlc.dat",
+  "hash": "40e34b30913798af6fc9fe0ed4d051f914de1c67d4e8f0d24522673c1759f1bc",
+  "installer": {
+    "script": [
+      "if (-not (Test-Path \"$persist_dir\\v2ray-domain-list-community\")) {",
+      "    Copy-Item \"$(appdir v2ray $global)\\current\\geosite.dat\" -Destination \"$dir\\geosite.dat.bak\"",
+      "}",
+      "function LinkFile([String] $file, [String] $source = $file) {",
+      "    Write-Host \"Creating hardlink for $file\"",
+      "    New-Item -Force -ItemType HardLink -Path \"$(appdir v2ray $global)\\current\" -Name $file -Target \"$dir\\$source\" | Out-Null",
+      "}",
+      "LinkFile 'geosite.dat' 'dlc.dat'"
+    ]
+  },
+  "uninstaller": {
+    "script": "Copy-Item \"$dir\\geosite.dat.bak\" -Destination \"$(appdir v2ray $global)\\current\\geosite.dat\" -Force"
+  },
+  "persist": "geosite.dat.bak",
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://download.fastgit.org/v2fly/domain-list-community/releases/download/$version/dlc.dat",
+    "hash": {
+      "url": "$url.sha256sum"
     }
+  }
 }

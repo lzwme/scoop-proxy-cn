@@ -1,28 +1,28 @@
 {
-    "version": "1.13.1",
-    "description": "Safer, automatic verification of signatures and integration.",
-    "homepage": "https://github.com/sigstore/cosign#sget",
-    "license": "Apache-2.0",
-    "architecture": {
-        "64bit": {
-            "url": "https://ghproxy.com/https://github.com/sigstore/cosign/releases/download/v1.13.1/sget-windows-amd64.exe#/sget.exe",
-            "hash": "3fc2ec2775e9e24329c0b87e29ec489c109cfba5fc88329cb4b75bccc2841c62"
-        }
-    },
-    "bin": "sget.exe",
-    "checkver": {
-        "url": "https://github.com/sigstore/cosign/releases",
-        "regex": "tree\\/v([\\d.]+)"
-    },
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://ghproxy.com/https://github.com/sigstore/cosign/releases/download/v$version/sget-windows-amd64.exe#/sget.exe"
-            }
-        },
-        "hash": {
-            "url": "$baseurl/cosign_checksums.txt",
-            "regex": "(?im)^$sha256\\s+$basename$"
-        }
+  "version": "1.13.1",
+  "description": "Safer, automatic verification of signatures and integration.",
+  "homepage": "https://github.com/sigstore/cosign#sget",
+  "license": "Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/sigstore/cosign/releases/download/v1.13.1/sget-windows-amd64.exe#/sget.exe",
+      "hash": "3fc2ec2775e9e24329c0b87e29ec489c109cfba5fc88329cb4b75bccc2841c62"
     }
+  },
+  "bin": "sget.exe",
+  "checkver": {
+    "url": "https://github.com/sigstore/cosign/releases",
+    "regex": "tree\\/v([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/sigstore/cosign/releases/download/v$version/sget-windows-amd64.exe#/sget.exe"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/cosign_checksums.txt",
+      "regex": "(?im)^$sha256\\s+$basename$"
+    }
+  }
 }

@@ -1,48 +1,48 @@
 {
-    "autoupdate": {
-        "url": "https://nightly.link/HMBSbige/ShadowsocksR-Windows/actions/runs/$matchRunid/ShadowsocksR.zip"
-    },
-    "bin": "ShadowsocksR.exe",
-    "checkver": {
-        "regex": "(?sm)HMBSbige/ShadowsocksR-Windows/actions/runs/(?<runid>\\d+).+datetime=\"(?<year>\\d+).(?<month>\\d+).(?<day>\\d+).*?commit/(?<sha>[0-9a-f]{7})",
-        "replace": "${year}${month}${day}.${sha}",
-        "url": "https://scoop-apps.vercel.app/HMBSbige/ShadowsocksR-Windows"
-    },
-    "description": "ShadowsocksR for Windows(without dotnet runtime), maintained by @HMBSbige.",
-    "hash": "ab117650eb5a5136e63517e21e806ecf667f2adafce07ae443820210d7a5aa6c",
-    "homepage": "https://github.com/HMBSbige/ShadowsocksR-Windows",
-    "license": {
-        "identifier": "AGPL-3.0-only",
-        "url": "https://github.com/HMBSbige/ShadowsocksR-Windows/raw/master/LICENSE"
-    },
-    "persist": "temp",
-    "pre_install": [
-        "@('gui-config.json', 'pac.txt', 'transfer_log.json', 'user-rule.txt') | ForEach-Object {",
-        "    if (Test-Path \"$persist_dir\\$_\") { Copy-Item \"$persist_dir\\$_\" \"$dir\\\" | Out-Null }",
-        "}"
-    ],
-    "shortcuts": [
-        [
-            "ShadowsocksR.exe",
-            "ShadowsocksR"
-        ]
-    ],
-    "suggest": {
-        "dotnet-desktop-runtime": [
-            "dotnet-desktopruntime-6-np",
-            "dotnet-desktopruntime-6"
-        ]
-    },
-    "uninstaller": {
-        "script": [
-            "@('gui-config.json', 'pac.txt', 'transfer_log.json', 'user-rule.txt') | ForEach-Object {",
-            "    if (Test-Path \"$dir\\$_\") {",
-            "        ensure \"$persist_dir\" | Out-Null",
-            "        Copy-Item \"$dir\\$_\" \"$persist_dir\\\" | Out-Null",
-            "    }",
-            "}"
-        ]
-    },
-    "url": "https://nightly.link/HMBSbige/ShadowsocksR-Windows/actions/runs/4178764915/ShadowsocksR.zip",
-    "version": "20230214.b6a281b"
+  "autoupdate": {
+    "url": "https://nightly.link/HMBSbige/ShadowsocksR-Windows/actions/runs/$matchRunid/ShadowsocksR.zip"
+  },
+  "bin": "ShadowsocksR.exe",
+  "checkver": {
+    "regex": "(?sm)HMBSbige/ShadowsocksR-Windows/actions/runs/(?<runid>\\d+).+datetime=\"(?<year>\\d+).(?<month>\\d+).(?<day>\\d+).*?commit/(?<sha>[0-9a-f]{7})",
+    "replace": "${year}${month}${day}.${sha}",
+    "url": "https://scoop-apps.vercel.app/HMBSbige/ShadowsocksR-Windows"
+  },
+  "description": "ShadowsocksR for Windows(without dotnet runtime), maintained by @HMBSbige.",
+  "hash": "ab117650eb5a5136e63517e21e806ecf667f2adafce07ae443820210d7a5aa6c",
+  "homepage": "https://github.com/HMBSbige/ShadowsocksR-Windows",
+  "license": {
+    "identifier": "AGPL-3.0-only",
+    "url": "https://github.com/HMBSbige/ShadowsocksR-Windows/raw/master/LICENSE"
+  },
+  "persist": "temp",
+  "pre_install": [
+    "@('gui-config.json', 'pac.txt', 'transfer_log.json', 'user-rule.txt') | ForEach-Object {",
+    "    if (Test-Path \"$persist_dir\\$_\") { Copy-Item \"$persist_dir\\$_\" \"$dir\\\" | Out-Null }",
+    "}"
+  ],
+  "shortcuts": [
+    [
+      "ShadowsocksR.exe",
+      "ShadowsocksR"
+    ]
+  ],
+  "suggest": {
+    "dotnet-desktop-runtime": [
+      "dotnet-desktopruntime-6-np",
+      "dotnet-desktopruntime-6"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "@('gui-config.json', 'pac.txt', 'transfer_log.json', 'user-rule.txt') | ForEach-Object {",
+      "    if (Test-Path \"$dir\\$_\") {",
+      "        ensure \"$persist_dir\" | Out-Null",
+      "        Copy-Item \"$dir\\$_\" \"$persist_dir\\\" | Out-Null",
+      "    }",
+      "}"
+    ]
+  },
+  "url": "https://nightly.link/HMBSbige/ShadowsocksR-Windows/actions/runs/4178764915/ShadowsocksR.zip",
+  "version": "20230214.b6a281b"
 }

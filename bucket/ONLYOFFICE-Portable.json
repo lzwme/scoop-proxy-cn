@@ -1,43 +1,43 @@
 {
-    "version": "7.3.0",
-    "description": "ONLYOFFICE. Office suite that combines text, spreadsheet and presentation editors allowing to create, view and edit documents.",
-    "homepage": "https://www.onlyoffice.com/apps.aspx",
-    "license": "AGPL-3.0-only",
-    "changelog": "",
-    "suggest": {
-        "Microsoft Visual C++ Redistibutable 2015": "extras/vcredist2022"
+  "version": "7.3.0",
+  "description": "ONLYOFFICE. Office suite that combines text, spreadsheet and presentation editors allowing to create, view and edit documents.",
+  "homepage": "https://www.onlyoffice.com/apps.aspx",
+  "license": "AGPL-3.0-only",
+  "changelog": "",
+  "suggest": {
+    "Microsoft Visual C++ Redistibutable 2015": "extras/vcredist2022"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v7.3.0/DesktopEditors_x64.exe",
+      "hash": "66f92a671c1dfde943de33c0d61de042da78b2508c1d0019eed7ed0b6589db9d"
     },
-    "architecture": {
-        "64bit": {
-            "url": "https://ghproxy.com/https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v7.3.0/DesktopEditors_x64.exe",
-            "hash": "66f92a671c1dfde943de33c0d61de042da78b2508c1d0019eed7ed0b6589db9d"
-        },
-        "32bit": {
-            "url": "https://ghproxy.com/https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v7.3.0/DesktopEditors_x86.exe",
-            "hash": "20842e15f35a5ec1386201f251f097b5d1c222a0f940289187ffe8270a238fa4"
-        }
-    },
-    "innosetup": true,
-    "pre_install": "Remove-Item \"$dir\\vcredist_*exe\"",
-    "bin": "DesktopEditors.exe",
-    "shortcuts": [
-        [
-            "DesktopEditors.exe",
-            "ONLYOFFICE Desktop Editors"
-        ]
-    ],
-    "checkver": {
-        "url": "https://api.github.com/repos/ONLYOFFICE/DesktopEditors/releases",
-        "regex": "v([\\d.]+)/DesktopEditors_x64\\.exe"
-    },
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://ghproxy.com/https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v$version/DesktopEditors_x64.exe"
-            },
-            "32bit": {
-                "url": "https://ghproxy.com/https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v$version/DesktopEditors_x86.exe"
-            }
-        }
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v7.3.0/DesktopEditors_x86.exe",
+      "hash": "20842e15f35a5ec1386201f251f097b5d1c222a0f940289187ffe8270a238fa4"
     }
+  },
+  "innosetup": true,
+  "pre_install": "Remove-Item \"$dir\\vcredist_*exe\"",
+  "bin": "DesktopEditors.exe",
+  "shortcuts": [
+    [
+      "DesktopEditors.exe",
+      "ONLYOFFICE Desktop Editors"
+    ]
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/ONLYOFFICE/DesktopEditors/releases",
+    "regex": "v([\\d.]+)/DesktopEditors_x64\\.exe"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v$version/DesktopEditors_x64.exe"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v$version/DesktopEditors_x86.exe"
+      }
+    }
+  }
 }

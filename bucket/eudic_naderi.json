@@ -1,27 +1,27 @@
 {
-    "homepage": "https://www.eudic.net/",
-    "version": "2023-02-17",
-    "license": "freeware",
-    "url": "http://static.frdic.com/pkg/eudic_win.zip",
-    "hash": "5d6ce28755b74da3e7489b3a57390bf5e9b64ad86e99de0765cdf9f202401335",
-    "installer": {
-        "script": [
-            "Expand-7ZipArchive \"$dir\\eudic_win.exe\" \"$dir\\\" -Removal",
-            "Expand-7ZipArchive \"$dir\\app.7z\" \"$dir\" -Removal",
-            "Remove-Item \"$dir\\uninst.exe.nsis\",\"$dir\\`$PLUGINSDIR\"  -Force -Recurse"
-        ]
-    },
-    "shortcuts": [
-        [
-            "eudic.exe",
-            "Eudic"
-        ]
-    ],
-    "checkver": {
-        "url": "https://www.eudic.net/v4/en/app/download",
-        "regex": "<a href=\"https://www.eudic.net/download/eudic_win.zip\\?v=([\\d-]+)\""
-    },
-    "autoupdate": {
-        "url": "http://static.frdic.com/pkg/eudic_win.zip"
-    }
+  "homepage": "https://www.eudic.net/",
+  "version": "2023-02-17",
+  "license": "freeware",
+  "url": "http://static.frdic.com/pkg/eudic_win.zip",
+  "hash": "5d6ce28755b74da3e7489b3a57390bf5e9b64ad86e99de0765cdf9f202401335",
+  "installer": {
+    "script": [
+      "Expand-7ZipArchive \"$dir\\eudic_win.exe\" \"$dir\\\" -Removal",
+      "Expand-7ZipArchive \"$dir\\app.7z\" \"$dir\" -Removal",
+      "Remove-Item \"$dir\\uninst.exe.nsis\",\"$dir\\`$PLUGINSDIR\"  -Force -Recurse"
+    ]
+  },
+  "shortcuts": [
+    [
+      "eudic.exe",
+      "Eudic"
+    ]
+  ],
+  "checkver": {
+    "url": "https://www.eudic.net/v4/en/app/download",
+    "regex": "<a href=\"https://www.eudic.net/download/eudic_win.zip\\?v=([\\d-]+)\""
+  },
+  "autoupdate": {
+    "url": "http://static.frdic.com/pkg/eudic_win.zip"
+  }
 }

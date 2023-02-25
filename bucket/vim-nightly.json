@@ -1,114 +1,114 @@
 {
-    "version": "9.0.1341",
-    "description": "A highly configurable text editor for efficiently creating and changing any kind of text.",
-    "homepage": "https://www.vim.org",
-    "license": "Vim",
-    "notes": "Add gVim as a context menu option by running: \"$dir\\install-context.reg\"",
-    "suggest": {
-        "vimtutor": "vimtutor"
+  "version": "9.0.1313",
+  "description": "A highly configurable text editor for efficiently creating and changing any kind of text.",
+  "homepage": "https://www.vim.org",
+  "license": "Vim",
+  "notes": "Add gVim as a context menu option by running: \"$dir\\install-context.reg\"",
+  "suggest": {
+    "vimtutor": "vimtutor"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/vim/vim-win32-installer/releases/download/v9.0.1313/gvim_9.0.1313_x64.zip",
+      "hash": "f6619fc65adf3eafb67e7ea732548f6f74e7dc5403388ada14110d9ef17ceda7"
     },
-    "architecture": {
-        "64bit": {
-            "url": "https://ghproxy.com/https://github.com/vim/vim-win32-installer/releases/download/v9.0.1341/gvim_9.0.1341_x64.zip",
-            "hash": "01d2e0957c8dac3d759347e47a3d18e41714aeccfc4eb58a394d1e8a0592ea4b"
-        },
-        "32bit": {
-            "url": "https://ghproxy.com/https://github.com/vim/vim-win32-installer/releases/download/v9.0.1341/gvim_9.0.1341_x86.zip",
-            "hash": "848f2be872766fa3fd36a9265f42e274156f0a3953cf96f60c78d562947fcba3"
-        }
-    },
-    "extract_dir": "vim\\vim90",
-    "post_install": [
-        "Remove-Item \"$dir\\`$*\", \"$dir\\uninstal.*\", \"$dir\\install.exe\" -Recurse",
-        "'install-context.reg', 'uninstall-context.reg' | ForEach-Object {",
-        "    $vimpath = \"$dir\\gVim.exe\".Replace('\\', '\\\\')",
-        "    $content = (Get-Content \"$bucketsdir\\versions\\scripts\\vim\\$_\").Replace('$vim', $vimpath)",
-        "    if ($global) { $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE') }",
-        "    Set-Content \"$dir\\$_\" $content",
-        "}"
-    ],
-    "bin": [
-        "vim.exe",
-        [
-            "vim.exe",
-            "vi"
-        ],
-        [
-            "vim.exe",
-            "ex",
-            "-e"
-        ],
-        [
-            "vim.exe",
-            "view",
-            "-R"
-        ],
-        [
-            "vim.exe",
-            "rvim",
-            "-Z"
-        ],
-        [
-            "vim.exe",
-            "rview",
-            "-RZ"
-        ],
-        [
-            "vim.exe",
-            "vimdiff",
-            "-d"
-        ],
-        "gvim.exe",
-        [
-            "gvim.exe",
-            "gview",
-            "-R"
-        ],
-        [
-            "gvim.exe",
-            "evim",
-            "-y"
-        ],
-        [
-            "gvim.exe",
-            "eview",
-            "-Ry"
-        ],
-        [
-            "gvim.exe",
-            "rgvim",
-            "-Z"
-        ],
-        [
-            "gvim.exe",
-            "rgview",
-            "-RZ"
-        ],
-        [
-            "gvim.exe",
-            "gvimdiff",
-            "-d"
-        ],
-        "xxd.exe"
-    ],
-    "shortcuts": [
-        [
-            "gvim.exe",
-            "gVim"
-        ]
-    ],
-    "checkver": {
-        "github": "https://github.com/vim/vim-win32-installer"
-    },
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://ghproxy.com/https://github.com/vim/vim-win32-installer/releases/download/v$version/gvim_$version_x64.zip"
-            },
-            "32bit": {
-                "url": "https://ghproxy.com/https://github.com/vim/vim-win32-installer/releases/download/v$version/gvim_$version_x86.zip"
-            }
-        },
-        "extract_dir": "vim\\vim$majorVersion$minorVersion"
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/vim/vim-win32-installer/releases/download/v9.0.1313/gvim_9.0.1313_x86.zip",
+      "hash": "cf5cf0a5fe2910b3efc0c9e35011d8d1a95cd10bcac961ad96e4ee27d081c85b"
     }
+  },
+  "extract_dir": "vim\\vim90",
+  "post_install": [
+    "Remove-Item \"$dir\\`$*\", \"$dir\\uninstal.*\", \"$dir\\install.exe\" -Recurse",
+    "'install-context.reg', 'uninstall-context.reg' | ForEach-Object {",
+    "    $vimpath = \"$dir\\gVim.exe\".Replace('\\', '\\\\')",
+    "    $content = (Get-Content \"$bucketsdir\\versions\\scripts\\vim\\$_\").Replace('$vim', $vimpath)",
+    "    if ($global) { $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE') }",
+    "    Set-Content \"$dir\\$_\" $content",
+    "}"
+  ],
+  "bin": [
+    "vim.exe",
+    [
+      "vim.exe",
+      "vi"
+    ],
+    [
+      "vim.exe",
+      "ex",
+      "-e"
+    ],
+    [
+      "vim.exe",
+      "view",
+      "-R"
+    ],
+    [
+      "vim.exe",
+      "rvim",
+      "-Z"
+    ],
+    [
+      "vim.exe",
+      "rview",
+      "-RZ"
+    ],
+    [
+      "vim.exe",
+      "vimdiff",
+      "-d"
+    ],
+    "gvim.exe",
+    [
+      "gvim.exe",
+      "gview",
+      "-R"
+    ],
+    [
+      "gvim.exe",
+      "evim",
+      "-y"
+    ],
+    [
+      "gvim.exe",
+      "eview",
+      "-Ry"
+    ],
+    [
+      "gvim.exe",
+      "rgvim",
+      "-Z"
+    ],
+    [
+      "gvim.exe",
+      "rgview",
+      "-RZ"
+    ],
+    [
+      "gvim.exe",
+      "gvimdiff",
+      "-d"
+    ],
+    "xxd.exe"
+  ],
+  "shortcuts": [
+    [
+      "gvim.exe",
+      "gVim"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/vim/vim-win32-installer"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/vim/vim-win32-installer/releases/download/v$version/gvim_$version_x64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/vim/vim-win32-installer/releases/download/v$version/gvim_$version_x86.zip"
+      }
+    },
+    "extract_dir": "vim\\vim$majorVersion$minorVersion"
+  }
 }

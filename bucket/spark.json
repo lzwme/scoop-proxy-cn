@@ -1,30 +1,30 @@
 {
-    "version": "3.3.2",
-    "description": "A unified analytics engine for large-scale data processing.",
-    "homepage": "https://spark.apache.org/",
-    "license": "Apache-2.0",
-    "notes": "Spark now comes with Hadoop 3. For the version with Hadoop 2, please install spark-hadoop2 from the Versions bucket.",
-    "suggest": {
-        "JDK": "java/openjdk"
+  "version": "3.3.2",
+  "description": "A unified analytics engine for large-scale data processing.",
+  "homepage": "https://spark.apache.org/",
+  "license": "Apache-2.0",
+  "notes": "Spark now comes with Hadoop 3. For the version with Hadoop 2, please install spark-hadoop2 from the Versions bucket.",
+  "suggest": {
+    "JDK": "java/openjdk"
+  },
+  "url": "https://www.apache.org/dist/spark/spark-3.3.2/spark-3.3.2-bin-hadoop3.tgz",
+  "hash": "sha512:4cd2396069fbe0f8efde2af4fd301bf46f8c6317e9dea1dd42a405de6a38380635d49b17972cb92c619431acece2c3af4c23bfdf193cedb3ea913ed69ded23a1",
+  "extract_dir": "spark-3.3.2-bin-hadoop3",
+  "env_add_path": "bin",
+  "env_set": {
+    "SPARK_HOME": "$dir"
+  },
+  "persist": "conf",
+  "checkver": {
+    "url": "https://spark.apache.org/downloads.html",
+    "regex": "version: ([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://www.apache.org/dist/spark/spark-$version/spark-$version-bin-hadoop3.tgz",
+    "hash": {
+      "url": "$url.sha512",
+      "regex": "$basename: ([A-F0-9\\s]+)$"
     },
-    "url": "https://www.apache.org/dist/spark/spark-3.3.2/spark-3.3.2-bin-hadoop3.tgz",
-    "hash": "sha512:4cd2396069fbe0f8efde2af4fd301bf46f8c6317e9dea1dd42a405de6a38380635d49b17972cb92c619431acece2c3af4c23bfdf193cedb3ea913ed69ded23a1",
-    "extract_dir": "spark-3.3.2-bin-hadoop3",
-    "env_add_path": "bin",
-    "env_set": {
-        "SPARK_HOME": "$dir"
-    },
-    "persist": "conf",
-    "checkver": {
-        "url": "https://spark.apache.org/downloads.html",
-        "regex": "version: ([\\d.]+)"
-    },
-    "autoupdate": {
-        "url": "https://www.apache.org/dist/spark/spark-$version/spark-$version-bin-hadoop3.tgz",
-        "hash": {
-            "url": "$url.sha512",
-            "regex": "$basename: ([A-F0-9\\s]+)$"
-        },
-        "extract_dir": "spark-$version-bin-hadoop3"
-    }
+    "extract_dir": "spark-$version-bin-hadoop3"
+  }
 }

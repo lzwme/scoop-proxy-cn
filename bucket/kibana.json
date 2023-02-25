@@ -1,46 +1,46 @@
 {
-    "version": "8.6.2",
-    "description": "An open source analytics and visualization platform designed to work with Elasticsearch.",
-    "homepage": "https://www.elastic.co/products/kibana",
-    "license": {
-        "identifier": "Freeware|Apache-2.0",
-        "url": "https://github.com/elastic/kibana/blob/7.2/licenses/ELASTIC-LICENSE.txt"
-    },
-    "suggest": {
-        "JDK": [
-            "java/oraclejdk",
-            "java/openjdk"
-        ]
-    },
-    "architecture": {
-        "64bit": {
-            "url": "https://artifacts.elastic.co/downloads/kibana/kibana-8.6.2-windows-x86_64.zip",
-            "hash": "sha512:21b1665ef18cad2d283cd0dece9e79ecffedbc06d34f77835e05f57f69dcd886941f66576d9a3635d4fa092f0509466c576bbd94fca808885dfdec04526fba29",
-            "extract_dir": "kibana-8.6.2"
-        }
-    },
-    "bin": [
-        "bin\\kibana.bat",
-        "bin\\kibana-plugin.bat"
-    ],
-    "persist": [
-        "config",
-        "data",
-        "plugins"
-    ],
-    "checkver": {
-        "url": "https://www.elastic.co/downloads/kibana",
-        "regex": "kibana-([\\d.]+)-windows-x86_64\\.zip"
-    },
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://artifacts.elastic.co/downloads/kibana/kibana-$version-windows-x86_64.zip",
-                "extract_dir": "kibana-$version"
-            }
-        },
-        "hash": {
-            "url": "$url.sha512"
-        }
+  "version": "8.6.2",
+  "description": "An open source analytics and visualization platform designed to work with Elasticsearch.",
+  "homepage": "https://www.elastic.co/products/kibana",
+  "license": {
+    "identifier": "Freeware|Apache-2.0",
+    "url": "https://github.com/elastic/kibana/blob/7.2/licenses/ELASTIC-LICENSE.txt"
+  },
+  "suggest": {
+    "JDK": [
+      "java/oraclejdk",
+      "java/openjdk"
+    ]
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://artifacts.elastic.co/downloads/kibana/kibana-8.6.2-windows-x86_64.zip",
+      "hash": "sha512:21b1665ef18cad2d283cd0dece9e79ecffedbc06d34f77835e05f57f69dcd886941f66576d9a3635d4fa092f0509466c576bbd94fca808885dfdec04526fba29",
+      "extract_dir": "kibana-8.6.2"
     }
+  },
+  "bin": [
+    "bin\\kibana.bat",
+    "bin\\kibana-plugin.bat"
+  ],
+  "persist": [
+    "config",
+    "data",
+    "plugins"
+  ],
+  "checkver": {
+    "url": "https://www.elastic.co/downloads/kibana",
+    "regex": "kibana-([\\d.]+)-windows-x86_64\\.zip"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://artifacts.elastic.co/downloads/kibana/kibana-$version-windows-x86_64.zip",
+        "extract_dir": "kibana-$version"
+      }
+    },
+    "hash": {
+      "url": "$url.sha512"
+    }
+  }
 }

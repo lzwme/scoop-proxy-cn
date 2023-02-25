@@ -1,57 +1,57 @@
 {
-    "architecture": {
-        "32bit": {
-            "shortcuts": [
-                [
-                    "IDE\\bin\\idea.exe",
-                    "JetBrains\\IntelliJ IDEA Ultimate (Early Access Program)"
-                ]
-            ]
-        },
-        "64bit": {
-            "shortcuts": [
-                [
-                    "IDE\\bin\\idea64.exe",
-                    "JetBrains\\IntelliJ IDEA Ultimate (Early Access Program)"
-                ]
-            ]
-        }
-    },
-    "autoupdate": {
-        "hash": {
-            "url": "$url.sha256"
-        },
-        "url": "https://download.jetbrains.com/idea/ideaIU-$preReleaseVersion.win.zip"
-    },
-    "checkver": {
-        "regex": "version\":\"(?<ver>[\\d.]+)\".*\"build\":\"(?<build>[\\d.]+)\"",
-        "replace": "${ver}-${build}",
-        "url": "https://data.services.jetbrains.com/products/releases?code=IIU&latest=true&platform=zip&type=eap"
-    },
-    "description": "IntelliJ IDEA Ultimate Early Access Program. Cross-Platform Java IDE for professional developers by JetBrains.",
-    "extract_to": "IDE",
-    "hash": [
-        "1f8a02fb9504c284bdb7872ed44351f77deb62f6a3478ae5bae9b091102cdca4",
-        "2255673952a7909596b8783f6e913d2301f91f0def0275fcfbc6371b0ca021f8"
-    ],
-    "homepage": "https://www.jetbrains.com/idea/",
-    "installer": {
-        "script": [
-            "& \"$dir\\portable.ps1\" $dir $persist_dir",
-            "Remove-Item \"$dir\\IDE\\`$*\", \"$dir\\portable.ps1\" -Force -Recurse"
+  "architecture": {
+    "32bit": {
+      "shortcuts": [
+        [
+          "IDE\\bin\\idea.exe",
+          "JetBrains\\IntelliJ IDEA Ultimate (Early Access Program)"
         ]
+      ]
     },
-    "license": {
-        "identifier": "Proprietary",
-        "url": "https://www.jetbrains.com/legal/agreements/user_eap.html"
+    "64bit": {
+      "shortcuts": [
+        [
+          "IDE\\bin\\idea64.exe",
+          "JetBrains\\IntelliJ IDEA Ultimate (Early Access Program)"
+        ]
+      ]
+    }
+  },
+  "autoupdate": {
+    "hash": {
+      "url": "$url.sha256"
     },
-    "persist": [
-        "IDE\\bin\\idea.properties",
-        "profile"
-    ],
-    "url": [
-        "https://download.jetbrains.com/idea/ideaIU-231.7665.28.win.zip",
-        "https://ghproxy.com/https://raw.githubusercontent.com/Ash258/Scoop-JetBrains/main/scripts/portable.ps1"
-    ],
-    "version": "2023.1-231.7665.28"
+    "url": "https://download.jetbrains.com/idea/ideaIU-$preReleaseVersion.win.zip"
+  },
+  "checkver": {
+    "regex": "version\":\"(?<ver>[\\d.]+)\".*\"build\":\"(?<build>[\\d.]+)\"",
+    "replace": "${ver}-${build}",
+    "url": "https://data.services.jetbrains.com/products/releases?code=IIU&latest=true&platform=zip&type=eap"
+  },
+  "description": "IntelliJ IDEA Ultimate Early Access Program. Cross-Platform Java IDE for professional developers by JetBrains.",
+  "extract_to": "IDE",
+  "hash": [
+    "1f8a02fb9504c284bdb7872ed44351f77deb62f6a3478ae5bae9b091102cdca4",
+    "2255673952a7909596b8783f6e913d2301f91f0def0275fcfbc6371b0ca021f8"
+  ],
+  "homepage": "https://www.jetbrains.com/idea/",
+  "installer": {
+    "script": [
+      "& \"$dir\\portable.ps1\" $dir $persist_dir",
+      "Remove-Item \"$dir\\IDE\\`$*\", \"$dir\\portable.ps1\" -Force -Recurse"
+    ]
+  },
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://www.jetbrains.com/legal/agreements/user_eap.html"
+  },
+  "persist": [
+    "IDE\\bin\\idea.properties",
+    "profile"
+  ],
+  "url": [
+    "https://download.jetbrains.com/idea/ideaIU-231.7665.28.win.zip",
+    "https://ghproxy.com/https://raw.githubusercontent.com/Ash258/Scoop-JetBrains/main/scripts/portable.ps1"
+  ],
+  "version": "2023.1-231.7665.28"
 }

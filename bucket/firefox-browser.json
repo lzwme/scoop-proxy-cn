@@ -1,63 +1,63 @@
 {
- "architecture": {
-  "32bit": {
-   "hash": "sha512:7fc599d6c246ca0f145e4540d13e6548f289a4521a43bac6aa9bdb8ec85753c900f10bc4b0e6c5618f1e0c0fe8b80d949fe22f0805a94ed023f9f7cf6bdf5378",
-   "url": "https://archive.mozilla.org/pub/firefox/releases/99.0.1/win32/en-US/Firefox%20Setup%2099.0.1.exe#/dl.7z"
-  },
-  "64bit": {
-   "hash": "sha512:0fcf4b7d0206320ef824a25c01e299a202b0bbaaad438b86b22767e7f71eedf209bc374a93ba15cea5818fa482d0a875e04a279e98d196ab68a345a9da4e456b",
-   "url": "https://archive.mozilla.org/pub/firefox/releases/99.0.1/win64/en-US/Firefox%20Setup%2099.0.1.exe#/dl.7z"
-  }
- },
- "autoupdate": {
   "architecture": {
-   "32bit": {
-    "hash": {
-     "regex": "$sha512\\s+win32/en-US/$basename",
-     "url": "https://archive.mozilla.org/pub/firefox/releases/$version/SHA512SUMS"
+    "32bit": {
+      "hash": "sha512:7fc599d6c246ca0f145e4540d13e6548f289a4521a43bac6aa9bdb8ec85753c900f10bc4b0e6c5618f1e0c0fe8b80d949fe22f0805a94ed023f9f7cf6bdf5378",
+      "url": "https://archive.mozilla.org/pub/firefox/releases/99.0.1/win32/en-US/Firefox%20Setup%2099.0.1.exe#/dl.7z"
     },
-    "url": "https://archive.mozilla.org/pub/firefox/releases/$version/win32/en-US/Firefox%20Setup%20$version.exe#/dl.7z"
-   },
-   "64bit": {
-    "hash": {
-     "regex": "$sha512\\s+win64/en-US/$basename",
-     "url": "https://archive.mozilla.org/pub/firefox/releases/$version/SHA512SUMS"
-    },
-    "url": "https://archive.mozilla.org/pub/firefox/releases/$version/win64/en-US/Firefox%20Setup%20$version.exe#/dl.7z"
-   }
-  }
- },
- "bin": "firefox.exe",
- "checkver": {
-  "regex": "pub/firefox/candidates/([\\d.]+)-candidates",
-  "reverse": true,
-  "url": "https://archive.mozilla.org/pub/firefox/candidates/"
- },
- "description": "Popular open source web browser.",
- "extract_dir": "core",
- "homepage": "https://www.mozilla.org/firefox/",
- "license": "MPL-2.0",
- "notes": [
-  "To set profile 'Scoop' as *DEFAULT*, or profiles/settings was lost after update:",
-  "  - Run 'Firefox Profile Manager', choose 'Scoop' then click 'Start Firefox'.",
-  "  - Visit 'about:profiles' page in Firefox to check *DEFAULT* profile.",
-  "For details: https://support.mozilla.org/en-US/kb/profile-manager-create-remove-switch-firefox-profiles"
- ],
- "persist": [
-  "distribution",
-  "profile"
- ],
- "post_install": "firefox -CreateProfile \"Scoop $persist_dir\\profile\"",
- "shortcuts": [
-  [
-   "firefox.exe",
-   "Firefox"
+    "64bit": {
+      "hash": "sha512:0fcf4b7d0206320ef824a25c01e299a202b0bbaaad438b86b22767e7f71eedf209bc374a93ba15cea5818fa482d0a875e04a279e98d196ab68a345a9da4e456b",
+      "url": "https://archive.mozilla.org/pub/firefox/releases/99.0.1/win64/en-US/Firefox%20Setup%2099.0.1.exe#/dl.7z"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "hash": {
+          "regex": "$sha512\\s+win32/en-US/$basename",
+          "url": "https://archive.mozilla.org/pub/firefox/releases/$version/SHA512SUMS"
+        },
+        "url": "https://archive.mozilla.org/pub/firefox/releases/$version/win32/en-US/Firefox%20Setup%20$version.exe#/dl.7z"
+      },
+      "64bit": {
+        "hash": {
+          "regex": "$sha512\\s+win64/en-US/$basename",
+          "url": "https://archive.mozilla.org/pub/firefox/releases/$version/SHA512SUMS"
+        },
+        "url": "https://archive.mozilla.org/pub/firefox/releases/$version/win64/en-US/Firefox%20Setup%20$version.exe#/dl.7z"
+      }
+    }
+  },
+  "bin": "firefox.exe",
+  "checkver": {
+    "regex": "pub/firefox/candidates/([\\d.]+)-candidates",
+    "reverse": true,
+    "url": "https://archive.mozilla.org/pub/firefox/candidates/"
+  },
+  "description": "Popular open source web browser.",
+  "extract_dir": "core",
+  "homepage": "https://www.mozilla.org/firefox/",
+  "license": "MPL-2.0",
+  "notes": [
+    "To set profile 'Scoop' as *DEFAULT*, or profiles/settings was lost after update:",
+    "  - Run 'Firefox Profile Manager', choose 'Scoop' then click 'Start Firefox'.",
+    "  - Visit 'about:profiles' page in Firefox to check *DEFAULT* profile.",
+    "For details: https://support.mozilla.org/en-US/kb/profile-manager-create-remove-switch-firefox-profiles"
   ],
-  [
-   "firefox.exe",
-   "Firefox Profile Manager",
-   "-P"
-  ]
- ],
- "version": "99.0.1"
+  "persist": [
+    "distribution",
+    "profile"
+  ],
+  "post_install": "firefox -CreateProfile \"Scoop $persist_dir\\profile\"",
+  "shortcuts": [
+    [
+      "firefox.exe",
+      "Firefox"
+    ],
+    [
+      "firefox.exe",
+      "Firefox Profile Manager",
+      "-P"
+    ]
+  ],
+  "version": "99.0.1"
 }

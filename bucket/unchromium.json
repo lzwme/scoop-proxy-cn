@@ -1,42 +1,42 @@
 {
- "architecture": {
-  "64bit": {
-   "extract_dir": "ungoogled-chromium-105.0.5195.54-1_Win64",
-   "hash": "sha1:c9c43840601ecb68f9ceae39abda0f576c949d90",
-   "url": "https://ghproxy.com/https://github.com/macchrome/winchrome/releases/download/v105.0.5195.54-r1027018-Win64/ungoogled-chromium-105.0.5195.54-1_Win64.7z"
-  }
- },
- "autoupdate": {
   "architecture": {
-   "64bit": {
-    "extract_dir": "ungoogled-chromium-$version-1_Win64",
-    "url": "https://ghproxy.com/https://github.com/macchrome/winchrome/releases/download/v$version-r$matchBuild-Win64/ungoogled-chromium-$version-1_Win64.7z"
-   }
+    "64bit": {
+      "extract_dir": "ungoogled-chromium-105.0.5195.54-1_Win64",
+      "hash": "sha1:c9c43840601ecb68f9ceae39abda0f576c949d90",
+      "url": "https://ghproxy.com/https://github.com/macchrome/winchrome/releases/download/v105.0.5195.54-r1027018-Win64/ungoogled-chromium-105.0.5195.54-1_Win64.7z"
+    }
   },
-  "hash": {
-   "regex": "(?s)$basename.*?$sha1",
-   "url": "https://github.com/macchrome/winchrome/releases/v$version-r$matchBuild-Win64"
-  }
- },
- "bin": [
-  "chrome.exe",
-  [
-   "chrome.exe",
-   "unchromium"
-  ]
- ],
- "checkver": {
-  "github": "https://github.com/macchrome/winchrome/",
-  "regex": "v([\\d.]+)-r(?<build>\\d+)-Win64"
- },
- "description": "Ungoogled Chromium browser.",
- "homepage": "https://chromium.woolyss.com",
- "license": "BSD-3-Clause",
- "shortcuts": [
-  [
-   "chrome.exe",
-   "unChromium"
-  ]
- ],
- "version": "105.0.5195.54"
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "extract_dir": "ungoogled-chromium-$version-1_Win64",
+        "url": "https://ghproxy.com/https://github.com/macchrome/winchrome/releases/download/v$version-r$matchBuild-Win64/ungoogled-chromium-$version-1_Win64.7z"
+      }
+    },
+    "hash": {
+      "regex": "(?s)$basename.*?$sha1",
+      "url": "https://github.com/macchrome/winchrome/releases/v$version-r$matchBuild-Win64"
+    }
+  },
+  "bin": [
+    "chrome.exe",
+    [
+      "chrome.exe",
+      "unchromium"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/macchrome/winchrome/",
+    "regex": "v([\\d.]+)-r(?<build>\\d+)-Win64"
+  },
+  "description": "Ungoogled Chromium browser.",
+  "homepage": "https://chromium.woolyss.com",
+  "license": "BSD-3-Clause",
+  "shortcuts": [
+    [
+      "chrome.exe",
+      "unChromium"
+    ]
+  ],
+  "version": "105.0.5195.54"
 }

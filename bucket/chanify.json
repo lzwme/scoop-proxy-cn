@@ -1,57 +1,57 @@
 {
- "architecture": {
-  "32bit": {
-   "hash": "f5b025e724d15c83cb4802e02a221813b5e0c4b26c5f47185f04ee8df7bdf0d1",
-   "url": "https://ghproxy.com/https://github.com/chanify/chanify/releases/download/v1.4.2/chanify_Windows_i386.zip"
-  },
-  "64bit": {
-   "hash": "ee931fc4fb9c6cb7c3ea4b495f2759feb42e034b7e09bc095b00cb7d1a325d93",
-   "url": "https://ghproxy.com/https://github.com/chanify/chanify/releases/download/v1.4.2/chanify_Windows_x86_64.zip"
-  }
- },
- "autoupdate": {
   "architecture": {
-   "32bit": {
-    "hash": {
-     "mode": "extract",
-     "regex": "$sha256\\s+$basename",
-     "url": "$baseurl/chanify_$version_checksums.txt"
+    "32bit": {
+      "hash": "f5b025e724d15c83cb4802e02a221813b5e0c4b26c5f47185f04ee8df7bdf0d1",
+      "url": "https://ghproxy.com/https://github.com/chanify/chanify/releases/download/v1.4.2/chanify_Windows_i386.zip"
     },
-    "url": "https://ghproxy.com/https://github.com/chanify/chanify/releases/download/v$version/chanify_Windows_i386.zip"
-   },
-   "64bit": {
-    "hash": {
-     "mode": "extract",
-     "regex": "$sha256\\s+$basename",
-     "url": "$baseurl/chanify_$version_checksums.txt"
-    },
-    "url": "https://ghproxy.com/https://github.com/chanify/chanify/releases/download/v$version/chanify_Windows_x86_64.zip"
-   }
-  }
- },
- "bin": "chanify.exe",
- "checkver": {
-  "jsonpath": "$[0].tag_name",
-  "regex": "^v(.+)$",
-  "url": "https://api.github.com/repos/chanify/chanify/releases?per_page=1"
- },
- "description": "Chanify is a safe and simple notification tools. For developers, system administrators, and everyone can push notifications with API.",
- "homepage": "https://www.chanify.net",
- "license": {
-  "identifier": "MIT"
- },
- "pre_install": [
-  "if (Test-Path \"$persist_dir\\chanify.yml\") {",
-  "    Copy-Item \"$persist_dir\\chanify.yml\" \"$dir\\\" | Out-Null",
-  "}"
- ],
- "uninstaller": {
-  "script": [
-   "if (Test-Path \"$dir\\chanify.yml\") {",
-   "    ensure \"$persist_dir\" | Out-Null",
-   "    Copy-Item \"$dir\\chanify.yml\" \"$persist_dir\\\" | Out-Null",
-   "}"
-  ]
- },
- "version": "1.4.2"
+    "64bit": {
+      "hash": "ee931fc4fb9c6cb7c3ea4b495f2759feb42e034b7e09bc095b00cb7d1a325d93",
+      "url": "https://ghproxy.com/https://github.com/chanify/chanify/releases/download/v1.4.2/chanify_Windows_x86_64.zip"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "hash": {
+          "mode": "extract",
+          "regex": "$sha256\\s+$basename",
+          "url": "$baseurl/chanify_$version_checksums.txt"
+        },
+        "url": "https://ghproxy.com/https://github.com/chanify/chanify/releases/download/v$version/chanify_Windows_i386.zip"
+      },
+      "64bit": {
+        "hash": {
+          "mode": "extract",
+          "regex": "$sha256\\s+$basename",
+          "url": "$baseurl/chanify_$version_checksums.txt"
+        },
+        "url": "https://ghproxy.com/https://github.com/chanify/chanify/releases/download/v$version/chanify_Windows_x86_64.zip"
+      }
+    }
+  },
+  "bin": "chanify.exe",
+  "checkver": {
+    "jsonpath": "$[0].tag_name",
+    "regex": "^v(.+)$",
+    "url": "https://api.github.com/repos/chanify/chanify/releases?per_page=1"
+  },
+  "description": "Chanify is a safe and simple notification tools. For developers, system administrators, and everyone can push notifications with API.",
+  "homepage": "https://www.chanify.net",
+  "license": {
+    "identifier": "MIT"
+  },
+  "pre_install": [
+    "if (Test-Path \"$persist_dir\\chanify.yml\") {",
+    "    Copy-Item \"$persist_dir\\chanify.yml\" \"$dir\\\" | Out-Null",
+    "}"
+  ],
+  "uninstaller": {
+    "script": [
+      "if (Test-Path \"$dir\\chanify.yml\") {",
+      "    ensure \"$persist_dir\" | Out-Null",
+      "    Copy-Item \"$dir\\chanify.yml\" \"$persist_dir\\\" | Out-Null",
+      "}"
+    ]
+  },
+  "version": "1.4.2"
 }

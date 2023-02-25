@@ -1,45 +1,45 @@
 {
- "architecture": {
-  "64bit": {
-   "hash": "b6f589a4042fd5474341e5fd24061707fc0aa1a124da4ea6210f426e7f5962c6",
-   "url": "https://down.360safe.com/cse/360csex_21.0.1180.0.exe#/dl.7z"
-  }
- },
- "autoupdate": {
   "architecture": {
-   "64bit": {
-    "url": "https://down.360safe.com/cse/360csex_$version.exe#/dl.7z"
-   }
-  }
- },
- "bin": [
-  [
-   "360chromex.exe",
-   "360chromex",
-   "--user-data-dir=\"$dir\\User Data\" --disk-cache-dir=\"$dir\\Cache\""
-  ]
- ],
- "checkver": {
-  "regex": "360csex_([\\d.]+).exe",
-  "url": "https://browser.360.cn/eex/"
- },
- "description": "360 Extreme Browser X, Chromium95 kernel.",
- "homepage": "https://browser.360.cn/eex/",
- "license": {
-  "identifier": "Proprietary",
-  "url": "http://www.360.cn/xukexieyi.html#jisu"
- },
- "persist": [
-  "User Data",
-  "Cache"
- ],
- "pre_install": "Expand-7zipArchive \"$dir\\chrome.7z\" -ExtractDir 'Chrome-bin' -Removal",
- "shortcuts": [
-  [
-   "360chromex.exe",
-   "360\\360 Chrome X",
-   "--user-data-dir=\"$dir\\User Data\" --disk-cache-dir=\"$dir\\Cache\""
-  ]
- ],
- "version": "21.0.1180.0"
+    "64bit": {
+      "hash": "b6f589a4042fd5474341e5fd24061707fc0aa1a124da4ea6210f426e7f5962c6",
+      "url": "https://down.360safe.com/cse/360csex_21.0.1180.0.exe#/dl.7z"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://down.360safe.com/cse/360csex_$version.exe#/dl.7z"
+      }
+    }
+  },
+  "bin": [
+    [
+      "360chromex.exe",
+      "360chromex",
+      "--user-data-dir=\"$dir\\User Data\" --disk-cache-dir=\"$dir\\Cache\""
+    ]
+  ],
+  "checkver": {
+    "regex": "360csex_([\\d.]+).exe",
+    "url": "https://browser.360.cn/eex/"
+  },
+  "description": "360 Extreme Browser X, Chromium95 kernel.",
+  "homepage": "https://browser.360.cn/eex/",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "http://www.360.cn/xukexieyi.html#jisu"
+  },
+  "persist": [
+    "User Data",
+    "Cache"
+  ],
+  "pre_install": "Expand-7zipArchive \"$dir\\chrome.7z\" -ExtractDir 'Chrome-bin' -Removal",
+  "shortcuts": [
+    [
+      "360chromex.exe",
+      "360\\360 Chrome X",
+      "--user-data-dir=\"$dir\\User Data\" --disk-cache-dir=\"$dir\\Cache\""
+    ]
+  ],
+  "version": "21.0.1180.0"
 }

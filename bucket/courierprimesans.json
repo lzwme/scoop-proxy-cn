@@ -1,28 +1,28 @@
 {
- "description": "It's Courier, just better - Courierprimesans",
- "extract_dir": "CourierPrimeSans-master\\ttf",
- "hash": "754b3937340f5522ccf96be7832efbd809ef93f373d51b12919adbd9c0a468d7",
- "homepage": "https://quoteunquoteapps.com/courierprime/",
- "installer": {
-  "script": [
-   "if(!(is_admin)) { error \"Admin rights are required.\"; exit 1 }",
-   "Get-ChildItem $dir -Filter '*.ttf' -Recurse | ForEach-Object {",
-   "  New-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $_.Name -Force | Out-Null",
-   "  Copy-Item $_.FullName -destination \"$env:windir\\Fonts\"",
-   "}"
-  ]
- },
- "license": "OFL-1.1",
- "uninstaller": {
-  "script": [
-   "if(!(is_admin)) { error \"Admin rights are required.\"; exit 1 }",
-   "Get-ChildItem $dir -filter '*.ttf' -Recurse | ForEach-Object {",
-   "  Remove-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
-   "  Remove-Item \"$env:windir\\Fonts\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
-   "}",
-   "Write-Host \"'Courier Prime Sans' has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
-  ]
- },
- "url": "https://quoteunquoteapps.com/courierprime/downloads/courier-prime-sans.zip",
- "version": "3.020"
+  "description": "It's Courier, just better - Courierprimesans",
+  "extract_dir": "CourierPrimeSans-master\\ttf",
+  "hash": "754b3937340f5522ccf96be7832efbd809ef93f373d51b12919adbd9c0a468d7",
+  "homepage": "https://quoteunquoteapps.com/courierprime/",
+  "installer": {
+    "script": [
+      "if(!(is_admin)) { error \"Admin rights are required.\"; exit 1 }",
+      "Get-ChildItem $dir -Filter '*.ttf' -Recurse | ForEach-Object {",
+      "  New-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $_.Name -Force | Out-Null",
+      "  Copy-Item $_.FullName -destination \"$env:windir\\Fonts\"",
+      "}"
+    ]
+  },
+  "license": "OFL-1.1",
+  "uninstaller": {
+    "script": [
+      "if(!(is_admin)) { error \"Admin rights are required.\"; exit 1 }",
+      "Get-ChildItem $dir -filter '*.ttf' -Recurse | ForEach-Object {",
+      "  Remove-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
+      "  Remove-Item \"$env:windir\\Fonts\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
+      "}",
+      "Write-Host \"'Courier Prime Sans' has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
+    ]
+  },
+  "url": "https://quoteunquoteapps.com/courierprime/downloads/courier-prime-sans.zip",
+  "version": "3.020"
 }

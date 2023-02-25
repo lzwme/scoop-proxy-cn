@@ -1,36 +1,36 @@
 {
-    "version": "3.1.37",
-    "description": "A simple and easy to use mod manager for several Unity games using Thunderstore ",
-    "homepage": "https://github.com/ebkr/r2modmanPlus",
-    "license": "MIT",
-    "url": "https://ghproxy.com/https://github.com/ebkr/r2modmanPlus/releases/download/v3.1.37/r2modman-3.1.37.exe",
-    "hash": "8cd4070f0273c340796c5a500f4acf9c68c9a7a48b971bf3291655688f2bc0d3",
-    "extract_dir": "$PLUGINSDIR",
-    "installer": {
-        "script": [
-            "Remove-Item \"$dir\\System.dll\" | Out-Null",
-            "Remove-Item \"$dir\\StdUtils.dll\" | Out-Null",
-            "Remove-Item \"$dir\\nsis7z.dll\" | Out-Null",
-            "Expand-7zipArchive \"$dir\\app-64.7z\" \"$dir\"",
-            "Remove-Item \"$dir\\app-64.7z\" | Out-Null"
-        ]
-    },
-    "bin": "r2modman.exe",
-    "shortcuts": [
-        [
-            "r2modman.exe",
-            "r2modman"
-        ]
-    ],
-    "persist": "r2modman-local",
-    "checkver": {
-        "github": "https://github.com/ebkr/r2modmanPlus"
-    },
-    "autoupdate": {
-        "url": "https://ghproxy.com/https://github.com/ebkr/r2modmanPlus/releases/download/v$version/r2modman-$version.exe",
-        "hash": {
-            "url": "https://github.com/ebkr/r2modmanPlus/releases/latest/download/latest.yml",
-            "regex": "$sha256"
-        }
+  "version": "3.1.37",
+  "description": "A simple and easy to use mod manager for several Unity games using Thunderstore ",
+  "homepage": "https://github.com/ebkr/r2modmanPlus",
+  "license": "MIT",
+  "url": "https://ghproxy.com/https://github.com/ebkr/r2modmanPlus/releases/download/v3.1.37/r2modman-3.1.37.exe",
+  "hash": "8cd4070f0273c340796c5a500f4acf9c68c9a7a48b971bf3291655688f2bc0d3",
+  "extract_dir": "$PLUGINSDIR",
+  "installer": {
+    "script": [
+      "Remove-Item \"$dir\\System.dll\" | Out-Null",
+      "Remove-Item \"$dir\\StdUtils.dll\" | Out-Null",
+      "Remove-Item \"$dir\\nsis7z.dll\" | Out-Null",
+      "Expand-7zipArchive \"$dir\\app-64.7z\" \"$dir\"",
+      "Remove-Item \"$dir\\app-64.7z\" | Out-Null"
+    ]
+  },
+  "bin": "r2modman.exe",
+  "shortcuts": [
+    [
+      "r2modman.exe",
+      "r2modman"
+    ]
+  ],
+  "persist": "r2modman-local",
+  "checkver": {
+    "github": "https://github.com/ebkr/r2modmanPlus"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/ebkr/r2modmanPlus/releases/download/v$version/r2modman-$version.exe",
+    "hash": {
+      "url": "https://github.com/ebkr/r2modmanPlus/releases/latest/download/latest.yml",
+      "regex": "$sha256"
     }
+  }
 }

@@ -1,33 +1,33 @@
 {
-    "version": "2.23.0",
-    "description": "Official GitHub CLI",
-    "homepage": "https://cli.github.com",
-    "license": "MIT",
-    "architecture": {
-        "64bit": {
-            "url": "https://ghproxy.com/https://github.com/cli/cli/releases/download/v2.23.0/gh_2.23.0_windows_amd64.zip",
-            "hash": "c455548ea4139ae885dcda0ce2277cdfe4236d355bb145dc7590b2580eeffee4"
-        },
-        "32bit": {
-            "url": "https://ghproxy.com/https://github.com/cli/cli/releases/download/v2.23.0/gh_2.23.0_windows_386.zip",
-            "hash": "d007d515c83698b349952a9d21ff129e7e7abf0370c4062f06a1c18f4ee7d47a"
-        }
+  "version": "1.1.0",
+  "description": "Official GitHub CLI",
+  "homepage": "https://cli.github.com",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/cli/cli/releases/download/v1.1.0/gh_1.1.0_windows_amd64.zip",
+      "hash": "94cbfff8cf50ca24ae9d2f60dbda3e1f3aa1a68be896d657ce4885f2a045bad4"
     },
-    "bin": "bin\\gh.exe",
-    "checkver": {
-        "github": "https://github.com/cli/cli"
-    },
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://ghproxy.com/https://github.com/cli/cli/releases/download/v$version/gh_$version_windows_amd64.zip"
-            },
-            "32bit": {
-                "url": "https://ghproxy.com/https://github.com/cli/cli/releases/download/v$version/gh_$version_windows_386.zip"
-            }
-        },
-        "hash": {
-            "url": "$baseurl/gh_$version_checksums.txt"
-        }
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/cli/cli/releases/download/v1.1.0/gh_1.1.0_windows_386.zip",
+      "hash": "8abe5a333bec49e49170db164d62c2db9086f716a3206abdc27b2b348bfeb6a2"
     }
+  },
+  "bin": "bin\\gh.exe",
+  "checkver": {
+    "github": "https://github.com/cli/cli"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/cli/cli/releases/download/v$version/gh_$version_windows_amd64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/cli/cli/releases/download/v$version/gh_$version_windows_386.zip"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/gh_$version_checksums.txt"
+    }
+  }
 }

@@ -1,41 +1,41 @@
 {
-    "version": "1.15.2",
-    "description": "Release automation tool for Go projects.",
-    "homepage": "https://goreleaser.com",
-    "license": "MIT",
-    "architecture": {
-        "64bit": {
-            "url": "https://ghproxy.com/https://github.com/goreleaser/goreleaser/releases/download/v1.15.2/goreleaser_Windows_x86_64.zip",
-            "hash": "dbafa9664d7395e3c23235c250511e9614448f7eb5c2165479706551a569b05b"
-        },
-        "32bit": {
-            "url": "https://ghproxy.com/https://github.com/goreleaser/goreleaser/releases/download/v1.15.2/goreleaser_Windows_i386.zip",
-            "hash": "6db786ce108ea5fde9869a5802f5daf612e69149ef1f77aea667279360c50887"
-        },
-        "arm64": {
-            "url": "https://ghproxy.com/https://github.com/goreleaser/goreleaser/releases/download/v1.15.2/goreleaser_Windows_arm64.zip",
-            "hash": "591c8106284c1e16249304c7068d77ef764ccd0b8cd9a3be6c27533c8037c34d"
-        }
+  "version": "1.15.2",
+  "description": "Release automation tool for Go projects.",
+  "homepage": "https://goreleaser.com",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/goreleaser/goreleaser/releases/download/v1.15.2/goreleaser_Windows_x86_64.zip",
+      "hash": "dbafa9664d7395e3c23235c250511e9614448f7eb5c2165479706551a569b05b"
     },
-    "bin": "goreleaser.exe",
-    "checkver": {
-        "github": "https://github.com/goreleaser/goreleaser/"
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/goreleaser/goreleaser/releases/download/v1.15.2/goreleaser_Windows_i386.zip",
+      "hash": "6db786ce108ea5fde9869a5802f5daf612e69149ef1f77aea667279360c50887"
     },
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://ghproxy.com/https://github.com/goreleaser/goreleaser/releases/download/v$version/goreleaser_Windows_x86_64.zip"
-            },
-            "32bit": {
-                "url": "https://ghproxy.com/https://github.com/goreleaser/goreleaser/releases/download/v$version/goreleaser_Windows_i386.zip"
-            },
-            "arm64": {
-                "url": "https://ghproxy.com/https://github.com/goreleaser/goreleaser/releases/download/v$version/goreleaser_Windows_arm64.zip"
-            }
-        },
-        "hash": {
-            "url": "$baseurl/checksums.txt",
-            "regex": "$sha256  $basename\\n"
-        }
+    "arm64": {
+      "url": "https://ghproxy.com/https://github.com/goreleaser/goreleaser/releases/download/v1.15.2/goreleaser_Windows_arm64.zip",
+      "hash": "591c8106284c1e16249304c7068d77ef764ccd0b8cd9a3be6c27533c8037c34d"
     }
+  },
+  "bin": "goreleaser.exe",
+  "checkver": {
+    "github": "https://github.com/goreleaser/goreleaser/"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/goreleaser/goreleaser/releases/download/v$version/goreleaser_Windows_x86_64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/goreleaser/goreleaser/releases/download/v$version/goreleaser_Windows_i386.zip"
+      },
+      "arm64": {
+        "url": "https://ghproxy.com/https://github.com/goreleaser/goreleaser/releases/download/v$version/goreleaser_Windows_arm64.zip"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/checksums.txt",
+      "regex": "$sha256  $basename\\n"
+    }
+  }
 }

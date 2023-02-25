@@ -1,50 +1,50 @@
 {
+  "architecture": {
+    "32bit": {
+      "hash": "fa320535ce72de15a8ce46bd4b83fb3e000f9cf93edf11d2de352d8544947fd1",
+      "url": "http://softwareok.com/Download/DesktopOK_Unicode.zip"
+    },
+    "64bit": {
+      "hash": "a3ada4527cc36c603ea882565ee45d1bc0dca1a0253c91e1678ebfcba84aa0ed",
+      "url": "http://softwareok.com/Download/DesktopOK_x64.zip"
+    }
+  },
+  "autoupdate": {
     "architecture": {
-        "32bit": {
-            "hash": "fa320535ce72de15a8ce46bd4b83fb3e000f9cf93edf11d2de352d8544947fd1",
-            "url": "http://softwareok.com/Download/DesktopOK_Unicode.zip"
+      "32bit": {
+        "hash": {
+          "find": "DesktopOK\\.zip.+?target=_blank>($sha256)",
+          "url": "http://softwareok.com/?Download=DesktopOK_Unicode"
         },
-        "64bit": {
-            "hash": "a3ada4527cc36c603ea882565ee45d1bc0dca1a0253c91e1678ebfcba84aa0ed",
-            "url": "http://softwareok.com/Download/DesktopOK_x64.zip"
-        }
-    },
-    "autoupdate": {
-        "architecture": {
-            "32bit": {
-                "hash": {
-                    "find": "DesktopOK\\.zip.+?target=_blank>($sha256)",
-                    "url": "http://softwareok.com/?Download=DesktopOK_Unicode"
-                },
-                "url": "http://softwareok.com/Download/DesktopOK_Unicode.zip"
-            },
-            "64bit": {
-                "hash": {
-                    "find": "DesktopOK_x64\\.zip.+?target=_blank>($sha256)",
-                    "url": "http://softwareok.com/?Download=DesktopOK"
-                },
-                "url": "http://softwareok.com/Download/DesktopOK_x64.zip"
-            }
-        }
-    },
-    "bin": "DesktopOK.exe",
-    "checkver": "DesktopOK ([\\d.]+)",
-    "description": "DesktopOK - Save and restore the positions of the Windows 11, 10, ... Desktop Icons!",
-    "homepage": "http://softwareok.com/?seite=Microsoft/DesktopOK",
-    "license": "freeware",
-    "persist": "DesktopOK.ini",
-    "pre_install": [
-        "$exefile = (Get-ChildItem \"$dir\" '*.exe' | Select-Object -First 1).FullName",
-        "Rename-Item \"$exefile\" \"$dir\\DesktopOK.exe\"",
-        "if(!(Test-Path \"$persist_dir\\DesktopOK.ini\")) {",
-        "    New-Item \"$dir\\DesktopOK.ini\" -Type File -Force | Out-Null",
-        "}"
-    ],
-    "shortcuts": [
-        [
-            "DesktopOK.exe",
-            "DesktopOK"
-        ]
-    ],
-    "version": "10.66"
+        "url": "http://softwareok.com/Download/DesktopOK_Unicode.zip"
+      },
+      "64bit": {
+        "hash": {
+          "find": "DesktopOK_x64\\.zip.+?target=_blank>($sha256)",
+          "url": "http://softwareok.com/?Download=DesktopOK"
+        },
+        "url": "http://softwareok.com/Download/DesktopOK_x64.zip"
+      }
+    }
+  },
+  "bin": "DesktopOK.exe",
+  "checkver": "DesktopOK ([\\d.]+)",
+  "description": "DesktopOK - Save and restore the positions of the Windows 11, 10, ... Desktop Icons!",
+  "homepage": "http://softwareok.com/?seite=Microsoft/DesktopOK",
+  "license": "freeware",
+  "persist": "DesktopOK.ini",
+  "pre_install": [
+    "$exefile = (Get-ChildItem \"$dir\" '*.exe' | Select-Object -First 1).FullName",
+    "Rename-Item \"$exefile\" \"$dir\\DesktopOK.exe\"",
+    "if(!(Test-Path \"$persist_dir\\DesktopOK.ini\")) {",
+    "    New-Item \"$dir\\DesktopOK.ini\" -Type File -Force | Out-Null",
+    "}"
+  ],
+  "shortcuts": [
+    [
+      "DesktopOK.exe",
+      "DesktopOK"
+    ]
+  ],
+  "version": "10.66"
 }

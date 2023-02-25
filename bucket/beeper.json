@@ -1,34 +1,34 @@
 {
-    "version": "3.43.31",
-    "homepage": "https://www.beeper.com/",
-    "description": "An universal chat application that uninfies all your chat applications into one.",
-    "license": {
-        "identifier": "Freeware",
-        "url": "https://www.beeper.com/terms"
-    },
-    "architecture": {
-        "64bit": {
-            "url": "https://download.beeper.com/windows/nsis/x64#/beeper.7z",
-            "hash": "cdbcf1170f249818aeff181e501d89d270cc9fca5a8f1ad393cd41c71f565baa"
-        }
-    },
-    "extract_dir": "$PLUGINSDIR",
-    "pre_install": "Expand-7zipArchive \"$dir\\app-64.7z\" \"$dir\" -Removal",
-    "shortcuts": [
-        [
-            "Beeper.exe",
-            "Beeper"
-        ]
-    ],
-    "checkver": {
-        "script": "(Invoke-WebRequest 'https://download.beeper.com/windows/nsis/x64' -MaximumRedirection 1).Headers.'Content-Disposition'",
-        "regex": "attachment;\\s+filename=\"Beeper\\sSetup\\s([\\d.]+)-x64\\.exe\""
-    },
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://download.beeper.com/windows/nsis/x64#/beeper.7z"
-            }
-        }
+  "version": "3.43.31",
+  "homepage": "https://www.beeper.com/",
+  "description": "An universal chat application that uninfies all your chat applications into one.",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://www.beeper.com/terms"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://download.beeper.com/windows/nsis/x64#/beeper.7z",
+      "hash": "cdbcf1170f249818aeff181e501d89d270cc9fca5a8f1ad393cd41c71f565baa"
     }
+  },
+  "extract_dir": "$PLUGINSDIR",
+  "pre_install": "Expand-7zipArchive \"$dir\\app-64.7z\" \"$dir\" -Removal",
+  "shortcuts": [
+    [
+      "Beeper.exe",
+      "Beeper"
+    ]
+  ],
+  "checkver": {
+    "script": "(Invoke-WebRequest 'https://download.beeper.com/windows/nsis/x64' -MaximumRedirection 1).Headers.'Content-Disposition'",
+    "regex": "attachment;\\s+filename=\"Beeper\\sSetup\\s([\\d.]+)-x64\\.exe\""
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://download.beeper.com/windows/nsis/x64#/beeper.7z"
+      }
+    }
+  }
 }

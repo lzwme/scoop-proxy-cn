@@ -1,33 +1,33 @@
 {
-    "version": "v2.0.0.13",
-    "description": "Xbox 下载助手，支持Xbox、微软商店、PSN、NS、EA Desktop & Origin、战网国际服、Epic 下载加速。",
-    "homepage": "https://github.com/skydevil88/XboxDownload",
-    "license": "Freeware",
-    "architecture": {
-        "64bit": {
-            "url": "https://ghproxy.com/https://github.com/skydevil88/XboxDownload/releases/download/v2.0.0.13/XboxDownload.zip",
-            "hash": "90de0d59754ca78a0cc991750830d1f81afc827f04d33707e5c98827fac6577e"
-        }
-    },
-    "pre_install": [
-        "Move-Item -Path \"$dir\\Xbox*\\*\" -Destination \"$dir\"",
-        "Get-ChildItem -Directory -Path \"$dir\" -Filter 'Xbox*' | Remove-Item -Force -Recurse"
-    ],
-    "shortcuts": [
-        [
-            "XboxDownload.exe",
-            "Xbox 下载助手"
-        ]
-    ],
-    "checkver": {
-        "url": "https://github.com/skydevil88/XboxDownload/releases/latest",
-        "regex": "/releases/tag/([^/]+?)\""
-    },
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://ghproxy.com/https://github.com/skydevil88/XboxDownload/releases/download/$version/XboxDownload.zip"
-            }
-        }
+  "version": "v2.0.0.13",
+  "description": "Xbox 下载助手，支持Xbox、微软商店、PSN、NS、EA Desktop & Origin、战网国际服、Epic 下载加速。",
+  "homepage": "https://github.com/skydevil88/XboxDownload",
+  "license": "Freeware",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/skydevil88/XboxDownload/releases/download/v2.0.0.13/XboxDownload.zip",
+      "hash": "90de0d59754ca78a0cc991750830d1f81afc827f04d33707e5c98827fac6577e"
     }
+  },
+  "pre_install": [
+    "Move-Item -Path \"$dir\\Xbox*\\*\" -Destination \"$dir\"",
+    "Get-ChildItem -Directory -Path \"$dir\" -Filter 'Xbox*' | Remove-Item -Force -Recurse"
+  ],
+  "shortcuts": [
+    [
+      "XboxDownload.exe",
+      "Xbox 下载助手"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/skydevil88/XboxDownload/releases/latest",
+    "regex": "/releases/tag/([^/]+?)\""
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/skydevil88/XboxDownload/releases/download/$version/XboxDownload.zip"
+      }
+    }
+  }
 }

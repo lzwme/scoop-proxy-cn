@@ -1,40 +1,40 @@
 {
-    "$schema": "https://ghproxy.com/https://raw.githubusercontent.com/ScoopInstaller/Scoop/master/schema.json",
-    "homepage": "https://github.com/kiennq/emacs-build",
-    "license": "GPLv3",
-    "version": "30.173.20230201.7236f82",
-    "url": "https://ghproxy.com/https://github.com/kiennq/emacs-build/releases/download/v30.173.20230201.7236f82/emacs-master-x86_64-full.zip",
-    "hash": "a42f84cd4477dea6b7ba81dda087cd6c0e4774b849a1bb7e319d5f50f6165b4d",
-    "bin": [
-        "bin\\runemacs.exe",
-        "bin\\emacs.exe",
-        "bin\\emacsclient.exe",
-        "bin\\emacsclientw.exe",
-        "bin\\etags.exe",
-        "bin\\ctags.exe",
-        [
-            "bin\\emacsclientw.exe",
-            "emw",
-            "-c -n -a \"\""
-        ]
-    ],
-    "checkver": {
-        "url": "https://api.github.com/repos/kiennq/emacs-build/releases/latest",
-        "jsonpath": "$.tag_name",
-        "re": "v([\\d\\w.-]+)"
-    },
-    "autoupdate": {
-        "url": "https://ghproxy.com/https://github.com/kiennq/emacs-build/releases/download/v$version/emacs-master-x86_64-full.zip"
-    },
-    "shortcuts": [
-        [
-            "bin\\runemacs.exe",
-            "Emacs"
-        ],
-        [
-            "bin\\emacsclientw.exe",
-            "Emacs Client",
-            "-c -n -a \"\""
-        ]
+  "$schema": "https://ghproxy.com/https://raw.githubusercontent.com/ScoopInstaller/Scoop/master/schema.json",
+  "homepage": "https://github.com/kiennq/emacs-build",
+  "license": "GPLv3",
+  "version": "30.173.20230201.7236f82",
+  "url": "https://ghproxy.com/https://github.com/kiennq/emacs-build/releases/download/v30.173.20230201.7236f82/emacs-master-x86_64-full.zip",
+  "hash": "a42f84cd4477dea6b7ba81dda087cd6c0e4774b849a1bb7e319d5f50f6165b4d",
+  "bin": [
+    "bin\\runemacs.exe",
+    "bin\\emacs.exe",
+    "bin\\emacsclient.exe",
+    "bin\\emacsclientw.exe",
+    "bin\\etags.exe",
+    "bin\\ctags.exe",
+    [
+      "bin\\emacsclientw.exe",
+      "emw",
+      "-c -n -a \"\""
     ]
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/kiennq/emacs-build/releases/latest",
+    "jsonpath": "$.tag_name",
+    "re": "v([\\d\\w.-]+)"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/kiennq/emacs-build/releases/download/v$version/emacs-master-x86_64-full.zip"
+  },
+  "shortcuts": [
+    [
+      "bin\\runemacs.exe",
+      "Emacs"
+    ],
+    [
+      "bin\\emacsclientw.exe",
+      "Emacs Client",
+      "-c -n -a \"\""
+    ]
+  ]
 }

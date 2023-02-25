@@ -1,26 +1,26 @@
 {
-    "version": "1.3.1",
-    "description": "Test automation tool that combines API test-automation, mocks, performance-testing and UI automation into a single framework.",
-    "homepage": "https://karatelabs.github.io/karate/",
-    "license": "MIT",
-    "suggest": {
-        "Java": "java/openjdk"
-    },
-    "url": "https://ghproxy.com/https://github.com/karatelabs/karate/releases/download/v1.3.1/karate-1.3.1.zip",
-    "hash": "7a44bd20f12e3f9e720bb99be5976110a9b4fcef220c1edd64279938548b10c3",
-    "extract_dir": "karate-1.3.1",
-    "pre_install": [
-        "$cont = Get-Content \"$dir\\karate.bat\"",
-        "$cont = 'cd /d \"%~dp0\"' + \"`r`n\" + $cont",
-        "Set-Content \"$dir\\karate.bat\" $cont -Encoding ascii"
-    ],
-    "bin": "karate.bat",
-    "persist": "target",
-    "checkver": {
-        "github": "https://github.com/karatelabs/karate"
-    },
-    "autoupdate": {
-        "url": "https://ghproxy.com/https://github.com/karatelabs/karate/releases/download/v$version/karate-$version.zip",
-        "extract_dir": "karate-$version"
-    }
+  "version": "1.3.1",
+  "description": "Test automation tool that combines API test-automation, mocks, performance-testing and UI automation into a single framework.",
+  "homepage": "https://karatelabs.github.io/karate/",
+  "license": "MIT",
+  "suggest": {
+    "Java": "java/openjdk"
+  },
+  "url": "https://ghproxy.com/https://github.com/karatelabs/karate/releases/download/v1.3.1/karate-1.3.1.zip",
+  "hash": "7a44bd20f12e3f9e720bb99be5976110a9b4fcef220c1edd64279938548b10c3",
+  "extract_dir": "karate-1.3.1",
+  "pre_install": [
+    "$cont = Get-Content \"$dir\\karate.bat\"",
+    "$cont = 'cd /d \"%~dp0\"' + \"`r`n\" + $cont",
+    "Set-Content \"$dir\\karate.bat\" $cont -Encoding ascii"
+  ],
+  "bin": "karate.bat",
+  "persist": "target",
+  "checkver": {
+    "github": "https://github.com/karatelabs/karate"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/karatelabs/karate/releases/download/v$version/karate-$version.zip",
+    "extract_dir": "karate-$version"
+  }
 }

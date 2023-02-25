@@ -1,43 +1,43 @@
 {
-    "version": "3.12.0",
-    "description": "A file list program that supports multiple storage, powered by Gin and Solidjs.",
-    "homepage": "https://alist.nn.ci",
-    "license": "AGPL-3.0-or-later",
-    "architecture": {
-        "64bit": {
-            "url": "https://ghproxy.com/https://github.com/alist-org/alist/releases/download/v3.12.0/alist-windows-amd64.zip",
-            "hash": "md5:8e1c9d8cb24a1f60c5e2230575b8c753"
-        },
-        "32bit": {
-            "url": "https://ghproxy.com/https://github.com/alist-org/alist/releases/download/v3.12.0/alist-windows-386.zip",
-            "hash": "md5:eadc5c541f47d4ee7a8a1f4fab199286"
-        }
+  "version": "3.12.0",
+  "description": "A file list program that supports multiple storage, powered by Gin and Solidjs.",
+  "homepage": "https://alist.nn.ci",
+  "license": "AGPL-3.0-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/alist-org/alist/releases/download/v3.12.0/alist-windows-amd64.zip",
+      "hash": "md5:8e1c9d8cb24a1f60c5e2230575b8c753"
     },
-    "bin": [
-        [
-            "alist.exe",
-            "alist",
-            "--force-bin-dir"
-        ]
-    ],
-    "persist": [
-        "data",
-        "log"
-    ],
-    "checkver": {
-        "github": "https://github.com/alist-org/alist"
-    },
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://ghproxy.com/https://github.com/alist-org/alist/releases/download/v$version/alist-windows-amd64.zip"
-            },
-            "32bit": {
-                "url": "https://ghproxy.com/https://github.com/alist-org/alist/releases/download/v$version/alist-windows-386.zip"
-            }
-        },
-        "hash": {
-            "url": "$baseurl/md5.txt"
-        }
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/alist-org/alist/releases/download/v3.12.0/alist-windows-386.zip",
+      "hash": "md5:eadc5c541f47d4ee7a8a1f4fab199286"
     }
+  },
+  "bin": [
+    [
+      "alist.exe",
+      "alist",
+      "--force-bin-dir"
+    ]
+  ],
+  "persist": [
+    "data",
+    "log"
+  ],
+  "checkver": {
+    "github": "https://github.com/alist-org/alist"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/alist-org/alist/releases/download/v$version/alist-windows-amd64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/alist-org/alist/releases/download/v$version/alist-windows-386.zip"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/md5.txt"
+    }
+  }
 }

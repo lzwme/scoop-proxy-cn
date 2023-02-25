@@ -1,51 +1,51 @@
 {
-    "version": "2405-20230222",
-    "description": "Emulator for Nintendo 3DS, capable of playing many of your favorite games",
-    "homepage": "https://citra-emu.org/",
-    "license": {
-        "identifier": "GPL-2.0",
-        "url": "https://github.com/citra-emu/citra-canary/blob/master/license.txt"
-    },
-    "url": "https://ghproxy.com/https://github.com/citra-emu/citra-canary/releases/download/canary-2405/citra-windows-mingw-20230222-fe18c66.7z",
-    "hash": "66ba04c7765332ea2eede0be27f06be57a3ddd175c5947e5d481985597c08689",
-    "extract_dir": "canary-mingw",
-    "pre_install": [
-        "if (!(Test-Path \"$persist_dir\\user\")) {",
-        "   New-Item -Path \"$persist_dir\" -Name \"user\" -ItemType \"directory\" | Out-Null",
-        "   if (Test-Path \"$env:APPDATA\\Citra\") {",
-        "       Write-host \"Migrating AppData...\" -ForegroundColor yellow",
-        "       Copy-Item -Path \"$env:APPDATA\\Citra\\*\" -Destination \"$persist_dir\\user\" -Recurse",
-        "       Remove-Item -Path \"$env:APPDATA\\Citra\" -Recurse",
-        "   }",
-        "}"
+  "version": "2406-20230223",
+  "description": "Emulator for Nintendo 3DS, capable of playing many of your favorite games",
+  "homepage": "https://citra-emu.org/",
+  "license": {
+    "identifier": "GPL-2.0",
+    "url": "https://github.com/citra-emu/citra-canary/blob/master/license.txt"
+  },
+  "url": "https://ghproxy.com/https://github.com/citra-emu/citra-canary/releases/download/canary-2406/citra-windows-mingw-20230223-726c748.7z",
+  "hash": "bae20524ccc44d333a05d73a8178d5cfaf6b9cf7ce53f5ed9487e0952241fafd",
+  "extract_dir": "canary-mingw",
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\user\")) {",
+    "   New-Item -Path \"$persist_dir\" -Name \"user\" -ItemType \"directory\" | Out-Null",
+    "   if (Test-Path \"$env:APPDATA\\Citra\") {",
+    "       Write-host \"Migrating AppData...\" -ForegroundColor yellow",
+    "       Copy-Item -Path \"$env:APPDATA\\Citra\\*\" -Destination \"$persist_dir\\user\" -Recurse",
+    "       Remove-Item -Path \"$env:APPDATA\\Citra\" -Recurse",
+    "   }",
+    "}"
+  ],
+  "bin": [
+    [
+      "citra.exe",
+      "citra-canary"
     ],
-    "bin": [
-        [
-            "citra.exe",
-            "citra-canary"
-        ],
-        [
-            "citra-qt.exe",
-            "citra-qt-canary"
-        ],
-        [
-            "citra-room.exe",
-            "citra-room-canary"
-        ]
+    [
+      "citra-qt.exe",
+      "citra-qt-canary"
     ],
-    "shortcuts": [
-        [
-            "citra-qt.exe",
-            "Citra (Canary)"
-        ]
-    ],
-    "persist": "user",
-    "checkver": {
-        "github": "https://github.com/citra-emu/citra-canary",
-        "regex": "download/canary-(?<build>[\\d]+)/citra-windows-(?<env>[\\w]+)-(?<date>[\\d]{8})-(?<commit>[\\da-f]{7})\\.(?<zip>7z|zip)",
-        "replace": "${build}-${date}"
-    },
-    "autoupdate": {
-        "url": "https://ghproxy.com/https://github.com/citra-emu/citra-canary/releases/download/canary-$matchBuild/citra-windows-$matchEnv-$matchDate-$matchCommit.$matchZip"
-    }
+    [
+      "citra-room.exe",
+      "citra-room-canary"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "citra-qt.exe",
+      "Citra (Canary)"
+    ]
+  ],
+  "persist": "user",
+  "checkver": {
+    "github": "https://github.com/citra-emu/citra-canary",
+    "regex": "download/canary-(?<build>[\\d]+)/citra-windows-(?<env>[\\w]+)-(?<date>[\\d]{8})-(?<commit>[\\da-f]{7})\\.(?<zip>7z|zip)",
+    "replace": "${build}-${date}"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/citra-emu/citra-canary/releases/download/canary-$matchBuild/citra-windows-$matchEnv-$matchDate-$matchCommit.$matchZip"
+  }
 }

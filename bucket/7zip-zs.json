@@ -1,42 +1,42 @@
 {
-    "version": "22.01-v1.5.4-R3",
-    "description": "7-Zip with support for Brotli, Fast-LZMA2, Lizard, LZ4, LZ5 and Zstandard.",
-    "homepage": "https://github.com/mcmilk/7-Zip-zstd",
-    "license": "LGPL-2.0-only",
-    "architecture": {
-        "64bit": {
-            "url": "https://ghproxy.com/https://github.com/mcmilk/7-Zip-zstd/releases/download/v22.01-v1.5.4-R3/7z22.01-zstd-x64.exe#/dl.7z",
-            "hash": "d516b1ebd5b0315cca19eb13f83fe6db2e1d4cbe8b5e5cdb1c23a66a5a662951"
-        },
-        "32bit": {
-            "url": "https://ghproxy.com/https://github.com/mcmilk/7-Zip-zstd/releases/download/v22.01-v1.5.4-R3/7z22.01-zstd-x32.exe#/dl.7z",
-            "hash": "e5025088121d1562375356e7e779d39f03dbd119f32e52d42ebad866fa7bc6db"
-        }
+  "version": "22.01-v1.5.4-R3",
+  "description": "7-Zip with support for Brotli, Fast-LZMA2, Lizard, LZ4, LZ5 and Zstandard.",
+  "homepage": "https://github.com/mcmilk/7-Zip-zstd",
+  "license": "LGPL-2.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/mcmilk/7-Zip-zstd/releases/download/v22.01-v1.5.4-R3/7z22.01-zstd-x64.exe#/dl.7z",
+      "hash": "d516b1ebd5b0315cca19eb13f83fe6db2e1d4cbe8b5e5cdb1c23a66a5a662951"
     },
-    "bin": [
-        [
-            "7z.exe",
-            "7z-zs"
-        ]
-    ],
-    "shortcuts": [
-        [
-            "7zFM.exe",
-            "7-Zip ZS"
-        ]
-    ],
-    "checkver": {
-        "url": "https://github.com/mcmilk/7-Zip-zstd/releases/latest",
-        "regex": "/releases/tag/v([\\d.]+-v[\\d.]+-R\\d+)"
-    },
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://ghproxy.com/https://github.com/mcmilk/7-Zip-zstd/releases/download/v$version/7z$matchHead-zstd-x64.exe#/dl.7z"
-            },
-            "32bit": {
-                "url": "https://ghproxy.com/https://github.com/mcmilk/7-Zip-zstd/releases/download/v$version/7z$matchHead-zstd-x32.exe#/dl.7z"
-            }
-        }
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/mcmilk/7-Zip-zstd/releases/download/v22.01-v1.5.4-R3/7z22.01-zstd-x32.exe#/dl.7z",
+      "hash": "e5025088121d1562375356e7e779d39f03dbd119f32e52d42ebad866fa7bc6db"
     }
+  },
+  "bin": [
+    [
+      "7z.exe",
+      "7z-zs"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "7zFM.exe",
+      "7-Zip ZS"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/mcmilk/7-Zip-zstd/releases/latest",
+    "regex": "/releases/tag/v([\\d.]+-v[\\d.]+-R\\d+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/mcmilk/7-Zip-zstd/releases/download/v$version/7z$matchHead-zstd-x64.exe#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/mcmilk/7-Zip-zstd/releases/download/v$version/7z$matchHead-zstd-x32.exe#/dl.7z"
+      }
+    }
+  }
 }

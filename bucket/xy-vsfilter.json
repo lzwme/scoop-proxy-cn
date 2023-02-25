@@ -1,30 +1,30 @@
 {
- "architecture": {
-  "32bit": {
-   "extract_dir": "x86"
+  "architecture": {
+    "32bit": {
+      "extract_dir": "x86"
+    },
+    "64bit": {
+      "extract_dir": "x64"
+    }
   },
-  "64bit": {
-   "extract_dir": "x64"
-  }
- },
- "autoupdate": {
-  "hash": {
-   "url": "$baseurl/SHA2-256SUMS"
+  "autoupdate": {
+    "hash": {
+      "url": "$baseurl/SHA2-256SUMS"
+    },
+    "url": "https://ghproxy.com/https://github.com/pinterf/xy-VSFilter/releases/download/$version/xyVSFilterSubFilter-pfmod-$version.7z"
   },
-  "url": "https://ghproxy.com/https://github.com/pinterf/xy-VSFilter/releases/download/$version/xyVSFilterSubFilter-pfmod-$version.7z"
- },
- "checkver": {
-  "github": "https://github.com/pinterf/xy-VSFilter/"
- },
- "depends": "sudo",
- "description": "High Quality Subtitle Rendering",
- "hash": "e37c62373dd9e5d4f1b56991501902b3520dc08ec7e83da9592c4c713fe64603",
- "homepage": "https://github.com/pinterf/xy-VSFilter/",
- "license": "GPL-2.0",
- "post_install": "Start-Process \"$dir\\Install_XySubFilter.bat\"",
- "uninstaller": {
-  "script": "Start-Process \"$dir\\Uninstall_XySubFilter.bat\""
- },
- "url": "https://ghproxy.com/https://github.com/pinterf/xy-VSFilter/releases/download/3.2.0.808/xyVSFilterSubFilter-pfmod-3.2.0.808.7z",
- "version": "3.2.0.808"
+  "checkver": {
+    "github": "https://github.com/pinterf/xy-VSFilter/"
+  },
+  "depends": "sudo",
+  "description": "High Quality Subtitle Rendering",
+  "hash": "e37c62373dd9e5d4f1b56991501902b3520dc08ec7e83da9592c4c713fe64603",
+  "homepage": "https://github.com/pinterf/xy-VSFilter/",
+  "license": "GPL-2.0",
+  "post_install": "Start-Process \"$dir\\Install_XySubFilter.bat\"",
+  "uninstaller": {
+    "script": "Start-Process \"$dir\\Uninstall_XySubFilter.bat\""
+  },
+  "url": "https://ghproxy.com/https://github.com/pinterf/xy-VSFilter/releases/download/3.2.0.808/xyVSFilterSubFilter-pfmod-3.2.0.808.7z",
+  "version": "3.2.0.808"
 }

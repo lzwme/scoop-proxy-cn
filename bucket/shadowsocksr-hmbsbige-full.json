@@ -1,62 +1,62 @@
 {
- "architecture": {
-  "32bit": {
-   "hash": "fede2b9742493ea051ce62841c3523637d11242220472010c7a68268356b07d0",
-   "url": "https://ghproxy.com/https://github.com/HMBSbige/ShadowsocksR-Windows/releases/download/6.0.4/ShadowsocksR-Win32-6.0.4.7z"
-  },
-  "64bit": {
-   "hash": "5777f7bdac21563fcfc44bfcb5339eed9d083bc6a4d90f7df6c7bb6976051cb5",
-   "url": "https://ghproxy.com/https://github.com/HMBSbige/ShadowsocksR-Windows/releases/download/6.0.4/ShadowsocksR-Win64-6.0.4.7z"
-  }
- },
- "autoupdate": {
   "architecture": {
-   "32bit": {
-    "url": "https://ghproxy.com/https://github.com/HMBSbige/ShadowsocksR-Windows/releases/download/$version/ShadowsocksR-Win32-$version.7z"
-   },
-   "64bit": {
-    "url": "https://ghproxy.com/https://github.com/HMBSbige/ShadowsocksR-Windows/releases/download/$version/ShadowsocksR-Win64-$version.7z"
-   }
+    "32bit": {
+      "hash": "fede2b9742493ea051ce62841c3523637d11242220472010c7a68268356b07d0",
+      "url": "https://ghproxy.com/https://github.com/HMBSbige/ShadowsocksR-Windows/releases/download/6.0.4/ShadowsocksR-Win32-6.0.4.7z"
+    },
+    "64bit": {
+      "hash": "5777f7bdac21563fcfc44bfcb5339eed9d083bc6a4d90f7df6c7bb6976051cb5",
+      "url": "https://ghproxy.com/https://github.com/HMBSbige/ShadowsocksR-Windows/releases/download/6.0.4/ShadowsocksR-Win64-6.0.4.7z"
+    }
   },
-  "hash": {
-   "mode": "extract",
-   "regex": "(?sm)$basename.*?$sha256",
-   "url": "https://github.com/HMBSbige/ShadowsocksR-Windows/releases"
-  }
- },
- "bin": "ShadowsocksR.exe",
- "checkver": {
-  "regex": "<span class.*?ShadowsocksR-Win32-([\\d.]+)\\.7z</span>",
-  "url": "https://github.com/HMBSbige/ShadowsocksR-Windows/releases"
- },
- "description": "ShadowsocksR for Windows(with dotnet runtime), maintained by @HMBSbige.",
- "extract_dir": "ShadowsocksR",
- "homepage": "https://github.com/HMBSbige/ShadowsocksR-Windows",
- "license": {
-  "identifier": "AGPL-3.0-only",
-  "url": "https://github.com/HMBSbige/ShadowsocksR-Windows/blob/master/LICENSE"
- },
- "persist": "temp",
- "pre_install": [
-  "@('gui-config.json', 'pac.txt', 'transfer_log.json', 'user-rule.txt') | ForEach-Object {",
-  "    if (Test-Path \"$persist_dir\\$_\") { Copy-Item \"$persist_dir\\$_\" \"$dir\\\" | Out-Null }",
-  "}"
- ],
- "shortcuts": [
-  [
-   "ShadowsocksR.exe",
-   "ShadowsocksR"
-  ]
- ],
- "uninstaller": {
-  "script": [
-   "@('gui-config.json', 'pac.txt', 'transfer_log.json', 'user-rule.txt') | ForEach-Object {",
-   "    if (Test-Path \"$dir\\$_\") {",
-   "        ensure \"$persist_dir\" | Out-Null",
-   "        Copy-Item \"$dir\\$_\" \"$persist_dir\\\" | Out-Null",
-   "    }",
-   "}"
-  ]
- },
- "version": "6.0.4"
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/HMBSbige/ShadowsocksR-Windows/releases/download/$version/ShadowsocksR-Win32-$version.7z"
+      },
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/HMBSbige/ShadowsocksR-Windows/releases/download/$version/ShadowsocksR-Win64-$version.7z"
+      }
+    },
+    "hash": {
+      "mode": "extract",
+      "regex": "(?sm)$basename.*?$sha256",
+      "url": "https://github.com/HMBSbige/ShadowsocksR-Windows/releases"
+    }
+  },
+  "bin": "ShadowsocksR.exe",
+  "checkver": {
+    "regex": "<span class.*?ShadowsocksR-Win32-([\\d.]+)\\.7z</span>",
+    "url": "https://github.com/HMBSbige/ShadowsocksR-Windows/releases"
+  },
+  "description": "ShadowsocksR for Windows(with dotnet runtime), maintained by @HMBSbige.",
+  "extract_dir": "ShadowsocksR",
+  "homepage": "https://github.com/HMBSbige/ShadowsocksR-Windows",
+  "license": {
+    "identifier": "AGPL-3.0-only",
+    "url": "https://github.com/HMBSbige/ShadowsocksR-Windows/blob/master/LICENSE"
+  },
+  "persist": "temp",
+  "pre_install": [
+    "@('gui-config.json', 'pac.txt', 'transfer_log.json', 'user-rule.txt') | ForEach-Object {",
+    "    if (Test-Path \"$persist_dir\\$_\") { Copy-Item \"$persist_dir\\$_\" \"$dir\\\" | Out-Null }",
+    "}"
+  ],
+  "shortcuts": [
+    [
+      "ShadowsocksR.exe",
+      "ShadowsocksR"
+    ]
+  ],
+  "uninstaller": {
+    "script": [
+      "@('gui-config.json', 'pac.txt', 'transfer_log.json', 'user-rule.txt') | ForEach-Object {",
+      "    if (Test-Path \"$dir\\$_\") {",
+      "        ensure \"$persist_dir\" | Out-Null",
+      "        Copy-Item \"$dir\\$_\" \"$persist_dir\\\" | Out-Null",
+      "    }",
+      "}"
+    ]
+  },
+  "version": "6.0.4"
 }

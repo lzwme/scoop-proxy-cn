@@ -1,36 +1,36 @@
 {
- "##": "This package is non-portable because the app requires installing drivers/services to work properly.",
- "autoupdate": {
-  "url": "https://deploy.totallyacdn.com/desktop-apps/$version/Windscribe_$version.exe#/vpnsetup.exe"
- },
- "checkver": {
-  "regex": "/desktop-apps/([\\d.]+)/",
-  "script": [
-   "$redirURL = [System.Net.HttpWebRequest]::Create('https://windscribe.com/install/desktop/windows').GetResponse().ResponseUri.AbsoluteUri",
-   "Return $redirURL"
-  ]
- },
- "description": "Open Source VPN with AdBlocking Proxy.",
- "hash": "a58515e3c3b350de864bfd41ebd570724efdffe44e17de571f78da74b5ef7475",
- "homepage": "https://windscribe.com/",
- "license": "GPL-2.0",
- "post_install": [
-  "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
-  "Start-Process \"$dir\\vpnsetup.exe\" -Wait -Verb 'RunAs' -WindowStyle 'Hidden' -ArgumentList @('-silent', '-dir', \"$dir\\Windscribe\")",
-  "Stop-Process -Name \"Windscribe\" -Force -ErrorAction SilentlyContinue",
-  "Stop-Service -Name \"WindscribeService\" -Force -ErrorAction SilentlyContinue",
-  "Remove-Item \"$Env:Public\\Desktop\\Windscribe.lnk\" -Force",
-  "Remove-Item \"$dir\\vpnsetup.exe\""
- ],
- "pre_uninstall": [
-  "$currentDir = $dir.Replace($version, 'current')",
-  "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
-  "Stop-Service -Name \"WindscribeService\" -Force -ErrorAction SilentlyContinue",
-  "Remove-Service -Name \"WindscribeService\" -ErrorAction SilentlyContinue",
-  "Stop-Process -Name \"Windscribe\" -Force -ErrorAction SilentlyContinue",
-  "Start-Process \"$currentDir\\Windscribe\\uninstall.exe\" -WindowStyle 'Hidden' -Verb 'RunAs' -ArgumentList '/VERYSILENT' -Wait",
-  "Start-Sleep -Seconds 2"
- ],
- "url": "https://deploy.totallyacdn.com/desktop-apps/2.5.18/Windscribe_2.5.18.exe#/vpnsetup.exe",
- "version": "2.5.18"
+  "##": "This package is non-portable because the app requires installing drivers/services to work properly.",
+  "autoupdate": {
+    "url": "https://deploy.totallyacdn.com/desktop-apps/$version/Windscribe_$version.exe#/vpnsetup.exe"
+  },
+  "checkver": {
+    "regex": "/desktop-apps/([\\d.]+)/",
+    "script": [
+      "$redirURL = [System.Net.HttpWebRequest]::Create('https://windscribe.com/install/desktop/windows').GetResponse().ResponseUri.AbsoluteUri",
+      "Return $redirURL"
+    ]
+  },
+  "description": "Open Source VPN with AdBlocking Proxy.",
+  "hash": "a58515e3c3b350de864bfd41ebd570724efdffe44e17de571f78da74b5ef7475",
+  "homepage": "https://windscribe.com/",
+  "license": "GPL-2.0",
+  "post_install": [
+    "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+    "Start-Process \"$dir\\vpnsetup.exe\" -Wait -Verb 'RunAs' -WindowStyle 'Hidden' -ArgumentList @('-silent', '-dir', \"$dir\\Windscribe\")",
+    "Stop-Process -Name \"Windscribe\" -Force -ErrorAction SilentlyContinue",
+    "Stop-Service -Name \"WindscribeService\" -Force -ErrorAction SilentlyContinue",
+    "Remove-Item \"$Env:Public\\Desktop\\Windscribe.lnk\" -Force",
+    "Remove-Item \"$dir\\vpnsetup.exe\""
+  ],
+  "pre_uninstall": [
+    "$currentDir = $dir.Replace($version, 'current')",
+    "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+    "Stop-Service -Name \"WindscribeService\" -Force -ErrorAction SilentlyContinue",
+    "Remove-Service -Name \"WindscribeService\" -ErrorAction SilentlyContinue",
+    "Stop-Process -Name \"Windscribe\" -Force -ErrorAction SilentlyContinue",
+    "Start-Process \"$currentDir\\Windscribe\\uninstall.exe\" -WindowStyle 'Hidden' -Verb 'RunAs' -ArgumentList '/VERYSILENT' -Wait",
+    "Start-Sleep -Seconds 2"
+  ],
+  "url": "https://deploy.totallyacdn.com/desktop-apps/2.5.18/Windscribe_2.5.18.exe#/vpnsetup.exe",
+  "version": "2.5.18"
 }

@@ -1,40 +1,40 @@
 {
-    "homepage": "https://ghidra-sre.org/",
-    "description": "Ghidra (dev branch)",
-    "version": "dev-10.3-DEV-20230222",
-    "license": "Apache-2.0",
-    "hash": "0ff800bc0137bebbb4cb56c2ce977b5aa15c9340c0518efa974b0624d344d788",
-    "url": "https://ghproxy.com/https://github.com/NyaMisty/ghidra-builder/releases/download/GhidraNightlyBuild-2023-02-22/Ghidra_dev_windows-latest_ghidra_10.3_DEV_20230222_win_x86_64.zip",
-    "extract_dir": "ghidra_10.3_DEV",
-    "bin": [
-        [
-            "ghidraRun.bat",
-            "ghidra-nightly"
-        ]
-    ],
-    "shortcuts": [
-        [
-            "ghidraRun.bat",
-            "Ghidra Nightly",
-            "",
-            "support/ghidra.ico"
-        ]
-    ],
-    "suggest": {
-        "JDK": [
-            "java/oraclejdk",
-            "java/openjdk"
-        ]
-    },
-    "persist": "Ghidra\\Extensions",
-    "checkver": {
-        "url": "https://api.github.com/repos/NyaMisty/ghidra-builder/releases?per_page=1",
-        "github_": "https://github.com/NyaMisty/ghidra-builder",
-        "regex": "/download/(?<release>[A-z0-9\\-]+?)/Ghidra_(?<branch>dev)_(?<os>[A-z\\-]+?)_ghidra_(?<ver>[\\d.]+)_(?<reltype>[A-z0-9]+?)_(?<date>\\d+)_(?<arch>win[A-z0-9_\\-]*?64[A-z0-9_\\-]*?)\\.zip",
-        "replace": "${branch}-${ver}-${reltype}-${date}"
-    },
-    "autoupdate": {
-        "url": "https://ghproxy.com/https://github.com/NyaMisty/ghidra-builder/releases/download/$matchRelease/Ghidra_$matchBranch_$matchOs_ghidra_$matchVer_$matchReltype_$matchDate_$matchArch.zip",
-        "extract_dir": "ghidra_$matchVer_$matchReltype"
-    }
+  "homepage": "https://ghidra-sre.org/",
+  "description": "Ghidra (dev branch)",
+  "version": "dev-10.3-DEV-20230223",
+  "license": "Apache-2.0",
+  "hash": "4a60555d70b5ba48e55399e82fc203af7be89001fd21caaac7dbc3c5005c7bd9",
+  "url": "https://ghproxy.com/https://github.com/NyaMisty/ghidra-builder/releases/download/GhidraNightlyBuild-2023-02-23/Ghidra_dev_windows-latest_ghidra_10.3_DEV_20230223_win_x86_64.zip",
+  "extract_dir": "ghidra_10.3_DEV",
+  "bin": [
+    [
+      "ghidraRun.bat",
+      "ghidra-nightly"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "ghidraRun.bat",
+      "Ghidra Nightly",
+      "",
+      "support/ghidra.ico"
+    ]
+  ],
+  "suggest": {
+    "JDK": [
+      "java/oraclejdk",
+      "java/openjdk"
+    ]
+  },
+  "persist": "Ghidra\\Extensions",
+  "checkver": {
+    "url": "https://api.github.com/repos/NyaMisty/ghidra-builder/releases?per_page=1",
+    "github_": "https://github.com/NyaMisty/ghidra-builder",
+    "regex": "/download/(?<release>[A-z0-9\\-]+?)/Ghidra_(?<branch>dev)_(?<os>[A-z\\-]+?)_ghidra_(?<ver>[\\d.]+)_(?<reltype>[A-z0-9]+?)_(?<date>\\d+)_(?<arch>win[A-z0-9_\\-]*?64[A-z0-9_\\-]*?)\\.zip",
+    "replace": "${branch}-${ver}-${reltype}-${date}"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/NyaMisty/ghidra-builder/releases/download/$matchRelease/Ghidra_$matchBranch_$matchOs_ghidra_$matchVer_$matchReltype_$matchDate_$matchArch.zip",
+    "extract_dir": "ghidra_$matchVer_$matchReltype"
+  }
 }

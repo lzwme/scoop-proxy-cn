@@ -1,46 +1,46 @@
 {
-    "version": "2.031",
-    "homepage": "https://kurtzimmermann.com/index_e.html",
-    "description": "A software tool that allows Windows 11 users to fine-tune their operating system and programs for optimum performance. Developed by Kurt Zimmermann.",
-    "license": {
-        "identifier": "Freeware",
-        "url": "https://kurtzimmermann-com.translate.goog/datenschutz_en.html?_x_tr_sl=auto&_x_tr_tl=en-US&_x_tr_hl=en-US"
+  "version": "2.031",
+  "homepage": "https://kurtzimmermann.com/index_e.html",
+  "description": "A software tool that allows Windows 11 users to fine-tune their operating system and programs for optimum performance. Developed by Kurt Zimmermann.",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://kurtzimmermann-com.translate.goog/datenschutz_en.html?_x_tr_sl=auto&_x_tr_tl=en-US&_x_tr_hl=en-US"
+  },
+  "architecture": {
+    "32bit": {
+      "url": "https://kurtzimmermann.com/files/TweakPowerX32.zip",
+      "hash": "ed7836c10821dc8c140099bb51036d66c5d9b6ec6e63a35389f4b39137353939"
     },
-    "architecture": {
-        "32bit": {
-            "url": "https://kurtzimmermann.com/files/TweakPowerX32.zip",
-            "hash": "ed7836c10821dc8c140099bb51036d66c5d9b6ec6e63a35389f4b39137353939"
-        },
-        "64bit": {
-            "url": "https://kurtzimmermann.com/files/TweakPowerX64.zip",
-            "hash": "e0233f682cb291e29c04cce5e394065c5dd54f34fa7bf458aca66854a9cbc08f"
-        }
-    },
-    "pre_install": "Remove-Item \"$dir\\Uninstaller.exe\" | Out-Null",
-    "bin": "TweakPower.exe",
-    "shortcuts": [
-        [
-            "TweakPower.exe",
-            "TweakPower"
-        ]
-    ],
-    "pre_uninstall": [
-        "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
-        "Start-Process 'regsvr32' -Wait -Verb 'RunAs' -ArgumentList @('/u', \"$dir\\TweakPowerContextMenu.dll\", '/s')",
-        "Start-Sleep -Seconds 2"
-    ],
-    "checkver": {
-        "url": "https://kurtzimmermann.com/tweakpowerversions_de.html",
-        "regex": "v([\\d.]+)"
-    },
-    "autoupdate": {
-        "architecture": {
-            "32bit": {
-                "url": "https://kurtzimmermann.com/files/TweakPowerX32.zip"
-            },
-            "64bit": {
-                "url": "https://kurtzimmermann.com/files/TweakPowerX64.zip"
-            }
-        }
+    "64bit": {
+      "url": "https://kurtzimmermann.com/files/TweakPowerX64.zip",
+      "hash": "e0233f682cb291e29c04cce5e394065c5dd54f34fa7bf458aca66854a9cbc08f"
     }
+  },
+  "pre_install": "Remove-Item \"$dir\\Uninstaller.exe\" | Out-Null",
+  "bin": "TweakPower.exe",
+  "shortcuts": [
+    [
+      "TweakPower.exe",
+      "TweakPower"
+    ]
+  ],
+  "pre_uninstall": [
+    "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+    "Start-Process 'regsvr32' -Wait -Verb 'RunAs' -ArgumentList @('/u', \"$dir\\TweakPowerContextMenu.dll\", '/s')",
+    "Start-Sleep -Seconds 2"
+  ],
+  "checkver": {
+    "url": "https://kurtzimmermann.com/tweakpowerversions_de.html",
+    "regex": "v([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://kurtzimmermann.com/files/TweakPowerX32.zip"
+      },
+      "64bit": {
+        "url": "https://kurtzimmermann.com/files/TweakPowerX64.zip"
+      }
+    }
+  }
 }

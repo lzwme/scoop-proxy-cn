@@ -1,33 +1,33 @@
 {
- "autoupdate": {
-  "extract_dir": "DeskDockServer_$version",
-  "url": "https://files.fdmobileinventions.com/DeskDockServer/DeskDockServer_Win_$version.zip"
- },
- "checkver": {
-  "regex": "Newest version: (\\d\\.+\\d\\.+\\d+)",
-  "url": "https://fdmobileinventions.blogspot.com//feeds/pages/default/2884889141652795893?alt=json&v=2&dynamicviews=1&rewriteforssl=true"
- },
- "depends": [
-  "oraclejre8",
-  "sudo"
- ],
- "description": "\u5728\u7535\u8111\u4e0a\u4f7f\u7528\u9f20\u6807\u3001\u952e\u76d8\u64cd\u4f5c Android \u8bbe\u5907",
- "extract_dir": "DeskDockServer_1.2.0",
- "hash": "b68d716ac59f305f109584cefe1a8528128fb0a4db257cb0e44178f0cef75d97",
- "homepage": "https://fdmobileinventions.blogspot.com/p/deskdock-server.html",
- "installer": {
-  "script": [
-   "Rename-Item \"$dir\\DeskDockServer_$version.exe\" 'DeskDockServer.exe' -Force",
-   "$oraclejre8_path = versiondir oraclejre8 'current' $false",
-   "sudo reg.exe add \"HKLM\\SOFTWARE\\WOW6432Node\\JavaSoft\\Java Runtime Environment\\1.8.0\" /v \"JavaHome\" /t REG_SZ /d \"$oraclejre8_path\""
-  ]
- },
- "shortcuts": [
-  [
-   "DeskDockServer.exe",
-   "DeskDock Server"
-  ]
- ],
- "url": "https://files.fdmobileinventions.com/DeskDockServer/DeskDockServer_Win_1.2.0.zip",
- "version": "1.2.0"
+  "autoupdate": {
+    "extract_dir": "DeskDockServer_$version",
+    "url": "https://files.fdmobileinventions.com/DeskDockServer/DeskDockServer_Win_$version.zip"
+  },
+  "checkver": {
+    "regex": "Newest version: (\\d\\.+\\d\\.+\\d+)",
+    "url": "https://fdmobileinventions.blogspot.com//feeds/pages/default/2884889141652795893?alt=json&v=2&dynamicviews=1&rewriteforssl=true"
+  },
+  "depends": [
+    "oraclejre8",
+    "sudo"
+  ],
+  "description": "在电脑上使用鼠标、键盘操作 Android 设备",
+  "extract_dir": "DeskDockServer_1.2.0",
+  "hash": "b68d716ac59f305f109584cefe1a8528128fb0a4db257cb0e44178f0cef75d97",
+  "homepage": "https://fdmobileinventions.blogspot.com/p/deskdock-server.html",
+  "installer": {
+    "script": [
+      "Rename-Item \"$dir\\DeskDockServer_$version.exe\" 'DeskDockServer.exe' -Force",
+      "$oraclejre8_path = versiondir oraclejre8 'current' $false",
+      "sudo reg.exe add \"HKLM\\SOFTWARE\\WOW6432Node\\JavaSoft\\Java Runtime Environment\\1.8.0\" /v \"JavaHome\" /t REG_SZ /d \"$oraclejre8_path\""
+    ]
+  },
+  "shortcuts": [
+    [
+      "DeskDockServer.exe",
+      "DeskDock Server"
+    ]
+  ],
+  "url": "https://files.fdmobileinventions.com/DeskDockServer/DeskDockServer_Win_1.2.0.zip",
+  "version": "1.2.0"
 }

@@ -1,34 +1,34 @@
 {
-    "##": [
-        "This is a reduced version of 'SarasaGothic-TC' from nerd-fonts. Only includes 1 fontface with different weights.",
-        "For more details about different Sarasa fonts, check https://github.com/be5invis/Sarasa-Gothic#what-are-the-names"
-    ],
-    "autoupdate": {
-        "url": "https://ghproxy.com/https://github.com/be5invis/Sarasa-Gothic/releases/download/v$version/sarasa-gothic-ttf-$version.7z#/dl.7z_"
-    },
-    "checkver": "github",
-    "hash": "e32c97acf14ed7a24bc10c9cb3d39b63da71c1ac33df68208675f0c0d1d93fc4",
-    "homepage": "https://github.com/be5invis/Sarasa-Gothic",
-    "installer": {
-        "script": [
-            "Invoke-ExternalCommand 7z -ArgumentList('e', \"$dir\\dl.7z_\" ,\"-o$dir\", '*-gothic-tc-*.ttf') | Out-Null",
-            "Remove-Item \"$dir\\dl.7z_\"",
-            "Get-ChildItem $dir -filter 'sarasa*.ttf' | ForEach-Object {",
-            "  New-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $_.Name -Force | Out-Null",
-            "  Copy-Item $_.FullName -destination \"$env:windir\\Fonts\"",
-            "}"
-        ]
-    },
-    "license": "OFL-1.1",
-    "uninstaller": {
-        "script": [
-            "Get-ChildItem $dir -filter 'sarasa*.ttf' | ForEach-Object {",
-            "  Remove-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
-            "  Remove-Item \"$env:windir\\Fonts\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
-            "}",
-            "Write-Host \"The 'Sarasa-Gothic' Font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
-        ]
-    },
-    "url": "https://ghproxy.com/https://github.com/be5invis/Sarasa-Gothic/releases/download/v0.40.1/sarasa-gothic-ttf-0.40.1.7z#/dl.7z_",
-    "version": "0.40.1"
+  "##": [
+    "This is a reduced version of 'SarasaGothic-TC' from nerd-fonts. Only includes 1 fontface with different weights.",
+    "For more details about different Sarasa fonts, check https://github.com/be5invis/Sarasa-Gothic#what-are-the-names"
+  ],
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/be5invis/Sarasa-Gothic/releases/download/v$version/sarasa-gothic-ttf-$version.7z#/dl.7z_"
+  },
+  "checkver": "github",
+  "hash": "e32c97acf14ed7a24bc10c9cb3d39b63da71c1ac33df68208675f0c0d1d93fc4",
+  "homepage": "https://github.com/be5invis/Sarasa-Gothic",
+  "installer": {
+    "script": [
+      "Invoke-ExternalCommand 7z -ArgumentList('e', \"$dir\\dl.7z_\" ,\"-o$dir\", '*-gothic-tc-*.ttf') | Out-Null",
+      "Remove-Item \"$dir\\dl.7z_\"",
+      "Get-ChildItem $dir -filter 'sarasa*.ttf' | ForEach-Object {",
+      "  New-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $_.Name -Force | Out-Null",
+      "  Copy-Item $_.FullName -destination \"$env:windir\\Fonts\"",
+      "}"
+    ]
+  },
+  "license": "OFL-1.1",
+  "uninstaller": {
+    "script": [
+      "Get-ChildItem $dir -filter 'sarasa*.ttf' | ForEach-Object {",
+      "  Remove-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
+      "  Remove-Item \"$env:windir\\Fonts\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
+      "}",
+      "Write-Host \"The 'Sarasa-Gothic' Font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
+    ]
+  },
+  "url": "https://ghproxy.com/https://github.com/be5invis/Sarasa-Gothic/releases/download/v0.40.1/sarasa-gothic-ttf-0.40.1.7z#/dl.7z_",
+  "version": "0.40.1"
 }
