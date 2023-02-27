@@ -1,7 +1,7 @@
 import { execSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
-import { semverCompare } from './utils.mjs';
+import { semverCompare, safeJsonParse } from './utils.mjs';
 
 const isDebug = process.argv.slice(2).includes('--debug');
 const isCI = process.env.SYNC != null;
@@ -18,7 +18,6 @@ const CONSTS = {
     `ScoopInstaller/Nonportable`,
     `scoopcn/scoopcn`,
     `ACooper81/scoop-apps`,
-    `Ash258/GenericBucket`,
     `anderlli0053/DEV-tools`,
     `Calinou/scoop-games`,
     `cderv/r-bucket`,
@@ -52,16 +51,20 @@ async function checkout(repo, dirName) {
   if (!fs.existsSync(CONSTS.tmpDir)) fs.mkdirSync(CONSTS.tmpDir);
 
   try {
-    if (fs.existsSync(path.resolve(CONSTS.tmpDir, dirName))) return;
+    const dirpath = path.resolve(CONSTS.tmpDir, dirName);
+    if (fs.existsSync(dirpath)) {
+      execSync(`cd "${dirpath}" && git pull`, { cwd: CONSTS.tmpDir });
+    } else {
+      repo = isDebug ? `https://ghproxy.com/https://github.com/${repo}` : `https://github.com/${repo}.git`;
+      execSync(`git clone --depth 1 ${repo} ${dirName}`, { cwd: CONSTS.tmpDir });
+    }
 
-    repo = isDebug ? `https://ghproxy.com/https://github.com/${repo}` : `https://github.com/${repo}.git`;
-    execSync(`git clone --depth 1 ${repo} ${dirName}`, { cwd: CONSTS.tmpDir });
   } catch (error) {
     console.error(`checkout ${repo} failed!`, error.message);
   }
 }
 
-async function syncDir(src, dest) {
+async function syncDir(src, dest, repo = '') {
   let total = 0;
   const basename = path.basename(src);
 
@@ -69,20 +72,22 @@ async function syncDir(src, dest) {
 
   const stats = fs.statSync(src);
   const ext = path.extname(src);
-  let content = '';
 
   if (stats.isFile()) {
     const destLowerCase = String(dest).toLowerCase();
+    let content = '';
+    let contentJson;
+
     if (destFilesCache.has(destLowerCase)) {
       if ('.json' === ext) {
-        dest = destFilesCache.get(destLowerCase); // 使用旧路径
+        dest = destFilesCache.get(destLowerCase).dest; // 使用旧路径
         try {
           // json 文件比较版本
           content = fs.readFileSync(src, 'utf8').trim();
-          const srcVersion = JSON.parse(content).version;
-          const destVersion = JSON.parse(fs.readFileSync(dest, 'utf8')).version;
-          if (semverCompare(srcVersion, destVersion) > -1) return total;
-          // console.debug(`[sync]overwide old version: \x1B[33m${srcVersion}\x1B[39m -> \x1B[32m${destVersion} \x1b[36m${src.slice(CONSTS.tmpDir.length + 1)}\x1b[39m`);
+          contentJson = safeJsonParse(content, src);
+          const destVersion = safeJsonParse(fs.readFileSync(dest, 'utf8'), dest).version;
+          if (semverCompare(contentJson.version || '', destVersion, false) > -1) return total;
+          // console.debug(`[sync]overwide old version: \x1B[33m${contentJson.version}\x1B[39m -> \x1B[32m${destVersion} \x1b[36m${src.slice(CONSTS.tmpDir.length + 1)}\x1b[39m`);
         } catch (e) {
           console.error('[error]try compare version failed!', src, dest, e.message);
           return total;
@@ -91,15 +96,14 @@ async function syncDir(src, dest) {
         return total;
       }
     }
-    destFilesCache.set(destLowerCase, dest);
+    destFilesCache.set(destLowerCase, { dest, src: src.slice(CONSTS.tmpDir.length + 1), repo });
 
     if (['.json', '.ps1', '.sh'].includes(ext)) {
       if (!content) content = fs.readFileSync(src, 'utf8');
 
       if ('.json' === ext) {
-        try {
-          content = JSON.stringify(JSON.parse(content.trim()), null, 2);
-        } catch {}
+        if (!contentJson) contentJson = safeJsonParse(content.trim());
+        if (Object.keys(contentJson).length > 0) content = JSON.stringify(contentJson, null, 2);
       }
 
       if (basename.startsWith('nodejs')) {
@@ -126,7 +130,7 @@ async function syncDir(src, dest) {
 
     const list = fs.readdirSync(src);
     for (let filename of list) {
-      total += await syncDir(path.resolve(src, filename), path.resolve(dest, filename));
+      total += await syncDir(path.resolve(src, filename), path.resolve(dest, filename), repo);
     }
   }
 
@@ -170,8 +174,13 @@ async function sync() {
     const repoDirName = repo.replaceAll('/', '-');
     console.log(`sync for \x1B[32m${repo}\x1B[39m`);
     await checkout(repo, repoDirName);
-    bucketFiles += await syncDir(path.resolve(CONSTS.tmpDir, repoDirName, 'bucket'), 'bucket');
-    scriptsFiles += await syncDir(path.resolve(CONSTS.tmpDir, repoDirName, 'scripts'), 'scripts');
+     const buckets = await syncDir(path.resolve(CONSTS.tmpDir, repoDirName, 'bucket'), 'bucket', repo);
+     if (buckets) {
+       bucketFiles += buckets;
+       scriptsFiles += await syncDir(path.resolve(CONSTS.tmpDir, repoDirName, 'scripts'), 'scripts', repo);
+     } else {
+      console.warn(`[warn][synced nothing]`, buckets, repo);
+     }
   }
 
   if (isCI) {

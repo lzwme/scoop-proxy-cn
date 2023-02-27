@@ -1,0 +1,72 @@
+{
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/tmp": true,
+  },
+  "files.watcherExclude": {
+    "bucket": true
+  },
+  "[powershell]": {
+    "editor.formatOnSave": false
+  },
+  "powershell.scriptAnalysis.settingsPath": "PSScriptAnalyzerSettings.psd1",
+  "powershell.codeFormatting.preset": "OTBS",
+  "powershell.codeFormatting.alignPropertyValuePairs": true,
+  "powershell.codeFormatting.ignoreOneLineBlock": true,
+  "json.schemas": [
+    {
+      "url": "https://ghproxy.com/https://raw.githubusercontent.com/scoopinstaller/scoop/master/schema.json",
+      "fileMatch": [
+        "bucket/*.json"
+      ]
+    }
+  ],
+  "sortJSON.orderOverride": [
+    "version",
+    "description",
+    "homepage",
+    "license",
+    "notes",
+    "depends",
+    "suggest",
+    "identifier",
+    "url",
+    "hash",
+    "architecture",
+    "extract_dir",
+    "extract_to",
+    "pre_install",
+    "installer",
+    "post_install",
+    "env_add_path",
+    "env_set",
+    "bin",
+    "shortcuts",
+    "persist",
+    "uninstaller",
+    "checkver",
+    "autoupdate"
+  ],
+  "yaml.format.bracketSpacing": true,
+  "yaml.format.enable": true,
+  "yaml.format.singleQuote": true,
+  "yaml.validate": true,
+  "yaml.schemas": {
+    "http://json.schemastore.org/appveyor": "appveyor.yml",
+    "https://ghproxy.com/https://raw.githubusercontent.com/lukesampson/scoop/master/schema.json": [
+      "bucket/*.yml",
+    ],
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll": false,
+    "source.fixAll.sortJSON": true
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "editor.defaultFormatter": "richie5um2.vscode-sort-json",
+  "editor.formatOnSave": true,
+  "prettier.enable": false,
+  "html.format.enable": false
+}

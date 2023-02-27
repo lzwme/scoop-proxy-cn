@@ -70,7 +70,6 @@ scoop-search act
 - [kidonng/sushi](https://github.com/kidonng/sushi)
 - [rasa/scoops](https://github.com/rasa/scoops)
 - [kkzzhizhou/scoop-zapps](https://github.com/kkzzhizhou/scoop-zapps)
-- [Ash258/GenericBucket](https://github.com/Ash258/GenericBucket)
 - [anderlli0053/DEV-tools](https://github.com/anderlli0053/DEV-tools)
 - [KNOXDEV/wsl](https://github.com/KNOXDEV/wsl)
 - [hoilc/scoop-lemon](https://github.com/hoilc/scoop-lemon)
