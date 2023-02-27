@@ -107,7 +107,7 @@ async function syncDir(src, dest, repo = '') {
         else content = content.replaceAll('\r\n', '\n').trim();
 
         // fix for https://github.com/lzwme/scoop-proxy-cn/issues/2
-        content = content.replace(/\$bucketsdir\\\\?[a-zA-Z\-]+\\\\?/img, '$bucketsdir\\$bucket\\');
+        content = content.replace(/\$bucketsdir\\\\[a-zA-Z\-]+\\\\/img, '$bucketsdir\\\\$bucket\\\\');
 
         if (basename.startsWith('php')) {
           content = content.replace('bin\\postinstall.ps1', 'bin\\php-postinstall.ps1');
