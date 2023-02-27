@@ -17,7 +17,7 @@
   "hash": "312c6a7611ca8ae0796ee32cdc2e19c0cd18e5fd0efa0b64324c256e6647dff2",
   "pre_install": "Remove-Item \"$dir\\`$*\", \"$dir\\Uninstal*\" -Recurse",
   "post_install": [
-    "$script_path = \"$bucketsdir\$bucket\scripts\\$app\\install-vk-layers.ps1\"",
+    "$script_path = \"$bucketsdir\\$bucket\\scripts\\$app\\install-vk-layers.ps1\"",
     "if (Test-Path $script_path) {",
     "   $vulkan_bin = if ($architecture -eq '64bit') { \"$dir\\Bin\" } else { \"$dir\\Bin32\" }",
     "   $content = Get-Content $script_path",

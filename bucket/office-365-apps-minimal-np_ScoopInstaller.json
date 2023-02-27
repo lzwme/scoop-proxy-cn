@@ -10,7 +10,7 @@
   "url": "https://download.microsoft.com/download/2/7/A/27AF1BE6-DD20-4CB4-B154-EBAB8A7D4A7E/officedeploymenttool_16026-20170.exe#/dl.7z_",
   "hash": "ee53c839f8cec8fd9773a79c4dc4755acdc7e25821e9657133425b2022b81424",
   "pre_install": [
-    "$scriptdir = \"$bucketsdir\$bucket\scripts\"",
+    "$scriptdir = \"$bucketsdir\\$bucket\\scripts\"",
     "if ($architecture -eq '64bit') {",
     "     Copy-Item \"$scriptdir\\install-office-365-apps-minimal.xml\" \"$dir\\\"",
     "}",

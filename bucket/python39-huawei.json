@@ -82,7 +82,7 @@
     "python -E -s -m ensurepip -U --default-pip | Out-Null",
     "Write-Output \"`e[0m\" # Reset ansi to prevent color leak from installer",
     "sudo regedit /s \"$dir\\install-pep-514.reg\"",
-    "Copy-Item \"$bucketsdir\$bucket\scripts\\python\\pypi-mirror.ps1\" \"$dir\\pypi-mirror.ps1\" -ErrorAction 'SilentlyContinue' -Force | Out-Null",
+    "Copy-Item \"$bucketsdir\\$bucket\\scripts\\python\\pypi-mirror.ps1\" \"$dir\\pypi-mirror.ps1\" -ErrorAction 'SilentlyContinue' -Force | Out-Null",
     "pwsh \"$dir\\pypi-mirror.ps1\" -m tuna | Out-Null"
   ],
   "pre_install": [
@@ -91,7 +91,7 @@
     "if ($architecture -eq '32bit') { $bit = '32' }",
     "'install-pep-514.reg', 'uninstall-pep-514.reg' | ForEach-Object {",
     "    $py_version = ($version -split '\\.')[0..1] -join '.'",
-    "    $content = Get-Content \"$bucketsdir\$bucket\scripts\\python\\$_\"",
+    "    $content = Get-Content \"$bucketsdir\\$bucket\\scripts\\python\\$_\"",
     "    $content = $content.Replace('$py_root', $py_root)",
     "    $content = $content.Replace('$py_version', $py_version)",
     "    $content = $content.Replace('$py_fullversion', $version)",
