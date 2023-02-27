@@ -1,5 +1,5 @@
 {
-  "version": "9.0.1311",
+  "version": "9.0.1348",
   "description": "A highly configurable text editor for efficiently creating and changing any kind of text. (tux build)",
   "homepage": "https://tuxproject.de/projects/vim",
   "license": "Vim",
@@ -10,17 +10,17 @@
   "architecture": {
     "64bit": {
       "url": "https://tuxproject.de/projects/vim/complete-x64.7z",
-      "hash": "ec66fa331fd21a3fb80825118af0343be83b9edf7985b7a6ddc78f2166fee224"
+      "hash": "551341bb25f7bb87f4137a1b74af6340c6d92c44d1adda79adbcb25b73e37379"
     },
     "32bit": {
       "url": "https://tuxproject.de/projects/vim/complete-x86.7z",
-      "hash": "9f10fadf478d4b88c554f4610b8389315ff5c1687d2292eb353ddf02a8b34efb"
+      "hash": "fec69ba2a568f0d7ee4c2fef904e26e9d7ea89c622105d6d2170370173736a63"
     }
   },
   "post_install": [
     "'install-context.reg', 'uninstall-context.reg' | ForEach-Object {",
     "    $vimpath = \"$dir\\gVim.exe\".Replace('\\', '\\\\')",
-    "    $content = (Get-Content \"$bucketsdir\\versions\\scripts\\vim\\$_\").Replace('$vim', $vimpath)",
+    "    $content = (Get-Content \"$bucketsdir\$bucket\scripts\\vim\\$_\").Replace('$vim', $vimpath)",
     "    if ($global) { $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE') }",
     "    Set-Content \"$dir\\$_\" $content",
     "}"

@@ -11,7 +11,7 @@
     "url": "https://github.com/Yamatao/eyeleoapp/raw/master/license.txt"
   },
   "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\uninstall.exe\" -Force -Recurse",
-  "pre_install": "Copy-Item \"$bucketsdir\\tian\\scripts\\eyeleo\\langpack.zhcn.xml\" \"$dir\\Langpacks\\langpack.en.xml\" -ErrorAction 'SilentlyContinue' -Force | Out-Null",
+  "pre_install": "Copy-Item \"$bucketsdir\$bucket\scripts\\eyeleo\\langpack.zhcn.xml\" \"$dir\\Langpacks\\langpack.en.xml\" -ErrorAction 'SilentlyContinue' -Force | Out-Null",
   "shortcuts": [
     [
       "EyeLeo.exe",

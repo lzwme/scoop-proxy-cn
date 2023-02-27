@@ -25,8 +25,8 @@
   "post_install": [
     "$dirpath = \"$dir\".Replace('\\', '\\\\')",
     "'install-associations', 'uninstall-associations' | ForEach-Object {",
-    "  if (Test-Path \"$bucketsdir\\extras\\scripts\\wsa-pacman\\$_.reg\") {",
-    "    $content = Get-Content \"$bucketsdir\\extras\\scripts\\wsa-pacman\\$_.reg\"",
+    "  if (Test-Path \"$bucketsdir\$bucket\scripts\\wsa-pacman\\$_.reg\") {",
+    "    $content = Get-Content \"$bucketsdir\$bucket\scripts\\wsa-pacman\\$_.reg\"",
     "    $content = $content.Replace('$dirpath', $dirpath)",
     "    if ($global) {",
     "      $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE')",

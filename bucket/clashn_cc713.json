@@ -18,9 +18,9 @@
     "'config.yaml', 'guiNConfig.json' | ForEach-Object {",
     "    if (Test-Path \"$persist_dir\\$_\") { Copy-Item \"$persist_dir\\$_\" \"$dir\\\" -Force | Out-Null }",
     "}",
-    "(Get-Content \"$bucketsdir\\ownscoop\\scripts\\clashn\\start-clashn.ps1\") -replace 'clashn', 'clashn' | Set-Content \"$dir\\start-clashn.ps1\" -Encoding ASCII",
-    "(Get-Content \"$bucketsdir\\ownscoop\\scripts\\clashn\\create-scheduled-task.ps1\") -replace 'clashn', 'clashn' | Set-Content \"$dir\\create-scheduled-task.ps1\" -Encoding ASCII",
-    "(Get-Content \"$bucketsdir\\ownscoop\\scripts\\clashn\\delete-scheduled-task.ps1\") -replace 'clashn', 'clashn' | Set-Content \"$dir\\delete-scheduled-task.ps1\" -Encoding ASCII"
+    "(Get-Content \"$bucketsdir\$bucket\scripts\\clashn\\start-clashn.ps1\") -replace 'clashn', 'clashn' | Set-Content \"$dir\\start-clashn.ps1\" -Encoding ASCII",
+    "(Get-Content \"$bucketsdir\$bucket\scripts\\clashn\\create-scheduled-task.ps1\") -replace 'clashn', 'clashn' | Set-Content \"$dir\\create-scheduled-task.ps1\" -Encoding ASCII",
+    "(Get-Content \"$bucketsdir\$bucket\scripts\\clashn\\delete-scheduled-task.ps1\") -replace 'clashn', 'clashn' | Set-Content \"$dir\\delete-scheduled-task.ps1\" -Encoding ASCII"
   ],
   "uninstaller": {
     "script": [

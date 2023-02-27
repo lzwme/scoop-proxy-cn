@@ -17,7 +17,7 @@
   "pre_install": [
     "if (Test-Path \"$persist_dir\\log.txt\") { Copy-Item \"$persist_dir\\log.txt\" \"$dir\\\" }",
     "$currentDir = $dir.Replace($version, 'current')",
-    "$content = Get-Content \"$bucketsdir\\MyScoop\\scripts\\telegram\\protocol-handler.ps1\"",
+    "$content = Get-Content \"$bucketsdir\$bucket\scripts\\telegram\\protocol-handler.ps1\"",
     "$content = $content.Replace('REPLACE_HERE', $currentDir)",
     "Set-Content \"$dir\\protocol-handler.ps1\" $content -Force"
   ],

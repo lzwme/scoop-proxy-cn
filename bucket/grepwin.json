@@ -19,8 +19,8 @@
   "post_install": [
     "$app_path = \"$dir\\grepWin.exe\".Replace('\\', '\\\\')",
     "'install-context.reg', 'uninstall-context.reg' | ForEach-Object {",
-    "    if (Test-Path \"$bucketsdir\\extras\\scripts\\grepwin\\$_\") {",
-    "        $content = Get-Content \"$bucketsdir\\extras\\scripts\\grepwin\\$_\"",
+    "    if (Test-Path \"$bucketsdir\$bucket\scripts\\grepwin\\$_\") {",
+    "        $content = Get-Content \"$bucketsdir\$bucket\scripts\\grepwin\\$_\"",
     "        $content = $content.Replace('$app_path', $app_path)",
     "        if ($global) {",
     "            $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE')",
