@@ -104,6 +104,13 @@ async function syncDir(src, dest, repo = '') {
       if ('.json' === ext) {
         if (!contentJson) contentJson = safeJsonParse(content.trim());
         if (Object.keys(contentJson).length > 0) content = JSON.stringify(contentJson, null, 2);
+
+        // fix for https://github.com/lzwme/scoop-proxy-cn/issues/2
+        content = content.replace(/\$bucketsdir\/\/[a-zA-Z]+/, '$bucketsdir\\$bucket\\');
+
+        if (basename.startsWith('php')) {
+          content = content.replace('bin\\postinstall.ps1', 'bin\\php-postinstall.ps1');
+        }
       }
 
       if (basename.startsWith('nodejs')) {
