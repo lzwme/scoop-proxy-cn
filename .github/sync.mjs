@@ -18,7 +18,6 @@ const CONSTS = {
     `ScoopInstaller/Nonportable`,
     `scoopcn/scoopcn`,
     `ACooper81/scoop-apps`,
-    `anderlli0053/DEV-tools`,
     `Calinou/scoop-games`,
     `cderv/r-bucket`,
     `chawyehsu/dorado`,
@@ -27,6 +26,7 @@ const CONSTS = {
     `ivaquero/scoopet`,
     `KNOXDEV/wsl`,
     `kkzzhizhou/scoop-apps`,
+    `anderlli0053/DEV-tools`,
     `kodybrown/scoop-nirsoft`,
     `kidonng/sushi`,
     `littleli/scoop-clojure`,
@@ -46,6 +46,18 @@ const CONSTS = {
   filter: /audacity_installer|\.gitkeep|__/,
 };
 const destFilesCache = new Map();
+const bucketLowPriority = parseBucketPriorityFile();
+
+function parseBucketPriorityFile(filename = 'bucket-low-priority.txt') {
+  const str = fs.readFileSync(path.resolve(CONSTS.rootDir, filename), 'utf8').trim();
+  const list = str
+    .split('\n')
+    .slice(1)
+    .filter(d => d.includes(', '))
+    .map(d => path.resolve(CONSTS.tmpDir, d.replace('/', '-').replace(', ', '/')));
+
+  return new Set(list);
+}
 
 async function checkout(repo, dirName) {
   if (!fs.existsSync(CONSTS.tmpDir)) fs.mkdirSync(CONSTS.tmpDir);
@@ -79,20 +91,18 @@ async function syncDir(src, dest, repo = '') {
     let contentJson;
 
     if (destFilesCache.has(destLowerCase)) {
-      if ('.json' === ext) {
-        dest = destFilesCache.get(destLowerCase).dest; // 使用旧路径
-        try {
-          // json 文件比较版本
-          content = fs.readFileSync(src, 'utf8').trim();
-          contentJson = safeJsonParse(content, src);
-          const destVersion = safeJsonParse(fs.readFileSync(dest, 'utf8'), dest).version;
-          if (semverCompare(contentJson.version || '', destVersion, false) > -1) return total;
-          // console.debug(`[sync]overwide old version: \x1B[33m${contentJson.version}\x1B[39m -> \x1B[32m${destVersion} \x1b[36m${src.slice(CONSTS.tmpDir.length + 1)}\x1b[39m`);
-        } catch (e) {
-          console.error('[error]try compare version failed!', src, dest, e.message);
-          return total;
-        }
-      } else {
+      if ('.json' !== ext || bucketLowPriority.has(src)) return total;
+
+      dest = destFilesCache.get(destLowerCase).dest; // 使用旧路径
+      try {
+        // json 文件比较版本
+        content = fs.readFileSync(src, 'utf8').trim();
+        contentJson = safeJsonParse(content, src);
+        const destVersion = safeJsonParse(fs.readFileSync(dest, 'utf8'), dest).version;
+        if (semverCompare(contentJson.version || '', destVersion, false) < 1) return total;
+        // console.debug(`[sync]overwide old version: \x1B[33m${contentJson.version}\x1B[39m -> \x1B[32m${destVersion} \x1b[36m${src.slice(CONSTS.tmpDir.length + 1)}\x1b[39m`);
+      } catch (e) {
+        console.error('[error]try compare version failed!', src, dest, e.message);
         return total;
       }
     }
