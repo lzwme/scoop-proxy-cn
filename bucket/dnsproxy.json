@@ -1,6 +1,6 @@
 {
   "version": "0.48.0",
-  "description": "A simple DNS proxy server that supports all existing DNS protocols including DNS-over-TLS, DNS-over-HTTPS, DNSCrypt, and DNS-over-QUIC.",
+  "description": "Simple DNS proxy with DoH, DoT, DoQ and DNSCrypt support",
   "homepage": "https://github.com/AdguardTeam/dnsproxy",
   "license": "Apache-2.0",
   "architecture": {
@@ -11,12 +11,14 @@
     },
     "32bit": {
       "url": "https://ghproxy.com/https://github.com/AdguardTeam/dnsproxy/releases/download/v0.48.0/dnsproxy-windows-386-v0.48.0.zip",
-      "hash": "984864a41b784a59a3bdb14f0bcc824b20846a966d7648f90f08fa2b01fb62c8",
+      "hash": "984864A41B784A59A3BDB14F0BCC824B20846A966D7648F90F08FA2B01FB62C8",
       "extract_dir": "windows-386"
     }
   },
   "bin": "dnsproxy.exe",
-  "checkver": "github",
+  "checkver": {
+    "github": "https://github.com/AdguardTeam/dnsproxy"
+  },
   "autoupdate": {
     "architecture": {
       "64bit": {
