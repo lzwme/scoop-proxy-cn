@@ -1,18 +1,35 @@
 {
-  "##": [
-    "name:Hoxs64",
-    "author:David Horrocks",
-    "cmd:%BIN% %ROM%",
-    "logo:https://consolo.is.cc/images/emuDownloadCenter/hooks/hoxs64/emulator_logo.png",
-    "screenshot:https://consolo.is.cc/images/emuDownloadCenter/hooks/hoxs64/emulator_screen_01.jpg"
-  ],
-  "bin": [
-    "hoxs64.exe"
-  ],
-  "description": "Hoxs64 is a cycle-exact emulator of the Commodore 64.",
-  "hash": "b6ced5b62906c621d545249fd83094c5286d6eee1d467a50fdb217362aeabc88",
+  "version": "1.1.2.2",
+  "description": "Commodore 64 emulator for Windows",
   "homepage": "http://www.hoxs64.net/",
-  "license": "GNU GPLv2",
-  "url": "https://consolo.is.cc/emu/hoxs64/1.0.9.2-win64.7z",
-  "version": "1.0.9.2-win64"
+  "license": "GPL-3.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/davidhorrocks/hoxs64/releases/download/v1.1.2.2/hoxs64_x64_1_1_2_2.zip",
+      "hash": "26c7c0351c093ec94ded8130f1f4a2691abae1c6b17087878be01bccdb58efb9"
+    },
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/davidhorrocks/hoxs64/releases/download/v1.1.2.2/hoxs64_x86_1_1_2_2.zip",
+      "hash": "33d3cfe971d32829042e7629286921f2bb22cd8a80480f76e1ba01f2a946d239"
+    }
+  },
+  "shortcuts": [
+    [
+      "hoxs64.exe",
+      "Hoxs64"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/davidhorrocks/hoxs64"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/davidhorrocks/hoxs64/releases/download/v$version/hoxs64_x64_$underscoreVersion.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/davidhorrocks/hoxs64/releases/download/v$version/hoxs64_x86_$underscoreVersion.zip"
+      }
+    }
+  }
 }

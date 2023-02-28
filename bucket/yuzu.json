@@ -1,52 +1,35 @@
 {
-  "version": "0-1337",
-  "description": "Experimental emulator for the Nintendo Switch",
   "homepage": "https://yuzu-emu.org/",
+  "version": "1352",
+  "description": "Nintendo Switch Emulator",
   "license": {
     "identifier": "GPL-2.0",
     "url": "https://github.com/yuzu-emu/yuzu-mainline/blob/master/license.txt"
   },
-  "architecture": {
-    "64bit": {
-      "url": "https://ghproxy.com/https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-1337/yuzu-windows-msvc-20230211-150d50562.7z",
-      "hash": "0f2d74cbf393a081e01ad4d67ecfc4cbadb947ff001080c0ce09764a87d28b8f"
-    }
+  "suggest": {
+    "Microsoft Visual C++ Runtime 2022": "extras/vcredist2022"
   },
+  "url": "https://ghproxy.com/https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-1352/yuzu-windows-msvc-20230226-bd305e516.7z",
+  "hash": "c51aee0a34b7c678e21f29efa41aff8a4ffd21d01457ce79170f17d9f9465461",
   "extract_dir": "yuzu-windows-msvc",
-  "pre_install": [
-    "if (!(Test-Path \"$persist_dir\")) {",
-    "   New-item \"$persist_dir\" -ItemType Directory | Out-Null",
-    "   New-item \"$persist_dir\\user\" -ItemType Directory | Out-Null",
-    "   if (Test-Path \"$env:APPDATA\\yuzu\") {",
-    "       Write-host \"Migrating AppData...\" -ForegroundColor yellow",
-    "       Copy-Item -Path \"$env:APPDATA\\yuzu\\*\" -Destination \"$persist_dir\\user\" -Recurse",
-    "       Remove-Item -Path \"$env:APPDATA\\yuzu\" -Recurse",
-    "   }",
-    "}"
-  ],
-  "bin": [
-    "yuzu.exe",
-    "yuzu-cmd.exe"
-  ],
+  "pre_install": "mkdir $dir/user | Out-Null",
+  "bin": "yuzu.exe",
   "shortcuts": [
     [
       "yuzu.exe",
-      "Yuzu"
+      "Nintendo Switch"
     ]
   ],
-  "persist": [
-    "user",
-    "plugins"
-  ],
+  "persist": "user",
   "checkver": {
-    "github": "https://github.com/yuzu-emu/yuzu-mainline",
-    "regex": "download/mainline-([\\d.-]+)/yuzu-windows-msvc-(?<date>[\\d]{8})-(?<commit>[\\da-f]+).7z"
+    "url": "https://api.github.com/repos/yuzu-emu/yuzu-mainline/releases",
+    "jsonpath": {
+      "version": "$.[0].name",
+      "download": "$.[0].assets[?(@.content_type == 'application/x-7z-compressed')].browser_download_url"
+    },
+    "regex": "yuzu (\\d+)"
   },
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.com/https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-$version/yuzu-windows-msvc-$matchDate-$matchCommit.7z"
-      }
-    }
+    "url": "$matchDownload"
   }
 }

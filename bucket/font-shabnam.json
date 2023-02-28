@@ -1,10 +1,13 @@
 {
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/rastikerdar/shabnam-font/releases/download/v$version/shabnam-font-v$version.zip"
-  },
-  "checkver": "github",
-  "hash": "cf3bca0e2f2366f70b3a970d50461d86980d49e2412a8aa23bb84f2c5b4bb718",
+  "version": "5.0.1",
+  "license": "SIL OFL 1.1",
   "homepage": "https://github.com/rastikerdar/shabnam-font",
+  "url": "https://ghproxy.com/https://github.com/rastikerdar/shabnam-font/releases/download/v5.0.1/shabnam-font-v5.0.1.zip",
+  "hash": "cf3bca0e2f2366f70b3a970d50461d86980d49e2412a8aa23bb84f2c5b4bb718",
+  "pre_install": [
+    "Remove-Item $dir\\* -exclude *.ttf -Force -Recurse",
+    "Get-ChildItem \"$dir\" -Recurse -Directory | Remove-Item -Recurse"
+  ],
   "installer": {
     "script": [
       "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
@@ -26,11 +29,6 @@
       "}"
     ]
   },
-  "license": "SIL OFL 1.1",
-  "pre_install": [
-    "Remove-Item $dir\\* -exclude *.ttf -Force -Recurse",
-    "Get-ChildItem \"$dir\" -Recurse -Directory | Remove-Item -Recurse"
-  ],
   "uninstaller": {
     "script": [
       "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
@@ -51,6 +49,8 @@
       "Write-Host \"The '$app' font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
     ]
   },
-  "url": "https://ghproxy.com/https://github.com/rastikerdar/shabnam-font/releases/download/v5.0.1/shabnam-font-v5.0.1.zip",
-  "version": "5.0.1"
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/rastikerdar/shabnam-font/releases/download/v$version/shabnam-font-v$version.zip"
+  }
 }

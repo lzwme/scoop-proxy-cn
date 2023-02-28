@@ -1,67 +1,50 @@
 {
-  "architecture": {
-    "32bit": {
-      "bin": [
-        [
-          "fceux64.exe",
-          "fceux-dev"
-        ]
-      ],
-      "hash": "d35657c0812b1399cfd0169baf0691375c2a2bafe4925bf9760d15598fccef44",
-      "shortcuts": [
-        [
-          "fceux64.exe",
-          "FCEUX (dev)"
-        ]
-      ],
-      "url": "https://github.com/detain/scoop-emulators-cache/raw/master/fceux-dev/fceux64.zip"
-    },
-    "64bit": {
-      "bin": [
-        [
-          "fceux64.exe",
-          "fceux-dev"
-        ]
-      ],
-      "hash": "d35657c0812b1399cfd0169baf0691375c2a2bafe4925bf9760d15598fccef44",
-      "shortcuts": [
-        [
-          "fceux64.exe",
-          "FCEUX (dev)"
-        ]
-      ],
-      "url": "https://github.com/detain/scoop-emulators-cache/raw/master/fceux-dev/fceux64.zip"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "32bit": {
-        "url": "https://ci.appveyor.com/api/buildjobs/$matchJob32/artifacts/fceux.zip"
-      },
-      "64bit": {
-        "url": "https://ci.appveyor.com/api/buildjobs/$matchJob64/artifacts/fceux64.zip"
-      }
-    }
-  },
-  "checkver": {
-    "regex": "(?<job32>[\\w]{16}) (?<job64>[\\w]{16}) (?<build>[\\d]+) (?<commit>[a-f0-9]{8})",
-    "replace": "${build}-${commit}",
-    "script": [
-      "$job32 = json_path $page $.build.jobs[0].jobId",
-      "$job64 = json_path $page $.build.jobs[2].jobId",
-      "$build = json_path $page $.build.buildNumber",
-      "$commit = json_path $page $.build.commitId",
-      "Write-Output \"$job32 $job64 $build $commit\""
-    ],
-    "url": "https://ci.appveyor.com/api/projects/zeromus/fceux"
-  },
-  "depends": "scoop-validator",
+  "version": "1623-5bdbf628",
   "description": "Nintendo NES and Famicom emulator",
   "homepage": "http://www.fceux.com",
   "license": {
-    "identifier": "GPL-2.0",
-    "url": "https://github.com/TASEmulators/fceux/blob/master/COPYING"
+    "url": "https://github.com/TASEmulators/fceux/blob/master/COPYING",
+    "identifier": "GPL-2.0"
   },
+  "architecture": {
+    "64bit": {
+      "url": "https://ci.appveyor.com/api/buildjobs/5791v16t7r7qo4b0/artifacts/fceux-win64.zip",
+      "hash": "a1745da0f024d41ce2c35efe137c19cb7fe87df6a7ac5861acfd188d0b41a212",
+      "bin": [
+        [
+          "fceux64.exe",
+          "fceux-dev"
+        ]
+      ],
+      "shortcuts": [
+        [
+          "fceux64.exe",
+          "FCEUX (dev)"
+        ]
+      ]
+    },
+    "32bit": {
+      "url": "https://ci.appveyor.com/api/buildjobs/247jd98amdanvmvf/artifacts/fceux-win32.zip",
+      "hash": "b07db73bc044dfbd37a3307f57fcc2eb9291caae38e7dc6410df034fe825701a",
+      "bin": [
+        [
+          "fceux.exe",
+          "fceux-dev"
+        ]
+      ],
+      "shortcuts": [
+        [
+          "fceux.exe",
+          "FCEUX (dev)"
+        ]
+      ]
+    }
+  },
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\fceux.cfg\")) {",
+    "    New-Item \"$dir\\fceux.cfg\" -Type File | Out-Null",
+    "}"
+  ],
   "persist": [
     "cheats",
     "fcs",
@@ -70,10 +53,26 @@
     "snaps",
     "fceux.cfg"
   ],
-  "pre_install": [
-    "if (!(Test-Path \"$persist_dir\\fceux.cfg\")) {",
-    "    New-Item \"$dir\\fceux.cfg\" -Type File | Out-Null",
-    "}"
-  ],
-  "version": "1360-bef4e80e"
+  "checkver": {
+    "url": "https://ci.appveyor.com/api/projects/zeromus/fceux",
+    "script": [
+      "$job32 = json_path $page $.build.jobs[0].jobId",
+      "$job64 = json_path $page $.build.jobs[1].jobId",
+      "$build = json_path $page $.build.buildNumber",
+      "$commit = json_path $page $.build.commitId",
+      "Write-Output \"$job32 $job64 $build $commit\""
+    ],
+    "regex": "(?<job32>[\\w]{16}) (?<job64>[\\w]{16}) (?<build>[\\d]+) (?<commit>[a-f0-9]{8})",
+    "replace": "${build}-${commit}"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ci.appveyor.com/api/buildjobs/$matchJob64/artifacts/fceux-win64.zip"
+      },
+      "32bit": {
+        "url": "https://ci.appveyor.com/api/buildjobs/$matchJob32/artifacts/fceux-win32.zip"
+      }
+    }
+  }
 }

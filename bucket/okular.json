@@ -1,40 +1,34 @@
 {
-  "version": "22.12.1-1265",
+  "version": "22.12.2-1307",
   "description": "Universal document viewer",
   "homepage": "https://okular.kde.org",
   "license": "LGPL-2.0-only",
-  "notes": "If you want to get the latest development branch-based installer, please install `okular-nightly` from Versions bucket.",
   "architecture": {
     "64bit": {
-      "url": "https://download.kde.org/stable/release-service/22.12.1/windows/okular-22.12.1-1265-windows-cl-msvc2019-x86_64.exe#/dl.7z",
-      "hash": "73a891661ffe9f67772ca5116d50add54d1a827cebca921b797ae334d18ec75f"
+      "url": "https://binary-factory.kde.org/view/Windows%2064-bit/job/Okular_Release_win64/1307/artifact/okular-22.12.2-1307-windows-cl-msvc2019-x86_64.7z",
+      "hash": "f9e2a28005326f6d42c1a84ff8c3f6ac62501a3658f245b93618dbca984c1aaa"
     }
   },
-  "pre_install": [
-    "Remove-Item \"$dir\\*\" -Exclude okular-*.7z -Recurse",
-    "Expand-7ZipArchive \"$dir\\okular-*.7z\" \"$dir\"",
-    "Remove-Item \"$dir\\okular-*.7z\""
-  ],
   "bin": "bin\\okular.exe",
   "shortcuts": [
     [
       "bin\\okular.exe",
-      "Okular"
+      "okular"
     ]
   ],
   "checkver": {
-    "url": "https://apps.kde.org/okular",
-    "regex": "release-service/(?<release>[\\d.]+)/windows/okular-(?<version>.*)-windows-(?<lib>.*)\\.exe"
+    "url": "https://binary-factory.kde.org/view/Windows%2064-bit/job/Okular_Release_win64/lastSuccessfulBuild/artifact/",
+    "regex": "okular-([\\d.-]+)-windows"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://download.kde.org/stable/release-service/$matchRelease/windows/okular-$version-windows-$matchLib.exe#/dl.7z",
-        "hash": {
-          "url": "https://apps.kde.org/okular",
-          "regex": "sha256:</strong>\\s$sha256</div>"
-        }
+        "url": "https://binary-factory.kde.org/view/Windows%2064-bit/job/Okular_Release_win64/$preReleaseVersion/artifact/okular-$version-windows-cl-msvc2019-x86_64.7z"
       }
+    },
+    "hash": {
+      "url": "$url.sha256",
+      "regex": "$sha256"
     }
   }
 }

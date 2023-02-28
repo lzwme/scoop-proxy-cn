@@ -1,23 +1,25 @@
 {
-	"homepage": "https://hunspell.github.io",
-	"license": "MPL/GPL/LGPL",
-	"version": "1.6.2",
-	"architecture": {
-		"64bit": {
-			"url": "https://ghproxy.com/https://github.com/rivy/hunspell/releases/download/v1.6.2/hunspell-1.6.2-win-64bit.7z",
-			"hash": "sha256:079e9b2105284c44fae9109352c6089a4f9c1195a2118d12e1905d54aab28dd1"
-		},
-		"32bit": {
-			"url": "https://ghproxy.com/https://github.com/rivy/hunspell/releases/download/v1.6.2/hunspell-1.6.2-win-32bit.7z",
-			"hash": "sha256:8a7743b25b7cbcf423bef65d54ca40ac9fb596b6077012469d3bed509c673f17"
-		}
-	},
-	"bin": "hunspell.exe",
-	"post_install": [
-		"
-        if (-not $(test-path env:DICPATH) ) {
-            Write-Host -foreground magenta \"NOTE: use the environment variable 'DICPATH' to point the dictionary storage location.\"
-            Write-Host -foreground magenta \"NOTE: dictionaries are available at <http://downloads.sourceforge.net/wordlist/hunspell-en_US-2017.01.22.zip> and <https://sourceforge.net/projects/wordlist/files/speller/2017.01.22>.\"            }
-        "
-	]
+  "homepage": "https://github.com/iquiw/hunspell-binary",
+  "description": "The most popular spellchecking library",
+  "license": "GPL-2.0",
+  "version": "1.7.1",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/iquiw/hunspell-binary/releases/download/v1.7.1/hunspell-v1.7.1.7z",
+      "hash": "d6d4b6c685ac942ed736f899a88bee0c568e1e0b95b49bbc5b3b79d7d060b2df"
+    }
+  },
+  "extract_dir": "Hunspell",
+  "bin": "bin\\hunspell.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/iquiw/hunspell-binary/releases/download/v$version/hunspell-v$version.7z"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/sha256sum.txt"
+    }
+  }
 }

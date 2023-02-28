@@ -1,29 +1,25 @@
 {
-  "autoupdate": {
-    "hash": {
-      "regex": "$sha256",
-      "url": "$url.sha256"
-    },
-    "url": "https://scoop-zapps.ziiyc.com/d/Xshell/Xshell-$versionr.exe#/setup.exe"
-  },
-  "checkver": {
-    "regex": "([\\d.]+)",
-    "url": "https://ghproxy.com/https://raw.githubusercontent.com/kkzzhizhou/scoop-zapps/master/versions/Xshell.latest"
-  },
+  "homepage": "https://www.netsarang.com/zh/xshell/",
+  "description": "业界最强大的SSH客户机",
+  "version": "6.0.0204",
   "depends": [
     "sudo",
     "vcredist2008",
     "vcredist2012"
   ],
-  "description": "业界最强大的SSH客户机",
+  "url": "https://scoop-zapps.ziiyc.com/d/Xshell/Xshell-6.0.0204r.exe#/setup.exe",
   "hash": "ce8566f14e23697378e6037c668a602341d84f80283c64d961568762530a55d8",
-  "homepage": "https://www.netsarang.com/zh/xshell/",
+  "pre_install": [
+    "$bucketdir = Find-BucketDirectory($bucket)",
+    "(gc \"$bucketdir\\..\\scripts\\netsarang\\add-hosts.ps1\") |  out-file -enc oem \"$dir\\add-hosts.ps1\"",
+    "sudo \"$dir\\add-hosts.ps1\""
+  ],
   "installer": {
-    "keep": true,
     "script": [
       "Start-Process -Wait \"$dir\\setup.exe\" \"/b$dir /S /v/qn\" -Verb RunAs",
       "Start-Process -Wait msiexec \"/i `\"$dir\\Xshell` 6.msi`\" INSTALLDIR=`\"$dir`\" /qb\" -Verb RunAs"
-    ]
+    ],
+    "keep": true
   },
   "post_install": [
     "$null, $bucket = find_manifest($app)",
@@ -36,20 +32,24 @@
     "sudo Remove-Item \"$env:ProgramData\\Microsoft\\Windows\\Start` Menu\\Programs\\SHELL_OBJECT_FOLDER\" -Recurse -ErrorAction SilentlyContinue",
     "ie4uinit.exe -show"
   ],
-  "pre_install": [
-    "$bucketdir = Find-BucketDirectory($bucket)",
-    "(gc \"$bucketdir\\..\\scripts\\netsarang\\add-hosts.ps1\") |  out-file -enc oem \"$dir\\add-hosts.ps1\"",
-    "sudo \"$dir\\add-hosts.ps1\""
-  ],
+  "uninstaller": {
+    "script": "Start-Process -Wait msiexec \"/x `\"$dir\\Xshell` 6.msi`\" /qb\" -Verb RunAs"
+  },
   "shortcuts": [
     [
       "Xshell.exe",
       "Xshell"
     ]
   ],
-  "uninstaller": {
-    "script": "Start-Process -Wait msiexec \"/x `\"$dir\\Xshell` 6.msi`\" /qb\" -Verb RunAs"
+  "checkver": {
+    "url": "https://ghproxy.com/https://raw.githubusercontent.com/kkzzhizhou/scoop-zapps/master/versions/Xshell.latest",
+    "regex": "([\\d.]+)"
   },
-  "url": "https://scoop-zapps.ziiyc.com/d/Xshell/Xshell-6.0.0204r.exe#/setup.exe",
-  "version": "6.0.0204"
+  "autoupdate": {
+    "url": "https://scoop-zapps.ziiyc.com/d/Xshell/Xshell-$versionr.exe#/setup.exe",
+    "hash": {
+      "url": "$url.sha256",
+      "regex": "$sha256"
+    }
+  }
 }

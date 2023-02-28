@@ -1,13 +1,13 @@
 {
-  "version": "6.6.13",
+  "version": "7.6",
   "description": "基于 CUI 的 foobar2000 界面配置",
   "homepage": "https://github.com/dream7180/foobox-cn",
   "license": {
     "identifier": "Freeware",
     "url": "https://www.foobar2000.org/license"
   },
-  "url": "https://ghproxy.com/https://github.com/dream7180/foobox-cn/releases/download/6.6.13/foobox-6.6.13.7z",
-  "hash": "01d31b9e866599b23eb3d9490462e5476de161acc6f2bb58df8df279f4af2cf3",
+  "url": "https://ghproxy.com/https://github.com/dream7180/foobox-cn/releases/download/7.6/foobox_7.6_20230208.7z",
+  "hash": "d62fa48d7f010a4145dc3955437c35eaeeb1174c58c85b0def969b260a8b5383",
   "shortcuts": [
     [
       "foobar2000.exe",
@@ -15,13 +15,15 @@
     ]
   ],
   "extract_dir": "foobar2000",
-  "post_install": "Remove-Item \"$dir\\uninstall*\" -Force -Recurse",
   "persist": [
     "configuration",
-    "library",
-    "playlists-v1.4",
-    "index-data",
-    "Lyrics",
-    "MusicArt"
-  ]
+    "profile"
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/dream7180/foobox-cn/releases",
+    "regex": "download/(?<version>([\\d.]+?))/(?<a>(.+?))\""
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/dream7180/foobox-cn/releases/download/$version/$matchA"
+  }
 }

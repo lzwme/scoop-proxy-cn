@@ -1,17 +1,18 @@
 {
+  "version": "10.110.26.2",
+  "description": "Wavebox 10. A distraction-free browser for fast and focused working across all web apps.",
+  "homepage": "https://wavebox.io/",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://wavebox.io/eula"
+  },
   "architecture": {
     "64bit": {
-      "hash": "51761841290deff3a6c25a5131fd7f7ca4999d34f2b6b1c1889b818eceea6894",
-      "url": "https://download.wavebox.app/stable/win/Install%20Wavebox%2010.110.18.2.exe#/dl.7z"
+      "url": "https://download.wavebox.app/stable/win/Install%20Wavebox%2010.110.26.2.exe#/dl.7z",
+      "hash": "a6efc4313b65258c7a9b026059395442d3d9dda8288fc283c40aac0c3c9313b1"
     }
   },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://download.wavebox.app/stable/win/Install%20Wavebox%20$version.exe#/dl.7z"
-      }
-    }
-  },
+  "pre_install": "Expand-7zipArchive \"$dir\\chrome.7z\" -ExtractDir 'Chrome-bin' -Removal",
   "bin": [
     [
       "Wavebox.exe",
@@ -19,18 +20,6 @@
       "--user-data-dir=\"$dir\\User Data\""
     ]
   ],
-  "checkver": {
-    "url": "https://download.wavebox.app/appcast/appcast.xml?platform=win32&channel=core&isPayingUser=true",
-    "xpath": "/rss/channel/item/enclosure/@sparkle:shortVersionString"
-  },
-  "description": "Wavebox 10. A distraction-free browser for fast and focused working across all web apps.",
-  "homepage": "https://wavebox.io/",
-  "license": {
-    "identifier": "Proprietary",
-    "url": "https://wavebox.io/eula"
-  },
-  "persist": "User Data",
-  "pre_install": "Expand-7zipArchive \"$dir\\chrome.7z\" -ExtractDir 'Chrome-bin' -Removal",
   "shortcuts": [
     [
       "Wavebox.exe",
@@ -38,5 +27,16 @@
       "--user-data-dir=\"$dir\\User Data\""
     ]
   ],
-  "version": "10.110.18.2"
+  "persist": "User Data",
+  "checkver": {
+    "url": "https://download.wavebox.app/appcast/appcast.xml?platform=win32&channel=core&isPayingUser=true",
+    "xpath": "/rss/channel/item/enclosure/@sparkle:shortVersionString"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://download.wavebox.app/stable/win/Install%20Wavebox%20$version.exe#/dl.7z"
+      }
+    }
+  }
 }

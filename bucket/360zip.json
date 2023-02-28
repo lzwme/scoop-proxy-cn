@@ -1,37 +1,36 @@
 {
-  "autoupdate": {
-    "hash": {
-      "mode": "extract",
-      "regex": "$sha256\\s+$basename",
-      "url": "https://scoop-apps.vercel.app/qiuquan"
+  "version": "4.0.0.1410",
+  "description": "压缩解压一键处理，助力办公安全省时",
+  "homepage": "https://yasuo.360.cn/",
+  "license": "Unknown",
+  "architecture": {
+    "64bit": {
+      "url": "https://dl.360safe.com/360zip_setup.exe#/dl.7z",
+      "hash": ""
     },
-    "url": "https://pan.jiemi.workers.dev/?file=/scoop/qiuquan/$matchFile#/installer.exe"
+    "32bit": {
+      "url": "",
+      "hash": ""
+    }
   },
-  "bin": "360zip.exe",
-  "checkver": {
-    "regex": "(?<file>360ZIP_([\\d.]+)_QiuQuan\\.exe)",
-    "url": "https://scoop-apps.vercel.app/qiuquan"
-  },
-  "depends": "sudo",
-  "description": "360 压缩(支持压缩包内连续看图) - qiuquan 去广告精简版",
-  "hash": "431e67a8936569b0d504a4eed480c7042e7b776dfc6dce4a9599e0b8b885adb5",
-  "homepage": "https://yasuo.360.cn",
-  "installer": {
-    "script": "sudo Start-Process \"$dir\\installer.exe\" -WorkingDirectory \"$dir\" -ArgumentList \"/DIR=$dir,/SILENT\" -Wait"
-  },
-  "license": {
-    "identifier": "Freeware"
-  },
-  "notes": "Intro: <http://www.qiuquan.cc/compress/360zip.html>",
+  "pre_install": [
+    ""
+  ],
+  "bin": "",
   "shortcuts": [
     [
-      "360zip.exe",
-      "360zip"
+      ".exe",
+      ""
     ]
   ],
-  "uninstaller": {
-    "script": "sudo Start-Process \"$dir\\UninsFile\\unins000.exe\" -WorkingDirectory \"$dir\" -ArgumentList \"/SILENT\" -Wait"
+  "checkver": {
+    "url": "https://yasuo.360.cn/",
+    "regex": "版本号：(\\d(\\.\\d+)+)"
   },
-  "url": "https://pan.jiemi.workers.dev/?file=/scoop/qiuquan/360ZIP_4.0.0.1410_QiuQuan.exe#/installer.exe",
-  "version": "4.0.0.1410"
+  "autoupdate": {
+    "url": "https://dl.360safe.com/360zip_setup.exe#/dl.7z",
+    "hash": {
+      "mode": "download"
+    }
+  }
 }

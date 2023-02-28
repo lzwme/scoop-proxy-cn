@@ -1,70 +1,51 @@
 {
-  "version": "1.76.0-insider",
-  "description": "Visual Studio Code is a lightweight but powerful source code editor (Insiders, Portable Edition).",
-  "homepage": "https://code.visualstudio.com/",
+  "version": "1.76.0-202302271314",
+  "description": "Visual Studio Code is a lightweight but powerful source code editor (Insiders).",
+  "homepage": "https://code.visualstudio.com/insiders/",
   "license": {
     "identifier": "Freeware",
     "url": "https://code.visualstudio.com/License/"
   },
-  "notes": [
-    "Visual Studio Code now supports Portable Mode! Please move the following directories:",
-    "From \"$env:USERPROFILE\\.vscode-insiders\\extensions\" to \"$env:SCOOP\\persist\\vscode-insiders\\data\\extensions\"",
-    "From \"$env:APPDATA\\Code - Insiders\" to \"$env:SCOOP\\persist\\vscode-insiders\\data\\user-data\"",
-    "Add Visual Studio Code as a context menu option by running: '$dir\\install-context.reg'",
-    "For file associations, run '$dir\\install-associations.reg'"
-  ],
   "architecture": {
     "64bit": {
-      "url": "https://update.code.visualstudio.com/latest/win32-x64-archive/insider#/dl.7z",
-      "hash": "18ec73147d7d2f5a633182ae5944509773140345b52e7a41581ee0cf6bf129d9"
+      "url": "https://az764295.vo.msecnd.net/insider/3c8099c659099d3af89a66f9635b4700a887f177/VSCode-win32-x64-1.76.0-insider.zip",
+      "hash": "41d5a9848d99202e9a01ce2454703317b0721ca7c6310bdd38307bdff55c6df6"
     },
     "32bit": {
-      "url": "https://update.code.visualstudio.com/latest/win32-archive/insider#/dl.7z",
-      "hash": "6e1771e688ba45c57cb218ca04809cbd7d4ec1e5ad962d0e4ee10a729df04477"
+      "url": "https://az764295.vo.msecnd.net/insider/3c8099c659099d3af89a66f9635b4700a887f177/VSCode-win32-ia32-1.76.0-insider.zip",
+      "hash": "5f425ac46ab7436affd4abd3a650f423a6b5ed23f7dd1a0ac03f24c61cb3a143"
     }
   },
-  "post_install": [
-    "$dirpath = \"$dir\".Replace('\\', '\\\\')",
-    "$exepath = \"$dir\\Code - Insiders.exe\".Replace('\\', '\\\\')",
-    "'install-associations', 'uninstall-associations', 'install-context', 'uninstall-context' | ForEach-Object {",
-    "  if (Test-Path \"$bucketsdir\\$bucket\\scripts\\vscode\\$_.reg\") {",
-    "    $content = Get-Content \"$bucketsdir\\$bucket\\scripts\\vscode\\$_.reg\"",
-    "    $content = $content.Replace('$codedir', $dirpath)",
-    "    $content = $content.Replace('$code', $exepath)",
-    "    $content = $content.Replace('&Code', 'Code &Insiders')",
-    "    if ($global) {",
-    "      $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE')",
-    "    }",
-    "    $content | Set-Content -Path \"$dir\\$_.reg\"",
-    "  }",
-    "}"
+  "bin": [
+    [
+      "bin\\code-insiders.cmd",
+      "code-insiders"
+    ]
   ],
-  "env_add_path": "bin",
   "shortcuts": [
     [
       "Code - Insiders.exe",
       "Visual Studio Code - Insiders"
     ]
   ],
-  "persist": "data",
   "checkver": {
-    "url": "https://update.code.visualstudio.com/api/update/win32-x64-archive/insider/latest",
-    "jsonpath": "$.productVersion"
+    "url": "https://api.xuann.wang/api/vscode-insiders",
+    "regex": "([\\d.-]+) (?<commit>\\w+)"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://update.code.visualstudio.com/latest/win32-x64-archive/insider#/dl.7z",
+        "url": "https://az764295.vo.msecnd.net/insider/$matchCommit/VSCode-win32-x64-$matchHead-insider.zip",
         "hash": {
-          "url": "https://update.code.visualstudio.com/api/update/win32-x64-archive/insider/latest",
-          "jsonpath": "$.sha256hash"
+          "url": "https://code.visualstudio.com/sha?build=insider",
+          "jsonpath": "$.products[5].sha256hash"
         }
       },
       "32bit": {
-        "url": "https://update.code.visualstudio.com/latest/win32-archive/insider#/dl.7z",
+        "url": "https://az764295.vo.msecnd.net/insider/$matchCommit/VSCode-win32-ia32-$matchHead-insider.zip",
         "hash": {
-          "url": "https://update.code.visualstudio.com/api/update/win32-archive/insider/latest",
-          "jsonpath": "$.sha256hash"
+          "url": "https://code.visualstudio.com/sha?build=insider",
+          "jsonpath": "$.products[2].sha256hash"
         }
       }
     }

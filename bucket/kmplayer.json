@@ -1,31 +1,31 @@
 {
-  "autoupdate": {
-    "url": "http://update.kmpmedia.net/kmp64player/update#dl.7z"
-  },
-  "checkver": {
-    "regex": "softwareVersion\":\\s*\"([\\d.]+)",
-    "url": "https://www.computerbild.de/download/KMPlayer-19338.html"
-  },
+  "version": "2023.2.9.11",
   "description": "KMPlayer is a versatile media player.",
-  "hash": "41f2952ae07a41364f25e8945ff65bdb90bb4ae7a67e542f238d2928fd787444",
   "homepage": "https://www.mozilla.org/en-US/firefox/nightly/",
   "license": "Freeware",
-  "persist": [
-    "Capture",
-    "default.kpl",
-    "KMPlayer64.ini"
-  ],
-  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall*\" -Force -Recurse",
+  "url": "http://update.kmpmedia.net/kmp64player/update#dl.7z",
+  "hash": "41f2952ae07a41364f25e8945ff65bdb90bb4ae7a67e542f238d2928fd787444",
   "pre_install": [
     "if(!(Test-Path \"$dir/KMPlayer64.ini\")) { Add-Content \"$dir/KMPlayer64.ini\" $null }",
     "if(!(Test-Path \"$dir/default.kpl\")) { Add-Content \"$dir/default.kpl\" $null }"
   ],
+  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall*\" -Force -Recurse",
   "shortcuts": [
     [
       "KMPlayer64.exe",
       "KMPlayer"
     ]
   ],
-  "url": "http://update.kmpmedia.net/kmp64player/update#dl.7z",
-  "version": "2023.2.9.11"
+  "persist": [
+    "Capture",
+    "default.kpl",
+    "KMPlayer64.ini"
+  ],
+  "checkver": {
+    "url": "https://www.computerbild.de/download/KMPlayer-19338.html",
+    "regex": "softwareVersion\":\\s*\"([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "http://update.kmpmedia.net/kmp64player/update#dl.7z"
+  }
 }

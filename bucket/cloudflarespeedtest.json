@@ -1,20 +1,35 @@
 {
-  "version": "2.0.2",
-  "description": "测试 Cloudflare CDN 延迟和速度，获取最快 IP (IPv4+IPv6)！ ",
+  "version": "2.2.2",
+  "description": "Select the best IP for Cloudflare CDN, that means low latency and high speed.",
   "homepage": "https://github.com/XIU2/CloudflareSpeedTest",
-  "license": {
-    "identifier": "GPL-3.0-only"
+  "license": "GPL-3.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/XIU2/CloudflareSpeedTest/releases/download/v2.2.2/CloudflareST_windows_amd64.zip",
+      "hash": "52be0c5234fe9b8deb59c4fc16b2be004656a91ad8287c1f3cc712359a25c5e3"
+    },
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/XIU2/CloudflareSpeedTest/releases/download/v2.2.2/CloudflareST_windows_386.zip",
+      "hash": "08b9eab187b198740662f794e9478a8e4cf489aa68ce665d947263339dfb527f"
+    }
   },
-  "url": "https://github.xiu2.xyz/https://ghproxy.com/https://github.com/XIU2/CloudflareSpeedTest/releases/download/v2.0.2/CloudflareST_windows_amd64.zip",
-  "hash": "993e94b7478ece0e0f7c985e07b6c3187aa9ea6f2f66fdb2bae939523f124506",
-  "shortcuts": [
+  "bin": [
+    "CloudflareST.exe",
     [
       "CloudflareST.exe",
       "CloudflareSpeedTest"
     ]
   ],
+  "notes": "Example: CloudflareST.exe -f $dir\\ip.txt",
   "checkver": "github",
   "autoupdate": {
-    "url": "https://github.xiu2.xyz/https://ghproxy.com/https://github.com/XIU2/CloudflareSpeedTest/releases/download/v$version/CloudflareST_windows_amd64.zip"
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/XIU2/CloudflareSpeedTest/releases/download/v$version/CloudflareST_windows_amd64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/XIU2/CloudflareSpeedTest/releases/download/v$version/CloudflareST_windows_386.zip"
+      }
+    }
   }
 }

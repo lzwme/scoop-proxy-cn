@@ -1,20 +1,24 @@
 {
-  "architecture": {
-    "64bit": {
-      "hash": "9b0f50cbe268282fdfb7cb0a81dc45c62961c4b5d6ee78c68577689faf2f5f87",
-      "url": "https://ghproxy.com/https://github.com/database64128/youtube-dl-wpf/releases/download/v1.11.0/youtube-dl-wpf-v1.11.0-windows.7z"
-    }
-  },
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/database64128/youtube-dl-wpf/releases/download/v$version/youtube-dl-wpf-v$version-windows.7z"
-  },
-  "checkver": "github",
+  "version": "1.11.0",
+  "description": "A simple GUI wrapper for youtube-dl",
+  "homepage": "https://github.com/database64128/youtube-dl-wpf",
+  "license": "GPL-3.0-only",
   "depends": [
     "yt-dlp",
     "sushi/dotnet-desktop-runtime"
   ],
-  "description": "A simple GUI wrapper for youtube-dl",
-  "homepage": "https://github.com/database64128/youtube-dl-wpf",
+  "suggest": {
+    "FFmpeg": [
+      "ffmpeg",
+      "ffmpeg-nightly"
+    ]
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/database64128/youtube-dl-wpf/releases/download/v1.11.0/youtube-dl-wpf-v1.11.0-windows.7z",
+      "hash": "9b0f50cbe268282fdfb7cb0a81dc45c62961c4b5d6ee78c68577689faf2f5f87"
+    }
+  },
   "installer": {
     "script": [
       "$ffmpeg = ''",
@@ -32,19 +36,15 @@
       "} | ConvertTo-Json | Out-File \"$dir\\Settings.json\""
     ]
   },
-  "license": "GPL-3.0-only",
-  "persist": "Settings.json",
   "shortcuts": [
     [
       "youtube-dl-wpf.exe",
       "Cube YouTube Downloader"
     ]
   ],
-  "suggest": {
-    "FFmpeg": [
-      "ffmpeg",
-      "ffmpeg-nightly"
-    ]
-  },
-  "version": "1.11.0"
+  "persist": "Settings.json",
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/database64128/youtube-dl-wpf/releases/download/v$version/youtube-dl-wpf-v$version-windows.7z"
+  }
 }

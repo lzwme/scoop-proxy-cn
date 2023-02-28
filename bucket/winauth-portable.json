@@ -1,16 +1,10 @@
 {
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/winauth/winauth/releases/download/$version/WinAuth-$version.zip"
-  },
-  "checkver": {
-    "regex": "/winauth/winauth/tree/([\\d.]+)",
-    "url": "https://github.com/winauth/winauth/releases"
-  },
+  "version": "3.6.2",
   "description": "Authenticator for a wide variety of websites and services.",
-  "hash": "3f34eb1ca342ad0783cd57c84f2f73c37df3ea880768dd415f509bfdbf02a785",
   "homepage": "https://winauth.github.io/winauth/",
   "license": "GPL-3.0-only",
-  "persist": "WinAuth.xml",
+  "url": "https://ghproxy.com/https://github.com/winauth/winauth/releases/download/3.6.2/WinAuth-3.6.2.zip",
+  "hash": "3f34eb1ca342ad0783cd57c84f2f73c37df3ea880768dd415f509bfdbf02a785",
   "pre_install": "if(!(Test-Path \"$dir/WinAuth.xml\")) { Add-Content \"$dir/WinAuth.xml\" $null }",
   "shortcuts": [
     [
@@ -18,6 +12,12 @@
       "WinAuth"
     ]
   ],
-  "url": "https://ghproxy.com/https://github.com/winauth/winauth/releases/download/3.6.2/WinAuth-3.6.2.zip",
-  "version": "3.6.2"
+  "persist": "WinAuth.xml",
+  "checkver": {
+    "url": "https://github.com/winauth/winauth/releases",
+    "regex": "/winauth/winauth/tree/([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/winauth/winauth/releases/download/$version/WinAuth-$version.zip"
+  }
 }

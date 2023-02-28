@@ -1,34 +1,25 @@
 {
-  "version": "1.2.3",
   "homepage": "https://github.com/zzzgydi/clash-verge",
-  "description": "A Clash GUI based on tauri.",
-  "license": "GPL-3.0",
-  "architecture": {
-    "64bit": {
-      "url": "https://ghproxy.com/https://github.com/zzzgydi/clash-verge/releases/download/v1.2.3/Clash.Verge_1.2.3_x64_portable.zip",
-      "hash": "d022b2e76ffc2fa5a066d42daea07d45dfea9b265eddfdd2391c29576ed6891c"
-    }
-  },
-  "bin": [
-    "clash.exe",
-    "clash-meta.exe"
-  ],
+  "description": "A Clash GUI based on tauri",
+  "version": "1.2.3",
+  "license": "GPL-3.0-only",
+  "url": "https://ghproxy.com/https://github.com/zzzgydi/clash-verge/releases/download/v1.2.3/Clash.Verge_1.2.3_x64_portable.zip",
+  "hash": "d022b2e76ffc2fa5a066d42daea07d45dfea9b265eddfdd2391c29576ed6891c",
   "shortcuts": [
     [
       "Clash Verge.exe",
       "Clash Verge"
     ]
   ],
-  "pre_uninstall": [
-    "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
-    "Start-Process \"$dir\\resources\\uninstall-service.exe\" -Wait -Verb 'RunAs' -WindowStyle 'Hidden'; Start-Sleep -Seconds 2"
+  "persist": ".config",
+  "post_install": [
+    "# https://github.com/zzzgydi/clash-verge/issues/21#issuecomment-1097467046=",
+    "if (!(Test-Path \"$persist_dir\\.config\\PORTABLE\")) {",
+    "    New-Item -Path \"$persist_dir\\.config\\PORTABLE\" -ItemType file | Out-Null",
+    "}"
   ],
   "checkver": "github",
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.com/https://github.com/zzzgydi/clash-verge/releases/download/v$version/Clash.Verge_$version_x64_portable.zip"
-      }
-    }
+    "url": "https://ghproxy.com/https://github.com/zzzgydi/clash-verge/releases/download/v$version/Clash.Verge_$version_x64_portable.zip"
   }
 }

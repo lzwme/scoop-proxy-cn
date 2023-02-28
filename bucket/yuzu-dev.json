@@ -1,42 +1,18 @@
 {
-  "architecture": {
-    "64bit": {
-      "hash": "3de5d54cf799ff81de866688293f71a9d5bfedd7258bd5a75f9e9844ef52968f",
-      "url": "https://ghproxy.com/https://github.com/pineappleEA/pineapple-src/releases/download/EA-3073/Windows-Yuzu-EA-3073.7z"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.com/https://github.com/pineappleEA/pineapple-src/releases/download/$version/Windows-Yuzu-$version.7z"
-      }
-    }
-  },
-  "bin": [
-    [
-      "yuzu.exe",
-      "yuzu-dev"
-    ],
-    [
-      "yuzu-cmd.exe",
-      "yuzu-cmd-dev"
-    ]
-  ],
-  "checkver": {
-    "github": "https://github.com/pineappleEA/pineapple-src",
-    "regex": "(EA-\\d+) \\(auto-updater\\)"
-  },
+  "version": "EA-3419",
   "description": "Nintendo Switch emulator",
-  "extract_dir": "yuzu-windows-msvc-early-access",
   "homepage": "https://github.com/pineappleEA/pineapple-src",
   "license": {
     "identifier": "GPL-2.0",
     "url": "https://github.com/pineappleEA/pineapple-src/blob/main/LICENSE"
   },
-  "persist": [
-    "user",
-    "plugins"
-  ],
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/pineappleEA/pineapple-src/releases/download/EA-3419/Windows-Yuzu-EA-3419.zip",
+      "hash": "5b0be9fbb6390e2670bf0c3e657bb7e22917e5bbc6af20244f6ebbdcc179d714"
+    }
+  },
+  "extract_dir": "yuzu-windows-msvc-early-access",
   "pre_install": [
     "if (!(Test-Path \"$persist_dir\")) {",
     "   New-item \"$persist_dir\" -ItemType Directory | Out-Null",
@@ -48,11 +24,35 @@
     "   }",
     "}"
   ],
+  "bin": [
+    [
+      "yuzu.exe",
+      "yuzu-dev"
+    ],
+    [
+      "yuzu-cmd.exe",
+      "yuzu-cmd-dev"
+    ]
+  ],
   "shortcuts": [
     [
       "yuzu.exe",
       "Yuzu (dev)"
     ]
   ],
-  "version": "EA-3073"
+  "persist": [
+    "user",
+    "plugins"
+  ],
+  "checkver": {
+    "github": "https://github.com/pineappleEA/pineapple-src",
+    "regex": "(EA-\\d+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/pineappleEA/pineapple-src/releases/download/$version/Windows-Yuzu-$version.zip"
+      }
+    }
+  }
 }

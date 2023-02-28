@@ -1,33 +1,34 @@
 {
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/xiaoyifang/goldendict/releases/download/v$match1-$match2/$match3-GoldenDict-v$majorVersion-Install.exe#/dl.7z"
-  },
+  "version": "23.02.06",
+  "description": "A feature-rich dictionary lookup program",
+  "homepage": "https://github.com/xiaoyifang/goldendict",
+  "license": "GPL-3.0-only",
+  "url": "https://ghproxy.com/https://github.com/xiaoyifang/goldendict/releases/download/v23.02.06-LanternFestival.230208.c9bde81b/6.4.2-GoldenDict-v23.02.06-LanternFestival-Installer.exe#/dl.7z",
+  "hash": "87fe22203152cbf3f150794494bde01ec400f32a08df75a694487279e6ea3392",
+  "pre_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\[LICENSE].txt\", \"$dir\\*.nsi\", \"$dir\\uninstall.exe\" -Recurse",
   "bin": [
     [
       "GoldenDict.exe",
       "goldendict-webengine.exe"
     ]
   ],
-  "checkver": {
-    "github": "https://github.com/xiaoyifang/goldendict",
-    "regex": "/download/v([\\d+.]+)-(.*)/([\\d+.]+)-GoldenDict-v",
-    "reverse": true
-  },
-  "description": "A feature-rich dictionary lookup program",
-  "hash": "7563e10d024d9cacb69e2fbf94bf1c9a4a12e19f61364143352bc9cd1754ebba",
-  "homepage": "https://github.com/xiaoyifang/goldendict",
-  "license": "GPL-3.0-only",
-  "persist": [
-    "portable",
-    "content"
-  ],
-  "pre_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\[LICENSE].txt\", \"$dir\\*.nsi\", \"$dir\\uninstall.exe\" -Recurse",
   "shortcuts": [
     [
       "GoldenDict.exe",
       "GoldenDict (Webengine)"
     ]
   ],
-  "url": "https://ghproxy.com/https://github.com/xiaoyifang/goldendict/releases/download/v22.8.23-EndOfHeat.220822.aa12e5a2/6.3.1-GoldenDict-v22-Install.exe#/dl.7z",
-  "version": "22.8.23"
+  "persist": [
+    "portable",
+    "content"
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/xiaoyifang/goldendict/releases/latest",
+    "jsonpath": "$..browser_download_url",
+    "regex": "v([\\d.]+)-(\\w+)\\.([\\d.]+\\.[\\w]+)/([\\d.]+)-GoldenDict-",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/xiaoyifang/goldendict/releases/download/v$match1-$match2.$match3/$match4-GoldenDict-v$match1-$match2-Installer.exe#/dl.7z"
+  }
 }

@@ -1,10 +1,13 @@
 {
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/rastikerdar/tanha-font/releases/download/v$version/tanha-font-v$version.zip"
-  },
-  "checkver": "github",
-  "hash": "5707650a2e7ee0e669bfdcb94b93de92a5c55a37257030d39a5b854b19864547",
+  "version": "0.10",
+  "license": "SIL OFL 1.1",
   "homepage": "https://github.com/rastikerdar/tanha-font",
+  "url": "https://ghproxy.com/https://github.com/rastikerdar/tanha-font/releases/download/v0.10/tanha-font-v0.10.zip",
+  "hash": "5707650a2e7ee0e669bfdcb94b93de92a5c55a37257030d39a5b854b19864547",
+  "pre_install": [
+    "Remove-Item $dir\\* -exclude *.ttf -Force -Recurse",
+    "Get-ChildItem \"$dir\" -Recurse -Directory | Remove-Item -Recurse"
+  ],
   "installer": {
     "script": [
       "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
@@ -26,11 +29,6 @@
       "}"
     ]
   },
-  "license": "SIL OFL 1.1",
-  "pre_install": [
-    "Remove-Item $dir\\* -exclude *.ttf -Force -Recurse",
-    "Get-ChildItem \"$dir\" -Recurse -Directory | Remove-Item -Recurse"
-  ],
   "uninstaller": {
     "script": [
       "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
@@ -51,6 +49,8 @@
       "Write-Host \"The '$app' font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
     ]
   },
-  "url": "https://ghproxy.com/https://github.com/rastikerdar/tanha-font/releases/download/v0.10/tanha-font-v0.10.zip",
-  "version": "0.10"
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/rastikerdar/tanha-font/releases/download/v$version/tanha-font-v$version.zip"
+  }
 }

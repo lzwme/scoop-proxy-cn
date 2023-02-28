@@ -1,10 +1,13 @@
 {
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/rastikerdar/gandom-font/releases/download/v$version/gandom-font-v$version.zip"
-  },
-  "checkver": "github",
-  "hash": "a02f88ef41938332dc07a174af554494631ef756d076799ea18d1e6af2e5af66",
+  "version": "0.8",
+  "license": "SIL OFL 1.1",
   "homepage": "https://github.com/rastikerdar/gandom-font",
+  "url": "https://ghproxy.com/https://github.com/rastikerdar/gandom-font/releases/download/v0.8/gandom-font-v0.8.zip",
+  "hash": "a02f88ef41938332dc07a174af554494631ef756d076799ea18d1e6af2e5af66",
+  "pre_install": [
+    "Remove-Item $dir\\* -exclude *.ttf -Force -Recurse",
+    "Get-ChildItem \"$dir\" -Recurse -Directory | Remove-Item -Recurse"
+  ],
   "installer": {
     "script": [
       "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
@@ -26,11 +29,6 @@
       "}"
     ]
   },
-  "license": "SIL OFL 1.1",
-  "pre_install": [
-    "Remove-Item $dir\\* -exclude *.ttf -Force -Recurse",
-    "Get-ChildItem \"$dir\" -Recurse -Directory | Remove-Item -Recurse"
-  ],
   "uninstaller": {
     "script": [
       "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
@@ -51,6 +49,8 @@
       "Write-Host \"The '$app' font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
     ]
   },
-  "url": "https://ghproxy.com/https://github.com/rastikerdar/gandom-font/releases/download/v0.8/gandom-font-v0.8.zip",
-  "version": "0.8"
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/rastikerdar/gandom-font/releases/download/v$version/gandom-font-v$version.zip"
+  }
 }

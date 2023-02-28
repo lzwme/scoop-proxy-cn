@@ -1,36 +1,41 @@
 {
+  "version": "9.12.2",
+  "description": "Postman中文版, Complete API development environment.",
+  "homepage": "https://github.com/hlmd/postman-cn",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://www.getpostman.com/licenses/postman_eula"
+  },
   "architecture": {
     "64bit": {
-      "hash": "bb6e561a40b94bbef75ae5835a0b184847c4ead7f74e2fe5f12df810f7440496",
-      "url": "https://ghproxy.com/https://github.com/hlmd/Postman-cn/releases/download/9.12.2/app.zip"
+      "url": [
+        "https://dl.pstmn.io/download/9.12.2/Postman-win64-9.12.2-full.nupkg#/dl.7z",
+        "https://ghproxy.com/https://github.com/hlmd/Postman-cn/releases/download/9.12.2/app.zip"
+      ],
+      "hash": [
+        "1d7fe5dab746470c5d40b5938c1376ca0220747f35792565ccbad48d53b6924d",
+        "bb6e561a40b94bbef75ae5835a0b184847c4ead7f74e2fe5f12df810f7440496"
+      ]
     }
   },
+  "extract_dir": "lib\\net45",
+  "post_install": "Move-Item \"$dir\\app\" \"$dir\\resources\" -Force",
+  "bin": "Postman.exe",
+  "shortcuts": [
+    [
+      "Postman.exe",
+      "Postman"
+    ]
+  ],
+  "checkver": "github",
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.com/https://github.com/hlmd/Postman-cn/releases/download/$version/app.zip"
+        "url": [
+          "https://dl.pstmn.io/download/$version/Postman-win64-$version-full.nupkg#/dl.7z",
+          "https://ghproxy.com/https://github.com/hlmd/Postman-cn/releases/download/$version/app.zip"
+        ]
       }
     }
-  },
-  "checkver": "github",
-  "depends": "extras/postman",
-  "description": "Postman Chinese patch package, maintained by hlmd.",
-  "homepage": "https://github.com/hlmd/postman-cn",
-  "installer": {
-    "script": [
-      "Rename-Item -Path \"$(appdir postman $global)\\current\\resources\\app\" 'app.bak' -Force",
-      "Copy-Item \"$dir\\app\\\" \"$(appdir postman $global)\\current\\resources\\\" -Recurse -Force | Out-Null"
-    ]
-  },
-  "license": {
-    "identifier": "Freeware"
-  },
-  "notes": "Disable postman automatic updates: <https://github.com/hlmd/postman-cn#%E7%A6%81%E7%94%A8%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0>",
-  "uninstaller": {
-    "script": [
-      "Remove-Item -Path \"$(appdir postman $global)\\current\\resources\\app\" -ErrorAction 'SilentlyContinue' -Force -Recurse",
-      "Rename-Item -Path \"$(appdir postman $global)\\current\\resources\\app.bak\" 'app' -Force"
-    ]
-  },
-  "version": "9.12.2"
+  }
 }

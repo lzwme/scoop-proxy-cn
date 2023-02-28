@@ -1,0 +1,55 @@
+{
+  "version": "3.12.0",
+  "description": "Bilibili 直播录制与回放下载",
+  "homepage": "https://github.com/HMBSbige/BilibiliLiveRecordDownLoader",
+  "license": "GNU Affero General Public License v3.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/HMBSbige/BilibiliLiveRecordDownLoader/releases/download/3.12.0/BilibiliLiveRecordDownLoader-win-x64-3.12.0.7z",
+      "hash": "903d1bf60fbdeb1aee8c46cb154f3d0b4be9eab1ad1202a10e9b11cbd57094e4"
+    },
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/HMBSbige/BilibiliLiveRecordDownLoader/releases/download/3.12.0/BilibiliLiveRecordDownLoader-win-x86-3.12.0.7z",
+      "hash": "60ec46e8d603d916972ccf1e38d47c40742513f5effb9e602cf4f5fd757d5749"
+    }
+  },
+  "pre_install": [
+    "    # Create files for persisting",
+    "function PersistsFile([String] $file) {",
+    "    if (!(Test-Path \"$persist_dir\\$file\")) {",
+    "        New-Item \"$dir\\$file\" -Type File -Value \"{}\" | Out-Null",
+    "    }",
+    "}",
+    "@('BilibiliLiveRecordDownLoader.json') | ForEach-Object { PersistsFile $_ }"
+  ],
+  "extract_dir": "BilibiliLiveRecordDownLoader",
+  "shortcuts": [
+    [
+      "BilibiliLiveRecordDownLoader.exe",
+      "哔哩哔哩直播回放下载"
+    ]
+  ],
+  "persist": "BilibiliLiveRecordDownLoader.json",
+  "checkver": {
+    "url": "https://api.github.com/repos/HMBSbige/BilibiliLiveRecordDownLoader/releases/latest",
+    "regex": "v([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/HMBSbige/BilibiliLiveRecordDownLoader/releases/download/$version/BilibiliLiveRecordDownLoader-win-x64-$version.7z",
+        "hash": {
+          "url": "https://api.github.com/repos/HMBSbige/BilibiliLiveRecordDownLoader/releases/latest",
+          "regex": "body.*win-x64-.*?$sha256"
+        }
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/HMBSbige/BilibiliLiveRecordDownLoader/releases/download/$version/BilibiliLiveRecordDownLoader-win-x86-$version.7z",
+        "hash": {
+          "url": "https://api.github.com/repos/HMBSbige/BilibiliLiveRecordDownLoader/releases/latest",
+          "regex": "body.*win-x86-.*?$sha256"
+        }
+      }
+    }
+  }
+}

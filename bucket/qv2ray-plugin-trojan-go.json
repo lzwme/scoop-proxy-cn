@@ -1,16 +1,18 @@
 {
-  "architecture": {
-    "64bit": {
-      "hash": "872f61bbf1f85c6d8cff8048c5df995e53b7dc9aa9fbbc40090ce88bcd3d8946",
-      "url": "https://ghproxy.com/https://github.com/Qv2ray/QvPlugin-Trojan-Go/releases/download/v3.0.0/QvPlugin-TrojanGo.v3.0.0.Windows-x64.dll"
-    }
-  },
-  "depends": [
-    "dango/qv2ray",
-    "dango/trojan-go"
-  ],
+  "version": "3.0.0",
   "description": "Trojan-Go plugin for Qv2ray",
   "homepage": "https://github.com/Qv2ray/QvPlugin-Trojan-Go",
+  "license": "GPL-3.0-only",
+  "depends": [
+    "extras/qv2ray",
+    "sushi/trojan-go"
+  ],
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/Qv2ray/QvPlugin-Trojan-Go/releases/download/v3.0.0/QvPlugin-TrojanGo.v3.0.0.Windows-x64.dll",
+      "hash": "872f61bbf1f85c6d8cff8048c5df995e53b7dc9aa9fbbc40090ce88bcd3d8946"
+    }
+  },
   "installer": {
     "script": [
       "function LinkFile([String] $file, [String] $source = $file) {",
@@ -28,9 +30,7 @@
       "}"
     ]
   },
-  "license": "GPL-3.0-only",
   "uninstaller": {
     "script": "Remove-Item \"$(appdir qv2ray $global)\\current\\config\\plugins\\trojan-go.dll\" -Force"
-  },
-  "version": "3.0.0"
+  }
 }

@@ -1,48 +1,56 @@
 {
+  "version": "5.2.1",
+  "description": "Port of macOS Mojave Dynamic Desktop feature to Windows 10",
+  "homepage": "https://github.com/t1m0thyj/WinDynamicDesktop",
+  "license": "MPL-2.0",
   "architecture": {
     "32bit": {
-      "hash": "c528eb5587788de3c1cc2da17975f99bd6852bd07388127a4091625f55ff3b2a",
-      "url": "https://ghproxy.com/https://github.com/t1m0thyj/WinDynamicDesktop/releases/download/v5.1.0/WinDynamicDesktop_5.1.0_x86_Setup.exe"
+      "url": "https://ghproxy.com/https://github.com/t1m0thyj/WinDynamicDesktop/releases/download/v5.2.1/WinDynamicDesktop_5.2.1_x86_Portable.exe",
+      "hash": "db11088ba9a17eaffe5753c27df34e94cde6b2ecb6e80a3a34ffb4fb38b64eb8",
+      "shortcuts": [
+        [
+          "WinDynamicDesktop_5.2.1_x86_Portable.exe",
+          "WinDynamicDesktop"
+        ]
+      ]
     },
     "64bit": {
-      "hash": "3237ff77253d3caea4c0152c141c0fbc76838f6f590573124e2ead91e4b8ff62",
-      "url": "https://ghproxy.com/https://github.com/t1m0thyj/WinDynamicDesktop/releases/download/v5.1.0/WinDynamicDesktop_5.1.0_x64_Setup.exe"
+      "url": "https://ghproxy.com/https://github.com/t1m0thyj/WinDynamicDesktop/releases/download/v5.2.1/WinDynamicDesktop_5.2.1_x64_Portable.exe",
+      "hash": "28b82925ee781bc465e382c165303811583a39031aadd8e5f5ede37872f55250",
+      "shortcuts": [
+        [
+          "WinDynamicDesktop_5.2.1_x64_Portable.exe",
+          "WinDynamicDesktop"
+        ]
+      ]
     }
   },
+  "pre_install": "if (!(Test-Path \"$persist_dir\\settings.json\")) { New-Item \"$dir\\settings.json\" -Value '{}' | Out-Null }",
+  "persist": [
+    "settings.json",
+    "themes"
+  ],
+  "checkver": "github",
   "autoupdate": {
     "architecture": {
       "32bit": {
-        "hash": {
-          "mode": "extract",
-          "regex": "$sha256\\s+$basename",
-          "url": "$baseurl/checksums.txt"
-        },
-        "url": "https://ghproxy.com/https://github.com/t1m0thyj/WinDynamicDesktop/releases/download/v$version/WinDynamicDesktop_$version_x86_Setup.exe"
+        "url": "https://ghproxy.com/https://github.com/t1m0thyj/WinDynamicDesktop/releases/download/v$version/WinDynamicDesktop_$version_x86_Portable.exe",
+        "shortcuts": [
+          [
+            "WinDynamicDesktop_$version_x86_Portable.exe",
+            "WinDynamicDesktop"
+          ]
+        ]
       },
       "64bit": {
-        "hash": {
-          "mode": "extract",
-          "regex": "$sha256\\s+$basename",
-          "url": "$baseurl/checksums.txt"
-        },
-        "url": "https://ghproxy.com/https://github.com/t1m0thyj/WinDynamicDesktop/releases/download/v$version/WinDynamicDesktop_$version_x64_Setup.exe"
+        "url": "https://ghproxy.com/https://github.com/t1m0thyj/WinDynamicDesktop/releases/download/v$version/WinDynamicDesktop_$version_x64_Portable.exe",
+        "shortcuts": [
+          [
+            "WinDynamicDesktop_$version_x64_Portable.exe",
+            "WinDynamicDesktop"
+          ]
+        ]
       }
     }
-  },
-  "checkver": "github",
-  "description": "WinDynamicDesktop ports the Dynamic Desktop feature from macOS Mojave to Windows 10. It uses your location to determine the times of sunrise and sunset, and changes your desktop wallpaper based on the time of day. Choose a theme and enter your location the first time you run the app, then it will minimize to your system tray and change the wallpaper in the background. You can import custom themes or create your own, and customize the app to automatically change the Windows 10 theme color or update your location periodically.",
-  "homepage": "https://github.com/t1m0thyj/WinDynamicDesktop",
-  "innosetup": true,
-  "license": {
-    "identifier": "MPL-2.0",
-    "url": "https://github.com/t1m0thyj/WinDynamicDesktop/raw/main/LICENSE"
-  },
-  "notes": "This app uses the LocationIQ API to convert your location to latitude and longitude, or the Windows location API if permission is granted. Location data is anonymous and never saved without your consent.",
-  "shortcuts": [
-    [
-      "WinDynamicDesktop.exe",
-      "WinDynamicDesktop"
-    ]
-  ],
-  "version": "5.1.0"
+  }
 }

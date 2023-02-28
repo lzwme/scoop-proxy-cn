@@ -1,15 +1,10 @@
 {
-  "autoupdate": {
-    "extract_dir": "cmder-powerline-prompt-$version",
-    "url": "https://ghproxy.com/https://github.com/chrisant996/cmder-powerline-prompt/archive/$version.zip"
-  },
-  "checkver": {
-    "re": "/releases/tag/([\\w.]+)",
-    "url": "https://github.com/chrisant996/cmder-powerline-prompt/releases/latest"
-  },
-  "extract_dir": "cmder-powerline-prompt-v.06cc7a",
-  "hash": "d389b0a433ae9831c55a5dc1523bbd041bca0e5ccc7f3f790eb2c361bd18381f",
   "homepage": "https://github.com/chrisant996/cmder-powerline-prompt",
+  "version": "v.06cc7a",
+  "license": "",
+  "url": "https://ghproxy.com/https://github.com/chrisant996/cmder-powerline-prompt/archive/v.06cc7a.zip",
+  "hash": "d389b0a433ae9831c55a5dc1523bbd041bca0e5ccc7f3f790eb2c361bd18381f",
+  "extract_dir": "cmder-powerline-prompt-v.06cc7a",
   "installer": {
     "script": [
       "if (Get-Command clink -ErrorAction SilentlyContinue) {",
@@ -21,7 +16,6 @@
       "}"
     ]
   },
-  "license": "",
   "uninstaller": {
     "script": [
       "if (Get-Command clink -ErrorAction SilentlyContinue) {",
@@ -31,6 +25,12 @@
       "}"
     ]
   },
-  "url": "https://ghproxy.com/https://github.com/chrisant996/cmder-powerline-prompt/archive/v.06cc7a.zip",
-  "version": "v.06cc7a"
+  "checkver": {
+    "url": "https://github.com/chrisant996/cmder-powerline-prompt/releases/latest",
+    "re": "/releases/tag/([\\w.]+)"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/chrisant996/cmder-powerline-prompt/archive/$version.zip",
+    "extract_dir": "cmder-powerline-prompt-$version"
+  }
 }

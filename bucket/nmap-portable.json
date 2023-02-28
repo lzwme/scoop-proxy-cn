@@ -1,20 +1,6 @@
 {
-  "autoupdate": {
-    "url": "https://nmap.org/dist/nmap-$version-setup.exe#/dl.7z"
-  },
-  "bin": [
-    "nmap.exe",
-    "ncat.exe",
-    "ndiff.exe",
-    "zenmap.exe",
-    "nping.exe"
-  ],
-  "checkver": {
-    "regex": "nmap-([\\d.]+)-setup\\.exe",
-    "url": "https://nmap.org/download.html"
-  },
+  "version": "7.93",
   "description": "Network exploration and security auditing utility.",
-  "hash": "f1160a33fb79c764cdc4c023fa700054ae2945ed91880e37348a17c010ca716f",
   "homepage": "https://nmap.org",
   "license": {
     "identifier": "GPL-2.0-only",
@@ -25,10 +11,22 @@
     "Please import the network performance improvements by running 'regedt32 \"$dir\\nmap_performance.reg\"'",
     "See: https://nmap.org/book/inst-windows.html"
   ],
+  "suggest": {
+    "Visual C++ Redist 2008": "extras/vcredist2008"
+  },
+  "url": "https://nmap.org/dist/nmap-7.93-setup.exe#/dl.7z",
+  "hash": "f1160a33fb79c764cdc4c023fa700054ae2945ed91880e37348a17c010ca716f",
   "pre_install": [
     "Get-ChildItem \"$dir\\`$PLUGINSDIR\\npcap-*.exe\" | Select-Object -First 1 | Rename-Item -NewName 'npcap-oem.exe'",
     "Move-Item \"$dir\\`$PLUGINSDIR\\npcap-oem.exe\" \"$dir\"",
     "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall.exe\" -Recurse"
+  ],
+  "bin": [
+    "nmap.exe",
+    "ncat.exe",
+    "ndiff.exe",
+    "zenmap.exe",
+    "nping.exe"
   ],
   "shortcuts": [
     [
@@ -36,9 +34,11 @@
       "Nmap - Zenmap GUI"
     ]
   ],
-  "suggest": {
-    "Visual C++ Redist 2008": "extras/vcredist2008"
+  "checkver": {
+    "url": "https://nmap.org/download.html",
+    "regex": "nmap-([\\d.]+)-setup\\.exe"
   },
-  "url": "https://nmap.org/dist/nmap-7.93-setup.exe#/dl.7z",
-  "version": "7.93"
+  "autoupdate": {
+    "url": "https://nmap.org/dist/nmap-$version-setup.exe#/dl.7z"
+  }
 }

@@ -1,5 +1,5 @@
 {
-  "version": "6.11",
+  "version": "6.21",
   "description": "Powerful archive manager",
   "homepage": "https://rarlab.com/",
   "license": {
@@ -9,15 +9,18 @@
   "notes": "Set up context menu within settings window.",
   "architecture": {
     "64bit": {
-      "url": "https://www.rarlab.com/rar/winrar-x64-611sc.exe#/dl.7z",
-      "hash": "a364612c5acc56c057fec0428220eca991b58a47bd3a7ae4c1b4e0a644ad79da"
+      "url": "https://www.rarlab.com/rar/winrar-x64-621.exe#/dl.7z",
+      "hash": "af51d8714fbb34157e3bd53fcecdd76bcc0ed732f89cf469f544aec968d192d9"
     },
     "32bit": {
-      "url": "https://www.rarlab.com/rar/winrar-x32-611sc.exe#/dl.7z",
-      "hash": "cfcebea91ee1837950bed722a92d240bbdcafc7e1fcb76e9fc5d9ce4acea6ccd"
+      "url": "https://www.rarlab.com/rar/winrar-x32-621.exe#/dl.7z",
+      "hash": "b9da88e31ed1207b4bf5a1ac940ee9c74da4728d7a65096fe112d02c01087a6e"
     }
   },
-  "pre_install": "if (!(Test-Path \"$persist_dir\\rarreg.key\")) { New-Item \"$dir\\rarreg.key\" | Out-Null }",
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\rarreg.key\")) { New-Item \"$dir\\rarreg.key\" | Out-Null }",
+    "if (!(Test-Path \"$persist_dir\\WinRar.ini\")) { New-Item \"$dir\\WinRar.ini\" | Out-Null }"
+  ],
   "bin": [
     "Rar.exe",
     "UnRAR.exe",
@@ -29,15 +32,19 @@
       "WinRAR"
     ]
   ],
-  "persist": "rarreg.key",
+  "persist": [
+    "rarreg.key",
+    "WinRar.ini",
+    "Themes"
+  ],
   "checkver": "WinRAR and RAR ([\\d.]+) release",
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://www.rarlab.com/rar/winrar-x64-$cleanVersioncs.exe#/dl.7z"
+        "url": "https://www.rarlab.com/rar/winrar-x64-$cleanVersion.exe#/dl.7z"
       },
       "32bit": {
-        "url": "https://www.rarlab.com/rar/winrar-x32-$cleanVersioncs.exe#/dl.7z"
+        "url": "https://www.rarlab.com/rar/winrar-x32-$cleanVersion.exe#/dl.7z"
       }
     }
   }

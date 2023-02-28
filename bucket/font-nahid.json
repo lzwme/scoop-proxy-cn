@@ -1,10 +1,13 @@
 {
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/rastikerdar/nahid-font/releases/download/v$version/nahid-font-v$version.zip"
-  },
-  "checkver": "github",
-  "hash": "98964cb08f84a4e9f56aaa08055d82f2f44489b9ba7d9cb59a403b38b9a238ab",
+  "version": "0.3.0",
+  "license": "SIL OFL 1.1",
   "homepage": "https://github.com/rastikerdar/nahid-font",
+  "url": "https://ghproxy.com/https://github.com/rastikerdar/nahid-font/releases/download/v0.3.0/nahid-font-v0.3.0.zip",
+  "hash": "98964cb08f84a4e9f56aaa08055d82f2f44489b9ba7d9cb59a403b38b9a238ab",
+  "pre_install": [
+    "Remove-Item $dir\\* -exclude *.ttf -Force -Recurse",
+    "Get-ChildItem \"$dir\" -Recurse -Directory | Remove-Item -Recurse"
+  ],
   "installer": {
     "script": [
       "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
@@ -26,11 +29,6 @@
       "}"
     ]
   },
-  "license": "SIL OFL 1.1",
-  "pre_install": [
-    "Remove-Item $dir\\* -exclude *.ttf -Force -Recurse",
-    "Get-ChildItem \"$dir\" -Recurse -Directory | Remove-Item -Recurse"
-  ],
   "uninstaller": {
     "script": [
       "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
@@ -51,6 +49,8 @@
       "Write-Host \"The '$app' font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
     ]
   },
-  "url": "https://ghproxy.com/https://github.com/rastikerdar/nahid-font/releases/download/v0.3.0/nahid-font-v0.3.0.zip",
-  "version": "0.3.0"
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/rastikerdar/nahid-font/releases/download/v$version/nahid-font-v$version.zip"
+  }
 }

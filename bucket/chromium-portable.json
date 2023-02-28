@@ -1,31 +1,15 @@
 {
-  "architecture": {
-    "64bit": {
-      "extract_dir": "ungoogled-chromium-105.0.5195.127-1_Win64",
-      "hash": "35fd8452cd72effdc88fb6b120b79755cafc6179c1072c60729cde7a49b85368",
-      "url": "https://ghproxy.com/https://github.com/macchrome/winchrome/releases/download/v105.0.5195.127-r1027018-Win64/ungoogled-chromium-105.0.5195.127-1_Win64.7z"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "extract_dir": "ungoogled-chromium-$matchChromeversion-1_Win64",
-        "url": "https://ghproxy.com/https://github.com/macchrome/winchrome/releases/download/v$matchChromeversion-r$matchBuild-Win64/ungoogled-chromium-$matchChromeversion-1_Win64.7z"
-      }
-    },
-    "hash": {
-      "regex": "(?s)$basename.*?$sha1",
-      "url": "https://github.com/macchrome/winchrome/releases/tag/v$matchChromeversion-r$matchBuild-Win64"
-    }
-  },
-  "checkver": {
-    "regex": "/releases/tag/v(?<chromeVersion>[\\d.]+)-r(?<build>[\\d]+)-Win64",
-    "replace": "${chromeVersion}-r${build}",
-    "url": "https://github.com/macchrome/winchrome/tags"
-  },
+  "version": "105.0.5195.127-r1027018",
   "description": "Browser aiming for safer, faster, and more stable way for all users to experience the web.",
   "homepage": "https://www.chromium.org",
   "license": "BSD-3-Clause",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/macchrome/winchrome/releases/download/v105.0.5195.127-r1027018-Win64/ungoogled-chromium-105.0.5195.127-1_Win64.7z",
+      "hash": "35fd8452cd72effdc88fb6b120b79755cafc6179c1072c60729cde7a49b85368",
+      "extract_dir": "ungoogled-chromium-105.0.5195.127-1_Win64"
+    }
+  },
   "shortcuts": [
     [
       "chrome.exe",
@@ -33,5 +17,21 @@
       "--user-data-dir=\"$dir\\User Data\""
     ]
   ],
-  "version": "105.0.5195.127-r1027018"
+  "checkver": {
+    "url": "https://github.com/macchrome/winchrome/tags",
+    "regex": "/releases/tag/v(?<chromeVersion>[\\d.]+)-r(?<build>[\\d]+)-Win64",
+    "replace": "${chromeVersion}-r${build}"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/macchrome/winchrome/releases/download/v$matchChromeversion-r$matchBuild-Win64/ungoogled-chromium-$matchChromeversion-1_Win64.7z",
+        "extract_dir": "ungoogled-chromium-$matchChromeversion-1_Win64"
+      }
+    },
+    "hash": {
+      "url": "https://github.com/macchrome/winchrome/releases/tag/v$matchChromeversion-r$matchBuild-Win64",
+      "regex": "(?s)$basename.*?$sha1"
+    }
+  }
 }

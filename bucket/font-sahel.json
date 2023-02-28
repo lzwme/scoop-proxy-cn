@@ -1,10 +1,14 @@
 {
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/rastikerdar/sahel-font/releases/download/v$version/sahel-font-v$version.zip"
-  },
-  "checkver": "github",
-  "hash": "3437606dbc3044289310dde3a9b63decdc7727e10dd01a4889cf5a04dfe070ad",
+  "version": "3.4.0",
+  "license": "SIL OFL 1.1",
   "homepage": "https://github.com/rastikerdar/sahel-font",
+  "url": "https://ghproxy.com/https://github.com/rastikerdar/sahel-font/releases/download/v3.4.0/sahel-font-v3.4.0.zip",
+  "hash": "3437606dbc3044289310dde3a9b63decdc7727e10dd01a4889cf5a04dfe070ad",
+  "pre_install": [
+    "Remove-Item $dir\\* -exclude *.ttf -Force -Recurse",
+    "Remove-Item $dir\\*-VF.ttf -Force -Recurse",
+    "Get-ChildItem \"$dir\" -Recurse -Directory | Remove-Item -Recurse"
+  ],
   "installer": {
     "script": [
       "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
@@ -26,12 +30,6 @@
       "}"
     ]
   },
-  "license": "SIL OFL 1.1",
-  "pre_install": [
-    "Remove-Item $dir\\* -exclude *.ttf -Force -Recurse",
-    "Remove-Item $dir\\*-VF.ttf -Force -Recurse",
-    "Get-ChildItem \"$dir\" -Recurse -Directory | Remove-Item -Recurse"
-  ],
   "uninstaller": {
     "script": [
       "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
@@ -52,6 +50,8 @@
       "Write-Host \"The '$app' font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
     ]
   },
-  "url": "https://ghproxy.com/https://github.com/rastikerdar/sahel-font/releases/download/v3.4.0/sahel-font-v3.4.0.zip",
-  "version": "3.4.0"
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/rastikerdar/sahel-font/releases/download/v$version/sahel-font-v$version.zip"
+  }
 }

@@ -1,12 +1,15 @@
 {
-  "autoupdate": {
-    "extract_dir": "Estedad-v$version",
-    "url": "https://ghproxy.com/https://github.com/aminabedi68/Estedad/releases/download/$version/Estedad-v$version.zip"
-  },
-  "checkver": "github",
-  "extract_dir": "Estedad-v7.3",
-  "hash": "a15726ac8b78b7d87f8b10fbc26581ef309f2c6a8a26f547d90b33d75c73cb87",
+  "version": "7.3",
+  "license": "SIL OFL 1.1",
   "homepage": "https://github.com/aminabedi68/Estedad/",
+  "url": "https://ghproxy.com/https://github.com/aminabedi68/Estedad/releases/download/7.3/Estedad-v7.3.zip",
+  "hash": "a15726ac8b78b7d87f8b10fbc26581ef309f2c6a8a26f547d90b33d75c73cb87",
+  "extract_dir": "Estedad-v7.3",
+  "pre_install": [
+    "Move-Item $dir\\ttf\\* $dir",
+    "Remove-Item $dir\\* -exclude *.ttf -Force -Recurse",
+    "Get-ChildItem \"$dir\" -Recurse -Directory | Remove-Item -Recurse"
+  ],
   "installer": {
     "script": [
       "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
@@ -28,12 +31,6 @@
       "}"
     ]
   },
-  "license": "SIL OFL 1.1",
-  "pre_install": [
-    "Move-Item $dir\\ttf\\* $dir",
-    "Remove-Item $dir\\* -exclude *.ttf -Force -Recurse",
-    "Get-ChildItem \"$dir\" -Recurse -Directory | Remove-Item -Recurse"
-  ],
   "uninstaller": {
     "script": [
       "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
@@ -54,6 +51,9 @@
       "Write-Host \"The '$app' font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
     ]
   },
-  "url": "https://ghproxy.com/https://github.com/aminabedi68/Estedad/releases/download/7.3/Estedad-v7.3.zip",
-  "version": "7.3"
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/aminabedi68/Estedad/releases/download/$version/Estedad-v$version.zip",
+    "extract_dir": "Estedad-v$version"
+  }
 }

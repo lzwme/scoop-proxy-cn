@@ -1,23 +1,26 @@
 {
+  "version": "1.67.2",
+  "description": "Cross Platform Rust Repl",
+  "homepage": "https://github.com/sigmaSd/IRust",
+  "license": "MIT",
   "architecture": {
     "64bit": {
-      "extract_dir": "irust-1.64.0-x86_64-pc-windows-msvc",
-      "hash": "f29ff9db6da9ed405c3f5fd26a94b80cf98508ea239c435148f25361b951778a",
-      "url": "https://ghproxy.com/https://github.com/sigmaSd/IRust/releases/download/1.64.0/irust-1.64.0-x86_64-pc-windows-msvc.zip"
+      "url": "https://ghproxy.com/https://github.com/sigmaSd/IRust/releases/download/irust@1.67.2/irust-irust@1.67.2-x86_64-pc-windows-msvc.zip",
+      "hash": "96caca2d6085bfee91a2303fe6f4515d4fbd012854f59b1d587abf90c6613259",
+      "extract_dir": "irust-1.67.2-x86_64-pc-windows-msvc"
     }
+  },
+  "bin": "irust.exe",
+  "checkver": {
+    "url": "https://github.com/sigmaSd/IRust/releases",
+    "re": "irust@([\\d.]+)"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "extract_dir": "irust-$version-x86_64-pc-windows-msvc",
-        "url": "https://ghproxy.com/https://github.com/sigmaSd/IRust/releases/download/$version/irust-$version-x86_64-pc-windows-msvc.zip"
+        "url": "https://ghproxy.com/https://github.com/sigmaSd/IRust/releases/download/irust@$version/irust-irust@$version-x86_64-pc-windows-msvc.zip",
+        "extract_dir": "irust-$version-x86_64-pc-windows-msvc"
       }
     }
-  },
-  "bin": "irust.exe",
-  "checkver": "github",
-  "description": "Cross Platform Rust Repl",
-  "homepage": "https://github.com/sigmaSd/IRust",
-  "license": "MIT",
-  "version": "1.64.0"
+  }
 }

@@ -1,5 +1,5 @@
 {
-  "version": "2.1.49",
+  "version": "2.1.60",
   "description": "Powerful and intelligent flash cards",
   "homepage": "https://apps.ankiweb.net",
   "license": "AGPL-3.0-only",
@@ -8,18 +8,22 @@
   },
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.com/https://github.com/ankitects/anki/releases/download/2.1.49/anki-2.1.49-windows.exe#/installer.exe",
-      "hash": "3c9764cb4746cfa4059633678b9dcdc0ae5754e61d99855cb0c40fa6bfd33f5e"
+      "url": "https://ghproxy.com/https://github.com/ankitects/anki/releases/download/2.1.60/anki-2.1.60-windows-qt6.exe#/installer.exe",
+      "hash": "efd403a907ee9a206439d446af47717f1024eb5581ad6fca4da7cc7624088243"
     }
   },
   "installer": {
     "script": [
-      "Invoke-ExternalCommand \"$dir\\installer.exe\" -ArgumentList @('/S', \"/D=$dir\") -RunAs | Out-Null",
+      "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+      "Start-Process -Wait \"$dir\\installer.exe\" -ArgumentList @('/S', \"/D=$dir\") -Verb RunAs | Out-Null",
       "Remove-Item \"$([Environment]::GetFolderPath('commonstartmenu'))\\Programs\\Anki.lnk\""
     ]
   },
   "uninstaller": {
-    "script": "Invoke-ExternalCommand \"$dir\\uninstall.exe\" -ArgumentList @('/S') -RunAs | Out-Null"
+    "script": [
+      "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+      "Start-Process -Wait \"$dir\\uninstall.exe\" -ArgumentList '/S' -Verb RunAs | Out-Null"
+    ]
   },
   "bin": "anki.exe",
   "shortcuts": [
@@ -29,13 +33,12 @@
     ]
   ],
   "checkver": {
-    "url": "https://github.com/ankitects/anki/releases",
-    "regex": "anki-([\\d.]+)-windows\\.exe"
+    "github": "https://github.com/ankitects/anki"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.com/https://github.com/ankitects/anki/releases/download/$version/anki-$version-windows.exe#/installer.exe"
+        "url": "https://ghproxy.com/https://github.com/ankitects/anki/releases/download/$version/anki-$version-windows-qt6.exe#/installer.exe"
       }
     },
     "hash": {

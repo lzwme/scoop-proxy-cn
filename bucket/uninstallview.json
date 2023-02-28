@@ -1,18 +1,33 @@
 {
+  "version": "1.48",
   "homepage": "https://www.nirsoft.net/utils/uninstall_view.html",
-  "checkver": "UninstallView v(\\d+\\.\\d\\d)",
-  "version": "1.46",
-  "license": "freeware",
-  "description": "UninstallView is a tool for Windows that collects information about all programs installed on your system and displays the details of the installed programs in one table. You can use it to get installed programs information for your local system, for remote computer on your network, and for external hard-drive plugged to your computer. It also allows you to easily uninstall a software on your local computer and remote computer (Including quiet uninstall if the installer supports it).",
+  "bin": "UninstallView.exe",
+  "shortcuts": [
+    [
+      "UninstallView.exe",
+      "NirSoft\\UninstallView"
+    ]
+  ],
+  "persist": [
+    "uninstallview_lng.ini",
+    "uninstallview.cfg"
+  ],
   "architecture": {
     "64bit": {
       "url": "https://www.nirsoft.net/utils/uninstallview-x64.zip",
-      "hash": "26ef654d52f32a634bcfb19c831e813699e8cc7d9f196d71b3e41d0597d88086"
+      "hash": "7fcf09532684f94a9c89d32edec18514db47adbb06db2f58bf707f39c624d8e0"
     },
     "32bit": {
       "url": "https://www.nirsoft.net/utils/uninstallview.zip",
-      "hash": "3652be83d13fe3b54c91e1c2ff40ef2e28ae4390ea01d083f5182c925f281d51"
+      "hash": "e83b11264115476fa24be0770b4c00e07ba17523962f497c940c74e46e71e5b7"
     }
+  },
+  "description": "Shows installed programs on your system and allows you to uninstall them.",
+  "license": "Freeware",
+  "notes": "If this application is useful to you, please consider donating to NirSoft - https://www.nirsoft.net/donate.html",
+  "checkver": {
+    "url": "https://www.nirsoft.net/pad/uninstallview.xml",
+    "xpath": "/XML_DIZ_INFO/Program_Info/Program_Version"
   },
   "autoupdate": {
     "architecture": {
@@ -23,12 +38,5 @@
         "url": "https://www.nirsoft.net/utils/uninstallview.zip"
       }
     }
-  },
-  "bin": "UninstallView.exe",
-  "shortcuts": [
-    [
-      "UninstallView.exe",
-      "NirSoft\\UninstallView - Shows installed programs on your system"
-    ]
-  ]
+  }
 }

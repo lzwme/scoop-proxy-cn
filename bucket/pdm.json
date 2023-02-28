@@ -1,23 +1,17 @@
 {
-  "autoupdate": {
-    "url": "https://files.pythonhosted.org/$match1"
-  },
-  "bin": "venv\\Scripts\\pdm.exe",
-  "checkver": {
-    "re": "https://files.pythonhosted.org/(packages/.*/pdm-(?<version>[\\d.]+)-.*\\.whl)",
-    "replace": "${version}",
-    "url": "https://pypi.org/project/pdm/#files"
-  },
-  "depends": "python",
-  "hash": "22edefd9ae218299940efea46907921f4f17121f93e06252f71c6d1b082e5052",
   "homepage": "http://pdm.fming.dev",
+  "version": "2.4.6",
+  "license": "MIT",
+  "url": "https://files.pythonhosted.org/packages/05/eb/ef14ec84afcbaa60d268950d48e97bd5955fb6de5f1366b67c8250d79b41/pdm-2.4.6-py3-none-any.whl",
+  "depends": "python",
+  "hash": "90bf7eaf9cbb392f3e89f7b40423cb7c5f148c81e8c7a287c0082ddb399d28d9",
+  "bin": "venv\\Scripts\\pdm.exe",
   "installer": {
     "script": [
       "python -m venv \"$dir\\venv\"",
       "& \"$dir\\venv\\Scripts\\python.exe\" -m pip install \"$dir\\$fname\""
     ]
   },
-  "license": "MIT",
   "post_install": "& \"$dir\\venv\\Scripts\\pdm.exe\" --pep582",
   "uninstaller": {
     "script": [
@@ -26,6 +20,12 @@
       "[Environment]::SetEnvironmentVariable(\"PYTHONPATH\", $newPath, [System.EnvironmentVariableTarget]::User)"
     ]
   },
-  "url": "https://files.pythonhosted.org/packages/ae/ca/6e71506d6304cd1c19f9b72f8216dfd6e2b36604af73c61eb7bc83840262/pdm-2.4.5-py3-none-any.whl",
-  "version": "2.4.5"
+  "checkver": {
+    "url": "https://pypi.org/project/pdm/#files",
+    "re": "https://files.pythonhosted.org/(packages/.*/pdm-(?<version>[\\d.]+)-.*\\.whl)",
+    "replace": "${version}"
+  },
+  "autoupdate": {
+    "url": "https://files.pythonhosted.org/$match1"
+  }
 }

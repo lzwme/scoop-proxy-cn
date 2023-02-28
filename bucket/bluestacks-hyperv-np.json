@@ -1,17 +1,18 @@
 {
+  "version": "nightly",
+  "description": "Android emulator.",
+  "homepage": "https://www.bluestacks.com/",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://www.bluestacks.com/tw/terms-and-privacy.html"
+  },
   "architecture": {
     "64bit": {
       "url": "https://cloud.bluestacks.com/get_offline_download?os_arch=x64&is_hyperv=true#/setup.7z"
     }
   },
-  "description": "Android emulator.",
-  "homepage": "https://www.bluestacks.com/",
   "installer": {
     "script": "Start-Process -Wait \"$dir\\BlueStacksInstaller.exe\" \"-s\" -Verb RunAs"
-  },
-  "license": {
-    "identifier": "Freeware",
-    "url": "https://www.bluestacks.com/tw/terms-and-privacy.html"
   },
   "uninstaller": {
     "script": [
@@ -21,6 +22,5 @@
       "$uninstaller = $uninstaller.Substring(0, $uninstaller.Length - 5)",
       "Start-Process -Wait \"$uninstaller\" \"-s\" -Verb RunAs"
     ]
-  },
-  "version": "nightly"
+  }
 }

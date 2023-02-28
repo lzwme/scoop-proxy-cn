@@ -1,26 +1,32 @@
 {
-  "autoupdate": {
-    "hash": {
-      "regex": "$sha256",
-      "url": "$url.sha256"
-    },
-    "url": "https://scoop-zapps.ziiyc.com/d/TIM/TIM-$version.7z"
+  "version": "3.4.5.22071",
+  "description": "tencent TIM, lightweight alternative to QQ",
+  "homepage": "https://office.qq.com/",
+  "license": {
+    "identifier": "Unknown",
+    "url": "http://play.mobile.qq.com/yy/eim/help/serverinfo.html"
+  },
+  "url": "http://dldir1.qq.com/qqfile/qq/TIM3.4.5/TIM3.4.5.22071.exe#/TimSetup.exe",
+  "hash": "e92a4705964f2f572e376aa6634e6d487fba2dd3060f0f1c1991ab86350934e6",
+  "installer": {
+    "script": [
+      "Start-Process -Wait -WindowStyle Hidden cmd \"/c call `\"$dir\\TimSetup.exe`\" -s\" -Verb RunAs",
+      "Remove-Item \"$dir\\TimSetup.exe\""
+    ]
+  },
+  "post_install": "Copy-Item -Path \"C:\\Program Files (x86)\\Tencent\\TIM\\TIMUninst.exe\" \"$dir\\TIMUninst.exe\"",
+  "uninstaller": {
+    "script": "Start-Process -Wait -WindowStyle Hidden cmd \"/c call `\"$dir\\TIMUninst.exe`\" -s\" -Verb RunAs"
   },
   "checkver": {
-    "regex": "([\\d.]+)",
-    "url": "https://ghproxy.com/https://raw.githubusercontent.com/kkzzhizhou/scoop-zapps/master/versions/TIM.latest"
+    "url": "https://im.qq.com/rainbow/TIMDownload/",
+    "regex": "\"pcLink\":\"https?://dldir1\\.qq\\.com/qqfile/qq(?<extra>.*)/TIM(?<main>\\d+\\.\\d+\\.\\d+)/TIM.*\\.(?<patch>\\d+)\\.exe",
+    "replace": "${main}.${patch}"
   },
-  "description": "绿色精简版",
-  "extract_dir": "TIM",
-  "hash": "10e033cf7e55d8ba13480b5cb3f53156b1374569fda4572489f49e84255e9f17",
-  "homepage": "https://www.ghpym.com/pctim.html",
-  "license": "MIT",
-  "shortcuts": [
-    [
-      "Bin/TIM.exe",
-      "TIM"
-    ]
-  ],
-  "url": "https://scoop-zapps.ziiyc.com/d/TIM/TIM-3.3.9.22051.7z",
-  "version": "3.3.9.22051"
+  "autoupdate": {
+    "url": "http://dldir1.qq.com/qqfile/qq$matchExtra/TIM$matchMain/TIM$version.exe#/TimSetup.exe",
+    "hash": {
+      "mode": "download"
+    }
+  }
 }

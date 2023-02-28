@@ -1,18 +1,32 @@
 {
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/paolo-projects/auto-unlocker/releases/download/v$version/Unlocker-x64.zip"
-  },
-  "checkver": "github",
-  "description": "Unlocker for VMWare macOS",
-  "hash": "a9717fcf4aeabc0da9d3e089ff7868275daf4ecf47b767a07f4997a2af5431ae",
+  "version": "2.0.0a",
+  "description": "Unblock macOS system installations in VMware",
   "homepage": "https://github.com/paolo-projects/auto-unlocker",
-  "license": "GPL-3.0-or-later",
+  "license": "GPL-3.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/paolo-projects/auto-unlocker/releases/download/v2.0.0a/Unlocker-v2.0.0a-x64.zip",
+      "hash": "1304bb7072073ac2f5c47886e2f688930918cc4fb25986d1b6ffe230bedf354b"
+    }
+  },
+  "persist": "backup",
+  "checkver": {
+    "url": "https://api.github.com/repos/paolo-projects/auto-unlocker/tags",
+    "jsonpath": "$..name",
+    "regex": "v([\\d.a-z]+)"
+  },
+  "bin": "unlocker.exe",
   "shortcuts": [
     [
-      "Unlocker.exe",
-      "Auto-Unlocker"
+      "unlocker.exe",
+      "auto unlocker"
     ]
   ],
-  "url": "https://ghproxy.com/https://github.com/paolo-projects/auto-unlocker/releases/download/v1.1.3/Unlocker-x64.zip",
-  "version": "1.1.3"
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/paolo-projects/auto-unlocker/releases/download/v$version/Unlocker-v$version-x64.zip"
+      }
+    }
+  }
 }

@@ -1,35 +1,42 @@
 {
-  "version": "3.14.0",
-  "description": "A pleasant note-taking platform.",
-  "homepage": "https://vnotex.github.io/vnote/",
-  "license": "LGPL-3.0-or-later",
+  "version": "3.16.0",
+  "description": "A Vim-inspired note-taking platform",
+  "homepage": "https://vnotex.github.io/vnote/en_us/",
+  "license": "LGPL-3.0-only",
+  "suggest": {
+    "vcredist": "extras/vcredist2022"
+  },
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.com/https://github.com/vnotex/vnote/releases/download/v3.14.0/vnote-win-x64_v3.14.0.zip",
-      "hash": "d92595bdd7490018edb61c369051480bea117aab53a23260bc868993c3cd0658"
+      "url": "https://ghproxy.com/https://github.com/vnotex/vnote/releases/download/v3.16.0/vnote-win-x64-qt5.15.2_v3.16.0.zip",
+      "hash": "4215518a97fd56db1337cc7d0513d01992591f7a0353c7362cc6711f83c98c76"
     },
     "32bit": {
-      "url": "https://ghproxy.com/https://github.com/vnotex/vnote/releases/download/v3.14.0/vnote-win-x86_v3.14.0.zip",
-      "hash": "7d3feac14e4fc5a36d82610d35458a89ca420017a042c2cf3027cb8b86d1ffb3"
+      "url": "https://ghproxy.com/https://github.com/vnotex/vnote/releases/download/v3.16.0/vnote-win-x86-qt5.15.2_v3.16.0.zip",
+      "hash": "c79fa5e84fbe2ebdd53d2d7a7343c94a8fa6e8e574943e898eba141db5190600"
     }
   },
-  "bin": "vnote.exe",
+  "post_install": [
+    "Remove-Item \"$dir\\vc_redist.*.exe\"",
+    "ensure \"$dir\\vnotex_files\" | Out-Null"
+  ],
   "shortcuts": [
     [
       "vnote.exe",
       "VNote"
     ]
   ],
+  "persist": "user_files",
   "checkver": {
     "github": "https://github.com/vnotex/vnote"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.com/https://github.com/vnotex/vnote/releases/download/v$version/vnote-win-x64_v$version.zip"
+        "url": "https://ghproxy.com/https://github.com/vnotex/vnote/releases/download/v$version/vnote-win-x64-qt5.15.2_v$version.zip"
       },
       "32bit": {
-        "url": "https://ghproxy.com/https://github.com/vnotex/vnote/releases/download/v$version/vnote-win-x86_v$version.zip"
+        "url": "https://ghproxy.com/https://github.com/vnotex/vnote/releases/download/v$version/vnote-win-x86-qt5.15.2_v$version.zip"
       }
     }
   }

@@ -1,8 +1,19 @@
 {
-  "autoupdate": {
-    "extract_dir": "grub-$version-for-windows",
-    "url": "https://ftp.gnu.org/gnu/grub/grub-$version-for-windows.zip"
+  "homepage": "https://www.gnu.org/software/grub/",
+  "description": "GNU GRUB is a Multiboot boot loader. It was derived from GRUB, the GRand Unified Bootloader, which was originally designed and implemented by Erich Stefan Boleyn.",
+  "version": "2.06",
+  "license": "GPL-3.0-or-later",
+  "url": "https://ftp.gnu.org/gnu/grub/grub-2.06-for-windows.zip",
+  "hash": "980f492b2bb9eaf6acb30e68e07b804d558a3389363b7d7273022b7200170991",
+  "checkver": {
+    "url": "https://ftp.gnu.org/gnu/grub/?C=M;O=D",
+    "regex": "grub-([\\d.]+)-for-windows.zip"
   },
+  "autoupdate": {
+    "url": "https://ftp.gnu.org/gnu/grub/grub-$version-for-windows.zip",
+    "extract_dir": "grub-$version-for-windows"
+  },
+  "extract_dir": "grub-2.06-for-windows",
   "bin": [
     "grub-bios-setup.exe",
     "grub-editenv.exe",
@@ -24,16 +35,5 @@
     "grub-script-check.exe",
     "grub-sparc64-setup.exe",
     "grub-syslinux2cfg.exe"
-  ],
-  "checkver": {
-    "regex": "grub-([\\d.]+)-for-windows.zip",
-    "url": "https://ftp.gnu.org/gnu/grub/?C=M;O=D"
-  },
-  "description": "GNU GRUB is a Multiboot boot loader. It was derived from GRUB, the GRand Unified Bootloader, which was originally designed and implemented by Erich Stefan Boleyn.",
-  "extract_dir": "grub-2.06-for-windows",
-  "hash": "980f492b2bb9eaf6acb30e68e07b804d558a3389363b7d7273022b7200170991",
-  "homepage": "https://www.gnu.org/software/grub/",
-  "license": "GPL-3.0-or-later",
-  "url": "https://ftp.gnu.org/gnu/grub/grub-2.06-for-windows.zip",
-  "version": "2.06"
+  ]
 }

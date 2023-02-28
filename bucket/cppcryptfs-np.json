@@ -1,5 +1,5 @@
 {
-  "version": "1.4.3.5",
+  "version": "1.4.4.1",
   "description": "Implementation of the gocryptfs encrypted overlay filesystem in C++ for Windows.",
   "homepage": "https://github.com/bailey27/cppcryptfs",
   "license": "MIT",
@@ -7,22 +7,22 @@
   "architecture": {
     "64bit": {
       "url": [
-        "https://ghproxy.com/https://github.com/bailey27/cppcryptfs/releases/download/1.4.3.5/cppcryptfs.exe",
-        "https://ghproxy.com/https://github.com/bailey27/cppcryptfs/releases/download/1.4.3.5/cppcryptfsctl.exe"
+        "https://ghproxy.com/https://github.com/bailey27/cppcryptfs/releases/download/1.4.4.1/cppcryptfs.exe",
+        "https://ghproxy.com/https://github.com/bailey27/cppcryptfs/releases/download/1.4.4.1/cppcryptfsctl.exe"
       ],
       "hash": [
-        "4cc34b35c810f428e94520a0df1bc662a6d3a609195db71f8ee04698f1922779",
-        "fd71c402a2fb517e71b3ee180afb308391bef9502e7af96b6d0d813764a3e327"
+        "2f4af3b75b7341acaec1c4d5b156a1c2e9eb071e0f3d5fc0bae28f336c48fe3a",
+        "30141acf45b5fdbb30208465f3f629d45467211f22950cc3e260e6d61ea02b89"
       ]
     },
     "32bit": {
       "url": [
-        "https://ghproxy.com/https://github.com/bailey27/cppcryptfs/releases/download/1.4.3.5/cppcryptfs32.exe#/cppcryptfs.exe",
-        "https://ghproxy.com/https://github.com/bailey27/cppcryptfs/releases/download/1.4.3.5/cppcryptfsctl32.exe#/cppcryptfsctl.exe"
+        "https://ghproxy.com/https://github.com/bailey27/cppcryptfs/releases/download/1.4.4.1/cppcryptfs32.exe#/cppcryptfs.exe",
+        "https://ghproxy.com/https://github.com/bailey27/cppcryptfs/releases/download/1.4.4.1/cppcryptfsctl32.exe#/cppcryptfsctl.exe"
       ],
       "hash": [
-        "09730edf0da51e84119e0e9b74cbb86f4c1888dad399f471f4ba160934e67711",
-        "c94ae2fb775260c8ee649bbc660ad8514fd936d48aeaf3b8cf0188492bd7e521"
+        "f561c474572ceca71373dd94af80881e09e94f37e50d257f5f0d348d59f97484",
+        "bcd10379d362c15ca78050ca43ef7ce4dd676be349125b0f50b26a0619a4f12a"
       ]
     }
   },
@@ -36,5 +36,21 @@
       "cppcryptfs"
     ]
   ],
-  "checkver": "github"
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": [
+          "https://ghproxy.com/https://github.com/bailey27/cppcryptfs/releases/download/$version/cppcryptfs.exe",
+          "https://ghproxy.com/https://github.com/bailey27/cppcryptfs/releases/download/$version/cppcryptfsctl.exe"
+        ]
+      },
+      "32bit": {
+        "url": [
+          "https://ghproxy.com/https://github.com/bailey27/cppcryptfs/releases/download/$version/cppcryptfs32.exe#/cppcryptfs.exe",
+          "https://ghproxy.com/https://github.com/bailey27/cppcryptfs/releases/download/$version/cppcryptfsctl32.exe#/cppcryptfsctl.exe"
+        ]
+      }
+    }
+  }
 }

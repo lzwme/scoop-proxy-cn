@@ -1,39 +1,60 @@
 {
+  "version": "4.4.5.27371",
+  "description": "Directory and file compare functions in one package",
   "homepage": "https://www.scootersoftware.com",
-  "description": "Beyond Compare is a multi-platform utility that combines directory compare and file compare functions in one package. Use it to manage source code, keep directories in sync, compare program output, etc.",
   "license": {
     "identifier": "Shareware",
     "url": "https://www.scootersoftware.com/index.php?zz=kb_licensev4"
   },
-  "version": "4.4.2.26348",
+  "notes": "Add Beyond Compare as a context menu option by running: '$dir\\install-context.reg'",
   "architecture": {
     "64bit": {
-      "url": "https://master.dl.sourceforge.net/project/tomato-extra/apps/BeyondCompare-x64-4.4.2.26348.7z",
-      "hash": "7ce1cac82cfa311ed6c3eebe6fe0cf0b782b454bf9e4c02d7d837479aea4389a"
+      "url": "https://www.scootersoftware.com/BCompare-4.4.5.27371_x64.msi",
+      "hash": "1473e243b51803c2ee28b3cea984736a83cb77e349cdfe5999fc99c45a3668b9"
+    },
+    "32bit": {
+      "url": "https://www.scootersoftware.com/BCompare-4.4.5.27371_x86.msi",
+      "hash": "c8892effd25d42946a81e0c08fc0143e0735c8d526affc08ac8061fed043a194"
     }
   },
-  "bin": [
-    "Bcomp.exe",
-    "BCompare.exe"
-  ],
+  "extract_dir": "Beyond Compare 4",
+  "bin": "Bcomp.exe",
   "shortcuts": [
     [
       "BCompare.exe",
-      "BCompare"
+      "Beyond Compare 4"
+    ],
+    [
+      "BCClipboard.exe",
+      "Clipboard Compare"
     ]
   ],
+  "post_install": [
+    "$dir_escaped = \"$dir\".Replace('\\', '\\\\')",
+    "\"install-context-$architecture\", \"uninstall-context\" | ForEach-Object {",
+    "  if (Test-Path \"$bucketsdir\\$bucket\\scripts\\beyondcompare\\$_.reg\") {",
+    "    $content = Get-Content \"$bucketsdir\\$bucket\\scripts\\beyondcompare\\$_.reg\"",
+    "    $content = $content.Replace('$install_dir', $dir_escaped)",
+    "    if ($global) {",
+    "      $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE')",
+    "    }",
+    "    $outfile_no_arch = $_.Replace(\"-$architecture\", \"\")",
+    "    $content | Set-Content -Path \"$dir\\$outfile_no_arch.reg\"",
+    "  }",
+    "}"
+  ],
   "checkver": {
-    "url": "https://sourceforge.net/projects/tomato-extra/files/apps/",
-    "regex": "BeyondCompare-x64-([\\d\\.]+)\\.7z"
+    "url": "https://www.scootersoftware.com/download.php?zz=kb_dl4_winalternate",
+    "regex": "BCompare-([\\d.]+)_x64\\.msi"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://master.dl.sourceforge.net/project/tomato-extra/apps/BeyondCompare-x64-$version.7z"
+        "url": "https://www.scootersoftware.com/BCompare-$version_x64.msi"
+      },
+      "32bit": {
+        "url": "https://www.scootersoftware.com/BCompare-$version_x86.msi"
       }
-    },
-    "hash": {
-      "url": "https://master.dl.sourceforge.net/project/tomato-extra/apps/sha256sum.txt"
     }
   }
 }

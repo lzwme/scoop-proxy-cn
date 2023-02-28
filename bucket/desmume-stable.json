@@ -1,53 +1,33 @@
 {
+  "version": "0.9.13",
+  "description": "DeSmuME is a Nintendo DS emulator",
+  "homepage": "https://desmume.org",
+  "license": "GPL-2.0-only",
   "architecture": {
     "64bit": {
-      "bin": [
-        [
-          "DeSmuME_0.9.13_x64.exe",
-          "desmume-stable"
-        ]
-      ],
-      "hash": "cbf710b8e6b29f0904e289a9b9a895548a2d7c7af5a3145c8279b97a69a09276",
-      "shortcuts": [
-        [
-          "DeSmuME_0.9.13_x64.exe",
-          "desmume-stable"
-        ]
-      ],
-      "url": "https://ghproxy.com/https://github.com/TASEmulators/desmume/releases/download/release_0_9_13/desmume-0.9.13-win64.zip"
+      "url": "https://ghproxy.com/https://github.com/TASEmulators/desmume/releases/download/release_0_9_13/desmume-0.9.13-win64.zip",
+      "hash": "cbf710b8e6b29f0904e289a9b9a895548a2d7c7af5a3145c8279b97a69a09276"
     }
   },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "bin": [
-          [
-            "DeSmuME_$version_x64.exe",
-            "desmume-stable"
-          ]
-        ],
-        "hash": "e858159f6bbeff6704bfba0959a29c22ffe8aaf2763ee5f983b487db23ba5247",
-        "shortcuts": [
-          [
-            "DeSmuME_$version_x64.exe",
-            "desmume-stable"
-          ]
-        ],
-        "url": "https://ghproxy.com/https://github.com/TASEmulators/desmume/releases/download/release_$underscoreVersion/desmume-$version-win64.zip"
-      }
-    }
-  },
-  "checkver": {
-    "github": "https://github.com/TASEmulators/desmume",
-    "regex": "release_([^_]*)_([^_]*)_([^_\"]*)",
-    "replace": "${1}.${2}.${3}"
-  },
-  "description": "Most used NDS emulator",
-  "homepage": "https://desmume.org/",
-  "license": {
-    "identifier": "GPL-2.0"
-  },
-  "notes": "No wifi emulation, most likey will never be",
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\desmume.ini\")) {",
+    "    New-Item \"$dir\\desmume.ini\" -Type File | Out-Null",
+    "}",
+    "if (!(Test-Path \"$dir\\DeSmuME.exe\")) {",
+    "    Get-ChildItem \"$dir\" \"DeSmuME*.exe\" |",
+    "    Where-Object { $_.Name -Match '(?i)DeSmuME_(git#[\\da-z]+|[\\d.]+)_x[\\d]{2}.exe' } |",
+    "    ForEach-Object {",
+    "        warn \"Moving $($_.Name) to DeSmuMe.exe\"",
+    "        Move-Item -Force \"$dir\\$($_.Name)\" \"$dir\\DeSmuMe.exe\"",
+    "    }",
+    "}"
+  ],
+  "shortcuts": [
+    [
+      "DeSmuME.exe",
+      "DeSmuME (Stable)"
+    ]
+  ],
   "persist": [
     "AviFiles",
     "Battery",
@@ -61,10 +41,16 @@
     "StateSlots",
     "desmume.ini"
   ],
-  "pre_install": [
-    "if (!(Test-Path \"$persist_dir\\desmume.ini\")) {",
-    "    New-Item \"$dir\\desmume.ini\" -Type File | Out-Null",
-    "}"
-  ],
-  "version": "0.9.13"
+  "checkver": {
+    "github": "https://github.com/TASEmulators/desmume",
+    "regex": "release_(?<major>[\\d]+)_(?<minor>[\\d]+)_(?<patch>[\\d]+)",
+    "replace": "${major}.${minor}.${patch}"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/TASEmulators/desmume/releases/download/release_$underscoreVersion/desmume-$version-win64.zip"
+      }
+    }
+  }
 }

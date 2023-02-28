@@ -1,66 +1,45 @@
 {
+  "homepage": "https://crystalmark.info/ja/software/crystaldiskmark/",
+  "description": "CrystalDiskMark is a disk benchmark software.",
+  "license": "MIT",
+  "version": "8.0.4c",
+  "url": "https://osdn.net/frs/redir.php?m=auto&f=crystaldiskmark%2F77936%2FCrystalDiskMark8_0_4cShizuku.zip#/dl.zip",
+  "hash": "4b3fc3fdc50d866526cb0cd78b0a95ba97a022884b78ce068179800ecc2cf0e8",
   "architecture": {
-    "32bit": {
-      "bin": [
-        [
-          "DiskMark32S.exe",
-          "DiskMarkS"
-        ]
-      ],
+    "64bit": {
       "shortcuts": [
         [
-          "DiskMark32S.exe",
+          "DiskMark64S.exe",
           "CrystalDiskMark Shizuku Edition"
         ]
       ]
     },
-    "64bit": {
-      "bin": [
-        [
-          "DiskMark64S.exe",
-          "DiskMarkS"
-        ]
-      ],
+    "32bit": {
       "shortcuts": [
         [
-          "DiskMark64S.exe",
+          "DiskMark32S.exe",
           "CrystalDiskMark Shizuku Edition"
         ]
       ]
     }
   },
-  "autoupdate": {
-    "hash": {
-      "regex": "<dd>$sha256</dd>",
-      "url": "https://osdn.net/projects/crystaldiskmark/downloads/$matchRelease/CrystalDiskMark$underscoreVersionShizuku.zip/"
-    },
-    "url": "https://free.nchc.org.tw/osdn//crystaldiskmark/$matchRelease/CrystalDiskMark$underscoreVersionShizuku.zip"
-  },
-  "checkver": "releases/(?<release>\\d+)\">CrystalDiskMark\\s+([\\w.]+)<",
-  "description": "CrystalDiskMark is a simple disk benchmark software(Shizuku Edition).",
-  "hash": "4b3fc3fdc50d866526cb0cd78b0a95ba97a022884b78ce068179800ecc2cf0e8",
-  "homepage": "https://osdn.net/projects/crystaldiskmark/",
-  "license": "BSD-3-Clause",
-  "notes": [
-    " * CrystalDiskMark may shorten SSD/USB Memory life.",
-    " * Benchmark result is NOT compatible between different major version.",
-    " * “MB/s” means 1,000,000 byte/sec.",
-    " * The result depends on Test File Size, Test File Position, Fragmentation, IDE(PATA)/SATA/RAID/SCSI/NVMe  controller and CPU speed etc…",
-    " * A part of SSDs depend on test data(random, 0fill).",
-    " * If you execute CrystalDiskMark with Administrator rights, it does not show Network Drive.",
-    "    * If you would like to measure Network Drive, please run as w/o Administrator rights.",
-    "    * UAC Dialog: YES -> w/ Administrator Rights, NO -> w/o Administrator Rights",
-    "-> FAQ <https://crystalmark.info/en/software/crystaldiskmark/crystaldiskmark-faq/>"
+  "pre_install": [
+    "if(!(Test-Path(\"$dir\\DiskMark64S.ini\"))) { New-Item \"$dir\\DiskMark64S.ini\" | Out-Null }",
+    "if(!(Test-Path(\"$dir\\DiskMark32S.ini\"))) { New-Item \"$dir\\DiskMark32S.ini\" | Out-Null }"
   ],
   "persist": [
-    "DiskMark32S.ini",
-    "DiskMark64S.ini"
+    "DiskMark64S.ini",
+    "DiskMark32S.ini"
   ],
-  "pre_install": [
-    "'64S', '32S' | ForEach-Object {",
-    "    if (!(Test-Path \"$persist_dir\\DiskMark$_.ini\")) { New-Item \"$dir\\DiskMark$_.ini\" | Out-Null }",
-    "}"
-  ],
-  "url": "https://free.nchc.org.tw/osdn//crystaldiskmark/77936/CrystalDiskMark8_0_4cShizuku.zip",
-  "version": "8.0.4c"
+  "checkver": {
+    "url": "https://osdn.net/projects/crystaldiskmark/",
+    "regex": "releases/(?<release>[\\d]+)\">CrystalDiskMark ([\\w.]+)<"
+  },
+  "autoupdate": {
+    "url": "https://osdn.net/frs/redir.php?m=auto&f=crystaldiskmark%2F$matchRelease%2FCrystalDiskMark$underscoreVersionShizuku.zip#/dl.zip",
+    "hash": {
+      "url": "https://osdn.net/projects/crystaldiskmark/downloads/$matchRelease/CrystalDiskMark$underscoreVersionShizuku.zip/",
+      "regex": "<dd>$sha256</dd>"
+    }
+  }
 }

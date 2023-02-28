@@ -1,49 +1,48 @@
 {
-  "homepage": "https://desmume.org",
-  "version": "nightly-2023-02-25",
-  "description": "Nintendo DS Emulator",
-  "pre_install": [
-    "$ini = \"$dir\\desmume.ini\"",
-    "Rename-Item \"$dir\\DeSmuME-VS2019-x64-Release.exe\" \"$dir\\desmume.exe\" | Out-Null",
-    "if (-not (Test-Path \"$ini\")) {",
-    "  New-Item \"$ini\" | Out-Null",
-    "}"
-  ],
-  "architecture": {
-    "64bit": {
-      "url": "https://nightly.link/TASEmulators/desmume/workflows/build_win/master/desmume-win-x64.zip#/desmume-x64-0.9.13-nightly-2023-02-25.zip",
-      "hash": "442f32940c19fd06c8d3875296ecdf035bcc6d19beb16e2ffca11d0c02477b2c",
-      "bin": "desmume.exe",
-      "shortcuts": [
-        [
-          "desmume.exe",
-          "NDS"
-        ]
-      ]
-    }
+  "autoupdate": {
+    "url": "https://nightly.link/TASEmulators/desmume/workflows/build_win/master/desmume-win-x64.zip"
   },
-  "persist": [
-    "Battery",
-    "Cheats",
-    "States",
-    "StateSlots",
-    "Lua",
-    "AviFiles",
-    "desmume.ini"
+  "bin": [
+    [
+      "DeSmuME-VS2019-x64-Release.exe",
+      "DeSmuME"
+    ]
   ],
   "checkver": {
-    "url": "https://api.github.com/repos/TASEmulators/desmume/commits/master",
-    "jsonpath": {
-      "version": "$.commit.author.date"
-    },
-    "regex": "(\\d+)\\/(\\d+)\\/(\\d+)",
-    "replace": "nightly-${3}-${2}-${1}"
+    "regex": "([a-f0-9]{7})<",
+    "url": "https://github.com/TASEmulators/desmume/actions/workflows/build_win.yml?query=branch%3Amaster+is%3Asuccess"
   },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://nightly.link/TASEmulators/desmume/workflows/build_win/master/desmume-win-x64.zip#/desmume-x64-0.9.13-$version.zip"
-      }
-    }
-  }
+  "description": "Nintendo DS emulator",
+  "hash": "72cfa575505f1bc586f74016f2011063c3e2d6b6b1d455ac827f078e4b351daf",
+  "homepage": "https://desmume.org",
+  "license": {
+    "identifier": "GPL-2.0",
+    "url": "https://github.com/TASEmulators/desmume/blob/master/license.txt"
+  },
+  "persist": [
+    "AviFiles",
+    "Battery",
+    "Cheats",
+    "Firmware",
+    "Lua",
+    "Roms",
+    "Screenshots",
+    "SramImportExport",
+    "States",
+    "StateSlots",
+    "desmume.ini"
+  ],
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\desmume.ini\")) {",
+    "    New-Item \"$dir\\desmume.ini\" -Type File | Out-Null",
+    "}"
+  ],
+  "shortcuts": [
+    [
+      "DeSmuME-VS2019-x64-Release.exe",
+      "DeSmuME"
+    ]
+  ],
+  "url": "https://nightly.link/TASEmulators/desmume/workflows/build_win/master/desmume-win-x64.zip",
+  "version": "1daebcd"
 }

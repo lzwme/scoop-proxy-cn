@@ -1,29 +1,36 @@
 {
-  "architecture": {
-    "32bit": {
-      "hash": "585a24b6d49ceda0f4cf97a5ff6bf87ffbae68a8853a2077991b3aaff569062c",
-      "url": "https://ghproxy.com/https://github.com/lcvvvv/kscan/releases/download/v1.20/kscan_v1.20_windows_386.zip"
-    },
-    "64bit": {
-      "hash": "43345b8cf778dfa48eb06a8da238eebe07ac681483d88d98000e80391d7241f4",
-      "url": "https://ghproxy.com/https://github.com/lcvvvv/kscan/releases/download/v1.20/kscan_v1.20_windows_amd64.zip"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "32bit": {
-        "url": "https://ghproxy.com/https://github.com/lcvvvv/kscan/releases/download/v$version/kscan_v$version_windows_386.zip"
-      },
-      "64bit": {
-        "url": "https://ghproxy.com/https://github.com/lcvvvv/kscan/releases/download/v$version/kscan_v$version_windows_amd64.zip"
-      }
-    }
-  },
-  "bin": "kscan.exe",
-  "checkver": "github",
+  "version": "1.85",
   "description": "一款轻量级的资产发现工具，可针对IP/IP段或资产列表进行端口扫描以及TCP指纹识别和Banner抓取，在不发送更多的数据包的情况下尽可能的获取端口更多信息。",
   "homepage": "https://github.com/lcvvvv/kscan",
   "license": "Unknown",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/lcvvvv/kscan/releases/download/v1.85/kscan_windows_amd64.zip",
+      "hash": "f76ecffde10bc4db897277e2f24fa2d0a8a8c73ffecc58f603e50b11233ae733"
+    },
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/lcvvvv/kscan/releases/download/v1.85/kscan_windows_386.zip",
+      "hash": "a038b96afa3d59e00645bb70f7d28c2677795b6e71b6950b2c1c00475dbfabb0"
+    },
+    "arm64": {
+      "url": "https://ghproxy.com/https://github.com/lcvvvv/kscan/releases/download/v1.85/kscan_windows_arm64.zip",
+      "hash": "42bc2a639b998c72309151242052c501b487a0a75840a2f9e345f0e0542e0960"
+    }
+  },
   "pre_install": "Rename-Item \"$dir\\kscan*.exe\" \"$dir\\kscan.exe\"",
-  "version": "1.20"
+  "bin": "kscan.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/lcvvvv/kscan/releases/download/v$version/kscan_windows_amd64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/lcvvvv/kscan/releases/download/v$version/kscan_windows_386.zip"
+      },
+      "arm64": {
+        "url": "https://ghproxy.com/https://github.com/lcvvvv/kscan/releases/download/v$version/kscan_windows_arm64.zip"
+      }
+    }
+  }
 }

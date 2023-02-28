@@ -1,19 +1,19 @@
 {
-  "version": "0.2022.07.08",
-  "description": "Simple Chromium command-line Updater",
-  "homepage": "https://github.com/mkorthof/chrupd",
-  "license": "GPL-2.0-only",
-  "url": "https://ghproxy.com/https://github.com/mkorthof/chrupd/archive/32f9d6d9c4bae1b021e59461804fda4c84a7ddf6.zip",
-  "hash": "c4549332cbaf523b3ae4755e2ac9ac3d725ffe9aa12f16588114ff802d129ecd",
-  "extract_dir": "chrupd-32f9d6d9c4bae1b021e59461804fda4c84a7ddf6",
+  "autoupdate": {
+    "extract_dir": "chrupd-$matchSha",
+    "url": "https://ghproxy.com/https://github.com/mkorthof/chrupd/archive/$matchSha.zip"
+  },
   "bin": "chrupd.cmd",
   "checkver": {
-    "url": "https://github.com/mkorthof/chrupd/commits/master.atom",
     "regex": "(?s)>(\\d+)-(\\d+)-(\\d+)T.*?/(?<sha>[0-9a-f]{40})",
-    "replace": "0.${1}.${2}.${3}"
+    "replace": "0.${1}.${2}.${3}",
+    "url": "https://github.com/mkorthof/chrupd/commits/master.atom"
   },
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/mkorthof/chrupd/archive/$matchSha.zip",
-    "extract_dir": "chrupd-$matchSha"
-  }
+  "description": "Simple Chromium command-line Updater",
+  "extract_dir": "chrupd-356e4941ec6103d52a79135276250504c0a4ea34",
+  "hash": "a73c1ac85cbcfb65e37b841947d27ade1e897f3b0066a4f12f6932ce8c47ea70",
+  "homepage": "https://github.com/mkorthof/chrupd",
+  "license": "GPL-2.0-only",
+  "url": "https://ghproxy.com/https://github.com/mkorthof/chrupd/archive/356e4941ec6103d52a79135276250504c0a4ea34.zip",
+  "version": "0.2022.12.26"
 }

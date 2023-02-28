@@ -1,26 +1,21 @@
 {
-  "architecture": {
-    "64bit": {
-      "hash": "FBE9D68EDD75A1FC29AAF30D37CA843EA0F980718BBE98BF60094B6D5AEDB1F3",
-      "url": "https://download.fastgit.org/akirco/dim/releases/download/0.1.0/dim-win.7z"
-    }
-  },
-  "description": "realesrgan-ncnn-vulkan项目的可交互命令行",
-  "homepage": "https://github.com/akirco/aki-apps",
+  "version": "0.1.1",
+  "description": "realesrgan-ncnn-vulkan,realesr-ncnn-vulkan项目的可交互命令行",
+  "homepage": "https://github.com/akirco/dim",
   "license": "MIT",
   "notes": [
-    "please add the fllowing script to $Profile , if nothing, if you use windows PowerShell you can touch ",
-    "'~\\Documents\\WindowsPowerShell\\Microsoft.PowerShell_profile.ps1'",
-    "if you use PowerShell core, you can touch '~\\Documents\\PowerShell\\Microsoft.PowerShell_profile.ps1' ",
-    "script:",
-    "$env:dim = $(scoop prefix dim)",
-    "[System.Environment]::SetEnvironmentVariable('dim',$env:dim,'User')",
-    "$Env:PATH += $env:dim+';'",
-    "[System.Environment]::SetEnvironmentVariable('path',$Env:PATH,'User')"
+    "realesrgan-ncnn-vulkan,realesr-ncnn-vulkan项目的可交互命令行"
   ],
-  "pre_install": [
-    "Move-Item -Path \"$dir\\dim-win*\\*\" -Destination \"$dir\"",
-    "Remove-Item \"$dir\\dim-win\" -Force -Recurse"
-  ],
-  "version": "0.1.0"
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/akirco/dim/releases/download/0.1.1/dim-win.7z",
+      "hash": "D2DFE196404E522EDD2380FD99ABD45D387FB70147F01630150AC70AC9B5FFE3"
+    }
+  },
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/akirco/dim/releases/download/$version/dim-win.7z"
+  },
+  "extract_dir": "dim-win",
+  "bin": "dim.exe"
 }

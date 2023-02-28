@@ -1,32 +1,21 @@
 {
-  "version": "0.2.0-beta.2",
-  "description": "A CLI tool that unlocks encrypted music file.",
-  "homepage": "https://git.unlock-music.dev/um/cli",
-  "license": "MIT",
-  "architecture": {
-    "64bit": {
-      "url": "https://git.unlock-music.dev/um/cli/releases/download/v0.2.0-beta.2/um-windows-amd64.tar.gz",
-      "hash": "0bd63cff49fcec6201a16e1cb8cb702bdfc45631ef9b96a6e8a02d56c3daf4eb"
-    },
-    "32bit": {
-      "url": "https://git.unlock-music.dev/um/cli/releases/download/v0.2.0-beta.2/um-windows-386.tar.gz",
-      "hash": "15fb5eb29c5127ca2f0b2c43db4fa57ee5ed6562d20388858a64594e17814739"
-    }
-  },
-  "bin": "um.exe",
-  "checkver": {
-    "url": "https://git.unlock-music.dev/api/v1/repos/um/cli/releases?limit=1",
-    "jsonpath": "$[0].tag_name",
-    "regex": "v?(.*)"
-  },
+  "homepage": "https://github.com/ix64/unlock-music",
+  "description": "Unlock encrypted music file in browser. 在浏览器中解锁加密的音乐文件。",
+  "version": "1.10.0",
+  "url": "https://ghproxy.com/https://github.com/ix64/unlock-music/releases/download/v1.10.0/legacy.tar.gz",
+  "hash": "1361c8c58e0469594ce9e4071d730f7717265c35a8d8871454138e46813143f1",
+  "checkver": "github",
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://git.unlock-music.dev/um/cli/releases/download/v0.2.0-beta.2/um-windows-amd64.tar.gz"
-      },
-      "32bit": {
-        "url": "https://git.unlock-music.dev/um/cli/releases/download/v0.2.0-beta.2/um-windows-386.tar.gz"
-      }
+    "url": "https://ghproxy.com/https://github.com/ix64/unlock-music/releases/download/v$version/legacy.tar.gz",
+    "hash": {
+      "url": "https://ghproxy.com/https://github.com/ix64/unlock-music/releases/download/v$version/sha256sum.txt",
+      "regex": "($sha256)  legacy.tar.gz"
     }
-  }
+  },
+  "shortcuts": [
+    [
+      "index.html",
+      "unlock music"
+    ]
+  ]
 }

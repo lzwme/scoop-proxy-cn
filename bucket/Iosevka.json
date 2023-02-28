@@ -1,10 +1,19 @@
 {
+  "version": "19.0.1",
+  "license": "OFL-1.1",
+  "homepage": "https://github.com/be5invis/iosevka",
+  "url": "https://ghproxy.com/https://github.com/be5invis/Iosevka/releases/download/v19.0.1/super-ttc-iosevka-19.0.1.zip",
+  "hash": "45fb32dc14d88a8bce0762c5cdd277caa94750f58abb05202e9ccda92c50fb8c",
+  "checkver": "github",
+  "suggest": {
+    "sudo": [
+      "sudo",
+      "gsudo"
+    ]
+  },
   "autoupdate": {
     "url": "https://ghproxy.com/https://github.com/be5invis/Iosevka/releases/download/v$version/super-ttc-iosevka-$version.zip"
   },
-  "checkver": "github",
-  "hash": "45fb32dc14d88a8bce0762c5cdd277caa94750f58abb05202e9ccda92c50fb8c",
-  "homepage": "https://github.com/be5invis/iosevka",
   "installer": {
     "script": [
       "if(!(is_admin)) { error \"Admin rights are required, please run 'sudo scoop install $app'\"; exit 1 }",
@@ -12,13 +21,6 @@
       "    New-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $_.Name -Force | Out-Null",
       "    Copy-Item $_.FullName -destination \"$env:windir\\Fonts\"",
       "}"
-    ]
-  },
-  "license": "OFL-1.1",
-  "suggest": {
-    "sudo": [
-      "sudo",
-      "gsudo"
     ]
   },
   "uninstaller": {
@@ -30,7 +32,5 @@
       "}",
       "Write-Host \"The '$($app.Replace('-NF', ''))' Font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
     ]
-  },
-  "url": "https://ghproxy.com/https://github.com/be5invis/Iosevka/releases/download/v19.0.1/super-ttc-iosevka-19.0.1.zip",
-  "version": "19.0.1"
+  }
 }

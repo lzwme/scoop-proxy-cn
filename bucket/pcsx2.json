@@ -1,56 +1,37 @@
 {
-  "version": "1.6.0",
-  "description": "A feature rich FOSS PlayStation 2 emulator",
-  "homepage": "https://pcsx2.net/",
-  "license": {
-    "identifier": "GPL-3.0",
-    "url": "https://github.com/PCSX2/pcsx2/blob/master/COPYING.GPLv3"
-  },
-  "notes": [
-    "ATTENTION: PCSX2 requires a dump of the PS2 BIOS to function.",
-    "Place the BIOS file in $persist_dir\\bios",
-    "Learn more at https://wiki.pcsx2.net/Setting_up_Windows_version#BIOS"
-  ],
-  "suggest": {
-    "Microsoft Visual C++ Runtime 2022": "extras/vcredist2022"
-  },
-  "url": "https://ghproxy.com/https://github.com/PCSX2/pcsx2/releases/download/v1.6.0/pcsx2-1.6.0-binaries.7z",
-  "hash": "f3401d6f74a4306797d9aab298d58c3b3898eb563495c463993f378c9f4801cb",
-  "extract_dir": "PCSX2 1.6.0",
-  "pre_install": [
-    "if (!(Test-Path \"$persist_dir\")) {",
-    "   New-item \"$persist_dir\" -ItemType Directory | Out-Null",
-    "   if (Test-Path \"$env:USERPROFILE\\Documents\\PCSX2\") {",
-    "       Write-host \"Migrating AppData...\" -ForegroundColor yellow",
-    "       Copy-Item -Path \"$env:USERPROFILE\\Documents\\PCSX2\\*\" -Destination \"$persist_dir\" -Recurse",
-    "       Remove-Item -Path \"$env:USERPROFILE\\Documents\\PCSX2\" -Recurse",
-    "   }",
-    "}"
-  ],
-  "bin": "pcsx2.exe",
+  "homepage": "https://pcsx2.net",
+  "version": "1.7.4147",
+  "description": "Playstation 2 Emulator",
+  "url": "https://ghproxy.com/https://github.com/PCSX2/pcsx2/releases/download/v1.7.4147/pcsx2-v1.7.4147-windows-64bit-AVX2-Qt.7z",
+  "hash": "0fb117a57f91cc5903033472b1d6d018e94bf94e0ac5567061eb7ec5e114cdee",
+  "bin": "pcsx2-qtx64-avx2.exe",
   "shortcuts": [
     [
-      "pcsx2.exe",
-      "PCSX2"
+      "pcsx2-qtx64-avx2.exe",
+      "PS2 (AVX2)"
     ]
   ],
   "persist": [
-    "bios",
-    "cheats_ws",
-    "cheats",
-    "inis",
-    "logs",
-    "memcards",
     "portable.ini",
-    "shaders\\GSdx_FX_Settings.ini",
+    "memcards",
     "snaps",
-    "sstates"
+    "sstates",
+    "bios",
+    "inis",
+    "gamesettings",
+    "inputprofiles",
+    "cheats",
+    "textures",
+    "videos"
   ],
   "checkver": {
-    "github": "https://github.com/PCSX2/pcsx2/"
+    "url": "https://api.github.com/repos/PCSX2/pcsx2/releases",
+    "jsonpath": {
+      "version": "$.[0].name"
+    },
+    "regex": "(\\d+\\.\\d+\\.\\d+)"
   },
   "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/PCSX2/pcsx2/releases/download/v$version/pcsx2-$version-binaries.7z",
-    "extract_dir": "PCSX2 $version"
+    "url": "https://ghproxy.com/https://github.com/PCSX2/pcsx2/releases/download/v$version/pcsx2-v$version-windows-64bit-AVX2-Qt.7z"
   }
 }

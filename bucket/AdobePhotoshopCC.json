@@ -1,10 +1,14 @@
 {
-  "autoupdate": {
-    "hash": {
-      "regex": "$sha256",
-      "url": "$url.sha256"
-    },
-    "url": "https://scoop-zapps.ziiyc.com/d/AdobePhotoshopCC/AdobePhotoshopCC-$version.exe#/dl.7z"
+  "version": "21.2.4.323",
+  "description": "zdBryan Photoshop精简版本",
+  "depends": "sudo",
+  "url": "https://scoop-zapps.ziiyc.com/d/AdobePhotoshopCC/AdobePhotoshopCC-21.2.4.323.exe#/dl.7z",
+  "hash": "4393a93999056bdd4067ab6b7e1f8f7132d1f6ed9dd19fa949516043867c0538",
+  "installer": {
+    "script": "sudo cmd /c \"$dir\\!)绿化.bat\""
+  },
+  "uninstaller": {
+    "script": "sudo cmd /c \"$dir\\!)卸载.bat\""
   },
   "bin": [
     [
@@ -12,26 +16,22 @@
       "Photoshop"
     ]
   ],
-  "checkver": {
-    "regex": "([\\d.]+)",
-    "url": "https://ghproxy.com/https://raw.githubusercontent.com/kkzzhizhou/scoop-zapps/master/versions/AdobePhotoshopCC.latest"
-  },
-  "depends": "sudo",
-  "description": "zdBryan Photoshop精简版本",
   "extract_dir": "Photoshop",
-  "hash": "4393a93999056bdd4067ab6b7e1f8f7132d1f6ed9dd19fa949516043867c0538",
-  "installer": {
-    "script": "sudo cmd /c \"$dir\\!)绿化.bat\""
-  },
   "shortcuts": [
     [
       "photoshop.exe",
       "..\\Adobe\\Photoshop"
     ]
   ],
-  "uninstaller": {
-    "script": "sudo cmd /c \"$dir\\!)卸载.bat\""
+  "checkver": {
+    "url": "https://ghproxy.com/https://raw.githubusercontent.com/kkzzhizhou/scoop-zapps/master/versions/AdobePhotoshopCC.latest",
+    "regex": "([\\d.]+)"
   },
-  "url": "https://scoop-zapps.ziiyc.com/d/AdobePhotoshopCC/AdobePhotoshopCC-21.2.4.323.exe#/dl.7z",
-  "version": "21.2.4.323"
+  "autoupdate": {
+    "url": "https://scoop-zapps.ziiyc.com/d/AdobePhotoshopCC/AdobePhotoshopCC-$version.exe#/dl.7z",
+    "hash": {
+      "url": "$url.sha256",
+      "regex": "$sha256"
+    }
+  }
 }

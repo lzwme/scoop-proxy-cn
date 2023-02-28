@@ -1,15 +1,14 @@
 {
-  "version": "1.3",
-  "description": "一个优秀的图像查看, 处理及管理工具, 使用 VC++ 开发, 小巧快速",
-  "homepage": "https://github.com/dream7180/Shutter-cn",
-  "license": "GPL-2.0-only",
-  "architecture": {
-    "64bit": {
-      "url": "https://ghproxy.com/https://github.com/dream7180/Shutter-cn/releases/download/v1.3/Shutter-Win64_1.3.7z",
-      "hash": "7d4b52b383670c00201f4c416d3b1dfa64f1a63573dfbc9c37fb94bb36de297d"
-    }
+  "version": "4.6",
+  "description": "A multifunctional scheduling utility, which has a user friendly, easy-to-use interface and supports many different Events and Actions.",
+  "homepage": "https://www.den4b.com/products/shutter",
+  "license": {
+    "identifier": "CC-BY-NC-ND-3.0",
+    "url": "https://www.den4b.com/license"
   },
-  "extract_dir": "Shutter",
+  "url": "https://www.den4b.com/download/shutter/portable/4.6?token=scoop#/dl.zip",
+  "hash": "e8881176112e01dc33720129e9e2529d095096c3de8600740b4339f9f094ca80",
+  "pre_install": "if (!(Test-Path \"$persist_dir\\Settings.ini\")) { New-Item \"$dir\\Settings.ini\" | Out-Null }",
   "bin": "Shutter.exe",
   "shortcuts": [
     [
@@ -18,15 +17,14 @@
     ]
   ],
   "persist": [
-    "FilterRules.dat",
-    "PhotoTags.dat"
+    "Settings.ini",
+    "Presets"
   ],
-  "checkver": "github",
+  "checkver": {
+    "url": "https://www.den4b.com/changelogs/shutter",
+    "regex": "id=\"v([\\d.]+)\""
+  },
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.com/https://github.com/dream7180/Shutter-cn/releases/download/v$version/Shutter-Win64_$version.7z"
-      }
-    }
+    "url": "https://www.den4b.com/download/shutter/portable/$version?token=scoop#/dl.zip"
   }
 }

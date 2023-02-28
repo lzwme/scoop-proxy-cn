@@ -1,52 +1,53 @@
 {
-  "version": "cebaa640",
+  "architecture": {
+    "32bit": {
+      "extract_dir": "windows-x86-master-4574bad0",
+      "hash": "1adcdb949da448bb44d2e1f87e1c24c329c9a407efba7cd0b87061b00bc7b29c",
+      "url": "https://buildbot.scummvm.org/dailybuilds/master/windows-x86-master-4574bad0.zip"
+    },
+    "64bit": {
+      "extract_dir": "windows-x86-64-master-4574bad0",
+      "hash": "278c542e6425dfc106b1120ddd5676f8ec71600c887f56ddb39f876f4de006ec",
+      "url": "https://buildbot.scummvm.org/dailybuilds/master/windows-x86-64-master-4574bad0.zip"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "extract_dir": "windows-x86-master-$version",
+        "url": "https://buildbot.scummvm.org/dailybuilds/master/windows-x86-master-$version.zip"
+      },
+      "64bit": {
+        "extract_dir": "windows-x86-64-master-$version",
+        "url": "https://buildbot.scummvm.org/dailybuilds/master/windows-x86-64-master-$version.zip"
+      }
+    },
+    "hash": {
+      "url": "$url.sha256"
+    }
+  },
+  "bin": "win32dist-mingw/scummvm.exe",
+  "checkver": {
+    "regex": "windows-x86-64-master-([a-f0-9]{8}).zip",
+    "url": "https://buildbot.scummvm.org/dailybuilds/master/?C=M;O=D"
+  },
+  "description": "ScummVM is a program which allows you to run certain classic graphical adventure and role-playing games",
   "homepage": "https://www.scummvm.org/",
   "license": {
     "identifier": "GPL-3.0",
     "url": "https://github.com/scummvm/scummvm/blob/master/COPYING"
   },
-  "architecture": {
-    "32bit": {
-      "url": "https://buildbot.scummvm.org/dailybuilds/master/windows-x86-master-cebaa640.zip",
-      "hash": "ff8270decb72dbe6ed528aabc62099a0c5a1698d9274c01e6a3a769dfadda573",
-      "extract_dir": "windows-x86-master-cebaa640"
-    },
-    "64bit": {
-      "url": "https://buildbot.scummvm.org/dailybuilds/master/windows-x86-64-master-cebaa640.zip",
-      "hash": "00c13bb23512d118cacac352ee99e6a44c8dc41b1d1def419b75b470c9b4f7f6",
-      "extract_dir": "windows-x86-64-master-cebaa640"
-    }
-  },
-  "bin": "win32dist-mingw/scummvm.exe",
-  "shortcuts": [
-    [
-      "scummvm.exe",
-      "ScummVM (nightly)"
-    ]
-  ],
   "persist": [
     "scummvm.ini",
     "saves",
     "themes",
     "extras"
   ],
-  "checkver": {
-    "url": "https://buildbot.scummvm.org/dailybuilds/master/?C=M;O=D",
-    "regex": "windows-x86-64-master-([a-f0-9]{8}).zip"
-  },
-  "autoupdate": {
-    "hash": {
-      "url": "$url.sha256"
-    },
-    "architecture": {
-      "32bit": {
-        "url": "https://buildbot.scummvm.org/dailybuilds/master/windows-x86-master-$version.zip",
-        "extract_dir": "windows-x86-master-$version"
-      },
-      "64bit": {
-        "url": "https://buildbot.scummvm.org/dailybuilds/master/windows-x86-64-master-$version.zip",
-        "extract_dir": "windows-x86-64-master-$version"
-      }
-    }
-  }
+  "shortcuts": [
+    [
+      "scummvm.exe",
+      "ScummVM (nightly)"
+    ]
+  ],
+  "version": "4574bad0"
 }

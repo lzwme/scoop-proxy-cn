@@ -1,38 +1,55 @@
 {
-  "autoupdate": {
-    "hash": {
-      "jsonpath": "$[?(@.name == 'aDrive')].hash",
-      "mode": "json",
-      "url": "https://ghproxy.com/https://raw.githubusercontent.com/Ryanjiena/MetaVersion/main/alibaba.json"
-    },
-    "url": "https://yunpan.aliyun.com/downloads/apps/desktop/aDrive-$version.exe#/installer.exe"
-  },
-  "checkver": {
-    "jsonpath": "$[?(@.name == 'aDrive')].version",
-    "url": "https://ghproxy.com/https://raw.githubusercontent.com/Ryanjiena/MetaVersion/main/alibaba.json"
-  },
-  "description": "aDrive is a fast, non-intrusive, secure and easy-to-share personal netdisk where you can store, manage and explore things, and build a flourishing digital world.",
-  "hash": "sha512:1e0b8c7dba9154fe7c0c29bd0b3eec5c6bafe49d3b1520165cf6e258969e94349729f95e3dbb1827b98d79d8b957e2f33d3d3c1aa6ad1bdcc53188bfe8240aad",
+  "version": "4.0.1",
+  "description": "阿里云盘是一款速度快、不打扰、够安全、易于分享的网盘，由阿里巴巴集团出品",
   "homepage": "https://www.aliyundrive.com/",
+  "license": "Unknown",
+  "url": "https://cdn.aliyundrive.net/downloads/apps/desktop/update/4.0.1/win32/ia32/aDrive-4.0.1.exe#/dl.7z",
+  "hash": "0537e1eb0c322661eb48feb671703af1918e541cc08da5fc802c7556fed85c41",
   "installer": {
     "script": [
-      "ensure \"$persist_dir\" | Out-Null",
-      "New-Item \"$env:AppData\\aDrive\" -ItemType Junction -Target \"$persist_dir\" | Out-Null",
-      "Start-Process \"$dir\\installer.exe\" -WorkingDirectory \"$dir\" -ArgumentList \"/S /D=$dir\" -Wait"
+      "# handle runtime cache",
+      "if (!(Test-Path $persist_dir)) {",
+      "    New-Item $persist_dir -Type Directory -Force | Out-Null",
+      "}",
+      "$runtimeCache = \"$env:APPDATA\\aDrive\"",
+      "$runtimeCachePersist = \"$persist_dir\\appdata\"",
+      "if (Test-Path $runtimeCachePersist) {",
+      "    Remove-Item $runtimeCache -Force -Recurse -ErrorAction SilentlyContinue",
+      "    New-Item -Type Junction -Path $runtimeCache -Target $runtimeCachePersist | Out-Null",
+      "} else {",
+      "    if (Test-Path $runtimeCache) {",
+      "        Move-Item $runtimeCache $runtimeCachePersist -Force",
+      "        New-Item -Type Junction -Path $runtimeCache -Target $runtimeCachePersist | Out-Null",
+      "    }",
+      "}"
     ]
   },
-  "license": {
-    "identifier": "Proprietary",
-    "url": "https://terms.alicdn.com/legal-agreement/terms/suit_bu1_dingtalk/suit_bu1_dingtalk202103191654_76478.html"
-  },
-  "persist": "User Data",
-  "post_install": "Remove-Item \"$dir\\installer.exe\" -ErrorAction 'SilentlyContinue' -Force -Recurse",
   "uninstaller": {
     "script": [
-      "Remove-Item \"$env:AppData\\aDrive\" -ErrorAction 'SilentlyContinue' -Force -Recurse",
-      "Start-Process \"$dir\\Uninstall.exe\" -WorkingDirectory \"$dir\" -ArgumentList \"/S\" -Wait"
+      "$runtimeCache = \"$env:APPDATA\\aDrive\"",
+      "$runtimeCachePersist = \"$persist_dir\\appdata\"",
+      "if (!(Test-Path $runtimeCachePersist)) {",
+      "    Move-Item $runtimeCache $runtimeCachePersist -Force",
+      "} else {",
+      "    Remove-Item $runtimeCache -Force -Recurse -ErrorAction SilentlyContinue",
+      "}"
     ]
   },
-  "url": "https://yunpan.aliyun.com/downloads/apps/desktop/aDrive-3.12.1.exe#/installer.exe",
-  "version": "3.12.1"
+  "shortcuts": [
+    [
+      "aDrive.exe",
+      "阿里云盘"
+    ]
+  ],
+  "post_install": [
+    "Remove-Item -Force -Recurse \"$dir\\`$PLUGINSDIR\"",
+    "Remove-Item -Force -Recurse \"$dir\\`$TEMP\""
+  ],
+  "checkver": {
+    "url": "https://www.aliyundrive.com/desktop/version/update.json",
+    "regex": "/([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://cdn.aliyundrive.net/downloads/apps/desktop/update/$version/win32/ia32/aDrive-$version.exe#/dl.7z"
+  }
 }

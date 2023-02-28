@@ -1,20 +1,14 @@
 {
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "hash": {
-          "mode": "extract",
-          "regex": "sha512: $sha512",
-          "url": "https://ghproxy.com/https://github.com/bawangxx/XZVoice/releases/download/v1.1.0/latest.yml"
-        },
-        "url": "https://ghproxy.com/https://github.com/bawangxx/XZVoice/releases/download/v$version/xzvoice-setup-$version.exe#/dl.7z"
-      }
-    }
-  },
-  "checkver": "github",
+  "version": "1.1.0",
   "description": "Free and open source text-to-speech software",
-  "hash": "",
   "homepage": "https://github.com/bawangxx/XZVoice",
+  "license": "No",
+  "url": "https://ghproxy.com/https://github.com/bawangxx/XZVoice/releases/download/v1.1.0/xzvoice-setup-1.1.0.exe#/dl.7z",
+  "hash": "",
+  "pre_install": [
+    "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+    "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninst*\" -Force -Recurse"
+  ],
   "installer": {
     "script": [
       "if (!(Test-Path \"$persist_dir\\data\")) {",
@@ -36,18 +30,6 @@
       "}"
     ]
   },
-  "license": "No",
-  "persist": "data",
-  "pre_install": [
-    "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
-    "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninst*\" -Force -Recurse"
-  ],
-  "shortcuts": [
-    [
-      "AI配音专家.exe",
-      "AI配音专家"
-    ]
-  ],
   "uninstaller": {
     "script": [
       "$runtimeCache = \"$env:APPDATA\\xzvoice\"",
@@ -59,6 +41,24 @@
       "}"
     ]
   },
-  "url": "https://ghproxy.com/https://github.com/bawangxx/XZVoice/releases/download/v1.1.0/xzvoice-setup-1.1.0.exe#/dl.7z",
-  "version": "1.1.0"
+  "shortcuts": [
+    [
+      "AI配音专家.exe",
+      "AI配音专家"
+    ]
+  ],
+  "persist": "data",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/bawangxx/XZVoice/releases/download/v$version/xzvoice-setup-$version.exe#/dl.7z",
+        "hash": {
+          "url": "https://ghproxy.com/https://github.com/bawangxx/XZVoice/releases/download/v1.1.0/latest.yml",
+          "mode": "extract",
+          "regex": "sha512: $sha512"
+        }
+      }
+    }
+  }
 }

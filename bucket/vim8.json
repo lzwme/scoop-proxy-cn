@@ -1,14 +1,18 @@
 {
-  "homepage": "http://www.vim.org",
-  "license": "Vim",
-  "version": "8.0.1563",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.com/https://github.com/vim/vim-win32-installer/releases/download/v8.0.1563/gvim_8.0.1563_x64.zip",
-      "hash": "16d1d9c59977be4756450eb2a557634363a05e7e27e28a694a6bd712e853da1d"
+      "hash": "f6619fc65adf3eafb67e7ea732548f6f74e7dc5403388ada14110d9ef17ceda7",
+      "url": "https://ghproxy.com/https://github.com/vim/vim-win32-installer/releases/download/v9.0.1313/gvim_9.0.1313_x64.zip"
     }
   },
-  "extract_dir": "vim\\vim80",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/vim/vim-win32-installer/releases/download/v$version/gvim_$version_x64.zip"
+      }
+    },
+    "extract_dir": "vim\\vim$majorVersion$minorVersion"
+  },
   "bin": [
     "vim.exe",
     [
@@ -73,12 +77,12 @@
     ],
     "xxd.exe"
   ],
-  "shortcuts": [
-    [
-      "gvim.exe",
-      "gVim"
-    ]
-  ],
+  "checkver": {
+    "github": "https://github.com/vim/vim-win32-installer"
+  },
+  "extract_dir": "vim\\vim90",
+  "homepage": "http://www.vim.org",
+  "license": "Vim",
   "post_install": [
     "if( !(test-path ~\\.vimrc) -and !(test-path ~\\_vimrc) -and !(test-path ~\\vimfiles\\vimrc) -and !(test-path $env:VIM\\_vimrc) ) {",
     "    cp \"$dir\\vimrc_example.vim\" ~\\_vimrc",
@@ -86,18 +90,14 @@
     "    echo 'Default vimrc file created in ~/_vimrc, with shell set to PowerShell.'",
     "} else { echo 'Existing vimrc file found, no default configuration created' }"
   ],
-  "checkver": {
-    "github": "https://github.com/vim/vim-win32-installer"
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.com/https://github.com/vim/vim-win32-installer/releases/download/v$version/gvim_$version_x64.zip"
-      }
-    },
-    "extract_dir": "vim\\vim$majorVersion$minorVersion"
-  },
+  "shortcuts": [
+    [
+      "gvim.exe",
+      "gVim"
+    ]
+  ],
   "suggest": {
     "vimtutor": "vimtutor"
-  }
+  },
+  "version": "9.0.1313"
 }

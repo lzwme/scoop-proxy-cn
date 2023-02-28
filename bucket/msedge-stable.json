@@ -1,74 +1,47 @@
 {
+  "version": "110.0.1587.57",
+  "description": "Fast, secure, and free web browser, built for the modern web based",
+  "homepage": "https://www.microsoft.com/en-us/edge",
+  "license": {
+    "identifier": "Proprietary Software"
+  },
   "architecture": {
-    "32bit": {
-      "hash": "2d1ed5b9195fbe61d031c397b7b12fa5f62bb69214b068f72c3427ca7170d570",
-      "url": "https://scoop-apps.vercel.app/msedge-stable-win-X86#/dl.7z"
-    },
     "64bit": {
-      "hash": "3ebe5412067bae80be867514f9cf80de24d75aea835475850c264b069e80831d",
-      "url": "https://scoop-apps.vercel.app/msedge-stable-win-X64#/dl.7z"
+      "url": "http://msedge.f.tlu.dl.delivery.mp.microsoft.com/filestreamingservice/files/1c19fd17-f36c-404b-986f-6df681bfb926?P1=1677987649&P2=404&P3=2&P4=gS9S%2f3wF05nO%2bRA2HzUbOp%2bkemlN7cDFs9vcMYKO%2bI%2bpk8Ukx1wSXMzkk%2bAELTlP%2fmJGt6bLDx4NQcae5xvfAA%3d%3d3d#/dl.7z",
+      "hash": "f9528bfa55b43c21ca67fb19d0e01b8b4f4bb03bcdc6d93dcf75f17500b3e46d"
     }
   },
-  "autoupdate": {
-    "architecture": {
-      "32bit": {
-        "hash": {
-          "regex": "(?sm)stable.*?x86.*?Sha256.*?$base64",
-          "url": "https://scoop-apps.vercel.app/msedge"
-        },
-        "url": "https://scoop-apps.vercel.app/msedge-stable-win-X86#/dl.7z"
-      },
-      "64bit": {
-        "hash": {
-          "regex": "(?sm)stable.*?x64.*?Sha256.*?$base64",
-          "url": "https://scoop-apps.vercel.app/msedge"
-        },
-        "url": "https://scoop-apps.vercel.app/msedge-stable-win-X64#/dl.7z"
-      }
-    }
-  },
+  "pre_install": [
+    "Expand-7zipArchive \"$dir\\MSEDGE.7z\" -ExtractDir 'Chrome-bin' -Removal",
+    "Rename-Item \"$dir\\$version\" \"$dir\\current\" "
+  ],
   "bin": [
     [
-      "msedge.exe",
-      "msedge",
+      "current\\msedge.exe",
+      "msedge-stable",
       "--user-data-dir=\"$dir\\User Data\""
     ]
-  ],
-  "checkver": {
-    "jsonpath": "$[?(@.Product == 'stable')].Version",
-    "url": "https://scoop-apps.vercel.app/msedge"
-  },
-  "description": "Microsoft Edge is the fast and secure browser that helps you protect your data and save time and money(Stable Channel, Portable Edition).",
-  "homepage": "https://www.microsoft.com/en-us/edge",
-  "installer": {
-    "script": [
-      "Expand-7zipArchive -Path \"$dir\\MSEDGE.7z\" -ExtractDir \"Chrome-bin\" -Removal",
-      "@('msedge.exe', 'msedge_proxy.exe') | ForEach-Object { Move-Item \"$dir\\$version\\$_\" \"$dir\" -Force -ErrorAction SilentlyContinue }"
-    ]
-  },
-  "license": {
-    "identifier": "Freeware",
-    "url": "edge://terms/"
-  },
-  "notes": [
-    "If you encounter \"URL is not valid. The remote server returned an error: (308) Permanent Redirect.\" error",
-    "Please utilize aria2 to use multi-connection downloads.",
-    "   scoop install aria2",
-    "   scoop config aria2-warning-enabled true"
-  ],
-  "persist": "User Data",
-  "post_install": [
-    "if (!(Test-Path \"$dir\\User Data\\*\") -and (Test-Path \"$env:LocalAppData\\Microsoft\\Edge\\User Data\")) {",
-    "    info '[Portable Mode]: Copying user data...'",
-    "    Copy-Item \"$env:LocalAppData\\Microsoft\\Edge\\User Data\\*\" \"$dir\\User Data\" -Recurse",
-    "}"
   ],
   "shortcuts": [
     [
-      "msedge.exe",
-      "Microsoft Edge",
+      "current\\msedge.exe",
+      "Edge Stable",
       "--user-data-dir=\"$dir\\User Data\""
     ]
   ],
-  "version": "101.0.1210.39"
+  "persist": "User Data",
+  "checkver": {
+    "url": "https://42wim.github.io/edgeupdates/stable.txt",
+    "regex": "(?sm)(?<version>(.*?)):http://(?<64>(.*))"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "http://$match64#/dl.7z",
+        "hash": {
+          "url": "https://42wim.github.io/edgeupdates/stable.sha256"
+        }
+      }
+    }
+  }
 }

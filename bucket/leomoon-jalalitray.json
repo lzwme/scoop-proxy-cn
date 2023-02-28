@@ -1,15 +1,10 @@
 {
-  "autoupdate": {
-    "url": "https://leomoon.com/static/?file=leomoon-jalalitray_win.zip#/dl.zip"
-  },
-  "checkver": {
-    "regex": "Changelog[\\s\\S]+?li>([\\d.]+)",
-    "url": "https://leomoon.com/downloads/desktop-apps/leomoon-jalalitray/"
-  },
-  "description": "LeoMoon JalaliTray is a small utility that shows the current Jalali (Persian) day of the month in the system tray",
-  "hash": "d181c9c9652544140ddb10f97add949a24d709c1c5e993514d6535b28ae14d40",
+  "version": "1.0.7",
   "homepage": "https://leomoon.com/downloads/desktop-apps/leomoon-jalalitray/",
+  "description": "LeoMoon JalaliTray is a small utility that shows the current Jalali (Persian) day of the month in the system tray",
   "license": "MIT",
+  "url": "https://leomoon.com/static/?file=leomoon-jalalitray_win.zip#/dl.zip",
+  "hash": "d181c9c9652544140ddb10f97add949a24d709c1c5e993514d6535b28ae14d40",
   "pre_install": "Expand-InnoArchive \"$dir\\leomoon-jalalitray_win.exe\" \"$dir\" -Removal | Out-Null",
   "shortcuts": [
     [
@@ -17,6 +12,11 @@
       "LeoMoon JalaliTray"
     ]
   ],
-  "url": "https://leomoon.com/static/?file=leomoon-jalalitray_win.zip#/dl.zip",
-  "version": "1.0.7"
+  "checkver": {
+    "url": "https://leomoon.com/downloads/desktop-apps/leomoon-jalalitray/",
+    "regex": "Changelog[\\s\\S]+?li>([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://leomoon.com/static/?file=leomoon-jalalitray_win.zip#/dl.zip"
+  }
 }

@@ -1,15 +1,9 @@
 {
-  "autoupdate": {
-    "url": "https://$matchUrl/TencentVideo$version.exe#/dl.7z"
-  },
-  "checkver": {
-    "regex": "//(?<url>[^\"]+)/TencentVideo([\\d\\.]+)\\.exe",
-    "url": "https://v.qq.com/download.html"
-  },
-  "description": "腾讯视频是腾讯推出的在线视频媒体平台。",
-  "hash": "7b61622a54f3d56f6ab727ef94d8a0ce8de1eb00c9fb2415990b0bed3cd27aaf",
+  "version": "11.64.3075.0",
   "homepage": "https://v.qq.com/",
-  "license": "BSD-3-Clause",
+  "license": "Freeware",
+  "url": "https://dldir1.qq.com/qqtv/TencentVideo11.64.3075.0.exe#/dl.7z",
+  "hash": "f2b55b08ef0a32914748e59787c374183b7d8cb7a775b605037df8db8920ddc6",
   "post_install": [
     "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$TEMP\" -Force -Recurse",
     "Copy-Item \"$dir\\QQLive.tpc\" \"$dir\\instok\""
@@ -20,6 +14,11 @@
       "QQLive"
     ]
   ],
-  "url": "https://dldir1.qq.com/qqtv/TencentVideo11.63.2019.0.exe#/dl.7z",
-  "version": "11.63.2019.0"
+  "checkver": {
+    "url": "https://v.qq.com/download.html",
+    "regex": "/TencentVideo([\\d.]+)\\.exe"
+  },
+  "autoupdate": {
+    "url": "https://dldir1.qq.com/qqtv/TencentVideo$version.exe#/dl.7z"
+  }
 }
