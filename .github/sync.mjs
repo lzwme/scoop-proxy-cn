@@ -131,7 +131,7 @@ async function syncDir(src, dest, repo = '') {
         content = content
           .replace(/(https:\/\/github\.com.+\/releases\/download\/)/img, 'https://ghproxy.com/$1')
           .replace(/(https:\/\/github\.com.+\/archive\/)/img, 'https://ghproxy.com/$1')
-          .replace(/(https\:\/\/raw|gist\.githubusercontent\.com)/img, 'https://ghproxy.com/$1')
+          .replace(/(https\:\/\/(raw|gist)\.githubusercontent\.com)/img, 'https://ghproxy.com/$1')
           .replaceAll('https://ghproxy.com/https://ghproxy.com', 'https://ghproxy.com');
       }
 
