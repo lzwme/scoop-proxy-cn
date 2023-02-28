@@ -127,7 +127,7 @@ async function syncDir(src, dest, repo = '') {
       if (basename.startsWith('nodejs')) {
         content = content
           .replace(/(https:\/\/nodejs\.org\/dist\/)/img, 'https://registry.npmmirror.com/-/binary/node/');
-      } else if (content.includes('github.com') || content.includes('https://raw.githubusercontent.com')) {
+      } else if (content.includes('github.com') || content.includes('githubusercontent.com')) {
         content = content
           .replace(/(https:\/\/github\.com.+\/releases\/download\/)/img, 'https://ghproxy.com/$1')
           .replace(/(https:\/\/github\.com.+\/archive\/)/img, 'https://ghproxy.com/$1')
