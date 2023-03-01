@@ -113,7 +113,10 @@ async function syncDir(src, dest, repo = '') {
 
       if ('.json' === ext) {
         if (!contentJson) contentJson = safeJsonParse(content.trim());
-        if (Object.keys(contentJson).length > 0) content = JSON.stringify(contentJson, null, 2);
+        if (Object.keys(contentJson).length > 0) {
+          contentJson._from = repo;
+          content = JSON.stringify(contentJson, null, 2);
+        }
         else content = content.replaceAll('\r\n', '\n').trim();
 
         // fix for https://github.com/lzwme/scoop-proxy-cn/issues/2
