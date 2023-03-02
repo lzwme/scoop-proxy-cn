@@ -13,5 +13,6 @@
   "post_install": [
     "if (-not (is_admin)) { error 'This package requires admin privileges to install'; break }",
     "Invoke-ExternalCommand msiexec -ArgumentList @('/i', \"$dir\\$fname\", '/quiet', '/norestart') -RunAs | Out-Null"
-  ]
+  ],
+  "_from": "ScoopInstaller/Extras"
 }

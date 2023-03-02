@@ -1,23 +1,26 @@
 {
-  "homepage": "https://babashka.org/",
-  "description": "A native Clojure interpreter for scripting with fast startup",
-  "license": "EPL-1.0",
   "version": "1.2.174",
+  "description": "A Clojure babushka for the grey areas of Bash",
+  "homepage": "https://github.com/borkdude/babashka",
+  "license": "EPL-1.0",
+  "depends": "extras/vcredist2015",
+  "suggest": {
+    "curl": "curl"
+  },
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.com/https://github.com/babashka/babashka/releases/download/v1.2.174/babashka-1.2.174-windows-amd64.zip",
+      "url": "https://ghproxy.com/https://github.com/borkdude/babashka/releases/download/v1.2.174/babashka-1.2.174-windows-amd64.zip",
       "hash": "afb0df9036dc33e0ba7f4ca3e8b319f2e5df92265bdf69391f11af54ab7aa8ff"
     }
   },
   "bin": "bb.exe",
-  "checkver": {
-    "github": "https://github.com/babashka/babashka"
-  },
+  "checkver": "github",
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.com/https://github.com/babashka/babashka/releases/download/v$version/babashka-$version-windows-amd64.zip"
+        "url": "https://ghproxy.com/https://github.com/borkdude/babashka/releases/download/v$version/babashka-$version-windows-amd64.zip"
       }
     }
-  }
+  },
+  "_from": "kkzzhizhou/scoop-apps"
 }

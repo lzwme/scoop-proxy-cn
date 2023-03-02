@@ -16,5 +16,6 @@
   "post_install": "Start-Process -FilePath \"$dir\\WebCameraConfig.exe\" -ArgumentList \"--savedev\" -NoNewWindow -Wait -RedirectStandardOutput \"$dir\\cam_sett.cfg\"",
   "pre_install": "if (!(Test-Path \"$persist_dir\\cam_sett.cfg\")) { New-Item \"$dir\\cam_sett.cfg\" | Out-Null }",
   "url": "https://ghproxy.com/https://github.com/SuslikV/cfg-cam/releases/download/1.0/WebCameraConfig.exe",
-  "version": "1.0"
+  "version": "1.0",
+  "_from": "anderlli0053/DEV-tools"
 }
