@@ -1,53 +1,54 @@
 {
-  "version": "c7c2141d",
+  "architecture": {
+    "32bit": {
+      "extract_dir": "windows-x86-master-4574bad0",
+      "hash": "1adcdb949da448bb44d2e1f87e1c24c329c9a407efba7cd0b87061b00bc7b29c",
+      "url": "https://buildbot.scummvm.org/dailybuilds/master/windows-x86-master-4574bad0.zip"
+    },
+    "64bit": {
+      "extract_dir": "windows-x86-64-master-4574bad0",
+      "hash": "278c542e6425dfc106b1120ddd5676f8ec71600c887f56ddb39f876f4de006ec",
+      "url": "https://buildbot.scummvm.org/dailybuilds/master/windows-x86-64-master-4574bad0.zip"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "extract_dir": "windows-x86-master-$version",
+        "url": "https://buildbot.scummvm.org/dailybuilds/master/windows-x86-master-$version.zip"
+      },
+      "64bit": {
+        "extract_dir": "windows-x86-64-master-$version",
+        "url": "https://buildbot.scummvm.org/dailybuilds/master/windows-x86-64-master-$version.zip"
+      }
+    },
+    "hash": {
+      "url": "$url.sha256"
+    }
+  },
+  "bin": "win32dist-mingw/scummvm.exe",
+  "checkver": {
+    "regex": "windows-x86-64-master-([a-f0-9]{8}).zip",
+    "url": "https://buildbot.scummvm.org/dailybuilds/master/?C=M;O=D"
+  },
+  "description": "ScummVM is a program which allows you to run certain classic graphical adventure and role-playing games",
   "homepage": "https://www.scummvm.org/",
   "license": {
     "identifier": "GPL-3.0",
     "url": "https://github.com/scummvm/scummvm/blob/master/COPYING"
   },
-  "architecture": {
-    "32bit": {
-      "url": "https://buildbot.scummvm.org/dailybuilds/master/windows-x86-master-c7c2141d.zip",
-      "hash": "58936763810600c94b24a1dd503c9d0aa369f128c0bf30466a5eeb48eb9b82d9",
-      "extract_dir": "windows-x86-master-c7c2141d"
-    },
-    "64bit": {
-      "url": "https://buildbot.scummvm.org/dailybuilds/master/windows-x86-64-master-c7c2141d.zip",
-      "hash": "64c883799de4de9773dcc3068d3e5283704875acdb9f6114bf7a3fe3fa6d8123",
-      "extract_dir": "windows-x86-64-master-c7c2141d"
-    }
-  },
-  "bin": "win32dist-mingw/scummvm.exe",
-  "shortcuts": [
-    [
-      "scummvm.exe",
-      "ScummVM (nightly)"
-    ]
-  ],
   "persist": [
     "scummvm.ini",
     "saves",
     "themes",
     "extras"
   ],
-  "checkver": {
-    "url": "https://buildbot.scummvm.org/dailybuilds/master/?C=M;O=D",
-    "regex": "windows-x86-64-master-([a-f0-9]{8}).zip"
-  },
-  "autoupdate": {
-    "hash": {
-      "url": "$url.sha256"
-    },
-    "architecture": {
-      "32bit": {
-        "url": "https://buildbot.scummvm.org/dailybuilds/master/windows-x86-master-$version.zip",
-        "extract_dir": "windows-x86-master-$version"
-      },
-      "64bit": {
-        "url": "https://buildbot.scummvm.org/dailybuilds/master/windows-x86-64-master-$version.zip",
-        "extract_dir": "windows-x86-64-master-$version"
-      }
-    }
-  },
-  "_from": "kkzzhizhou/scoop-apps"
+  "shortcuts": [
+    [
+      "scummvm.exe",
+      "ScummVM (nightly)"
+    ]
+  ],
+  "version": "4574bad0",
+  "_from": "anderlli0053/DEV-tools"
 }

@@ -1,0 +1,26 @@
+{
+  "homepage": "https://obsidian.md/",
+  "version": "1.1.15",
+  "url": "https://ghproxy.com/https://github.com/obsidianmd/obsidian-releases/releases/download/v1.1.15/Obsidian.1.1.15.exe#/dl.7z",
+  "hash": "c081e1737c5e1c2041c7cd1128328df49334952ced4f6469242d56c37be613ed",
+  "installer": {
+    "script": [
+      "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+      "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall*\" -Force -Recurse"
+    ]
+  },
+  "bin": "Obsidian.exe",
+  "shortcuts": [
+    [
+      "Obsidian.exe",
+      "Obsidian"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/obsidianmd/obsidian-releases"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/obsidianmd/obsidian-releases/releases/download/v$version/Obsidian.$version.exe#/dl.7z"
+  },
+  "_from": "kkzzhizhou/scoop-apps"
+}

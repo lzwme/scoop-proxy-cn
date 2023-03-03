@@ -1,41 +1,41 @@
 {
-  "version": "4.1.2",
+  "version": "4.6.6",
   "description": "A messaging app with a focus on speed and security",
   "homepage": "https://telegram.org",
   "license": "GPL-3.0-only",
   "architecture": {
-    "64bit": {
-      "url": "https://ghproxy.com/https://github.com/telegramdesktop/tdesktop/releases/download/v4.1.2/tportable-x64.4.1.2.beta.zip",
-      "hash": "f9a15de89aa600a9f2a250954f55ca1befaa297d121345edb02d7c771839fca9"
-    },
     "32bit": {
-      "url": "https://ghproxy.com/https://github.com/telegramdesktop/tdesktop/releases/download/v4.1.2/tportable.4.1.2.beta.zip",
-      "hash": "20f14d05062b724f5013f8f1beada2667abc9fb0a27af41eb582835815d4b792"
+      "hash": "dfe1a2f43f80d14fd0a3b1e22f262440c96451555f20ab7103e178fb9a4bbdb0",
+      "url": "https://ghproxy.com/https://github.com/telegramdesktop/tdesktop/releases/download/v4.6.6/tportable.4.6.6.beta.zip"
+    },
+    "64bit": {
+      "hash": "0ec7fae87d5a6c6be2793bfb8fb2e5fe305ab59cae0c65db8bdac7945dd808ec",
+      "url": "https://ghproxy.com/https://github.com/telegramdesktop/tdesktop/releases/download/v4.6.6/tportable-x64.4.6.6.beta.zip"
     }
   },
   "extract_dir": "Telegram",
   "pre_install": "Set-Content \"$dir\\telegram-beta.cmd\" '@start \"Telegram\" /D \"%~dp0\" \"%~dp0Telegram.exe\" %*' -Encoding Ascii",
   "bin": "telegram-beta.cmd",
+  "persist": "tdata",
   "shortcuts": [
     [
       "Telegram.exe",
       "Telegram (Beta)"
     ]
   ],
-  "persist": "tdata",
   "checkver": {
-    "url": "https://github.com/telegramdesktop/tdesktop/releases/",
-    "regex": "/telegramdesktop/tdesktop/releases/download/v([\\d.]+)/tportable\\.([\\d\\.(?:beta)(?:zip)]+)"
+    "regex": "\\/telegramdesktop\\/tdesktop\\/releases\\/tag\\/v([\\d.]+).+\\n.+Pre-release",
+    "url": "https://github.com/telegramdesktop/tdesktop/releases/"
   },
   "autoupdate": {
     "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.com/https://github.com/telegramdesktop/tdesktop/releases/download/v$version/tportable-x64.$match2"
-      },
       "32bit": {
-        "url": "https://ghproxy.com/https://github.com/telegramdesktop/tdesktop/releases/download/v$version/tportable.$match2"
+        "url": "https://ghproxy.com/https://github.com/telegramdesktop/tdesktop/releases/download/v$version/tportable.$version.beta.zip"
+      },
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/telegramdesktop/tdesktop/releases/download/v$version/tportable-x64.$version.beta.zip"
       }
     }
   },
-  "_from": "kkzzhizhou/scoop-apps"
+  "_from": "anderlli0053/DEV-tools"
 }

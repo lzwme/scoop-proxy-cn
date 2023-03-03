@@ -1,32 +1,19 @@
 {
+  "version": "110.0.1",
+  "description": "Popular open source web browser.",
+  "homepage": "https://www.mozilla.org/firefox/",
+  "license": "MPL-2.0",
   "architecture": {
-    "32bit": {
-      "hash": "sha512:c7b6fbf655a4b220786094d59b90288892fb4e63f9437415f52a7adf5beaab674de4ecc1f166a44157e0c67f746fb28b50a0d4d4b97075234605612287761002",
-      "url": "https://archive.mozilla.org/pub/firefox/releases/110.0.1/win32/fa-IR/Firefox%20Setup%20110.0.1.exe#/dl.7z"
-    },
     "64bit": {
-      "hash": "sha512:c7b6fbf655a4b220786094d59b90288892fb4e63f9437415f52a7adf5beaab674de4ecc1f166a44157e0c67f746fb28b50a0d4d4b97075234605612287761002",
-      "url": "https://archive.mozilla.org/pub/firefox/releases/110.0.1/win64/fa-IR/Firefox%20Setup%20110.0.1.exe#/dl.7z"
+      "url": "https://archive.mozilla.org/pub/firefox/releases/110.0.1/win64/fa-IR/Firefox%20Setup%20110.0.1.exe#/dl.7z",
+      "hash": "sha512:c7b6fbf655a4b220786094d59b90288892fb4e63f9437415f52a7adf5beaab674de4ecc1f166a44157e0c67f746fb28b50a0d4d4b97075234605612287761002"
+    },
+    "32bit": {
+      "url": "https://archive.mozilla.org/pub/firefox/releases/110.0.1/win32/fa-IR/Firefox%20Setup%20110.0.1.exe#/dl.7z",
+      "hash": "sha512:c7b6fbf655a4b220786094d59b90288892fb4e63f9437415f52a7adf5beaab674de4ecc1f166a44157e0c67f746fb28b50a0d4d4b97075234605612287761002"
     }
   },
-  "autoupdate": {
-    "architecture": {
-      "32bit": {
-        "hash": {
-          "regex": "$sha512\\s+win32/fa-IR/$basename",
-          "url": "https://archive.mozilla.org/pub/firefox/releases/$version/SHA512SUMS"
-        },
-        "url": "https://archive.mozilla.org/pub/firefox/releases/$version/win32/fa-IR/Firefox%20Setup%20$version.exe#/dl.7z"
-      },
-      "64bit": {
-        "hash": {
-          "regex": "$sha512\\s+win64/fa-IR/$basename",
-          "url": "https://archive.mozilla.org/pub/firefox/releases/$version/SHA512SUMS"
-        },
-        "url": "https://archive.mozilla.org/pub/firefox/releases/$version/win64/fa-IR/Firefox%20Setup%20$version.exe#/dl.7z"
-      }
-    }
-  },
+  "extract_dir": "core",
   "bin": [
     [
       "firefox.exe",
@@ -34,15 +21,6 @@
       "-profile \"$dir\\profile\""
     ]
   ],
-  "checkver": {
-    "regex": "<div class=\"c-release-version\">([\\d.]+)</div>",
-    "url": "https://www.mozilla.org/fa-IR/firefox/notes/"
-  },
-  "description": "Popular open source web browser.",
-  "extract_dir": "core",
-  "homepage": "https://www.mozilla.org/firefox/",
-  "license": "MPL-2.0",
-  "persist": "Profile",
   "shortcuts": [
     [
       "firefox.exe",
@@ -50,6 +28,28 @@
       "-profile \"$dir\\profile\""
     ]
   ],
-  "version": "110.0.1",
-  "_from": "anderlli0053/DEV-tools"
+  "persist": "Profile",
+  "checkver": {
+    "url": "https://www.mozilla.org/fa-IR/firefox/notes/",
+    "regex": "<div class=\"c-release-version\">([\\d.]+)</div>"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://archive.mozilla.org/pub/firefox/releases/$version/win64/fa-IR/Firefox%20Setup%20$version.exe#/dl.7z",
+        "hash": {
+          "url": "https://archive.mozilla.org/pub/firefox/releases/$version/SHA512SUMS",
+          "regex": "$sha512\\s+win64/fa-IR/$basename"
+        }
+      },
+      "32bit": {
+        "url": "https://archive.mozilla.org/pub/firefox/releases/$version/win32/fa-IR/Firefox%20Setup%20$version.exe#/dl.7z",
+        "hash": {
+          "url": "https://archive.mozilla.org/pub/firefox/releases/$version/SHA512SUMS",
+          "regex": "$sha512\\s+win32/fa-IR/$basename"
+        }
+      }
+    }
+  },
+  "_from": "kkzzhizhou/scoop-apps"
 }
