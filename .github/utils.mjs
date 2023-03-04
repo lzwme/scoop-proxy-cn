@@ -51,7 +51,9 @@ export function simpleAssign(a, b, options = {}, seen = new Set()) {
 export function safeJsonParse(str, desc = '') {
   try {
     // todo: require('json5').parse(str);
-    str = str.replace(/^ *\/\/.+/mg, '').replace(/ \/\/[^"]+\n/mg, '').trim();
+    if (str.includes('//')) {
+      str = str.replace(/^[ \t]*\/\/.*/mg, '').replace(/ *(".+" *: *(".*"|\d+|true|false),?).*\/\/.+/mg, '$1').trim();
+    }
     return JSON.parse(str);
   } catch (error) {
     if (desc) console.error('[JSON.parse][error]', desc, error.message);
