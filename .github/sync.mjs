@@ -1,7 +1,8 @@
 import { execSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
-import { semverCompare, safeJsonParse } from './utils.mjs';
+import { semverCompare } from '@lzwme/fe-utils';
+import { safeJsonParse } from './utils.mjs';
 
 const isDebug = process.argv.slice(2).includes('--debug');
 const isCI = process.env.SYNC != null;
@@ -25,8 +26,6 @@ const CONSTS = {
     `hoilc/scoop-lemon`,
     `ivaquero/scoopet`,
     `KNOXDEV/wsl`,
-    `kkzzhizhou/scoop-apps`,
-    `anderlli0053/DEV-tools`,
     `kodybrown/scoop-nirsoft`,
     `kidonng/sushi`,
     `littleli/scoop-clojure`,
@@ -39,6 +38,8 @@ const CONSTS = {
     `Paxxs/Cluttered-bucket`,
     `rasa/scoops`,
     `zhoujin7/tomato`,
+    `kkzzhizhou/scoop-apps`,
+    `anderlli0053/DEV-tools`,
     // `tetradice/scoop-iyokan-jp`,
     // `Qv2ray/mochi`,
     // `duzyn/scoop-cn`,
@@ -46,9 +47,10 @@ const CONSTS = {
   filter: /audacity_installer|\.gitkeep|__/,
 };
 const destFilesCache = new Map();
-const bucketLowPriority = parseBucketPriorityFile();
+const bucketLowPriority = parseBucketTxtFile();
+const bucketIgnoreList = parseBucketTxtFile('bucket-ignored.txt');
 
-function parseBucketPriorityFile(filename = 'bucket-low-priority.txt') {
+function parseBucketTxtFile(filename = 'bucket-low-priority.txt') {
   const str = fs.readFileSync(path.resolve(CONSTS.rootDir, filename), 'utf8').trim();
   const list = str
     .split('\n')
@@ -70,7 +72,6 @@ async function checkout(repo, dirName) {
       repo = isDebug ? `https://ghproxy.com/https://github.com/${repo}` : `https://github.com/${repo}.git`;
       execSync(`git clone --depth 1 ${repo} ${dirName}`, { cwd: CONSTS.tmpDir });
     }
-
   } catch (error) {
     console.error(`checkout ${repo} failed!`, error.message);
   }
@@ -81,6 +82,7 @@ async function syncDir(src, dest, repo = '') {
   const basename = path.basename(src);
 
   if (!fs.existsSync(src) || CONSTS.filter.test(basename)) return total;
+  if (bucketIgnoreList.has(src)) return;
 
   const stats = fs.statSync(src);
   const ext = path.extname(src);
@@ -110,17 +112,17 @@ async function syncDir(src, dest, repo = '') {
 
     if (['.json', '.ps1', '.sh'].includes(ext)) {
       if (!content) content = fs.readFileSync(src, 'utf8');
+      const rawContent = content;
 
       if ('.json' === ext) {
-        if (!contentJson) contentJson = safeJsonParse(content.trim());
+        if (!contentJson) contentJson = safeJsonParse(content, src);
         if (Object.keys(contentJson).length > 0) {
           contentJson._from = repo;
           content = JSON.stringify(contentJson, null, 2);
-        }
-        else content = content.replaceAll('\r\n', '\n').trim();
+        } else content = content.replaceAll('\r\n', '\n').trim();
 
         // fix for https://github.com/lzwme/scoop-proxy-cn/issues/2
-        content = content.replace(/\$bucketsdir\\\\[a-zA-Z\-]+\\\\/img, '$bucketsdir\\\\$bucket\\\\');
+        content = content.replace(/\$bucketsdir\\\\[a-zA-Z\-]+\\\\/gim, '$bucketsdir\\\\$bucket\\\\');
 
         if (basename.startsWith('php')) {
           content = content.replace('bin\\postinstall.ps1', 'bin\\php-postinstall.ps1');
@@ -128,16 +130,15 @@ async function syncDir(src, dest, repo = '') {
       }
 
       if (basename.startsWith('nodejs')) {
-        content = content
-          .replace(/(https:\/\/nodejs\.org\/dist\/)/img, 'https://registry.npmmirror.com/-/binary/node/');
+        content = content.replace(/(https:\/\/nodejs\.org\/dist\/)/gim, 'https://registry.npmmirror.com/-/binary/node/');
       } else if (content.includes('github.com') || content.includes('githubusercontent.com')) {
         content = content
-          .replace(/(https:\/\/github\.com.+\/releases\/download\/)/img, 'https://ghproxy.com/$1')
-          .replace(/(https:\/\/github\.com.+\/archive\/)/img, 'https://ghproxy.com/$1')
-          .replace(/(https\:\/\/(raw|gist)\.githubusercontent\.com)/img, 'https://ghproxy.com/$1')
+          .replace(/(https:\/\/github\.com.+\/releases\/download\/)/gim, 'https://ghproxy.com/$1')
+          .replace(/(https:\/\/github\.com.+\/archive\/)/gim, 'https://ghproxy.com/$1')
+          .replace(/(https\:\/\/(raw|gist)\.githubusercontent\.com)/gim, 'https://ghproxy.com/$1')
           .replaceAll('https://ghproxy.com/https://ghproxy.com', 'https://ghproxy.com');
       }
-
+      destFilesCache.get(destLowerCase).fixed = content !== rawContent;
       fs.writeFileSync(dest, content, 'utf8');
     } else {
       fs.writeFileSync(dest, fs.readFileSync(src));
@@ -188,20 +189,17 @@ async function sync() {
     ['bucket', 'scripts', 'tmp'].forEach(d => fs.existsSync(d) && fs.rmSync(d, { recursive: true, force: true }));
   }
 
-  let bucketFiles = 0;
-  let scriptsFiles = 0;
+  const stats = {};
 
   for (const repo of CONSTS.repo) {
     const repoDirName = repo.replaceAll('/', '-');
     console.log(`sync for \x1B[32m${repo}\x1B[39m`);
     await checkout(repo, repoDirName);
-     const buckets = await syncDir(path.resolve(CONSTS.tmpDir, repoDirName, 'bucket'), 'bucket', repo);
-     if (buckets) {
-       bucketFiles += buckets;
-       scriptsFiles += await syncDir(path.resolve(CONSTS.tmpDir, repoDirName, 'scripts'), 'scripts', repo);
-     } else {
-      console.warn(`[warn][synced nothing]`, buckets, repo);
-     }
+    for (const fname of ['bucket', 'scripts']) {
+      const count = await syncDir(path.resolve(CONSTS.tmpDir, repoDirName, fname), fname, repo);
+      if (!count && fname === 'bucket') console.warn(`[warn][synced nothing]`, buckets, repo);
+      stats[fname] = (stats[fname] || 0) + count;
+    }
   }
 
   if (isCI) {
@@ -209,7 +207,7 @@ async function sync() {
     gitCommit();
   }
 
-  console.log('Done!', bucketFiles, scriptsFiles, `Total: ${destFilesCache.size}`);
+  console.log('Done!', `Total: ${destFilesCache.size}`, stats);
 }
 
 sync();
