@@ -42,39 +42,39 @@ const CONSTS = {
     `Weidows-projects/scoop-3rd`,
     `hermanjustnu/scoop-emulators`,
     `everyx/scoop-bucket`,
-    `dodorz/scoop`,
+    // `dodorz/scoop`,
     `borger/scoop-emulators`,
-    `Qv2ray/mochi`,
+    // `Qv2ray/mochi`,
     `ZvonimirSun/scoop-iszy`,
     `kiennq/scoop-misc`,
-    `wangzq/scoop-bucket`,
+    // `wangzq/scoop-bucket`,
     `wzv5/ScoopBucket`,
     `TheRandomLabs/Scoop-Python`,
-    `okibcn/ScoopMaster`,
     `naderi/scoop-bucket`,
     `ViCrack/scoop-bucket`,
     `42wim/scoop-bucket`,
     `akirco/aki-apps`,
     `batkiz/backit`,
     `iquiw/scoop-bucket`,
-    `NyaMisty/scoop_bucket_misty`,
+    // `NyaMisty/scoop_bucket_misty`,
     `ygguorun/scoop-bucket`,
-    `TheLastZombie/scoop-bucket`,
+    // `TheLastZombie/scoop-bucket`,
     `seumsc/scoop-seu`,
-    `Velgus/Scoop-Portapps`,
+    // `Velgus/Scoop-Portapps`,
     `cc713/ownscoop`,
-    `amorphobia/siku`,
-    `jonz94/scoop-sarasa-nerd-fonts`,
+    // `amorphobia/siku`,
+    // `jonz94/scoop-sarasa-nerd-fonts`,
     `rivy/scoop-bucket`,
     `aoisummer/scoop-bucket`,
     `yuusakuri/scoop-bucket`,
     `hu3rror/scoop-muggle`,
-    `starise/Scoop-Gaming`,
+    // `starise/Scoop-Gaming`,
     `starise/Scoop-Confetti`,
-    `Darkatse/Scoop-KanColle`,
+    // `Darkatse/Scoop-KanColle`,
     `hulucc/bucket`,
     `jingyu9575/scoop-jingyu9575`,
-    `Deide/deide-bucket`,
+    // `Deide/deide-bucket`,
+    `okibcn/ScoopMaster`,
     `anderlli0053/DEV-tools`,
     // `kkzzhizhou/scoop-apps`,
     // `tetradice/scoop-iyokan-jp`,
@@ -213,7 +213,7 @@ async function gitCommit() {
   }
 }
 async function updateReadme() {
-  const list = [...CONSTS.repo].map(d => `- [https://github.com/${repo}](${repo})`).join('\n');
+  const list = [...CONSTS.repo].map(repo => `- [https://github.com/${repo}](${repo})`).join('\n');
   const content = fs.readFileSync('README.md', 'utf8');
   const updated = content.replace(/## Sync Buckets From.+##/g, `## Sync Buckets From\n\n${list}\n\n##`);
   if (updated !== content) fs.writeFileSync(updated, content, 'utf8');
@@ -239,7 +239,7 @@ async function sync() {
     await checkout(repo, repoDirName);
     for (const fname of ['bucket', 'scripts']) {
       const count = await syncDir(path.resolve(CONSTS.tmpDir, repoDirName, fname), fname, repo);
-      if (!count && fname === 'bucket') console.warn(`[warn][synced nothing]`, repo);
+      if (!count && fname === 'bucket') console.warn(`[warn][${fname}][synced nothing]`, repo);
       else console.log(` - [synced][${color.green(fname)}]`, count);
       stats[fname] = (stats[fname] || 0) + count;
     }

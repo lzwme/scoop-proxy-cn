@@ -1,6 +1,7 @@
 import JSON5 from 'json5';
 
 export function safeJsonParse(str, desc = '', silent = false) {
+  if (!str) return {};
   try {
     return JSON5.parse(str.trim());
   } catch {
