@@ -1,7 +1,7 @@
 import { execSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
-import { semverCompare } from '@lzwme/fe-utils';
+import { semverCompare, color } from '@lzwme/fe-utils';
 import { safeJsonParse } from './utils.mjs';
 
 const isDebug = process.argv.slice(2).includes('--debug');
@@ -9,7 +9,7 @@ const isCI = process.env.SYNC != null;
 const CONSTS = {
   rootDir: process.cwd(),
   tmpDir: path.resolve('tmp'),
-  repo: [
+  repo: new Set([
     `ScoopInstaller/PHP`,
     `ScoopInstaller/Main`,
     `ScoopInstaller/Extras`,
@@ -38,12 +38,48 @@ const CONSTS = {
     `Paxxs/Cluttered-bucket`,
     `rasa/scoops`,
     `zhoujin7/tomato`,
-    `kkzzhizhou/scoop-apps`,
+    `HCLonely/my-scoop-bucket`,
+    `Weidows-projects/scoop-3rd`,
+    `hermanjustnu/scoop-emulators`,
+    `everyx/scoop-bucket`,
+    `dodorz/scoop`,
+    `borger/scoop-emulators`,
+    `Qv2ray/mochi`,
+    `ZvonimirSun/scoop-iszy`,
+    `kiennq/scoop-misc`,
+    `wangzq/scoop-bucket`,
+    `wzv5/ScoopBucket`,
+    `TheRandomLabs/Scoop-Python`,
+    `okibcn/ScoopMaster`,
+    `naderi/scoop-bucket`,
+    `ViCrack/scoop-bucket`,
+    `42wim/scoop-bucket`,
+    `akirco/aki-apps`,
+    `batkiz/backit`,
+    `iquiw/scoop-bucket`,
+    `NyaMisty/scoop_bucket_misty`,
+    `ygguorun/scoop-bucket`,
+    `TheLastZombie/scoop-bucket`,
+    `seumsc/scoop-seu`,
+    `Velgus/Scoop-Portapps`,
+    `cc713/ownscoop`,
+    `amorphobia/siku`,
+    `jonz94/scoop-sarasa-nerd-fonts`,
+    `rivy/scoop-bucket`,
+    `aoisummer/scoop-bucket`,
+    `yuusakuri/scoop-bucket`,
+    `hu3rror/scoop-muggle`,
+    `starise/Scoop-Gaming`,
+    `starise/Scoop-Confetti`,
+    `Darkatse/Scoop-KanColle`,
+    `hulucc/bucket`,
+    `jingyu9575/scoop-jingyu9575`,
+    `Deide/deide-bucket`,
     `anderlli0053/DEV-tools`,
+    // `kkzzhizhou/scoop-apps`,
     // `tetradice/scoop-iyokan-jp`,
-    // `Qv2ray/mochi`,
     // `duzyn/scoop-cn`,
-  ],
+  ]),
   filter: /audacity_installer|\.gitkeep|__/,
 };
 const destFilesCache = new Map();
@@ -100,9 +136,9 @@ async function syncDir(src, dest, repo = '') {
         // json 文件比较版本
         content = fs.readFileSync(src, 'utf8').trim();
         contentJson = safeJsonParse(content, src, true);
-        const destVersion = safeJsonParse(fs.readFileSync(dest, 'utf8'), dest).version;
+        const destVersion = safeJsonParse(fs.readFileSync(dest, 'utf8'), dest).version || '';
         if (semverCompare(contentJson.version || '', destVersion, false) < 1) return total;
-        // console.debug(`[sync]overwide old version: \x1B[33m${contentJson.version}\x1B[39m -> \x1B[32m${destVersion} \x1b[36m${src.slice(CONSTS.tmpDir.length + 1)}\x1b[39m`);
+        if (isDebug) console.debug(`[sync]overwide: ${color.gray(contentJson.version)} -> ${color.green(destVersion)} ${color.cyan(src.slice(CONSTS.tmpDir.length + 1))}`);
       } catch (e) {
         console.error('[error]try compare version failed!', src, dest, e.message);
         return total;
@@ -176,6 +212,12 @@ async function gitCommit() {
     console.log('Not Updated');
   }
 }
+async function updateReadme() {
+  const list = [...CONSTS.repo].map(d => `- [https://github.com/${repo}](${repo})`).join('\n');
+  const content = fs.readFileSync('README.md', 'utf8');
+  const updated = content.replace(/## Sync Buckets From.+##/g, `## Sync Buckets From\n\n${list}\n\n##`);
+  if (updated !== content) fs.writeFileSync(updated, content, 'utf8');
+}
 
 function updateInstallps1() {
   const installUrl = `${isDebug ? 'https://ghproxy.com/' : ''}https://raw.githubusercontent.com/scoopinstaller/install/master/install.ps1`;
@@ -193,11 +235,12 @@ async function sync() {
 
   for (const repo of CONSTS.repo) {
     const repoDirName = repo.replaceAll('/', '-');
-    console.log(`sync for \x1B[32m${repo}\x1B[39m`);
+    console.log(`sync for ${color.greenBright(repo)}`);
     await checkout(repo, repoDirName);
     for (const fname of ['bucket', 'scripts']) {
       const count = await syncDir(path.resolve(CONSTS.tmpDir, repoDirName, fname), fname, repo);
       if (!count && fname === 'bucket') console.warn(`[warn][synced nothing]`, repo);
+      else console.log(` - [synced][${color.green(fname)}]`, count);
       stats[fname] = (stats[fname] || 0) + count;
     }
   }
@@ -205,6 +248,7 @@ async function sync() {
   if (isCI) {
     fs.rmSync(CONSTS.tmpDir, { recursive: true, force: true });
     gitCommit();
+    updateReadme();
   }
 
   console.log('Done!', `Total: ${destFilesCache.size}`, stats);
