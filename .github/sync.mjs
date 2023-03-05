@@ -197,7 +197,7 @@ async function sync() {
     await checkout(repo, repoDirName);
     for (const fname of ['bucket', 'scripts']) {
       const count = await syncDir(path.resolve(CONSTS.tmpDir, repoDirName, fname), fname, repo);
-      if (!count && fname === 'bucket') console.warn(`[warn][synced nothing]`, buckets, repo);
+      if (!count && fname === 'bucket') console.warn(`[warn][synced nothing]`, repo);
       stats[fname] = (stats[fname] || 0) + count;
     }
   }
