@@ -2,13 +2,18 @@ import JSON5 from 'json5';
 
 export function safeJsonParse(str, desc = '', silent = false) {
   try {
-    str = str
-      .replace(/^[ \t]*\/\/.*/gm, '')
-      .replace(/ *(".+" *: *(".*",|\d+|true|false),?)[ \t]*\/\/.+/gm, '$1')
-      .trim();
     return JSON5.parse(str.trim());
-  } catch (error) {
-    if (!silent) console.error('[JSON.parse][error]', desc, error.message);
-    return {};
+  } catch {
+    try {
+      str = str
+        .replace(/^[ \t]*\/\/.*/gm, '')
+        .replace(/[ \t]+\/\/[^"]+\n/gm, '')
+        // .replace(/ *(".+" *: *(".*",|\d+|true|false),?)[ \t]*\/\/[^"]+\n/gm, '$1')
+        .trim();
+      return JSON5.parse(str);
+    } catch (error) {
+      if (!silent) console.error('[JSON.parse][error]', desc, error.message);
+      return {};
+    }
   }
 }

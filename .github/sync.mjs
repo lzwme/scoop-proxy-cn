@@ -99,7 +99,7 @@ async function syncDir(src, dest, repo = '') {
       try {
         // json 文件比较版本
         content = fs.readFileSync(src, 'utf8').trim();
-        contentJson = safeJsonParse(content, src);
+        contentJson = safeJsonParse(content, src, true);
         const destVersion = safeJsonParse(fs.readFileSync(dest, 'utf8'), dest).version;
         if (semverCompare(contentJson.version || '', destVersion, false) < 1) return total;
         // console.debug(`[sync]overwide old version: \x1B[33m${contentJson.version}\x1B[39m -> \x1B[32m${destVersion} \x1b[36m${src.slice(CONSTS.tmpDir.length + 1)}\x1b[39m`);
