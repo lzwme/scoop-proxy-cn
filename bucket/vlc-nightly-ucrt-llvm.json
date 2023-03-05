@@ -1,0 +1,52 @@
+{
+  "version": "20230222",
+  "description": "A free and open source multimedia player and framework that plays most multimedia files as well as DVDs, Audio CDs, VCDs, and various streaming protocols.",
+  "homepage": "https://www.videolan.org/",
+  "license": "GPL-2.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://artifacts.videolan.org/vlc/nightly-win64-ucrt-llvm/20230222-0429/vlc-4.0.0-dev-win64-013a1e4a.7z",
+      "hash": "sha512:deabf07c8363ee8b145000daf05aeaac7a22beab07c96fbe0efbece5f445177a9f7fc16092323957a8cbd0928ca89d3a80a472b2e16a785d702c0a187646de1b"
+    }
+  },
+  "extract_dir": "vlc-4.0.0-dev",
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\portable\") -and (Test-Path \"$env:APPDATA\\vlc\")) {",
+    "    info \"Copying old '$env:APPDATA\\vlc' to '$persist_dir\\portable'\"",
+    "    ensure \"$dir\\portable\\vlc\" | Out-Null",
+    "    Copy-Item \"$env:APPDATA\\vlc\\*\" \"$dir\\portable\" -Recurse -Force",
+    "    Move-Item \"$dir\\portable\\vlc-qt-interface.ini\" \"$dir\\portable\\vlc\"",
+    "}"
+  ],
+  "bin": "vlc.exe",
+  "shortcuts": [
+    [
+      "vlc.exe",
+      "VLC media player"
+    ]
+  ],
+  "persist": "portable",
+  "checkver": {
+    "script": [
+      "$base_url = 'https://artifacts.videolan.org/vlc/nightly-win64-ucrt-llvm/'",
+      "$page = Invoke-WebRequest $base_url -UseBasicParsing",
+      "$full_version = $page.links | Where-Object href -match '\\d\\d\\d\\d\\d\\d\\d\\d-\\d+' | Select-Object -first 1 -expand href",
+      "$dl_page = Invoke-WebRequest ($base_url + $full_version) -UseBasicParsing",
+      "$dl = $full_version + ($dl_page.links | Where-Object href -match '.7z' | Select-Object -first 1 -expand href)",
+      "Write-Output $dl"
+    ],
+    "regex": "(?<package_sub_url>(?<version_folder>(\\d\\d\\d\\d\\d\\d\\d\\d)-\\d+)\\/(?<package_folder_name>vlc-[\\d.]+-dev).+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://artifacts.videolan.org/vlc/nightly-win64-ucrt-llvm/$matchPackage_Sub_Url",
+        "hash": {
+          "url": "https://artifacts.videolan.org/vlc/nightly-win64-ucrt-llvm/$matchVersion_Folder/SHA512SUM"
+        }
+      }
+    },
+    "extract_dir": "$matchPackage_Folder_Name"
+  },
+  "_from": "anderlli0053/DEV-tools"
+}
