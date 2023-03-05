@@ -1,0 +1,39 @@
+{
+  "version": "7.0.3",
+  "description": "The .NET Desktop Runtime enables you to run existing Windows desktop applications.",
+  "homepage": "https://dotnet.microsoft.com/download/dotnet/7.0",
+  "license": {
+    "identifier": "MIT",
+    "url": "https://github.com/dotnet/core/blob/master/LICENSE.TXT"
+  },
+  "notes": "You can remove .NET Desktop Runtime installer with 'scoop uninstall DotNetDesktopRuntime-installer' after installation",
+  "architecture": {
+    "64bit": {
+      "url": "https://dotnetcli.blob.core.windows.net/dotnet/WindowsDesktop/7.0.3/windowsdesktop-runtime-7.0.3-win-x64.exe#/windowsdesktop-runtime-win-x64.exe",
+      "hash": "sha512:3a401ba2681cd6bf88cdbc63d64dae390b53a0d49f5cc5ebdc02429e51e503e274833e9f1984c644d64713553192ec933a30d6fc98386cb87abb605e33cdb4da",
+      "shortcuts": [
+        [
+          "windowsdesktop-runtime-win-x64.exe",
+          "Install .NET Desktop Runtime (x64)"
+        ]
+      ],
+      "post_install": [
+        "&\"$dir\\windowsdesktop-runtime-win-x64.exe\""
+      ]
+    },
+    "32bit": {
+      "url": "https://dotnetcli.blob.core.windows.net/dotnet/WindowsDesktop/7.0.3/windowsdesktop-runtime-7.0.3-win-x86.exe#/windowsdesktop-runtime-win-x86.exe",
+      "hash": "sha512:8aad7c1766f11337dfeb8774b28d7462b742609f27dbf6ee0f1ad300f0bf7def00f75d47b151b433e3811dec4144521972c30f1772c86dbabc465d2e8299db7e",
+      "shortcuts": [
+        [
+          "windowsdesktop-runtime-win-x86.exe",
+          "Install .NET Desktop Runtime (x86)"
+        ]
+      ],
+      "post_install": [
+        "&\"$dir\\windowsdesktop-runtime-win-x86.exe\""
+      ]
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

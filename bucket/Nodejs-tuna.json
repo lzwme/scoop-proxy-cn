@@ -1,0 +1,31 @@
+{
+  "version": "19.7.0",
+  "description": "As an asynchronous event driven JavaScript runtime, Node is designed to build scalable network applications.",
+  "homepage": "https://mirrors.tuna.tsinghua.edu.cn/nodejs-release/",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://mirrors.tuna.tsinghua.edu.cn/nodejs-release/v19.7.0/node-v19.7.0-win-x64.7z",
+      "hash": "sha256:32e798d8f139eee1e49d5d91e5547cdcfc80ed3a6b52b0f8455635f9c71e1674",
+      "extract_dir": "node-v19.7.0-win-x64"
+    },
+    "32bit": {
+      "url": "https://mirrors.tuna.tsinghua.edu.cn/nodejs-release/v19.7.0/node-v19.7.0-win-x64.7z",
+      "hash": "sha256:ad8c1a3d6338b4f36df52af1860e5c3c2946b7c3c1552d8184c586acd4c594f5",
+      "extract_dir": "node-v19.7.0-win-x86"
+    }
+  },
+  "persist": [
+    "bin",
+    "cache"
+  ],
+  "env_add_path": [
+    "bin",
+    "."
+  ],
+  "post_install": [
+    "# Set npm prefix to install modules inside bin and npm cache so they persist",
+    "Set-Content -Value \"prefix=$persist_dir\\bin`ncache=$persist_dir\\cache\" -Path \"$dir\\node_modules\\npm\\npmrc\""
+  ],
+  "_from": "okibcn/ScoopMaster"
+}

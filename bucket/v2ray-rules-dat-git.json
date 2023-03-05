@@ -1,22 +1,22 @@
 {
-  "autoupdate": {
-    "extract_dir": "v2ray-rules-dat-$matchSha",
-    "url": "https://ghproxy.com/https://github.com/Loyalsoldier/v2ray-rules-dat/archive/$matchSha.zip"
-  },
-  "checkver": {
-    "regex": "(?s)>(\\d+)-(\\d+)-(\\d+)T.*?/(?<sha>(?<short>[0-9a-f]{7})[0-9a-f]{33})",
-    "replace": "0.${1}.${2}.${3}.${short}",
-    "url": "https://github.com/Loyalsoldier/v2ray-rules-dat/commits/release.atom"
-  },
+  "version": "0.2023.03.04.4b2716a",
   "description": "Data files from Loyalsoldier/v2ray-rules-dat, works for v2ray and Xray.",
-  "extract_dir": "v2ray-rules-dat-6a86e5d54b7035a933b7b08c359d387d447ee0bb",
-  "hash": "c8873861077cc58225429065bfb6652906cf4970e3ebd477d348f0e9d054696b",
   "homepage": "https://github.com/Loyalsoldier/v2ray-rules-dat",
   "license": {
     "identifier": "GPL-3.0-or-later",
     "url": "https://github.com/Loyalsoldier/v2ray-rules-dat/raw/master/LICENSE"
   },
-  "url": "https://ghproxy.com/https://github.com/Loyalsoldier/v2ray-rules-dat/archive/6a86e5d54b7035a933b7b08c359d387d447ee0bb.zip",
-  "version": "0.2023.02.15.6a86e5d",
-  "_from": "anderlli0053/DEV-tools"
+  "url": "https://ghproxy.com/https://github.com/Loyalsoldier/v2ray-rules-dat/archive/4b2716abae4dfef411b377459a76fcb97859c695.zip",
+  "hash": "ae1d7e5a3718187421a5e07ac6f3ba41714fad33a59988ce0caef40d5afb25b9",
+  "extract_dir": "v2ray-rules-dat-4b2716abae4dfef411b377459a76fcb97859c695",
+  "checkver": {
+    "url": "https://github.com/Loyalsoldier/v2ray-rules-dat/commits/release.atom",
+    "regex": "(?s)>(\\d+)-(\\d+)-(\\d+)T.*?/(?<sha>(?<short>[0-9a-f]{7})[0-9a-f]{33})",
+    "replace": "0.${1}.${2}.${3}.${short}"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/Loyalsoldier/v2ray-rules-dat/archive/$matchSha.zip",
+    "extract_dir": "v2ray-rules-dat-$matchSha"
+  },
+  "_from": "okibcn/ScoopMaster"
 }

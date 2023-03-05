@@ -1,0 +1,26 @@
+{
+  "version": "3.0.1",
+  "description": "View Mythic+ Scores, Raid Progress, and Recruitment Status In-Game.",
+  "homepage": "https://raider.io/",
+  "license": {
+    "identifier": "All rights reserved.",
+    "url": "https://ghproxy.com/https://raw.githubusercontent.com/RaiderIO/raiderio-addon/develop/LICENSE"
+  },
+  "url": "https://ghproxy.com/https://github.com/RaiderIO/raiderio-client-builds/releases/download/v3.0.1/RaiderIO_Client_Setup.exe#/setup.exe",
+  "hash": "49e85d54e362e774e24cec98bf6144cd944b80b238cf25634b8b98cd29fdb157",
+  "installer": {
+    "script": [
+      "Start-Process \"$dir\\setup.exe\" -ArgumentList '/S' -Wait -Verb RunAs | Out-Null",
+      "Remove-Item \"$dir\\setup.exe\""
+    ]
+  },
+  "checkver": {
+    "url": "https://api.github.com/repos/RaiderIO/raiderio-client-builds/releases",
+    "jsonpath": "$[0].tag_name",
+    "regex": "(?!v)(.+)"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/RaiderIO/raiderio-client-builds/releases/download/v$version/RaiderIO_Client_Setup.exe#/setup.exe"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

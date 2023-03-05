@@ -1,46 +1,44 @@
 {
-  "homepage": "https://platform.wps.cn",
-  "description": "Complete office suite",
-  "version": "11.2.0.12763",
+  "version": "11372.12012.2019",
+  "description": "[WPS Office 中文版] - 协同办公软件",
+  "homepage": "https://www.wps.cn",
   "license": {
     "identifier": "Freeware",
-    "url": "https://www.wps.com/eula"
+    "url": "https://www.wps.cn/privacy/useragreement"
   },
-  "url": "https://official-package.wpscdn.cn/wps/download/WPS_Setup_12598.exe#/dl.7z",
-  "hash": "e83ecd5a62991ce3018004329bcfc61f5733b3d29191338ea3e5539b3c5b86a4",
-  "extract_dir": "$_11_",
+  "url": "https://official-package.wpscdn.cn/wps/download/W.P.S.11372.12012.2019.exe#/dl.7z",
+  "hash": "a224b0f3b380f66c391ad7a7971aa6ab36b6a065e72cb395fbab07a6a6eafb17",
   "pre_install": [
-    "Expand-7zipArchive \"$dir\\`$EXEFILE\" -Switches '-t#'",
+    "Expand-7zipArchive \"$dir\\`$_11_\\`$EXEFILE\" -Switches '-t#'",
+    "Move-Item \"$dir\\`$_11_\\*.7z\" $dir",
     "Remove-Item \"$dir\\*\" -Exclude '4.7z','2.7z' -Recurse",
     "Expand-7zipArchive \"$dir\\4.7z\" -ExtractDir 'office6' -Removal",
-    "Expand-7zipArchive \"$dir\\2.7z\" -ExtractDir 'CONTROL\\office6' -Removal"
+    "Expand-7zipArchive \"$dir\\2.7z\" -ExtractDir 'CONTROL\\office6' -Overwrite 'All' -Removal"
+  ],
+  "bin": [
+    [
+      "wpsoffice.exe",
+      "wpsofficecn"
+    ]
   ],
   "shortcuts": [
     [
       "wpsoffice.exe",
       "WPS Office"
-    ],
-    [
-      "wps.exe",
-      "WPS 文字"
-    ],
-    [
-      "et.exe",
-      "WPS 表格"
-    ],
-    [
-      "wpp.exe",
-      "WPS 演示"
-    ],
-    [
-      "ksomisc.exe",
-      "WPS 配置工具"
     ]
   ],
-  "checkver": "WPS_Setup_(?<num>\\d+).exe",
-  "autoupdate": {
-    "url": "https://official-pacakge.wpscdn.cn/wps/download/WPS_Setup_$matchNum.exe#/dl.7z",
-    "extract_dir": "$_$majorVersion_"
+  "checkver": {
+    "url": "https://platform.wps.cn/",
+    "regex": "W\\.P\\.S\\.([\\d.]+)\\.exe"
   },
-  "_from": "kkzzhizhou/scoop-apps"
+  "autoupdate": {
+    "url": "https://official-package.wpscdn.cn/wps/download/W.P.S.$version.exe#/dl.7z"
+  },
+  "notes": [
+    "WPS 运行后，后台会常驻部分相关进程，卸载或更新失败时，先执行关闭进程操作：",
+    "",
+    "Get-Process *wps* | Stop-Process",
+    ""
+  ],
+  "_from": "okibcn/ScoopMaster"
 }

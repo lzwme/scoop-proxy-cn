@@ -1,0 +1,38 @@
+{
+  "version": "109.0.5414.120",
+  "description": "Chromium fork for linux named after radioactive element No. 90.",
+  "license": "GNU General Public License v3.0",
+  "homepage": "https://alex313031.blogspot.com/",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/Alex313031/Thorium-Win/releases/download/M109.0.5414.120/Thorium_109.0.5414.120.zip",
+      "hash": "9f59db1d28a5dbed2e97351a4c408b2d11bfa3ed10591b7a3281b81cda941b30"
+    }
+  },
+  "bin": [
+    [
+      "THORIUM.BAT",
+      "Thorium"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "THORIUM.BAT",
+      "Thorium"
+    ]
+  ],
+  "persist": "USER_DATA",
+  "checkver": {
+    "url": "https://api.github.com/repos/Alex313031/Thorium-Win/releases/latest",
+    "jsonpath": "$.tag_name",
+    "regex": "M(?<version>[\\d]+\\.[\\d]+\\.[\\d]+\\.[\\d]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/Alex313031/Thorium-Win/releases/download/M$version/Thorium_$version.zip"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

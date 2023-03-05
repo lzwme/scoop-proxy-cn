@@ -1,0 +1,32 @@
+{
+    "homepage": "http://www.havysoft.cl/innoextractor.html",
+    "description": "powerful application that helps you to unpack Inno Setup installers using InnoUnp technology.",
+    "version": "5.4.5.202",
+    "url": "http://www.havysoft.cl/download/IE_Install.zip",
+    "hash": "51ee17e7790eb92685d1c1941d9be5fee4c2866010833bda4e5797ec2f814e2b",
+    "persist": [
+        "Languages",
+        "Config.ini"
+    ],
+    "pre_install": [
+        "Expand-InnoArchive -Path \"$dir\\IE_Install.exe\"",
+        "if (!(Test-Path \"$persist_dir\\Config.ini\")) { New-Item \"$dir\\Config.ini\" | Out-Null }",
+        "Remove-Item \"$dir\\Init.dat\" -Force",
+        "Set-Content \"$dir\\Init.dat\" '[General]
+UbicacionData=App' -Force -Encoding  ASCII"
+    ],
+    "bin": "InnoExtractor.exe",
+    "shortcuts": [
+        [
+            "InnoExtractor.exe",
+            "Archivers\\InnoExtractor"
+        ]
+    ],
+    "checkver": {
+        "url": "http://www.havysoft.cl/descargar.html",
+        "re": "InnoExtractor[\\s\\S]*?<td.*?>([\\d.]+)</td>"
+    },
+    "autoupdate": {
+        "url": "http://www.havysoft.cl/download/IE_Install.zip"
+    }
+}

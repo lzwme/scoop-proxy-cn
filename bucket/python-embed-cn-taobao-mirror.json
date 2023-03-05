@@ -1,0 +1,31 @@
+{
+  "homepage": "https://www.python.org",
+  "description": "Python embeddable. China taobao mirror.",
+  "version": "3.11.2",
+  "architecture": {
+    "64bit": {
+      "url": "https://npmmirror.com/mirrors/python/3.11.2/python-3.11.2-embed-amd64.zip",
+      "hash": "8d7c49fff390e626038458dad32faf2ad5f762d9966fb0b2383dcfc44dc6e403"
+    },
+    "32bit": {
+      "url": "https://npmmirror.com/mirrors/python/3.11.2/python-3.11.2-embed-win32.zip",
+      "hash": "25675ab9c7be6efed3aad262665525a4b93eb0d79fcbf8a33cd1ce2b5cfb9a3e"
+    }
+  },
+  "bin": "python.exe",
+  "checkver": {
+    "url": "https://www.python.org/downloads/windows/",
+    "re": "Latest Python 3 Release - Python ([\\d\\.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://npmmirror.com/mirrors/python/$version/python-$version-embed-amd64.zip"
+      },
+      "32bit": {
+        "url": "https://npmmirror.com/mirrors/python/$version/python-$version-embed-win32.zip"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

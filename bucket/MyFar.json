@@ -1,0 +1,35 @@
+{
+  "version": "30b5800",
+  "description": "A text-mode files and archives manager",
+  "homepage": "https://farmanager.com/",
+  "license": {
+    "identifier": "BSD-3-Clause",
+    "url": "https://farmanager.com/license.php"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://farmanager.com/files/Far30b5800.x64.20210519.7z",
+      "hash": "4f2795b8887aa79958ce88b6e31bfd5374175b1b67adc9388170c51e2bb285ff"
+    },
+    "32bit": {
+      "url": "https://farmanager.com/files/Far30b5800.x86.20210519.7z",
+      "hash": "e432963de12c685a3610010969b2b1f8a3cdd2f27c0eb004a40049ee3ba8a160"
+    }
+  },
+  "bin": "far.exe",
+  "checkver": {
+    "url": "https://farmanager.com/download.php",
+    "regex": "files/Far([b\\d]+)\\.x64\\.(?<date>\\d+)\\.7z"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://farmanager.com/files/Far$version.x64.$matchDate.7z"
+      },
+      "32bit": {
+        "url": "https://farmanager.com/files/Far$version.x86.$matchDate.7z"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

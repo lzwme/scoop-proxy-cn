@@ -1,0 +1,67 @@
+{
+  "homepage": "https://developers.weixin.qq.com/miniprogram/dev/devtools/devtools.html",
+  "description": "The official devtool to develop and debug WeChat Mini Programs, RC Build",
+  "version": "1.02.2001191",
+  "license": "Freeware",
+  "architecture": {
+    "64bit": {
+      "url": "https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&from=mpwiki&download_version=1022001191&version_type=1#/installer.exe",
+      "hash": "db063f123f2c95cebd25dcec802afa8ed91fdd80b07311a594c1ec3b79318796"
+    },
+    "32bit": {
+      "url": "https://servicewechat.com/wxa-dev-logic/download_redirect?type=ia32&from=mpwiki&download_version=1022001191&version_type=1#/installer.exe",
+      "hash": "d91abf9a057d9985e1a34c02a8f3df75c1f84719279e1eaf8b3f70f32e6ab4a8"
+    }
+  },
+  "bin": [
+    "app\\微信开发者工具.exe",
+    [
+      "app\\微信开发者工具.exe",
+      "wechatdevtool-rc"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "app\\微信开发者工具.exe",
+      "微信开发者工具"
+    ]
+  ],
+  "pre_install": "Expand-7zipArchive \"$dir\\installer.exe\" \"$dir\\app\" -Removal",
+  "installer": {
+    "script": [
+      "$devtoolRoaming = \"$env:APPDATA\\Tencent\\微信开发者工具\"",
+      "if (Test-Path $devtoolRoaming) {",
+      "    Write-Output 'Removing old version %APPDATA%\\Tencent\\微信开发者工具'",
+      "    Remove-Item -Path \"$devtoolRoaming\" -Recurse -Force",
+      "}",
+      "Move-Item \"$dir\\app\\^$APPDATA\\*\"    \"$env:APPDATA\\\" -Force",
+      "# Cleanup useless files",
+      "@('$APPDATA', '$PLUGINSDIR', '卸载微信开发者工具.exe.nsis') | ForEach-Object {",
+      "    Remove-Item \"$dir\\app\\$_\" -Recurse -Force",
+      "}"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "# Cleanup devtoolRoaming",
+      "$devtoolRoaming = \"$env:APPDATA\\Tencent\\微信开发者工具\"",
+      "Remove-Item -Path \"$devtoolRoaming\" -Recurse -Force"
+    ]
+  },
+  "checkver": {
+    "url": "https://developers.weixin.qq.com/miniprogram/dev/devtools/stable.html",
+    "regex": "#</a> ([\\d.]+) <a href=\"https://.*?Windows"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&from=mpwiki&download_version=$majorVersion$minorVersion$patchVersion$buildVersion&version_type=1#/installer.exe"
+      },
+      "32bit": {
+        "url": "https://servicewechat.com/wxa-dev-logic/download_redirect?type=ia32&from=mpwiki&download_version=$majorVersion$minorVersion$patchVersion$buildVersion&version_type=1#/installer.exe"
+      }
+    }
+  },
+  "notes": "We don't persist your WeChat DevTool data, they are still storaged in '%APPDATA%\\微信开发者工具'.",
+  "_from": "okibcn/ScoopMaster"
+}

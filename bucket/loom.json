@@ -1,0 +1,25 @@
+{
+  "homepage": "https://loom.com",
+  "version": "0.156.5",
+  "license": "Proprietary",
+  "url": "https://cdn.loom.com/desktop-packages/Loom%20Setup%200.156.5.exe#/dl.7z",
+  "hash": "e6c7a7aa3e334daa017a5dce6f06564f0b52bbb187abc90fb85a7e386af26b94",
+  "extract_dir": "$PLUGINSDIR",
+  "installer": {
+    "script": "Expand-7zipArchive \"$dir\\app-64.7z\" \"$dir\""
+  },
+  "shortcuts": [
+    [
+      "Loom.exe",
+      "Loom"
+    ]
+  ],
+  "checkver": {
+    "url": "https://cdn.loom.com/desktop-packages/latest.yml",
+    "regex": "path: Loom Setup ([0-9.]+).exe"
+  },
+  "autoupdate": {
+    "url": "https://cdn.loom.com/desktop-packages/Loom%20Setup%20$version.exe#/dl.7z"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

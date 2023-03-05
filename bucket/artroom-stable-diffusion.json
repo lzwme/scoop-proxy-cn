@@ -1,0 +1,42 @@
+{
+  "version": "1.1.1",
+  "description": "Stable Diffusion One-Click Install Local GUI",
+  "homepage": "https://github.com/artmamedov/artroom-stable-diffusion",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://ghproxy.com/https://raw.githubusercontent.com/artmamedov/artroom-stable-diffusion/main/LICENSE"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/artmamedov/artroom-stable-diffusion/releases/download/v1.1.1/Artroom-Setup-1.1.1.exe",
+      "hash": "sha512:ddced8cf36893c1a140fad495beadad74af9597027973d93f68fde6375261220b5c60329b7f1c09f8286218c4d50259461cabd51540f01f43f3e49a36f131e37"
+    }
+  },
+  "pre_install": [
+    "New-Item -ItemType dir \"$dir\\temp\" | Out-Null",
+    "Expand-7zipArchive \"$dir\\Artroom-Setup-$version.exe\" -Removal \"$dir\\temp\"",
+    "Expand-7zipArchive \"$dir\\temp\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+    "Remove-Item -Recurse \"$dir\\temp\"",
+    "Start-Process -Wait \"$dir\\py_cuda_install.exe\" -WorkingDirectory \"$dir\" -NoNewWindow"
+  ],
+  "persist": "sd_settings.json",
+  "shortcuts": [
+    [
+      "Artroom.exe",
+      "Artroom"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/artmamedov/artroom-stable-diffusion/releases/download/v$version/Artroom-Setup-$version.exe",
+        "hash": {
+          "url": "$baseurl/latest.yml",
+          "regex": "sha512:\\s$base64"
+        }
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

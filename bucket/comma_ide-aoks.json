@@ -1,9 +1,24 @@
 {
+  "homepage": "https://commaide.com/",
+  "version": "2022.10.0",
+  "description": "The Integrated Development Environment for Raku",
+  "license": "Proprietary",
   "architecture": {
     "64bit": {
       "hash": "cca9d051f2a7fc46909454b9baa31f0601f522ba650090b4ccba1e4d8c592698",
       "url": "https://commaide.com/download/community/windows#/dl.7z"
     }
+  },
+  "shortcuts": [
+    [
+      "bin\\comma64.exe",
+      "Comma IDE (64bit)"
+    ]
+  ],
+  "bin": "bin\\comma64.exe",
+  "checkver": {
+    "url": "https://commaide.com/download",
+    "regex": "The latest Comma Community release is <strong>([\\d.-]+)</strong>. Want more frequent"
   },
   "autoupdate": {
     "architecture": {
@@ -12,20 +27,5 @@
       }
     }
   },
-  "bin": "bin\\comma64.exe",
-  "checkver": {
-    "regex": "The latest Comma Community release is <strong>([\\d.-]+)</strong>. Want more frequent",
-    "url": "https://commaide.com/download"
-  },
-  "description": "The Integrated Development Environment for Raku",
-  "homepage": "https://commaide.com/",
-  "license": "Proprietary",
-  "shortcuts": [
-    [
-      "bin\\comma64.exe",
-      "Comma IDE (64bit)"
-    ]
-  ],
-  "version": "2022.10.0",
-  "_from": "anderlli0053/DEV-tools"
+  "_from": "okibcn/ScoopMaster"
 }

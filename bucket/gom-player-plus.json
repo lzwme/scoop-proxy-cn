@@ -1,0 +1,56 @@
+{
+  "version": "2.3.84.5351",
+  "description": "an ad-free premium video player optimized for high-definition video playback such as UHD, 4K, etc. (paid version for gom-player; license needed)",
+  "homepage": "https://www.gomlab.com/gomplayerplus-media-player/",
+  "license": "Proprietary",
+  "architecture": {
+    "64bit": {
+      "url": "https://cdn2.gomlab.com/gretech/player64/new/GOMPlayerPlusGlobalSetup.exe#/dl.7z",
+      "hash": "b092d251bb4652e1df76f0985a1d2304021b57aef2f2f8ba420c5086f50d2f9b",
+      "bin": "GOM64.EXE",
+      "shortcuts": [
+        [
+          "GOM64.EXE",
+          "GOM Player Plus"
+        ]
+      ]
+    },
+    "32bit": {
+      "url": "https://cdn2.gomlab.com/gretech/player/plus/new/GOMPlayerPlusGlobalSetup.exe#/dl.7z",
+      "hash": "23bff94a6b1cf41be1308c49676aa9d76c4f82990e77b0f76d6349b50a7974a8",
+      "bin": "GOM.EXE",
+      "shortcuts": [
+        [
+          "GOM.EXE",
+          "GOM Player Plus"
+        ]
+      ]
+    }
+  },
+  "pre_install": [
+    "@(",
+    "    '$PLUGINSDIR',",
+    "    '$TEMP',",
+    "    'GOMMODULEUPDATE.EXE',",
+    "    'Uninstall.exe',",
+    "    'Uninstall.dat'",
+    ") | ForEach-Object {",
+    "    Remove-Item (Join-Path $dir $_) -Force -Recurse",
+    "}"
+  ],
+  "checkver": {
+    "url": "https://www.gomlab.com/ajax/update.gom?page=1&lang=eng&product=GOMPLAYERPLUS&update_lang=eng",
+    "regex": "<td><strong class=\"txt_point\">([0-9.]+)</strong></td>"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://cdn2.gomlab.com/gretech/player64/new/GOMPlayerPlusGlobalSetup.exe#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://cdn2.gomlab.com/gretech/player/plus/new/GOMPlayerPlusGlobalSetup.exe#/dl.7z"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

@@ -1,0 +1,22 @@
+{
+  "homepage": "https://winscp.net",
+  "description": "Copy files between a local computer and remote servers using FTP, FTPS, SCP, SFTP, WebDAV or S3 file transfer protocols.",
+  "license": "GPL-3.0-or-later",
+  "version": "5.17.10",
+  "url": "https://winscp.net/translations/dll/5.17.10/chs.zip",
+  "hash": "05d5c884e9c15c329adfc1d756deef2a7dc242c27131d631870d3b2212a43b3b",
+  "post_install": [
+    "$winscp_dir = \"$(appdir winscp)\\$version\"",
+    "if (Test-Path \"$winscp_dir\\WinSCP.exe\") {",
+    "    Copy-Item \"$dir\\WinSCP.chs\" \"$winscp_dir\\WinSCP.chs\" | Out-Null",
+    "}"
+  ],
+  "checkver": {
+    "url": "https://winscp.net/eng/translations.php",
+    "regex": "translations\\/dll\\/([\\d.]+)\\/chs\\.zip"
+  },
+  "autoupdate": {
+    "url": "https://winscp.net/translations/dll/$version/chs.zip"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

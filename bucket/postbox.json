@@ -1,0 +1,42 @@
+{
+  "version": "7.0.59",
+  "license": "Proprietary",
+  "description": "Postbox is powerful, intuitive, ultra-customizable, speedy, and dead set on saving you time. It is derived from Thunderbird.",
+  "homepage": "https://www.postbox-inc.com/",
+  "architecture": {
+    "64bit": {
+      "url": "https://d3nx85trn0lqsg.cloudfront.net/win/postbox-7.0.59-win32.exe",
+      "hash": "9052da4758355f063c77df9f15f194baea27866f13b58ef5e1fabebcc4663505",
+      "installer": {
+        "script": "Start-Process $dir\\$fname -ArgumentList \"/S\" -wait; Remove-Item $dir\\$fname"
+      },
+      "uninstaller": {
+        "script": "$p = \"${env:ProgramFiles(x86)}\\Postbox\\uninstall\\helper.exe\"; Invoke-Expression \"& '$p' /S\""
+      }
+    }
+  },
+  "post_install": [
+    "$null, $null2, $bucket = Get-Manifest($app)",
+    "$bucketdir = Find-BucketDirectory($bucket)",
+    "$bucketdir = $bucketdir.Trim()",
+    "& \"$bucketdir\\scripts\\track.ps1\" install $app $version"
+  ],
+  "post_uninstall": [
+    "$null, $null2, $bucket = Get-Manifest($app)",
+    "$bucketdir = Find-BucketDirectory($bucket)",
+    "$bucketdir = $bucketdir.Trim()",
+    "& \"$bucketdir\\scripts\\track.ps1\" uninstall $app $version"
+  ],
+  "checkver": {
+    "url": "https://www.postbox-inc.com/download/success-win",
+    "regex": "src=\"https://d3nx85trn0lqsg.cloudfront.net/(?<path>[^\"]*postbox-(?<version>[^\"]*)-win32\\.exe)\""
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://d3nx85trn0lqsg.cloudfront.net/$matchPath"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

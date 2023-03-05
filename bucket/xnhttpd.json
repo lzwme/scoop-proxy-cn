@@ -1,0 +1,31 @@
+{
+  "version": "0.7.0",
+  "description": "CGI Server for test uses instead of ANHTTPD",
+  "homepage": "https://github.com/hymkor/xnhttpd",
+  "license": "MIT License",
+  "architecture": {
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/hymkor/xnhttpd/releases/download/v0.7.0/xnhttpd-v0.7.0-windows-386.zip",
+      "hash": "5842ded97b40125f1545e3fd967ab48610d3dcab247a937dfb2e8c730d3455b6"
+    },
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/hymkor/xnhttpd/releases/download/v0.7.0/xnhttpd-v0.7.0-windows-amd64.zip",
+      "hash": "cda1be16c7a9d227c6b34c534efeb43a69f76fd4163ca35fec51de4c1fafe0a3"
+    }
+  },
+  "bin": [
+    "xnhttpd.exe"
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/hymkor/xnhttpd/releases/download/v$version/xnhttpd-v$version-windows-386.zip"
+      },
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/hymkor/xnhttpd/releases/download/v$version/xnhttpd-v$version-windows-amd64.zip"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

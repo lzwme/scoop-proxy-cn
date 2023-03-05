@@ -1,18 +1,15 @@
 {
-  "version": "1.1.1-20220917",
-  "description": "A handwriting notetaking software with PDF annotation support",
+  "version": "20210628",
+  "description": "Nightly dev releases of Xournalpp",
   "homepage": "https://github.com/xournalpp/xournalpp",
   "license": "GPL-2.0-or-later",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.com/https://github.com/xournalpp/xournalpp/releases/download/nightly/xournalpp-1.1.1+dev-nightly.20220917-windows.zip",
-      "hash": "b7d75c28b62eab251f71a6c8c460a60c99b860f4d79195d27d5e918c3bc20bab"
+      "url": "https://ghproxy.com/https://github.com/xournalpp/xournalpp/releases/download/nightly/xournalpp-1.1.0.dev-nightly.20210628-windows.zip",
+      "hash": "819b082aa7a8bccdaaa22a12954997454824b0244b2a6a53b93fdc702e6937c0"
     }
   },
-  "pre_install": [
-    "Get-ChildItem \"$dir\\*.exe\" | ForEach-Object -Process { Expand-7zipArchive $_ -Removal }",
-    "Remove-Item \"$dir\\`$*\", \"$dir\\Uninst*\" -Recurse"
-  ],
+  "pre_install": "Get-ChildItem \"$dir\\*.exe\" | ForEach-Object -Process { Expand-7zipArchive $_ -Removal }",
   "bin": "bin\\xournalpp.exe",
   "shortcuts": [
     [
@@ -20,17 +17,13 @@
       "Xournal++ Nightly"
     ]
   ],
+  "notes": "Latest available dev nightly build. For regular releases use xournalpp from the main extras bucket",
   "checkver": {
     "url": "https://github.com/xournalpp/xournalpp/releases/tag/nightly",
-    "regex": "(?<main>[\\d.]+)\\+dev-nightly\\.(?<date>\\d{8})",
-    "replace": "${main}-${date}"
+    "regex": "1.1.0.dev-nightly.([\\d.]+)"
   },
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.com/https://github.com/xournalpp/xournalpp/releases/download/nightly/xournalpp-$matchMain+dev-nightly.$matchDate-windows.zip"
-      }
-    }
+    "url": "https://ghproxy.com/https://github.com/xournalpp/xournalpp/releases/download/nightly/xournalpp-1.1.0.dev-nightly.$version-windows.zip"
   },
-  "_from": "ScoopInstaller/Versions"
+  "_from": "okibcn/ScoopMaster"
 }

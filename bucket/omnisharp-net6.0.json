@@ -1,0 +1,32 @@
+{
+  "version": "1.39.4",
+  "description": "A .NET development platform based on roslyn workspaces",
+  "homepage": "http://www.omnisharp.net",
+  "license": "MIT",
+  "notes": "For omnisharp-net6, please install 'versions/omnisharp-net6",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/OmniSharp/omnisharp-roslyn/releases/download/v1.39.4/omnisharp-win-x64-net6.0.zip",
+      "hash": "dfe66cc2a061659aec9d65ca28c3f913808a8b73773d7e844280f3ff35bfd64f"
+    },
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/OmniSharp/omnisharp-roslyn/releases/download/v1.39.4/omnisharp-win-x86-net6.0.zip",
+      "hash": "4296ae19658824303b27140b4f6f227f9dc08db7526fbfc3bf78f7f220b88dd2"
+    }
+  },
+  "bin": "omnisharp.exe",
+  "checkver": {
+    "github": "https://github.com/OmniSharp/omnisharp-roslyn"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/OmniSharp/omnisharp-roslyn/releases/download/v$version/omnisharp-win-x64-net6.0.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/OmniSharp/omnisharp-roslyn/releases/download/v$version/omnisharp-win-x86-net6.0.zip"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

@@ -1,0 +1,35 @@
+{
+  "version": "12.7",
+  "description": "All-in-one Disk Partition Manager",
+  "homepage": "https://www.partitionwizard.com/",
+  "license": "Freeware",
+  "innosetup": true,
+  "architecture": {
+    "64bit": {
+      "url": "https://cdn2.minitool.com/download-center/release/products/pw/current-release/pwfree1207-64bit-online.exe",
+      "hash": "58e6d8ccd3cf43cb91bd8641ff3d6d7bf32e37335b9836101e3a7df6f79a1f37"
+    },
+    "32bit": {
+      "url": "https://cdn2.minitool.com/download-center/release/products/pw/current-release/pwfree1207-32bit-online.exe",
+      "hash": "e693ea5d160754dd953ce8d9c5146dd4b8d87d43ca53bfa0868b581a9ae61cf7"
+    }
+  },
+  "shortcuts": [
+    [
+      "partitionwizard.exe",
+      "MiniTool Partition Wizard"
+    ]
+  ],
+  "checkver": "MiniTool Partition Wizard <span class=\"big\">([\\d.]+)",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://cdn2.minitool.com/download-center/release/products/pw/current-release/pwfree$majorVersion0$minorVersion-64bit-online.exe"
+      },
+      "32bit": {
+        "url": "https://cdn2.minitool.com/download-center/release/products/pw/current-release/pwfree$majorVersion0$minorVersion-32bit-online.exe"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

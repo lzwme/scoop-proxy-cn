@@ -1,0 +1,47 @@
+{
+  "homepage": "https://rime.im/",
+  "description": "【小狼毫】Rime for Windows",
+  "version": "0.14.3_dev_0.98",
+  "license": "GPL-3.0-only",
+  "url": "https://ghproxy.com/https://github.com/fxliang/weasel/releases/download/0.14.3_dev_0.98/weasel-0.14.3.7z",
+  "extract_dir": "weasel-0.14.3",
+  "hash": "e1565a8d73392b19b86824801140c697e3010de0ce0187e9e6f6a91ad0c35c1e",
+  "post_install": [
+    "Remove-Item \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
+    "Add-Content -Path \"$dir\\rime-install-config.bat\" -Value \"set rime_dir=$persist_dir\""
+  ],
+  "installer": {
+    "script": [
+      "New-Item -Path \"HKCU:\\Software\\Rime\" | Out-Null",
+      "New-Item -Path \"HKCU:\\Software\\Rime\\Weasel\" | Out-Null",
+      "New-ItemProperty -Path \"HKCU:\\Software\\Rime\\Weasel\" -Name RimeUserDir -Value \"$persist_dir\" | Out-Null",
+      "New-Item -Path \"HKCU:\\Software\\Rime\\Weasel\\Updates\" | Out-Null",
+      "New-ItemProperty -Path \"HKCU:\\Software\\Rime\\Weasel\\Updates\" -Name CheckForUpdates -Value \"0\" | Out-Null",
+      "Start-Process -Wait \"$dir\\WeaselSetup.exe\" \"/s\"",
+      "New-ItemProperty -Path \"HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\" -Name WeaselServer -Value \"$dir\\WeaselServer.exe\" | Out-Null",
+      "Start-Process \"$dir\\WeaselServer.exe\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Start-Process -Wait \"$dir\\WeaselServer.exe\"  \"/quit\"",
+      "Start-Process -Wait \"$dir\\WeaselSetup.exe\" \"/u\"",
+      "Remove-ItemProperty -Path \"HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\" -Name WeaselServer",
+      "Remove-Item -Path \"HKCU:\\Software\\Rime\" -Recurse"
+    ]
+  },
+  "shortcuts": [
+    [
+      "WeaselServer.exe",
+      "小狼毫算法服務"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/fxliang/weasel/releases/latest",
+    "regex": "releases/tag/([\\d.\\-_a-z]+)"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/fxliang/weasel/releases/download/$version/weasel-0.14.3.7z"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

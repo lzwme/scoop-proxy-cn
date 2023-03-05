@@ -1,0 +1,32 @@
+{
+  "homepage": "https://www.videohelp.com/software/chapterEditor",
+  "description": "Chapter editor and menu editor for OGG, XML, TTXT, m.AVCHD, m.editions-mkv, Matroska Menu",
+  "version": "1.36",
+  "license": "Freeware",
+  "url": "https://www.videohelp.com/download/chapterEditor%281.36%29.7z",
+  "hash": "5ada5d4c45e1e7ab1a4f00f913529431b40665954aba790e49b3ac035adb58b5",
+  "installer": {
+    "script": "New-Item $dir\\chapterEditor.ini, $dir\\Favorites.cef, $dir\\Hotkeys.ceh -Force -ErrorAction SilentlyContinue | Out-Null"
+  },
+  "shortcuts": [
+    [
+      "chapterEditor.exe",
+      "chapterEditor"
+    ]
+  ],
+  "bin": "chapterEditor.exe",
+  "persist": [
+    "chapterEditor.ini",
+    "Favorites.cef",
+    "Hotkeys.ceh"
+  ],
+  "post_install": "Get-ChildItem -Path $dir -Include *.original | Remove-Item -Force",
+  "checkver": {
+    "url": "https://www.videohelp.com/software/chapterEditor",
+    "regex": "chapterEditor ([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://www.videohelp.com/download/chapterEditor%28$version%29.7z"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

@@ -1,58 +1,73 @@
 {
-  "version": "5.58.3",
-  "description": "The open-source version of Sandboxie, a sandbox-based isolation software for 32- and 64-bit Windows NT-based operating systems.",
-  "homepage": "https://github.com/sandboxie-plus/Sandboxie",
-  "license": "GPL-3.0-only",
+  "version": "5.63.0",
+  "description": "Sandboxie is a sandbox-based isolation software for 32-bit and 64-bit Windows NT-based operating systems.",
+  "homepage": "https://sandboxie-plus.com/",
+  "license": {
+    "identifier": "GPL-3.0-or-later",
+    "url": "https://github.com/sandboxie-plus/Sandboxie/raw/master/LICENSE"
+  },
+  "notes": "Get Sandboxie Plus if you are a first-time user or want the latest features.",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/v1.3.3/Sandboxie-Classic-x64-v5.58.3.exe",
-      "hash": "cd5a28077592ad5ba2d8f59da7cb9a0d8527164c8e1f367b53b7fd2b4861e093",
-      "installer": {
-        "script": [
-          "Invoke-ExternalCommand \"$dir\\setup.exe\" -ArgumentList @('/lang=2052','/install','/S',\"/D=$dir\") -RunAs | Out-Null",
-          "Remove-Item \"$dir\\setup.exe\" -Force -Recurse"
-        ]
-      },
-      "uninstaller": {
-        "script": [
-          "$uninstaller = (Get-Item Env:windir).Value+'\\installer\\SandboxieInstall64.exe'",
-          "Invoke-ExternalCommand \"$uninstaller\" -ArgumentList @('/remove','/S') -RunAs | Out-Null"
-        ]
-      }
+      "url": "https://ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/v1.8.0/Sandboxie-Classic-x64-v5.63.0.exe",
+      "hash": "4c75c0417a6229958e85d088d4d1e2102b5e6bb9ecb7310e3cfdd3eeed249ae4"
     },
     "32bit": {
-      "url": "https://ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/v1.3.3/Sandboxie-Classic-x86-v5.58.3.exe",
-      "hash": "da75330d27279dee37f921cfffd715e4b8da4072571695273c83ffa2367778bf",
-      "installer": {
-        "script": [
-          "Invoke-ExternalCommand \"$dir\\setup.exe\" -ArgumentList @('/lang=2052','/install','/S',\"/D=$dir\") -RunAs | Out-Null",
-          "Remove-Item \"$dir\\setup.exe\" -Force -Recurse"
-        ]
-      },
-      "uninstaller": {
-        "script": [
-          "$uninstaller = (Get-Item Env:windir).Value+'\\installer\\SandboxieInstall.exe'",
-          "Invoke-ExternalCommand \"$uninstaller\" -ArgumentList @('/remove','/S') -RunAs | Out-Null"
-        ]
-      }
+      "url": "https://ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/v1.8.0/Sandboxie-Classic-x86-v5.63.0.exe",
+      "hash": "efb869ed78502531cda5f84ba8730873db5f91507b4f73d18b369a3b7ebc6a84"
     }
   },
-  "uninstaller": {
-    "script": "Copy-Item \"$dir\\Sandboxie-Plus.ini\", \"$dir\\Sandboxie.ini\", \"$dir\\Sandbox.ini\" -Destination \"$persist_dir\\\" | Out-Null"
+  "pre_install": "if (Test-Path \"$persist_dir\\sandboxie.ini\") { Copy-Item \"$persist_dir\\sandboxie.ini\" \"$dir\\\" -Force -ErrorAction 'SilentlyContinue' | Out-Null }",
+  "installer": {
+    "script": "Invoke-ExternalCommand \"$dir\\$fname\" -ArgumentList @('/S', \"/D=$dir\") -RunAs | Out-Null"
   },
+  "uninstaller": {
+    "script": [
+      "ensure \"$persist_dir\" | Out-Null",
+      "Copy-Item \"$env:windir\\sandboxie.ini\" \"$persist_dir\\\" -Force -ErrorAction 'SilentlyContinue' | Out-Null",
+      "Invoke-ExternalCommand \"$env:windir\\Installer\\SandboxieInstall64.exe\" -ArgumentList @('/remove', '/S', \"/D=$dir\") -RunAs | Out-Null"
+    ]
+  },
+  "shortcuts": [
+    [
+      "Start.exe",
+      "Sandboxie//Run any program sandboxed",
+      "/box:__ask__ run_dialog"
+    ],
+    [
+      "Start.exe",
+      "Sandboxie//Run Web browser sandboxed",
+      "/default_browser"
+    ],
+    [
+      "Start.exe",
+      "Sandboxie//Run Windows Explorer sandboxed",
+      "."
+    ],
+    [
+      "SbieCtrl.exe",
+      "Sandboxie//Sandboxie Control",
+      "/open"
+    ],
+    [
+      "Start.exe",
+      "Sandboxie//Sandboxie Start Menu",
+      "/box:__ask__ start_menu"
+    ]
+  ],
   "checkver": {
-    "url": "https://github.com/sandboxie-plus/Sandboxie/releases/latest",
-    "regex": "/download/(?<plusver>[\\d\\w.]+?)/Sandboxie-Classic-x64-v([\\d\\w.]+?).exe"
+    "url": "https://api.github.com/repos/sandboxie-plus/Sandboxie/releases",
+    "regex": "releases/download/(?<tag>[vV]?[\\d.]+)/Sandboxie-Classic-x64-v([\\d.]+).exe"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/$matchPlusver/Sandboxie-Classic-x64-v$version.exe"
+        "url": "https://ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/$matchTag/Sandboxie-Classic-x64-v$version.exe"
       },
       "32bit": {
-        "url": "https://ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/$matchPlusver/Sandboxie-Classic-x86-v$version.exe"
+        "url": "https://ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/$matchTag/Sandboxie-Classic-x86-v$version.exe"
       }
     }
   },
-  "_from": "kkzzhizhou/scoop-apps"
+  "_from": "okibcn/ScoopMaster"
 }

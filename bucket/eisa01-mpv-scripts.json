@@ -1,0 +1,18 @@
+{
+  "version": "1677395145",
+  "description": "Scripts made for mpv by Eisa01",
+  "homepage": "https://github.com/Eisa01/mpv-scripts",
+  "license": "BSD-2-Clause",
+  "url": "https://ghproxy.com/https://github.com/Eisa01/mpv-scripts/archive/refs/heads/master.zip",
+  "hash": "0fd9de5c60ca6a1fcb94fff442bd34ec318f8f20442856784ca2cddadfb20a0f",
+  "extract_dir": "mpv-scripts-master",
+  "pre_install": "Get-ChildItem \"$dir\" -Exclude scripts, script-opts | Remove-Item -Recurse",
+  "checkver": {
+    "script": "try { Get-Date (Invoke-RestMethod https://api.github.com/repositories/153626229/commits/master).commit.committer.date -UFormat %s } catch { '' }",
+    "regex": "\\A(\\d+)\\Z"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/Eisa01/mpv-scripts/archive/refs/heads/master.zip"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

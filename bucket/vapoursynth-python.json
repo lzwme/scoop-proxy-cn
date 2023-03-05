@@ -1,0 +1,43 @@
+{
+  "version": "59+3.10.7",
+  "description": "A video processing framework with simplicity in mind",
+  "homepage": "https://www.vapoursynth.com",
+  "depends": "extras/vcredist2022",
+  "license": "LGPL-2.1-or-later",
+  "url": [
+    "https://ghproxy.com/https://github.com/vapoursynth/vapoursynth/releases/download/R59/VapourSynth64-Portable-R59.7z",
+    "https://www.python.org/ftp/python/3.10.7/python-3.10.7-embed-amd64.zip"
+  ],
+  "hash": [
+    "b4111bf7fd12d1a1bd697659bfcc87dbe8f91797da1c0a9905c0cb42f1c46698",
+    "b885cbc7cc354afa31ac01d804c552ec9a91de855f46e44a805fc7e74a6bf089"
+  ],
+  "pre_install": [
+    "$arch = $architecture.SubString(0,2)",
+    "if(Test-Path \"$persist_dir\\vapoursynth$arch\") {Copy-Item \"$persist_dir\\*\" \"$dir\\\" -Force -Recurse}"
+  ],
+  "uninstaller": {
+    "script": [
+      "$arch = $architecture.SubString(0,2)",
+      "ensure \"$persist_dir\" | Out-Null",
+      "Copy-Item \"$dir\\vapoursynth$arch\" \"$persist_dir\\\" -Force -Recurse"
+    ]
+  },
+  "bin": [
+    "AVFS.exe",
+    "VSPipe.exe",
+    "pfm-192-vapoursynth-win.exe",
+    "vsrepo.py"
+  ],
+  "checkver": {
+    "github": "https://github.com/vapoursynth/vapoursynth",
+    "regex": "tag/R(\\d+)"
+  },
+  "autoupdate": {
+    "url": [
+      "https://ghproxy.com/https://github.com/vapoursynth/vapoursynth/releases/download/R$version/VapourSynth64-Portable-R$version.7z",
+      "https://www.python.org/ftp/python/$version/python-$version-embed-amd64.zip"
+    ]
+  },
+  "_from": "okibcn/ScoopMaster"
+}

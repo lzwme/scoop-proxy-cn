@@ -1,0 +1,35 @@
+{
+  "version": "5.2.0-prealpha-cc0fe69dff",
+  "description": "A free digital painting application",
+  "homepage": "https://krita.org/",
+  "license": "GPL-3.0-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://binary-factory.kde.org/job/Krita_Nightly_Windows_Build/lastSuccessfulBuild/artifact/krita-nightly-x64-5.2.0-prealpha-cc0fe69dff-setup.exe#/dl.7z",
+      "hash": "b25751c63fff941125817834ac9cf2026025084381390c129b947c639d82db79"
+    }
+  },
+  "pre_install": "Remove-Item \"$dir\\`$*\", \"$dir\\uninstall.exe.nsis\" -Recurse -Force",
+  "bin": [
+    "bin\\krita.exe",
+    "bin\\kritarunner.exe"
+  ],
+  "shortcuts": [
+    [
+      "bin\\krita.exe",
+      "Krita"
+    ]
+  ],
+  "checkver": {
+    "url": "https://binary-factory.kde.org/job/Krita_Nightly_Windows_Build/",
+    "regex": "krita-nightly-x64-([\\d.]+\\-?\\w*\\-[\\d\\w]+).*"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://binary-factory.kde.org/job/Krita_Nightly_Windows_Build/lastSuccessfulBuild/artifact/krita-nightly-x64-$version-setup.exe#/dl.7z"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

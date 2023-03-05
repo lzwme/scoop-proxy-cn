@@ -1,0 +1,23 @@
+{
+  "version": "0.20.17",
+  "homepage": "https://github.com/Fndroid/clash_for_windows_pkg",
+  "url": "https://ghproxy.com/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/0.20.17/Clash.for.Windows.Setup.0.20.17.exe#/dl.7z",
+  "hash": "ecc2c4119aea079be68158d7675b881f37803a0804cda53a0ce6f63f3a6b4d87",
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/$version/Clash.for.Windows.Setup.$version.exe#/dl.7z"
+  },
+  "extract_dir": "$PLUGINSDIR",
+  "extract_to": "PLUGINSDIR",
+  "installer": {
+    "script": "7z x $original_dir/PLUGINSDIR/app-64.7z -o\"$original_dir\""
+  },
+  "post_install": "rm $original_dir/PLUGINSDIR -recurse",
+  "shortcuts": [
+    [
+      "Clash for Windows.exe",
+      "Clash for Windows"
+    ]
+  ],
+  "_from": "okibcn/ScoopMaster"
+}

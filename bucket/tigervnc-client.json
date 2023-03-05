@@ -1,38 +1,36 @@
 {
+  "homepage": "http://tigervnc.org",
+  "version": "1.13.0",
+  "license": "GPLv2",
   "architecture": {
-    "32bit": {
-      "hash": "4508f8a42e249d5e44e29aa991f5c4ab1c6482d588b31c5ed2d4be6671bd019e",
-      "url": "https://sourceforge.net/projects/tigervnc/files/stable/1.13.0/vncviewer-1.13.0.exe/download#/vncviewer.exe"
-    },
     "64bit": {
-      "hash": "b6a80a9dcffb59483fae0376f58514662d2bedf4738e2d600290e6e5f93012e5",
-      "url": "https://sourceforge.net/projects/tigervnc/files/stable/1.13.0/vncviewer64-1.13.0.exe/download#/vncviewer.exe"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "32bit": {
-        "url": "https://sourceforge.net/projects/tigervnc/files/stable/$version/vncviewer-$version.exe/download#/vncviewer.exe"
-      },
-      "64bit": {
-        "url": "https://sourceforge.net/projects/tigervnc/files/stable/$version/vncviewer64-$version.exe/download#/vncviewer.exe"
-      }
+      "url": "https://sourceforge.net/projects/tigervnc/files/stable/1.13.0/vncviewer64-1.13.0.exe/download#/vncviewer.exe",
+      "hash": "b6a80a9dcffb59483fae0376f58514662d2bedf4738e2d600290e6e5f93012e5"
+    },
+    "32bit": {
+      "url": "https://sourceforge.net/projects/tigervnc/files/stable/1.13.0/vncviewer-1.13.0.exe/download#/vncviewer.exe",
+      "hash": "4508f8a42e249d5e44e29aa991f5c4ab1c6482d588b31c5ed2d4be6671bd019e"
     }
   },
   "bin": "vncviewer.exe",
-  "checkver": {
-    "github": "https://github.com/TigerVNC/tigervnc"
-  },
-  "description": "Client for viewing VNC-enabled computers",
-  "homepage": "http://tigervnc.org",
-  "license": "GPL-2.0-only",
-  "notes": "TigerVNC Client stores its settings at \"HKCU\\SOFTWARE\\TigerVNC\\vncviewer\".",
   "shortcuts": [
     [
       "vncviewer.exe",
       "TigerVNC Viewer"
     ]
   ],
-  "version": "1.13.0",
-  "_from": "anderlli0053/DEV-tools"
+  "checkver": {
+    "github": "https://github.com/TigerVNC/tigervnc"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://sourceforge.net/projects/tigervnc/files/stable/$version/vncviewer64-$version.exe/download#/vncviewer.exe"
+      },
+      "32bit": {
+        "url": "https://sourceforge.net/projects/tigervnc/files/stable/$version/vncviewer-$version.exe/download#/vncviewer.exe"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
 }

@@ -1,0 +1,47 @@
+{
+  "version": "9.2.1.2362",
+  "description": "Amazon Music. Your Music: Simplae, Fast, Advanced.",
+  "homepage": "https://www.amazon.com/b?node=16962657011",
+  "license": "",
+  "url": "https://d2j9xt6n9dg5d3.cloudfront.net/win/23620901_66f336fde4b69ec22347599c69a5ccb6/AmazonMusicInstaller.exe#/setup.exe",
+  "hash": "065ca73e52c00447afbf7f2882f9ad4ed6b05585874fd811301bb8bf51756b91",
+  "installer": {
+    "script": [
+      "$programname = \"Amazon Music*\"",
+      "$AppData = [Environment]::GetFolderPath(\"LocalApplicationData\")",
+      "$filepath = \"$AppData\\Amazon Music\\Amazon Music.exe\"",
+      "if(((Test-Path -Path $filepath -PathType Leaf) -eq $false) -or ((Get-Command $filepath).Version -lt [System.Version]\"$version\"))",
+      "{",
+      "   Get-Process 'Amazon Music' -ErrorAction SilentlyContinue | Stop-Process -Force",
+      "   $command = \"do {Sleep 1} until (Get-Process 'Amazon Music' -ErrorAction SilentlyContinue); Get-Process 'Amazon Music Helper' | Stop-Process -Force; Get-Process 'Amazon Music' | Stop-Process -Force\"",
+      "   $command2 = \"do {Sleep 1} until (Get-Process 'Amazon Music Helper' -ErrorAction SilentlyContinue); Get-Process 'Amazon Music Helper' | Stop-Process -Force; Get-Process 'Amazon Music' | Stop-Process -Force\"",
+      "   Start-Process -FilePath \"powershell.exe\" -ArgumentList $command -WindowStyle Hidden",
+      "   Start-Process -FilePath \"powershell.exe\" -ArgumentList $command2 -WindowStyle Hidden",
+      "   &\"$dir\\setup.exe\" --unattendedmodeui none | Out-Null",
+      "   if(((Test-Path -Path $filepath -PathType Leaf) -eq $false) -or ((Get-Command $filepath).Version -lt [System.Version]\"$version\"))",
+      "   {",
+      "       exit 1",
+      "   }",
+      "}",
+      "if (Test-Path -Path \"$dir\\setup.exe\") { Remove-Item \"$dir\\setup.exe\" -Force }",
+      "$programname = \"Amazon Music\"",
+      "$DesktopPath = [Environment]::GetFolderPath(\"DesktopDirectory\")",
+      "if (Test-Path \"$DesktopPath\\$programname.lnk\") {Remove-Item \"$DesktopPath\\$programname.lnk\" -Force}",
+      "taskkill /F /IM \"Amazon Music\" /FI 'status eq running'",
+      "taskkill /F /IM \"Amazon Music Helper\" /FI 'status eq running'"
+    ]
+  },
+  "checkver": {
+    "script": [
+      "$dl_url = 'https://d2j9xt6n9dg5d3.cloudfront.net/win/23620901_66f336fde4b69ec22347599c69a5ccb6/AmazonMusicInstaller.exe'",
+      "$dl = cache_path 'AmazonMusic' 'unknown' $dl_url",
+      "do_dl $dl_url $dl",
+      "$version = (Get-Item $dl).VersionInfo.ProductVersion",
+      "return $version"
+    ]
+  },
+  "autoupdate": {
+    "url": "https://d2j9xt6n9dg5d3.cloudfront.net/win/23620901_66f336fde4b69ec22347599c69a5ccb6/AmazonMusicInstaller.exe#/setup.exe"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

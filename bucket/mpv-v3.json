@@ -1,0 +1,40 @@
+{
+  "version": "20230305",
+  "description": "Video player based on MPlayer/mplayer2 (builds by shinchiro)",
+  "homepage": "https://mpv.io",
+  "license": "LGPL-2.1-or-later,GPL-2.0-or-later",
+  "notes": [
+    "To set up file type associations and AutoPlay handlers run '$dir\\installer\\mpv-install.bat' as administrator.",
+    "This doesn't need to be done everytime you update mpv however, do keep in mind that if you want to uninstall mpv you'll need to run '$dir\\installer\\mpv-uninstall.bat' beforehand since this action will not be performed automatically.",
+    "You can use Icaros (https://www.majorgeeks.com/files/details/icaros.html) to enable thumbnails for all media types."
+  ],
+  "suggest": {
+    "yt-dlp": "yt-dlp"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://downloads.sourceforge.net/project/mpv-player-windows/64bit-v3/mpv-x86_64-v3-20230305-git-291e05e.7z",
+      "hash": "sha1:c809e2e3902df0c5dbeb1e5fadd9955e9f36ae6b"
+    }
+  },
+  "bin": "mpv.com",
+  "shortcuts": [
+    [
+      "mpv.exe",
+      "mpv"
+    ]
+  ],
+  "persist": "portable_config",
+  "checkver": {
+    "url": "https://sourceforge.net/projects/mpv-player-windows/rss?path=/64bit-v3",
+    "regex": "mpv-x86_64-v3-(\\d+)-git-(?<commit>[\\da-f]+)\\.7z"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://downloads.sourceforge.net/project/mpv-player-windows/64bit-v3/mpv-x86_64-v3-$version-git-$matchCommit.7z"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

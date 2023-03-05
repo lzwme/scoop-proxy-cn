@@ -1,0 +1,55 @@
+{
+  "version": "g351-s155-gs3184",
+  "description": "An open-source and fully functional Steamworks SDK / API module and plug-in for the Godot Game Engine.",
+  "homepage": "https://github.com/Gramps/GodotSteam",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/Gramps/GodotSteam/releases/download/g351-s155-gs3184/win64-g351-s155-gs3184.zip",
+      "hash": "59b2f0c3a0d257a9e1b76d01682d578f23f569c89e3dd9301ee32232135e95d1",
+      "shortcuts": [
+        [
+          "windows-351-editor-64bit.exe",
+          "Godot Steam"
+        ]
+      ]
+    },
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/Gramps/GodotSteam/releases/download/g351-s155-gs3184/win32-g351-s155-gs3184.zip",
+      "hash": "27de2921079fdf65e107e889b1c2baf44ec2c26804d94718a5ed1891bb4cdb8e",
+      "shortcuts": [
+        [
+          "windows-351-editor-32bit.exe",
+          "Godot Steam"
+        ]
+      ]
+    }
+  },
+  "checkver": {
+    "url": "https://github.com/Gramps/GodotSteam/releases/latest",
+    "regex": "(g(?<godot>\\d+)-s\\d+-gs\\d+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/Gramps/GodotSteam/releases/download/$version/win64-$version.zip",
+        "shortcuts": [
+          [
+            "windows-$matchGodot-editor-64bit.exe",
+            "Godot Steam"
+          ]
+        ]
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/Gramps/GodotSteam/releases/download/$version/win32-$version.zip",
+        "shortcuts": [
+          [
+            "windows-$matchGodot-editor-32bit.exe",
+            "Godot Steam"
+          ]
+        ]
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

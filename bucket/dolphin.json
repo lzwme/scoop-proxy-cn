@@ -1,37 +1,35 @@
 {
-  "homepage": "https://dolphin-emu.org/",
-  "version": "5.0-18498",
-  "description": "Gamecube & Wii emulator",
-  "license": {
-    "identifier": "GPL-2.0",
-    "url": "https://github.com/dolphin-emu/dolphin/blob/master/license.txt"
+  "version": "22.12.2-1833",
+  "description": "Dolphin is KDE's file manager that lets you navigate and browse the contents of your hard drives, USB sticks, SD cards, and more. Creating, moving, or deleting files and folders is simple and fast.",
+  "homepage": "https://apps.kde.org/dolphin/",
+  "license": "LGPL-2.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://binary-factory.kde.org/view/Windows%2064-bit/job/Dolphin_Release_win64/1833/artifact/dolphin-22.12.2-1833-windows-cl-msvc2019-x86_64-dbg.7z",
+      "hash": "02dfd74d6553c3478af88c3a650f2dd5de32946983115d1512d1c44debb2e94e"
+    }
   },
-  "url": "https://dl.dolphin-emu.org/builds/40/56/dolphin-master-5.0-18498-x64.7z",
-  "hash": "16136aa80952fb34300a57bacf58990f9cbb7183ad68bacb2c3feffd09bd1a27",
-  "extract_dir": "Dolphin-x64",
-  "pre_install": [
-    "function create($path, $type, $content) {",
-    "   if (-not (Test-Path \"$path\")) {",
-    "       New-Item \"$path\" -ItemType $type -Value $content | Out-Null",
-    "       Write-Output \"Creating $path...\"",
-    "   }",
-    "}",
-    "create $dir/portable.txt File"
-  ],
-  "bin": "Dolphin.exe",
+  "bin": "bin\\dolphin.exe",
   "shortcuts": [
     [
-      "Dolphin.exe",
-      "Gamecube & Wii"
+      "bin\\dolphin.exe",
+      "Dolphin"
     ]
   ],
-  "persist": "portable.txt",
   "checkver": {
-    "url": "https://dolphin-emu.org/download/",
-    "regex": "https:\\/\\/dl\\.dolphin-emu\\.org\\/builds\\/(?<token>[\\d\\w]{2}\\/[\\d\\w]{2})\\/dolphin-master-(?<version>\\d.\\d\\-[\\d]{5})-x64\\.7z"
+    "url": "https://binary-factory.kde.org/view/Windows%2064-bit/job/Dolphin_Release_win64/lastSuccessfulBuild/artifact/",
+    "regex": "dolphin-([\\d.-]+)-windows-cl-msvc2019-x86_64.7z"
   },
   "autoupdate": {
-    "url": "https://dl.dolphin-emu.org/builds/$matchToken/dolphin-master-$version-x64.7z"
+    "architecture": {
+      "64bit": {
+        "url": "https://binary-factory.kde.org/view/Windows%2064-bit/job/Dolphin_Release_win64/$preReleaseVersion/artifact/dolphin-$version-windows-cl-msvc2019-x86_64-dbg.7z"
+      }
+    },
+    "hash": {
+      "url": "$url.sha256",
+      "regex": "$sha256"
+    }
   },
-  "_from": "kkzzhizhou/scoop-apps"
+  "_from": "okibcn/ScoopMaster"
 }

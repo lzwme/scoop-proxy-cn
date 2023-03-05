@@ -1,0 +1,54 @@
+{
+  "$schema": "https://ghproxy.com/https://raw.githubusercontent.com/lukesampson/scoop/master/schema.json",
+  "homepage": "https://github.com/Trisk3lion/emacs-build",
+  "license": "GPLv3",
+  "version": "0.230201.a73b046c7",
+  "url": "https://ghproxy.com/https://github.com/Trisk3lion/emacs-build/releases/download/v0.230201.a73b046c7/emacs-master-x86_64-full.zip",
+  "hash": "73a7ca03b1427fdb6d75cd3c006a3a38aef9b2c0c99ad7c0ac41297634990bd9",
+  "bin": [
+    "bin\\runemacs.exe",
+    "bin\\emacs.exe",
+    "bin\\emacsclient.exe",
+    "bin\\emacsclientw.exe",
+    "bin\\etags.exe",
+    [
+      "bin\\emacsclientw.exe",
+      "emw",
+      "-c -n -a \"\""
+    ]
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/Trisk3lion/emacs-build/releases/latest",
+    "re": "tag/v([\\d\\w.-]+)"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/Trisk3lion/emacs-build/releases/download/v$version/emacs-master-x86_64-full.zip"
+  },
+  "shortcuts": [
+    [
+      "bin\\runemacs.exe",
+      "Runemacs"
+    ],
+    [
+      "bin\\emacsclientw.exe",
+      "Emacs",
+      "-c -n -a \"\""
+    ],
+    [
+      "bin\\runemacs.exe",
+      "Emacs Daemon",
+      "--daemon"
+    ],
+    [
+      "bin\\runemacs.exe",
+      "Emacs Debug",
+      "--debug-init"
+    ],
+    [
+      "bin\\runemacs.exe",
+      "Emacs Q",
+      "-Q"
+    ]
+  ],
+  "_from": "okibcn/ScoopMaster"
+}

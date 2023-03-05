@@ -1,0 +1,26 @@
+{
+  "homepage": "https://tinkerwell.app",
+  "version": "3.19.1",
+  "license": "Proprietary",
+  "url": "https://tinkerwell.fra1.digitaloceanspaces.com/tinkerwell/Tinkerwell%20Setup%203.19.1.exe#/dl.7z",
+  "hash": "4d0e7de4049c5f3a283dc61cd1c6930298e915f0000a8f0130617319e7020cc8",
+  "extract_dir": "$PLUGINSDIR",
+  "installer": {
+    "script": "Expand-7zipArchive \"$dir\\app-64.7z\" \"$dir\""
+  },
+  "shortcuts": [
+    [
+      "Tinkerwell.exe",
+      "Tinkerwell"
+    ]
+  ],
+  "checkver": {
+    "url": "https://tinkerwell.fra1.digitaloceanspaces.com/tinkerwell/latest.yml",
+    "regex": "path: Tinkerwell Setup ([0-9.]+).exe"
+  },
+  "autoupdate": {
+    "url": "https://tinkerwell.fra1.digitaloceanspaces.com/tinkerwell/Tinkerwell%20Setup%20$version.exe#/dl.7z"
+  },
+  "notes": "The built-in autoupdate process may cause duplicate installations.",
+  "_from": "okibcn/ScoopMaster"
+}

@@ -1,0 +1,58 @@
+{
+  "version": "7.0.201",
+  "description": ".NET is a free, cross-platform, open source developer platform for building many different types of applications.",
+  "homepage": "https://www.microsoft.com/net/",
+  "license": "MIT",
+  "suggest": {
+    "Visual C++ Redistributable": "vcredist"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://dotnetcli.blob.core.windows.net/dotnet/Sdk/7.0.201/dotnet-sdk-7.0.201-win-x64.zip",
+      "hash": "sha512:913e3544a0b9301f78539531f7a51890ba46d07997a25dcce02f3616b64bc96c99b870ae6338e26953f39c499b8387e60d0e05138ba12fa06f76ba63540ea754"
+    },
+    "arm64": {
+      "url": "https://dotnetcli.blob.core.windows.net/dotnet/Sdk/7.0.201/dotnet-sdk-7.0.201-win-arm64.zip",
+      "hash": "sha512:056fc8135237c52e6258fd8d73bc018957c2caa6355a44333b25e3319ac58c9ae3e99e4d3b774e2b684521bc7ec90dcf04a235fa55276b82a42b426a43bfad81"
+    },
+    "32bit": {
+      "url": "https://dotnetcli.blob.core.windows.net/dotnet/Sdk/7.0.201/dotnet-sdk-7.0.201-win-x86.zip",
+      "hash": "sha512:f97c50f6ab752d6f32b64db1039fa419c38d48c8dd5fc861fde99ae01ac4895d39f752da12789157b43d3348e45e299db60f47982ccf861bd175d559a7aa6ebd"
+    }
+  },
+  "bin": "dotnet.exe",
+  "env_add_path": [
+    ".",
+    "\\sdk\\7.0.201"
+  ],
+  "env_set": {
+    "DOTNET_ROOT": "$dir",
+    "DOTNET_CLI_TELEMETRY_OPTOUT": true,
+    "MSBuildSDKsPath": "$dir\\sdk\\$version\\Sdks"
+  },
+  "checkver": {
+    "url": "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/releases-index.json",
+    "regex": "(?s)(?<rtv>[\\d.]+)[^\\d]*?([\\d.]+)[^\\d]*?(?:sts)([\\w\",\\s\\-\\:]+)(?:active)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://dotnetcli.blob.core.windows.net/dotnet/Sdk/$version/dotnet-sdk-$version-win-x64.zip"
+      },
+      "arm64": {
+        "url": "https://dotnetcli.blob.core.windows.net/dotnet/Sdk/$version/dotnet-sdk-$version-win-arm64.zip"
+      },
+      "32bit": {
+        "url": "https://dotnetcli.blob.core.windows.net/dotnet/Sdk/$version/dotnet-sdk-$version-win-x86.zip"
+      }
+    },
+    "hash": {
+      "url": "https://dotnetcli.blob.core.windows.net/dotnet/checksums/$matchRtv-sha.txt"
+    },
+    "env_add_path": [
+      ".",
+      "\\sdk\\$version"
+    ]
+  },
+  "_from": "okibcn/ScoopMaster"
+}

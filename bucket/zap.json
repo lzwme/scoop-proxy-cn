@@ -1,41 +1,33 @@
 {
-  "version": "0.7.6-beta",
-  "description": "Zap is a free Lightning Network wallet",
-  "homepage": "https://zaphq.io/",
-  "license": "MIT",
-  "architecture": {
-    "64bit": {
-      "url": "https://ghproxy.com/https://github.com/LN-Zap/zap-desktop/releases/download/v0.7.6-beta/Zap-win-v0.7.6-beta.exe#/dl.7z",
-      "hash": "sha512:d07dfd78733dec6ea1f080b667e2c9d794b1708fe6ba6fd2756163e6c6a2272eca6ed2ccdddacceaf00ce7d1c4f793eeb2313b4521c974461636df989b2d8b23",
-      "installer": {
-        "script": [
-          "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
-          "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninst*\" -Force -Recurse"
-        ]
-      }
-    }
+  "version": "2.12.0",
+  "homepage": "https://www.zaproxy.org/",
+  "description": "Zed Attack Proxy (ZAP) is a free, open-source penetration testing tool being maintained under the umbrella of the Open Web Application Security Project (OWASP). ZAP is designed specifically for testing web applications and is both flexible and extensible.",
+  "license": "Apache-2.0",
+  "url": "https://ghproxy.com/https://github.com/zaproxy/zaproxy/releases/download/v2.12.0/ZAP_2.12.0_Crossplatform.zip",
+  "hash": "47c6b7a73e6192c7cd6b1ed15afa95205a501cdfca1be990dfbd340dec4f9a99",
+  "suggest": {
+    "JDK": [
+      "java/oraclejdk",
+      "java/openjdk"
+    ]
   },
+  "extract_dir": "ZAP_2.12.0",
+  "bin": "zap.bat",
   "shortcuts": [
     [
-      "Zap.exe",
-      "Zap"
+      "zap.bat",
+      "OWASP ZAP",
+      "",
+      "zap.ico"
     ]
   ],
   "checkver": {
-    "url": "https://api.github.com/repos/LN-Zap/zap-desktop/releases/latest",
-    "regex": "win-v([\\w.-]+).exe"
+    "url": "https://github.com/zaproxy/zaproxy/releases/latest",
+    "re": "ZAP_([\\d.]+)_Crossplatform.zip"
   },
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.com/https://github.com/LN-Zap/zap-desktop/releases/download/v$version/Zap-win-v$version.exe#/dl.7z"
-      }
-    },
-    "hash": {
-      "url": "https://ghproxy.com/https://github.com/LN-Zap/zap-desktop/releases/download/v$version/latest.yml",
-      "mode": "extract",
-      "regex": "(?sm)$version.exe.*?sha512: $base64"
-    }
+    "url": "https://ghproxy.com/https://github.com/zaproxy/zaproxy/releases/download/v$version/ZAP_$version_Crossplatform.zip",
+    "extract_dir": "ZAP_$version"
   },
-  "_from": "chawyehsu/dorado"
+  "_from": "okibcn/ScoopMaster"
 }

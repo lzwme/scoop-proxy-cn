@@ -1,46 +1,34 @@
 {
-  "architecture": {
-    "64bit": {
-      "extract_dir": "v2rayA-744282e1b2186a65bbfac21ecfaf83a21e8f6ece",
-      "hash": "e5fdebd9dd2130bbecc092c4dbdd3f7b831ee4d86e1ffeef91392f4f2b498b5d",
-      "url": "https://ghproxy.com/https://github.com/v2rayA/v2rayA/archive/2f394f0e9d80240bdab7ca81244f5b223a56e557.zip"
-    }
+  "version": "20230213.58a6cf2",
+  "description": "v2rayA(source code for compilation). A web GUI client of Project V which supports V2Ray, Xray, SS, SSR, Trojan and Pingtunnel.",
+  "homepage": "https://github.com/v2rayA/v2raya",
+  "license": {
+    "identifier": "AGPL-3.0-only",
+    "url": "https://github.com/v2rayA/v2rayA/raw/master/LICENSE"
   },
-  "autoupdate": {
-    "extract_dir": "v2rayA-$matchSha",
-    "url": "https://ghproxy.com/https://github.com/v2rayA/v2rayA/archive/$matchSha.zip"
-  },
-  "bin": [
-    [
-      "v2rayaWin-git.exe",
-      "v2raya-git",
-      "--lite"
-    ],
-    [
-      "v2rayaWin-git.exe",
-      "v2rayaWin-git"
-    ],
-    "start-v2raya-git.ps1",
-    "stop-v2raya-git.ps1"
-  ],
-  "checkver": {
-    "regex": "(?s)>(\\d+)-(\\d+)-(\\d+)T.*?/(?<sha>(?<short>[0-9a-f]{7})[0-9a-f]{33})",
-    "replace": "0.${1}.${2}.${3}.${short}",
-    "url": "https://github.com/v2rayA/v2rayA/commits/master.atom"
-  },
+  "notes": "If you want to run both 'v2raya' and 'v2raya-git', follow the official docs to change the ports.",
   "depends": [
     "v2ray",
     "yarn",
     "nodejs-lts",
     "go"
   ],
-  "description": "v2rayA is a V2Ray client supporting global transparent proxy(Linux Only), compatible with SS, SSR, Trojan(trojan-go), PingTunnel protocols.",
-  "env_set": {
-    "V2RAYA_V2RAY_BIN": "$(scoop prefix v2ray)\\v2ray.exe"
+  "suggest": {
+    "v2ray-rules-dat": "v2raya/v2ray-rules-dat",
+    "powershell": "dorado/powershell"
   },
-  "homepage": "https://github.com/v2rayA/v2raya",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/v2rayA/v2rayA/archive/58a6cf270e43ec3eaeef7d1c65de76278dd6d349.zip",
+      "hash": "01dfa58cf083b93a3bc707dd8029acc8e48dd566c19904e219f5f6c7dec8986d",
+      "extract_dir": "v2rayA-58a6cf270e43ec3eaeef7d1c65de76278dd6d349"
+    }
+  },
   "installer": {
     "script": [
+      "${env:GOPROXY} = 'https://proxy.golang.com.cn,direct'",
+      "Write-Host \"If you cannot build Web Control Panel, try to set yarn's mirror to taobao by these command:\"",
+      "Write-Host \"yarn config set registry https://npmmirror.com/\" ",
       "Push-Location $dir",
       "# zip web files",
       "Function Gzip-File([ValidateScript({Test-Path $_})][string]$File){",
@@ -66,9 +54,10 @@
       "}",
       "# Disable CGO",
       "${env:CGO_ENABLED} = \"0\"",
+      "${env:NODE_OPTIONS} = \"--openssl-legacy-provider\"",
       "# Set AMD64 CPU Version",
       "# See https://go.dev/doc/go1.18 for more informations",
-      "${env:GOAMD64} = \"v2\"",
+      "# ${env:GOAMD64} = \"v2\"",
       "## Set yarn's output path",
       "${env:OUTPUT_DIR} = \"$dir/service/server/router/web\"",
       "# Build v2rayA",
@@ -80,41 +69,61 @@
       "        Remove-Item -Path $_.FullName",
       "    }",
       "}",
-      "$versions = 'Unstable-' + $version",
+      "$versions = 'unstable-' + $version",
       "Set-Location -Path \"$dir/service\"",
       "go build -ldflags \"-X github.com/v2rayA/v2rayA/conf.Version=$versions -s -w\" -o \"$dir/v2rayaWin-git.exe\"",
-      "Pop-Location"
-    ]
-  },
-  "license": {
-    "identifier": "AGPL-3.0-only",
-    "url": "https://github.com/v2rayA/v2rayA/raw/master/LICENSE"
-  },
-  "notes": "If you want to run both 'v2raya' and 'v2raya-git', follow the official docs to change the ports.",
-  "post_install": [
-    "Set-Content \"$dir\\start-v2raya-git.ps1\" -Value 'Start-Process \"$(scoop prefix v2raya)\\v2rayaWin-git.exe\" -ArgumentList @(\"--lite\", \"--log-file v2raya.log\") -WorkingDirectory \"$env:LocalAppData\\Temp\" -WindowStyle Hidden' -Encoding Ascii",
-    "Set-Content \"$dir\\stop-v2raya-git.ps1\" -Value 'Stop-Process -Name v2rayawin-git -ErrorAction Ignore -Force' -Encoding Ascii"
-  ],
-  "pre_install": [
-    "info '[Portable Mode]: Copying user data...'",
-    "if (Test-Path \"$persist_dir\\*\") {",
-    "    ensure \"$env:UserProfile\\.config\\v2raya\" | Out-Null",
-    "    Copy-Item \"$persist_dir\\*\" \"$env:UserProfile\\.config\\v2raya\\\" -Recurse -Force | Out-Null",
-    "}"
-  ],
-  "suggest": {
-    "v2ray-rules-dat": "meta/v2ray-rules-dat"
-  },
-  "uninstaller": {
-    "script": [
-      "info '[Portable Mode]: Backing up user data...'",
-      "if (Test-Path \"$env:UserProfile\\.config\\v2raya\\*\") {",
-      "    ensure \"$persist_dir\" | Out-Null",
-      "    Copy-Item \"$env:UserProfile\\.config\\v2raya\\*\" \"$persist_dir\\\" -Recurse -Force | Out-Null",
+      "Pop-Location",
+      "@('start-v2raya', 'stop-v2raya', 'reset-passwd-v2raya') | ForEach-Object {",
+      "    $content = Get-Content \"$bucketsdir\\v2raya\\scripts\\v2raya\\$_.ps1\"",
+      "    $content = $content.Replace(' v2raya', ' v2raya-git')",
+      "    $content = $content.Replace('v2rayaWin', 'v2rayaWin-git')",
+      "    $content | Set-Content -Path \"$dir\\$_-git.ps1\" -Encoding Ascii",
       "}",
-      "#Remove-Item \"$env:UserProfile\\.config\\v2raya\" -ErrorAction 'SilentlyContinue' -Force -Recurse"
+      "$exepath = \"powershell -NoLogo -NoProfile -File $dir\\start-v2raya-git.ps1\".Replace('\\', '\\\\')",
+      "@('add-startup', 'remove-startup') | ForEach-Object {",
+      "    $content = Get-Content \"$bucketsdir\\v2raya\\scripts\\v2raya\\$_.reg\"",
+      "    $content = $content.Replace('$exepath', $exepath)",
+      "    $content = $content.Replace('v2rayA', 'v2rayA-git')",
+      "    if ($global) {",
+      "       $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE')",
+      "    }",
+      "    $content | Set-Content -Path \"$dir\\$_.reg\" -Encoding Ascii",
+      "}"
     ]
   },
-  "version": "0.2022.11.06.2f394f0",
-  "_from": "anderlli0053/DEV-tools"
+  "pre_uninstall": "stop-v2raya-git",
+  "uninstaller": {
+    "script": "if ($cmd -eq 'uninstall') { reg import \"$dir\\remove-startup.reg\" }"
+  },
+  "bin": [
+    [
+      "v2rayaWin-git.exe",
+      "v2raya-git",
+      "--lite"
+    ],
+    [
+      "v2rayaWin-git.exe",
+      "v2rayaWin-git"
+    ],
+    "start-v2raya-git.ps1",
+    "stop-v2raya-git.ps1",
+    "reset-passwd-v2raya-git.ps1"
+  ],
+  "env_set": {
+    "V2RAYA_V2RAY_BIN": "$(scoop prefix v2ray)\\v2ray.exe"
+  },
+  "checkver": {
+    "url": "https://github.com/v2rayA/v2rayA/commits/feat_v5.atom",
+    "regex": "(?s)>(\\d+)-(\\d+)-(\\d+)T.*?/(?<sha>(?<short>[0-9a-f]{7})[0-9a-f]{33})",
+    "replace": "${1}${2}${3}.${short}"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/v2rayA/v2rayA/archive/$matchSha.zip",
+        "extract_dir": "v2rayA-$matchSha"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
 }

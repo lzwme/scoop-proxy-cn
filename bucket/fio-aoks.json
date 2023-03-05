@@ -1,30 +1,34 @@
 {
+  "##": "obsolete by the main:fio manifest",
+  "version": "3.33",
+  "description": "Flexible I/O Tester",
+  "homepage": "https://github.com/axboe/fio",
+  "license": "GPL-2.0-only",
   "architecture": {
-    "32bit": {
-      "hash": "64c6328d5cd5eb8629bd53e2f5651435aa369503ce186c9aa76416bbead5435e",
-      "url": "https://bsdio.com/fio/releases/fio-3.29-x86.msi"
-    },
     "64bit": {
-      "hash": "5633f601136678536630e5ab7f277c5df8f112077b203f9b800cc4781090b298",
-      "url": "https://bsdio.com/fio/releases/fio-3.29-x64.msi"
+      "url": "https://ghproxy.com/https://github.com/axboe/fio/releases/download/fio-3.33/fio-3.33-x64.msi",
+      "hash": "9eb156d2bd33fb2233e55ea47743d5d23ccd571ff2fa9255010ce3c8e4d4c350"
+    },
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/axboe/fio/releases/download/fio-3.33/fio-3.33-x86.msi",
+      "hash": "b86c2d06605e9212bd090fa4627610ad869ffb3f79a54e85a56c7c61012dfd61"
     }
+  },
+  "extract_dir": "fio",
+  "bin": "fio.exe",
+  "checkver": {
+    "github": "https://github.com/axboe/fio",
+    "regex": "fio-(?<version>[\\d.]+)"
   },
   "autoupdate": {
     "architecture": {
-      "32bit": {
-        "url": "https://bsdio.com/fio/releases/fio-$version-x86.msi"
-      },
       "64bit": {
-        "url": "https://bsdio.com/fio/releases/fio-$version-x64.msi"
+        "url": "https://ghproxy.com/https://github.com/axboe/fio/releases/download/fio-$version/fio-$version-x64.msi"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/axboe/fio/releases/download/fio-$version/fio-$version-x86.msi"
       }
     }
   },
-  "bin": "fio.exe",
-  "checkver": "fio-([\\d.]+) released",
-  "description": "Flexible I/O Tester",
-  "extract_dir": "fio",
-  "homepage": "https://bsdio.com/fio/",
-  "license": "GPL-2.0-only",
-  "version": "3.29",
-  "_from": "anderlli0053/DEV-tools"
+  "_from": "okibcn/ScoopMaster"
 }

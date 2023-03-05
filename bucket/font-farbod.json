@@ -1,12 +1,13 @@
 {
-  "version": "3.2.5",
-  "license": "SIL OFL 1.1",
-  "homepage": "https://github.com/font-store/FarbodFont",
-  "url": "https://ghproxy.com/https://github.com/font-store/FarbodFont/releases/download/v3.2.5/Farbod-3.2.5.zip",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/font-store/FarbodFont/releases/download/v$version/Farbod-$version.zip"
+  },
+  "checkver": {
+    "regex": "/releases/tag/v([\\d.]+)",
+    "url": "https://github.com/font-store/FarbodFont/tags"
+  },
   "hash": "da43dcb7b37a242d426771d20aa181b60ab91411c4b6b5408aa4d5473c07cdc4",
-  "pre_install": [
-    "Remove-Item $dir\\* -exclude *.ttf -Force -Recurse"
-  ],
+  "homepage": "https://github.com/font-store/FarbodFont",
   "installer": {
     "script": [
       "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
@@ -28,6 +29,10 @@
       "}"
     ]
   },
+  "license": "SIL OFL 1.1",
+  "pre_install": [
+    "Remove-Item $dir\\* -exclude *.ttf -Force -Recurse"
+  ],
   "uninstaller": {
     "script": [
       "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
@@ -48,12 +53,7 @@
       "Write-Host \"The '$app' font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
     ]
   },
-  "checkver": {
-    "url": "https://github.com/font-store/FarbodFont/tags",
-    "regex": "/releases/tag/v([\\d.]+)"
-  },
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/font-store/FarbodFont/releases/download/v$version/Farbod-$version.zip"
-  },
-  "_from": "kkzzhizhou/scoop-apps"
+  "url": "https://ghproxy.com/https://github.com/font-store/FarbodFont/releases/download/v3.2.5/Farbod-3.2.5.zip",
+  "version": "3.2.5",
+  "_from": "okibcn/ScoopMaster"
 }

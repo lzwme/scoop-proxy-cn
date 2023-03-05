@@ -1,0 +1,27 @@
+{
+  "version": "2.4.2",
+  "description": "Loki is a horizontally-scalable, highly-available, multi-tenant log aggregation system inspired by Prometheus.",
+  "homepage": "https://grafana.com/oss/loki/",
+  "license": "AGPL-3.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/grafana/loki/releases/download/v2.4.2/loki-windows-amd64.exe.zip",
+      "hash": "eb01bd606df75a9b0afeb24f66ed909fa3ce1100e666c1f11d619f38a9543b53"
+    }
+  },
+  "bin": "loki-windows-amd64.exe",
+  "checkver": {
+    "github": "https://github.com/grafana/loki"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/grafana/loki/releases/download/v$version/loki-windows-amd64.exe.zip"
+      }
+    },
+    "hash": {
+      "url": "https://ghproxy.com/https://github.com/grafana/loki/releases/download/v$version/SHA256SUMS"
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

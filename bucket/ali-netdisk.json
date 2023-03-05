@@ -1,0 +1,48 @@
+{
+  "version": "0.2.6",
+  "description": "阿里云盘命令行客户端，支持webdav文件服务",
+  "homepage": "https://github.com/tickstep/aliyunpan",
+  "license": "Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/tickstep/aliyunpan/releases/download/v0.2.6/aliyunpan-v0.2.6-windows-x64.zip",
+      "hash": "c51255da33b5a3145e1f248de0622c5e05e7fe825bd1ca84bd87a62caf8dccf0",
+      "extract_dir": "aliyunpan-v0.2.6-windows-x64"
+    },
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/tickstep/aliyunpan/releases/download/v0.2.6/aliyunpan-v0.2.6-windows-x86.zip",
+      "hash": "03e445a7bad2dee852044e06980a035f7e294d66a2abc8e7ddbec57d8a95afda",
+      "extract_dir": "aliyunpan-v0.2.6-windows-x86"
+    }
+  },
+  "bin": "aliyunpan.exe",
+  "shortcuts": [
+    [
+      "aliyunpan.exe",
+      "aliyunpan"
+    ]
+  ],
+  "persist": [
+    "config",
+    "Downloads"
+  ],
+  "env_set": {
+    "ALIYUNPAN_CONFIG_DIR": "$dir\\config"
+  },
+  "checkver": {
+    "github": "https://github.com/tickstep/aliyunpan"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/tickstep/aliyunpan/releases/download/v$version/aliyunpan-v$version-windows-x64.zip",
+        "extract_dir": "aliyunpan-v$version-windows-x64"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/tickstep/aliyunpan/releases/download/v$version/aliyunpan-v$version-windows-x86.zip",
+        "extract_dir": "aliyunpan-v$version-windows-x86"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

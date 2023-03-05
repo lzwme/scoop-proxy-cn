@@ -1,0 +1,43 @@
+{
+  "version": "19.0.20200.0",
+  "description": "Integrated environment for SQL Server infrastructure administration and T-SQL development.",
+  "homepage": "https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms",
+  "license": "Freeware",
+  "url": "https://aka.ms/ssmsfullsetup?clcid=0x411#/SSMS-Setup-JPN.exe",
+  "hash": "be47e60143563941073baf9944bc83efaa9599c62ca1d2da0b14f8f6c9e15274",
+  "installer": {
+    "script": [
+      "$log = \"$dir\\SSMS-Setup-JPN-Install.log\"",
+      "$bin = \"$dir\\SSMS-Setup-JPN.exe\"",
+      "$args = \"/c $bin /install /quiet /norestart /log $log SSMSInstallRoot=$dir\"",
+      "# 3010 exit code means successful, but reboot pending",
+      "$success = @(0, 3010)",
+      "$rc = (Start-Process cmd -Verb Runas \"$args\" -Wait -WindowStyle hidden -PassThru).ExitCode",
+      "if ($rc -notin $success) { abort \"Install failed. See log for details:`n$log\" }"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$log = \"$dir\\SSMS-Setup-JPN-Uninstall.log\"",
+      "$bin = \"$dir\\SSMS-Setup-JPN.exe\"",
+      "$args = \"/c $bin /uninstall /quiet /norestart /log $log\"",
+      "$success = @(0, 3010)",
+      "$rc = (Start-Process cmd -Verb Runas \"$args\" -Wait -WindowStyle hidden -PassThru).ExitCode",
+      "if ($rc -notin $success) { abort \"Uninstall failed. See log for details:`n$log\" }"
+    ]
+  },
+  "bin": "Common7\\IDE\\Ssms.exe",
+  "shortcuts": [
+    [
+      "Common7\\IDE\\Ssms.exe",
+      "SQL Server Management Studio"
+    ]
+  ],
+  "checkver": {
+    "regex": "Build number: (?<version>[\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://aka.ms/ssmsfullsetup?clcid=0x411#/SSMS-Setup-JPN.exe"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

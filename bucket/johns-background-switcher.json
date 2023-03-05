@@ -1,0 +1,23 @@
+{
+  "version": "5.5.0.18",
+  "description": "John’s Background Switcher: periodically changes the background image on your Windows computer to something awesome",
+  "homepage": "https://johnsad.ventures/software/backgroundswitcher/windows/",
+  "license": "Proprietary",
+  "url": "https://dl.johnsadventures.com/JBS-5.5.0.18.zip",
+  "hash": "7fab44fd2f2a07260ff57ccc9a0977b80725dc30c236fa9c1ebac3acd77bed8d",
+  "bin": "BackgroundSwitcher.exe",
+  "shortcuts": [
+    [
+      "BackgroundSwitcher.exe",
+      "JohnsBackgroundSwitcher"
+    ]
+  ],
+  "checkver": {
+    "url": "https://johnsad.ventures/software/backgroundswitcher/windows/",
+    "regex": "<a href=\"(?<url>[^\"]+-([0-9.]+)\\.zip)\">zip archive</a>"
+  },
+  "autoupdate": {
+    "url": "$matchUrl"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

@@ -1,0 +1,35 @@
+{
+  "##": "微信",
+  "version": "3.9.0",
+  "description": "[微信] - 超过10亿人使用，能够通过网络给好友发送文字消息、表情和图片，还可以传送文件，与朋友视频聊天，让你的沟通更方便。并提供有多种语言界面。",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement"
+  },
+  "url": "https://dldir1.qq.com/weixin/Windows/WeChatSetup.exe#/dl.7z",
+  "homepage": "https://pc.weixin.qq.com",
+  "bin": [
+    "WeChat.exe",
+    [
+      "WeChat.exe",
+      "weixin"
+    ]
+  ],
+  "hash": "f1d1139498d0e76c5356e1f6542ab9a2cc468f11fb4a88ffc1e826baef02cafc",
+  "checkver": {
+    "url": "https://weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_faq_list",
+    "regex": "page/faq/win.*?version>([\\d.]+)<"
+  },
+  "autoupdate": {
+    "url": "https://dldir1.qq.com/weixin/Windows/WeChatSetup.exe#/dl.7z",
+    "hash": {
+      "mode": "download"
+    }
+  },
+  "post_install": [
+    "Remove-Item \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
+    "Remove-Item \"$dir\\`$_15_\" -Force -Recurse",
+    "Remove-Item \"$dir\\`$R5\" -Force -Recurse"
+  ],
+  "_from": "okibcn/ScoopMaster"
+}

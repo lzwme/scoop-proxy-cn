@@ -1,0 +1,39 @@
+{
+  "version": "2.39.2.windows.1",
+  "description": "Distributed version control system",
+  "homepage": "https://registry.npmmirror.com/binary.html?path=git-for-windows/",
+  "license": "GPL-2.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "#/dl.7z",
+      "hash": "sha256:20e3959d4e310a79b5cf4138797aa247d473d1f7b077a6c433cbfc4ddc5486f1"
+    },
+    "32bit": {
+      "url": "https://registry.npmmirror.com/-/binary/git-for-windows/v2.39.2.windows.1/PortableGit-2.39.2-32-bit.7z.exe#/dl.7z",
+      "hash": "sha256:84ea6be01df896f6d50192ba4cda85c38ab995154f7aa9d3849492a15f21b500"
+    }
+  },
+  "post_install": "git config --global credential.helper manager-core",
+  "bin": [
+    "cmd\\git.exe",
+    "cmd\\gitk.exe",
+    "cmd\\git-gui.exe",
+    "usr\\bin\\tig.exe",
+    "git-bash.exe"
+  ],
+  "shortcuts": [
+    [
+      "git-bash.exe",
+      "Git Bash",
+      "--cd-to-home"
+    ],
+    [
+      "cmd\\git-gui.exe",
+      "Git GUI"
+    ]
+  ],
+  "env_set": {
+    "GIT_INSTALL_ROOT": "$dir"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

@@ -1,29 +1,36 @@
 {
-  "homepage": "https://github.com/xwjdsh/lunar",
-  "description": "A command-line tool for searching and converting the lunar calendar [1901~2100]",
-  "license": "MIT",
-  "version": "0.1.0",
-  "architecture": {
-    "64bit": {
-      "url": "https://ghproxy.com/https://github.com/xwjdsh/lunar/releases/download/v0.1.0/lunar_0.1.0_Windows_x86_64.tar.gz",
-      "hash": "8c14f58ce7304a4958632edb1efcadfcae33478a0bbd49139b1732dcb838edce"
-    },
-    "32bit": {
-      "url": "https://ghproxy.com/https://github.com/xwjdsh/lunar/releases/download/v0.1.0/lunar_0.1.0_Windows_i386.tar.gz",
-      "hash": "86cbde8cbc4d4f4996200d17363f2c6b0de7330daeaaf0ecdd10b7aa2bb1eece"
-    }
-  },
-  "bin": "lunar.exe",
+  "version": "0.6.5",
+  "description": "The unofficial spacebin CLI",
+  "homepage": "https://github.com/GreatGodApollo/lunar/",
   "checkver": "github",
+  "license": "MIT",
   "autoupdate": {
+    "note": "Thank you for using auto-update! Please make sure to test the updates.",
     "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.com/https://github.com/xwjdsh/lunar/releases/download/v0.1.0/lunar_0.1.0_Windows_x86_64.tar.gz"
-      },
       "32bit": {
-        "url": "https://ghproxy.com/https://github.com/xwjdsh/lunar/releases/download/v0.1.0/lunar_0.1.0_Windows_i386.tar.gz"
+        "url": "https://ghproxy.com/https://github.com/GreatGodApollo/lunar/releases/download/v$version/lunar_v$version_windows_386.zip",
+        "hash": {
+          "url": "https://ghproxy.com/https://github.com/GreatGodApollo/lunar/releases/download/v$version/lunar_v$version_windows_386_checksum.txt"
+        }
+      },
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/GreatGodApollo/lunar/releases/download/v$version/lunar_v$version_windows_amd64.zip",
+        "hash": {
+          "url": "https://ghproxy.com/https://github.com/GreatGodApollo/lunar/releases/download/v$version/lunar_v$version_windows_amd64_checksum.txt"
+        }
       }
     }
   },
-  "_from": "kkzzhizhou/scoop-apps"
+  "architecture": {
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/GreatGodApollo/lunar/releases/download/v0.6.5/lunar_v0.6.5_windows_386.zip",
+      "hash": "md5:25a5adcb28d5b2e142aa0a1264e50721"
+    },
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/GreatGodApollo/lunar/releases/download/v0.6.5/lunar_v0.6.5_windows_amd64.zip",
+      "hash": "md5:8363102eb12af6af3acc31509920adb4"
+    }
+  },
+  "bin": "lunar.exe",
+  "_from": "okibcn/ScoopMaster"
 }

@@ -1,0 +1,38 @@
+{
+  "homepage": "https://github.com/dequis/purple-facebook/wiki/Installing-on-Windows",
+  "description": "Pidgin facebook plugin",
+  "version": "2018.Mar.22",
+  "license": "GPL-2.0-or-later",
+  "url": [
+    "https://github.com/EionRobb/skype4pidgin/raw/master/skypeweb/libjson-glib-1.0.dll",
+    "https://dl.voidium.net/pidgin/libfacebook.dll"
+  ],
+  "hash": [
+    "sha256:f3a6d5a52c7e85c34e3a6764928dc8c61fd28a82a358805983b9fd61726ce739",
+    "sha256:84a07a6e175b3e0a067e9905941975d00e0a0dc84a9081191ada832b50510c98"
+  ],
+  "post_install": [
+    "$pidgin = \"$(appdir pidgin)\\current\"",
+    "if (!(Test-Path \"$pidgin\\plugins\\libfacebook.dll\")) {",
+    "  Move-Item \"$dir\\libfacebook.dll\" \"$pidgin\\plugins\\\"",
+    "}",
+    "if (!(Test-Path \"$pidgin\\libjson-glib-1.0.dll\")) {",
+    "  Move-Item \"$dir\\libjson-glib-1.0.dll\" \"$pidgin\\\" -Force",
+    "}"
+  ],
+  "uninstaller": {
+    "script": [
+      "$pidgin = \"$(appdir pidgin)\\current\"",
+      "if (Test-Path \"$pidgin\\plugins\\libfacebook.dll\") {",
+      "   Remove-Item \"$pidgin\\plugins\\libfacebook.dll\" -Force",
+      "}"
+    ]
+  },
+  "checkver": {
+    "url": "https://dl.voidium.net/pidgin",
+    "re": ">libfacebook\\.dll<\\/a>\\s*(?<day>\\d\\d)-(?<month>[^-]*)-(?<year>\\d{4})",
+    "replace": "${year}.${month}.${day}"
+  },
+  "depends": "pidgin",
+  "_from": "okibcn/ScoopMaster"
+}

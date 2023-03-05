@@ -1,0 +1,26 @@
+{
+  "version": "1.2.14",
+  "description": "跨平台的UI自动化编辑器",
+  "homepage": "https://airtest.netease.com/index.html",
+  "license": "网易公司版权所有",
+  "architecture": {
+    "64bit": {
+      "url": "https://airtestproject.s3.netease.com/downloads/AirtestIDE/win64/AirtestIDE-win-1.2.14.zip",
+      "hash": "54A94AF683520E063C7006586E5855D28CCF12717410EB3764648D5FC1A7063F",
+      "extract_dir": "AirtestIDE"
+    }
+  },
+  "bin": "AirtestIDE.exe",
+  "checkver": {
+    "url": "https://airtest.netease.com/changelog.html",
+    "regex": "v([\\d.]+)</h1>"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://airtestproject.s3.netease.com/downloads/AirtestIDE/win64/AirtestIDE-win-$version.zip"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

@@ -1,13 +1,16 @@
 {
-  "autoupdate": {
-    "extract_dir": "ArrowType-Recursive-$version\\Recursive_Desktop",
-    "url": "https://ghproxy.com/https://github.com/arrowtype/recursive/releases/download/v$version/ArrowType-Recursive-$version.zip"
-  },
-  "checkver": "github",
+  "version": "1.085",
   "description": "Recursive Mono & Sans is a variable font family for code & UI",
-  "extract_dir": "ArrowType-Recursive-1.085\\Recursive_Desktop",
-  "hash": "cbcbdf7a0e181d284a9235e09ed5f3873e527bc5dd1d977df71cdc1ff937da02",
+  "license": "OFL-1.1",
   "homepage": "https://github.com/arrowtype/recursive",
+  "url": "https://ghproxy.com/https://github.com/arrowtype/recursive/releases/download/v1.085/ArrowType-Recursive-1.085.zip",
+  "hash": "cbcbdf7a0e181d284a9235e09ed5f3873e527bc5dd1d977df71cdc1ff937da02",
+  "extract_dir": "ArrowType-Recursive-1.085\\Recursive_Desktop",
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/arrowtype/recursive/releases/download/v$version/ArrowType-Recursive-$version.zip",
+    "extract_dir": "ArrowType-Recursive-$version\\Recursive_Desktop"
+  },
   "installer": {
     "script": [
       "if(!(is_admin)) { error \"Admin rights are required.\"; exit 1 }",
@@ -17,7 +20,6 @@
       "}"
     ]
   },
-  "license": "OFL-1.1",
   "uninstaller": {
     "script": [
       "if(!(is_admin)) { error \"Admin rights are required.\"; exit 1 }",
@@ -28,7 +30,5 @@
       "Write-Host \"'Recursive' TTF files have been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
     ]
   },
-  "url": "https://ghproxy.com/https://github.com/arrowtype/recursive/releases/download/v1.085/ArrowType-Recursive-1.085.zip",
-  "version": "1.085",
-  "_from": "anderlli0053/DEV-tools"
+  "_from": "okibcn/ScoopMaster"
 }

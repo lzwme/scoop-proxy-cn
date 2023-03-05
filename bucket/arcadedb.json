@@ -1,0 +1,49 @@
+{
+  "version": "22.12.1",
+  "description": "A conceptual fork of OrientDB, a multi-model database, one DBMS that supports SQL, Cypher, Gremlin, HTTP/JSON, MongoDB and Redis.",
+  "homepage": "https://arcadedb.com",
+  "license": "Apache-2.0",
+  "notes": [
+    "After an installation or update please close all your terminal sessions before interacting with ArcadeDB commands."
+  ],
+  "suggest": {
+    "JDK": [
+      "java/openjdk",
+      "java/temurin-jdk",
+      "java/oraclejdk"
+    ]
+  },
+  "url": "https://ghproxy.com/https://github.com/ArcadeData/arcadedb/releases/download/22.12.1/arcadedb-22.12.1.tar.gz",
+  "hash": "04af8de091e91693cb80ab936690a5d681a26dbc15f9f072f91089e85fae817e",
+  "extract_dir": "arcadedb-22.12.1",
+  "persist": [
+    "config",
+    "databases",
+    "log"
+  ],
+  "env_set": {
+    "ARCADEDB_HOME": "$dir"
+  },
+  "bin": [
+    [
+      "bin\\console.bat",
+      "arcadedb-console"
+    ],
+    [
+      "bin\\server.bat",
+      "arcadedb-server"
+    ],
+    [
+      "bin\\stresstester.bat",
+      "arcadedb-stresstester"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/ArcadeData/arcadedb"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/ArcadeData/arcadedb/releases/download/$version/arcadedb-$version.tar.gz",
+    "extract_dir": "arcadedb-$version"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

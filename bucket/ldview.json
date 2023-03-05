@@ -1,0 +1,43 @@
+{
+  "version": "4.4.1",
+  "description": "A real-time 3D viewer for displaying LDraw models",
+  "homepage": "https://tcobbs.github.io/ldview/",
+  "license": "GPL-2.0-only|MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/tcobbs/ldview/releases/download/v4.4.1/LDView64-4401.exe#/dl.7z",
+      "hash": "bf232bfb5721e481da9a186bf2b32bdfa6ef2acdc4537922c9c449ca94bd4f0b",
+      "shortcuts": [
+        [
+          "LDView64.exe",
+          "LDView"
+        ]
+      ]
+    },
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/tcobbs/ldview/releases/download/v4.4.1/LDView-4401.exe#/dl.7z",
+      "hash": "286463cc89818d361148b7451b8ff468ce7a01e760b622595b71fda0172bd1c5",
+      "shortcuts": [
+        [
+          "LDView.exe",
+          "LDView"
+        ]
+      ]
+    }
+  },
+  "innosetup": true,
+  "checkver": {
+    "github": "https://github.com/tcobbs/ldview"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/tcobbs/ldview/releases/download/v$version/LDView64-$majorVersion$minorVersion0$patchVersion.exe#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/tcobbs/ldview/releases/download/v$version/LDView-$majorVersion$minorVersion0$patchVersion.exe#/dl.7z"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

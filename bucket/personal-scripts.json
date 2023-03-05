@@ -1,0 +1,18 @@
+{
+  "version": "1674089278",
+  "description": "Just some personal scripts",
+  "homepage": "https://github.com/brian6932/personal-scripts/",
+  "url": "https://ghproxy.com/https://github.com/brian6932/personal-scripts/archive/refs/heads/main.zip",
+  "license": "Unknown",
+  "hash": "6604ec5e7804403c1d882d89b39d987dcd446cfba76ed4e5b5dc5e034723a746",
+  "pre_install": "Rename-Item \"$dir\\personal-scripts-main\" \"$dir\\bin\"",
+  "env_add_path": "bin",
+  "checkver": {
+    "script": "try { Get-Date (Invoke-RestMethod https://api.github.com/repositories/465033301/commits/main).commit.committer.date -UFormat %s } catch { '' }",
+    "regex": "\\A(\\d+)\\Z"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/brian6932/personal-scripts/archive/refs/heads/main.zip"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

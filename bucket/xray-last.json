@@ -1,19 +1,12 @@
 {
+  "version": "1.9.4",
+  "description": "一款功能强大的安全评估工具",
+  "homepage": "https://github.com/chaitin/xray",
+  "license": "License",
   "architecture": {
     "64bit": {
-      "hash": "3fc0a754c237154256cc487b0f495936c02acedac77ce0a36f6937e0564c9449",
-      "url": "https://ghproxy.com/https://github.com/chaitin/xray/releases/download/1.9.3/xray_windows_amd64.exe.zip"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "hash": {
-          "regex": "$base64\\s+\\./$basename",
-          "url": "$baseurl/sha256.txt"
-        },
-        "url": "https://ghproxy.com/https://github.com/chaitin/xray/releases/download/$version/xray_windows_amd64.exe.zip"
-      }
+      "url": "https://ghproxy.com/https://github.com/chaitin/xray/releases/download/1.9.4/xray_windows_amd64.exe.zip",
+      "hash": "34d82adf413d9c265a59d1d0bbacc27e9595bceccef85ecedb4a14815cf6892e"
     }
   },
   "bin": [
@@ -22,16 +15,23 @@
       "xray"
     ]
   ],
-  "checkver": "github",
-  "description": "一款功能强大的安全评估工具",
-  "homepage": "https://github.com/chaitin/xray",
-  "license": "License",
   "shortcuts": [
     [
       "xray_windows_amd64.exe",
       "XRay"
     ]
   ],
-  "version": "1.9.3",
-  "_from": "anderlli0053/DEV-tools"
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/chaitin/xray/releases/download/$version/xray_windows_amd64.exe.zip",
+        "hash": {
+          "url": "$baseurl/sha256.txt",
+          "regex": "$base64\\s+\\./$basename"
+        }
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
 }

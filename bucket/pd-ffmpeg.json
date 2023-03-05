@@ -1,0 +1,32 @@
+{
+  "version": "4.4-19",
+  "description": "A complete, cross-platform solution to record, convert and stream audio and video.",
+  "homepage": "https://ffmpeg.org",
+  "license": "GPL-3.0-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/BtbN/FFmpeg-Builds/releases/download/autobuild-2021-05-31-13-09/ffmpeg-n4.4-19-g8d172d9409-win64-gpl-4.4.zip",
+      "hash": "210f8fd69b48f73e33388525189cd68658895624686e89c17a4b0974df284df1",
+      "extract_dir": "ffmpeg-n4.4-19-g8d172d9409-win64-gpl-4.4"
+    }
+  },
+  "bin": [
+    "bin\\ffmpeg.exe",
+    "bin\\ffplay.exe",
+    "bin\\ffprobe.exe"
+  ],
+  "checkver": {
+    "github": "https://github.com/BtbN/FFmpeg-Builds",
+    "regex": "/autobuild-(?<time>[\\d-]+)/ffmpeg-n(?<version>[\\d.]+)-(?<commit>\\d+)-g(?<hash>[a-z\\d]+)-win64-gpl-[\\d.]+\\.zip",
+    "replace": "${version}-${commit}"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/BtbN/FFmpeg-Builds/releases/download/autobuild-$matchTime/ffmpeg-n$version-g$matchHash-win64-gpl-$majorVersion.$minorVersion.zip",
+        "extract_dir": "ffmpeg-n$version-g$matchHash-win64-gpl-$majorVersion.$minorVersion"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

@@ -1,0 +1,27 @@
+{
+  "version": "0.22.0",
+  "description": "multi-shell multi-command argument completer",
+  "homepage": "https://rsteube.github.io/carapace-bin",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/rsteube/carapace-bin/releases/download/v0.22.0/carapace-bin_windows_amd64.tar.gz",
+      "hash": "5aff592c7bae23ddc92342ec67d2bf0cc5285757092f3ccefebc005179d3b479"
+    }
+  },
+  "bin": "carapace.exe",
+  "checkver": {
+    "github": "https://github.com/rsteube/carapace-bin"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/rsteube/carapace-bin/releases/download/v$version/carapace-bin_windows_amd64.tar.gz"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/checksums.txt"
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

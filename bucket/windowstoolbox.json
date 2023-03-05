@@ -1,29 +1,24 @@
 {
-  "autoupdate": {
-    "extract_dir": "WindowsToolbox-$matchSha",
-    "url": "https://ghproxy.com/https://github.com/WinTweakers/WindowsToolbox/archive/$matchSha.zip"
-  },
+  "version": "1.0.4",
+  "description": "A powerful but simple, easy to use toolbox for Windows 10/11",
+  "homepage": "https://github.com/WinTweakers/WindowsToolbox",
+  "license": "MIT,Beerware",
+  "url": "https://ghproxy.com/https://github.com/WinTweakers/WindowsToolbox/archive/1.0.4.zip",
+  "hash": "d98e185c92f3e4997e3b9092deba87cedaf0408928161248bbc58eb3b7aeef79",
+  "extract_dir": "WindowsToolbox-1.0.4",
   "bin": [
     [
-      "WindowsToolbox.cmd",
+      "main.ps1",
       "windowstoolbox"
     ]
   ],
+  "notes": "Does not work with PowerShell Core.",
   "checkver": {
-    "regex": "(?s)>(\\d+)-(\\d+)-(\\d+)T.*?/(?<sha>(?<short>[0-9a-f]{7})[0-9a-f]{33})",
-    "replace": "0.${1}.${2}.${3}.${short}",
-    "url": "https://github.com/WinTweakers/WindowsToolbox/commits/main.atom"
+    "github": "https://github.com/WinTweakers/WindowsToolbox"
   },
-  "description": "A powerful but simple, easy to use toolbox for Windows 10 / 11.",
-  "extract_dir": "WindowsToolbox-03b9e2793b9afacad5d666fc37a05d348c8c2180",
-  "hash": "2384c2cc25c174bb5c155ec47b24b671000e9d7ba3936f050a4c76370d9afd17",
-  "homepage": "https://github.com/WinTweakers/WindowsToolbox",
-  "license": {
-    "identifier": "MIT",
-    "url": "https://github.com/WinTweakers/WindowsToolbox/raw/main/LICENSE"
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/WinTweakers/WindowsToolbox/archive/$version.zip",
+    "extract_dir": "WindowsToolbox-$version"
   },
-  "notes": "Usage: <https://github.com/WinTweakers/WindowsToolbox#installation>",
-  "url": "https://ghproxy.com/https://github.com/WinTweakers/WindowsToolbox/archive/03b9e2793b9afacad5d666fc37a05d348c8c2180.zip",
-  "version": "0.2023.01.04.03b9e27",
-  "_from": "anderlli0053/DEV-tools"
+  "_from": "okibcn/ScoopMaster"
 }

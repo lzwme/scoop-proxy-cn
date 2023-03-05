@@ -1,0 +1,23 @@
+{
+  "version": "3.14",
+  "description": "A handy toolkit to merge, split and analyze DjVu files.(Chinese version)",
+  "homepage": "https://www.cnblogs.com/stronghorse",
+  "license": "Freeware",
+  "url": "https://ghproxy.com/https://raw.githubusercontent.com/sqliuchang/strnghrs_packages/main/DjVuToy_chn.zip",
+  "hash": "35afb92f70c52330a8771ac2b5df339fbab438953957dafd3cbf1316ddc43f53",
+  "pre_install": [
+    "# Create initial config files",
+    "if (!(Test-Path -Path \"$dir\\DjVuToy.ini\")) {",
+    "    (New-Item -ItemType \"file\" -Path \"$dir\" -Name \"DjVuToy.ini\") | Out-Null",
+    "}"
+  ],
+  "bin": "DjVuToy.exe",
+  "shortcuts": [
+    [
+      "DjVuToy.exe",
+      "DjVuToy"
+    ]
+  ],
+  "persist": "DjVuToy.ini",
+  "_from": "okibcn/ScoopMaster"
+}

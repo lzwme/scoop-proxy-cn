@@ -1,39 +1,53 @@
 {
   "version": "5.70",
-  "description": "Provides functionality for extract hardcoded text (hardsub) from video.",
-  "homepage": "https://videosubfinder.sourceforge.io/",
-  "license": "GPL-2.0-only",
+  "description": "Extracts hardcoded text (hardsub) from video",
+  "homepage": "https://sourceforge.net/projects/videosubfinder/",
+  "license": "Public Domain",
+  "suggest": {
+    "vcredist": [
+      "extras/vcredist2019",
+      "extras/vcredist-aio"
+    ]
+  },
+  "notes": [
+    "If upgrading, you might need to manually merge settings\\general.cfg with settings.original\\general.cfg.",
+    "Older versions may not start due to possible settings\\eng\\locale.cfg incompatibilities."
+  ],
   "architecture": {
     "64bit": {
-      "url": "https://sourceforge.net/projects/videosubfinder/files/VideoSubFinder_5.70_x64.zip/download#/dl",
-      "hash": "45f3adba92a69c386c56be499f99f3517e26948936ff0d938001ee3c8914c785",
-      "pre_install": [
-        "if (Test-Path \"$persist_dir\\settings\") {",
-        "  Expand-7zipArchive \"$dir\\$fname\" \"$dir\\_temp\" -ExtractDir Release_x64\\settings\\eng",
-        "  Move-Item \"$dir\\_temp\\*.cfg\" \"$persist_dir\\settings\\eng\" -Force",
-        "  Remove-Item \"$dir\\_temp\" -Recurse -Force",
-        "}"
-      ],
-      "installer": {
-        "script": "Expand-7zipArchive \"$dir\\$fname\" \"$dir\" -ExtractDir Release_x64 -Removal"
-      }
+      "url": "https://downloads.sourceforge.net/project/videosubfinder/VideoSubFinder_5.70_x64.zip#/dl.zip_",
+      "hash": "sha1:c9dfdf3649cba4f32adde7b21de5150644190e1d",
+      "extract_dir": "Release_x64"
     },
     "32bit": {
-      "url": "https://sourceforge.net/projects/videosubfinder/files/VideoSubFinder_5.70_x86.zip/download#/dl",
-      "hash": "bac4de16175d4032a7a546444430070d3220512a46089d3338ad90431cffc22d",
-      "pre_install": [
-        "if (Test-Path \"$persist_dir\\settings\") {",
-        "  Expand-7zipArchive \"$dir\\$fname\" \"$dir\\_temp\" -ExtractDir Release\\settings\\eng",
-        "  Move-Item \"$dir\\_temp\\*.cfg\" \"$persist_dir\\settings\\eng\" -Force",
-        "  Remove-Item \"$dir\\_temp\" -Recurse -Force",
-        "}"
-      ],
-      "installer": {
-        "script": "Expand-7zipArchive \"$dir\\$fname\" \"$dir\" -ExtractDir Release -Removal"
-      }
+      "url": "https://downloads.sourceforge.net/project/videosubfinder/VideoSubFinder_5.70_x86_fixed.zip#/dl.zip_",
+      "hash": "6b5bab08ea283045d170fe0beafcb33e6c21ce02e36ae4a8a3ee668e1e141cdd",
+      "extract_dir": "Release"
     }
   },
-  "persist": "settings",
+  "installer": {
+    "script": [
+      "Expand-7zipArchive \"$dir\\$fname\" \"$dir\" -ExtractDir \"$(extract_dir $manifest $architecture)\" -Removal",
+      "if ((Test-Path \"$persist_dir\\settings\" -PathType Container)) {",
+      "    Move-Item -Path \"$dir\\settings\\eng\\*\" -Destination \"$persist_dir\\settings\\eng\" -Force",
+      "    Remove-Item \"$dir\\settings\\eng\" | Out-Null",
+      "}"
+    ]
+  },
+  "post_install": [
+    "$manifest.persist | ForEach-Object {",
+    "    $origdir = \"$dir\\$_.original\"",
+    "    if ((Test-Path $origdir -PathType Container) -and ([System.IO.Directory]::GetFiles($origdir, '*').Count -eq 0)) {",
+    "        Remove-Item $origdir -Force | Out-Null",
+    "    }",
+    "}"
+  ],
+  "persist": [
+    "settings",
+    "TXTImages",
+    "TXTResults"
+  ],
+  "bin": "VideoSubFinderWXW.exe",
   "shortcuts": [
     [
       "VideoSubFinderWXW.exe",
@@ -41,18 +55,18 @@
     ]
   ],
   "checkver": {
-    "url": "https://sourceforge.net/projects/videosubfinder/",
-    "regex": "_([\\d.]+)_x(?:86|64).zip"
+    "sourceforge": "videosubfinder/",
+    "regex": "VideoSubFinder_([\\d.+]+)_x64.zip"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://sourceforge.net/projects/videosubfinder/files/VideoSubFinder_$version_x64.zip/download#/dl"
+        "url": "https://downloads.sourceforge.net/project/videosubfinder/VideoSubFinder_$version_x64.zip#/dl.zip_"
       },
       "32bit": {
-        "url": "https://sourceforge.net/projects/videosubfinder/files/VideoSubFinder_$version_x86.zip/download#/dl"
+        "url": "https://downloads.sourceforge.net/project/videosubfinder/VideoSubFinder_$version_x86.zip#/dl.zip_"
       }
     }
   },
-  "_from": "kkzzhizhou/scoop-apps"
+  "_from": "okibcn/ScoopMaster"
 }

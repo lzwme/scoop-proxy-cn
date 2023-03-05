@@ -1,0 +1,47 @@
+{
+	"homepage": "https://gnupg.org",
+	"version": "2.3.8",
+	"license": "GPLv3",
+	"url": ["https://files.gpg4win.org/gpg4win-4.0.4.exe#/dl.7z"],
+	"hash": ["sha256:a750608969a075f132da31f538231ac3a2d3538e3eec8e8603d1573284745d0e"],
+	"bin": [
+		"GnuPG/bin/gpg.exe",
+		["GnuPG/bin/gpg.exe", "gpg2"],
+		"GnuPG/bin/gpgconf.exe",
+		"GnuPG/bin/gpgsm.exe",
+		"GnuPG/bin/gpgtar.exe",
+		"GnuPG/bin/gpgv.exe",
+		"GnuPG/bin/gpg-connect-agent.exe",
+		"bin/gpa.exe",
+		"bin/kleopatra.exe"
+	],
+	"pre_install": "
+        # GnuPGHOME
+        # * use 'pre_install' (or 'post_install') instead of 'env_set' so that `scoop` doesn't remove the variable if/when uninstalled
+        # respect USER value, if defined
+        if ($env:GnuPGHOME) { } else {
+            # otherwise, 1st existing known default; otherwise, 1st of known defaults
+            $default_dirs = @( \"$env:USERPROFILE\\.gnupg\", \"$env:USERPROFILE\\.keydb\" )
+            $val = @( $($default_dirs |% { get-item $_ -ea silent }), $default_dirs[0] ) | select -first 1
+            # ensure directory exists
+            new-item $val -type directory -force | out-null
+            # add to environment
+            env GnuPGHOME -t $global $val
+            env GnuPGHOME $val
+        }
+        Get-Item \"$dir\\`$TEMP\\*-bin.exe\" |% { $n = $_.name ; $d = \"$dir\\`$TEMP\\$n\"; Write-Host -NoNewLine \"extracting `\"$n`\"...\"; extract_7zip \"$d\" \"$dir\\GnuPG\" ; Write-Host 'done' ; }
+        ",
+	"uninstaller": {
+		"script": [
+			"",
+			"& cmd @('/c','taskkill /F /T /IM gpa.exe 1>NUL 2>NUL')",
+			"& cmd @('/c','taskkill /F /T /IM kleopatra.exe 1>NUL 2>NUL')",
+			"& cmd @('/c','taskkill /F /T /IM dbus-daemon.exe 1>NUL 2>NUL')",
+			"& cmd @('/c','taskkill /F /T /IM dirmngr.exe 1>NUL 2>NUL')",
+			"& cmd @('/c','taskkill /F /T /IM gpg-agent.exe 1>NUL 2>NUL')",
+			"& cmd @('/c','taskkill /F /T /IM gpg-connect-agent.exe 1>NUL 2>NUL')",
+			"& cmd @('/c','taskkill /F /T /IM scdaemon.exe 1>NUL 2>NUL')"
+		]
+	},
+	"checkver": { "url": "https://www.gpg4win.org/download.html", "re": "GnuPG ([0-9\\.-]+)" }
+}

@@ -1,0 +1,57 @@
+{
+  "version": "111.0b8",
+  "description": "Developer builds of Firefox: the popular open source web browser.",
+  "homepage": "https://www.mozilla.org/ja/firefox/developer/",
+  "license": "MPL-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://archive.mozilla.org/pub/devedition/releases/111.0b8/win64/ja/Firefox%20Setup%20111.0b8.exe#/dl.7z",
+      "hash": "sha512:09feb510ad732ce63b468d00e3cb083fe2a718abfceb69df094cc9020f21d4e17bd09a15061e780d366c2bf276d5b514b518796dbf3734523d960692ce996674"
+    },
+    "32bit": {
+      "url": "https://archive.mozilla.org/pub/devedition/releases/111.0b8/win32/ja/Firefox%20Setup%20111.0b8.exe#/dl.7z",
+      "hash": "sha512:a5c465e9b6464cce5a9e676b4aa9e0ebd252b8f4001e9852c9fd4b395c24ad36d0f10996091537c0668b41190a83967175a6afc0df721fd2bb71f7815c5f8ff8"
+    }
+  },
+  "extract_dir": "core",
+  "bin": [
+    [
+      "firefox.exe",
+      "firefox-dev"
+    ],
+    [
+      "firefox.exe",
+      "firefox-developer"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "firefox.exe",
+      "Firefox Developer Edition"
+    ]
+  ],
+  "checkver": {
+    "url": "https://aus5.mozilla.org/update/6/Firefox/78.0/_/WINNT_x86_64-msvc-x64/ja/aurora/_/_/_/_/update.xml",
+    "xpath": "/updates/update/patch/@URL",
+    "regex": "devedition-([\\db.]+)-"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://archive.mozilla.org/pub/devedition/releases/$version/win64/ja/Firefox%20Setup%20$version.exe#/dl.7z",
+        "hash": {
+          "url": "https://archive.mozilla.org/pub/devedition/releases/$version/SHA512SUMS",
+          "regex": "$sha512\\s+win64/ja/$basename"
+        }
+      },
+      "32bit": {
+        "url": "https://archive.mozilla.org/pub/devedition/releases/$version/win32/ja/Firefox%20Setup%20$version.exe#/dl.7z",
+        "hash": {
+          "url": "https://archive.mozilla.org/pub/devedition/releases/$version/SHA512SUMS",
+          "regex": "$sha512\\s+win32/ja/$basename"
+        }
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

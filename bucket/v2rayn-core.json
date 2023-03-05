@@ -1,24 +1,14 @@
 {
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/2dust/v2rayN/releases/download/$version/v2rayN-Core.zip"
-  },
-  "bin": "v2rayN.exe",
-  "checkver": {
-    "jsonpath": "$[0].tag_name",
-    "url": "https://api.github.com/repos/2dust/v2rayN/releases"
-  },
+  "version": "6.15",
   "description": "A V2Ray client for Windows, support Xray core and v2fly core.",
-  "extract_dir": "v2rayN-Core",
-  "hash": "108fa28cb87a9beadc53d014c86ca4a7b3ddded4996ab1442837e8e0d4f0a8f7",
   "homepage": "https://github.com/2dust/v2rayN",
   "license": {
     "identifier": "GPL-3.0-only",
-    "url": "https://github.com/2dust/v2rayN/blob/master/LICENSE"
+    "url": "https://github.com/2dust/v2rayN/raw/master/LICENSE"
   },
-  "persist": [
-    "config.json",
-    "user-wininet.json"
-  ],
+  "url": "https://ghproxy.com/https://github.com/2dust/v2rayN/releases/download/6.15/v2rayN-With-Core.zip",
+  "hash": "57fc56058ba4cbba3e94b27b056642e2e9c7a7d4575c9356f169c9bac9781ccf",
+  "extract_dir": "v2rayN-With-Core",
   "pre_install": [
     "if (!(Test-Path \"$persist_dir\\user-wininet.json\")) {",
     "    New-Item -Path \"$dir\\user-wininet.json\" | Out-Null",
@@ -27,20 +17,32 @@
     "    Copy-Item \"$persist_dir\\guiNConfig.json\" \"$dir\\\" | Out-Null",
     "}"
   ],
+  "uninstaller": {
+    "script": [
+      "if (Test-Path \"$dir\\guiNConfig.json\") {",
+      "    ensure \"$persist_dir\" | Out-Null",
+      "    Copy-Item \"$dir\\guiNConfig.json\" \"$persist_dir\\\" | Out-Null",
+      "}"
+    ]
+  },
+  "bin": "v2rayN.exe",
   "shortcuts": [
     [
       "v2rayN.exe",
       "v2rayN"
     ]
   ],
-  "uninstaller": {
-    "script": [
-      "if (Test-Path \"$dir\\guiNConfig.json\") {",
-      "    Copy-Item \"$dir\\guiNConfig.json\" \"$persist_dir\\\" | Out-Null",
-      "}"
-    ]
+  "persist": [
+    "config.json",
+    "user-wininet.json",
+    "guiConfigs"
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/2dust/v2rayN/releases?per_page=1",
+    "jsonpath": "$[0].tag_name"
   },
-  "url": "https://ghproxy.com/https://github.com/2dust/v2rayN/releases/download/6.5/v2rayN-Core.zip",
-  "version": "6.5",
-  "_from": "anderlli0053/DEV-tools"
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/2dust/v2rayN/releases/download/$version/v2rayN-With-Core.zip"
+  },
+  "_from": "okibcn/ScoopMaster"
 }

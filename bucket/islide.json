@@ -1,0 +1,43 @@
+{
+  "##": "The installer cannot be extracted and used directly. We need the installer to register an add-on in Office or WPS.",
+  "version": "6.3.2.1",
+  "description": "iSlide, the all-in-one PowerPoint add-in, creates professional PowerPoint presentations by combining 200,000+ professional PowerPoint templates/diagrams/pictures/icons/vectors.",
+  "homepage": "https://www.islide.cc/",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://www.islide.cc/user-agreement"
+  },
+  "url": "https://api.islide.cc/download/package/exe?version=6.3.2.1#/dl.exe",
+  "hash": "13b05f9c4e9468693005117270796e41a67a4703d35fd4b6ef3ef194830120be",
+  "installer": {
+    "args": [
+      "/S",
+      "/D=$dir"
+    ]
+  },
+  "post_install": [
+    "Remove-Item C:\\Users\\*\\Desktop\\iSlide.lnk -Force",
+    "Remove-Item -Recurse \"$([Environment]::GetFolderPath('StartMenu'))\\Programs\\iSlide Tools\"",
+    "Remove-Item HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\iSlide Tools -Recurse"
+  ],
+  "uninstaller": {
+    "script": [
+      "Invoke-ExternalCommand \"$dir\\uninst.exe\" -ArgumentList '/S' | Out-Null"
+    ]
+  },
+  "shortcuts": [
+    [
+      "iSlideTools.App.exe",
+      "iSlide"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/microsoft/winget-pkgs/tree/master/manifests/i/iSlide/iSlide",
+    "regex": "js-navigation-open Link--primary\" title=\"([\\d.]+)",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://api.islide.cc/download/package/exe?version=$version#/dl.exe"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

@@ -1,96 +1,28 @@
 {
-  "version": "6.25",
-  "description": "软媒电脑管家",
-  "homepage": "https://mofang.ruanmei.com",
-  "license": "Unknown",
-  "architecture": {
-    "64bit": {
-      "url": "https://d.ruanmei.com/pcmaster/pcmastersetup_6.25.exe#/dl.7z",
-      "hash": "a72fb3706d55db62835a3f7b1516b81bbd4a719c5a82fad403bcc2962f62a6bf",
-      "pre_install": [
-        "Move-Item \"$dir\\`$APPDATA\\Microsoft\\Internet Explorer\\Quick Launch\\*\" $dir -Force",
-        "Remove-Item \"$dir\\`$*\", \"$dir\\Uninstall*\" -Recurse"
-      ],
-      "installer": {
-        "script": [
-          "$runtimeCache = \"$env:APPDATA\\pcmaster\"",
-          "$runtimeCachePersist = \"$persist_dir\\data\"",
-          "if (Test-Path $runtimeCachePersist) {",
-          "    Remove-Item $runtimeCache -Force -Recurse -ErrorAction SilentlyContinue",
-          "    New-Item -Type Junction -Path $runtimeCache -Target $runtimeCachePersist | Out-Null",
-          "} else {",
-          "    if (Test-Path $runtimeCache) {",
-          "        Move-Item $runtimeCache $runtimeCachePersist -Force",
-          "        New-Item -Type Junction -Path $runtimeCache -Target $runtimeCachePersist | Out-Null",
-          "    }",
-          "}"
-        ]
-      },
-      "uninstaller": {
-        "script": [
-          "$runtimeCache = \"$env:APPDATA\\pcmaster\"",
-          "$runtimeCachePersist = \"$persist_dir\\data\"",
-          "if (!(Test-Path $runtimeCachePersist)) {",
-          "    Move-Item $runtimeCache $runtimeCachePersist -Force",
-          "} else {",
-          "    Remove-Item $runtimeCache -Force -Recurse -ErrorAction SilentlyContinue",
-          "}"
-        ]
-      }
-    }
-  },
+  "version": "6.25.0",
+  "description": "软媒魔方，Windows系统增强辅助工具，智能+专业双操控模式，系统故障一键式解决方案，实现一键优化、一键清理。",
+  "homepage": "https://www.423down.com/4801.html",
+  "extract_dir": "PCMaster",
+  "url": "http://xqh.ma:33001/ltrump-onedrive/raresoftware/PCMaster_v6.25.0_Final.7z",
+  "hash": "91ff727d9dab012f274a6b111887e2617029d97f2730a4f192583e7d48b06ce7",
   "shortcuts": [
     [
-      "boostmaster.exe",
-      "PCmaster/boostmaster"
-    ],
-    [
-      "cleanmaster.exe",
-      "PCmaster/cleanmaster"
-    ],
-    [
-      "mydesk.exe",
-      "PCmaster/mydesk"
-    ],
-    [
-      "mytime.exe",
-      "PCmaster/mytime"
-    ],
-    [
       "pcmaster.exe",
-      "PCmaster/pcmaster"
-    ],
-    [
-      "softmaster.exe",
-      "PCmaster/softmaster"
-    ],
-    [
-      "virtualdrivemaster.exe",
-      "PCmaster/virtualdrivemaster"
-    ],
-    [
-      "visualmaster.exe",
-      "PCmaster/visualmaster"
-    ],
-    [
-      "winmaster.exe",
-      "PCmaster/winmaster"
+      "软媒魔方"
     ]
   ],
-  "bin": "pcmaster.exe",
-  "persist": [
-    "config",
-    "data"
+  "bin": [
+    [
+      "pcmaster.exe",
+      "pcmaster"
+    ]
   ],
   "checkver": {
-    "url": "https://mofang.ruanmei.com",
-    "regex": "版本：(\\d+\\.\\d+)"
+    "encode": "UTF-8",
+    "re": "v([\\d.]+)"
   },
   "autoupdate": {
-    "url": "https://d.ruanmei.com/pcmaster/pcmastersetup_$version.exe#/dl.7z",
-    "hash": {
-      "mode": "download"
-    }
+    "url": "http://xqh.ma:33001/ltrump-onedrive/raresoftware/PCMaster_v$version_Final.7z"
   },
-  "_from": "kkzzhizhou/scoop-apps"
+  "_from": "okibcn/ScoopMaster"
 }

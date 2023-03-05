@@ -1,25 +1,25 @@
 {
-  "autoupdate": {
-    "url": "https://west-wind.com/files/MarkdownMonsterPortable.zip"
-  },
-  "bin": "MarkdownMonster.exe",
-  "checkver": {
-    "re": "<dt>Version:</dt> +\\n.+<dd><b>([\\d.]+)</b>",
-    "url": "https://markdownmonster.west-wind.com/download"
-  },
-  "description": "Markdown editing and weblog publishing tool",
-  "hash": "8f5ac75d7b0ce785e57217e5fe3208ca1f0a8750ee0fc6efe212631bc715a16b",
   "homepage": "https://markdownmonster.west-wind.com",
+  "description": "Markdown editing and weblog publishing tool",
+  "version": "2.8.8",
   "license": "https://markdownmonster.west-wind.com/purchase.aspx#License",
-  "persist": "PortableSettings",
+  "url": "https://west-wind.com/files/MarkdownMonsterPortable.zip",
+  "hash": "b84db1d0c554898ce8cf1d4ea5fe9d99816f72d800f4553e0d3bd9bceacf75f5",
   "pre_install": "if (!(Test-Path \"$dir\\_IsPortable\")) { New-Item \"$dir\\_IsPortable\" -Force | Out-Null }",
+  "bin": "MarkdownMonster.exe",
   "shortcuts": [
     [
       "MarkdownMonster.exe",
       "Markdown Monster"
     ]
   ],
-  "url": "https://west-wind.com/files/MarkdownMonsterPortable.zip",
-  "version": "2.8.6",
-  "_from": "anderlli0053/DEV-tools"
+  "persist": "PortableSettings",
+  "checkver": {
+    "url": "https://markdownmonster.west-wind.com/download",
+    "re": "<dt>Version:</dt> +\\n.+<dd><b>([\\d.]+)</b>"
+  },
+  "autoupdate": {
+    "url": "https://west-wind.com/files/MarkdownMonsterPortable.zip"
+  },
+  "_from": "okibcn/ScoopMaster"
 }

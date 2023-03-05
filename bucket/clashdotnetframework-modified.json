@@ -1,21 +1,6 @@
 {
-  "autoupdate": {
-    "extract_dir": "Clash .NET $version",
-    "hash": {
-      "mode": "extract",
-      "regex": "^sha256([\\s]+)$basename",
-      "url": "https://scoop-apps.vercel.app/clash"
-    },
-    "url": "https://pan.jiemi.workers.dev/?file=/scoop/clash/Clash.NET.$version.zip"
-  },
-  "bin": "ClashDotNet.exe",
-  "checkver": {
-    "regex": "Clash.NET.([\\d.]+)\\.zip",
-    "url": "https://scoop-apps.vercel.app/clash"
-  },
+  "version": "1.2.8",
   "description": "A .NET Framework based GUI Proxy For Windows",
-  "extract_dir": "Clash .NET 1.2.8",
-  "hash": "193c2312d21a0fbf7c677852d9b6a6668a462f324393246644fbf1bac537b852",
   "homepage": "https://github.com/ClashDotNetFramework/ClashDotNetFramework",
   "license": {
     "identifier": "Freeware",
@@ -28,14 +13,29 @@
     "仅作学习使用, 请遵守当地法律。",
     "恨国党, 带路党, 香蕉人, 精美精日份子等请自行绕道。"
   ],
-  "persist": "data",
+  "url": "https://pan.jiemi.workers.dev/?file=/scoop/clash/Clash.NET.1.2.8.zip",
+  "hash": "193c2312d21a0fbf7c677852d9b6a6668a462f324393246644fbf1bac537b852",
+  "extract_dir": "Clash .NET 1.2.8",
+  "bin": "ClashDotNet.exe",
   "shortcuts": [
     [
       "ClashDotNet.exe",
       "Clash.NET"
     ]
   ],
-  "url": "https://pan.jiemi.workers.dev/?file=/scoop/clash/Clash.NET.1.2.8.zip",
-  "version": "1.2.8",
-  "_from": "anderlli0053/DEV-tools"
+  "persist": "data",
+  "checkver": {
+    "url": "https://scoop-apps.vercel.app/clash",
+    "regex": "Clash.NET.([\\d.]+)\\.zip"
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/scoop/clash/Clash.NET.$version.zip",
+    "hash": {
+      "url": "https://scoop-apps.vercel.app/clash",
+      "mode": "extract",
+      "regex": "^sha256([\\s]+)$basename"
+    },
+    "extract_dir": "Clash .NET $version"
+  },
+  "_from": "okibcn/ScoopMaster"
 }

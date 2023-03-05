@@ -1,0 +1,32 @@
+{
+  "version": "1.1.2",
+  "description": "A fast and multi-purpose DNS toolkit allow to run multiple DNS queries",
+  "homepage": "https://github.com/projectdiscovery/dnsx",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/projectdiscovery/dnsx/releases/download/v1.1.2/dnsx_1.1.2_windows_amd64.zip",
+      "hash": "18ce27bc65bdf71087ad5eac644ac735100014fa6da07d1cf0d7298a0387bddf"
+    },
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/projectdiscovery/dnsx/releases/download/v1.1.2/dnsx_1.1.2_windows_386.zip",
+      "hash": "d48ad0afb98b1259e2299b8bf9f7a4d7d3f9dfa7160706dba08dc7bd32bba9cb"
+    }
+  },
+  "bin": "dnsx.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/projectdiscovery/dnsx/releases/download/v$version/dnsx_$version_windows_amd64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/projectdiscovery/dnsx/releases/download/v$version/dnsx_$version_windows_386.zip"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/dnsx_$version_checksums.txt"
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

@@ -1,27 +1,33 @@
 {
-  "autoupdate": {
-    "shortcuts": [
-      [
-        "Modelio.$version.-.Windows.exe",
-        "Modelio"
-      ]
-    ],
-    "url": "https://ghproxy.com/https://github.com/ModelioOpenSource/Modelio/releases/download/v$version/Modelio.$version.-.Windows.exe"
-  },
-  "checkver": {
-    "github": "https://github.com/ModelioOpenSource/Modelio"
-  },
+  "version": "5.1.0",
   "description": "Modeling solution offering a wide range of functionalities based on the main standards of enterprise architecture, software development and systems engineering.",
-  "hash": "45a6c867ddc677074685161f43d07297d7473eb2b27afd5b50e4d5991cdd2163",
   "homepage": "https://www.modelio.org/",
   "license": "GPL-3.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/ModelioOpenSource/Modelio/releases/download/v5.1.0/Windows.10.Modelio.Open.Source.5.1.0.-.64.exe",
+      "hash": "c2b64a8a05884960568eb64f8a2eaeeb146c09b7b96faa098b39c73ef1a7a258"
+    }
+  },
+  "pre_install": "echo \"Please enter this as the installation directory : \n$dir\"",
+  "installer": {
+    "file": ""
+  },
   "shortcuts": [
     [
-      "Modelio.4.1.0.-.Windows.exe",
+      "modelio.exe",
       "Modelio"
     ]
   ],
-  "url": "https://ghproxy.com/https://github.com/ModelioOpenSource/Modelio/releases/download/v4.1.0/Modelio.4.1.0.-.Windows.exe",
-  "version": "4.1.0",
-  "_from": "anderlli0053/DEV-tools"
+  "checkver": {
+    "github": "https://github.com/ModelioOpenSource/Modelio"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/ModelioOpenSource/Modelio/releases/download/v$version/Windows.10.Modelio.Open.Source.$version.-.64.exe"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
 }

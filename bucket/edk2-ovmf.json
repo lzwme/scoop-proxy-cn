@@ -1,0 +1,30 @@
+{
+  "version": "202211-3",
+  "description": "Firmware for Virtual Machines (x86_64, i686)",
+  "homepage": "https://github.com/tianocore/tianocore.github.io/wiki/OVMF",
+  "license": "BSD-2-Clause-Patent,MIT",
+  "suggest": {
+    "qemu": "qemu"
+  },
+  "url": "https://archlinux.org/packages/extra/any/edk2-ovmf/download/#/edk2-ovmf-202211-3-any.pkg.tar.zst",
+  "hash": "ea8924cbcbac1a43103c6a2d57ff3c37afb696d7c82b58bf6d3a5488756a1b82",
+  "extract_dir": "usr\\share",
+  "post_install": "Remove-Item \"$dir\\ovmf\", \"$dir\\usr\"",
+  "checkver": {
+    "script": [
+      "$url = 'https://archlinux.org/packages/extra/any/edk2-ovmf/json/'",
+      "$cont = Invoke-RestMethod -UseBasicParsing -Method Get -Headers @{'Accept-Encoding'='gzip'} -MaximumRedirection 0 -Uri $url",
+      "$pkgver = $cont.pkgver",
+      "$pkgrel = $cont.pkgrel",
+      "$epoch = If ($cont.epoch -gt 0) {[string]$cont.epoch + '+'} else {''}",
+      "$filename = $cont.filename",
+      "Write-Output ('pkgver:\"' + $pkgver + '\"') ('pkgrel:\"' + $pkgrel + '\"') ('epoch:\"' + $epoch + '\"') ('filename:\"' + $filename + '\"')"
+    ],
+    "regex": "pkgver:\"(?<pkgver>\\d+)\"\\spkgrel:\"(?<pkgrel>\\d+)\"\\sepoch:\"(?<epoch>\\d*?\\+?)\"\\sfilename:\"(?<filename>[\\.\\d\\w-]+)\"",
+    "replace": "${epoch}${pkgver}-${pkgrel}"
+  },
+  "autoupdate": {
+    "url": "https://archlinux.org/packages/extra/any/edk2-ovmf/download/#/$matchFilename"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

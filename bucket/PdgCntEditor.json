@@ -1,0 +1,23 @@
+{
+  "version": "3.16",
+  "description": "To edit PDF, DjVu and PDG contents in text or tree mode.(Chinese version)",
+  "homepage": "https://www.cnblogs.com/stronghorse",
+  "license": "Freeware",
+  "url": "https://ghproxy.com/https://raw.githubusercontent.com/sqliuchang/strnghrs_packages/main/PdgCntEditor_chn.zip",
+  "hash": "31125fe92e1f945133c2b495c871e430c5021657ce02164e4374e8ec31f89699",
+  "pre_install": [
+    "# Create initial config files",
+    "if (!(Test-Path -Path \"$dir\\PdgCntEditor.ini\")) {",
+    "    (New-Item -ItemType \"file\" -Path \"$dir\" -Name \"PdgCntEditor.ini\") | Out-Null",
+    "}"
+  ],
+  "bin": "PdgCntEditor.exe",
+  "shortcuts": [
+    [
+      "PdgCntEditor.exe",
+      "PdgCntEditor"
+    ]
+  ],
+  "persist": "PdgCntEditor.ini",
+  "_from": "okibcn/ScoopMaster"
+}

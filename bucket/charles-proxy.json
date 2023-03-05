@@ -1,15 +1,10 @@
 {
-  "autoupdate": {
-    "url": "https://www.charlesproxy.com/assets/release/$version/charles-proxy-$version-win64.msi"
-  },
-  "checkver": {
-    "regex": "v([\\d\\.]+)",
-    "url": "https://www.charlesproxy.com/download/"
-  },
-  "description": "Web Debugging Proxy Application",
-  "hash": "efb8f5cda02bd6bc42860e7069ada57cd97c5d81e0965a718a419125e65c7f31",
+  "version": "4.6.3",
   "homepage": "https://www.charlesproxy.com/",
+  "description": "Web Debugging Proxy Application",
   "license": "Freeware",
+  "url": "https://www.charlesproxy.com/assets/release/4.6.3/charles-proxy-4.6.3-win64.msi",
+  "hash": "efb8f5cda02bd6bc42860e7069ada57cd97c5d81e0965a718a419125e65c7f31",
   "pre_install": [
     "Move-Item -Path \"$dir\\PFiles\\Charles\\*\" -Destination \"$dir\"",
     "Remove-Item \"$dir\\PFiles\" -Force -Recurse"
@@ -20,7 +15,12 @@
       "Charles"
     ]
   ],
-  "url": "https://www.charlesproxy.com/assets/release/4.6.3/charles-proxy-4.6.3-win64.msi",
-  "version": "4.6.3",
-  "_from": "anderlli0053/DEV-tools"
+  "checkver": {
+    "url": "https://www.charlesproxy.com/download/",
+    "regex": "v([\\d\\.]+)"
+  },
+  "autoupdate": {
+    "url": "https://www.charlesproxy.com/assets/release/$version/charles-proxy-$version-win64.msi"
+  },
+  "_from": "okibcn/ScoopMaster"
 }

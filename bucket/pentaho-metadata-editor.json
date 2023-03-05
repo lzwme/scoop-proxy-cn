@@ -1,0 +1,36 @@
+{
+  "##": "Rename from zip to 7z is needed due to 'unsupported compression method' error.",
+  "homepage": "https://pentaho.sourceforge.io/",
+  "description": "Pentaho Metadata Editor, a tool that allows you to build metadata models and domains.",
+  "license": "GPL-2.0-only|LGPL-2.0-only|MPL-1.1",
+  "version": "9.0.0.0-423",
+  "url": "https://downloads.sourceforge.net/project/pentaho/Pentaho%209.0/client-tools/pme-ce-9.0.0.0-423.zip#dl.7z",
+  "hash": "sha1:786bee5e9f5b33dfe80e0158657e67b1601ec640",
+  "extract_dir": "metadata-editor",
+  "bin": [
+    "metadata-editor.bat",
+    "metadata-editorDebug.bat"
+  ],
+  "shortcuts": [
+    [
+      "metadata-editor.bat",
+      "Pentaho Metadata Editor (PME)",
+      "",
+      "icon.ico"
+    ]
+  ],
+  "pre_install": [
+    "if (!$url) { $url = \"$(manifest_path $app $bucket)\" }",
+    "$icon = $url -replace '.json$', '.ico'",
+    "Copy-Item \"$icon\" \"$dir\\icon.ico\""
+  ],
+  "post_install": "Remove-Item \"$dir\\Metadata Editor.app\" -Recurse",
+  "checkver": {
+    "url": "https://sourceforge.net/projects/pentaho/rss?path=/",
+    "re": "Pentaho\\s+[\\d.]+/client-tools/pme-ce-([\\w.-]+)\\.zip"
+  },
+  "autoupdate": {
+    "url": "https://downloads.sourceforge.net/project/pentaho/Pentaho%20$majorVersion.$minorVersion/client-tools/pme-ce-$version.zip#dl.7z"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

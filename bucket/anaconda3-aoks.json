@@ -1,51 +1,16 @@
 {
-  "architecture": {
-    "32bit": {
-      "hash": "cd8c688349bcd1f429e3b383620fb0d19f52be0f765b2eae78d63b41aefb2e73",
-      "url": "https://repo.anaconda.com/archive/Anaconda3-2022.05-Windows-x86.exe"
-    },
-    "64bit": {
-      "hash": "2766eb102f9d65da36d262b651777358de39fbe5f1a74f9854a2e5e29caeeeec",
-      "url": "https://repo.anaconda.com/archive/Anaconda3-2022.05-Windows-x86_64.exe"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "32bit": {
-        "hash": {
-          "regex": "$sha256",
-          "url": "http://docs.anaconda.com/anaconda/install/hashes/Anaconda3-$version-Windows-x86.exe-hash/"
-        },
-        "url": "https://repo.anaconda.com/archive/Anaconda3-$version-Windows-x86.exe"
-      },
-      "64bit": {
-        "hash": {
-          "regex": "$sha256",
-          "url": "http://docs.anaconda.com/anaconda/install/hashes/Anaconda3-$version-Windows-x86_64.exe-hash/"
-        },
-        "url": "https://repo.anaconda.com/archive/Anaconda3-$version-Windows-x86_64.exe"
-      }
-    }
-  },
-  "bin": [
-    "python.exe",
-    "pythonw.exe",
-    [
-      "python.exe",
-      "python3"
-    ]
-  ],
-  "checkver": {
-    "regex": "Anaconda3-([\\d.]+)-Windows",
-    "url": "https://docs.anaconda.com/anaconda/install/hashes/win-3-64/"
-  },
+  "version": "2022.10",
   "description": "The most popular Python distribution for data science.",
-  "env_add_path": [
-    "$dir",
-    "Scripts",
-    "Library\\bin"
-  ],
   "homepage": "https://www.anaconda.com/",
+  "license": "BSD-3-Clause",
+  "architecture": {
+    "64bit": {
+      "url": "https://repo.anaconda.com/archive/Anaconda3-2022.10-Windows-x86_64.exe",
+      "hash": "38b9d53a579843fe41fd05fd3c4f9ac3887f580e7bd9b43f220bbc3aea2367eb"
+    }
+  },
+  "pre_install": "Write-Host 'Installing Anaconda 3. This can take up to 30 minutes on an HDD.' -ForegroundColor Magenta",
+  "post_install": "cp $dir\\Library\\bin\\libssl-*.dll,$dir\\Library\\bin\\libcrypto-*.dll $dir\\DLLs\\",
   "installer": {
     "args": [
       "/S",
@@ -55,14 +20,38 @@
       "/D=$dir"
     ]
   },
-  "license": "BSD-3-Clause",
-  "persist": "envs",
-  "post_install": "cp $dir\\Library\\bin\\libssl-*.dll,$dir\\Library\\bin\\libcrypto-*.dll $dir\\DLLs\\",
-  "pre_install": "Write-Host 'Installing Anaconda 3. This can take up to 30 minutes on an HDD.' -ForegroundColor Magenta",
   "uninstaller": {
-    "args": "/S",
-    "file": "Uninstall-Anaconda3.exe"
+    "file": "Uninstall-Anaconda3.exe",
+    "args": "/S"
   },
-  "version": "2022.05",
-  "_from": "anderlli0053/DEV-tools"
+  "bin": [
+    "python.exe",
+    "pythonw.exe",
+    [
+      "python.exe",
+      "python3"
+    ]
+  ],
+  "env_add_path": [
+    "$dir",
+    "Scripts",
+    "Library\\bin"
+  ],
+  "persist": "envs",
+  "checkver": {
+    "url": "https://docs.anaconda.com/anaconda/install/hashes/win-3-64/",
+    "regex": "Anaconda3-([\\d.]+)-Windows"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://repo.anaconda.com/archive/Anaconda3-$version-Windows-x86_64.exe",
+        "hash": {
+          "url": "http://docs.anaconda.com/anaconda/install/hashes/Anaconda3-$version-Windows-x86_64.exe-hash/",
+          "regex": "$sha256"
+        }
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
 }

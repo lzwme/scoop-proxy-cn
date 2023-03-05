@@ -1,21 +1,33 @@
 {
-  "autoupdate": {
-    "hash": {
-      "regex": "$sha256\\s+$basename",
-      "url": "$baseurl/shasums"
-    },
-    "url": "https://ghproxy.com/https://github.com/containers/podman/releases/download/v$version/podman-v$version.msi"
+  "version": "4.4.2",
+  "description": "A tool for managing OCI containers and pods.",
+  "homepage": "https://podman.io/",
+  "license": "Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/containers/podman/releases/download/v4.4.2/podman-4.4.2-setup.exe",
+      "hash": "46ff56b28d5a626f13aad9c004584120dbaf8ec18fe8750d98a93c9452a1fc6c"
+    }
   },
   "bin": "podman.exe",
+  "installer": {
+    "script": [
+      "Expand-DarkArchive \"$dir\\podman-$version-setup.exe\" \"$dir\\_tmp\" -Removal",
+      "Expand-MsiArchive \"$dir\\_tmp\\AttachedContainer\\podman.msi\" \"$dir\" -ExtractDir 'PFiles\\RedHat\\Podman'"
+    ]
+  },
   "checkver": {
     "github": "https://github.com/containers/podman"
   },
-  "description": "A tool for managing OCI containers and pods.",
-  "extract_dir": "PFiles\\RedHat\\Podman",
-  "hash": "d47fb77bdd1012bfe7de9a5968ce8729c2ce53bd337979422029d67942fb76aa",
-  "homepage": "https://podman.io/",
-  "license": "Apache-2.0",
-  "url": "https://ghproxy.com/https://github.com/containers/podman/releases/download/v4.4.1/podman-v4.4.1.msi",
-  "version": "4.4.1",
-  "_from": "anderlli0053/DEV-tools"
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/containers/podman/releases/download/v$version/podman-$version-setup.exe"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/shasums"
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
 }

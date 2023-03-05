@@ -1,42 +1,42 @@
 {
-  "architecture": {
-    "32bit": {
-      "hash": "dbcce8c3807bf1c61e64c4e7309f7157c2158204c7bf930370ffafb39cee0ebc",
-      "url": "https://dn.navicat.com/download/navicat161_premium_en_x86.exe"
-    },
-    "64bit": {
-      "hash": "6c88a739f0f087ae18071070a3d94f167dbef0b32c992e9d529f2d05261b4d51",
-      "url": "https://dn.navicat.com/download/navicat161_premium_en_x64.exe"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "32bit": {
-        "url": "https://dn.navicat.com/download/navicat$majorVersion$minorVersion_premium_en_x86.exe"
-      },
-      "64bit": {
-        "url": "https://dn.navicat.com/download/navicat$majorVersion$minorVersion_premium_en_x64.exe"
-      }
-    }
-  },
-  "bin": "navicat.exe",
-  "checkver": {
-    "regex": "<b>Navicat Premium \\(Windows\\) version (16[\\d.]+)</b>",
-    "url": "https://www.navicat.com/en/products/navicat-premium-release-note"
-  },
-  "description": "Navicat Premium is a database development tool that allows you to simultaneously connect to MySQL, MariaDB, MongoDB, SQL Server, Oracle, PostgreSQL, and SQLite databases from a single application.",
-  "homepage": "https://www.navicat.com/en/products/navicat-premium",
-  "innosetup": true,
+  "version": "16.1.9",
+  "description": "Navicat Premium is a database development tool that allows you to simultaneously connect to MySQL, MariaDB, MongoDB, SQL Server, Oracle, PostgreSQL, and SQLite databases from a single application. Compatible with cloud databases like Amazon RDS, Amazon Aurora, Amazon Redshift, Microsoft Azure, Oracle Cloud, Google Cloud and MongoDB Atlas. You can quickly and easily build, manage and maintain your databases.",
+  "homepage": "http://www.navicat.com.cn/",
   "license": {
     "identifier": "Proprietary",
-    "url": "http://legal.navicat.com/navicatcloud/NavicatCloudLicenseAgreement.rtf"
+    "url": "https://www.navicat.com.cn/store/navicat-premium-plan"
   },
+  "architecture": {
+    "64bit": {
+      "url": "https://download.navicat.com.cn/download/navicat161_premium_cs_x64.exe",
+      "hash": "e692308c0c0791417f51eb1dbb0c2f0018b0ed46735f11ed2e2f8953add9c951"
+    },
+    "32bit": {
+      "url": "https://download.navicat.com.cn/download/navicat161_premium_cs_x86.exe",
+      "hash": "3700ef5d3806052ca706bc4da532cd725d86872d2dfb088b52e0cb141af1897f"
+    }
+  },
+  "innosetup": true,
+  "bin": "navicat.exe",
   "shortcuts": [
     [
       "navicat.exe",
       "Navicat Premium"
     ]
   ],
-  "version": "16.1.8",
-  "_from": "anderlli0053/DEV-tools"
+  "checkver": {
+    "url": "https://www.navicat.com.cn/products/navicat-premium-release-note",
+    "regex": "Navicat Premium \\(Windows\\) version ([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://download.navicat.com.cn/download/navicat$majorVersion$minorVersion_premium_cs_x64.exe"
+      },
+      "32bit": {
+        "url": "https://download.navicat.com.cn/download/navicat$majorVersion$minorVersion_premium_cs_x86.exe"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
 }

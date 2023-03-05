@@ -1,9 +1,24 @@
 {
+  "version": "22.12.21",
+  "description": "Video editor",
+  "homepage": "https://www.shotcut.org",
+  "license": "GPL-3.0-or-later",
   "architecture": {
     "64bit": {
-      "hash": "d8d9e92118b8953841b12f87366012ce22462fa55abf8aa78043cd23fc7cd953",
-      "url": "https://ghproxy.com/https://github.com/mltframework/shotcut/releases/download/v22.12.21/shotcut-win64-221221.zip"
+      "url": "https://ghproxy.com/https://github.com/mltframework/shotcut/releases/download/v22.12.21/shotcut-win64-221221.zip",
+      "hash": "d8d9e92118b8953841b12f87366012ce22462fa55abf8aa78043cd23fc7cd953"
     }
+  },
+  "extract_dir": "Shotcut",
+  "bin": "shotcut.exe",
+  "shortcuts": [
+    [
+      "shotcut.exe",
+      "Shotcut"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/mltframework/shotcut"
   },
   "autoupdate": {
     "architecture": {
@@ -15,20 +30,5 @@
       "url": "$baseurl/sha256sums.txt"
     }
   },
-  "bin": "shotcut.exe",
-  "checkver": {
-    "github": "https://github.com/mltframework/shotcut"
-  },
-  "description": "Video editor",
-  "extract_dir": "Shotcut",
-  "homepage": "https://www.shotcut.org",
-  "license": "GPL-3.0-or-later",
-  "shortcuts": [
-    [
-      "shotcut.exe",
-      "Shotcut"
-    ]
-  ],
-  "version": "22.12.21",
-  "_from": "anderlli0053/DEV-tools"
+  "_from": "okibcn/ScoopMaster"
 }

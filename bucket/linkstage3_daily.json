@@ -1,0 +1,38 @@
+{
+  "version": "20220407",
+  "description": "Experimental attempt for the next generation assembly workbench for FreeCAD (daily branch)",
+  "homepage": "https://github.com/realthunder/FreeCAD_assembly3",
+  "license": "GPL-3.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/realthunder/FreeCAD_assembly3/releases/download/0.11/FreeCAD-asm3-Daily-Win64-Py3-Qt5-20220407.7z",
+      "extract_dir": "FreeCAD-asm3-Daily-Win64-Py3-Qt5-20220407",
+      "hash": "f9fa77fe6da11e9c36922ab0f6937978657d9409d3769699531f3c6235b73d47"
+    }
+  },
+  "bin": [
+    [
+      "bin\\FreeCADCmd.exe",
+      "FreeCADCMD"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "bin\\FreeCADLink.exe",
+      "FreeCADLink"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/realthunder/FreeCAD_assembly3/releases/tag/0.11",
+    "regex": "releases/download/0.11/FreeCAD-asm3-Daily-Win64-Py3-Qt5-$version.7z"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/realthunder/FreeCAD_assembly3/releases/download/0.11/FreeCAD-asm3-Daily-Win64-Py3-Qt5-$version.7z",
+        "extract_dir": "FreeCAD-asm3-Daily-Win64-Py3-Qt5-$version"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

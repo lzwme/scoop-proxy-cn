@@ -1,0 +1,75 @@
+{
+  "version": "9.0.0719",
+  "description": "A highly configurable text editor",
+  "homepage": "https://www.vim.org",
+  "license": "Vim",
+  "notes": "Add gVim as a context menu option by running: \"$dir\\install-context.reg\"",
+  "suggest": {
+    "vimtutor": "vimtutor"
+  },
+  "architecture": {
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/vim/vim-win32-installer/releases/download/v9.0.0719/gvim_9.0.0719_x86.zip",
+      "hash": "39d879f14522ebc5be76719d0010d3e06ddd2163eff6257c6181da5e0dd90301"
+    },
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/vim/vim-win32-installer/releases/download/v9.0.0719/gvim_9.0.0719_x64.zip",
+      "hash": "48705e866c4953b438f322378b57a29f9ad0e9f32047da0ba0c1f14641cf25fe"
+    }
+  },
+  "extract_dir": "vim\\vim90",
+  "pre_install": [
+    "Move-Item \"$dir\\`$R0\" \"$dir\\libgcc_s_sjlj-1.dll\"",
+    "Move-Item \"$dir\\GvimExt64\\`$R0\" \"$dir\\GvimExt64\\gvimext.dll\"",
+    "Move-Item \"$dir\\GvimExt64\\`$0\\GvimExt64\\*\" \"$dir\\GvimExt64\"",
+    "Move-Item \"$dir\\`$*\\*\" $dir",
+    "Remove-Item \"$dir\\`$*\", \"$dir\\GvimExt32\", \"$dir\\GvimExt64\\`$0\", \"$dir\\uninstal.*\", \"$dir\\install.exe\", \"$dir\\vim[0-9]*\" -Recurse"
+  ],
+  "post_install": [
+    "'install-context.reg', 'uninstall-context.reg' | ForEach-Object {",
+    "    $vimpath = \"$dir\\gVim.exe\".Replace('\\', '\\\\')",
+    "    $content = (Get-Content \"$bucketsdir\\$bucket\\scripts\\vim\\$_\").Replace('$vim', $vimpath)",
+    "    if ($global) { $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE') }",
+    "    Set-Content \"$dir\\$_\" $content",
+    "}"
+  ],
+  "bin": [
+    "vim.exe",
+    [
+      "vim.exe",
+      "vi"
+    ],
+    [
+      "vim.exe",
+      "vimdiff",
+      "-d"
+    ],
+    "gvim.exe",
+    [
+      "gvim.exe",
+      "gvimdiff",
+      "-d"
+    ],
+    "xxd.exe"
+  ],
+  "shortcuts": [
+    [
+      "gvim.exe",
+      "gVim"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/vim/vim-win32-installer"
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/vim/vim-win32-installer/releases/download/v$version/gvim_$version_x86.zip"
+      },
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/vim/vim-win32-installer/releases/download/v$version/gvim_$version_x64.zip"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

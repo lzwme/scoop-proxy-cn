@@ -1,0 +1,47 @@
+{
+  "version": "0.0.47",
+  "description": "A sweet genshin impact script, contains many functions such as auto-fishing, auto-pickup, battle assist, etc",
+  "homepage": "https://github.com/phonowell/genshin-impact-script",
+  "license": "MIT license",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/phonowell/genshin-impact-script/releases/download/0.0.47/GIS_0.0.47.7z",
+      "hash": "6de073e92367587b536594c94848f5369e7f6fbe13455b7d29ba52bb11a08361"
+    }
+  },
+  "bin": "GIS.exe",
+  "shortcuts": [
+    [
+      "GIS.exe",
+      "Genshin Impact Script"
+    ]
+  ],
+  "post_install": [
+    "if (Test-Path \"$persist_dir\\config.ini\") {",
+    "    Remove-Item \"$dir\\config.ini\"",
+    "    Copy-Item \"$persist_dir\\config.ini\" \"$dir\"",
+    "}",
+    "if (Test-Path \"$persist_dir\\character.ini\") {",
+    "    Remove-Item \"$dir\\character.ini\"",
+    "    Copy-Item \"$persist_dir\\character.ini\" \"$dir\"",
+    "}"
+  ],
+  "uninstaller": {
+    "script": [
+      "ensure \"$persist_dir\" | Out-Null",
+      "Copy-Item \"$dir\\config.ini\" \"$persist_dir\" -ErrorAction SilentlyContinue -Force",
+      "Copy-Item \"$dir\\character.ini\" \"$persist_dir\" -ErrorAction SilentlyContinue -Force"
+    ]
+  },
+  "checkver": {
+    "github": "https://github.com/phonowell/genshin-impact-script"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/phonowell/genshin-impact-script/releases/download/$version/GIS_$version.7z"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

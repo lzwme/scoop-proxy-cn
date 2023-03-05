@@ -1,25 +1,6 @@
 {
-  "autoupdate": {
-    "hash": {
-      "mode": "extract",
-      "regex": "^$sha256([\\s]+)$basename",
-      "url": "https://scoop-apps.vercel.app/typeeasy"
-    },
-    "url": "https://pan.jiemi.workers.dev/?file=/scoop/TypeEasy/$matchFilename"
-  },
-  "bin": [
-    [
-      "TypeEasy.exe",
-      "typeeasy"
-    ]
-  ],
-  "checkver": {
-    "regex": "(?s)(?<filename>TypeEasy_(?<version>([\\d.]+))_NoAD-(?<date>([\\d])+)\\.(?:7z|zip|rar))",
-    "url": "https://scoop-apps.vercel.app/typeeasy"
-  },
+  "version": "2.2.0.56",
   "description": "金山打字通 2.2.0.56 去广告优化版",
-  "extract_dir": "Typeeasy",
-  "hash": "1d8b767ecaaf6acb775842c55958f676ec569c95d4a040f15bbf6afe03790421",
   "homepage": "http://www.qiuquan.cc/other/typeeasy.html",
   "license": "Shareware",
   "notes": [
@@ -38,7 +19,16 @@
     "",
     "删除用户数据: 'Remove-Item -Path \"$env:APPDATA\\TypeEasyData\" -Recurse -Force'"
   ],
+  "url": "https://pan.jiemi.workers.dev/?file=/scoop/TypeEasy/金山打字通_2.2.0.56_去广告优化版-20210816.7z",
+  "hash": "1d8b767ecaaf6acb775842c55958f676ec569c95d4a040f15bbf6afe03790421",
+  "extract_dir": "Typeeasy",
   "post_install": "Move-Item -Path \"$dir\\TypeEasyData\" -Destination \"$env:APPDATA\"",
+  "bin": [
+    [
+      "TypeEasy.exe",
+      "typeeasy"
+    ]
+  ],
   "shortcuts": [
     [
       "TypeEasy.exe",
@@ -49,7 +39,17 @@
       "TypeEasy"
     ]
   ],
-  "url": "https://pan.jiemi.workers.dev/?file=/scoop/TypeEasy/金山打字通_2.2.0.56_去广告优化版-20210816.7z",
-  "version": "2.2.0.56",
-  "_from": "anderlli0053/DEV-tools"
+  "checkver": {
+    "url": "https://scoop-apps.vercel.app/typeeasy",
+    "regex": "(?s)(?<filename>TypeEasy_(?<version>([\\d.]+))_NoAD-(?<date>([\\d])+)\\.(?:7z|zip|rar))"
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/scoop/TypeEasy/$matchFilename",
+    "hash": {
+      "url": "https://scoop-apps.vercel.app/typeeasy",
+      "mode": "extract",
+      "regex": "^$sha256([\\s]+)$basename"
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
 }

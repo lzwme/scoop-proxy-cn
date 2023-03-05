@@ -1,38 +1,34 @@
 {
-  "##": "see https://github.com/ScoopInstaller/Extras/tree/master/scripts/vscode for the org. reg files",
-  "architecture": {
-    "32bit": {
-      "hash": "b705dbadbd5c06613871029ef04a2d2cdda7989ab92e9ea09603b0693873c019",
-      "url": "https://ghproxy.com/https://github.com/VSCodium/vscodium/releases/download/1.73.1.22314/VSCodium-win32-ia32-1.73.1.22314.zip"
-    },
-    "64bit": {
-      "hash": "7e6044e269764665ab7b233046cdb34cc8a48914676193b3bcbdabc9b9b5dd9e",
-      "url": "https://ghproxy.com/https://github.com/VSCodium/vscodium/releases/download/1.73.1.22314/VSCodium-win32-x64-1.73.1.22314.zip"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "32bit": {
-        "url": "https://ghproxy.com/https://github.com/VSCodium/vscodium/releases/download/$version/VSCodium-win32-ia32-$version.zip"
-      },
-      "64bit": {
-        "url": "https://ghproxy.com/https://github.com/VSCodium/vscodium/releases/download/$version/VSCodium-win32-x64-$version.zip"
-      }
-    },
-    "hash": {
-      "url": "$url.sha256"
-    }
-  },
-  "checkver": "github",
+  "version": "1.76.0.23062",
   "description": "Binary releases of VS Code without MS branding/telemetry/licensing.",
-  "env_add_path": "bin",
   "homepage": "https://github.com/VSCodium/vscodium",
   "license": "MIT",
   "notes": [
     "Add VSCodium as a context menu option by running: '$dir\\install-context.reg'",
     "For file associations, run '$dir\\install-associations.reg'"
   ],
-  "persist": "data",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/VSCodium/vscodium/releases/download/1.76.0.23062/VSCodium-win32-x64-1.76.0.23062.zip",
+      "hash": "9e0b27e2039517c6256e876a88b6d8e655a9030cf98979acaaab03678e9007fc"
+    },
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/VSCodium/vscodium/releases/download/1.76.0.23062/VSCodium-win32-ia32-1.76.0.23062.zip",
+      "hash": "2c7d4dbd6d2936eb0450dd87b7b338af61b0962691393dfee33fee58fbc968b8"
+    },
+    "arm64": {
+      "url": "https://ghproxy.com/https://github.com/VSCodium/vscodium/releases/download/1.76.0.23062/VSCodium-win32-arm64-1.76.0.23062.zip",
+      "hash": "2916478697defa00fc02fcd37cab8d24f0785d4d253a506ff82adee6595cc348"
+    }
+  },
+  "env_add_path": "bin",
+  "shortcuts": [
+    [
+      "VSCodium.exe",
+      "VSCodium"
+    ]
+  ],
+  "##": "see https://github.com/ScoopInstaller/Extras/tree/master/scripts/vscode for the org. reg files",
   "post_install": [
     "$dirpath = \"$dir\".Replace('\\', '\\\\')",
     "$exepath = \"$dir\\VSCodium.exe\".Replace('\\', '\\\\')",
@@ -57,12 +53,23 @@
     "    Copy-Item \"$env:AppData\\VSCodium\" \"$dir\\data\\user-data\" -Recurse",
     "}"
   ],
-  "shortcuts": [
-    [
-      "VSCodium.exe",
-      "VSCodium"
-    ]
-  ],
-  "version": "1.73.1.22314",
-  "_from": "anderlli0053/DEV-tools"
+  "persist": "data",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/VSCodium/vscodium/releases/download/$version/VSCodium-win32-x64-$version.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/VSCodium/vscodium/releases/download/$version/VSCodium-win32-ia32-$version.zip"
+      },
+      "arm64": {
+        "url": "https://ghproxy.com/https://github.com/VSCodium/vscodium/releases/download/$version/VSCodium-win32-arm64-$version.zip"
+      }
+    },
+    "hash": {
+      "url": "$url.sha256"
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
 }

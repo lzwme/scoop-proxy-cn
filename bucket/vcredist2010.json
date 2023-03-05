@@ -5,5 +5,5 @@
   ],
   "post_install": "function RunInstaller($exe, $arguments) {\n    Write-Host \"Executing $exe $arguments\"\n    Start-Process $exe arguments -Wait\n    Remove-Item $exe\n}\n\nfunction InstallVcredist {\n    '86', '64' | % {\n        RunInstaller \"$dir\\vcredist_x$_.exe\" '/q /norestart'\n    }\n}\nInstallVcredist",
   "version": "2010",
-  "_from": "kkzzhizhou/scoop-apps"
+  "_from": "okibcn/ScoopMaster"
 }

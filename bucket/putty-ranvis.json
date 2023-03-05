@@ -1,0 +1,57 @@
+{
+  "homepage": "https://www.ranvis.com/putty",
+  "description": "PuTTYrv (PuTTY-ranvis)",
+  "license": "Freeware",
+  "version": "0.74",
+  "##": [
+    "PuTTY-ranvis のダウンロードサイトは User-Agent を確かめるらしく、scoop では 403 でダウンロードできない。",
+    "よって、共有ストレージ（Google drive）にファイルを置いている。",
+    "Original url https://www.ranvis.com/downloads/PuTTY-0.74-ranvis-20200629.win64.7z",
+    "Original url https://www.ranvis.com/downloads/PuTTY-0.74-ranvis-20200629.win32.7z"
+  ],
+  "architecture": {
+    "64bit": {
+      "url": "https://drive.google.com/uc?export=download&id=1J80rGTA9BvWaWeOXGurfEPtSK7xvGzSN#/PuTTY-0.74-ranvis-20200629.win64.7z",
+      "hash": "9a02b5769fba4f7bed12b34435d1790fa5fd5d13e46d6a05b8817b70c4b6dfef"
+    },
+    "32bit": {
+      "url": "https://drive.google.com/uc?export=download&id=1SVVjInFSke9qVHN9elD2q8HTu2NJOUXZ#/PuTTY-0.74-ranvis-20200629.win32.7z",
+      "hash": "ee6a463aed8241f7165754005a698a14138c5df4fd77b18421014d9f7fcb42df"
+    }
+  },
+  "extract_dir": "PuTTY-ranvis",
+  "bin": [
+    "pageant.exe",
+    "plink.exe",
+    "pscp.exe",
+    "psftp.exe",
+    "putty.exe",
+    "puttygen.exe"
+  ],
+  "shortcuts": [
+    [
+      "pageant.exe",
+      "PuTTY-ranvis/Pageant"
+    ],
+    [
+      "psftp.exe",
+      "PuTTY-ranvis/PSFTP"
+    ],
+    [
+      "putty.exe",
+      "PuTTY-ranvis/PuTTY"
+    ],
+    [
+      "puttygen.exe",
+      "PuTTY-ranvis/PuTTYgen"
+    ]
+  ],
+  "persist": [
+    "putty.ini"
+  ],
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\")) { New-Item -ItemType directory \"$persist_dir\" | Out-Null }",
+    "if (!(Test-Path \"$persist_dir\\putty.ini\")) { Copy-Item -Path \"$dir\\putty_sample.ini\" -Destination \"$persist_dir\\putty.ini\" | Out-Null }"
+  ],
+  "_from": "okibcn/ScoopMaster"
+}

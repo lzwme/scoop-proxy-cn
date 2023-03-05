@@ -1,12 +1,24 @@
 {
-  "url": "https://ghproxy.com/https://github.com/MscrmTools/XrmToolBox/releases/download/v1.2023.1.60/XrmToolbox.zip",
-  "version": "1.2023.1.60",
-  "bin": "xrmtoolbox.exe",
+  "version": "1.2023.1.63",
+  "description": "An application that gather multiple tools to ease the customization and configuration of Microsoft Dynamics CRM/365/Dataverse/PowerApps",
+  "homepage": "https://www.xrmtoolbox.com/",
+  "license": "GPL-3.0",
+  "url": "https://ghproxy.com/https://github.com/MscrmTools/XrmToolBox/releases/download/v1.2023.1.63/XrmToolbox.zip",
+  "hash": "520143a7179d699f0b808f2f9f2e6ec013a31c4f79662da920e7ab6ea73c5dba",
+  "bin": "XrmToolBox.exe",
+  "persist": "config",
   "shortcuts": [
     [
-      "xrmtoolbox.exe",
-      "XRM Toolbox"
+      "XrmToolBox.exe",
+      "XrmToolBox",
+      "/overridepath:%USERPROFILE%\\scoop\\apps\\xrmtoolbox\\current\\config"
     ]
   ],
-  "_from": "kkzzhizhou/scoop-apps"
+  "checkver": {
+    "github": "https://github.com/MscrmTools/XrmToolBox"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/MscrmTools/XrmToolBox/releases/download/v$version/XrmToolbox.zip"
+  },
+  "_from": "okibcn/ScoopMaster"
 }

@@ -1,37 +1,40 @@
 {
+  "version": "1.6.23",
+  "description": "Static checker for GitHub Actions workflow files",
+  "homepage": "https://github.com/rhysd/actionlint",
+  "license": "MIT",
   "architecture": {
-    "32bit": {
-      "hash": "49607be905c208075ef9ab0598e02a4370fde458e4524ce5d940465e5f6c0899",
-      "url": "https://ghproxy.com/https://github.com/rhysd/actionlint/releases/download/v1.6.23/actionlint_1.6.23_windows_386.zip"
-    },
     "64bit": {
-      "hash": "ed8c80ec82c6995efd1f957cbf4c251fe208a3546e4afd8637d4b3709dbd8cc1",
-      "url": "https://ghproxy.com/https://github.com/rhysd/actionlint/releases/download/v1.6.23/actionlint_1.6.23_windows_amd64.zip"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "32bit": {
-        "hash": {
-          "regex": "$sha256\\s+$basename",
-          "url": "$baseurl/actionlint_$version_checksums.txt"
-        },
-        "url": "https://ghproxy.com/https://github.com/rhysd/actionlint/releases/download/v$version/actionlint_$version_windows_386.zip"
-      },
-      "64bit": {
-        "hash": {
-          "regex": "$sha256\\s+$basename",
-          "url": "$baseurl/actionlint_$version_checksums.txt"
-        },
-        "url": "https://ghproxy.com/https://github.com/rhysd/actionlint/releases/download/v$version/actionlint_$version_windows_amd64.zip"
-      }
+      "url": "https://ghproxy.com/https://github.com/rhysd/actionlint/releases/download/v1.6.23/actionlint_1.6.23_windows_amd64.zip",
+      "hash": "ed8c80ec82c6995efd1f957cbf4c251fe208a3546e4afd8637d4b3709dbd8cc1"
+    },
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/rhysd/actionlint/releases/download/v1.6.23/actionlint_1.6.23_windows_386.zip",
+      "hash": "49607be905c208075ef9ab0598e02a4370fde458e4524ce5d940465e5f6c0899"
+    },
+    "arm64": {
+      "url": "https://ghproxy.com/https://github.com/rhysd/actionlint/releases/download/v1.6.23/actionlint_1.6.23_windows_arm64.zip",
+      "hash": "4ffb7d53776e5d90412cf53ed99f944f17f5193173b14b84adaaaa504d5731fa"
     }
   },
   "bin": "actionlint.exe",
   "checkver": "github",
-  "description": "Static checker for GitHub Actions workflow files",
-  "homepage": "https://github.com/rhysd/actionlint",
-  "license": "MIT",
-  "version": "1.6.23",
-  "_from": "anderlli0053/DEV-tools"
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/rhysd/actionlint/releases/download/v$version/actionlint_$version_windows_amd64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/rhysd/actionlint/releases/download/v$version/actionlint_$version_windows_386.zip"
+      },
+      "arm64": {
+        "url": "https://ghproxy.com/https://github.com/rhysd/actionlint/releases/download/v$version/actionlint_$version_windows_arm64.zip"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/actionlint_$version_checksums.txt",
+      "regex": "$sha256\\s+$basename"
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
 }

@@ -1,0 +1,23 @@
+{
+  "version": "5.11",
+  "description": "A freeware to convert image (TIFF, JPG, JP2, PNG, GIF, webp and BMP) files into PDF.(English version)",
+  "homepage": "https://www.cnblogs.com/stronghorse",
+  "license": "Freeware",
+  "url": "https://ghproxy.com/https://raw.githubusercontent.com/sqliuchang/strnghrs_packages/main/FreePic2Pdf_eng.zip",
+  "hash": "4e3e3e1e5a8741d51fc182561725239ba3395daeaad5f013ff4cb1b6059351bf",
+  "pre_install": [
+    "# Create initial config files",
+    "if (!(Test-Path -Path \"$dir\\FreePic2Pdf.ini\")) {",
+    "    (New-Item -ItemType \"file\" -Path \"$dir\" -Name \"FreePic2Pdf.ini\") | Out-Null",
+    "}"
+  ],
+  "bin": "FreePic2Pdf.exe",
+  "shortcuts": [
+    [
+      "FreePic2Pdf.exe",
+      "FreePic2Pdf"
+    ]
+  ],
+  "persist": "FreePic2Pdf.ini",
+  "_from": "okibcn/ScoopMaster"
+}

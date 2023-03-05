@@ -1,7 +1,7 @@
 {
   "version": "0.0.8",
-  "description": "Swiss Army knife Proxy tool for HTTP/HTTPS traffic capture, manipulation, and replay on the go",
-  "homepage": "https://projectdiscovery.io/open-source",
+  "description": "Swiss Army knife proxy tool for HTTP/HTTPS traffic capture, manipulation and replay",
+  "homepage": "https://github.com/projectdiscovery/proxify",
   "license": "MIT",
   "architecture": {
     "64bit": {
@@ -13,10 +13,12 @@
       "hash": "a9eea9f8dd4ae32e02396f930a3f84f5fc1de530ffacc6adab4a7aad887b620c"
     }
   },
-  "bin": "proxify.exe",
-  "checkver": {
-    "github": "https://github.com/projectdiscovery/proxify"
-  },
+  "bin": [
+    "proxify.exe",
+    "replay.exe",
+    "mitmrelay.exe"
+  ],
+  "checkver": "github",
   "autoupdate": {
     "architecture": {
       "64bit": {
@@ -30,5 +32,5 @@
       "url": "$baseurl/proxify_$version_checksums.txt"
     }
   },
-  "_from": "kkzzhizhou/scoop-apps"
+  "_from": "okibcn/ScoopMaster"
 }

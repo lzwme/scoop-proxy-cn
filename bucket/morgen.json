@@ -1,0 +1,42 @@
+{
+  "version": "2.6.7",
+  "license": "Proprietary",
+  "description": "Consolidate calendars, schedule meetings, and block time for work that matters.",
+  "homepage": "https://www.morgen.so/",
+  "architecture": {
+    "64bit": {
+      "url": "https://download.todesktop.com/210203cqcj00tw1/Morgen%20Setup%202.6.7-x64.exe",
+      "hash": "28a23412942a812c5cc50c3b53324257fa8b0c96420ee504c409e110426fd993",
+      "installer": {
+        "script": "Start-Process $dir\\$fname -ArgumentList \"/S\" -wait; Remove-Item $dir\\$fname"
+      },
+      "uninstaller": {
+        "script": "$p = \"${env:LOCALAPPDATA}\\Programs\\morgen\\Uninstall Morgen.exe\"; Invoke-Expression \"& '$p' /currentuser /S\""
+      }
+    }
+  },
+  "post_install": [
+    "$null, $null2, $bucket = Get-Manifest($app)",
+    "$bucketdir = Find-BucketDirectory($bucket)",
+    "$bucketdir = $bucketdir.Trim()",
+    "& \"$bucketdir\\scripts\\track.ps1\" install $app $version"
+  ],
+  "post_uninstall": [
+    "$null, $null2, $bucket = Get-Manifest($app)",
+    "$bucketdir = Find-BucketDirectory($bucket)",
+    "$bucketdir = $bucketdir.Trim()",
+    "& \"$bucketdir\\scripts\\track.ps1\" uninstall $app $version"
+  ],
+  "checkver": {
+    "url": "https://download.todesktop.com/210203cqcj00tw1/latest.yml",
+    "regex": "path: Morgen Setup (?<version>[^\"]*)-x64.exe"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://download.todesktop.com/210203cqcj00tw1/Morgen%20Setup%20$version-x64.exe"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

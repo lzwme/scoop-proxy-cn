@@ -1,44 +1,44 @@
 {
-  "architecture": {
-    "32bit": {
-      "hash": "69c0ba64ea02a2a33c04147df6ac1abdf0edf9a5f3e5da0e6c6391fd032530e5",
-      "url": "https://ss1.xrea.com/pyonkichi.g1.xrea.com/archives/cl403.exe#/dl.7z"
-    },
-    "64bit": {
-      "hash": "fc47e9d452db07f73f474e75c0c0ca58e930655491a4c92958b7b07360768f01",
-      "url": "https://ss1.xrea.com/pyonkichi.g1.xrea.com/archives/cl64_403.exe#/dl.7z"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "32bit": {
-        "url": "https://ss1.xrea.com/pyonkichi.g1.xrea.com/archives/cl${cleanVersion}.exe#/dl.7z"
-      },
-      "64bit": {
-        "url": "https://ss1.xrea.com/pyonkichi.g1.xrea.com/archives/cl64_${cleanVersion}.exe#/dl.7z"
-      }
-    }
-  },
-  "bin": "CLaunch.exe",
-  "checkver": {
-    "regex": ">Ver\\. ([\\d.]+)",
-    "url": "http://hp.vector.co.jp/authors/VA018351/history_cl.html"
-  },
+  "version": "4.04",
   "description": "CLaunch: a skin-customizable button-based program launcher",
-  "extract_dir": "",
-  "homepage": "http://hp.vector.co.jp/authors/VA018351/claunch.html",
+  "homepage": "https://hp.vector.co.jp/authors/VA018351/claunch.html",
   "license": "Freeware",
-  "persist": [
-    "Data",
-    "Plugins"
-  ],
-  "post_install": "Remove-Item \"$dir\\Setup.exe\"",
+  "architecture": {
+    "64bit": {
+      "url": "https://ss1.xrea.com/pyonkichi.g1.xrea.com/archives/cl64_404.exe#/dl.7z",
+      "hash": "137377081e7d38f8d12c41b98494eff774c12c712f8400d165e99809dc39ab05"
+    },
+    "32bit": {
+      "url": "https://ss1.xrea.com/pyonkichi.g1.xrea.com/archives/cl404.exe#/dl.7z",
+      "hash": "e34c26fc7fa6a25bd951619491bd0f0a6debcc38a2f5163ed2dbb00451ebe3b0"
+    }
+  },
+  "extract_dir": "",
+  "bin": "CLaunch.exe",
   "shortcuts": [
     [
       "CLaunch.exe",
       "CLaunch"
     ]
   ],
-  "version": "4.03",
-  "_from": "anderlli0053/DEV-tools"
+  "post_install": "Remove-Item (Join-Path $dir Setup.exe)",
+  "persist": [
+    "Data",
+    "Plugins"
+  ],
+  "checkver": {
+    "url": "https://hp.vector.co.jp/authors/VA018351/history_cl.html",
+    "regex": ">Ver\\. ([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ss1.xrea.com/pyonkichi.g1.xrea.com/archives/cl64_$cleanVersion.exe#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://ss1.xrea.com/pyonkichi.g1.xrea.com/archives/cl$cleanVersion.exe#/dl.7z"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
 }

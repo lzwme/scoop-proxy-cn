@@ -1,0 +1,42 @@
+{
+  "version": "1.14.1861.0",
+  "description": "The new Windows Terminal, and the original Windows console host - all in the same place!",
+  "homepage": "https://github.com/microsoft/terminal",
+  "license": "MIT",
+  "suggest": {
+    "vcredist": "extras/vcredist2019"
+  },
+  "url": "https://ghproxy.com/https://github.com/microsoft/terminal/releases/download/v1.14.1861.0/Microsoft.WindowsTerminal_Win10_1.14.1861.0_8wekyb3d8bbwe.msixbundle",
+  "hash": "6c65a209b7d084a0d1d184820b103a40caf07385c00397e371c5e13fc3f4c1c6",
+  "architecture": {
+    "64bit": {
+      "pre_install": "Get-ChildItem \"$dir\" -Exclude '*x64.msix' | Remove-Item -Force -Recurse"
+    },
+    "32bit": {
+      "pre_install": "Get-ChildItem \"$dir\" -Exclude '*x86.msix' | Remove-Item -Force -Recurse"
+    }
+  },
+  "installer": {
+    "script": [
+      "$winVer = [Environment]::OSVersion.Version",
+      "if (($winver.Major -lt '10') -or ($winVer.Build -lt 18362)) { throw 'At least Windows 10 18362 is required.' }",
+      "Get-ChildItem \"$dir\" '*.msix' | Select-Object -ExpandProperty Fullname | Expand-7zipArchive -DestinationPath \"$dir\" -Removal",
+      "Get-ChildItem \"$dir\\ProfileIcons\" '*.png' | Rename-Item -NewName { $_.Name.Replace('%7B', '{').Replace('%7D', '}') }"
+    ]
+  },
+  "bin": [
+    "WindowsTerminal.exe",
+    "wt.exe"
+  ],
+  "shortcuts": [
+    [
+      "WindowsTerminal.exe",
+      "Windows Terminal Preview"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/microsoft/terminal/releases/download/v$version/Microsoft.WindowsTerminal_Win10_$version_8wekyb3d8bbwe.msixbundle"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

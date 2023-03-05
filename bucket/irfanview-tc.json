@@ -1,0 +1,33 @@
+{
+  "version": "1.72",
+  "notes": "记得康康 Readme",
+  "description": "Plugin for viewing images in Total Commander.",
+  "homepage": "https://totalcmd.net/plugring/TCIrfanView.html",
+  "license": "Freeware",
+  "suggest": {
+    "totalcmd": "extra/totalcommander"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "http://wincmd.ru/files/9924384/wlx_TCIrfanView_1.72.7z",
+      "hash": "c6b82d033f2e2b77f0745ae46d361ed502e2c0217fbd650bb3a06c081596a13a"
+    }
+  },
+  "post_install": [
+    "Remove-Item \"$dir\\IrfanView\" -Recurse",
+    "Remove-Item \"$dir\\IrfanView.wlx\"",
+    "Remove-Item \"$dir\\Readme_RUS.txt\""
+  ],
+  "persist": "irfanview.ini",
+  "checkver": {
+    "re": "<h1>TC IrfanView Plugin ([\\d.]+)</h1>"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "http://wincmd.ru/files/9924384/wlx_TCIrfanView_$version.7z"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

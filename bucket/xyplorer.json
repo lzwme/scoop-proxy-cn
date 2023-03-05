@@ -1,18 +1,18 @@
 {
-  "version": "22.80.0000",
-  "description": "XYplorer is a file manager for Windows. It features tabbed browsing, a powerful file search, a versatile preview, a highly customizable interface, optional dual pane, and a large array of unique ways to efficiently automate frequently recurring tasks. It’s fast, light, and portable.",
-  "homepage": "https://www.xyplorer.com/",
-  "license": "BSD-3-Clause",
-  "notes": "XYplorer是一款类似于“资源管理器”的 Windows 文件系统管理工具。具有强大的文件搜索、通用预览及可高度自定义的界面等特点，以及一系列用于自动进行周期性任务的独特功能。(XYplorer_L-Trump)",
-  "architecture": {
-    "64bit": {
-      "url": [
-        "https://www.xyplorer.com/download/xyplorer_full_noinstall.zip",
-        "https://ghproxy.com/https://github.com/Weidows-projects/scoop-3rd/releases/download/1.0.0/xyplorer-keygen.exe"
-      ],
-      "hash": "3357a2c50c4274e8149806c5e4658f884c0e2f130df43c739f1255fe1e3e33ff"
-    }
+  "version": "24.20.0009",
+  "description": "Portable Dual Pane Multi-Tabbed File manager for Windows",
+  "homepage": "https://www.xyplorer.com",
+  "license": {
+    "identifier": "Shareware",
+    "url": "https://www.xyplorer.com/company.php#legal"
   },
+  "url": "https://www.xyplorer.com/download/xyplorer_24.20.0009_beta_noinstall.zip",
+  "hash": "9def7e2ad149ad14499b6c498073cfb776e7fd5d313bde78996bb9faa9a37cd8",
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\lic.ini\")) { New-Item \"$dir\\lic.ini\" | Out-Null }",
+    "if (!(Test-Path \"$persist_dir\\startup.ini\")) { New-Item \"$dir\\startup.ini\" | Out-Null }",
+    "if (!(Test-Path \"$persist_dir\\admin.ini\")) { New-Item \"$dir\\admin.ini\" | Out-Null }"
+  ],
   "bin": "XYplorer.exe",
   "shortcuts": [
     [
@@ -20,13 +20,20 @@
       "XYplorer"
     ]
   ],
-  "persist": "Data",
+  "persist": [
+    "Data",
+    "AC",
+    "startup.ini",
+    "admin.ini",
+    "lic.ini"
+  ],
   "checkver": {
-    "url": "https://www.xyplorer.com/download.php",
-    "regex": "(\\d+(\\.\\d+)+)"
+    "url": "http://www.xyplorer.com/xyfc/viewtopic.php?f=1&t=4&sd=d",
+    "regex": "2. .a href=\"https://www.xyplorer.com/download/xyplorer_([\\d.]+)(.+?_noinstall).zip"
   },
   "autoupdate": {
-    "url": "https://www.xyplorer.com/download/xyplorer_full_noinstall.zip"
+    "note": "Check update log at http://www.xyplorer.com/xyfc/viewtopic.php?f=1&t=4&sd=d",
+    "url": "https://www.xyplorer.com/download/xyplorer_$version$match2.zip"
   },
-  "_from": "kkzzhizhou/scoop-apps"
+  "_from": "okibcn/ScoopMaster"
 }

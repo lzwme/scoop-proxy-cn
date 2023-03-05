@@ -1,0 +1,28 @@
+{
+  "version": "1.2.9",
+  "description": "Tiny FEL tools for allwinner SOC",
+  "homepage": "https://github.com/xboot/xfel",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/xboot/xfel/releases/download/v1.2.9/xfel-windows-v1.2.9.7z",
+      "extract_dir": "xfel-windows-v1.2.9",
+      "hash": "c53559378b81af004a9d9a51e608f7eb6a62fdd9c7d48c1ceb1f9d50397e913c"
+    }
+  },
+  "bin": "xfel.exe",
+  "notes": "need install driver, see `~/scoop/xfel/current/Drivers`",
+  "checkver": {
+    "url": "https://github.com/xboot/xfel",
+    "regex": "/releases/tag/v(.*)\">"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/xboot/xfel/releases/download/v$version/xfel-windows-v$version.7z",
+        "extract_dir": "xfel-windows-v$version"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

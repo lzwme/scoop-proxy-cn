@@ -1,0 +1,26 @@
+{
+  "version": "1.0.6.1",
+  "description": "Editor for building mods for games running on DICE's Frostbite engine",
+  "homepage": "https://frostytoolsuite.com",
+  "license": {
+    "identifier": "CC-BY-NC-ND-4.0",
+    "url": "https://github.com/CadeEvs/FrostyToolsuite#license"
+  },
+  "url": "https://ghproxy.com/https://github.com/CadeEvs/FrostyToolsuite/releases/download/v1.0.6.1/FrostyEditor.zip",
+  "hash": "sha256:631B87FB345626F2D93554B6E75D75EDBC0BDDE3CB08D4CAD54A6420A60918D5",
+  "shortcuts": [
+    [
+      "FrostyEditor.exe",
+      "Frosty Editor"
+    ]
+  ],
+  "post_uninstall": "If ($cmd -eq 'uninstall') { Remove-Item \"${env:LOCALAPPDATA}\\Frosty\\editor_config.json\" -Force }",
+  "checkver": {
+    "url": "https://frostytoolsuite.com/downloads.html",
+    "regex": "<span class=\"h1\">v(?<Version>[\\d.]{7})</span>"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/CadeEvs/FrostyToolsuite/releases/download/v$matchVersion/FrostyEditor.zip"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

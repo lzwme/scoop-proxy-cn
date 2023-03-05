@@ -1,34 +1,5 @@
 {
-  "architecture": {
-    "64bit": {
-      "hash": "4666b94241cfd5b74308af1a375054fe69d6842a86447aa4c3bda1608ab92623",
-      "url": "https://az764295.vo.msecnd.net/insider/dc619de8d9efdabd781fc5658d0051813c347055/VSCode-win32-x64-1.76.0-insider.zip"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "hash": {
-          "jsonpath": "$.products[?(@.platform.os == 'win32-x64-archive')].sha256hash",
-          "mode": "json",
-          "url": "https://code.visualstudio.com/sha?build=insider"
-        },
-        "url": "https://az764295.vo.msecnd.net/insider/$matchVersion/VSCode-win32-x64-$matchName.zip"
-      }
-    }
-  },
-  "bin": [
-    [
-      "bin\\code-insiders.cmd",
-      "code"
-    ]
-  ],
-  "checkver": {
-    "jsonpath": "$.products[?(@.platform.os == 'win32-x64-archive')]",
-    "regex": "\"name\": \"(?<name>[\\d.]+-insider)\",\\s+\"version\": \"(?<version>[\\w]{40})(?>.|\\s)+?\"timestamp\": (?<time>[\\d]{13})",
-    "replace": "${name}_${time}",
-    "url": "https://code.visualstudio.com/sha?build=insider"
-  },
+  "version": "1.77.0-insider_1677821285664",
   "description": "Visual Studio Code is a lightweight but powerful source code editor (Insiders, Portable Edition).",
   "homepage": "https://code.visualstudio.com/",
   "license": {
@@ -36,24 +7,21 @@
     "url": "https://code.visualstudio.com/License/"
   },
   "notes": [
-    "Visual Studio Code now supports Portable Mode! Please move the following directories:",
-    "From \"$env:USERPROFILE\\.vscode-insiders\\extensions\" to \"$env:SCOOP\\persist\\vscode-nightly\\data\\extensions\"",
-    "From \"$env:APPDATA\\Code - Insiders\" to \"$env:SCOOP\\persist\\vscode-nightly\\data\\user-data\""
+    "Add Visual Studio Code as a context menu option by running: 'reg import \"$dir\\install-context.reg\"'",
+    "For file associations, run 'reg import \"$dir\\install-associations.reg\"'"
   ],
-  "persist": "data",
-  "post_install": [
-    "'vscode-install-context.reg', 'vscode-uninstall-context.reg' | ForEach-Object {",
-    "  if (Test-Path \"$bucketsdir\\$bucket\\scripts\\VSCode\\$_\") {",
-    "    $codepath = \"$dir\\Code - Insiders.exe\".Replace('\\', '\\\\')",
-    "    $content = Get-Content \"$bucketsdir\\$bucket\\scripts\\VSCode\\$_\"",
-    "    $content = $content.Replace('&install_dir', $codepath)",
-    "    $content = $content.Replace('&vscode_name', 'Code &Insiders')",
-    "    if ($global) {",
-    "      $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE')",
-    "    }",
-    "    $content | Set-Content -Path \"$dir\\$_\"",
-    "  }",
-    "}"
+  "architecture": {
+    "64bit": {
+      "url": "https://vscode.blob.core.windows.net/insider/06ce7933733b1ab05e410e46a6a622dfffb31927/VSCode-win32-x64-1.77.0-insider.zip",
+      "hash": "45c5cf380f740d7fa328763d0434849350844642107b9cb9df20a14d0289cfb6"
+    }
+  },
+  "env_add_path": "bin",
+  "bin": [
+    [
+      "bin\\code-insiders.cmd",
+      "code"
+    ]
   ],
   "shortcuts": [
     [
@@ -61,6 +29,53 @@
       "Code - Insiders"
     ]
   ],
-  "version": "1.76.0-insider_1676524864029",
-  "_from": "anderlli0053/DEV-tools"
+  "post_install": [
+    "$dirpath = \"$dir\".Replace('\\', '\\\\')",
+    "$exepath = \"$dir\\Code - Insiders.exe\".Replace('\\', '\\\\')",
+    "'install-associations', 'uninstall-associations', 'install-context', 'uninstall-context' | ForEach-Object {",
+    "  if (Test-Path \"$bucketsdir\\$bucket\\scripts\\VSCode\\$_.reg\") {",
+    "    $content = Get-Content \"$bucketsdir\\$bucket\\scripts\\VSCode\\$_.reg\"",
+    "    $content = $content.Replace('$vscode_dir', $dirpath)",
+    "    $content = $content.Replace('$vscode', $exepath)",
+    "    $content = $content.Replace('$vscode_name', 'Code &Insiders')",
+    "    if ($global) {",
+    "      $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE')",
+    "    }",
+    "    $content | Set-Content -Path \"$dir\\$_.reg\"",
+    "  }",
+    "}",
+    "if (!(Test-Path \"$dir\\data\\extensions\") -and (Test-Path \"$env:USERPROFILE\\.vscode-insiders\\extensions\")) {",
+    "    info '[Portable Mode] Copying extensions...'",
+    "    Copy-Item \"$env:USERPROFILE\\.vscode-insiders\\extensions\" \"$dir\\data\" -Recurse",
+    "}",
+    "if (!(Test-Path \"$dir\\data\\user-data\") -and (Test-Path \"$env:AppData\\Code - Insiders\")) {",
+    "    info '[Portable Mode] Copying user data...'",
+    "    Copy-Item \"$env:AppData\\Code - Insiders\" \"$dir\\data\\user-data\" -Recurse",
+    "}",
+    "$extensions_file = \"$dir\\data\\extensions\\extensions.json\"",
+    "if ((Test-Path \"$extensions_file\")) {",
+    "    info 'Adjusting path in extensions file...'",
+    "    (Get-Content \"$extensions_file\") -replace '(?<=VSCode-Nightly(/|\\\\\\\\)).*?(?=(/|\\\\\\\\)data(/|\\\\\\\\)extensions)', $version | Set-Content \"$extensions_file\"",
+    "}"
+  ],
+  "persist": "data",
+  "checkver": {
+    "url": "https://code.visualstudio.com/sha?build=insider",
+    "jsonpath": "$.products[?(@.platform.os == 'win32-x64-archive')]",
+    "regex": "\"name\": \"(?<name>[\\d.]+-insider)\",\\s+\"version\": \"(?<version>[\\w]{40})(?>.|\\s)+?\"timestamp\": (?<time>[\\d]{13})",
+    "replace": "${name}_${time}"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://vscode.blob.core.windows.net/insider/$matchVersion/VSCode-win32-x64-$matchName.zip",
+        "hash": {
+          "url": "https://code.visualstudio.com/sha?build=insider",
+          "mode": "json",
+          "jsonpath": "$.products[?(@.platform.os == 'win32-x64-archive')].sha256hash"
+        }
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
 }

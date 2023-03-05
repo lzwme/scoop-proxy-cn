@@ -1,26 +1,17 @@
 {
-  "##": "see installer options here - https://jrsoftware.org/ishelp/index.php?topic=setupcmdline",
-  "architecture": {
-    "64bit": {
-      "hash": "714ad1677e8966cfe3de026d64f386ecd9a058f97cad2fad2a3aa1dad89ceab0",
-      "url": "https://ghproxy.com/https://github.com/mhogomchungu/sirikali/releases/download/1.5.0/SiriKali-1.5.0.setup.exe#/SiriKali.setup.exe"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.com/https://github.com/mhogomchungu/sirikali/releases/download/$version/SiriKali-$version.setup.exe#/SiriKali.setup.exe"
-      }
-    }
-  },
-  "bin": "sirikali.exe",
-  "checkver": {
-    "github": "https://github.com/mhogomchungu/sirikali"
-  },
-  "depends": "nonportable/sshfs-np",
+  "version": "1.5.0",
   "description": "A Qt/C++ GUI front end to sshfs, ecryptfs-simple, cryfs, gocryptfs, securefs, fscrypt and encfs.",
   "homepage": "https://mhogomchungu.github.io/sirikali/",
+  "license": "GPL-2.0-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/mhogomchungu/sirikali/releases/download/1.5.0/SiriKali-1.5.0.setup.exe#/SiriKali.setup.exe",
+      "hash": "714ad1677e8966cfe3de026d64f386ecd9a058f97cad2fad2a3aa1dad89ceab0"
+    }
+  },
+  "##": "see installer options here - https://jrsoftware.org/ishelp/index.php?topic=setupcmdline",
   "installer": {
+    "file": "SiriKali.setup.exe",
     "args": [
       "/VERYSILENT",
       "/NOCANCEL",
@@ -29,10 +20,19 @@
       "/SUPPRESSMSGBOXES",
       "/CLOSEAPPLICATIONS",
       "/NORESTARTAPPLICATIONS"
-    ],
-    "file": "SiriKali.setup.exe"
+    ]
   },
-  "license": "GPL-2.0-or-later",
-  "version": "1.5.0",
-  "_from": "anderlli0053/DEV-tools"
+  "bin": "sirikali.exe",
+  "depends": "nonportable/sshfs-np",
+  "checkver": {
+    "github": "https://github.com/mhogomchungu/sirikali"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/mhogomchungu/sirikali/releases/download/$version/SiriKali-$version.setup.exe#/SiriKali.setup.exe"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
 }

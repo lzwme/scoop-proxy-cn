@@ -1,0 +1,53 @@
+{
+  "version": "102.6.0-bb26",
+  "description": "A free email application that’s easy to set up and customize.",
+  "homepage": "https://www.betterbird.eu",
+  "license": "MPL-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://www.betterbird.eu/downloads/WindowsInstaller/betterbird-102.6.0-bb26.de.win64.installer.exe#/dl.7z",
+      "hash": "999c68749eb8217f7a28a9f0b4d69a6590281d237fd0fb3c4ea964c3c752bac0"
+    }
+  },
+  "extract_dir": "core",
+  "post_install": [
+    "betterbird -CreateProfile \"Scoop $persist_dir\\profile\"",
+    "$Addition = \"$persist_dir\\addition\"",
+    "if (Test-Path $Addition) {",
+    "  info 'Copying additional items...'",
+    "  Copy-Item -Path $Addition\\* -Destination $dir -Force -Recurse -ErrorAction SilentlyContinue",
+    "}"
+  ],
+  "bin": "betterbird.exe",
+  "shortcuts": [
+    [
+      "betterbird.exe",
+      "Betterbird"
+    ],
+    [
+      "betterbird.exe",
+      "Betterbird Profile Manager",
+      "-P"
+    ]
+  ],
+  "persist": [
+    "distribution",
+    "profile"
+  ],
+  "checkver": {
+    "url": "https://www.betterbird.eu/downloads/index.php",
+    "regex": "betterbird-([\\d.]+-bb[\\d]+)-latest-build"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://www.betterbird.eu/downloads/WindowsInstaller/betterbird-$version.de.win64.installer.exe#/dl.7z",
+        "hash": {
+          "url": "https://www.betterbird.eu/downloads/sha256.txt",
+          "regex": "$sha256 betterbird-$version.de.win64.installer.exe"
+        }
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

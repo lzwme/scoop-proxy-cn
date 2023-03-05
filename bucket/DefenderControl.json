@@ -1,28 +1,31 @@
 {
+  "homepage": "https://www.sordum.org/",
   "version": "2.1",
-  "description": "Sordum's Defender Control. Disable Windows Defender completely.",
-  "homepage": "https://www.sordum.org/9480/",
-  "license": {
-    "identifier": "Freeware",
-    "url": "https://www.sordum.org/eula/"
-  },
-  "changelog": "ReadMe.txt",
   "url": "https://www.sordum.org/files/download/d-control/dControl.zip",
-  "hash": "280EF33D0C94594E8D4B88FA07B44D1C65807CB4C1DCBB69FE53B4C684BCCD5B",
-  "extract_dir": "dControl",
-  "pre_install": [
-    "$splat = @{ 'ExtractDir' = $manifest.extract_dir; 'Switches' = '-p sordum'; 'Removal' = $true }",
-    "Expand-7zipArchive \"$dir\\$fname\" @splat",
-    "Expand-7zipArchive \"$dir\\dControl.zip\" @splat"
+  "extract_dir": "DefenderControl",
+  "hash": "59d3593b299a451bce905f4f8d053543e204971ccd1e0cb8926c27c536e2b1f9",
+  "bin": [
+    [
+      "DefenderControl.exe",
+      "DefenderControl"
+    ]
   ],
   "shortcuts": [
-    "dfControl.exe",
-    "Sordum\\Defender Control"
+    [
+      "DefenderControl.exe",
+      "DefenderControl"
+    ]
   ],
-  "persist": "dfControl.ini",
-  "checkver": "Defender Control\\s*v([\\d.]+)",
+  "persist": [
+    "DefenderControl.ini",
+    "DefenderControl.ini"
+  ],
+  "checkver": {
+    "url": "https://www.sordum.org/downloads/?st-defender-control",
+    "re": "Defender Control v(([\\d]).([\\d]))"
+  },
   "autoupdate": {
     "url": "https://www.sordum.org/files/download/d-control/dControl.zip"
   },
-  "_from": "kkzzhizhou/scoop-apps"
+  "_from": "okibcn/ScoopMaster"
 }

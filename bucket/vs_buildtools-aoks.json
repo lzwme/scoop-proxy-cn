@@ -1,33 +1,32 @@
 {
-  "autoupdate": {
-    "url": "https://aka.ms/vs/16/release/vs_buildtools.exe"
-  },
-  "bin": [
-    "vs\\VC\\Auxiliary\\Build\\vcvars64.bat",
-    "vs\\VC\\Auxiliary\\Build\\vcvars32.bat",
-    "vs\\VC\\Auxiliary\\Build\\vcvarsall.bat"
-  ],
-  "checkver": {
-    "regex": ">Visual Studio 2019 version ([\\d.]+)</a> <img",
-    "url": "https://docs.microsoft.com/en-us/visualstudio/releases/2019/release-notes"
-  },
+  "version": "17.5",
   "description": "Microsoft Visual Studio Build Tools 2019",
-  "env_add_path": [
-    "vs\\Common7\\Tools",
-    "vs\\Common7\\IDE",
-    "vs\\MSBuild\\Current\\bin",
-    "vs\\VC\\Auxiliary\\Build"
-  ],
-  "hash": "86a00d07bc02ba9ba9fe81353d4c62b65379625aac1dc9cbe3b58d9ff48cb6f2",
-  "homepage": "https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2019",
-  "installer": {
-    "script": "Invoke-ExternalCommand -FilePath \"$dir\\vs_buildtools.exe\" -Args @('--installPath', \"$dir\\vs\\\", '--add Microsoft.VisualStudio.Workload.MSBuildTools --add Microsoft.VisualStudio.Workload.VCTools --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 --quiet --norestart --wait') -RunAs | Out-Null"
-  },
+  "homepage": "https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022",
   "license": "https://visualstudio.microsoft.com/license-terms/mlt031519/",
+  "url": "https://aka.ms/vs/17/release/vs_BuildTools.exe",
+  "hash": "2f6d6875c141580d8cc739483c4085265944ddc430af4db6720cd20ac192ec18",
+  "installer": {
+    "script": "Invoke-ExternalCommand -FilePath \"$dir\\vs_buildtools.exe\" -Args @('install', '--installPath', \"$dir\\vs\\\", '--add', 'Microsoft.VisualStudio.Workload.MSBuildTools', '--add', 'Microsoft.VisualStudio.Workload.VCTools', '--add', 'Microsoft.VisualStudio.Component.VC.Tools.x86.x64', '--quiet', '--norestart', '--wait') -RunAs | Out-Null"
+  },
   "uninstaller": {
     "script": "Invoke-ExternalCommand -FilePath \"$dir\\vs_buildtools.exe\" -Args @('uninstall', '--installPath', \"$dir\\vs\\\", '--quiet', '--norestart', '--wait') -RunAs | Out-Null"
   },
-  "url": "https://aka.ms/vs/16/release/vs_buildtools.exe",
-  "version": "16.11.24",
-  "_from": "anderlli0053/DEV-tools"
+  "env_add_path": [
+    "vs\\Common7\\Tools",
+    "vs\\Common7\\IDE",
+    "vs\\MSBuild\\Current\\bin"
+  ],
+  "bin": [
+    "vs\\Common7\\Tools\\LaunchDevCmd.bat",
+    "vs\\Common7\\Tools\\VsDevCmd.bat",
+    "vs\\Common7\\Tools\\VsMSBuildCmd.bat"
+  ],
+  "checkver": {
+    "url": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
+    "regex": ">Visual Studio 2022 version ([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://aka.ms/vs/17/release/vs_BuildTools.exe"
+  },
+  "_from": "okibcn/ScoopMaster"
 }

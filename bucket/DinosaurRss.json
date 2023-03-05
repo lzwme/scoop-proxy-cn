@@ -1,0 +1,38 @@
+{
+  "version": "1.0.1",
+  "description": "A simple, efficient, open source RSS reader service",
+  "homepage": "https://dinorss.org/",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/richshaw2015/dino-rss-electron/releases/download/v1.0.1/Dinosaur.Rss.1.0.1.x64.exe#/dl.7z",
+      "hash": "a5b69a5bdd5a5ac4ad96d4e3adcd7b990285d8ceb8e96cea17f397d432548d2e",
+      "pre_install": [
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+        "Remove-Item \"$dir\\`$*\", \"$dir\\Uninst*\" -Force -Recurse"
+      ]
+    }
+  },
+  "shortcuts": [
+    [
+      "Dinosaur Rss.exe",
+      "Dinosaur Rss"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/richshaw2015/dino-rss-electron"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/richshaw2015/dino-rss-electron/releases/download/v$version/Dinosaur.Rss.$version.x64.exe#/dl.7z"
+      }
+    },
+    "hash": {
+      "url": "https://ghproxy.com/https://github.com/richshaw2015/dino-rss-electron/releases/download/v$version.x64/latest.yml",
+      "mode": "extract",
+      "regex": "sha512: $base64"
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

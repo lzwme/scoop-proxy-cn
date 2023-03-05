@@ -1,0 +1,17 @@
+{
+  "version": "0.0.83",
+  "homepage": "https://marketplace.visualstudio.com/items?itemName=asvetliakov.vscode-neovim",
+  "hash": "dfae2d02185c5af18710cbdfb423c207fcf3f71b5120fd19c294937f0c3f4abf",
+  "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/asvetliakov/vsextensions/vscode-neovim/0.0.83/vspackage#/ext.vsix.7z",
+  "checkver": {
+    "re": "(?s)Version.:.([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/asvetliakov/vsextensions/vscode-neovim/$version/vspackage#/ext.vsix.7z"
+  },
+  "post_install": [
+    "if ( Get-Command -Name code -ErrorAction SilentlyContinue ) { &code --install-extension $dir/ext.vsix --force }",
+    "if ( Get-Command -Name azuredatastudio -ErrorAction SilentlyContinue ) { &azuredatastudio --install-extension $dir/ext.vsix --force }"
+  ],
+  "_from": "okibcn/ScoopMaster"
+}

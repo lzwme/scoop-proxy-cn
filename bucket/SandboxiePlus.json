@@ -1,0 +1,61 @@
+{
+  "homepage": "https://github.com/sandboxie-plus/Sandboxie",
+  "description": "Sandboxie is a sandbox-based isolation software for 32- and 64-bit Windows NT-based operating systems.",
+  "version": "1.0.22",
+  "license": "GPL-3.0 License",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/1.0.22/Sandboxie-Plus-x64-v1.0.22.exe#/Sandboxie-install.exe",
+      "hash": "57b846a6c7211ae11ad431970f696223ef039561c1257245f49d6bcc5be09b5f",
+      "installer": {
+        "script": [
+          "Invoke-ExternalCommand \"$dir\\Sandboxie-install.exe\" -ArgumentList @('/install','/S',\"/D=$dir\") -RunAs | Out-Null",
+          "Remove-Item \"$dir\\Sandboxie-install.exe\" -Force -Recurse"
+        ]
+      },
+      "uninstaller": {
+        "script": [
+          "$uninstaller = (Get-Item Env:windir).Value+'\\installer\\SandboxieInstall64.exe'",
+          "Invoke-ExternalCommand \"$uninstaller\" -ArgumentList @('/remove','/S') -RunAs | Out-Null"
+        ]
+      }
+    },
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/1.0.22/Sandboxie-Plus-x86-v1.0.22.exe#/Sandboxie-install.exe",
+      "hash": "5ca1dc88d36173de807e3a3460401e7a4f295d34866fd07801c3e3937c057a55",
+      "installer": {
+        "script": [
+          "Invoke-ExternalCommand \"$dir\\Sandboxie-install.exe\" -ArgumentList @('/install','/S',\"/D=$dir\") -RunAs | Out-Null",
+          "Remove-Item \"$dir\\Sandboxie-install.exe\" -Force -Recurse"
+        ]
+      },
+      "uninstaller": {
+        "script": [
+          "$uninstaller = (Get-Item Env:windir).Value+'\\installer\\SandboxieInstall.exe'",
+          "Invoke-ExternalCommand \"$uninstaller\" -ArgumentList @('/remove','/S') -RunAs | Out-Null"
+        ]
+      }
+    }
+  },
+  "shortcuts": [
+    [
+      "Sandboxie-Plus\\SandMan.exe",
+      "SandboxiePlus"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/sandboxie-plus/Sandboxie",
+    "regex": "<span class=\"css-truncate css-truncate-target text-bold mr-2\" style=\"max-width: none;\">Release v([\\d.]+) /"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/$version/Sandboxie-Plus-x64-v$version.exe#/Sandboxie-install.exe"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/$version/Sandboxie-Plus-x86-v$version.exe#/Sandboxie-install.exe"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

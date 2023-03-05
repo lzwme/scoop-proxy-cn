@@ -1,17 +1,13 @@
 {
+  "version": "20230131",
+  "description": "General-purpose parametric 3D CAD modeler and a building information modeling software with finite-element-method support. Linkstage Stable branch by Realthunder.",
+  "homepage": "https://www.freecadweb.org",
+  "license": "GPL-3.0-or-later",
   "architecture": {
     "64bit": {
-      "extract_dir": "FreeCAD-asm3-Daily-Win64-Py3-Qt5-20221021",
-      "hash": "ba42a022c559398ee145108e1d83752a9b3a9a25db5bceefddb329c9257d9485",
-      "url": "https://ghproxy.com/https://github.com/realthunder/FreeCAD/releases/download/2022.10.21-2-edge/FreeCAD-asm3-Daily-Win64-Py3-Qt5-20221021.7z"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "extract_dir": "FreeCAD-asm3-Daily-Win64-Py3-Qt5-$version",
-        "url": "https://ghproxy.com/https://github.com/realthunder/FreeCAD/releases/download/$matchTag/FreeCAD-asm3-Daily-Win64-Py3-Qt5-$version.7z"
-      }
+      "url": "https://ghproxy.com/https://github.com/realthunder/FreeCAD/releases/download/2023.01.31-edge/FreeCAD-asm3-Daily-Win64-LibPack-Py3.8-20230131.7z",
+      "extract_dir": "FreeCAD-asm3-Daily-Win64-LibPack-Py3.8-20230131",
+      "hash": "474ce54dab373c6cdaced530eddda7f618c63b6d1dad36f0839d26dacf5e5f3e"
     }
   },
   "bin": [
@@ -20,20 +16,24 @@
       "FreeCADCmd_LBD"
     ]
   ],
-  "checkver": {
-    "regex": "releases/download/(?<tag>\\d+\\.\\d+\\.\\d+(-\\d+)?-edge)/FreeCAD-asm3-Daily-Win64-Py3-Qt5-(?<version>\\d+)(?<patch>-\\d)?.7z",
-    "replace": "${version}${patch}",
-    "url": "https://api.github.com/repos/realthunder/FreeCAD/releases"
-  },
-  "description": "General-purpose parametric 3D CAD modeler and a building information modeling software with finite-element-method support. Linkstage Stable branch by Realthunder.",
-  "homepage": "https://www.freecadweb.org",
-  "license": "GPL-3.0-or-later",
   "shortcuts": [
     [
       "bin\\FreeCADLink.exe",
       "FreeCAD Linkbranch Daily"
     ]
   ],
-  "version": "20221021",
-  "_from": "anderlli0053/DEV-tools"
+  "checkver": {
+    "url": "https://api.github.com/repos/realthunder/FreeCAD/releases",
+    "regex": "releases/download/(?<tag>\\d+\\.\\d+\\.\\d+(-\\d+)?-edge)/FreeCAD-asm3-Daily-Win64-LibPack-Py3.8-(?<version>\\d+)(?<patch>-\\d)?.7z",
+    "replace": "${version}${patch}"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/realthunder/FreeCAD/releases/download/$matchTag/FreeCAD-asm3-Daily-Win64-LibPack-Py3.8-$version.7z",
+        "extract_dir": "FreeCAD-asm3-Daily-Win64-LibPack-Py3.8-$version"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
 }

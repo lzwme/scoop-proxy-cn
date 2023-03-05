@@ -1,12 +1,6 @@
 {
-  "autoupdate": {
-    "note": "We will place it to where it should be for you.",
-    "url": "https://ghproxy.com/https://github.com/BoyceLig/Clash_Chinese_Patch/releases/download/$version/app.7z"
-  },
-  "checkver": "github",
-  "depends": "clash-for-windows",
+  "version": "0.20.17",
   "description": "A Chinese (Simplified) Language Patch for 'Clash for Windows'",
-  "hash": "cabcb47e27612e2e46dd4b948d4ab4bebe0a7a8b248dac9ffee881002e141e88",
   "homepage": "https://github.com/BoyceLig/Clash_Chinese_Patch",
   "license": "Proprietary",
   "notes": [
@@ -14,6 +8,12 @@
     "Now 'Clash for Windows' will be in Chinese (Simplified)!",
     "Please enjoy ~"
   ],
+  "depends": "clash-for-windows",
+  "autoupdate": {
+    "note": "We will place it to where it should be for you.",
+    "url": "https://ghproxy.com/https://github.com/BoyceLig/Clash_Chinese_Patch/releases/download/$version/app.7z"
+  },
+  "checkver": "github",
   "post_install": [
     "Move-Item \"$(scoop prefix clash-for-windows)\\resources\\app.asar\" \"$(scoop prefix clash-for-windows)\\resources\\app.asar.bak\"",
     "Copy-Item \"$dir\\app.asar\" \"$(scoop prefix clash-for-windows)\\resources\""
@@ -25,6 +25,6 @@
     ]
   },
   "url": "https://ghproxy.com/https://github.com/BoyceLig/Clash_Chinese_Patch/releases/download/0.20.17/app.7z",
-  "version": "0.20.17",
-  "_from": "anderlli0053/DEV-tools"
+  "hash": "cabcb47e27612e2e46dd4b948d4ab4bebe0a7a8b248dac9ffee881002e141e88",
+  "_from": "okibcn/ScoopMaster"
 }

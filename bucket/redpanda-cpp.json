@@ -1,0 +1,42 @@
+{
+  "homepage": "https://sourceforge.net/projects/redpanda-cpp",
+  "description": "A light-weight C/C++ IDE based on Qt",
+  "license": {
+    "identifier": "GPL-3.0",
+    "url": "https://github.com/royqh1979/RedPanda-CPP/blob/master/LICENSE"
+  },
+  "version": "2.9",
+  "architecture": {
+    "64bit": {
+      "url": "https://sourceforge.net/projects/redpanda-cpp/files/2.9/RedPanda.C%2B%2B.2.9.win64.MinGW-w64.X86_64.GCC.11.2.Portable.7z",
+      "hash": "sha1:3b96c7dc853dac5d52281394e5f0d12fb7307583"
+    },
+    "32bit": {
+      "url": "https://sourceforge.net/projects/redpanda-cpp/files/2.10/RedPanda.C%2B%2B.2.10.win32.MinGW-w64.i686.GCC.8.1.Portable.7z",
+      "hash": "sha1:6b1f1f08359d183ed07b8edee7e9c51f826e171a"
+    }
+  },
+  "extract_dir": "RedPanda-Cpp",
+  "persist": "config",
+  "shortcuts": [
+    [
+      "RedPandaIDE.exe",
+      "RedPanda C++"
+    ]
+  ],
+  "checkver": {
+    "url": "https://sourceforge.net/projects/redpanda-cpp/rss?path=/",
+    "regex": "RedPanda.C%2B%2B.(?<x86version>[\\d.]+).win32.MinGW-w64.i686.GCC.(?<x86gccversion>[\\d.]+).Portable.7z[\\s\\S]*?RedPanda.C%2B%2B.(?<version>[\\d.]+).win64.MinGW-w64.X86_64.GCC.(?<gccversion>[\\d.]+).Portable.7z"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://sourceforge.net/projects/redpanda-cpp/files/$version/RedPanda.C%2B%2B.$version.win64.MinGW-w64.X86_64.GCC.$matchGccversion.Portable.7z"
+      },
+      "32bit": {
+        "url": "https://sourceforge.net/projects/redpanda-cpp/files/$matchX86version/RedPanda.C%2B%2B.$matchX86version.win32.MinGW-w64.i686.GCC.$matchX86gccversion.Portable.7z"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

@@ -1,21 +1,28 @@
 {
-  "homepage": "https://sourceforge.net/projects/orwelldevcpp/",
+  "version": "5.11",
   "description": "A free, portable, fast and simple C/C++ IDE",
+  "homepage": "http://orwelldevcpp.blogspot.com",
   "license": "GPL-2.0-only",
-  "version": "5.10",
-  "architecture": {
-    "64bit": {
-      "url": "https://downloads.sourceforge.net/project/orwelldevcpp/Portable%20Releases/Dev-Cpp%205.11%20TDM-GCC%20x64%204.9.2%20Portable.7z#/dl.7z",
-      "hash": "793e3e22f9df69fae4a04601626b9d16e1a89a5019cc486baaca60b4376773dd",
-      "extract_dir": "Dev-Cpp"
-    }
-  },
-  "persist": "config",
+  "url": "https://downloads.sourceforge.net/project/orwelldevcpp/Portable%20Releases/Dev-Cpp%205.11%20No%20Compiler%20Portable.7z",
+  "hash": "1f5f9be540e28cda26b5ac0906bf7c9cb997574af755c5280e0d5a528f7fedd6",
+  "extract_dir": "Dev-Cpp",
+  "bin": [
+    "devcpp.exe",
+    "devcppPortable.exe"
+  ],
   "shortcuts": [
     [
-      "devcppPortable.exe",
-      "Dev-Cpp"
+      "devcpp.exe",
+      "Dev-C++ IDE"
     ]
   ],
-  "_from": "kkzzhizhou/scoop-apps"
+  "checkver": {
+    "url": "https://sourceforge.net/projects/orwelldevcpp/rss?path=/Portable%20Releases/",
+    "regex": "Dev-Cpp%20([\\d.]+)%20No%20Compiler%20Portable.7z"
+  },
+  "autoupdate": {
+    "url": "https://downloads.sourceforge.net/project/orwelldevcpp/Portable%20Releases/Dev-Cpp%20$version%20No%20Compiler%20Portable.7z",
+    "extract_dir": "Dev-Cpp"
+  },
+  "_from": "okibcn/ScoopMaster"
 }

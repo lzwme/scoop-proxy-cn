@@ -1,0 +1,18 @@
+{
+  "version": "1677023226",
+  "description": "An advanced conditional subtitle track selector for mpv player",
+  "homepage": "https://github.com/CogentRedTester/mpv-sub-select",
+  "license": "MIT",
+  "url": "https://ghproxy.com/https://github.com/CogentRedTester/mpv-sub-select/archive/refs/heads/master.zip",
+  "hash": "ba91d93faefb7d628e9fee8f5061c469554f3af40f0b4885d7f1d587ed67c52c",
+  "extract_dir": "mpv-sub-select-master",
+  "pre_install": "'README.md', 'LICENSE' | ForEach-Object { Remove-Item \"$dir\\$_\" }",
+  "checkver": {
+    "script": "try { Get-Date (Invoke-RestMethod https://api.github.com/repositories/313069059/commits/master).commit.committer.date -UFormat %s } catch { '' }",
+    "regex": "\\A(\\d+)\\Z"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/CogentRedTester/mpv-sub-select/archive/refs/heads/master.zip"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

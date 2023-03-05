@@ -1,14 +1,40 @@
 {
   "##": "This package is not ported to the official buckets because ReadMe file written in English is not available. Extracting the .msi using 7-zip (which is by default in Scoop) causes path error. Therefore renaming it to .msi_.",
+  "homepage": "https://getquicker.net/",
+  "description": "Make key shortcuts for programs, folders, URLs, and commands (fast update channel)",
+  "version": "1.37.9.0",
+  "license": {
+    "identifier": "Shareware",
+    "url": "https://getquicker.net/Forum/ViewTopic/341"
+  },
+  "depends": "uniextract2",
   "architecture": {
     "32bit": {
-      "hash": "f6136b54b9d6752431ab54ff4472a86cdfb6e4fac36e225733856b983a0ef936",
-      "url": "https://getquicker.net/download/item/fast_x86#/quicker.msi"
+      "url": "https://getquicker.net/download/item/fast_x86#/quicker.msi",
+      "hash": "6cf660f41d15acef18cf445d20fa91fe2f5357b237f480da86e05c22c35003c1"
     },
     "64bit": {
-      "hash": "505fd2bfd50941deba6a3e26c5ec50932543db026fb2ea3d1be2faa7a52140db",
-      "url": "https://getquicker.net/download/item/fast_x64#/quicker.msi"
+      "url": "https://getquicker.net/download/item/fast_x64#/quicker.msi",
+      "hash": "0b148393b93563e0e86360fb54339460f13650465519b34d4995d010457aa6d5"
     }
+  },
+  "installer": {
+    "script": [
+      "uniextract \"$original_dir\\quicker.msi_\" \"$dir\"",
+      "Start-Sleep 10"
+    ]
+  },
+  "persist": "Quicker\\Quicker.exe.config",
+  "bin": "Quicker\\Quicker.exe",
+  "shortcuts": [
+    [
+      "Quicker\\Quicker.exe",
+      "Quicker"
+    ]
+  ],
+  "checkver": {
+    "url": "https://getquicker.net/Download",
+    "regex": "(?sm)<h5>.*?<small.*?>.*?([\\d.]+).*?</small>"
   },
   "autoupdate": {
     "architecture": {
@@ -20,31 +46,5 @@
       }
     }
   },
-  "bin": "Quicker\\Quicker.exe",
-  "checkver": {
-    "regex": "(?sm)<h5>.*?<small.*?>.*?([\\d.]+).*?</small>",
-    "url": "https://getquicker.net/Download"
-  },
-  "depends": "uniextract2",
-  "description": "Make key shortcuts for programs, folders, URLs, and commands (fast update channel)",
-  "homepage": "https://getquicker.net/",
-  "installer": {
-    "script": [
-      "uniextract \"$original_dir\\quicker.msi_\" \"$dir\"",
-      "Start-Sleep 10"
-    ]
-  },
-  "license": {
-    "identifier": "Shareware",
-    "url": "https://getquicker.net/Forum/ViewTopic/341"
-  },
-  "persist": "Quicker\\Quicker.exe.config",
-  "shortcuts": [
-    [
-      "Quicker\\Quicker.exe",
-      "Quicker"
-    ]
-  ],
-  "version": "1.36.32.0",
-  "_from": "anderlli0053/DEV-tools"
+  "_from": "okibcn/ScoopMaster"
 }

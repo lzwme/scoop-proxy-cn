@@ -1,0 +1,29 @@
+{
+  "version": "12.2.0-15.0.7-10.0.0-r4",
+  "description": "GNU Compiler Collection (WinLibs build)",
+  "homepage": "https://winlibs.com",
+  "license": "GPL-3.0-or-later,ZPL-2.1,BSD-2-Clause,...",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/brechtsanders/winlibs_mingw/releases/download/12.2.0-15.0.7-10.0.0-msvcrt-r4/winlibs-x86_64-posix-seh-gcc-12.2.0-mingw-w64msvcrt-10.0.0-r4.7z",
+      "hash": "sha512:07550748fbb08fa3a39f3d5b12990af8007862a19027d39eaea506a8cf00a17c862faf3ffe530322bc80ec25ae031f94d469877f959a720c05a52c570f61f975",
+      "extract_dir": "mingw64"
+    }
+  },
+  "env_add_path": "bin",
+  "checkver": {
+    "regex": "GCC ([\\d.]+).*?LLVM.*?([\\d.]+).*?MinGW\\-w64 ([\\d.]+).*?MSVCRT.*?release ([\\d.]+).*?LATEST",
+    "replace": "${1}-${2}-${3}-r${4}"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/brechtsanders/winlibs_mingw/releases/download/$match1-$match2-$match3-msvcrt-r$match4/winlibs-x86_64-posix-seh-gcc-$match1-mingw-w64msvcrt-$match3-r$match4.7z"
+      }
+    },
+    "hash": {
+      "url": "$url.sha512"
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

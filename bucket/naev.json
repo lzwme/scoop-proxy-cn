@@ -1,0 +1,32 @@
+{
+  "version": "0.9.3",
+  "description": "2D action/rpg space game that combines elements from the action, rpg and simulation",
+  "homepage": "https://naev.org",
+  "license": "GPL-3.0-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/naev/naev/releases/download/v0.9.3/naev-0.9.3-win64.exe#/dl.7z",
+      "hash": "ab1523430733a0a34c5ad14a1648a69fbd10221e60a8a4eaa2a4f9dd73e9bb17"
+    }
+  },
+  "post_install": [
+    "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall*\" -Force -Recurse"
+  ],
+  "shortcuts": [
+    [
+      "naev-0.9.3-win64.exe",
+      "Naev"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/naev/naev"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/naev/naev/releases/download/v$version/naev-$version-win64.exe#/dl.7z"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

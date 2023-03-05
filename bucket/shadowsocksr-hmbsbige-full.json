@@ -1,52 +1,26 @@
 {
-  "architecture": {
-    "32bit": {
-      "hash": "fede2b9742493ea051ce62841c3523637d11242220472010c7a68268356b07d0",
-      "url": "https://ghproxy.com/https://github.com/HMBSbige/ShadowsocksR-Windows/releases/download/6.0.4/ShadowsocksR-Win32-6.0.4.7z"
-    },
-    "64bit": {
-      "hash": "5777f7bdac21563fcfc44bfcb5339eed9d083bc6a4d90f7df6c7bb6976051cb5",
-      "url": "https://ghproxy.com/https://github.com/HMBSbige/ShadowsocksR-Windows/releases/download/6.0.4/ShadowsocksR-Win64-6.0.4.7z"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "32bit": {
-        "url": "https://ghproxy.com/https://github.com/HMBSbige/ShadowsocksR-Windows/releases/download/$version/ShadowsocksR-Win32-$version.7z"
-      },
-      "64bit": {
-        "url": "https://ghproxy.com/https://github.com/HMBSbige/ShadowsocksR-Windows/releases/download/$version/ShadowsocksR-Win64-$version.7z"
-      }
-    },
-    "hash": {
-      "mode": "extract",
-      "regex": "(?sm)$basename.*?$sha256",
-      "url": "https://github.com/HMBSbige/ShadowsocksR-Windows/releases"
-    }
-  },
-  "bin": "ShadowsocksR.exe",
-  "checkver": {
-    "regex": "<span class.*?ShadowsocksR-Win32-([\\d.]+)\\.7z</span>",
-    "url": "https://github.com/HMBSbige/ShadowsocksR-Windows/releases"
-  },
+  "version": "6.1.0",
   "description": "ShadowsocksR for Windows(with dotnet runtime), maintained by @HMBSbige.",
-  "extract_dir": "ShadowsocksR",
   "homepage": "https://github.com/HMBSbige/ShadowsocksR-Windows",
   "license": {
     "identifier": "AGPL-3.0-only",
     "url": "https://github.com/HMBSbige/ShadowsocksR-Windows/blob/master/LICENSE"
   },
-  "persist": "temp",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/HMBSbige/ShadowsocksR-Windows/releases/download/6.1.0/ShadowsocksR-Win64-6.1.0.7z",
+      "hash": "d62593da0aa39970213997694cb811a19a68341b4b10c42e9040064f4fdf1e48"
+    },
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/HMBSbige/ShadowsocksR-Windows/releases/download/6.1.0/ShadowsocksR-Win32-6.1.0.7z",
+      "hash": "52b3ecadd8f4063ebb7121b7a84caee490cc0e630977f226e933d62b2784dde5"
+    }
+  },
+  "extract_dir": "ShadowsocksR",
   "pre_install": [
     "@('gui-config.json', 'pac.txt', 'transfer_log.json', 'user-rule.txt') | ForEach-Object {",
     "    if (Test-Path \"$persist_dir\\$_\") { Copy-Item \"$persist_dir\\$_\" \"$dir\\\" | Out-Null }",
     "}"
-  ],
-  "shortcuts": [
-    [
-      "ShadowsocksR.exe",
-      "ShadowsocksR"
-    ]
   ],
   "uninstaller": {
     "script": [
@@ -58,6 +32,32 @@
       "}"
     ]
   },
-  "version": "6.0.4",
-  "_from": "anderlli0053/DEV-tools"
+  "bin": "ShadowsocksR.exe",
+  "shortcuts": [
+    [
+      "ShadowsocksR.exe",
+      "ShadowsocksR"
+    ]
+  ],
+  "persist": "temp",
+  "checkver": {
+    "url": "https://api.github.com/repos/HMBSbige/ShadowsocksR-Windows/releases",
+    "regex": "/releases/tag/(?:v)?([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/HMBSbige/ShadowsocksR-Windows/releases/download/$version/ShadowsocksR-Win64-$version.7z"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/HMBSbige/ShadowsocksR-Windows/releases/download/$version/ShadowsocksR-Win32-$version.7z"
+      }
+    },
+    "hash": {
+      "url": "https://github.com/HMBSbige/ShadowsocksR-Windows/releases",
+      "mode": "extract",
+      "regex": "(?sm)$basename.*?$sha256"
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
 }

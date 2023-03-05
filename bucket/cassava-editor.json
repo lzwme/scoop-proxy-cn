@@ -1,0 +1,33 @@
+{
+  "version": "2.4.5",
+  "description": "CSV editor",
+  "homepage": "https://www.asukaze.net/soft/cassava/",
+  "license": "MIT",
+  "notes": "INI file will be stored in AppData\\Roaming\\Asukaze\\Cassava\\",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/asukaze55/cassava-editor/releases/download/v2.4.5/Cassava2_4_5_64.zip",
+      "hash": "31312e5de8ee5dd6ee8922993f4a35ca56bbe55f10efddab209e5a1063adcb20"
+    }
+  },
+  "extract_dir": "Cassava",
+  "bin": "Cassava.exe",
+  "shortcuts": [
+    [
+      "Cassava.exe",
+      "Cassava Editor"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/asukaze55/cassava-editor/releases/latest",
+    "regex": "/releases/tag/(?:v|V)?([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/asukaze55/cassava-editor/releases/download/v$version/Cassava$underscoreVersion_64.zip"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

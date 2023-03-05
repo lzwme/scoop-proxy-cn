@@ -1,0 +1,29 @@
+{
+  "##": "easy, but now deprecated checkver: github: https://github.com/the3dfxdude/7kaa",
+  "version": "2.15.5",
+  "description": "Seven Kingdoms: Ancient Adversaries",
+  "homepage": "https://7kfans.com/",
+  "license": {
+    "identifier": "Proprietary|GPL-2.0-only,BSD-3-Clause",
+    "url": "https://ghproxy.com/https://raw.githubusercontent.com/the3dfxdude/7kaa/master/COPYING"
+  },
+  "url": "https://ghproxy.com/https://github.com/the3dfxdude/7kaa/releases/download/v2.15.5/7kaa-install-win32-2.15.5.exe#/dl.7z",
+  "hash": "e57c9648eee671e4500fae10d88a01baa6e2df5d86027121f0bcb8ea943de3e0",
+  "bin": "7kaa.exe",
+  "shortcuts": [
+    [
+      "7kaa.exe",
+      "Seven Kingdoms Ancient Adversaries"
+    ]
+  ],
+  "pre_install": "Remove-Item \"$dir\\`$*\", \"$dir\\uninstall.exe\" -Recurse",
+  "checkver": {
+    "url": "https://github.com/the3dfxdude/7kaa/releases/latest",
+    "regex": "7kaa-install-win32-([\\d]+)\\.([\\d]+)\\.([\\d]+)(.*)?\\.exe",
+    "replace": "${1}.${2}.${3}${4}"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/the3dfxdude/7kaa/releases/download/v$version/7kaa-install-win32-$version.exe#/dl.7z"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

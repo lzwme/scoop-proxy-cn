@@ -1,0 +1,17 @@
+{
+  "version": "3.4.3",
+  "homepage": "https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one",
+  "hash": "2e9f67f9c3074b5c9f023ca241c883a594bd86d38042978742cf24ad08824911",
+  "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/yzhang/vsextensions/markdown-all-in-one/3.4.3/vspackage#/ext.vsix.7z",
+  "checkver": {
+    "re": "(?s)Version.:.([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/yzhang/vsextensions/markdown-all-in-one/$version/vspackage#/ext.vsix.7z"
+  },
+  "post_install": [
+    "if ( Get-Command -Name code -ErrorAction SilentlyContinue ) { &code --install-extension $dir/ext.vsix --force }",
+    "if ( Get-Command -Name azuredatastudio -ErrorAction SilentlyContinue ) { &azuredatastudio --install-extension $dir/ext.vsix --force }"
+  ],
+  "_from": "okibcn/ScoopMaster"
+}

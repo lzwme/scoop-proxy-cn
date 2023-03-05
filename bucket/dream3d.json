@@ -1,0 +1,35 @@
+{
+  "version": "6.5.168",
+  "description": "an open source, cross-platform and modular software package that allows users to reconstruct, instantiate, quantify, mesh, handle and visualize multidimensional, multimodal data.",
+  "homepage": "http://dream3d.bluequartz.net/",
+  "license": {
+    "identifier": "BSD 3-Clause Modification",
+    "url": "https://github.com/BlueQuartzSoftware/DREAM3D/blob/develop/Copying.md"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "http://dream3d.bluequartz.net/binaries/DREAM3D-6.5.168-Win64.zip",
+      "hash": "b824f665f9b8b66e40557345d1d2d8532d505d1c7b5158320c2790136f5bab38",
+      "extract_dir": "DREAM3D-6.5.168-Win64"
+    }
+  },
+  "shortcuts": [
+    [
+      "DREAM3D.exe",
+      "DREAM.3D"
+    ]
+  ],
+  "checkver": {
+    "url": "http://dream3d.bluequartz.net/Download/",
+    "regex": "Windows - DREAM3D-([\\d.]+)-Win64\\.zip"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "http://dream3d.bluequartz.net/binaries/DREAM3D-$version-Win64.zip",
+        "extract_dir": "DREAM3D-$version-Win64"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

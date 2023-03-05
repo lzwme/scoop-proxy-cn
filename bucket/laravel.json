@@ -1,0 +1,35 @@
+{
+  "homepage": "https://laravel.com",
+  "version": "1.3.4",
+  "licence": "MIT",
+  "url": "https://ghproxy.com/https://github.com/laravel/installer/archive/v1.3.4.zip",
+  "hash": "683B645E1129E09E5F8F3F68C9C6BAE993480E31F59559F3F7289FBE64364069",
+  "extract_dir": "installer-1.3.4",
+  "depends": [
+    "composer"
+  ],
+  "pre_install": [
+    "try {
+  New-Item $dir\\laravel.bat -type file -force -value \"`@ECHO OFF
+  php %~dp0laravel %*\"
+  New-Item $dir\\artisan.bat -type file -force -value \"`@ECHO OFF
+  php artisan %*\"
+  }
+  catch {
+    abort 'PHP is not installed | run scoop install php'
+    }"
+  ],
+  "post_install": [
+    "try {
+      composer install -d $dir
+  }
+  catch {
+    abort 'Composer is not installed | run scoop install composer'
+    }"
+  ],
+  "bin": [
+  "laravel.bat",
+  "artisan.bat"
+  ],
+  "notes": ""
+}

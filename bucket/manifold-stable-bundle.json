@@ -1,0 +1,33 @@
+{
+  "version": "9.0.179",
+  "description": "Official build Manifold Release 9 + optional third-party software. This package includes third-party libraries that provides IronPython scripting and MySQL, PostgreSQL/PostGIS, and SQLite drivers. It also includes 233 MB grids.dat for coordinate transformations.",
+  "homepage": "http://manifold.net/",
+  "license": "Proprietary",
+  "suggest": {
+    "Microsoft Visual C++ Redistributable 2022": "extras/vcredist2022"
+  },
+  "url": "https://manifold.net/updates/manifold-9.0.179-fat.zip",
+  "hash": "deede6f85fe3595529b757a278c629dabdd70c4216450db452273cabd9b05f54",
+  "extract_dir": "manifold-9.0.179-fat",
+  "shortcuts": [
+    [
+      "bin64\\manifold.exe",
+      "Manifold (Bundle)"
+    ]
+  ],
+  "checkver": {
+    "url": "https://manifold.net/updates/download_9.shtml",
+    "regex": "href=\"https://manifold.net/updates/manifold-([\\d.]+).zip\"><img class=\"image left\" src=\"/images/mfd9_base_btn.png\"",
+    "replace": "$1"
+  },
+  "autoupdate": {
+    "url": "https://manifold.net/updates/manifold-$version-fat.zip",
+    "extract_dir": "manifold-$version-fat",
+    "hash": {
+      "url": "https://manifold.net/updates/download_9.shtml",
+      "regex": "manifold-$version-fat.zip.+ $sha256"
+    },
+    "note": "Note after autoupdate"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

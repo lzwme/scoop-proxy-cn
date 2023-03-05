@@ -1,0 +1,41 @@
+{
+  "version": "22.3",
+  "description": "Database tool for developers, SQL programmers, database administrators and analysts",
+  "homepage": "https://dbeaver.com/",
+  "license": "Apache-2.0",
+  "suggest": {
+    "java": "java/oraclejdk"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://dbeaver.com/files/dbeaver-ee-latest-win32.win32.x86_64.zip",
+      "hash": "94752cfb17b3dec6734fd0793e701224e03df64fe74c29502362057d015fbec7"
+    }
+  },
+  "extract_dir": "dbeaver",
+  "installer": {
+    "script": "& \"$bucketsdir\\$bucket\\scripts\\dbeaver-enterprise-portable.ps1\" $dir $bucketsdir"
+  },
+  "bin": [
+    "dbeaver.exe",
+    "dbeaver-cli.exe"
+  ],
+  "shortcuts": [
+    [
+      "dbeaver.exe",
+      "DBeaver Enterprise"
+    ]
+  ],
+  "checkver": {
+    "url": "https://dbeaver.com/download/enterprise/",
+    "regex": "DBeaver Enterprise Edition ([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://dbeaver.com/files/dbeaver-ee-latest-win32.win32.x86_64.zip"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

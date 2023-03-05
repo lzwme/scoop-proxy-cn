@@ -1,0 +1,31 @@
+{
+  "version": "2.6.1",
+  "description": "a graphical frontend for command line emulators such as MAME, MESS, and Nestopia",
+  "homepage": "http://attractmode.org",
+  "license": "GPL-3.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/mickelson/attract/releases/download/v2.6.1/attract-v2.6.1-win64.zip",
+      "hash": "389e3e54c8c9c26cf8b4cc52960f5635f2a47abcb95e4bb48acb375a0ea8bd2b"
+    },
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/mickelson/attract/releases/download/v2.6.1/attract-v2.6.1-win32.zip",
+      "hash": "242a702f95f4f2d7a8c90e0c30ae3a695748836e915b5454c80e1a128e77a855"
+    }
+  },
+  "bin": "attract.exe",
+  "checkver": {
+    "github": "https://github.com/mickelson/attract"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/mickelson/attract/releases/download/v$version/attract-v$version-win64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/mickelson/attract/releases/download/v$version/attract-v$version-win32.zip"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

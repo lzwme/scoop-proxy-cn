@@ -1,0 +1,48 @@
+{
+  "version": "2.2.0",
+  "homepage": "https://www.cube-soft.jp/cubepdfutility",
+  "architecture": {
+    "64bit": {
+      "url": "https://www.cube-soft.jp/archive/cubepdf-utility-2.2.0-x64.exe",
+      "hash": "f72170ada42d14c9549caddd083da6ce06369c78fa5b7cf2daa747cc845f34b0"
+    },
+    "32bit": {
+      "url": "https://www.cube-soft.jp/archive/cubepdf-utility-2.2.0.exe",
+      "hash": "7a1ade8d7a24b546fcdfd2987f623c1e22e219dc2a1f6320b7d4f5e214caee99"
+    }
+  },
+  "installer": {
+    "args": [
+      "/Silent",
+      "/Lang=ja",
+      "/Dir=\"$dir\"",
+      "/NoIcons=0",
+      "/Tasks="
+    ]
+  },
+  "shortcuts": [
+    [
+      "CubePdfUtilitySplash.exe",
+      "CubePDF Utility"
+    ]
+  ],
+  "uninstaller": {
+    "file": "unins000.exe",
+    "args": "/Silent"
+  },
+  "checkver": {
+    "url": "https://www.cube-soft.jp/cubepdfutility",
+    "re": "CubePDF Utility ([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://www.cube-soft.jp/archive/cubepdf-utility-$version-x64.exe"
+      },
+      "32bit": {
+        "url": "https://www.cube-soft.jp/archive/cubepdf-utility-$version.exe"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

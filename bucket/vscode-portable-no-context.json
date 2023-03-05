@@ -1,0 +1,52 @@
+{
+  "homepage": "https://code.visualstudio.com",
+  "version": "1.76.0",
+  "description": "Visual Studio Code is a lightweight but powerful source code editor (Portable Edition w/o context menu installer).",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://code.visualstudio.com/License"
+  },
+  "notes": [
+    "Visual Studio Code now supports Portable Mode! Please move the following directories:",
+    "From \"$env:USERPROFILE\\.vscode\\extensions\" to \"$env:USERPROFILE\\scoop\\persist\\vscode-portable\\data\\extensions\"",
+    "From \"$env:APPDATA\\Code\" to \"$env:USERPROFILE\\scoop\\persist\\vscode-portable\\data\\user-data\""
+  ],
+  "architecture": {
+    "64bit": {
+      "url": "https://update.code.visualstudio.com/1.76.0/win32-x64-archive/stable#/dl.7z",
+      "hash": "310197686a2b7496048d98771c73cf26bf4a4b8ff5395c16692826fc12bafa2b"
+    },
+    "32bit": {
+      "url": "https://update.code.visualstudio.com/1.76.0/win32-archive/stable#/dl.7z",
+      "hash": "957941c9795bc9ac58ba67b8bc72fd5152d4eefb4b24bb55aa957458930b03a7"
+    }
+  },
+  "bin": [
+    [
+      "bin\\code.cmd",
+      "code"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "code.exe",
+      "Visual Studio Code"
+    ]
+  ],
+  "persist": "data",
+  "checkver": {
+    "url": "https://update.code.visualstudio.com/api/update/win32-x64-archive/stable/VERSION",
+    "jp": "$.name"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://update.code.visualstudio.com/$version/win32-x64-archive/stable#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://update.code.visualstudio.com/$version/win32-archive/stable#/dl.7z"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

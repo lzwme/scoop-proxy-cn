@@ -1,0 +1,42 @@
+{
+  "version": "4297259321",
+  "description": "Chat client for twitch.tv. See releases for download. Only nightlies are supported (fork of Chatterino 2).",
+  "homepage": "https://github.com/Mm2PL/dankerino",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/Mm2PL/dankerino/releases/download/nightly-build/chatterino-windows-x86-64.zip",
+      "hash": "12409b1d16e1bd18dd561ef48307c2c814b3c61db540df2eaec3bd18a6a3bd03",
+      "extract_dir": "Chatterino2",
+      "pre_install": [
+        "Get-ChildItem \"$dir\\chatterino.exe\" | Rename-Item -NewName { $_.name.Replace('chatterino', 'dankerino-portable') }",
+        "$modes = \"$dir\\modes\"",
+        "Invoke-Expression \"'portable' >$(if (Test-Path $modes) { '>' }) $modes\""
+      ]
+    }
+  },
+  "persist": [
+    "Logs",
+    "Misc",
+    "Settings"
+  ],
+  "shortcuts": [
+    [
+      "dankerino-portable.exe",
+      "Dankerino-portable"
+    ]
+  ],
+  "bin": "dankerino-portable.exe",
+  "checkver": {
+    "url": "https://api.github.com/repositories/202738310/actions/workflows/build.yml/runs?branch=dankerino&status=success",
+    "jsonpath": "$.workflow_runs[0].id"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/Mm2PL/dankerino/releases/download/nightly-build/chatterino-windows-x86-64.zip"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

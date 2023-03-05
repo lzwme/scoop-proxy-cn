@@ -1,0 +1,44 @@
+{
+  "homepage": "https://github.com/VSCodium/vscodium",
+  "version": "1.76.0.23062",
+  "license": "MIT",
+  "description": "Binary releases of VS Code without MS branding/telemetry/licensing (Portable Edition w/o context menu installer). China BFSU mirror.",
+  "architecture": {
+    "64bit": {
+      "url": "https://mirrors.bfsu.edu.cn/github-release/VSCodium/vscodium/1.76.0.23062/VSCodium-win32-x64-1.76.0.23062.zip",
+      "hash": "9e0b27e2039517c6256e876a88b6d8e655a9030cf98979acaaab03678e9007fc"
+    },
+    "32bit": {
+      "url": "https://mirrors.bfsu.edu.cn/github-release/VSCodium/vscodium/1.76.0.23062/VSCodium-win32-ia32-1.76.0.23062.zip",
+      "hash": "2c7d4dbd6d2936eb0450dd87b7b338af61b0962691393dfee33fee58fbc968b8"
+    }
+  },
+  "bin": [
+    [
+      "bin\\codium.cmd",
+      "codium"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "VSCodium.exe",
+      "VSCodium"
+    ]
+  ],
+  "persist": "data",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://mirrors.bfsu.edu.cn/github-release/VSCodium/vscodium/$version/VSCodium-win32-x64-$version.zip"
+      },
+      "32bit": {
+        "url": "https://mirrors.bfsu.edu.cn/github-release/VSCodium/vscodium/$version/VSCodium-win32-ia32-$version.zip"
+      }
+    },
+    "hash": {
+      "url": "$url.sha256"
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

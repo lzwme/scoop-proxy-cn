@@ -1,0 +1,32 @@
+{
+  "version": "6.1.0",
+  "description": "Open source developer tool for Kubernetes that lets you develop and deploy cloud-native software faster",
+  "homepage": "https://github.com/loft-sh/devspace/",
+  "licence": "Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/loft-sh/devspace/releases/download/v6.1.0/devspace-windows-amd64.exe#/devspace.exe",
+      "hash": "b5ec07a85ff58ae4ef7c7ecc9b5de6527eab03b5d0e431944bdb83613aa18eca"
+    },
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/loft-sh/devspace/releases/download/v6.1.0/devspace-windows-386.exe#/devspace.exe",
+      "hash": "6714e4336f819e9b41309d7e2cafd5354f87ec435bf7d8b1e7fcbd6377ae58b9"
+    }
+  },
+  "bin": "devspace.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/loft-sh/devspace/releases/download/v$version/devspace-windows-amd64.exe"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/loft-sh/devspace/releases/download/v$version/devspace-windows-386.exe"
+      }
+    },
+    "hash": {
+      "url": "$url.sha256"
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

@@ -1,0 +1,34 @@
+{
+  "homepage": "https://www.uwe-sieber.de/filetools_e.html",
+  "description": "searches for identical files in one or two pathes. Found duplicates are listed and can be deleted, replaced by hardlinks or renamed.",
+  "version": "1.1.3",
+  "license": "Freeware",
+  "architecture": {
+    "64bit": {
+      "url": "https://www.uwe-sieber.de/files/fsf.zip",
+      "hash": "7bfb0732e22421cf96a080b2872f3146e23def5e3029ab7586740d5bd85797be",
+      "extract_dir": "x64"
+    },
+    "32bit": {
+      "url": "https://www.uwe-sieber.de/files/fsf.zip",
+      "hash": "7bfb0732e22421cf96a080b2872f3146e23def5e3029ab7586740d5bd85797be",
+      "extract_dir": "Win32"
+    }
+  },
+  "bin": "FSF.exe",
+  "checkver": {
+    "url": "https://www.uwe-sieber.de/filetools_e.html",
+    "regex": "FSF V([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://www.uwe-sieber.de/files/fsf.zip"
+      },
+      "32bit": {
+        "url": "https://www.uwe-sieber.de/files/fsf.zip"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

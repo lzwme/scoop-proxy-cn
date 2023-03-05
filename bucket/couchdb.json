@@ -1,0 +1,25 @@
+{
+  "version": "3.1.1",
+  "description": "CouchDB is a terrific single-node database that works just like any other database behind an application server of your choice",
+  "homepage": "https://couchdb.apache.org",
+  "license": "Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://couchdb.neighbourhood.ie/downloads/3.1.1/win/apache-couchdb-3.1.1.msi",
+      "hash": "01ae9514fd6d22585c8455f79193f68ce22bb6bab653ee95c57e258031f69422"
+    }
+  },
+  "bin": "bin\\couchdb.cmd",
+  "checkver": {
+    "url": "https://neighbourhood.ie/download-apache-couchdb-win",
+    "re": "Version ([\\d.]+) Release Notes"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://couchdb.neighbourhood.ie/downloads/$version/win/apache-couchdb-$version.msi"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

@@ -1,17 +1,24 @@
 {
-  "version": "147",
-  "description": "A highly customizable fan controlling software for Windows",
+  "version": "148",
   "homepage": "https://getfancontrol.com/",
+  "description": "A highly customizable fan controlling software for the Windows OS.",
   "license": "Freeware",
   "suggest": {
     ".NET Runtime": "extras/windowsdesktop-runtime"
   },
+  "notes": "Make sure to install both the 64bit & 32bit versions of Microsoft .NET Desktop Runtime before running the application.",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.com/https://github.com/Rem0o/FanControl.Releases/releases/download/V147/FanControl_net_7_0.zip",
-      "hash": "ab657f097c40b6685ea9380e977f34a8161a6d98421974d8f8543d0a81d417ed"
+      "url": "https://ghproxy.com/https://raw.githubusercontent.com/Rem0o/FanControl.Releases/master/FanControl.zip",
+      "hash": "08b434378929641f13ee60a0c3f53df5fbf4ee646a008d55c7572707975fefbf"
     }
   },
+  "pre_install": [
+    "'userConfig.json', 'CACHE', 'Plugins' | ForEach-Object {",
+    "    if (!(Test-Path \"$persist_dir\\$_\")) { New-Item \"$dir\\$_\" | Out-Null }",
+    "}"
+  ],
+  "bin": "FanControl.exe",
   "shortcuts": [
     [
       "FanControl.exe",
@@ -23,16 +30,15 @@
     "Plugins"
   ],
   "checkver": {
-    "url": "https://api.github.com/repos/Rem0o/FanControl.Releases/releases/latest",
-    "jsonpath": "$.assets..browser_download_url",
-    "regex": "/V([\\d.]+)/FanControl_net_(?<netver>(?!4_8)[\\d_]+).zip"
+    "url": "https://ghproxy.com/https://raw.githubusercontent.com/Rem0o/FanControl.Releases/master/version.json",
+    "jsonpath": "$.Number"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.com/https://github.com/Rem0o/FanControl.Releases/releases/download/V$version/FanControl_net_$matchNetver.zip"
+        "url": "https://ghproxy.com/https://raw.githubusercontent.com/Rem0o/FanControl.Releases/master/FanControl.zip"
       }
     }
   },
-  "_from": "ScoopInstaller/Extras"
+  "_from": "okibcn/ScoopMaster"
 }

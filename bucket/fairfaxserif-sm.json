@@ -1,6 +1,10 @@
 {
+  "version": "nightly",
   "description": "Fairfax",
+  "license": "OFL-1.1",
   "homepage": "http://www.kreativekorp.com/software/fonts/fairfax.shtml",
+  "url": "http://www.kreativekorp.com/swdownload/fonts/relaybm/fairfax.zip",
+  "pre_install": "Get-ChildItem $dir -Exclude FairfaxSerifSM.ttf,OFL.txt | Remove-Item",
   "installer": {
     "script": [
       "if(!(is_admin)) { error \"Admin rights are required, please run 'sudo scoop install $app'\"; exit 1 }",
@@ -10,8 +14,6 @@
       "}"
     ]
   },
-  "license": "OFL-1.1",
-  "pre_install": "Get-ChildItem $dir -Exclude FairfaxSerifSM.ttf,OFL.txt | Remove-Item",
   "uninstaller": {
     "script": [
       "if(!(is_admin)) { error \"Admin rights are required, please run 'sudo scoop uninstall $app'\"; exit 1 }",
@@ -22,7 +24,5 @@
       "Write-Host \"'Fairfax Serif SM' has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
     ]
   },
-  "url": "http://www.kreativekorp.com/swdownload/fonts/relaybm/fairfax.zip",
-  "version": "nightly",
-  "_from": "anderlli0053/DEV-tools"
+  "_from": "okibcn/ScoopMaster"
 }

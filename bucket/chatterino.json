@@ -1,41 +1,32 @@
 {
-  "version": "2.4.1",
-  "description": "Twitch chat client",
-  "homepage": "https://chatterino.com",
+  "version": "4333576747",
+  "description": "Chat client for https://twitch.tv",
+  "homepage": "https://github.com/Chatterino/chatterino2",
   "license": "MIT",
-  "suggest": {
-    "Microsoft Visual C++ Redistributable 2022": "extras/vcredist2022",
-    "Microsoft Visual C++ Redistributable 2013": "extras/vcredist2013"
-  },
   "architecture": {
     "64bit": {
-      "url": "https://chatterino.fra1.digitaloceanspaces.com/bin/2.4.1/Chatterino%20Portable.zip",
-      "hash": "d25c2ffa9d206df22a664c007d78041b0ab16c32253505a504d1cbaa947efdd9"
+      "url": "https://ghproxy.com/https://github.com/Chatterino/chatterino2/releases/download/nightly-build/chatterino-windows-x86-64.zip",
+      "hash": "4a106f52251bc122f051da9f0115c58b5060fd2763ec60b384359451668ae695",
+      "extract_dir": "Chatterino2"
     }
   },
-  "extract_dir": "chatterino2",
-  "bin": "chatterino.exe",
   "shortcuts": [
     [
       "chatterino.exe",
       "Chatterino"
     ]
   ],
-  "persist": [
-    "Settings",
-    "Cache",
-    "Logs",
-    "Misc",
-    "ProfileAvatars"
-  ],
-  "checkver": "/([\\d.]+)/Chatterino%20Portable",
+  "bin": "chatterino.exe",
+  "checkver": {
+    "url": "https://api.github.com/repositories/77624593/actions/workflows/build.yml/runs?branch=master&status=success",
+    "jsonpath": "$.workflow_runs[0].id"
+  },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://chatterino.fra1.digitaloceanspaces.com/bin/$version/Chatterino%20Portable.zip"
+        "url": "https://ghproxy.com/https://github.com/Chatterino/chatterino2/releases/download/nightly-build/chatterino-windows-x86-64.zip"
       }
-    },
-    "extract_dir": "chatterino$majorVersion"
+    }
   },
-  "_from": "ScoopInstaller/Extras"
+  "_from": "okibcn/ScoopMaster"
 }

@@ -1,14 +1,14 @@
 {
-  "checkver": {
-    "regex": ">\\s*IPAex.*Ver\\.([\\d]{3}\\.[\\d]{2})\\).*\\([\\d]{4}-[\\d]{2}-[\\d]{2}\\)"
-  },
+  "version": "004.01",
+  "description": "JIS X 0213:2012 compliant OpenType fonts based on TrueType outlines",
+  "homepage": "https://moji.or.jp/ipafont/",
+  "license": "IPA Font License",
+  "url": "https://moji.or.jp/wp-content/ipafont/IPAexfont/IPAexfont00401.zip",
+  "hash": "bcf8374ab3f9672c421120430dd19a51c99f5265cf06fc340d9a661ddfd7974b",
   "depends": [
     "sudo",
     "unoun/scoop-helper"
   ],
-  "description": "JIS X 0213:2012 compliant OpenType fonts based on TrueType outlines",
-  "hash": "bcf8374ab3f9672c421120430dd19a51c99f5265cf06fc340d9a661ddfd7974b",
-  "homepage": "https://moji.or.jp/ipafont/",
   "installer": {
     "script": [
       "$helper = \"$(appdir scoop-helper)\\current\\scoop-font-helper.ps1\"",
@@ -17,7 +17,6 @@
       "Install-Font($dir)"
     ]
   },
-  "license": "IPA Font License",
   "uninstaller": {
     "script": [
       "$helper = \"$(appdir scoop-helper)\\current\\scoop-font-helper.ps1\"",
@@ -26,7 +25,8 @@
       "Uninstall-Font($dir)"
     ]
   },
-  "url": "https://moji.or.jp/wp-content/ipafont/IPAexfont/IPAexfont00401.zip",
-  "version": "004.01",
-  "_from": "anderlli0053/DEV-tools"
+  "checkver": {
+    "regex": ">\\s*IPAex.*Ver\\.([\\d]{3}\\.[\\d]{2})\\).*\\([\\d]{4}-[\\d]{2}-[\\d]{2}\\)"
+  },
+  "_from": "okibcn/ScoopMaster"
 }

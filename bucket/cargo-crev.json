@@ -1,0 +1,27 @@
+{
+  "version": "0.20.0",
+  "description": "A cryptographically verifiable code review system for the cargo (Rust) package manager",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/crev-dev/cargo-crev",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/crev-dev/cargo-crev/releases/download/v0.20.0/cargo-crev-v0.20.0-x86_64-pc-windows-msvc.tar.gz",
+      "hash": "0068aebe85cbc57168ec27c22d889b469d552536c8e07e39ed81756144c3ca46",
+      "extract_dir": "cargo-crev-v0.20.0-x86_64-pc-windows-msvc"
+    }
+  },
+  "bin": "cargo-crev.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/crev-dev/cargo-crev/releases/download/v$version/cargo-crev-v$version-x86_64-pc-windows-msvc.tar.gz",
+        "hash": {
+          "url": "$baseurl/cargo-crev-v$version-x86_64-pc-windows-msvc.tar.gz.sha256"
+        },
+        "extract_dir": "cargo-crev-v$version-x86_64-pc-windows-msvc"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

@@ -1,16 +1,11 @@
 {
-  "autoupdate": {
-    "extract_dir": "git-ftp-$version",
-    "url": "https://ghproxy.com/https://github.com/git-ftp/git-ftp/archive/$version.zip"
-  },
-  "checkver": {
-    "github": "https://github.com/git-ftp/git-ftp"
-  },
-  "depends": "git",
-  "description": "Upload to FTP servers the Git way.",
-  "extract_dir": "git-ftp-1.6.0",
   "homepage": "https://git-ftp.github.io/",
+  "description": "Upload to FTP servers the Git way.",
+  "version": "1.6.0",
   "license": "MIT",
+  "url": "https://ghproxy.com/https://github.com/git-ftp/git-ftp/archive/1.6.0.zip",
+  "extract_dir": "git-ftp-1.6.0",
+  "depends": "git",
   "post_install": [
     "",
     "pushd $dir",
@@ -23,7 +18,12 @@
     "}",
     ""
   ],
-  "url": "https://ghproxy.com/https://github.com/git-ftp/git-ftp/archive/1.6.0.zip",
-  "version": "1.6.0",
-  "_from": "anderlli0053/DEV-tools"
+  "checkver": {
+    "github": "https://github.com/git-ftp/git-ftp"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/git-ftp/git-ftp/archive/$version.zip",
+    "extract_dir": "git-ftp-$version"
+  },
+  "_from": "okibcn/ScoopMaster"
 }

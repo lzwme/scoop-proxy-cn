@@ -1,0 +1,42 @@
+{
+  "version": "8.06",
+  "description": "The HT-IDE3000 is an integrated development environment for designing 8-bit MCU applications.",
+  "homepage": "https://www.holtek.com/ice",
+  "license": "Freeware",
+  "url": "https://www.holtek.com/documents/10179/108746/HT-IDE3KV806_Setup.zip/9f0f1311-eed7-4825-8cb9-37531bde38f7#/dl.zip",
+  "hash": "e7ecbbfdf675711ceae4547f76b506a4436fe3884acb07c1de26213ce242dbd7",
+  "installer": {
+    "script": "Get-Item \"$dir\\HT-IDE3K*Setup.exe\" | Expand-InnoArchive -Destination \"$dir\" -Removal"
+  },
+  "shortcuts": [
+    [
+      "BIN\\Bin2asm.exe",
+      "HT-IDE3000\\BinToAsm"
+    ],
+    [
+      "BIN\\hdiag32.exe",
+      "HT-IDE3000\\Diagnosis"
+    ],
+    [
+      "BIN\\HT-IDE3000.exe",
+      "HT-IDE3000\\HT-IDE3000"
+    ],
+    [
+      "BIN\\HLIBW32.exe",
+      "HT-IDE3000\\Library Manager"
+    ],
+    [
+      "BIN\\Option Viewer.exe",
+      "HT-IDE3000\\Option Viewer"
+    ],
+    [
+      "DOC\\HT-IDE3000UsersGuide(1252).pdf",
+      "HT-IDE3000\\HT-IDE3000 User's guide"
+    ]
+  ],
+  "notes": [
+    "You will need to install the device drivers manually, they are available at:",
+    "$dir\\Driver"
+  ],
+  "_from": "okibcn/ScoopMaster"
+}

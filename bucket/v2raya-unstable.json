@@ -1,65 +1,85 @@
 {
-  "architecture": {
-    "64bit": {
-      "hash": "26609ac99963f38367a8446b9e20656857372fb912b63f5806f8464c11784f9f",
-      "pre_install": [
-        "Rename-Item \"$dir\\v2raya_windows_x64_unstable-$version.exe\" 'v2rayaWin-unstable.exe' -ErrorAction 'SilentlyContinue' -Force",
-        "info '[Portable Mode]: Copying user data...'",
-        "if (Test-Path \"$persist_dir\\*\") {",
-        "    ensure \"$env:UserProfile\\.config\\v2raya\" | Out-Null",
-        "    Copy-Item \"$persist_dir\\*\" \"$env:UserProfile\\.config\\v2raya\\\" -Recurse -Force | Out-Null",
-        "}",
-        "Set-Content \"$dir\\start-v2raya-unstable.ps1\" -Value 'Start-Process \"$(scoop prefix v2raya-unstable)\\v2rayaWin-unstable.exe\" -ArgumentList @(\"--lite\", \"--log-file v2raya-unstable.log\") -WorkingDirectory \"$env:TEMP\" -WindowStyle Hidden' -Encoding Ascii",
-        "Set-Content \"$dir\\stop-v2raya-unstable.ps1\" -Value 'Stop-Process -Name v2rayawin-unstable -ErrorAction Ignore -Force' -Encoding Ascii"
-      ],
-      "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/3668713055/v2raya_windows_x64_unstable-20221211.r1267.38afbd4.exe.zip"
-    }
-  },
-  "autoupdate": {
-    "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/$matchRunid/$matchFilename.zip"
-  },
-  "bin": [
-    [
-      "v2rayaWin-unstable.exe",
-      "v2raya-unstable",
-      "--lite"
-    ],
-    [
-      "v2rayaWin-unstable.exe",
-      "v2rayaWin-unstable"
-    ],
-    "start-v2raya-unstable.ps1",
-    "stop-v2raya-unstable.ps1"
-  ],
-  "checkver": {
-    "regex": "(?sm)/v2rayA/v2rayA/actions/runs/(?<runid>\\d+).*?(?<filename>v2raya_windows_x64_unstable-(?<ver>[\\w.]+)\\.exe)",
-    "replace": "${ver}",
-    "url": "https://scoop-apps.vercel.app/v2rayA/v2rayA"
-  },
-  "depends": "v2ray",
-  "description": "v2rayA is a V2Ray client supporting global transparent proxy(Linux Only), compatible with SS, SSR, Trojan(trojan-go), PingTunnel protocols.",
-  "env_set": {
-    "V2RAYA_V2RAY_BIN": "$(scoop prefix v2ray)\\v2ray.exe"
-  },
+  "version": "20230213.r1298.58a6cf2",
+  "description": "v2rayA(unstable version). A web GUI client of Project V which supports V2Ray, Xray, SS, SSR, Trojan and Pingtunnel.",
   "homepage": "https://github.com/v2rayA/v2raya",
   "license": {
     "identifier": "AGPL-3.0-only",
     "url": "https://github.com/v2rayA/v2rayA/raw/master/LICENSE"
   },
   "notes": "If you want to run both 'v2raya' and 'v2raya-unstable', follow the official docs to change the ports.",
+  "depends": "v2ray",
   "suggest": {
     "v2ray-rules-dat": "v2raya/v2ray-rules-dat"
   },
-  "uninstaller": {
+  "architecture": {
+    "64bit": {
+      "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/4160840771/v2raya_windows_x64_unstable-20230213.r1298.58a6cf2.exe.zip",
+      "hash": "f1d2b93b5e9b30bb36c0fc1854e3acd2542d9f55452da44956887b11b28511ef",
+      "pre_install": "Rename-Item \"$dir\\v2raya_windows_x64_unstable-$version.exe\" 'v2rayaWin-unstable.exe' -ErrorAction 'SilentlyContinue' -Force"
+    },
+    "arm64": {
+      "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/4160840771/v2raya_windows_arm64_unstable-20230213.r1298.58a6cf2.exe.zip",
+      "hash": "9b3785900973de495be63cc3a71e1589145f0b4d65828f802a743a732c9de93b",
+      "pre_install": "Rename-Item \"$dir\\v2raya_windows_arm64_unstable-$version.exe\" 'v2rayaWin-unstable.exe' -ErrorAction 'SilentlyContinue' -Force"
+    }
+  },
+  "installer": {
     "script": [
-      "info '[Portable Mode]: Backing up user data...'",
-      "if (Test-Path \"$env:UserProfile\\.config\\v2raya\\*\") {",
-      "    ensure \"$persist_dir\" | Out-Null",
-      "    Copy-Item \"$env:UserProfile\\.config\\v2raya\\*\" \"$persist_dir\\\" -Recurse -Force | Out-Null",
+      "Import-Module \"$bucketsdir\\v2raya\\scripts\\V2rayaUtils.psm1\"",
+      "Remove-Module -Name V2rayaUtils",
+      "@('start-v2raya', 'stop-v2raya', 'reset-passwd-v2raya') | ForEach-Object {",
+      "    $content = Get-Content \"$bucketsdir\\v2raya\\scripts\\v2raya\\$_.ps1\"",
+      "    $content = $content.Replace(' v2raya', ' v2raya-unstable')",
+      "    $content = $content.Replace('v2rayaWin', 'v2rayaWin-unstable')",
+      "    $content | Set-Content -Path \"$dir\\$_-unstable.ps1\" -Encoding Ascii",
       "}",
-      "#Remove-Item \"$env:UserProfile\\.config\\v2raya\" -ErrorAction 'SilentlyContinue' -Force -Recurse"
+      "$exepath = \"powershell -NoLogo -NoProfile -File $dir\\start-v2raya-unstable.ps1\".Replace('\\', '\\\\')",
+      "@('add-startup', 'remove-startup') | ForEach-Object {",
+      "    $content = Get-Content \"$bucketsdir\\v2raya\\scripts\\v2raya\\$_.reg\"",
+      "    $content = $content.Replace('$exepath', $exepath)",
+      "    $content = $content.Replace('v2rayA', 'v2rayA-unstable')",
+      "    if ($global) {",
+      "       $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE')",
+      "    }",
+      "    $content | Set-Content -Path \"$dir\\$_.reg\" -Encoding Ascii",
+      "}"
     ]
   },
-  "version": "20221211.r1267.38afbd4",
-  "_from": "anderlli0053/DEV-tools"
+  "pre_uninstall": "stop-v2raya-unstable",
+  "uninstaller": {
+    "script": "if ($cmd -eq 'uninstall') { reg import \"$dir\\remove-startup.reg\" }"
+  },
+  "bin": [
+    [
+      "v2rayaWin-unstable.exe",
+      "v2raya-unstable",
+      "--lite --config \"$dir\\config\""
+    ],
+    [
+      "v2rayaWin-unstable.exe",
+      "v2rayaWin-unstable"
+    ],
+    "start-v2raya-unstable.ps1",
+    "stop-v2raya-unstable.ps1",
+    "reset-passwd-v2raya-unstable.ps1"
+  ],
+  "env_set": {
+    "V2RAYA_V2RAY_BIN": "$(scoop prefix v2ray)\\v2ray.exe"
+  },
+  "persist": "config",
+  "checkver": {
+    "url": "https://scoop-apps.vercel.app/v2rayA/v2rayA-inno",
+    "regex": "(?sm)/v2rayA/v2rayA/actions/runs/(?<runid>\\d+).*?v2raya_windows_x64_unstable-([\\w.]+)\\.exe"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/$matchRunid/v2raya_windows_x64_unstable-$version.exe.zip"
+      },
+      "arm64": {
+        "url": "https://nightly.link/v2rayA/v2rayA/actions/runs/$matchRunid/v2raya_windows_arm64_unstable-$version.exe.zip"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
 }

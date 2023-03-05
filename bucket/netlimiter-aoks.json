@@ -5,16 +5,16 @@
     "TODO:",
     "    Properly uninstall. Some services are running."
   ],
-  "autoupdate": {
-    "url": "https://www.netlimiter.com/files/download/nl4/netlimiter-$version.exe"
-  },
-  "checkver": {
-    "regex": "NetLimiter ([\\d.]+)",
-    "url": "https://www.netlimiter.com/releases"
-  },
+  "version": "5.2.1.0",
   "description": "NetLimiter. Internet traffic control and monitoring tool designed for Windows.",
-  "hash": "aad80f4cd19d1a92cbf29939d756e86847707bbfe6605c6cb79974179f5eeb25",
   "homepage": "https://www.netlimiter.com",
+  "license": "Freeware",
+  "notes": [
+    "Restarting system after installation is recommended.",
+    "Some functions could behave incorrectly without restart."
+  ],
+  "url": "https://www.netlimiter.com/download/nl/netlimiter-5.2.1.0.exe",
+  "hash": "c64d4834f0a25496bbd614150cef5b2ffb5de99edbf0a1208c33ab8a1464ccf6",
   "installer": {
     "args": [
       "/exenoui",
@@ -24,17 +24,6 @@
       "/l*v \"$dir\\installation.log\""
     ]
   },
-  "license": "Freeware",
-  "notes": [
-    "Restarting system after installation is recommended.",
-    "Some functions could behave incorrectly without restart."
-  ],
-  "shortcuts": [
-    [
-      "NLClientApp.exe",
-      "NetLimiter"
-    ]
-  ],
   "uninstaller": {
     "script": [
       "$ID = (Get-CimInstance Win32_Product -Filter \"Name = 'NetLimiter 4'\").IdentifyingNumber",
@@ -43,7 +32,18 @@
       "Start-Sleep -Seconds 3"
     ]
   },
-  "url": "https://www.netlimiter.com/files/download/nl4/netlimiter-5.1.4.0.exe",
-  "version": "5.1.4.0",
-  "_from": "anderlli0053/DEV-tools"
+  "shortcuts": [
+    [
+      "NLClientApp.exe",
+      "NetLimiter"
+    ]
+  ],
+  "checkver": {
+    "url": "https://www.netlimiter.com/releases",
+    "regex": ">Release ([\\d.]+)</a>"
+  },
+  "autoupdate": {
+    "url": "https://www.netlimiter.com/download/nl/netlimiter-$version.exe"
+  },
+  "_from": "okibcn/ScoopMaster"
 }

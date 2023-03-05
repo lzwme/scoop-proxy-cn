@@ -1,0 +1,39 @@
+{
+  "version": "0.59.1_20230301",
+  "description": "Trilium Notes 中文版 by Nriver",
+  "homepage": "https://github.com/Nriver/trilium-translation",
+  "license": "AGPL-3.0-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/Nriver/trilium-translation/releases/download/v0.59.1_20230301/trilium-cn-windows-x64.zip",
+      "hash": "6d98be5c781469cf60f721ad58fa0cd2421118fefc4db7c0ff9d7633bd418be3",
+      "extract_dir": "trilium-windows-x64"
+    }
+  },
+  "shortcuts": [
+    [
+      "trilium.exe",
+      "Trilium Notes 中文版"
+    ],
+    [
+      "trilium-portable.bat",
+      "Trilium Notes 中文版 Portable模式"
+    ]
+  ],
+  "persist": "trilium-data",
+  "bin": [
+    "trilium.exe"
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/Nriver/trilium-translation/releases",
+    "regex": "download/v(.+?)/"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/Nriver/trilium-translation/releases/download/v$version/trilium-cn-windows-x64.zip"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

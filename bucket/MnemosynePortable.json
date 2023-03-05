@@ -1,29 +1,29 @@
 {
-  "autoupdate": {
-    "hash": {
-      "regex": "MD5 Hash: +[\\w]{32}",
-      "url": "https://portableapps.com/apps/education/mnemosyne_portable"
-    },
-    "url": "https://cfhcable.dl.sourceforge.net/project/portableapps/Mnemosyne%20Portable/MnemosynePortable_$version.paf.exe"
-  },
-  "bin": "MnemosynePortable.exe",
-  "checkver": {
-    "re": "Version \\s+([\\w\\.]* for Win",
-    "url": "https://portableapps.com/apps/education/mnemosyne_portable"
-  },
-  "description": "Flashcard memorization tool",
-  "hash": "8e8d3450b248c56b1e9ca88b9a59006a773e9736c9e9ab16a6cc2b1d7a91f944",
   "homepage": "https://portableapps.com/apps/education/mnemosyne_portable",
+  "description": "Flashcard memorization tool",
+  "version": "2.7.1",
   "license": "",
-  "persist": "Data",
-  "post_install": "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
+  "url": "https://cfhcable.dl.sourceforge.net/project/portableapps/Mnemosyne%20Portable/MnemosynePortable_2.7.1.paf.exe#/dl.7z",
+  "hash": "md5:50722d19048c233c576b4611c58c02a3",
+  "bin": "MnemosynePortable.exe",
   "shortcuts": [
     [
       "MnemosynePortable.exe",
       "MnemosynePortable"
     ]
   ],
-  "url": "https://cfhcable.dl.sourceforge.net/project/portableapps/Mnemosyne%20Portable/MnemosynePortable_2.6.1.paf.exe",
-  "version": "2.6.1",
-  "_from": "anderlli0053/DEV-tools"
+  "persist": "Data",
+  "checkver": {
+    "url": "https://portableapps.com/apps/education/mnemosyne_portable",
+    "re": "Version \\s+([\\w\\.]* for Win"
+  },
+  "autoupdate": {
+    "url": "https://cfhcable.dl.sourceforge.net/project/portableapps/Mnemosyne%20Portable/MnemosynePortable_$version.paf.exe",
+    "hash": {
+      "url": "https://portableapps.com/apps/education/mnemosyne_portable",
+      "regex": "MD5 Hash: +[\\w]{32}"
+    }
+  },
+  "post_install": "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
+  "_from": "okibcn/ScoopMaster"
 }

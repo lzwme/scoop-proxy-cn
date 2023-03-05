@@ -1,0 +1,27 @@
+{
+  "version": "4.12.0-beta.1",
+  "description": "An Arknights assistant, supports ZH and EN client",
+  "homepage": "https://www.maa.plus/",
+  "license": "AGPL-3.0",
+  "url": "https://ghproxy.com/https://github.com/MaaAssistantArknights/MaaAssistantArknights/releases/download/v4.12.0-beta.1/MAA-v4.12.0-beta.1-win-x64.zip",
+  "hash": "6bf1f4c8e6da2421bd1c6a65b07f985fbfd25efcf22c5513c5be38f75bad61c3",
+  "bin": "MAA.exe",
+  "shortcuts": [
+    [
+      "MAA.exe",
+      "MAA Assistant Arknights"
+    ]
+  ],
+  "persist": [
+    "config",
+    "debug"
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/MaaAssistantArknights/MaaAssistantArknights/releases",
+    "regex": "/releases/tag/v([\\d.]+(-alpha|-beta|-rc)?(\\.\\d+)?)"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/MaaAssistantArknights/MaaAssistantArknights/releases/download/v$version/MAA-v$version-win-x64.zip"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

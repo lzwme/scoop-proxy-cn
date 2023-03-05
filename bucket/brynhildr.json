@@ -1,0 +1,24 @@
+{
+  "version": "2.6.0",
+  "description": "Remote desktop for Windows.",
+  "homepage": "http://blog.x-row.net/?p=2455",
+  "license": {
+    "url": "blog.x-row.net/?p=2455#terms"
+  },
+  "url": "http://blog.x-row.net/download/brynhildr.php?file=260#/dl.zip",
+  "hash": "3c2f525c0b2397265463aabe6ec100d93151383823da6f1258e2466268809bc8",
+  "extract_dir": "brynhildr",
+  "bin": "brynhildr.exe",
+  "pre_install": "New-Item $dir\\log.txt",
+  "shortcuts": [
+    [
+      "brynhildr.exe",
+      "Brynhildr"
+    ]
+  ],
+  "checkver": "([\\d.]+)</a>",
+  "autoupdate": {
+    "url": "http://blog.x-row.net/download/brynhildr.php?file=$cleanVersion#/dl.zip"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

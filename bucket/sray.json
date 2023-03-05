@@ -1,0 +1,35 @@
+{
+  "version": "1.9.4",
+  "notes": "名字与 main bucket 冲突了，所以改名 sray",
+  "description": "一款完善的安全评估工具，支持常见 web 安全问题扫描和自定义 poc",
+  "homepage": "https://github.com/chaitin/xray",
+  "license": {
+    "identifier": "Unknown",
+    "url": "https://github.com/chaitin/xray/blob/master/LICENSE.md"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/chaitin/xray/releases/download/1.9.4/xray_windows_amd64.exe.zip",
+      "hash": "34d82adf413d9c265a59d1d0bbacc27e9595bceccef85ecedb4a14815cf6892e"
+    }
+  },
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\")) {",
+    "   New-Item -Path \"$dir\" -Name \"xray.yaml\" -ItemType \"File\" | Out-Null",
+    "}"
+  ],
+  "persist": "xray.yaml",
+  "bin": "xray.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/chaitin/xray/releases/download/$version/xray_windows_amd64.exe.zip"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/sha256.txt"
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

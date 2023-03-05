@@ -1,0 +1,30 @@
+{
+  "version": "6.2.0",
+  "description": "IBM Plex Sans JP",
+  "homepage": "https://github.com/IBM/plex",
+  "license": "SIL Open Font License 1.1",
+  "url": "https://ghproxy.com/https://github.com/IBM/plex/releases/download/v6.2.0/OpenType.zip",
+  "hash": "dac35a1d0f1113e776120b1346e619360b331f0a71f2b7cbd49f7332c3037b2c",
+  "pre_install": [
+    "Move-Item \"$dir\\OpenType\\IBM-Plex-Sans-JP\\hinted\\*\" \"$dir\" -ErrorAction SilentlyContinue",
+    "Remove-Item -Recurse \"$dir\\OpenType\""
+  ],
+  "installer": {
+    "script": [
+      "$fonts = (New-Object -ComObject Shell.Application).Namespace(0x14)",
+      "dir \"$dir/*.otf\" | %{ $fonts.CopyHere($_.fullname) }"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "if ($cmd -eq \"uninstall\") {",
+      "    Write-Host \"To uninstall it completely, you have to delete it from the fonts in the control panel, which can be launched with ``control fonts``.\" -Foreground Magenta",
+      "}"
+    ]
+  },
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/IBM/plex/releases/download/v$version/OpenType.zip"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

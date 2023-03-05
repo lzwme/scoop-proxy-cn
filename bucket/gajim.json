@@ -1,38 +1,48 @@
 {
   "version": "1.7.1",
-  "homepage": "https://gajim.org/",
-  "description": "A fully-featured open source XMPP client.",
-  "license": "GPL-3.0",
-  "architecture": {
-    "64bit": {
-      "url": "https://gajim.org/downloads/1.7/Gajim-Portable-1.7.1-64bit.exe#/dl.7z",
-      "hash": "68f7f5c97040946d48b2a693101b3f239e30065c5c4daade7fcb9da474bdebef"
-    }
-  },
+  "description": "A fully-featured XMPP client",
+  "homepage": "https://gajim.org",
+  "license": "GPL-3.0-or-later",
+  "url": "https://gajim.org/downloads/1.7/Gajim-Portable-1.7.1-64bit.exe",
+  "hash": "68f7f5c97040946d48b2a693101b3f239e30065c5c4daade7fcb9da474bdebef",
+  "bin": "bin/Gajim.exe",
   "shortcuts": [
     [
-      "bin\\Gajim.exe",
+      "bin/Gajim.exe",
       "Gajim"
     ]
   ],
   "post_install": [
-    "Remove-Item \"$dir\\`$PLUGINSDIR\" -Recurse",
-    "Write-Host 'Registering the XMPP Protocol...'",
-    "New-Item 'HKCU:\\SOFTWARE\\Classes\\xmpp\\shell\\open\\command' -Value \"\"\"$dir\\bin\\Gajim.exe\"\" \"\"%1\"\"\" -Force | Out-Null",
-    "New-Item 'HKCU:\\SOFTWARE\\Classes\\xmpp\\DefaultIcon' -Value \"$dir\\bin\\Gajim.exe,1\" -Force | Out-Null",
-    "New-ItemProperty 'HKCU:\\SOFTWARE\\Classes\\xmpp\\shell\\open' -Name 'FriendlyAppName' -PropertyType 'String' -Value 'Gajim' | Out-Null",
-    "New-ItemProperty 'HKCU:\\SOFTWARE\\Classes\\xmpp' -Name '(Default)' -PropertyType 'String' -Value 'URL:xmpp-uri' | Out-Null",
-    "New-ItemProperty 'HKCU:\\SOFTWARE\\Classes\\xmpp' -Name 'URL Protocol' -PropertyType 'String' -Value '' | Out-Null",
-    "Write-Host 'Done!'"
+    "$name = 'Gajim'",
+    "$app = \"$dir\\bin\\Gajim.exe\".Replace('\\', '\\\\')",
+    "$scripts = join-path $bucketsdir $($ResolvedObject.Bucket) | join-path -ChildPath scripts/xmpp",
+    "'install-associations', 'uninstall-associations' | ForEach-Object {",
+    "  if (Test-Path \"$scripts\\$_.reg\") {",
+    "    $content = Get-Content \"$scripts\\$_.reg\"",
+    "    $content = $content.Replace('$name', $name)",
+    "    $content = $content.Replace('$app', $app)",
+    "    if ($global) {",
+    "      $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE')",
+    "    }",
+    "    $content | Set-Content -Path \"$dir\\$_.reg\"",
+    "  }",
+    "}",
+    "REG IMPORT \"$dir\\install-associations.reg\" *>&1 | Out-Null"
   ],
-  "pre_uninstall": "Write-Host 'Unregistering the XMPP Protocol...'; Remove-Item 'HKCU:\\SOFTWARE\\Classes\\xmpp' -Force -Recurse; Write-Host 'Done!'",
-  "checkver": ">Gajim\\s([\\d.]+)\\s+",
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://gajim.org/downloads/$majorVersion.$minorVersion/Gajim-Portable-$version-64bit.exe#/dl.7z"
-      }
-    }
+  "pre_uninstall": "REG IMPORT \"$dir\\uninstall-associations.reg\" *>&1 | Out-Null",
+  "persist": "UserData",
+  "installer": {
+    "args": [
+      "/S",
+      "/D=$dir"
+    ]
   },
-  "_from": "anderlli0053/DEV-tools"
+  "checkver": {
+    "url": "https://gajim.org/download",
+    "regex": "(?<file>Gajim-Portable-(\\d+(\\.\\d+)*)-64bit(?:-\\d+)?.exe)"
+  },
+  "autoupdate": {
+    "url": "https://gajim.org/downloads/${majorVersion}.${minorVersion}/$matchFile"
+  },
+  "_from": "okibcn/ScoopMaster"
 }

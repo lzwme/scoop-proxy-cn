@@ -1,15 +1,14 @@
 {
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/yuru7/HackGen/releases/download/v$version/HackGen_NF_v$version.zip"
-  },
-  "checkver": "github",
+  "version": "2.8.0",
+  "description": "Japanese font based on Hack and GenJyuu-Gothic with Nerd Fonts",
+  "homepage": "https://github.com/yuru7/HackGen",
+  "license": "OFL-1.1-RFN",
+  "url": "https://ghproxy.com/https://github.com/yuru7/HackGen/releases/download/v2.8.0/HackGen_NF_v2.8.0.zip",
+  "hash": "25cdd1487cc46df384d32c041303b4a04541fd61d0b973e8bb38fd1a3de65eb1",
   "depends": [
     "sudo",
     "unoun/scoop-helper"
   ],
-  "description": "Japanese font based on Hack and GenJyuu-Gothic with Nerd Fonts",
-  "hash": "25cdd1487cc46df384d32c041303b4a04541fd61d0b973e8bb38fd1a3de65eb1",
-  "homepage": "https://github.com/yuru7/HackGen",
   "installer": {
     "script": [
       "$helper = \"$(appdir scoop-helper)\\current\\scoop-font-helper.ps1\"",
@@ -18,7 +17,6 @@
       "Install-Font($dir)"
     ]
   },
-  "license": "OFL-1.1-RFN",
   "uninstaller": {
     "script": [
       "$helper = \"$(appdir scoop-helper)\\current\\scoop-font-helper.ps1\"",
@@ -27,7 +25,9 @@
       "Uninstall-Font($dir)"
     ]
   },
-  "url": "https://ghproxy.com/https://github.com/yuru7/HackGen/releases/download/v2.8.0/HackGen_NF_v2.8.0.zip",
-  "version": "2.8.0",
-  "_from": "anderlli0053/DEV-tools"
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/yuru7/HackGen/releases/download/v$version/HackGen_NF_v$version.zip"
+  },
+  "_from": "okibcn/ScoopMaster"
 }

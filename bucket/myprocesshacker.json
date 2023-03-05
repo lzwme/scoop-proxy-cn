@@ -1,19 +1,19 @@
 {
-  "version": "2.39",
-  "license": "https://github.com/processhacker2/processhacker2/blob/master/LICENSE.txt",
   "architecture": {
     "32bit": {
-      "url": "https://ghproxy.com/https://github.com/processhacker2/processhacker2/releases/download/v2.39/processhacker-2.39-bin.zip",
+      "extract_dir": "x86",
       "hash": "2afb5303e191dde688c5626c3ee545e32e52f09da3b35b20f5e0d29a418432f5",
-      "extract_dir": "x86"
+      "url": "https://ghproxy.com/https://github.com/processhacker2/processhacker2/releases/download/v2.39/processhacker-2.39-bin.zip"
     },
     "64bit": {
-      "url": "https://ghproxy.com/https://github.com/processhacker2/processhacker2/releases/download/v2.39/processhacker-2.39-bin.zip",
+      "extract_dir": "x64",
       "hash": "2afb5303e191dde688c5626c3ee545e32e52f09da3b35b20f5e0d29a418432f5",
-      "extract_dir": "x64"
+      "url": "https://ghproxy.com/https://github.com/processhacker2/processhacker2/releases/download/v2.39/processhacker-2.39-bin.zip"
     }
   },
-  "homepage": "http://processhacker.sourceforge.net/",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/processhacker2/processhacker2/releases/download/v$version/processhacker-$version-bin.zip"
+  },
   "bin": [
     "processhacker.exe",
     "peview.exe"
@@ -21,14 +21,14 @@
   "checkver": {
     "github": "https://github.com/processhacker2/processhacker2"
   },
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/processhacker2/processhacker2/releases/download/v$version/processhacker-$version-bin.zip"
-  },
+  "homepage": "http://processhacker.sourceforge.net/",
+  "license": "https://github.com/processhacker2/processhacker2/blob/master/LICENSE.txt",
   "shortcuts": [
     [
       "processhacker.exe",
       "Process Hacker"
     ]
   ],
-  "_from": "kkzzhizhou/scoop-apps"
+  "version": "2.39",
+  "_from": "okibcn/ScoopMaster"
 }

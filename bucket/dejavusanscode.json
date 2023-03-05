@@ -1,13 +1,16 @@
 {
-  "autoupdate": {
-    "extract_dir": "dejavu-code-ttf-$version\\ttf",
-    "url": "https://ghproxy.com/https://github.com/SSNikolaevich/DejaVuSansCode/releases/download/v$version/dejavu-code-ttf-$version.zip"
-  },
-  "checkver": "github",
+  "version": "1.2.2",
   "description": "Monospaced font with programming ligatures based on DejaVu Sans Mono",
-  "extract_dir": "dejavu-code-ttf-1.2.2\\ttf",
-  "hash": "1bb7b305e9e580a12baf717c8d10c76e3c75114d5b2f0cd0ab242ba6921dcbc8",
+  "license": "https://github.com/SSNikolaevich/DejaVuSansCode/blob/master/LICENSE",
   "homepage": "https://github.com/SSNikolaevich/DejaVuSansCode",
+  "url": "https://ghproxy.com/https://github.com/SSNikolaevich/DejaVuSansCode/releases/download/v1.2.2/dejavu-code-ttf-1.2.2.zip",
+  "hash": "1bb7b305e9e580a12baf717c8d10c76e3c75114d5b2f0cd0ab242ba6921dcbc8",
+  "extract_dir": "dejavu-code-ttf-1.2.2\\ttf",
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/SSNikolaevich/DejaVuSansCode/releases/download/v$version/dejavu-code-ttf-$version.zip",
+    "extract_dir": "dejavu-code-ttf-$version\\ttf"
+  },
   "installer": {
     "script": [
       "if(!(is_admin)) { error \"Admin rights are required, please run 'sudo scoop install $app'\"; exit 1 }",
@@ -17,7 +20,6 @@
       "}"
     ]
   },
-  "license": "https://github.com/SSNikolaevich/DejaVuSansCode/blob/master/LICENSE",
   "uninstaller": {
     "script": [
       "if(!(is_admin)) { error \"Admin rights are required, please run 'sudo scoop uninstall $app'\"; exit 1 }",
@@ -28,7 +30,5 @@
       "Write-Host \"'DejaVu Sans Code' has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
     ]
   },
-  "url": "https://ghproxy.com/https://github.com/SSNikolaevich/DejaVuSansCode/releases/download/v1.2.2/dejavu-code-ttf-1.2.2.zip",
-  "version": "1.2.2",
-  "_from": "anderlli0053/DEV-tools"
+  "_from": "okibcn/ScoopMaster"
 }

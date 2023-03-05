@@ -1,38 +1,56 @@
 {
-  "version": "1.4.0-beta-2",
-  "description": "Lightweight and fast file manager",
-  "homepage": "https://explorerplusplus.com",
-  "license": "GPL-3.0-only",
+  "homepage": "https://explorerplusplus.com/",
+  "version": "1.4.0.1973",
+  "license": "freeware",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.com/https://github.com/derceg/explorerplusplus/releases/download/version-1.4.0-beta-2/explorerpp_x64.zip",
-      "hash": "3e37a3b1e39c38f135f0e97041cf8674a803fb4c0380c9a53abb5f8b495ea372"
+      "url": "https://ci.appveyor.com/api/projects/derceg/explorerplusplus/artifacts/explorerpp_x64.zip?branch=master&pr=false&job=Platform%3A%20x64",
+      "hash": "4034ccf2ccf1a02239f293d95632188f318e12a53249983f67e0e70efad784eb"
     },
     "32bit": {
-      "url": "https://ghproxy.com/https://github.com/derceg/explorerplusplus/releases/download/version-1.4.0-beta-2/explorerpp_x86.zip",
-      "hash": "79a7295972a9c7b6e20b2b0517a6c6c4cca0a986cf76942a5a82b93a933aa650"
+      "url": "https://ci.appveyor.com/api/projects/derceg/explorerplusplus/artifacts/explorerpp_x86.zip?branch=master&pr=false&job=Platform%3A%20Win32",
+      "hash": "5bfbb7c9642d4af603eaf9afb17afa9f5e6e9a66df0a9ef59df07beffbdacfc1"
     }
   },
-  "bin": "explorer++.exe",
-  "shortcuts": [
+  "bin": [
+    "Explorer++.exe",
     [
-      "explorer++.exe",
-      "Explorer++"
+      "Explorer++.exe",
+      "ExplorerPlusPlus",
+      "--enable-plugins"
     ]
   ],
+  "persist": "config.xml",
+  "shortcuts": [
+    [
+      "Explorer++.exe",
+      "Explorer++",
+      "--enable-plugins"
+    ]
+  ],
+  "post_install": [
+    "# plugins",
+    "git clone --depth=1 https://github.com/derceg/explorerplusplus $dir\\explorerplusplus",
+    "Copy-Item -Path \"$dir\\explorerplusplus\\plugins\" -Destination \"$dir\" -Recurse -Force -Confirm:$false",
+    "Remove-Item -Path \"$dir\\explorerplusplus\" -Recurse -Force -Confirm:$false",
+    "# translations",
+    "curl -L -o \"$dir\\explorer++_translations.zip\" \"https://ci.appveyor.com/api/projects/derceg/explorerplusplus/artifacts/explorerpp_translations.zip?branch=master&job=Platform%3A%20Win32\"",
+    "if ($?) {Expand-Archive -Path \"$dir\\explorer++_translations.zip\" -DestinationPath \"$dir\"}",
+    "Remove-Item -Path \"$dir\\explorer++_translations.zip\" -Recurse -Force -Confirm:$false"
+  ],
   "checkver": {
-    "url": "https://github.com/derceg/explorerplusplus/releases",
-    "regex": "/tree/version-([\\w.-]+)"
+    "url": "https://ci.appveyor.com/api/projects/derceg/explorerplusplus",
+    "jsonpath": "$.build.version"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.com/https://github.com/derceg/explorerplusplus/releases/download/version-$version/explorerpp_x64.zip"
+        "url": "https://ci.appveyor.com/api/projects/derceg/explorerplusplus/artifacts/explorerpp_x64.zip?branch=master&pr=false&job=Platform%3A%20x64"
       },
       "32bit": {
-        "url": "https://ghproxy.com/https://github.com/derceg/explorerplusplus/releases/download/version-$version/explorerpp_x86.zip"
+        "url": "https://ci.appveyor.com/api/projects/derceg/explorerplusplus/artifacts/explorerpp_x86.zip?branch=master&pr=false&job=Platform%3A%20Win32"
       }
     }
   },
-  "_from": "ScoopInstaller/Extras"
+  "_from": "okibcn/ScoopMaster"
 }

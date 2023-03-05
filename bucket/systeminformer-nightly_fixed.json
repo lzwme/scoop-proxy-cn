@@ -1,10 +1,10 @@
 {
-  "version": "3.0.6058",
+  "version": "3.0.6226",
   "description": "A powerful, multi-purpose tool that helps you monitor system resources, debug software and detect malware.",
   "homepage": "https://systeminformer.sourceforge.io",
   "license": "MIT",
-  "url": "https://ghproxy.com/https://github.com/winsiderss/si-builds/releases/download/3.0.6058/systeminformer-3.0.6058-bin.zip",
-  "hash": "adc4ac60eb6cf3297a926ac5bdd2bfe9e6622996069e31e4aab45b5f26e3f970",
+  "url": "https://ghproxy.com/https://github.com/winsiderss/si-builds/releases/download/3.0.6226/systeminformer-3.0.6226-bin.zip",
+  "hash": "fa47137ad0eff344ecef5eb8658f2f7e9c0ed283c5ca086d6f09e1cab7151cb6",
   "architecture": {
     "32bit": {
       "extract_dir": "i386"
@@ -22,7 +22,7 @@
     "$taskmgr = (Get-ItemProperty 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\taskmgr.exe' -ErrorAction 'SilentlyContinue').Debugger",
     "if (($cmd -eq 'update') -and ($taskmgr -match '\\\\*\\\\([\\d.]+)\\\\SystemInformer\\.exe')) {",
     "   if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
-    "   Set-ItemProperty 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\taskmgr.exe' -Name 'Debugger' -Value \"\"$dir\\SystemInformer.exe\"\" -Force",
+    "   Set-ItemProperty 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\taskmgr.exe' -Name 'Debugger' -Value \"\"\"$dir\\SystemInformer.exe\"\"\" -Force",
     "}"
   ],
   "shortcuts": [
@@ -53,5 +53,5 @@
   "autoupdate": {
     "url": "https://ghproxy.com/https://github.com/winsiderss/si-builds/releases/download/$version/systeminformer-$version-bin.zip"
   },
-  "_from": "anderlli0053/DEV-tools"
+  "_from": "okibcn/ScoopMaster"
 }

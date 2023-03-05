@@ -1,0 +1,20 @@
+{
+  "version": "Stable",
+  "description": "Web browser developed by Microsoft.",
+  "homepage": "https://www.microsoft.com/en-us/edge/business/download",
+  "architecture": {
+    "32bit": {
+      "url": "http://go.microsoft.com/fwlink/?LinkID=2093505#/setup.msi_"
+    },
+    "64bit": {
+      "url": "http://go.microsoft.com/fwlink/?LinkID=2093437#/setup.msi_"
+    }
+  },
+  "installer": {
+    "script": "Start-Process -Wait msiexec \"/i `\"$dir\\setup.msi_`\" /q\" -Verb RunAs"
+  },
+  "uninstaller": {
+    "script": "Start-Process -Wait msiexec \"/x `\"$dir\\setup.msi_`\" /q\" -Verb RunAs"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

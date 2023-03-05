@@ -1,0 +1,33 @@
+{
+  "version": "3.1.2.254",
+  "description": "Free Software/Program Uninstaller",
+  "license": "https://www.wisecleaner.com",
+  "homepage": "https://www.wisecleaner.com",
+  "architecture": {
+    "64bit": {
+      "url": "https://downloads.wisecleaner.com/soft/WPU_3.1.2.254.zip",
+      "hash": "b025c68c8ed484c5d732584cf71cea02ba9eb23bc3d79bd18f370ace76f289ef",
+      "extract_dir": "WPUSetup_3.1.2.254"
+    }
+  },
+  "bin": "WiseProgramUninstaller.exe",
+  "shortcuts": [
+    [
+      "WiseProgramUninstaller.exe",
+      "Wise Program Uninstaller"
+    ]
+  ],
+  "checkver": {
+    "url": "https://www.wisecleaner.com/download.html",
+    "regex": "WPU_(?<version>[\\d\\.]+)\\.zip"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://downloads.wisecleaner.com/soft/WPU_$version.zip",
+        "extract_dir": "WPUSetup_$version"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

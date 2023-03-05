@@ -1,0 +1,35 @@
+{
+  "##": "Based on https://github.com/kazzarin/bucket/blob/master/bucket/frosty-mod-manager.json",
+  "suggest": {
+    "DatapathFix": "frosty-datapathfix-plugin",
+    "FrostyFix": "frosty-fix"
+  },
+  "version": "1.0.6.1",
+  "description": "Mod manager for games running on DICE's Frostbite engine",
+  "homepage": "https://frostytoolsuite.com",
+  "license": {
+    "identifier": "CC-BY-NC-ND-4.0",
+    "url": "https://github.com/CadeEvs/FrostyToolsuite#license"
+  },
+  "url": "https://ghproxy.com/https://github.com/CadeEvs/FrostyToolsuite/releases/download/v1.0.6.1/FrostyModManager.zip",
+  "hash": "sha256:967085C6E5DF28BB3D9A1A6E2680423D38B8940B00A65B5407859F5D6AACFC7F",
+  "shortcuts": [
+    [
+      "FrostyModManager.exe",
+      "Frosty Mod Manager"
+    ]
+  ],
+  "persist": [
+    "Caches",
+    "Mods"
+  ],
+  "post_uninstall": "If ($cmd -eq 'uninstall') { Remove-Item \"${env:LOCALAPPDATA}\\Frosty\\manager_config.json\" -Force }",
+  "checkver": {
+    "url": "https://frostytoolsuite.com/downloads.html",
+    "regex": "<span class=\"h1\">v(?<Version>[\\d.]{7})</span>"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/CadeEvs/FrostyToolsuite/releases/download/v$matchVersion/FrostyModManager.zip"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

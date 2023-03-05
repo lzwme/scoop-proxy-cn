@@ -1,29 +1,38 @@
 {
+  "version": "2.925",
+  "description": "A large collection of GNU and Open Source tools which provide functionality similar to a Linux distribution on Windows",
+  "homepage": "https://cygwin.com/",
+  "license": "GPL-3.0-or-later,X11,Public Domain",
+  "notes": "To start a Cygwin shell, type \"cygwin\"",
   "architecture": {
-    "32bit": {
-      "hash": "sha512:ed7fd6729dc878e5e64eca0ea4c6f7dddaf2e1cabc5d24f3a57525f785e9ef5830266540c36c8f840e8733d86843ce05a2a45446afefcfafd8fc944e066b8a9c",
-      "url": "https://cygwin.com/setup-x86.exe#/cygwin-setup.exe"
-    },
     "64bit": {
-      "hash": "sha512:cddb07f40bb43ff90e5ef32aea835a63dc4885d8eed5bfde34f5702289846f6405e319bb9d5c18750b3bd43702daa723e97c6f0fe9badfb02761dbc0be135bda",
-      "url": "https://cygwin.com/setup-x86_64.exe#/cygwin-setup.exe"
+      "url": "https://cygwin.com/setup-x86_64.exe#/cygwin-setup.exe",
+      "hash": "sha512:cddb07f40bb43ff90e5ef32aea835a63dc4885d8eed5bfde34f5702289846f6405e319bb9d5c18750b3bd43702daa723e97c6f0fe9badfb02761dbc0be135bda"
+    },
+    "32bit": {
+      "url": "https://cygwin.com/setup-x86.exe#/cygwin-setup.exe",
+      "hash": "sha512:ed7fd6729dc878e5e64eca0ea4c6f7dddaf2e1cabc5d24f3a57525f785e9ef5830266540c36c8f840e8733d86843ce05a2a45446afefcfafd8fc944e066b8a9c"
     }
+  },
+  "checkver": {
+    "regex": ">release_([\\d.]+)<",
+    "url": "https://cygwin.com/git/?p=cygwin-apps/setup.git;a=tags"
   },
   "autoupdate": {
     "architecture": {
-      "32bit": {
-        "hash": {
-          "regex": "$sha512\\s+$basename",
-          "url": "https://cygwin.com/sha512.sum"
-        },
-        "url": "https://cygwin.com/setup-x86.exe#/cygwin-setup.exe"
-      },
       "64bit": {
+        "url": "https://cygwin.com/setup-x86_64.exe#/cygwin-setup.exe",
         "hash": {
-          "regex": "$sha512\\s+$basename",
-          "url": "https://cygwin.com/sha512.sum"
-        },
-        "url": "https://cygwin.com/setup-x86_64.exe#/cygwin-setup.exe"
+          "url": "https://cygwin.com/sha512.sum",
+          "regex": "$sha512\\s+$basename"
+        }
+      },
+      "32bit": {
+        "url": "https://cygwin.com/setup-x86.exe#/cygwin-setup.exe",
+        "hash": {
+          "url": "https://cygwin.com/sha512.sum",
+          "regex": "$sha512\\s+$basename"
+        }
       }
     }
   },
@@ -34,12 +43,6 @@
       "--login -i"
     ]
   ],
-  "checkver": {
-    "regex": ">release_([\\d.]+)<",
-    "url": "https://cygwin.com/git/?p=cygwin-apps/setup.git;a=tags"
-  },
-  "description": "A large collection of GNU and Open Source tools which provide functionality similar to a Linux distribution on Windows",
-  "homepage": "https://cygwin.com/",
   "installer": {
     "args": [
       "--no-admin",
@@ -51,8 +54,6 @@
     ],
     "keep": true
   },
-  "license": "GPL-3.0-or-later,X11,Public Domain",
-  "notes": "To start a Cygwin shell, type \"cygwin\"",
   "pre_install": "persist_data @{persist = @('packages', 'root')} $original_dir $persist_dir",
   "shortcuts": [
     [
@@ -73,6 +74,5 @@
       "root\\Cygwin-Terminal.ico"
     ]
   ],
-  "version": "2.925",
-  "_from": "anderlli0053/DEV-tools"
+  "_from": "okibcn/ScoopMaster"
 }

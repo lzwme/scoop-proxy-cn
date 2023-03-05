@@ -1,0 +1,27 @@
+{
+  "version": "0.2.0",
+  "homepage": "https://github.com/eolinker/postcat",
+  "checkver": "github",
+  "url": "https://ghproxy.com/https://github.com/eolinker/postcat/releases/download/v0.2.0/Postcat.0.2.0.exe#/dl.7z",
+  "hash": "e02034a2c25f80dbed9ef8196db0aa2f054f3a91d406c7dda76ef4b76d91db3d",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/eolinker/postcat/releases/download/v$version/Postcat.$version.exe#/dl.7z"
+  },
+  "architecture": {
+    "64bit": {
+      "installer": {
+        "script": "7z x $original_dir/PLUGINSDIR/app-64.7z -o\"$original_dir\""
+      }
+    }
+  },
+  "extract_dir": "$PLUGINSDIR",
+  "extract_to": "PLUGINSDIR",
+  "post_install": "rm $original_dir/PLUGINSDIR -recurse",
+  "shortcuts": [
+    [
+      "Postcat.exe",
+      "Postcat"
+    ]
+  ],
+  "_from": "okibcn/ScoopMaster"
+}

@@ -1,0 +1,37 @@
+{
+  "version": "3.1.5",
+  "description": "GitHub Desktop. Extend your GitHub workflow beyond your browser.",
+  "homepage": "https://desktop.github.com/",
+  "license": "MIT",
+  "changelog": "https://desktop.github.com/release-notes/",
+  "architecture": {
+    "64bit": {
+      "url": "https://central.github.com/deployments/desktop/desktop/latest/GitHubDesktop-3.1.5-x64-full.nupkg",
+      "hash": "69e1d9a4144e7ccdb5c4d19d33a741793d179e1c36c4e02fab770a3583d303b3"
+    }
+  },
+  "extract_dir": "lib\\net45",
+  "bin": "GitHubDesktop.exe",
+  "shortcuts": [
+    [
+      "GitHubDesktop.exe",
+      "GitHub Desktop"
+    ]
+  ],
+  "checkver": {
+    "url": "https://central.github.com/api/deployments/desktop/desktop/latest/RELEASES",
+    "regex": "GitHubDesktop-([\\d.]+)-full.nupkg",
+    "reverse": true
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://central.github.com/deployments/desktop/desktop/latest/GitHubDesktop-$version-x64-full.nupkg",
+        "hash": {
+          "url": "https://central.github.com/api/deployments/desktop/desktop/latest/RELEASES"
+        }
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

@@ -1,0 +1,35 @@
+{
+  "homepage": "https://github.com/stascorp/rdpwrap",
+  "version": "1.6.2",
+  "description": "RDP Wrapper Library",
+  "url": [
+    "https://ghproxy.com/https://github.com/stascorp/rdpwrap/releases/download/v1.6.2/RDPWrap-v1.6.2.zip",
+    "https://github.com/stascorp/rdpwrap/files/3588288/autoupdate-v07.09.2019.zip#/autoupdate.zip"
+  ],
+  "hash": [
+    "35a9481ddbed5177431a9ea4bd09468fe987797d7b1231d64942d17eb54ec269",
+    "8fc586fdb2475768f23a3b6f4b5e8e9a493e042d7a3ffea6fbc7b2de65053887"
+  ],
+  "installer": {
+    "script": [
+      "if(!(is_admin)) { error \"Admin rights are required, please run 'sudo scoop install $app'\"; exit 1 }",
+      "if (Test-Path $Env:ProgramFiles\\'RDP Wrapper') {",
+      "    Remove-Item $Env:ProgramFiles\\'RDP Wrapper' -Force",
+      "}",
+      "mkdir $Env:ProgramFiles\\'RDP Wrapper'",
+      "Copy-Item -Path $dir\\* -Destination $Env:ProgramFiles\\'RDP Wrapper' -Recurse",
+      "cmd /c $Env:ProgramFiles\\'RDP Wrapper'\\install.bat",
+      "cmd /c $Env:ProgramFiles\\'RDP Wrapper'\\autoupdate.bat"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "if(!(is_admin)) { error \"Admin rights are required, please run 'sudo scoop uninstall $app'\"; exit 1 }",
+      "if (Test-Path $Env:ProgramFiles\\'RDP Wrapper') {",
+      "    cmd /c $Env:ProgramFiles\\'RDP Wrapper'\\uninstall.bat",
+      "    Remove-Item $Env:ProgramFiles\\'RDP Wrapper' -Force",
+      "}"
+    ]
+  },
+  "_from": "okibcn/ScoopMaster"
+}

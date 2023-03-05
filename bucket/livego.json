@@ -1,0 +1,46 @@
+{
+  "version": "0.0.15",
+  "description": "Simple and efficient live broadcast server",
+  "homepage": "https://github.com/gwuhaolin/livego",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": [
+        "https://ghproxy.com/https://github.com/gwuhaolin/livego/releases/download/0.0.15/livego_0.0.15_windows_amd64.tar.gz"
+      ],
+      "hash": [
+        "a5749df9dd998e41ae2d8d76d55946ecf00232db128a70b1b512704519304b3c"
+      ]
+    },
+    "32bit": {
+      "url": [
+        "https://ghproxy.com/https://github.com/gwuhaolin/livego/releases/download/0.0.15/livego_0.0.15_windows_386.tar.gz"
+      ],
+      "hash": [
+        "08429ccdd8c05f748aa303b558890b44de23b66543bb779eb098eb24abffc023"
+      ]
+    }
+  },
+  "bin": [
+    "livego.exe"
+  ],
+  "checkver": {
+    "github": "https://github.com/gwuhaolin/livego",
+    "regex": "tag/([\\d\\.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": [
+          "https://ghproxy.com/https://github.com/gwuhaolin/livego/releases/download/$version/livego_$version_windows_amd64.tar.gz"
+        ]
+      },
+      "32bit": {
+        "url": [
+          "https://ghproxy.com/https://github.com/gwuhaolin/livego/releases/download/$version/livego_$version_windows_386.tar.gz"
+        ]
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

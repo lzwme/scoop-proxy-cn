@@ -1,0 +1,49 @@
+{
+  "homepage": "https://rarlab.com/",
+  "description": "Powerful archive manager",
+  "version": "6.11",
+  "license": {
+    "identifier": "Shareware",
+    "url": "https://www.win-rar.com/gtb_priv.html?&L=0"
+  },
+  "notes": "Set up context menu within settings window.",
+  "architecture": {
+    "64bit": {
+      "url": "https://www.rarlab.com/rar/winrar-x64-611jp.exe#/dl.7z",
+      "hash": "bd86a55d8f7967c9b85e3b91cc89177ad5c8cab7ca8d3734c85fed139770dce0"
+    },
+    "32bit": {
+      "url": "https://www.rarlab.com/rar/winrar-x32-611jp.exe#/dl.7z",
+      "hash": "9ca601a53961b96720b6391b1e56914993d61be52656830285160235f45a161b"
+    }
+  },
+  "pre_install": "if (!(Test-Path \"$persist_dir\\rarreg.key\")) { New-Item \"$dir\\rarreg.key\" | Out-Null }",
+  "bin": [
+    "Rar.exe",
+    "UnRAR.exe",
+    "WinRAR.exe"
+  ],
+  "shortcuts": [
+    [
+      "WinRAR.exe",
+      "WinRAR"
+    ]
+  ],
+  "persist": "rarreg.key",
+  "checkver": {
+    "url": "https://www.winrarjapan.com/support/release-note",
+    "re": "WinRAR バージョン([\\d.]+)",
+    "##": "WinRAR and RAR ([\\d.]+) release"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://www.rarlab.com/rar/winrar-x64-$cleanVersionjp.exe#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://www.rarlab.com/rar/winrar-x32-$cleanVersionjp.exe#/dl.7z"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

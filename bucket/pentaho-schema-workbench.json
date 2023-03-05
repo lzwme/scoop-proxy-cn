@@ -1,0 +1,42 @@
+{
+  "homepage": "https://pentaho.sourceforge.io/",
+  "description": "The Pentaho Schema Workbench is a designer interface that allows you to create and test Mondrian OLAP cube schemas visually.",
+  "license": "EPL-1.0",
+  "version": "9.0.0.0-423",
+  "url": "https://downloads.sourceforge.net/project/pentaho/Pentaho%209.0/client-tools/psw-ce-9.0.0.0-423.zip",
+  "hash": "sha1:b15723564dcf6c71ec670512acc641797f59f9e9",
+  "extract_dir": "schema-workbench",
+  "bin": "workbench.bat",
+  "shortcuts": [
+    [
+      "workbench.bat",
+      "Pentaho Schema Workbench (PSW)",
+      "",
+      "icon.ico"
+    ]
+  ],
+  "persist": [
+    "drivers",
+    "plugins"
+  ],
+  "pre_install": [
+    "if (!$url) { $url = \"$(manifest_path $app $bucket)\" }",
+    "$icon = $url -replace '.json$', '.ico'",
+    "Copy-Item \"$icon\" \"$dir\\icon.ico\""
+  ],
+  "post_install": [
+    "$file = \"$dir\\workbench.bat\"",
+    "$cont = (Get-Content $file) -replace '=java','=javaw'",
+    "$cont = $cont -replace '(\"%_PENTAHO_JAVA%\")', 'start \"\" $1'",
+    "Set-Content $file $cont -Encoding ASCII",
+    "Remove-Item \"$dir\\Schema_Workbench.app\" -Recurse"
+  ],
+  "checkver": {
+    "url": "https://sourceforge.net/projects/pentaho/rss?path=/",
+    "re": "Pentaho\\s+[\\d.]+/client-tools/psw-ce-([\\w.-]+)\\.zip"
+  },
+  "autoupdate": {
+    "url": "https://downloads.sourceforge.net/project/pentaho/Pentaho%20$majorVersion.$minorVersion/client-tools/psw-ce-$version.zip"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

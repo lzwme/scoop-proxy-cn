@@ -1,0 +1,48 @@
+{
+  "version": "22.3",
+  "description": "Enhanced terminal for Windows with X11 server, tabbed SSH client, network tools and much more.",
+  "homepage": "https://mobaxterm.mobatek.net/",
+  "url": "https://download.mobatek.net/2232022120824733/MobaXterm_Portable_v22.3.zip",
+  "hash": "c8de508d6731f31a73f061e58942691466d1d24cfa941e642e16e0930be2fad9",
+  "pre_install": [
+    "    # Rename executable",
+    "Get-ChildItem \"$dir\" 'mobaxterm*.exe' | Select-Object -First 1 | Rename-Item -NewName 'MobaXterm.exe'",
+    "    # Create files for persisting",
+    "function PersistsFile([String] $file) {",
+    "    if (!(Test-Path \"$persist_dir\\$file\")) {",
+    "        New-Item \"$dir\\$file\" -Type File | Out-Null",
+    "    }",
+    "}",
+    "@('MobaXterm backup.zip', 'MobaXterm.ini') | ForEach-Object { PersistsFile $_ }"
+  ],
+  "post_install": [
+    "$licgen = Join-Path $env:TMP 'moba-xterm-license.py'",
+    "$lic = Join-Path $env:TMP 'Custom.mxtpro'",
+    "$ProgressPreference = 'SilentlyContinue'",
+    "Invoke-WebRequest https://ghproxy.com/https://raw.githubusercontent.com/xtonousou/xbucket/main/bin/moba-xterm/license.py -OutFile $licgen",
+    "python $licgen $(whoami) $version",
+    "Copy-Item $lic -Destination $dir"
+  ],
+  "depends": [
+    "python"
+  ],
+  "bin": "MobaXterm.exe",
+  "shortcuts": [
+    [
+      "MobaXterm.exe",
+      "MobaXterm"
+    ]
+  ],
+  "persist": [
+    "MobaXterm.ini",
+    "MobaXterm backup.zip"
+  ],
+  "checkver": {
+    "url": "https://mobaxterm.mobatek.net/download-home-edition.html",
+    "regex": "//download.mobatek.net/(?<random>[\\d]+)/MobaXterm_Portable_v([\\d.]+)\\.zip"
+  },
+  "autoupdate": {
+    "url": "https://download.mobatek.net/$matchRandom/MobaXterm_Portable_v$version.zip"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

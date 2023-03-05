@@ -1,29 +1,29 @@
 {
-  "autoupdate": {
-    "hash": {
-      "regex": "MD5 Hash: +[\\w]{32}",
-      "url": "https://portableapps.com/apps/utilities/wise-program-uninstaller-portable"
-    },
-    "url": "https://download3.portableapps.com/portableapps/WiseProgramUninstallerPortable/WiseProgramUninstallerPortable_$version.paf.exe?20190321"
-  },
-  "bin": "WiseProgramUninstallerPortable.exe",
-  "checkver": {
-    "re": "Version \\s+([\\w\\.]* for Win",
-    "url": "https://portableapps.com/apps/utilities/wise-program-uninstaller-portable"
-  },
-  "description": "Local software uninstaller",
-  "hash": "md5:1e693d4b655370f2879dd9bc5a91c9cc",
   "homepage": "https://portableapps.com/apps/utilities/wise-program-uninstaller-portable",
+  "description": "Local software uninstaller",
+  "version": "2.3.8",
   "license": "",
-  "persist": "Data",
-  "post_install": "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
+  "url": "https://download3.portableapps.com/portableapps/WiseProgramUninstallerPortable/WiseProgramUninstallerPortable_2.3.8.paf.exe?20190321#/dl.7z",
+  "hash": "md5:1e693d4b655370f2879dd9bc5a91c9cc",
+  "bin": "WiseProgramUninstallerPortable.exe",
   "shortcuts": [
     [
       "WiseProgramUninstallerPortable.exe",
       "WiseProgramUninstallerPortable"
     ]
   ],
-  "url": "https://download3.portableapps.com/portableapps/WiseProgramUninstallerPortable/WiseProgramUninstallerPortable_2.3.8.paf.exe?20190321#/dl.7z",
-  "version": "2.3.8",
-  "_from": "anderlli0053/DEV-tools"
+  "persist": "Data",
+  "checkver": {
+    "url": "https://portableapps.com/apps/utilities/wise-program-uninstaller-portable",
+    "re": "Version \\s+([\\w\\.]* for Win"
+  },
+  "autoupdate": {
+    "url": "https://download3.portableapps.com/portableapps/WiseProgramUninstallerPortable/WiseProgramUninstallerPortable_$version.paf.exe?20190321",
+    "hash": {
+      "url": "https://portableapps.com/apps/utilities/wise-program-uninstaller-portable",
+      "regex": "MD5 Hash: +[\\w]{32}"
+    }
+  },
+  "post_install": "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
+  "_from": "okibcn/ScoopMaster"
 }

@@ -1,26 +1,35 @@
 {
+  "version": "2.0",
+  "description": "PowerTool is a security tool developed to offer you a simple means of keeping your computer clean of rootkit viruses and fixing kernel structure modifications.",
+  "homepage": "http://powertool.s601.xrea.com/",
+  "license": "MIT",
   "architecture": {
-    "32bit": {
-      "pre_install": "Rename-Item \"$dir\\PowerTool32.exe\" 'PowerTool.exe'"
-    },
     "64bit": {
-      "pre_install": "Rename-Item \"$dir\\PowerTool64.exe\" 'PowerTool.exe'"
+      "url": "https://ghproxy.com/https://github.com/zzhaq/Toolbox/releases/download/v0.4/PowerTool_20160308_CN.zip#dl.7z",
+      "hash": "65246386f9696c7267847ec15d77c4ddc52a67b792af862c27425ff06d724564",
+      "bin": [
+        "PowerTool64.exe"
+      ],
+      "shortcuts": [
+        [
+          "PowerTool64.exe",
+          "PowerTool64"
+        ]
+      ]
+    },
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/zzhaq/Toolbox/releases/download/v0.4/PowerTool_20160308_CN.zip#dl.7z",
+      "hash": "65246386f9696c7267847ec15d77c4ddc52a67b792af862c27425ff06d724564",
+      "bin": [
+        "PowerTool32.exe"
+      ],
+      "shortcuts": [
+        [
+          "PowerTool32.exe",
+          "PowerTool32"
+        ]
+      ]
     }
   },
-  "description": "a security tool developed to offer you a simple means of keeping your computer clean of rootkit viruses and fixing kernel structure modifications.",
-  "hash": "c1109f566418ead7c1a074e7dcf697bb21e59d62188c840fa89527cb87d4208a",
-  "homepage": "http://powertool.s601.xrea.com",
-  "installer": {
-    "script": "Get-ChildItem \"$dir\\PowerTool??.exe\" | Remove-Item"
-  },
-  "license": "Freeware",
-  "shortcuts": [
-    [
-      "PowerTool.exe",
-      "PowerTool"
-    ]
-  ],
-  "url": "https://ghproxy.com/https://raw.githubusercontent.com/HUMORCE/nuke-binary/master/apps/powertool/powertool_2.0.zip",
-  "version": "2.0",
-  "_from": "anderlli0053/DEV-tools"
+  "_from": "okibcn/ScoopMaster"
 }

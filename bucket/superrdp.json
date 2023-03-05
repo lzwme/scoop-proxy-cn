@@ -1,28 +1,17 @@
 {
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/anhkgg/SuperRDP/releases/download/$version/SuperRDP2_$version.zip"
-  },
-  "checkver": {
-    "jsonpath": "$[0].tag_name",
-    "url": "https://api.github.com/repos/anhkgg/SuperRDP/releases?per_page=1"
-  },
+  "version": "2.1.0.1",
   "description": "SuperRDP is a new version rdpwarp base on the rdpwrap by stascorp.",
-  "hash": "a9d4ee2e3cd74c0961eb93a743128972364168009da69072021640a670f45d33",
   "homepage": "https://github.com/anhkgg/SuperRDP",
   "license": {
     "identifier": "Apache-2.0",
     "url": "https://github.com/anhkgg/SuperRDP/blob/main/LICENSE"
   },
+  "url": "https://ghproxy.com/https://github.com/anhkgg/SuperRDP/releases/download/v2.1.0.1/SuperRDP2.zip",
+  "hash": "f3a70d019e343871ddc494ebaff5c5d2a87529fa27ab4a672e49b41dc28a061a",
   "pre_install": [
     "if (Test-Path \"$persist_dir\\superrdp.ini\") {",
     "    Copy-Item \"$persist_dir\\superrdp.ini\" \"$dir\\\" | Out-Null",
     "}"
-  ],
-  "shortcuts": [
-    [
-      "SuperRDP2.exe",
-      "SuperRDP2"
-    ]
   ],
   "uninstaller": {
     "script": [
@@ -32,7 +21,18 @@
       "}"
     ]
   },
-  "url": "https://ghproxy.com/https://github.com/anhkgg/SuperRDP/releases/download/2.0.0.38/SuperRDP2_2.0.0.38.zip",
-  "version": "2.0.0.38",
-  "_from": "anderlli0053/DEV-tools"
+  "shortcuts": [
+    [
+      "SuperRDP2.exe",
+      "SuperRDP2"
+    ]
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/anhkgg/SuperRDP/releases?per_page=1",
+    "regex": "(?sm)browser_download_url.*?releases/download/[vV]?([\\d.]+)/(?<file>SuperRDP.*?\\.(?:zip|rar))"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/anhkgg/SuperRDP/releases/download/v$version/$matchFile"
+  },
+  "_from": "okibcn/ScoopMaster"
 }

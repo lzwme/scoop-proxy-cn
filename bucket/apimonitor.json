@@ -3,12 +3,8 @@
   "description": "Process traces with full API in and Out parameters.",
   "homepage": "http://www.rohitab.com/apimonitor",
   "license": "Freeware",
-  "architecture": {
-    "64bit": {
-      "url": "http://www.rohitab.com/download/api-monitor-v2r13-x86-x64.zip",
-      "hash": "d045e45f523a6c0c7a2a8e06831f4b2d705fb84f4995791b5a70b28424a49d2b"
-    }
-  },
+  "url": "http://www.rohitab.com/download/api-monitor-v2r13-x86-x64.zip",
+  "hash": "d045e45f523a6c0c7a2a8e06831f4b2d705fb84f4995791b5a70b28424a49d2b",
   "extract_dir": "API Monitor (rohitab.com)",
   "bin": [
     "apimonitor-x64.exe",
@@ -24,5 +20,13 @@
       "API Monitor 32-bit"
     ]
   ],
-  "_from": "kkzzhizhou/scoop-apps"
+  "checkver": {
+    "url": "http://www.rohitab.com/apimonitor",
+    "regex": "Latest Release \\(Alpha r(\\d+)\\)",
+    "replace": "2.0.$1"
+  },
+  "autoupdate": {
+    "url": "http://www.rohitab.com/download/api-monitor-v2r$match1-x86-x64.zip"
+  },
+  "_from": "okibcn/ScoopMaster"
 }

@@ -1,70 +1,75 @@
 {
+  "version": "2.0.1",
+  "description": "v2rayA. A web GUI client of Project V which supports V2Ray, Xray, SS, SSR, Trojan and Pingtunnel.",
+  "homepage": "https://github.com/v2rayA/v2raya",
+  "license": {
+    "identifier": "AGPL-3.0-only",
+    "url": "https://github.com/v2rayA/v2rayA/raw/master/LICENSE"
+  },
+  "depends": "v2ray",
+  "suggest": {
+    "v2ray-rules-dat": "v2raya/v2ray-rules-dat"
+  },
+  "notes": "Start v2rayA with Windows by running: 'reg import \"$(scoop prefix v2raya)\\add-startup.reg\"'.",
   "architecture": {
     "64bit": {
-      "hash": "e4941964b1c4783eeced8a74b55f1274b00fdf38367f491bc9df6d84ee8e60cb",
-      "url": "https://ghproxy.com/https://github.com/v2rayA/v2rayA/releases/download/v2.0.1/v2raya_windows_x64_2.0.1.exe#/v2rayaWin.exe"
+      "url": "https://ghproxy.com/https://github.com/v2rayA/v2rayA/releases/download/v2.0.1/v2raya_windows_x64_2.0.1.exe#/v2rayaWin.exe",
+      "hash": "e4941964b1c4783eeced8a74b55f1274b00fdf38367f491bc9df6d84ee8e60cb"
+    },
+    "arm64": {
+      "url": "https://ghproxy.com/https://github.com/v2rayA/v2rayA/releases/download/v2.0.1/v2raya_windows_arm64_2.0.1.exe#/v2rayaWin.exe",
+      "hash": "11c08ef6b0ea35fc05e925e3c1f99112355e695646602d05f1bf0c1bcbeda3a5"
     }
   },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.com/https://github.com/v2rayA/v2rayA/releases/download/v$version/v2raya_windows_x64_$version.exe#/v2rayaWin.exe"
-      }
-    }
+  "pre_install": [
+    "@('start-v2raya', 'stop-v2raya', 'reset-passwd-v2raya') | ForEach-Object {",
+    "    Copy-Item \"$bucketsdir\\v2raya\\scripts\\v2raya\\$_.ps1\" \"$dir\\$_.ps1\"",
+    "}",
+    "$exepath = \"powershell -NoLogo -NoProfile -File $dir\\start-v2raya.ps1\".Replace('\\', '\\\\')",
+    "@('add-startup', 'remove-startup') | ForEach-Object {",
+    "    $content = Get-Content \"$bucketsdir\\v2raya\\scripts\\v2raya\\$_.reg\"",
+    "    $content = $content.Replace('$exepath', $exepath)",
+    "    if ($global) {",
+    "       $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE')",
+    "    }",
+    "    $content | Set-Content -Path \"$dir\\$_.reg\" -Encoding Ascii",
+    "}"
+  ],
+  "pre_uninstall": "stop-v2raya",
+  "uninstaller": {
+    "script": "if ($cmd -eq 'uninstall') { reg import \"$dir\\remove-startup.reg\" }"
   },
   "bin": [
     [
       "v2rayaWin.exe",
       "v2raya",
-      "--lite"
+      "--lite --config \"$dir\\config\""
     ],
     [
       "v2rayaWin.exe",
       "v2rayaWin"
     ],
     "start-v2raya.ps1",
-    "stop-v2raya.ps1"
+    "stop-v2raya.ps1",
+    "reset-passwd-v2raya.ps1"
   ],
-  "checkver": {
-    "regex": "v2raya_windows_x64_([\\d.]+).exe",
-    "url": "https://api.github.com/repos/v2rayA/v2raya/releases/latest"
-  },
-  "depends": "v2ray",
-  "description": "v2rayA is a V2Ray client supporting global transparent proxy(Linux Only), compatible with SS, SSR, Trojan(trojan-go), PingTunnel protocols.",
   "env_set": {
     "V2RAYA_V2RAY_BIN": "$(scoop prefix v2ray)\\v2ray.exe"
   },
-  "homepage": "https://github.com/v2rayA/v2raya",
-  "installer": {
-    "script": [
-      "#ensure \"$persist_dir\" | Out-Null",
-      "#New-Item \"$env:UserProfile\\.config\\v2raya\" -ItemType Junction -Target \"$persist_dir\" | Out-Null",
-      "info '[Portable Mode]: Copying user data...'",
-      "if (Test-Path \"$persist_dir\\*\") {",
-      "    ensure \"$env:UserProfile\\.config\\v2raya\" | Out-Null",
-      "    Copy-Item \"$persist_dir\\*\" \"$env:UserProfile\\.config\\v2raya\\\" -Recurse -Force | Out-Null",
-      "}",
-      "Set-Content \"$dir\\start-v2raya.ps1\" -Value 'Start-Process \"$(scoop prefix v2raya)\\v2rayaWin.exe\" -ArgumentList @(\"--lite\", \"--log-file v2raya.log\") -WorkingDirectory \"$env:LocalAppData\\Temp\" -WindowStyle Hidden' -Encoding Ascii",
-      "Set-Content \"$dir\\stop-v2raya.ps1\" -Value 'Stop-Process -Name v2rayawin -ErrorAction Ignore -Force' -Encoding Ascii"
-    ]
+  "persist": "config",
+  "checkver": {
+    "url": "https://api.github.com/repos/v2rayA/v2raya/releases/latest",
+    "regex": "v2raya_windows_x64_([\\d.]+).exe"
   },
-  "license": {
-    "identifier": "AGPL-3.0-only",
-    "url": "https://github.com/v2rayA/v2rayA/raw/master/LICENSE"
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/v2rayA/v2rayA/releases/download/v$version/v2raya_windows_x64_$version.exe#/v2rayaWin.exe"
+      },
+      "arm64": {
+        "url": "https://ghproxy.com/https://github.com/v2rayA/v2rayA/releases/download/v$version/v2raya_windows_arm64_$version.exe#/v2rayaWin.exe"
+      }
+    }
   },
-  "suggest": {
-    "v2ray-rules-dat": "meta/v2ray-rules-dat"
-  },
-  "uninstaller": {
-    "script": [
-      "info '[Portable Mode]: Backing up user data...'",
-      "if (Test-Path \"$env:UserProfile\\.config\\v2raya\\*\") {",
-      "    ensure \"$persist_dir\" | Out-Null",
-      "    Copy-Item \"$env:UserProfile\\.config\\v2raya\\*\" \"$persist_dir\\\" -Recurse -Force | Out-Null",
-      "}",
-      "#Remove-Item \"$env:UserProfile\\.config\\v2raya\" -ErrorAction 'SilentlyContinue' -Force -Recurse"
-    ]
-  },
-  "version": "2.0.1",
-  "_from": "anderlli0053/DEV-tools"
+  "_from": "okibcn/ScoopMaster"
 }

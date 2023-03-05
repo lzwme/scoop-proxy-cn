@@ -1,0 +1,38 @@
+{
+  "version": "nightly-3-5-2023_1-05-15",
+  "description": "Lightning-fast and Powerful Code Editor written in Rust (nightly builds)",
+  "homepage": "http://lapce.dev/",
+  "license": "Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/lapce/lapce/releases/download/nightly/Lapce-windows-portable.zip",
+      "hash": "7a781f19dc64b71bf17b33d41b6ebbcab088d877d35819feffad230acd318c9b"
+    }
+  },
+  "bin": [
+    [
+      "lapce.exe",
+      "lapce-nightly"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "lapce.exe",
+      "Lapce Nightly"
+    ]
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/lapce/lapce/releases",
+    "jsonpath": "$.[?(@.tag_name == 'nightly')].assets[?(@.name == 'Lapce-windows-portable.zip')].updated_at",
+    "regex": "(\\d{1,2})/(\\d{1,2})/(\\d{4}) (\\d{1,2}):(\\d{2}):(\\d{2})",
+    "replace": "nightly-${1}-${2}-${3}_${4}-${5}-${6}"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/lapce/lapce/releases/download/nightly/Lapce-windows-portable.zip"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

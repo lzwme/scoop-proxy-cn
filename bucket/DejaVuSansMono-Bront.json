@@ -1,0 +1,30 @@
+{
+  "version": "0.0.11",
+  "license": "Fonts are (c) Bitstream (see below). DejaVu changes are in public domain.Glyphs imported from Arev fonts are (c) Tavmjong Bah (see below)",
+  "homepage": "https://github.com/chrismwendt/bront",
+  "url": "https://github.com/chrismwendt/bront/raw/master/DejaVuSansMono-Bront.ttf",
+  "hash": "c10b26e3317daa36857d8d23a416ae414c3a8583d02c609f22294a55c81cc316",
+  "checkver": "github",
+  "depends": "sudo",
+  "installer": {
+    "script": [
+      "if(!(is_admin)) { error \"Admin rights are required, please run 'sudo scoop install $app'\"; exit 1 }",
+      "Get-ChildItem $dir -File -Filter '*.ttf' | ForEach-Object {",
+      "    Write-Host Installing $_.Name",
+      "    New-ItemProperty -Path 'registry::HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name 'DejaVu Sans Mono - Bront (TrueType)' -Value \"$($_.Name)\" -Force | Out-Null",
+      "    Copy-Item $_.FullName -destination \"$env:WinDir\\Fonts\"",
+      "}"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "if(!(is_admin)) { error \"Admin rights are required, please run 'sudo scoop uninstall $app'\"; exit 1 }",
+      "Get-ChildItem $dir -File -Filter '*.ttf' | ForEach-Object {",
+      "    Remove-ItemProperty -Path 'registry::HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name 'DejaVu Sans Mono - Bront (TrueType)' -Force -ErrorAction SilentlyContinue",
+      "    Remove-Item \"$env:WinDir\\Fonts\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
+      "}",
+      "Write-Host \"The '$app' Font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
+    ]
+  },
+  "_from": "okibcn/ScoopMaster"
+}

@@ -1,0 +1,69 @@
+{
+  "version": "102.8.0",
+  "description": "A free email application that's easy to set up and customize.",
+  "homepage": "https://www.thunderbird.net",
+  "license": "MPL-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://archive.mozilla.org/pub/thunderbird/releases/102.8.0/win64/pl/Thunderbird%20Setup%20102.8.0.exe#/dl.7z",
+      "hash": "sha512:5bfadd8322fb6bf184ef9fb82004e982b99de4fe1b0380f7a77f018818109458917b1dddb75492b5d5479326992a08c8b05d82ed3e4dee6d4a2d113ef4d1132d"
+    },
+    "32bit": {
+      "url": "https://archive.mozilla.org/pub/thunderbird/releases/102.8.0/win32/pl/Thunderbird%20Setup%20102.8.0.exe#/dl.7z",
+      "hash": "sha512:13fe6f92527fd65fa97a4f25e65dea82fecfdd04e17cb5d3845c88c14dea5182c594ebbc8d4bfc8bfce45144b5c38e8b152c3691a6bc6203330b60af4a3ee728"
+    }
+  },
+  "notes": [
+    "To set profile 'Scoop' as *DEFAULT*, or profiles/settings was lost after update:",
+    "  - Run 'Thunderbird Profile Manager', choose 'Scoop' then click 'Start Thunderbird'.",
+    "  - Visit 'about:profiles' page in Thunderbird to check *DEFAULT* profile.",
+    "For details: https://support.mozilla.org/en-US/kb/profile-manager-create-and-remove-thunderbird-profiles"
+  ],
+  "extract_dir": "core",
+  "post_install": [
+    "~\\scoop\\apps\\thunderbird-polish\\current\\thunderbird.exe -CreateProfile \"Scoop $persist_dir\\profile\"",
+    "$Addition = \"$persist_dir\\addition\"",
+    "if (Test-Path $Addition) {",
+    "  info 'Copying additional items...'",
+    "  Copy-Item -Path $Addition\\* -Destination $dir -Force -Recurse -ErrorAction SilentlyContinue",
+    "}"
+  ],
+  "shortcuts": [
+    [
+      "thunderbird.exe",
+      "Thunderbird"
+    ],
+    [
+      "thunderbird.exe",
+      "Thunderbird Profile Manager",
+      "-P"
+    ]
+  ],
+  "persist": [
+    "distribution",
+    "profile"
+  ],
+  "checkver": {
+    "url": "https://www.thunderbird.net/thunderbird/all/",
+    "regex": "thunderbird-([\\d.]+)-SSL.*lang=pl"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://archive.mozilla.org/pub/thunderbird/releases/$version/win64/pl/Thunderbird%20Setup%20$version.exe#/dl.7z",
+        "hash": {
+          "url": "https://archive.mozilla.org/pub/thunderbird/releases/$version/SHA512SUMS",
+          "regex": "$sha512\\s+win64/pl/$basename"
+        }
+      },
+      "32bit": {
+        "url": "https://archive.mozilla.org/pub/thunderbird/releases/$version/win32/pl/Thunderbird%20Setup%20$version.exe#/dl.7z",
+        "hash": {
+          "url": "https://archive.mozilla.org/pub/thunderbird/releases/$version/SHA512SUMS",
+          "regex": "$sha512\\s+win32/pl/$basename"
+        }
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

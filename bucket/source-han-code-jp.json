@@ -1,0 +1,27 @@
+{
+  "homepage": "https://github.com/adobe-fonts/source-han-code-jp",
+  "description": "Japanese monospace font for programming",
+  "license": "OFL-1.1",
+  "depends": [
+    "jp-util-font"
+  ],
+  "version": "2.011",
+  "url": "https://ghproxy.com/https://github.com/adobe-fonts/source-han-code-jp/archive/2.011R.zip",
+  "hash": "0f98beb0a381d9d19067f9b58f65d2dd65c808a3012ac9cb9866e575ad6d2e7f",
+  "checkver": {
+    "url": "https://github.com/adobe-fonts/source-han-code-jp/releases/latest",
+    "re": "archive/(?<version>[\\d.]+)R.zip"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/adobe-fonts/source-han-code-jp/archive/$versionR.zip",
+    "extract_dir": "source-han-code-jp-$versionR"
+  },
+  "extract_dir": "source-han-code-jp-2.011R",
+  "installer": {
+    "script": "jp-util-font $true $dir\\OTF 'SourceHanCodeJP-*.otf'"
+  },
+  "uninstaller": {
+    "script": "jp-util-font $false $dir\\OTF 'SourceHanCodeJP-*.otf'"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

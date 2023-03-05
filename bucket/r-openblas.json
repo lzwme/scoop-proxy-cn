@@ -1,29 +1,27 @@
 {
+  "homepage": "https://www.r-project.org",
+  "version": "4.2.1",
+  "license": "GPL-2.0",
   "architecture": {
     "64bit": {
-      "hash": "85f3e572ea55c374358b5150aa7104e47988122dcd720ff547eb2477a2cb89e7",
-      "pre_install": "copy-item -recurse \"$dir\\bin\\x64\" \"$dir\\bin\\curr_arch\"",
-      "url": "https://ghproxy.com/https://github.com/thequackdaddy/R-OpenBLAS/releases/download/v3.5.2/R-3.5.2-win.exe"
+      "url": "https://ghproxy.com/https://github.com/Yunuuuu/r-base-openblas/releases/download/r-base-openblas-v4.2.1/R-4.2.1-openblas.exe",
+      "hash": "32f147bd4868f5028f8633d6e7ffd7db751bbcbed9a31f7e87926bd2775bf5ba",
+      "pre_install": "Rename-Item \"$dir\\bin\\R,2.exe\" 'R.exe'",
+      "shortcuts": [
+        [
+          "bin\\x64\\Rgui.exe",
+          "Rgui-openblas"
+        ]
+      ]
     }
   },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.com/https://github.com/thequackdaddy/R-OpenBLAS/releases/download/v$version/R-$version-win.exe"
-      }
-    }
-  },
-  "bin": [
-    "bin\\curr_arch\\r.exe",
-    "bin\\curr_arch\\rterm.exe",
-    "bin\\curr_arch\\rscript.exe"
-  ],
-  "checkver": {
-    "github": "https://github.com/thequackdaddy/R-OpenBLAS"
-  },
-  "homepage": "https://www.r-project.org",
   "innosetup": true,
-  "license": "GPL-2.0",
+  "installer": {
+    "script": [
+      "Remove-Item \"$dir\\bin\\R,*.exe\" -Force",
+      "Copy-Item \"$dir\\bin\\R.exe\" \"$dir\\bin\\Rscript.exe\""
+    ]
+  },
   "notes": [
     "You'll need to type 'r.ps1' or 'r.cmd' to run R, because in Powershell 'r' runs the last command. Alternatively 'rterm' can be used to start the interactive R terminal session.",
     "",
@@ -34,6 +32,16 @@
     "",
     "Annoying, right?! You might want to check out Pshazz (scoop install pshazz)--this has a plugin to remove some crazy aliases from Powershell, as well as many other improvements."
   ],
-  "version": "3.5.2",
-  "_from": "anderlli0053/DEV-tools"
+  "checkver": {
+    "url": "https://github.com/Yunuuuu/r-base-openblas",
+    "regex": "r-base-openblas-v([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/Yunuuuu/r-base-openblas/releases/download/r-base-openblas-v$version/R-$version-openblas.exe"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
 }

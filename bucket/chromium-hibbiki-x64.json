@@ -1,0 +1,34 @@
+{
+  "homepage": "https://github.com/Hibbiki/chromium-win64",
+  "description": "Chromium for Windows x64, built by Hibbiki.",
+  "version": "110.0.5481.178-r1084008",
+  "url": "https://ghproxy.com/https://github.com/Hibbiki/chromium-win64/releases/download/v110.0.5481.178-r1084008/chrome.nosync.7z",
+  "hash": "221e71aadcfdc9eaa3bcbbafffb725d7639620b1cdc92578ecb8db63fc4967d2",
+  "installer": {
+    "script": [
+      "Get-ChildItem -Path \"$dir\\Chrome-bin\" | Move-Item -Destination \"$dir\"",
+      "Remove-Item -Path \"$dir\\Chrome-bin\" -Recurse -Force"
+    ]
+  },
+  "bin": [
+    [
+      "chrome.exe",
+      "chromium-hibbiki"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "chrome.exe",
+      "Chromium x64 (by Hibbiki)"
+    ]
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/Hibbiki/chromium-win64/releases/latest",
+    "jp": "tag_name",
+    "re": "(?:v|V)?([\\d.]+-r\\d+)"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/Hibbiki/chromium-win64/releases/download/v$version/chrome.nosync.7z"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

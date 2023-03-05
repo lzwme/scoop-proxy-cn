@@ -1,49 +1,37 @@
 {
-  "architecture": {
-    "32bit": {
-      "hash": "5134c94032fe1a580684d7e6b9954412137bdb1261f3ca2526d974c8d4d49eed",
-      "url": "https://ghproxy.com/https://github.com/TDesktop-x64/tdesktop/releases/download/v1.0.45/64Gram_1.0.45.beta_x86.zip"
-    },
-    "64bit": {
-      "hash": "49d6ef78cf2384dd1b8826e3d73728919d0a36707aa9df1ba26dbe7b806a3371",
-      "url": "https://ghproxy.com/https://github.com/TDesktop-x64/tdesktop/releases/download/v1.0.45/64Gram_1.0.45.beta_x64.zip"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "32bit": {
-        "url": "https://ghproxy.com/https://github.com/TDesktop-x64/tdesktop/releases/download/v$version/64Gram_$version$matchBeta_x86.zip"
-      },
-      "64bit": {
-        "url": "https://ghproxy.com/https://github.com/TDesktop-x64/tdesktop/releases/download/v$version/64Gram_$version$matchBeta_x64.zip"
-      }
-    }
-  },
-  "bin": [
-    [
-      "Telegram.exe",
-      "64Gram"
-    ]
-  ],
-  "checkver": {
-    "regex": "64Gram_([\\d.]+)(?<beta>\\.beta)?_x86\\.zip</span>",
-    "url": "https://github.com/TDesktop-x64/tdesktop/releases"
-  },
-  "description": "64Gram (unofficial Telegram Desktop)",
+  "version": "1.0.73",
+  "description": "Unofficial Telegram Desktop.",
   "homepage": "https://64gr.am",
   "license": {
     "identifier": "GPL-3.0-with-OpenSSL-exception",
     "url": "https://github.com/TDesktop-x64/tdesktop/blob/dev/LICENSE"
   },
-  "persist": "tdata",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/TDesktop-x64/tdesktop/releases/download/v1.0.73/64Gram_1.0.73.beta_x64.zip",
+      "hash": "988ae3370a3a5efba32a93b0ba5481dd8ebe326bbab591da68e27c7d52727fd2"
+    }
+  },
   "pre_install": "if (Test-Path \"$persist_dir\\log.txt\") { Copy-Item \"$persist_dir\\log.txt\" \"$dir\\\" }",
   "pre_uninstall": "if (Test-Path \"$dir\\log.txt\") { Copy-Item \"$dir\\log.txt\" \"$persist_dir\\\" }",
+  "bin": "Telegram.exe",
   "shortcuts": [
     [
       "Telegram.exe",
       "64Gram"
     ]
   ],
-  "version": "1.0.45",
-  "_from": "anderlli0053/DEV-tools"
+  "persist": "tdata",
+  "checkver": {
+    "url": "https://api.github.com/repos/TDesktop-x64/tdesktop/releases",
+    "regex": "64Gram v([\\d.]+) Beta"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/TDesktop-x64/tdesktop/releases/download/v$version/64Gram_$version.beta_x64.zip"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
 }

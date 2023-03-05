@@ -1,0 +1,44 @@
+{
+  "version": "1.68.1",
+  "description": "Code editing.Redefined.",
+  "homepage": "https://code.visualstudio.com/",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://code.visualstudio.com/License/"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://update.code.visualstudio.com/1.68.1/win32-x64-user/stable#/VSCode-Install.exe",
+      "hash": "70e3cc2d75626cd4038c61df2aeb0c6c0888991aafd885db61d79f937b117217"
+    }
+  },
+  "installer": {
+    "script": [
+      "Start-Process -Wait $dir\\VSCode-Install.exe /i",
+      "Remove-Item \"$dir\\VSCode-Install.exe\" -Recurse -Force"
+    ],
+    "keep": true
+  },
+  "shortcuts": [
+    [
+      "Microsoft VS Code\\code.exe",
+      "Visual Studio Code"
+    ]
+  ],
+  "checkver": {
+    "url": "https://code.visualstudio.com/sha?build=stable",
+    "jsonpath": "$.products[?(@.platform.os == 'win32-x64-archive')].name"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://update.code.visualstudio.com/$version/win32-x64-user/stable#/VSCode-Install.exe",
+        "hash": {
+          "url": "https://code.visualstudio.com/sha?build=stable",
+          "jsonpath": "$.products[?(@.platform.os == 'win32-x64-archive')].sha256hash"
+        }
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

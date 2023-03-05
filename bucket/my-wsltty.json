@@ -1,0 +1,45 @@
+{
+  "##": "Already defined in scoop-extras but the installation failed on my computer => This version only fixed the installer/uninstaller",
+  "homepage": "https://github.com/mintty/wsltty",
+  "version": "3.6.1.2",
+  "license": "GPL-3.0-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/mintty/wsltty/releases/download/3.6.1.2/wsltty-3.6.1.2-x86_64-install.exe#/dl.7z",
+      "hash": "011486b2852dd2ece997bb4bd31a5c1149f120725854749d14c7378186b3b6ce"
+    },
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/mintty/wsltty/releases/download/3.6.1.2/wsltty-3.6.1.2-i686-install.exe#/dl.7z",
+      "hash": "0ada10a87e73424d348e2d8cf35afbe9cd1f56cc48ec155ff14daa66f49fe5c2"
+    }
+  },
+  "checkver": {
+    "github": "https://github.com/mintty/wsltty"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/mintty/wsltty/releases/download/$version/wsltty-$version-x86_64-install.exe#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/mintty/wsltty/releases/download/$version/wsltty-$version-i686-install.exe#/dl.7z"
+      }
+    }
+  },
+  "installer": {
+    "script": [
+      "Push-Location \"$dir\"",
+      "& .\\install.bat",
+      "Pop-Location"
+    ],
+    "keep": true
+  },
+  "uninstaller": {
+    "script": [
+      "Push-Location \"$dir\"",
+      "& .\\uninstall.bat",
+      "Pop-Location"
+    ]
+  },
+  "_from": "okibcn/ScoopMaster"
+}

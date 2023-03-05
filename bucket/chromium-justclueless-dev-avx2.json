@@ -1,0 +1,45 @@
+{
+  "version": "113.0.5617.0-r0-AVX2",
+  "description": "Browser aiming for safer, faster, and more stable way for all users to experience the web.",
+  "license": "BSD-3-Clause",
+  "homepage": "https://www.chromium.org",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/justclueless/chromium-win64/releases/download/v113.0.5617.0-r0-AVX2/chrome.packed.7z",
+      "hash": "dbf2706f3f2ea5bc2157009e51cf269c3d83db2f125e0bfdef8db7cb19ee4518"
+    }
+  },
+  "bin": [
+    [
+      "chrome.exe",
+      "chromium-justclueless-dev-avx2"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "chrome.exe",
+      "Chromium (justclueless-dev-avx2)"
+    ]
+  ],
+  "installer": {
+    "script": [
+      "Invoke-ExternalCommand 7z -ArgumentList('x', \"$dir\\Chrome.7z\", \"-o$dir\") | Out-Null",
+      "Get-ChildItem \"$dir\\Chrome-bin\" -Recurse | Move-Item -Destination \"$dir\"",
+      "Remove-Item -Path \"$dir\\Chrome.7z\"",
+      "Remove-Item -Path \"$dir\\Chrome-bin\""
+    ]
+  },
+  "checkver": {
+    "url": "https://api.github.com/repos/justclueless/chromium-win64/releases/latest",
+    "jsonpath": "$.tag_name",
+    "regex": "v([\\d\\w-\\.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/justclueless/chromium-win64/releases/download/v$version/chrome.packed.7z"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

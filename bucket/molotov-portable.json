@@ -1,9 +1,29 @@
 {
+  "version": "4.5.0-14",
+  "description": "An app to watch French TV free of charge.",
+  "homepage": "https://www.molotov.tv",
+  "license": "Freeware",
+  "persist": [
+    "data",
+    "molotov-portable.yml"
+  ],
   "architecture": {
     "64bit": {
-      "hash": "7a0175827dd69f8982e8d49525a0632e39b0af0d4cedb73e17384564e5656e59",
-      "url": "https://ghproxy.com/https://github.com/portapps/molotov-portable/releases/download/4.5.0-14/molotov-portable-win64-4.5.0-14.7z#/dl.7z"
+      "url": "https://ghproxy.com/https://github.com/portapps/molotov-portable/releases/download/4.5.0-14/molotov-portable-win64-4.5.0-14.7z#/dl.7z",
+      "hash": "7a0175827dd69f8982e8d49525a0632e39b0af0d4cedb73e17384564e5656e59"
     }
+  },
+  "bin": "molotov-portable.exe",
+  "shortcuts": [
+    [
+      "molotov-portable.exe",
+      "Molotov"
+    ]
+  ],
+  "pre_install": "if(!(Test-Path \"$persist_dir\\molotov-portable.yml\")) { New-Item \"$dir\\molotov-portable.yml\" | Out-Null }",
+  "checkver": {
+    "url": "https://github.com/portapps/molotov-portable/releases",
+    "regex": "\\/releases\\/tag\\/(?:v|V)?([\\d.-]+)"
   },
   "autoupdate": {
     "architecture": {
@@ -15,26 +35,6 @@
       "url": "$baseurl/checksums.txt"
     }
   },
-  "bin": "molotov-portable.exe",
-  "checkver": {
-    "regex": "\\/releases\\/tag\\/(?:v|V)?([\\d.-]+)",
-    "url": "https://github.com/portapps/molotov-portable/releases"
-  },
-  "description": "An app to watch French TV free of charge.",
-  "homepage": "https://www.molotov.tv",
-  "license": "Freeware",
   "notes": "Installed from Portapps (https://portapps.io/app/molotov-portable/)",
-  "persist": [
-    "data",
-    "molotov-portable.yml"
-  ],
-  "pre_install": "if(!(Test-Path \"$persist_dir\\molotov-portable.yml\")) { New-Item \"$dir\\molotov-portable.yml\" | Out-Null }",
-  "shortcuts": [
-    [
-      "molotov-portable.exe",
-      "Molotov"
-    ]
-  ],
-  "version": "4.5.0-14",
-  "_from": "anderlli0053/DEV-tools"
+  "_from": "okibcn/ScoopMaster"
 }

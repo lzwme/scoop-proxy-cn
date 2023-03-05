@@ -1,0 +1,26 @@
+{
+  "version": "1.6.0_2021-10-05",
+  "description": "Open Cascade CAD Assistant is a powerful offline 3D CAD viewer and converter with simple and intuitive interface, free for both personal and commercial use",
+  "homepage": "https://www.opencascade.com/products/cad-assistant/",
+  "architecture": {
+    "64bit": {
+      "url": "https://www.opencascade.com/sites/default/files/private/occt/applications/cad_assistant_1.6.0_2021-10-05_win64.zip",
+      "hash": "00e44b612e36963c1b74e68a6511260114fdf30920f75948ddc8b11a43e6781b"
+    }
+  },
+  "shortcuts": [
+    [
+      "cad_assistant_1.6.0_2021-10-05_win64\\CADAssistant.exe",
+      "CAD Assistant"
+    ]
+  ],
+  "checkver": {
+    "url": "https://dev.opencascade.org/project/cad-assistant",
+    "regex": "Version.([\\d.]+)..([\\d-]+)",
+    "replace": "${1}_${2}"
+  },
+  "autoupdate": {
+    "url": "https://www.opencascade.com/sites/default/files/private/occt/applications/cad_assistant_$version_win64.zip"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

@@ -1,0 +1,17 @@
+{
+  "homepage": "http://tiltstr.seesaa.net/",
+  "description": "InnoExtractor Japanease Lang File",
+  "version": "5.4.5.202",
+  "depends": "innoextractor-portable",
+  "url": "https://tiltstr.up.seesaa.net/lang8/InnoExtractor_v5.4.5.202jp.zip",
+  "hash": "d63421919703ad12ed4ee17547aad2463f6c4450b6aabf877c0f7bfc5a7a8b88",
+  "pre_install": "copy-Item \"$dir\\InnoExtractor_v*\\Japanese.lng\" \"$(appdir innoextractor-portable $global)\\current\\Languages\"",
+  "checkver": {
+    "url": "http://tiltstr.seesaa.net/category/13477738-1.html",
+    "re": "InnoExtractor ver.([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://tiltstr.up.seesaa.net/lang8/InnoExtractor_v$versionjp.zip"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

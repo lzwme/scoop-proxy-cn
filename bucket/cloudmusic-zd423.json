@@ -1,37 +1,37 @@
 {
-  "autoupdate": {
-    "hash": {
-      "mode": "extract",
-      "regex": "$sha256\\s+$basename",
-      "url": "https://scoop-apps.vercel.app/zd423"
-    },
-    "url": "https://pan.jiemi.workers.dev/?file=/scoop/zd423/$matchFile"
-  },
-  "bin": "Cloudmusic .exe",
-  "checkver": {
-    "regex": "(?<file>CloudMusic_v([\\d.]+)\\.7z)",
-    "url": "https://scoop-apps.vercel.app/zd423"
-  },
+  "version": "2.9.8.199759",
   "description": "NetEase Cloud Music 3rd party modified version, maintained by 423down.com.",
-  "extract_dir": "CloudMusic",
-  "hash": "bd117e9e6ad7b73f906cb76460d2bbb276ccaa308cc694f6b6a1954d4f508569",
   "homepage": "https://music.163.com",
   "license": {
     "identifier": "Proprietary",
     "url": "https://st.music.163.com/official-terms/service"
   },
   "notes": "Features: <https://www.423down.com/2943.html>",
-  "persist": "Netease",
+  "url": "https://pan.jiemi.workers.dev/?file=/scoop/zd423/CloudMusic_v2.9.8.199759.7z",
+  "hash": "bd117e9e6ad7b73f906cb76460d2bbb276ccaa308cc694f6b6a1954d4f508569",
+  "extract_dir": "CloudMusic",
+  "uninstaller": {
+    "script": "Start-Process \"dir\\!)卸载清除.bat\" -WorkingDirectory \"$dir\" -Wait"
+  },
+  "bin": "Cloudmusic .exe",
   "shortcuts": [
     [
       "Cloudmusic .exe",
       "Netease Cloud Music"
     ]
   ],
-  "uninstaller": {
-    "script": "Start-Process \"dir\\!)卸载清除.bat\" -WorkingDirectory \"$dir\" -Wait"
+  "persist": "Netease",
+  "checkver": {
+    "url": "https://scoop-apps.vercel.app/zd423",
+    "regex": "(?<file>CloudMusic_v([\\d.]+)\\.7z)"
   },
-  "url": "https://pan.jiemi.workers.dev/?file=/scoop/zd423/CloudMusic_v2.9.8.199759.7z",
-  "version": "2.9.8.199759",
-  "_from": "anderlli0053/DEV-tools"
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/scoop/zd423/$matchFile",
+    "hash": {
+      "url": "https://scoop-apps.vercel.app/zd423",
+      "mode": "extract",
+      "regex": "$sha256\\s+$basename"
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
 }

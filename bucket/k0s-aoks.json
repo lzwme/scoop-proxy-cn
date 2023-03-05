@@ -1,28 +1,28 @@
 {
+  "version": "1.26.2+k0s.0",
+  "description": "Zero Friction Kubernetes distribution",
+  "homepage": "https://github.com/k0sproject/k0s",
+  "license": "Apache-2.0",
   "architecture": {
     "64bit": {
-      "hash": "c82ec064f1b17465208c6ae235ea5e2c649a8d82a7dec5304c31079ed9c5893b",
-      "url": "https://ghproxy.com/https://github.com/k0sproject/k0s/releases/download/v1.24.4%2Bk0s.0/k0s-v1.24.4+k0s.0-amd64.exe#/k0s.exe"
+      "url": "https://ghproxy.com/https://github.com/k0sproject/k0s/releases/download/v1.26.2+k0s.0/k0s-v1.26.2+k0s.0-amd64.exe#/k0s.exe",
+      "hash": "6970e0636bc56726a9dff5138a5afea2d92178dbce1a3189f59fa82b05a099ec"
     }
+  },
+  "bin": "k0s.exe",
+  "suggest": {
+    "k0sctl": "scoop-aoks/k0sctl-aoks"
+  },
+  "checkver": {
+    "url": "https://github.com/k0sproject/k0s/releases",
+    "regex": "v([\\d.]+\\+k0s[\\d.]+)"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.com/https://github.com/k0sproject/k0s/releases/download/v$version%2Bk0s.$matchPatch/k0s-v$version+k0s.$matchPatch-amd64.exe#/k0s.exe"
+        "url": "https://ghproxy.com/https://github.com/k0sproject/k0s/releases/download/v$version/k0s-v$version-amd64.exe#/k0s.exe"
       }
     }
   },
-  "bin": "k0s.exe",
-  "checkver": {
-    "regex": "k0s-v([\\d.-]+)\\+k0s\\.(?<patch>\\d)-amd64.exe",
-    "url": "https://github.com/k0sproject/k0s/releases/"
-  },
-  "description": "Zero Friction Kubernetes distribution",
-  "homepage": "https://github.com/k0sproject/k0s",
-  "license": "Apache-2.0",
-  "suggest": {
-    "k0sctl": "scoop-aoks/k0sctl-aoks"
-  },
-  "version": "1.24.4",
-  "_from": "anderlli0053/DEV-tools"
+  "_from": "okibcn/ScoopMaster"
 }

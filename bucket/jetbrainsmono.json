@@ -1,35 +1,35 @@
 {
+  "version": "2.304",
+  "description": "JetBrains Mono – the free and open-source typeface for developers",
+  "license": "OFL-1.1",
+  "homepage": "https://github.com/JetBrains/JetBrainsMono",
+  "url": "https://ghproxy.com/https://github.com/JetBrains/JetBrainsMono/releases/download/v2.304/JetBrainsMono-2.304.zip",
+  "hash": "6f6376c6ed2960ea8a963cd7387ec9d76e3f629125bc33d1fdcd7eb7012f7bbf",
+  "extract_dir": "fonts/ttf",
+  "checkver": "github",
   "autoupdate": {
     "url": "https://ghproxy.com/https://github.com/JetBrains/JetBrainsMono/releases/download/v$version/JetBrainsMono-$version.zip"
   },
-  "checkver": "github",
-  "depends": "sudo",
-  "description": "JetBrains Mono – the free and open-source typeface for developers",
-  "extract_dir": "fonts/ttf",
-  "hash": "6f6376c6ed2960ea8a963cd7387ec9d76e3f629125bc33d1fdcd7eb7012f7bbf",
-  "homepage": "https://github.com/JetBrains/JetBrainsMono",
+  "pre_install": "Get-ChildItem $dir -Exclude JetBrainsMono-*.ttf | Remove-Item",
   "installer": {
     "script": [
-      "if(!(is_admin)) { error \"Admin rights are required, please run 'sudo scoop install $app'\"; exit 1 }",
-      "Get-ChildItem $dir -filter '*.ttf' | ForEach-Object {",
-      "    New-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $_.Name -Force | Out-Null",
-      "    Copy-Item $_.FullName -destination \"$env:windir\\Fonts\"",
-      "}"
+      "if(!(is_admin)) { error \"Admin rights are required.\"; exit 1 }",
+      "Get-ChildItem $dir -Filter 'JetBrainsMono-*.ttf' -Recurse | ForEach-Object {",
+      "  New-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $_.Name -Force | Out-Null",
+      "  Copy-Item $_.FullName -destination \"$env:windir\\Fonts\"",
+      "}",
+      "Write-Host \"Remember to uninstall this app before installing a JetBrains IDE.\" -Foreground Magenta"
     ]
   },
-  "license": "SIL Open Font License",
-  "notes": "You may need to restart the system to use recently installed fonts.",
   "uninstaller": {
     "script": [
-      "if(!(is_admin)) { error \"Admin rights are required, please run 'sudo scoop uninstall $app'\"; exit 1 }",
-      "Get-ChildItem $dir -filter '*.ttf' | ForEach-Object {",
-      "    Remove-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
-      "    Remove-Item \"$env:windir\\Fonts\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
+      "if(!(is_admin)) { error \"Admin rights are required.\"; exit 1 }",
+      "Get-ChildItem $dir -filter '*.ttf' -Recurse | ForEach-Object {",
+      "  Remove-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
+      "  Remove-Item \"$env:windir\\Fonts\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
       "}",
-      "Write-Host \"The '$app' font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
+      "Write-Host \"'JetBrains Mono' TTF files have been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
     ]
   },
-  "url": "https://ghproxy.com/https://github.com/JetBrains/JetBrainsMono/releases/download/v2.304/JetBrainsMono-2.304.zip",
-  "version": "2.304",
-  "_from": "anderlli0053/DEV-tools"
+  "_from": "okibcn/ScoopMaster"
 }

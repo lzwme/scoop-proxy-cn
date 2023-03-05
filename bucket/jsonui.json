@@ -1,34 +1,27 @@
 {
-  "homepage": "https://github.com/gulyasm/jsonui",
   "version": "1.0.1",
-  "license": "Apache-2.0",
+  "description": "An interactive, command line JSON explorer. (archived)",
+  "homepage": "https://github.com/gulyasm/jsonui",
+  "license": "MIT",
   "architecture": {
     "64bit": {
       "url": "https://ghproxy.com/https://github.com/gulyasm/jsonui/releases/download/v1.0.1/jsonui_windows_amd64.exe",
-      "hash": "a5618415bea0f6dc1a366557872431c6e4948447f8c7b5f92c6cc0c02ae6b4c0",
-      "installer": {
-        "script": "Rename-Item \"$dir\\jsonui_windows_amd64.exe\" \"$dir\\jsonui.exe\""
-      }
-    },
-    "32bit": {
-      "url": "https://ghproxy.com/https://github.com/gulyasm/jsonui/releases/download/v1.0.1/jsonui_windows_386.exe",
-      "hash": "7857c02bcfdc722feb9a3864bd5535c55956718c87ec982c3627b7e1b6e00c9c",
-      "installer": {
-        "script": "Rename-Item \"$dir\\jsonui_windows_amd64.exe\" \"$dir\\jsonui.exe\""
-      }
+      "hash": "a5618415bea0f6dc1a366557872431c6e4948447f8c7b5f92c6cc0c02ae6b4c0"
     }
   },
-  "bin": "jsonui.exe",
+  "bin": [
+    [
+      "jsonui_windows_amd64.exe",
+      "jsonui"
+    ]
+  ],
   "checkver": "github",
   "autoupdate": {
     "architecture": {
       "64bit": {
         "url": "https://ghproxy.com/https://github.com/gulyasm/jsonui/releases/download/v$version/jsonui_windows_amd64.exe"
-      },
-      "32bit": {
-        "url": "https://ghproxy.com/https://github.com/gulyasm/jsonui/releases/download/v$version/jsonui_windows_386.exe"
       }
     }
   },
-  "_from": "kkzzhizhou/scoop-apps"
+  "_from": "okibcn/ScoopMaster"
 }

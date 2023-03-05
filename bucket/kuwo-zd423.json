@@ -1,24 +1,7 @@
 {
-  "autoupdate": {
-    "hash": {
-      "mode": "extract",
-      "regex": "^$sha256([\\s]+)$basename",
-      "url": "https://scoop-apps.vercel.app/zd423"
-    },
-    "url": "https://pan.jiemi.workers.dev/?file=/scoop/zd423/$matchFilename"
-  },
-  "bin": "KwMusic.exe",
-  "checkver": {
-    "regex": "(?s)(?<filename>KwMusic_([\\d.]+).*?\\.(?:7z|zip|rar))",
-    "url": "https://scoop-apps.vercel.app/zd423"
-  },
+  "version": "9.1.1.7",
   "description": "酷我音乐去广告破解版 - zd423",
-  "extract_dir": "KwMusic",
-  "hash": "3688c5e845e40c627fb19379807e91f481e0f08c639721a6c9fd6c671caa0f2a",
   "homepage": "http://kuwo.cn",
-  "installer": {
-    "script": "Start-Process \"$dir\\!)绿化处理.bat\" -WorkingDirectory \"$dir\" -Wait -Verb RunAs"
-  },
   "license": {
     "identifier": "Proprietary",
     "url": "http://www.kuwo.cn/static/page/license/license.html"
@@ -34,19 +17,36 @@
     "  - 去选项无用项: 今日看点、检查更新、显示主播上线提醒、退出后关闭播放引擎等;",
     "  - 删除垃圾文件: 今日看点、游戏程序、爱奇艺客户端插件、自动升级、错误报告等;"
   ],
-  "shortcuts": [
-    [
-      "KwMusic.exe",
-      "Kuwo Music"
-    ]
-  ],
+  "url": "https://pan.jiemi.workers.dev/?file=/scoop/zd423/KwMusic_9.1.1.7_Green.7z",
+  "hash": "3688c5e845e40c627fb19379807e91f481e0f08c639721a6c9fd6c671caa0f2a",
+  "extract_dir": "KwMusic",
+  "installer": {
+    "script": "Start-Process \"$dir\\!)绿化处理.bat\" -WorkingDirectory \"$dir\" -Wait -Verb RunAs"
+  },
   "uninstaller": {
     "script": [
       "Start-Process \"$dir\\!)卸载清除.bat\" -WorkingDirectory \"$dir\" -Wait -Verb RunAs",
       "Write-Host \"The '$app' has been uninstalled.\" -Foreground Magenta"
     ]
   },
-  "url": "https://pan.jiemi.workers.dev/?file=/scoop/zd423/KwMusic_9.1.1.7_Green.7z",
-  "version": "9.1.1.7",
-  "_from": "anderlli0053/DEV-tools"
+  "bin": "KwMusic.exe",
+  "shortcuts": [
+    [
+      "KwMusic.exe",
+      "Kuwo Music"
+    ]
+  ],
+  "checkver": {
+    "url": "https://scoop-apps.vercel.app/zd423",
+    "regex": "(?s)(?<filename>KwMusic_([\\d.]+).*?\\.(?:7z|zip|rar))"
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/scoop/zd423/$matchFilename",
+    "hash": {
+      "url": "https://scoop-apps.vercel.app/zd423",
+      "mode": "extract",
+      "regex": "^$sha256([\\s]+)$basename"
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
 }

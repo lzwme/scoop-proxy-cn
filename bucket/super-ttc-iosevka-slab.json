@@ -1,17 +1,10 @@
 {
-  "autoupdate": {
-    "hash": {
-      "mode": "extract",
-      "regex": "$basename\\s+$sha256",
-      "url": "https://github.com/be5invis/Iosevka/blob/v$version/doc/packages-sha.txt"
-    },
-    "url": "https://ghproxy.com/https://github.com/be5invis/Iosevka/releases/download/v$version/super-ttc-iosevka-slab-$version.zip"
-  },
-  "checkver": "github",
-  "depends": "sudo",
-  "description": "Iosevka is an open-source, sans-serif + slab-serif, monospace + quasi‑proportional typeface family, designed for writing code, using in terminals, and preparing technical documents.",
-  "hash": "64b30e898e8b1d7a9ca974c8a4c47685a6709d546190bef20ed167f402f8891d",
+  "version": "20.0.0",
+  "description": "Iosevka is an open-source, sans-serif + slab-serif, monospace + quasi-proportional typeface family",
   "homepage": "https://github.com/be5invis/Iosevka",
+  "license": "OFL-1.1",
+  "url": "https://ghproxy.com/https://github.com/be5invis/Iosevka/releases/download/v20.0.0/super-ttc-iosevka-slab-20.0.0.zip",
+  "hash": "15fe118affa4d7849f3407245e0a099b7b57a8e9d4567d6b0a8d9a9a6469637b",
   "installer": {
     "script": [
       "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
@@ -33,10 +26,6 @@
       "}"
     ]
   },
-  "license": {
-    "identifier": "OFL-1.1"
-  },
-  "notes": "You may need to restart the system to use recently installed fonts.",
   "uninstaller": {
     "script": [
       "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
@@ -68,7 +57,9 @@
       "Write-Host \"The '$app' Font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
     ]
   },
-  "url": "https://ghproxy.com/https://github.com/be5invis/Iosevka/releases/download/v19.0.0/super-ttc-iosevka-slab-19.0.0.zip",
-  "version": "19.0.0",
-  "_from": "anderlli0053/DEV-tools"
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/be5invis/Iosevka/releases/download/v$version/super-ttc-iosevka-slab-$version.zip"
+  },
+  "_from": "okibcn/ScoopMaster"
 }

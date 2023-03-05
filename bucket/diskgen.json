@@ -1,44 +1,44 @@
 {
-  "architecture": {
-    "32bit": {
-      "hash": "9f60c40e54510e204d5b5ab67fa131df9b23fa22d540b62f1b8a2114e1d06774",
-      "url": "https://download.eassos.cn/DG5451412_x86.zip"
-    },
-    "64bit": {
-      "hash": "592586a72b33bc74dcf4d76d551da71347bae5413e5832b8be1d01b4b45872f3",
-      "url": "https://download.eassos.cn/DG5451412_x64.zip"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "32bit": {
-        "url": "https://download.eassos.cn/DG$cleanVersion_x86.zip"
-      },
-      "64bit": {
-        "url": "https://download.eassos.cn/DG$cleanVersion_x64.zip"
-      }
-    }
-  },
-  "bin": "DiskGenius.exe",
-  "checkver": {
-    "regex": "\\[([\\d.]+)\\]",
-    "url": "https://www.diskgenius.cn/pro/statistics/update.php"
-  },
+  "version": "5.4.6.1441",
   "description": "DiskGenius (Chinese)",
-  "extract_dir": "DiskGenius",
   "homepage": "https://www.diskgenius.cn/download.php",
   "license": {
     "identifier": "Shareware",
     "url": "https://www.eassos.cn/dg/buynow.php"
   },
-  "persist": "Options.ini",
+  "architecture": {
+    "64bit": {
+      "url": "https://download.eassos.cn/DG5461441_x64.zip",
+      "hash": "76a3e82a032c1f074e70c541abb80d036ae426eb73942f30dca99f9987112604"
+    },
+    "32bit": {
+      "url": "https://download.eassos.cn/DG5461441_x86.zip",
+      "hash": "917d271ae966ce7442c646fcf76fa929d998f526b87096ba7b4e6dd6472ed1c1"
+    }
+  },
+  "extract_dir": "DiskGenius",
   "pre_install": "if (!(Test-Path \"$persist_dir\\Options.ini\")) { New-Item \"$dir\\Options.ini\" | Out-Null }",
+  "bin": "DiskGenius.exe",
   "shortcuts": [
     [
       "DiskGenius.exe",
       "DiskGenius"
     ]
   ],
-  "version": "5.4.5.1412",
-  "_from": "anderlli0053/DEV-tools"
+  "persist": "Options.ini",
+  "checkver": {
+    "url": "https://www.diskgenius.cn/pro/statistics/update.php",
+    "regex": "\\[([\\d.]+)\\]"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://download.eassos.cn/DG$cleanVersion_x64.zip"
+      },
+      "32bit": {
+        "url": "https://download.eassos.cn/DG$cleanVersion_x86.zip"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
 }

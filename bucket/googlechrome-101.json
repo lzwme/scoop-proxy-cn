@@ -1,0 +1,52 @@
+{
+  "version": "101.0.4951.41",
+  "description": "Fast, secure, and free web browser, built for the modern web.",
+  "homepage": "https://www.google.com/chrome/",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://www.google.com/chrome/privacy/eula_text.html"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://dl.google.com/release2/chrome/adhsa4gplkf573nizk5shcj4dsfq_101.0.4951.41/101.0.4951.41_chrome_installer.exe#/dl.7z",
+      "hash": "a766ef7c9af7598cc021fd120fcaf52772237c7de7591a00e75485cc14647422"
+    },
+    "32bit": {
+      "url": "https://dl.google.com/release2/chrome/adnuzcfdd5hcbzuidzfp6h4fkx4q_101.0.4951.41/101.0.4951.41_chrome_installer.exe#/dl.7z",
+      "hash": "8a8087408e3142ae5b213838515b290e8b273b64f43cde224f40f6004e771e96"
+    }
+  },
+  "installer": {
+    "script": "Expand-7zipArchive \"$dir\\chrome.7z\" -ExtractDir 'Chrome-bin' -Removal"
+  },
+  "bin": "chrome.exe",
+  "shortcuts": [
+    [
+      "chrome.exe",
+      "Google Chrome"
+    ]
+  ],
+  "checkver": {
+    "url": "https://scoopinstaller.github.io/UpdateTracker/googlechrome/chrome.min.xml",
+    "regex": "(?sm)<stable32><version>(?<version>[\\d.]+)</version>.+release2/chrome/(?<32>[\\w-]+)_.+<stable64>.+release2/chrome/(?<64>[\\w-]+)_.+</stable64>"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://dl.google.com/release2/chrome/$match64_$version/$version_chrome_installer.exe#/dl.7z",
+        "hash": {
+          "url": "https://scoopinstaller.github.io/UpdateTracker/googlechrome/chrome.min.xml",
+          "xpath": "/chromechecker/stable64[version='$version']/sha256"
+        }
+      },
+      "32bit": {
+        "url": "https://dl.google.com/release2/chrome/$match32_$version/$version_chrome_installer.exe#/dl.7z",
+        "hash": {
+          "url": "https://scoopinstaller.github.io/UpdateTracker/googlechrome/chrome.min.xml",
+          "xpath": "/chromechecker/stable32[version='$version']/sha256"
+        }
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

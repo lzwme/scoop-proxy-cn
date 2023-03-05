@@ -11,6 +11,10 @@
     "32bit": {
       "url": "https://ghproxy.com/https://github.com/raviqqe/muffet/releases/download/v2.7.0/muffet_2.7.0_Windows_i386.tar.gz",
       "hash": "039b17674d5dbb4edf5d006a92b366746eb2fa608d3ba07be3fecbf3d9a77b2e"
+    },
+    "arm64": {
+      "url": "https://ghproxy.com/https://github.com/raviqqe/muffet/releases/download/v2.7.0/muffet_2.7.0_Windows_ARM64.tar.gz",
+      "hash": "babf36d453a19ad086c37e9b6f7b4adde5e6e0e57d796e3dc535c1b832999603"
     }
   },
   "bin": "muffet.exe",
@@ -22,12 +26,14 @@
       },
       "32bit": {
         "url": "https://ghproxy.com/https://github.com/raviqqe/muffet/releases/download/v$version/muffet_$version_Windows_i386.tar.gz"
+      },
+      "arm64": {
+        "url": "https://ghproxy.com/https://github.com/raviqqe/muffet/releases/download/v$version/muffet_$version_Windows_ARM64.tar.gz"
       }
     },
     "hash": {
-      "url": "https://ghproxy.com/https://github.com/raviqqe/muffet/releases/download/v$version/muffet_$version_checksums.txt",
-      "mode": "extract"
+      "url": "$baseurl/muffet_$version_checksums.txt"
     }
   },
-  "_from": "kkzzhizhou/scoop-apps"
+  "_from": "okibcn/ScoopMaster"
 }

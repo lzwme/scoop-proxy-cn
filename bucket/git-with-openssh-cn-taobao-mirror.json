@@ -1,0 +1,61 @@
+{
+  "version": "2.37.3.windows.1",
+  "homepage": "https://github.com/git-for-windows/git",
+  "description": "Distributed version control system. China Taobao mirror.",
+  "license": "GPL-2.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://registry.npmmirror.com/-/binary/git-for-windows/v2.37.3.windows.1/PortableGit-2.37.3-64-bit.7z.exe#/dl.7z",
+      "hash": "ecd013c3aecdde0ffb363d5058d379a9c4037ff9ffbc004218632e288490f35c"
+    },
+    "32bit": {
+      "url": "https://registry.npmmirror.com/-/binary/git-for-windows/v2.37.3.windows.1/PortableGit-2.37.3-32-bit.7z.exe#/dl.7z",
+      "hash": "fbb50b45117ee1ca559e353f19b9a903f08febba50bd88fb4c3c3ddf533f024c"
+    }
+  },
+  "bin": [
+    "cmd\\git.exe",
+    "cmd\\gitk.exe",
+    "cmd\\git-gui.exe",
+    "git-bash.exe",
+    "usr\\bin\\ssh.exe",
+    "usr\\bin\\sshd.exe",
+    "usr\\bin\\scp.exe",
+    "usr\\bin\\sftp.exe",
+    "usr\\bin\\ssh-add.exe",
+    "usr\\bin\\ssh-agent.exe",
+    "usr\\bin\\ssh-keygen.exe",
+    "usr\\bin\\ssh-keyscan.exe",
+    "usr\\bin\\tig.exe"
+  ],
+  "shortcuts": [
+    [
+      "git-bash.exe",
+      "Git Bash",
+      "--cd-to-home"
+    ],
+    [
+      "cmd\\git-gui.exe",
+      "Git GUI"
+    ]
+  ],
+  "post_install": "git config --global credential.helper manager",
+  "checkver": {
+    "github": "https://github.com/git-for-windows/git",
+    "regex": "v([\\w.]+)/PortableGit-(?<ver>[\\w.]+)-64-bit"
+  },
+  "env_set": {
+    "GIT_INSTALL_ROOT": "$dir"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://registry.npmmirror.com/-/binary/git-for-windows/v$version/PortableGit-$matchVer-64-bit.7z.exe#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://registry.npmmirror.com/-/binary/git-for-windows/v$version/PortableGit-$matchVer-32-bit.7z.exe#/dl.7z"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

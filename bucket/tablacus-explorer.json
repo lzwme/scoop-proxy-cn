@@ -1,42 +1,61 @@
 {
+  "version": "23.1.31",
+  "description": "A tabbed file manager with Add-on support.",
+  "homepage": "https://tablacus.github.io/explorer_en.html",
+  "license": {
+    "identifier": "MIT",
+    "url": "https://github.com/tablacus/TablacusExplorer/blob/master/LICENSE"
+  },
+  "url": "https://ghproxy.com/https://github.com/tablacus/TablacusExplorer/releases/download/23.1.31/te230131.zip",
+  "hash": "5c4f6a24fd0e3168268a2d8b047306127a92e0912c3bd94c61e5b411ebdb3d7c",
   "architecture": {
-    "32bit": {
-      "bin": "TE32.exe",
-      "shortcuts": [
-        [
-          "TE32.exe",
-          "Tablacus Explorer"
-        ]
-      ]
-    },
     "64bit": {
-      "bin": "TE64.exe",
+      "bin": [
+        [
+          "TE64.exe",
+          "te"
+        ],
+        [
+          "TE64.exe",
+          "tablacus"
+        ]
+      ],
       "shortcuts": [
         [
           "TE64.exe",
           "Tablacus Explorer"
         ]
       ]
+    },
+    "32bit": {
+      "bin": [
+        [
+          "TE32.exe",
+          "te"
+        ],
+        [
+          "TE32.exe",
+          "tablacus"
+        ]
+      ],
+      "shortcuts": [
+        [
+          "TE32.exe",
+          "Tablacus Explorer"
+        ]
+      ]
     }
   },
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/tablacus/TablacusExplorer/releases/download/$matchVersion/te$matchFile.zip"
-  },
-  "checkver": {
-    "re": "<a href=\"/tablacus/TablacusExplorer/releases/download/(?<version>[\\d.]+)/te(?<file>[\\d]{6}).zip\"",
-    "url": "https://github.com/tablacus/TablacusExplorer/releases/latest"
-  },
-  "description": "A tabbed file manager with Add-on support.",
-  "hash": "07e3e303b046a7a680c50a6cc2f74ee5af47a400a5ad59619db7b3fc7b9ad3ee",
-  "homepage": "https://tablacus.github.io/explorer_en.html",
-  "license": {
-    "identifier": "MIT"
-  },
   "persist": [
+    "config",
     "addons",
-    "config"
+    "icons"
   ],
-  "url": "https://ghproxy.com/https://github.com/tablacus/TablacusExplorer/releases/download/22.9.5/te220905.zip",
-  "version": "22.9.5",
-  "_from": "anderlli0053/DEV-tools"
+  "checkver": {
+    "regex": "Version <span id=\"ver\">([\\d.]+)</span>[\\w\\W]*?te(?<cleanpadding>\\d+)\\.zip"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/tablacus/TablacusExplorer/releases/download/$version/te$matchCleanpadding.zip"
+  },
+  "_from": "okibcn/ScoopMaster"
 }

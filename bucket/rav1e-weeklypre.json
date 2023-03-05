@@ -1,0 +1,25 @@
+{
+  "version": "p20230221",
+  "description": "An AV1 video encoder designed to eventually cover all use cases.",
+  "homepage": "https://github.com/xiph/rav1e",
+  "license": "BSD-2-Clause",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/xiph/rav1e/releases/download/p20230221/rav1e.exe",
+      "hash": "3d766fb4cc3391a8a31b64439d56c6c3a211d80018a7f7cca52ee046e8780a95"
+    }
+  },
+  "bin": "rav1e.exe",
+  "checkver": {
+    "url": "https://github.com/xiph/rav1e/releases",
+    "regex": "tag/(?<version>p[\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/xiph/rav1e/releases/download/$version/rav1e.exe"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

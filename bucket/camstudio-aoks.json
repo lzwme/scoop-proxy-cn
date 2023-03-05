@@ -1,16 +1,11 @@
 {
-  "autoupdate": {
-    "url": "https://cs07112018.s3.us-east-2.amazonaws.com/CamStudioSetup.exe"
-  },
-  "bin": "CamCommandLine.exe",
-  "checkver": {
-    "regex": "Latest Version</strong></span><strong>: CamStudio ([\\d.-]+) ",
-    "url": "https://camstudio.org/"
-  },
-  "depends": "extras/vcredist2010",
-  "description": "Free Desktop Recorder Streaming Video Software.",
-  "hash": "3fbe450e3267799f372a775e4c7e7c47c8bbffeebb0bd0c9690e63374eba8ba0",
   "homepage": "https://camstudio.org/",
+  "version": "2.7.4",
+  "description": "Free Desktop Recorder Streaming Video Software.",
+  "license": "GPL-3.0-only",
+  "url": "https://cs07112018.s3.us-east-2.amazonaws.com/CamStudioSetup.exe",
+  "hash": "3fbe450e3267799f372a775e4c7e7c47c8bbffeebb0bd0c9690e63374eba8ba0",
+  "depends": "extras/vcredist2010",
   "installer": {
     "args": [
       "/VERYSILENT",
@@ -21,7 +16,14 @@
       "/NORESTARTAPPLICATIONS"
     ]
   },
-  "license": "GPL-3.0-only",
+  "uninstaller": {
+    "file": "unins000.exe",
+    "args": [
+      "/VERYSILENT",
+      "/SUPPRESSMSGBOXES",
+      "/NORESTART"
+    ]
+  },
   "shortcuts": [
     [
       "Recorder.exe",
@@ -36,15 +38,13 @@
       "Camstudio PlayerPlus"
     ]
   ],
-  "uninstaller": {
-    "args": [
-      "/VERYSILENT",
-      "/SUPPRESSMSGBOXES",
-      "/NORESTART"
-    ],
-    "file": "unins000.exe"
+  "bin": "CamCommandLine.exe",
+  "checkver": {
+    "url": "https://camstudio.org/",
+    "regex": ">Latest Version: CamStudio ([\\d.-]+)"
   },
-  "url": "https://cs07112018.s3.us-east-2.amazonaws.com/CamStudioSetup.exe",
-  "version": "2.7.4",
-  "_from": "anderlli0053/DEV-tools"
+  "autoupdate": {
+    "url": "https://cs07112018.s3.us-east-2.amazonaws.com/CamStudioSetup.exe"
+  },
+  "_from": "okibcn/ScoopMaster"
 }

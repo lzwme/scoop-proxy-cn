@@ -1,0 +1,57 @@
+{
+  "version": "22.11.1-4",
+  "description": "A cross-platform, Python-agnostic binary package manager",
+  "homepage": "https://conda-forge.org/",
+  "license": "BSD-3-Clause",
+  "notes": [
+    "Currently conda envs activate and deactivate doesn't work on PowerShell,",
+    "for more information, see: https://github.com/conda/conda/issues/626,",
+    "or just execute: 'conda install -n root -c pscondaenvs pscondaenvs'"
+  ],
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/conda-forge/miniforge/releases/download/22.11.1-4/Miniforge3-22.11.1-4-Windows-x86_64.exe",
+      "hash": "1329ea96750dc8436c0236ed5766ea7b212e31d4733da29a6c26d7b3e155e316"
+    }
+  },
+  "installer": {
+    "args": [
+      "/S",
+      "/InstallationType=JustMe",
+      "/RegisterPython=0",
+      "/AddToPath=0",
+      "/NoRegistry=1",
+      "/D=$dir"
+    ]
+  },
+  "uninstaller": {
+    "file": "Uninstall-Miniforge3.exe",
+    "args": "/S"
+  },
+  "bin": [
+    "python.exe",
+    "pythonw.exe",
+    [
+      "python.exe",
+      "python3"
+    ]
+  ],
+  "env_add_path": [
+    "scripts",
+    "Library\\bin"
+  ],
+  "persist": "envs",
+  "checkver": {
+    "url": "https://github.com/conda-forge/miniforge/releases/latest",
+    "regex": "Miniforge3 (?<major>[\\d\\.]+)-(?<build>[\\d]+)",
+    "replace": "${major}-${build}"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/conda-forge/miniforge/releases/download/$version/Miniforge3-$version-Windows-x86_64.exe"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

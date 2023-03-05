@@ -1,14 +1,10 @@
 {
-  "version": "2.0.1",
-  "license": "SIL OFL 1.1",
-  "homepage": "https://github.com/rastikerdar/parastoo-font",
-  "url": "https://ghproxy.com/https://github.com/rastikerdar/parastoo-font/releases/download/v2.0.1/parastoo-font-v2.0.1.zip",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/rastikerdar/parastoo-font/releases/download/v$version/parastoo-font-v$version.zip"
+  },
+  "checkver": "github",
   "hash": "cfa4622b7733330d898e7f228924e5952f14fb62091cf9ddebdc3633b673e43f",
-  "pre_install": [
-    "Move-Item $dir\\web\\*.ttf $dir",
-    "Remove-Item $dir\\* -exclude *.ttf -Force -Recurse",
-    "Get-ChildItem \"$dir\" -Recurse -Directory | Remove-Item -Recurse"
-  ],
+  "homepage": "https://github.com/rastikerdar/parastoo-font",
   "installer": {
     "script": [
       "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
@@ -30,6 +26,12 @@
       "}"
     ]
   },
+  "license": "SIL OFL 1.1",
+  "pre_install": [
+    "Move-Item $dir\\web\\*.ttf $dir",
+    "Remove-Item $dir\\* -exclude *.ttf -Force -Recurse",
+    "Get-ChildItem \"$dir\" -Recurse -Directory | Remove-Item -Recurse"
+  ],
   "uninstaller": {
     "script": [
       "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
@@ -50,9 +52,7 @@
       "Write-Host \"The '$app' font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
     ]
   },
-  "checkver": "github",
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/rastikerdar/parastoo-font/releases/download/v$version/parastoo-font-v$version.zip"
-  },
-  "_from": "kkzzhizhou/scoop-apps"
+  "url": "https://ghproxy.com/https://github.com/rastikerdar/parastoo-font/releases/download/v2.0.1/parastoo-font-v2.0.1.zip",
+  "version": "2.0.1",
+  "_from": "okibcn/ScoopMaster"
 }

@@ -1,0 +1,22 @@
+{
+  "##": ":Winfetch",
+  "version": "0.2023.01.31",
+  "description": "A command-line system information utility for Windows 10",
+  "homepage": "https://github.com/lptstr/winfetch",
+  "license": "MIT",
+  "suggest": {
+    "jcwillox/imagemagick-pure": "imagemagick-pure"
+  },
+  "url": "https://ghproxy.com/https://raw.githubusercontent.com/lptstr/winfetch/62ede34254d57f3b9e089f50b32b789f9a09cf80/winfetch.ps1",
+  "hash": "a158550ed0c3454ee41c2683e023c7fe7a393300bc4ac02b2c2cea9ae4461163",
+  "bin": "winfetch.ps1",
+  "checkver": {
+    "url": "https://github.com/lptstr/winfetch/commits/master.atom",
+    "regex": "(?s)>(\\d+)-(\\d+)-(\\d+)T.*?/(?<sha>[0-9a-f]{40})",
+    "replace": "0.${1}.${2}.${3}"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://raw.githubusercontent.com/lptstr/winfetch/$matchSha/winfetch.ps1"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

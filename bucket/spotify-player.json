@@ -1,0 +1,26 @@
+{
+  "homepage": "https://github.com/aome510/spotify-player",
+  "description": "A command driven spotify player",
+  "version": "0.10.0",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/aome510/spotify-player/releases/download/v0.10.0/spotify_player-x86_64-pc-windows-msvc.zip",
+      "hash": "f9b46487b8bb4e8d9bd63206352070ee1a7b9886d1b8e4b9242e698c988c535d"
+    }
+  },
+  "bin": "spotify_player.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/aome510/spotify-player/releases/download/v$version/spotify_player-x86_64-pc-windows-msvc.zip",
+        "hash": {
+          "url": "https://ghproxy.com/https://github.com/aome510/spotify-player/releases/download/v$version/spotify_player-x86_64-pc-windows-msvc.sha256",
+          "regex": "$sha256"
+        }
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

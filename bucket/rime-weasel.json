@@ -1,0 +1,42 @@
+{
+  "version": "0.14.3.0",
+  "description": "【小狼毫】Rime for Windows",
+  "homepage": "https://rime.im",
+  "license": "GPL",
+  "url": "https://dl.bintray.com/rime/weasel/weasel-0.14.3.0-installer.exe#/dl.7z",
+  "hash": "de63dc2ef45d5b094a239fc704051270f3185bf9e883132532b7e17d2fdaf81b",
+  "pre_install": [
+    "$Source = \"$persist_dir\\AppData\"",
+    "$Target = \"$env:AppData\\Rime\"",
+    "Remove-Item \"$dir\\`$PLUGINSDIR\" -Recurse",
+    "New-Item -ItemType Directory -Path $Source -ErrorAction Ignore | Out-Null",
+    "New-Item -ItemType Junction -Path $Target -Target $Source -ErrorAction Ignore | Out-Null"
+  ],
+  "installer": {
+    "script": [
+      "New-ItemProperty -Path \"HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\" -Name WeaselServer -Value \"$dir\\WeaselServer.exe\" -ErrorAction Ignore | Out-Null",
+      "Start-Process -Wait \"$dir\\WeaselSetup.exe\" \"/i\"",
+      "#Start-Process -Wait \"$dir\\WeaselDeployer.exe\" \"/install\"",
+      "Start-Process \"$dir\\WeaselServer.exe\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Remove-ItemProperty -Path \"HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\" -Name WeaselServer",
+      "#Start-Process -Wait \"$dir\\WeaselServer.exe\" \"/quit\"",
+      "#Start-Process -Wait \"$dir\\WeaselSetup.exe\" \"/u\"",
+      "Start-Process -Wait \"$dir\\uninstall.exe\"",
+      "$Source = \"$persist_dir\\AppData\"",
+      "$Target = \"$env:AppData\\Rime\"",
+      "cmd /c rmdir /s /q $Target"
+    ]
+  },
+  "checkver": {
+    "url": "https://rime.im/download/",
+    "regex": "weasel-([\\d.]+)-installer.exe"
+  },
+  "autoupdate": {
+    "url": "https://dl.bintray.com/rime/weasel/weasel-$version-installer.exe#/dl.7z"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

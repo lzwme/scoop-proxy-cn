@@ -1,0 +1,34 @@
+{
+  "homepage": "https://blackfire.io",
+  "version": "2.13.2",
+  "license": "Proprietary",
+  "architecture": {
+    "64bit": {
+      "url": "https://packages.blackfire.io/binaries/blackfire/2.13.2/blackfire-windows_amd64.zip",
+      "hash": "d818d88e3bf3c49839c486b4e146831787ee04845b19216df76cdd972ec8743a"
+    },
+    "32bit": {
+      "url": "https://packages.blackfire.io/binaries/blackfire/2.13.2/blackfire-windows_386.zip",
+      "hash": "55a44dad6373a16e891df9c816307686b1761dcafc5c11200abb4f66c5f05f98"
+    }
+  },
+  "bin": "blackfire.exe",
+  "checkver": {
+    "url": "https://blackfire.io/docs/up-and-running/update",
+    "regex": "<th><small>Unified Agent and Client <em>v2</em></small></th>\\s+<td class=\"version\">([0-9.]+)</td>"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://packages.blackfire.io/binaries/blackfire/$version/blackfire-windows_amd64.zip"
+      },
+      "32bit": {
+        "url": "https://packages.blackfire.io/binaries/blackfire/$version/blackfire-windows_386.zip"
+      }
+    }
+  },
+  "suggest": {
+    "curl": "curl"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

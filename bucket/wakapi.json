@@ -1,0 +1,29 @@
+{
+  "homepage": "https://github.com/muety/wakapi#-features",
+  "url": "https://ghproxy.com/https://github.com/muety/wakapi/releases/download/2.6.0/wakapi_windows_amd64.zip",
+  "hash": "670442bf4dacde5a610bb69d7a36c9ac0553e064726937c363df88d6926bf837",
+  "description": "A minimalist, self-hosted WakaTime-compatible backend for coding statistics",
+  "version": "2.6.0",
+  "license": "GPL-3.0-only",
+  "bin": "wakapi.exe",
+  "shortcuts": [
+    [
+      "wakapi.exe",
+      "Wakapi Server"
+    ]
+  ],
+  "post_install": [
+    ". $env:scoop/apps/scoop/current/lib/shortcuts.ps1",
+    "write-host Adding wakapi to startup folder",
+    "copy-item \"$(shortcut_folder $global)\\Wakapi Server.lnk\" \"$([Environment]::GetFolderPath('Startup'))\"",
+    "}"
+  ],
+  "persist": "config.yml",
+  "checkver": {
+    "github": "https://github.com/muety/wakapi"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/muety/wakapi/releases/download/$version/wakapi_windows_amd64.zip"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

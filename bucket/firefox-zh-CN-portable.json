@@ -1,0 +1,55 @@
+{
+  "version": "110.0.1",
+  "description": "Firefox 浏览器中文版本",
+  "homepage": "https://www.mozilla.org/firefox/",
+  "license": "MPL-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://archive.mozilla.org/pub/firefox/releases/110.0.1/win64/zh-CN/Firefox%20Setup%20110.0.1.exe#/dl.7z",
+      "hash": "sha512:c4884965e7cea19c67af49d7b5c31c9a62f630a005336fdcb9aeff0f2a59fc59b9d32ee86535bcda91405a98b9c8925f6768b750be99414d0ae1f9e200c9655e"
+    },
+    "32bit": {
+      "url": "https://archive.mozilla.org/pub/firefox/releases/110.0.1/win32/zh-CN/Firefox%20Setup%20110.0.1.exe#/dl.7z",
+      "hash": "sha512:8b817bfe37a4c801f3e28e412434ebdf9d5ef6f49e4f90ced8b587489f413769fccd8e3cbcec93e0c614e0f35ea0af7a2ad47247735a283c39446db85fbd4c74"
+    }
+  },
+  "extract_dir": "core",
+  "bin": [
+    [
+      "firefox.exe",
+      "firefox",
+      "-profile \"$dir\\profile\""
+    ]
+  ],
+  "shortcuts": [
+    [
+      "firefox.exe",
+      "Firefox",
+      "-profile \"$dir\\profile\""
+    ]
+  ],
+  "persist": "profile",
+  "checkver": {
+    "url": "https://www.mozilla.org/en-US/firefox/notes/",
+    "regex": "<div class=\"c-release-version\">([\\d.]+)</div>"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://archive.mozilla.org/pub/firefox/releases/$version/win64/zh-CN/Firefox%20Setup%20$version.exe#/dl.7z",
+        "hash": {
+          "url": "https://archive.mozilla.org/pub/firefox/releases/$version/SHA512SUMS",
+          "regex": "$sha512\\s+win64/zh-CN/$basename"
+        }
+      },
+      "32bit": {
+        "url": "https://archive.mozilla.org/pub/firefox/releases/$version/win32/zh-CN/Firefox%20Setup%20$version.exe#/dl.7z",
+        "hash": {
+          "url": "https://archive.mozilla.org/pub/firefox/releases/$version/SHA512SUMS",
+          "regex": "$sha512\\s+win32/zh-CN/$basename"
+        }
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

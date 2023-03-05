@@ -1,0 +1,36 @@
+{
+  "homepage": "https://tsduck.io",
+  "description": "MPEG Transport Stream Toolkit",
+  "version": "3.33-3139",
+  "license": "BSD-2-Clause",
+  "architecture": {
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/tsduck/tsduck/releases/download/v3.33-3139/TSDuck-Win32-3.33-3139-Portable.zip",
+      "hash": "472061f7ead98c1ed6e8f91a705229a8fa9368df213a9d7eb735aab2dd583105"
+    },
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/tsduck/tsduck/releases/download/v3.33-3139/TSDuck-Win64-3.33-3139-Portable.zip",
+      "hash": "d7ea1c6e53b387b4b959fdee784fb9e6acc2d8ece06579a6eb25c5b92403181c"
+    }
+  },
+  "env_add_path": "bin",
+  "env_set": {
+    "CLASSPATH": "$dir/java/tsduck.jar;$CLASSPATH",
+    "PYTHONPATH": "$dir/python;$PYTHONPATH"
+  },
+  "checkver": {
+    "github": "https://github.com/tsduck/tsduck",
+    "regex": "\\/releases\\/tag\\/(?:v|V)?([\\d.]+-[\\d]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/tsduck/tsduck/releases/download/v$version/TSDuck-Win32-$version-Portable.zip"
+      },
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/tsduck/tsduck/releases/download/v$version/TSDuck-Win64-$version-Portable.zip"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

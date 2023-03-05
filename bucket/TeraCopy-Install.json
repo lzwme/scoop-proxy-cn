@@ -1,55 +1,32 @@
 {
-  "version": "3.9.7",
-  "description": "TeraCopy. A popular utility designed to copy files faster and more reliably, providing the user with many features.",
+  "version": "3.26",
+  "description": "A popular utility designed to copy files faster and more reliably, providing the user with many features.",
   "homepage": "https://www.codesector.com",
-  "license": "Proprietary",
-  "changelog": "https://blog.codesector.com/category/teracopy/",
-  "url": "https://codesector.nyc3.cdn.digitaloceanspaces.com/teracopy.exe#/setup.exe",
-  "hash": "5f7b796e4edd366c9c5a97ae65cf1722c3152e3bbdca593c593622b35372e81f",
-  "pre_download": "Assert-Administrator",
-  "pre_install": [
-    "$processname = \"TeraCopy\"",
-    "$process = Get-Process $processname -ErrorAction SilentlyContinue",
-    "if ($process) {",
-    "   $process.CloseMainWindow()",
-    "   Start-Sleep -Seconds 5",
-    "   if (!$process.HasExited) {",
-    "       Start-Sleep -Seconds 25",
-    "       $process | Stop-Process -Force",
-    "   }",
-    "}"
-  ],
+  "url": "http://www.codesector.com/files/teracopy.exe#/setup.exe",
+  "hash": "5b667ff25a5f2ecf810e2f60dd079dc68fce6eafa174e6de835b8aed919e12f3",
   "installer": {
     "script": [
-      "$programname = \"TeraCopy\"",
-      "$scanVersion = \"$majorVersion.$minorVersion$patchVersion\"",
-      "$ProgramFiles = [Environment]::GetFolderPath(\"ProgramFiles\")",
-      "$filepath = \"$ProgramFiles\\TeraCopy\\TeraCopy.exe\"",
-      "if(((Test-Path -Path $filepath -PathType Leaf) -eq $false) -or ((Get-Command $filepath).Version -lt [System.Version]\"$version\"))",
-      "{",
-      "   &\"$dir\\setup.exe\" /exenoui /exenoupdates /qn /norestart | Out-Null",
-      "   if(((Test-Path -Path $filepath -PathType Leaf) -eq $false) -or ((Get-Command $filepath).Version -lt [System.Version]\"$version\"))",
-      "   {",
-      "       exit 1",
-      "   }",
-      "}",
-      "if (Test-Path -Path \"$dir\\setup.exe\") { Remove-Item \"$dir\\setup.exe\" -Force }"
+      "Invoke-ExternalCommand \"$dir\\setup.exe\" -ArgumentList @('/verysilent', '/nocancel', '/norestart') -RunAs | Out-Null"
     ]
   },
   "post_install": [
+    "Remove-Item \"$dir\\setup.exe\"",
     "$CommonStartMenuPath = [Environment]::GetFolderPath(\"CommonStartMenu\")",
     "if (Test-Path \"$CommonStartMenuPath\\TeraCopy.lnk\") {Move-Item -Path \"$CommonStartMenuPath\\TeraCopy.lnk\" -Destination \"$CommonStartMenuPath\\Programs\\TeraCopy.lnk\" -Force}"
   ],
+  "uninstaller": {
+    "script": [
+      "& \"$Env:Programfiles\\TeraCopy\\unins000.exe\" /verysilent /nocancel /norestart",
+      "$CommonStartMenuPath = [Environment]::GetFolderPath(\"CommonStartMenu\")",
+      "if (Test-Path \"$CommonStartMenuPath\\Programs\\TeraCopy.lnk\") {Remove-Item \"$CommonStartMenuPath\\Programs\\TeraCopy.lnk\" -Force}"
+    ]
+  },
   "checkver": {
-    "url": "https://blog.codesector.com/category/teracopy/",
-    "regex": ">TeraCopy ([\\d.]+)"
+    "url": "https://www.codesector.com/downloads",
+    "re": "TeraCopy ([\\d.]+)</td>\\n[\\t ]+<td>Windows"
   },
   "autoupdate": {
-    "url": "https://codesector.nyc3.cdn.digitaloceanspaces.com/teracopy.exe#/setup.exe",
-    "hash": {
-      "url": "https://blog.codesector.com/category/teracopy/",
-      "regex": "SHA-256: $sha256"
-    }
+    "url": "http://www.codesector.com/files/teracopy.exe"
   },
-  "_from": "ACooper81/scoop-apps"
+  "_from": "okibcn/ScoopMaster"
 }

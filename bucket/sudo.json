@@ -1,18 +1,21 @@
 {
-  "version": "0.2020.01.26",
-  "description": "An approximation of the Unix sudo command. Shows a UAC popup window unfortunately.",
-  "homepage": "https://github.com/lukesampson/psutils",
+  "version": "1.3.0",
+  "description": "A Sudo for Windows",
+  "homepage": "https://github.com/gerardog/gsudo",
   "license": "MIT",
-  "url": "https://ghproxy.com/https://raw.githubusercontent.com/lukesampson/psutils/c7116ac143ca81f223e6091d0974f45ac241eb1d/sudo.ps1",
-  "hash": "0d3cf564dc584ea98b213b4763228dee523c32388b1293e77eff70344d294aa8",
-  "bin": "sudo.ps1",
-  "checkver": {
-    "url": "https://github.com/lukesampson/psutils/commits/master/sudo.ps1.atom",
-    "regex": "(?s)>(\\d+)-(\\d+)-(\\d+)T.*?/(?<sha>[0-9a-f]{40})",
-    "replace": "0.${1}.${2}.${3}"
-  },
+  "url": "https://ghproxy.com/https://github.com/gerardog/gsudo/releases/download/v1.3.0/gsudo.v1.3.0.zip",
+  "hash": "cfd28467bbedf85bb05dc35f59c2e16ba8f19bd7aa555abb37cb2693a9b97855",
+  "bin": [
+    [
+      "gsudo.exe",
+      "sudo"
+    ]
+  ],
+  "post_install": "try { & \"$dir\\gsudo.exe\" -k 2>&1 | Out-Null } catch { info $_.Exception.Message }",
+  "env_add_path": ".",
+  "checkver": "github",
   "autoupdate": {
-    "url": "https://ghproxy.com/https://raw.githubusercontent.com/lukesampson/psutils/$matchSha/sudo.ps1"
+    "url": "https://ghproxy.com/https://github.com/gerardog/gsudo/releases/download/v$version/gsudo.v$version.zip"
   },
-  "_from": "ScoopInstaller/Main"
+  "_from": "okibcn/ScoopMaster"
 }

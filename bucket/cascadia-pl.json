@@ -1,0 +1,35 @@
+{
+  "version": "2009.22",
+  "license": "OFL-1.1",
+  "homepage": "https://github.com/microsoft/cascadia-code",
+  "url": "https://ghproxy.com/https://github.com/microsoft/cascadia-code/releases/download/v2009.22/CascadiaCode-2009.22.zip",
+  "hash": "801bcc94b79ae46bc573c9c07feb44d581e12d15f79b176be165f00f8fdf9846",
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/microsoft/cascadia-code/releases/download/v$version/CascadiaCode-$version.zip"
+  },
+  "depends": "sudo",
+  "extract_dir": "ttf",
+  "installer": {
+    "script": [
+      "sudo powershell -Command \"& {",
+      "Get-ChildItem $dir -filter CascadiaCodePL.ttf | ForEach-Object {",
+      "    New-ItemProperty -Path ((echo HKLM:\\SOFTWARE\\Microsoft\\Windows)+([char]32)+(echo NT\\CurrentVersion\\Fonts)) -Name `$_.Name.Replace(`$_.Extension, ([char]32)+(([char[]](40,41)) -join (echo TrueType))) -Value `$_.Name -Force | Out-Null",
+      "    Copy-Item `$_.FullName -destination `$env:windir\\Fonts",
+      "}",
+      "}\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "sudo powershell -Command \"& {",
+      "Get-ChildItem $dir -filter CascadiaCodePL.ttf | ForEach-Object {",
+      "    Remove-ItemProperty -Path ((echo HKLM:\\SOFTWARE\\Microsoft\\Windows)+([char]32)+(echo NT\\CurrentVersion\\Fonts)) -Name `$_.Name.Replace(`$_.Extension, ([char]32)+(([char[]](40,41)) -join (echo TrueType))) -Force -ErrorAction SilentlyContinue",
+      "    Remove-Item `$env:windir\\Fonts\\`$(`$_.Name) -Force -ErrorAction SilentlyContinue",
+      "}",
+      "Write-Host \"The '$app' font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta",
+      "}\""
+    ]
+  },
+  "_from": "okibcn/ScoopMaster"
+}

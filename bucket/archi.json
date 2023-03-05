@@ -1,36 +1,29 @@
 {
-  "version": "4.6.0",
-  "description": "ArchiMate model editor",
+  "version": "4.10.0",
   "homepage": "https://www.archimatetool.com",
-  "license": "MIT",
-  "architecture": {
-    "64bit": {
-      "url": "https://www.archimatetool.com/downloads/4.6.0/Archi-Win64-4.6.0.zip",
-      "hash": "md5:78f2f45b32386154bbf28bef512c9e78"
-    }
+  "description": "The Open Source modelling toolkit for creating ArchiMate models and sketches",
+  "license": {
+    "identifier": "MIT"
   },
-  "extract_dir": "Archi",
-  "bin": "archi.exe",
+  "url": "https://www.archimatetool.com/downloads/archi/4.10.0/Archi-4.10.0-SUMSSHA1",
+  "hash": "797b0c183fb3e483b73f23cef03036f5a59044c4d5d79e68010de19105420f9c",
+  "depends": "busybox",
+  "pre_install": "$ret = (Invoke-WebRequest -UseBasicParsing -Uri 'https://www.archimatetool.com/download').Content -match \"<script type='text/javascript' src='(?<GlobalJsUrl>[a-z0-9/\\.\\?=:\\-]+)' id='global-js'>\" ; $GlobalJsUrl=$Matches.GlobalJsUrl ; $GlobalJsContents=(Invoke-WebRequest -UseBasicParsing -Uri $GlobalJsUrl).Content ; $GlobalJsContentsClean = (Invoke-WebRequest -UseBasicParsing -Uri 'http://www.jsnice.org/beautify?pretty=1&rename=1&types=1&packers=1&transpile=0&suggest=0' -Method 'POST' -Body $GlobalJsContents).Content ; $ret = $GlobalJsContentsClean -match '\\\\\"name\\\\\", \\\\\"(?<DownloadKey>.+)\\\\\", \\\\\"type' ; $DownloadKey=$Matches.DownloadKey ; busybox.exe wget -O $dir\\Archi-Win64-$version.zip --post-data \"$DownloadKey=archi%2F$version%2FArchi-Win64-$version.zip\" https://www.archimatetool.com/downloads/",
+  "installer": {
+    "script": "$ret = 7z.exe x -bd -o\"$dir\\\" $dir\\Archi-Win64-$version.zip"
+  },
   "shortcuts": [
     [
-      "archi.exe",
+      "Archi\\Archi.exe",
       "Archi"
     ]
   ],
   "checkver": {
-    "url": "https://github.com/archimatetool/archi/releases",
-    "regex": "release_([\\d.]+)"
+    "url": "https://www.archimatetool.com/download/",
+    "regex": "data-version=\\\"([\\d.]+)\\\""
   },
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://www.archimatetool.com/downloads/$version/Archi-Win64-$version.zip"
-      }
-    },
-    "hash": {
-      "url": "$url.MD5",
-      "regex": "\\($basename\\)\\s+=\\s+$md5"
-    }
+    "url": "https://www.archimatetool.com/downloads/archi/$version/Archi-$version-SUMSSHA1"
   },
-  "_from": "kkzzhizhou/scoop-apps"
+  "_from": "okibcn/ScoopMaster"
 }

@@ -1,0 +1,32 @@
+{
+  "home": "http://www.h2database.com",
+  "version": "2.1.214",
+  "url": "https://ghproxy.com/https://github.com/h2database/h2database/releases/download/version-2.1.214/h2-2022-06-13.zip",
+  "hash": "34c5ffe2d27ceeff217e5b71aefe964fb3fb6c0e6891551bec4e599df5e78c9b",
+  "checkver": {
+    "url": "http://www.h2database.com/html/main.html",
+    "re": "Version (?<version>[\\d.]+) \\((?<dateVersion>[\\d-]+)\\)"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/h2database/h2database/releases/download/version-$matchVersion/h2-$matchDateversion.zip"
+  },
+  "extract_dir": "h2",
+  "shortcuts": [
+    [
+      "bin\\h2w.bat",
+      "H2 Console"
+    ],
+    [
+      "bin\\h2.bat",
+      "H2 Console (Command Line)"
+    ]
+  ],
+  "suggest": {
+    "JDK": [
+      "java/corretto",
+      "java/openjdk",
+      "java/oraclejdk"
+    ]
+  },
+  "_from": "okibcn/ScoopMaster"
+}

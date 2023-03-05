@@ -1,0 +1,29 @@
+{
+  "version": "2.2.0",
+  "homepage": "https://mcdemarco.net/tools/scree/dotgraph/",
+  "description": "A proofing format that uses a JavaScript implementation of Graphviz to automatically lay out a Twine story as a layered graph",
+  "license": {
+    "identifier": "MIT"
+  },
+  "url": "https://mcdemarco.net/tools/scree/dotgraph/offline/format.js",
+  "hash": "e1c5cb57ae57c4b75d0116ef6caf89c35649c967f5a1fa32ea467bc7ec0f4fc3",
+  "post_install": [
+    "New-Item $dir/storyformats/dotgraph -ItemType Directory -ea 0",
+    "Copy-Item $dir/format.js  $dir/storyformats/dotgraph/"
+  ],
+  "env_set": {
+    "TWEEGO_PATH": "$dir/storyformats;${env:TWEEGO_PATH};"
+  },
+  "suggest": {
+    "TWEEGO": "tweego"
+  },
+  "checkver": {
+    "url": "https://ghproxy.com/https://raw.githubusercontent.com/mcdemarco/dotgraph/master/package.json",
+    "jp": "$.version"
+  },
+  "autoupdate": {
+    "note": "Thanks for using autoupdate, please test your updates!",
+    "url": "https://mcdemarco.net/tools/scree/dotgraph/offline/format.js"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

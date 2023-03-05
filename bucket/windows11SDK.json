@@ -1,0 +1,51 @@
+{
+  "version": "10.0.22621.755",
+  "description": "Microsoft Windows 11 Software Developement Kit",
+  "homepage": "https://developer.microsoft.com/en-us/windows/downloads/sdk-archive",
+  "license": "https://www.microsoft.com/en-ca/legal/terms-of-use",
+  "url": "https://go.microsoft.com/fwlink/?linkid=2196241",
+  "hash": "73fe3cc0e50d946d0c0a83a1424111e60dee23f0803e305a8974a963b58290c0",
+  "installer": {
+    "args": [
+      "/quiet",
+      "/norestart",
+      "/ceip",
+      "off",
+      "/features",
+      "OptionId.WindowsPerformanceToolkit",
+      "OptionId.WindowsDesktopDebuggers",
+      "OptionId.AvrfExternal",
+      "OptionId.NetFxSoftwareDevelopmentKit",
+      "OptionId.WindowsSoftwareLogoToolkit",
+      "OptionId.IpOverUsb",
+      "OptionId.MSIInstallTools",
+      "OptionId.SigningTools",
+      "OptionId.UWPManaged",
+      "OptionId.UWPCPP",
+      "OptionId.UWPLocalized",
+      "OptionId.DesktopCPPx86",
+      "OptionId.DesktopCPPx64",
+      "OptionId.DesktopCPParm",
+      "OptionId.DesktopCPParm64",
+      "/installpath",
+      "$dir\\sdk\\"
+    ]
+  },
+  "uninstaller": {
+    "file": "winsdksetup.exe",
+    "args": [
+      "/uninstall",
+      "/quiet",
+      "/norestart"
+    ]
+  },
+  "checkver": {
+    "url": "https://developer.microsoft.com/en-us/windows/downloads/sdk-archive",
+    "regex": "Windows SDK for Windows 11[^(]*\\(([^\\)]+)[^?]*[^=]*=([0-9]*)",
+    "replace": "${1}"
+  },
+  "autoupdate": {
+    "url": "https://go.microsoft.com/fwlink/?linkid=$match2"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

@@ -1,9 +1,29 @@
 {
+  "version": "2082",
+  "description": "A Git client with snappy UI, three-way merge tool, side-by-side diffs, syntax highlighting, and more. (Dev version)",
+  "homepage": "https://www.sublimemerge.com/dev",
+  "license": {
+    "identifier": "Shareware",
+    "url": "https://www.sublimehq.com/eula"
+  },
+  "notes": "Sublime Merge may be downloaded and evaluated for free, however a license must be purchased for continued use. There is currently no enforced time limit for the evaluation. For more information please see https://www.sublimemerge.com/",
   "architecture": {
     "64bit": {
-      "hash": "84324fe2d62ff682c0ee783292fd409565abc55d580abfd8f782ea6f3b4d06c1",
-      "url": "https://download.sublimetext.com/sublime_merge_build_2082_x64.zip"
+      "url": "https://download.sublimetext.com/sublime_merge_build_2082_x64.zip",
+      "hash": "84324fe2d62ff682c0ee783292fd409565abc55d580abfd8f782ea6f3b4d06c1"
     }
+  },
+  "bin": "smerge.exe",
+  "shortcuts": [
+    [
+      "sublime_merge.exe",
+      "Sublime Merge Dev"
+    ]
+  ],
+  "persist": "Data",
+  "checkver": {
+    "url": "https://www.sublimemerge.com/updates/dev_update_check",
+    "jsonpath": "$.latest_version"
   },
   "autoupdate": {
     "architecture": {
@@ -12,25 +32,5 @@
       }
     }
   },
-  "bin": "smerge.exe",
-  "checkver": {
-    "jsonpath": "$.latest_version",
-    "url": "https://www.sublimemerge.com/updates/dev_update_check"
-  },
-  "description": "A Git client with snappy UI, three-way merge tool, side-by-side diffs, syntax highlighting, and more. (Dev version)",
-  "homepage": "https://www.sublimemerge.com/dev",
-  "license": {
-    "identifier": "Shareware",
-    "url": "https://www.sublimehq.com/eula"
-  },
-  "notes": "Sublime Merge may be downloaded and evaluated for free, however a license must be purchased for continued use. There is currently no enforced time limit for the evaluation. For more information please see https://www.sublimemerge.com/",
-  "persist": "Data",
-  "shortcuts": [
-    [
-      "sublime_merge.exe",
-      "Sublime Merge Dev"
-    ]
-  ],
-  "version": "2082",
-  "_from": "anderlli0053/DEV-tools"
+  "_from": "okibcn/ScoopMaster"
 }

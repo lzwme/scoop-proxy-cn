@@ -1,0 +1,26 @@
+{
+  "version": "2.9.2",
+  "description": "World of Warcraft addon updater. (CurseForge version)",
+  "homepage": "https://wowup.io/",
+  "license": {
+    "identifier": "GPL-3.0-or-later",
+    "url": "https://ghproxy.com/https://raw.githubusercontent.com/WowUp/WowUp.CF/main/LICENSE"
+  },
+  "url": "https://ghproxy.com/https://github.com/WowUp/WowUp.CF/releases/download/v2.9.2/WowUp-CF-Setup-2.9.2.exe#/setup.exe",
+  "hash": "9328a555805281193ce7c3fef53748c2fb5dbada26923b0fc1c79816683ca064",
+  "installer": {
+    "script": [
+      "Start-Process \"$dir\\setup.exe\" -ArgumentList '/S' -Wait -Verb RunAs | Out-Null",
+      "Remove-Item \"$dir\\setup.exe\""
+    ]
+  },
+  "checkver": {
+    "url": "https://api.github.com/repos/WowUp/WowUp.CF/releases",
+    "jsonpath": "$[0].tag_name",
+    "regex": "(?!v)(.+)"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/WowUp/WowUp.CF/releases/download/v$version/WowUp-CF-Setup-$version.exe#/setup.exe"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

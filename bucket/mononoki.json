@@ -1,11 +1,15 @@
 {
+  "version": "1.6",
+  "description": "a programming typeface",
+  "license": "OFL-1.1",
+  "homepage": "https://github.com/madmalik/mononoki",
+  "url": "https://ghproxy.com/https://github.com/madmalik/mononoki/releases/download/1.6/mononoki.zip",
+  "hash": "86549faebfd9231c3bd0942038cb1f717f5186729c9a54d0045e36b996c1a355",
+  "checkver": "github",
   "autoupdate": {
     "url": "https://ghproxy.com/https://github.com/madmalik/mononoki/releases/download/$version/mononoki.zip"
   },
-  "checkver": "github",
-  "description": "a programming typeface",
-  "hash": "2159f39e133802f48f5a13863e63a3c66bcd316ff112ca74c23d7428007f9e6b",
-  "homepage": "https://github.com/madmalik/mononoki",
+  "pre_install": "Get-ChildItem $dir -Exclude mononoki-*.ttf | Remove-Item",
   "installer": {
     "script": [
       "if(!(is_admin)) { error \"Admin rights are required, please run 'sudo scoop install $app'\"; exit 1 }",
@@ -15,8 +19,6 @@
       "}"
     ]
   },
-  "license": "OFL-1.1",
-  "pre_install": "Get-ChildItem $dir -Exclude mononoki-*.ttf | Remove-Item",
   "uninstaller": {
     "script": [
       "if(!(is_admin)) { error \"Admin rights are required, please run 'sudo scoop uninstall $app'\"; exit 1 }",
@@ -27,7 +29,5 @@
       "Write-Host \"'Mononoki' has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
     ]
   },
-  "url": "https://ghproxy.com/https://github.com/madmalik/mononoki/releases/download/1.5/mononoki.zip",
-  "version": "1.5",
-  "_from": "anderlli0053/DEV-tools"
+  "_from": "okibcn/ScoopMaster"
 }

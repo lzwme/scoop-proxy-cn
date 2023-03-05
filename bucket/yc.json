@@ -1,0 +1,31 @@
+{
+  "version": "0.102.0",
+  "homepage": "https://cloud.yandex.ru/docs/cli/",
+  "architecture": {
+    "64bit": {
+      "url": "https://storage.yandexcloud.net/yandexcloud-yc/release/0.102.0/windows/amd64/yc.exe",
+      "hash": "3122968e3435e5a396ba1b2c39f498a454253afe4a7e6bff65af66b7dad84aed"
+    },
+    "32bit": {
+      "url": "https://storage.yandexcloud.net/yandexcloud-yc/release/0.102.0/windows/386/yc.exe",
+      "hash": "615621f18910c9f8107119b368a5abc8805b9603ca71d1f52a4a52d32aef206b"
+    }
+  },
+  "bin": "yc.exe",
+  "post_install": "yc init",
+  "checkver": {
+    "url": "https://storage.yandexcloud.net/yandexcloud-yc/release/stable",
+    "regex": "([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://storage.yandexcloud.net/yandexcloud-yc/release/$version/windows/amd64/yc.exe"
+      },
+      "32bit": {
+        "url": "https://storage.yandexcloud.net/yandexcloud-yc/release/$version/windows/386/yc.exe"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

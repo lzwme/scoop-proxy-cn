@@ -1,0 +1,38 @@
+{
+  "version": "1.1.0.r10623",
+  "description": "Two pane file manager inspired by Total Commander",
+  "homepage": "https://doublecmd.sourceforge.io/",
+  "license": "GPL-2.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://doublecmd.sourceforge.io/snapshots/doublecmd-1.1.0.r10623.x86_64-win64.7z",
+      "hash": "77b8b8093fb2215e34a318a66d66eb057f7e173b25b4d3cda2de0ab21392a2a4"
+    },
+    "32bit": {
+      "url": "https://doublecmd.sourceforge.io/snapshots/doublecmd-1.1.0.r10623.i386-win32.7z",
+      "hash": "275cb0101f4bb7e114576dd0d8c9357492a22e51a938262ef8c47aac5b752d46"
+    }
+  },
+  "bin": "doublecmd.exe",
+  "shortcuts": [
+    [
+      "doublecmd.exe",
+      "Double Commander"
+    ]
+  ],
+  "checkver": {
+    "url": "https://doublecmd.sourceforge.io/site/eng/snapshots.php",
+    "regex": "doublecmd-([\\d.r]+)\\.i386-win32\\.7z"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://doublecmd.sourceforge.io/snapshots/doublecmd-$version.x86_64-win64.7z"
+      },
+      "32bit": {
+        "url": "https://doublecmd.sourceforge.io/snapshots/doublecmd-$version.i386-win32.7z"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

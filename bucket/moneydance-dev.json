@@ -1,0 +1,31 @@
+{
+  "homepage": "https://moneydance.com",
+  "version": "2022.6.4097",
+  "description": "Moneydance is easy to use personal finance software that is loaded with all the features you need",
+  "license": "Commercial",
+  "url": "https://infinitekind.com/previewdl/current/Moneydance_windows_amd64.exe",
+  "hash": "ede6628256f3ca5293d4b1c0d9dab9ecafb3c7b5edc4607881e91b417593d4b8",
+  "autoupdate": {
+    "url": "https://infinitekind.com/previewdl/current/Moneydance_windows_amd64.exe"
+  },
+  "checkver": {
+    "url": "https://infinitekind.com/preview",
+    "regex": "download_detail\">Moneydance.*?([\\d.]+).*?(\\d+)",
+    "replace": "${1}.${2}"
+  },
+  "installer": {
+    "args": [
+      "-q",
+      "-dir $dir"
+    ],
+    "keep": true
+  },
+  "bin": "Moneydance.exe",
+  "shortcuts": [
+    [
+      "Moneydance.exe",
+      "Moneydance"
+    ]
+  ],
+  "_from": "okibcn/ScoopMaster"
+}

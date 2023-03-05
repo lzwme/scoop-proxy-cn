@@ -1,0 +1,33 @@
+{
+  "version": "9.5.8",
+  "license": "Apache-2.0",
+  "homepage": "https://scheme.com/",
+  "url": "https://ghproxy.com/https://github.com/cisco/ChezScheme/releases/download/v9.5.8/ChezScheme9.5.8.exe#/setup.exe",
+  "hash": "417ebbedfb00fb74c9a7ebafc5587a804e5ad24a18657a0346558753565874bc",
+  "installer": {
+    "file": "setup.exe",
+    "args": [
+      "/quiet",
+      "/verysilent",
+      "/dir=\"$dir\"",
+      "/norestart"
+    ]
+  },
+  "bin": [
+    "bin\\ta6nt\\scheme.exe",
+    "bin\\ta6nt\\petite.exe"
+  ],
+  "shortcuts": [
+    [
+      "bin\\ta6nt\\scheme.exe",
+      "Scheme"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/cisco/ChezScheme"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/cisco/ChezScheme/releases/download/v$version/ChezScheme$version.exe#/setup.exe"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

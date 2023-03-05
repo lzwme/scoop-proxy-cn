@@ -1,0 +1,20 @@
+{
+  "version": "3.41.0",
+  "description": "A small, fast, self-contained, high-reliability and full-featured SQL database engine",
+  "homepage": "https://www.sqlite.org/",
+  "license": "Public Domain",
+  "architecture": {
+    "64bit": {
+      "url": "https://www.sqlite.org/2023/sqlite-dll-win64-x64-3410000.zip",
+      "hash": "ca9ee04c51de95af36521196d21579bd0067094ab26e4b8871d3941f77341724"
+    }
+  },
+  "checkver": {
+    "url": "https://www.sqlite.org/download.html",
+    "regex": "(?sm)\\d+-bit DLL \\(x64\\) for SQLite version ([\\d.]+)\\..*?(?<year>\\d+)/sqlite-tools-win32-x86-(?<clean>\\d+)"
+  },
+  "autoupdate": {
+    "url": "https://www.sqlite.org/$matchYear/sqlite-dll-win64-x64-$matchClean.zip"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

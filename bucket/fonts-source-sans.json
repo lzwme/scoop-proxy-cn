@@ -1,0 +1,27 @@
+{
+  "homepage": "https://github.com/adobe-fonts/source-sans",
+  "version": "3.046R",
+  "description": "Source Sans is a set of OpenType fonts that have been designed to work well in user interface (UI) environments.",
+  "checkver": {
+    "url": "https://github.com/adobe-fonts/source-sans/releases/latest",
+    "re": ">OTF-source-sans-(.*?)\\.zip<"
+  },
+  "url": "https://ghproxy.com/https://github.com/adobe-fonts/source-sans/releases/download/3.046R/OTF-source-sans-3.046R.zip#dl.zi_",
+  "hash": "ed03cdb943892e60ebb7f63f1ec8d826722923f7f65dd9f01fe99ce7a04b8cb8",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/adobe-fonts/source-sans/releases/download/$version/OTF-source-sans-$version.zip#dl.zi_"
+  },
+  "installer": {
+    "keep": "false",
+    "script": [
+      "mkdir \"$dir\\tmp\" > $null",
+      "Move-Item \"$dir\\$fname\" \"$dir\\tmp\\dl.zip\"",
+      "Write-Output \"https://ghproxy.com/https://github.com/adobe-fonts/source-sans/releases/download/$version/TTF-source-sans-$version.zip\" \"https://github.com/adobe-fonts/source-sans/releases/download/$version/VAR-source-sans-$version.zip\" \"https://github.com/adobe-fonts/source-sans/releases/download/$version/WOFF-source-sans-$version.zip\" \"https://github.com/adobe-fonts/source-sans/releases/download/$version/WOFF2-source-sans-$version.zip\" | %{wget.exe -nv -P \"$dir\\tmp\" \"$_\"}",
+      "Get-ChildItem \"$dir\\tmp\" -Recurse -Include \"*.zip\" | %{7z e -o\"$dir\\tmp\" -aoa \"$_\"}",
+      "Get-ChildItem \"$dir\\tmp\" -Recurse -Attributes \"!d\" | Move-Item -Destination \"$dir\" > $null",
+      "Remove-Item \"$dir\\tmp\" -Recurse -Force > $null",
+      "Remove-Item \"$dir\" -Recurse -Include \"*.zip\""
+    ]
+  },
+  "_from": "okibcn/ScoopMaster"
+}

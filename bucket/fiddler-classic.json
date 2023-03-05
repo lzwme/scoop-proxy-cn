@@ -1,15 +1,10 @@
 {
-  "autoupdate": {
-    "url": "https://telerik-fiddler.s3.amazonaws.com/fiddler/FiddlerSetup.exe#/dl.7z"
-  },
-  "checkver": {
-    "regex": "([\\d.]+)\\s*\\[",
-    "url": "https://www.fiddler2.com/UpdateCheck.aspx?isBeta=False",
-    "useragent": "Fiddler/$version"
-  },
+  "version": "5.0.20211.51073",
   "description": "The free web debugging proxy for any browser, system or platform.",
-  "hash": "5c92f0738c290eac319d4ac3006b5725f1d2163fbfe68dbb2047e07920f4d5e8",
   "homepage": "https://www.telerik.com/fiddler",
+  "license": "Unknown",
+  "url": "https://telerik-fiddler.s3.amazonaws.com/fiddler/FiddlerSetup.exe#/dl.7z",
+  "hash": "5c92f0738c290eac319d4ac3006b5725f1d2163fbfe68dbb2047e07920f4d5e8",
   "installer": {
     "script": [
       "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\FiddlerSetup.exe\" \"$dir\" -Removal",
@@ -17,14 +12,19 @@
       "Remove-Item \"$dir\\`$PLUGINSDIR\" -Recurse"
     ]
   },
-  "license": "Unknown",
   "shortcuts": [
     [
       "Fiddler.exe",
       "Fiddler Classic"
     ]
   ],
-  "url": "https://telerik-fiddler.s3.amazonaws.com/fiddler/FiddlerSetup.exe#/dl.7z",
-  "version": "5.0.20211.51073",
-  "_from": "anderlli0053/DEV-tools"
+  "checkver": {
+    "url": "https://www.fiddler2.com/UpdateCheck.aspx?isBeta=False",
+    "useragent": "Fiddler/$version",
+    "regex": "([\\d.]+)\\s*\\["
+  },
+  "autoupdate": {
+    "url": "https://telerik-fiddler.s3.amazonaws.com/fiddler/FiddlerSetup.exe#/dl.7z"
+  },
+  "_from": "okibcn/ScoopMaster"
 }

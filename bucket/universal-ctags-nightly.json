@@ -1,9 +1,21 @@
 {
+  "version": "2023-03-01",
+  "description": "Generates an index (or tag) file of language objects found in source files for many popular programming languages.",
+  "homepage": "https://ctags.io",
+  "license": "GPL-2.0-or-later",
   "architecture": {
     "64bit": {
-      "hash": "38748b1e528a7d3c53cb4cffda8b172d5e78750ac009dbcabf50da98ea56cdfa",
-      "url": "https://ghproxy.com/https://github.com/universal-ctags/ctags-win32/releases/download/2023-02-15/p6.0.20230212.0-2-g6f4a48a/ctags-2023-02-15_p6.0.20230212.0-2-g6f4a48a-x64.zip"
+      "url": "https://ghproxy.com/https://github.com/universal-ctags/ctags-win32/releases/download/2023-03-01/p6.0.20230219.0-1-g7c84355/ctags-2023-03-01_p6.0.20230219.0-1-g7c84355-x64.zip",
+      "hash": "dee010847770216f3986c48a39c7504a136db3662f5515b068cf6bde91b1c186"
     }
+  },
+  "bin": [
+    "ctags.exe",
+    "readtags.exe"
+  ],
+  "checkver": {
+    "url": "https://github.com/universal-ctags/ctags-win32/tags",
+    "regex": "([\\d]+-[\\d]+-[\\d]+)/(?<sha>[a-z\\d.-]+)"
   },
   "autoupdate": {
     "architecture": {
@@ -12,17 +24,5 @@
       }
     }
   },
-  "bin": [
-    "ctags.exe",
-    "readtags.exe"
-  ],
-  "checkver": {
-    "regex": "([\\d]+-[\\d]+-[\\d]+)/(?<sha>[a-z\\d.-]+)",
-    "url": "https://github.com/universal-ctags/ctags-win32/tags"
-  },
-  "description": "Generates an index (or tag) file of language objects found in source files for many popular programming languages.",
-  "homepage": "https://ctags.io",
-  "license": "GPL-2.0-or-later",
-  "version": "2023-02-15",
-  "_from": "anderlli0053/DEV-tools"
+  "_from": "okibcn/ScoopMaster"
 }

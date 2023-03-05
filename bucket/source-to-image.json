@@ -1,0 +1,25 @@
+{
+  "homepage": "https://github.com/openshift/source-to-image",
+  "description": "A tool for building artifacts from source and injecting into container images.",
+  "license": "Apache-2.0",
+  "version": "1.3.1",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/openshift/source-to-image/releases/download/v1.3.1/source-to-image-v1.3.1-a5a77147-windows-amd64.zip",
+      "hash": "de415d1d36002810d662477ecde3436ec9b134307f97d6408096661e07fba65e"
+    }
+  },
+  "bin": "s2i.exe",
+  "checkver": {
+    "github": "https://github.com/openshift/source-to-image",
+    "regex": "v([\\d.]+)-(?<commit>[\\da-f]{8})"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/openshift/source-to-image/releases/download/v$version/source-to-image-v$version-$matchCommit-windows-amd64.zip"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

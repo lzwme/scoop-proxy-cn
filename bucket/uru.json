@@ -1,0 +1,36 @@
+{
+	"homepage": "https://bitbucket.org/jonforums/uru",
+	"version": "0.8.1",
+	"url": "https://bitbucket.org/jonforums/uru/downloads/uru-0.8.1-windows-x86.7z",
+	"hash": "f70d099e200043f65640da3997f827cbac76729dc31bf80d08db8c441cd8f66b",
+  "_pre_install":  "
+      switch {
+        move-item $dir\\uru_rt.exe $dir\\bin\\uru_rt.exe
+      }
+  ",
+	"env_add_path": [
+		"C:\\Dev\\apps\\uru\\0.8.1",
+		"$dir",
+		"bin",
+		"."
+	],
+	"installer": {
+		"_comment": "uru_rt.exe creates uru.bat and uru.ps1",
+		"file": "uru_rt.exe",
+		"args": [ "admin install" ]
+	},
+	"_comment": "
+	can't shim cabal.exe, as it needs to be renamed by post-install, so just add bin to $PATH
+		\"uru_rt.exe\",
+		\"uru.bat\",
+		\"uru.ps1\"
+	",
+	"bin": [
+	],
+	"post_install": "
+# add uru.bat and uru.ps1 that reference uru_rt.exe
+#mv $dir\\uru_rt.exe $dir\\bin\\uru_rt.exe
+#$dir\\bin\\uru_rt.exe admin install
+"
+
+}

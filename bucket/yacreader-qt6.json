@@ -1,0 +1,41 @@
+{
+  "version": "9.11.0.2301073",
+  "description": "A comic reader and manager",
+  "homepage": "https://www.yacreader.com",
+  "license": "GPL-3.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/YACReader/yacreader/releases/download/9.11.0/YACReader-v9.11.0.2301073-winx64-7z-qt6.exe",
+      "hash": "afbd9b8a74df7e315773d19d1c7858531a538ae3ac0ffa79231fe7a4df5cfc06"
+    }
+  },
+  "innosetup": true,
+  "bin": [
+    "YACReader.exe",
+    "YACReaderLibrary.exe",
+    "YACReaderLibraryServer.exe"
+  ],
+  "shortcuts": [
+    [
+      "YACReader.exe",
+      "YACReader"
+    ],
+    [
+      "YACReaderLibrary.exe",
+      "YACReader Library"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/YACReader/yacreader",
+    "jsonpath": "$.assets[*].name",
+    "regex": "YACReader-v([\\d.]+)-winx64-7z-qt6"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/YACReader/yacreader/releases/download/$matchHead/YACReader-v$version-winx64-7z-qt6.exe"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

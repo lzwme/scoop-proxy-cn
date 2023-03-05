@@ -1,0 +1,44 @@
+{
+  "version": "v23.02.06-LanternFestival.230208.c9bde81b",
+  "description": "A feature-rich dictionary lookup program, supporting multiple dictionary formats (StarDict/Babylon/Lingvo/Dictd/AARD/MDict/SDict) and online dictionaries, featuring perfect article rendering with the complete markup, illustrations and other content retained, and allowing you to type in words without any accents or correct case.",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://github.com/xiaoyifang/goldendict/raw/staged/LICENSE.txt"
+  },
+  "homepage": "https://github.com/xiaoyifang/goldendict",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/xiaoyifang/goldendict/releases/download/v23.02.06-LanternFestival.230208.c9bde81b/5.15.2-GoldenDict.exe_windows-2019_20230208.zip",
+      "hash": "b6903a7939206820c1571bbd5217d18eeb1ddcd4492dca7ba405aa85adc20968",
+      "shortcuts": [
+        [
+          "GoldenDict.exe",
+          "GoldenDict"
+        ]
+      ]
+    }
+  },
+  "persist": [
+    "content",
+    "portable"
+  ],
+  "pre_install": [
+    "$unzip_dir = (Get-ChildItem -Path $original_dir -Directory)[0].FullName",
+    "Move-Item -Path \"${unzip_dir}\\*\" -Destination \"$original_dir\" -Force",
+    "Remove-Item –Path $unzip_dir -Recurse -Force"
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/xiaoyifang/goldendict/releases/latest",
+    "jsonpath": "$.assets[?(@.name =~ /^5.*_windows.*.zip$/)].browser_download_url",
+    "regex": "download/(?<version>.*)/(?<name>.*).zip$",
+    "reverse": true
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/xiaoyifang/goldendict/releases/download/$version/$matchName.zip"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

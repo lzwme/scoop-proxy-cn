@@ -460,12 +460,12 @@
     "autoupdateUriOrArrayOfAutoupdateUris": {
       "anyOf": [
         {
-          "format": "uri",
+          "pattern": "^(https?|ftp):\\/\\/.*$|^\\$match.*$",
           "type": "string"
         },
         {
           "items": {
-            "format": "uri",
+            "format": "^(https?|ftp):\\/\\/.*$|^\\$match.*$",
             "type": "string"
           },
           "minItems": 1,
@@ -689,5 +689,5 @@
   ],
   "title": "scoop app manifest schema",
   "type": "object",
-  "_from": "kkzzhizhou/scoop-apps"
+  "_from": "okibcn/ScoopMaster"
 }

@@ -1,0 +1,26 @@
+{
+  "homepage": "https://github.com/JonasProgrammer/docker-machine-driver-hetzner",
+  "description": "This docker-machine library adds support for creating Docker machines hosted on Hetzner Cloud.",
+  "version": "3.8.1",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/JonasProgrammer/docker-machine-driver-hetzner/releases/download/3.8.1/docker-machine-driver-hetzner_3.8.1_windows_amd64.tar.gz",
+      "hash": "970e8e7ce7e35b4e64ff36d9db1e2c28e9872d678ec62336fba07e238fb14fa1"
+    }
+  },
+  "bin": "docker-machine-driver-hetzner.exe",
+  "checkver": {
+    "url": "https://github.com/JonasProgrammer/docker-machine-driver-hetzner/releases/latest",
+    "re": "\\/releases\\/tag\\/([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/JonasProgrammer/docker-machine-driver-hetzner/releases/download/$version/docker-machine-driver-hetzner_$version_windows_amd64.tar.gz"
+      }
+    }
+  },
+  "depends": "docker",
+  "_from": "okibcn/ScoopMaster"
+}

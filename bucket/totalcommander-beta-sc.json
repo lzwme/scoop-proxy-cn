@@ -1,0 +1,99 @@
+{
+    "version": "1050_rc3",
+    "description": "Total Commander is a Shareware file manager for Windows® 95/98/ME/NT/2000/XP/Vista/7/8/8.1/10, and Windows® 3.1.",
+    "homepage": "https://www.ghisler.com",
+    "license": "Shareware",
+    "architecture": {
+        "32bit": {
+            "url": "https://www.totalcommander.ch/beta/tc1050x32_rc3.exe",
+            "hash": "42034fb67e68229c3bbcc114b0757d03069fb173e4e00744cacf45d758f4cc0b",
+            "bin": [
+                [
+                    "TOTALCMD.EXE",
+                    "tcmd"
+                ]
+            ],
+            "shortcuts": [
+                [
+                    "TOTALCMD.EXE",
+                    "Total Commander (beta)"
+                ]
+            ]
+        },
+        "64bit": {
+            "url": "https://www.totalcommander.ch/beta/tc1050x32_64_rc3.exe",
+            "hash": "77cc35a188fbef23117b064e4446fa829259d4b0b3fb403f72397913fc1f1de3",
+            "bin": [
+                [
+                    "TOTALCMD.EXE",
+                    "tcmd32"
+                ],
+                [
+                    "TOTALCMD64.EXE",
+                    "tcmd"
+                ]
+            ],
+            "shortcuts": [
+                [
+                    "TOTALCMD64.EXE",
+                    "Total Commander 64 (beta)"
+                ]
+            ]
+        }
+    },
+    "pre_install": [
+        "Expand-7zipArchive \"$dir\\$fname\" \"$dir\\_tmp\"",
+        "Expand-7zipArchive \"$dir\\_tmp\\INSTALL.CAB\" \"$dir\" -Removal",
+        "Move-Item \"$dir\\e\\*\" \"$dir\"",
+        "Remove-Item -Recurse \"$dir\\d\", \"$dir\\e\", \"$dir\\_tmp\", \"$dir\\$fname\"",
+        "\"[Configuration]`r`nUseIniInProgramDir=7`r`nAlternateUserIni=wincmd_user.ini\" | Out-File -Encoding ASCII \"$dir\\wincmd.ini\"",
+        "ForEach ($emptyFile in $manifest.persist) { if ( $emptyFile -like \"*.*\" ) { New-Item \"$dir\\$emptyFile\" -ItemType file -ErrorAction SilentlyContinue | Out-Null } 
+                                                     else {New-Item \"$dir\\$emptyFile\" -ItemType directory -ErrorAction SilentlyContinue | Out-Null}}"
+    ],
+    "persist": [
+        "plugin",
+        "tools",
+        "inis",
+        "bars",
+        "icons",
+        "Filter64",
+        "Filter32",
+        "extDir",
+        "javalib",
+        "language",
+        "DarkHelp2",
+        "no.bar",
+        "default.bar",
+        "default.br2",
+        "vertical.bar",
+        "vertical.br2",
+        "system.bar",
+        "system.br2",
+        "usercmd.ini",
+        "wcx_ftp.ini",
+        "wincmd.ini",
+        "wincmd.key",
+        "wincmd_user.ini",
+        "wincmd_history.ini",
+        "wincmd_plugins.ini",
+        "contplug.ini",
+        "fsplugin.ini",
+        "lsplugin.ini",
+        "pkplugin.ini"
+    ],
+    "checkver": {
+        "url": "https://www.ghisler.com/1050_beta.htm",
+        "regex": "/beta/tc(?<ver>[\\d]+).+_(?<build>[\\w]+).exe",
+        "replace": "${1}_${2}"
+    },
+    "autoupdate": {
+        "architecture": {
+            "32bit": {
+                "url": "https://www.totalcommander.ch/beta/tc$matchVerx32_$matchBuild.exe"
+            },
+            "64bit": {
+                "url": "https://www.totalcommander.ch/beta/tc$matchVerx32_64_$matchBuild.exe"
+            }
+        }
+    }
+}

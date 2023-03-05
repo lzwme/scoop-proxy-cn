@@ -1,0 +1,36 @@
+{
+  "version": "16.1.9",
+  "homepage": "https://www.navicat.com",
+  "architecture": {
+    "64bit": {
+      "url": "http://download.navicat.com/download/navicat161_premium_en_x64.exe",
+      "hash": "4a696c8f82ea9c546656a1fa37092437450f9c7eebf2241b0ee66aebafb7821f"
+    },
+    "32bit": {
+      "url": "http://download.navicat.com/download/navicat161_premium_en_x86.exe",
+      "hash": "6cb07ebd44168b37394508b9bbfcfcc3f2ac3b374951eab0a96379f879f32a08"
+    }
+  },
+  "checkver": {
+    "url": "https://www.navicat.com/en/products/navicat-premium-release-note",
+    "re": "Navicat Premium \\(Windows\\) version ([\\d\\.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "http://download.navicat.com/download/navicat$majorVersion$minorVersion_premium_en_x64.exe"
+      },
+      "32bit": {
+        "url": "http://download.navicat.com/download/navicat$majorVersion$minorVersion_premium_en_x86.exe"
+      }
+    }
+  },
+  "innosetup": true,
+  "shortcuts": [
+    [
+      "navicat.exe",
+      "Navicat Premium"
+    ]
+  ],
+  "_from": "okibcn/ScoopMaster"
+}

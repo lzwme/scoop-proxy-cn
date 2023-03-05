@@ -1,0 +1,28 @@
+{
+  "version": "1.31.1",
+  "homepage": "https://www.trankynam.com/atext",
+  "hash": "af1b8f90296a727937ca7f2302e4c66dcef579e9c2e35bb6be60e07e8302e2b4",
+  "url": "https://www.trankynam.com/atext/downloads/aTextSetup.zip",
+  "installer": {
+    "script": [
+      "Expand-7zipArchive \"$dir\\aTextSetup.msi\" \"$dir\\_tmp\"",
+      "Expand-7zipArchive \"$dir\\_tmp\\disk1.cab\" \"$dir\" -Removal",
+      "Remove-Item -Recurse \"$dir\\_tmp\", \"$dir\\aTextSetup.msi\""
+    ]
+  },
+  "bin": "aText.exe",
+  "shortcuts": [
+    [
+      "aText.exe",
+      "aText"
+    ]
+  ],
+  "checkver": {
+    "url": "https://www.trankynam.com/atext/",
+    "regex": "Version ([\\w.]+) for Windows"
+  },
+  "autoupdate": {
+    "url": "https://www.trankynam.com/atext/downloads/aTextSetup.zip"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

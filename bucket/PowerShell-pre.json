@@ -1,19 +1,12 @@
 {
+  "version": "7.4.0-preview.1",
+  "description": " PowerShell Core is a cross-platform (Windows, Linux, and macOS) automation and configuration tool/framework that works well with your existing tools and is optimized for dealing with structured data (e.g. JSON, CSV, XML, etc.), REST APIs, and object models.",
+  "homepage": "https://github.com/PowerShell/PowerShell",
+  "license": "MIT",
   "architecture": {
     "64bit": {
-      "hash": "6df128d2e055c2fae5a0fd2b7dfeeff3dd9c922a437ae1eda05877c43a05c085",
-      "url": "https://ghproxy.com/https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.7/PowerShell-7.3.0-preview.7-win-x64.zip#/dl.7z"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "hash": {
-          "regex": "$basename\\s*<ul>\\s*<li>$sha256",
-          "url": "https://github.com/PowerShell/PowerShell/releases/tag/v$version/"
-        },
-        "url": "https://ghproxy.com/https://github.com/PowerShell/PowerShell/releases/download/v$version/PowerShell-$version-win-x64.zip#/dl.7z"
-      }
+      "url": "https://ghproxy.com/https://github.com/PowerShell/PowerShell/releases/download/v7.4.0-preview.1/PowerShell-7.4.0-preview.1-win-x64.zip#/dl.7z",
+      "hash": "b0f6627d1a05d8833963487139eb667657429f78eafcc90191ccd2d5347c8af3"
     }
   },
   "bin": [
@@ -22,19 +15,26 @@
       "pwsh-pre"
     ]
   ],
-  "checkver": {
-    "regex": "/PowerShell-([\\d.]+-preview\\.[\\d])-win-x64\\.zip",
-    "url": "https://github.com/PowerShell/PowerShell/releases"
-  },
-  "description": " PowerShell Core is a cross-platform (Windows, Linux, and macOS) automation and configuration tool/framework that works well with your existing tools and is optimized for dealing with structured data (e.g. JSON, CSV, XML, etc.), REST APIs, and object models.",
-  "homepage": "https://github.com/PowerShell/PowerShell",
-  "license": "MIT",
   "shortcuts": [
     [
       "pwsh.exe",
       "PowerShell Preview"
     ]
   ],
-  "version": "7.3.0-preview.7",
-  "_from": "anderlli0053/DEV-tools"
+  "checkver": {
+    "url": "https://github.com/PowerShell/PowerShell/releases",
+    "regex": "releases/tag/v([\\d.]+-preview[.\\d]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/PowerShell/PowerShell/releases/download/v$version/PowerShell-$version-win-x64.zip#/dl.7z",
+        "hash": {
+          "url": "$baseurl/hashes.sha256",
+          "regex": "$sha256 *$basename"
+        }
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
 }

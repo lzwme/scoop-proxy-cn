@@ -1,0 +1,28 @@
+{
+  "version": "2020.3.45f1",
+  "description": "Unity 3D 2020 (Long Term Support) editor and build tools",
+  "homepage": "https://unity3d.com/unity/qa/lts-releases",
+  "license": "https://unity.com/legal/terms-of-service",
+  "notes": [
+    "To register:",
+    " PS> unity -quit -batchmode -nographics -serial SE-R-I-A-L -username \"username\" -password \"password\""
+  ],
+  "url": "https://download.unity3d.com/download_unity/660cd1701bd5/Windows64EditorInstaller/UnitySetup64-2020.3.45f1.exe",
+  "hash": "56c1c02a9731b4a23db08fbdcec3d0321d81a6b31495d94654b66b28d71b126b",
+  "installer": {
+    "script": "Start-Process -FilePath \"$dir\\UnitySetup64-${version}.exe\" -ArgumentList \"/S /D=$dir\" -Wait"
+  },
+  "uninstaller": {
+    "script": "Start-Process -FilePath \"$dir\\Editor\\Uninstall.exe\" -ArgumentList \"/S\" -Wait"
+  },
+  "bin": "Editor\\Unity.exe",
+  "checkver": {
+    "url": "https://unity.com/releases/editor/lts-releases.xml",
+    "regex": "unityhub://2020(.[0-9]+.*?)/(.*)&lt;",
+    "replace": "2020${1}"
+  },
+  "autoupdate": {
+    "url": "https://download.unity3d.com/download_unity/$match2/Windows64EditorInstaller/UnitySetup64-2020$match1.exe"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

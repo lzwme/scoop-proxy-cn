@@ -1,26 +1,7 @@
 {
-  "autoupdate": {
-    "hash": {
-      "mode": "extract",
-      "regex": "^$sha256([\\s]+)$basename",
-      "url": "https://scoop-apps.vercel.app/xshell"
-    },
-    "url": "https://pan.jiemi.workers.dev/?file=/scoop/XShell/$matchFilename"
-  },
-  "bin": "Xshell.exe",
-  "checkver": {
-    "regex": "(?<filename>Xshell_v(?<version>[\\d.]+)\\.(?:zip|7z))",
-    "reverse": true,
-    "url": "https://scoop-apps.vercel.app/xshell"
-  },
+  "version": "7.0.0099",
   "description": "The Industry's Most Powerful SSH Client(Portable Edition).",
-  "extract_dir": "Xshell",
-  "hash": "9a1506417f3d913afd0f9dd0f2e16612a97fa46409486f053c0d0f0ddb3fa0e6",
   "homepage": "https://www.netsarang.com/en/xshell",
-  "installer": {
-    "file": "!)绿化处理.bat",
-    "keep": true
-  },
   "license": {
     "identifier": "Proprietary",
     "url": "https://www.netsarang.com/docs/ver7_eula.pdf"
@@ -36,19 +17,38 @@
     "4. 去 FlexNet 服务组件效验，无 FlexNet 授权服务后台组件",
     "5. 删除许可管理程序、在线升级程序、多语言模块等文件!"
   ],
-  "shortcuts": [
-    [
-      "Xshell.exe",
-      "Xshell"
-    ]
-  ],
+  "url": "https://pan.jiemi.workers.dev/?file=/scoop/XShell/Xshell_v7.0.0099.7z",
+  "hash": "9a1506417f3d913afd0f9dd0f2e16612a97fa46409486f053c0d0f0ddb3fa0e6",
+  "extract_dir": "Xshell",
+  "installer": {
+    "file": "!)绿化处理.bat",
+    "keep": true
+  },
   "uninstaller": {
     "script": [
       "Start-Process \"$dir\\!)卸载移除.bat\" -WorkingDirectory \"$dir\"  -Wait -Verb RunAs",
       "Write-Host \"The '$app' has been uninstalled.\" -Foreground Magenta"
     ]
   },
-  "url": "https://pan.jiemi.workers.dev/?file=/scoop/XShell/Xshell_v7.0.0099.7z",
-  "version": "7.0.0099",
-  "_from": "anderlli0053/DEV-tools"
+  "bin": "Xshell.exe",
+  "shortcuts": [
+    [
+      "Xshell.exe",
+      "Xshell"
+    ]
+  ],
+  "checkver": {
+    "url": "https://scoop-apps.vercel.app/xshell",
+    "regex": "(?<filename>Xshell_v(?<version>[\\d.]+)\\.(?:zip|7z))",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/scoop/XShell/$matchFilename",
+    "hash": {
+      "url": "https://scoop-apps.vercel.app/xshell",
+      "mode": "extract",
+      "regex": "^$sha256([\\s]+)$basename"
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
 }

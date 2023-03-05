@@ -1,0 +1,35 @@
+{
+  "version": "0.3.8",
+  "description": "Provide network connectivity to the WSL2 VM while connected to VPNs on the Windows host",
+  "homepage": "https://github.com/sakai135/wsl-vpnkit",
+  "depends": "srsrns/wslctl",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/sakai135/wsl-vpnkit/releases/download/v0.3.8/wsl-vpnkit.tar.gz#/wsl-vpnkit.pack",
+      "hash": "39bcbd211d4791fe54cbe58f44f7eb2e83e42fd109720fdf125b041ee83b622e"
+    }
+  },
+  "checkver": "github",
+  "installer": {
+    "script": [
+      "Get-Item \"$dir\\wsl-vpnkit.pack\" | Rename-Item -NewName \"$dir\\wsl-vpnkit.tar.gz\"",
+      "wslctl create \"$dir\\wsl-vpnkit.tar.gz\" \"sakai/wsl-vpnkit:$version\" --no-user --v2"
+    ]
+  },
+  "uninstaller": {
+    "script": "wslctl remove \"wsl-vpnkit\""
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/sakai135/wsl-vpnkit/releases/download/v$version/wsl-vpnkit.tar.gz#/wsl-vpnkit.pack",
+        "extract_dir": "Wsl-Vpnkit-$version-win64"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/wsl-vpnkit.tar.gz.sha256"
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

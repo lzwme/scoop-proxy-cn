@@ -1,0 +1,22 @@
+{
+  "version": "1675084687",
+  "description": "zsh-syntax-highlighting for PowerShell.",
+  "homepage": "https://github.com/digitalguy99/pwsh-syntax-highlighting",
+  "license": "Freeware",
+  "url": "https://ghproxy.com/https://github.com/digitalguy99/pwsh-syntax-highlighting/archive/refs/heads/main.zip",
+  "hash": "2e60b0edb0d71c25832aa26e1c16fc4f12981bb06af1dcb8c9ffe77feef0cd6c",
+  "extract_dir": "pwsh-syntax-highlighting-main",
+  "pre_install": "Remove-Item \"$dir\\README.md\"",
+  "notes": "Add `Import-Module syntax-highlighting` in your Powershell profile",
+  "psmodule": {
+    "name": "syntax-highlighting"
+  },
+  "checkver": {
+    "script": "try { Get-Date (Invoke-RestMethod https://api.github.com/repositories/497883967/commits/main).commit.committer.date -UFormat %s } catch { '' }",
+    "regex": "\\A(\\d+)\\Z"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/digitalguy99/pwsh-syntax-highlighting/archive/refs/heads/main.zip"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

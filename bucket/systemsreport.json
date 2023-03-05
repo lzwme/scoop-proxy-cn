@@ -1,0 +1,36 @@
+{
+  "homepage": "https://github.com/hannesdorn/SystemsReport",
+  "description": "Windows systemsreport generator",
+  "version": "0.6.4",
+  "license": "https://www.gnu.org/licenses/gpl.html",
+  "url": "https://ghproxy.com/https://github.com/hannesdorn/SystemsReport/releases/download/v0.6.4/SystemsReport-v0.6.4.zip",
+  "hash": "2fe7a33554d1de684c481b078af75fdc23da3f937009f91cd9a4cbfdf6de47fb",
+  "bin": "systemsreport.cmd",
+  "installer": {
+    "script": [
+      "if (!(Test-Path \"$dir\\config\\config.ps1\")) {",
+      "   Copy-Item \"$dir\\config\\config-sample.ps1\" \"$dir\\config\\config.ps1\"",
+      "}",
+      "Set-Content -Path \"$dir\\..\\..\\..\\persist\\systemsreport\\update.cmd\" -Value \"@echo off\" -Force",
+      "Add-Content \"$dir\\..\\..\\..\\persist\\systemsreport\\update.cmd\" -Value \"echo %date% %time%\"",
+      "Add-Content \"$dir\\..\\..\\..\\persist\\systemsreport\\update.cmd\" -Value \"%~d0\"",
+      "Add-Content \"$dir\\..\\..\\..\\persist\\systemsreport\\update.cmd\" -Value \"cd \"\"%~p0\"\"\"",
+      "Add-Content \"$dir\\..\\..\\..\\persist\\systemsreport\\update.cmd\" -Value \"call ..\\..\\shims\\scoop.cmd update\"",
+      "Add-Content \"$dir\\..\\..\\..\\persist\\systemsreport\\update.cmd\" -Value \"call ..\\..\\shims\\scoop.cmd update SystemsReport\""
+    ]
+  },
+  "persist": [
+    "config",
+    "reports"
+  ],
+  "checkver": {
+    "github": "https://github.com/hannesdorn/SystemsReport/"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/hannesdorn/SystemsReport/releases/download/v$version/SystemsReport-v$version.zip",
+    "hash": {
+      "url": "$url.sha256"
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

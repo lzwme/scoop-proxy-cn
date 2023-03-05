@@ -1,0 +1,38 @@
+{
+  "homepage": "http://www.phonerlite.de/download_en.htm",
+  "version": "3.15",
+  "description": "VoIP softphone",
+  "url": "http://www.phoner.de/PhonerLite.zip",
+  "hash": "5c8058024171e72d2ab637b8e503e715e1b355fbadb0a4cbb884a5b45b8838b5",
+  "extract_dir": "",
+  "pre_install": [
+    "function CreateFile ($name, $value = $null) {",
+    "    if (!(Test-Path \"$persist_dir\\$name\")) {",
+    "        Set-Content \"$dir\\$name\" $value -Encoding Ascii",
+    "    }",
+    "}",
+    "'sipper.ini', 'PhonerLite.ini', 'settings.ini', 'logbook.csv' | ForEach-Object { CreateFile $_ }"
+  ],
+  "persist": [
+    "provider.ini",
+    "sipper.ini",
+    "PhonerLite.ini",
+    "settings.ini",
+    "logbook.csv"
+  ],
+  "bin": "",
+  "shortcuts": [
+    [
+      "PhonerLite.exe",
+      "PhonerLite"
+    ]
+  ],
+  "checkver": {
+    "url": "http://www.phonerlite.de/download_en.htm",
+    "re": "<td>([\\d.]+)\\s*</td>"
+  },
+  "autoupdate": {
+    "url": "http://www.phoner.de/PhonerLite.zip"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

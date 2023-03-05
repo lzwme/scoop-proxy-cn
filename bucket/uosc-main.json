@@ -1,0 +1,18 @@
+{
+  "version": "1677487530",
+  "description": "Feature-rich minimalist proximity-based UI for MPV player.",
+  "homepage": "https://github.com/tomasklaen/uosc",
+  "license": "GPL-3.0-only",
+  "url": "https://ghproxy.com/https://github.com/tomasklaen/uosc/archive/refs/heads/main.zip",
+  "hash": "cabdd185ed2e31795136479fa7bd06241db7b16b8825c920549482eb732f1868",
+  "extract_dir": "uosc-main",
+  "pre_install": "Get-ChildItem \"$dir\" -Exclude scripts, script-opts, fonts | Remove-Item -Recurse",
+  "checkver": {
+    "script": "try { Get-Date (Invoke-RestMethod https://api.github.com/repositories/244438373/commits/main).commit.committer.date -UFormat %s } catch { '' }",
+    "regex": "\\A(\\d+)\\Z"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/tomasklaen/uosc/archive/refs/heads/main.zip"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

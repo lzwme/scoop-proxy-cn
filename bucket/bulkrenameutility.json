@@ -1,0 +1,45 @@
+{
+  "homepage": "http://www.bulkrenameutility.co.uk/Download.php",
+  "version": "3.4.1.0",
+  "url": "https://www.bulkrenameutility.co.uk/Downloads/BRU_NoInstall.zip",
+  "hash": "md5:b64000dedd6c96e6319cf7e76e5a3782",
+  "architecture": {
+    "64bit": {
+      "installer": {
+        "script": [
+          "Move-Item \"$dir\\All\\*\" \"$dir\"",
+          "Move-Item \"$dir\\64-bit\\*\" \"$dir\"",
+          "Remove-Item \"$dir\\All\", \"$dir\\*-*\" -Force -Recurse"
+        ]
+      }
+    },
+    "32bit": {
+      "installer": {
+        "script": [
+          "Move-Item \"$dir\\All\\*\" \"$dir\"",
+          "Move-Item \"$dir\\32-bit\\*\" \"$dir\"",
+          "Remove-Item \"$dir\\All\", \"$dir\\*-*\" -Force -Recurse"
+        ]
+      }
+    }
+  },
+  "shortcuts": [
+    [
+      "Bulk Rename Utility.exe",
+      "Bulk Rename Utility"
+    ]
+  ],
+  "persist": "Bulk Rename Utility.ini",
+  "checkver": {
+    "url": "https://www.bulkrenameutility.co.uk/Download.php",
+    "re": "version ([\\d.]+)</span>"
+  },
+  "autoupdate": {
+    "url": "https://www.bulkrenameutility.co.uk/Downloads/BRU_NoInstall.zip",
+    "hash": {
+      "url": "https://www.bulkrenameutility.co.uk/Download.php",
+      "regex": "MD5 value:[\\S\\s]+?$md5"
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

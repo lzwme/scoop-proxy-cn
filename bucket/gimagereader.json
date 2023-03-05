@@ -1,0 +1,37 @@
+{
+  "version": "4243272448",
+  "description": "A Gtk/Qt front-end to tesseract-ocr.",
+  "homepage": "https://github.com/manisandro/gImageReader",
+  "license": "GPL-3.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/manisandro/gImageReader/releases/download/ci-latest-master/gImageReader_latest_qt5_x86_64_portable.zip",
+      "hash": "c7c0753468842c69435cebc07b21aee933e49ceef1519d44f8c79da428e53262"
+    },
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/manisandro/gImageReader/releases/download/ci-latest-master/gImageReader_latest_qt5_i686_portable.zip",
+      "hash": "ccc20628f241bed0e0b440380aa48c52eb725a806832394f4c2c7704094a6804"
+    }
+  },
+  "shortcuts": [
+    [
+      "bin\\gimagereader-qt5.exe.exe",
+      "gImageReader"
+    ]
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repositories/16681717/actions/workflows/build.yml/runs?status=success",
+    "jsonpath": "$.workflow_runs[0].id"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/manisandro/gImageReader/releases/download/ci-latest-master/gImageReader_latest_qt5_x86_64_portable.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/manisandro/gImageReader/releases/download/ci-latest-master/gImageReader_latest_qt5_i686_portable.zip"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

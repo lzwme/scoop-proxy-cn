@@ -1,0 +1,32 @@
+{
+  "version": "1.4.3",
+  "description": "DNS ping tool to check packet loss and latency issues with DNS servers",
+  "homepage": "https://github.com/fortio/dnsping",
+  "license": "Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/fortio/dnsping/releases/download/v1.4.3/dnsping_1.4.3_Windows_x86_64.tar.gz",
+      "hash": "ae6616f47efdb615741373bdca7ec30f7eabfdf91eec12064ea0f84f1b3e4e18"
+    },
+    "arm64": {
+      "url": "https://ghproxy.com/https://github.com/fortio/dnsping/releases/download/v1.4.3/dnsping_1.4.3_Windows_arm64.tar.gz",
+      "hash": "6d6a3403f578c237968792e294c6cda17b9577782845aa18423023035e2ab6c9"
+    }
+  },
+  "bin": "dnsping.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/fortio/dnsping/releases/download/v$version/dnsping_$version_Windows_x86_64.tar.gz"
+      },
+      "arm64": {
+        "url": "https://ghproxy.com/https://github.com/fortio/dnsping/releases/download/v$version/dnsping_$version_Windows_arm64.tar.gz"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/checksums.txt"
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

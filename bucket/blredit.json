@@ -1,0 +1,55 @@
+{
+  "version": "0.10.0",
+  "description": "A loadout editor for Blacklight Revive",
+  "homepage": "https://github.com/HALOMAXX/BLREdit",
+  "license": "MIT",
+  "url": [
+    "https://ghproxy.com/https://github.com/HALOMAXX/BLREdit/releases/download/v0.10.0/BLREdit.zip",
+    "https://ghproxy.com/https://github.com/HALOMAXX/BLREdit/releases/download/v0.10.0/Assets.zip"
+  ],
+  "hash": [
+    "5506c06f690190462f47d355c9596da3f2c5da4993593f2fc67b6113362aacee",
+    "83d444975a82278426e82af754398e1364536a9871a4ee139f0bb40fe6b165ae"
+  ],
+  "extract_to": [
+    "",
+    "Assets"
+  ],
+  "pre_install": [
+    "foreach ($savedFile in 'GameClients','ModuleCache','ServerList','settings') {",
+    "    if (!(Test-Path \"$persist_dir\\$savedFile.json\")) {",
+    "        $fileType = ($savedFile -eq 'settings') ? '{}' : '[]'",
+    "        Add-Content \"$dir\\$savedFile.json\" $fileType -Encoding Ascii",
+    "    }",
+    "}"
+  ],
+  "pre_uninstall": [
+    "foreach ($savedFile in 'GameClients','ModuleCache','ServerList','settings') {",
+    "    if (Test-Path \"$dir\\$savedFile.json\") {",
+    "        Copy-Item \"$dir\\$savedFile.json\" \"$persist_dir\\\" -Force -ErrorAction SilentlyContinue",
+    "    }",
+    "}"
+  ],
+  "shortcuts": [
+    [
+      "BLREdit.exe",
+      "BLREdit"
+    ]
+  ],
+  "persist": [
+    "Backup",
+    "Profiles",
+    "GameClients.json",
+    "ModuleCache.json",
+    "ServerList.json",
+    "settings.json"
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "url": [
+      "https://ghproxy.com/https://github.com/HALOMAXX/BLREdit/releases/download/v$version/BLREdit.zip",
+      "https://ghproxy.com/https://github.com/HALOMAXX/BLREdit/releases/download/v$version/Assets.zip"
+    ]
+  },
+  "_from": "okibcn/ScoopMaster"
+}

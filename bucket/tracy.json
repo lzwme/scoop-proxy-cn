@@ -1,0 +1,48 @@
+{
+  "version": "0.8.2",
+  "description": "C++ frame profiler",
+  "homepage": "https://github.com/wolfpld/tracy",
+  "license": "BSD-3-Clause",
+  "suggest": {
+    "Visual C/C++ Redistributable": "extras/vcredist2022"
+  },
+  "url": "https://ghproxy.com/https://github.com/wolfpld/tracy/releases/download/v0.8.2/Tracy-0.8.2.7z",
+  "bin": [
+    "tracy-capture.exe",
+    "tracy-csvexport.exe",
+    "tracy-import-chrome.exe",
+    "tracy.exe",
+    "tracy-update.exe"
+  ],
+  "shortcuts": [
+    [
+      "tracy-capture.exe",
+      "Tracy Capture"
+    ],
+    [
+      "tracy-csvexport.exe",
+      "Tracy CSV Export"
+    ],
+    [
+      "tracy-import-chrome.exe",
+      "Tracy Import Chrome"
+    ],
+    [
+      "tracy.exe",
+      "Tracy"
+    ],
+    [
+      "tracy-update.exe",
+      "Tracy Update"
+    ]
+  ],
+  "pre_install": [
+    "Rename-Item \"$dir\\capture.exe\" tracy-capture.exe",
+    "Rename-Item \"$dir\\csvexport.exe\" tracy-csvexport.exe",
+    "Rename-Item \"$dir\\import-chrome.exe\" tracy-import-chrome.exe",
+    "Rename-Item \"$dir\\Tracy.exe\" tracy.exe",
+    "Rename-Item \"$dir\\update.exe\" tracy-update.exe"
+  ],
+  "hash": "d3348a01e779573716ed2a5ef532eb083894728002a590e93fa8a929c4595cf9",
+  "_from": "okibcn/ScoopMaster"
+}

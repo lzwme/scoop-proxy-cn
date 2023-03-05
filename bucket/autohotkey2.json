@@ -1,13 +1,11 @@
 {
+  "version": "2.0.2",
+  "description": "The ultimate automation scripting language for Windows.",
+  "homepage": "https://www.autohotkey.com/",
+  "license": "GPL-2.0-or-later",
+  "url": "https://www.autohotkey.com/download/2.0/AutoHotkey_2.0.2.zip",
+  "hash": "8f28c38a0b2af6ac96c4a7e1a2c0f296b2410f845d9aca8487843a1edac4271d",
   "architecture": {
-    "32bit": {
-      "bin": [
-        [
-          "autohotkey32.exe",
-          "autohotkey2"
-        ]
-      ]
-    },
     "64bit": {
       "bin": [
         [
@@ -15,23 +13,25 @@
           "autohotkey2"
         ]
       ]
+    },
+    "32bit": {
+      "bin": [
+        [
+          "autohotkey32.exe",
+          "autohotkey2"
+        ]
+      ]
     }
   },
+  "checkver": {
+    "url": "https://www.autohotkey.com/download/2.0/version.txt",
+    "regex": "([\\d.]+[-a-z]*[\\d.]+)"
+  },
   "autoupdate": {
+    "url": "https://www.autohotkey.com/download/2.0/AutoHotkey_$version.zip",
     "hash": {
       "url": "https://www.autohotkey.com/download/2.0/AutoHotkey_$version.zip.sha256"
-    },
-    "url": "https://www.autohotkey.com/download/2.0/AutoHotkey_$version.zip"
+    }
   },
-  "checkver": {
-    "regex": "([\\d.]+[-a-z]*[\\d.]+)",
-    "url": "https://www.autohotkey.com/download/2.0/version.txt"
-  },
-  "description": "The ultimate automation scripting language for Windows.",
-  "hash": "8f28c38a0b2af6ac96c4a7e1a2c0f296b2410f845d9aca8487843a1edac4271d",
-  "homepage": "https://www.autohotkey.com/",
-  "license": "GPL-2.0-or-later",
-  "url": "https://www.autohotkey.com/download/2.0/AutoHotkey_2.0.2.zip",
-  "version": "2.0.2",
-  "_from": "anderlli0053/DEV-tools"
+  "_from": "okibcn/ScoopMaster"
 }

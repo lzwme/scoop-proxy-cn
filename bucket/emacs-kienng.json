@@ -1,30 +1,31 @@
 {
+  "homepage": "https://github.com/kiennq/emacs-build",
+  "version": "30.175.20230301.b7b1123",
+  "description": "Scripts to build a distribution of Emacs from sources, using MSYS2 and Mingw64(32).",
+  "license": "GPL (Emacs) + MIT (build script)",
   "architecture": {
     "64bit": {
-      "hash": "e2e163710a3e61d7a6ac9813ff3128a4cfcf8e87db4712699d261b577d92e504",
-      "url": "https://ghproxy.com/https://github.com/kiennq/emacs-build/releases/download/v29.0.147.8539178/emacs-master-x86_64-full.zip"
+      "url": "https://ghproxy.com/https://github.com/kiennq/emacs-build/releases/download/v30.175.20230301.b7b1123/emacs-master-x86_64-full.zip",
+      "hash": "37f3ce28380df814808405be8674f9d3ee825583fdcf05ce7c29b0ee749fdf6c"
     }
   },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.com/https://github.com/kiennq/emacs-build/releases/download/v$matchVersion/emacs-master-x86_64-full.zip"
-      }
-    }
-  },
-  "checkver": {
-    "regex": "/kiennq/emacs-build/releases/download/v(?<version>[\\d\\w.]+)/emacs-master-x86_64-full.zip",
-    "url": "https://github.com/kiennq/emacs-build/releases/latest"
-  },
-  "description": "Scripts to build a distribution of Emacs from sources, using MSYS2 and Mingw64(32).",
-  "homepage": "https://github.com/kiennq/emacs-build",
-  "license": "GPL (Emacs) + MIT (build script)",
   "shortcuts": [
     [
       "bin\\runemacs.exe",
       "Emacs (kienng)"
     ]
   ],
-  "version": "29.0.147.8539178",
-  "_from": "anderlli0053/DEV-tools"
+  "checkver": {
+    "url": "https://api.github.com/repos/kiennq/emacs-build/releases",
+    "jsonpath": "$[0].tag_name",
+    "regex": "v([\\d.a-z]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/kiennq/emacs-build/releases/download/v$version/emacs-master-x86_64-full.zip"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
 }

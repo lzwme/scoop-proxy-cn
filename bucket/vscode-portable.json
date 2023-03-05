@@ -1,32 +1,6 @@
 {
-  "architecture": {
-    "64bit": {
-      "hash": "d231b591feb3f184ecf8eebeef54f821e6aa42f6f23cf0b308ac363a4d319575",
-      "url": "https://update.code.visualstudio.com/1.75.1/win32-x64-archive/stable#/dl.7z"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "hash": {
-          "jsonpath": "$.products[?(@.platform.os == 'win32-x64-archive')].sha256hash",
-          "url": "https://code.visualstudio.com/sha?build=stable"
-        },
-        "url": "https://update.code.visualstudio.com/$version/win32-x64-archive/stable#/dl.7z"
-      }
-    }
-  },
-  "bin": [
-    [
-      "bin\\code.cmd",
-      "code"
-    ]
-  ],
-  "checkver": {
-    "jsonpath": "$.products[?(@.platform.os == 'win32-x64-archive')].name",
-    "url": "https://code.visualstudio.com/sha?build=stable"
-  },
   "homepage": "https://code.visualstudio.com/",
+  "version": "1.76.0",
   "license": {
     "identifier": "Freeware",
     "url": "https://code.visualstudio.com/License/"
@@ -37,13 +11,46 @@
     "From \"$env:APPDATA\\Code\" to \"$env:USERPROFILE\\scoop\\persist\\vscode-portable\\data\\user-data\"",
     "Add Visual Studio Code as a context menu option by running: \"$dir\\vscode-install-context.reg\""
   ],
-  "persist": "data",
+  "architecture": {
+    "64bit": {
+      "url": "https://update.code.visualstudio.com/1.76.0/win32-x64-archive/stable#/dl.7z",
+      "hash": "310197686a2b7496048d98771c73cf26bf4a4b8ff5395c16692826fc12bafa2b"
+    }
+  },
+  "bin": [
+    [
+      "bin\\code.cmd",
+      "code"
+    ]
+  ],
   "shortcuts": [
     [
       "code.exe",
       "Visual Studio Code"
     ]
   ],
-  "version": "1.75.1",
-  "_from": "anderlli0053/DEV-tools"
+  "post_install": [
+    "$extensions_file = \"$dir\\data\\extensions\\extensions.json\"",
+    "if ((Test-Path \"$extensions_file\")) {",
+    "    info 'Adjusting path in extensions file...'",
+    "    (Get-Content \"$extensions_file\") -replace '(?<=vscode(/|\\\\\\\\)).*?(?=(/|\\\\\\\\)data(/|\\\\\\\\)extensions)', $version | Set-Content \"$extensions_file\"",
+    "}"
+  ],
+  "persist": "data",
+  "checkver": {
+    "url": "https://code.visualstudio.com/sha?build=stable",
+    "jsonpath": "$.products[?(@.platform.os == 'win32-x64-archive')].name"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://update.code.visualstudio.com/$version/win32-x64-archive/stable#/dl.7z",
+        "hash": {
+          "url": "https://code.visualstudio.com/sha?build=stable",
+          "jsonpath": "$.products[?(@.platform.os == 'win32-x64-archive')].sha256hash"
+        }
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
 }

@@ -1,18 +1,32 @@
 {
-  "version": "8.8",
-  "homepage": "https://racket-lang.org",
-  "license": "LGPL-3.0-or-later",
-  "description": "Racket on Chez Scheme",
   "architecture": {
     "64bit": {
-      "url": "https://mirror.racket-lang.org/releases/8.8/installers/racket-8.8-x86_64-win32-cs.exe#/dl.7z",
-      "hash": "adc4ac4efedc1c5a84baaaaa989ba300de3b65e02979a8bfc366cfefd6d9f767"
+      "hash": "adc4ac4efedc1c5a84baaaaa989ba300de3b65e02979a8bfc366cfefd6d9f767",
+      "url": "https://mirror.racket-lang.org/releases/8.8/installers/racket-8.8-x86_64-win32-cs.exe#/dl.7z"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://mirror.racket-lang.org/releases/$version/installers/racket-$version-x86_64-win32-cs.exe#/dl.7z"
+      }
+    },
+    "hash": {
+      "regex": "$basename[\\s\\S]*?\"checksum\">$sha1</span>",
+      "url": "https://download.racket-lang.org/releases/$version/"
     }
   },
   "bin": [
     "racket.exe",
     "raco.exe"
   ],
+  "checkver": {
+    "re": "Version ([\\d.]+)",
+    "url": "https://download.racket-lang.org/"
+  },
+  "description": "Racket on Chez Scheme",
+  "homepage": "https://racket-lang.org",
+  "license": "LGPL-3.0-or-later",
   "shortcuts": [
     [
       "GRacket.exe",
@@ -23,20 +37,6 @@
       "DrRacket"
     ]
   ],
-  "checkver": {
-    "url": "https://download.racket-lang.org/",
-    "re": "Version ([\\d.]+)"
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://mirror.racket-lang.org/releases/$version/installers/racket-$version-x86_64-win32-cs.exe#/dl.7z"
-      }
-    },
-    "hash": {
-      "url": "https://download.racket-lang.org/releases/$version/",
-      "regex": "$basename[\\s\\S]*?\"checksum\">$sha1</span>"
-    }
-  },
-  "_from": "kkzzhizhou/scoop-apps"
+  "version": "8.8",
+  "_from": "okibcn/ScoopMaster"
 }

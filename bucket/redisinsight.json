@@ -1,0 +1,33 @@
+{
+  "version": "2.20.0",
+  "description": "RedisInsight is a powerful tool for visualizing and optimizing data in Redis or Redis Stack",
+  "homepage": "https://redis.com/redis-enterprise/redis-insight/",
+  "license": {
+    "identifier": "Shareware",
+    "url": "https://redis.com/redis-enterprise"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://download.redisinsight.redis.com/latest/RedisInsight-v2-win-installer.exe#/dl.7z",
+      "hash": "4286ddb4bb250a56e445b5b38b9e5a83cdae5101f262147358c30f02587adffb",
+      "installer": {
+        "script": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\""
+      }
+    }
+  },
+  "bin": [
+    [
+      "RedisInsight-v2.exe",
+      "RedisInsight",
+      "--user-data-dir=\"$dir\\User Data\""
+    ]
+  ],
+  "post_install": "Remove-Item \"$dir\\`$*\", \"$dir\\Uninstall*\" -Recurse",
+  "shortcuts": [
+    [
+      "RedisInsight-v2.exe",
+      "RedisInsight"
+    ]
+  ],
+  "_from": "okibcn/ScoopMaster"
+}

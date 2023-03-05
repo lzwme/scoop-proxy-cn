@@ -1,49 +1,66 @@
 {
-  "version": "0.7.3",
+  "version": "1.7.0",
   "description": "Open source reimplementation of the game Jazz Jackrabbit 2",
   "homepage": "http://deat.tk/jazz2/",
-  "license": "GPL-3.0-or-later",
+  "license": {
+    "identifier": "GPL-3.0-or-later",
+    "url": "https://github.com/deathkiller/jazz2-native/blob/master/LICENSE"
+  },
   "notes": [
     "",
-    "First you need to import some form of game data.",
+    "Copy the original \"Jazz Jackrabbit 2\" directory to $persist_dir\\Source\\",
     "",
-    "You can run 'Import.exe' in the app dir and choose to download the Shareware version, however it's recommended to buy the full version on GOG here: https://www.gog.com/game/jazz_jackrabbit_2_collection",
+    "A tip regarding the full version:",
     "",
-    "See the instructions when running 'Import.exe' which describes how to import the files of the full version.",
+    "1. First install \"The Secret Files\" release.",
+    "2. Install \"The Christmas Chronicles\" release in a separate directory.",
+    "3. Copy the files from \"The Christmas Chronicles\" directory to the directory of \"The Secret Files\" release - and do NOT overwrite any files.",
     "",
-    "Either that, or simply drag 'Jazz2.exe' from your installation of the full version and drop it onto 'Import.exe' (video tutorial: https://www.youtube.com/watch?v=ibUn20raRMo).",
-    "",
-    "IMPORTANT: Currently, game data has to be imported every time the app is updated.",
-    "",
-    "Tip regarding the full version:",
-    "",
-    "1. First install The Secret Files release.",
-    "2. Install The Christmas Chronicles release in a separate dir.",
-    "3. Copy the files from The Christmas Chronicles dir to the dir of The Secret Files release - and do NOT overwrite any files.",
-    "",
-    "Now you've a complete edition to import to Jazz² Resurrection.",
+    "Now you have a complete edition to import into Jazz² Resurrection.",
     ""
   ],
-  "url": "https://ghproxy.com/https://github.com/deathkiller/jazz2/releases/download/0.7.3/Jazz2_0.7.3_Desktop.zip",
-  "hash": "d632139360781a534fc8d10ac17ca3370ef5bf846069f098f88220f0c98fc9c4",
-  "extract_dir": "Jazz2",
-  "pre_install": [
-    "if (!(Test-Path \"$persist_dir\\Jazz2.settings\")) {",
-    "   New-Item -ItemType File \"$dir\\Jazz2.settings\" | Out-Null",
-    "}"
-  ],
-  "shortcuts": [
-    [
-      "Jazz2.exe",
-      "Jazz² Resurrection"
-    ]
-  ],
-  "persist": "Jazz2.settings",
+  "url": "https://ghproxy.com/https://github.com/deathkiller/jazz2/releases/download/1.7.0/Jazz2_1.7.0_Windows.zip",
+  "hash": "bba76b1d196bd9d96769629fd803cb9ffe001e885964912612cd37613ac3f653",
+  "architecture": {
+    "64bit": {
+      "extract_dir": "x64",
+      "bin": [
+        "Jazz2.exe",
+        "Jazz2_avx2.exe",
+        "Jazz2_sdl2.exe"
+      ],
+      "shortcuts": [
+        [
+          "Jazz2.exe",
+          "Jazz² Resurrection"
+        ],
+        [
+          "Jazz2_avx2.exe",
+          "Jazz² Resurrection (AVX2)"
+        ],
+        [
+          "Jazz2_sdl2.exe",
+          "Jazz² Resurrection (SDL2)"
+        ]
+      ]
+    },
+    "32bit": {
+      "extract_dir": "x86",
+      "bin": "Jazz2.exe",
+      "shortcuts": [
+        [
+          "Jazz2.exe",
+          "Jazz² Resurrection"
+        ]
+      ]
+    }
+  },
+  "persist": "Source",
   "checkver": {
     "github": "https://github.com/deathkiller/jazz2"
   },
   "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/deathkiller/jazz2/releases/download/$version/Jazz2_$version_Desktop.zip"
+    "url": "https://ghproxy.com/https://github.com/deathkiller/jazz2/releases/download/$version/Jazz2_$version_Windows.zip"
   },
-  "_from": "Calinou/scoop-games"
+  "_from": "okibcn/ScoopMaster"
 }

@@ -1,8 +1,15 @@
 {
-  "version": "1.4.2",
-  "description": "哔咔漫画, PicACG comic PC client",
   "homepage": "https://github.com/tonquer/picacg-qt",
+  "version": "1.4.2",
   "license": "LGPLv3",
+  "description": "哔咔漫画, PicACG comic PC client",
+  "checkver": "github",
+  "shortcuts": [
+    [
+      "start.exe",
+      "PicACG"
+    ]
+  ],
   "architecture": {
     "64bit": {
       "url": "https://ghproxy.com/https://github.com/tonquer/picacg-qt/releases/download/v1.4.2/bika_v1.4.2_windows_x64.7z",
@@ -10,14 +17,6 @@
       "extract_dir": "bika_v1.4.2_windows_x64\\bika"
     }
   },
-  "post_install": "Remove-Item \"$dir\\bika_*_windows_x64\" -Force -Recurse",
-  "shortcuts": [
-    [
-      "start.exe",
-      "PicACG"
-    ]
-  ],
-  "checkver": "github",
   "autoupdate": {
     "architecture": {
       "64bit": {
@@ -26,5 +25,5 @@
       }
     }
   },
-  "_from": "kkzzhizhou/scoop-apps"
+  "_from": "okibcn/ScoopMaster"
 }

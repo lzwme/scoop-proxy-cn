@@ -1,0 +1,47 @@
+{
+  "version": "1.0.39",
+  "description": "自动化学习强国,每日稳定45分，克隆自原作者johlanse的项目",
+  "homepage": "https://github.com/sjkhsl/study_xxqg",
+  "license": {
+    "identifier": "AGPL-3.0 license",
+    "url": "https://github.com/sjkhsl/study_xxqg/blob/main/LICENSE"
+  },
+  "notes": "文档地址: <https://github.com/sjkhsl/study_xxqg#windows使用教程>",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/sjkhsl/study_xxqg/releases/download/v1.0.39/windows_amd64.zip",
+      "hash": "14189af527b9be497c7e9166088555483f865d3857529373c0dae13668d68a01"
+    },
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/sjkhsl/study_xxqg/releases/download/v1.0.39/windows_386.zip",
+      "hash": "ea8fba1beb1b5944f0e9ddaa5cba3561ee977cd6fe0747b420ca1d8ea4720fef"
+    }
+  },
+  "pre_install": "Get-ChildItem \"$dir\\study_xxqg*.exe\" | Rename-Item -NewName 'study_xxqg.exe'",
+  "bin": "study_xxqg.exe",
+  "shortcuts": [
+    [
+      "study_xxqg.exe",
+      "study_xxqg"
+    ]
+  ],
+  "persist": [
+    "config",
+    "tools"
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/sjkhsl/study_xxqg/releases",
+    "regex": "/releases/tag/(?:v|V)?([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/sjkhsl/study_xxqg/releases/download/v$version/windows_amd64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/sjkhsl/study_xxqg/releases/download/v$version/windows_386.zip"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

@@ -1,28 +1,28 @@
 {
-  "autoupdate": {
-    "url": "$matchPath"
-  },
-  "bin": "PDFPatcher.exe",
-  "checkver": {
-    "regex": "(?<path>https://github.com/wmjordan/PDFPatcher/files/[\\d]+/PDFPatcher\\.([\\d.]+)\\.7z\\.zip)",
-    "url": "https://github.com/wmjordan/PDFPatcher/issues/2"
-  },
+  "version": "1.0.0.4142",
   "description": "PDF toolbox, you can edit bookmarks, cut and rotate pages, lift restrictions, extract or merge documents, explore the structure of the document, extract images, convert to images, etc.",
-  "hash": "97c32014b0fff5b9da1a4721386308f430c207281c5c7a74184257834bf4fff8",
   "homepage": "https://pdfpatcher.cnblogs.com",
   "license": {
     "identifier": "Proprietary",
     "url": "https://github.com/wmjordan/PDFPatcher/blob/master/%E6%8E%88%E6%9D%83%E5%8D%8F%E8%AE%AE.txt"
   },
-  "persist": "AppConfig.json",
+  "url": "https://github.com/wmjordan/PDFPatcher/files/10789346/PDFPatcher.1.0.0.4142.7z.zip",
+  "hash": "bf56fc8ffc2dbce06349aaf68c6f99a03a4f03dea85f570890f5bbc27a143da3",
   "pre_install": "if (!(Test-Path \"$persist_dir\\AppConfig.json\")) { New-Item \"$dir\\AppConfig.json\" -ItemType \"file\" -Value \"{}\" | Out-Null }",
+  "bin": "PDFPatcher.exe",
   "shortcuts": [
     [
       "PDFPatcher.exe",
       "PDFPatcher"
     ]
   ],
-  "url": "https://github.com/wmjordan/PDFPatcher/files/10223762/PDFPatcher.1.0.0.4128.7z.zip",
-  "version": "1.0.0.4128",
-  "_from": "anderlli0053/DEV-tools"
+  "persist": "AppConfig.json",
+  "checkver": {
+    "url": "https://github.com/wmjordan/PDFPatcher/issues/2",
+    "regex": "https://github.com/wmjordan/PDFPatcher/files/(?<timestamp>[\\d]+)/PDFPatcher\\.(?<version>[\\d.]+)\\.7z\\.zip"
+  },
+  "autoupdate": {
+    "url": "https://github.com/wmjordan/PDFPatcher/files/$matchTimestamp/PDFPatcher.$version.7z.zip"
+  },
+  "_from": "okibcn/ScoopMaster"
 }

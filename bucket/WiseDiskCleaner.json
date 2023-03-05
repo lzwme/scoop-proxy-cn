@@ -1,0 +1,33 @@
+{
+  "version": "10.9.8.814",
+  "description": "Free Registry Cleaner and Optimizer",
+  "license": "https://www.wisecleaner.com",
+  "homepage": "https://www.wisecleaner.com",
+  "architecture": {
+    "64bit": {
+      "url": "https://downloads.wisecleaner.com/soft/WDCFree_10.9.8.814.zip",
+      "hash": "1366ce68fe09a4fa9b066fa6b878c8cabb8c95b30fb55b22548edc9951049dbb",
+      "extract_dir": "Wise Disk Cleaner"
+    }
+  },
+  "bin": "WiseDiskCleaner.exe",
+  "shortcuts": [
+    [
+      "WiseDiskCleaner.exe",
+      "Wise Disk Cleaner"
+    ]
+  ],
+  "checkver": {
+    "url": "https://www.wisecleaner.com/download.html",
+    "regex": "WDCFree_(?<version>[\\d\\.]+)\\.zip"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://downloads.wisecleaner.com/soft/WDCFree_$version.zip",
+        "extract_dir": "Wise Disk Cleaner"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

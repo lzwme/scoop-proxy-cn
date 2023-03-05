@@ -1,0 +1,52 @@
+{
+  "homepage": "http://www.softwareok.com/?seite=Freeware/Q-Dir",
+  "version": "11.19",
+  "description": "Q-Dir is a great alternative file manager for Windows with a amazing Quadro-View technique. ",
+  "license": {
+    "identifier": "Freeware"
+  },
+  "extract_dir": "Q-Dir",
+  "architecture": {
+    "64bit": {
+      "url": "https://www.softwareok.com/Download/Q-Dir_Portable_x64.zip",
+      "hash": "dab362c6d9fefef420171113f6b969de7f4f304e03af343a807e9062465d321f",
+      "bin": [
+        [
+          "Q-Dir_x64.exe",
+          "qdir"
+        ]
+      ]
+    },
+    "32bit": {
+      "url": "https://www.softwareok.com/Download/Q-Dir_Portable.zip",
+      "hash": "93b33957f9b97d3b3d6ade366602a71029c98842d372c80edb9bf2405e8ef5ef",
+      "bin": [
+        [
+          "Q-Dir.exe",
+          "qdir"
+        ]
+      ]
+    }
+  },
+  "persist": [
+    "Favoriten",
+    "Q-Dir.ini"
+  ],
+  "checkver": "Q-Dir ([^\\ ]+)",
+  "autoupdate": {
+    "note": "Thanks for using autoupdate, please test your updates!",
+    "architecture": {
+      "64bit": {
+        "url": "https://www.softwareok.com/Download/Q-Dir_Portable_x64.zip"
+      },
+      "32bit": {
+        "url": "https://www.softwareok.com/Download/Q-Dir_Portable.zip"
+      }
+    },
+    "hash": {
+      "url": "https://www.softwareok.com/?Download=Q-Dir",
+      "find": "$basename.*?([a-fA-F0-9]{64})"
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

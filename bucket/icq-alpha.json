@@ -1,0 +1,27 @@
+{
+  "version": "23.2.0.47908",
+  "description": "ICQ - stay connected",
+  "homepage": "https://icq.com/",
+  "license": "Proprietary",
+  "url": "https://icq-www.hb.bizmrg.com/alpha-version/win/x32/23.2.0.47908/icqsetup.exe#/dl.7z",
+  "hash": "md5:81307da54bd3e268c34d09c31a151527",
+  "shortcuts": [
+    [
+      "icq.exe",
+      "ICQ Alpha"
+    ]
+  ],
+  "checkver": {
+    "url": "https://u.icq.net/omicron?mytracker_id=icq_desktop_ic1nmMjqg7Yu-0hL",
+    "jsonpath": "$['config']['update_alpha_version']"
+  },
+  "autoupdate": {
+    "url": "https://icq-www.hb.bizmrg.com/alpha-version/win/x32/$version/icqsetup.exe#/dl.7z",
+    "hash": {
+      "mode": "json",
+      "jsonpath": "$['info']['md5']",
+      "url": "https://icq-www.hb.bizmrg.com/alpha-version/win/x32/$version/version.json"
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

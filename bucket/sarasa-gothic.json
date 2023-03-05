@@ -1,34 +1,13 @@
 {
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/be5invis/Sarasa-Gothic/releases/download/v$version/sarasa-gothic-ttf-$version.7z"
-  },
-  "checkver": "github",
-  "depends": "sudo",
-  "description": "This is SARASA GOTHIC, a CJK programming font based on Iosevka and Source Han Sans.",
-  "hash": "e32c97acf14ed7a24bc10c9cb3d39b63da71c1ac33df68208675f0c0d1d93fc4",
   "homepage": "https://github.com/be5invis/Sarasa-Gothic",
-  "installer": {
-    "script": [
-      "if(!(is_admin)) { error \"Admin rights are required, please run 'sudo scoop uninstall $app'\"; exit 1 }",
-      "Get-ChildItem $dir -filter 'sarasa*.ttf' | ForEach-Object {",
-      "  New-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $_.Name -Force | Out-Null",
-      "  Copy-Item $_.FullName -destination \"$env:windir\\Fonts\"",
-      "}"
-    ]
+  "version": "0.40.2",
+  "description": "This is SARASA GOTHIC, a CJK programming font based on Iosevka and Source Han Sans.",
+  "license": "OFL-1.1",
+  "url": "https://ghproxy.com/https://github.com/be5invis/Sarasa-Gothic/releases/download/v0.40.2/sarasa-gothic-ttc-0.40.2.7z",
+  "hash": "65aac3b6dc3067305bd3e8818a95476462dfd4ade543bc6f8cc47a8c4de19a1f",
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/be5invis/Sarasa-Gothic/releases/download/v$version/sarasa-gothic-ttc-$version.7z"
   },
-  "license": "SIL Open Font License",
-  "notes": "You may need to restart the system to use recently installed fonts.",
-  "uninstaller": {
-    "script": [
-      "if(!(is_admin)) { error \"Admin rights are required, please run 'sudo scoop uninstall $app'\"; exit 1 }",
-      "Get-ChildItem $dir -filter 'sarasa*.ttf' | ForEach-Object {",
-      "  Remove-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
-      "  Remove-Item \"$env:windir\\Fonts\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
-      "}",
-      "Write-Host \"The 'Sarasa Gothic' Font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
-    ]
-  },
-  "url": "https://ghproxy.com/https://github.com/be5invis/Sarasa-Gothic/releases/download/v0.40.1/sarasa-gothic-ttf-0.40.1.7z",
-  "version": "0.40.1",
-  "_from": "anderlli0053/DEV-tools"
+  "_from": "okibcn/ScoopMaster"
 }

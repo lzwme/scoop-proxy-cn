@@ -1,0 +1,32 @@
+{
+  "version": "0.2.5",
+  "description": "Cross-plaform desktop manga downloader",
+  "homepage": "https://github.com/KotatsuApp/kotatsu-dl",
+  "license": "GPL-3.0 license",
+  "depends": "java",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/KotatsuApp/kotatsu-dl/releases/download/v0.2.5/kotatsu-dl-0.2.5-windows.zip",
+      "hash": "eddb554e4435f35ac0b23a32c168e6b10dca6cc978a8d6724c22a9240941d1ea"
+    }
+  },
+  "extract_dir": "build\\dist\\windows",
+  "shortcuts": [
+    [
+      "kotatsu-dl.bat",
+      "kotatsu-dl"
+    ]
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/KotatsuApp/kotatsu-dl/releases",
+    "regex": "/releases/tag/[vV]?([\\w.-]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/KotatsuApp/kotatsu-dl/releases/download/v$version/kotatsu-dl-$version-windows.zip"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

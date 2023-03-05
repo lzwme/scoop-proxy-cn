@@ -1,0 +1,38 @@
+{
+  "version": "0.3.7",
+  "description": "OCR powered screen-capture tool to capture information instead of images",
+  "homepage": "https://github.com/dynobo/normcap",
+  "license": "GPL-3.0-or-later",
+  "url": [
+    "https://ghproxy.com/https://github.com/dynobo/normcap/releases/download/v0.3.7/NormCap-0.3.7-Windows.msi",
+    "https://github.com/dynobo/normcap/raw/v0.3.5/package/imgs/normcap.ico"
+  ],
+  "hash": [
+    "f1c33586366ccca51cd636c851eaf60eb3b731f9615cfc16efa5939f7942e6bd",
+    "9ceca1624d57b6986213064ecfec50e2db12330309f1b5b302b6641669c9f085"
+  ],
+  "extract_dir": "NormCap",
+  "pre_install": "Set-Content -Path \"$dir\\normcap.ps1\" -Value \"& `\"`$PSScriptRoot\\python\\python.exe`\" -m normcap @args\"",
+  "uninstaller": {
+    "script": [
+      "if ($purge) {",
+      "    Remove-Item \"HKCU:\\SOFTWARE\\normcap\" -Recurse",
+      "    Remove-Item \"$env:LOCALAPPDATA\\normcap\" -Recurse",
+      "}"
+    ]
+  },
+  "bin": "normcap.ps1",
+  "shortcuts": [
+    [
+      "python\\pythonw.exe",
+      "NormCap",
+      "-m normcap",
+      "normcap.ico"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/dynobo/normcap/releases/download/v$version/NormCap-$version-Windows.msi"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

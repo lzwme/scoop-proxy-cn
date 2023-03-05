@@ -1,0 +1,29 @@
+{
+  "version": "12.4.0",
+  "description": "FeedCrawler (ehemals RSScrawler) automatisiert bequem das Hinzufügen von Links für den JDownloader.",
+  "homepage": "https://github.com/rix1337/FeedCrawler",
+  "license": "MIT License",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/rix1337/FeedCrawler/releases/download/v.12.4.0/feedcrawler-12.4.0-standalone-win64.exe",
+      "hash": "18aa9652aa1504da60ea414c3efe740090a2ed273cb186dc5cba8fe1d0f4fc37"
+    }
+  },
+  "bin": "feedcrawler.exe",
+  "persist": "config",
+  "installer": {
+    "script": "\".\\config\" | Out-File -FilePath \"$original_dir\\feedcrawler.conf\" -Encoding ascii -NoNewline"
+  },
+  "checkver": {
+    "github": "https://github.com/rix1337/FeedCrawler",
+    "regex": "/releases/tag/(?:v|V)\\.?([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/rix1337/FeedCrawler/releases/download/v.$version/feedcrawler-$version-standalone-win64.exe"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

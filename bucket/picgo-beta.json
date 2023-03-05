@@ -1,45 +1,45 @@
 {
-  "architecture": {
-    "32bit": {
-      "hash": "64f16e0a01744697ee1c0d7dc9c190fa8d269e81ea080a49cf46f24643827419",
-      "pre_install": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-32.7z\" \"$dir\"",
-      "url": "https://ghproxy.com/https://github.com/Molunerfinn/PicGo/releases/download/v2.4.0-beta.0/PicGo-Setup-2.4.0-beta.0-ia32.exe#/dl.7z"
-    },
-    "64bit": {
-      "hash": "sha512:86ba1857fef7eea271713686d9098fe9ed91b856bb4f0b2940d5534edf5c66d14ae622f76ec627e586afe449be6034e54ccd1d11701db9f414b27937853f5df2",
-      "pre_install": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
-      "url": "https://ghproxy.com/https://github.com/Molunerfinn/PicGo/releases/download/v2.4.0-beta.0/PicGo-Setup-2.4.0-beta.0-x64.exe#/dl.7z"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "32bit": {
-        "url": "https://ghproxy.com/https://github.com/Molunerfinn/PicGo/releases/download/v$version/PicGo-Setup-$version-ia32.exe#/dl.7z"
-      },
-      "64bit": {
-        "hash": {
-          "regex": "sha512:\\s+$base64",
-          "url": "$baseurl/latest.yml"
-        },
-        "url": "https://ghproxy.com/https://github.com/Molunerfinn/PicGo/releases/download/v$version/PicGo-Setup-$version-x64.exe#/dl.7z"
-      }
-    }
-  },
-  "bin": "PicGo.exe",
-  "checkver": {
-    "regex": "/PicGo/tree/v([\\w.-]+)",
-    "url": "https://github.com/Molunerfinn/PicGo/releases"
-  },
+  "version": "2.4.0-beta.0",
   "description": "Image uploader/manager",
   "homepage": "https://picgo.github.io/PicGo-Doc/en/",
   "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/Molunerfinn/PicGo/releases/download/v2.4.0-beta.0/PicGo-Setup-2.4.0-beta.0-x64.exe#/dl.7z",
+      "hash": "sha512:86ba1857fef7eea271713686d9098fe9ed91b856bb4f0b2940d5534edf5c66d14ae622f76ec627e586afe449be6034e54ccd1d11701db9f414b27937853f5df2",
+      "pre_install": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\""
+    },
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/Molunerfinn/PicGo/releases/download/v2.4.0-beta.0/PicGo-Setup-2.4.0-beta.0-ia32.exe#/dl.7z",
+      "hash": "64f16e0a01744697ee1c0d7dc9c190fa8d269e81ea080a49cf46f24643827419",
+      "pre_install": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-32.7z\" \"$dir\""
+    }
+  },
   "post_install": "Remove-Item \"$dir\\`$*\", \"$dir\\Uninstall*\" -Recurse",
+  "bin": "PicGo.exe",
   "shortcuts": [
     [
       "PicGo.exe",
       "PicGo"
     ]
   ],
-  "version": "2.4.0-beta.0",
-  "_from": "anderlli0053/DEV-tools"
+  "checkver": {
+    "url": "https://github.com/Molunerfinn/PicGo/releases",
+    "regex": "/PicGo/tree/v([\\w.-]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/Molunerfinn/PicGo/releases/download/v$version/PicGo-Setup-$version-x64.exe#/dl.7z",
+        "hash": {
+          "url": "$baseurl/latest.yml",
+          "regex": "sha512:\\s+$base64"
+        }
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/Molunerfinn/PicGo/releases/download/v$version/PicGo-Setup-$version-ia32.exe#/dl.7z"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
 }

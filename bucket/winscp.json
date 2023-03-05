@@ -1,10 +1,10 @@
 {
-  "version": "5.21.7",
+  "version": "6",
   "description": "Copy files between a local computer and remote servers using FTP, FTPS, SCP, SFTP, WebDAV or S3 file transfer protocols.",
-  "homepage": "https://winscp.net",
+  "homepage": "https://www.ghpym.com/winscp.html",
   "license": "GPL-3.0-or-later",
-  "url": "https://downloads.sourceforge.net/project/winscp/WinSCP/5.21.7/WinSCP-5.21.7-Portable.zip",
-  "hash": "535920f1cdb532bbfe5b106bb0938505fa2119553470ff9f39b6f63b1cdf873e",
+  "url": "https://onedrive.lstheart.tk/d/ScoopSofts/WinSCP/WinSCP_v6.7z",
+  "hash": "5118e8cadb95eadde79e030b4b620a41f6283e746f2fcc9cebf1cc42d7861247",
   "pre_install": [
     "if (!(Test-Path \"$persist_dir\\winscp.ini\")) {",
     "    @(",
@@ -13,13 +13,7 @@
     "    ) | Add-Content -Path \"$dir\\winscp.ini\" -Encoding ASCII -Force",
     "}"
   ],
-  "bin": [
-    "WinSCP.exe",
-    [
-      "WinSCP.com",
-      "WinSCP-cli"
-    ]
-  ],
+  "bin": "WinSCP.exe",
   "shortcuts": [
     [
       "WinSCP.exe",
@@ -28,15 +22,11 @@
   ],
   "persist": "winscp.ini",
   "checkver": {
-    "url": "https://winscp.net/eng/downloads.php",
-    "regex": "WinSCP-([\\d.]+)-Portable\\.zip"
+    "url": "https://www.ghpym.com/winscp.html",
+    "regex": "\\(([\\d.]+)\\)"
   },
   "autoupdate": {
-    "url": "https://downloads.sourceforge.net/project/winscp/WinSCP/$version/WinSCP-$version-Portable.zip",
-    "hash": {
-      "url": "https://winscp.net/download/WinSCP-$version-ReadMe.txt",
-      "regex": "(?sm)$basename.*?SHA-256: $sha256"
-    }
+    "url": "https://onedrive.lstheart.tk/d/ScoopSofts/WinSCP/WinSCP_v$version.7z"
   },
-  "_from": "ScoopInstaller/Extras"
+  "_from": "okibcn/ScoopMaster"
 }

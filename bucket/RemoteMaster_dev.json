@@ -1,0 +1,28 @@
+{
+  "homepage": "https://sourceforge.net/projects/controlremote/",
+  "description": "",
+  "version": "2.14.18",
+  "license": "Fair License",
+  "url": "https://downloads.sourceforge.net/project/controlremote/RMIRDevelopment/RMIR.v2.14.18-bin.zip",
+  "hash": "472a1d2104d8a33e490a6d5198563dd5e3d810594a2f4cccda33210c12587355",
+  "persist": "RemoteMaster.properties",
+  "pre_install": [
+    "if (!(Test-Path $persist_dir\\RemoteMaster.properties)) {",
+    "   New-Item $dir\\RemoteMaster.properties | Out-Null",
+    "}"
+  ],
+  "checkver": {
+    "url": "https://sourceforge.net/projects/controlremote/rss?path=/",
+    "regex": "/RMIRDevelopment/RMIR.v([\\d.]+)-bin.zip"
+  },
+  "autoupdate": {
+    "url": "https://downloads.sourceforge.net/project/controlremote/RMIRDevelopment/RMIR.v$version-bin.zip"
+  },
+  "suggest": {
+    "JDK": [
+      "java/oraclejdk",
+      "java/openjdk"
+    ]
+  },
+  "_from": "okibcn/ScoopMaster"
+}

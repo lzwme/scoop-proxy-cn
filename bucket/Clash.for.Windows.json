@@ -1,0 +1,77 @@
+{
+  "version": "0.20.17",
+  "description": "A Windows/macOS/Linux GUI based on Clash and Electron",
+  "homepage": "https://github.com/Fndroid/clash_for_windows_pkg",
+  "license": "Freeware",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/0.20.17/Clash.for.Windows-0.20.17-win.7z",
+      "hash": "e0d4ec45ab1d9858972372fafa6aa9cf099b58e98650716d7ec331256419c365"
+    },
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/0.20.17/Clash.for.Windows-0.20.17-ia32-win.7z",
+      "hash": "03a72bf18c8d5fbb0fcea905be1b2d21bb59701d6482011ee6d04902ca500c35"
+    }
+  },
+  "installer": {
+    "script": [
+      "if (!(Test-Path \"$persist_dir\\data\")) {",
+      "    New-Item \"$persist_dir\\data\" -Type Directory -Force | Out-Null",
+      "    if (Test-Path \"$env:USERPROFILE\\.config\\clash\") {",
+      "        Copy-Item -Path \"$env:USERPROFILE\\.config\\clash\\*\" -Destination \"$persist_dir\\data\" -Recurse -Container",
+      "    }",
+      "}",
+      "$runtimeCache = \"$env:APPDATA\\clash_win\"",
+      "$runtimeCachePersist = \"$persist_dir\\clash_win\"",
+      "if (Test-Path $runtimeCachePersist) {",
+      "    Remove-Item $runtimeCache -Force -Recurse -ErrorAction SilentlyContinue",
+      "    New-Item -Type Junction -Path $runtimeCache -Target $runtimeCachePersist | Out-Null",
+      "} else {",
+      "    if (Test-Path $runtimeCache) {",
+      "        Move-Item $runtimeCache $runtimeCachePersist -Force",
+      "        New-Item -Type Junction -Path $runtimeCache -Target $runtimeCachePersist | Out-Null",
+      "    }",
+      "}"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$runtimeCache = \"$env:APPDATA\\clash_win\"",
+      "$runtimeCachePersist = \"$persist_dir\\clash_win\"",
+      "if (!(Test-Path $runtimeCachePersist)) {",
+      "    Move-Item $runtimeCache $runtimeCachePersist -Force",
+      "} else {",
+      "    Remove-Item $runtimeCache -Force -Recurse -ErrorAction SilentlyContinue",
+      "}"
+    ]
+  },
+  "shortcuts": [
+    [
+      "Clash for Windows.exe",
+      "Clash for Windows"
+    ]
+  ],
+  "persist": "data",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/$version/Clash.for.Windows-$version-win.7z",
+        "hash": {
+          "url": "https://ghproxy.com/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/$version/sha256sum",
+          "mode": "extract",
+          "regex": "(?m)^7z: $sha256"
+        }
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/$version/Clash.for.Windows-$version-ia32-win.7z",
+        "hash": {
+          "url": "https://ghproxy.com/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/$version/sha256sum",
+          "mode": "extract",
+          "regex": "(?m)^ia32-7z: $sha256"
+        }
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

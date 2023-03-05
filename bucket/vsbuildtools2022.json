@@ -1,0 +1,33 @@
+{
+  "version": "17.5.1",
+  "description": "Microsoft Visual Studio Build Tools 2022",
+  "homepage": "https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022",
+  "license": "https://visualstudio.microsoft.com/license-terms/vs2022-ga-diagnosticbuildtools/",
+  "url": "https://aka.ms/vs/17/release/vs_buildtools.exe",
+  "hash": "52b77ee7cb5f8e021461456006979d22bbd24d9e2d342f9a5d284567320979e1",
+  "installer": {
+    "script": "Start-Process -FilePath \"$dir\\vs_buildtools.exe\" -ArgumentList \"--installPath $dir\\vs\\ --add Microsoft.VisualStudio.Workload.MSBuildTools --add Microsoft.VisualStudio.Workload.VCTools --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 --quiet --norestart\" -Wait"
+  },
+  "uninstaller": {
+    "script": "Start-Process -FilePath \"$dir\\vs_buildtools.exe\" -ArgumentList \"uninstall --installPath $dir\\vs\\ --quiet --norestart\" -Wait"
+  },
+  "env_add_path": [
+    "vs\\Common7\\Tools",
+    "vs\\Common7\\IDE",
+    "vs\\MSBuild\\Current\\Bin",
+    "vs\\VC\\Auxiliary\\Build"
+  ],
+  "bin": [
+    "vs\\VC\\Auxiliary\\Build\\vcvars64.bat",
+    "vs\\VC\\Auxiliary\\Build\\vcvars32.bat",
+    "vs\\VC\\Auxiliary\\Build\\vcvarsall.bat"
+  ],
+  "checkver": {
+    "url": "https://docs.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
+    "regex": "> Visual Studio 2022 version ([\\d.]+)</h2>"
+  },
+  "autoupdate": {
+    "url": "https://aka.ms/vs/17/release/vs_buildtools.exe"
+  },
+  "_from": "okibcn/ScoopMaster"
+}
