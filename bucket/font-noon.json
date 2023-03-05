@@ -1,13 +1,13 @@
 {
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/font-store/NoonFont/releases/download/$version/Noon_$dashVersion.zip"
-  },
-  "checkver": {
-    "regex": "/releases/tag/([\\d.]+)",
-    "url": "https://github.com/font-store/NoonFont/tags"
-  },
-  "hash": "b3616e6584b6ad0a2bd57c691f1ef247b9982a53ecd4765faebf72f5833376fc",
+  "version": "0.9.0",
+  "license": "SIL OFL 1.1",
   "homepage": "https://github.com/font-store/NoonFont",
+  "url": "https://ghproxy.com/https://github.com/font-store/NoonFont/releases/download/0.9.0/Noon_0-9-0.zip",
+  "hash": "b3616e6584b6ad0a2bd57c691f1ef247b9982a53ecd4765faebf72f5833376fc",
+  "pre_install": [
+    "Remove-Item $dir\\* -exclude *.ttf -Force -Recurse",
+    "Get-ChildItem \"$dir\" -Recurse -Directory | Remove-Item -Recurse"
+  ],
   "installer": {
     "script": [
       "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
@@ -29,11 +29,6 @@
       "}"
     ]
   },
-  "license": "SIL OFL 1.1",
-  "pre_install": [
-    "Remove-Item $dir\\* -exclude *.ttf -Force -Recurse",
-    "Get-ChildItem \"$dir\" -Recurse -Directory | Remove-Item -Recurse"
-  ],
   "uninstaller": {
     "script": [
       "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
@@ -54,7 +49,12 @@
       "Write-Host \"The '$app' font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
     ]
   },
-  "url": "https://ghproxy.com/https://github.com/font-store/NoonFont/releases/download/0.9.0/Noon_0-9-0.zip",
-  "version": "0.9.0",
-  "_from": "okibcn/ScoopMaster"
+  "checkver": {
+    "url": "https://github.com/font-store/NoonFont/tags",
+    "regex": "/releases/tag/([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/font-store/NoonFont/releases/download/$version/Noon_$dashVersion.zip"
+  },
+  "_from": "naderi/scoop-bucket"
 }

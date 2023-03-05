@@ -1,16 +1,32 @@
 {
   "version": "0.8.0",
-  "description": "简悦 · 同步助手 · 命令行 · 伪",
+  "description": "CLI for simpread sync helper",
   "homepage": "https://github.com/j1g5awi/simpread-sync",
   "license": "MIT",
-  "url": "https://ghproxy.com/https://github.com/j1g5awi/simpread-sync/releases/download/v0.8.0/simpread-sync_windows_amd64.zip",
-  "hash": "d5918fb90f37df24244a8abc47899f0905d51ef4ef94f1bdc9ffafe81309608a",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/j1g5awi/simpread-sync/releases/download/v0.8.0/simpread-sync_windows_amd64.zip",
+      "hash": "d5918fb90f37df24244a8abc47899f0905d51ef4ef94f1bdc9ffafe81309608a"
+    },
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/j1g5awi/simpread-sync/releases/download/v0.8.0/simpread-sync_windows_386.zip",
+      "hash": "d747749923f257a4d66b2e7df7b16b4a2ef3996a9b161366673264f496c8e0b9"
+    }
+  },
   "bin": "simpread-sync.exe",
-  "checkver": {
-    "github": "https://github.com/j1g5awi/simpread-sync"
-  },
+  "checkver": "github",
   "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/j1g5awi/simpread-sync/releases/download/v$version/simpread-sync_windows_amd64.zip"
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/j1g5awi/simpread-sync/releases/download/v$version/simpread-sync_windows_amd64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/j1g5awi/simpread-sync/releases/download/v$version/simpread-sync_windows_386.zip"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/checksums.txt"
+    }
   },
-  "_from": "okibcn/ScoopMaster"
+  "_from": "hu3rror/scoop-muggle"
 }

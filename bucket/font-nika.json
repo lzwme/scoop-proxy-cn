@@ -1,13 +1,14 @@
 {
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/font-store/NikaFont/releases/download/v$version/nika.v$version.zip"
-  },
-  "checkver": {
-    "regex": "/releases/tag/v([\\d.]+)",
-    "url": "https://github.com/font-store/NikaFont/tags"
-  },
-  "hash": "a0e435a23fe971eddb3f39883c606c92b43f9a7b1fc0d762509a291996960d2b",
+  "version": "1.0.0",
+  "license": "SIL OFL 1.1",
   "homepage": "https://github.com/font-store/NikaFont",
+  "url": "https://ghproxy.com/https://github.com/font-store/NikaFont/releases/download/v1.0.0/nika.v1.0.0.zip",
+  "hash": "a0e435a23fe971eddb3f39883c606c92b43f9a7b1fc0d762509a291996960d2b",
+  "pre_install": [
+    "Move-Item $dir\\fonts\\*.ttf $dir",
+    "Remove-Item $dir\\* -exclude *.ttf -Force -Recurse",
+    "Get-ChildItem \"$dir\" -Recurse -Directory | Remove-Item -Recurse"
+  ],
   "installer": {
     "script": [
       "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
@@ -29,12 +30,6 @@
       "}"
     ]
   },
-  "license": "SIL OFL 1.1",
-  "pre_install": [
-    "Move-Item $dir\\fonts\\*.ttf $dir",
-    "Remove-Item $dir\\* -exclude *.ttf -Force -Recurse",
-    "Get-ChildItem \"$dir\" -Recurse -Directory | Remove-Item -Recurse"
-  ],
   "uninstaller": {
     "script": [
       "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
@@ -55,7 +50,12 @@
       "Write-Host \"The '$app' font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
     ]
   },
-  "url": "https://ghproxy.com/https://github.com/font-store/NikaFont/releases/download/v1.0.0/nika.v1.0.0.zip",
-  "version": "1.0.0",
-  "_from": "okibcn/ScoopMaster"
+  "checkver": {
+    "url": "https://github.com/font-store/NikaFont/tags",
+    "regex": "/releases/tag/v([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/font-store/NikaFont/releases/download/v$version/nika.v$version.zip"
+  },
+  "_from": "naderi/scoop-bucket"
 }

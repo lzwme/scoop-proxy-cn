@@ -1,10 +1,14 @@
 {
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/font-store/BehdadFont/releases/download/$version/Behdad-$version.zip"
-  },
-  "checkver": "github",
-  "hash": "51eb78760ee2dd1c05882faf30828fa2f6c101db5eb0cc9290b0c8d9b3c09230",
+  "version": "1.0.0",
+  "license": "SIL OFL 1.1",
   "homepage": "https://github.com/font-store/BehdadFont",
+  "url": "https://ghproxy.com/https://github.com/font-store/BehdadFont/releases/download/1.0.0/Behdad-1.0.0.zip",
+  "hash": "51eb78760ee2dd1c05882faf30828fa2f6c101db5eb0cc9290b0c8d9b3c09230",
+  "pre_install": [
+    "Move-Item $dir\\Behdad-$version\\*.ttf $dir",
+    "Remove-Item $dir\\* -exclude *.ttf -Force -Recurse",
+    "Get-ChildItem \"$dir\" -Recurse -Directory | Remove-Item -Recurse"
+  ],
   "installer": {
     "script": [
       "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
@@ -26,12 +30,6 @@
       "}"
     ]
   },
-  "license": "SIL OFL 1.1",
-  "pre_install": [
-    "Move-Item $dir\\Behdad-$version\\*.ttf $dir",
-    "Remove-Item $dir\\* -exclude *.ttf -Force -Recurse",
-    "Get-ChildItem \"$dir\" -Recurse -Directory | Remove-Item -Recurse"
-  ],
   "uninstaller": {
     "script": [
       "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
@@ -52,7 +50,9 @@
       "Write-Host \"The '$app' font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
     ]
   },
-  "url": "https://ghproxy.com/https://github.com/font-store/BehdadFont/releases/download/1.0.0/Behdad-1.0.0.zip",
-  "version": "1.0.0",
-  "_from": "okibcn/ScoopMaster"
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/font-store/BehdadFont/releases/download/$version/Behdad-$version.zip"
+  },
+  "_from": "naderi/scoop-bucket"
 }

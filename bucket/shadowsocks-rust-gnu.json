@@ -1,4 +1,23 @@
 {
+  "homepage": "https://shadowsocks.org/",
+  "description": "A fast tunnel proxy",
+  "license": "MIT",
+  "version": "1.8.23",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/shadowsocks/shadowsocks-rust/releases/download/v1.8.23/shadowsocks-v1.8.23.x86_64-pc-windows-gnu.zip",
+      "hash": "631657ed34d5a26375f2ce7abbc1c25015ca92357df74ed9b8e48181cd569ad6"
+    }
+  },
+  "bin": [
+    "sslocal.exe",
+    "ssmanager.exe",
+    "ssserver.exe",
+    "ssurl.exe"
+  ],
+  "_checkver": {
+    "github": "https://github.com/shadowsocks/shadowsocks-rust"
+  },
   "_autoupdate": {
     "architecture": {
       "64bit": {
@@ -9,24 +28,5 @@
       "url": "$url.sha256"
     }
   },
-  "_checkver": {
-    "github": "https://github.com/shadowsocks/shadowsocks-rust"
-  },
-  "architecture": {
-    "64bit": {
-      "hash": "631657ed34d5a26375f2ce7abbc1c25015ca92357df74ed9b8e48181cd569ad6",
-      "url": "https://ghproxy.com/https://github.com/shadowsocks/shadowsocks-rust/releases/download/v1.8.23/shadowsocks-v1.8.23.x86_64-pc-windows-gnu.zip"
-    }
-  },
-  "bin": [
-    "sslocal.exe",
-    "ssmanager.exe",
-    "ssserver.exe",
-    "ssurl.exe"
-  ],
-  "description": "A fast tunnel proxy",
-  "homepage": "https://shadowsocks.org/",
-  "license": "MIT",
-  "version": "1.8.23",
-  "_from": "okibcn/ScoopMaster"
+  "_from": "aoisummer/scoop-bucket"
 }

@@ -1,31 +1,25 @@
 {
-  "version": "0.15.0",
+  "homepage": "https://github.com/spiegel-im-spiegel/gpgpdump",
   "description": "OpenPGP packet visualizer",
-  "homepage": "https://github.com/goark/gpgpdump",
-  "license": "Apache License 2.0",
+  "license": "Apache-2.0",
+  "version": "0.15.0",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.com/https://github.com/goark/gpgpdump/releases/download/v0.15.0/gpgpdump_0.15.0_Windows_64bit.zip",
+      "url": "https://ghproxy.com/https://github.com/spiegel-im-spiegel/gpgpdump/releases/download/v0.15.0/gpgpdump_0.15.0_Windows_64bit.zip",
       "hash": "be818119dc650f245aa8665f1af155b9d14c17c70e617517e817d81acb244151"
-    },
-    "arm64": {
-      "url": "https://ghproxy.com/https://github.com/goark/gpgpdump/releases/download/v0.15.0/gpgpdump_0.15.0_Windows_ARM64.zip",
-      "hash": "73d999250dc4a03b2298aa88271a34db2ff1cd3013428243b2e28afaed95aa5e"
     }
   },
-  "bin": [
-    "gpgpdump.exe"
-  ],
+  "bin": "gpgpdump.exe",
   "checkver": "github",
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.com/https://github.com/goark/gpgpdump/releases/download/v$version/gpgpdump_$version_Windows_64bit.zip"
-      },
-      "arm64": {
-        "url": "https://ghproxy.com/https://github.com/goark/gpgpdump/releases/download/v$version/gpgpdump_$version_Windows_ARM64.zip"
+        "url": "https://ghproxy.com/https://github.com/spiegel-im-spiegel/gpgpdump/releases/download/v$version/gpgpdump_$version_Windows_64bit.zip"
       }
+    },
+    "hash": {
+      "url": "$baseurl/gpgpdump_$version_checksums.txt"
     }
   },
-  "_from": "okibcn/ScoopMaster"
+  "_from": "iquiw/scoop-bucket"
 }

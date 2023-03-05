@@ -1,19 +1,18 @@
 {
   "version": "1.5.3",
-  "description": "GUI Client for GRPC Services.",
-  "homepage": "https://github.com/uw-labs/bloomrpc",
-  "license": "LGPL-3.0-or-later",
+  "description": "BloomRPC aims to provide the simplest and most efficient developer experience for exploring and querying your GRPC services.",
+  "homepage": "https://github.com/bloomrpc/bloomrpc",
+  "license": "MIT",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.com/https://github.com/uw-labs/bloomrpc/releases/download/1.5.3/bloomrpc-setup-1.5.3.exe#/dl.7z",
-      "hash": "7b206b84da1ed9d43a97182f2602793690a5441207a8e89a9fae0ecf94b0e9f7"
+      "url": "https://ghproxy.com/https://github.com/bloomrpc/bloomrpc/releases/download/1.5.3/BloomRPC-Setup-1.5.3.exe#/dl.7z",
+      "hash": "sha512:152742eb61f2f88d7a8c05b95e3ebc2fc3f91c480538b024f2ae59a01f3e53608c31655bad2189d79d6ed2ffb981769252b96127f9e3387604a3b7d5c5849bc4",
+      "pre_install": [
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+        "Remove-Item \"$dir\\`$*\", \"$dir\\Uninst*\" -Force -Recurse"
+      ]
     }
   },
-  "installer": {
-    "script": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\""
-  },
-  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\" -Recurse",
-  "bin": "BloomRPC.exe",
   "shortcuts": [
     [
       "BloomRPC.exe",
@@ -24,9 +23,13 @@
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.com/https://github.com/uw-labs/bloomrpc/releases/download/$version/bloomrpc-setup-$version.exe#/dl.7z"
+        "url": "https://ghproxy.com/https://github.com/bloomrpc/bloomrpc/releases/download/$version/BloomRPC-Setup-$version.exe#/dl.7z"
       }
+    },
+    "hash": {
+      "url": "$baseurl/latest.yml",
+      "regex": "sha512:\\s+$base64"
     }
   },
-  "_from": "okibcn/ScoopMaster"
+  "_from": "batkiz/backit"
 }

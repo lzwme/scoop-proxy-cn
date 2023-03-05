@@ -1,11 +1,11 @@
 {
   "version": "1.3.8.1",
-  "description": "天若ocr开源版本的本地版，采用Chinese-lite和paddle-ocr识别, 不需联网",
+  "description": "Tianruo ORC with local OCR, using Chinese-lite and paddleocr recognition framework",
   "homepage": "https://gitee.com/wanglifree/tianruoocr-cl",
   "license": "GPL-3.0-only",
   "architecture": {
     "64bit": {
-      "url": "https://gitee.com/wanglifree/tianruoocr-cl/releases/download/v1.3.8.1/tianruoocr-cl-v1.3.8.1.7z",
+      "url": "https://ghproxy.com/https://github.com/wangfreexx/wangfreexx-tianruoocr-cl-paddle/releases/download/v1.3.8.1/tianruoocr-cl-v1.3.8.1.7z",
       "hash": "046091ba13394cbfb5d60565ee35400c6b4e8dec543658f702c8d26002dcc8a9"
     }
   },
@@ -18,14 +18,15 @@
   "persist": "Data",
   "checkver": {
     "url": "https://api.github.com/repos/wangfreexx/wangfreexx-tianruoocr-cl-paddle/releases/latest",
-    "regex": "tianruoocr-cl-v([\\d.]+)\\.7z"
+    "jsonpath": "$..name",
+    "regex": "tianruoocr-cl-v([\\d.]+)(.*)?\\.7z"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://gitee.com/wanglifree/tianruoocr-cl/releases/download/v$version/tianruoocr-cl-v$version.7z"
+        "url": "https://ghproxy.com/https://github.com/wangfreexx/wangfreexx-tianruoocr-cl-paddle/releases/download/v$version/tianruoocr-cl-v$version$match2.7z"
       }
     }
   },
-  "_from": "okibcn/ScoopMaster"
+  "_from": "hu3rror/scoop-muggle"
 }
