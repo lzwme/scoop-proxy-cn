@@ -215,7 +215,7 @@ async function gitCommit() {
 async function updateReadme() {
   const list = [...CONSTS.repo].map(repo => `- [https://github.com/${repo}](${repo})`).join('\n');
   const content = fs.readFileSync('README.md', 'utf8');
-  const updated = content.replace(/## Sync Buckets From.+##/g, `## Sync Buckets From\n\n${list}\n\n##`);
+  const updated = content.replace(/## Sync Buckets From[\s\S]+##/g, `## Sync Buckets From\n\n${list}\n\n##`);
   if (updated !== content) fs.writeFileSync(updated, content, 'utf8');
 }
 
