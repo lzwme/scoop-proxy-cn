@@ -1,37 +1,52 @@
 {
-  "version": "4.00_Rev_2",
+  "version": "4.0.1",
   "description": "Transmission. A fast, easy, and free BitTorrent client",
   "homepage": "https://transmissionbt.com/",
   "license": "GPL-2.0-only|GPL-3.0-only",
   "changelog": "https://github.com/transmission/transmission/releases",
-  "url": "https://sourceforge.net/projects/portableapps/files/Transmission%20Portable/TransmissionPortable_4.00_Rev_2.paf.exe#/dl.7z",
-  "hash": "571f8ae53d940f9d924e6cb7a82dbcd0cce1f31faa81957561fc0c49398b8d0d",
+  "suggest": {
+    "vcredist": "extras/vcredist2022"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/transmission/transmission/releases/download/4.0.1/transmission-4.0.1-x64.msi",
+      "hash": "b34d815be8bf34653b158220d6be33b368973c6cd502303fad8c79a25ca0761e"
+    },
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/transmission/transmission/releases/download/4.0.1/transmission-4.0.1-x86.msi",
+      "hash": "ba585683070d42a9ca7ee826b1432e4ce0f3658d77b53559ce93bac329ee508e"
+    }
+  },
+  "extract_dir": "PFiles\\Transmission",
   "bin": [
     [
-      "TransmissionPortable.exe",
+      "transmission-qt.exe",
       "transmission"
-    ]
+    ],
+    "transmission-create.exe",
+    "transmission-daemon.exe",
+    "transmission-edit.exe",
+    "transmission-remote.exe",
+    "transmission-show.exe"
   ],
   "shortcuts": [
     [
-      "TransmissionPortable.exe",
+      "transmission-qt.exe",
       "Transmission"
     ]
   ],
-  "persist": "Data",
-  "post_install": [
-    "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
-    "if(!(test-path \"$dir\\TransmissionPortable.ini\")) {",
-    "   Copy-Item \"$dir\\Other\\Source\\AppNamePortable.ini\" \"$dir\\TransmissionPortable.ini\"",
-    "   (Get-Content \"$dir\\TransmissionPortable.ini\").replace('DisableSplashScreen=false', 'DisableSplashScreen=true') | Set-Content \"$dir\\TransmissionPortable.ini\"",
-    "}"
-  ],
   "checkver": {
-    "url": "https://sourceforge.net/projects/portableapps/rss?path=/Transmission%20Portable",
-    "regex": "/Transmission Portable/TransmissionPortable_([\\d.]+(?:_Rev_[\\d.])?).paf.exe]]>"
+    "github": "https://github.com/transmission/transmission"
   },
   "autoupdate": {
-    "url": "https://sourceforge.net/projects/portableapps/files/Transmission%20Portable/TransmissionPortable_$version.paf.exe#/dl.7z"
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/transmission/transmission/releases/download/$version/transmission-$version-x64.msi"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/transmission/transmission/releases/download/$version/transmission-$version-x86.msi"
+      }
+    }
   },
-  "_from": "anderlli0053/DEV-tools"
+  "_from": "ACooper81/scoop-apps"
 }

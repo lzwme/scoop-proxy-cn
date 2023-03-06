@@ -4,20 +4,18 @@
     "For command-line usage, check: http://eawag-bbd.ethz.ch/marvin/help/applications/mview.html",
     "changelog (lags behind): https://docs.chemaxon.com/display/docs/marvin-desktop-suite-history-of-changes.md"
   ],
-  "version": "22.14.0",
-  "description": "Chemically intelligent desktop toolkit to help you draw, edit, publish, render, import and export your chemical structures",
-  "homepage": "https://chemaxon.com/products/marvin",
-  "license": {
-    "identifier": "Proprietary",
-    "url": "https://docs.chemaxon.com/display/docs/End+User+License+Agreement"
-  },
-  "notes": "This app has a 30-day free trial",
   "architecture": {
     "64bit": {
-      "url": "https://dl.chemaxon.com/marvin/22.14.0/marvin_windows-x64_22.14_openjdk11.exe#/setup.exe",
-      "hash": "b10fd07e2d4e32c7cdf0337036c85c5e20ab22f61fd14f715c5c3da5e078d754"
+      "hash": "b10fd07e2d4e32c7cdf0337036c85c5e20ab22f61fd14f715c5c3da5e078d754",
+      "url": "https://dl.chemaxon.com/marvin/22.14.0/marvin_windows-x64_22.14_openjdk11.exe#/setup.exe"
     }
   },
+  "bin": [
+    "MarvinSketch.exe",
+    "MarvinView.exe"
+  ],
+  "description": "Chemically intelligent desktop toolkit to help you draw, edit, publish, render, import and export your chemical structures",
+  "homepage": "https://chemaxon.com/products/marvin",
   "installer": {
     "script": [
       "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
@@ -25,6 +23,11 @@
       "Remove-Item \"$Env:Public\\Desktop\\MarvinSketch.lnk\", \"$Env:Public\\Desktop\\MarvinView.lnk\""
     ]
   },
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://docs.chemaxon.com/display/docs/End+User+License+Agreement"
+  },
+  "notes": "This app has a 30-day free trial",
   "uninstaller": {
     "script": [
       "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
@@ -32,9 +35,6 @@
       "while (Get-Process -Name 'uninstall' -ErrorAction SilentlyContinue) { Start-Sleep -Seconds 2 }"
     ]
   },
-  "bin": [
-    "MarvinSketch.exe",
-    "MarvinView.exe"
-  ],
+  "version": "22.14.0",
   "_from": "okibcn/ScoopMaster"
 }

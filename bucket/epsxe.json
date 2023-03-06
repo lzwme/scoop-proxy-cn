@@ -1,30 +1,27 @@
 {
-  "homepage": "https://www.epsxe.com/",
-  "version": "2.0.5",
-  "description": "Playstation (PSX) Emulator",
-  "url": "https://www.epsxe.com/files/ePSXe205.zip",
-  "hash": "46E1A7AD3DC9C75763440C153465CDCCC9A3BA367E3158542953ECE4BCDB7B4F",
+  "autoupdate": {
+    "url": "http://www.epsxe.com/files/ePSXe$cleanVersion.zip"
+  },
   "bin": "ePSXe.exe",
+  "checkver": {
+    "re": "ePSXe v(.*) Windows",
+    "url": "http://www.epsxe.com/download.php"
+  },
+  "description": "Playstation emulator, that has been around for good bit",
+  "hash": "46e1a7ad3dc9c75763440c153465cdccc9a3ba367e3158542953ece4bcdb7b4f",
+  "homepage": "http://www.epsxe.com",
+  "license": {
+    "identifier": "Unknown"
+  },
+  "notes": "May require bioses, also may not work with every PSX game.",
   "shortcuts": [
     [
       "ePSXe.exe",
-      "PSX"
+      "epsxe",
+      "epsxe.exe"
     ]
   ],
-  "persist": [
-    "bios",
-    "cheats",
-    "config",
-    "memcards",
-    "snap",
-    "sstates"
-  ],
-  "checkver": {
-    "url": "https://www.epsxe.com/download.php",
-    "regex": "ePSXe v(?<version>[\\d.]+) Windows"
-  },
-  "autoupdate": {
-    "url": "https://www.epsxe.com/files/ePSXe$cleanVersion.zip"
-  },
+  "url": "http://www.epsxe.com/files/ePSXe205.zip",
+  "version": "2.0.5",
   "_from": "okibcn/ScoopMaster"
 }

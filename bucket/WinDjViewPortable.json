@@ -1,29 +1,29 @@
 {
-  "autoupdate": {
-    "hash": {
-      "regex": "MD5 Hash: +[\\w]{32}",
-      "url": "https://portableapps.com/apps/office/windjview_portable"
-    },
-    "url": "https://versaweb.dl.sourceforge.net/project/portableapps/WinDjView%20Portable/WinDjViewPortable_$version.paf.exe"
-  },
-  "bin": "WinDjViewPortable.exe",
-  "checkver": {
-    "re": "Version \\s+([\\w\\.]* for Win",
-    "url": "https://portableapps.com/apps/office/windjview_portable"
-  },
-  "description": "Lightweight djvu viewer",
-  "hash": "md5:7db701d443e30b7ec1a23edc065004d3",
   "homepage": "https://portableapps.com/apps/office/windjview_portable",
+  "description": "Lightweight djvu viewer",
+  "version": "2.1",
   "license": "",
-  "persist": "Data",
-  "post_install": "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
+  "url": "https://versaweb.dl.sourceforge.net/project/portableapps/WinDjView%20Portable/WinDjViewPortable_2.1.paf.exe#/dl.7z",
+  "hash": "md5:7db701d443e30b7ec1a23edc065004d3",
+  "bin": "WinDjViewPortable.exe",
   "shortcuts": [
     [
       "WinDjViewPortable.exe",
       "WinDjViewPortable"
     ]
   ],
-  "url": "https://versaweb.dl.sourceforge.net/project/portableapps/WinDjView%20Portable/WinDjViewPortable_2.1.paf.exe#/dl.7z",
-  "version": "2.1",
+  "persist": "Data",
+  "checkver": {
+    "url": "https://portableapps.com/apps/office/windjview_portable",
+    "re": "Version \\s+([\\w\\.]* for Win"
+  },
+  "autoupdate": {
+    "url": "https://versaweb.dl.sourceforge.net/project/portableapps/WinDjView%20Portable/WinDjViewPortable_$version.paf.exe",
+    "hash": {
+      "url": "https://portableapps.com/apps/office/windjview_portable",
+      "regex": "MD5 Hash: +[\\w]{32}"
+    }
+  },
+  "post_install": "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
   "_from": "okibcn/ScoopMaster"
 }

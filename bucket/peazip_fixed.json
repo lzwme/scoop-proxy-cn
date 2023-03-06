@@ -19,9 +19,7 @@
     "'conf\\bookmarks.txt', 'conf\\custedit.txt', 'altconf.txt', 'bookmarks.txt', 'conf.txt', 'conf-lastgood.txt', 'custedit.txt' | ForEach-Object {",
     "   if (!(Test-Path \"$persist_dir\\res\\$_\")) { New-Item \"$dir\\res\\$_\" | Out-Null }",
     "}",
-    "if ($cmd -eq 'install') {",
-    "   Start-Process \"$dir\\res\\bin\\Configure PeaZip.exe\" -Wait -ArgumentList @('/VERYSILENT', \"/DIR=$dir\", '/CURRENTUSER', '/SUPPRESSMSGBOXES')",
-    "}"
+    "Start-Process \"$dir\\res\\bin\\Configure PeaZip.exe\" -Wait -ArgumentList @('/VERYSILENT', \"/DIR=$dir\", '/CURRENTUSER', '/SUPPRESSMSGBOXES')"
   ],
   "bin": [
     "peazip.exe",

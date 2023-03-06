@@ -1,22 +1,71 @@
 {
-  "version": "2.6.4",
-  "license": "custom",
-  "homepage": "https://github.com/yuru7/HackGen",
-  "url": "https://ghproxy.com/https://github.com/yuru7/HackGen/releases/download/v2.6.4/HackGenNerd_v2.6.4.zip",
-  "hash": "e7791bf80b797d270ff97ad63f41f37014bfe4f7735c9d3573ae69bee04ced5e",
-  "extract_dir": "HackGenNerd_v2.6.4",
-  "checkver": "github",
   "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/yuru7/HackGen/releases/download/v$version/HackGenNerd_v$version.zip",
-    "extract_dir": "HackGenNerd_v$version"
+    "extract_dir": "HackGenNerd_v$version",
+    "url": "https://ghproxy.com/https://github.com/yuru7/HackGen/releases/download/v$version/HackGenNerd_v$version.zip"
   },
+  "checkver": "github",
+  "depends": "sudo",
+  "description": "HackGenNerd is a composite font of Hack, GenJyuu-Gothic and Nerd Fonts.",
+  "extract_dir": "HackGenNerd_v2.6.4",
+  "hash": "e7791bf80b797d270ff97ad63f41f37014bfe4f7735c9d3573ae69bee04ced5e",
+  "homepage": "https://github.com/yuru7/HackGen",
+  "installer": {
+    "script": [
+      "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
+      "$windows1809BuildNumber = 17763",
+      "$isPerUserFontInstallationSupported = $currentBuildNumber -ge $windows1809BuildNumber",
+      "$isFontInstallationForAllUsers = $global -or !$isPerUserFontInstallationSupported",
+      "if ($isFontInstallationForAllUsers -and !(is_admin)) {",
+      "    error \"Administrator rights are required to install $app.\"",
+      "    exit 1",
+      "}",
+      "$fontInstallDir = if ($isFontInstallationForAllUsers) { \"$env:windir\\Fonts\" } else { \"$env:LOCALAPPDATA\\Microsoft\\Windows\\Fonts\" }",
+      "$registryRoot = if ($isFontInstallationForAllUsers) { \"HKLM\" } else { \"HKCU\" }",
+      "$registryKey = \"${registryRoot}:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts\"",
+      "New-Item $fontInstallDir -ItemType Directory -ErrorAction SilentlyContinue | Out-Null",
+      "Get-ChildItem $dir -Filter '*.ttf' | ForEach-Object {",
+      "    $value = if ($isFontInstallationForAllUsers) { $_.Name } else { \"$fontInstallDir\\$($_.Name)\" }",
+      "    Copy-Item $_.FullName -Destination $fontInstallDir",
+      "    New-ItemProperty -Path $registryKey -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $value -Force | Out-Null",
+      "}"
+    ]
+  },
+  "license": {
+    "identifier": "OFL-1.1"
+  },
+  "notes": "You may need to restart the system to use recently installed fonts.",
   "uninstaller": {
-    "script": "Write-Host 'nothing to do'"
+    "script": [
+      "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
+      "$windows1809BuildNumber = 17763",
+      "$isPerUserFontInstallationSupported = $currentBuildNumber -ge $windows1809BuildNumber",
+      "$isFontInstallationForAllUsers = $global -or !$isPerUserFontInstallationSupported",
+      "if ($isFontInstallationForAllUsers -and !(is_admin)) {",
+      "    error \"Administrator rights are required to uninstall $app.\"",
+      "    exit 1",
+      "}",
+      "$fontInstallDir = if ($isFontInstallationForAllUsers) { \"$env:windir\\Fonts\" } else { \"$env:LOCALAPPDATA\\Microsoft\\Windows\\Fonts\" }",
+      "$registryRoot = if ($isFontInstallationForAllUsers) { \"HKLM\" } else { \"HKCU\" }",
+      "$registryKey = \"${registryRoot}:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts\"",
+      "Get-ChildItem $dir -Filter '*.ttf' | ForEach-Object {",
+      "    Get-ChildItem $fontInstallDir -Filter $_.Name | ForEach-Object {",
+      "        try {",
+      "            Rename-Item $_.FullName $_.FullName -ErrorVariable LockError -ErrorAction Stop",
+      "        } catch {",
+      "            error \"'$app' is being used by another process.\"",
+      "            error \"Please close all applications (e.g. vscode) that are using '$app' before uninstall or upgrade.\"",
+      "            exit 1",
+      "        }",
+      "    }",
+      "}",
+      "Get-ChildItem $dir -Filter '*.ttf' | ForEach-Object {",
+      "    Remove-ItemProperty -Path $registryKey -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
+      "    Remove-Item \"$fontInstallDir\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
+      "}",
+      "Write-Host \"The '$app' Font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
+    ]
   },
-  "notes": [
-    "installer/uninstaller スクリプトは使用中のフォントに対して期待通りに動作しないので DL までを行わせている。",
-    "別途エクスプローラ上で 'インストール' を実行すること。",
-    "\"$dir\""
-  ],
+  "url": "https://ghproxy.com/https://github.com/yuru7/HackGen/releases/download/v2.6.4/HackGenNerd_v2.6.4.zip",
+  "version": "2.6.4",
   "_from": "okibcn/ScoopMaster"
 }

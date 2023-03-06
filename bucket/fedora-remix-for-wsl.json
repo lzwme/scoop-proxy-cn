@@ -1,19 +1,28 @@
 {
-  "version": "37.0.4",
+  "architecture": {
+    "64bit": {
+      "hash": "9dbeb3cc48d3afac2f8fe7d96675cd0b776b4b72d02c05588abc1ab73e46b846",
+      "url": "https://ghproxy.com/https://github.com/WhitewaterFoundry/Fedora-Remix-for-WSL/releases/download/37.0.4/Fedora-Remix-for-WSL-SL_37.0.4.0_x64_arm64.msixbundle#/dl.7z"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/WhitewaterFoundry/Fedora-Remix-for-WSL/releases/download/$version/Fedora-Remix-for-WSL-SL_$version.0_x64_arm64.msixbundle#/dl.7z"
+      }
+    }
+  },
+  "bin": "fedoraremix.exe",
+  "checkver": {
+    "github": "https://github.com/WhitewaterFoundry/Fedora-Remix-for-WSL"
+  },
+  "depends": "sudo",
   "description": "Fedora Remix for WSL is a remix of upstream Fedora software for Windows Subsystem for Linux on Windows 10 and Windows 10 Server.",
   "homepage": "https://www.whitewaterfoundry.com/fedora-remix-for-wsl",
   "license": {
     "identifier": "Freeware",
     "url": "https://github.com/WhitewaterFoundry/Fedora-Remix-for-WSL/blob/master/LICENSE.md"
   },
-  "depends": "sudo",
-  "architecture": {
-    "64bit": {
-      "url": "https://ghproxy.com/https://github.com/WhitewaterFoundry/Fedora-Remix-for-WSL/releases/download/37.0.4/Fedora-Remix-for-WSL-SL_37.0.4.0_x64_arm64.msixbundle#/dl.7z",
-      "hash": "9dbeb3cc48d3afac2f8fe7d96675cd0b776b4b72d02c05588abc1ab73e46b846"
-    }
-  },
-  "pre_install": "Expand-7zipArchive \"$dir\\Fedora-Remix-for-WSL-SL_$version.0_x64.msix\" -Removal",
   "post_install": [
     "Start-Process -FilePath \"$dir\\fedoraremix.exe\" -ArgumentList \"install\" -Wait",
     "Remove-Item \"$dir\\Fedora-Remix-for-WSL-SL_$version.0_ARM64.msix\" -Force",
@@ -29,28 +38,19 @@
     ")",
     "warn $($text -join \"`r`n\")"
   ],
-  "uninstaller": {
-    "script": [
-      "wsl --unregister fedoraremix",
-      "Write-Host \"The '$app' linux distribution has been uninstalled on your windows machine.\" -Foreground Magenta"
-    ]
-  },
-  "bin": "fedoraremix.exe",
+  "pre_install": "Expand-7zipArchive \"$dir\\Fedora-Remix-for-WSL-SL_$version.0_x64.msix\" -Removal",
   "shortcuts": [
     [
       "fedoraremix.exe",
       "Fedora Remix for WSL"
     ]
   ],
-  "checkver": {
-    "github": "https://github.com/WhitewaterFoundry/Fedora-Remix-for-WSL"
+  "uninstaller": {
+    "script": [
+      "wsl --unregister fedoraremix",
+      "Write-Host \"The '$app' linux distribution has been uninstalled on your windows machine.\" -Foreground Magenta"
+    ]
   },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.com/https://github.com/WhitewaterFoundry/Fedora-Remix-for-WSL/releases/download/$version/Fedora-Remix-for-WSL-SL_$version.0_x64_arm64.msixbundle#/dl.7z"
-      }
-    }
-  },
+  "version": "37.0.4",
   "_from": "okibcn/ScoopMaster"
 }

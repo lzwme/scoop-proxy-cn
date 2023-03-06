@@ -1,32 +1,14 @@
 {
-  "version": "2.0.2",
-  "description": "The ultimate automation scripting language for Windows.",
-  "homepage": "https://www.autohotkey.com/",
-  "license": "GPL-2.0-or-later",
-  "url": "https://ghproxy.com/https://github.com/Lexikos/AutoHotkey_L/releases/download/v2.0.2/AutoHotkey_2.0.2_setup.exe#/autohotkey-installer.exe",
-  "hash": "9c8b1aecaf1bdded80bec98ec5ab5b9b9754cbce9439dd9eacc7d1774d1438f8",
   "architecture": {
-    "64bit": {
-      "installer": {
-        "args": [
-          "/S",
-          "/x64",
-          "/uiAccess=0",
-          "/IsHostApp=1",
-          "/D=\"$dir\""
-        ],
-        "keep": true
-      },
+    "32bit": {
       "bin": [
-        "autohotkeyu64.exe",
+        "autohotkeyu32.exe",
         [
-          "autohotkeyu64.exe",
+          "autohotkeyu32.exe",
           "autohotkey"
         ],
         "compiler\\ahk2exe.exe"
-      ]
-    },
-    "32bit": {
+      ],
       "installer": {
         "args": [
           "/S",
@@ -36,27 +18,45 @@
           "/D=\"$dir\""
         ],
         "keep": true
-      },
+      }
+    },
+    "64bit": {
       "bin": [
-        "autohotkeyu32.exe",
+        "autohotkeyu64.exe",
         [
-          "autohotkeyu32.exe",
+          "autohotkeyu64.exe",
           "autohotkey"
         ],
         "compiler\\ahk2exe.exe"
-      ]
+      ],
+      "installer": {
+        "args": [
+          "/S",
+          "/x64",
+          "/uiAccess=0",
+          "/IsHostApp=1",
+          "/D=\"$dir\""
+        ],
+        "keep": true
+      }
     }
-  },
-  "pre_install": " Write-Host 'Installing AutoHotKey with their installer and its own options ( create registry keys removed by uninstaller )' -ForegroundColor Magenta ",
-  "uninstaller": {
-    "file": "autohotkey-installer.exe",
-    "args": "/Uninstall"
-  },
-  "checkver": {
-    "github": "https://github.com/lexikos/autohotkey_l"
   },
   "autoupdate": {
     "url": "https://ghproxy.com/https://github.com/Lexikos/AutoHotkey_L/releases/download/v$version/AutoHotkey_$version_setup.exe#/autohotkey-installer.exe"
   },
+  "checkver": {
+    "github": "https://github.com/lexikos/autohotkey_l"
+  },
+  "description": "The ultimate automation scripting language for Windows.",
+  "hash": "9c8b1aecaf1bdded80bec98ec5ab5b9b9754cbce9439dd9eacc7d1774d1438f8",
+  "homepage": "https://www.autohotkey.com/",
+  "license": "GPL-2.0-or-later",
+  "pre_install": " Write-Host 'Installing AutoHotKey with their installer and its own options ( create registry keys removed by uninstaller )' -ForegroundColor Magenta ",
+  "uninstaller": {
+    "args": "/Uninstall",
+    "file": "autohotkey-installer.exe"
+  },
+  "url": "https://ghproxy.com/https://github.com/Lexikos/AutoHotkey_L/releases/download/v2.0.2/AutoHotkey_2.0.2_setup.exe#/autohotkey-installer.exe",
+  "version": "2.0.2",
   "_from": "okibcn/ScoopMaster"
 }

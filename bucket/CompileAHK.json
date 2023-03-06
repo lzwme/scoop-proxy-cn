@@ -1,14 +1,17 @@
 {
-  "version": "0.9.2",
-  "description": "Compile AHK is a GUI based script that assists with compiling AutoHotkey scripts.",
-  "homepage": "https://github.com/mercury233/compile-ahk",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/mercury233/compile-ahk/releases/download/v0.9.2/Compile_AHK_Setup.7z#/dl.7z"
+  },
+  "checkver": {
+    "github": "https://github.com/mercury233/compile-ahk"
+  },
   "depends": [
     "autohotkey",
     "sudo"
   ],
-  "license": "MIT License",
-  "url": "https://ghproxy.com/https://github.com/mercury233/compile-ahk/releases/download/v0.9.2/Compile_AHK_Setup.7z#/dl.7z",
+  "description": "Compile AHK is a GUI based script that assists with compiling AutoHotkey scripts.",
   "hash": "b403cd7846a6c8b3786f7c50bc3695ab80e7555011617fb24e5dd226dc222d77",
+  "homepage": "https://github.com/mercury233/compile-ahk",
   "installer": {
     "script": [
       "Start-Process -Wait \"$dir\\Compile_AHK_Setup.exe\" \"/silent\"",
@@ -16,6 +19,7 @@
       "shim(\"$autohotkey_path\\Compiler\\Compile_AHK.exe\")"
     ]
   },
+  "license": "MIT License",
   "uninstaller": {
     "script": [
       "sudo Remove-Item -Path Registry::HKCR\\AutoHotkeyScript\\Shell\\Compile_AHK -Recurse -Force -ErrorAction SilentlyContinue",
@@ -28,11 +32,7 @@
       "remove-item -path $autohotkey_path\\Compiler\\language.ini -Force -ErrorAction SilentlyContinue"
     ]
   },
-  "checkver": {
-    "github": "https://github.com/mercury233/compile-ahk"
-  },
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/mercury233/compile-ahk/releases/download/v0.9.2/Compile_AHK_Setup.7z#/dl.7z"
-  },
+  "url": "https://ghproxy.com/https://github.com/mercury233/compile-ahk/releases/download/v0.9.2/Compile_AHK_Setup.7z#/dl.7z",
+  "version": "0.9.2",
   "_from": "okibcn/ScoopMaster"
 }

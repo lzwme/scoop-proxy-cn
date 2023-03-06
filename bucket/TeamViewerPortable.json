@@ -1,29 +1,29 @@
 {
-  "autoupdate": {
-    "hash": {
-      "regex": "MD5 Hash: +[\\w]{32}",
-      "url": "https://portableapps.com/apps/utilities/teamviewer_portable"
-    },
-    "url": "https://download3.portableapps.com/portableapps/TeamViewerPortable/TeamViewerPortable_$version.paf.exe?20190321"
-  },
-  "bin": "TeamViewerPortable.exe",
-  "checkver": {
-    "re": "Version \\s+([\\w\\.]* for Win",
-    "url": "https://portableapps.com/apps/utilities/teamviewer_portable"
-  },
-  "description": "Remote PC sharing",
-  "hash": "md5:3f52ccf321ab8f097708cd01138e7cf3",
   "homepage": "https://portableapps.com/apps/utilities/teamviewer_portable",
+  "description": "Remote PC sharing",
+  "version": "15.5.6",
   "license": "",
-  "persist": "Data",
-  "post_install": "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
+  "url": "https://download3.portableapps.com/portableapps/TeamViewerPortable/TeamViewerPortable_15.5.6.paf.exe?20190321#/dl.7z",
+  "hash": "md5:3f52ccf321ab8f097708cd01138e7cf3",
+  "bin": "TeamViewerPortable.exe",
   "shortcuts": [
     [
       "TeamViewerPortable.exe",
       "TeamViewerPortable"
     ]
   ],
-  "url": "https://download3.portableapps.com/portableapps/TeamViewerPortable/TeamViewerPortable_15.5.6.paf.exe?20190321#/dl.7z",
-  "version": "15.5.6",
+  "persist": "Data",
+  "checkver": {
+    "url": "https://portableapps.com/apps/utilities/teamviewer_portable",
+    "re": "Version \\s+([\\w\\.]* for Win"
+  },
+  "autoupdate": {
+    "url": "https://download3.portableapps.com/portableapps/TeamViewerPortable/TeamViewerPortable_$version.paf.exe?20190321",
+    "hash": {
+      "url": "https://portableapps.com/apps/utilities/teamviewer_portable",
+      "regex": "MD5 Hash: +[\\w]{32}"
+    }
+  },
+  "post_install": "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
   "_from": "okibcn/ScoopMaster"
 }

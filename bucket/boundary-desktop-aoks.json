@@ -1,35 +1,34 @@
 {
+  "version": "1.5.1",
+  "description": "Desktop app to connect to a running Boundary server",
+  "homepage": "https://www.boundaryproject.io",
+  "license": "MPL-2.0",
   "architecture": {
     "64bit": {
-      "hash": "497348d86300467adac7abeeeb9cc331d1f93c646c1955604c1c0fcd32c767e0",
-      "url": "https://releases.hashicorp.com/boundary-desktop/1.5.1/boundary-desktop_1.5.1_windows_amd64.zip"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "hash": {
-          "regex": "$sha256\\s+$basename",
-          "url": "$baseurl/boundary-desktop_$version_SHA256SUMS"
-        },
-        "url": "https://releases.hashicorp.com/boundary-desktop/$version/boundary-desktop_$version_windows_amd64.zip"
-      }
+      "url": "https://releases.hashicorp.com/boundary-desktop/1.5.1/boundary-desktop_1.5.1_windows_amd64.zip",
+      "hash": "497348d86300467adac7abeeeb9cc331d1f93c646c1955604c1c0fcd32c767e0"
     }
   },
   "bin": [
     [
-      "boundary-desktop_*_.exe",
-      "boundary-desktop"
+      "Boundary.exe",
+      "Boundary-Desktop"
     ]
   ],
   "checkver": {
-    "regex": "boundary-desktop_([\\d.]+)</a>",
-    "url": "https://releases.hashicorp.com/boundary-desktop/"
+    "url": "https://releases.hashicorp.com/boundary-desktop/",
+    "regex": "boundary-desktop_([\\d.]+)</a>"
   },
-  "description": "Desktop app to connect to a running Boundary server",
-  "extract_dir": "Boundary",
-  "homepage": "https://www.boundaryproject.io",
-  "license": "MPL-2.0",
-  "version": "1.5.1",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://releases.hashicorp.com/boundary-desktop/$version/boundary-desktop_$version_windows_amd64.zip",
+        "hash": {
+          "url": "$baseurl/boundary-desktop_$version_SHA256SUMS",
+          "regex": "$sha256\\s+$basename"
+        }
+      }
+    }
+  },
   "_from": "okibcn/ScoopMaster"
 }

@@ -1,18 +1,6 @@
 {
-  "version": "2.51.1.4348",
-  "description": "SDK for Intel RealSense Depth Camera and Lidars",
-  "homepage": "https://www.intelrealsense.com/sdk-2/",
-  "license": "Apache-2.0",
-  "url": "https://ghproxy.com/https://github.com/IntelRealSense/librealsense/releases/download/v2.51.1/Intel.RealSense.SDK-WIN10-2.51.1.4348.exe#/setup.exe",
-  "hash": "981082aaccd84cb6d33b1272feadf86f35f36043af31c70ca4922e3bc2f27ed1",
-  "installer": {
-    "script": [
-      "Invoke-ExternalCommand \"$dir\\setup.exe\" -ArgumentList @('/SILENT', \"/dir=`\"$dir`\"\") -RunAs | Out-Null",
-      "Remove-Item \"$dir\\setup.exe\""
-    ]
-  },
-  "uninstaller": {
-    "script": "Invoke-ExternalCommand \"$dir\\unins000.exe\" -ArgumentList @('/SILENT') -RunAs | Out-Null"
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/IntelRealSense/librealsense/releases/download/v$majorVersion.$minorVersion.$patchVersion/Intel.RealSense.SDK-WIN10-$version.exe#/setup.exe"
   },
   "bin": [
     "tools\\realsense-viewer.exe",
@@ -42,11 +30,23 @@
     "tools\\rs-trajectory.exe"
   ],
   "checkver": {
-    "url": "https://github.com/IntelRealSense/librealsense/releases",
-    "regex": "Intel\\.RealSense\\.SDK-WIN10-([\\d.]+)\\.exe"
+    "regex": "Intel\\.RealSense\\.SDK-WIN10-([\\d.]+)\\.exe",
+    "url": "https://github.com/IntelRealSense/librealsense/releases"
   },
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/IntelRealSense/librealsense/releases/download/v$majorVersion.$minorVersion.$patchVersion/Intel.RealSense.SDK-WIN10-$version.exe#/setup.exe"
+  "description": "SDK for Intel RealSense Depth Camera and Lidars",
+  "hash": "981082aaccd84cb6d33b1272feadf86f35f36043af31c70ca4922e3bc2f27ed1",
+  "homepage": "https://www.intelrealsense.com/sdk-2/",
+  "installer": {
+    "script": [
+      "Invoke-ExternalCommand \"$dir\\setup.exe\" -ArgumentList @('/SILENT', \"/dir=`\"$dir`\"\") -RunAs | Out-Null",
+      "Remove-Item \"$dir\\setup.exe\""
+    ]
   },
+  "license": "Apache-2.0",
+  "uninstaller": {
+    "script": "Invoke-ExternalCommand \"$dir\\unins000.exe\" -ArgumentList @('/SILENT') -RunAs | Out-Null"
+  },
+  "url": "https://ghproxy.com/https://github.com/IntelRealSense/librealsense/releases/download/v2.51.1/Intel.RealSense.SDK-WIN10-2.51.1.4348.exe#/setup.exe",
+  "version": "2.51.1.4348",
   "_from": "okibcn/ScoopMaster"
 }

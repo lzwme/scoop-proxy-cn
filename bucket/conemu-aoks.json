@@ -1,10 +1,23 @@
 {
-  "version": "22.12.18",
+  "autoupdate": {
+    "hash": {
+      "regex": "(?sm)$basename.*?\"sha256\":\"$sha256\"",
+      "url": "https://www.fosshub.com/ConEmu.html"
+    },
+    "url": "https://ghproxy.com/https://github.com/Maximus5/ConEmu/releases/download/v$version/ConEmuPack.$cleanVersion.7z"
+  },
+  "bin": [
+    "ConEmu.exe",
+    "ConEmu64.exe"
+  ],
+  "checkver": {
+    "github": "https://github.com/Maximus5/ConEmu"
+  },
   "description": "Customizable Windows terminal with tabs, splits, quake-style, hotkeys and more.",
+  "hash": "4eb9d7a9283de700567d305451db53dff647e637089e6a73b76d89961e10fc58",
   "homepage": "https://conemu.github.io/",
   "license": "BSD-3-Clause",
-  "url": "https://ghproxy.com/https://github.com/Maximus5/ConEmu/releases/download/v22.12.18/ConEmuPack.221218.7z",
-  "hash": "4eb9d7a9283de700567d305451db53dff647e637089e6a73b76d89961e10fc58",
+  "persist": "ConEmu\\ConEmu.xml",
   "pre_install": [
     "$xml = \"$dir\\ConEmu\\ConEmu.xml\"",
     "if(!(Test-Path \"$xml\")) {",
@@ -19,10 +32,6 @@
     "    Set-Content $xml $cont -Encoding Ascii -Force",
     "}"
   ],
-  "bin": [
-    "ConEmu.exe",
-    "ConEmu64.exe"
-  ],
   "shortcuts": [
     [
       "ConEmu64.exe",
@@ -33,16 +42,7 @@
       "ConEmu (x86)"
     ]
   ],
-  "persist": "ConEmu\\ConEmu.xml",
-  "checkver": {
-    "github": "https://github.com/Maximus5/ConEmu"
-  },
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/Maximus5/ConEmu/releases/download/v$version/ConEmuPack.$cleanVersion.7z",
-    "hash": {
-      "url": "https://www.fosshub.com/ConEmu.html",
-      "regex": "(?sm)$basename.*?\"sha256\":\"$sha256\""
-    }
-  },
+  "url": "https://ghproxy.com/https://github.com/Maximus5/ConEmu/releases/download/v22.12.18/ConEmuPack.221218.7z",
+  "version": "22.12.18",
   "_from": "okibcn/ScoopMaster"
 }

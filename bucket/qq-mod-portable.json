@@ -1,35 +1,7 @@
 {
-  "autoupdate": {
-    "hash": {
-      "mode": "extract",
-      "regex": "^$sha256([\\s]+)$basename",
-      "url": "https://scoop-apps.vercel.app/qq"
-    },
-    "url": "https://pan.jiemi.workers.dev/?file=/scoop/QQ/$matchFilename"
-  },
-  "bin": [
-    [
-      "Bin\\QQScLauncher.exe",
-      "QQ"
-    ]
-  ],
-  "checkver": {
-    "regex": "(?s)(?<filename>QQ_(?<ver>([\\d.]+))_[(](?<build>([\\d]+))[)]_Portable\\.(?:7z|zip|rar))",
-    "replace": "${ver}.${build}",
-    "reverse": true,
-    "url": "https://scoop-apps.vercel.app/qq"
-  },
-  "depends": "sudo",
+  "version": "9.5.9.28625",
   "description": "腾讯 QQ PC 版去广告特别版，由 @Dreamcast 组装打包而成（绿色版）",
-  "extract_dir": "QQ",
-  "hash": "05697746f03710e58c92be808677fa162ad71f5bd110c1ac851ef23cc4baf5ba",
   "homepage": "https://im.qq.com/pcqq",
-  "installer": {
-    "script": [
-      "Stop-Process -Name TXP*,tad*,QQP*,QQC*,QQ -Force -ErrorAction Ignore | Out-Null",
-      "sudo Start-Process -filepath \"$dir\\绿化.bat\" -WorkingDirectory \"$dir\" -Wait"
-    ]
-  },
   "license": {
     "identifier": "Proprietary",
     "url": "https://ti.qq.com/agreement/index.html"
@@ -54,16 +26,20 @@
     "使用 'scoop install vcredist-aio' 或 'scoop install vcredist-mix' 安装运行库",
     "使用 'sudo Start-Process -filepath \"$env:SCOOP\\apps\\qq-ntr-mod-np\\current\\组件功能切换.bat\" -Wait' 切换组件功能"
   ],
-  "shortcuts": [
-    [
-      "Bin\\QQScLauncher.exe",
-      "QQ"
-    ]
-  ],
+  "depends": "sudo",
   "suggest": {
     "vcredist": [
       "meta/vcredist-aio",
       "meta/vcredist-mix"
+    ]
+  },
+  "url": "https://pan.jiemi.workers.dev/?file=/scoop/QQ/QQ_9.5.9_(28625)_Portable.7z",
+  "hash": "05697746f03710e58c92be808677fa162ad71f5bd110c1ac851ef23cc4baf5ba",
+  "extract_dir": "QQ",
+  "installer": {
+    "script": [
+      "Stop-Process -Name TXP*,tad*,QQP*,QQC*,QQ -Force -ErrorAction Ignore | Out-Null",
+      "sudo Start-Process -filepath \"$dir\\绿化.bat\" -WorkingDirectory \"$dir\" -Wait"
     ]
   },
   "uninstaller": {
@@ -73,7 +49,31 @@
       "Write-Host \"The '$app' has been uninstalled.\" -Foreground Magenta"
     ]
   },
-  "url": "https://pan.jiemi.workers.dev/?file=/scoop/QQ/QQ_9.5.9_(28625)_Portable.7z",
-  "version": "9.5.9.28625",
+  "bin": [
+    [
+      "Bin\\QQScLauncher.exe",
+      "QQ"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "Bin\\QQScLauncher.exe",
+      "QQ"
+    ]
+  ],
+  "checkver": {
+    "url": "https://scoop-apps.vercel.app/qq",
+    "regex": "(?s)(?<filename>QQ_(?<ver>([\\d.]+))_[(](?<build>([\\d]+))[)]_Portable\\.(?:7z|zip|rar))",
+    "replace": "${ver}.${build}",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/scoop/QQ/$matchFilename",
+    "hash": {
+      "url": "https://scoop-apps.vercel.app/qq",
+      "mode": "extract",
+      "regex": "^$sha256([\\s]+)$basename"
+    }
+  },
   "_from": "okibcn/ScoopMaster"
 }

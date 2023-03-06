@@ -1,19 +1,23 @@
 {
-  "homepage": "hhttp://antlr.org",
-  "version": "4.12.0",
-  "description": "ANTLR (ANother Tool for Language Recognition) is a powerful parser generator for reading, processing, executing, or translating structured text or binary files.",
-  "license": "Apache 2.0",
-  "hash": "88f18a2bfac0dde1009eda5c7dce358a52877faef7868f56223a5bcc15329e43",
-  "url": "https://www.antlr.org/download/antlr-4.12.0-complete.jar",
-  "pre_install": [
-    "\"@java -cp \"\".;$dir\\antlr-$version-complete.jar\"\" \"\"org.antlr.v4.Tool\"\" %*\" | out-file -en oem \"$dir\\antlr4.bat\"",
-    "\"@java -cp \"\".;$dir\\antlr-$version-complete.jar\"\" \"\"org.antlr.v4.gui.TestRig\"\" %*\" | out-file -en oem \"$dir\\antlr4run.bat\"",
-    "\"@javac -cp \"\".;$dir\\antlr-$version-complete.jar\"\" %*\" | out-file -en oem \"$dir\\antlr4c.bat\""
-  ],
+  "autoupdate": {
+    "url": "https://www.antlr.org/download/antlr-$version-complete.jar"
+  },
   "bin": [
     "antlr4.bat",
     "antlr4run.bat",
     "antlr4c.bat"
+  ],
+  "checkver": {
+    "github": "https://github.com/antlr/antlr4"
+  },
+  "description": "ANTLR (ANother Tool for Language Recognition) is a powerful parser generator for reading, processing, executing, or translating structured text or binary files.",
+  "hash": "88f18a2bfac0dde1009eda5c7dce358a52877faef7868f56223a5bcc15329e43",
+  "homepage": "hhttp://antlr.org",
+  "license": "Apache 2.0",
+  "pre_install": [
+    "\"@java -cp \"\".;$dir\\antlr-$version-complete.jar\"\" \"\"org.antlr.v4.Tool\"\" %*\" | out-file -en oem \"$dir\\antlr4.bat\"",
+    "\"@java -cp \"\".;$dir\\antlr-$version-complete.jar\"\" \"\"org.antlr.v4.gui.TestRig\"\" %*\" | out-file -en oem \"$dir\\antlr4run.bat\"",
+    "\"@javac -cp \"\".;$dir\\antlr-$version-complete.jar\"\" %*\" | out-file -en oem \"$dir\\antlr4c.bat\""
   ],
   "suggest": {
     "JDK": [
@@ -21,11 +25,7 @@
       "java/openjdk"
     ]
   },
-  "checkver": {
-    "github": "https://github.com/antlr/antlr4"
-  },
-  "autoupdate": {
-    "url": "https://www.antlr.org/download/antlr-$version-complete.jar"
-  },
+  "url": "https://www.antlr.org/download/antlr-4.12.0-complete.jar",
+  "version": "4.12.0",
   "_from": "okibcn/ScoopMaster"
 }

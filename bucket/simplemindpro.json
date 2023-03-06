@@ -1,12 +1,12 @@
 {
-  "version": "1.32.1",
+  "version": "2.0.0",
   "description": "Cross-platform mind mapping tool",
   "homepage": "https://simplemind.eu",
   "license": {
     "identifier": "Proprietary"
   },
-  "url": "https://simpleapps.eu/simplemind/SMP1_PZvgnDW8wg5Mc5XXQQq/SimpleMindPro1321b6247Setup.exe",
-  "hash": "219aa4744497cb09b6b9042243956b6ea7a12a7bd1de2b05cfda944853d04813",
+  "url": "https://simpleapps.eu/simplemind/SM2Win_x9D8KSPXxPSdP2xws2V/SimpleMindPro200b6278Setup.exe",
+  "hash": "3f71c18eafa90b4059057d500448f1d86cef26e31d6a4834385c3b9a3d368b1f",
   "innosetup": true,
   "shortcuts": [
     [
@@ -16,10 +16,10 @@
   ],
   "checkver": {
     "url": "https://simpleapps.eu/download/full-edition/simplemind-pro-windows/",
-    "regex": "<b>Version: (?<version>[\\d.]+) (?<build>b[\\d]+)"
+    "regex": "(?<uRL>https://simpleapps\\.eu/simplemind/[a-zA-Z0-9_]*/[a-zA-Z0-9_]*\\.exe)\">(?:[\\x00-\\x7F]+)Version: ([0-9.]+) b(?<build>[0-9]+)</b>"
   },
   "autoupdate": {
-    "url": "https://simpleapps.eu/simplemind/SMP1_PZvgnDW8wg5Mc5XXQQq/SimpleMindPro$cleanVersion$matchBuildSetup.exe"
+    "url": "$matchUrl"
   },
   "_from": "okibcn/ScoopMaster"
 }

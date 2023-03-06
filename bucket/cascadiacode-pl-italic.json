@@ -1,16 +1,12 @@
 {
-  "version": "2111.01",
-  "description": "This is a fun, new monospaced font that includes programming ligatures and is designed to enhance the modern look and feel of the Windows Terminal.",
-  "license": "OFL-1.1",
-  "homepage": "https://github.com/microsoft/cascadia-code",
-  "url": "https://ghproxy.com/https://github.com/microsoft/cascadia-code/releases/download/v2111.01/CascadiaCode-2111.01.zip",
-  "hash": "51fd68176dffb87e2fbc79381aef7f5c9488b58918dee223cd7439b5aa14e712",
-  "extract_dir": "ttf",
-  "checkver": "github",
   "autoupdate": {
     "url": "https://ghproxy.com/https://github.com/microsoft/cascadia-code/releases/download/v$version/CascadiaCode-$version.zip"
   },
-  "pre_install": "Get-ChildItem $dir -Exclude CascadiaCodePLItalic.ttf | Remove-Item -Recurse",
+  "checkver": "github",
+  "description": "This is a fun, new monospaced font that includes programming ligatures and is designed to enhance the modern look and feel of the Windows Terminal.",
+  "extract_dir": "ttf",
+  "hash": "51fd68176dffb87e2fbc79381aef7f5c9488b58918dee223cd7439b5aa14e712",
+  "homepage": "https://github.com/microsoft/cascadia-code",
   "installer": {
     "script": [
       "if(!(is_admin)) { error \"Admin rights are required, please run 'sudo scoop install $app'\"; exit 1 }",
@@ -20,6 +16,8 @@
       "}"
     ]
   },
+  "license": "OFL-1.1",
+  "pre_install": "Get-ChildItem $dir -Exclude CascadiaCodePLItalic.ttf | Remove-Item -Recurse",
   "uninstaller": {
     "script": [
       "if(!(is_admin)) { error \"Admin rights are required, please run 'sudo scoop uninstall $app'\"; exit 1 }",
@@ -30,5 +28,7 @@
       "Write-Host \"'Cascadia Code PL' has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
     ]
   },
+  "url": "https://ghproxy.com/https://github.com/microsoft/cascadia-code/releases/download/v2111.01/CascadiaCode-2111.01.zip",
+  "version": "2111.01",
   "_from": "okibcn/ScoopMaster"
 }

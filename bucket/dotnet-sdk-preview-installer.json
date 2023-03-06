@@ -1,0 +1,56 @@
+{
+  "version": "8.0.100-preview.1.23115.2",
+  "description": ".NET is a free, cross-platform, open source developer platform for building many different types of applications.",
+  "homepage": "https://www.microsoft.com/net/",
+  "license": "MIT",
+  "suggest": {
+    "Visual C++ Redistributable": "extras/vcredist2022"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://dotnetcli.blob.core.windows.net/dotnet/Sdk/8.0.100-preview.1.23115.2/dotnet-sdk-8.0.100-preview.1.23115.2-win-x64.exe#/dotnet-sdk-preview-win.exe",
+      "hash": "sha512:ace0196fd62a8d6c7d78829d7640f3d8a885de2ead1d37ab42648ef12b8dc4bcbc2c26e4d47e83f07ec1403cd60c3e2c6d164649e81dece5745d2cba89c63a60"
+    },
+    "32bit": {
+      "url": "https://dotnetcli.blob.core.windows.net/dotnet/Sdk/8.0.100-preview.1.23115.2/dotnet-sdk-8.0.100-preview.1.23115.2-win-x86.exe#/dotnet-sdk-preview-win.exe",
+      "hash": "sha512:b8f5ab9041a789189c7eebc343d36de0a4818f677fd1cf04e45cb2c4b57ad9e702680bd2489785e8a095667d8bd82df94971af085102f95fbda8a2dcff43ac06"
+    },
+    "arm64": {
+      "url": "https://dotnetcli.blob.core.windows.net/dotnet/Sdk/8.0.100-preview.1.23115.2/dotnet-sdk-8.0.100-preview.1.23115.2-win-arm64.exe#/dotnet-sdk-preview-win.exe",
+      "hash": "sha512:02742d974ced8673c37ac4c33b5f7b29fe8969b2d6d43dbe345835c200a24f5c0e7018b141afa67400013ecdf7dc1c495b0d10c8a2ef8ba7cd2619570c0a66f0"
+    }
+  },
+  "installer": {
+    "args": "/passive",
+    "keep": true
+  },
+  "uninstaller": {
+    "file": "dotnet-sdk-preview-win.exe",
+    "args": [
+      "/uninstall",
+      "/passive"
+    ]
+  },
+  "checkver": {
+    "url": "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/releases-index.json",
+    "jp": "$.releases-index[?(@['support-phase']=='preview')]",
+    "regex": "latest-release\": \"(?<release>[\\d.]+-preview.\\d)[\\s\\S]+latest-sdk\": \"([\\d.]+-preview.[\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://dotnetcli.blob.core.windows.net/dotnet/Sdk/$version/dotnet-sdk-$version-win-x64.exe#/dotnet-sdk-preview-win.exe"
+      },
+      "32bit": {
+        "url": "https://dotnetcli.blob.core.windows.net/dotnet/Sdk/$version/dotnet-sdk-$version-win-x86.exe#/dotnet-sdk-preview-win.exe"
+      },
+      "arm64": {
+        "url": "https://dotnetcli.blob.core.windows.net/dotnet/Sdk/$version/dotnet-sdk-$version-win-arm64.exe#/dotnet-sdk-preview-win.exe"
+      }
+    },
+    "hash": {
+      "url": "https://dotnetcli.blob.core.windows.net/dotnet/checksums/$matchRelease-sha.txt"
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

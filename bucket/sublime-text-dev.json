@@ -1,30 +1,5 @@
 {
-  "architecture": {
-    "64bit": {
-      "hash": [
-        "2fd73610974b469b42f1cd9a4d4893cee4c188e38972e314cc4e1e239040928a",
-        "61b19e2538c419368118efbc6b7dd6662e15b8c51a47b037fc1573fddc23fb38",
-        "2ad7330b66a1908bdacfac86536a342dc39116994e8325bed432d997b5e2d350"
-      ],
-      "url": [
-        "https://download.sublimetext.com/sublime_text_build_4147_x64.zip",
-        "https://ghproxy.com/https://raw.githubusercontent.com/jat001/scoop-ox/master/scripts/sublime-text/install-context.reg",
-        "https://ghproxy.com/https://raw.githubusercontent.com/jat001/scoop-ox/master/scripts/sublime-text/uninstall-context.reg"
-      ]
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://download.sublimetext.com/sublime_text_build_$version_x64.zip"
-      }
-    }
-  },
-  "bin": "subl.exe",
-  "checkver": {
-    "jsonpath": "$.latest_version",
-    "url": "https://www.sublimetext.com/updates/4/dev_update_check"
-  },
+  "version": "4147",
   "description": "A sophisticated text editor for code, markup and prose. (ST4 dev veriosn)",
   "homepage": "https://www.sublimetext.com",
   "license": {
@@ -32,7 +7,20 @@
     "url": "https://www.sublimetext.com/eula"
   },
   "notes": "Add Sublime Text as a context menu option by running: \"reg import '$dir\\install-context.reg'\"",
-  "persist": "Data",
+  "architecture": {
+    "64bit": {
+      "url": [
+        "https://download.sublimetext.com/sublime_text_build_4147_x64.zip",
+        "https://ghproxy.com/https://raw.githubusercontent.com/jat001/scoop-ox/master/scripts/sublime-text/install-context.reg",
+        "https://ghproxy.com/https://raw.githubusercontent.com/jat001/scoop-ox/master/scripts/sublime-text/uninstall-context.reg"
+      ],
+      "hash": [
+        "2fd73610974b469b42f1cd9a4d4893cee4c188e38972e314cc4e1e239040928a",
+        "61b19e2538c419368118efbc6b7dd6662e15b8c51a47b037fc1573fddc23fb38",
+        "2ad7330b66a1908bdacfac86536a342dc39116994e8325bed432d997b5e2d350"
+      ]
+    }
+  },
   "post_install": [
     "$file = \"$dir\\install-context.reg\"",
     "if (Test-Path $file) {",
@@ -46,12 +34,24 @@
     "    (Get-Content $file).Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE') | Set-Content -Path $file -Encoding Ascii -Force",
     "}"
   ],
+  "bin": "subl.exe",
   "shortcuts": [
     [
       "sublime_text.exe",
       "Sublime Text 4"
     ]
   ],
-  "version": "4147",
+  "persist": "Data",
+  "checkver": {
+    "url": "https://www.sublimetext.com/updates/4/dev_update_check",
+    "jsonpath": "$.latest_version"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://download.sublimetext.com/sublime_text_build_$version_x64.zip"
+      }
+    }
+  },
   "_from": "okibcn/ScoopMaster"
 }

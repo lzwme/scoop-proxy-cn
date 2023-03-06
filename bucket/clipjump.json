@@ -1,18 +1,42 @@
 {
+  "version": "12.5",
+  "description": "A Multiple-Clipboard management utility for Windows",
+  "homepage": "https://github.com/aviaryan/Clipjump",
+  "license": {
+    "identifier": "Apache License V2.0",
+    "url": "https://sourceforge.net/projects/clipjump/"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/aviaryan/Clipjump/releases/download/v12.5/Clipjump_12.5_x64.zip",
+      "hash": "sha512:a78e91b121301bffda6e0061d628f6e8b220e19bea4d54427299c6c36f38008ee29c6e9aff29d90e5c3817e835101bad9ecd90676d46de3b40e0a5971c1d2e24",
+      "extract_dir": "Clipjump_x64",
+      "pre_install": [
+        "Get-ChildItem \"$dir\\Clipjump_x64.exe\" | Rename-Item -NewName \"$dir\\Clipjump.exe\""
+      ]
+    },
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/aviaryan/Clipjump/releases/download/v12.5/Clipjump_12.5.zip",
+      "hash": "sha512:2be13b0ca7dbc18ac8cde4c5edd3a0a53a52786ab7ea1dc783aa58e0e766b9430ec2aca2f8d9ab43dd7e7afd24698d07b1b74e9b571690e0a35aaf8ac92b2981",
+      "extract_dir": "Clipjump"
+    }
+  },
+  "persist": [
+    "plugins",
+    "cache"
+  ],
   "bin": [
+    "Clipjump.exe",
     [
-      "clipjump_x64\\clipjump_x64.exe",
-      "clipjump",
-      ""
+      "clipjump.exe",
+      "cj"
     ]
   ],
   "shortcuts": [
     [
-      "clipjump_x64\\clipjump_x64.exe",
-      "Clipjump 12.5"
+      "Clipjump.exe",
+      "Clipjump"
     ]
   ],
-  "url": "https://ghproxy.com/https://github.com/aviaryan/Clipjump/releases/download/v12.5/Clipjump_12.5_x64.zip",
-  "version": "12.5",
   "_from": "okibcn/ScoopMaster"
 }

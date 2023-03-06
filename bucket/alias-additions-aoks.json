@@ -1,10 +1,7 @@
 {
   "##": "see also https://github.com/snaphat/alias-additions/blob/master/alias-additions.json for any new aliases",
-  "homepage": "https://github.com/AntonOks/alias-additions-aoks",
   "description": "Adds aliases to scoop",
-  "version": "v0.0.5",
-  "license": "unlicense",
-  "url": "https://ghproxy.com/https://raw.githubusercontent.com/AntonOks/scoop-aoks/master/bucket/alias-additions-aoks.json",
+  "homepage": "https://github.com/AntonOks/alias-additions-aoks",
   "installer": {
     "script": [
       "function global:Write-Host() {}",
@@ -34,6 +31,7 @@
       "scoop alias add bucket-origin \"Get-ChildItem `$bucketsdir | ForEach-Object { `$BUCKET = `$_.name; `$ORIGIN = `&git -C `$bucketsdir\\`$BUCKET\\ remote get-url origin; Write-Host -NoNewLine -foreground green `$BUCKET; Write-Host (`\" `\" *(40 - `$BUCKET.length)) `$ORIGIN } \" \"Show the scoop buckets and their `\"git origin`\" info\""
     ]
   },
+  "license": "unlicense",
   "uninstaller": {
     "script": [
       "scoop alias rm update-all",
@@ -46,5 +44,7 @@
       "scoop alias rm bucket-origin"
     ]
   },
+  "url": "https://ghproxy.com/https://raw.githubusercontent.com/AntonOks/scoop-aoks/master/bucket/alias-additions-aoks.json",
+  "version": "v0.0.5",
   "_from": "okibcn/ScoopMaster"
 }

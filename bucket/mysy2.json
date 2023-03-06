@@ -1,15 +1,17 @@
 {
   "##": "64-bit version is able to build both 32-bit and 64-bit packages",
-  "version": "2022-09-04",
-  "description": "A software distro and building platform for Windows.",
-  "homepage": "http://msys2.github.io",
-  "license": "GPL-2.0-only|BSD-3-Clause",
-  "notes": "Please run 'msys2' now for the MSYS2 setup to complete!",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.com/https://github.com/msys2/msys2-installer/releases/download/2022-09-04/msys2-base-x86_64-20220904.tar.xz",
+      "extract_dir": "msys64",
       "hash": "de80d038d1177fb7dc026e834f4b03965e5d46eaab64a18f991d42bdcb445520",
-      "extract_dir": "msys64"
+      "url": "https://ghproxy.com/https://github.com/msys2/msys2-installer/releases/download/2022-09-04/msys2-base-x86_64-20220904.tar.xz"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/msys2/msys2-installer/releases/download/$version/msys2-base-x86_64-$matchYear$matchMonth$matchDay.tar.xz"
+      }
     }
   },
   "bin": [
@@ -49,6 +51,15 @@
       "-ucrt64 -defterm -here -full-path -no-start"
     ]
   ],
+  "checkver": {
+    "regex": "/releases/tag/(?<version>(?<year>\\d{4})-(?<month>\\d{2})-(?<day>\\d{2}))",
+    "url": "https://github.com/msys2/msys2-installer"
+  },
+  "description": "A software distro and building platform for Windows.",
+  "homepage": "http://msys2.github.io",
+  "license": "GPL-2.0-only|BSD-3-Clause",
+  "notes": "Please run 'msys2' now for the MSYS2 setup to complete!",
+  "persist": "home",
   "shortcuts": [
     [
       "msys2.exe",
@@ -75,17 +86,6 @@
       "UCRT64"
     ]
   ],
-  "persist": "home",
-  "checkver": {
-    "url": "https://github.com/msys2/msys2-installer",
-    "regex": "/releases/tag/(?<version>(?<year>\\d{4})-(?<month>\\d{2})-(?<day>\\d{2}))"
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.com/https://github.com/msys2/msys2-installer/releases/download/$version/msys2-base-x86_64-$matchYear$matchMonth$matchDay.tar.xz"
-      }
-    }
-  },
+  "version": "2022-09-04",
   "_from": "okibcn/ScoopMaster"
 }

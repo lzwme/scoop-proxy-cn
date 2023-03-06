@@ -1,42 +1,42 @@
 {
-  "version": "16.1.9",
+  "architecture": {
+    "32bit": {
+      "hash": "3700ef5d3806052ca706bc4da532cd725d86872d2dfb088b52e0cb141af1897f",
+      "url": "https://dn.navicat.com/download/navicat161_premium_cs_x86.exe"
+    },
+    "64bit": {
+      "hash": "e692308c0c0791417f51eb1dbb0c2f0018b0ed46735f11ed2e2f8953add9c951",
+      "url": "https://dn.navicat.com/download/navicat161_premium_cs_x64.exe"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://dn.navicat.com/download/navicat$majorVersion$minorVersion_premium_cs_x86.exe"
+      },
+      "64bit": {
+        "url": "https://dn.navicat.com/download/navicat$majorVersion$minorVersion_premium_cs_x64.exe"
+      }
+    }
+  },
+  "bin": "navicat.exe",
+  "checkver": {
+    "regex": "<b>Navicat Premium \\(Windows\\) version (16[\\d.]+)</b>",
+    "url": "https://www.navicat.com/en/products/navicat-premium-release-note"
+  },
   "description": "Navicat Premium is a database development tool that allows you to simultaneously connect to MySQL, MariaDB, MongoDB, SQL Server, Oracle, PostgreSQL, and SQLite databases from a single application(Chinese Simplified Edition).",
   "homepage": "https://www.navicat.com/en/products/navicat-premium",
+  "innosetup": true,
   "license": {
     "identifier": "Proprietary",
     "url": "http://legal.navicat.com/navicatcloud/NavicatCloudLicenseAgreement.rtf"
   },
-  "architecture": {
-    "64bit": {
-      "url": "https://dn.navicat.com/download/navicat161_premium_cs_x64.exe",
-      "hash": "e692308c0c0791417f51eb1dbb0c2f0018b0ed46735f11ed2e2f8953add9c951"
-    },
-    "32bit": {
-      "url": "https://dn.navicat.com/download/navicat161_premium_cs_x86.exe",
-      "hash": "3700ef5d3806052ca706bc4da532cd725d86872d2dfb088b52e0cb141af1897f"
-    }
-  },
-  "innosetup": true,
-  "bin": "navicat.exe",
   "shortcuts": [
     [
       "navicat.exe",
       "Navicat Premium"
     ]
   ],
-  "checkver": {
-    "url": "https://www.navicat.com/en/products/navicat-premium-release-note",
-    "regex": "<b>Navicat Premium \\(Windows\\) version (16[\\d.]+)</b>"
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://dn.navicat.com/download/navicat$majorVersion$minorVersion_premium_cs_x64.exe"
-      },
-      "32bit": {
-        "url": "https://dn.navicat.com/download/navicat$majorVersion$minorVersion_premium_cs_x86.exe"
-      }
-    }
-  },
+  "version": "16.1.9",
   "_from": "okibcn/ScoopMaster"
 }

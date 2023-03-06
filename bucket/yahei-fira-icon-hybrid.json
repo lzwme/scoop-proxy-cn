@@ -1,7 +1,10 @@
 {
+  "version": "1.002",
   "description": "适用于 Vim 及终端图标的中英文混合字体",
-  "hash": "e07bdbb4ff178c84af21202c9ecf4bd8b105d0ef34c46f33f25d83cc62005d19",
+  "license": "Apache-2.0",
   "homepage": "https://github.com/HanleyLee/Yahei-Fira-Icon-Hybrid-Font",
+  "url": "https://ghproxy.com/https://raw.githubusercontent.com/hanleylee/yahei-fira-icon-hybrid-font/master/YaHeiFiraIconHybrid-Regular.ttf",
+  "hash": "e07bdbb4ff178c84af21202c9ecf4bd8b105d0ef34c46f33f25d83cc62005d19",
   "installer": {
     "script": [
       "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
@@ -21,7 +24,6 @@
       "Copy-Item \"$dir\\YaHeiFiraIconHybrid-Regular.ttf\" -Destination $fontInstallDir"
     ]
   },
-  "license": "Apache-2.0",
   "uninstaller": {
     "script": [
       "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
@@ -40,7 +42,5 @@
       "Write-Host \"The 'YaHei Fira Icon Hybrid' Font has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
     ]
   },
-  "url": "https://ghproxy.com/https://raw.githubusercontent.com/hanleylee/yahei-fira-icon-hybrid-font/master/YaHeiFiraIconHybrid-Regular.ttf",
-  "version": "1.002",
   "_from": "okibcn/ScoopMaster"
 }

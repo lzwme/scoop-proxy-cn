@@ -1,20 +1,27 @@
 {
   "homepage": "https://www.osforensics.com/tools/mount-disk-images.html",
+  "description": "allows you to mount local disk image files (bit-for-bit copies of an entire disk or disk partition) in Windows as a physical disk or a logical drive letter.",
   "version": "3.1.1001",
-  "license": "freeware",
-  "url": "https://www.osforensics.com/downloads/osfmount.exe",
+  "license": "Freeware",
+  "url": "https://www.osforensics.com/downloads/osfmount.exe#/dl.exe",
   "hash": "fd4012a9df1e1fcd93e473e4498e51d19a2afd9379cd657db1cc023e3c0dc7d6",
-  "innosetup": true,
-  "bin": "OSFMount.exe",
+  "bin": "OSFMount.com",
   "shortcuts": [
     [
       "OSFMount.exe",
       "OSFMount"
+    ],
+    [
+      "osfmount_Help.exe",
+      "osfmount_Help"
     ]
   ],
-  "checkver": "<h3 id=\"Whats-new\" class=\"tools_title\">What's new</h3>[\\w\\W]+?<h3 class=\"faq-block_title whats-new_title-block\">v([\\d.]+)",
+  "innosetup": true,
+  "checkver": {
+    "regex": "<p>Please click below to download the OSFMount V([\\d.]+) installation package</p>"
+  },
   "autoupdate": {
-    "url": "https://www.osforensics.com/downloads/osfmount.exe"
+    "url": "https://www.osforensics.com/downloads/osfmount.exe#/dl.exe"
   },
   "_from": "okibcn/ScoopMaster"
 }

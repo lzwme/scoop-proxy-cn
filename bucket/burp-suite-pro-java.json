@@ -20,9 +20,7 @@
   "shortcuts": [
     [
       "burpsuite-pro.cmd",
-      "Burp Suite Professional Edition",
-      "",
-      "favicon.ico"
+      "Burp Suite Professional Edition"
     ]
   ],
   "checkver": {
@@ -31,7 +29,13 @@
     "regex": "([\\d.]+)"
   },
   "autoupdate": {
-    "url": "https://portswigger-cdn.net/burp/releases/download?product=pro&version=$version&type=Jar#/burpsuite-pro.jar"
+    "url": "https://portswigger-cdn.net/burp/releases/download?product=pro&version=$version&type=Jar#/burpsuite-pro.jar",
+    "hash": {
+      "mode": "json",
+      "type": "sha256",
+      "url": "https://portswigger.net/burp/releases/data",
+      "jsonpath": "$.ResultSet.Results[0].builds[1].Sha256Checksum"
+    }
   },
   "_from": "okibcn/ScoopMaster"
 }

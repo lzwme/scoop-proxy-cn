@@ -1,22 +1,35 @@
 {
-  "version": "2.2.90",
+  "architecture": {
+    "32bit": {
+      "hash": "6eb05a155b152989e660001d15fe8abaabbe7cea5b7e2b88c2a6eae28a1dfcc7",
+      "url": "https://sourceforge.net/projects/turbovnc/files/2.2.90%20(3.0%20beta1)/TurboVNC-2.2.90-x86.exe"
+    },
+    "64bit": {
+      "hash": "042785e8871cf2cce115da024c3411f42e14af35a686bcc9836061fd85717a33",
+      "url": "https://sourceforge.net/projects/turbovnc/files/2.2.90%20(3.0%20beta1)/TurboVNC-2.2.90-x64.exe"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://sourceforge.net/projects/turbovnc/files/$version/TurboVNC-$version-x86.exe"
+      },
+      "64bit": {
+        "url": "https://sourceforge.net/projects/turbovnc/files/$version/TurboVNC-$version-x64.exe"
+      }
+    }
+  },
+  "checkver": {
+    "disable": true,
+    "github": "https://github.com/TurboVNC/turbovnc"
+  },
   "description": "A derivative of VNC that is tuned to provide peak performance for 3D and video workloads.",
   "homepage": "https://turbovnc.org",
+  "innosetup": true,
   "license": {
     "identifier": "GPL-2.0-or-later",
     "url": "https://github.com/TurboVNC/turbovnc/blob/master/LICENSE.txt"
   },
-  "architecture": {
-    "32bit": {
-      "url": "https://sourceforge.net/projects/turbovnc/files/2.2.90%20(3.0%20beta1)/TurboVNC-2.2.90-x86.exe",
-      "hash": "6eb05a155b152989e660001d15fe8abaabbe7cea5b7e2b88c2a6eae28a1dfcc7"
-    },
-    "64bit": {
-      "url": "https://sourceforge.net/projects/turbovnc/files/2.2.90%20(3.0%20beta1)/TurboVNC-2.2.90-x64.exe",
-      "hash": "042785e8871cf2cce115da024c3411f42e14af35a686bcc9836061fd85717a33"
-    }
-  },
-  "innosetup": true,
   "shortcuts": [
     [
       "vncviewerw.bat",
@@ -31,19 +44,6 @@
       "vncviewer.ico"
     ]
   ],
-  "checkver": {
-    "disable": true,
-    "github": "https://github.com/TurboVNC/turbovnc"
-  },
-  "autoupdate": {
-    "architecture": {
-      "32bit": {
-        "url": "https://sourceforge.net/projects/turbovnc/files/$version/TurboVNC-$version-x86.exe"
-      },
-      "64bit": {
-        "url": "https://sourceforge.net/projects/turbovnc/files/$version/TurboVNC-$version-x64.exe"
-      }
-    }
-  },
+  "version": "2.2.90",
   "_from": "okibcn/ScoopMaster"
 }

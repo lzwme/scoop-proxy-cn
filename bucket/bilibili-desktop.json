@@ -1,38 +1,38 @@
 {
+  "version": "1.9.1",
+  "description": "哔哩哔哩PC客户端",
+  "homepage": "https://app.bilibili.com",
+  "license": "Freeware",
   "architecture": {
     "64bit": {
+      "url": "https://dl.hdslb.com/mobile/fixed/bili_win/bili_win-install.exe#/dl.7z",
       "hash": "sha512:c98839070b5554a5dcfac03bdb6a00850e18f9ad9aca0fbbd97b9783427b147463abc6db6427783763498fe9819f3b9a54e0485b975c8c0a5ae62b592942633c",
       "pre_install": [
         "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
         "Remove-Item \"$dir\\`$*\", \"$dir\\Uninstall*\" -Force -Recurse"
-      ],
-      "url": "https://dl.hdslb.com/mobile/fixed/bili_win/bili_win-install.exe#/dl.7z"
+      ]
     }
   },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "hash": {
-          "regex": "sha512: ([\\w\\d+\\/=]{24,88})",
-          "url": "http://api.bilibili.com/x/elec-frontend/update/latest.yml"
-        },
-        "url": "https://dl.hdslb.com/mobile/fixed/bili_win/bili_win-install.exe#/dl.7z"
-      }
-    }
-  },
-  "checkver": {
-    "regex": "bilibili-setup-v([\\d\\.]+)\\.exe",
-    "url": "http://api.bilibili.com/x/elec-frontend/update/latest.yml"
-  },
-  "description": "哔哩哔哩PC客户端",
-  "homepage": "https://app.bilibili.com",
-  "license": "Freeware",
   "shortcuts": [
     [
       "哔哩哔哩.exe",
       "哔哩哔哩"
     ]
   ],
-  "version": "1.9.1",
+  "checkver": {
+    "url": "http://api.bilibili.com/x/elec-frontend/update/latest.yml",
+    "regex": "bilibili-setup-v([\\d\\.]+)\\.exe"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://dl.hdslb.com/mobile/fixed/bili_win/bili_win-install.exe#/dl.7z",
+        "hash": {
+          "url": "http://api.bilibili.com/x/elec-frontend/update/latest.yml",
+          "regex": "sha512: ([\\w\\d+\\/=]{24,88})"
+        }
+      }
+    }
+  },
   "_from": "okibcn/ScoopMaster"
 }

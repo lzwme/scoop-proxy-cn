@@ -1,11 +1,19 @@
 {
-  "homepage": "https://pathcopycopy.github.io/",
-  "description": "Copy file paths from Windows explorer's contextual menu",
-  "version": "20.0",
-  "license": "MIT",
-  "url": "https://ghproxy.com/https://github.com/clechasseur/pathcopycopy/releases/download/v20.0/PathCopyCopy20.0.exe",
-  "hash": "1cd49bdd01d4543a3022a09bc4f638a6faa1637f5aa1664e2c456a02c42dc3e1",
   "##": "see installer options here - https://jrsoftware.org/ishelp/index.php?topic=setupcmdline",
+  "autoupdate": {
+    "hash": {
+      "regex": "$sha256",
+      "url": "$url.sha256"
+    },
+    "url": "https://ghproxy.com/https://github.com/clechasseur/pathcopycopy/releases/download/v$version/PathCopyCopy$version.exe"
+  },
+  "bin": "PathCopyCopySettings.exe",
+  "checkver": {
+    "github": "https://github.com/clechasseur/pathcopycopy"
+  },
+  "description": "Copy file paths from Windows explorer's contextual menu",
+  "hash": "1cd49bdd01d4543a3022a09bc4f638a6faa1637f5aa1664e2c456a02c42dc3e1",
+  "homepage": "https://pathcopycopy.github.io/",
   "installer": {
     "args": [
       "/VERYSILENT",
@@ -18,25 +26,17 @@
       "/NORESTARTAPPLICATIONS"
     ]
   },
+  "license": "MIT",
+  "notes": "run \"PathCopyCopySettings.exe\" to configure the Explorer menu...",
   "uninstaller": {
-    "file": "unins000.exe",
     "args": [
       "/VERYSILENT",
       "/SUPPRESSMSGBOXES",
       "/NORESTART"
-    ]
+    ],
+    "file": "unins000.exe"
   },
-  "bin": "PathCopyCopySettings.exe",
-  "notes": "run \"PathCopyCopySettings.exe\" to configure the Explorer menu...",
-  "checkver": {
-    "github": "https://github.com/clechasseur/pathcopycopy"
-  },
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/clechasseur/pathcopycopy/releases/download/v$version/PathCopyCopy$version.exe",
-    "hash": {
-      "url": "$url.sha256",
-      "regex": "$sha256"
-    }
-  },
+  "url": "https://ghproxy.com/https://github.com/clechasseur/pathcopycopy/releases/download/v20.0/PathCopyCopy20.0.exe",
+  "version": "20.0",
   "_from": "okibcn/ScoopMaster"
 }

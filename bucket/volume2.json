@@ -1,30 +1,37 @@
 {
   "version": "1.1.7.449",
-  "description": "Advanced Windows volume control",
   "homepage": "https://irzyxa.blogspot.com/",
+  "description": "An advanced Windows volume control, which can be used as a complete replacement for the standard Windows volume control.",
   "license": {
-    "identifier": "NoneFree",
-    "url": "https://ghproxy.com/https://raw.githubusercontent.com/irzyxa/Volume2/master/License.txt"
+    "identifier": "Freeware",
+    "url": "https://github.com/irzyxa/Volume2/blob/master/License.txt"
   },
-  "url": "https://volumesqr.at.ua/Release/Volume2_1_1_7_449.zip",
+  "url": "https://ghproxy.com/https://github.com/irzyxa/Volume2/releases/download/v1.1.7/Volume2_1_1_7_449.zip",
   "hash": "5c4c8fa85f2bd404ff1cfe674570e9802733ae35cdd3150eb61c0e3c0d8e7bc4",
   "extract_dir": "Volume2",
+  "pre_install": [
+    "'ColorSchemes.ini', 'Schedules.ini', 'Config.ini' | ForEach-Object {",
+    "    if (!(Test-Path \"$persist_dir\\$_\")) { New-Item \"$dir\\$_\" | Out-Null }",
+    "}"
+  ],
+  "bin": "Volume2.exe",
   "shortcuts": [
     [
       "Volume2.exe",
-      "Volume2"
-    ],
-    [
-      "Volume2PM.exe",
-      "Volume2PM"
+      "Volume²"
     ]
   ],
+  "persist": [
+    "ColorSchemes.ini",
+    "Schedules.ini",
+    "Config.ini"
+  ],
   "checkver": {
-    "regex": "Last Release version[\\s\\S]+?Volume&#178; v(\\d+)\\.(\\d+)\\.(\\d+), build (\\d+)",
-    "replace": "${1}_${2}_${3}_${4}"
+    "github": "https://github.com/irzyxa/Volume2",
+    "regex": "Volume²\\s([\\d.]+)"
   },
   "autoupdate": {
-    "url": "https://volumesqr.at.ua/Release/Volume2_$version.zip"
+    "url": "https://ghproxy.com/https://github.com/irzyxa/Volume2/releases/download/v$majorVersion.$minorVersion.$patchVersion/Volume2_$underscoreVersion.zip"
   },
   "_from": "okibcn/ScoopMaster"
 }

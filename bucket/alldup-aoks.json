@@ -1,39 +1,39 @@
 {
-  "autoupdate": {
-    "hash": {
-      "regex": "SHA1: ($sha1)</span><br/><a href=\"http://www.alldup.de/download/AllDupPortable.zip",
-      "url": "http://www.alldup.info/en_download_alldup.php"
-    },
-    "url": "http://www.alldup.info/download/AllDupPortable.zip"
-  },
+  "version": "4.5.33",
+  "description": "Duplicate file remover",
+  "homepage": "http://www.alldup.info",
+  "license": "Freeware",
+  "url": "http://www.alldup.info/download/AllDupPortable.zip",
+  "hash": "bb6f75efa5eaba725b9fc3d6ec7ecd3c3ec36d4f54534c6dfd0bff6e46ed9aff",
+  "pre_install": "if (-not (Test-Path \"$persist_dir\\config4.ini\")) { New-Item \"$dir\\config4.ini\" | Out-Null }",
   "bin": [
     [
       "AllDupPortable.exe",
       "AllDup"
     ]
   ],
-  "checkver": {
-    "regex": "([\\d.]+)",
-    "url": "http://www.alldup.de/version/Version_AllDup.txt"
-  },
-  "description": "Duplicate file remover",
-  "hash": "bb6f75efa5eaba725b9fc3d6ec7ecd3c3ec36d4f54534c6dfd0bff6e46ed9aff",
-  "homepage": "http://www.alldup.info",
-  "license": "Freeware",
-  "persist": [
-    "export",
-    "log",
-    "profile",
-    "config4.ini"
-  ],
-  "pre_install": "if (-not (Test-Path \"$persist_dir\\config4.ini\")) { New-Item \"$dir\\config4.ini\" | Out-Null }",
   "shortcuts": [
     [
       "AllDupPortable.exe",
       "AllDup"
     ]
   ],
-  "url": "http://www.alldup.info/download/AllDupPortable.zip",
-  "version": "4.5.33",
+  "persist": [
+    "export",
+    "log",
+    "profile",
+    "config4.ini"
+  ],
+  "checkver": {
+    "url": "http://www.alldup.de/version/Version_AllDup.txt",
+    "regex": "([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "http://www.alldup.info/download/AllDupPortable.zip",
+    "hash": {
+      "url": "http://www.alldup.info/en_download_alldup.php",
+      "regex": "SHA1: ($sha1)</span><br/><a href=\"http://www.alldup.de/download/AllDupPortable.zip"
+    }
+  },
   "_from": "okibcn/ScoopMaster"
 }

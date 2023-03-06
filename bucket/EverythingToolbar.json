@@ -1,18 +1,22 @@
 {
   "homepage": "https://github.com/stnkl/EverythingToolbar",
-  "description": "Everything integration for the Windows taskbar",
   "version": "1.0.3",
-  "url": "https://ghproxy.com/https://github.com/stnkl/EverythingToolbar/releases/download/1.0.3/EverythingToolbar-1.0.3.msi#/setup.msi_",
-  "hash": "15df78b0127b5f922cf668ba3f0fcaae9343fa6a9f57de1511d913ea9934ddc8",
+  "url": "https://ghproxy.com/https://github.com/stnkl/EverythingToolbar/archive/refs/tags/1.0.3.zip",
+  "notes": "Enable EverythingToolbar via the context menu of the taskbar.",
+  "hash": "33071854b0b9d907435d9757f6a57c41ccaf95c333814f27cd134f161de12f3c",
+  "depends": "extras/everything",
   "checkver": "github",
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/stnkl/EverythingToolbar/releases/download/$version/EverythingToolbar-$version.msi#/setup.msi_"
-  },
+  "pre_install": "if (-not (is_admin)) { error 'Administrator privileges are needed for installation'; break }",
   "installer": {
-    "script": "Start-Process -Wait msiexec \"/i `\"$dir\\setup.msi_`\"/norestart /qn INSTALLFOLDER=`\"$dir`\"\" -Verb RunAs"
+    "file": "install.cmd",
+    "keep": "true"
   },
   "uninstaller": {
-    "script": "Start-Process -Wait msiexec \"/x `\"$dir\\setup.msi_`\" /qn /norestart\" -Verb RunAs"
+    "file": "uninstall.cmd",
+    "keep": "true"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/stnkl/EverythingToolbar/archive/refs/tags/$version.zip"
   },
   "_from": "okibcn/ScoopMaster"
 }

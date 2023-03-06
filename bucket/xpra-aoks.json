@@ -1,38 +1,38 @@
 {
-  "architecture": {
-    "64bit": {
-      "extract_dir": "Xpra-Python3-x86_64_4.4.3-r0",
-      "hash": "sha1:340042f05650b6ac4c59ad2407291c90235e8c29",
-      "url": "https://xpra.org/dists/windows/Xpra-Python3-x86_64_4.4.3-r0.zip"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "extract_dir": "Xpra-Python3-x86_64_$version",
-        "hash": {
-          "url": "$url.sha1"
-        },
-        "url": "https://xpra.org/dists/windows/Xpra-Python3-x86_64_$version.zip"
-      }
-    }
-  },
-  "bin": "xpra.exe",
-  "checkver": {
-    "regex": "Xpra-Python3-x86_64_(?<version>[\\d.]+)(?<revision>-r[\\d]+)?.zip</a></td>",
-    "replace": "${version}${revision}",
-    "reverse": true,
-    "url": "https://xpra.org/dists/windows/"
-  },
+  "version": "4.4.3-r0",
   "description": "multi-platform screen and application forwarding system, \"screen for X11\"",
   "homepage": "https://xpra.org/",
   "license": "LGPL-2.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://xpra.org/dists/windows/Xpra-Python3-x86_64_4.4.3-r0.zip",
+      "hash": "sha1:340042f05650b6ac4c59ad2407291c90235e8c29",
+      "extract_dir": "Xpra-Python3-x86_64_4.4.3-r0"
+    }
+  },
+  "bin": "xpra.exe",
   "shortcuts": [
     [
       "Xpra.exe",
       "Xpra"
     ]
   ],
-  "version": "4.4.3-r0",
+  "checkver": {
+    "url": "https://xpra.org/dists/windows/",
+    "regex": "Xpra-Python3-x86_64_(?<version>[\\d.]+)(?<revision>-r[\\d]+)?.zip</a></td>",
+    "reverse": true,
+    "replace": "${version}${revision}"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://xpra.org/dists/windows/Xpra-Python3-x86_64_$version.zip",
+        "extract_dir": "Xpra-Python3-x86_64_$version",
+        "hash": {
+          "url": "$url.sha1"
+        }
+      }
+    }
+  },
   "_from": "okibcn/ScoopMaster"
 }

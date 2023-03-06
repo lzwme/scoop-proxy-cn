@@ -1,18 +1,9 @@
 {
-  "homepage": "https://kmiya-culti.github.io/RLogin/",
+  "homepage": "https://github.com/kmiya-culti/RLogin",
   "version": "2.27.7",
-  "license": "MIT",
-  "description": "RLogin",
-  "architecture": {
-    "64bit": {
-      "url": "https://github.com/kmiya-culti/RLogin/files/10702257/rlogin_x64.zip",
-      "hash": "153098eb7bff3af9b6a98b7e6a5ca43f3783567a0d470af49d123477c7615e0a"
-    },
-    "32bit": {
-      "url": "https://github.com/kmiya-culti/RLogin/files/10702253/rlogin_x32.zip",
-      "hash": "42805c745f62ad229653f6cc4620d113a4613406c36e1e10e06c002d0a741765"
-    }
-  },
+  "url": "http://nanno.bf1.jp/softlib/rlogin/2.27.7/rlogin_x64.zip",
+  "hash": "153098eb7bff3af9b6a98b7e6a5ca43f3783567a0d470af49d123477c7615e0a",
+  "persist": "RLogin.ini",
   "bin": "RLogin.exe",
   "shortcuts": [
     [
@@ -21,44 +12,13 @@
     ]
   ],
   "pre_install": [
-    "$ini = \"$dir\\RLogin.ini\"",
-    "if (!(Test-Path \"$ini\")) {",
-    "   # Using $dir instead of $persist_dir, causes this error:",
-    "   Add-Content -Path \"$ini\" -Value \"\"",
+    "if (!(Test-Path \"$persist_dir\\RLogin.ini\")) {",
+    "    New-Item -Force -Path \"$dir\" -Name 'RLogin.ini' -Value '' | Out-Null",
     "}"
   ],
-  "post_install": [
-    "",
-    "$shortcuts = @(arch_specific 'shortcuts' $manifest $arch)",
-    "$shortcutName = $shortcuts[0].item(1)",
-    "$scoop_startmenu_folder = shortcut_folder $global",
-    "$wsShell = New-Object -ComObject WScript.Shell",
-    "$shortcut = $wsShell.CreateShortcut(\"$scoop_startmenu_folder\\$shortcutName.lnk\")",
-    "$shortcut.WorkingDirectory = \"$dir\"",
-    "$shortcut.Save()",
-    ""
-  ],
-  "persist": [
-    "userdata",
-    [
-      "RLogin.ini",
-      "userdata\\RLogin.ini"
-    ]
-  ],
-  "checkver": {
-    "url": "https://mwlab.net/scoop.cgi",
-    "re": "rLogin:(?<version>.*):32bit=(?<x32>[\\d]*):64bit=(?<x64>[\\d]*)",
-    "replace": "${version}"
-  },
+  "checkver": "github",
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://github.com/kmiya-culti/RLogin/files/$matchX64/rlogin_x64.zip"
-      },
-      "32bit": {
-        "url": "https://github.com/kmiya-culti/RLogin/files/$matchX32/rlogin_x32.zip"
-      }
-    }
+    "url": "http://nanno.bf1.jp/softlib/rlogin/$version/rlogin_x64.zip"
   },
   "_from": "okibcn/ScoopMaster"
 }

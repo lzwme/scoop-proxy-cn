@@ -1,7 +1,23 @@
 {
-  "version": "11.9.0.5784",
+  "autoupdate": {
+    "hash": {
+      "mode": "extract",
+      "regex": "^$sha256([\\s]+)$basename",
+      "url": "https://scoop-apps.vercel.app/sogou"
+    },
+    "url": "https://pan.jiemi.workers.dev/?file=/scoop/sogou/$matchFilename#/installer.exe"
+  },
+  "checkver": {
+    "regex": "(?s)(?<filename>SogouInput_v([\\d.]+)_zd423_noad_lite\\.exe)",
+    "reverse": true,
+    "url": "https://scoop-apps.vercel.app/sogou"
+  },
   "description": "搜狗拼音输入法 - zd423 去广告精简优化版",
+  "hash": "32ca0c77fc86691e236ab8b3ecad846ffdbe8055b307776c188890207276c7d7",
   "homepage": "https://pinyin.sogou.com",
+  "installer": {
+    "script": "sudo Start-Process -filepath \"$dir\\installer.exe\" -WorkingDirectory \"$dir\" -ArgumentList \"/D=$dir\" -Wait"
+  },
   "license": {
     "identifier": "Proprietary",
     "url": "https://pinyin.sogou.com/help.php?list=9&q=1"
@@ -21,11 +37,6 @@
     "",
     "We don't persist your data, they are still storaged in '$env:USERPROFILE\\AppData\\LocalLow\\SogouPY' and '$env:USERPROFILE\\AppData\\LocalLow\\SogouPY.users'."
   ],
-  "url": "https://pan.jiemi.workers.dev/?file=/scoop/sogou/SogouInput_v11.9.0.5784_zd423_noad_lite.exe#/installer.exe",
-  "hash": "32ca0c77fc86691e236ab8b3ecad846ffdbe8055b307776c188890207276c7d7",
-  "installer": {
-    "script": "sudo Start-Process -filepath \"$dir\\installer.exe\" -WorkingDirectory \"$dir\" -ArgumentList \"/D=$dir\" -Wait"
-  },
   "post_install": "Remove-Item \"$dir\\installer.exe\" -Force",
   "uninstaller": {
     "script": [
@@ -33,18 +44,7 @@
       "Write-Host \"'A restart is required to complete the uninstallation.\" -Foreground Magenta"
     ]
   },
-  "checkver": {
-    "url": "https://scoop-apps.vercel.app/sogou",
-    "regex": "(?s)(?<filename>SogouInput_v([\\d.]+)_zd423_noad_lite\\.exe)",
-    "reverse": true
-  },
-  "autoupdate": {
-    "url": "https://pan.jiemi.workers.dev/?file=/scoop/sogou/$matchFilename#/installer.exe",
-    "hash": {
-      "url": "https://scoop-apps.vercel.app/sogou",
-      "mode": "extract",
-      "regex": "^$sha256([\\s]+)$basename"
-    }
-  },
+  "url": "https://pan.jiemi.workers.dev/?file=/scoop/sogou/SogouInput_v11.9.0.5784_zd423_noad_lite.exe#/installer.exe",
+  "version": "11.9.0.5784",
   "_from": "okibcn/ScoopMaster"
 }

@@ -1,0 +1,27 @@
+{
+  "version": "1.0.2",
+  "description": "Paint Shop Pro filetype plugin for paint.net",
+  "homepage": "https://github.com/0xC0000054/pdn-pspformat",
+  "license": {
+    "identifier": "MIT",
+    "url": "https://github.com/0xC0000054/pdn-pspformat/blob/master/License.txt"
+  },
+  "depends": "extras/paint.net",
+  "url": "https://ghproxy.com/https://github.com/0xC0000054/pdn-pspformat/releases/download/v1.0.2/PaintShopProFiletype.zip",
+  "hash": "1e4637cd742027c328e96ee876735e803da647ae3a9494292c9110084f2b3f25",
+  "post_install": [
+    "$paintdotnet = \"$(appdir paint.net)\\current\\FileTypes\"",
+    "Move-Item -Path \"$dir\\PaintShopProFiletype.dll\" -Destination \"$paintdotnet\" -Force"
+  ],
+  "uninstaller": {
+    "script": [
+      "$paintdotnet = \"$(appdir paint.net)\\current\\FileTypes\"",
+      "Remove-Item \"$paintdotnet\\PaintShopProFiletype.dll\" -Force"
+    ]
+  },
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/0xC0000054/pdn-pspformat/releases/download/v$version/PaintShopProFiletype.zip"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

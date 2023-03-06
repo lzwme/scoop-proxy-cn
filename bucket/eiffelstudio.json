@@ -15,7 +15,7 @@
   "architecture": {
     "64bit": {
       "url": "https://www.eiffel.com/cdn/EiffelStudio/22.12/106463/Eiffel_22.12_rev_106463-win64.7z",
-      "hash": "8e39c7fccc55096a51fa765c1cb2aa111edb5fb3528e196136b908bb022d79d5",
+      "hash": "785ca6aaf3cde47b1fc2cf85cd756164acd35f94ed4801a51f90737b7060724f",
       "env_set": {
         "ISE_EIFFEL": "$dir",
         "ISE_PLATFORM": "win64",
@@ -52,46 +52,6 @@
           "EiffelStudio\\Tools\\ResourceBench"
         ]
       ]
-    },
-    "32bit": {
-      "url": "https://www.eiffel.com/cdn/EiffelStudio/22.12/106463/Eiffel_22.12_rev_106463-windows.7z",
-      "hash": "8e39c7fccc55096a51fa765c1cb2aa111edb5fb3528e196136b908bb022d79d5",
-      "env_set": {
-        "ISE_EIFFEL": "$dir",
-        "ISE_PLATFORM": "windows",
-        "ISE_C_COMPILER": "$dir\\studio\\spec\\windows\\lib\\msc_vc140"
-      },
-      "env_add_path": [
-        "studio\\spec\\windows\\bin",
-        "tools\\spec\\windows\\bin",
-        "library\\gobo\\spec\\windows\\bin"
-      ],
-      "shortcuts": [
-        [
-          "studio\\spec\\windows\\bin\\estudio.exe",
-          "EiffelStudio\\EiffelStudio"
-        ],
-        [
-          "esbuilder\\spec\\windows\\bin\\esbuilder.exe",
-          "EiffelStudio\\EiffelBuild"
-        ],
-        [
-          "studio\\config\\windows\\esvars.bat",
-          "EiffelStudio\\EiffelStudio Command Prompt"
-        ],
-        [
-          "studio\\spec\\windows\\bin\\h2e.exe",
-          "EiffelStudio\\Tools\\C constants to Eiffel class generator"
-        ],
-        [
-          "wizards\\com\\com_wizard_launcher.exe",
-          "EiffelStudio\\Tools\\EiffelCOM Wizard"
-        ],
-        [
-          "rb\\bin\\rb.exe",
-          "EiffelStudio\\Tools\\ResourceBench"
-        ]
-      ]
     }
   },
   "extract_dir": "Eiffel_22.12",
@@ -104,14 +64,11 @@
     "architecture": {
       "64bit": {
         "url": "https://www.eiffel.com/cdn/EiffelStudio/$matchFirst/$matchSecond/Eiffel_$matchFirst_$matchSeries_$matchSecond-win64.7z"
-      },
-      "32bit": {
-        "url": "https://www.eiffel.com/cdn/EiffelStudio/$matchFirst/$matchSecond/Eiffel_$matchFirst_$matchSeries_$matchSecond-windows.7z"
       }
     },
     "hash": {
       "url": "https://account.eiffel.com/downloads",
-      "find": "<samp>$sha256</samp></td>"
+      "regex": "(?<fname>[\\w_.]+-win64\\.7z)</a>\\n\\s+</td>\\n\\s+<td class=\"platform\">win64</td>\\n\\s+<td class=\"size\">(?<size>[\\d]+)</td>\\n\\s+<td class=\"hash\"><samp>$sha256</samp></td>"
     },
     "extract_dir": "Eiffel_$matchFirst"
   },

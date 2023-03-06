@@ -1,29 +1,29 @@
 {
-  "autoupdate": {
-    "hash": {
-      "regex": "MD5 Hash: +[\\w]{32}",
-      "url": "https://portableapps.com/apps/graphics_pictures/greenfish-icon-editor-pro-portable"
-    },
-    "url": "https://pilotfiber.dl.sourceforge.net/project/portableapps/Greenfish%20Icon%20Editor%20Pro/GreenfishIconEditorProPortable_$version.paf.exe"
-  },
-  "bin": "GreenfishIconEditorProPortable.exe",
-  "checkver": {
-    "re": "Version \\s+([\\w\\.]* for Win",
-    "url": "https://portableapps.com/apps/graphics_pictures/greenfish-icon-editor-pro-portable"
-  },
-  "description": "Icon, cursor, library editor",
-  "hash": "md5:7725533e9a03ab3ceeb7dbfd0a1a47d3",
   "homepage": "https://portableapps.com/apps/graphics_pictures/greenfish-icon-editor-pro-portable",
+  "description": "Icon, cursor, library editor",
+  "version": "3.6",
   "license": "",
-  "persist": "Data",
-  "post_install": "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
+  "url": "https://pilotfiber.dl.sourceforge.net/project/portableapps/Greenfish%20Icon%20Editor%20Pro/GreenfishIconEditorProPortable_3.6.paf.exe#/dl.7z",
+  "hash": "md5:7725533e9a03ab3ceeb7dbfd0a1a47d3",
+  "bin": "GreenfishIconEditorProPortable.exe",
   "shortcuts": [
     [
       "GreenfishIconEditorProPortable.exe",
       "GreenfishIconEditorProPortable"
     ]
   ],
-  "url": "https://pilotfiber.dl.sourceforge.net/project/portableapps/Greenfish%20Icon%20Editor%20Pro/GreenfishIconEditorProPortable_3.6.paf.exe#/dl.7z",
-  "version": "3.6",
+  "persist": "Data",
+  "checkver": {
+    "url": "https://portableapps.com/apps/graphics_pictures/greenfish-icon-editor-pro-portable",
+    "re": "Version \\s+([\\w\\.]* for Win"
+  },
+  "autoupdate": {
+    "url": "https://pilotfiber.dl.sourceforge.net/project/portableapps/Greenfish%20Icon%20Editor%20Pro/GreenfishIconEditorProPortable_$version.paf.exe",
+    "hash": {
+      "url": "https://portableapps.com/apps/graphics_pictures/greenfish-icon-editor-pro-portable",
+      "regex": "MD5 Hash: +[\\w]{32}"
+    }
+  },
+  "post_install": "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
   "_from": "okibcn/ScoopMaster"
 }

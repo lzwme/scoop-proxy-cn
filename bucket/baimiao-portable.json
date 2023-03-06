@@ -2,7 +2,6 @@
   "architecture": {
     "64bit": {
       "hash": "325a84c53fee9b0ea6c1922c940dca0a3497f100d9cb5fa3e90f7ad3267bc86b",
-      "pre_install": "Expand-MsiArchive \"$dir\\*.msi\" \"$dir\" -ExtractDir 'PFiles\\白描桌面版' -Removal",
       "url": "https://cdn.desktop.baimiaoapp.com/updater/download/latest/baimiao_windows.zip"
     }
   },
@@ -12,6 +11,18 @@
         "url": "https://cdn.desktop.baimiaoapp.com/updater/download/latest/baimiao_windows.zip"
       }
     }
+  },
+  "installer": {
+    "script": [
+      "",
+      "$null, $bucket = find_manifest($appName)",
+      "$bucketdir = Find-BucketDirectory($bucket)",
+      "$file = (Get-Item \"$dir\\*.msi\").FullName",
+      "Expand-MsiArchive $file -ExtractDir 'PFiles\\白描桌面版' -Removal",
+      "",
+      "",
+      ""
+    ]
   },
   "checkver": {
     "jsonpath": "$.name",

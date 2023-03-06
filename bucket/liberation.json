@@ -1,19 +1,16 @@
 {
-  "version": "2.1.5",
-  "description": "The Liberation(tm) Fonts is a font family which aims at metric compatibility with Arial, Times New Roman, and Courier New.",
-  "license": "OFL-1.1",
-  "homepage": "https://github.com/liberationfonts/liberation-fonts",
-  "url": "https://github.com/liberationfonts/liberation-fonts/files/7261482/liberation-fonts-ttf-2.1.5.tar.gz",
-  "hash": "7191c669bf38899f73a2094ed00f7b800553364f90e2637010a69c0e268f25d0",
-  "extract_dir": "liberation-fonts-ttf-2.1.5",
+  "autoupdate": {
+    "extract_dir": "liberation-fonts-ttf-$version",
+    "url": "https://github.com/liberationfonts/liberation-fonts/files/$matchFileno/liberation-fonts-ttf-$version.tar.gz"
+  },
   "checkver": {
     "github": "https://github.com/liberationfonts/liberation-fonts",
     "re": ".*/liberation-fonts/files/(?<fileno>[\\d]+)/liberation-fonts-ttf-(?<version>[\\d.]+).tar.gz"
   },
-  "autoupdate": {
-    "url": "https://github.com/liberationfonts/liberation-fonts/files/$matchFileno/liberation-fonts-ttf-$version.tar.gz",
-    "extract_dir": "liberation-fonts-ttf-$version"
-  },
+  "description": "The Liberation(tm) Fonts is a font family which aims at metric compatibility with Arial, Times New Roman, and Courier New.",
+  "extract_dir": "liberation-fonts-ttf-2.1.5",
+  "hash": "7191c669bf38899f73a2094ed00f7b800553364f90e2637010a69c0e268f25d0",
+  "homepage": "https://github.com/liberationfonts/liberation-fonts",
   "installer": {
     "script": [
       "if(!(is_admin)) { error \"Admin rights are required, please run 'sudo scoop install $app'\"; exit 1 }",
@@ -23,6 +20,7 @@
       "}"
     ]
   },
+  "license": "OFL-1.1",
   "uninstaller": {
     "script": [
       "if(!(is_admin)) { error \"Admin rights are required, please run 'sudo scoop uninstall $app'\"; exit 1 }",
@@ -33,5 +31,7 @@
       "Write-Host \"'Liberation' fonts have been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
     ]
   },
+  "url": "https://github.com/liberationfonts/liberation-fonts/files/7261482/liberation-fonts-ttf-2.1.5.tar.gz",
+  "version": "2.1.5",
   "_from": "okibcn/ScoopMaster"
 }

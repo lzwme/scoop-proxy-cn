@@ -1,12 +1,15 @@
 {
-  "version": "2.924",
+  "version": "2.925",
   "description": "A large collection of GNU and Open Source tools which provide functionality similar to a Linux distribution on Windows",
   "homepage": "https://cygwin.com/",
   "license": {
     "identifier": "GPL-3.0-or-later,X11,Public Domain",
     "url": "https://cygwin.com/faq.html#faq.what.free"
   },
-  "notes": "To start a Cygwin shell, type \"cygwin\"\n* This is an altered version using mirror provided by tuna.tsinghua.edu.cn",
+  "notes": [
+    "To start a Cygwin shell, type \"cygwin\"",
+    "* This is an altered version using mirror provided by tuna.tsinghua.edu.cn"
+  ],
   "architecture": {
     "64bit": {
       "url": "https://cygwin.com/setup-x86_64.exe#/cygwin-setup.exe",
@@ -57,9 +60,7 @@
     "New-Item -ItemType Junction -Path \"$persist_dir\\root\\home\\${env:USERNAME}\" -Value \"${env:USERPROFILE}\""
   ],
   "pre_uninstall": "echo \"[@] You may meet some issues about 'couldn't remove; it may be in use', just manual remove it\"",
-  "env_add_path": [
-    "root/bin"
-  ],
+  "env_add_path": "root/bin",
   "shortcuts": [
     [
       "root\\Cygwin.bat",

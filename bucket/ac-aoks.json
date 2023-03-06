@@ -1,13 +1,15 @@
 {
-  "homepage": "https://www.petges.lu/",
-  "version": "11.10",
-  "description": "Easily change file and folder properties with a right-click in Explorer.",
-  "license": "Proprietary",
-  "url": "https://www.petges.lu/pubfiles/ac-11_10.exe#/ac.exe",
-  "hash": "83c0d2c2d14d36b39eca1e32db8f120aca898a1251fadaa87ab0737e33062231",
   "##": "see installer options here - https://jrsoftware.org/ishelp/index.php?topic=setupcmdline",
+  "autoupdate": {
+    "url": "https://www.petges.lu/pubfiles/ac-$underscoreVersion.exe#/ac.exe"
+  },
+  "checkver": {
+    "regex": ">Version ([\\w.]+) "
+  },
+  "description": "Easily change file and folder properties with a right-click in Explorer.",
+  "hash": "83c0d2c2d14d36b39eca1e32db8f120aca898a1251fadaa87ab0737e33062231",
+  "homepage": "https://www.petges.lu/",
   "installer": {
-    "file": "ac.exe",
     "args": [
       "/VERYSILENT",
       "/NOCANCEL",
@@ -17,21 +19,19 @@
       "/SUPPRESSMSGBOXES",
       "/CLOSEAPPLICATIONS",
       "/RESTARTAPPLICATIONS"
-    ]
+    ],
+    "file": "ac.exe"
   },
+  "license": "Proprietary",
   "uninstaller": {
-    "file": "unins000.exe",
     "args": [
       "/VERYSILENT",
       "/SUPPRESSMSGBOXES",
       "/NORESTART"
-    ]
+    ],
+    "file": "unins000.exe"
   },
-  "checkver": {
-    "regex": ">Version ([\\w.]+) "
-  },
-  "autoupdate": {
-    "url": "https://www.petges.lu/pubfiles/ac-$underscoreVersion.exe#/ac.exe"
-  },
+  "url": "https://www.petges.lu/pubfiles/ac-11_10.exe#/ac.exe",
+  "version": "11.10",
   "_from": "okibcn/ScoopMaster"
 }

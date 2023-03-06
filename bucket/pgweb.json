@@ -1,40 +1,40 @@
 {
+  "version": "0.11.12",
+  "description": "Web-based PostgreSQL database browser written in Go.",
+  "homepage": "https://github.com/sosedoff/pgweb",
+  "license": "MIT",
   "architecture": {
-    "32bit": {
-      "bin": [
-        [
-          "pgweb_windows_386.exe",
-          "pgweb"
-        ]
-      ],
-      "hash": "1b314d10e5890d9852d323a957dc108f36b8fb5d87a284039b5ee59ad2370d12",
-      "url": "https://ghproxy.com/https://github.com/sosedoff/pgweb/releases/download/v0.11.12/pgweb_windows_386.exe.zip"
-    },
     "64bit": {
+      "url": "https://ghproxy.com/https://github.com/sosedoff/pgweb/releases/download/v0.11.12/pgweb_windows_amd64.exe.zip",
+      "hash": "7a3166bbeb44bb80369f8ceb52b653442b2c6373689a150b57dc1bab7c40620c",
       "bin": [
         [
           "pgweb_windows_amd64.exe",
           "pgweb"
         ]
-      ],
-      "hash": "7a3166bbeb44bb80369f8ceb52b653442b2c6373689a150b57dc1bab7c40620c",
-      "url": "https://ghproxy.com/https://github.com/sosedoff/pgweb/releases/download/v0.11.12/pgweb_windows_amd64.exe.zip"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "32bit": {
-        "url": "https://ghproxy.com/https://github.com/sosedoff/pgweb/releases/download/v$version/pgweb_windows_386.exe.zip"
-      },
-      "64bit": {
-        "url": "https://ghproxy.com/https://github.com/sosedoff/pgweb/releases/download/v$version/pgweb_windows_amd64.exe.zip"
-      }
+      ]
+    },
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/sosedoff/pgweb/releases/download/v0.11.12/pgweb_windows_386.exe.zip",
+      "hash": "1b314d10e5890d9852d323a957dc108f36b8fb5d87a284039b5ee59ad2370d12",
+      "bin": [
+        [
+          "pgweb_windows_386.exe",
+          "pgweb"
+        ]
+      ]
     }
   },
   "checkver": "github",
-  "description": "Web-based PostgreSQL database browser written in Go.",
-  "homepage": "https://github.com/sosedoff/pgweb",
-  "license": "MIT",
-  "version": "0.11.12",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/sosedoff/pgweb/releases/download/v$version/pgweb_windows_amd64.exe.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/sosedoff/pgweb/releases/download/v$version/pgweb_windows_386.exe.zip"
+      }
+    }
+  },
   "_from": "okibcn/ScoopMaster"
 }

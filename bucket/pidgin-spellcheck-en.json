@@ -1,0 +1,37 @@
+{
+  "homepage": "https://extensions.libreoffice.org/en/extensions/show/english-dictionaries",
+  "description": "Up-to-date English spellchecking dictionary for Pidgin",
+  "version": "2023-02-01",
+  "license": "LGPL",
+  "notes": [
+    "Be sure to turn on \"Highlight misspelled words\" on Pidgin's conversation preferences page.",
+    "This installation- given its methods- will be wiped out when Pidgin updates.",
+    "If only Pidgin supported putting pixmaps, locale and other extraneous dependencies in the \".purple\" folder...",
+    "Please force reinstall this manifest after an update of Pidgin to fix."
+  ],
+  "url": "https://extensions.libreoffice.org/assets/downloads/41/1675249081/dict-en-20230201_lo.oxt#/dl.zip",
+  "hash": "0f98c89d33a87c58f02907c14a066174ae66ceb7493f2cfa928af9851c31e8f0",
+  "post_install": [
+    "$pidgin = \"$(appdir pidgin)\\current\"",
+    "if (!(Test-Path \"$pidgin\\spellcheck\\share\\enchant\\myspell\")) {",
+    "    New-Item -Force -Path \"$pidgin\\spellcheck\\share\\enchant\\myspell\" -ItemType Directory | Out-Null",
+    "}",
+    "Get-ChildItem \"$dir\\*\" -Include 'en_*' -Force | Copy-Item -Destination \"$pidgin\\spellcheck\\share\\enchant\\myspell\" -Force",
+    "Get-ChildItem \"$dir\\*\" -Exclude 'install.json','manifest.json' -Force | Remove-Item -Force",
+    "Remove-Item \"$dir\\META-INF\" -Force"
+  ],
+  "uninstaller": {
+    "script": [
+      "$pidgin = \"$(appdir pidgin)\\current\"",
+      "Get-ChildItem \"$pidgin\\spellcheck\\share\\enchant\\myspell\\*\" -Force | Remove-Item -Force"
+    ]
+  },
+  "checkver": {
+    "regex": "MAGP ([\\d-]+)"
+  },
+  "autoupdate": {
+    "url": "https://extensions.libreoffice.org/assets/downloads/41/1675249081/dict-en-$cleanVersion_lo.oxt#/dl.zip"
+  },
+  "depends": "pidgin",
+  "_from": "okibcn/ScoopMaster"
+}

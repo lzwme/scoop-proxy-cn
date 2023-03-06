@@ -1,26 +1,26 @@
 {
-  "autoupdate": {
-    "url": "http://dimiodati.altervista.org/zip/doublefinder.zip"
-  },
-  "bin": "DoubleFinder.exe",
-  "checkver": {
-    "regex": "DoubleFinder v([\\d.]+)",
-    "url": "http://dimio.altervista.org/eng/"
-  },
+  "version": "1.2",
   "description": "Double Finder is a program to search for duplicates, that is, duplicate files that take up unnecessary space on the disk.",
-  "extract_dir": "doublefinder",
-  "hash": "bd9c2ec00f4de2ba3209eee81dd68a26982988fa969bd1b7899a0b8a48fd2d67",
   "homepage": "http://dimio.altervista.org/eng/#DoubleFinder",
   "license": "Freeware",
-  "persist": "DoubleFinder.ini",
+  "url": "http://dimiodati.altervista.org/zip/doublefinder.zip",
+  "hash": "bd9c2ec00f4de2ba3209eee81dd68a26982988fa969bd1b7899a0b8a48fd2d67",
+  "extract_dir": "doublefinder",
   "pre_install": "if (!(Test-Path \"$persist_dir\\DoubleFinder.ini\")) { New-Item \"$dir\\DoubleFinder.ini\" | Out-Null }",
+  "bin": "DoubleFinder.exe",
   "shortcuts": [
     [
       "DoubleFinder.exe",
       "DoubleFinder"
     ]
   ],
-  "url": "http://dimiodati.altervista.org/zip/doublefinder.zip",
-  "version": "1.2",
+  "persist": "DoubleFinder.ini",
+  "checkver": {
+    "url": "http://dimio.altervista.org/eng/",
+    "regex": "DoubleFinder v([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "http://dimiodati.altervista.org/zip/doublefinder.zip"
+  },
   "_from": "okibcn/ScoopMaster"
 }

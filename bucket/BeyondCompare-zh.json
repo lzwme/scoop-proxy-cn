@@ -1,30 +1,42 @@
 {
-  "architecture": {
-    "64bit": {
-      "hash": "85a311dbe3d3645474142868cbb4c3f0d09834e181e14bb6d00f38aa778de2b9",
-      "url": "https://www.scootersoftware.com/BCompare-zh-4.4.5.27371.exe"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://www.scootersoftware.com/BCompare-zh-$version.exe"
-      }
-    }
-  },
-  "bin": "Bcomp.exe",
-  "checkver": {
-    "regex": "BCompare-zh-([\\d.]+)\\.exe",
-    "url": "https://www.scootersoftware.com/download.php"
-  },
+  "version": "4.4.5.27371",
   "description": "Directory and file compare functions in one package",
   "homepage": "https://www.scootersoftware.com",
-  "innosetup": true,
   "license": {
     "identifier": "Shareware",
     "url": "https://www.scootersoftware.com/index.php?zz=kb_licensev4"
   },
   "notes": "Add Beyond Compare as a context menu option by running: '$dir\\install-context.reg'",
+  "architecture": {
+    "64bit": {
+      "url": "https://www.scootersoftware.com/BCompare-zh-4.4.5.27371.exe",
+      "hash": "85a311dbe3d3645474142868cbb4c3f0d09834e181e14bb6d00f38aa778de2b9"
+    }
+  },
+  "innosetup": true,
+  "bin": "Bcomp.exe",
+  "shortcuts": [
+    [
+      "BCompare.exe",
+      "BCompare"
+    ],
+    [
+      "BCClipboard.exe",
+      "Clipboard Compare"
+    ]
+  ],
+  "pre_install": [
+    "Get-ChildItem -Path $dir | ForEach-Object {",
+    "  $name = [string]$_",
+    "  if ($name.Contains(\",1\")) {",
+    "    Remove-Item -Path $_ -Recurse -Force",
+    "  }",
+    "  if ($name.Contains(\",2\")) {",
+    "    $name = $name.Replace(\",2\", \"\")",
+    "    Rename-Item -Path $_ -NewName $name",
+    "  }",
+    "}"
+  ],
   "post_install": [
     "$dir_escaped = \"$dir\".Replace('\\', '\\\\')",
     "\"install-context-$architecture\", \"uninstall-context\" | ForEach-Object {",
@@ -39,28 +51,16 @@
     "  }",
     "}"
   ],
-  "pre_install": [
-    "Get-ChildItem -Path $dir | ForEach-Object {",
-    "  $name = [string]$_",
-    "  if ($name.Contains(\",1\")) {",
-    "    Remove-Item -Path $_ -Recurse -Force",
-    "  }",
-    "  if ($name.Contains(\",2\")) {",
-    "    $name = $name.Replace(\",2\", \"\")",
-    "    Rename-Item -Path $_ -NewName $name",
-    "  }",
-    "}"
-  ],
-  "shortcuts": [
-    [
-      "BCompare.exe",
-      "BCompare"
-    ],
-    [
-      "BCClipboard.exe",
-      "Clipboard Compare"
-    ]
-  ],
-  "version": "4.4.5.27371",
+  "checkver": {
+    "url": "https://www.scootersoftware.com/download.php",
+    "regex": "BCompare-zh-([\\d.]+)\\.exe"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://www.scootersoftware.com/BCompare-zh-$version.exe"
+      }
+    }
+  },
   "_from": "okibcn/ScoopMaster"
 }

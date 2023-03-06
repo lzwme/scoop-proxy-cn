@@ -1,12 +1,12 @@
 {
+  "version": "22.12.3-1836",
   "homepage": "https://apps.kde.org/dolphin/",
-  "version": "22.12.3-1835",
   "description": "A file manager developed by KDE that lets you navigate and browse the contents of your hard drives, USB sticks, SD cards, and more.",
   "license": "GPL-2.0-or-later",
   "architecture": {
     "64bit": {
-      "url": "https://binary-factory.kde.org/job/Dolphin_Release_win64/lastSuccessfulBuild/artifact/dolphin-22.12.3-1835-windows-cl-msvc2019-x86_64.7z",
-      "hash": "a0f67486c2f1af1679d219eb94b330385045fd1d3a86e768a7836c73c66f72c5"
+      "url": "https://binary-factory.kde.org/job/Dolphin_Release_win64/1836/artifact/dolphin-22.12.3-1836-windows-cl-msvc2019-x86_64.7z",
+      "hash": "400d54d9c5d0396eaac1063039b7acedc02010f51e5ef22d7f0d3a51bfdef62d"
     }
   },
   "bin": "bin\\dolphin.exe",
@@ -16,15 +16,24 @@
       "KDE Dolphin"
     ]
   ],
-  "pre_install": "Stop-Process -Name 'dbus-daemon' -Force -ErrorAction 'SilentlyContinue'",
+  "notes": [
+    "1. 'Move to trash' is not working in the KDE Dolphin for Windows as reported in 'https://www.mail-archive.com/kde-bugs-dist@kde.org/msg677905.html'.",
+    "2. If you click the storage info widget on the right-bottom of the KDE Dolphin for Windows, you don't need to download the software that it will show because it doesn't change something even if you put the software under the system PATH.",
+    "3. If you want a somehow smooth experience of the KDE Dolphin for Windows, you can enable 'Delete' in 'Context Menu' under 'Configure Dolphin...'. But YOU SHOULD KNOW the 'Delete' can PERMANENTLY delete files.",
+    "4. If you want to get the latest development branch-based installer, please install `kde-dolphin-nightly` from Versions bucket."
+  ],
+  "pre_uninstall": [
+    "Write-Host 'Killing dbus processes.'",
+    "Stop-Process -Name 'dbus*' -ErrorAction 'SilentlyContinue' -Force"
+  ],
   "checkver": {
     "url": "https://binary-factory.kde.org/job/Dolphin_Release_win64/",
-    "regex": "dolphin-([\\d.]+-[\\d]+)-windows-cl-msvc(?<Year>[\\d]+)-x86_64"
+    "regex": "dolphin-([\\d.-]+)-windows-cl-msvc(?<Year>[\\d]+)-x86_64\\.7z"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://binary-factory.kde.org/job/Dolphin_Release_win64/lastSuccessfulBuild/artifact/dolphin-$version-windows-cl-msvc$matchYear-x86_64.7z",
+        "url": "https://binary-factory.kde.org/job/Dolphin_Release_win64/$preReleaseVersion/artifact/dolphin-$version-windows-cl-msvc$matchYear-x86_64.7z",
         "hash": {
           "url": "$url.sha256"
         }

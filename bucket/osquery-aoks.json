@@ -1,28 +1,15 @@
 {
-  "autoupdate": {
-    "hash": {
-      "url": "$url.sha256"
-    },
-    "url": "https://pkg.osquery.io/windows/osquery-$version.msi"
-  },
+  "version": "5.7.0",
+  "description": "Performant endpoint visibility",
+  "homepage": "https://osquery.io/",
+  "license": "Apache-2.0|GPL-2.0-only",
+  "url": "https://pkg.osquery.io/windows/osquery-5.7.0.msi",
+  "hash": "0e54fec4b8b8a800e3bdd178a2473db9de25e53b8ea800775b7f9cc8c847be1c",
+  "extract_dir": "osquery",
   "bin": [
     "osqueryi.exe",
     "osqueryd\\osqueryd.exe",
     "manage-osqueryd.ps1"
-  ],
-  "checkver": {
-    "jp": "$.current_version",
-    "url": "https://ghproxy.com/https://raw.githubusercontent.com/osquery/osquery-site/source/src/data/osquery_metadata.json"
-  },
-  "description": "Performant endpoint visibility",
-  "extract_dir": "osquery",
-  "hash": "0e54fec4b8b8a800e3bdd178a2473db9de25e53b8ea800775b7f9cc8c847be1c",
-  "homepage": "https://osquery.io/",
-  "license": "Apache-2.0|GPL-2.0-only",
-  "notes": [
-    "run \"manage-osqueryd.ps1 -help\" to learn howto install/uninstall/start/stop the osqueryd daemon... and more...",
-    "run \"osqueryd --help\" for the osqueryd daemon help",
-    "run \"osqueryi --help\" for the interactive shell help"
   ],
   "persist": "osquery.conf",
   "post_install": [
@@ -31,7 +18,20 @@
     "$replace = \"$PSScriptRoot, 'osqueryd', 'osqueryd.exe'\"",
     "(Get-Content \"$mng_d\").replace(\"$find\", \"$replace\") | Set-Content \"$mng_d\" | Out-Null"
   ],
-  "url": "https://pkg.osquery.io/windows/osquery-5.7.0.msi",
-  "version": "5.7.0",
+  "notes": [
+    "run \"manage-osqueryd.ps1 -help\" to learn howto install/uninstall/start/stop the osqueryd daemon... and more...",
+    "run \"osqueryd --help\" for the osqueryd daemon help",
+    "run \"osqueryi --help\" for the interactive shell help"
+  ],
+  "checkver": {
+    "url": "https://ghproxy.com/https://raw.githubusercontent.com/osquery/osquery-site/source/src/data/osquery_metadata.json",
+    "jp": "$.current_version"
+  },
+  "autoupdate": {
+    "url": "https://pkg.osquery.io/windows/osquery-$version.msi",
+    "hash": {
+      "url": "$url.sha256"
+    }
+  },
   "_from": "okibcn/ScoopMaster"
 }

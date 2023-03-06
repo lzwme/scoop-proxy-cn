@@ -1,26 +1,15 @@
 {
-  "version": "1.5.7",
-  "description": "藏起来！哔哩哔哩",
-  "homepage": "https://github.com/chitosai/bilimini",
-  "license": "Unknown",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.com/https://github.com/chitosai/bilimini/releases/download/v1.5.7/bilimini-Setup-1.5.7.exe#/dl.7z",
       "hash": "d7ad02bb7d017ac19afe119ad29bd1c02fd25dcac9bd7352efff6825ee9717d3",
       "pre_install": [
         "ensure \"$dir\\bilimini\"",
         "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\\bilimini\"",
         "Remove-Item \"$dir\\`$*\", \"$dir\\Uninstall*\" -Recurse"
-      ]
+      ],
+      "url": "https://ghproxy.com/https://github.com/chitosai/bilimini/releases/download/v1.5.7/bilimini-Setup-1.5.7.exe#/dl.7z"
     }
   },
-  "shortcuts": [
-    [
-      "bilimini\\bilimini.exe",
-      "Bilimini"
-    ]
-  ],
-  "checkver": "github",
   "autoupdate": {
     "architecture": {
       "64bit": {
@@ -28,5 +17,16 @@
       }
     }
   },
+  "checkver": "github",
+  "description": "藏起来！哔哩哔哩",
+  "homepage": "https://github.com/chitosai/bilimini",
+  "license": "Unknown",
+  "shortcuts": [
+    [
+      "bilimini\\bilimini.exe",
+      "Bilimini"
+    ]
+  ],
+  "version": "1.5.7",
   "_from": "okibcn/ScoopMaster"
 }

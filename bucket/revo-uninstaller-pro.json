@@ -1,20 +1,6 @@
 {
-  "autoupdate": {
-    "hash": {
-      "mode": "extract",
-      "regex": "^$sha256([\\s]+)$basename",
-      "url": "https://scoop-apps.vercel.app/ccleaner"
-    },
-    "url": "https://pan.jiemi.workers.dev/?file=/scoop/CCleaner/$matchFilename#/Installer.exe"
-  },
-  "bin": "RevoUninPro.exe",
-  "checkver": {
-    "regex": "(?<filename>Revo_Uninstaller_Pro_(?<version>[\\d.]+).*?\\.exe)",
-    "reverse": true,
-    "url": "https://scoop-apps.vercel.app/ccleaner"
-  },
+  "version": "4.5.5",
   "description": "Revo Uninstaller Pro helps you to uninstall software and remove unwanted programs easily.",
-  "hash": "21a99a6ecd562f0a9116f55e6caa7b107902c25f560bb0873ecafe9065e16a2f",
   "homepage": "https://www.revouninstaller.com/products/revo-uninstaller-pro/",
   "license": {
     "identifier": "Proprietary",
@@ -26,18 +12,32 @@
     "集成国外大神分享的破解补丁，在此致谢!",
     "去除多余菜单选项，只保留“选项”和“关于”；"
   ],
-  "post_install": "Remove-Item $dir\\Installer.exe -Force",
+  "url": "https://pan.jiemi.workers.dev/?file=/scoop/CCleaner/Revo_Uninstaller_Pro_4.5.5-20220301.exe#/Installer.exe",
+  "hash": "21a99a6ecd562f0a9116f55e6caa7b107902c25f560bb0873ecafe9065e16a2f",
   "pre_install": "Start-Process -FilePath \"$dir\\Installer.exe\" -ArgumentList /DIR=\"$dir\",/SILENT -Wait",
+  "post_install": "Remove-Item $dir\\Installer.exe -Force",
+  "uninstaller": {
+    "script": "Start-Process -FilePath \"$dir\\UninsFile\\unins000.exe\" -ArgumentList /VERYSILENT -Wait"
+  },
+  "bin": "RevoUninPro.exe",
   "shortcuts": [
     [
       "RevoUninPro.exe",
       "Revo Uninstaller Pro"
     ]
   ],
-  "uninstaller": {
-    "script": "Start-Process -FilePath \"$dir\\UninsFile\\unins000.exe\" -ArgumentList /VERYSILENT -Wait"
+  "checkver": {
+    "url": "https://scoop-apps.vercel.app/ccleaner",
+    "regex": "(?<filename>Revo_Uninstaller_Pro_(?<version>[\\d.]+).*?\\.exe)",
+    "reverse": true
   },
-  "url": "https://pan.jiemi.workers.dev/?file=/scoop/CCleaner/Revo_Uninstaller_Pro_4.5.5-20220301.exe#/Installer.exe",
-  "version": "4.5.5",
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/scoop/CCleaner/$matchFilename#/Installer.exe",
+    "hash": {
+      "url": "https://scoop-apps.vercel.app/ccleaner",
+      "mode": "extract",
+      "regex": "^$sha256([\\s]+)$basename"
+    }
+  },
   "_from": "okibcn/ScoopMaster"
 }

@@ -1,13 +1,16 @@
 {
-  "autoupdate": {
-    "extract_dir": "SpaceGrotesk-$version\\ttf\\static",
-    "url": "https://ghproxy.com/https://github.com/floriankarsten/space-grotesk/releases/download/$version/SpaceGrotesk-$version.zip"
-  },
-  "checkver": "github",
+  "version": "2.0.0",
   "description": "Space Grotesk: a proportional variant of the original fixed-width Space Mono family",
-  "extract_dir": "SpaceGrotesk-2.0.0\\ttf\\static",
-  "hash": "53b415577d4139248555300710bea0d268c7a5be67b93de53b716a9736cabffd",
+  "license": "OFL-1.1",
   "homepage": "https://github.com/floriankarsten/space-grotesk",
+  "url": "https://ghproxy.com/https://github.com/floriankarsten/space-grotesk/releases/download/2.0.0/SpaceGrotesk-2.0.0.zip",
+  "hash": "53b415577d4139248555300710bea0d268c7a5be67b93de53b716a9736cabffd",
+  "extract_dir": "SpaceGrotesk-2.0.0\\ttf\\static",
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/floriankarsten/space-grotesk/releases/download/$version/SpaceGrotesk-$version.zip",
+    "extract_dir": "SpaceGrotesk-$version\\ttf\\static"
+  },
   "installer": {
     "script": [
       "if(!(is_admin)) { error \"Admin rights are required.\"; exit 1 }",
@@ -17,7 +20,6 @@
       "}"
     ]
   },
-  "license": "OFL-1.1",
   "uninstaller": {
     "script": [
       "if(!(is_admin)) { error \"Admin rights are required.\"; exit 1 }",
@@ -28,7 +30,5 @@
       "Write-Host \"'Space Grotesk' TTF files have been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
     ]
   },
-  "url": "https://ghproxy.com/https://github.com/floriankarsten/space-grotesk/releases/download/2.0.0/SpaceGrotesk-2.0.0.zip",
-  "version": "2.0.0",
   "_from": "okibcn/ScoopMaster"
 }

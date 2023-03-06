@@ -1,36 +1,24 @@
 {
-  "homepage": "https://github.com/koron/vim-kaoriya",
-  "description": "Vim + kaoriya build system.",
   "version": "8.2.1287.20200724",
-  "architecture": {
-    "32bit": {
-      "url": "https://ghproxy.com/https://github.com/koron/vim-kaoriya/releases/download/v8.2.1287-20200724/vim82-kaoriya-win32-8.2.1287-20200724.zip",
-      "hash": "dcb3ee8ad4866624859da2499da81bea0bbe2e1fcd5e9874595c6d499b2b94fa",
-      "extract_dir": "vim82-kaoriya-win32"
-    },
-    "64bit": {
-      "url": "https://ghproxy.com/https://github.com/koron/vim-kaoriya/releases/download/v8.2.1287-20200724/vim82-kaoriya-win64-8.2.1287-20200724.zip",
-      "hash": "72e9035943a4fd437c453bd089bc23dd8c440e401735334c0cbe51d5b9e418a0",
-      "extract_dir": "vim82-kaoriya-win64"
-    }
-  },
-  "checkver": {
-    "url": "https://github.com/koron/vim-kaoriya/releases/latest",
-    "re": "vim(?<s>[\\d]+)-kaoriya-win64-(?<v>[\\d]+.[\\d]+.[\\d]+)-(?<d>[\\d]{8}).zip",
-    "replace": "${v}.${d}"
-  },
-  "autoupdate": {
-    "architecture": {
-      "32bit": {
-        "url": "https://ghproxy.com/https://github.com/koron/vim-kaoriya/releases/download/v$matchV-$matchD/vim$matchS-kaoriya-win32-$matchV-$matchD.zip",
-        "extract_dir": "vim$matchS-kaoriya-win32"
-      },
-      "64bit": {
-        "url": "https://ghproxy.com/https://github.com/koron/vim-kaoriya/releases/download/v$matchV-$matchD/vim$matchS-kaoriya-win64-$matchV-$matchD.zip",
-        "extract_dir": "vim$matchS-kaoriya-win64"
-      }
-    }
-  },
+  "description": "Vim text editor. (KaoriYa version)",
+  "homepage": "https://github.com/koron/vim-kaoriya",
+  "license": "Vim",
+  "url": "https://ghproxy.com/https://github.com/koron/vim-kaoriya/releases/download/v8.2.1287-20200724/vim82-kaoriya-win64-8.2.1287-20200724.zip",
+  "hash": "72e9035943a4fd437c453bd089bc23dd8c440e401735334c0cbe51d5b9e418a0",
+  "extract_dir": "vim82-kaoriya-win64",
+  "post_install": [
+    "if ($bucket) {",
+    "    $scriptsdir = \"$bucketsdir\\$bucket\\scripts\"",
+    "} else {",
+    "    $scriptsdir = \"$(Split-Path $(Split-Path $url -Parent) -Parent)\\scripts\"",
+    "}",
+    "'install-context.reg', 'uninstall-context.reg' | ForEach-Object {",
+    "    $vimpath = \"$dir\\gvim.exe\".Replace('\\', '\\\\')",
+    "    $content = (Get-Content \"$scriptsdir\\vim-kaoriya\\$_\").Replace('$vim', $vimpath)",
+    "    if ($global) { $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE') }",
+    "    Set-Content \"$dir\\$_\" $content",
+    "}"
+  ],
   "bin": [
     "vim.exe",
     [
@@ -39,23 +27,8 @@
     ],
     [
       "vim.exe",
-      "ex",
-      "-e"
-    ],
-    [
-      "vim.exe",
       "view",
       "-R"
-    ],
-    [
-      "vim.exe",
-      "rvim",
-      "-Z"
-    ],
-    [
-      "vim.exe",
-      "rview",
-      "-RZ"
     ],
     [
       "vim.exe",
@@ -70,104 +43,25 @@
     ],
     [
       "gvim.exe",
-      "evim",
-      "-y"
-    ],
-    [
-      "gvim.exe",
-      "eview",
-      "-Ry"
-    ],
-    [
-      "gvim.exe",
-      "rgvim",
-      "-Z"
-    ],
-    [
-      "gvim.exe",
-      "rgview",
-      "-RZ"
-    ],
-    [
-      "gvim.exe",
       "gvimdiff",
       "-d"
     ],
-    "xxd.exe",
-    [
-      "vim.exe",
-      "vimk"
-    ],
-    [
-      "vim.exe",
-      "vik"
-    ],
-    [
-      "vim.exe",
-      "exk",
-      "-e"
-    ],
-    [
-      "vim.exe",
-      "viewk",
-      "-R"
-    ],
-    [
-      "vim.exe",
-      "rvimk",
-      "-Z"
-    ],
-    [
-      "vim.exe",
-      "rviewk",
-      "-RZ"
-    ],
-    [
-      "vim.exe",
-      "vimdiffk",
-      "-d"
-    ],
-    [
-      "gvim.exe",
-      "gvimk",
-      ""
-    ],
-    [
-      "gvim.exe",
-      "gviewk",
-      "-R"
-    ],
-    [
-      "gvim.exe",
-      "evimk",
-      "-y"
-    ],
-    [
-      "gvim.exe",
-      "eviewk",
-      "-Ry"
-    ],
-    [
-      "gvim.exe",
-      "rgvimk",
-      "-Z"
-    ],
-    [
-      "gvim.exe",
-      "rgviewk",
-      "-RZ"
-    ],
-    [
-      "gvim.exe",
-      "gvimdiffk",
-      "-d"
-    ]
+    "xxd.exe"
   ],
   "shortcuts": [
     [
       "gvim.exe",
-      "Gvim"
+      "GVim (KaoriYa version)"
     ]
   ],
+  "checkver": {
+    "github": "https://github.com/koron/vim-kaoriya",
+    "regex": "(?<file>vim(?<short>[\\d]+)-kaoriya-win64-(?<code>[\\d.]+)-(?<date>[\\d]{8})\\.zip)",
+    "replace": "${code}.${date}"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/koron/vim-kaoriya/releases/download/v$matchCode-$matchDate/$matchFile",
+    "extract_dir": "vim$matchShort-kaoriya-win64"
+  },
   "_from": "okibcn/ScoopMaster"
 }

@@ -4,13 +4,7 @@
     "The downloaded file could be a newer version rather than indicated in: https://support.avira.com/hc/en-us/articles/360010656158-Current-versions. Therefore checkver is not used.",
     "Check installer exit codes at https://servereye.freshdesk.com/support/solutions/articles/14000080956-auflistung-der-avira-antivirus-setup-return-codes-exit-codes"
   ],
-  "version": "nightly",
   "description": "Avira Free Antivirus (language: Chinese Traditional)",
-  "license": {
-    "identifier": "Freeware",
-    "url": "https://www.avira.com/en/license-agreement-terms-of-use"
-  },
-  "url": "https://download.avira.com/package/antivirus/win/zh-tw/avira_antivirus_zh-tw.exe#/dl.7z_",
   "hash": "778737B5F9B331873D448E069825D158791D07A1B14F121A363FE384B0EA0AA4",
   "installer": {
     "script": [
@@ -23,6 +17,10 @@
       "warn 'You need to restart the PC for Avira Antivirus to work properly'"
     ]
   },
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://www.avira.com/en/license-agreement-terms-of-use"
+  },
   "uninstaller": {
     "script": [
       "Invoke-ExternalCommand \"${env:ProgramFiles(x86)}\\Avira\\Antivirus\\setup.exe\" -ArgumentList @('/REMOVE') | Out-Null",
@@ -30,5 +28,7 @@
       "warn 'Avira Antivirus will be removed after you restart the PC'"
     ]
   },
+  "url": "https://download.avira.com/package/antivirus/win/zh-tw/avira_antivirus_zh-tw.exe#/dl.7z_",
+  "version": "nightly",
   "_from": "okibcn/ScoopMaster"
 }
