@@ -2,7 +2,7 @@ import { execSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { semverCompare, color, getLogger } from '@lzwme/fe-utils';
+import { semverCompare, color, getLogger, rmrf } from '@lzwme/fe-utils';
 import { safeJsonParse } from './utils.mjs';
 
 const isDebug = process.argv.slice(2).includes('--debug');
@@ -101,7 +101,10 @@ function parseTxtFile(filename) {
   const list = str
     .split('\n')
     .filter(d => d && !d.startsWith('#'))
-    .map(d => path.resolve(CONFIG.tmpDir, d.replace('/', '-').replace(', ', '/')));
+    .map(d => {
+      if (d.includes(', ')) return path.resolve(CONFIG.tmpDir, d.replace('/', '-').replace(', ', '/'));
+      return d;
+    });
 
   return new Set(list);
 }
@@ -234,10 +237,10 @@ function outputSources() {
   const content = [...destFilesCache.values()]
     .sort((a, b) => a.src > b.src)
     .map(item => {
-      return `${item.src.replace(CONFIG.tmpDir), ''}, ${repo}, ${item.fixed ? 1 : 0}`;
+      return `${item.src.replace(CONFIG.tmpDir), ''}, ${item.repo}, ${item.fixed ? 1 : 0}`;
     })
     .join('\n');
-  fs.writeFileSync(CONFIG.sourcesStatFile, content, 'utf8');
+  if (content) fs.writeFileSync(CONFIG.sourcesStatFile, content, 'utf8');
 }
 
 async function updateReadme() {
@@ -263,9 +266,7 @@ async function sync() {
   };
 
   updateInstallps1();
-  if (isCI) {
-    [...Object.keys(stats.sync), 'tmp'].forEach(d => fs.existsSync(d) && fs.rmSync(d, { recursive: true, force: true }));
-  }
+  if (isCI) [...Object.keys(stats.sync), "tmp"].forEach((d) => rmrf(d));
 
   for (const repo of CONFIG.repo) {
     const repoDirName = repo.replaceAll('/', '-');
@@ -274,9 +275,9 @@ async function sync() {
     stats.repo[repo] = {};
     for (const fname of Object.keys(stats.sync)) {
       stats.repo[repo][fname] = await syncDir(path.resolve(CONFIG.tmpDir, repoDirName, fname), fname, repo);
-      if (!stats.sync[fname] && fname === 'bucket') logger.warn(`[warn][${fname}][synced nothing]`, color.yellowBright(repo));
-      else logger.info(` - [synced][${color.green(fname)}]`, stats.sync[fname]);
-      stats.sync[fname] += stats.sync[fname];
+      if (!stats.repo[repo][fname] && fname === 'bucket') logger.warn(`[warn][${fname}][synced nothing]`, color.yellowBright(repo));
+      else logger.info(` - [synced][${color.green(fname)}]`, stats.repo[repo][fname]);
+      stats.sync[fname] += stats.repo[repo][fname];
     }
   }
 
