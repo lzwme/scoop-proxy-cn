@@ -1,30 +1,13 @@
 {
-  "version": "2.0.0",
-  "description": "Next generation notepad-based calculator, built with extendibility and privacy in mind.",
-  "homepage": "https://parsify.app/",
-  "license": {
-    "identifier": "Shareware",
-    "url": "https://parsify.app/terms"
-  },
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.com/https://github.com/parsify-dev/desktop/releases/download/v2.0.0-rc.3/Parsify-Desktop-2.0.0-rc.3-win-x64.exe#/dl.7z",
       "hash": "30df95d0fcb11ae72f3257adfd289fa7c7ddf0677d598e28dbcb812bf994d2e3",
       "pre_install": [
         "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
         "Remove-Item \"$dir\\`$*\", \"$dir\\Uninstall*\" -Recurse"
-      ]
+      ],
+      "url": "https://ghproxy.com/https://github.com/parsify-dev/desktop/releases/download/v2.0.0-rc.3/Parsify-Desktop-2.0.0-rc.3-win-x64.exe#/dl.7z"
     }
-  },
-  "shortcuts": [
-    [
-      "Parsify Desktop.exe",
-      "Parsify Desktop"
-    ]
-  ],
-  "checkver": {
-    "url": "https://github.com/parsify-dev/desktop/releases/latest",
-    "regex": "Parsify.Desktop-([\\d\\.]+)(?<postfix>-.*?)-win-x64.exe"
   },
   "autoupdate": {
     "architecture": {
@@ -33,5 +16,22 @@
       }
     }
   },
-  "_from": "okibcn/ScoopMaster"
+  "checkver": {
+    "regex": "Parsify.Desktop-([\\d\\.]+)(?<postfix>-.*?)-win-x64.exe",
+    "url": "https://github.com/parsify-dev/desktop/releases/latest"
+  },
+  "description": "Next generation notepad-based calculator, built with extendibility and privacy in mind.",
+  "homepage": "https://parsify.app/",
+  "license": {
+    "identifier": "Shareware",
+    "url": "https://parsify.app/terms"
+  },
+  "shortcuts": [
+    [
+      "Parsify Desktop.exe",
+      "Parsify Desktop"
+    ]
+  ],
+  "version": "2.0.0",
+  "_from": "anderlli0053/DEV-tools"
 }

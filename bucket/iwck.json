@@ -1,34 +1,41 @@
 {
-  "version": "2.0",
-  "description": "I wanna clean keyboard - This app won't clean your keyboard... but it could block the keyboard input when you were cleaning the keyboard...",
-  "homepage": "https://github.com/Nigh/I-wanna-clean-keyboard",
-  "license": "Unlicense",
   "architecture": {
-    "64bit": {
-      "url": "https://ghproxy.com/https://github.com/Nigh/I-wanna-clean-keyboard/releases/download/v2.0/iwck_U64.exe#/iwck.exe",
-      "hash": "e4a168d5bfbccacf5796c3a1e2a29f08c7051b52a3bad09fd6bb0fa5fa7c71df"
-    },
     "32bit": {
-      "url": "https://ghproxy.com/https://github.com/Nigh/I-wanna-clean-keyboard/releases/download/v2.0/iwck_U32.exe#/iwck.exe",
-      "hash": "ee30dc02b101c5d7d425271ab5e3bb2cbb0f2b29a5484f01c406ee50c2849656"
+      "hash": "ee30dc02b101c5d7d425271ab5e3bb2cbb0f2b29a5484f01c406ee50c2849656",
+      "url": "https://ghproxy.com/https://github.com/Nigh/I-wanna-clean-keyboard/releases/download/v2.0/iwck_U32.exe#/iwck.exe"
+    },
+    "64bit": {
+      "hash": "e4a168d5bfbccacf5796c3a1e2a29f08c7051b52a3bad09fd6bb0fa5fa7c71df",
+      "url": "https://ghproxy.com/https://github.com/Nigh/I-wanna-clean-keyboard/releases/download/v2.0/iwck_U64.exe#/iwck.exe"
     }
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/Nigh/I-wanna-clean-keyboard/releases/download/v$version/iwck_U32.exe#/iwck.exe"
+      },
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/Nigh/I-wanna-clean-keyboard/releases/download/v$version/iwck_U64.exe#/iwck.exe"
+      }
+    }
+  },
+  "bin": "iwck.exe",
+  "checkver": {
+    "jsonpath": "$[0].tag_name",
+    "regex": "v([\\d.]+)",
+    "url": "https://api.github.com/repos/Nigh/I-wanna-clean-keyboard/releases?per_page=1"
+  },
+  "description": "This app could block the keyboard input when you were cleaning the keyboard or eating on the keyboard.",
+  "homepage": "https://github.com/Nigh/I-wanna-clean-keyboard",
+  "license": {
+    "identifier": "Unlicense"
   },
   "shortcuts": [
     [
       "iwck.exe",
-      "iwck - I wanna clean keyboard"
+      "iwck"
     ]
   ],
-  "checkver": "github",
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.com/https://github.com/Nigh/I-wanna-clean-keyboard/releases/download/v$version/iwck_U64.exe#/iwck.exe"
-      },
-      "32bit": {
-        "url": "https://ghproxy.com/https://github.com/Nigh/I-wanna-clean-keyboard/releases/download/v$version/iwck_U32.exe#/iwck.exe"
-      }
-    }
-  },
-  "_from": "okibcn/ScoopMaster"
+  "version": "2.0",
+  "_from": "anderlli0053/DEV-tools"
 }

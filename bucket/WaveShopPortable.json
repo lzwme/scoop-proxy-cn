@@ -1,29 +1,29 @@
 {
-  "homepage": "https://portableapps.com/apps/music_video/waveshop-portable",
-  "description": "Bit-perfect audio editor",
-  "version": "1.0.14",
-  "license": "",
-  "url": "https://downloads.sourceforge.net/portableapps/WaveShopPortable_1.0.14_English.paf.exe#/dl.7z",
-  "hash": "md5:447265db6a67d11871f855c27924e72a",
+  "autoupdate": {
+    "hash": {
+      "regex": "MD5 Hash: +[\\w]{32}",
+      "url": "https://portableapps.com/apps/music_video/waveshop-portable"
+    },
+    "url": "https://downloads.sourceforge.net/portableapps/WaveShopPortable_$version_English.paf.exe"
+  },
   "bin": "WaveShopPortable.exe",
+  "checkver": {
+    "re": "Version \\s+([\\w\\.]* for Win",
+    "url": "https://portableapps.com/apps/music_video/waveshop-portable"
+  },
+  "description": "Bit-perfect audio editor",
+  "hash": "md5:447265db6a67d11871f855c27924e72a",
+  "homepage": "https://portableapps.com/apps/music_video/waveshop-portable",
+  "license": "",
+  "persist": "Data",
+  "post_install": "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
   "shortcuts": [
     [
       "WaveShopPortable.exe",
       "WaveShopPortable"
     ]
   ],
-  "persist": "Data",
-  "checkver": {
-    "url": "https://portableapps.com/apps/music_video/waveshop-portable",
-    "re": "Version \\s+([\\w\\.]* for Win"
-  },
-  "autoupdate": {
-    "url": "https://downloads.sourceforge.net/portableapps/WaveShopPortable_$version_English.paf.exe",
-    "hash": {
-      "url": "https://portableapps.com/apps/music_video/waveshop-portable",
-      "regex": "MD5 Hash: +[\\w]{32}"
-    }
-  },
-  "post_install": "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
-  "_from": "okibcn/ScoopMaster"
+  "url": "https://downloads.sourceforge.net/portableapps/WaveShopPortable_1.0.14_English.paf.exe#/dl.7z",
+  "version": "1.0.14",
+  "_from": "anderlli0053/DEV-tools"
 }

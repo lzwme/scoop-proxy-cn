@@ -1,7 +1,26 @@
 {
-  "version": "7.0.0097",
+  "autoupdate": {
+    "hash": {
+      "mode": "extract",
+      "regex": "^$sha256([\\s]+)$basename",
+      "url": "https://scoop-apps.vercel.app/xshell"
+    },
+    "url": "https://pan.jiemi.workers.dev/?file=/scoop/XShell/$matchFilename"
+  },
+  "bin": "Xftp.exe",
+  "checkver": {
+    "regex": "(?<filename>Xftp_v(?<version>[\\d.]+)\\.(?:zip|7z))",
+    "reverse": true,
+    "url": "https://scoop-apps.vercel.app/xshell"
+  },
   "description": "Effortless File Transfers Over A Network(Portable Edition).",
+  "extract_dir": "Xftp",
+  "hash": "04a5d184136f98d5fb588cb86440c4480570e490d6f11cdc8ae5a4f7a52b6261",
   "homepage": "https://www.netsarang.com/en/xftp",
+  "installer": {
+    "file": "!)绿化处理.bat",
+    "keep": true
+  },
   "license": {
     "identifier": "Proprietary",
     "url": "https://www.netsarang.com/docs/ver7_eula.pdf"
@@ -17,38 +36,19 @@
     "4. 去 FlexNet 服务组件效验，无 FlexNet 授权服务后台组件",
     "5. 删除许可管理程序、在线升级程序、多语言模块等文件!"
   ],
-  "url": "https://pan.jiemi.workers.dev/?file=/scoop/XShell/Xftp_v7.0.0097.7z",
-  "hash": "04a5d184136f98d5fb588cb86440c4480570e490d6f11cdc8ae5a4f7a52b6261",
-  "extract_dir": "Xftp",
-  "installer": {
-    "file": "!)绿化处理.bat",
-    "keep": true
-  },
-  "uninstaller": {
-    "script": [
-      "Start-Process \"$dir\\!)卸载移除.bat\" -WorkingDirectory \"$dir\"  -Wait -Verb RunAs",
-      "Write-Host \"The '$app' has been uninstalled.\" -Foreground Magenta"
-    ]
-  },
-  "bin": "Xftp.exe",
   "shortcuts": [
     [
       "Xftp.exe",
       "Xftp"
     ]
   ],
-  "checkver": {
-    "url": "https://scoop-apps.vercel.app/xshell",
-    "regex": "(?<filename>Xftp_v(?<version>[\\d.]+)\\.(?:zip|7z))",
-    "reverse": true
+  "uninstaller": {
+    "script": [
+      "Start-Process \"$dir\\!)卸载移除.bat\" -WorkingDirectory \"$dir\"  -Wait -Verb RunAs",
+      "Write-Host \"The '$app' has been uninstalled.\" -Foreground Magenta"
+    ]
   },
-  "autoupdate": {
-    "url": "https://pan.jiemi.workers.dev/?file=/scoop/XShell/$matchFilename",
-    "hash": {
-      "url": "https://scoop-apps.vercel.app/xshell",
-      "mode": "extract",
-      "regex": "^$sha256([\\s]+)$basename"
-    }
-  },
-  "_from": "okibcn/ScoopMaster"
+  "url": "https://pan.jiemi.workers.dev/?file=/scoop/XShell/Xftp_v7.0.0097.7z",
+  "version": "7.0.0097",
+  "_from": "anderlli0053/DEV-tools"
 }

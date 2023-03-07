@@ -1,29 +1,29 @@
 {
-  "homepage": "https://portableapps.com/apps/internet/transmission-portable",
-  "description": "Fast, easy, free bittorrent client",
-  "version": "3.00",
-  "license": "",
-  "url": "https://ayera.dl.sourceforge.net/project/portableapps/Transmission%20Portable/TransmissionPortable_3.00.paf.exe#/dl.7z",
-  "hash": "md5:f793b24d92c3c53bc6ae2dda83e9d970",
+  "autoupdate": {
+    "hash": {
+      "regex": "MD5 Hash: +[\\w]{32}",
+      "url": "https://portableapps.com/apps/internet/transmission-portable"
+    },
+    "url": "https://ayera.dl.sourceforge.net/project/portableapps/Transmission%20Portable/TransmissionPortable_$version.paf.exe"
+  },
   "bin": "TransmissionPortable.exe",
+  "checkver": {
+    "re": "Version \\s+([\\w\\.]* for Win",
+    "url": "https://portableapps.com/apps/internet/transmission-portable"
+  },
+  "description": "Fast, easy, free bittorrent client",
+  "hash": "md5:f793b24d92c3c53bc6ae2dda83e9d970",
+  "homepage": "https://portableapps.com/apps/internet/transmission-portable",
+  "license": "",
+  "persist": "Data",
+  "post_install": "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
   "shortcuts": [
     [
       "TransmissionPortable.exe",
       "TransmissionPortable"
     ]
   ],
-  "persist": "Data",
-  "checkver": {
-    "url": "https://portableapps.com/apps/internet/transmission-portable",
-    "re": "Version \\s+([\\w\\.]* for Win"
-  },
-  "autoupdate": {
-    "url": "https://ayera.dl.sourceforge.net/project/portableapps/Transmission%20Portable/TransmissionPortable_$version.paf.exe",
-    "hash": {
-      "url": "https://portableapps.com/apps/internet/transmission-portable",
-      "regex": "MD5 Hash: +[\\w]{32}"
-    }
-  },
-  "post_install": "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
-  "_from": "okibcn/ScoopMaster"
+  "url": "https://ayera.dl.sourceforge.net/project/portableapps/Transmission%20Portable/TransmissionPortable_3.00.paf.exe#/dl.7z",
+  "version": "3.00",
+  "_from": "anderlli0053/DEV-tools"
 }

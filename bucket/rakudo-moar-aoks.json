@@ -1,15 +1,18 @@
 {
-  "version": "2023.02-01",
-  "description": "The most mature, production-ready implementation of the Raku language.",
-  "homepage": "https://rakudo.org/",
-  "license": "Artistic-2.0",
   "architecture": {
     "64bit": {
-      "url": "https://rakudo.org/dl/rakudo/rakudo-moar-2023.02-01-win-x86_64-msvc.zip",
-      "hash": "fc4187a44e14018aebcf43ce9e1f9969fe12b01b119fefdf7edbcaf222b525cd"
+      "hash": "fc4187a44e14018aebcf43ce9e1f9969fe12b01b119fefdf7edbcaf222b525cd",
+      "url": "https://rakudo.org/dl/rakudo/rakudo-moar-2023.02-01-win-x86_64-msvc.zip"
     }
   },
-  "extract_dir": "rakudo-moar-2023.02-01-win-x86_64-msvc",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://rakudo.org/dl/rakudo/rakudo-moar-$matchVersion$matchPatch-$matchRevision-win-x86_64-msvc.zip"
+      }
+    },
+    "extract_dir": "rakudo-moar-$matchVersion$matchPatch-$matchRevision-win-x86_64-msvc"
+  },
   "bin": [
     "bin\\nqp.exe",
     "bin\\perl6.exe",
@@ -24,17 +27,14 @@
     "share\\perl6\\site\\bin\\zef.bat"
   ],
   "checkver": {
-    "url": "https://rakudo.org/downloads/rakudo",
     "regex": "rakudo-moar-(?<version>[\\d]{4}.[\\d]{2})(?<patch>.[\\d]+)?-(?<revision>[\\d]+)-win-x86_64-msvc.zip",
-    "replace": "${version}${patch}-${revision}"
+    "replace": "${version}${patch}-${revision}",
+    "url": "https://rakudo.org/downloads/rakudo"
   },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://rakudo.org/dl/rakudo/rakudo-moar-$matchVersion$matchPatch-$matchRevision-win-x86_64-msvc.zip"
-      }
-    },
-    "extract_dir": "rakudo-moar-$matchVersion$matchPatch-$matchRevision-win-x86_64-msvc"
-  },
-  "_from": "okibcn/ScoopMaster"
+  "description": "The most mature, production-ready implementation of the Raku language.",
+  "extract_dir": "rakudo-moar-2023.02-01-win-x86_64-msvc",
+  "homepage": "https://rakudo.org/",
+  "license": "Artistic-2.0",
+  "version": "2023.02-01",
+  "_from": "anderlli0053/DEV-tools"
 }

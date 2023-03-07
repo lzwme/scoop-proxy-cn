@@ -1,18 +1,22 @@
 {
-  "homepage": "https://www.wintun.net",
-  "description": "A very simple and minimal TUN driver for the Windows kernel",
-  "license": "GPL-2.0-only",
-  "version": "0.14.1",
-  "url": "https://www.wintun.net/builds/wintun-0.14.1.zip",
-  "hash": "07c256185d6ee3652e09fa55c0b673e2624b565e02c4b9091c79ca7d2f24ef51",
-  "extract_dir": "wintun/bin/amd64",
-  "env_add_path": "wintun",
-  "checkver": {
-    "url": "https://www.wintun.net",
-    "regex": "Download Wintun ([\\d.]+)"
-  },
   "autoupdate": {
+    "hash": {
+      "find": "$sha256",
+      "url": "https://www.wintun.net"
+    },
     "url": "https://www.wintun.net/builds/wintun-$version.zip"
   },
-  "_from": "okibcn/ScoopMaster"
+  "checkver": {
+    "regex": "Wintun\\s([\\d.]+)"
+  },
+  "description": "Layer 3 TUN Driver for Windows.",
+  "hash": "07c256185d6ee3652e09fa55c0b673e2624b565e02c4b9091c79ca7d2f24ef51",
+  "homepage": "https://www.wintun.net/",
+  "license": {
+    "identifier": "GPL-2.0-only",
+    "url": "https://git.zx2c4.com/wintun/about/COPYING"
+  },
+  "url": "https://www.wintun.net/builds/wintun-0.14.1.zip",
+  "version": "0.14.1",
+  "_from": "anderlli0053/DEV-tools"
 }

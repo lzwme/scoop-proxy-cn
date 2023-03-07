@@ -1,14 +1,11 @@
 {
-  "version": "1.0.0",
-  "description": "Free and open-source monospaced font from Evil Martians",
-  "license": "OFL-1.1",
-  "homepage": "https://github.com/evilmartians/mono",
-  "url": "https://ghproxy.com/https://github.com/evilmartians/mono/releases/download/v1.0.0/martian-mono-1.0.0-variable.zip",
-  "hash": "a526fafe51d1afba9d729c788655b0f8ac79ed836482a53211acc3955e1d2d19",
-  "checkver": "github",
   "autoupdate": {
     "url": "https://ghproxy.com/https://github.com/evilmartians/mono/releases/download/v$version/martian-mono-$version-variable.zip"
   },
+  "checkver": "github",
+  "description": "Free and open-source monospaced font from Evil Martians",
+  "hash": "a526fafe51d1afba9d729c788655b0f8ac79ed836482a53211acc3955e1d2d19",
+  "homepage": "https://github.com/evilmartians/mono",
   "installer": {
     "script": [
       "if(!(is_admin)) { error \"Admin rights are required.\"; exit 1 }",
@@ -18,6 +15,7 @@
       "}"
     ]
   },
+  "license": "OFL-1.1",
   "uninstaller": {
     "script": [
       "if(!(is_admin)) { error \"Admin rights are required.\"; exit 1 }",
@@ -28,5 +26,7 @@
       "Write-Host \"'Martian Mono' variable font has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
     ]
   },
-  "_from": "okibcn/ScoopMaster"
+  "url": "https://ghproxy.com/https://github.com/evilmartians/mono/releases/download/v1.0.0/martian-mono-1.0.0-variable.zip",
+  "version": "1.0.0",
+  "_from": "anderlli0053/DEV-tools"
 }

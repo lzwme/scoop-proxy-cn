@@ -1,24 +1,24 @@
 {
-  "version": "1.9.11.2",
+  "autoupdate": {
+    "url": "https://cdn.max-c.com/heybox-workshop/wow_installer_$version.exe#/dl.7z"
+  },
+  "checkver": {
+    "regex": "wow_installer_([\\d.]+)\\.exe",
+    "script": "(Invoke-WebRequest -Uri 'https://accoriapi.xiaoheihe.cn/wow/download/' -MaximumRedirection 0 -SkipHttpErrorCheck -ErrorAction:SilentlyContinue).Headers.Location"
+  },
   "description": "黑盒工坊是一款专为魔兽玩家定制、永久免费的插件管理软件。",
+  "hash": "f799390af3dd7bf82a8986737e771df2590baddda670cc633d376164346a1952",
   "homepage": "https://workshop.xiaoheihe.cn",
   "license": {
     "identifier": "Freeware"
   },
-  "url": "https://cdn.max-c.com/heybox-workshop/wow_installer_1.9.11.2.exe#/dl.7z",
-  "hash": "caf374757aa39925adcffb7672d4b8175288088790fb1e2820ac27db97e07e04",
   "shortcuts": [
     [
       "heyboxwow.exe",
       "黑盒工坊"
     ]
   ],
-  "checkver": {
-    "script": "(Invoke-WebRequest -Uri 'https://accoriapi.xiaoheihe.cn/wow/download/' -MaximumRedirection 0 -SkipHttpErrorCheck -ErrorAction:SilentlyContinue).Headers.Location",
-    "regex": "wow_installer_([\\d.]+)\\.exe"
-  },
-  "autoupdate": {
-    "url": "https://cdn.max-c.com/heybox-workshop/wow_installer_$version.exe#/dl.7z"
-  },
-  "_from": "okibcn/ScoopMaster"
+  "url": "https://cdn.max-c.com/heybox-workshop/wow_installer_1.9.13.1.exe#/dl.7z",
+  "version": "1.9.13.1",
+  "_from": "anderlli0053/DEV-tools"
 }

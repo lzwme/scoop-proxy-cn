@@ -1,27 +1,31 @@
 {
+  "homepage": "https://launchyqt.com/",
   "version": "3.1.3",
-  "description": "Launchy project reactivated. Get the familiar feeling now! ",
-  "homepage": "https://github.com/samsonwang/LaunchyQt",
-  "checkver": "github",
-  "license": "GPL-3.0",
-  "url": "https://ghproxy.com/https://github.com/samsonwang/LaunchyQt/releases/download/v3.1.3/Launchy-3.1.3-win-x86.zip",
-  "hash": "sha512:861048c2ec94c3173654e7c9f306dd94029a9e15d8df4c63c19559380a4564fac4c33d299b5c0a3575036ec6b5ebbb96e56a9ff76a8269c427b5eba425dc544d",
-  "bin": [
-    "Launchy\\Launchy.exe"
-  ],
-  "shortcuts": [
-    [
-      "Launchy\\Launchy.exe",
-      "Launchy"
-    ]
-  ],
-  "persist": [
-    "Launchy\\plugins",
-    "Launchy\\skins"
-  ],
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/samsonwang/LaunchyQt/releases/download/v$version/Launchy-$version-win-x86.zip",
-    "extract_dir": "launchy_v$version"
+  "license": "GPL-3.0-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/samsonwang/LaunchyQt/releases/download/v3.1.0/Launchy-3.1.0-win-amd64.7z",
+      "hash": "",
+      "extract_dir": "Launchy-3.1.0-win-amd64"
+    },
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/samsonwang/LaunchyQt/releases/download/v3.1.3/Launchy-3.1.3-win-x86.7z",
+      "hash": "186f19ef2ef0e7915763a91cf175aed0834b681a56a86bbd1876869e611bcde6",
+      "extract_dir": "Launchy-3.1.3-win-x86"
+    }
   },
-  "_from": "okibcn/ScoopMaster"
+  "bin": "Launchy.exe",
+  "persist": "config",
+  "checkver": {
+    "github": "https://github.com/samsonwang/LaunchyQt"
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/samsonwang/LaunchyQt/releases/download/v$version/Launchy-$version-win-x86.7z",
+        "extract_dir": "Launchy-$version-win-x86"
+      }
+    }
+  },
+  "_from": "anderlli0053/DEV-tools"
 }

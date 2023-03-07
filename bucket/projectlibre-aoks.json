@@ -1,12 +1,16 @@
 {
-  "homepage": "https://www.projectlibre.com/",
-  "version": "1.9.3",
+  "autoupdate": {
+    "url": "https://sourceforge.net/projects/projectlibre/files/ProjectLibre/$version/projectlibre-$version.exe/download#/_projectlibre.exe"
+  },
+  "bin": "projectlibre.exe",
+  "checkver": {
+    "regex": "a href=\"/projects/projectlibre/files/ProjectLibre/([\\d.]+)/\"",
+    "url": "https://sourceforge.net/projects/projectlibre/files/ProjectLibre/"
+  },
   "description": "Open Source replacement of Microsoft Project.",
-  "license": "CPAL-1.0",
-  "url": "https://sourceforge.net/projects/projectlibre/files/ProjectLibre/1.9.3/projectlibre-1.9.3.exe/download#/_projectlibre.exe",
   "hash": "069f0d89a94a35d8105a59bdb1e4e4765aabca378d17c7b21c732fd61c5cbed3",
+  "homepage": "https://www.projectlibre.com/",
   "installer": {
-    "file": "_projectlibre.exe",
     "args": [
       "/VERYSILENT",
       "/DIR=\"$dir\"",
@@ -15,29 +19,25 @@
       "/NORESTART",
       "/NOCLOSEAPPLICATIONS",
       "/NORESTARTAPPLICATIONS"
-    ]
+    ],
+    "file": "_projectlibre.exe"
   },
-  "uninstaller": {
-    "file": "unins000.exe",
-    "args": [
-      "/VERYSILENT",
-      "/SUPPRESSMSGBOXES",
-      "/NORESTART"
-    ]
-  },
+  "license": "CPAL-1.0",
   "shortcuts": [
     [
       "ProjectLibre.exe",
       "ProjectLibre"
     ]
   ],
-  "bin": "projectlibre.exe",
-  "checkver": {
-    "url": "https://sourceforge.net/projects/projectlibre/files/ProjectLibre/",
-    "regex": "a href=\"/projects/projectlibre/files/ProjectLibre/([\\d.]+)/\""
+  "uninstaller": {
+    "args": [
+      "/VERYSILENT",
+      "/SUPPRESSMSGBOXES",
+      "/NORESTART"
+    ],
+    "file": "unins000.exe"
   },
-  "autoupdate": {
-    "url": "https://sourceforge.net/projects/projectlibre/files/ProjectLibre/$version/projectlibre-$version.exe/download#/_projectlibre.exe"
-  },
-  "_from": "okibcn/ScoopMaster"
+  "url": "https://sourceforge.net/projects/projectlibre/files/ProjectLibre/1.9.3/projectlibre-1.9.3.exe/download#/_projectlibre.exe",
+  "version": "1.9.3",
+  "_from": "anderlli0053/DEV-tools"
 }

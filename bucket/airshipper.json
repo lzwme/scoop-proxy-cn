@@ -1,30 +1,20 @@
 {
-  "version": "0.10.0",
-  "description": "The official Veloren launcher",
-  "homepage": "https://veloren.net",
-  "license": "GPL-3.0-only",
-  "architecture": {
-    "64bit": {
-      "url": "https://ghproxy.com/https://github.com/veloren/Airshipper/releases/download/v0.10.0/airshipper-windows.msi",
-      "hash": "d2b19361c504cfbf90c6733c17a12f89928b14c12787a4df0da619dbd90facdf",
-      "extract_dir": "PFiles\\Airshipper"
-    }
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/veloren/Airshipper/releases/download/v$version/airshipper-windows.msi#/dl.7z"
   },
+  "bin": "airshipper.exe",
+  "checkver": "github",
+  "description": "A cross-platform Veloren launcher.",
+  "hash": "d2b19361c504cfbf90c6733c17a12f89928b14c12787a4df0da619dbd90facdf",
+  "homepage": "https://github.com/veloren/Airshipper",
+  "license": "GPL-3.0-only",
   "shortcuts": [
     [
       "airshipper.exe",
       "Airshipper"
     ]
   ],
-  "checkver": {
-    "github": "https://github.com/veloren/Airshipper"
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.com/https://github.com/veloren/Airshipper/releases/download/v$version/airshipper-windows.msi"
-      }
-    }
-  },
-  "_from": "okibcn/ScoopMaster"
+  "url": "https://ghproxy.com/https://github.com/veloren/Airshipper/releases/download/v0.10.0/airshipper-windows.msi#/dl.7z",
+  "version": "0.10.0",
+  "_from": "anderlli0053/DEV-tools"
 }

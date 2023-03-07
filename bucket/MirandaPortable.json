@@ -1,29 +1,29 @@
 {
-  "homepage": "https://portableapps.com/apps/internet/miranda_portable",
-  "description": "Instant messaging",
-  "version": "0.10.80",
-  "license": "",
-  "url": "https://pilotfiber.dl.sourceforge.net/project/portableapps/Miranda%20IM%20Portable/MirandaPortable_0.10.80.paf.exe#/dl.7z",
-  "hash": "md5:fe23b946cf7fca04b0539563eec9ad13",
+  "autoupdate": {
+    "hash": {
+      "regex": "MD5 Hash: +[\\w]{32}",
+      "url": "https://portableapps.com/apps/internet/miranda_portable"
+    },
+    "url": "https://pilotfiber.dl.sourceforge.net/project/portableapps/Miranda%20IM%20Portable/MirandaPortable_$version.paf.exe"
+  },
   "bin": "MirandaPortable.exe",
+  "checkver": {
+    "re": "Version \\s+([\\w\\.]* for Win",
+    "url": "https://portableapps.com/apps/internet/miranda_portable"
+  },
+  "description": "Instant messaging",
+  "hash": "md5:fe23b946cf7fca04b0539563eec9ad13",
+  "homepage": "https://portableapps.com/apps/internet/miranda_portable",
+  "license": "",
+  "persist": "Data",
+  "post_install": "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
   "shortcuts": [
     [
       "MirandaPortable.exe",
       "MirandaPortable"
     ]
   ],
-  "persist": "Data",
-  "checkver": {
-    "url": "https://portableapps.com/apps/internet/miranda_portable",
-    "re": "Version \\s+([\\w\\.]* for Win"
-  },
-  "autoupdate": {
-    "url": "https://pilotfiber.dl.sourceforge.net/project/portableapps/Miranda%20IM%20Portable/MirandaPortable_$version.paf.exe",
-    "hash": {
-      "url": "https://portableapps.com/apps/internet/miranda_portable",
-      "regex": "MD5 Hash: +[\\w]{32}"
-    }
-  },
-  "post_install": "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
-  "_from": "okibcn/ScoopMaster"
+  "url": "https://pilotfiber.dl.sourceforge.net/project/portableapps/Miranda%20IM%20Portable/MirandaPortable_0.10.80.paf.exe#/dl.7z",
+  "version": "0.10.80",
+  "_from": "anderlli0053/DEV-tools"
 }

@@ -1,0 +1,21 @@
+{
+  "version": "4.6.3",
+  "description": "Charles is an HTTP proxy / HTTP monitor / Reverse Proxy.",
+  "homepage": "https://www.charlesproxy.com/",
+  "url": "https://www.charlesproxy.com/assets/release/4.6.3/charles-proxy-4.6.3-win64.msi#/setup.msi_",
+  "hash": "efb8f5cda02bd6bc42860e7069ada57cd97c5d81e0965a718a419125e65c7f31",
+  "installer": {
+    "script": "Invoke-ExternalCommand msiexec -ArgumentList @('/i', \"$dir\\setup.msi_\", '/qn') -RunAs | Out-Null"
+  },
+  "uninstaller": {
+    "script": "Invoke-ExternalCommand msiexec -ArgumentList @('/x', \"$dir\\setup.msi_\", '/qn') -RunAs | Out-Null"
+  },
+  "checkver": {
+    "url": "https://ghproxy.com/https://raw.githubusercontent.com/kkzzhizhou/scoop-zapps/master/versions/Charles.latest",
+    "regex": "([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://www.charlesproxy.com/assets/release/$version/charles-proxy-$version-win64.msi#/setup.msi_"
+  },
+  "_from": "kkzzhizhou/scoop-zapps"
+}

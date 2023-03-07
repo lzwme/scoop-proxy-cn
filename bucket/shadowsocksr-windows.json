@@ -1,27 +1,38 @@
 {
-  "version": "6.1.0",
+  "architecture": {
+    "32bit": {
+      "hash": "52b3ecadd8f4063ebb7121b7a84caee490cc0e630977f226e933d62b2784dde5",
+      "url": "https://ghproxy.com/https://github.com/HMBSbige/ShadowsocksR-Windows/releases/download/6.1.0/ShadowsocksR-Win32-6.1.0.7z"
+    },
+    "64bit": {
+      "hash": "d62593da0aa39970213997694cb811a19a68341b4b10c42e9040064f4fdf1e48",
+      "url": "https://ghproxy.com/https://github.com/HMBSbige/ShadowsocksR-Windows/releases/download/6.1.0/ShadowsocksR-Win64-6.1.0.7z"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/HMBSbige/ShadowsocksR-Windows/releases/download/$version/ShadowsocksR-Win32-$version.7z"
+      },
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/HMBSbige/ShadowsocksR-Windows/releases/download/$version/ShadowsocksR-Win64-$version.7z"
+      }
+    }
+  },
+  "checkver": "github",
   "description": "An Internet censorship circumventing tunnel tool, forked by Breakwa11 from shadowsocks, maintained now by HMBSbige.",
+  "extract_dir": "ShadowsocksR",
   "homepage": "https://github.com/HMBSbige/ShadowsocksR-Windows",
   "license": {
     "identifier": "GPL-3.0-or-later",
     "url": "https://github.com/HMBSbige/ShadowsocksR-Windows/blob/master/LICENSE"
   },
-  "architecture": {
-    "32bit": {
-      "url": "https://ghproxy.com/https://github.com/HMBSbige/ShadowsocksR-Windows/releases/download/6.1.0/ShadowsocksR-Win32-6.1.0.7z",
-      "hash": "52b3ecadd8f4063ebb7121b7a84caee490cc0e630977f226e933d62b2784dde5"
-    },
-    "64bit": {
-      "url": "https://ghproxy.com/https://github.com/HMBSbige/ShadowsocksR-Windows/releases/download/6.1.0/ShadowsocksR-Win64-6.1.0.7z",
-      "hash": "d62593da0aa39970213997694cb811a19a68341b4b10c42e9040064f4fdf1e48"
-    }
-  },
-  "extract_dir": "ShadowsocksR",
-  "shortcuts": [
-    [
-      "ShadowsocksR.exe",
-      "ShadowsocksR Windows"
-    ]
+  "persist": [
+    "gui-config.json",
+    "pac.txt",
+    "transfer_log.json",
+    "user-rule.txt",
+    "temp"
   ],
   "pre_install": [
     "function CreateFile([String] $file, [String] $content = $null) {",
@@ -35,23 +46,12 @@
     "CreateFile 'transfer_log.json' '{}'",
     "CreateFile 'user-rule.txt'"
   ],
-  "persist": [
-    "gui-config.json",
-    "pac.txt",
-    "transfer_log.json",
-    "user-rule.txt",
-    "temp"
+  "shortcuts": [
+    [
+      "ShadowsocksR.exe",
+      "ShadowsocksR Windows"
+    ]
   ],
-  "checkver": "github",
-  "autoupdate": {
-    "architecture": {
-      "32bit": {
-        "url": "https://ghproxy.com/https://github.com/HMBSbige/ShadowsocksR-Windows/releases/download/$version/ShadowsocksR-Win32-$version.7z"
-      },
-      "64bit": {
-        "url": "https://ghproxy.com/https://github.com/HMBSbige/ShadowsocksR-Windows/releases/download/$version/ShadowsocksR-Win64-$version.7z"
-      }
-    }
-  },
-  "_from": "okibcn/ScoopMaster"
+  "version": "6.1.0",
+  "_from": "anderlli0053/DEV-tools"
 }

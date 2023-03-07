@@ -1,6 +1,6 @@
 {
   "homepage": "https://github.com/PowerShell/PowerShell",
-  "description": "PowerShell for every system",
+  "license": "MIT",
   "version": "7.3.3",
   "architecture": {
     "64bit": {
@@ -19,7 +19,10 @@
       "PowerShell Core"
     ]
   ],
-  "checkver": "github",
+  "checkver": {
+    "url": "https://github.com/PowerShell/PowerShell/releases/latest",
+    "regex": "/releases/tag/v([\\d.]+)"
+  },
   "autoupdate": {
     "architecture": {
       "64bit": {
@@ -28,10 +31,6 @@
       "32bit": {
         "url": "https://ghproxy.com/https://github.com/PowerShell/PowerShell/releases/download/v$version/PowerShell-$version-win-x86.zip"
       }
-    },
-    "hash": {
-      "find": "\"body\":\\s*\".*-\\s*$basename\\\\r\\\\n\\s*-\\s*([^\\\\]*)\\\\r\\\\n",
-      "url": "https://api.github.com/repos/PowerShell/PowerShell/releases/latest"
     }
   },
   "_from": "okibcn/ScoopMaster"

@@ -1,14 +1,15 @@
 {
-  "version": "1.4.0",
-  "description": "Japanese font based on IBM Plex with Nerd Fonts(prefer Japanese characters)",
-  "homepage": "https://github.com/yuru7/PlemolJP",
-  "license": "OFL-1.1-RFN",
-  "url": "https://ghproxy.com/https://github.com/yuru7/PlemolJP/releases/download/v1.4.0/PlemolJP_NFJ_v1.4.0.zip",
-  "hash": "dee4c8a153057381cff90eb61091ed47b6a42f457a13243f0ab0b7f141d81dbf",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/yuru7/PlemolJP/releases/download/v$version/PlemolJP_NFJ_v$version.zip"
+  },
+  "checkver": "github",
   "depends": [
     "sudo",
     "unoun/scoop-helper"
   ],
+  "description": "Japanese font based on IBM Plex with Nerd Fonts(prefer Japanese characters)",
+  "hash": "dee4c8a153057381cff90eb61091ed47b6a42f457a13243f0ab0b7f141d81dbf",
+  "homepage": "https://github.com/yuru7/PlemolJP",
   "installer": {
     "script": [
       "$helper = \"$(appdir scoop-helper)\\current\\scoop-font-helper.ps1\"",
@@ -17,6 +18,7 @@
       "Install-Font($dir)"
     ]
   },
+  "license": "OFL-1.1-RFN",
   "uninstaller": {
     "script": [
       "$helper = \"$(appdir scoop-helper)\\current\\scoop-font-helper.ps1\"",
@@ -25,9 +27,7 @@
       "Uninstall-Font($dir)"
     ]
   },
-  "checkver": "github",
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/yuru7/PlemolJP/releases/download/v$version/PlemolJP_NFJ_v$version.zip"
-  },
-  "_from": "okibcn/ScoopMaster"
+  "url": "https://ghproxy.com/https://github.com/yuru7/PlemolJP/releases/download/v1.4.0/PlemolJP_NFJ_v1.4.0.zip",
+  "version": "1.4.0",
+  "_from": "anderlli0053/DEV-tools"
 }

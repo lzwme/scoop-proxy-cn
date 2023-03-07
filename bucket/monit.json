@@ -1,27 +1,49 @@
 {
   "version": "0.7.3",
-  "description": "用于展示各种信息的桌面小组件",
-  "homepage": "https://github.com/fzf404/Monit",
-  "license": "MIT",
+  "description": "Monit - 用于展示各种信息的桌面小组件.",
+  "homepage": "https://monit.fzf404.art",
+  "license": {
+    "identifier": "MIT",
+    "url": "https://github.com/fzf404/Monit/raw/main/LICENSE"
+  },
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.com/https://github.com/fzf404/Monit/releases/download/v0.7.3/Monit-0.7.3-win-x64.7z",
-      "hash": "21970bedd62342c04260eca3ada19e6887d21307c023aa2ee7d50bd349cd7e50"
+      "url": "https://ghproxy.com/https://github.com/fzf404/Monit/releases/download/v0.7.3/Monit-0.7.3-win-x64.exe#/dl.7z",
+      "hash": "4c64ee488c81ee4af0b9a9af58dc0b69be5d7962dfdf66472125e4059063c0db",
+      "pre_install": [
+        "if (Test-Path \"$env:AppData\\monit\") {",
+        "    info '[Persistent data]: Copying user data...'",
+        "    ensure \"$dir\\User Data\" | Out-Null",
+        "    Copy-Item \"$env:AppData\\monit\\*\" \"$dir\\User Data\\\" -Recurse -Force -ErrorAction 'SilentlyContinue'",
+        "    Remove-Item \"$env:AppData\\monit\" -Recurse -Force -ErrorAction 'SilentlyContinue'",
+        "}",
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\" -Removal"
+      ],
+      "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Unin*\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
     }
   },
   "shortcuts": [
     [
       "Monit.exe",
-      "Monit"
+      "Monit",
+      "--user-data-dir=\"$dir\\User Data\""
     ]
   ],
-  "checkver": "github",
+  "persist": "User Data",
+  "checkver": {
+    "github": "https://github.com/fzf404/Monit"
+  },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.com/https://github.com/fzf404/Monit/releases/download/v$version/Monit-$version-win-x64.7z"
+        "url": "https://ghproxy.com/https://github.com/fzf404/Monit/releases/download/v$version/Monit-$version-win-x64.exe#/dl.7z",
+        "hash": {
+          "url": "$baseurl/latest.yml",
+          "mode": "extract",
+          "regex": "(?sm)$basename.*?sha512:\\s+$base64"
+        }
       }
     }
   },
-  "_from": "okibcn/ScoopMaster"
+  "_from": "anderlli0053/DEV-tools"
 }

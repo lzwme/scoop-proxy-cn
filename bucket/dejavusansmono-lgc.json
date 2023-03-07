@@ -1,12 +1,8 @@
 {
-  "version": "2.37",
   "description": "DejaVu Fonts",
-  "license": "https://github.com/dejavu-fonts/dejavu-fonts/blob/master/LICENSE",
-  "homepage": "https://dejavu-fonts.github.io/",
-  "url": "https://ghproxy.com/https://github.com/dejavu-fonts/dejavu-fonts/releases/download/version_2_37/dejavu-lgc-fonts-ttf-2.37.zip",
-  "hash": "bc73bd1c64299a95951fd8c1d493d391ded78cef5b9d3dd3df5859e1f85f5ec6",
   "extract_dir": "dejavu-lgc-fonts-ttf-2.37\\ttf",
-  "pre_install": "Get-ChildItem $dir -Exclude DejaVuLGCSansMono*.ttf | Remove-Item",
+  "hash": "bc73bd1c64299a95951fd8c1d493d391ded78cef5b9d3dd3df5859e1f85f5ec6",
+  "homepage": "https://dejavu-fonts.github.io/",
   "installer": {
     "script": [
       "if(!(is_admin)) { error \"Admin rights are required, please run 'sudo scoop install $app'\"; exit 1 }",
@@ -16,6 +12,8 @@
       "}"
     ]
   },
+  "license": "https://github.com/dejavu-fonts/dejavu-fonts/blob/master/LICENSE",
+  "pre_install": "Get-ChildItem $dir -Exclude DejaVuLGCSansMono*.ttf | Remove-Item",
   "uninstaller": {
     "script": [
       "if(!(is_admin)) { error \"Admin rights are required, please run 'sudo scoop uninstall $app'\"; exit 1 }",
@@ -26,5 +24,7 @@
       "Write-Host \"'DejaVu LGC Sans Mono' has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
     ]
   },
-  "_from": "okibcn/ScoopMaster"
+  "url": "https://ghproxy.com/https://github.com/dejavu-fonts/dejavu-fonts/releases/download/version_2_37/dejavu-lgc-fonts-ttf-2.37.zip",
+  "version": "2.37",
+  "_from": "anderlli0053/DEV-tools"
 }

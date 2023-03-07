@@ -1,15 +1,15 @@
 {
-  "version": "6.2.0",
-  "description": "IBM Plex typeface",
-  "homepage": "https://github.com/IBM/plex",
-  "license": "OFL-1.1-RFN",
-  "url": "https://ghproxy.com/https://github.com/IBM/plex/releases/download/v6.2.0/OpenType.zip",
-  "hash": "dac35a1d0f1113e776120b1346e619360b331f0a71f2b7cbd49f7332c3037b2c",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/IBM/plex/releases/download/v$version/OpenType.zip"
+  },
+  "checkver": "github",
   "depends": [
     "sudo",
     "unoun/scoop-helper"
   ],
-  "pre_install": "Remove-Item \"$dir\\OpenType\\*\\unhinted\" -Recurse",
+  "description": "IBM Plex typeface",
+  "hash": "dac35a1d0f1113e776120b1346e619360b331f0a71f2b7cbd49f7332c3037b2c",
+  "homepage": "https://github.com/IBM/plex",
   "installer": {
     "script": [
       "$helper = \"$(appdir scoop-helper)\\current\\scoop-font-helper.ps1\"",
@@ -18,6 +18,8 @@
       "Install-Font($dir)"
     ]
   },
+  "license": "OFL-1.1-RFN",
+  "pre_install": "Remove-Item \"$dir\\OpenType\\*\\unhinted\" -Recurse",
   "uninstaller": {
     "script": [
       "$helper = \"$(appdir scoop-helper)\\current\\scoop-font-helper.ps1\"",
@@ -26,9 +28,7 @@
       "Uninstall-Font($dir)"
     ]
   },
-  "checkver": "github",
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/IBM/plex/releases/download/v$version/OpenType.zip"
-  },
-  "_from": "okibcn/ScoopMaster"
+  "url": "https://ghproxy.com/https://github.com/IBM/plex/releases/download/v6.2.0/OpenType.zip",
+  "version": "6.2.0",
+  "_from": "anderlli0053/DEV-tools"
 }

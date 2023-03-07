@@ -1,18 +1,14 @@
 {
-  "version": "2.300",
-  "description": "League Mono Variable",
-  "license": "OFL-1.1",
-  "homepage": "https://tylerfinck.com/leaguemonovariable/",
-  "url": "https://ghproxy.com/https://github.com/theleagueof/league-mono/releases/download/2.300/LeagueMono-2.300.zip",
-  "hash": "3b685afec90f862193974fa6384ac5b472d9049356ee97591374573f1d929f64",
-  "extract_dir": "LeagueMono-2.300/static/TTF",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/theleagueof/league-mono/releases/download/$version/LeagueMono-$version.zip"
+  },
   "checkver": {
     "github": "https://github.com/sursly/leaguemono"
   },
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/theleagueof/league-mono/releases/download/$version/LeagueMono-$version.zip",
-    "extract_dir": "LeagueMono-$version/static/TTF"
-  },
+  "description": "League Mono Variable",
+  "extract_dir": "static\\TTF",
+  "hash": "3b685afec90f862193974fa6384ac5b472d9049356ee97591374573f1d929f64",
+  "homepage": "https://tylerfinck.com/leaguemonovariable/",
   "installer": {
     "script": [
       "if(!(is_admin)) { error \"Admin rights are required.\"; exit 1 }",
@@ -22,6 +18,7 @@
       "}"
     ]
   },
+  "license": "OFL-1.1",
   "uninstaller": {
     "script": [
       "if(!(is_admin)) { error \"Admin rights are required.\"; exit 1 }",
@@ -32,5 +29,7 @@
       "Write-Host \"'League Mono' TTF files have been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
     ]
   },
-  "_from": "okibcn/ScoopMaster"
+  "url": "https://ghproxy.com/https://github.com/theleagueof/league-mono/releases/download/2.300/LeagueMono-2.300.zip",
+  "version": "2.300",
+  "_from": "anderlli0053/DEV-tools"
 }

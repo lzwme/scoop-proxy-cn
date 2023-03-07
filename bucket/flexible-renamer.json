@@ -1,38 +1,22 @@
 {
-  "version": "8.4",
-  "description": "Flexible Renamer",
-  "homepage": "https://hp.vector.co.jp/authors/VA014830/FlexRena/",
-  "license": "Freeware",
-  "url": "https://ftp.vector.co.jp/54/28/2327/FlexRena84.zip",
-  "hash": "5cf6db71126af9dbc17eb652a08a6aaf340bf80b5768c3de21876eaaeeebe616",
-  "extract_dir": "FlexRena84",
   "bin": "Flexible Renamer.exe",
+  "description": "ワイルドカード・正規表現、タグ情報(MP3,EXIF)、スクリプトを使用できるファイル/フォルダ名変更ツール",
+  "hash": "",
+  "homepage": "https://www.vector.co.jp/soft/dl/winnt/util/se131133.html",
+  "installer": {
+    "script": [
+      "Rename-Item \"$dir\\uc\" -NewName \"$dir\\uc.zip\"",
+      "Expand-Archive -Path \"$dir\\uc.zip\" -DestinationPath \"$dir\\\"",
+      "Remove-Item \"$dir\\uc.zip\""
+    ]
+  },
   "shortcuts": [
     [
       "Flexible Renamer.exe",
       "Flexible Renamer"
     ]
   ],
-  "pre_install": [
-    "ensure $persist_dir | Out-Null",
-    "$target = Join-Path $persist_dir 'Flexible Renamer.ini'",
-    "if (-not (Test-Path $target)) { New-Item -Path $target -ItemType File | Out-Null }",
-    "",
-    "# Create empty text file as UTF16 with BOM",
-    "$target = Join-Path $persist_dir 'Rename.log'",
-    "if (-not (Test-Path $target)) { Set-Content -Value '' -Path $target -Encoding unicode -NoNewline }"
-  ],
-  "persist": [
-    "Flexible Renamer.ini",
-    "Rename.log"
-  ],
-  "checkver": {
-    "url": "https://www.vector.co.jp/soft/dl/winnt/util/se131133.html",
-    "regex": "<span class=\"version\">([^<]+)</span>"
-  },
-  "autoupdate": {
-    "url": "https://ftp.vector.co.jp/54/28/2327/FlexRena$cleanVersion.zip",
-    "extract_dir": "FlexRena$cleanVersion"
-  },
-  "_from": "okibcn/ScoopMaster"
+  "url": "https://drive.google.com/uc?export=download&id=1cLGWBJ6WbVRBsEupMyeuO2yR4bMyevba",
+  "version": "8.4",
+  "_from": "anderlli0053/DEV-tools"
 }

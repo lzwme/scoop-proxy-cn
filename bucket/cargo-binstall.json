@@ -1,15 +1,12 @@
 {
-  "version": "0.20.1",
-  "description": "cargo binstall provides a low-complexity mechanism for installing rust binaries as an alternative to building from source (via cargo install) or manually downloading packages.",
-  "homepage": "https://github.com/ryankurte/cargo-binstall",
-  "license": "GPL-3.0",
-  "url": "https://ghproxy.com/https://github.com/ryankurte/cargo-binstall/releases/download/v0.20.1/cargo-binstall-x86_64-pc-windows-msvc.zip",
-  "hash": "467b0abcabe9c0456f721d108c90b53ea050d121f7c9ae8b23a048d0f55bad16",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/ryankurte/cargo-binstall/releases/download/v$version/cargo-binstall-x86_64-pc-windows-msvc.zip"
+  },
   "bin": "cargo-binstall.exe",
-  "notes": [
-    "The installer will try to find create a hard link in the cargo's bin directory",
-    "and the uninstaller will try to remove it."
-  ],
+  "checkver": "github",
+  "description": "cargo binstall provides a low-complexity mechanism for installing rust binaries as an alternative to building from source (via cargo install) or manually downloading packages.",
+  "hash": "467b0abcabe9c0456f721d108c90b53ea050d121f7c9ae8b23a048d0f55bad16",
+  "homepage": "https://github.com/ryankurte/cargo-binstall",
   "installer": {
     "script": [
       "if (![string]::IsNullOrEmpty($env:CARGO_HOME)) {",
@@ -22,6 +19,11 @@
       "New-Item -Path \"$Bin\\cargo-binstall.exe\" -ItemType HardLink -Value \"$dir\\cargo-binstall.exe\""
     ]
   },
+  "license": "GPL-3.0",
+  "notes": [
+    "The installer will try to find create a hard link in the cargo's bin directory",
+    "and the uninstaller will try to remove it."
+  ],
   "uninstaller": {
     "script": [
       "if (![string]::IsNullOrEmpty($env:CARGO_HOME)) {",
@@ -36,9 +38,7 @@
       "}"
     ]
   },
-  "checkver": "github",
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/ryankurte/cargo-binstall/releases/download/v$version/cargo-binstall-x86_64-pc-windows-msvc.zip"
-  },
-  "_from": "okibcn/ScoopMaster"
+  "url": "https://ghproxy.com/https://github.com/ryankurte/cargo-binstall/releases/download/v0.20.1/cargo-binstall-x86_64-pc-windows-msvc.zip",
+  "version": "0.20.1",
+  "_from": "anderlli0053/DEV-tools"
 }

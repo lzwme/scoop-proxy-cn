@@ -1,37 +1,37 @@
 {
-  "homepage": "https://rport.io/",
-  "description": "Manage remote systems with ease.",
-  "version": "0.9.5",
-  "license": "MIT",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.com/https://github.com/cloudradar-monitoring/rport/releases/download/0.9.5/rport_0.9.5_Windows_x86_64.zip",
-      "hash": "091e5212a87845f4d9b05aa9375e1ce17d2743375567f830f0c8fe9f809978c7"
+      "hash": "091e5212a87845f4d9b05aa9375e1ce17d2743375567f830f0c8fe9f809978c7",
+      "url": "https://ghproxy.com/https://github.com/cloudradar-monitoring/rport/releases/download/0.9.5/rport_0.9.5_Windows_x86_64.zip"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "hash": {
+          "regex": "$sha256\\s+$basename",
+          "url": "$baseurl/checksums.txt"
+        },
+        "url": "https://ghproxy.com/https://github.com/cloudradar-monitoring/rport/releases/download/$version/rport_$version_Windows_x86_64.zip"
+      }
     }
   },
   "bin": "rport.exe",
-  "persist": "rport.conf",
-  "suggest": {
-    "rportcli": "scoop-aoks/rportcli-aoks"
+  "checkver": {
+    "github": "https://github.com/cloudradar-monitoring/rport"
   },
+  "description": "Manage remote systems with ease.",
+  "homepage": "https://rport.io/",
+  "license": "MIT",
   "notes": [
     "   Look into $dir\\rport.example.conf for hints how to configure rport",
     "   Create a $dir\\rport.conf with your settings",
     " "
   ],
-  "checkver": {
-    "github": "https://github.com/cloudradar-monitoring/rport"
+  "persist": "rport.conf",
+  "suggest": {
+    "rportcli": "scoop-aoks/rportcli-aoks"
   },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.com/https://github.com/cloudradar-monitoring/rport/releases/download/$version/rport_$version_Windows_x86_64.zip",
-        "hash": {
-          "url": "$baseurl/checksums.txt",
-          "regex": "$sha256\\s+$basename"
-        }
-      }
-    }
-  },
-  "_from": "okibcn/ScoopMaster"
+  "version": "0.9.5",
+  "_from": "anderlli0053/DEV-tools"
 }

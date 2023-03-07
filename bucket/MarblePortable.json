@@ -1,29 +1,29 @@
 {
-  "homepage": "https://portableapps.com/apps/education/marble_portable",
-  "description": "Virtual globe and atlas",
-  "version": "2.2.0",
-  "license": "",
-  "url": "https://iweb.dl.sourceforge.net/project/portableapps/Marble%20Portable/MarblePortable_2.2.0.paf.exe#/dl.7z",
-  "hash": "md5:8f0fd0fdd9eae6050d6a389367f6122a",
+  "autoupdate": {
+    "hash": {
+      "regex": "MD5 Hash: +[\\w]{32}",
+      "url": "https://portableapps.com/apps/education/marble_portable"
+    },
+    "url": "https://iweb.dl.sourceforge.net/project/portableapps/Marble%20Portable/MarblePortable_$version.paf.exe"
+  },
   "bin": "MarblePortable.exe",
+  "checkver": {
+    "re": "Version \\s+([\\w\\.]* for Win",
+    "url": "https://portableapps.com/apps/education/marble_portable"
+  },
+  "description": "Virtual globe and atlas",
+  "hash": "46c5b73989d877f0a198dfb6d6f8f4fded690ad935a6ddcba4893f7269d0631d",
+  "homepage": "https://portableapps.com/apps/education/marble_portable",
+  "license": "",
+  "persist": "Data",
+  "post_install": "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
   "shortcuts": [
     [
       "MarblePortable.exe",
       "MarblePortable"
     ]
   ],
-  "persist": "Data",
-  "checkver": {
-    "url": "https://portableapps.com/apps/education/marble_portable",
-    "re": "Version \\s+([\\w\\.]* for Win"
-  },
-  "autoupdate": {
-    "url": "https://iweb.dl.sourceforge.net/project/portableapps/Marble%20Portable/MarblePortable_$version.paf.exe",
-    "hash": {
-      "url": "https://portableapps.com/apps/education/marble_portable",
-      "regex": "MD5 Hash: +[\\w]{32}"
-    }
-  },
-  "post_install": "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
-  "_from": "okibcn/ScoopMaster"
+  "url": "https://iweb.dl.sourceforge.net/project/portableapps/Marble%20Portable/MarblePortable_2.2.0.paf.exe",
+  "version": "2.2.0",
+  "_from": "anderlli0053/DEV-tools"
 }

@@ -1,38 +1,38 @@
 {
-  "version": "3.14.0",
-  "description": "A Vim-inspired note-taking application that knows programmers and Markdown better.",
-  "homepage": "https://vnotex.github.io/vnote/en_us/",
-  "license": "MIT",
   "architecture": {
-    "64bit": {
-      "url": "https://ghproxy.com/https://github.com/vnotex/vnote/releases/download/v3.14.0/vnote-win-x64_v3.14.0.zip",
-      "hash": "d92595bdd7490018edb61c369051480bea117aab53a23260bc868993c3cd0658"
-    },
     "32bit": {
-      "url": "https://ghproxy.com/https://github.com/vnotex/vnote/releases/download/v3.14.0/vnote-win-x86_v3.14.0.zip",
-      "hash": "7d3feac14e4fc5a36d82610d35458a89ca420017a042c2cf3027cb8b86d1ffb3"
+      "hash": "7d3feac14e4fc5a36d82610d35458a89ca420017a042c2cf3027cb8b86d1ffb3",
+      "url": "https://ghproxy.com/https://github.com/vnotex/vnote/releases/download/v3.14.0/vnote-win-x86_v3.14.0.zip"
+    },
+    "64bit": {
+      "hash": "d92595bdd7490018edb61c369051480bea117aab53a23260bc868993c3cd0658",
+      "url": "https://ghproxy.com/https://github.com/vnotex/vnote/releases/download/v3.14.0/vnote-win-x64_v3.14.0.zip"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/vnotex/vnote/releases/download/v$version/vnote-win-x86_v$version.zip"
+      },
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/vnotex/vnote/releases/download/v$version/vnote-win-x64_v$version.zip"
+      }
     }
   },
   "bin": "VNote.exe",
+  "checkver": {
+    "github": "https://github.com/vnotex/vnote"
+  },
+  "description": "A Vim-inspired note-taking application that knows programmers and Markdown better.",
+  "homepage": "https://vnotex.github.io/vnote/en_us/",
+  "license": "MIT",
+  "persist": "user_files",
   "shortcuts": [
     [
       "VNote.exe",
       "VNoteX"
     ]
   ],
-  "persist": "user_files",
-  "checkver": {
-    "github": "https://github.com/vnotex/vnote"
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.com/https://github.com/vnotex/vnote/releases/download/v$version/vnote-win-x64_v$version.zip"
-      },
-      "32bit": {
-        "url": "https://ghproxy.com/https://github.com/vnotex/vnote/releases/download/v$version/vnote-win-x86_v$version.zip"
-      }
-    }
-  },
-  "_from": "okibcn/ScoopMaster"
+  "version": "3.14.0",
+  "_from": "anderlli0053/DEV-tools"
 }

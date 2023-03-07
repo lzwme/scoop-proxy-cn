@@ -1,32 +1,32 @@
 {
-  "version": "0.76.0",
-  "description": "A source code beautifier for C, C++, C#, ObjectiveC, D, Java, Pawn and VALA",
-  "homepage": "http://uncrustify.sourceforge.net",
-  "license": "LGPL-2.1-only",
   "architecture": {
-    "64bit": {
-      "url": "https://downloads.sourceforge.net/project/uncrustify/uncrustify-0.76.0/uncrustify-0.76.0_f-win64.zip",
-      "hash": "sha1:37d3a800166848b951169268d086d2ec7a70b656"
-    },
     "32bit": {
-      "url": "https://downloads.sourceforge.net/project/uncrustify/uncrustify-0.76.0/uncrustify-0.76.0_f-win32.zip",
-      "hash": "sha1:b33f5284033a937f090b19a0cbd9d051eba31d9c"
+      "hash": "1498b51b5b4de15a17b4cf561ecc72ba03c57f98b37da524a9022093ce362425",
+      "url": "https://downloads.sourceforge.net/project/uncrustify/uncrustify-0.76.0/uncrustify-0.76.0_f-win32.zip"
+    },
+    "64bit": {
+      "hash": "de7dbd4d5edd14b5e62b165da73e719719d5fb20735bdd1c01776d38de5d375e",
+      "url": "https://downloads.sourceforge.net/project/uncrustify/uncrustify-0.76.0/uncrustify-0.76.0_f-win64.zip"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://downloads.sourceforge.net/project/uncrustify/uncrustify-$version/uncrustify-$version_f-win32.zip"
+      },
+      "64bit": {
+        "url": "https://downloads.sourceforge.net/project/uncrustify/uncrustify-$version/uncrustify-$version_f-win64.zip"
+      }
     }
   },
   "bin": "bin\\uncrustify.exe",
   "checkver": {
-    "url": "https://sourceforge.net/projects/uncrustify/rss?path=/",
-    "regex": "/uncrustify-([\\d.]+)_"
+    "regex": "/uncrustify-([\\d.]+)_",
+    "url": "https://sourceforge.net/projects/uncrustify/rss?path=/"
   },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://downloads.sourceforge.net/project/uncrustify/uncrustify-$version/uncrustify-$version_f-win64.zip"
-      },
-      "32bit": {
-        "url": "https://downloads.sourceforge.net/project/uncrustify/uncrustify-$version/uncrustify-$version_f-win32.zip"
-      }
-    }
-  },
-  "_from": "okibcn/ScoopMaster"
+  "description": "A source code beautifier for C, C++, C#, ObjectiveC, D, Java, Pawn and VALA",
+  "homepage": "http://uncrustify.sourceforge.net",
+  "license": "LGPL-2.1-only",
+  "version": "0.76.0",
+  "_from": "anderlli0053/DEV-tools"
 }

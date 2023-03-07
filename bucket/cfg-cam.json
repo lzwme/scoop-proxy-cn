@@ -1,6 +1,10 @@
 {
-  "version": "1.0",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/SuslikV/cfg-cam/releases/download/$version/WebCameraConfig.exe"
+  },
+  "checkver": "github",
   "description": "Command-line application that saves and loads DirectShow webcam settings to/from the file",
+  "hash": "9B86576136912E33DB99E57CB5F392F7995C0397D869D400FAA58A67D2359CD4",
   "homepage": "https://github.com/SuslikV/cfg-cam",
   "license": "GPL-2.0-only",
   "notes": [
@@ -8,14 +12,10 @@
     "You can edit \"$dir\\cam_sett.cfg\" according to your needs.",
     "Run WebCameraConfig.exe on startup to load settings from cam_sett.cfg file"
   ],
-  "pre_install": "if (!(Test-Path \"$persist_dir\\cam_sett.cfg\")) { New-Item \"$dir\\cam_sett.cfg\" | Out-Null }",
-  "post_install": "Start-Process -FilePath \"$dir\\WebCameraConfig.exe\" -ArgumentList \"--savedev\" -NoNewWindow -Wait -RedirectStandardOutput \"$dir\\cam_sett.cfg\"",
-  "url": "https://ghproxy.com/https://github.com/SuslikV/cfg-cam/releases/download/1.0/WebCameraConfig.exe",
-  "hash": "9B86576136912E33DB99E57CB5F392F7995C0397D869D400FAA58A67D2359CD4",
   "persist": "cam_sett.cfg",
-  "checkver": "github",
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/SuslikV/cfg-cam/releases/download/$version/WebCameraConfig.exe"
-  },
-  "_from": "okibcn/ScoopMaster"
+  "post_install": "Start-Process -FilePath \"$dir\\WebCameraConfig.exe\" -ArgumentList \"--savedev\" -NoNewWindow -Wait -RedirectStandardOutput \"$dir\\cam_sett.cfg\"",
+  "pre_install": "if (!(Test-Path \"$persist_dir\\cam_sett.cfg\")) { New-Item \"$dir\\cam_sett.cfg\" | Out-Null }",
+  "url": "https://ghproxy.com/https://github.com/SuslikV/cfg-cam/releases/download/1.0/WebCameraConfig.exe",
+  "version": "1.0",
+  "_from": "anderlli0053/DEV-tools"
 }

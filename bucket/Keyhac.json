@@ -1,38 +1,34 @@
 {
-  "homepage": "https://sites.google.com/site/craftware/",
-  "description": "Key customization tool powered by Python",
-  "license": "Freeware",
+  "homepage": "https://sites.google.com/site/craftware/keyhac-ja",
   "version": "1.82",
-  "url": "https://crftwr.github.io/keyhac/download/keyhac_182.zip",
+  "license": "",
+  "description": "Keyhac",
+  "url": "http://crftwr.github.io/keyhac/download/keyhac_182.zip",
   "hash": "38c0fead7375ff4d1a7e5bfa4db75656d7d7849392da7ccaa8340c60f90ac679",
   "extract_dir": "keyhac",
-  "bin": "keyhac.exe",
   "shortcuts": [
     [
       "keyhac.exe",
       "Keyhac"
     ]
   ],
-  "persist": [
-    "config.py",
-    "keyhac.ini",
-    "dict",
-    "extension"
-  ],
-  "pre_install": [
-    "if (!(Test-Path \"$persist_dir\\config.py\")) {",
-    "    Copy-Item -Path \"$dir\\_config.py\" -Destination \"$dir\\config.py\"",
-    "}",
-    "if (!(Test-Path \"$persist_dir\\keyhac.ini\")) {",
-    "    New-Item -Path \"$dir\\keyhac.ini\" -ItemType File | Out-Null",
-    "}"
+  "post_install": [
+    "",
+    "$shortcuts = @(arch_specific 'shortcuts' $manifest $arch)",
+    "$shortcutName = $shortcuts[0].item(1)",
+    "$scoop_startmenu_folder = shortcut_folder $global",
+    "$wsShell = New-Object -ComObject WScript.Shell",
+    "$shortcut = $wsShell.CreateShortcut(\"$scoop_startmenu_folder\\$shortcutName.lnk\")",
+    "$shortcut.WorkingDirectory = \"$dir\"",
+    "$shortcut.Save()",
+    ""
   ],
   "checkver": {
-    "url": "https://sites.google.com/site/craftware/keyhac-en",
-    "re": "Keyhac for Windows ver (?<version>[\\d.]+)"
+    "url": "https://sites.google.com/site/craftware/keyhac-ja",
+    "re": "Keyhac for Windows ver ([\\d.]+)"
   },
   "autoupdate": {
-    "url": "https://crftwr.github.io/keyhac/download/keyhac_$cleanVersion.zip"
+    "url": "http://crftwr.github.io/keyhac/download/keyhac_$cleanVersion.zip"
   },
-  "_from": "okibcn/ScoopMaster"
+  "_from": "anderlli0053/DEV-tools"
 }

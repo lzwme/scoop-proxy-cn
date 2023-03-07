@@ -1,46 +1,27 @@
 {
-  "version": "2.4.2",
-  "description": "A free Japanese text editor for Windows.",
-  "homepage": "https://sakura-editor.github.io/",
-  "license": "zlib",
-  "url": "https://ghproxy.com/https://github.com/sakura-editor/sakura/releases/download/v2.4.2/sakura-tag-v2.4.2-build4203-a3e63915b-Win32-Release-Exe.zip",
-  "hash": "md5:ba11783ae05419c76817f04d7a78467d",
-  "post_install": [
-    "if ($bucket) {",
-    "    $scriptsdir = \"$bucketsdir\\$bucket\\scripts\"",
-    "} else {",
-    "    $scriptsdir = \"$(Split-Path $(Split-Path $url -Parent) -Parent)\\scripts\"",
-    "}",
-    "'install-context.reg', 'uninstall-context.reg' | ForEach-Object {",
-    "    $sakurapath = \"$dir\\sakura.exe\".Replace('\\', '\\\\')",
-    "    $content = (Get-Content \"$scriptsdir\\sakura-editor\\$_\").Replace('$sakura', $sakurapath)",
-    "    if ($global) { $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE') }",
-    "    Set-Content \"$dir\\$_\" $content",
-    "}",
-    "@\"",
-    "[Settings]",
-    "MultiUser=1",
-    "UserRootFolder=0",
-    "UserSubFolder=sakura",
-    "\"@ | Out-File \"$dir\\sakura.exe.ini\""
-  ],
   "bin": "sakura.exe",
+  "checkver": {
+    "regex": "/releases/tag/(?:v|V)?([\\d.]+)",
+    "url": "https://github.com/sakura-editor/sakura/releases/latest"
+  },
+  "description": "Japanese text editor for Windows",
+  "extract_to": "inst",
+  "hash": "494e92e6e3d751a99711815882e30497a3b0cf096bf164a2b61654c1ae51d50a",
+  "homepage": "https://sakura-editor.github.io/",
+  "license": "Zlib",
+  "notes": "INI file will be stored in AppData\\Roaming\\sakura\\",
+  "pre_install": [
+    "Expand-InnoArchive \"$dir\\inst\\sakura_install2-4-2-6048-x86.exe\" \"$dir\"",
+    "Copy-Item \"$dir\\sakura.exe,2.manifest\" \"$dir\\sakura.exe.manifest\"",
+    "Remove-Item \"$dir\\inst\" -Recurse"
+  ],
   "shortcuts": [
     [
       "sakura.exe",
-      "Sakura Editor"
+      "SAKURA Editor"
     ]
   ],
-  "checkver": {
-    "github": "https://github.com/sakura-editor/sakura",
-    "regex": "(?<file>sakura-tag-v(?<version>[\\d.]+)-[\\w-]*-Exe\\.zip)"
-  },
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/sakura-editor/sakura/releases/download/v$version/$matchFile",
-    "hash": {
-      "url": "$url.md5",
-      "find": "$md5"
-    }
-  },
-  "_from": "okibcn/ScoopMaster"
+  "url": "https://ghproxy.com/https://github.com/sakura-editor/sakura/releases/download/v2.4.2/sakura-tag-v2.4.2-build4203-a3e63915b-Win32-Release-Installer.zip",
+  "version": "2.4.2",
+  "_from": "anderlli0053/DEV-tools"
 }

@@ -1,6 +1,4 @@
 {
-  "url": "https://www.linqpad.net/GetFile.aspx?LINQPad6.zip",
-  "version": "6.9",
   "bin": [
     [
       "linqpad6.exe",
@@ -23,6 +21,11 @@
       ""
     ]
   ],
+  "pre_install": [
+    "Move-Item \"$dir\\GetFile.aspx\" \"$dir\\1.zip\"",
+    "Expand-Archive -Path \"$dir\\1.zip\" -DestinationPath \"$dir\" -Force",
+    "Remove-Item \"$dir\\1.zip\""
+  ],
   "shortcuts": [
     [
       "linqpad6.exe",
@@ -37,10 +40,7 @@
       "Download .NET Core 3"
     ]
   ],
-  "pre_install": [
-    "Move-Item \"$dir\\GetFile.aspx\" \"$dir\\1.zip\"",
-    "Expand-Archive -Path \"$dir\\1.zip\" -DestinationPath \"$dir\" -Force",
-    "Remove-Item \"$dir\\1.zip\""
-  ],
-  "_from": "okibcn/ScoopMaster"
+  "url": "https://www.linqpad.net/GetFile.aspx?LINQPad6.zip",
+  "version": "6.9",
+  "_from": "anderlli0053/DEV-tools"
 }

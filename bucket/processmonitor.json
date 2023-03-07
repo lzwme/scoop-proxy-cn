@@ -1,42 +1,72 @@
 {
-  "homepage": "https://docs.microsoft.com/en-us/sysinternals/downloads/procmon",
-  "description": "ProcessMonitor. Monitors file system, registry, process, thread and DLL activity in real-time.",
-  "version": "3.92",
-  "license": {
-    "identifier": "Microsoft SysInternals EULA",
-    "url": "https://docs.microsoft.com/en-us/sysinternals/license-terms"
-  },
-  "url": "https://download.sysinternals.com/files/ProcessMonitor.zip",
-  "hash": "3c59f6799c383c417413ff3250768069b9a81e7759a28aa751e0a18a8e9e1d7d",
   "architecture": {
-    "64bit": {
-      "shortcuts": [
-        [
-          "Procmon64.exe",
-          "Process Monitor"
-        ]
-      ]
-    },
     "32bit": {
+      "bin": "Procmon.exe",
       "shortcuts": [
         [
           "Procmon.exe",
-          "Process Monitor"
+          "SysInternals\\ProcessMonitor"
+        ]
+      ]
+    },
+    "64bit": {
+      "bin": [
+        "Procmon64.exe",
+        [
+          "Procmon64.exe",
+          "Procmon"
+        ]
+      ],
+      "shortcuts": [
+        [
+          "Procmon64.exe",
+          "SysInternals\\ProcessMonitor"
         ]
       ]
     },
     "arm64": {
+      "bin": [
+        "Procmon64a.exe",
+        [
+          "Procmon64a.exe",
+          "Procmon"
+        ]
+      ],
       "shortcuts": [
         [
           "Procmon64a.exe",
-          "Process Monitor"
+          "SysInternals\\ProcessMonitor"
         ]
       ]
     }
   },
-  "checkver": "Process Monitor\\s+v([\\d.]+)</h1",
   "autoupdate": {
     "url": "https://download.sysinternals.com/files/ProcessMonitor.zip"
   },
-  "_from": "okibcn/ScoopMaster"
+  "checkver": "Process Monitor\\s+v([\\d.]+)</h1",
+  "description": "ProcessMonitor. Monitors file system, registry, process, thread and DLL activity in real-time.",
+  "hash": "3c59f6799c383c417413ff3250768069b9a81e7759a28aa751e0a18a8e9e1d7d",
+  "homepage": "https://docs.microsoft.com/en-us/sysinternals/downloads/procmon",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://docs.microsoft.com/en-us/sysinternals/license-terms"
+  },
+  "pre_install": [
+    "$sysint = 'HKCU:\\SOFTWARE\\Sysinternals'",
+    "$fin = \"$sysint\\Process Monitor\"",
+    "New-Item $sysint, $fin -ErrorAction 'SilentlyContinue' | Out-Null",
+    "Set-ItemProperty -Path $fin -Name 'EulaAccepted' -Value 1 -Type 'DWord' -Force | Out-Null"
+  ],
+  "uninstaller": {
+    "script": [
+      "if ($purge) {",
+      "    $sysInt = 'HKCU:\\SOFTWARE\\Sysinternals'",
+      "    Remove-Item \"$sysInt\\Process Monitor\" -ErrorAction 'SilentlyContinue' -Force -Recurse",
+      "    if ((Get-ChildItem $sysInt).Count -eq 0) { Remove-Item $sysInt -ErrorAction 'SilentlyContinue' -Force -Recurse }",
+      "}"
+    ]
+  },
+  "url": "https://download.sysinternals.com/files/ProcessMonitor.zip",
+  "version": "3.92",
+  "_from": "anderlli0053/DEV-tools"
 }

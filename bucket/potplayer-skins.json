@@ -1,17 +1,19 @@
 {
-  "version": "20220319",
-  "description": "PotPlayer skin",
-  "homepage": "https://www.deviantart.com/mr-web/art/Modern-W10-Skin-for-PotPlayer-ITA-ENG-678381013",
-  "license": "Unknown",
-  "suggest": {
-    "potplayer": [
-      "potplayer",
-      "meta/potplayer-noad-portable",
-      "meta/potplayer-dev-noad-portable"
-    ]
+  "autoupdate": {
+    "hash": {
+      "mode": "extract",
+      "regex": "^$sha256([\\s]+)$basename",
+      "url": "https://scoop-apps.vercel.app/potplayer"
+    },
+    "url": "https://pan.jiemi.workers.dev/?file=/scoop/PotPlayer/$matchFilename"
   },
-  "url": "https://pan.jiemi.workers.dev/?file=/scoop/PotPlayer/potplayer-skin-20220319.7z",
+  "checkver": {
+    "regex": "(?s)(?<filename>potplayer-skin-(?<version>[\\d]+)\\.(?:zip|7z))",
+    "url": "https://scoop-apps.vercel.app/potplayer"
+  },
+  "description": "PotPlayer skin",
   "hash": "02fa02af3845480d85677ecbe731b5c9dbc914519ae490dd068660f091399d39",
+  "homepage": "https://www.deviantart.com/mr-web/art/Modern-W10-Skin-for-PotPlayer-ITA-ENG-678381013",
   "installer": {
     "script": [
       "function CopyFile([String] $potplayer_file_dest) {",
@@ -25,6 +27,14 @@
       "CopyFile \"potplayer\"",
       "CopyFile \"potplayer-noad-portable\"",
       "CopyFile \"potplayer-dev-noad-portable\""
+    ]
+  },
+  "license": "Unknown",
+  "suggest": {
+    "potplayer": [
+      "potplayer",
+      "meta/potplayer-noad-portable",
+      "meta/potplayer-dev-noad-portable"
     ]
   },
   "uninstaller": {
@@ -43,17 +53,7 @@
       "Write-Host \"The '$app' has been uninstalled.\" -Foreground Magenta"
     ]
   },
-  "checkver": {
-    "url": "https://scoop-apps.vercel.app/potplayer",
-    "regex": "(?s)(?<filename>potplayer-skin-(?<version>[\\d]+)\\.(?:zip|7z))"
-  },
-  "autoupdate": {
-    "url": "https://pan.jiemi.workers.dev/?file=/scoop/PotPlayer/$matchFilename",
-    "hash": {
-      "url": "https://scoop-apps.vercel.app/potplayer",
-      "mode": "extract",
-      "regex": "^$sha256([\\s]+)$basename"
-    }
-  },
-  "_from": "okibcn/ScoopMaster"
+  "url": "https://pan.jiemi.workers.dev/?file=/scoop/PotPlayer/potplayer-skin-20220319.7z",
+  "version": "20220319",
+  "_from": "anderlli0053/DEV-tools"
 }

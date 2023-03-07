@@ -1,29 +1,29 @@
 {
-  "homepage": "https://portableapps.com/apps/utilities/OpenJDKJRE64",
-  "description": "Java runtime environment (JRE)",
-  "version": "14.0.1_Build_7",
-  "license": "",
-  "url": "https://downloads.sourceforge.net/portableapps/OpenJDKJRE64_14.0.1_Build_7.paf.exe#/dl.7z",
-  "hash": "md5:2044a1c9c030f2c773f93658347e22eb",
+  "autoupdate": {
+    "hash": {
+      "regex": "MD5 Hash: +[\\w]{32}",
+      "url": "https://portableapps.com/apps/utilities/OpenJDKJRE64"
+    },
+    "url": "https://downloads.sourceforge.net/portableapps/OpenJDKJRE64_$underscoreVersion.paf.exe"
+  },
   "bin": "OpenJDKJRE64.exe",
+  "checkver": {
+    "re": "Version \\s+([\\w\\.]* for Win",
+    "url": "https://portableapps.com/apps/utilities/OpenJDKJRE64"
+  },
+  "description": "Java runtime environment (JRE)",
+  "hash": "md5:2044a1c9c030f2c773f93658347e22eb",
+  "homepage": "https://portableapps.com/apps/utilities/OpenJDKJRE64",
+  "license": "",
+  "persist": "Data",
+  "post_install": "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
   "shortcuts": [
     [
       "OpenJDKJRE64.exe",
       "OpenJDKJRE64"
     ]
   ],
-  "persist": "Data",
-  "checkver": {
-    "url": "https://portableapps.com/apps/utilities/OpenJDKJRE64",
-    "re": "Version \\s+([\\w\\.]* for Win"
-  },
-  "autoupdate": {
-    "url": "https://downloads.sourceforge.net/portableapps/OpenJDKJRE64_$underscoreVersion.paf.exe",
-    "hash": {
-      "url": "https://portableapps.com/apps/utilities/OpenJDKJRE64",
-      "regex": "MD5 Hash: +[\\w]{32}"
-    }
-  },
-  "post_install": "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
-  "_from": "okibcn/ScoopMaster"
+  "url": "https://downloads.sourceforge.net/portableapps/OpenJDKJRE64_14.0.1_Build_7.paf.exe#/dl.7z",
+  "version": "14.0.1_Build_7",
+  "_from": "anderlli0053/DEV-tools"
 }

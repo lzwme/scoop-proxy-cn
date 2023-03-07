@@ -1,25 +1,30 @@
 {
-  "version": "2.304",
-  "description": "JetBrains Mono - the free and open-source typeface for developers",
-  "license": "OFL-1.1",
-  "homepage": "https://github.com/JetBrains/JetBrainsMono",
-  "url": "https://ghproxy.com/https://github.com/JetBrains/JetBrainsMono/releases/download/v2.304/JetBrainsMono-2.304.zip",
-  "hash": "6f6376c6ed2960ea8a963cd7387ec9d76e3f629125bc33d1fdcd7eb7012f7bbf",
-  "extract_dir": "fonts/variable",
-  "checkver": "github",
   "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/JetBrains/JetBrainsMono/releases/download/v$version/JetBrainsMono-$version.zip"
+    "url": [
+      "https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/variable/JetBrainsMono%5Bwght%5D.ttf",
+      "https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/variable/JetBrainsMono-Italic%5Bwght%5D.ttf"
+    ]
   },
+  "checkver": {
+    "github": "https://github.com/JetBrains/JetBrainsMono"
+  },
+  "description": "JetBrains Mono. A typeface for developers​",
+  "hash": [
+    "9a4444c811d0f6a513e2390a4490a1da6acf9a63e7cce7eb763850856a4038fa",
+    "f442070480ca1f423b0a8606384d04deed3a28a0e3be357449d348a7977da2f6"
+  ],
+  "homepage": "https://www.jetbrains.com/lp/mono/",
   "installer": {
     "script": [
       "if(!(is_admin)) { error \"Admin rights are required.\"; exit 1 }",
-      "Get-ChildItem $dir -Filter 'JetBrainsMonoNL-*.ttf' -Recurse | ForEach-Object {",
+      "Get-ChildItem $dir -Filter '*.ttf' -Recurse | ForEach-Object {",
       "  New-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $_.Name -Force | Out-Null",
       "  Copy-Item $_.FullName -destination \"$env:windir\\Fonts\"",
       "}",
       "Write-Host \"Remember to uninstall this app before installing a JetBrains IDE.\" -Foreground Magenta"
     ]
   },
+  "license": "OFL-1.1",
   "uninstaller": {
     "script": [
       "if(!(is_admin)) { error \"Admin rights are required.\"; exit 1 }",
@@ -30,5 +35,10 @@
       "Write-Host \"'JetBrains Mono' variable TTF files have been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
     ]
   },
-  "_from": "okibcn/ScoopMaster"
+  "url": [
+    "https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/variable/JetBrainsMono%5Bwght%5D.ttf",
+    "https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/variable/JetBrainsMono-Italic%5Bwght%5D.ttf"
+  ],
+  "version": "2.304",
+  "_from": "anderlli0053/DEV-tools"
 }

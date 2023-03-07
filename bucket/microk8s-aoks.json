@@ -1,19 +1,9 @@
 {
-  "version": "1.26",
-  "description": "Low-ops, minimal production Kubernetes, for devs, cloud, clusters, workstations, Edge and IoT.",
-  "homepage": "https://microk8s.io/",
-  "license": "Apache-2.0",
   "architecture": {
     "64bit": {
-      "url": "https://microk8s.io/microk8s-installer.exe#/dl.7z",
-      "hash": "ab41b6f7b2a72ebdc417933754b918332f39d0422d2370ff36beb278b86505b1"
+      "hash": "ab41b6f7b2a72ebdc417933754b918332f39d0422d2370ff36beb278b86505b1",
+      "url": "https://microk8s.io/microk8s-installer.exe#/dl.7z"
     }
-  },
-  "depends": "main/multipass",
-  "bin": "microk8s.exe",
-  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\uninstall*\", \"$dir\\multipass.exe\" -Force -Recurse",
-  "checkver": {
-    "github": "https://github.com/canonical/microk8s"
   },
   "autoupdate": {
     "architecture": {
@@ -22,5 +12,15 @@
       }
     }
   },
-  "_from": "okibcn/ScoopMaster"
+  "bin": "microk8s.exe",
+  "checkver": {
+    "github": "https://github.com/canonical/microk8s"
+  },
+  "depends": "main/multipass",
+  "description": "Low-ops, minimal production Kubernetes, for devs, cloud, clusters, workstations, Edge and IoT.",
+  "homepage": "https://microk8s.io/",
+  "license": "Apache-2.0",
+  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\uninstall*\", \"$dir\\multipass.exe\" -Force -Recurse",
+  "version": "1.26",
+  "_from": "anderlli0053/DEV-tools"
 }

@@ -1,62 +1,48 @@
 {
-  "##": "Based on https://github.com/404NetworkError/scoop-bucket/blob/main/bucket/flawless-widescreen.json",
   "version": "1.0.15",
-  "description": "Fixes and patches to get games functioning correctly in Ultrawide/Surround/Eyefinity resolutions.",
+  "description": "A tool for crafting fixes and patches to get games functioning correctly in UltraWide/Surround/Eyefinity gaming resolutions",
   "homepage": "https://www.flawlesswidescreen.org",
-  "license": {
-    "identifier": "Freeware",
-    "url": "https://www.flawlesswidescreen.org/fws/core/licences/Summary.txt"
-  },
+  "license": "Freeware",
   "architecture": {
-    "32bit": {
-      "url": "https://www.flawlesswidescreen.org/fws/flawlesswidescreen.zip",
-      "hash": "md5:691765466B6B6F8B16C33C68721679CD"
-    },
     "64bit": {
       "url": "https://www.flawlesswidescreen.org/fws/flawlesswidescreen_x64.zip",
-      "hash": "md5:5E541E5438EE59515CF89E6FC9943E25"
+      "hash": "md5:5e541e5438ee59515cf89e6fc9943e25"
+    },
+    "32bit": {
+      "url": "https://www.flawlesswidescreen.org/fws/flawlesswidescreen.zip",
+      "hash": "md5:691765466b6b6f8b16c33c68721679cd"
     }
   },
-  "pre_install": [
-    "If (!(Test-Path \"$persist_dir\\Plugins\")) { New-Item \"$dir\\Plugins\" -ItemType Directory | Out-Null }",
-    "If (!(Test-Path \"$persist_dir\\settings.xml\")) { New-Item \"$dir\\settings.xml\" -ItemType File | Out-Null }"
+  "persist": [
+    "settings.xml",
+    "Plugins"
   ],
+  "bin": "FlawlessWidescreen.exe",
   "shortcuts": [
     [
       "FlawlessWidescreen.exe",
       "Flawless Widescreeen"
     ]
   ],
-  "persist": [
-    "Plugins",
-    "settings.xml"
-  ],
-  "checkver": {
-    "url": "https://www.flawlesswidescreen.org/",
-    "regex": "Current Version is ([\\d.]+)"
-  },
+  "pre_install": "if(!(Test-Path \"$persist_dir\\res\\settings.xml\")) { New-Item \"$dir\\settings.xml\" | Out-Null }",
+  "checkver": "Current Version is ([\\d.]+)",
   "autoupdate": {
     "architecture": {
-      "32bit": {
-        "url": "https://www.flawlesswidescreen.org/fws/flawlesswidescreen.zip",
-        "hash": {
-          "url": "https://www.flawlesswidescreen.org/",
-          "regex": "x86 ZIP Package.*.+\\s+.+MD5:.* $md5"
-        }
-      },
       "64bit": {
         "url": "https://www.flawlesswidescreen.org/fws/flawlesswidescreen_x64.zip",
         "hash": {
           "url": "https://www.flawlesswidescreen.org/",
-          "regex": "x64 ZIP Package.*.+\\s+.+MD5:.* $md5"
+          "regex": "x64 ZIP Package \\(Portable\\)</h4>[\\s\\S]+?<div><span class=\"bold\">MD5:</span> $md5"
+        }
+      },
+      "32bit": {
+        "url": "https://www.flawlesswidescreen.org/fws/flawlesswidescreen.zip",
+        "hash": {
+          "url": "https://www.flawlesswidescreen.org/",
+          "regex": "x86 ZIP Package \\(Portable\\)</h4>[\\s\\S]+?<div><span class=\"bold\">MD5:</span> $md5"
         }
       }
     }
   },
-  "notes": [
-    "You will be asked to remove a previous installation. You can safely choose \"No\".",
-    "Flawless Widescreeen detects an existing installation because the settings file",
-    "is created at install time in order to persist it between updates."
-  ],
-  "_from": "okibcn/ScoopMaster"
+  "_from": "anderlli0053/DEV-tools"
 }

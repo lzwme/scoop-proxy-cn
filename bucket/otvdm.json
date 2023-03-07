@@ -1,16 +1,23 @@
 {
-  "homepage": "https://github.com/otya128/winevdm",
-  "version": "0.8.1",
-  "description": "16-bit Windows (Windows 1.x, 2.x, 3.0, 3.1, etc.) on 64-bit Windows. An altered version of winevdm (a 16-bit Windows emulator), ported to 64-bit Windows.",
-  "checkver": {
-    "url": "https://github.com/otya128/winevdm/releases/latest",
-    "re": "<a href=\"(/otya128/winevdm/releases/download/.*?/otvdm-v)((\\d+\\.)+\\d+).zip\" ",
-    "replace": "${2}"
-  },
-  "url": "https://ghproxy.com/https://github.com//otya128/winevdm/releases/download/v0.8.0/otvdm-v0.8.1.zip",
-  "hash": "9484379f58835f35ca770e03762b4cc1adf80142b556df3dfd1d98b44c4ae8cf",
   "autoupdate": {
-    "url": "https://github.com/$match1$version.zip"
+    "extract_dir": "otvdm-v$version",
+    "url": "https://ghproxy.com/https://github.com//otya128/winevdm/releases/download/v0.8.0/otvdm-v$version.zip"
   },
-  "_from": "okibcn/ScoopMaster"
+  "bin": "otvdm.exe",
+  "checkver": {
+    "regex": "Download otvdm-v([\\d.]+).zip",
+    "url": "https://github.com/otya128/winevdm/releases/latest"
+  },
+  "description": "Port of winevdm, 16-bit Windows on 64-bit Windows",
+  "extract_dir": "otvdm-v0.8.1",
+  "hash": "9484379f58835f35ca770e03762b4cc1adf80142b556df3dfd1d98b44c4ae8cf",
+  "homepage": "https://github.com/otya128/winevdm",
+  "license": "GPL-2.0-only",
+  "notes": [
+    "Go into \"$dir\" and feel free to install otvdm with or without the console visible.",
+    "Just run \"install\" or \"install (no console)\"! You can later run uninstall.reg if you wish to remove it."
+  ],
+  "url": "https://ghproxy.com/https://github.com//otya128/winevdm/releases/download/v0.8.0/otvdm-v0.8.1.zip",
+  "version": "0.8.1",
+  "_from": "anderlli0053/DEV-tools"
 }

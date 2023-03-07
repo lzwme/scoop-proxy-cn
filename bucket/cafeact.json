@@ -1,18 +1,17 @@
 {
-  "version": "3.9.8.1",
+  "autoupdate": {
+    "url": "https://cafemenu-dl.xivcdn.com/act/update/download/$version_sfx.exe#/dl.7z"
+  },
+  "checkver": {
+    "regex": "([\\d.]+)_sfx\\.exe",
+    "script": "(Invoke-WebRequest -Uri 'https://cafemenu.lv5.one/act/update/download?channel=release&variant=sfx&version=latest' -MaximumRedirection 0 -SkipHttpErrorCheck -ErrorAction:SilentlyContinue).Headers.Location"
+  },
   "description": "ACT 国服整合，自带超方便插件中心的 Advanced Combat Tracker 整合版。",
+  "hash": "4ea9a9bda544dfc546484031c1c2f46aeeb1e0e967186373c6d0102b9b5b06ce",
   "homepage": "https://ffcafe.org/act/",
   "license": {
     "identifier": "Freeware"
   },
-  "url": "https://cafemenu-dl.xivcdn.com/act/update/download/3.9.8.1_sfx.exe#/dl.7z",
-  "hash": "4ea9a9bda544dfc546484031c1c2f46aeeb1e0e967186373c6d0102b9b5b06ce",
-  "shortcuts": [
-    [
-      "CafeACT.exe",
-      "CafeACT"
-    ]
-  ],
   "persist": [
     "AppData",
     "Backup",
@@ -20,12 +19,13 @@
     "Plugins",
     "Temp"
   ],
-  "checkver": {
-    "script": "(Invoke-WebRequest -Uri 'https://cafemenu.lv5.one/act/update/download?channel=release&variant=sfx&version=latest' -MaximumRedirection 0 -SkipHttpErrorCheck -ErrorAction:SilentlyContinue).Headers.Location",
-    "regex": "([\\d.]+)_sfx\\.exe"
-  },
-  "autoupdate": {
-    "url": "https://cafemenu-dl.xivcdn.com/act/update/download/$version_sfx.exe#/dl.7z"
-  },
-  "_from": "okibcn/ScoopMaster"
+  "shortcuts": [
+    [
+      "CafeACT.exe",
+      "CafeACT"
+    ]
+  ],
+  "url": "https://cafemenu-dl.xivcdn.com/act/update/download/3.9.8.1_sfx.exe#/dl.7z",
+  "version": "3.9.8.1",
+  "_from": "anderlli0053/DEV-tools"
 }

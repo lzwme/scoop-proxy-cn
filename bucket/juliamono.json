@@ -1,15 +1,11 @@
 {
-  "version": "0.048",
-  "description": "repository for JuliaMono, a monospaced font with reasonable Unicode support.",
-  "license": "OFL-1.1",
-  "homepage": "https://github.com/cormullion/juliamono",
-  "url": "https://ghproxy.com/https://github.com/cormullion/juliamono/releases/download/v0.048/JuliaMono.zip",
-  "hash": "8a08fc395370e7c698523cafbd58b5f38110a83b9c62bcc75b11dff0dbceaf66",
-  "checkver": "github",
   "autoupdate": {
     "url": "https://ghproxy.com/https://github.com/cormullion/juliamono/releases/download/v$version/JuliaMono.zip"
   },
-  "pre_install": "Get-ChildItem $dir -filter *Latin.ttf | Remove-Item",
+  "checkver": "github",
+  "description": "repository for JuliaMono, a monospaced font with reasonable Unicode support.",
+  "hash": "8a08fc395370e7c698523cafbd58b5f38110a83b9c62bcc75b11dff0dbceaf66",
+  "homepage": "https://github.com/cormullion/juliamono",
   "installer": {
     "script": [
       "if(!(is_admin)) { error \"Admin rights are required.\"; exit 1 }",
@@ -19,6 +15,8 @@
       "}"
     ]
   },
+  "license": "OFL-1.1",
+  "pre_install": "Get-ChildItem $dir -filter *Latin.ttf | Remove-Item",
   "uninstaller": {
     "script": [
       "if(!(is_admin)) { error \"Admin rights are required.\"; exit 1 }",
@@ -29,5 +27,7 @@
       "Write-Host \"'JuliaMono' TTF files have been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
     ]
   },
-  "_from": "okibcn/ScoopMaster"
+  "url": "https://ghproxy.com/https://github.com/cormullion/juliamono/releases/download/v0.048/JuliaMono.zip",
+  "version": "0.048",
+  "_from": "anderlli0053/DEV-tools"
 }

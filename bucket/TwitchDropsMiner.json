@@ -1,0 +1,44 @@
+{
+  "architecture": {
+    "64bit": {
+      "extract_dir": "Twitch Drops Miner",
+      "hash": "b337d8accefd133d90aa19d606b442314a49875b369852fb895fa56fd96fe23c",
+      "url": "https://ghproxy.com/https://github.com/DevilXD/TwitchDropsMiner/releases/download/v15/Twitch.Drops.Miner.zip"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/DevilXD/TwitchDropsMiner/releases/download/v$version/Twitch.Drops.Miner.zip"
+      }
+    }
+  },
+  "bin": [
+    [
+      "Twitch Drops Miner (by DevilXD).exe",
+      "TwitchDrops"
+    ]
+  ],
+  "checkver": "github",
+  "description": "twitch",
+  "homepage": "https://github.com/DevilXD/TwitchDropsMiner",
+  "license": "mit",
+  "persist": [
+    "cache",
+    "settings.json",
+    "cookies.jar"
+  ],
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\settings.json\")) {",
+    "  New-Item \"$persist_dir\\settings.json\", \"$persist_dir\\cookies.jar\"",
+    "}"
+  ],
+  "shortcuts": [
+    [
+      "Twitch Drops Miner (by DevilXD).exe",
+      "Twitch Drops"
+    ]
+  ],
+  "version": "15",
+  "_from": "anderlli0053/DEV-tools"
+}

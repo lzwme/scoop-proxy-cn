@@ -1,0 +1,37 @@
+{
+  "version": "13.0.0-4",
+  "description": "Recursively searches directories for a regex pattern. Microsoft compiled",
+  "homepage": "https://github.com/microsoft/ripgrep-prebuilt",
+  "license": "MIT",
+  "suggest": {
+    "vcredist": "extras/vcredist2022"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/microsoft/ripgrep-prebuilt/releases/download/v13.0.0-4/ripgrep-v13.0.0-4-x86_64-pc-windows-msvc.zip",
+      "hash": "5c89616bd5971735d786810cef6c833037bd7c4dbf1bcd7bb297b942561d0a3a"
+    },
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/microsoft/ripgrep-prebuilt/releases/download/v13.0.0-4/ripgrep-v13.0.0-4-i686-pc-windows-msvc.zip",
+      "hash": "48163be059705a53bcc17158ce43a9075fdc8b96f03aabc9f1a592ce4d29162e"
+    }
+  },
+  "bin": "rg.exe",
+  "checkver": {
+    "github": "https://github.com/microsoft/ripgrep-prebuilt",
+    "regex": "v(?<version>\\d+\\.\\d+\\.\\d+(?:-\\d+)?)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/microsoft/ripgrep-prebuilt/releases/download/v$version/ripgrep-$version-x86_64-pc-windows-msvc.zip",
+        "extract_dir": "ripgrep-v$version-x86_64-pc-windows-msvc"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/microsoft/ripgrep-prebuilt/releases/download/v$version/ripgrep-$version-i686-pc-windows-msvc.zip",
+        "extract_dir": "ripgrep-v$version-i686-pc-windows-msvc"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

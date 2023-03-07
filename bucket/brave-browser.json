@@ -1,35 +1,31 @@
 {
-  "version": "1.48.171",
-  "description": "Brave. Secure, Fast & Private Web Browser with Adblocker",
-  "homepage": "https://brave.com/",
-  "license": {
-    "identifier": "Freeware,BSD-3-Clause,GPL-3.0-only,...",
-    "url": "https://github.com/brave/brave-browser/blob/master/LICENSE"
-  },
-  "changelog": "https://brave.com/latest/",
   "architecture": {
-    "64bit": {
-      "url": "https://ghproxy.com/https://github.com/brave/brave-browser/releases/download/v1.48.171/BraveBrowserStandaloneSilentSetup.exe#/setup.exe",
-      "hash": "4d6d98bebe12393ee53935cb04a7b3ddbc0a498b62a21474eae00ddd3a7d0f10"
-    },
     "32bit": {
-      "url": "https://ghproxy.com/https://github.com/brave/brave-browser/releases/download/v1.48.171/BraveBrowserStandaloneSilentSetup32.exe#/setup.exe",
-      "hash": "0275d337706e3e12f34f9ccc3ff49213da6bfcd32a4f2d521e454ee41bdeabd5"
+      "hash": "0275d337706e3e12f34f9ccc3ff49213da6bfcd32a4f2d521e454ee41bdeabd5",
+      "url": "https://ghproxy.com/https://github.com/brave/brave-browser/releases/download/v1.48.171/BraveBrowserStandaloneSilentSetup32.exe#/setup.exe"
+    },
+    "64bit": {
+      "hash": "4d6d98bebe12393ee53935cb04a7b3ddbc0a498b62a21474eae00ddd3a7d0f10",
+      "url": "https://ghproxy.com/https://github.com/brave/brave-browser/releases/download/v1.48.171/BraveBrowserStandaloneSilentSetup.exe#/setup.exe"
     }
   },
-  "pre_download": "Assert-Administrator",
-  "pre_install": [
-    "$processname = \"Brave\"",
-    "$process = Get-Process $processname -ErrorAction SilentlyContinue",
-    "if ($process) {",
-    "   $process.CloseMainWindow()",
-    "   Start-Sleep -Seconds 5",
-    "   if (!$process.HasExited) {",
-    "       Start-Sleep -Seconds 25",
-    "       $process | Stop-Process -Force",
-    "   }",
-    "}"
-  ],
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/brave/brave-browser/releases/download/v$version/BraveBrowserStandaloneSilentSetup32.exe#/setup.exe"
+      },
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/brave/brave-browser/releases/download/v$version/BraveBrowserStandaloneSilentSetup.exe#/setup.exe"
+      }
+    }
+  },
+  "changelog": "https://brave.com/latest/",
+  "checkver": {
+    "regex": "releases/tag/v([\\d.]+)",
+    "url": "https://github.com/brave/brave-browser/blob/master/CHANGELOG_DESKTOP.md"
+  },
+  "description": "Brave. Secure, Fast & Private Web Browser with Adblocker",
+  "homepage": "https://brave.com/",
   "installer": {
     "script": [
       "$LocalApplicationData = [Environment]::GetFolderPath(\"LocalApplicationData\")",
@@ -45,24 +41,28 @@
       "if (Test-Path -Path \"$dir\\setup.exe\") { Remove-Item \"$dir\\setup.exe\" -Force }"
     ]
   },
+  "license": {
+    "identifier": "Freeware,BSD-3-Clause,GPL-3.0-only,...",
+    "url": "https://github.com/brave/brave-browser/blob/master/LICENSE"
+  },
   "post_install": [
     "$programname = \"Brave\"",
     "$DesktopPath = [Environment]::GetFolderPath(\"DesktopDirectory\")",
     "if (Test-Path \"$DesktopPath\\$programname.lnk\") {Remove-Item \"$DesktopPath\\$programname.lnk\" -Force}"
   ],
-  "checkver": {
-    "url": "https://github.com/brave/brave-browser/blob/master/CHANGELOG_DESKTOP.md",
-    "regex": "releases/tag/v([\\d.]+)"
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.com/https://github.com/brave/brave-browser/releases/download/v$version/BraveBrowserStandaloneSilentSetup.exe#/setup.exe"
-      },
-      "32bit": {
-        "url": "https://ghproxy.com/https://github.com/brave/brave-browser/releases/download/v$version/BraveBrowserStandaloneSilentSetup32.exe#/setup.exe"
-      }
-    }
-  },
-  "_from": "okibcn/ScoopMaster"
+  "pre_download": "Assert-Administrator",
+  "pre_install": [
+    "$processname = \"Brave\"",
+    "$process = Get-Process $processname -ErrorAction SilentlyContinue",
+    "if ($process) {",
+    "   $process.CloseMainWindow()",
+    "   Start-Sleep -Seconds 5",
+    "   if (!$process.HasExited) {",
+    "       Start-Sleep -Seconds 25",
+    "       $process | Stop-Process -Force",
+    "   }",
+    "}"
+  ],
+  "version": "1.48.171",
+  "_from": "anderlli0053/DEV-tools"
 }

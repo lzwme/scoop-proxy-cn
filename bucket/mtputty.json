@@ -1,8 +1,23 @@
 {
-  "version": "1.8",
+  "autoupdate": {
+    "hash": "$url.sha256",
+    "url": "https://ttyplus.com/download/mtputty.exe"
+  },
+  "bin": "mtputty.exe",
+  "checkver": {
+    "regex": "version ([\\d.]+)",
+    "url": "https://ttyplus.com/downloads/"
+  },
   "description": "A utility enabling you to wrap unlimited number of PuTTY applications in one tabbed GUI interface.",
+  "hash": "b2c2fd593bdea890202bc55c398812878d8e185c6af45980d9ddbdce5b4946f6",
   "homepage": "https://ttyplus.com/multi-tabbed-putty/",
   "license": "Freeware",
+  "shortcuts": [
+    [
+      "mtputty.exe",
+      "MTPuTTY"
+    ]
+  ],
   "suggest": {
     "PuTTY": [
       "putty",
@@ -10,21 +25,6 @@
     ]
   },
   "url": "https://ttyplus.com/download/mtputty.exe",
-  "hash": "b2c2fd593bdea890202bc55c398812878d8e185c6af45980d9ddbdce5b4946f6",
-  "bin": "mtputty.exe",
-  "shortcuts": [
-    [
-      "mtputty.exe",
-      "MTPuTTY"
-    ]
-  ],
-  "checkver": {
-    "url": "https://ttyplus.com/downloads/",
-    "regex": "version ([\\d.]+)"
-  },
-  "autoupdate": {
-    "url": "https://ttyplus.com/download/mtputty.exe",
-    "hash": "$url.sha256"
-  },
-  "_from": "okibcn/ScoopMaster"
+  "version": "1.8",
+  "_from": "anderlli0053/DEV-tools"
 }

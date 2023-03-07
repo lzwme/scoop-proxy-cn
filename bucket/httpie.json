@@ -1,32 +1,31 @@
 {
-  "##": ":HTTPie",
-  "version": "3.2.1",
-  "description": "Modern, user-friendly command-line HTTP client",
-  "homepage": "https://github.com/httpie/httpie",
-  "license": "BSD-3-Clause",
-  "url": "https://files.pythonhosted.org/packages/e9/38/e94dac67b61f4dab49c1d26dd47e0b13be8c69c8c1c4fad5a4a87de1d647/httpie-3.2.1.tar.gz",
-  "hash": "c9c0032ca3a8d62492b7231b2dd83d94becf3b71baf8a4bbcd9ed1038537e3ec",
-  "extract_dir": "httpie-3.2.1",
-  "bin": [
-    "venv\\scripts\\http.exe",
-    "venv\\scripts\\https.exe",
-    "venv\\scripts\\httpie.exe"
-  ],
-  "pre_install": [
-    "$bpath = if ($app.LocalPath) { $app.LocalPath.Directory.Parent.FullName } else { \"$bucketsdir\\$bucket\" }",
-    "& (Join-Path \"$bpath\" \"scripts\\Install-WithVirtualEnv.ps1\")"
-  ],
-  "checkver": {
-    "url": "https://pypi.org/project/httpie/",
-    "regex": "(?sm)https:\\/\\/files\\.pythonhosted\\.org\\/(?<path>[\\w\\-\\/\\.]+\\.tar\\.gz).+?(?<version>[\\d\\.]+[b\\d]*)\\.tar\\.gz"
-  },
   "autoupdate": {
-    "url": "https://files.pythonhosted.org/$matchPath",
-    "hash": {
-      "url": "https://pypi.org/project/httpie/",
-      "regex": "(?sm)Hashes for $basename.*?$sha256"
-    },
-    "extract_dir": "httpie-$version"
+    "extract_dir": "httpie-$version",
+    "url": "https://ghproxy.com/https://github.com/httpie/httpie/archive/$version.zip"
   },
-  "_from": "okibcn/ScoopMaster"
+  "checkver": {
+    "github": "https://github.com/httpie/httpie"
+  },
+  "depends": "python-bucket-utils",
+  "description": "Command-line HTTP client.",
+  "extract_dir": "httpie-3.2.1",
+  "hash": "e9bfc5acb7275e3449bcbff68f0388034a5dfbf856a0821f238806a66c475f3b",
+  "homepage": "https://httpie.org/",
+  "installer": {
+    "script": [
+      "if ($global) { install-python-package --global --quiet --dir $dir }",
+      "else { install-python-package --quiet --dir $dir }",
+      "if ($LASTEXITCODE) { exit 1 }"
+    ]
+  },
+  "license": "BSD-3-Clause",
+  "uninstaller": {
+    "script": [
+      "if ($global) { uninstall-python-package $app --global --dir $dir --match '.*http.*' }",
+      "else { uninstall-python-package $app --dir $dir --match '.*http.*' }"
+    ]
+  },
+  "url": "https://ghproxy.com/https://github.com/httpie/httpie/archive/3.2.1.zip",
+  "version": "3.2.1",
+  "_from": "anderlli0053/DEV-tools"
 }
