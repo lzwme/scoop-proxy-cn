@@ -245,7 +245,7 @@ function outputSources() {
 
 async function updateReadme() {
   const rdFile = path.resolve(rootDir, 'README.md');
-  const list = [...CONFIG.repo].map(repo => `- [https://github.com/${repo}](${repo})`).join('\n');
+  const list = [...CONFIG.repo].map(repo => `- [${repo}](https://github.com/${repo})`).join('\n');
   const content = fs.readFileSync(rdFile, 'utf8');
   const updated = content.replace(/## Sync Buckets From[\s\S]+##/g, `## Sync Buckets From\n\n${list}\n\n##`);
   if (updated !== content) fs.writeFileSync(rdFile, updated, 'utf8');
