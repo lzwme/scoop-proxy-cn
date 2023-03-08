@@ -1,36 +1,18 @@
 {
-  "architecture": {
-    "64bit": {
-      "hash": "c4e4552e99b8c90dfbb3430cc34242305807cca0f9a30e888200ab0f4a5725ec",
-      "url": "https://ghproxy.com/https://github.com/citra-emu/citra-nightly/releases/download/nightly-1850/citra-windows-mingw-20230303-455a019.7z"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.com/https://github.com/citra-emu/citra-nightly/releases/download/nightly-$matchBuild/citra-windows-$matchEnv-$matchDate-$matchCommit.$matchZip"
-      }
-    },
-    "extract_dir": "nightly-$matchEnv"
-  },
-  "bin": [
-    "citra.exe",
-    "citra-qt.exe",
-    "citra-room.exe"
-  ],
-  "checkver": {
-    "github": "https://github.com/citra-emu/citra-nightly",
-    "regex": "download/nightly-(?<build>[\\d]+)/citra-windows-(?<env>[\\w]+)-(?<date>[\\d]{8})-(?<commit>[\\da-f]{7})\\.(?<zip>7z|zip)",
-    "replace": "${build}-${date}"
-  },
+  "version": "1851",
   "description": "Nintendo 3DS emulator",
-  "extract_dir": "nightly-mingw",
   "homepage": "https://citra-emu.org/",
   "license": {
-    "identifier": "GPL-2.0",
-    "url": "https://github.com/citra-emu/citra-nightly/blob/master/license.txt"
+    "url": "https://github.com/citra-emu/citra-nightly/blob/master/license.txt",
+    "identifier": "GPL-2.0"
   },
-  "persist": "user",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/citra-emu/citra-nightly/releases/download/nightly-1851/citra-windows-mingw-20230308-07e02a1.7z",
+      "hash": "c302963b1b5cae7dbc4785e129aec9aad1fc1b80ce58b65313e09d5fd98b9155"
+    }
+  },
+  "extract_dir": "nightly-mingw",
   "pre_install": [
     "if (!(Test-Path \"$persist_dir\\user\")) {",
     "   New-Item -Path \"$persist_dir\" -Name \"user\" -ItemType \"directory\" | Out-Null",
@@ -41,12 +23,29 @@
     "   }",
     "}"
   ],
+  "bin": [
+    "citra.exe",
+    "citra-qt.exe",
+    "citra-room.exe"
+  ],
   "shortcuts": [
     [
       "citra-qt.exe",
       "Citra"
     ]
   ],
-  "version": "1850-20230303",
-  "_from": "anderlli0053/DEV-tools"
+  "persist": "user",
+  "checkver": {
+    "github": "https://github.com/citra-emu/citra-nightly",
+    "regex": "download/nightly-([\\d]+)/citra-windows-(?<env>[\\w]+)-(?<commit>[\\d]{8}-[\\da-f]{7})\\.(?<zip>7z|zip)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/citra-emu/citra-nightly/releases/download/nightly-$version/citra-windows-$matchEnv-$matchCommit.$matchZip"
+      }
+    },
+    "extract_dir": "nightly-$matchEnv"
+  },
+  "_from": "hermanjustnu/scoop-emulators"
 }

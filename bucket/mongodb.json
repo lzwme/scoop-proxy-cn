@@ -7,27 +7,34 @@
     "url": "https://www.mongodb.com/licensing/server-side-public-license"
   },
   "notes": [
-    "Configuration File Options",
-    "https://docs.mongodb.com/manual/reference/configuration-options/",
+    "Windows server 2012/2008 and Windows 7/8/8.1 need KB2999226 to provide Universal C Runtime support for Windows.",
+    "For more infomations, please refer to:",
+    "https://support.microsoft.com/en-us/help/2999226/update-for-universal-c-runtime-in-windows",
     "",
-    "mongod --config '$persist_dir\\bin\\mongod.cfg' --serviceName 'MongoDB' --install"
+    "mongod shim use \"$dir\\bin\\mongod.cfg\" as the default config file.",
+    "To use a different config file, please run",
+    "\"$dir\\bin\\mongod.exe --config NEW_CONFIG_FILE\""
   ],
+  "suggest": {
+    "Visual C/C++ Redistributable 2019": "vcredist2019"
+  },
   "architecture": {
     "64bit": {
-      "url": "https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-6.3.0-rc0.zip",
-      "hash": "8a9d895e940602d08ca215f4c8d6ee0293f74e25650705a324689ac5928c9f3b",
-      "extract_dir": "mongodb-win32-x86_64-windows-6.3.0-rc0"
+      "url": "https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-6.3.0-rc0-signed.msi",
+      "hash": "a1aa749ab0b238000861118c4f2a0195dac523d4540145f067a4efd3c14441a7",
+      "extract_dir": "MongoDB\\Server\\6.3"
     }
   },
   "pre_install": [
     "if (!(Test-Path \"$persist_dir\\bin\\mongod.cfg\")) {",
-    "    $cfg = Get-Content \"$bucketsdir\\$bucket\\scripts\\$app\\mongod.cfg\"",
-    "    $cfg = $cfg -replace \"%MONGODB_DATA%\", \"$persist_dir\\data\"",
-    "    $cfg = $cfg -replace \"%MONGODB_LOG%\", \"$persist_dir\\log\"",
-    "    Set-Content \"$persist_dir\\bin\\mongod.cfg\" $cfg -Encoding UTF-8 -Force",
+    "    $cfg = Get-Content \"$dir\\bin\\mongod.cfg\"",
+    "    $cfg = $cfg -replace '%MONGO_DATA_PATH%', \"$dir\\data\"",
+    "    $cfg = $cfg -replace '%MONGO_LOG_PATH%', \"$dir\\log\"",
+    "    Set-Content \"$dir\\bin\\mongod.cfg\" $cfg -Encoding Ascii -Force",
     "}"
   ],
   "bin": [
+    "bin\\mongo.exe",
     [
       "bin\\mongod.exe",
       "mongod",
@@ -47,13 +54,12 @@
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-$version.zip",
-        "hash": {
-          "url": "$url.sha256",
-          "regex": "$sha256\\s+$basename"
-        },
-        "extract_dir": "mongodb-win32-x86_64-windows-$version"
+        "url": "https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-$version-signed.msi",
+        "extract_dir": "MongoDB\\Server\\$majorVersion.$minorVersion"
       }
+    },
+    "hash": {
+      "url": "$url.sha256"
     }
   },
   "_from": "okibcn/ScoopMaster"

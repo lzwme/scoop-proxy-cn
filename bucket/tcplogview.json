@@ -1,33 +1,18 @@
 {
-  "version": "1.36",
   "homepage": "https://www.nirsoft.net/utils/tcp_log_view.html",
-  "bin": "TcpLogView.exe",
-  "shortcuts": [
-    [
-      "TcpLogView.exe",
-      "NirSoft\\TcpLogView"
-    ]
-  ],
-  "persist": [
-    "tcplogview_lng.ini",
-    "tcplogview.cfg"
-  ],
+  "checkver": "TcpLogView v(\\d+\\.\\d\\d)",
+  "version": "1.37",
+  "license": "freeware",
+  "description": "TcpLogView is a simple utility that monitors the opened TCP connections on your system, and adds a new log line every time that a TCP connection is opened or closed. For every log line, the following information is displayed: Even Time, Event Type (Open, Close, Listen), Local Address, Remote Address, Remote Host Name, Local Port, Remote Port, Process ID, Process Name, and the country information of the Remote IP (Requires to download IP to country file separately.)",
   "architecture": {
     "64bit": {
       "url": "https://www.nirsoft.net/utils/tcplogview-x64.zip",
-      "hash": "af92f7541ab5f1a0bca29661093477ecb9ca121332d6e1626c58222b3cfa659b"
+      "hash": "17fdf7d4d6b0021a5f9898f2267d6c81ebc6e2c30ca744a328bcb9669b9032dc"
     },
     "32bit": {
       "url": "https://www.nirsoft.net/utils/tcplogview.zip",
-      "hash": "b7716b628185a05f47660855e95d8ab99a5b5a38db23bcd0eaa942ed8541a61c"
+      "hash": "3fdb54db5258569c655548943af51678a8117c7d678bb3172cfe231381a5859e"
     }
-  },
-  "description": "Monitors the opened TCP connections on your system.",
-  "license": "Freeware",
-  "notes": "If this application is useful to you, please consider donating to NirSoft - https://www.nirsoft.net/donate.html",
-  "checkver": {
-    "url": "https://www.nirsoft.net/pad/tcplogview.xml",
-    "xpath": "/XML_DIZ_INFO/Program_Info/Program_Version"
   },
   "autoupdate": {
     "architecture": {
@@ -39,5 +24,12 @@
       }
     }
   },
-  "_from": "ScoopInstaller/Nirsoft"
+  "bin": "TcpLogView.exe",
+  "shortcuts": [
+    [
+      "TcpLogView.exe",
+      "NirSoft\\TcpLogView - Monitors TCP connections on your system"
+    ]
+  ],
+  "_from": "anderlli0053/DEV-tools"
 }
