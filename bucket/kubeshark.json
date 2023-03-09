@@ -1,7 +1,7 @@
 {
   "version": "38.5",
-  "description": "The API traffic viewer for Kubernetes providing deep visibility into all API traffic and payloads going in, out and across containers and pods inside a Kubernetes cluster.",
-  "homepage": "https://kubeshark.co/",
+  "description": "The API Traffic Viewer for Kubernetes",
+  "homepage": "https://kubeshark.co",
   "license": "Apache-2.0",
   "architecture": {
     "64bit": {
@@ -16,9 +16,13 @@
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.com/https://github.com/kubeshark/kubeshark/releases/download/$version/kubeshark.exe"
+        "url": "https://ghproxy.com/https://github.com/kubeshark/kubeshark/releases/download/$version/kubeshark.exe",
+        "hash": {
+          "url": "$baseurl/kubeshark_windows_amd64.sha256",
+          "regex": "$sha256"
+        }
       }
     }
   },
-  "_from": "hoilc/scoop-lemon"
+  "_from": "ScoopInstaller/Main"
 }
