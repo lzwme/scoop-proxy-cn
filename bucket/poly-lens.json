@@ -1,0 +1,34 @@
+{
+  "version": "1.1.24",
+  "description": "Configure, update and monitor your Poly / Plantronics handset",
+  "homepage": "https://lens.poly.com/download",
+  "license": {
+    "identifier": "Proprietary"
+  },
+  "notes": "To launch Poly Lens with your session, run: cp \"$env:USERPROFILE\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Scoop Apps\\Poly Lens.lnk\" \"$env:USERPROFILE\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\"",
+  "architecture": {
+    "64bit": {
+      "url": "https://swupdate.lens.poly.com/lens-desktop-windows/1.1.24/1.1.24/PolyLens-1.1.24.msi#polylens.msi",
+      "hash": "2eb67529c0c9caf404c0335ea99a0e18ea83872b65f132e65b3f07a7e30b53d1",
+      "extract_dir": "oz-client",
+      "shortcuts": [
+        [
+          "Poly Lens.exe",
+          "Poly Lens"
+        ]
+      ]
+    }
+  },
+  "checkver": {
+    "url": "https://info.lens.poly.com/lens-dt-rn/rss.xml",
+    "regex": "version-([\\d.]+)</link>"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://swupdate.lens.poly.com/lens-desktop-windows/$version/$version/PolyLens-$version.msi#polylens.msi"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}
