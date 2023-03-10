@@ -10,8 +10,8 @@
   "hash": "696431978daadd33a28841320659835ba8db8080a535b8f35e9e60701ab8b491",
   "extract_dir": "cmdline-tools",
   "extract_to": "cmdline-tools\\latest",
-  "post_install": ". \"$bucketsdir\\$bucket\\link.ps1\"",
-  "pre_uninstall": ". \"$bucketsdir\\$($install.bucket)\\setup.ps1\"",
+  "post_install": ". \"$bucketsdir\\$bucket\\scripts\\android-sdk-link.ps1\"",
+  "pre_uninstall": ". \"$bucketsdir\\$($install.bucket)\\scripts\\android-sdk-setup.ps1\"",
   "bin": [
     "cmdline-tools\\latest\\bin\\apkanalyzer.bat",
     "cmdline-tools\\latest\\bin\\avdmanager.bat",
@@ -29,5 +29,5 @@
       "regex": "commandlinetools-win(?:.*\\n){3}.*<td>($sha256)"
     }
   },
-  "_from": "anderlli0053/DEV-tools"
+  "_from": "xfqwdsj/BucketDev"
 }

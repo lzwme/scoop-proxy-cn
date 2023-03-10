@@ -1,15 +1,15 @@
 {
-  "version": "34.0.0",
+  "version": "34.0.1",
   "description": "Android SDK Platform-Tools is a component for the Android SDK. It includes tools that interface with the Android platform, primarily adb and fastboot.",
   "homepage": "https://developer.android.com/studio/releases/platform-tools",
   "license": {
     "identifier": "Freeware",
     "url": "https://developer.android.com/studio/releases/platform-tools.html#downloads"
   },
-  "url": "https://dl.google.com/android/repository/platform-tools_r34.0.0-windows.zip",
-  "hash": "ae647ea7243f32e1735b8c52201c48a426cd756b65eaa15f47063c3579191001",
-  "post_install": ". \"$bucketsdir\\$bucket\\link.ps1\"",
-  "pre_uninstall": ". \"$bucketsdir\\$($install.bucket)\\setup.ps1\"",
+  "url": "https://dl.google.com/android/repository/platform-tools_r34.0.1-windows.zip",
+  "hash": "5dd9c2be744c224fa3a7cbe30ba02d2cb378c763bd0f797a7e47e9f3156a5daa",
+  "post_install": ". \"$bucketsdir\\$bucket\\scripts\\android-sdk-link.ps1\"",
+  "pre_uninstall": ". \"$bucketsdir\\$($install.bucket)\\scripts\\android-sdk-setup.ps1\"",
   "bin": [
     "platform-tools\\adb.exe",
     "platform-tools\\dmtracedump.exe",
@@ -21,5 +21,5 @@
   "autoupdate": {
     "url": "https://dl.google.com/android/repository/platform-tools_r$version-windows.zip"
   },
-  "_from": "anderlli0053/DEV-tools"
+  "_from": "xfqwdsj/BucketDev"
 }

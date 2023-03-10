@@ -1,41 +1,54 @@
 {
   "version": "110.0-1",
-  "description": "A fork of Firefox, focused on privacy, security and freedom.",
-  "homepage": "https://librewolf.net/",
+  "description": "An independent fork of Firefox, with the primary goals of privacy, security and user freedom.",
+  "homepage": "https://librewolf-community.gitlab.io/",
   "license": "MPL-2.0",
-  "architecture": {
-    "64bit": {
-      "url": "https://gitlab.com/librewolf-community/browser/windows/-/package_files/69100830/download",
-      "hash": "b4e7b586c39b905d02f99c91f4c469d8cd2da49ded6296f22b5e5c5af1de64f6"
-    }
-  },
-  "pre_install": [
-    "$lw_name = (Get-Item \"$dir\\librewolf-*\").FullName",
-    "Move-Item \"$lw_name\\*\" \"$dir\"",
-    "Remove-Item \"$lw_name\""
-  ],
+  "url": "https://gitlab.com/librewolf-community/browser/windows/-/package_files/69100830/download#/librewolf-110.0-1.en-US.win64-portable.zip",
+  "hash": "b4e7b586c39b905d02f99c91f4c469d8cd2da49ded6296f22b5e5c5af1de64f6",
+  "extract_dir": "librewolf-110.0-1/LibreWolf",
   "bin": [
     [
-      "librewolf-portable.exe",
-      "librewolf"
+      "librewolf.exe",
+      "LibreWolf",
+      "-profile \"$dir\\profiles\\default\""
     ]
   ],
   "shortcuts": [
     [
-      "librewolf-portable.exe",
-      "LibreWolf"
+      "librewolf.exe",
+      "LibreWolf",
+      "-profile \"$dir\\profiles\\default\""
     ]
   ],
-  "persist": "Profiles",
+  "post_install": [
+    "$app = \"$dir\\librewolf.exe\".Replace('\\', '\\\\')",
+    "$shim = \"$(shimdir)\\librewolf.exe\".Replace('\\', '\\\\')",
+    "$scripts = join-path $bucketsdir $($ResolvedObject.Bucket) | join-path -ChildPath scripts/librewolf",
+    "'install-associations', 'uninstall-associations' | ForEach-Object {",
+    "  if (Test-Path \"$scripts\\$_.reg\") {",
+    "    $content = Get-Content \"$scripts\\$_.reg\"",
+    "    $content = $content.Replace('$app', $app)",
+    "    $content = $content.Replace('$shim', $shim)",
+    "    if ($global) {",
+    "      $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE')",
+    "    }",
+    "    $content | Set-Content -Path \"$dir\\$_.reg\"",
+    "  }",
+    "}",
+    "REG IMPORT \"$dir\\install-associations.reg\" *>&1 | Out-Null"
+  ],
+  "pre_uninstall": "REG IMPORT \"$dir\\uninstall-associations.reg\" *>&1 | Out-Null",
+  "persist": "profiles",
   "checkver": {
     "url": "https://gitlab.com/api/v4/projects/13852981/releases",
-    "regex": "\"links\":.*?\"name\":\"librewolf-([\\d.-]+)\\.en-US\\.win64-portable\\.zip\".*?\"url\":\"(?<updurl>.*?)\""
+    "jsonpath": "$[0].assets.links",
+    "regex": "(?s)\"(?<file>librewolf-(?<version>\\d+(?:\\.\\d+)*(?:-\\d+)?)\\.en-US\\.win64-portable\\.zip)\".*?\"(?<url>https://.+?/download)\".*\"(?<hashUrl>https://.+?/sha256sums\\.txt)\""
   },
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "$matchUpdurl"
-      }
+    "url": "${matchUrl}#/${matchFile}",
+    "extract_dir": "librewolf-$version/LibreWolf",
+    "hash": {
+      "url": "$matchHashurl"
     }
   },
   "_from": "okibcn/ScoopMaster"

@@ -1,41 +1,47 @@
 {
-  "homepage": "https://www.xmind.cn/",
+  "homepage": "https://www.xmind.net/",
+  "description": "XMind, a full-featured mind mapping and brainstorming tool, designed to generate ideas, inspire creativity, brings efficiency both in work and life. Millions and millions of people love it.",
+  "License": "shareware",
   "version": "2023-01-11",
-  "description": "XMind 是一个全功能的思维导图和头脑风暴软件，为激发灵感和创意而生。作为一款有效提升工作和生活效率的生产力工具，受到全球百千万用户的青睐。",
   "architecture": {
     "64bit": {
-      "url": "https://www.xmind.cn/zen/download/win64/#/dl.7z",
+      "url": "https://www.xmind.net/zen/download/win64/#/dl.7z",
       "hash": "7ce976ef8eedd2b3ac701521a0ceb6a89f5f3b88c5b67f12a0974b88b9b027d2",
       "installer": {
-        "script": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\""
+        "script": [
+          "Expand-7ZipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\" -Removal",
+          "Remove-Item \"$dir\\`$PLUGINSDIR\" -Force -Recurse"
+        ]
       }
     },
     "32bit": {
-      "url": "https://www.xmind.cn/zen/download/win32/#/dl.7z",
+      "url": "https://www.xmind.net/zen/download/win32/#/dl.7z",
       "hash": "7099f476850e2a3a3d1a71dac1635af914412556dc3b1b3048fc68cec239d2cd",
       "installer": {
-        "script": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-32.7z\" \"$dir\""
+        "script": [
+          "Expand-7ZipArchive \"$dir\\`$PLUGINSDIR\\app-32.7z\" \"$dir\" -Removal",
+          "Remove-Item \"$dir\\`$PLUGINSDIR\" -Force -Recurse"
+        ]
       }
     }
   },
-  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall*\" -Force -Recurse",
+  "checkver": {
+    "url": "https://www.xmind.net/desktop/release-notes/",
+    "regex": "<h5 class=\"text-muted\">([\\d-]+)"
+  },
   "shortcuts": [
     [
       "XMind.exe",
       "XMind"
     ]
   ],
-  "checkver": {
-    "url": "https://www.xmind.cn/desktop/release-notes/",
-    "regex": "<h5 class=\"text-muted\">([\\d\\-.]+)"
-  },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://www.xmind.cn/zen/download/win64/#/dl.7z"
+        "url": "https://www.xmind.net/zen/download/win64/#/dl.7z"
       },
       "32bit": {
-        "url": "https://www.xmind.cn/zen/download/win32/#/dl.7z"
+        "url": "https://www.xmind.net/zen/download/win32/#/dl.7z"
       }
     }
   },

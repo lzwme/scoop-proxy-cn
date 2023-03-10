@@ -54,6 +54,7 @@ scoop-search act
 - [ScoopInstaller/Versions](https://github.com/ScoopInstaller/Versions)
 - [ScoopInstaller/Nirsoft](https://github.com/ScoopInstaller/Nirsoft)
 - [ScoopInstaller/Nonportable](https://github.com/ScoopInstaller/Nonportable)
+- [xfqwdsj/BucketDev](https://github.com/xfqwdsj/BucketDev)
 - [scoopcn/scoopcn](https://github.com/scoopcn/scoopcn)
 - [rasa/scoops](https://github.com/rasa/scoops)
 - [ACooper81/scoop-apps](https://github.com/ACooper81/scoop-apps)

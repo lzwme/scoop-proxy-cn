@@ -1,23 +1,17 @@
 {
-  "version": "2023.3.71735-latest",
+  "version": "2023.3.90958-latest",
   "description": "IDE for Kubernetes clusters",
   "homepage": "https://k8slens.dev",
   "license": {
     "identifier": "Proprietary",
-    "url": "https://k8slens.dev/licenses/eula"
+    "url": "https://github.com/lensapp/lensapp.github.io/blob/master/licenses/eula.md"
   },
-  "url": "https://api.k8slens.dev/binaries/Lens%20Setup%202023.3.71735-latest.exe#/dl.7z",
-  "hash": "sha512:7bfd8985c1b3f3c5702cc899bb458eef3f3e6f19a818624445f677c9be68649fe27f1836032d5515bd722cd65fb9f508bcc21c648c39e21c7c6c966002fc291e",
   "architecture": {
     "64bit": {
+      "url": "https://api.k8slens.dev/binaries/Lens%20Setup%202023.3.90958-latest.exe#/dl.7z",
+      "hash": "sha512:7854ae33b1886f51ecddda2a8f16bf5e6606a4989af00b9e75b97772811dcf2ed3e90cbef08ee96e9047ffa1ac153a927e7ae9209ee1f2b5c3a2e65da969f580",
       "pre_install": [
         "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
-        "Remove-Item \"$dir\\`$*\", \"$dir\\Uninstall*\" -Recurse"
-      ]
-    },
-    "32bit": {
-      "pre_install": [
-        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-32.7z\" \"$dir\"",
         "Remove-Item \"$dir\\`$*\", \"$dir\\Uninstall*\" -Recurse"
       ]
     }
@@ -29,15 +23,19 @@
     ]
   ],
   "checkver": {
-    "url": "https://api.k8slens.dev/binaries/latest.yml",
-    "regex": "version:\\s*([\\w.-]+)"
+    "url": "https://api.k8slens.dev/binaries/latest.json",
+    "jsonpath": "$.version"
   },
   "autoupdate": {
-    "url": "https://api.k8slens.dev/binaries/Lens%20Setup%20$version.exe#/dl.7z",
-    "hash": {
-      "url": "$baseurl/latest.yml",
-      "regex": "sha512:\\s+$base64"
+    "architecture": {
+      "64bit": {
+        "url": "https://api.k8slens.dev/binaries/Lens%20Setup%20$version.exe#/dl.7z",
+        "hash": {
+          "url": "$baseurl/latest.json",
+          "regex": "\"sha512\":\\s*\"$base64\""
+        }
+      }
     }
   },
-  "_from": "ScoopInstaller/Extras"
+  "_from": "okibcn/ScoopMaster"
 }
