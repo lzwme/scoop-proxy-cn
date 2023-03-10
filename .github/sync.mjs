@@ -154,9 +154,7 @@ function outputSources() {
 
   const content = [...destFilesCache.values()]
     .sort((a, b) => a.src > b.src)
-    .map(item => {
-      return `${item.src.replace(CONFIG.tmpDir), ''}, ${item.repo}, ${item.fixed ? 1 : 0}`;
-    })
+    .map(item => `${item.dest.replace(CONFIG.rootDir, '').slice(1)}, ${item.repo}, ${item.fixed ? 1 : 0}`)
     .join('\n');
   if (content) fs.writeFileSync(CONFIG.sourcesStatFile, content, 'utf8');
 }
