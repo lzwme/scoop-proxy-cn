@@ -1,33 +1,55 @@
 {
-  "version": "7.2-17",
-  "description": "A small and friendly GNU editor, inspired by Pico",
-  "homepage": "https://www.nano-editor.org/",
+  "version": "7.2-19",
+  "description": "The legendary small and friendly GNU editor, UTF-8 and mouse ready for Windows 32/64/ARM CLI",
+  "homepage": "https://github.com/okibcn/nano-for-windows",
   "license": "GPL-3.0-only",
-  "notes": [
-    "Configure nano by editing its configuration file %USERPROFILE%\\.nanorc",
-    "NOTE: The config file was named nano.rc in the 2.5.3 release, but is now named .nanorc"
-  ],
-  "url": "https://files.lhmouse.com/nano-win/nano-win_10172_v7.2-17-g587c85c4e.7z",
-  "hash": "898cf1a7407d7e2f578a5ff17a09b2c91226c094adfaefa9aea64f9b3ac2e4cf",
-  "post_install": [
-    "if (-not (Test-Path \"$env:USERPROFILE\\.nanorc\")) {",
-    "   Copy-Item \"$dir\\.nanorc\" \"$env:USERPROFILE\\.nanorc\"",
-    "}"
-  ],
-  "checkver": {
-    "url": "https://files.lhmouse.com/nano-win/?C=N&O=D",
-    "regex": "nano-win_(?<build>\\d+)_v([\\d.-]+)-(?<commit>\\w+)\\.7z"
-  },
+  "notes": "The old config file has been backed up to \"$dir\\.nanorc.bak\"",
   "architecture": {
     "64bit": {
-      "bin": "pkg_x86_64-w64-mingw32\\bin\\nano.exe"
+      "url": "https://ghproxy.com/https://github.com/okibcn/nano-for-windows/releases/download/v7.2-19/nano-for-windows_win64_v7.2-19.zip",
+      "hash": "aa0166207c37f1a12cd598ecf92b98e390a1fd16bd7f83784a3eb771260fa6f2"
     },
     "32bit": {
-      "bin": "pkg_i686-w64-mingw32\\bin\\nano.exe"
+      "url": "https://ghproxy.com/https://github.com/okibcn/nano-for-windows/releases/download/v7.2-19/nano-for-windows_win32_v7.2-19.zip",
+      "hash": "c26deea3666bdc4a6def757fe283d8d968400909bc8317ef64c006c3490fe0d3"
+    },
+    "arm64": {
+      "url": "https://ghproxy.com/https://github.com/okibcn/nano-for-windows/releases/download/v7.2-19/nano-for-windows_arm64_v7.2-19.zip",
+      "hash": "53d886096450e3e3a28d1ee57cbdc7dff0f2fe0d84e669a35aaddd55c41c6ada"
     }
   },
-  "autoupdate": {
-    "url": "https://files.lhmouse.com/nano-win/nano-win_$matchBuild_v$version-$matchCommit.7z"
+  "pre_install": [
+    "$scoopdir=$scoopdir -replace '\\\\','/'",
+    "if (-not (Test-Path ~/.nanorc)) {",
+    "    Move-Item \"$dir/.nanorc\" ~/.nanorc",
+    "    Add-Content ~/.nanorc \"include `\"$scoopdir/apps/nano/current/syntax/*.nanorc`\"\"",
+    "} else {",
+    "    Copy-Item ~/.nanorc \"$dir/.nanorc.bak\"",
+    "}",
+    "(Get-Content ~/.nanorc) -replace '(@PKGDATADIR@)', \"$scoopdir/apps/nano/current/syntax\" | Set-Content ~/.nanorc",
+    "(Get-Content ~/.nanorc) -replace '(/usr/share/nano)', \"$scoopdir/apps/nano/current/syntax\" | Set-Content ~/.nanorc",
+    "(Get-Content ~/.nanorc) -replace '(pkg_.*-w64-mingw32.share.nano)', 'syntax' | Set-Content ~/.nanorc"
+  ],
+  "bin": "nano.exe",
+  "checkver": {
+    "url": "https://github.com/okibcn/nano-for-windows/releases",
+    "regex": "assets/v([\\d\\.\\-]+)"
   },
-  "_from": "akirco/aki-apps"
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/okibcn/nano-for-windows/releases/download/v$version/nano-for-windows_win64_v$version.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/okibcn/nano-for-windows/releases/download/v$version/nano-for-windows_win32_v$version.zip"
+      },
+      "arm64": {
+        "url": "https://ghproxy.com/https://github.com/okibcn/nano-for-windows/releases/download/v$version/nano-for-windows_arm64_v$version.zip"
+      }
+    },
+    "hash": {
+      "url": "https://ghproxy.com/https://github.com/okibcn/nano-for-windows/releases/download/v$version/hashes.txt"
+    }
+  },
+  "_from": "ScoopInstaller/Main"
 }

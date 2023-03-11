@@ -1,5 +1,5 @@
 {
-  "version": "2023.2.2",
+  "version": "2023.2.3",
   "homepage": "https://portswigger.net/burp",
   "description": "An application that comes with set of tools used for penetration and security testing of web applications.",
   "license": {
@@ -10,11 +10,11 @@
     "JDK": "java/openjdk",
     "JRE": "java/temurin-jre"
   },
-  "url": "https://portswigger-cdn.net/burp/releases/download?product=community&version=2023.2.2&type=Jar#/burpsuite-community.jar",
-  "hash": "410712b0a1d87a905cca3badef153a6b047e6b385f43e16cb6a218d450611d44",
+  "url": "https://portswigger-cdn.net/burp/releases/download?product=community&version=2023.2.3&type=Jar#/burpsuite-community.jar",
+  "hash": "a7e9f93d8f9a38326ecd9ca937d699b4c51f76c65b89d9662ae6cf934cb8ca72",
   "pre_install": [
     "$currentDir = $dir.Replace(\"$version\", 'current')",
-    "Set-Content \"$dir\\burpsuite-community.cmd\" -Value \"@start javaw -jar \"\"$currentDir\\burpsuite-community.jar\"\"\" -Encoding 'utf8' -Force"
+    "Set-Content \"$dir\\burpsuite-community.cmd\" -Value '@start javaw -jar \"%~dp0burpsuite-community.jar\"' -Encoding 'utf8' -Force"
   ],
   "bin": "burpsuite-community.jar",
   "shortcuts": [
@@ -29,13 +29,7 @@
     "regex": "([\\d.]+)"
   },
   "autoupdate": {
-    "url": "https://portswigger-cdn.net/burp/releases/download?product=community&version=$version&type=Jar#/burpsuite-community.jar",
-    "hash": {
-      "mode": "json",
-      "type": "sha256",
-      "url": "https://portswigger.net/burp/releases/data",
-      "jsonpath": "$.ResultSet.Results[0].builds[6].Sha256Checksum"
-    }
+    "url": "https://portswigger-cdn.net/burp/releases/download?product=community&version=$version&type=Jar#/burpsuite-community.jar"
   },
-  "_from": "anderlli0053/DEV-tools"
+  "_from": "okibcn/ScoopMaster"
 }

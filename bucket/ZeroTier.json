@@ -1,14 +1,9 @@
 {
-  "autoupdate": {
-    "url": "https://download.zerotier.com/dist/ZeroTier%20One.msi#/setup.msi_"
-  },
-  "checkver": {
-    "regex": "Version ([\\w.]+)",
-    "url": "https://github.com/zerotier/ZeroTierOne/blob/master/RELEASE-NOTES.md"
-  },
-  "description": "ZeroTier is a smart programmable Ethernet switch for planet Earth",
-  "hash": "9203890d8533d341580600b93f3f5685240bdae10f4319748567dda1a69634fb",
   "homepage": "https://www.zerotier.com/",
+  "version": "1.10.5",
+  "description": "ZeroTier is a smart programmable Ethernet switch for planet Earth",
+  "url": "https://download.zerotier.com/dist/ZeroTier%20One.msi#/setup.msi_",
+  "hash": "5719119b9feb551f282b47651346b908bb18f5876505d50214a14c9a7fb864ba",
   "installer": {
     "script": [
       "# if (!(is_admin)) {",
@@ -32,7 +27,12 @@
       "Start-Process -Wait msiexec \"/x `\"$dir\\setup.msi_`\" /qn\" -Verb RunAs"
     ]
   },
-  "url": "https://download.zerotier.com/dist/ZeroTier%20One.msi#/setup.msi_",
-  "version": "1.10.2",
-  "_from": "anderlli0053/DEV-tools"
+  "checkver": {
+    "url": "https://github.com/zerotier/ZeroTierOne/blob/master/RELEASE-NOTES.md",
+    "regex": "Version ([\\w.]+)"
+  },
+  "autoupdate": {
+    "url": "https://download.zerotier.com/dist/ZeroTier%20One.msi#/setup.msi_"
+  },
+  "_from": "kkzzhizhou/scoop-zapps"
 }
