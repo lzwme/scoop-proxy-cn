@@ -82,7 +82,7 @@ async function syncDir(src, dest, repo = '') {
 
     if (['.json', '.ps1', '.sh'].includes(ext)) {
       if (!content) content = fs.readFileSync(src, 'utf8');
-      const rawContent = content;
+      let rawContent = content;
 
       if ('.json' === ext) {
         if (!contentJson) contentJson = safeJsonParse(content, srcRelative);
@@ -93,6 +93,7 @@ async function syncDir(src, dest, repo = '') {
           if (CONFIG.ignoreParseFailed) return total;
           content = content.replaceAll('\r\n', '\n').trim();
         }
+        rawContent = content;
 
         // fix for https://github.com/lzwme/scoop-proxy-cn/issues/2
         content = content.replace(/\$bucketsdir\\\\[a-zA-Z\-]+\\\\/gim, '$bucketsdir\\\\$bucket\\\\');
