@@ -1,5 +1,5 @@
 import JSON5 from 'json5';
-import { logger } from './config';
+import { logger } from './config.mjs';
 
 export function safeJsonParse(str, desc = '', silent = false) {
   if (!str) return {};
@@ -36,5 +36,3 @@ async function checkoutRepo(repo, baseDir, debug = false) {
     logger.error(`checkout ${repo} failed!`, error.message);
   }
 }
-
-
