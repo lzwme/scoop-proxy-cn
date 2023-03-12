@@ -2,7 +2,7 @@ import { execSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { semverCompare, color, rmrf } from '@lzwme/fe-utils';
-import { safeJsonParse } from './sync/utils.mjs';
+import { safeJsonParse, checkoutRepo } from './sync/utils.mjs';
 import { CONFIG, rootDir, logger } from './sync/config.mjs';
 import { customHandler } from './sync/customHandler.mjs';
 
@@ -21,22 +21,6 @@ function parseTxtFile(filename) {
     });
 
   return new Set(list);
-}
-
-async function checkout(repo, dirName) {
-  if (!fs.existsSync(CONFIG.tmpDir)) fs.mkdirSync(CONFIG.tmpDir);
-
-  try {
-    const dirpath = path.resolve(CONFIG.tmpDir, dirName);
-    if (fs.existsSync(dirpath)) {
-      execSync(`cd "${dirpath}" && git pull`, { cwd: CONFIG.tmpDir });
-    } else {
-      repo = CONFIG.debug ? `https://ghproxy.com/github.com/${repo}` : `https://github.com/${repo}.git`;
-      execSync(`git clone --depth 1 ${repo} ${dirName}`, { cwd: CONFIG.tmpDir });
-    }
-  } catch (error) {
-    logger.error(`checkout ${repo} failed!`, error.message);
-  }
 }
 
 async function syncDir(src, dest, repo = '') {
@@ -62,23 +46,31 @@ async function syncDir(src, dest, repo = '') {
       content = await customHandler[repo].fileSync(src, ext);
     }
 
+    let cacheItem = destFilesCache.get(destLowerCase);
     if (destFilesCache.has(destLowerCase)) {
       if ('.json' !== ext || lowPrioritySet.has(src) || lowPrioritySet.has(basename)) return total;
+      // 来自官方仓库的应用有高优先级(#7)
+      if (cacheItem.repo.startsWith('ScoopInstaller/') || customHandler[cacheItem.repo]?.highPriority) return total;
 
-      dest = destFilesCache.get(destLowerCase).dest; // 使用旧路径
-      try {
-        // json 文件比较版本
-        if (!content) content = fs.readFileSync(src, 'utf8').trim();
-        contentJson = safeJsonParse(content, src, true);
-        const oldJson = safeJsonParse(fs.readFileSync(dest, 'utf8'), dest);
-        if (semverCompare(String(contentJson.version || ''), String(oldJson.version || ''), false) < 1) return total;
-        logger.debug(`[sync]overwide: ${color.gray(oldJson.version)} -> ${color.green(contentJson.version)} ${color.cyan(basename)} ${color.yellow(oldJson._from)}`);
-      } catch (e) {
-        logger.error('[error]try compare version failed!', src, dest, e.message);
-        return total;
+      dest = cacheItem.dest; // 使用旧路径
+
+      if (!lowPrioritySet.has(cacheItem.src)) {
+        try {
+          // json 文件比较版本
+          if (!content) content = fs.readFileSync(src, 'utf8').trim();
+          contentJson = safeJsonParse(content, src, true);
+          const oldJson = safeJsonParse(fs.readFileSync(dest, 'utf8'), dest);
+          if (semverCompare(String(contentJson.version || ''), String(oldJson.version || ''), false) < 1) return total;
+          logger.debug(`[sync]overwide: ${color.gray(oldJson.version)} -> ${color.green(contentJson.version)} ${color.cyan(basename)} ${color.yellow(cacheItem.repo)}`);
+        } catch (e) {
+          logger.error('[error]try compare version failed!', src, dest, e.message);
+          return total;
+        }
       }
     }
-    destFilesCache.set(destLowerCase, { dest, src: srcRelative, repo, fixed: false });
+
+    cacheItem = { dest, src: srcRelative, repo, fixed: false };
+    destFilesCache.set(destLowerCase, cacheItem);
 
     if (['.json', '.ps1', '.sh'].includes(ext)) {
       if (!content) content = fs.readFileSync(src, 'utf8');
@@ -112,7 +104,7 @@ async function syncDir(src, dest, repo = '') {
           .replace(/(https\:\/\/(raw|gist)\.githubusercontent\.com)/gim, 'https://ghproxy.com/$1')
           .replaceAll('https://ghproxy.com/https://ghproxy.com', 'https://ghproxy.com');
       }
-      destFilesCache.get(destLowerCase).fixed = content !== rawContent;
+      cacheItem.fixed = content !== rawContent;
       fs.writeFileSync(dest, content, 'utf8');
     } else {
       fs.writeFileSync(dest, fs.readFileSync(src));
@@ -135,26 +127,25 @@ async function syncDir(src, dest, repo = '') {
 
 async function gitCommit() {
   const changes = execSync('git status --short', { encoding: 'utf8' }).trim(); // --untracked-files=no
-  if (changes.length > 5) {
-    logger.info('Changes:\n', changes);
-    const cmds = [
-      `git config user.name "github-actions[bot]"`,
-      `git config user.email "41898282+github-actions[bot]@users.noreply.github.com"`,
-      `git add --all`,
-      `git commit -m "Updated at ${new Date().toISOString()}"`,
-      `git push`,
-    ];
+  if (changes.length < 5) return logger.info('Not Updated');
 
-    for (const cmd of cmds) execSync(cmd, { encoding: 'utf8', maxBuffer: 1024 * 1024 * 100 });
-  } else {
-    logger.info('Not Updated');
-  }
+  logger.info('Changes:\n', changes);
+  const cmds = [
+    `git config user.name "github-actions[bot]"`,
+    `git config user.email "41898282+github-actions[bot]@users.noreply.github.com"`,
+    `git add --all`,
+    `git commit -m "Updated at ${new Date().toISOString()}"`,
+    `git push`,
+  ];
+
+  for (const cmd of cmds) execSync(cmd, { encoding: 'utf8', maxBuffer: 1024 * 1024 * 100 });
 }
+
 function outputSources() {
   logger.debug('starting output for', CONFIG.sourcesStatFile);
 
   const content = [...destFilesCache.values()]
-    .sort((a, b) => a.src > b.src)
+    .sort((a, b) => a.dest > b.dest)
     .map(item => `${item.dest.replace(CONFIG.rootDir, '').slice(1)}, ${item.repo}, ${item.fixed ? 1 : 0}`)
     .join('\n');
   if (content) fs.writeFileSync(CONFIG.sourcesStatFile, content, 'utf8');
@@ -189,7 +180,7 @@ async function sync() {
     const repoDirName = repo.replaceAll('/', '-');
     const repoDir = path.resolve(CONFIG.tmpDir, repoDirName);
     logger.info(`sync for ${color.greenBright(repo)}`);
-    await checkout(repo, repoDirName);
+    await checkoutRepo(repo, CONFIG.tmpDir, CONFIG.debug);
     stats.repo[repo] = {};
 
     if (typeof customHandler[repo]?.preSync === 'function') {

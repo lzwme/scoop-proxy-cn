@@ -4,6 +4,10 @@ import { resolve } from 'node:path';
 
 /** 针对不同仓库的预处理 */
 export const customHandler = {
+  'ScoopInstaller/Main': {
+    /** 该仓库是否拥有高优先级（不会被其他仓库同名应用替换） */
+    highPriority: 1,
+  },
   'xfqwdsj/BucketDev': {
     preSync: (repoDir) => {
       mkdirp(resolve(repoDir, 'scripts'));
