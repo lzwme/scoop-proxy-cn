@@ -1,4 +1,7 @@
 import JSON5 from 'json5';
+import fs from 'node:fs';
+import path from 'node:path';
+import { execSync } from 'node:child_process';
 import { logger } from './config.mjs';
 
 export function safeJsonParse(str, desc = '', silent = false) {
@@ -20,7 +23,7 @@ export function safeJsonParse(str, desc = '', silent = false) {
   }
 }
 
-async function checkoutRepo(repo, baseDir, debug = false) {
+export async function checkoutRepo(repo, baseDir, debug = false) {
   if (!fs.existsSync(baseDir)) fs.mkdirSync(baseDir);
 
   try {
