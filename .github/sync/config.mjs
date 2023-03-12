@@ -26,6 +26,7 @@ export const CONFIG = {
     `xfqwdsj/BucketDev`, // Android SDK DEV...
     `scoopcn/scoopcn`, // 大多是国内应用程序
     `rasa/scoops`,
+    `amorphobia/siku`, // #6
     `ACooper81/scoop-apps`,
     `kkzzhizhou/scoop-zapps`,
     `Calinou/scoop-games`,
