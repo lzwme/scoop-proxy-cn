@@ -1,22 +1,22 @@
 {
-  "version": "2.39.1",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/Tyrrrz/DiscordChatExporter/releases/download/$version/DiscordChatExporter.zip"
+  },
+  "bin": "DiscordChatExporter.exe",
+  "checkver": "github",
   "description": "Exports Discord chat logs to a file",
+  "hash": "b652fe2117a9dcca43024bdc67de0ce4db67b710e97c5e4d694d65d648a8ffd8",
   "homepage": "https://github.com/Tyrrrz/DiscordChatExporter",
   "license": "GPL-3.0-only",
-  "url": "https://ghproxy.com/https://github.com/Tyrrrz/DiscordChatExporter/releases/download/2.39.1/DiscordChatExporter.zip",
-  "hash": "b652fe2117a9dcca43024bdc67de0ce4db67b710e97c5e4d694d65d648a8ffd8",
+  "persist": "Settings.dat",
   "pre_install": "if(!(Test-Path \"$persist_dir\\Settings.dat\")) {New-Item \"$dir\\Settings.dat\" | Out-Null}",
-  "bin": "DiscordChatExporter.exe",
   "shortcuts": [
     [
       "DiscordChatExporter.exe",
       "Discord Chat Exporter"
     ]
   ],
-  "persist": "Settings.dat",
-  "checkver": "github",
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/Tyrrrz/DiscordChatExporter/releases/download/$version/DiscordChatExporter.zip"
-  },
-  "_from": "okibcn/ScoopMaster"
+  "url": "https://ghproxy.com/https://github.com/Tyrrrz/DiscordChatExporter/releases/download/2.39.1/DiscordChatExporter.zip",
+  "version": "2.39.1",
+  "_from": "anderlli0053/DEV-tools"
 }

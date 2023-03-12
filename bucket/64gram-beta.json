@@ -1,5 +1,5 @@
 {
-  "version": "1.0.74",
+  "version": "1.0.76",
   "description": "Unofficial Telegram Desktop.",
   "homepage": "https://64gr.am",
   "license": {
@@ -8,8 +8,8 @@
   },
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.com/https://github.com/TDesktop-x64/tdesktop/releases/download/v1.0.74/64Gram_1.0.74.beta_x64.zip",
-      "hash": "75bbf84ae20f44a970a9850caa2513c67ca318d657e258ec2d7f5f04f442b35c"
+      "url": "https://ghproxy.com/https://github.com/TDesktop-x64/tdesktop/releases/download/v1.0.76/64Gram_1.0.76_x64.zip",
+      "hash": "c6a5d8cb0def6c8677aa1bbedee993b54edbcb1a1a3494462c42ced4442e6e9d"
     }
   },
   "pre_install": "if (Test-Path \"$persist_dir\\log.txt\") { Copy-Item \"$persist_dir\\log.txt\" \"$dir\\\" }",
@@ -24,12 +24,12 @@
   "persist": "tdata",
   "checkver": {
     "url": "https://api.github.com/repos/TDesktop-x64/tdesktop/releases",
-    "regex": "64Gram v([\\d.]+) Beta"
+    "regex": "(?sm)64Gram v([\\d.]+) Beta.*?releases/download/v([\\d.]+)/(?<file>64Gram_([\\d.]+)(?:.beta)?_x64\\.zip)"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.com/https://github.com/TDesktop-x64/tdesktop/releases/download/v$version/64Gram_$version.beta_x64.zip"
+        "url": "https://ghproxy.com/https://github.com/TDesktop-x64/tdesktop/releases/download/v$version/$matchFile"
       }
     }
   },

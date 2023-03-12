@@ -1,8 +1,8 @@
 {
   "version": "4.0.1",
+  "description": "A fast, easy, and free BitTorrent client.",
   "homepage": "https://transmissionbt.com/",
   "license": "GPL-2.0-only|GPL-3.0-only",
-  "description": "A fast, easy, and free BitTorrent client.",
   "architecture": {
     "64bit": {
       "url": "https://ghproxy.com/https://github.com/transmission/transmission/releases/download/4.0.1/transmission-4.0.1-x64.msi",
@@ -27,20 +27,16 @@
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.com/https://github.com/transmission/transmission/releases/download/$version/transmission-$version-x64.msi",
-        "hash": {
-          "url": "https://ghproxy.com/https://raw.githubusercontent.com/transmission/transmission.github.io/master/includes/js/constants.js",
-          "regex": "sha256_msi64: \"$sha256\""
-        }
+        "url": "https://ghproxy.com/https://github.com/transmission/transmission/releases/download/$version/transmission-$version-x64.msi"
       },
       "32bit": {
-        "url": "https://ghproxy.com/https://github.com/transmission/transmission/releases/download/$version/transmission-$version-x86.msi",
-        "hash": {
-          "url": "https://ghproxy.com/https://raw.githubusercontent.com/transmission/transmission.github.io/master/includes/js/constants.js",
-          "regex": "sha256_msi32: \"$sha256\""
-        }
+        "url": "https://ghproxy.com/https://github.com/transmission/transmission/releases/download/$version/transmission-$version-x86.msi"
       }
+    },
+    "hash": {
+      "url": "https://transmissionbt.com/download",
+      "regex": "$sha256</a>  $basename"
     }
   },
-  "_from": "okibcn/ScoopMaster"
+  "_from": "ScoopInstaller/Main"
 }

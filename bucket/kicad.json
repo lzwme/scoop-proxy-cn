@@ -2,7 +2,7 @@
   "version": "7.0.0",
   "description": "Electronics Design Automation Suite",
   "homepage": "https://www.kicad.org",
-  "license": "GPL-3.0-only",
+  "license": "GPL-3.0-or-later",
   "architecture": {
     "64bit": {
       "url": "https://ghproxy.com/https://github.com/KiCad/kicad-source-mirror/releases/download/7.0.0/kicad-7.0.0-x86_64.exe#/dl.7z",
@@ -10,7 +10,10 @@
     }
   },
   "pre_install": "Remove-Item \"$dir\\`$*\" -Recurse",
-  "bin": "bin\\kicad.exe",
+  "bin": [
+    "bin\\kicad.exe",
+    "bin\\kicad-cli.exe"
+  ],
   "shortcuts": [
     [
       "bin\\kicad.exe",
