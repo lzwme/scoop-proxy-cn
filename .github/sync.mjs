@@ -79,7 +79,6 @@ async function syncDir(src, dest, repo = '') {
       if ('.json' === ext) {
         if (!contentJson) contentJson = safeJsonParse(content, srcRelative);
         if (Object.keys(contentJson).length > 0) {
-          contentJson._from = repo;
           content = JSON.stringify(contentJson, null, 2);
         } else {
           if (CONFIG.ignoreParseFailed) return total;
