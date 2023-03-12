@@ -1,15 +1,16 @@
 {
-  "homepage": "https://github.com/JabRef/jabref",
-  "version": "2023-03-06",
+  "version": "5.9",
+  "description": "Citation and reference management software that uses BibTeX and BibLaTeX as its native formats",
+  "homepage": "https://www.jabref.org",
   "license": "MIT",
   "architecture": {
     "64bit": {
-      "url": "https://builds.jabref.org/main/JabRef-5.10-portable_windows.zip",
-      "hash": "764b32650cb6ab5de78af88c5227c366407aa31bf242ff8651d44dcd56b0a0cc",
-      "extract_dir": "Jabref"
+      "url": "https://ghproxy.com/https://github.com/JabRef/jabref/releases/download/v5.9/JabRef-5.9-portable_windows.zip",
+      "hash": "06dba4ff11a0fc18d84a2216227b6946c31024f00fb09efb019d150b2a353843"
     }
   },
-  "bin": "",
+  "extract_dir": "JabRef",
+  "bin": "runtime\\bin\\JabRef.bat",
   "shortcuts": [
     [
       "JabRef.exe",
@@ -17,16 +18,13 @@
     ]
   ],
   "checkver": {
-    "url": "https://builds.jabref.org/main/",
-    "regex": "(?<file>JabRef-5.10-portable_windows.zip)</a></td><td class=\"fb-d\">(?<version>[\\d-]+) (?:[\\d:]+)</td>"
+    "github": "https://github.com/JabRef/jabref"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://builds.jabref.org/main/$matchFile",
-        "extract_dir": "Jabref"
+        "url": "https://ghproxy.com/https://github.com/JabRef/jabref/releases/download/v$version/JabRef-$version-portable_windows.zip"
       }
     }
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

@@ -1,35 +1,32 @@
 {
-  "homepage": "http://extraterm.org/",
-  "description": "The swiss army chainsaw of terminal emulators.",
-  "version": "0.70.0",
+  "version": "0.66.0",
+  "description": "The swiss army chainsaw of terminal emulators",
+  "homepage": "https://extraterm.org",
   "license": "MIT",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.com/https://github.com/sedwards2009/extraterm/releases/download/v0.70.0/extratermqt-setup-0.70.0.exe#/dl.7z",
-      "hash": "26d701897e5e563eb1ae0e90dcc2ca5301e89ba01ca4f702c375ae16eb945b82"
+      "url": "https://ghproxy.com/https://github.com/sedwards2009/extraterm/releases/download/v0.66.0/extratermqt-0.66.0-win32-x64.zip",
+      "hash": "670d9a9983bcdd74d6a38cd4e2c2c37c3d043e04bbd2e01134fa9697f4ab4e0c",
+      "extract_dir": "extratermqt-0.66.0-win32-x64"
     }
   },
-  "pre_install": "if (!(Test-Path \"$persist_dir\\application_paths.json\")) {Set-Content \"$dir\\application_paths.json\" (@('{', '  \"userSettingsPath\": \"./config\"','}') -join \"`r`n\") -Encoding ASCII}",
+  "bin": "extratermqt.exe",
   "shortcuts": [
     [
       "extratermqt.exe",
       "Extraterm"
     ]
   ],
-  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall.exe\" -Force -Recurse",
-  "persist": [
-    "application_paths.json",
-    "config"
-  ],
   "checkver": {
-    "github": "https://github.com/sedwards2009/extraterm"
+    "url": "https://github.com/sedwards2009/extraterm/releases/",
+    "regex": "Extraterm\\s+v([\\d.]+)"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.com/https://github.com/sedwards2009/extraterm/releases/download/v$version/extratermqt-setup-$version.exe#/dl.7z"
+        "url": "https://ghproxy.com/https://github.com/sedwards2009/extraterm/releases/download/v$version/extratermqt-$version-win32-x64.zip",
+        "extract_dir": "extratermqt-$version-win32-x64"
       }
     }
-  },
-  "_from": "naderi/scoop-bucket"
+  }
 }

@@ -1,27 +1,34 @@
 {
-  "version": "4.120",
-  "description": "Makes the color of your computer's display adapt to the time of day, warm at night and like sunlight during the day.",
-  "homepage": "https://justgetflux.com",
-  "license": {
-    "identifier": "Freeware",
-    "url": "https://justgetflux.com/news/pages/eula/"
+  "version": "0.41.1",
+  "description": "Open and extensible continuous delivery solution for Kubernetes.",
+  "homepage": "https://fluxcd.io",
+  "license": "Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/fluxcd/flux2/releases/download/v0.41.1/flux_0.41.1_windows_amd64.zip",
+      "hash": "e4486fa2c69e90ecdfcc851c93693088fac7eac831721f6808d79f2f8992875a"
+    },
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/fluxcd/flux2/releases/download/v0.41.1/flux_0.41.1_windows_386.zip",
+      "hash": "5cff952d65cc886e24b1dac67e076d94330c7ad5c40b8ba95d7ec6f1fb9f2ab9"
+    }
   },
-  "url": "http://justgetflux.com/flux-setup4-120.exe#/dl.7z",
-  "hash": "0b3f19bd4910a27ed4566ad1fe72735869e9e84b943a026fa224a344926670ff",
-  "pre_install": "Remove-Item \"$dir\\`$PLUGINSDIR\" -Recurse",
   "bin": "flux.exe",
-  "shortcuts": [
-    [
-      "flux.exe",
-      "f.lux"
-    ]
-  ],
   "checkver": {
-    "url": "https://justgetflux.com/update/v4/windows-download.json",
-    "regex": "([\\d.]+)"
+    "github": "https://github.com/fluxcd/flux2"
   },
   "autoupdate": {
-    "url": "http://justgetflux.com/flux-setup$dashVersion.exe#/dl.7z"
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/fluxcd/flux2/releases/download/v$version/flux_$version_windows_amd64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/fluxcd/flux2/releases/download/v$version/flux_$version_windows_386.zip"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/flux_$version_checksums.txt"
+    }
   },
-  "_from": "ScoopInstaller/Extras"
+  "notes": "For Flux v1, please install 'versions/fluxctl' instead."
 }

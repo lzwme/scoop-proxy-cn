@@ -1,38 +1,33 @@
 {
-  "homepage": "https://developers.weixin.qq.com/miniprogram/dev/devtools/devtools.html",
-  "description": "为了帮助开发者简单和高效地开发和调试微信小程序，我们在原有的公众号网页调试工具的基础上，推出了全新的 微信开发者工具，集成了公众号网页调试和小程序调试两种开发模式。",
   "version": "1.06.2303060",
-  "license": "Freeware",
+  "description": "To help developers develop and debug Weixin Mini Programs more simply and efficiently.",
+  "homepage": "https://developers.weixin.qq.com/miniprogram/dev/devtools/devtools.html",
+  "license": {
+    "identifier": "Freeware"
+  },
   "architecture": {
     "64bit": {
-      "url": "https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&from=mpwiki&download_version=1062303060&version_type=1#/dl.7z",
+      "url": "https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&download_version=1062303060&version_type=1#/dl.7z",
       "hash": "d4d726b744095fa7afc684a1cdecb8f45c0eab92f0db70927efe8214125dceea"
-    },
-    "32bit": {
-      "url": "https://servicewechat.com/wxa-dev-logic/download_redirect?type=ia32&from=mpwiki&download_version=1062303060&version_type=1#/dl.7z",
-      "hash": "650e49e28b604de7de704411cddfd7ae4d294fa5b009032dbd3ae2b10f2b589e"
     }
   },
+  "pre_install": "Remove-Item -R -Path \"$dir\\`$PLUGINSDIR\"",
   "shortcuts": [
     [
       "微信开发者工具.exe",
       "微信开发者工具"
     ]
   ],
-  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\卸载微信开发者工具.exe.nsis\" -Force -Recurse",
   "checkver": {
     "url": "https://developers.weixin.qq.com/miniprogram/dev/devtools/stable.html",
-    "regex": "#</a> ([\\d.]+) <a href=\"https://.*Windows"
+    "regex": "\\> (?<maj>\\d+)\\.(?<min>\\d+)\\.(?<patch>\\d+) \\<",
+    "replace": "${maj}.${min}.${patch}"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&from=mpwiki&download_version=$majorVersion$minorVersion$patchVersion$buildVersion&version_type=1#/dl.7z"
-      },
-      "32bit": {
-        "url": "https://servicewechat.com/wxa-dev-logic/download_redirect?type=ia32&from=mpwiki&download_version=$majorVersion$minorVersion$patchVersion$buildVersion&version_type=1#/dl.7z"
+        "url": "https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&download_version=$matchMaj$matchMin$matchPatch&version_type=1#/dl.7z"
       }
     }
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

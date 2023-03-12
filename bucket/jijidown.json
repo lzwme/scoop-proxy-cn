@@ -5,26 +5,36 @@
   "license": "Freeware",
   "architecture": {
     "64bit": {
-      "url": "https://slo-dev-team.000webhostapp.com/dl/JJDown%201.234.0.7z",
-      "hash": "8a4eb4f1cb63d61ed6bd78ce0c7c812bf8bf4bba60b4372e70c61f2dee9a4dd1"
+      "url": "http://clientfile.jijidown.com/PC/WPF/HistoricVersion/WPF_JJDown_v1.234.0.zip",
+      "hash": "aec882616b488ac861a88adea3f79dcdf38707616b0e902edef488f123afc0b8"
     }
   },
-  "extract_to": "JJDown",
+  "extract_dir": "[WPF]JJDown",
   "pre_install": [
-    "ensure \"$persist_dir\\JJDown\\Config\" | Out-Null",
-    "ensure \"$persist_dir\\JJDown\\Download\" | Out-Null",
-    "ensure \"$persist_dir\\JJDown\\Language\" | Out-Null"
+    "ensure \"$persist_dir\\Config\" | Out-Null",
+    "ensure \"$persist_dir\\Download\" | Out-Null",
+    "ensure \"$persist_dir\\Language\" | Out-Null"
   ],
   "persist": [
-    "JJDown\\Config",
-    "JJDown\\Download",
-    "JJDown\\Language"
+    "Config",
+    "Download",
+    "Language"
   ],
   "shortcuts": [
     [
-      "JJDown\\JiJiDownForWPF.exe",
-      "JiJiDown"
+      "JiJiDownForWPF.exe",
+      "唧唧Down"
     ]
   ],
-  "_from": "anderlli0053/DEV-tools"
+  "checkver": {
+    "url": "http://l.acesheep.com/bili/re.php?c=1657091511132&callback=jQuery1101004718298591005554_1657091266060&_=1657091266064",
+    "regex": "<b>([\\d.]+) Beta<\\\\/b>"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "http://clientfile.jijidown.com/PC/WPF/HistoricVersion/WPF_JJDown_v$version.zip"
+      }
+    }
+  }
 }

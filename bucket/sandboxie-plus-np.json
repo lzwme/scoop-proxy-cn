@@ -3,18 +3,18 @@
     "For command-line usage, see: https://sandboxie-plus.com/sandboxie/startcommandline/",
     "The installer is made with InnoSetup, but the app will not work without installing the drivers (via the installer)"
   ],
-  "version": "1.8.0",
+  "version": "1.7.2",
   "description": "Sandbox isolation software (plus variant)",
   "homepage": "https://sandboxie-plus.com/",
   "license": "GPL-3.0-or-later",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/v1.8.0/Sandboxie-Plus-x64-v1.8.0.exe#/setup.exe",
-      "hash": "bb05f511a8305b48f3dcfb4b3b972a596ed43ac256792845ead37d3ad5f4d68d"
+      "url": "https://ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/v1.7.2/Sandboxie-Plus-x64-v1.7.2.exe#/setup.exe",
+      "hash": "9262ced4202eba478c22fca64aa71d76054c0d8dc989928becef5fe345f53f4f"
     },
     "32bit": {
-      "url": "https://ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/v1.8.0/Sandboxie-Plus-x86-v1.8.0.exe#/setup.exe",
-      "hash": "5c8ee9bd5f71e57287ba3270a740ccad5a16d4238eb84a5818e7528903ad6712"
+      "url": "https://ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/v1.7.2/Sandboxie-Plus-x86-v1.7.2.exe#/setup.exe",
+      "hash": "794a071f855886cfa7c118c9ccf24b2c52fce57ca573d71f13c415c7eead38ca"
     }
   },
   "installer": {
@@ -61,18 +61,17 @@
     ]
   ],
   "checkver": {
-    "url": "https://api.github.com/repos/sandboxie-plus/Sandboxie/releases",
-    "regex": "releases/download/(?<tag>[vV]?[\\d.]+)/Sandboxie-Plus-x64-v([\\d.]+).exe"
+    "github": "https://github.com/sandboxie-plus/Sandboxie",
+    "regex": "Release v([\\d.]+) / (?<classicver>[\\d.]+)"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/$matchTag/Sandboxie-Plus-x64-v$version.exe#/setup.exe"
+        "url": "https://ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/v$version/Sandboxie-Plus-x64-v$version.exe#/setup.exe"
       },
       "32bit": {
-        "url": "https://ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/$matchTag/Sandboxie-Plus-x86-v$version.exe#/setup.exe"
+        "url": "https://ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/v$version/Sandboxie-Plus-x86-v$version.exe#/setup.exe"
       }
     }
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

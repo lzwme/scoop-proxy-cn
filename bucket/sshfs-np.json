@@ -1,22 +1,19 @@
 {
-  "##": "Renaming .msi to .msi_ so that it will not be automatically extracted by Scoop.",
-  "homepage": "http://www.github.com/billziss-gh/sshfs-win/",
+  "version": "3.5.20357",
   "description": "SSHFS For Windows",
-  "version": "3.5.21011",
+  "homepage": "http://www.github.com/billziss-gh/sshfs-win/",
   "license": "GPL-2.0-or-later",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.com/https://github.com/billziss-gh/sshfs-win/releases/download/v3.5.21011/sshfs-win-3.5.21011-x64.msi#/setup.msi_",
-      "hash": "e93d40ef00b5f077985b09e7ea48f43235a6651832fe7aa0ade54f7eeb64a9b6"
+      "url": "https://ghproxy.com/https://github.com/billziss-gh/sshfs-win/releases/download/v3.5.20357/sshfs-win-3.5.20357-x64.msi#/setup.msi_",
+      "hash": "1657e397f8dce1c2d2e3220007f9c9f882631882b9bec4608f7835e87dcd096c"
     },
     "32bit": {
-      "url": "https://ghproxy.com/https://github.com/billziss-gh/sshfs-win/releases/download/v3.5.21011/sshfs-win-3.5.21011-x86.msi#/setup.msi_",
-      "hash": "318e955d24000280a6d4eef0809faac21d8ccf96954225c1ef8597e502d530bd"
+      "url": "https://ghproxy.com/https://github.com/billziss-gh/sshfs-win/releases/download/v3.5.20357/sshfs-win-3.5.20357-x86.msi#/setup.msi_",
+      "hash": "9643daf27eb7e384dadc9e64a4299c8d92e6c91e07913e9425f5b19aad3b2ded"
     }
   },
-  "depends": {
-    "winfsp-np": "winfsp-np"
-  },
+  "depends": "winfsp-np",
   "installer": {
     "script": "Invoke-ExternalCommand msiexec -ArgumentList @('/i', \"$dir\\setup.msi_\", '/qn') -RunAs | Out-Null"
   },
@@ -24,8 +21,8 @@
     "script": "Invoke-ExternalCommand msiexec -ArgumentList @('/x', \"$dir\\setup.msi_\", '/qn') -RunAs | Out-Null"
   },
   "checkver": {
-    "url": "https://github.com/billziss-gh/sshfs-win/releases",
-    "re": "(?<short>[\\d.]+)/sshfs-win-(?<version>[\\d.]+).*\\.msi"
+    "url": "https://github.com/billziss-gh/sshfs-win/releases/latest",
+    "regex": "v(?<short>[\\d.]+)/sshfs-win-(?<version>[\\d.]+).*\\.msi"
   },
   "autoupdate": {
     "architecture": {
@@ -36,6 +33,5 @@
         "url": "https://ghproxy.com/https://github.com/billziss-gh/sshfs-win/releases/download/v$matchShort/sshfs-win-$matchVersion-x86.msi#/setup.msi_"
       }
     }
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

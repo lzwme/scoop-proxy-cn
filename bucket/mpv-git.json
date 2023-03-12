@@ -1,6 +1,6 @@
 {
-  "version": "20230311",
-  "description": "Video player based on MPlayer(2) (qwerty12's *modified* nightly builds - AVX2 required)",
+  "version": "20230312",
+  "description": "Video player based on MPlayer/mplayer2 (builds by shinchiro)",
   "homepage": "https://mpv.io",
   "license": "LGPL-2.1-or-later,GPL-2.0-or-later",
   "notes": [
@@ -12,10 +12,15 @@
   },
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.com/https://github.com/qwerty12/mpv-winbuild/releases/download/2023-03-11/mpv-x86_64-v3-20230311-git-9880b06.7z",
-      "hash": "6c80710b8cfdc06e00381285c3a23ac98fa4e321225b550094c2f4ecec876dfb"
+      "url": "https://downloads.sourceforge.net/project/mpv-player-windows/64bit/mpv-x86_64-20230312-git-9880b06.7z",
+      "hash": "sha1:a8e98f3da56b99cfd739e204fc19bc3c113cc58c"
+    },
+    "32bit": {
+      "url": "https://downloads.sourceforge.net/project/mpv-player-windows/32bit/mpv-i686-20230312-git-9880b06.7z",
+      "hash": "sha1:c76ceda45f92bb3db8f199ab1e515fd28c6f7c5d"
     }
   },
+  "pre_install": "Remove-Item \"$dir\\updater.bat\"",
   "env_add_path": ".",
   "shortcuts": [
     [
@@ -25,16 +30,17 @@
   ],
   "persist": "portable_config",
   "checkver": {
-    "url": "https://api.github.com/repos/qwerty12/mpv-winbuild/releases/latest",
-    "jsonpath": "$.assets",
-    "regex": "/(?<date>[\\d-]+)/mpv-x86_64-v3-(\\d+)-git-(?<commit>[\\da-f]+)\\.7z"
+    "sourceforge": "mpv-player-windows/64bit",
+    "regex": "mpv-x86_64-(\\d+)-git-(?<commit>[\\da-f]+)\\.7z"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.com/https://github.com/qwerty12/mpv-winbuild/releases/download/$matchDate/mpv-x86_64-v3-$version-git-$matchCommit.7z"
+        "url": "https://downloads.sourceforge.net/project/mpv-player-windows/64bit/mpv-x86_64-$version-git-$matchCommit.7z"
+      },
+      "32bit": {
+        "url": "https://downloads.sourceforge.net/project/mpv-player-windows/32bit/mpv-i686-$version-git-$matchCommit.7z"
       }
     }
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

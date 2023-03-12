@@ -1,25 +1,31 @@
 {
-  "autoupdate": {
-    "url": "https://www.vfilename.com/download/vfilename-$version.7z"
+  "version": "0.4.0.0",
+  "description": "使用压缩包的文件名进行简单的版本管理",
+  "homepage": "https://www.vfilename.com/",
+  "license": "Unknown",
+  "architecture": {
+    "64bit": {
+      "url": "https://www.vfilename.com/download/vfilename-0.4.0.0.7z",
+      "hash": "5979b6919cc4461ec55bf96aea13c66403bee56863442bb321784927ae19a03d",
+      "extract_dir": "vfilename-0.4.0.0"
+    }
   },
-  "checkver": "(?sm)版本.*?V([\\d.]+)",
-  "description": "V File Name is a compression package using the file name for historical version management gadget, this is a very simple and rough file management, as long as the normal compression of the file, enter the description text, and finally through the file name, author, time, remarks and other conditions for retrieval.",
-  "hash": "5979b6919cc4461ec55bf96aea13c66403bee56863442bb321784927ae19a03d",
-  "homepage": "https://www.vfilename.com",
-  "license": {
-    "identifier": "Freeware"
-  },
-  "notes": "Intro: https://www.appinn.com/v-file-name",
   "shortcuts": [
     [
       "vfilename.exe",
-      "vfilename"
+      "V File Name"
     ]
   ],
-  "suggest": {
-    "dotnet-framework-3.5": "dotnet-framework-3.5-sp1"
+  "checkver": {
+    "url": "https://www.vfilename.com/",
+    "regex": "版本</td><td>V([\\d\\.]+)"
   },
-  "url": "https://www.vfilename.com/download/vfilename-0.4.0.0.7z",
-  "version": "0.4.0.0",
-  "_from": "anderlli0053/DEV-tools"
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://www.vfilename.com/download/vfilename-$version.7z",
+        "extract_dir": "vfilename-$version"
+      }
+    }
+  }
 }

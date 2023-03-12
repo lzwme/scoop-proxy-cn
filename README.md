@@ -57,6 +57,7 @@ scoop-search act
 - [xfqwdsj/BucketDev](https://github.com/xfqwdsj/BucketDev)
 - [scoopcn/scoopcn](https://github.com/scoopcn/scoopcn)
 - [rasa/scoops](https://github.com/rasa/scoops)
+- [amorphobia/siku](https://github.com/amorphobia/siku)
 - [ACooper81/scoop-apps](https://github.com/ACooper81/scoop-apps)
 - [kkzzhizhou/scoop-zapps](https://github.com/kkzzhizhou/scoop-zapps)
 - [Calinou/scoop-games](https://github.com/Calinou/scoop-games)

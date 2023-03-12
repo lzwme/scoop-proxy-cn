@@ -1,16 +1,26 @@
 {
-  "autoupdate": {
-    "url": "https://down5.huorong.cn/sysdiag-all-$version-$matchBuild.exe#/dl.7z"
-  },
-  "checkver": {
-    "regex": "sysdiag-all-([\\d\\.]+)-(?<build>[\\d\\.]+)\\.exe",
-    "url": "https://www.huorong.cn/5.0.version.json"
-  },
-  "depends": "sudo",
+  "version": "5.0.73.3",
   "description": "火绒弹窗拦截独立版",
-  "extract_to": "temp",
-  "hash": "8e706bd35000d429c32e302f92b7e15507120a974c7fe4305073f8548a551e14",
   "homepage": "https://www.huorong.cn/person5.html",
+  "license": "Freeware",
+  "notes": [
+    "安装 / 卸载过程需要写入 / 删除注册表内容，需要管理员权限。",
+    "安装时会修改注册表中拦截数据库路径至 <persist_dir>, 与火绒完整版不兼容。",
+    "卸载时会删除相应的注册表，若同时存在火绒完整版，需重新安装以修复注册表。"
+  ],
+  "url": "https://down5.huorong.cn/sysdiag-all-5.0.73.3-2023.02.26.1.exe#/dl.7z",
+  "hash": "8e706bd35000d429c32e302f92b7e15507120a974c7fe4305073f8548a551e14",
+  "depends": "sudo",
+  "extract_to": "temp",
+  "pre_install": [
+    "if (-not (Test-Path \"$persist_dir\\db\\popblk.db\")) {",
+    "    ensure \"$persist_dir\\db\" | Out-Null",
+    "    Copy-Item \"$dir\\temp\\`$_1_\\Huorong\\Sysdiag\\db\\popblk.db\" \"$persist_dir\\db\" -Force",
+    "}",
+    "if (-not (Test-Path \"$persist_dir\\popblkuser.db\")) {",
+    "    New-Item \"$persist_dir\\popblkuser.db\" -Force | Out-Null",
+    "}"
+  ],
   "installer": {
     "script": [
       "$bin_dir = \"$dir\\temp\\bin\"",
@@ -31,24 +41,15 @@
       "sudo reg.exe add HKLM\\SOFTWARE\\Huorong\\Sysdiag\\app /f /v DataPath /t reg_sz /d \"$persist_dir\""
     ]
   },
-  "license": "Freeware",
-  "notes": [
-    "安装 / 卸载过程需要写入 / 删除注册表内容，需要管理员权限。",
-    "安装时会修改注册表中拦截数据库路径至 <persist_dir>, 与火绒完整版不兼容。",
-    "卸载时会删除相应的注册表，若同时存在火绒完整版，需重新安装以修复注册表。"
-  ],
+  "uninstaller": {
+    "script": [
+      "info \"Unregistering PopBlock database path\"",
+      "sudo Remove-ItemProperty -Path \"HKLM:Software\\Huorong\\Sysdiag\\app\" -Name \"DataPath\" -Force | Out-Null"
+    ]
+  },
   "persist": [
     "db",
     "popblkuser.db"
-  ],
-  "pre_install": [
-    "if (-not (Test-Path \"$persist_dir\\db\\popblk.db\")) {",
-    "    ensure \"$persist_dir\\db\" | Out-Null",
-    "    Copy-Item \"$dir\\temp\\`$_1_\\Huorong\\Sysdiag\\db\\popblk.db\" \"$persist_dir\\db\" -Force",
-    "}",
-    "if (-not (Test-Path \"$persist_dir\\popblkuser.db\")) {",
-    "    New-Item \"$persist_dir\\popblkuser.db\" -Force | Out-Null",
-    "}"
   ],
   "shortcuts": [
     [
@@ -56,13 +57,11 @@
       "火绒弹窗拦截"
     ]
   ],
-  "uninstaller": {
-    "script": [
-      "info \"Unregistering PopBlock database path\"",
-      "sudo Remove-ItemProperty -Path \"HKLM:Software\\Huorong\\Sysdiag\\app\" -Name \"DataPath\" -Force | Out-Null"
-    ]
+  "checkver": {
+    "url": "https://www.huorong.cn/5.0.version.json",
+    "regex": "sysdiag-all-([\\d\\.]+)-(?<build>[\\d\\.]+)\\.exe"
   },
-  "url": "https://down5.huorong.cn/sysdiag-all-5.0.73.3-2023.02.26.1.exe#/dl.7z",
-  "version": "5.0.73.3",
-  "_from": "anderlli0053/DEV-tools"
+  "autoupdate": {
+    "url": "https://down5.huorong.cn/sysdiag-all-$version-$matchBuild.exe#/dl.7z"
+  }
 }

@@ -1,8 +1,11 @@
 {
-  "version": "1671511901",
-  "description": "A free and open-source tool to visualize your keystrokes ⌨️ in real-time.",
-  "homepage": "https://github.com/mulaRahul/keyviz",
+  "version": "1.0.6",
+  "description": "A free and open-source tool to visualize your keystrokes in real-time.",
+  "homepage": "https://mularahul.github.io/keyviz/",
   "license": "GPL-3.0-only",
+  "suggest": {
+    "vcredist2022": "extras/vcredist2022"
+  },
   "architecture": {
     "64bit": {
       "url": "https://ghproxy.com/https://github.com/mulaRahul/keyviz/releases/download/v1.0.6/keyviz-v1.0.6.zip",
@@ -17,23 +20,13 @@
     ]
   ],
   "checkver": {
-    "script": [
-      "try {",
-      "    $api = Invoke-RestMethod https://api.github.com/repositories/516753000/releases/latest",
-      "    (Get-Date $api.assets[0].updated_at -UFormat %s), $api.tag_name.Substring(1) -join ' '",
-      "}",
-      "catch {",
-      "    ''",
-      "}"
-    ],
-    "regex": "\\A(\\d+) (?<ver>[\\w.-]+)\\Z"
+    "github": "https://github.com/mulaRahul/keyviz"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.com/https://github.com/mulaRahul/keyviz/releases/download/v$matchVer/keyviz-v$matchVer.zip"
+        "url": "https://ghproxy.com/https://github.com/mulaRahul/keyviz/releases/download/v$version/keyviz-v$version.zip"
       }
     }
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

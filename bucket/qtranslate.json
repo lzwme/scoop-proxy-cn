@@ -1,14 +1,16 @@
 {
-  "homepage": "https://quest-app.appspot.com/home",
-  "description": "A free translator by using online translation services",
+  "##": "Autoupdate is temporarily disabled because zip file for version 6.10.0 is not accessible.",
+  "version": "6.9.0",
+  "description": "Translator utility",
+  "homepage": "https://quest-app.appspot.com",
   "license": {
-    "identifier": "EULA",
+    "identifier": "Freeware",
     "url": "https://quest-app.appspot.com/license"
   },
-  "version": "6.10.0",
-  "url": "https://qtranslate1.appspot.com/QTranslate.6.10.0.exe#/dl.7z",
-  "hash": "md5:e23ffecb44c814aaa4708d56ab5b144b",
-  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\" -Recurse",
+  "notes": "If you encounter 'Program initialization error', follow the instructions on 'https://quest-app.appspot.com/faq'.",
+  "url": "https://qtranslate2.appspot.com/QTranslate.6.9.0.zip",
+  "hash": "md5:b235d430d195e0821a4dfd0309faaaa0",
+  "extract_dir": "QTranslate.6.9.0",
   "bin": "QTranslate.exe",
   "shortcuts": [
     [
@@ -16,17 +18,5 @@
       "QTranslate"
     ]
   ],
-  "persist": "Data",
-  "checkver": {
-    "url": "https://quest-app.appspot.com/download",
-    "regex": "([\\d.]+)</h3>"
-  },
-  "autoupdate": {
-    "url": "https://qtranslate1.appspot.com/QTranslate.$version.exe#/dl.7z",
-    "hash": {
-      "url": "https://quest-app.appspot.com/download",
-      "find": "MD5: $md5"
-    }
-  },
-  "_from": "okibcn/ScoopMaster"
+  "persist": "Data"
 }

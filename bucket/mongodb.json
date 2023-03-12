@@ -1,5 +1,5 @@
 {
-  "version": "6.3.0-rc0",
+  "version": "6.2.1",
   "description": "A document database with the scalability and flexibility.",
   "homepage": "https://www.mongodb.org",
   "license": {
@@ -16,13 +16,14 @@
     "\"$dir\\bin\\mongod.exe --config NEW_CONFIG_FILE\""
   ],
   "suggest": {
-    "Visual C/C++ Redistributable 2019": "vcredist2019"
+    "Visual C/C++ Redistributable": "extras/vcredist2022",
+    "MongoDB Shell": "extras/mongosh"
   },
   "architecture": {
     "64bit": {
-      "url": "https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-6.3.0-rc0-signed.msi",
-      "hash": "a1aa749ab0b238000861118c4f2a0195dac523d4540145f067a4efd3c14441a7",
-      "extract_dir": "MongoDB\\Server\\6.3"
+      "url": "https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-6.2.1-signed.msi",
+      "hash": "32c6dd000b8d70b56571b5e994ea709588d50211491d540e46227fcc33b71eff",
+      "extract_dir": "MongoDB\\Server\\6.2"
     }
   },
   "pre_install": [
@@ -34,7 +35,6 @@
     "}"
   ],
   "bin": [
-    "bin\\mongo.exe",
     [
       "bin\\mongod.exe",
       "mongod",
@@ -48,8 +48,8 @@
     "log"
   ],
   "checkver": {
-    "url": "http://downloads.mongodb.org.s3.amazonaws.com/current.json",
-    "jsonpath": "$.versions[0].version"
+    "url": "http://downloads.mongodb.org/current.json",
+    "regex": "\"version\"\\:\\s+\"([\\d.]+)\""
   },
   "autoupdate": {
     "architecture": {
@@ -61,6 +61,5 @@
     "hash": {
       "url": "$url.sha256"
     }
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

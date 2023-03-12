@@ -1,39 +1,36 @@
 {
-  "version": "31917",
-  "description": "General-purpose parametric 3D CAD modeler and a building information modeling software with finite-element-method support. Weekly development build.",
+  "version": "29085",
+  "description": "A free and open-source multi-platform parametric 3D modeler.",
   "homepage": "https://www.freecadweb.org",
-  "license": "GPL-3.0-or-later",
+  "license": "LGPL-2.0-or-later",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.com/https://github.com/FreeCAD/FreeCAD-Bundle/releases/download/weekly-builds/FreeCAD_weekly-builds-31917-2023-02-16-conda-Windows-x86_64-py310.7z",
-      "extract_dir": "FreeCAD_weekly-builds-31917-Win-Conda-x86_64.7z",
-      "hash": "b7e8ffa8540b4e6c3d2a4bb59689bef5e3437f56d0baeddc50077ae130d0c9e3"
+      "url": "https://ghproxy.com/https://github.com/FreeCAD/FreeCAD-Bundle/releases/download/weekly-builds/FreeCAD_weekly-builds-29085-Win-Conda-x86_64.7z",
+      "hash": "c05924e52b1349afeb3fd3ce46a9629ace189ba20326f59d44078caf64a18a1b"
     }
   },
-  "bin": [
-    [
-      "bin\\freecadcmd.exe",
-      "FreeCADCmd_Weekly"
-    ]
-  ],
+  "extract_dir": "FreeCAD_weekly-builds-29085-Win-Conda-x86_64",
+  "bin": "bin\\FreeCADCmd.exe",
   "shortcuts": [
     [
-      "bin\\freecad.exe",
-      "FreeCAD Weekly"
+      "bin\\FreeCAD.exe",
+      "FreeCAD"
     ]
   ],
   "checkver": {
-    "url": "https://api.github.com/repos/FreeCAD/FreeCAD-Bundle/releases",
-    "regex": "weekly-builds/FreeCAD_weekly-builds-(?<version>\\d+)-(?<date>\\d{4}-\\d{2}-\\d{2})-conda-Windows-x86_64-py310.7z",
-    "replace": "${version}"
+    "url": "https://github.com/FreeCAD/FreeCAD-Bundle/releases/tag/weekly-builds",
+    "regex": "FreeCAD_weekly-builds-([\\d]+)-Win-Conda"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.com/https://github.com/FreeCAD/FreeCAD-Bundle/releases/download/weekly-builds/FreeCAD_weekly-builds-$version-$matchDate-conda-Windows-x86_64-py310.7z",
-        "extract_dir": "FreeCAD_weekly-builds-$version-Win-Conda-x86_64.7z"
+        "url": "https://ghproxy.com/https://github.com/FreeCAD/FreeCAD-Bundle/releases/download/weekly-builds/FreeCAD_weekly-builds-$version-Win-Conda-x86_64.7z"
       }
-    }
-  },
-  "_from": "okibcn/ScoopMaster"
+    },
+    "hash": {
+      "url": "$url-SHA256.txt",
+      "regex": "(?sm):\\s+([a-fA-F\\d\\s]+)CertUtil"
+    },
+    "extract_dir": "FreeCAD_weekly-builds-$version-Win-Conda-x86_64"
+  }
 }

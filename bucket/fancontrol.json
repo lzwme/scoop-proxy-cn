@@ -1,11 +1,17 @@
 {
-  "homepage": "https://github.com/Rem0o/FanControl.Releases",
-  "description": "A focused, highly customizable fan controlling software for Windows.",
-  "version": "149",
-  "license": "null",
-  "url": "https://ghproxy.com/https://raw.githubusercontent.com/Rem0o/FanControl.Releases/master/FanControl.zip",
-  "hash": "e346d494944a0200f67aa4c599469b8c04779b32ea7dedd3a3c1d2d400842010",
-  "bin": "FanControl.exe",
+  "version": "147",
+  "description": "A highly customizable fan controlling software for Windows",
+  "homepage": "https://getfancontrol.com/",
+  "license": "Freeware",
+  "suggest": {
+    ".NET Runtime": "extras/windowsdesktop-runtime"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/Rem0o/FanControl.Releases/releases/download/V147/FanControl_net_7_0.zip",
+      "hash": "ab657f097c40b6685ea9380e977f34a8161a6d98421974d8f8543d0a81d417ed"
+    }
+  },
   "shortcuts": [
     [
       "FanControl.exe",
@@ -13,15 +19,19 @@
     ]
   ],
   "persist": [
-    "plugins",
-    "Configurations"
+    "Configurations",
+    "Plugins"
   ],
   "checkver": {
-    "url": "https://ghproxy.com/https://raw.githubusercontent.com/Rem0o/FanControl.Releases/master/version.json",
-    "jsonpath": "$.Number"
+    "url": "https://api.github.com/repos/Rem0o/FanControl.Releases/releases/latest",
+    "jsonpath": "$.assets..browser_download_url",
+    "regex": "/V([\\d.]+)/FanControl_net_(?<netver>(?!4_8)[\\d_]+).zip"
   },
   "autoupdate": {
-    "url": "https://ghproxy.com/https://raw.githubusercontent.com/Rem0o/FanControl.Releases/master/FanControl.zip"
-  },
-  "_from": "okibcn/ScoopMaster"
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/Rem0o/FanControl.Releases/releases/download/V$version/FanControl_net_$matchNetver.zip"
+      }
+    }
+  }
 }

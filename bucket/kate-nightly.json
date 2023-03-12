@@ -1,35 +1,38 @@
 {
-  "version": "1873",
-  "description": "Multi-document editor",
-  "homepage": "https://kate-editor.org",
+  "version": "1758",
+  "description": "Communications and data transfer between devices over local networks",
+  "homepage": "https://apps.kde.org/kdeconnect",
   "license": "LGPL-2.0-only",
   "architecture": {
     "64bit": {
-      "url": "https://binary-factory.kde.org/view/Windows%2064-bit/job/Kate_Nightly_win64/1873/artifact/kate-master-1873-windows-cl-msvc2019-x86_64.7z",
-      "hash": "94ed451e59835ede8ddcd8e2ffe1a97623f3c6a27c7f00476efa08db6775c50d"
+      "url": "https://binary-factory.kde.org/job/Kate_Nightly_win64/lastSuccessfulBuild/artifact/kate-master-1758-windows-msvc2019_64-cl.7z",
+      "hash": "c6368326b8a9402892c5d867ca76105afa46e8542b19ff0a3e967ee6bea9ab2d"
     }
   },
-  "bin": "bin\\kate.exe",
+  "bin": [
+    [
+      "bin\\kate.exe",
+      "kate"
+    ]
+  ],
   "shortcuts": [
     [
       "bin\\kate.exe",
-      "Kate"
+      "Kate Nightly"
     ]
   ],
   "checkver": {
-    "url": "https://binary-factory.kde.org/view/Windows%2064-bit/job/Kate_Nightly_win64/lastSuccessfulBuild/artifact/",
-    "regex": "kate-master-([\\d.-]+)-windows-cl-msvc2019-x86_64.7z"
+    "url": "https://binary-factory.kde.org/job/Kate_Nightly_win64/",
+    "regex": "kate-master-(\\d+)-windows"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://binary-factory.kde.org/view/Windows%2064-bit/job/Kate_Nightly_win64/$preReleaseVersion/artifact/kate-master-$version-windows-cl-msvc2019-x86_64.7z"
+        "url": "https://binary-factory.kde.org/job/Kate_Nightly_win64/lastSuccessfulBuild/artifact/kate-master-$version-windows-msvc2019_64-cl.7z"
       }
     },
     "hash": {
-      "url": "$url.sha256",
-      "regex": "$sha256"
+      "url": "$url.sha256"
     }
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

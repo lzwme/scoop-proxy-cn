@@ -1,12 +1,18 @@
 {
   "version": "0.45",
-  "description": "マウスホイールの回転で画像を次々と切り替えて表示できるシンプルな一画面・画像ビューア",
-  "homepage": "https://freesoft-100.com/review/massigra.php",
-  "url": "https://dl.freesoft-100.com/p/MassiGra045.zip",
-  "hash": "",
-  "depends": "",
+  "description": "シンプルで高速な単画面型の画像ビューワ",
+  "homepage": "http://www.massigra.net/",
+  "license": "Freeware",
+  "url": [
+    "https://ftp.vector.co.jp/60/45/1855/MassiGra045.zip",
+    "https://ftp.vector.co.jp/60/45/1855/MassiGra045Help.zip"
+  ],
+  "hash": [
+    "76f28cf65e900778ae0f67d41ea324d35d0ec162624dcf50ada3e44ce831ca25",
+    "e19e74666205fbacc221970f7c5b7a7354863f7ea5f8eca2d4fa1e61edbf6a9e"
+  ],
+  "pre_install": "ensure \"$persist_dir\\user\"",
   "persist": "user",
-  "bin": "MassiGra.exe",
   "shortcuts": [
     [
       "MassiGra.exe",
@@ -14,11 +20,13 @@
     ]
   ],
   "checkver": {
-    "url": "https://www.vector.co.jp/soft/dl/win95/art/se400675.html",
-    "regex": "<span class=.version.>([\\d.]+\\d+)</span>"
+    "url": "https://siku-api.deno.dev/massigra",
+    "regex": "\"ver\"\\s?:\\s?\"([\\d\\.]+)\".*?\"software_dl_url\"\\s?:\\s?\"(?<soft>.*?)\".*?\"help_dl_url\"\\s?:\\s?\"(?<help>.*?)\""
   },
   "autoupdate": {
-    "url": "https://dl.freesoft-100.com/p/MassiGra$cleanVersion.zip"
-  },
-  "_from": "yuusakuri/scoop-bucket"
+    "url": [
+      "$matchSoft",
+      "$matchHelp"
+    ]
+  }
 }

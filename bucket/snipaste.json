@@ -1,36 +1,35 @@
 {
-  "homepage": "https://www.snipaste.com/",
+  "version": "1.16.2",
   "description": "A snipping tool, which allows you to pin the screenshot back onto the screen.",
-  "version": "2.8.3-Beta",
-  "license": "Proprietary",
+  "homepage": "https://www.snipaste.com/",
+  "license": "Unknown",
+  "suggest": {
+    "vcredist": "extras/vcredist2022"
+  },
   "architecture": {
     "64bit": {
-      "url": "https://bitbucket.org/liule/snipaste/downloads/Snipaste-2.8.3-Beta-x64.zip",
-      "hash": "sha1:039b8a31e0de0842764f6f2415025c1a48841334"
+      "url": "https://bitbucket.org/liule/snipaste/downloads/Snipaste-1.16.2-x64.zip",
+      "hash": "sha1:07681ceeb45dc4f8acbc1c2f3731773cef82162d"
     },
     "32bit": {
-      "url": "https://bitbucket.org/liule/snipaste/downloads/Snipaste-2.8.3-Beta-x86.zip",
-      "hash": "sha1:b16cd4f44f8f1359fc89eb8569943b9ae34fa243"
+      "url": "https://bitbucket.org/liule/snipaste/downloads/Snipaste-1.16.2-x86.zip",
+      "hash": "sha1:c198dfa47010e6591e51299d985d7411e80d1f54"
     }
   },
-  "pre_install": "if (!(Test-Path \"$persist_dir\\config.ini\")) { Set-Content \"$dir\\config.ini\" '' -Encoding ASCII }",
-  "persist": [
-    "history",
-    "config.ini"
+  "pre_install": [
+    "ensure \"$persist_dir\"",
+    "if (!(Test-Path \"$persist_dir\\config.ini\")) { Set-Content \"$persist_dir\\config.ini\" '' -Encoding ASCII }",
+    "Set-Content \"$dir\\config.ini\" \"[General]`nconfig=$($persist_dir.Replace('\\','/'))/config.ini\" -Encoding ASCII"
   ],
+  "bin": "Snipaste.exe",
   "shortcuts": [
     [
       "Snipaste.exe",
       "Snipaste"
     ]
   ],
-  "suggest": {
-    "vcredist": "extras/vcredist2015"
-  },
-  "checkver": {
-    "url": "https://bitbucket.org/liule/snipaste/downloads/",
-    "regex": "Snipaste-(([\\d.]+)-Beta[\\d]*?)-x64.zip"
-  },
+  "persist": "history",
+  "checkver": "(?sm)Desktop.*?>v([\\d.]+) [^B]",
   "autoupdate": {
     "architecture": {
       "64bit": {
@@ -43,6 +42,5 @@
     "hash": {
       "url": "https://dl.snipaste.com/sha-1.txt"
     }
-  },
-  "_from": "naderi/scoop-bucket"
+  }
 }

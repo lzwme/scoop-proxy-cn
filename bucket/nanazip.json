@@ -1,38 +1,37 @@
 {
-  "version": "2.1.451",
-  "description": "NanaZip is an open source file archiver, forked from the source code of well-known file archiver 7-Zip.",
-  "homepage": "https://github.com/M2Team/NanaZip/",
+  "version": "2.0.450",
+  "description": "The 7-Zip derivative intended for the modern Windows experience",
+  "homepage": "https://github.com/M2Team/NanaZip",
   "license": "MIT",
-  "url": "https://ghproxy.com/https://github.com/M2Team/NanaZip/releases/download/2.1.451/40174MouriNaruto.NanaZipPreview_2.1.451.0_gnj4mf6z9tkrc.msixbundle#/dl.7z",
-  "hash": "69e8e6054e60377f9a6231789f399c8791a7bf9851b96621877c58eff553fbf1",
-  "architecture": {
-    "64bit": {
-      "pre_install": [
-        "$file = \"NanaZipPackage_$($version).0_x64.msix\"",
-        "Remove-Item \"$dir\\*\" -Exclude $file -Recurse",
-        "Expand-7zipArchive \"$dir\\$file\" -Removal | Out-Null"
-      ]
-    },
-    "32bit": {
-      "pre_install": [
-        "$file = \"NanaZipPackage_$($version).0_x86.msix\"",
-        "Remove-Item \"$dir\\*\" -Exclude $file -Recurse",
-        "Expand-7zipArchive \"$dir\\$file\" -Removal | Out-Null"
-      ]
-    }
-  },
+  "url": "https://ghproxy.com/https://github.com/M2Team/NanaZip/releases/download/2.0.450/40174MouriNaruto.NanaZip_2.0.450.0_gnj4mf6z9tkrc.msixbundle#/dl.7z",
+  "hash": "2bee289d9e026255073ddcee8082e8d0ad8496b9fe9fe8f8a29080a81a95872e",
+  "pre_install": [
+    "Remove-Item -Path \"$dir\\*\" -Exclude *.msix -Recurse -Force",
+    "Expand-7zipArchive -Path \"$dir\\*$(switch ($architecture) { '64bit' { 'x64' } '32bit' { 'x86' } 'arm64' { 'ARM64' } }).msix\"",
+    "Remove-Item -Path \"$dir\\*\" -Include '*.msix', 'Appx*', '?Content*', 'Code*' -Recurse -Force"
+  ],
+  "bin": [
+    [
+      "NanaZipC.exe",
+      "7z"
+    ],
+    [
+      "NanaZipG.exe",
+      "7zG"
+    ]
+  ],
   "shortcuts": [
     [
       "NanaZip.exe",
       "NanaZip"
     ]
   ],
-  "checkver": {
-    "url": "https://github.com/M2Team/NanaZip/releases/",
-    "regex": "NanaZip/tree/([\\d.]+)"
-  },
+  "checkver": "github",
   "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/M2Team/NanaZip/releases/download/$version/40174MouriNaruto.NanaZipPreview_$version.0_gnj4mf6z9tkrc.msixbundle#/dl.7z"
-  },
-  "_from": "naderi/scoop-bucket"
+    "url": "https://ghproxy.com/https://github.com/M2Team/NanaZip/releases/download/$version/40174MouriNaruto.NanaZip_$version.0_gnj4mf6z9tkrc.msixbundle#/dl.7z",
+    "hash": {
+      "url": "https://github.com/M2Team/NanaZip/releases/tag/$version",
+      "regex": "(?s)$basename.*?$sha256"
+    }
+  }
 }

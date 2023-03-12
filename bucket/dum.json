@@ -1,26 +1,24 @@
 {
-  "version": "0.35.0",
+  "version": "0.1.19",
   "description": "An npm scripts runner written in Rust.",
-  "homepage": "https://dprint.dev/",
+  "homepage": "https://github.com/egoist/dum",
   "license": "MIT",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.com/https://github.com/dprint/dprint/releases/download/0.35.0/dprint-x86_64-pc-windows-msvc-installer.exe",
-      "hash": "ae4f84d61085fa2c7e8880cb627c31c4893a571810d02bdaee5dbcce4e3d711b",
-      "extract_dir": "dprint_0_35_0_windows\\dprint-0.35.0"
+      "url": "https://ghproxy.com/https://github.com/egoist/dum/releases/download/v0.1.19/dum-x86_64-pc-windows-msvc.zip",
+      "hash": "ed82ebf238d4812ac2753f9b970617b0a1c0945fd0f6d59bc22d71f81522468f"
     }
   },
-  "bin": "dprint.exe",
-  "checkver": {
-    "github": "https://github.com/dprint/dprint"
-  },
+  "bin": "dum.exe",
+  "checkver": "github",
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.com/https://github.com/dprint/dprint/releases/download/$version/dprint-x86_64-pc-windows-msvc-installer.exe",
-        "extract_dir": "dprint_$underscoreVersion_windows\\dprint-$version"
+        "url": "https://ghproxy.com/https://github.com/egoist/dum/releases/download/v$version/dum-x86_64-pc-windows-msvc.zip",
+        "hash": {
+          "url": "$baseurl/dum-x86_64-pc-windows-msvc-sha256sum.txt"
+        }
       }
     }
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

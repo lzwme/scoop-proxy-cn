@@ -1,39 +1,19 @@
 {
-  "version": "24.20.010",
-  "description": "Portable Dual Pane Multi-Tabbed File manager for Windows",
-  "homepage": "https://www.xyplorer.com",
+  "version": "17.40.0100",
+  "description": "File manager for Windows",
+  "homepage": "https://www.xyplorer.com/free.php",
   "license": {
-    "identifier": "Shareware",
+    "identifier": "Freeware",
     "url": "https://www.xyplorer.com/company.php#legal"
   },
-  "url": "https://www.xyplorer.com/download/xyplorer_24.20.0100_noinstall.zip",
-  "hash": "c7884e844b12ba83f91e566350a2e6f89173c687ddb726363abd620ae7a49a9d",
-  "pre_install": [
-    "if (!(Test-Path \"$persist_dir\\lic.ini\")) { New-Item \"$dir\\lic.ini\" | Out-Null }",
-    "if (!(Test-Path \"$persist_dir\\startup.ini\")) { New-Item \"$dir\\startup.ini\" | Out-Null }",
-    "if (!(Test-Path \"$persist_dir\\admin.ini\")) { New-Item \"$dir\\admin.ini\" | Out-Null }"
-  ],
-  "bin": "XYplorer.exe",
+  "url": "https://www.xyplorer.com/download/xyplorer_free_noinstall.zip",
+  "hash": "38cb3abc8a699023e5f74fe19c167e91e59be67a09c9e1fc7f589b98324b9ee9",
+  "bin": "XYplorerFree.exe",
   "shortcuts": [
     [
-      "XYplorer.exe",
+      "XYplorerFree.exe",
       "XYplorer"
     ]
   ],
-  "persist": [
-    "Data",
-    "AC",
-    "startup.ini",
-    "admin.ini",
-    "lic.ini"
-  ],
-  "checkver": {
-    "url": "http://www.xyplorer.com/xyfc/viewtopic.php?f=1&t=4&sd=d",
-    "regex": "2. .a href=\"https://www.xyplorer.com/download/xyplorer_([\\d.]+)(.+?_noinstall).zip"
-  },
-  "autoupdate": {
-    "note": "Check update log at http://www.xyplorer.com/xyfc/viewtopic.php?f=1&t=4&sd=d",
-    "url": "https://www.xyplorer.com/download/xyplorer_$version$match2.zip"
-  },
-  "_from": "okibcn/ScoopMaster"
+  "persist": "Data"
 }

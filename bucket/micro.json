@@ -1,36 +1,32 @@
 {
-  "version": "3.16.0",
-  "description": "Micro is a platform for cloud native application development",
-  "homepage": "https://github.com/micro/micro",
-  "license": {
-    "identifier": "PolyForm Shield License",
-    "url": "https://github.com/micro/micro/blob/master/LICENSE"
-  },
+  "version": "2.0.11",
+  "description": "A terminal-based text editor that aims to be easy to use and intuitive, while also taking advantage of the full capabilities of modern terminals.",
+  "homepage": "https://micro-editor.github.io/",
+  "license": "MIT",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.com/https://github.com/micro/micro/releases/download/v3.16.0/micro-v3.16.0-windows-amd64.zip",
-      "hash": "f8d169338074dbed7cda4b055d81d186c398864907b7c82528fb684c3496e1c5"
+      "url": "https://ghproxy.com/https://github.com/zyedidia/micro/releases/download/v2.0.11/micro-2.0.11-win64.zip",
+      "hash": "095063f8aaa66f88b7700d4710938cb12595f3f37bb62341ea7a7517d7dfffe2"
     },
     "32bit": {
-      "url": "https://ghproxy.com/https://github.com/micro/micro/releases/download/v3.16.0/micro-v3.16.0-windows-386.zip",
-      "hash": "288b20b3d65506421f4149f12f28a61aeae24c97ba2b9d3fdbcb962457bee9db"
+      "url": "https://ghproxy.com/https://github.com/zyedidia/micro/releases/download/v2.0.11/micro-2.0.11-win32.zip",
+      "hash": "079dc7d910deba3c851d9ed74bd01b4216b4fc919d2d027b99f97bdee5d7c0d7"
     }
   },
+  "extract_dir": "micro-2.0.11",
   "bin": "micro.exe",
-  "checkver": "github",
+  "checkver": {
+    "github": "https://github.com/zyedidia/micro"
+  },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.com/https://github.com/micro/micro/releases/download/v$version/micro-v$version-windows-amd64.zip"
+        "url": "https://ghproxy.com/https://github.com/zyedidia/micro/releases/download/v$version/micro-$version-win64.zip"
       },
       "32bit": {
-        "url": "https://ghproxy.com/https://github.com/micro/micro/releases/download/v$version/micro-v$version-windows-386.zip"
+        "url": "https://ghproxy.com/https://github.com/zyedidia/micro/releases/download/v$version/micro-$version-win32.zip"
       }
     },
-    "hash": {
-      "url": "https://ghproxy.com/https://github.com/micro/micro/releases/download/v$version/checksums.txt",
-      "mode": "extract"
-    }
-  },
-  "_from": "batkiz/backit"
+    "extract_dir": "micro-$version"
+  }
 }

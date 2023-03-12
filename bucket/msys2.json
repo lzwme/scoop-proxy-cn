@@ -1,79 +1,90 @@
 {
-  "homepage": "http://msys2.github.io",
   "##": "64-bit version is able to build both 32-bit and 64-bit packages",
-  "version": "20180531",
+  "version": "2023-01-27",
+  "description": "A software distro and building platform for Windows.",
+  "homepage": "http://www.msys2.org/",
+  "license": "GPL-2.0-only|BSD-3-Clause",
+  "notes": "Please run 'msys2' now for the MSYS2 setup to complete!",
   "architecture": {
     "64bit": {
-      "url": "https://downloads.sourceforge.net/project/msys2/Base/x86_64/msys2-base-x86_64-20180531.tar.xz",
-      "extract_dir": "msys64",
-      "hash": "sha1:309f604a165179d50fbe4131cf87bd160769f974"
-    },
-    "32bit": {
-      "url": "https://downloads.sourceforge.net/project/msys2/Base/i686/msys2-base-i686-20180531.tar.xz",
-      "extract_dir": "msys32",
-      "hash": "sha1:c985127122d32e90967d2348fc97e879cba602a9"
+      "url": "https://ghproxy.com/https://github.com/msys2/msys2-installer/releases/download/2023-01-27/msys2-base-x86_64-20230127.tar.xz",
+      "hash": "e0019a1323e86b26cb6405774527cf4e7d784123f4e2f167d1d4366d6b8f4043",
+      "extract_dir": "msys64"
     }
   },
   "bin": [
-    "usr\\bin\\basename.exe",
-    "usr\\bin\\cat.exe",
-    "usr\\bin\\chmod.exe",
-    "usr\\bin\\comm.exe",
-    "usr\\bin\\cp.exe",
-    "usr\\bin\\cut.exe",
-    "usr\\bin\\date.exe",
-    "usr\\bin\\dirname.exe",
-    "usr\\bin\\echo.exe",
-    "usr\\bin\\env.exe",
-    "usr\\bin\\expr.exe",
-    "usr\\bin\\false.exe",
-    "usr\\bin\\fold.exe",
-    "usr\\bin\\head.exe",
-    "usr\\bin\\id.exe",
-    "usr\\bin\\install.exe",
-    "usr\\bin\\join.exe",
-    "usr\\bin\\ln.exe",
-    "usr\\bin\\ls.exe",
-    "usr\\bin\\md5sum.exe",
-    "usr\\bin\\mkdir.exe",
-    "usr\\bin\\mv.exe",
-    "usr\\bin\\od.exe",
-    "usr\\bin\\paste.exe",
-    "usr\\bin\\printf.exe",
-    "usr\\bin\\ps.exe",
-    "usr\\bin\\pwd.exe",
-    "usr\\bin\\rm.exe",
-    "usr\\bin\\rmdir.exe",
-    "usr\\bin\\sleep.exe",
-    "usr\\bin\\sort.exe",
-    "usr\\bin\\split.exe",
-    "usr\\bin\\stty.exe",
-    "usr\\bin\\tail.exe",
-    "usr\\bin\\tee.exe",
-    "usr\\bin\\touch.exe",
-    "usr\\bin\\tr.exe",
-    "usr\\bin\\true.exe",
-    "usr\\bin\\uname.exe",
-    "usr\\bin\\uniq.exe",
-    "usr\\bin\\wc.exe"
+    [
+      "msys2_shell.cmd",
+      "msys2",
+      "-msys2 -defterm -here -no-start"
+    ],
+    [
+      "msys2_shell.cmd",
+      "mingw",
+      "-mingw -defterm -here -full-path -no-start"
+    ],
+    [
+      "msys2_shell.cmd",
+      "mingw32",
+      "-mingw32 -defterm -here -full-path -no-start"
+    ],
+    [
+      "msys2_shell.cmd",
+      "mingw64",
+      "-mingw64 -defterm -here -full-path -no-start"
+    ],
+    [
+      "msys2_shell.cmd",
+      "clang32",
+      "-clang32 -defterm -here -full-path -no-start"
+    ],
+    [
+      "msys2_shell.cmd",
+      "clang64",
+      "-clang64 -defterm -here -full-path -no-start"
+    ],
+    [
+      "msys2_shell.cmd",
+      "ucrt64",
+      "-ucrt64 -defterm -here -full-path -no-start"
+    ]
   ],
-  "env_add_path": ".",
-  "notes": "Please run 'msys2' now for the MSYS2 setup to complete!",
+  "shortcuts": [
+    [
+      "msys2.exe",
+      "MSYS2"
+    ],
+    [
+      "mingw32.exe",
+      "MinGW32"
+    ],
+    [
+      "mingw64.exe",
+      "MinGW64"
+    ],
+    [
+      "clang32.exe",
+      "Clang32"
+    ],
+    [
+      "clang64.exe",
+      "Clang64"
+    ],
+    [
+      "ucrt64.exe",
+      "UCRT64"
+    ]
+  ],
+  "persist": "home",
   "checkver": {
-    "url": "https://sourceforge.net/projects/msys2/files/Base/x86_64/",
-    "re": "/msys2-base-x86_64-(\\d+).tar.xz"
+    "url": "https://github.com/msys2/msys2-installer/releases",
+    "regex": "/releases/tag/(?<version>(?<year>\\d{4})-(?<month>\\d{2})-(?<day>\\d{2}))"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://downloads.sourceforge.net/project/msys2/Base/x86_64/msys2-base-x86_64-$version.tar.xz",
-        "extract_dir": "msys64"
-      },
-      "32bit": {
-        "url": "https://downloads.sourceforge.net/project/msys2/Base/i686/msys2-base-i686-$version.tar.xz",
-        "extract_dir": "msys32"
+        "url": "https://ghproxy.com/https://github.com/msys2/msys2-installer/releases/download/$version/msys2-base-x86_64-$matchYear$matchMonth$matchDay.tar.xz"
       }
     }
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

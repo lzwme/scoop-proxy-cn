@@ -1,72 +1,64 @@
 {
-  "version": "py310_22.11.1-1",
+  "version": "4.12.0",
   "description": "A cross-platform, Python-agnostic binary package manager",
   "homepage": "https://conda.io/miniconda.html",
   "license": "BSD-3-Clause",
   "notes": [
     "From 4.6.0, conda has built the support for Cmd, Powershell or other shells.",
-    "Use \"conda init powershell\" or \"conda init __your_favorite_shell__\"",
-    "",
-    "Miniconda3 drops support for 32-bit CPUs from v22.11.1. If you are running a 32-bit system, please install miniconda3-4.12.0 from the Versions bucket."
+    "Use \"conda init powershell\" or \"conda init __your_favorite_shell__\""
   ],
   "architecture": {
     "64bit": {
-      "url": "https://repo.anaconda.com/miniconda/Miniconda3-py310_22.11.1-1-Windows-x86_64.exe#/setup.exe",
-      "hash": "2e3086630fa3fae7636432a954be530c88d0705fce497120d56e0f5d865b0d51"
+      "url": "https://repo.anaconda.com/miniconda/Miniconda3-py39_4.12.0-Windows-x86_64.exe#/setup.exe",
+      "hash": "1acbc2e8277ddd54a5f724896c7edee112d068529588d944702966c867e7e9cc"
+    },
+    "32bit": {
+      "url": "https://repo.anaconda.com/miniconda/Miniconda3-py39_4.12.0-Windows-x86.exe#/setup.exe",
+      "hash": "4fb64e6c9c28b88beab16994bfba4829110ea3145baa60bda5344174ab65d462"
     }
   },
   "installer": {
     "script": [
       "# Using Start-Process as a workaround because the installer will not work properly when args are quoted (e.g. \"`\"/S`\"\")",
-      "Start-Process \"$dir\\setup.exe\" -WorkingDirectory \"$dir\" -ArgumentList @('/S', '/InstallationType=JustMe', '/RegisterPython=0', '/AddToPath=0', '/NoRegistry=1', \"/D=$dir\\bin\") -Wait "
+      "Start-Process \"$dir\\setup.exe\" -ArgumentList @('/S', '/InstallationType=JustMe', '/RegisterPython=0', '/AddToPath=0', '/NoRegistry=1', \"/D=$dir\") -Wait | Out-Null"
     ]
   },
   "uninstaller": {
     "script": [
-      "Start-Process \"$dir\\bin\\Uninstall-Miniconda3.exe\" -ArgumentList '/S' -Wait | Out-Null",
+      "Start-Process \"$dir\\Uninstall-Miniconda3.exe\" -ArgumentList '/S' -Wait | Out-Null",
       "# Create a 'dummy' to avoid error because the uninstaller removes the symlink. The does not affect persist.",
-      "if (!(Test-Path \"$dir\\bin\\envs\")) { New-Item \"$dir\\bin\\envs\" -ItemType Directory | Out-Null }"
+      "if (!(Test-Path \"$dir\\envs\")) { New-Item \"$dir\\envs\" -ItemType Directory | Out-Null }"
     ]
   },
   "bin": [
-    "bin\\python.exe",
-    "bin\\pythonw.exe",
+    "python.exe",
+    "pythonw.exe",
     [
-      "bin\\python.exe",
+      "python.exe",
       "python3"
-    ],
-    [
-      "bin\\python.exe",
-      "py"
-    ],
-    [
-      "bin\\_conda.exe",
-      "conda"
-    ],
-    [
-      "bin\\_conda.exe",
-      "conda3"
     ]
   ],
   "env_add_path": [
-    "bin\\scripts",
-    "bin\\Library\\bin"
+    "scripts",
+    "Library\\bin"
   ],
-  "persist": "bin\\envs",
+  "persist": "envs",
   "checkver": {
     "url": "https://docs.conda.io/en/latest/miniconda.html",
-    "regex": "Miniconda3-(py[(0-9)]+_[(0-9).]+-[(0-9)]?)-Windows"
+    "regex": "Miniconda3-py39_([\\d.]+)-Windows"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://repo.anaconda.com/miniconda/Miniconda3-$version-Windows-x86_64.exe#/setup.exe"
+        "url": "https://repo.anaconda.com/miniconda/Miniconda3-py39_$version-Windows-x86_64.exe"
+      },
+      "32bit": {
+        "url": "https://repo.anaconda.com/miniconda/Miniconda3-py39_$version-Windows-x86.exe"
       }
     },
     "hash": {
       "url": "https://docs.conda.io/en/latest/miniconda.html",
       "regex": "(?sm)$basename.*?>$sha256<"
     }
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

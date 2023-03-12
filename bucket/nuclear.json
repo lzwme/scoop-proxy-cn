@@ -1,15 +1,17 @@
 {
-  "version": "95cfe0",
-  "homepage": "https://nuclear.js.org",
+  "version": "0.6.14",
   "description": "Modern music player focused on streaming from free sources",
+  "homepage": "https://nuclear.js.org",
   "license": "AGPL-3.0-only",
-  "url": "https://ghproxy.com/https://github.com/nukeop/nuclear/releases/download/95cfe0/nuclear-95cfe0.exe#/dl.7z",
-  "hash": "aede4759523de52280148ffd2331aeae760547d3c45e95fc67fd45defe818594",
-  "installer": {
-    "script": [
-      "Expand-7ZipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\" -Removal",
-      "Remove-Item \"$dir\\`$*\", \"$dir\\Uninst*\" -Force -Recurse"
-    ]
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/nukeop/nuclear/releases/download/v0.6.14/nuclear.Setup.0.6.14.exe#/dl.7z",
+      "hash": "18c57481d93816838e46b980ac05ee6ad08ca737e142a51486d4a10684fdd598",
+      "pre_install": [
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+        "Remove-Item \"$dir\\`$*\", \"$dir\\Uninst*\" -Recurse"
+      ]
+    }
   },
   "shortcuts": [
     [
@@ -18,11 +20,14 @@
     ]
   ],
   "checkver": {
-    "url": "https://github.com/nukeop/nuclear/tags",
-    "regex": "/releases/tag/(.+?)\""
+    "url": "https://api.github.com/repos/nukeop/nuclear/releases",
+    "regex": "/nuclear\\.Setup\\.([\\d.]+)\\.exe"
   },
   "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/nukeop/nuclear/releases/download/$version/nuclear-$version.exe#/dl.7z"
-  },
-  "_from": "naderi/scoop-bucket"
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/nukeop/nuclear/releases/download/v$version/nuclear.Setup.$version.exe#/dl.7z"
+      }
+    }
+  }
 }
