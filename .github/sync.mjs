@@ -15,10 +15,7 @@ function parseTxtFile(filename) {
   const list = str
     .split('\n')
     .filter(d => d && !d.startsWith('#'))
-    .map(d => {
-      if (d.includes(', ')) return path.resolve(CONFIG.tmpDir, d.replace('/', '-').replace(', ', '/'));
-      return d;
-    });
+    .map(d => d.includes(', ') ? path.resolve(CONFIG.tmpDir, d.replace('/', '-').replace(', ', '/')) : d);
 
   return new Set(list);
 }
@@ -31,7 +28,7 @@ async function syncDir(src, dest, repo = '') {
   dest = path.resolve(rootDir, dest);
 
   if (!fs.existsSync(src) || CONFIG.filter.test(basename)) return total;
-  if (ignoredSet.has(basename) || ignoredSet.has(src)) return;
+  if (ignoredSet.has(basename) || ignoredSet.has(src)) return total;
 
   const stats = fs.statSync(src);
   const ext = path.extname(src);
@@ -144,8 +141,8 @@ function outputSources() {
   logger.debug('starting output for', CONFIG.sourcesStatFile);
 
   const content = [...destFilesCache.values()]
-    .sort((a, b) => a.dest > b.dest)
     .map(item => `${item.dest.replace(CONFIG.rootDir, '').slice(1)}, ${item.repo}, ${item.fixed ? 1 : 0}`)
+    .sort()
     .join('\n');
   if (content) fs.writeFileSync(CONFIG.sourcesStatFile, content, 'utf8');
 }
