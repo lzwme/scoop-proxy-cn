@@ -1,33 +1,32 @@
 {
-  "homepage": "https://github.com/majn/telegram-purple",
-  "description": "Pidgin telegram plugin",
-  "version": "1.3.0rev2",
+  "homepage": "https://github.com/ars3niy/tdlib-purple",
+  "description": "libpurple Telegram plugin using tdlib",
+  "version": "0.8.1",
   "license": "GPL-2.0-or-later",
-  "url": [
-    "http://eion.robbmob.com/telegram/telegram-purple-1.3.0rev2.exe#/telegram-purple.7z"
+  "notes": [
+    "This installation- given its methods- will be wiped out when Pidgin updates.",
+    "If only Pidgin supported putting pixmaps, locale and other extraneous dependencies in the \".purple\" folder...",
+    "Please force reinstall this manifest after an update of Pidgin to fix."
   ],
-  "hash": [
-    "sha256:df7565a4c435d68e20badd4bdc89e33aff36e65a4f161a7ff253dc962449f8b2"
-  ],
+  "url": "https://ghproxy.com/https://github.com/ars3niy/tdlib-purple/releases/download/v0.8.1/tdlib-purple-0.8.1.exe#/dl.7z",
+  "hash": "4565a2eea63cece3197a8d9179535ba4cd68e4cefa1ff10127378252a9a18db9",
   "post_install": [
     "$pidgin = \"$(appdir pidgin)\\current\"",
-    "Copy-Item \"$dir\\`$_3_\\*\" \"$pidgin\" -Recurse -Force",
-    "Remove-Item \"$dir\\`$_3_\" -Recurse"
+    "Copy-Item \"$dir\\`$_4_\\*\" \"$pidgin\" -Recurse -Force",
+    "Remove-Item \"$dir\\`$_4_\" -Recurse",
+    "Remove-Item \"$dir\\`$PLUGINSDIR\" -Recurse"
   ],
   "uninstaller": {
     "script": [
       "$pidgin = \"$(appdir pidgin)\\current\"",
-      "if (Test-Path \"$pidgin\\plugins\\libtelegram.dll\") {",
-      "   Remove-Item \"$pidgin\\plugins\\libtelegram.dll\" -Force",
-      "}"
+      "Remove-Item \"$pidgin\\locale\\*\" -Include tdlib-purple.mo -Recurse -Force",
+      "Remove-Item \"$pidgin\\pixmaps\\*\" -Include telegram.png -Recurse -Force",
+      "Remove-Item \"$pidgin\\plugins\\libtelegram-tdlib.dll\" -Force"
     ]
   },
-  "checkver": {
-    "url": "http://eion.robbmob.com/telegram/",
-    "re": ">telegram-purple-([\\d\\w.]+)\\.exe<"
-  },
+  "checkver": "github",
   "autoupdate": {
-    "url": "http://eion.robbmob.com/telegram/telegram-purple-$version.exe#/telegram-purple.7z"
+    "url": "https://ghproxy.com/https://github.com/ars3niy/tdlib-purple/releases/download/v$version/tdlib-purple-$version.exe#/dl.7z"
   },
   "depends": "pidgin"
 }
