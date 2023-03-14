@@ -1,32 +1,25 @@
 {
   "homepage": "https://rime.im/",
   "license": "GPL-3.0-or-later",
-  "version": "0.14.3.97p1",
-  "url": "https://ghproxy.com/https://github.com/fxliang/weasel/releases/download/0.14.3_dev_0.97p1/weasel-0.14.3.97p1-installer.exe#/dl.7z",
-  "hash": "c863ed70fb6a016ca7c00782ecedd156ecf669d5d63da95afb4f951d3e399a7d",
+  "version": "0.14.3.0",
+  "url": "https://ghproxy.com/https://github.com/rime/weasel/releases/download/0.14.3/weasel-0.14.3.0-installer.exe#/dl.7z",
+  "hash": "de63dc2ef45d5b094a239fc704051270f3185bf9e883132532b7e17d2fdaf81b",
   "installer": {
     "script": [
-      "New-Item -Path \"HKCU:\\Software\\Rime\" | Out-Null",
-      "New-Item -Path \"HKCU:\\Software\\Rime\\Weasel\" | Out-Null",
-      "New-Item -Path \"HKCU:\\Software\\Rime\\Weasel\\Updates\" | Out-Null",
-      "New-ItemProperty -Path \"HKCU:\\Software\\Rime\\Weasel\\Updates\" -Name CheckForUpdates -Value \"0\" | Out-Null",
-      "Start-Process -Wait \"$dir\\WeaselSetup.exe\" \"/s\"",
-      "Start-Process \"$dir\\WeaselServer.exe\""
+      "& \"$dir\\WeaselSetup.exe\" /i",
+      "& \"$dir\\WeaselDeployer.exe\" /install",
+      "& \"$dir\\WeaselServer.exe\""
     ]
   },
-  "post_install": [
-    "Remove-Item \"$dir\\`$PLUGINSDIR\" -Force -Recurse"
-  ],
+  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\" -Recurse",
   "uninstaller": {
-    "script": [
-      "Start-Process -Wait \"$dir\\WeaselServer.exe\"  \"/quit\"",
-      "Start-Process -Wait \"$dir\\WeaselSetup.exe\" \"/u\""
-    ]
+    "script": "Invoke-ExternalCommand \"$dir/uninstall.exe\" -ArgumentList '/S' -RunAs | Out-Null"
   },
   "checkver": {
-    "url": "https://github.com/fxliang/weasel"
+    "url": "https://github.com/rime/weasel/releases",
+    "regex": "/rime/weasel/releases/download/[\\d.]+/weasel-([\\d.]+)-installer.exe"
   },
   "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/fxliang/weasel/releases/download/$matchHead/weasel-$version-installer.exe#/dl.7z"
+    "url": "https://ghproxy.com/https://github.com/rime/weasel/releases/download/$matchHead/weasel-$version-installer.exe#/dl.7z"
   }
 }

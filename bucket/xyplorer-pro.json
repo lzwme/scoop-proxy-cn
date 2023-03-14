@@ -1,26 +1,29 @@
 {
-  "homepage": "https://www.xyplorer.com/index.php",
+  "homepage": "https://www.xyplorer.com",
   "version": "24.20.0100",
-  "description": "A file manager for Windows.",
-  "license": {
-    "identifier": "Proprietary",
-    "url": "https://www.xyplorer.com/LicenseXY.txt"
-  },
+  "license": "Shareware",
+  "description": "File Manager for Windows",
   "url": "https://www.xyplorer.com/download/xyplorer_full_noinstall.zip",
   "hash": "c7884e844b12ba83f91e566350a2e6f89173c687ddb726363abd620ae7a49a9d",
-  "bin": "XYplorer.exe",
-  "shortcuts": [
+  "bin": [
     [
-      "XYplorer.exe",
-      "XYplorer"
+      "XYPlorer.exe",
+      "XYPlorerPro"
     ]
   ],
-  "persist": "Data",
+  "shortcuts": [
+    [
+      "XYPlorer.exe",
+      "XYPlorerPro"
+    ]
+  ],
   "checkver": {
-    "url": "https://www.xyplorer.com/download.php",
-    "re": "([\\d.]+),\\s*released"
+    "url": "https://www.xyplorer.com",
+    "regex": "Download the latest version[\\s\\S]*href=\"(?<download>.*?)\"[\\s\\S]*class=\"smaller\">(?<version>[\\d.]+) "
   },
   "autoupdate": {
     "url": "https://www.xyplorer.com/download/xyplorer_full_noinstall.zip"
-  }
+  },
+  "persist": "Data",
+  "_from": "okibcn/ScoopMaster"
 }

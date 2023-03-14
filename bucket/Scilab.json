@@ -1,21 +1,17 @@
 {
-  "version": "6.1.1",
-  "description": "A free and open-source, cross-platform numerical computational package and a high-level, numerically oriented programming language.",
-  "homepage": "https://www.scilab.org/",
+  "homepage": "https://www.scilab.org",
+  "description": "Open source software for numerical computation",
+  "version": "2023.0.0",
   "license": "GPL-2.0-only",
   "architecture": {
     "64bit": {
-      "url": "https://www.scilab.org/download/6.1.1/scilab-6.1.1_x64.exe",
-      "hash": "349f40c2b2906003ce82c4a8a37fc4dee4cf85bb3eb783020cc7e8ae815a6a0d"
-    },
-    "32bit": {
-      "url": "https://www.scilab.org/download/6.1.1/scilab-6.1.1.exe",
-      "hash": "43336cda96251d3dde9106fc5f1302ae722ab83e8a6bf894dff3238ea02be779"
+      "url": "https://www.scilab.org/download/2023.0.0/scilab-2023.0.0.bin.x64.exe",
+      "hash": "91fe57f4a9dc441fb8f818a2b4a4023dea579395a52332a3e7878ee82040e737"
     }
   },
-  "notes": "Need interaction.",
   "installer": {
     "args": [
+      "/VERYSILENT",
       "/DIR=$dir"
     ]
   },
@@ -34,10 +30,7 @@
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://www.scilab.org/download/$version/scilab-$version_x64.exe"
-      },
-      "32bit": {
-        "url": "https://www.scilab.org/download/$version/scilab-$version.exe"
+        "url": "https://www.scilab.org/download/$version/scilab-$version.bin.x64.exe"
       }
     }
   }

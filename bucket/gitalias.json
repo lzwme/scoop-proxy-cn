@@ -1,6 +1,16 @@
 {
-  "version": "0.2023.03.04.1930d4a",
+  "autoupdate": {
+    "extract_dir": "gitalias-$matchSha",
+    "url": "https://ghproxy.com/https://github.com/GitAlias/gitalias/archive/$matchSha.zip"
+  },
+  "checkver": {
+    "regex": "(?s)>(\\d+)-(\\d+)-(\\d+)T.*?/(?<sha>[0-9a-f]{40})",
+    "replace": "0.${1}.${2}.${3}",
+    "url": "https://github.com/GitAlias/gitalias/commits/main.atom"
+  },
   "description": "Git alias commands for faster easier version control.",
+  "extract_dir": "gitalias-1930d4a3350d6fc0614525987baa2a600af2354d",
+  "hash": "66b6b3d461c225e3ec85ef9016e680f0310b27dcb36049fbe29b6b029aa0eb5c",
   "homepage": "https://github.com/GitAlias/gitalias",
   "license": {
     "identifier": "GPL-2.0-only"
@@ -9,15 +19,7 @@
     "Use gitalias by running: 'git config --global include.path $dir\\.gitalias'",
     "custom usage: <https://github.com/GitAlias/gitalias/blob/main/doc/install/index.md#install-with-custom-usage>"
   ],
-  "url": "https://github.com/GitAlias/gitalias/raw/main/gitalias.txt",
-  "hash": "411d1b39550ac892ed5fa4522d17e3e35833015f4968bad161fd66dc4eb07cac",
   "pre_install": "Rename-Item -Path \"$dir\\gitalias.txt\" -NewName \".gitalias\" -Force | Out-Null",
-  "checkver": {
-    "url": "https://github.com/GitAlias/gitalias/commits/main.atom",
-    "regex": "(?s)>(\\d+)-(\\d+)-(\\d+)T.*?/(?<sha>(?<short>[0-9a-f]{7})[0-9a-f]{33})",
-    "replace": "0.${1}.${2}.${3}.${short}"
-  },
-  "autoupdate": {
-    "url": "https://github.com/GitAlias/gitalias/raw/main/gitalias.txt"
-  }
+  "url": "https://ghproxy.com/https://github.com/GitAlias/gitalias/archive/1930d4a3350d6fc0614525987baa2a600af2354d.zip",
+  "version": "0.2023.03.04"
 }

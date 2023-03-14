@@ -27,10 +27,13 @@
   ],
   "checkver": {
     "url": "https://remote-config.gog.com/components/webinstaller?component_version=2.0.0",
-    "jsonpath": "$.content.windows.version"
+    "jsonpath": {
+      "version": "$.content.windows.version",
+      "download": "$.content.windows.downloadLink"
+    }
   },
   "autoupdate": {
-    "url": "https://content-system.gog.com/open_link/download?path=/open/galaxy/client/$version/setup_galaxy_$version.exe",
+    "url": "$matchDownload",
     "hash": {
       "url": "https://remote-config.gog.com/components/webinstaller?component_version=2.0.0",
       "jsonpath": "$.content.windows.installerMd5"
