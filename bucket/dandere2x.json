@@ -1,11 +1,11 @@
 {
-  "version": "3.7.4",
+  "version": "3.7.6",
   "description": "Dandere2x - Fast Waifu2x Video Upscaling.",
   "homepage": "https://github.com/akai-katto/dandere2x",
   "license": "GPL-3.0-only",
-  "url": "https://ghproxy.com/https://github.com/akai-katto/dandere2x/releases/download/3.7/3.7.4.zip",
-  "hash": "3fa62c7c1707bb4bf6664dfe76a7eb8ae22ab3e31cdff0f299e2afd042165c33",
-  "extract_dir": "3.7.4",
+  "url": "https://ghproxy.com/https://github.com/akai-katto/dandere2x/releases/download/3.7/3.7.6.zip",
+  "hash": "586eaa3028f9c2e533681e063dc5c9175845332ebd4e4a5202cb053edcbd56fe",
+  "extract_dir": "3.7.6",
   "bin": [
     [
       "main.exe",
@@ -23,8 +23,14 @@
     "script": [
       "try {",
       "    $api = (Invoke-RestMethod https://api.github.com/repositories/171577816/releases)[0..2] | Where-Object { $_.assets.name.split('.')[0] -match '^\\d+$' }",
-      "    $zip = '\\.zip$'",
-      "    $api[0].tag_name, ($api.assets.name | Where-Object { $_ -match $zip })[0].Replace($zip, '') -join ' '",
+      "    $zip = '[\\d.]+(?=b?\\.zip\\Z)'",
+      "    foreach ($ver in $api.assets.name) {",
+      "        if ($ver -match $zip -and ($curr = [version][string]$matches.Values) -gt $max) {",
+      "            $max = $curr",
+      "            $beta = if ($ver[$ver.length - 5] -eq 'b') { 'b' } else { '' }",
+      "        }",
+      "    }",
+      "    $api[0].tag_name, ([string]$max + $beta) -join ' '",
       "}",
       "catch {",
       "    ''",
@@ -35,6 +41,5 @@
   "autoupdate": {
     "url": "https://ghproxy.com/https://github.com/akai-katto/dandere2x/releases/download/$matchTag/$version.zip",
     "extract_dir": "$version"
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

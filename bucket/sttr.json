@@ -1,28 +1,28 @@
 {
-  "version": "0.2.16",
-  "description": "Run various transformation operations on the string",
-  "homepage": "https://github.com/abhimanyu003/sttr",
-  "license": "MIT",
   "architecture": {
-    "64bit": {
-      "url": "https://ghproxy.com/https://github.com/abhimanyu003/sttr/releases/download/v0.2.16/sttr_0.2.16_windows_amd64.tar.gz",
-      "hash": "11df55e6aec363ce81cf9d54f1424e1bdf63544196dd6527399762ae83e62655"
-    },
     "32bit": {
-      "url": "https://ghproxy.com/https://github.com/abhimanyu003/sttr/releases/download/v0.2.16/sttr_0.2.16_windows_386.tar.gz",
-      "hash": "386f9a4ebd4e06b75d8d47de8b65c9e3be1a621dd3aa5c2fbc29f37480e6f3f7"
+      "hash": "386f9a4ebd4e06b75d8d47de8b65c9e3be1a621dd3aa5c2fbc29f37480e6f3f7",
+      "url": "https://ghproxy.com/https://github.com/abhimanyu003/sttr/releases/download/v0.2.16/sttr_0.2.16_windows_386.tar.gz"
+    },
+    "64bit": {
+      "hash": "11df55e6aec363ce81cf9d54f1424e1bdf63544196dd6527399762ae83e62655",
+      "url": "https://ghproxy.com/https://github.com/abhimanyu003/sttr/releases/download/v0.2.16/sttr_0.2.16_windows_amd64.tar.gz"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/abhimanyu003/sttr/releases/download/v$version/sttr_$version_windows_386.tar.gz"
+      },
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/abhimanyu003/sttr/releases/download/v$version/sttr_$version_windows_amd64.tar.gz"
+      }
     }
   },
   "bin": "sttr.exe",
   "checkver": "github",
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.com/https://github.com/abhimanyu003/sttr/releases/download/v$version/sttr_$version_windows_amd64.tar.gz"
-      },
-      "32bit": {
-        "url": "https://ghproxy.com/https://github.com/abhimanyu003/sttr/releases/download/v$version/sttr_$version_windows_386.tar.gz"
-      }
-    }
-  }
+  "description": "Run various transformation operations on the string",
+  "homepage": "https://github.com/abhimanyu003/sttr",
+  "license": "MIT",
+  "version": "0.2.16"
 }

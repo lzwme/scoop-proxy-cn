@@ -1,0 +1,31 @@
+{
+  "version": "1.7.2",
+  "description": "無料で使えるAIトークソフト。",
+  "homepage": "https://coeiroink.com/",
+  "license": "https://coeiroink.com/terms",
+  "architecture": {
+    "64bit": {
+      "url": "https://www.dropbox.com/s/8rycvu4a58in62h/COEIROINK-GPU-v.1.7.2.zip?dl=1",
+      "hash": "60249086a33ec6247597161528ec04f6c129f127d814d97907f48639fa1ea0b7",
+      "extract_dir": "COEIROINK-GPU-v.1.7.2"
+    }
+  },
+  "shortcuts": [
+    [
+      "COEIROINK.exe",
+      "COEIROINK (GPU)"
+    ]
+  ],
+  "checkver": {
+    "url": "https://coeiroink.com/download",
+    "regex": "https://www\\.dropbox\\.com/s/(?<id>[a-z0-9]+)/COEIROINK-GPU-v\\.(?<version>[\\d.]+)\\.zip"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://www.dropbox.com/s/$matchId/COEIROINK-GPU-v.$version.zip?dl=1",
+        "extract_dir": "COEIROINK-GPU-v.$version"
+      }
+    }
+  }
+}

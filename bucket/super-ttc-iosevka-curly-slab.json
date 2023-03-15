@@ -1,10 +1,17 @@
 {
-  "version": "21.0.0",
-  "description": "Iosevka is an open-source, sans-serif + slab-serif, monospace + quasi-proportional typeface family",
-  "homepage": "https://github.com/be5invis/Iosevka",
-  "license": "OFL-1.1",
-  "url": "https://ghproxy.com/https://github.com/be5invis/Iosevka/releases/download/v21.0.0/super-ttc-iosevka-curly-slab-21.0.0.zip",
+  "autoupdate": {
+    "hash": {
+      "mode": "extract",
+      "regex": "$basename\\s+$sha256",
+      "url": "https://github.com/be5invis/Iosevka/blob/v$version/doc/packages-sha.txt"
+    },
+    "url": "https://ghproxy.com/https://github.com/be5invis/Iosevka/releases/download/v$version/super-ttc-iosevka-curly-slab-$version.zip"
+  },
+  "checkver": "github",
+  "depends": "sudo",
+  "description": "Iosevka is an open-source, sans-serif + slab-serif, monospace + quasi‑proportional typeface family, designed for writing code, using in terminals, and preparing technical documents.",
   "hash": "5c324201b896c23f3a9f61810c75688ed19469cba8e5e778c9b910701ed5ea92",
+  "homepage": "https://github.com/be5invis/Iosevka",
   "installer": {
     "script": [
       "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
@@ -26,6 +33,10 @@
       "}"
     ]
   },
+  "license": {
+    "identifier": "OFL-1.1"
+  },
+  "notes": "You may need to restart the system to use recently installed fonts.",
   "uninstaller": {
     "script": [
       "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
@@ -57,8 +68,6 @@
       "Write-Host \"The '$app' Font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
     ]
   },
-  "checkver": "github",
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/be5invis/Iosevka/releases/download/v$version/super-ttc-iosevka-curly-slab-$version.zip"
-  }
+  "url": "https://ghproxy.com/https://github.com/be5invis/Iosevka/releases/download/v21.0.0/super-ttc-iosevka-curly-slab-21.0.0.zip",
+  "version": "21.0.0"
 }

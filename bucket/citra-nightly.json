@@ -1,18 +1,36 @@
 {
-  "version": "1855",
-  "description": "Nintendo 3DS emulator",
-  "homepage": "https://citra-emu.org/",
-  "license": {
-    "url": "https://github.com/citra-emu/citra-nightly/blob/master/license.txt",
-    "identifier": "GPL-2.0"
-  },
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.com/https://github.com/citra-emu/citra-nightly/releases/download/nightly-1855/citra-windows-mingw-20230313-6fbc54b.7z",
-      "hash": "ffcd65462225254fb8224af18f169c33d4ba8dc53558224f8b13e84d4fbbbbe0"
+      "hash": "ffcd65462225254fb8224af18f169c33d4ba8dc53558224f8b13e84d4fbbbbe0",
+      "url": "https://ghproxy.com/https://github.com/citra-emu/citra-nightly/releases/download/nightly-1855/citra-windows-mingw-20230313-6fbc54b.7z"
     }
   },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/citra-emu/citra-nightly/releases/download/nightly-$matchBuild/citra-windows-$matchEnv-$matchDate-$matchCommit.$matchZip"
+      }
+    },
+    "extract_dir": "nightly-$matchEnv"
+  },
+  "bin": [
+    "citra.exe",
+    "citra-qt.exe",
+    "citra-room.exe"
+  ],
+  "checkver": {
+    "github": "https://github.com/citra-emu/citra-nightly",
+    "regex": "download/nightly-(?<build>[\\d]+)/citra-windows-(?<env>[\\w]+)-(?<date>[\\d]{8})-(?<commit>[\\da-f]{7})\\.(?<zip>7z|zip)",
+    "replace": "${build}-${date}"
+  },
+  "description": "Nintendo 3DS emulator",
   "extract_dir": "nightly-mingw",
+  "homepage": "https://citra-emu.org/",
+  "license": {
+    "identifier": "GPL-2.0",
+    "url": "https://github.com/citra-emu/citra-nightly/blob/master/license.txt"
+  },
+  "persist": "user",
   "pre_install": [
     "if (!(Test-Path \"$persist_dir\\user\")) {",
     "   New-Item -Path \"$persist_dir\" -Name \"user\" -ItemType \"directory\" | Out-Null",
@@ -23,28 +41,11 @@
     "   }",
     "}"
   ],
-  "bin": [
-    "citra.exe",
-    "citra-qt.exe",
-    "citra-room.exe"
-  ],
   "shortcuts": [
     [
       "citra-qt.exe",
       "Citra"
     ]
   ],
-  "persist": "user",
-  "checkver": {
-    "github": "https://github.com/citra-emu/citra-nightly",
-    "regex": "download/nightly-([\\d]+)/citra-windows-(?<env>[\\w]+)-(?<commit>[\\d]{8}-[\\da-f]{7})\\.(?<zip>7z|zip)"
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.com/https://github.com/citra-emu/citra-nightly/releases/download/nightly-$version/citra-windows-$matchEnv-$matchCommit.$matchZip"
-      }
-    },
-    "extract_dir": "nightly-$matchEnv"
-  }
+  "version": "1855-20230313"
 }
