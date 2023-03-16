@@ -1,32 +1,6 @@
 {
-  "architecture": {
-    "64bit": {
-      "hash": "192502a459ceae4487e09e179472854965a347df359e46a6e7dcd8a7c45db23b",
-      "url": "https://update.code.visualstudio.com/1.76.1/win32-x64-archive/stable#/dl.7z"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "hash": {
-          "jsonpath": "$.products[?(@.platform.os == 'win32-x64-archive')].sha256hash",
-          "url": "https://code.visualstudio.com/sha?build=stable"
-        },
-        "url": "https://update.code.visualstudio.com/$version/win32-x64-archive/stable#/dl.7z"
-      }
-    }
-  },
-  "bin": [
-    [
-      "bin\\code.cmd",
-      "code"
-    ]
-  ],
-  "checkver": {
-    "jsonpath": "$.products[?(@.platform.os == 'win32-x64-archive')].name",
-    "url": "https://code.visualstudio.com/sha?build=stable"
-  },
   "homepage": "https://code.visualstudio.com/",
+  "version": "1.76.2",
   "license": {
     "identifier": "Freeware",
     "url": "https://code.visualstudio.com/License/"
@@ -37,12 +11,45 @@
     "From \"$env:APPDATA\\Code\" to \"$env:USERPROFILE\\scoop\\persist\\vscode-portable\\data\\user-data\"",
     "Add Visual Studio Code as a context menu option by running: \"$dir\\vscode-install-context.reg\""
   ],
-  "persist": "data",
+  "architecture": {
+    "64bit": {
+      "url": "https://update.code.visualstudio.com/1.76.2/win32-x64-archive/stable#/dl.7z",
+      "hash": "bc4b35de2ba60c9099e08f4d8b1e88da96cbdf7e92764e873d281f52fbbd8102"
+    }
+  },
+  "bin": [
+    [
+      "bin\\code.cmd",
+      "code"
+    ]
+  ],
   "shortcuts": [
     [
       "code.exe",
       "Visual Studio Code"
     ]
   ],
-  "version": "1.76.1"
+  "post_install": [
+    "$extensions_file = \"$dir\\data\\extensions\\extensions.json\"",
+    "if ((Test-Path \"$extensions_file\")) {",
+    "    info 'Adjusting path in extensions file...'",
+    "    (Get-Content \"$extensions_file\") -replace '(?<=vscode(/|\\\\\\\\)).*?(?=(/|\\\\\\\\)data(/|\\\\\\\\)extensions)', $version | Set-Content \"$extensions_file\"",
+    "}"
+  ],
+  "persist": "data",
+  "checkver": {
+    "url": "https://code.visualstudio.com/sha?build=stable",
+    "jsonpath": "$.products[?(@.platform.os == 'win32-x64-archive')].name"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://update.code.visualstudio.com/$version/win32-x64-archive/stable#/dl.7z",
+        "hash": {
+          "url": "https://code.visualstudio.com/sha?build=stable",
+          "jsonpath": "$.products[?(@.platform.os == 'win32-x64-archive')].sha256hash"
+        }
+      }
+    }
+  }
 }
