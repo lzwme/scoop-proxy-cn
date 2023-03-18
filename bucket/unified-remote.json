@@ -1,13 +1,13 @@
 {
-  "version": "3.11.0.2483",
+  "version": "3.13.0.2501",
   "description": "Turn your smartphone into a universal remote control.",
   "homepage": "https://www.unifiedremote.com/",
   "license": "Freeware",
   "architecture": {
     "64bit": {
       "url": "https://www.unifiedremote.com/download/windows-portable#/unified-remote.zip",
-      "hash": "593026dc629f7aca737d1a2520b43d218a252a31beaf359459f8264457b98cbe",
-      "extract_dir": "Server-3.11.0.2483"
+      "hash": "",
+      "extract_dir": "Server-3.13.0.2501"
     }
   },
   "shortcuts": [
@@ -17,8 +17,14 @@
     ]
   ],
   "checkver": {
-    "url": "https://www.unifiedremote.com/download/other/",
-    "regex": "Server-([\\d.]+).zip"
+    "url": "http://www.canadiancontent.net/tech/download/Unified_Remote_Portable.html",
+    "regex": "ServerSetup-([\\d.]+).e"
   },
-  "_from": "okibcn/ScoopMaster"
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "extract_dir": "Server-$version"
+      }
+    }
+  }
 }
