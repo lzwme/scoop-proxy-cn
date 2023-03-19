@@ -1,17 +1,10 @@
 {
-  "autoupdate": {
-    "hash": {
-      "mode": "extract",
-      "regex": "$basename\\s+$sha256",
-      "url": "https://github.com/be5invis/Iosevka/blob/v$version/doc/packages-sha.txt"
-    },
-    "url": "https://ghproxy.com/https://github.com/be5invis/Iosevka/releases/download/v$version/super-ttc-iosevka-curly-$version.zip"
-  },
-  "checkver": "github",
-  "depends": "sudo",
-  "description": "Iosevka is an open-source, sans-serif + slab-serif, monospace + quasi‑proportional typeface family, designed for writing code, using in terminals, and preparing technical documents.",
-  "hash": "618ae7ded41dd83346a53268d9018515b592a0558ec28ade54c22266fdd5924c",
+  "version": "21.1.0",
+  "description": "Iosevka is an open-source, sans-serif + slab-serif, monospace + quasi-proportional typeface family",
   "homepage": "https://github.com/be5invis/Iosevka",
+  "license": "OFL-1.1",
+  "url": "https://ghproxy.com/https://github.com/be5invis/Iosevka/releases/download/v21.1.0/super-ttc-iosevka-curly-21.1.0.zip",
+  "hash": "c86200f28458cf88161e638e807878539e90aa8c30a1540aa9b56f1a73b5d78e",
   "installer": {
     "script": [
       "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
@@ -33,10 +26,6 @@
       "}"
     ]
   },
-  "license": {
-    "identifier": "OFL-1.1"
-  },
-  "notes": "You may need to restart the system to use recently installed fonts.",
   "uninstaller": {
     "script": [
       "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
@@ -68,6 +57,8 @@
       "Write-Host \"The '$app' Font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
     ]
   },
-  "url": "https://ghproxy.com/https://github.com/be5invis/Iosevka/releases/download/v21.0.0/super-ttc-iosevka-curly-21.0.0.zip",
-  "version": "21.0.0"
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/be5invis/Iosevka/releases/download/v$version/super-ttc-iosevka-curly-$version.zip"
+  }
 }

@@ -1,10 +1,10 @@
 {
-  "version": "2.3.0",
-  "description": "Clibor: Clipboard manager",
   "homepage": "https://chigusa-web.com/clibor/",
+  "description": "Simple and feature-rich clipboard manager",
   "license": "Freeware",
+  "version": "2.3.0",
   "url": "https://dforest.watch.impress.co.jp/library/c/clibor/10713/clibor.zip",
-  "hash": "4c79b2712d20e58aa517ee7233ebd6248e58b94e53d3048dca5de24ae4ea97ba",
+  "hash": "d5bbeda5022c9537c217c691cbc03c798847700eed28ae0f75385f9f950986b9",
   "extract_dir": "clibor",
   "bin": "Clibor.exe",
   "shortcuts": [
@@ -13,72 +13,53 @@
       "Clibor"
     ]
   ],
-  "pre_install": [
-    "ensure $persist_dir | Out-Null",
-    "@(",
-    "    'Clibor.xml',",
-    "    'excl.dat',",
-    "    'excl.xml',",
-    "    'frmt.dat',",
-    "    'frmt.xml',",
-    "    'ww.dat',",
-    "    'ww.xml',",
-    "    'migemo.dll'",
-    ") | ForEach-Object {",
-    "    if (Test-Path (Join-Path $persist_dir $_)) {",
-    "        New-Item -Path (Join-Path $dir $_) -Value (Join-Path $persist_dir $_) -ItemType HardLink | Out-Null",
-    "    }",
-    "}"
-  ],
   "persist": [
-    "budt",
+    "Clibor.xml",
+    "excl.dat",
+    "frmt.dat",
+    "ww.dat",
     "ch",
     "ct",
+    "clb_ex.bat",
+    "migemo.dll",
     "dict"
   ],
-  "post_install": [
-    "Set-Content (Join-Path $dir persist_config.ps1) -Value @\"",
-    "# Exit if never launched the app.",
-    "if (-not (Test-Path (Join-Path $dir Clibor.xml))) {",
-    "    \"You must run Clibor at least once!\"",
-    "    exit",
-    "}",
-    "",
-    "if (-not (Test-Path (Join-Path $persist_dir Clibor.xml))) {",
-    "    New-Item -Path (Join-Path $persist_dir Clibor.xml) -Value (Join-Path $dir Clibor.xml) -ItemType HardLink",
-    "}",
-    "",
-    "# Here we persist data files and backup them if one with another extension already exists.",
-    "# These files will be created along with Clibor.xml on first run.",
-    "@(",
-    "    'excl', # histories to be excluded",
-    "    'frmt', # string formatters",
-    "    'ww' # windows to be (not) monitored",
-    ") | ForEach-Object {",
-    "    # Files in XML version will be there if you choose not to encrypt data.",
-    "    `$alt = if (Test-Path (Join-Path $dir `$_.dat)) { (Join-Path $persist_dir `$_.xml) } else { (Join-Path $dir `$_.dat) }",
-    "    if (Test-Path `$alt) {",
-    "        `$date = (Get-Date -Format \"yyyyMMdd_HHmmss\")",
-    "        Rename-Item -Path `$alt -NewName (`$alt -replace \"`$\", \".`$date.bak\")",
+  "pre_install": [
+    "function CreateEmptyFile($name) {",
+    "    if (!(Test-Path \"$persist_dir\\$name\")) {",
+    "        New-Item -Path \"$dir\\$name\" -ItemType File | Out-Null",
+    "        New-Item -Path \"$dir\\$name.empty\" -ItemType File | Out-Null",
     "    }",
-    "",
-    "    `$ext = if (Test-Path (Join-Path $dir `$_.dat)) { \"dat\" } else { \"xml\" }",
-    "    `$filename = \"`$_.`$ext\"",
-    "    New-Item -Path (Join-Path $persist_dir `$filename) -Value (Join-Path $dir `$filename) -ItemType HardLink -Force",
     "}",
-    "\"@"
+    "CreateEmptyFile Clibor.xml",
+    "CreateEmptyFile excl.dat",
+    "CreateEmptyFile frmt.dat",
+    "CreateEmptyFile ww.dat",
+    "CreateEmptyFile clb_ex.bat",
+    "CreateEmptyFile migemo.dll"
+  ],
+  "post_install": [
+    "function RemoveEmptyFile($name) {",
+    "    if (Test-Path \"$dir\\$name.empty\") {",
+    "        Remove-Item -Path \"$dir\\$name\"",
+    "        Remove-Item -Path \"$persist_dir\\$name\"",
+    "    }",
+    "}",
+    "RemoveEmptyFile Clibor.xml",
+    "RemoveEmptyFile excl.dat",
+    "RemoveEmptyFile frmt.dat",
+    "RemoveEmptyFile ww.dat",
+    "Remove-Item \"$dir\\*.empty\"",
+    "if (!(Test-Path \"$dir\\Clibor.xml\")) {",
+    "    Write-Host \"The config and data files seem not to have been created yet.\" -ForeGroundColor DarkYellow",
+    "    Write-Host \"You may need to create hard links manually after the first run.\" -ForeGroundColor DarkYellow",
+    "}"
   ],
   "checkver": {
-    "url": "https://forest.watch.impress.co.jp/library/software/clibor/",
-    "regex": "<dd>v([\\d.]+).+</dd>"
+    "url": "https://chigusa-web.com/clibor/history/",
+    "re": "ver (\\d[\\d.]+)"
   },
   "autoupdate": {
     "url": "https://dforest.watch.impress.co.jp/library/c/clibor/10713/clibor.zip"
-  },
-  "notes": [
-    "To backup your config files, run '$dir\\persist_config.ps1' *AFTER* you run Clibor at least once.",
-    "Also, it is advised to do so each time you change preference to (not) encrypt data.",
-    "設定ファイルをバックアップするために、Cliborを最低一度でも起動したあと、 '$dir\\persist_config.ps1' を実行しておくとよいです。",
-    "また、データを暗号化する/しないの設定を切り替えるたびにも実行することをおすすめします。"
-  ]
+  }
 }

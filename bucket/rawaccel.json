@@ -1,0 +1,35 @@
+{
+  "version": "1.6.1",
+  "homepage": "https://github.com/a1xd/rawaccel/",
+  "url": "https://ghproxy.com/https://github.com/a1xd/rawaccel/releases/download/v1.6.1/RawAccel_v1.6.1.zip",
+  "hash": "0ff7b09e34e846df33ae617eac8ae1c30587e0cd6c5dac9c76eb15a371b4b574",
+  "installer": {
+    "script": [
+      "Move-Item \"$dir\\RawAccel\\*\" -Destination \"$dir\"",
+      "Remove-Item -Recurse \"$dir\\RawAccel\""
+    ]
+  },
+  "bin": [
+    [
+      "rawaccel.exe",
+      "rawaccel"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "rawaccel.exe",
+      "rawaccel"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/a1xd/rawaccel/releases",
+    "regex": "/tree/v([\\w.-]+)\""
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/a1xd/rawaccel/releases/download/v$version/RawAccel_v$version.zip",
+    "hash": {
+      "url": "$baseurl/latest.yml",
+      "regex": "sha512:\\s+$base64"
+    }
+  }
+}

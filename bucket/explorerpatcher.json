@@ -1,28 +1,27 @@
 {
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/valinet/ExplorerPatcher/releases/download/$matchTag/ep_setup.exe"
-  },
-  "checkver": {
-    "jsonpath": "$.tag_name",
-    "regex": "(?<tag>([\\d.]+).*)",
-    "url": "https://api.github.com/repos/valinet/ExplorerPatcher/releases/latest"
-  },
-  "depends": "sudo",
+  "version": "22621.1413.54.2_9687eed",
   "description": "This project aims to enhance the working environment on Windows.",
-  "hash": "98c6dc7f371c61dc516e3424857cc6d8fe4a941f99232437afc5565f14eb8b2f",
   "homepage": "https://github.com/valinet/ExplorerPatcher",
-  "installer": {
-    "script": "sudo Start-Process -FilePath \"$dir\\ep_setup.exe\" -WorkingDirectory \"$dir\" -Wait"
-  },
   "license": {
     "identifier": "GPL-2.0-only",
-    "url": "https://github.com/valinet/ExplorerPatcher/blob/master/LICENSE"
+    "url": "https://github.com/valinet/ExplorerPatcher/raw/master/LICENSE"
   },
   "notes": "Wiki: <https://github.com/valinet/ExplorerPatcher/wiki>",
-  "uninstaller": {
-    "args": "/uninstall",
-    "file": "ep_setup.exe"
+  "depends": "sudo",
+  "url": "https://ghproxy.com/https://github.com/valinet/ExplorerPatcher/releases/download/22621.1413.54.2_9687eed/ep_setup.exe",
+  "hash": "a8c2c111f4e44c1a56f4db6f650ff7db3f99e2ac4e42b8d8a52b449458775da2",
+  "installer": {
+    "script": "Start-Process \"$dir\\ep_setup.exe\" -WorkingDirectory \"$dir\" -Wait"
   },
-  "url": "https://ghproxy.com/https://github.com/valinet/ExplorerPatcher/releases/download/22621.1344.53.1_4f3dab5/ep_setup.exe",
-  "version": "22621.1344.53.1"
+  "uninstaller": {
+    "file": "ep_setup.exe",
+    "args": "/uninstall"
+  },
+  "checkver": {
+    "url": "https://api.github.com/repos/valinet/ExplorerPatcher/releases",
+    "regex": "/releases/tag/([\\w.-]+)"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/valinet/ExplorerPatcher/releases/download/$version/ep_setup.exe"
+  }
 }
