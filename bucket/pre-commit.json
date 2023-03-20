@@ -1,18 +1,17 @@
 {
-  "autoupdate": {
-    "hash": {
-      "mode": "download"
-    },
-    "url": "https://ghproxy.com/https://github.com/pre-commit/pre-commit/releases/download/v$version/pre-commit-$version.pyz"
-  },
-  "bin": "pre-commit.ps1",
-  "checkver": "github",
-  "depends": "python",
-  "description": "A framework for managing and maintaining multi-language pre-commit hooks.",
-  "hash": "bed0c50a2ac4cd1209833f89b115e058d7b8bc120650cc3f69241e0b88d7cfa0",
   "homepage": "https://github.com/pre-commit/pre-commit",
+  "description": "A framework for managing and maintaining multi-language pre-commit hooks.",
   "license": "MIT",
-  "pre_install": "echo \"python `\"$dir\\pre-commit-$version.pyz`\" @args\" | out-file \"$dir\\pre-commit.ps1\"",
-  "url": "https://ghproxy.com/https://github.com/pre-commit/pre-commit/releases/download/v3.2.0/pre-commit-3.2.0.pyz",
-  "version": "3.2.0"
+  "version": "3.2.0",
+  "depends": "python",
+  "url": "https://github.com/pre-commit/pre-commit/raw/main/LICENSE",
+  "hash": "ea2ca27cba7cc35822d95a46d59bcd3cc88e196592e6390d1949a359ffc990e8",
+  "post_install": "pip install pre-commit",
+  "uninstaller": {
+    "script": "pip uninstall -y pre-commit"
+  },
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://github.com/pre-commit/pre-commit/raw/main/LICENSE"
+  }
 }
