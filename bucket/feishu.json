@@ -1,30 +1,28 @@
 {
-  "homepage": "https://www.feishu.cn/",
-  "description": "Connect with teammates anytime and anywhere",
-  "license": {
-    "identifier": "EULA",
-    "url": "https://www.feishu.cn/en/terms"
-  },
   "version": "6.0.5",
-  "url": "https://sf3-cn.feishucdn.com/obj/ee-appcenter/e9fc4449/Feishu-win32_ia32-6.0.5-signed.exe#/feishu-6.0.5.7z",
+  "description": "飞书",
+  "homepage": "https://www.feishu.cn/",
+  "license": {
+    "identifier": "Freeware"
+  },
+  "url": "https://sf3-cn.feishucdn.com/obj/ee-appcenter/e9fc4449/Feishu-win32_ia32-6.0.5-signed.exe#/dl.7z",
   "hash": "md5:3ee332328230243829689e63200cc06f",
-  "extract_to": "app",
   "shortcuts": [
     [
-      "app/Feishu.exe",
-      "Feishu"
+      "Feishu.exe",
+      "飞书"
     ]
   ],
   "checkver": {
     "url": "https://www.feishu.cn/api/downloads",
-    "regex": "(?sm)Windows.*?https://(?<path>[\\w.-/].*?)-(?<version>[\\d.]+)(?<suffix>[\\w.-].*?).exe"
+    "jp": "$.versions.Windows.download_link",
+    "regex": "/(?<id>[\\d\\w]+)/Feishu-(?<arch>[\\d\\w]+)-([\\d\\.]+)\\-signed\\.exe"
   },
   "autoupdate": {
-    "url": "https://$matchPath-$version$matchSuffix.exe#/feishu-$version.7z",
+    "url": "https://sf3-cn.feishucdn.com/obj/ee-appcenter/$matchId/Feishu-$matchArch-$version-signed.exe#/dl.7z",
     "hash": {
       "url": "https://www.feishu.cn/api/downloads",
-      "jsonpath": "$.versions.Windows.hash"
+      "jp": "$.versions.Windows.hash"
     }
-  },
-  "notes": "Runtime data are stored in '%APPDATA%\\LarkShell', and are not persisted by Scoop."
+  }
 }

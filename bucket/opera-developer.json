@@ -1,21 +1,34 @@
 {
-  "version": "98.0.4732.0",
-  "description": "Fast, secure, easy-to-use browser.",
-  "homepage": "https://www.opera.com/",
-  "license": {
-    "identifier": "Freeware",
-    "url": "https://www.opera.com/eula/computers"
-  },
   "architecture": {
-    "64bit": {
-      "url": "https://download1.operacdn.com/pub/opera-developer/98.0.4732.0/win/Opera_Developer_98.0.4732.0_Autoupdate_x64.exe#/dl.7z",
-      "hash": "ec7464d13021b1a06274dc741ac167f850da821656a1573e4ac0eb985efdef47"
-    },
     "32bit": {
-      "url": "https://download1.operacdn.com/pub/opera-developer/98.0.4732.0/win/Opera_Developer_98.0.4732.0_Autoupdate.exe#/dl.7z",
-      "hash": "b432a97640e0e36e32a78619ec024aab5adb3b707a765306c61678d9a83cb47f"
+      "hash": "e0764c7ffa8579db3d5ab710adbbaf7b7f29fb8d9a8b74df5653ae4c12895641",
+      "url": "https://download1.operacdn.com/pub/opera-developer/98.0.4739.0/win/Opera_Developer_98.0.4739.0_Autoupdate.exe#/dl.7z"
+    },
+    "64bit": {
+      "hash": "ecaa4db0ba3458c72a29c6418572547b4b2478c380348e05b4ea491c707bbba1",
+      "url": "https://download1.operacdn.com/pub/opera-developer/98.0.4739.0/win/Opera_Developer_98.0.4739.0_Autoupdate_x64.exe#/dl.7z"
     }
   },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://download1.operacdn.com/pub/opera-developer/$version/win/Opera_Developer_$version_Autoupdate.exe#/dl.7z"
+      },
+      "64bit": {
+        "url": "https://download1.operacdn.com/pub/opera-developer/$version/win/Opera_Developer_$version_Autoupdate_x64.exe#/dl.7z"
+      }
+    },
+    "hash": {
+      "url": "$url.sha256sum"
+    }
+  },
+  "checkver": {
+    "regex": "([\\d.]+)/",
+    "reverse": true,
+    "url": "http://get.opera.com/ftp/pub/opera-developer/"
+  },
+  "description": "Fast, secure, easy-to-use browser.",
+  "homepage": "https://www.opera.com/",
   "installer": {
     "script": [
       "Remove-Item -Path \"$dir\\*_list\" -Force",
@@ -27,29 +40,16 @@
       "Set-Content -Path \"$dir\\installer_prefs.json\" -Value (@{ 'autoupdate'= $false; 'enable_stats' = $false; 'single_profile' = $true } | ConvertTo-Json) -Encoding ASCII"
     ]
   },
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://www.opera.com/eula/computers"
+  },
+  "persist": "profile",
   "shortcuts": [
     [
       "launcher.exe",
       "Opera Developer"
     ]
   ],
-  "persist": "profile",
-  "checkver": {
-    "url": "http://get.opera.com/ftp/pub/opera-developer/",
-    "regex": "([\\d.]+)/",
-    "reverse": true
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://download1.operacdn.com/pub/opera-developer/$version/win/Opera_Developer_$version_Autoupdate_x64.exe#/dl.7z"
-      },
-      "32bit": {
-        "url": "https://download1.operacdn.com/pub/opera-developer/$version/win/Opera_Developer_$version_Autoupdate.exe#/dl.7z"
-      }
-    },
-    "hash": {
-      "url": "$url.sha256sum"
-    }
-  }
+  "version": "98.0.4739.0"
 }

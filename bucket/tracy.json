@@ -1,48 +1,21 @@
 {
-  "version": "0.8.2",
-  "description": "C++ frame profiler",
+  "version": "0.9.1",
+  "description": "A real time, nanosecond resolution, remote telemetry, hybrid frame and sampling profiler for games and other applications",
   "homepage": "https://github.com/wolfpld/tracy",
-  "license": "BSD-3-Clause",
-  "suggest": {
-    "Visual C/C++ Redistributable": "extras/vcredist2022"
-  },
-  "url": "https://ghproxy.com/https://github.com/wolfpld/tracy/releases/download/v0.8.2/Tracy-0.8.2.7z",
+  "license": "3-clause BSD",
+  "url": "https://ghproxy.com/https://github.com/wolfpld/tracy/releases/download/v0.9.1/Tracy-0.9.1.7z",
+  "hash": "755cf8933b22d5e1a94f4ce641896851026da982c4bff54203d4d7146d2f49a7",
   "bin": [
-    "tracy-capture.exe",
-    "tracy-csvexport.exe",
-    "tracy-import-chrome.exe",
     "tracy.exe",
-    "tracy-update.exe"
+    "capture.exe",
+    "update.exe",
+    "import-chrome.exe",
+    "csvexport.exe"
   ],
-  "shortcuts": [
-    [
-      "tracy-capture.exe",
-      "Tracy Capture"
-    ],
-    [
-      "tracy-csvexport.exe",
-      "Tracy CSV Export"
-    ],
-    [
-      "tracy-import-chrome.exe",
-      "Tracy Import Chrome"
-    ],
-    [
-      "tracy.exe",
-      "Tracy"
-    ],
-    [
-      "tracy-update.exe",
-      "Tracy Update"
-    ]
-  ],
-  "pre_install": [
-    "Rename-Item \"$dir\\capture.exe\" tracy-capture.exe",
-    "Rename-Item \"$dir\\csvexport.exe\" tracy-csvexport.exe",
-    "Rename-Item \"$dir\\import-chrome.exe\" tracy-import-chrome.exe",
-    "Rename-Item \"$dir\\Tracy.exe\" tracy.exe",
-    "Rename-Item \"$dir\\update.exe\" tracy-update.exe"
-  ],
-  "hash": "d3348a01e779573716ed2a5ef532eb083894728002a590e93fa8a929c4595cf9",
-  "_from": "okibcn/ScoopMaster"
+  "checkver": {
+    "github": "https://github.com/wolfpld/tracy"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/wolfpld/tracy/releases/download/v$version/Tracy-$version.7z"
+  }
 }

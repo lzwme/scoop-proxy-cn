@@ -1,33 +1,20 @@
 {
-  "homepage": "https://rsync.samba.org",
-  "license": "GPL3",
-  "version": "3.2.3-x64",
-  "repo": "https://github.com/WayneD/rsync",
-  "##0": "ref: <https://blog.tiger-workshop.com/add-rsync-to-git-bash-for-windows> @@ <https://archive.is/WJCrw>",
-  "##1": "ref: <https://serverfault.com/a/872557/24273> @@ <https://archive.is/rAfUl#20%>",
-  "##2": "ref: <https://zsoltfabok.com/blog/2017/03/windows-rsync> @@ <https://archive.is/D8i3C>",
-  "url": [
-    "https://ghproxy.com/https://github.com/git-for-windows/git/releases/download/v2.31.1.windows.1/MinGit-2.31.1-busybox-64-bit.zip",
-    "http://repo.msys2.org/msys/x86_64/libiconv-1.16-2-x86_64.pkg.tar.zst#.tar.7z",
-    "http://repo.msys2.org/msys/x86_64/liblz4-1.9.3-1-x86_64.pkg.tar.zst#.tar.7z",
-    "http://repo.msys2.org/msys/x86_64/libxxhash-0.8.0-1-x86_64.pkg.tar.zst#.tar.7z",
-    "http://repo.msys2.org/msys/x86_64/libzstd-1.5.0-1-x86_64.pkg.tar.zst#.tar.7z",
-    "http://repo.msys2.org/msys/x86_64/openssh-8.5p1-1-x86_64.pkg.tar.zst#.tar.7z",
-    "http://repo.msys2.org/msys/x86_64/rsync-3.2.3-1-x86_64.pkg.tar.zst#.tar.7z"
-  ],
-  "hash": [
-    "sha256:d97a2f116692e78266fbf10976183d57a4193868df1a94de7d40d371e358b6f3",
-    "sha256:4d23674f25e9d558295464b4f50689698f8ce240616410da9a4d9420b5130ced",
-    "sha256:6a6c458a206ded17e3ba2815686de2b555e413f843bfcbb405e2df019e49969f",
-    "sha256:50a7cf4d8586de9ea4d7ae5ce6ad596657a330a4eb6313f7d01b46a53fb271d0",
-    "sha256:8f2eba12c58108092ae429e37bd44bfca26e08b3684e092583b4e3bab42582b4",
-    "sha256:a6b1fa6a23dcdf099b583000f22a21412bbeaa8fdb671e2dbafc79988fa019a1",
-    "sha256:a1c7d8735a4d7045bac8ea1928c1ec9416e58667f3ab2b1a00a80b004fa5e375"
-  ],
-  "env_set": {
-    "RSYNC_RSH": "$dir/usr/bin/ssh.exe",
-    "RSYNC_SSH": "$dir/usr/bin/ssh.exe"
+  "homepage": "https://www.itefix.net/cwrsync",
+  "description": "rsync is an open source utility that provides fast incremental file transfer. cwRsync is a packaging of Rsync(link is external) for Windows.",
+  "version": "6.2.8",
+  "license": {
+    "identifier": "GPL-3.0-or-later",
+    "url": "https://rsync.samba.org/GPL.html"
   },
-  "bin": "usr\\bin\\rsync.exe",
-  "notes": "NOTE: local paths with a leading '/' or internal ':' must instead be in Cygwin cygpath format (eg, '/c/...')"
+  "url": "https://itefix.net/dl/free-software/cwrsync_6.2.8_x64_free.zip",
+  "hash": "118a625efc42c4fd48e73c919e2ad179fd01c0df0e5e3070635c11a73e42de5d",
+  "bin": "bin\\rsync.exe",
+  "checkver": {
+    "url": "https://www.itefix.net/cwrsync?qt-cwrsync_client=3#qt-cwrsync_client",
+    "regex": "cwRsync client ([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://itefix.net/dl/free-software/cwrsync_$version_x64_free.zip",
+    "hash": "https://itefix.net/dl/free-software/cwrsync_$version_x64_free.zip.sha256.asc"
+  }
 }

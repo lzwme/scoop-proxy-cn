@@ -1,5 +1,5 @@
 {
-  "version": "1.8.0",
+  "version": "1.8.3",
   "description": "Pure Writer Desktop is currently basic, providing only two-directions real-time synchronous editing for your current article.",
   "homepage": "https://writer.drakeet.com/desktop",
   "license": {
@@ -13,8 +13,8 @@
   ],
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.com/https://github.com/PureWriter/desktop/releases/download/1.8.0/PureWriter-1.8.0-Windows-x64.exe#/installer.exe",
-      "hash": "b140086e6a4ebf1fe65f2d95039116e1d0b23b0ead97c32d4972253ea3a28466"
+      "url": "https://ghproxy.com/https://github.com/PureWriter/desktop/releases/download/1.8.0/PureWriter-1.8.3-Windows-x64.exe#/installer.exe",
+      "hash": "86a527a4172c13a8dc043d27d0de1da7a51bfd2de1621a234443a72117f3a1fc"
     }
   },
   "installer": {
@@ -34,13 +34,15 @@
     ]
   ],
   "checkver": {
-    "url": "https://api.github.com/repos/PureWriter/desktop/releases",
-    "regex": "releases/download/(?<tag>[\\d.]+)/PureWriter-([\\d.]+)-Windows-x64.exe"
+    "url": "https://api.github.com/repos/PureWriter/desktop/releases/latest",
+    "regex": "releases/download/(?<tag>[\\d.]+)/PureWriter-(?<version>[\\d.]+)-Windows-x64.exe",
+    "reverse": true,
+    "replace": "${version}"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.com/https://github.com/PureWriter/desktop/releases/download/$matchTag/PureWriter-$version-Windows-x64.exe#/installer.exe"
+        "url": "https://ghproxy.com/https://github.com/PureWriter/desktop/releases/download/$matchTag/PureWriter-$matchVersion-Windows-x64.exe#/installer.exe"
       }
     }
   }
