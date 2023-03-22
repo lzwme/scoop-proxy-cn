@@ -1,27 +1,28 @@
 {
-  "version": "22621.1413.54.5_0344a5e",
-  "description": "This project aims to enhance the working environment on Windows.",
-  "homepage": "https://github.com/valinet/ExplorerPatcher",
-  "license": {
-    "identifier": "GPL-2.0-only",
-    "url": "https://github.com/valinet/ExplorerPatcher/raw/master/LICENSE"
-  },
-  "notes": "Wiki: <https://github.com/valinet/ExplorerPatcher/wiki>",
-  "depends": "sudo",
-  "url": "https://ghproxy.com/https://github.com/valinet/ExplorerPatcher/releases/download/22621.1413.54.5_0344a5e/ep_setup.exe",
-  "hash": "dd135821a63843b9a44401a78bbc7369f21221dbf8c174d8f459dcd3dce13850",
-  "installer": {
-    "script": "Start-Process \"$dir\\ep_setup.exe\" -WorkingDirectory \"$dir\" -Wait"
-  },
-  "uninstaller": {
-    "file": "ep_setup.exe",
-    "args": "/uninstall"
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/valinet/ExplorerPatcher/releases/download/$matchTag/ep_setup.exe"
   },
   "checkver": {
-    "url": "https://api.github.com/repos/valinet/ExplorerPatcher/releases",
-    "regex": "/releases/tag/([\\w.-]+)"
+    "jsonpath": "$.tag_name",
+    "regex": "(?<tag>([\\d.]+).*)",
+    "url": "https://api.github.com/repos/valinet/ExplorerPatcher/releases/latest"
   },
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/valinet/ExplorerPatcher/releases/download/$version/ep_setup.exe"
-  }
+  "depends": "sudo",
+  "description": "This project aims to enhance the working environment on Windows.",
+  "hash": "dd135821a63843b9a44401a78bbc7369f21221dbf8c174d8f459dcd3dce13850",
+  "homepage": "https://github.com/valinet/ExplorerPatcher",
+  "installer": {
+    "script": "sudo Start-Process -FilePath \"$dir\\ep_setup.exe\" -WorkingDirectory \"$dir\" -Wait"
+  },
+  "license": {
+    "identifier": "GPL-2.0-only",
+    "url": "https://github.com/valinet/ExplorerPatcher/blob/master/LICENSE"
+  },
+  "notes": "Wiki: <https://github.com/valinet/ExplorerPatcher/wiki>",
+  "uninstaller": {
+    "args": "/uninstall",
+    "file": "ep_setup.exe"
+  },
+  "url": "https://ghproxy.com/https://github.com/valinet/ExplorerPatcher/releases/download/22621.1413.54.5_0344a5e/ep_setup.exe",
+  "version": "22621.1413.54.5"
 }

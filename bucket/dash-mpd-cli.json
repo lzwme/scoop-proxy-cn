@@ -1,0 +1,33 @@
+{
+  "version": "0.1.9",
+  "description": "Download media content from a DASH-MPEG or DASH-WebM MPD manifest",
+  "homepage": "https://github.com/emarsden/dash-mpd-cli",
+  "license": "MIT",
+  "suggest": {
+    "ffmpeg": [
+      "scoop-alts/ffmpeg-shared-nightly",
+      "ffmpeg-yt-dlp",
+      "ffmpeg"
+    ],
+    "mkvmerge": "mkvtoolnix",
+    "mp4box": "gpac"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/emarsden/dash-mpd-cli/releases/download/v0.1.9/dash-mpd-cli_v0.1.9_x86_64-pc-windows-gnu.zip",
+      "hash": "fc47e74f0d8c74adcde9ee055c3c76ce3d4c8c4d7143cbf0cb55b3da819e477c"
+    }
+  },
+  "bin": "dash-mpd-cli.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/emarsden/dash-mpd-cli/releases/download/v$version/dash-mpd-cli_v$version_x86_64-pc-windows-gnu.zip",
+        "hash": {
+          "url": "$url.sha256sum"
+        }
+      }
+    }
+  }
+}
