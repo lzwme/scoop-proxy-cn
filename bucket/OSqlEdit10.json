@@ -1,0 +1,60 @@
+{
+  "version": "335",
+  "architecture": {
+    "64bit": {
+      "url": "http://www.hi-ho.ne.jp/a_ogawa/osqledit/osqledit_64_10335.zip",
+      "hash": "e84b91308656afeec067c592211732d1c4f88c7a819b3376f45ea324f8f1fbea",
+      "extract_dir": "osqledit_10_64"
+    },
+    "32bit": {
+      "url": "http://www.hi-ho.ne.jp/a_ogawa/osqledit/osqledit_32_10335.zip",
+      "hash": "559c6c05ac6cec05b4910bf9a82193d655000b89d7e21dc9cb244b51960087fb",
+      "extract_dir": "osqledit_10_32"
+    }
+  },
+  "homepage": "http://www.hi-ho.ne.jp/a_ogawa/osqledit/",
+  "bin": "osqledit.exe",
+  "pre_install": [
+    "if((Test-Path(\"$env:TEMP\\__scoop__preserved\"))) { Write-Output \"[pre_install] Removing temporary preserved folder\"; Remove-Item \"$env:TEMP\\__scoop__preserved\" -Recurse -Force }",
+    "Write-Output \"[pre_install] Creating temporary preserved folder\"; New-Item \"$env:TEMP\\__scoop__preserved\" -type directory | Out-Null",
+    "Write-Output \"[pre_install] Preserving original files\"; Copy-Item \"$dir\\*\" \"$env:TEMP\\__scoop__preserved\" -Recurse -Force",
+    "$osqlgrid = \"$dir\\osqlgrid.exe\"",
+    "if (!(Test-Path \"$osqlgrid\")) {",
+    "   # Using $dir instead of $persist_dir, causes this error:",
+    "   Add-Content -Path \"$osqlgrid\" -Value \"\"",
+    "}"
+  ],
+  "persist": [
+    "data",
+    "sql_lib",
+    "userdata",
+    [
+      "osqlgrid.exe",
+      "userdata\\osqlgrid.exe"
+    ]
+  ],
+  "post_install": [
+    "Write-Output \"[post_install] Overwriting from original files\"; Copy-Item \"$env:TEMP\\__scoop__preserved\\*\" \"$dir\" -Recurse -Force",
+    "Write-Output \"[post_install] Removing temporary preserved folder\"; Remove-Item \"$env:TEMP\\__scoop__preserved\" -Recurse -Force"
+  ],
+  "shortcuts": [
+    [
+      "osqledit.exe",
+      "osqledit"
+    ]
+  ],
+  "checkver": {
+    "url": "https://mwlab.net/scoop.cgi",
+    "re": "OSqlEdit v10:(?<version>[\\d]*)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "http://www.hi-ho.ne.jp/a_ogawa/osqledit/osqledit_64_10$version.zip"
+      },
+      "32bit": {
+        "url": "http://www.hi-ho.ne.jp/a_ogawa/osqledit/osqledit_32_10$version.zip"
+      }
+    }
+  }
+}

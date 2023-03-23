@@ -25,7 +25,8 @@
   ],
   "pre_uninstall": [
     "if ($cmd -eq 'uninstall') {",
-    "   Remove-Item 'HKCU:\\SOFTWARE\\Classes\\pde', 'HKCU:\\SOFTWARE\\Classes\\Processing.Contribution.Document', 'HKCU:\\SOFTWARE\\Classes\\Processing.Document', 'HKCU:\\SOFTWARE\\Classes\\Processing.Sketch.Document' -Recurse -Force",
+    "   Remove-Item 'HKCU:\\SOFTWARE\\Classes\\pde', 'HKCU:\\SOFTWARE\\Classes\\Processing.Document' -ErrorAction 'SilentlyContinue' -Recurse -Force",
+    "   foreach ($item in 'Contribution', 'Sketch') { Remove-Item 'HKCU:\\SOFTWARE\\Classes\\Processing.$item.Document' -ErrorAction 'SilentlyContinue' -Recurse -Force }",
     "}"
   ],
   "checkver": {
@@ -38,6 +39,6 @@
         "url": "https://ghproxy.com/https://github.com/processing/processing4/releases/download/processing-$version/processing-$preReleaseVersion-windows-x64.zip"
       }
     },
-    "env_add_path": "processing-$preReleaseVersion"
+    "extract_dir": "processing-$preReleaseVersion"
   }
 }

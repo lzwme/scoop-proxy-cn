@@ -1,47 +1,36 @@
 {
-  "version": "3.7.7",
-  "description": "Google’s mobile app SDK for crafting high-quality native interfaces on iOS and Android",
-  "homepage": "https://flutter.dev",
+  "homepage": "https://flutter.cn/",
+  "version": "3.7.8",
   "license": "BSD-3-Clause",
-  "depends": [
-    "extras/android-sdk",
-    "java/ojdkbuild8"
-  ],
-  "suggest": {
-    "Visual Studio Code with Flutter Extension": [
-      "vscode",
-      "vscode-portable"
-    ],
-    "Andoid Studio with Flutter Extension": "android-studio",
-    "Intellij IDEA with Flutter Extension": [
-      "idea",
-      "idea-ultimate",
-      "idea-ultimate-eap"
-    ]
-  },
-  "url": "https://storage.flutter-io.cn/flutter_infra/releases/stable/windows/flutter_windows_3.7.7-stable.zip",
-  "hash": "66f18e02b4e0ecad275a6376274adfad5e34c23c4a19749e9960d0a70cba7945",
+  "url": "https://storage.flutter-io.cn/flutter_infra_release/releases/stable/windows/flutter_windows_3.7.8-stable.zip",
   "extract_dir": "flutter",
+  "hash": "d8d68004229c13ac763ed6023389ef8e2d49db26b059e4834402e21c1b4610c9",
+  "description": "Flutter makes it easy and fast to build beautiful mobile apps.",
+  "env_add_path": "bin",
+  "env_set": {
+    "FLUTTER_GIT_URL": "https://gitee.com/mirrors/Flutter.git",
+    "PUB_HOSTED_URL": "https://pub.flutter-io.cn",
+    "FLUTTER_STORAGE_BASE_URL": "https://storage.flutter-io.cn"
+  },
+  "bin": "bin\\flutter.bat",
   "post_install": [
-    "Write-Host 'Some licenses need to be accepted before developing. It is recommended to do by running ''flutter doctor --android-licenses''.' -ForegroundColor Yellow",
+    "git -C $dir\\packages\\flutter remote set-url origin https://gitee.com/mirrors/Flutter.git",
     "flutter doctor"
   ],
-  "bin": "bin\\flutter.bat",
-  "env_add_path": "bin\\cache\\dart-sdk\\bin",
-  "env_set": {
-    "FLUTTER_STORAGE_BASE_URL": "https://storage.flutter-io.cn",
-    "PUB_HOSTED_URL": "https://pub.flutter-io.cn"
-  },
   "checkver": {
-    "url": "https://storage.flutter-io.cn/flutter_infra/releases/releases_windows.json",
-    "regex": "windows_(v?[\\d.]+)(?<delim>[-+]?)(?<build>[\\w.]*)-stable",
-    "replace": "$1${delim}${build}"
+    "url": "https://storage.googleapis.com/flutter_infra_release/releases/releases_windows.json",
+    "re": "flutter_windows_(.*)-stable"
   },
   "autoupdate": {
-    "url": "https://storage.flutter-io.cn/flutter_infra/releases/stable/windows/flutter_windows_$matchHead$matchDelim$matchBuild-stable.zip",
+    "url": "https://storage.flutter-io.cn/flutter_infra_release/releases/stable/windows/flutter_windows_$version-stable.zip",
     "hash": {
-      "url": "https://storage.flutter-io.cn/flutter_infra/releases/releases_windows.json",
-      "jsonpath": "$.releases[?(@.archive =~ /.*flutter_windows_$matchHead$matchDelim$matchBuild-stable.zip/)].sha256"
+      "url": "https://storage.googleapis.com/flutter_infra_release/releases/releases_windows.json",
+      "jp": "$.releases[?(@.hash == $.current_release.stable)].sha256"
     }
-  }
+  },
+  "notes": [
+    "Flutter has been successfully installed and put in your PATH.",
+    "If using Visual Studio Code, don't forget to install the Flutter Extension!",
+    "Then connect an Android Phone and start coding :-)"
+  ]
 }
