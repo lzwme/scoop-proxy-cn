@@ -1,12 +1,12 @@
 {
-  "version": "22.12.3-1852",
+  "version": "22.12.3-1853",
   "description": "Dolphin is KDE's file manager that lets you navigate and browse the contents of your hard drives, USB sticks, SD cards, and more. Creating, moving, or deleting files and folders is simple and fast.",
   "homepage": "https://apps.kde.org/dolphin/",
   "license": "LGPL-2.0-only",
   "architecture": {
     "64bit": {
-      "url": "https://binary-factory.kde.org/view/Windows%2064-bit/job/Dolphin_Release_win64/1852/artifact/dolphin-22.12.3-1852-windows-cl-msvc2019-x86_64-dbg.7z",
-      "hash": "b4c75e6d0df6cb260e0db77f5c11ff80bf6dc4894c5944efc2d66fbc5052d9a0"
+      "url": "https://binary-factory.kde.org/view/Windows%2064-bit/job/Dolphin_Release_win64/1853/artifact/dolphin-22.12.3-1853-windows-cl-msvc2019-x86_64.7z",
+      "hash": "4f5533e1bc0ad557b25934a39c7b11180fc5ebd440b8c6d332f38453fea3def9"
     }
   },
   "bin": "bin\\dolphin.exe",
@@ -16,6 +16,7 @@
       "Dolphin"
     ]
   ],
+  "pre_install": "Stop-Process -Name 'dbus-daemon' -Force -ErrorAction 'SilentlyContinue'",
   "checkver": {
     "url": "https://binary-factory.kde.org/view/Windows%2064-bit/job/Dolphin_Release_win64/lastSuccessfulBuild/artifact/",
     "regex": "dolphin-([\\d.-]+)-windows-cl-msvc2019-x86_64.7z"
@@ -23,12 +24,12 @@
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://binary-factory.kde.org/view/Windows%2064-bit/job/Dolphin_Release_win64/$preReleaseVersion/artifact/dolphin-$version-windows-cl-msvc2019-x86_64-dbg.7z"
+        "url": "https://binary-factory.kde.org/view/Windows%2064-bit/job/Dolphin_Release_win64/$preReleaseVersion/artifact/dolphin-$version-windows-cl-msvc2019-x86_64.7z",
+        "hash": {
+          "url": "$url.sha256",
+          "regex": "$sha256"
+        }
       }
-    },
-    "hash": {
-      "url": "$url.sha256",
-      "regex": "$sha256"
     }
   }
 }
