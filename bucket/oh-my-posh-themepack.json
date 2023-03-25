@@ -1,11 +1,11 @@
 {
-  "version": "14.17.0",
+  "version": "14.19.1",
   "description": "All the official themes for Oh-My-Posh",
   "homepage": "https://ohmyposh.dev",
   "license": "MIT",
   "notes": "Refer to 'https://ohmyposh.dev/docs/installation/prompt' for shell specific configurations.",
-  "url": "https://ghproxy.com/https://github.com/JanDeDobbeleer/oh-my-posh/releases/download/v14.17.0/themes.zip",
-  "hash": "40535ed788ad66d95212f727d6d2d1f502b5e39938e695a198df242d69ea1f31",
+  "url": "https://ghproxy.com/https://github.com/JanDeDobbeleer/oh-my-posh/releases/download/v14.19.1/themes.zip",
+  "hash": "dd7bf7cc37d73a56a348b3d2698213e70923667755196c3975867e7b7cfa3df8",
   "depends": "oh-my-posh",
   "env_set": {
     "POSH_THEMES_PATH": "$dir"
@@ -14,6 +14,9 @@
     "github": "https://github.com/JanDeDobbeleer/oh-my-posh"
   },
   "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/JanDeDobbeleer/oh-my-posh/releases/download/v$version/themes.zip"
+    "url": "https://ghproxy.com/https://github.com/JanDeDobbeleer/oh-my-posh/releases/download/v$version/themes.zip",
+    "hash": {
+      "url": "$url.sha256"
+    }
   }
 }

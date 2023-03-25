@@ -1,15 +1,21 @@
 {
-  "version": "1.23.0",
-  "description": "Converts the output of popular command-line tools, file-types, and common strings to JSON, YAML, or Dictionaries. This allows piping of output to tools like jq and simplifying automation scripts.",
+  "version": "1.23.1",
+  "description": "CLI JSON converter",
   "homepage": "https://github.com/kellyjonbrazil/jc",
   "license": "MIT",
-  "url": "https://ghproxy.com/https://github.com/kellyjonbrazil/jc/releases/download/v1.23.0/jc-1.23.0-windows.zip",
-  "hash": "ff4009c679afa5f340e9ae7505d63cceda30d1c458ca6e329fb3747112ffe688",
-  "extract_dir": "jc-1.23.0-windows",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/kellyjonbrazil/jc/releases/download/v1.23.1/jc-1.23.1-windows.zip",
+      "hash": "4dfeff3821e51189e08527fb29e425509ef6d4cf61e46c8dbac5221070575ece"
+    }
+  },
   "bin": "jc.exe",
   "checkver": "github",
   "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/kellyjonbrazil/jc/releases/download/v$version/jc-$version-windows.zip",
-    "extract_dir": "jc-$version-windows"
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/kellyjonbrazil/jc/releases/download/v$version/jc-$version-windows.zip"
+      }
+    }
   }
 }

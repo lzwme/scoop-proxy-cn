@@ -1,12 +1,12 @@
 {
-  "version": "3832165136",
+  "version": "4507998658",
   "description": "Chat client for twitch.tv. Only nightlies are supported (fork of Chatterino 2).",
   "homepage": "https://github.com/2547techno/technorino",
   "license": "MIT",
   "architecture": {
     "64bit": {
       "url": "https://ghproxy.com/https://github.com/2547techno/technorino/releases/download/nightly-build/chatterino-windows-x86-64.zip",
-      "hash": "814dd6cb7f465da69967b800b58eef81661ffaed536d6859944660dfff9e80fd",
+      "hash": "f25e09d30e78debfeb608263375948523889c5c2f72ca0e6e7e98ccb7b83a6ef",
       "extract_dir": "Chatterino2",
       "pre_install": "Get-ChildItem \"$dir\\chatterino.exe\" | Rename-Item -NewName { $_.name.Replace('chatte', 'techno') }"
     }
@@ -19,7 +19,7 @@
   ],
   "bin": "technorino.exe",
   "checkver": {
-    "url": "https://api.github.com/repositories/555937665/actions/workflows/build.yml/runs?branch=technorino&status=success",
+    "url": "https://api.github.com/repositories/604452497/actions/workflows/build.yml/runs?branch=technorino&status=success",
     "jsonpath": "$.workflow_runs[0].id"
   },
   "autoupdate": {
@@ -28,6 +28,5 @@
         "url": "https://ghproxy.com/https://github.com/2547techno/technorino/releases/download/nightly-build/chatterino-windows-x86-64.zip"
       }
     }
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

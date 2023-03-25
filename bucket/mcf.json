@@ -1,0 +1,24 @@
+{
+  "_comment": "Examples -> https://github.com/ScoopInstaller/Main/tree/master/bucket",
+  "version": "0.15.0",
+  "description": "Multi cf is a cli tool that can be used to execute commands on multiple cloud foundry environments at once.",
+  "homepage": "https://github.com/mdpadberg/multi-cf",
+  "license": "AGPL-3.0 license",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/mdpadberg/multi-cf/releases/download/0.15.0/mcf-0.15.0-x86_64-pc-windows-gnu.zip",
+      "hash": "d83993f7493489da1664ebe538200e84ccb50c9724bee7a13f5664e010e2c6df"
+    }
+  },
+  "bin": "mcf.exe",
+  "checkver": {
+    "github": "https://github.com/mdpadberg/multi-cf"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/mdpadberg/multi-cf/releases/download/$version/mcf-$version-x86_64-pc-windows-gnu.zip"
+      }
+    }
+  }
+}

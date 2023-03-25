@@ -1,23 +1,27 @@
 {
-  "version": "9a52d47c",
+  "version": "nightly",
+  "description": "ScummVM is a program which allows you to run certain classic graphical adventure and role-playing games",
   "homepage": "https://www.scummvm.org/",
   "license": {
-    "identifier": "GPL-3.0",
-    "url": "https://github.com/scummvm/scummvm/blob/master/COPYING"
+    "url": "https://github.com/scummvm/scummvm/blob/master/COPYING",
+    "identifier": "GPL-3.0"
   },
   "architecture": {
-    "32bit": {
-      "url": "https://buildbot.scummvm.org/dailybuilds/master/windows-x86-master-9a52d47c.zip",
-      "hash": "5eacde7adce60dd5a3670afb6003a6e8b11f5110ef27ee4998683dd87a2438d1",
-      "extract_dir": "windows-x86-master-9a52d47c"
-    },
     "64bit": {
-      "url": "https://buildbot.scummvm.org/dailybuilds/master/windows-x86-64-master-9a52d47c.zip",
-      "hash": "009e925fec3fc73d47d2fc5b54b3df6b9b50d2dc33bd26a49f50ed29fce772db",
-      "extract_dir": "windows-x86-64-master-9a52d47c"
+      "url": "https://buildbot.scummvm.org/dailybuilds/master/windows-x86-64-master-latest.zip"
+    },
+    "32bit": {
+      "url": "https://buildbot.scummvm.org/dailybuilds/master/windows-x86-master-latest.zip"
     }
   },
-  "bin": "win32dist-mingw/scummvm.exe",
+  "extract_to": "tmp",
+  "installer": {
+    "script": [
+      "(Get-ChildItem -Directory \"$dir\\tmp\\*\\win32dist-mingw\").FullName | ForEach-Object { Move-Item \"$_\\*\" \"$dir\" }",
+      "Remove-Item -Recurse \"$dir\\tmp\""
+    ]
+  },
+  "bin": "scummvm.exe",
   "shortcuts": [
     [
       "scummvm.exe",
@@ -29,24 +33,5 @@
     "saves",
     "themes",
     "extras"
-  ],
-  "checkver": {
-    "url": "https://buildbot.scummvm.org/dailybuilds/master/?C=M;O=D",
-    "regex": "windows-x86-64-master-([a-f0-9]{8}).zip"
-  },
-  "autoupdate": {
-    "hash": {
-      "url": "$url.sha256"
-    },
-    "architecture": {
-      "32bit": {
-        "url": "https://buildbot.scummvm.org/dailybuilds/master/windows-x86-master-$version.zip",
-        "extract_dir": "windows-x86-master-$version"
-      },
-      "64bit": {
-        "url": "https://buildbot.scummvm.org/dailybuilds/master/windows-x86-64-master-$version.zip",
-        "extract_dir": "windows-x86-64-master-$version"
-      }
-    }
-  }
+  ]
 }

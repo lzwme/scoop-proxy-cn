@@ -1,39 +1,45 @@
 {
   "version": "1.9.2",
-  "description": "Bilibili(bilibili.com) Official Client.",
-  "homepage": "https://app.bilibili.com",
-  "license": {
-    "identifier": "Proprietary",
-    "url": "https://www.bilibili.com/blackboard/protocal/privacy-pc-desktop.html"
-  },
-  "architecture": {
-    "64bit": {
-      "url": "https://dl.hdslb.com/mobile/fixed/bili_win/bili_win-install.exe#/dl.7z",
-      "hash": "sha512:c0258285aef92d7494263367f168cff4ea0e18337c572ae6705ffee6d0e561d14de881fd4b7f2b185ab180fc72baa48e7c3e8aa6dcf285f88953672a9d701791",
-      "pre_install": [
-        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
-        "Remove-Item \"$dir\\`$*\", \"$dir\\Uninstall*\" -Force -Recurse"
-      ]
-    }
-  },
+  "description": "哔哩哔哩客户端",
+  "homepage": "https://app.bilibili.com/",
+  "license": "Proprietary",
+  "url": "https://dl.hdslb.com/mobile/fixed/bili_win/bili_win-install.exe#/dl.7z",
+  "hash": "c8f3ad140d79a8f00f37ccc48824d2b008c4385a4090ddc5e0d0fb789202775c",
+  "pre_install": [
+    "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+    "Move-Item -Path \"$dir\\`$PLUGINSDIR\\Uninstall 哔哩哔哩.exe\" -Destination \"$dir\"",
+    "Remove-Item \"$dir\\`$PLUGINSDIR\" -Force -Recurse"
+  ],
   "installer": {
     "script": [
-      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name apps) scripts/AppsUtils.psm1)",
-      "Mount-ExternalRuntimeData -Source \"$persist_dir\\appdata\" -Target \"$env:APPDATA\\bilibili\"",
-      "Remove-Module -Name AppsUtils"
+      "if (!(Test-Path \"$persist_dir\\Cache\")) {",
+      "    New-Item \"$persist_dir\\Cache\" -Type Directory -Force | Out-Null",
+      "}",
+      "$runtimeCache = \"$env:APPDATA\\bilibili\"",
+      "$runtimeCachePersist = \"$persist_dir\\Cache\"",
+      "if (Test-Path $runtimeCachePersist) {",
+      "    Remove-Item $runtimeCache -Force -Recurse -ErrorAction SilentlyContinue",
+      "    New-Item -Type Junction -Path $runtimeCache -Target $runtimeCachePersist | Out-Null",
+      "} else {",
+      "    if (Test-Path $runtimeCache) {",
+      "        Move-Item $runtimeCache $runtimeCachePersist -Force",
+      "        New-Item -Type Junction -Path $runtimeCache -Target $runtimeCachePersist | Out-Null",
+      "    }",
+      "}"
     ]
   },
   "uninstaller": {
     "script": [
-      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name apps) scripts/AppsUtils.psm1)",
-      "Dismount-ExternalRuntimeData -Target \"$env:APPDATA\\bilibili\"",
-      "Remove-Module -Name AppsUtils"
+      "$runtimeCache = \"$env:APPDATA\\bilibili\"",
+      "$runtimeCachePersist = \"$persist_dir\"",
+      "Remove-Item $runtimeCache -Force -Recurse -ErrorAction SilentlyContinue",
+      "Remove-Item $runtimeCachePersist -Force -Recurse -ErrorAction SilentlyContinue"
     ]
   },
   "shortcuts": [
     [
       "哔哩哔哩.exe",
-      "哔哩哔哩"
+      "bilibili"
     ]
   ],
   "checkver": {
@@ -41,14 +47,10 @@
     "regex": "bilibili-setup-v([\\d\\.]+)\\.exe"
   },
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://dl.hdslb.com/mobile/fixed/bili_win/bili_win-install.exe#/dl.7z",
-        "hash": {
-          "url": "http://api.bilibili.com/x/elec-frontend/update/latest.yml",
-          "regex": "sha512: ([\\w\\d+\\/=]{24,88})"
-        }
-      }
+    "url": "https://dl.hdslb.com/mobile/fixed/bili_win/bili_win-install.exe#/dl.7z",
+    "hash": {
+      "url": "http://api.bilibili.com/x/elec-frontend/update/latest.yml",
+      "regex": "sha512: ([\\w\\d+\\/=]{24,88})"
     }
   }
 }

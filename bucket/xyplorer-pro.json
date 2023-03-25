@@ -1,26 +1,28 @@
 {
-  "homepage": "https://www.xyplorer.com/index.php",
+  "homepage": "https://www.xyplorer.com",
   "version": "24.20.0400",
-  "description": "A file manager for Windows.",
-  "license": {
-    "identifier": "Proprietary",
-    "url": "https://www.xyplorer.com/LicenseXY.txt"
-  },
+  "license": "Shareware",
+  "description": "File Manager for Windows",
   "url": "https://www.xyplorer.com/download/xyplorer_full_noinstall.zip",
   "hash": "0faa6c95859b67d3a9b0ae236d6a08e4c4a160be32b5b8eb36d05214b238de8d",
-  "bin": "XYplorer.exe",
-  "shortcuts": [
+  "bin": [
     [
-      "XYplorer.exe",
-      "XYplorer"
+      "XYPlorer.exe",
+      "XYPlorerPro"
     ]
   ],
-  "persist": "Data",
+  "shortcuts": [
+    [
+      "XYPlorer.exe",
+      "XYPlorerPro"
+    ]
+  ],
   "checkver": {
-    "url": "https://www.xyplorer.com/download.php",
-    "re": "([\\d.]+),\\s*released"
+    "url": "https://www.xyplorer.com",
+    "regex": "Download the latest version[\\s\\S]*href=\"(?<download>.*?)\"[\\s\\S]*class=\"smaller\">(?<version>[\\d.]+) "
   },
   "autoupdate": {
     "url": "https://www.xyplorer.com/download/xyplorer_full_noinstall.zip"
-  }
+  },
+  "persist": "Data"
 }
