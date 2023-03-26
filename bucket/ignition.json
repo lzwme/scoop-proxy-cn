@@ -1,14 +1,16 @@
 {
-  "version": "8.1.25",
+  "version": "8.1.26",
   "description": "Unlimited Platform for SCADA and so much more",
   "homepage": "https://inductiveautomation.com/",
   "license": {
     "identifier": "Propietary",
     "url": "https://inductiveautomation.com/ignition/license"
   },
-  "url": "https://files.inductiveautomation.com/release/ia/8.1.25/20230214-0923/Ignition-windows-x86-64-8.1.25.zip",
-  "hash": "9b88c49c0182babde85f5dd3f1f65b74f7d262468c5fc026362086796e9f12c9",
+  "url": "https://files.inductiveautomation.com/release/ia/8.1.26/20230323-0920/Ignition-windows-x86-64-8.1.26.zip",
+  "hash": "c3298fdbd2b617d04380a87cde047201bc3f76d52c70c57bfdf6c07adc99da48",
   "post_install": [
+    "# Update ignition.conf",
+    "(Get-Content \"$dir\\data\\ignition.conf\") -replace '=Ignition', '=Ignition scoop' | Out-File \"$dir\\data\\ignition.conf\"",
     "# Install Ignition",
     "cmd.exe /c \"$dir\\install-ignition.bat\"",
     "# Run upgrader",
@@ -39,6 +41,5 @@
   "checkver": {
     "url": "https://inductiveautomation.com/downloads/ignition/",
     "regex": "\"version\":\\s*\"(\\d+(:?\\.\\d+)*)\""
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }
