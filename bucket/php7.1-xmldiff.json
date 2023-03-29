@@ -1,0 +1,30 @@
+{
+  "homepage": "https://pecl.php.net/package/xmldiff",
+  "version": "1.1.2",
+  "license": "http://www.php.net/license/3_01.txt",
+  "architecture": {
+    "64bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/xmldiff/1.1.2/php_xmldiff-1.1.2-7.1-ts-vc14-x64.zip",
+      "hash": "167a421d63737237a0a524213c51460bb8dcc59973a936cb22549e7eb7631e88"
+    },
+    "32bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/xmldiff/1.1.2/php_xmldiff-1.1.2-7.1-ts-vc14-x86.zip",
+      "hash": "70ed9320aaa359f216a5b9bcc7e962ee3d1f50c5a80800d9d27e050bc7147cbf"
+    }
+  },
+  "checkver": "xmldiff/([\\d.]+)/windows",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/xmldiff/$version/php_xmldiff-$version-7.1-ts-vc14-x64.zip"
+      },
+      "32bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/xmldiff/$version/php_xmldiff-$version-7.1-ts-vc14-x86.zip"
+      }
+    }
+  },
+  "post_install": "iex(gc $bucketsdir\\$bucket\\bin\\postinstall.ps1 -Raw)",
+  "uninstaller": {
+    "file": "uninstall.ps1"
+  }
+}

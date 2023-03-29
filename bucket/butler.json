@@ -1,12 +1,14 @@
 {
-  "homepage": "https://broth.itch.ovh/butler",
-  "version": "15.17.0",
-  "architecture": {
-    "64bit": {
-      "url": "https://broth.itch.ovh/butler/windows-amd64/15.17.0/archive/default#/butler-windows-amd64.zip",
-      "hash": "a75c7d5954feaa0cb8e5dfb5035c06817ca1402faa8a0c2057289bd47aa47493"
-    }
+  "homepage": "https://itch.io/docs/butler/",
+  "checkver": {
+    "url": "https://api.github.com/repos/itchio/butler/tags",
+    "jp": "$.[0].name"
   },
+  "autoupdate": {
+    "url": "https://broth.itch.ovh/butler/windows-amd64/$matchHead/archive/default#/latest.zip"
+  },
+  "version": "v15.21.0",
+  "url": "https://broth.itch.ovh/butler/windows-amd64/15.21.0/archive/default#/latest.zip",
   "bin": "butler.exe",
-  "_from": "okibcn/ScoopMaster"
+  "hash": "e5381a1ec38abe8c2f3bf742dc22e897901e7def22d20ebc8fd4490d52038d35"
 }

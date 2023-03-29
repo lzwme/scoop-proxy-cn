@@ -1,0 +1,33 @@
+{
+  "version": "1.0",
+  "description": "SSS 東北きりたん　単独音",
+  "homepage": "https://zunko.jp/con_voice.html",
+  "license": [
+    {
+      "identifier": "Proprietary",
+      "url": "https://zunko.jp/guideline.html"
+    }
+  ],
+  "url": "https://zunko.jp/sozai/utau/TohokuKiritan_CV.zip",
+  "hash": "4b8628bb95453e86761ac6cf126e166de7933d3d9ad8f6c1c762468140772b77",
+  "extract_to": "voice",
+  "suggest": {
+    "UTAU": [
+      "utau",
+      "dtm/utau"
+    ]
+  },
+  "installer": {
+    "script": [
+      "$voice=\"東北きりたん単独音\"",
+      "Copy-Item -Force -Recurse -Path \"${dir}\\voice\\*\" -Destination \"${persist_dir}\\..\\utau\\utau\\voice\"",
+      "Remove-Item -Force -Recurse -Path \"${dir}\\voice\\${voice}\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$voice=\"東北きりたん単独音\"",
+      "Remove-Item -Force -Recurse -Path \"${persist_dir}\\..\\utau\\utau\\voice\\${voice}\""
+    ]
+  }
+}

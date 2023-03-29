@@ -1,0 +1,24 @@
+{
+    "version": "11.00",
+    "license": "custom",
+    "homepage": "http://users.teilar.gr/~g1951d/",
+    "url": "http://users.teilar.gr/~g1951d/Symbola.zip",
+    "hash": "d594ce9d51832f614776fed400b79e8ffffb8f8effeced73f9034907e512527d",
+    "installer": {
+        "script": "
+            Get-ChildItem $dir -filter '*.ttf' | ForEach-Object {
+                New-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $_.Name -Force | Out-Null
+                Copy-Item \"$dir\\$_\" -destination \"$env:windir\\Fonts\"
+            }
+        "
+    },
+    "uninstaller": {
+        "script": "
+            Get-ChildItem $dir -filter '*.ttf' | ForEach-Object {
+                Remove-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue
+                Remove-Item \"$env:windir\\Fonts\\$($_.Name)\" -Force -ErrorAction SilentlyContinue
+            }
+            Write-Host \"The 'Symbola' Font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta
+        "
+    }
+}

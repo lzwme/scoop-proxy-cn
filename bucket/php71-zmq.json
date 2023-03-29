@@ -1,0 +1,33 @@
+{
+  "homepage": "https://pecl.php.net/package/zmq",
+  "version": "1.1.3",
+  "license": "http://www.php.net/license/3_01.txt",
+  "architecture": {
+    "64bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/zmq/1.1.3/php_zmq-1.1.3-7.1-ts-vc14-x64.zip",
+      "hash": "ed73ff2378b96d4df5c3535438f4114b623cc5976b29541b993b005f81437c3f"
+    },
+    "32bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/zmq/1.1.3/php_zmq-1.1.3-7.1-ts-vc14-x86.zip",
+      "hash": "228f8b9ff6184231f9ef2d24d15e44bb8d25829031280a662f26e62da71dc228"
+    }
+  },
+  "depends": [
+    "php"
+  ],
+  "post_install": "$phpconfd = \"$persist_dir\\..\\php\\cli\\conf.d\"; if((test-path $phpconfd)) { echo \"Enabling extension $(Convert-Path $phpconfd)\\zmq.ini\"; echo \"extension=$dir\\php_zmq.dll\" | sc \"$phpconfd\\zmq.ini\"; echo \"Remove-Item '$(Convert-Path $phpconfd)\\zmq.ini'\" | sc \"$dir\\uninstall.ps1\" } else { write-host -f yellow \"PHP was not installed through scoop, you have to activate php_zmq.dll manually!\" }",
+  "checkver": "zmq/([\\d.]+)/windows",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/zmq/$version/php_zmq-$version-7.1-ts-vc14-x64.zip"
+      },
+      "32bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/zmq/$version/php_zmq-$version-7.1-ts-vc14-x86.zip"
+      }
+    }
+  },
+  "uninstaller": {
+    "file": "uninstall.ps1"
+  }
+}

@@ -1,28 +1,24 @@
 {
-  "version": "0.7.2.2",
-  "description": "Personal Remote Manager",
-  "homepage": "https://github.com/VShawn/PRemoteM",
-  "license": "GPL-3.0",
-  "url": "https://ghproxy.com/https://github.com/1Remote/1Remote/releases/download/0.7.2.2/PRemoteM-0.7.2.2.zip",
-  "hash": "e45aa734d567fa8c3cbf612de19bbb31e418e88b4a85ac733282607c9262e66d",
-  "bin": "PRemoteM.exe",
-  "shortcuts": [
-    [
-      "PRemoteM.exe",
-      "PRemoteM"
-    ]
-  ],
-  "persist": "PRemoteM.db",
-  "pre_install": [
-    "if (!(Test-Path \"$persist_dir\\PRemoteM.db\")) {",
-    "    New-Item -Force -Path \"$dir\" -Name 'PRemoteM.db' -Value '' | Out-Null",
-    "}"
-  ],
+  "version": "0.7.2.8",
+  "license": "GNU GENERAL PUBLIC LICENSE",
+  "homepage": "https://github.com/1Remote/PRemoteM",
+  "url": "https://ghproxy.com/https://github.com/1Remote/PRemoteM/releases/download/0.7.2.8/PRemoteM.zip",
+  "hash": "2c3bb69e165249681225283e8208573c2e6691467ff1b83e99eb475837b6d36e",
   "checkver": {
-    "url": "https://github.com/1Remote/PRemoteM/releases",
-    "regex": "\\/1Remote\\/PRemoteM\\/releases\\/download\\/(?<tag>.+?)\\/PRemoteM\\-(?<version>.+?)\\.zip\""
+    "github": "https://github.com/1Remote/PRemoteM"
   },
+  "suggests": [
+    "extras/windowsdesktop-runtime-lts",
+    "extras/winscp"
+  ],
   "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/1Remote/1Remote/releases/download/0.7.2.2/PRemoteM-0.7.2.2.zip"
-  }
+    "url": "https://ghproxy.com/https://github.com/1Remote/PRemoteM/releases/download/$version/PRemoteM.zip",
+    "hash": {
+      "find": "sha512:\\s+(.*)"
+    }
+  },
+  "post_install": [
+    "New-Item -Type File -Path \"$dir\\FORCE_INTO_APPDATA_MODE\";"
+  ],
+  "bin": "PRemoteM.exe"
 }

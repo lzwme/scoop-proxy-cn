@@ -1,0 +1,40 @@
+{
+  "version": "0_6_3",
+  "description": "ZIP file decompression software designed to prevent garbled filenames.",
+  "homepage": "https://www.gesource.jp/soft/zipextractor/",
+  "license": {
+    "identifier": "Freeware"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://www.gesource.jp/soft/zipextractor/soft/zipextractor_0_6_3_win.zip#/dl.7z",
+      "hash": "2501c85f5013e98d27d92e967b7d1bbf749fdc72bb2d82ef61b4bc0affea76e9"
+    },
+    "32bit": {
+      "url": "https://www.gesource.jp/soft/zipextractor/soft/zipextractor_0_6_3_win.zip#/dl.7z",
+      "hash": "2501c85f5013e98d27d92e967b7d1bbf749fdc72bb2d82ef61b4bc0affea76e9"
+    }
+  },
+  "extract_dir": "zipextractor",
+  "bin": "zipextractor.exe",
+  "shortcuts": [
+    [
+      "zipextractor.exe",
+      "ZipExtractor"
+    ]
+  ],
+  "checkver": {
+    "url": "https://www.gesource.jp/soft/zipextractor/",
+    "regex": "soft/zipextractor_(\\d_\\d_\\d)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://www.gesource.jp/soft/zipextractor/soft/zipextractor_$underscoreVersion_win.zip#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://www.gesource.jp/soft/zipextractor/soft/zipextractor_$underscoreVersion_win.zip#/dl.7z"
+      }
+    }
+  }
+}

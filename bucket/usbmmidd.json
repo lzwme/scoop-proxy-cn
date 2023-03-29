@@ -1,0 +1,36 @@
+{
+  "version": "2.0.0",
+  "description": "Utility to create virtual monitors on Windows 10 or higher systems.",
+  "homepage": "https://www.amyuni.com/forum/viewtopic.php?t=3030",
+  "license": "Proprietary",
+  "notes": [
+    "For the first-time installation, please run:",
+    "- cd $(scoop prefix usbmmidd) && deviceinstaller install usbmmIdd.inf usbmmidd",
+    "To enable the virtual monitor, run:",
+    "- deviceinstaller enableidd 1",
+    "To disable the virtual monitor, run:",
+    "- deviceinstaller enableidd 0",
+    "For more information, run:",
+    "- notepad \"$(scoop prefix usbmmidd)\\idd_instructions.txt\"",
+    "Despite the homepage listed in the manifest, see also https://superuser.com/a/1706401/1145285",
+    "and https://github.com/pavlobu/deskreen/discussions/86#discussioncomment-323773 for some other",
+    "discussions."
+  ],
+  "url": "https://www.amyuni.com/downloads/usbmmidd_v2.zip",
+  "hash": "629b51e9944762bae73948171c65d09a79595cf4c771a82ebc003fbba5b24f51",
+  "extract_dir": "usbmmidd_v2",
+  "architecture": {
+    "32bit": {
+      "bin": "deviceinstaller.exe"
+    },
+    "64bit": {
+      "bin": [
+        "deviceinstaller64.exe",
+        [
+          "deviceinstaller64.exe",
+          "deviceinstaller"
+        ]
+      ]
+    }
+  }
+}

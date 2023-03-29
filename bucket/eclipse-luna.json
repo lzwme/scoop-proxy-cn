@@ -1,0 +1,25 @@
+{
+	"homepage": "http://www.eclipse.org/",
+	"license": "https://www.eclipse.org/org/documents/epl-v10.php",
+	"version": "4.4",
+	"architecture": {
+		"64bit": {
+			"url": "http://mirrors.ibiblio.org/pub/mirrors/eclipse/technology/epp/downloads/release/luna/R/eclipse-standard-luna-R-win32-x86_64.zip",
+			"hash": "sha1:86691356bed01f54d654e1b15aa8b0e24dccf02d"
+		}
+	},
+	"extract_dir": "eclipse",
+	"bin": "eclipse.exe",
+	"post_install": "
+	$workspacepath = (Join-Path ($env:DataPath) \"/eclipse-luna-workspace\") -replace \"\\\\\", \"/\"
+
+	# Configure eclipse,ini
+	$eclipseini = \"$dir/eclipse.ini\"
+	Add-Content $eclipseini \"-XX:MaxPermSize=512m\"
+	
+	# Configure config.ini
+	$configini = \"$dir/configuration/config.ini\"
+
+	(Get-Content $configini) | Foreach-Object {$_ -replace \"osgi.instance.area.default=@user.home/workspace\", \"osgi.instance.area.default=$workspacepath\"} | Set-Content $configini
+	"
+}

@@ -1,0 +1,29 @@
+{
+  "version": "1669736547",
+  "description": "VKB controllers buttons tester",
+  "homepage": "https://www.vkbcontrollers.com/pages/downloads",
+  "license": "Proprietary",
+  "architecture": {
+    "64bit": {
+      "url": "https://cdn.shopify.com/s/files/1/0551/4739/7238/files/VKB_BtnTester.zip?v=1669736547",
+      "hash": "652f398876c00c07377dd452d05b4b1b168d1a1fd44ceeff324b8d03e2f31186"
+    }
+  },
+  "shortcuts": [
+    [
+      "VKB_BtnTester.exe",
+      "VKB Joystick Button Tester"
+    ]
+  ],
+  "checkver": {
+    "url": "https://www.vkbcontrollers.com/pages/downloads",
+    "regex": "https://cdn\\.shopify\\.com/(?<installer>s/files/[0-9/]+/files/VKB_BtnTester\\.zip\\?v=([0-9]+))"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://https://cdn.shopify.com/$matchInstaller"
+      }
+    }
+  }
+}

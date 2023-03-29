@@ -1,0 +1,27 @@
+{
+  "version": "3.8.2.q1",
+  "description": "Novel downloader for NAROU sites.",
+  "homepage": "https://github.com/topstone/narouq",
+  "url": "https://ghproxy.com/https://github.com/topstone/narouq/releases/download/v3.8.2.q1/narouq-3.8.2.q1.gem",
+  "hash": "c4841e80e9abef55737e398c87de3a35b7ef0a6bd6a261224430a78357ffdad3",
+  "depends": [
+    "ruby",
+    "msys2",
+    "aozoraepub3q",
+    "openjdk-ea"
+  ],
+  "post_install": [
+    "echo ********",
+    "echo ****select",
+    "echo ****'3'",
+    "echo ****on",
+    "echo ****ridk",
+    "echo ********",
+    "ridk install",
+    "gem install narou",
+    "$narouq = scoop prefix narouq",
+    "gem install ${narouq}/narouq-3.8.2.q1.gem --local",
+    "$aozora = scoop prefix aozoraepub3q",
+    "narouq init --line-height 1.9 --path ${aozora}"
+  ]
+}

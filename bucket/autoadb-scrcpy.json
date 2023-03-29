@@ -1,0 +1,56 @@
+{
+  "version": "0.1.0.1",
+  "url": [
+    "https://tmp.rom1v.com/autoadb/0.1.0/autoadb.exe"
+  ],
+  "description": "AutoADB: execute a command whenever a device is adb-connected ",
+  "notes": [
+    "Add AutoADB-scrcpy to startup by running:",
+    "reg import \"$dir\\add-startup.reg\""
+  ],
+  "hash": [
+    "d367fd842c9a061141cc4a6c82cb444b079f42697306fd7dd39fc082d47b0c51",
+    ""
+  ],
+  "checkver": {
+    "github": "https://github.com/rom1v/autoadb"
+  },
+  "autoupdate": {
+    "url": [
+      "https://tmp.rom1v.com/autoadb/$version/autoadb.exe"
+    ],
+    "hash": {
+      "find": "sha256:\\s+(.*)"
+    }
+  },
+  "depends": [
+    "scrcpy",
+    "autohotkey"
+  ],
+  "homepage": "https://github.com/rom1v/autoadb/issues/17",
+  "bin": [
+    "autoadb.exe",
+    "ahk-autoadb-scrcpy-launch-to-tray.exe"
+  ],
+  "pre_install": [
+    "Copy-Item \"$bucketsdir\\**\\scripts\\autoadb\\*.ico\" \"$dir\"",
+    "Copy-Item \"$bucketsdir\\**\\scripts\\autoadb\\*.exe\" \"$dir\""
+  ],
+  "post_install": [
+    "$exepath = \"$dir\\ahk-autoadb-scrcpy-launch-to-tray.exe\".Replace('\\', '\\\\')",
+    "'add-startup', 'remove-startup' | ForEach-Object {",
+    "    $content = Get-Content \"$bucketsdir\\**\\scripts\\autoadb\\$_.reg\"",
+    "    $content = $content.Replace('$exepath', $exepath)",
+    "    if ($global) {",
+    "       $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE')",
+    "    }",
+    "    $content | Set-Content -Path \"$dir\\$_.reg\"",
+    "}"
+  ],
+  "pre_uninstall": [
+    "Write-Host Uninstalling",
+    "Get-Process ahk-autoadb-scrcpy-launch-to-tray -ErrorAction SilentlyContinue | Stop-Process",
+    "Get-Process autoadb -ErrorAction SilentlyContinue | Stop-Process",
+    "if ($cmd -eq 'uninstall') { reg import \"$dir\\remove-startup.reg\" }"
+  ]
+}

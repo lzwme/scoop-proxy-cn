@@ -1,0 +1,26 @@
+{
+  "url": "https://www.powershellgallery.com/api/v2/Package/SqlServer/21.1.18256#/mod.nupkg",
+  "description": "This module allows SQL Server developers, administrators and business intelligence professionals to automate database development and server administration, as well as both multidimensional and tabular cube processing.  For Release Notes, expand the Package Details section on this page.  For automation with SSRS & Power BI Report Server, use the ReportingServicesTools module available at https://www.powershellgallery.com/packages/ReportingServicesTools",
+  "autoupdate": {
+    "hash": {
+      "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id eq 'SqlServer' and Version eq '$version'",
+      "regex": "<d:PackageHash>$base64<.d:PackageHash>"
+    },
+    "url": "https://www.powershellgallery.com/api/v2/Package/SqlServer/$version#/mod.nupkg"
+  },
+  "version": "21.1.18256",
+  "psmodule": {
+    "name": "SqlServer"
+  },
+  "license": {
+    "identifier": "Refer to Webpage",
+    "url": "https://docs.microsoft.com/sql/relational-databases/scripting/sql-server-powershell-license-terms"
+  },
+  "homepage": "https://www.powershellgallery.com/packages/SqlServer",
+  "checkver": {
+    "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id%20eq%20'SqlServer'%20and%20IsLatestVersion%20eq%20true",
+    "replace": "${ver}",
+    "regex": "(?i)<d:Version>(?<ver>[^<]+)<.d:Version>"
+  },
+  "hash": "sha512:4151cba534e2385dc0c2959780fc4d6bf254c928c4e5009c5d61e07926989e3fb1469f8f34c173678bcd341a8eb1ddc3db8fab0fb531f906909a05048f1f7091"
+}

@@ -1,0 +1,40 @@
+{
+  "homepage": "https://rlbuild.herokuapp.com/",
+  "description": "変愚蛮怒(shimitei_labo version)",
+  "url": "https://rlbuild.herokuapp.com/api/dl?path=%2Fhengband%2Fhengband-20200308194214-b6b861d-win.zip#/hengband.zip",
+  "version": "20200308194214",
+  "hash": "bf818f00e9e4157d051871fceaf4858dbf4ed30d5c6522f24145edb0e528e678",
+  "extract_dir": "Hengband",
+  "bin": "Hengband.exe",
+  "pre_install": [
+    ".\\bin\\hengband_backup_persist.ps1 Hengband > $null",
+    ".\\bin\\hengband_init_persist.ps1 Hengband > $null",
+    ".\\bin\\hengband_move_newdata.ps1 > $null"
+  ],
+  "persist": [
+    "Hengband.INI",
+    "lib\\apex",
+    "lib\\bone",
+    "lib\\data",
+    "lib\\save",
+    "lib\\user"
+  ],
+  "post_install": [
+    ".\\bin\\hengband_set_newdata.ps1 > $null"
+  ],
+  "shortcuts": [
+    [
+      "Hengband.exe",
+      "Hengband - 変愚蛮怒 (shimitei_labo)"
+    ]
+  ],
+  "checkver": {
+    "url": "https://rlbuild.herokuapp.com/api/ls?path=%252Fhengband",
+    "re": "hengband-(?<version>\\d+)-(?<commit>[a-fA-F0-9]{7})-win.zip",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://rlbuild.herokuapp.com/api/dl?path=%2Fhengband%2Fhengband-$version-$matchCommit-win.zip#/hengband.zip",
+    "hash": ""
+  }
+}

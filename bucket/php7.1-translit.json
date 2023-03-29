@@ -1,0 +1,30 @@
+{
+  "homepage": "https://pecl.php.net/package/translit",
+  "version": "0.6.2",
+  "license": "http://www.php.net/license/3_01.txt",
+  "architecture": {
+    "64bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/translit/0.6.2/php_translit-0.6.2-7.1-ts-vc14-x64.zip",
+      "hash": "f28ff18db60613bdd7179e4d21bb1e39a454bdfb29f4c8a3372d232cccb9e369"
+    },
+    "32bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/translit/0.6.2/php_translit-0.6.2-7.1-ts-vc14-x86.zip",
+      "hash": "a14bb58c7ca0b970d61f9379d3dc36f40062a3fee77636e94c380b2271899cf1"
+    }
+  },
+  "checkver": "translit/([\\d.]+)/windows",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/translit/$version/php_translit-$version-7.1-ts-vc14-x64.zip"
+      },
+      "32bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/translit/$version/php_translit-$version-7.1-ts-vc14-x86.zip"
+      }
+    }
+  },
+  "post_install": "iex(gc $bucketsdir\\$bucket\\bin\\postinstall.ps1 -Raw)",
+  "uninstaller": {
+    "file": "uninstall.ps1"
+  }
+}

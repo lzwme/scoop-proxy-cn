@@ -1,0 +1,33 @@
+{
+  "homepage": "https://pecl.php.net/package/igbinary",
+  "version": "2.0.1",
+  "license": "http://www.php.net/license/3_01.txt",
+  "architecture": {
+    "64bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/igbinary/2.0.1/php_igbinary-2.0.1-7.1-ts-vc14-x64.zip",
+      "hash": "bf783b61b587b9bb8f5d3687e2f79398f784b6d5fe12d8b7ca70a7a3cfd97665"
+    },
+    "32bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/igbinary/2.0.1/php_igbinary-2.0.1-7.1-ts-vc14-x86.zip",
+      "hash": "eeaac8bb5389def6080db70747281c781ad88e2d3f5d6b3a4d8bca6c8b80a5a8"
+    }
+  },
+  "depends": [
+    "php"
+  ],
+  "post_install": "$phpconfd = \"$persist_dir\\..\\php\\cli\\conf.d\"; if((test-path $phpconfd)) { echo \"Enabling extension $(Convert-Path $phpconfd)\\igbinary.ini\"; echo \"extension=$dir\\php_igbinary.dll\" | sc \"$phpconfd\\igbinary.ini\"; echo \"Remove-Item '$(Convert-Path $phpconfd)\\igbinary.ini'\" | sc \"$dir\\uninstall.ps1\" } else { write-host -f yellow \"PHP was not installed through scoop, you have to activate php_igbinary.dll manually!\" }",
+  "checkver": "igbinary/([\\d.]+)/windows",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/igbinary/$version/php_igbinary-$version-7.1-ts-vc14-x64.zip"
+      },
+      "32bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/igbinary/$version/php_igbinary-$version-7.1-ts-vc14-x86.zip"
+      }
+    }
+  },
+  "uninstaller": {
+    "file": "uninstall.ps1"
+  }
+}

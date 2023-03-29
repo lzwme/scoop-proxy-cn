@@ -1,0 +1,33 @@
+{
+  "version": "1.0",
+  "description": "SSS 東北きりたん　CVVC（強音源）",
+  "homepage": "https://zunko.jp/con_voice.html",
+  "license": [
+    {
+      "identifier": "Proprietary",
+      "url": "https://zunko.jp/guideline.html"
+    }
+  ],
+  "url": "https://zunko.jp/sozai/utau/TohokuKiritan_CVVC_Strong.zip",
+  "hash": "6ae9beba45054f2c005752fba1f8dff88678bced352017766bbb6a9ca07d8701",
+  "extract_to": "voice",
+  "suggest": {
+    "UTAU": [
+      "utau",
+      "dtm/utau"
+    ]
+  },
+  "installer": {
+    "script": [
+      "$voice=\"東北きりたんCVVC強\"",
+      "Copy-Item -Force -Recurse -Path \"${dir}\\voice\\*\" -Destination \"${persist_dir}\\..\\utau\\utau\\voice\"",
+      "Remove-Item -Force -Recurse -Path \"${dir}\\voice\\${voice}\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$voice=\"東北きりたんCVVC強\"",
+      "Remove-Item -Force -Recurse -Path \"${persist_dir}\\..\\utau\\utau\\voice\\${voice}\""
+    ]
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "version": "1.0",
+  "description": "AmadeuSY",
+  "homepage": "https://airesearcher113.wixsite.com/amadeusy",
+  "license": [
+    {
+      "identifier": "Proprietary",
+      "url": "https://drive.google.com/file/d/1bcEjB04yYDPC5ojOE1ekaObjKV0ojE5t/view?usp=sharing"
+    }
+  ],
+  "url": "https://airesearcher113.wixsite.com/amadeusy",
+  "hash": "39890d7f3e78b8acbf5803f325f30d8d5785a7ab9e5be62bee2219073c3c3067",
+  "depends": [
+    "amadeusy-bat"
+  ],
+  "installer": {
+    "script": [
+      "$id = \"1Vha2eXiKh0A7SyoNuwVwARsIYlLoTpPn\"",
+      "$filename = \"synth.exe\"",
+      "$hash =\"d175613c632b87a9bd6da95842fd4a374c59b70d7e0f3183ef3b7e206fb379cf\"",
+      "$file = $cachedir + \"\\\" + $filename",
+      "if(Test-Path -Path $file -PathType Leaf){",
+      "   Write-Host \"Checking hash of $file ... \" -NoNewline",
+      "   $filehash = (Get-FileHash -Path $file -Algorithm SHA256 | Select-Object -ExpandProperty Hash).ToLower()",
+      "   if([string]::IsNullOrEmpty($hash)){",
+      "     Write-Host \"skip\" -ForegroundColor Yellow",
+      "     Write-Warning \"No hash in manifest. SHA256 for '${filename}' is:\"",
+      "     Write-Host \"    $filehash\" -ForegroundColor Yellow",
+      "   }else{",
+      "     if($hash -eq $filehash){",
+      "         Write-Host \"ok\" -ForegroundColor Green",
+      "     }else{",
+      "         Write-Host \"error\" -ForegroundColor Red",
+      "         Write-Warning \"Cache file corrupted for '${filename}'\"",
+      "         Remove-Item -Path $file -Force",
+      "     }",
+      "   }",
+      "}",
+      "if(-not(Test-Path -Path $file -PathType Leaf)){",
+      "   Write-Host Download file $id from Google Drive",
+      "   $response = Invoke-WebRequest -Uri \"https://drive.google.com/uc?export=download&id=${id}\"",
+      "   if($response -match 'id=\"downloadForm\" action=\"([^\"]+)\" method=\"post\"'){",
+      "       $url = $matches[1].Replace(\"&amp;\",\"&\")",
+      "       $web = New-Object net.webclient",
+      "       $web.Downloadfile($url, \"${file}.tmp\")",
+      "       Rename-Item -Path \"${file}.tmp\" -NewName $filename",
+      "       if([string]::IsNullOrEmpty($hash)){",
+      "         $filehash = (Get-FileHash -Path $file -Algorithm SHA256 | Select-Object -ExpandProperty Hash).ToLower()",
+      "         Write-Warning \"No hash in manifest. SHA256 for '${filename}' is:\"",
+      "         Write-Host \"    $filehash\" -ForegroundColor Yellow",
+      "       }",
+      "   }",
+      "}",
+      "Copy-Item -Force -Recurse -Path $file -Destination $dir"
+    ],
+    "bin": "synth.exe"
+  }
+}

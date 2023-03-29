@@ -1,0 +1,13 @@
+{
+  "version": "3.9.0",
+  "license": "Apache-2.0",
+  "homepage": "https://chefdk.com",
+  "url": "https://packages.chef.io/files/stable/chefdk/3.9.0/windows/2012r2/chefdk-3.9.0-1-x64.msi",
+  "hash": "sha256:fef1b914eecec24a3a7a7d183280140317b2a1fb261e49be4337be19c92034ba",
+  "pre_install": [
+    "7z x \"$dir\\opscode\\chefdk.zip\" -o\"$dir\""
+  ],
+  "post_install": [
+    "[System.Environment]::SetEnvironmentVariable(\"PATH\", $Env:Path + \";$dir\\embedded\\bin\", \"User    \")"
+  ]
+}

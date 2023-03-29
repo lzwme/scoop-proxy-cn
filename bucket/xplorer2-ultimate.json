@@ -1,0 +1,69 @@
+{
+  "version": "5.3.0.2",
+  "description": "xplorer² is a desktop file manager combining the simplicity of windows explorer with the speed and efficiency of traditional dual pane orthodox file managers, helping you be productive with your documents, pictures, music, source code and other files. ",
+  "homepage": "https://www.zabkat.com",
+  "license": "Proprietary",
+  "architecture": {
+    "64bit": {
+      "url": "https://www.zabkat.com/download.php?p=3&u=1#/dl.7z",
+      "hash": "4e598dd4044954bf4dfb575b6bd515043b17aaa2af31a85dd5779265c7016a2a",
+      "bin": [
+        [
+          "xplorer2_64.exe",
+          "xplorer2"
+        ]
+      ],
+      "shortcuts": [
+        [
+          "xplorer2_64.exe",
+          "xplorer2 Ultimate"
+        ]
+      ]
+    },
+    "32bit": {
+      "url": "https://www.zabkat.com/download.php?p=1&u=1#/dl.7z",
+      "hash": "c180e2cd2abb2ebee16fd4e2762c9ef5a4c389c8a835bd1f2d9bff112a1b8c91",
+      "bin": [
+        [
+          "xplorer2.exe",
+          "xplorer2"
+        ]
+      ],
+      "shortcuts": [
+        [
+          "xplorer2.exe",
+          "xplorer2 Ultimate"
+        ]
+      ]
+    }
+  },
+  "pre_install": [
+    "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\uninst*nsis\" -Recurse",
+    "if (!(Test-Path \"$dir\\Langs\")) { New-Item -Path \"$dir\\Langs\" -ItemType Directory | Out-Null }",
+    "if (!(Test-Path \"$persist_dir\\X2.LIC\")) { New-Item \"$dir\\X2.LIC\" | Out-Null }",
+    "if (!(Test-Path \"$persist_dir\\x2settings.ini\")) { New-Item \"$dir\\x2settings.ini\" | Out-Null }"
+  ],
+  "notes": "If you want to translate xplorer2-ultimate, just copy the wanted translation dll from Langs folder to application folder.",
+  "post_install": [
+    "Remove-Item \"$dir\\Langs\\x2t_*.dll\" -Recurse",
+    "if (!(Test-Path \"$persist_dir\\Langs\")) { Move-Item -Path \"$dir\\x2t_*.dll\" -Destination \"$dir\\Langs\"| Out-Null }"
+  ],
+  "persist": [
+    "x2settings.ini",
+    "X2.LIC"
+  ],
+  "checkver": {
+    "url": "https://www.zabkat.com/x2down.htm",
+    "regex": "(?sm)Latest Release:.*v([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://www.zabkat.com/download.php?p=3&u=1#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://www.zabkat.com/download.php?p=1&u=1#/dl.7z"
+      }
+    }
+  }
+}

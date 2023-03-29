@@ -1,0 +1,35 @@
+{
+  "version": "0.27.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/inazumaapps/inazumasearch/releases/download/v0.27.0/InazumaSearch-0.27.0-Portable-x64.zip",
+      "hash": "9626736197fe7b600b180f42240e89f6c07bac17636310e18ffa1c5add6ed1bf"
+    },
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/inazumaapps/inazumasearch/releases/download/v0.27.0/InazumaSearch-0.27.0-Portable-x86.zip",
+      "hash": "6e26e6ad0af33a581379459c812293be9c94be1df510230fd85f7359f928c079"
+    }
+  },
+  "homepage": "https://inazumaapps.info/inazumasearch/",
+  "bin": "InazumaSearchPortable.exe",
+  "persist": "data",
+  "shortcuts": [
+    [
+      "InazumaSearchPortable.exe",
+      "Inazuma Search"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/inazumaapps/inazumasearch"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/inazumaapps/inazumasearch/releases/download/v$version/InazumaSearch-$version-Portable-x64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/inazumaapps/inazumasearch/releases/download/v$version/InazumaSearch-$version-Portable-x86.zip"
+      }
+    }
+  }
+}

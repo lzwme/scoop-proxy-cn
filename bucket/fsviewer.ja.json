@@ -1,0 +1,57 @@
+{
+    "homepage": [
+        "http://www.faststone.org/FSViewerDetail.htm",
+        "http://tiltstr.seesaa.net/article/125999663.html"
+    ],
+    "version": "6.5",
+    "license": "http://faststone.org/order.htm",
+    "url": [
+        "http://www.faststonesoft.net/DN/FSViewer65.zip",
+        "http://tiltstr.up.seesaa.net/lang6/FSIV_v6.5jp3.zip"
+    ],
+    "hash": [
+        "e97b694cf43b849bc4c00c48d3f1097c2d062383887573b7f2a0e0730e723e84",
+        "C57C72418EE0AC3B6014E32081910D2699346C33EE30B7602B92609DDCF2363A"
+    ],
+    "extract_dir": [
+        "FSViewer65",
+        "FSIV_v6.5jp3"
+    ],
+    "bin": [
+        "FSViewer.exe",
+        "FSIV_6.5jp3.exe"
+    ],
+    "shortcuts": [
+        [
+            "FSViewer.exe",
+            "FSViewer"
+        ]
+    ],
+    "pre_install": "
+        # Initialize 1st step: mod language to japanese.
+        Write-Output \"--------------------------------------------------------------------------------\"
+        Write-Output \">>> Japanese patch application will be launched.\"
+        Write-Output \">>> So please terminate when processing is completed.\"
+        Write-Output \"--------------------------------------------------------------------------------\"
+        Start-Sleep -s 3
+        Start-Process -FilePath $dir\\FSIV_6.5jp3.exe -Wait
+        if(!(Test-Path(\"$dir\\FSSettings.db\")) -Or !(Test-Path(\"$dir\\FSViewer.db\")) -Or !(Test-Path(\"$dir\\HisFolderList.db\"))) {
+            # Initialize 12nd step: create database files.
+            Write-Output \"--------------------------------------------------------------------------------\"
+            Write-Output \">>> FSViewer starts up and creates a database.\"
+            Write-Output \">>> Please close FSViewer once database creation is completed.\"
+            Write-Output \"--------------------------------------------------------------------------------\"
+            Start-Sleep -s 3
+            Start-Process -FilePath $dir\\FSViewer.exe -Wait
+        }
+    ",
+    "persist": [
+        "FSSettings.db",
+        "FSViewer.db",
+        "HisFolderList.db"
+    ],
+    "checkver": {
+        "url": "http://www.faststone.org/FSViewerDetail.htm",
+        "re": "Version ([\\d.]+)"
+    }
+}

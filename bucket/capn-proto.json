@@ -1,0 +1,21 @@
+{
+  "homepage": "https://capnproto.org/",
+  "description": "an insanely fast data interchange format and capability-based RPC system",
+  "version": "0.10.2",
+  "url": "https://capnproto.org/capnproto-c++-win32-0.10.2.zip",
+  "hash": "8cb9da6672b90c868d6bbbab726d05ec417a46f978d575b356cefe4c0f5c5813",
+  "extract_dir": "capnproto-tools-win32-0.10.2",
+  "bin": [
+    "capnp.exe",
+    "capnpc-c++.exe",
+    "capnpc-capnp.exe"
+  ],
+  "checkver": {
+    "url": "https://capnproto.org/install.html",
+    "regex": "https://capnproto\\.org/capnproto-c\\+\\+-win32-(?<version>[\\d.]+)\\.zip"
+  },
+  "autoupdate": {
+    "url": "https://capnproto.org/capnproto-c++-win32-$version.zip",
+    "extract_dir": "capnproto-tools-win32-$version"
+  }
+}

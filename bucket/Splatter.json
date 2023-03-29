@@ -1,0 +1,26 @@
+{
+  "checkver": {
+    "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id%20eq%20'Splatter'%20and%20IsLatestVersion%20eq%20true",
+    "regex": "(?i)<d:Version>(?<ver>[^<]+)<.d:Version>",
+    "replace": "${ver}"
+  },
+  "autoupdate": {
+    "url": "https://www.powershellgallery.com/api/v2/Package/Splatter/$version#/mod.nupkg",
+    "hash": {
+      "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id eq 'Splatter' and Version eq '$version'",
+      "regex": "<d:PackageHash>$base64<.d:PackageHash>"
+    }
+  },
+  "hash": "sha512:8e6e5869af53805a5db11966964a43f55dcddd96ec9af4e553a648ad2c06d0a57e35034efdb5a928999c7ba209df384e88866b388ca6e3a199f60020c12e6596",
+  "description": "Simple Scripts to Supercharge Splatting",
+  "license": {
+    "identifier": "Refer to Webpage",
+    "url": "https://github.com/StartAutomating/Splatter/blob/master/LICENSE"
+  },
+  "psmodule": {
+    "name": "Splatter"
+  },
+  "version": "0.5.3",
+  "url": "https://www.powershellgallery.com/api/v2/Package/Splatter/0.5.3#/mod.nupkg",
+  "homepage": "https://www.powershellgallery.com/packages/Splatter"
+}

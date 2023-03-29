@@ -1,0 +1,34 @@
+{
+  "version": "1.5.1",
+  "description": "波音リツ 単独音 Ver1.5.1",
+  "homepage": "http://www.canon-voice.com/normal.html",
+  "license": [
+    {
+      "identifier": "Proprietary",
+      "url": "http://www.canon-voice.com/kiyaku.html"
+    }
+  ],
+  "url": "http://www.canon-voice.com/voice/r73_normal_tan0151.zip",
+  "hash": "aa44fc57dba65a3eca917d55e9555b1c71f37e59510066c4510cd6320e35928a",
+  "extract_dir": "波音リツ単独音Ver1.5.1",
+  "extract_to": "voice\\波音リツ",
+  "suggest": {
+    "UTAU": [
+      "utau",
+      "dtm/utau"
+    ]
+  },
+  "installer": {
+    "script": [
+      "$voice=\"波音リツ\"",
+      "Copy-Item -Force -Recurse -Path \"${dir}\\voice\\${voice}\" -Destination \"${persist_dir}\\..\\utau\\utau\\voice\"",
+      "Remove-Item -Force -Recurse -Path \"${dir}\\voice\\${voice}\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$voice=\"波音リツ\"",
+      "Remove-Item -Force -Recurse -Path \"${persist_dir}\\..\\utau\\utau\\voice\\${voice}\""
+    ]
+  }
+}

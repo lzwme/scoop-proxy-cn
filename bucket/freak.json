@@ -1,0 +1,27 @@
+{
+  "homepage": "https://github.com/freak-lang/freak",
+  "description": "an extensible bootstrapping clojure dialect with a dynamic type-system",
+  "hash": "",
+  "license": {
+    "identifier": "BSD-3"
+  },
+  "version": "v0.0.1",
+  "url": "https://github.com/freak-lang/freak/Releases/v0.1.0/Release-v0.1.0-Windows.zip",
+  "checkver": {
+    "github": "https://github.com/freak-lang/freak"
+  },
+  "bin": [
+    "freak.exe",
+    [
+      "freak.exe",
+      "fpm",
+      "$dir\\fpm"
+    ]
+  ],
+  "installer": {
+    "script": "add_first_in_path \"$dir\" $global"
+  },
+  "uninstaller": {
+    "script": "remove_from_path \"$dir\" $global"
+  }
+}

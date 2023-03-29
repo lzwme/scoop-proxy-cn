@@ -1,0 +1,38 @@
+{
+  "version": "120930",
+  "description": "TWINDRILL 重音テト　追加叫び音源",
+  "homepage": "https://kasaneteto.jp/ongen_down2.html",
+  "license": [
+    {
+      "identifier": "Proprietary",
+      "url": "https://kasaneteto.jp/guide_ongen.html"
+    }
+  ],
+  "url": "https://kasaneteto.jp/ongendl/index.cgi/extra/TETO-sakebi-120930.zip",
+  "hash": "6ead5e03e38a7c544a03a3c7a749ed2dcd813b776c73640943fe3604636f154a",
+  "extract_to": "voice",
+  "suggest": {
+    "UTAU": [
+      "utau",
+      "dtm/utau",
+      "kasane-teto-utau-vcv-cv",
+      "dtm/kasane-teto-utau-vcv-cv",
+      "kasane-teto-utau-vcv",
+      "dtm/kasane-teto-utau-vcv"
+    ]
+  },
+  "installer": {
+    "script": [
+      "$voice=\"重音テト音声ライブラリー\"",
+      "Copy-Item -Force -Recurse -Path \"${dir}\\voice\\${voice}\" -Destination \"${persist_dir}\\..\\utau\\utau\\voice\"",
+      "Remove-Item -Force -Recurse -Path \"${dir}\\voice\\${voice}\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$voice=\"重音テト音声ライブラリー\\重音テト叫び音源\"",
+      "Remove-Item -Force -Recurse -Path \"${persist_dir}\\..\\utau\\utau\\voice\\${voice}\""
+    ]
+  },
+  "checkver": "TETO-sakebi-([\\d]+).zip"
+}

@@ -1,0 +1,30 @@
+{
+  "version": "0.22.347.1520",
+  "description": "Observatory Core plugin: counts bodies per type, present in visited boxels.",
+  "homepage": "https://edjp.colacube.net/observatory",
+  "license": "Proprietary",
+  "depends": "observatory-core",
+  "architecture": {
+    "64bit": {
+      "url": "https://edjp.colacube.net/download/observatorybodycount#/ObservatoryBodyCount.eop",
+      "hash": "89531bd5536df6990cd76374e37adc57127f27ff2dab7fafae8c0c8d4bb581c0"
+    }
+  },
+  "checkver": {
+    "url": "https://edjp.colacube.net/observatory",
+    "regex": "BodyCount</th>[\\n\\r\\t ]*<td>?([\\d.]+)"
+  },
+  "installer": {
+    "script": "Copy-Item -Path \"$dir\\ObservatoryBodyCount.eop\" -Destination \"$(appdir observatory-core)\\current\\plugins\" -Force -ErrorAction SilentlyContinue"
+  },
+  "uninstaller": {
+    "script": "Remove-Item -Path \"$(appdir observatory-core)\\current\\plugins\\ObservatoryBodyCount.*\" -Force -ErrorAction SilentlyContinue"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://edjp.colacube.net/download/observatorybodycount#/ObservatoryBodyCount.eop"
+      }
+    }
+  }
+}

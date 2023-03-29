@@ -1,0 +1,35 @@
+{
+  "version": "107.0.5304.88-r1047731",
+  "description": "Stable Chromium builds for Windows 64-bit, nothing fancy.",
+  "homepage": "https://github.com/Hibbiki/chromium-win64",
+  "license": {
+    "identifier": "BSD-3-Clause",
+    "url": "https://github.com/Eloston/ungoogled-chromium/blob/master/LICENSE"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/Hibbiki/chromium-win64/releases/download/v107.0.5304.88-r1047731/chrome.nosync.7z",
+      "hash": "c035f7fa6fc9cf6a64d841f4bb845ca8cddeee74d6cca534bf6326d70d6b7144",
+      "extract_dir": "chrome.nosync.107.0.5304.88-r1047731"
+    }
+  },
+  "bin": "Chrome-bin\\chrome.exe",
+  "shortcuts": [
+    [
+      "Chrome-bin\\chrome.exe",
+      "Ungoogled Chromium"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/Hibbiki/chromium-win64/releases",
+    "regex": "v(?<version>[\\d.]+-r[\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/Hibbiki/chromium-win64/releases/download/v$version/chrome.nosync.7z",
+        "extract_dir": "chrome.nosync.$version"
+      }
+    }
+  }
+}

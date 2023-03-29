@@ -1,14 +1,18 @@
 {
   "homepage": "http://www.91fk.net/",
-  "description": "轻量级、选项卡式、免费、开源的远程连接管理工具,支持RDP、SSH、Telnet协议",
-  "version": "1.0",
-  "url": "http://ucloud.91fk.net/SimpleRemote.zip",
-  "hash": "391A08A48B18C50AFCBD18C8128930C1495672EB97335A4E95EC1A9CF6090F42",
+  "version": "1.3.1",
+  "hash": "2C7B2FC8FB9B0BEAF21A681F828F5B96265D4E9317C6996B3AEA8941D35085D1",
+  "url": "http://ucloud.91fk.net/1.3.1.0/SimpleRemote.zip",
+  "bin": "SimpleRemote.exe",
   "shortcuts": [
     [
       "SimpleRemote.exe",
       "SimpleRemote"
     ]
   ],
-  "_from": "okibcn/ScoopMaster"
+  "pre_install": "New-Item \"$dir\\Data\" -ItemType \"directory\"",
+  "persist": [
+    "Data\\RemoteItems.db",
+    "Data\\UserSettings.xml"
+  ]
 }

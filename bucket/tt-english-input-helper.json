@@ -1,0 +1,32 @@
+{
+  "version": "0.3.0",
+  "homepage": "https://hunyosi.com/pub/tteih/",
+  "description": "英語入力補助プラグイン TTEnglishInputHelper （ベータ版）",
+  "license": [
+    {
+      "identifier": "Freeware"
+    }
+  ],
+  "url": "https://hunyosi.com/pub/tteih/TTEnglishInputHelper-v0.3.0.zip",
+  "hash": "9f2ea26634d7798c309c60278992317deb013f553892cb35a8dce279f536c47e",
+  "suggest": {
+    "UTAU": [
+      "utau",
+      "dtm/utau"
+    ]
+  },
+  "installer": {
+    "script": [
+      "$plugin=\"TTEnglishInputHelper-v0.3.0\"",
+      "Copy-Item -Force -Recurse -Path \"${dir}\\${plugin}\" -Destination \"${persist_dir}\\..\\utau\\utau\\plugins\"",
+      "Remove-Item -Force -Recurse -Path \"${dir}\\${plugin}\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$plugin=\"TTEnglishInputHelper-v0.3.0\"",
+      "Remove-Item -Force -Recurse -Path \"${persist_dir}\\..\\utau\\utau\\plugins\\${plugin}\""
+    ]
+  },
+  "checkver": "TTEnglishInputHelper-v([\\d\\.]+).zip"
+}

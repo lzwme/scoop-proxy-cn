@@ -1,0 +1,40 @@
+{
+  "version": "2.2.3",
+  "description": "AdvantageScope is a robot diagnostics, log review/analysis, and data visualization application for FIRST Robotics Competition teams",
+  "homepage": "https://github.com/Mechanical-Advantage/AdvantageScope",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/Mechanical-Advantage/AdvantageScope/releases/download/v2.2.3/advantagescope-win-x64-v2.2.3.exe",
+      "hash": "04cd4b059afdf8e1e20b24ba22ea367f92b592d987746ba3599cc1fa86a673ec"
+    },
+    "arm64": {
+      "url": "https://ghproxy.com/https://github.com/Mechanical-Advantage/AdvantageScope/releases/download/v2.2.3/advantagescope-win-arm64-v2.2.3.exe",
+      "hash": "641923d32e7bf3e3fe6add0ba540ecc442c3f085ef627609c29b8743d7a7f477"
+    }
+  },
+  "installer": {
+    "script": [
+      "Start-Process \"$dir\\$fname\" \"/S /D=$dir\" -PassThru -NoNewWindow | Wait-Process",
+      "Remove-Item \"$dir\\$fname\""
+    ]
+  },
+  "uninstaller": {
+    "script": "Start-Process \"$dir\\Uninstall AdvantageScope.exe\" -ArgumentList '/S' -Wait | Out-Null"
+  },
+  "bin": "AdvantageScope.exe",
+  "checkver": {
+    "url": "https://api.github.com/repos/Mechanical-Advantage/AdvantageScope/releases",
+    "regex": "/releases/tag/v(\\d+\\.\\d+\\.\\d+(?:-\\w+)*)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/Mechanical-Advantage/AdvantageScope/releases/download/v$version/advantagescope-win-x64-v$version.exe"
+      },
+      "arm64": {
+        "url": "https://ghproxy.com/https://github.com/Mechanical-Advantage/AdvantageScope/releases/download/v$version/advantagescope-win-arm64-v$version.exe"
+      }
+    }
+  }
+}

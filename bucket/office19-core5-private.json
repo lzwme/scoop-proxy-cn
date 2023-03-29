@@ -1,0 +1,26 @@
+{
+  "##": "This package is for private use only. Requires password for installation to proceed.",
+  "version": "16.0.13929.20238",
+  "description": "Microsoft Office 2019 (Chinese Trad.) (only install 5 core components: Word, Excel, Powerpoint, OneNote, Publisher)",
+  "license": "Proprietary",
+  "url": "https://www.googleapis.com/drive/v3/files/11aojV7UyKkRgLA6G0gzQWjk2QNG-u7bM?alt=media&key=AIzaSyAiaA0bWx34SyfTRvyl4UCCHwsCkvUBECc#/dl.7z_",
+  "hash": "801C38787CB8A4A445994588A6B3BB04AF08820A6EA843C6C9B72E0EC9A98F39",
+  "installer": {
+    "script": [
+      "$scriptdir = (Find-BucketDirectory $bucket)+'\\..\\scripts'",
+      "Import-Module $scriptdir\\pw\\pw_check.psm1",
+      "New-Item \"$dir\\setup\" -ItemType Directory | Out-Null",
+      "Expand-EncryptedArchive -aPath \"$dir\\dl.7z_\" -oDir \"$dir\\setup\" -ExitIfError -Removal",
+      "Invoke-ExternalCommand \"$dir\\setup\\setup.exe\" -ArgumentList @('/configure', \"$scriptdir\\office19\\core5.xml\") -RunAs | Out-Null",
+      "Remove-Item \"$dir\\setup\" -Force -Recurse"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Invoke-ExternalCommand \"$env:CommonProgramFiles\\microsoft shared\\ClickToRun\\OfficeClickToRun.exe\" -ArgumentList @('scenario=Install', 'scenariosubtype=Uninstall', 'productstoremove=ProPlus2019Volume_zh-tw_x-none', 'DisplayLevel=False') -RunAs | Out-Null",
+      "while (Get-Process -Name OfficeClickToRun -ErrorAction SilentlyContinue) {",
+      "    Start-Sleep -Seconds 1",
+      "}"
+    ]
+  }
+}

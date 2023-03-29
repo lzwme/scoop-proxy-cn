@@ -1,0 +1,26 @@
+{
+  "psmodule": {
+    "name": "Autoload"
+  },
+  "description": "Autoload function like the Korn shell, and can inject functions into Modules",
+  "version": "4.1",
+  "license": {
+    "identifier": "Refer to Webpage",
+    "url": "http://opensource.org/licenses/ms-pl"
+  },
+  "url": "https://www.powershellgallery.com/api/v2/Package/Autoload/4.1#/mod.nupkg",
+  "checkver": {
+    "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id%20eq%20'Autoload'%20and%20IsLatestVersion%20eq%20true",
+    "regex": "(?i)<d:Version>(?<ver>[^<]+)<.d:Version>",
+    "replace": "${ver}"
+  },
+  "homepage": "https://www.powershellgallery.com/packages/Autoload",
+  "autoupdate": {
+    "hash": {
+      "regex": "<d:PackageHash>$base64<.d:PackageHash>",
+      "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id eq 'Autoload' and Version eq '$version'"
+    },
+    "url": "https://www.powershellgallery.com/api/v2/Package/Autoload/$version#/mod.nupkg"
+  },
+  "hash": "sha512:93411cf1a9a381b9c707e7907ad1b76a1411f180b2841563c51704c66e7b9ed7e14c4bb9311917102aa0d0a1dd566137f3e7240d3697ecc5c0eea2cb1671d84b"
+}

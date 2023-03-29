@@ -1,0 +1,30 @@
+{
+  "homepage": "https://pecl.php.net/package/redis",
+  "version": "3.1.5",
+  "license": "http://www.php.net/license/3_01.txt",
+  "architecture": {
+    "64bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/redis/3.1.5/php_redis-3.1.5-7.1-ts-vc14-x64.zip",
+      "hash": "2c58b23a910453f562f5391f9e9dc3fd8a5ac9e1d5153f23c4d7d588046f782f"
+    },
+    "32bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/redis/3.1.5/php_redis-3.1.5-7.1-ts-vc14-x86.zip",
+      "hash": "18465517ecec94a5ae08353e15ccdbdc2ed3d21270470dc9cba67b54b6c81cca"
+    }
+  },
+  "checkver": "redis/([\\d.]+)/windows",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/redis/$version/php_redis-$version-7.1-ts-vc14-x64.zip"
+      },
+      "32bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/redis/$version/php_redis-$version-7.1-ts-vc14-x86.zip"
+      }
+    }
+  },
+  "post_install": "iex(gc $bucketsdir\\$bucket\\bin\\postinstall.ps1 -Raw)",
+  "uninstaller": {
+    "file": "uninstall.ps1"
+  }
+}

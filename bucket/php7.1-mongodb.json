@@ -1,0 +1,30 @@
+{
+  "homepage": "https://pecl.php.net/package/mongodb",
+  "version": "1.3.2",
+  "license": "http://www.php.net/license/3_01.txt",
+  "architecture": {
+    "64bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/mongodb/1.3.2/php_mongodb-1.3.2-7.1-ts-vc14-x64.zip",
+      "hash": "db26571330646d233213275cf837643d21cea7509e37a027018ea10abe983d0f"
+    },
+    "32bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/mongodb/1.3.2/php_mongodb-1.3.2-7.1-ts-vc14-x86.zip",
+      "hash": "4fb1e99dd8f174ad985d3d6b94450f3182d67ab5d8f556a54a1eae774c5851cf"
+    }
+  },
+  "checkver": "mongodb/([\\d.]+)/windows",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/mongodb/$version/php_mongodb-$version-7.1-ts-vc14-x64.zip"
+      },
+      "32bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/mongodb/$version/php_mongodb-$version-7.1-ts-vc14-x86.zip"
+      }
+    }
+  },
+  "post_install": "iex(gc $bucketsdir\\$bucket\\bin\\postinstall.ps1 -Raw)",
+  "uninstaller": {
+    "file": "uninstall.ps1"
+  }
+}

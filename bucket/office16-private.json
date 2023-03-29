@@ -1,0 +1,25 @@
+{
+  "##": "This package is for private use only. Requires password for installation to proceed.",
+  "version": "16.0.4266.1001",
+  "description": "Microsoft Office 2016 (language: Traditional Chinese)",
+  "license": "Proprietary",
+  "url": "https://www.googleapis.com/drive/v3/files/1Zl-_Q44KFbgaCusZ9DReFbj35LGuK7OP?alt=media&key=AIzaSyAiaA0bWx34SyfTRvyl4UCCHwsCkvUBECc#/dl.7z_",
+  "hash": "065B0C6387D61168C191D1E1B62CDB9E01C030625DBD131F4B1477A8C956FDE5",
+  "installer": {
+    "script": [
+      "$scriptdir = (Find-BucketDirectory $bucket)+'\\..\\scripts'",
+      "Import-Module $scriptdir\\pw\\pw_check.psm1",
+      "New-Item \"$dir\\setup\" -ItemType Directory | Out-Null",
+      "Expand-EncryptedArchive -aPath \"$dir\\dl.7z_\" -oDir \"$dir\\setup\" -ExitIfError -Removal",
+      "Invoke-ExternalCommand \"$dir\\setup\\Office16_proplus\\setup.exe\" -ArgumentList @('/adminfile', \"$dir\\setup\\msp\\office_preset2.msp\") -RunAs | Out-Null",
+      "Invoke-ExternalCommand \"$dir\\setup\\Office16_visio\\setup.exe\" -ArgumentList @('/adminfile', \"$dir\\setup\\msp\\visio.msp\") -RunAs | Out-Null",
+      "Remove-Item \"$dir\\setup\" -Force -Recurse"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Invoke-ExternalCommand \"$env:CommonProgramFiles\\microsoft shared\\OFFICE16\\Office Setup Controller\\setup.exe\" -ArgumentList @('/uninstall', 'VisPro') -RunAs | Out-Null",
+      "Invoke-ExternalCommand \"$env:CommonProgramFiles\\microsoft shared\\OFFICE16\\Office Setup Controller\\setup.exe\" -ArgumentList @('/uninstall', 'ProPlus') -RunAs | Out-Null"
+    ]
+  }
+}

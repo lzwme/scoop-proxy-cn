@@ -1,0 +1,49 @@
+{
+  "version": "4.1",
+  "url": "https://ghproxy.com/https://github.com/MircoBabin/KeePassCommander/releases/download/4.1/KeePassCommander-4.1.zip",
+  "description": "KeePass Commander is a plugin for the KeePass password store. It's purpose is to provide a communication channel for php-scripts, bat-files, powershell, python, C#, git, ... to be able to query the KeePass password store from the commandline without configuration and without password",
+  "hash": "8f4cf042f84f630a814b85c7f190e451539efe866ac9c058c9c87705203d353b",
+  "depends": "extras/keepass",
+  "license": "https://github.com/MircoBabin/KeePassCommander/blob/master/LICENSE.md",
+  "homepage": "https://github.com/MircoBabin/KeePassCommander",
+  "checkver": {
+    "github": "https://github.com/MircoBabin/KeePassCommander"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/MircoBabin/KeePassCommander/releases/download/$version/KeePassCommander-$version.zip",
+    "hash": {
+      "find": "sha512:\\s+(.*)"
+    }
+  },
+  "installer": {
+    "script": [
+      "$eap = $ErrorActionPreference",
+      "$ErrorActionPreference = 'SilentlyContinue'",
+      "$isRunning = (Get-Process -Name KeePass -ErrorAction SilentlyContinue) -ne $null",
+      "if ($isRunning){ Kill-Process $($IsRunning.Name) -Force -Verbose }",
+      "Copy-Item \"$dir\\Kee*\" \"$(appdir keepass $global)\\current\\Plugins\\\";",
+      "if ($isRunning){Start-Process Keepass}",
+      "$isRunning = $null",
+      "$ErrorActionPreference = $eap"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$eap = $ErrorActionPreference",
+      "$ErrorActionPreference = 'SilentlyContinue'",
+      "$isRunning = (Get-Process -Name KeePass -ErrorAction SilentlyContinue) -ne $null",
+      "if ($isRunning){ Kill-Process $($IsRunning.Name) -Force -Verbose }",
+      "Get-Item \"$dir\\Kee*\" | Foreach-Object { Remove-Item $( $_.FullName -replace [regex]::Escape($dir), \"$(appdir keepass $global)\\current\\Plugins\" ) -Force }; ",
+      "if ($isRunning){Start-Process Keepass}",
+      "$isRunning = $null",
+      "$ErrorActionPreference = $eap"
+    ]
+  },
+  "bin": [
+    "KeePassCommand.exe",
+    "KeePassEntry.bat",
+    "KeePassEntry.php",
+    "KeePassEntry.py",
+    "KeePassEntry.ps1"
+  ]
+}

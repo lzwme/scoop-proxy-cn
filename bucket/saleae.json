@@ -1,0 +1,29 @@
+{
+  "homepage": "https://saleae.com/",
+  "version": "2.3.59",
+  "url": "https://downloads.saleae.com/logic2/Logic%20Setup%202.3.59-master.exe",
+  "hash": "bbb60413a7511dd18396ca62df451ab6b7ffdd8503539297f8951f076c1672a6",
+  "installer": {
+    "script": [
+      "Start-Process -Wait -FilePath \"$dir\\installer.exe\" -ArgumentList \"/extract:asd\" | out-null",
+      "extract_7zip \"$dir\\disk1.cab\" \"$dir\""
+    ]
+  },
+  "suggest": {
+    "vcredist": "extras/vcredist2015"
+  },
+  "bin": "Logic.exe",
+  "shortcuts": [
+    [
+      "Logic.exe",
+      "Saleae Logic"
+    ]
+  ],
+  "checkver": {
+    "url": "https://discuss.saleae.com/c/downloads/5",
+    "re": "Logic\\s+([\\d].[\\d].[\\w]+)"
+  },
+  "autoupdate": {
+    "url": "https://downloads.saleae.com/logic2/Logic%20Setup%20$version-master.exe"
+  }
+}

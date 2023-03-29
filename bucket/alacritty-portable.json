@@ -1,10 +1,20 @@
 {
-  "autoupdate": {
-    "url": [
-      "https://ghproxy.com/https://github.com/alacritty/alacritty/releases/download/v$version/Alacritty-v$version-portable.exe#/alacritty.exe",
-      "https://ghproxy.com/https://github.com/alacritty/alacritty/releases/download/v$version/alacritty.yml#/alacritty.yml.example"
-    ]
+  "version": "0.12.0",
+  "description": "GPU-accelerated terminal emulator",
+  "homepage": "https://github.com/alacritty/alacritty",
+  "license": "Apache-2.0",
+  "suggest": {
+    "vcredist": "extras/vcredist2022"
   },
+  "url": [
+    "https://ghproxy.com/https://github.com/alacritty/alacritty/releases/download/v0.12.0/Alacritty-v0.12.0-portable.exe#/alacritty.exe",
+    "https://ghproxy.com/https://github.com/alacritty/alacritty/releases/download/v0.12.0/alacritty.yml#/alacritty.yml.example"
+  ],
+  "hash": [
+    "ef22c1e1ecf1cdff23846f273169abbd02e0b865ea79335173cc5a60e098a09a",
+    "3110fbf1d8cbeaaa388670dc6a86493a052903610bbdaa4d17150da833029e2b"
+  ],
+  "pre_install": "if(!(Test-Path \"$dir/alacritty.yml\")) { Add-Content \"$dir/alacritty.yml\" $null }",
   "bin": [
     "alacritty.exe",
     [
@@ -13,20 +23,6 @@
       "--config-file \"$dir\\alacritty.yml\""
     ]
   ],
-  "checkver": "github",
-  "description": "GPU-accelerated terminal emulator",
-  "hash": [
-    "ef22c1e1ecf1cdff23846f273169abbd02e0b865ea79335173cc5a60e098a09a",
-    "cb30d1e5be9bb3ba0ad1ff283fe7018e4fdd81f1f7b48516c1fad507dc375031"
-  ],
-  "homepage": "https://github.com/alacritty/alacritty",
-  "license": "Apache-2.0",
-  "notes": "An example config has been placed in installation's directory as alacritty.yml.example.",
-  "persist": [
-    "alacritty.yml",
-    "alacritty.yml.example"
-  ],
-  "pre_install": "if(!(Test-Path \"$dir/alacritty.yml\")) { Add-Content \"$dir/alacritty.yml\" $null }",
   "shortcuts": [
     [
       "alacritty.exe",
@@ -34,12 +30,16 @@
       "--config-file \"$dir\\alacritty.yml\""
     ]
   ],
-  "suggest": {
-    "vcredist": "extras/vcredist2022"
-  },
-  "url": [
-    "https://ghproxy.com/https://github.com/alacritty/alacritty/releases/download/v0.12.0/Alacritty-v0.12.0-portable.exe#/alacritty.exe https://github.com/alacritty/alacritty/releases/download/v0.12.0/alacritty.yml#/alacritty.yml.example",
-    "https://ghproxy.com/https://github.com/alacritty/alacritty/releases/download/v0.11.0/alacritty.yml#/alacritty.yml.example"
+  "persist": [
+    "alacritty.yml",
+    "alacritty.yml.example"
   ],
-  "version": "0.12.0"
+  "checkver": "github",
+  "autoupdate": {
+    "url": [
+      "https://ghproxy.com/https://github.com/alacritty/alacritty/releases/download/v$version/Alacritty-v$version-portable.exe#/alacritty.exe",
+      "https://ghproxy.com/https://github.com/alacritty/alacritty/releases/download/v$version/alacritty.yml#/alacritty.yml.example"
+    ]
+  },
+  "notes": "An example config has been placed in installation's directory as alacritty.yml.example."
 }

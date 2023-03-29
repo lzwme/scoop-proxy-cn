@@ -1,20 +1,25 @@
 {
-  "version": "Stable",
-  "description": "Web browser developed by Microsoft.",
-  "homepage": "https://www.microsoft.com/en-us/edge/business/download",
-  "architecture": {
-    "32bit": {
-      "url": "http://go.microsoft.com/fwlink/?LinkID=2093505#/setup.msi_"
-    },
-    "64bit": {
-      "url": "http://go.microsoft.com/fwlink/?LinkID=2093437#/setup.msi_"
-    }
+  "homepage": "http://takabosoft.com/edge",
+  "description": "256 color-only dot editor.",
+  "version": "1.29b",
+  "url": "http://takabosoft.com/download/win/edge/edge129b.ZIP",
+  "hash": "6d31751121bbfdcf2b71500553f55a7146b2ec328bd94a2850fe2751c28ec675",
+  "checkver": {
+    "url": "http://takabosoft.com/edge",
+    "re": "EDGE Ver\\.(?<version>[\\d]+\\.[\\d]+\\w?)"
   },
-  "installer": {
-    "script": "Start-Process -Wait msiexec \"/i `\"$dir\\setup.msi_`\" /q\" -Verb RunAs"
+  "autoupdate": {
+    "url": "http://takabosoft.com/download/win/edge/edge$majorVersion$minorVersion.ZIP"
   },
-  "uninstaller": {
-    "script": "Start-Process -Wait msiexec \"/x `\"$dir\\setup.msi_`\" /q\" -Verb RunAs"
-  },
-  "_from": "okibcn/ScoopMaster"
+  "bin": "edge.exe",
+  "shortcuts": [
+    [
+      "edge.exe",
+      "EDGE"
+    ],
+    [
+      "manual.chm",
+      "EDGE Manual"
+    ]
+  ]
 }

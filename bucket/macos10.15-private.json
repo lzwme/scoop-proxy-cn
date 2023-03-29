@@ -1,0 +1,16 @@
+{
+  "##": "This package is for private use only. Requires password for installation to proceed.",
+  "version": "10.15",
+  "description": "MacOS 10.15 Catalina ISO image file",
+  "license": "Proprietary",
+  "url": "https://www.googleapis.com/drive/v3/files/1_QKkZ3yqijm6mqg8d9ewHjIG9_AflUZw?alt=media&key=AIzaSyDiKRYtqQ7paseQyMiD_k8ZjYsYgoORuHc#/dl.7z_",
+  "hash": "6B7636E89BF3166C0641B593CA7ACA7F3DD302A7D86DB0141130462084141161",
+  "installer": {
+    "script": [
+      "$scriptdir = (Find-BucketDirectory $bucket)+'\\..\\scripts'",
+      "Import-Module $scriptdir\\pw\\pw_check.psm1",
+      "Expand-EncryptedArchive -aPath \"$dir\\dl.7z_\" -oDir \"$dir\" -ExitIfError -Removal",
+      "Write-Host \"ISO image file has been saved in $dir\" -ForegroundColor Green"
+    ]
+  }
+}

@@ -1,33 +1,68 @@
 {
-  "version": "3.3.1",
   "homepage": "https://subgit.com",
+  "version": "3.3.10",
   "license": "https://subgit.com/eula",
-  "notes": "Yay.",
-  "url": "https://subgit.com/files/subgit-3.3.1.zip",
-  "hash": "813ad35367279560885f7ffe32e708bd2019a577125b5b58a325b690b21ba5c5",
-  "extract_dir": "subgit-3.3.1",
-  "env_add_path": "bin",
+  "architecture": {
+    "64bit": {
+      "url": "https://subgit.com/files/subgit-3.3.10.zip",
+      "hash": "d3a1bda99bc6b791f73e14775fd5addd3401d356c68f058a96be78079faaecfc",
+      "extract_dir": "subgit-3.3.10"
+    },
+    "32bit": {
+      "url": "https://subgit.com/files/subgit-3.3.10.zip",
+      "hash": "d3a1bda99bc6b791f73e14775fd5addd3401d356c68f058a96be78079faaecfc",
+      "extract_dir": "subgit-3.3.10"
+    }
+  },
   "checkver": {
     "url": "https://subgit.com/download",
-    "regex": "(?<version>\\d\\.\\d\\.\\d)",
+    "re": "(?<version>\\d+\\.\\d+\\.\\d+) build #(?<build>[\\d]+) of (?<date>[\\d\\.]+)",
     "reverse": false
   },
   "autoupdate": {
-    "url": "https://subgit.com/files/subgit-$version.zip",
-    "extract_dir": "subgit-$version"
+    "note": "This scoop install manifest was created by Brett Brewer. If you encounter issues please post an issue on the github page.",
+    "architecture": {
+      "64bit": {
+        "url": "https://subgit.com/files/subgit-$version.zip",
+        "extract_dir": "subgit-$version"
+      },
+      "32bit": {
+        "url": "https://subgit.com/files/subgit-$version.zip",
+        "extract_dir": "subgit-$version"
+      }
+    }
   },
+  "bin": "bin\\subgit.bat",
   "persist": "daemon-shared",
+  "env_add_path": "bin",
   "pre_install": [
-    "$root=(scoop which subgit | split-path -res -par | split-path -par)",
-    "Write-Host \"To uninstall service type:\"",
-    "Write-Host \"#sc.exe stop \"SubgitService\"\"",
-    "Write-Host \"#sc.exe delete \"SubgitService\"\""
+    "$daemon_shared = \"$persist_dir\\daemon-shared\"",
+    "if((test-path $daemon_shared\\shared-daemon.pid) -and (test-path $dir\\bin\\subgit.bat)) {",
+    "    Write-Output \"Stopping subgit shared daemon at $(Convert-Path $daemon_shared)\"",
+    "    subgit daemon stop \"$daemon_shared\"",
+    "} else {",
+    "    Write-Host -f Yellow \"Subgit shared daemon is not running or it was not installed via scoop.\"",
+    "}"
   ],
-  "post_install": [
-    "$root=(scoop which subgit | split-path -res -par | split-path -par)",
-    "Write-Host \"To install service type:\"",
-    "Write-Host \"#sc.exe create \"SubgitService\" type= own start= auto error= normal binpath= \"$root\\bin\\subgit.bat daemon start $root\\daemon-shared\" displayname= \"Subgit Service\"\"",
-    "Write-Host \"#sc.exe start \"SubgitService\"\""
-  ],
-  "_from": "okibcn/ScoopMaster"
+  "post_install": "subgit daemon start \"$dir\\daemon-shared\"",
+  "uninstaller": {
+    "script": [
+      "$daemon_shared = \"$persist_dir\\daemon-shared\"",
+      "if((test-path $daemon_shared\\shared-daemon.pid) -and (test-path $dir\\bin\\subgit.bat)) {",
+      "    Write-Output \"Stopping subgit shared daemon at $(Convert-Path $daemon_shared)\"",
+      "    subgit daemon stop \"$daemon_shared\"",
+      "} else {",
+      "    Write-Host -f Yellow \"Subgit shared daemon is not running or it was not installed via scoop.\"",
+      "}"
+    ]
+  },
+  "suggest": {
+    "JDK": [
+      "java/adoptopenjdk",
+      "java/oraclejdk",
+      "java/openjdk",
+      "java/zulu"
+    ]
+  },
+  "notes": "If you don't have some flavor of Java7 or higher installed, subgit won't work at all, so if you get errors trying to run the 'subgit' command you probably need to install a jdk from the java bucket. Run 'scoop bucket add java' then install a jdk."
 }

@@ -1,0 +1,33 @@
+{
+  "homepage": "https://pecl.php.net/package/xdiff",
+  "version": "2.0.1",
+  "license": "http://www.php.net/license/3_01.txt",
+  "architecture": {
+    "64bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/xdiff/2.0.1/php_xdiff-2.0.1-7.1-ts-vc14-x64.zip",
+      "hash": "468d894e868d4485b2b41c705006afd7c94fb573f7f0aa23bc6a66d4a2a62c3a"
+    },
+    "32bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/xdiff/2.0.1/php_xdiff-2.0.1-7.1-ts-vc14-x86.zip",
+      "hash": "e8027df6abecd48d7f625c13b37d54ab82e6de0ac0fce5dde729314362afed00"
+    }
+  },
+  "depends": [
+    "php"
+  ],
+  "post_install": "$phpconfd = \"$persist_dir\\..\\php\\cli\\conf.d\"; if((test-path $phpconfd)) { echo \"Enabling extension $(Convert-Path $phpconfd)\\xdiff.ini\"; echo \"extension=$dir\\php_xdiff.dll\" | sc \"$phpconfd\\xdiff.ini\"; echo \"Remove-Item '$(Convert-Path $phpconfd)\\xdiff.ini'\" | sc \"$dir\\uninstall.ps1\" } else { write-host -f yellow \"PHP was not installed through scoop, you have to activate php_xdiff.dll manually!\" }",
+  "checkver": "xdiff/([\\d.]+)/windows",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/xdiff/$version/php_xdiff-$version-7.1-ts-vc14-x64.zip"
+      },
+      "32bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/xdiff/$version/php_xdiff-$version-7.1-ts-vc14-x86.zip"
+      }
+    }
+  },
+  "uninstaller": {
+    "file": "uninstall.ps1"
+  }
+}

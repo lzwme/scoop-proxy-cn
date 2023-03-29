@@ -1,0 +1,25 @@
+{
+  "homepage": "https://duplicatesearcher.net/duplicate_searcher?lang=en",
+  "license": "Freeware",
+  "url": "https://duplicatesearcher.net/duplicate_searcher?lang=en",
+  "hash": "",
+  "version": "6.0.3",
+  "extract_dir": "Dup_Same_File_Searcher_6.0.3",
+  "bin": "DuplicateSearcher.exe",
+  "shortcuts": [
+    [
+      "DuplicateSearcher.exe",
+      "Duplicate & Same Files Searcher"
+    ]
+  ],
+  "pre_install": [
+    "$response = Invoke-WebRequest $manifest.url",
+    "$url = ($response.Links | ?{ $_.id -eq 'ctl00_Main_HyperLinkZipEn' }).href",
+    "$uri = [uri]::new($manifest.url)",
+    "$fullUrl = \"$($uri.Scheme)://$($uri.Host)/$url\" -creplace '&amp;', '&'",
+    "$zip = \"$cachedir/dup_searcher#$version#dl.zip\"",
+    "Invoke-WebRequest $fullUrl -OutFile $zip",
+    "Expand-Archive -Path $zip -DestinationPath $dir"
+  ],
+  "checkver": "Latest version of Duplicate & Same Files Searcher: (\\d+\\.\\d+(?:\\.\\d+)?)"
+}

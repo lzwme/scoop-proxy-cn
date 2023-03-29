@@ -1,0 +1,37 @@
+{
+  "version": "2023.4.1",
+  "description": "A simple yet powerful motion profile generator for FRC robots",
+  "homepage": "https://github.com/mjansen4857/pathplanner",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/mjansen4857/pathplanner/releases/download/v2023.4.1/PathPlanner-Windows.zip",
+      "hash": "7272a46f3efbe6448b4d55d43d2fa5604986422f04b8cc9b76e30326e2f51cac"
+    },
+    "arm64": {
+      "url": "https://ghproxy.com/https://github.com/mjansen4857/pathplanner/releases/download/v2023.4.1/PathPlanner-Windows.zip",
+      "hash": "7272a46f3efbe6448b4d55d43d2fa5604986422f04b8cc9b76e30326e2f51cac"
+    }
+  },
+  "bin": "pathplanner.exe",
+  "shortcuts": [
+    [
+      "pathplanner.exe",
+      "Pathplanner 2023"
+    ]
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/mjansen4857/pathplanner/releases",
+    "regex": "/releases/tag/v(\\d{4}\\.\\d+\\.\\d+(?:-\\w+)*)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/mjansen4857/pathplanner/releases/download/v$version/PathPlanner-Windows.zip"
+      },
+      "arm64": {
+        "url": "https://ghproxy.com/https://github.com/mjansen4857/pathplanner/releases/download/v$version/PathPlanner-Windows.zip"
+      }
+    }
+  }
+}

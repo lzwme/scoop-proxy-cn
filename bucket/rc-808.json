@@ -1,0 +1,65 @@
+{
+  "version": "1.08",
+  "description": "RC-808 Re-Create the 808",
+  "homepage": "https://rc-808.com/download/",
+  "license": [
+    {
+      "identifier": "Freeware"
+    }
+  ],
+  "url": "https://rc-808.com/wp-content/uploads/2021/07/ReCreate-Win-with-PLG.zip",
+  "hash": "3a036e3fcb1b80cc10c317fdd746cd107757bcdba985267e261a6b5eb8d32d93",
+  "suggest": {
+    "LoopBe1": [
+      "loop-be-1",
+      "dtm/loop-be-1"
+    ]
+  },
+  "extract_dir": "ReCreate-Win with PLG",
+  "shortcuts": [
+    [
+      "RC-808\\RC-808.exe",
+      "RC-808\\RC-808 (Standalone)"
+    ],
+    [
+      "Manuals\\インストールマニュアル\\スタンドアローン版 RC-808 最初にお読みください.pdf",
+      "RC-808\\スタンドアローン版 RC-808 最初にお読みください"
+    ],
+    [
+      "Manuals\\インストールマニュアル\\スタンドアローン版インストールとクイックスタート.pdf",
+      "RC-808\\スタンドアローン版インストールとクイックスタート"
+    ],
+    [
+      "Manuals\\インストールマニュアル\\Win版Cubase用プラグインのインストールマニュアル.pdf",
+      "RC-808\\Win版Cubase用プラグインのインストールマニュアル"
+    ],
+    [
+      "Manuals\\取扱説明書\\RC-808 取扱説明書.pdf",
+      "RC-808\\RC-808 取扱説明書"
+    ],
+    [
+      "Manuals\\取扱説明書\\RC-808-PLG 取扱説明書.pdf",
+      "RC-808\\RC-808-PLG 取扱説明書"
+    ],
+    [
+      "Manuals\\取扱説明書\\RC-808 シーケンサー.pdf",
+      "RC-808\\RC-808 シーケンサー"
+    ]
+  ],
+  "installer": {
+    "script": [
+      "$plugin = \"RC-808-PlugIn WIN\"",
+      "$vst3dir = $env:ProgramFiles + \"\\Common Files\\VST3\\\"",
+      "Write-Host Personal VST3 folder $vst3dir",
+      "$cmd = ('mkdir \"' + $vst3dir + '\" & mklink /J \"' + $vst3dir + $plugin + '\" \"' + $dir + '\\' + $plugin + '\"')",
+      "Start-Process -Wait -Verb runAs -FilePath \"cmd\" -ArgumentList '/C', $cmd"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$plugin = \"RC-808-PlugIn WIN\"",
+      "$vst3dir = $env:ProgramFiles + \"\\Common Files\\VST3\\\"",
+      "Start-Process -Wait -Verb runAs -FilePath \"cmd\" -ArgumentList '/C', ('rmdir /s /q \"'+ $vst3dir + $plugin + '\"')"
+    ]
+  }
+}

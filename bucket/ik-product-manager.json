@@ -1,0 +1,26 @@
+{
+  "version": "1.0.4",
+  "homepage": "https://www.ikmultimedia.com/products/productmanager/",
+  "description": "IK Product Manager",
+  "license": [
+    {
+      "identifier": "Proprietary"
+    }
+  ],
+  "url": "https://download.ikmultimedia.com/plugins/ProductManager/ik_product_manager_1.0.4.zip",
+  "hash": "b9fed4e65786225a00eeef4854f4ad16e8c8902589d1755b73b20f52c4dee013",
+  "extract_dir": "ik_product_manager_1.0.4",
+  "installer": {
+    "script": [
+      "Start-Process -Wait -Verb runAs -FilePath \"${dir}\\Install IK Product Manager (v.1.0.4).exe\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$regkey=\"a401809f-3509-5ed7-a6dc-34dc618bf372\"",
+      "$uninstaller=(Get-ItemProperty -Path \"Registry::HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\${regkey}\" | Select-Object -ExpandProperty UninstallString)",
+      "Start-Process -Wait -Verb runAs -FilePath \"${uninstaller}\""
+    ]
+  },
+  "checkver": "ik_product_manager_([\\d\\.]+[\\d])"
+}

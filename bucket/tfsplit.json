@@ -1,0 +1,31 @@
+{
+  "version": "0.0.5",
+  "architecture": {
+    "32bit": {
+      "url": "http://github.com/obay/tfsplit/releases/download/v0.0.5/tfsplit_0.0.5_windows_386.tar.gz",
+      "bin": [
+        "tfsplit.exe"
+      ],
+      "hash": "e617fed183f59ebd0387e6f90188db1f821a0bb99d5b3e707b614157cfb94e49"
+    },
+    "64bit": {
+      "url": "http://github.com/obay/tfsplit/releases/download/v0.0.5/tfsplit_0.0.5_windows_amd64.tar.gz",
+      "bin": [
+        "tfsplit.exe"
+      ],
+      "hash": "18abd1ae52463e6059aa17b4c09a9b89f0315821008d11c614b914e7a0846ea8"
+    }
+  },
+  "homepage": "https://github.com/obay/tfsplit",
+  "description": "A tool to rename Terraform files accodrind to the resource type and name.",
+  "persist": [
+    "data",
+    "config.toml"
+  ],
+  "pre_install": [
+    "Write-Host 'Running preinstall command'"
+  ],
+  "post_install": [
+    "Write-Host 'Running postinstall command'"
+  ]
+}

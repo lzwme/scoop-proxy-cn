@@ -1,0 +1,21 @@
+{
+  "homepage": "https://www.ottoproject.io/",
+  "version": "0.1.2",
+  "license": "https://www.mozilla.org/en-US/MPL/2.0/",
+  "architecture": {
+    "64bit": {
+      "url": "https://releases.hashicorp.com/otto/0.1.2/otto_0.1.2_windows_amd64.zip",
+      "hash": "e0dfd66e6e1c91c0228391ba8c7ec9c8ae0ff92b3903f07b999b0f39cf65edb9"
+    },
+    "32bit": {
+      "url": "https://releases.hashicorp.com/otto/0.1.2/otto_0.1.2_windows_386.zip",
+      "hash": "615f70a244ab83b57ffa6aee0462c67eb82f52a0efcba6379e045e8e512f84dd"
+    }
+  },
+  "depends": "vagrant",
+  "bin": "otto.exe",
+  "checkver": {
+    "url": "https://www.ottoproject.io/downloads.html",
+    "re": "latest\\s+version\\s+of\\s+Otto\\s+\\(([^\\)]+)\\)"
+  }
+}

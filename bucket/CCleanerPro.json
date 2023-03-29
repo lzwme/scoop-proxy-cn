@@ -1,19 +1,43 @@
 {
-  "version": "5.85.9170",
-  "description": "CCleaner是一款免费的系统优化和隐私保护工具.它的体积小、扫描速度非常快，支持自定义清理规则，增强了应用程序清理范围和效果。",
-  "homepage": "https://www.423down.com/716.html",
-  "depends": "sudo",
-  "url": "https://onedrive.lstheart.tk/d/ScoopSofts/CCleaner/CCleaner_Pro_v5.85.9170__x64_Plus.exe",
-  "hash": "5118e8cadb95eadde79e030b4b620a41f6283e746f2fcc9cebf1cc42d7861247",
-  "extract_dir": "CCleaner",
+  "version": "6.09.10300",
+  "description": "CCleaner Professional. The number-one tool for cleaning PC. Protects privacy and makes computer faster and more secure!",
+  "homepage": "https://www.ccleaner.com/ccleaner",
+  "url": [
+    "https://download.ccleaner.com/ccsetup609.exe#/cosi.7z",
+    "https://content.thewebatom.net/files/winapp2.ini"
+  ],
+  "hash": [
+    "e31520f8d05a4555beb5e104a38a297f863423ffdc5beaec7668481879ecb8a2",
+    "C9F05BE4F6320624614A3A9AF7E653A83D4F5FAFE6EB21B3ED3AD3ACA75ACAD2"
+  ],
+  "installer": {
+    "script": [
+      "    # Create portable.dat (everytime, no need to check)",
+      "Set-Content \"$dir\\portable.dat\" '#PORTABLE#' -Encoding Ascii",
+      "    # Create ccleaner.ini",
+      "$file = 'ccleaner.ini'",
+      "if (-not (Test-Path \"$persist_dir\\$file\")) {",
+      "    Write-Host 'File' $file 'does not exists. Creating.' -f Yellow",
+      "    $CONT = @('[Options]', 'HelpImproveCCleaner=0', 'PrefsPrivacyShowOffers1stParty=0', 'PrefsPrivacyShareData1stParty=0')",
+      "    Set-Content \"$dir\\$file\" ($CONT -join \"`r`n\") -Encoding Ascii",
+      "}",
+      "    # Remove irrelevant files",
+      "    # gci because rm does not support placeholders as expected",
+      "@('$*', 'uninst.exe', 'CCUpdate.exe') | ForEach-Object { Remove-Item \"$dir\\$_\" -Force -Recurse }"
+    ]
+  },
   "architecture": {
     "64bit": {
-      "bin": [
+      "bin": "CCleaner64.exe",
+      "shortcuts": [
         [
-          "CCleaner.exe",
+          "CCleaner64.exe",
           "CCleaner"
         ]
-      ],
+      ]
+    },
+    "32bit": {
+      "bin": "CCleaner.exe",
       "shortcuts": [
         [
           "CCleaner.exe",
@@ -22,12 +46,12 @@
       ]
     }
   },
+  "persist": "ccleaner.ini",
   "checkver": {
-    "re": "v ?([\\d.]+)",
-    "encode": "UTF-8"
+    "url": "https://www.ccleaner.com/ccleaner/version-history",
+    "regex": "<span>v([\\d.]+)</span>"
   },
   "autoupdate": {
-    "url": "https://onedrive.lstheart.tk/d/ScoopSofts/CCleaner/CCleaner_Pro_v$version__x64_Plus.exe"
-  },
-  "_from": "okibcn/ScoopMaster"
+    "url": "https://download.ccleaner.com/ccsetup$majorVersion$minorVersion.exe#/cosi.7z"
+  }
 }

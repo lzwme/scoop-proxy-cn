@@ -1,0 +1,33 @@
+{
+  "homepage": "https://www.aimp.ru/",
+  "version": "4.51.2084",
+  "architecture": {
+    "64bit": {
+      "url": "http://aimp.su/storage/acc1353719050e5fa6f28e8d296078a4/aimp_4.51.2084.exe#/aimp_setup.exe",
+      "hash": "md5:acc1353719050e5fa6f28e8d296078a4"
+    }
+  },
+  "installer": {
+    "file": "aimp_setup.exe",
+    "args": [
+      "/SILENT",
+      "/PORTABLE",
+      "/AUTO=$dir"
+    ]
+  },
+  "uninstaller": {
+    "file": "Uninstall.exe",
+    "args": [
+      "/SILENT",
+      "/AUTO"
+    ]
+  },
+  "checkver": {
+    "url": "https://www.aimp.ru/?do=download&os=windows",
+    "re": "<a href=\"http://aimp.su/storage/(?<hash>[a-fA-F0-9]+)/aimp_(?<version>[\\d\\.]+).exe\">AIMP.RU</a>"
+  },
+  "autoupdate": {
+    "url": "http://aimp.su/storage/$matchHash/aimp_$matchVersion.exe",
+    "hash": "md5:$matchHash"
+  }
+}

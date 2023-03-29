@@ -1,0 +1,24 @@
+{
+  "version": "1.33.2",
+  "description": "Steinberg Download Assistant",
+  "homepage": "https://japan.steinberg.net/jp/support/content_and_accessories/steinberg_download_assistant.html",
+  "license": [
+    {
+      "identifier": "Proprietary"
+    }
+  ],
+  "url": "https://download.steinberg.net/automated_updates/sda-selfupdate/releases/absolute-downloader-1.33.2-b470-64987b90-49a1-4bb0-8249-2f1e4d8cb35e/win/Steinberg_Download_Assistant_1.33.2_Installer_win.exe",
+  "hash": "e319039e9de9e1e07a1162fa71ceef98677072c4b1d5388034da9a85b8bb52be",
+  "installer": {
+    "script": [
+      "Start-Process -Wait -Verb RunAs -FilePath \"${dir}\\Steinberg_Download_Assistant_1.33.2_Installer_win.exe\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$regkey=\"Steinberg Download Assistant\"",
+      "$uninstaller=(Get-ItemProperty -Path \"Registry::HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\${regkey}\" | Select-Object -ExpandProperty UninstallString)",
+      "Start-Process -Wait -Verb RunAs -FilePath \"${uninstaller}\""
+    ]
+  }
+}

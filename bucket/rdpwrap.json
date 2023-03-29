@@ -1,35 +1,35 @@
 {
-  "homepage": "https://github.com/stascorp/rdpwrap",
-  "version": "1.6.2",
-  "description": "RDP Wrapper Library",
+  "homepage": "https://github.com/sebaxakerhtc/rdpwrap",
+  "description": "sebaxakerhtc 维护的 RDP Wrapper，可以自动下载最新的 rdpwrap.ini，开箱即用。安装需要管理员权限。",
+  "license": "Apache-2.0",
+  "version": "1.8.8.7",
   "url": [
-    "https://ghproxy.com/https://github.com/stascorp/rdpwrap/releases/download/v1.6.2/RDPWrap-v1.6.2.zip",
-    "https://github.com/stascorp/rdpwrap/files/3588288/autoupdate-v07.09.2019.zip#/autoupdate.zip"
+    "https://ghproxy.com/https://github.com/sebaxakerhtc/rdpwrap/releases/download/v1.8.8.7/RDPW_Uninstaller.exe",
+    "https://ghproxy.com/https://github.com/sebaxakerhtc/rdpwrap/releases/download/v1.8.8.7/RDPW_installer.exe"
   ],
   "hash": [
-    "35a9481ddbed5177431a9ea4bd09468fe987797d7b1231d64942d17eb54ec269",
-    "8fc586fdb2475768f23a3b6f4b5e8e9a493e042d7a3ffea6fbc7b2de65053887"
+    "ab66ac087a6f0c825cd4c49b282de4ae77c362c73d7664611c995de8fea8f0f6",
+    "923ff70bd31fd27df3c2d91ec555fcf43e93825f695824fdbeb10e4913396e67"
+  ],
+  "pre_install": [
+    "if (!(is_admin)) {",
+    "    error \"Administrator rights are required to install $app.\"",
+    "    exit 1",
+    "}",
+    "SCHTASKS /DELETE /TN RDPWUpdater /F"
   ],
   "installer": {
-    "script": [
-      "if(!(is_admin)) { error \"Admin rights are required, please run 'sudo scoop install $app'\"; exit 1 }",
-      "if (Test-Path $Env:ProgramFiles\\'RDP Wrapper') {",
-      "    Remove-Item $Env:ProgramFiles\\'RDP Wrapper' -Force",
-      "}",
-      "mkdir $Env:ProgramFiles\\'RDP Wrapper'",
-      "Copy-Item -Path $dir\\* -Destination $Env:ProgramFiles\\'RDP Wrapper' -Recurse",
-      "cmd /c $Env:ProgramFiles\\'RDP Wrapper'\\install.bat",
-      "cmd /c $Env:ProgramFiles\\'RDP Wrapper'\\autoupdate.bat"
-    ]
+    "file": "RDPW_installer.exe",
+    "keep": true
   },
   "uninstaller": {
-    "script": [
-      "if(!(is_admin)) { error \"Admin rights are required, please run 'sudo scoop uninstall $app'\"; exit 1 }",
-      "if (Test-Path $Env:ProgramFiles\\'RDP Wrapper') {",
-      "    cmd /c $Env:ProgramFiles\\'RDP Wrapper'\\uninstall.bat",
-      "    Remove-Item $Env:ProgramFiles\\'RDP Wrapper' -Force",
-      "}"
-    ]
+    "file": "RDPW_Uninstaller.exe"
   },
-  "_from": "okibcn/ScoopMaster"
+  "checkver": "github",
+  "autoupdate": {
+    "url": [
+      "https://ghproxy.com/https://github.com/sebaxakerhtc/rdpwrap/releases/download/v$version/RDPW_Uninstaller.exe",
+      "https://ghproxy.com/https://github.com/sebaxakerhtc/rdpwrap/releases/download/v$version/RDPW_installer.exe"
+    ]
+  }
 }

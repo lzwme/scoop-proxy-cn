@@ -1,0 +1,26 @@
+{
+  "hash": "sha512:11d75c00b3eef4c99bfb86d721dc2f4fe084abb8826a198ba88dbae247082fdfcf8f5b62d79e4a68609478e09c79fea4a408af12db21100bb1d7a11206086c37",
+  "version": "1.2.1111",
+  "homepage": "https://www.powershellgallery.com/packages/MicrosoftPowerBIMgmt.Profile",
+  "license": {
+    "url": "https://github.com/Microsoft/powerbi-powershell/blob/master/LICENSE",
+    "identifier": "Refer to Webpage"
+  },
+  "checkver": {
+    "regex": "(?i)<d:Version>(?<ver>[^<]+)<.d:Version>",
+    "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id%20eq%20'MicrosoftPowerBIMgmt.Profile'%20and%20IsLatestVersion%20eq%20true",
+    "replace": "${ver}"
+  },
+  "autoupdate": {
+    "hash": {
+      "regex": "<d:PackageHash>$base64<.d:PackageHash>",
+      "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id eq 'MicrosoftPowerBIMgmt.Profile' and Version eq '$version'"
+    },
+    "url": "https://www.powershellgallery.com/api/v2/Package/MicrosoftPowerBIMgmt.Profile/$version#/mod.nupkg"
+  },
+  "psmodule": {
+    "name": "MicrosoftPowerBIMgmt.Profile"
+  },
+  "description": "Microsoft Power BI PowerShell - Profile credential management cmdlets for Microsoft Power BI",
+  "url": "https://www.powershellgallery.com/api/v2/Package/MicrosoftPowerBIMgmt.Profile/1.2.1111#/mod.nupkg"
+}

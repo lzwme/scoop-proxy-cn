@@ -1,0 +1,25 @@
+{
+  "version": "2.15",
+  "description": "ASIO4ALL",
+  "homepage": "https://www.asio4all.org/",
+  "license": [
+    {
+      "identifier": "Proprietary"
+    }
+  ],
+  "url": "https://www.asio4all.org/downloads_11/ASIO4ALL_2_15_JPN.exe",
+  "hash": "22af72f8b43d97425c986cea35f2ed62637efad68480df93218cdbf09c0bd99a",
+  "installer": {
+    "script": [
+      "Start-Process -Wait -Verb runAs -FilePath \"${dir}\\ASIO4ALL_2_15_JPN.exe\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$regkey=\"ASIO4ALL\"",
+      "$uninstaller=(Get-ItemProperty -Path \"Registry::HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\${regkey}\" | Select-Object -ExpandProperty UninstallString)",
+      "Start-Process -Wait -Verb runAs -FilePath \"${uninstaller}\""
+    ]
+  },
+  "checkver": "Version ([\\d\\.]+)"
+}

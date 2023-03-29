@@ -1,0 +1,30 @@
+{
+  "homepage": "https://pecl.php.net/package/yac",
+  "version": "2.0.2",
+  "license": "http://www.php.net/license/3_01.txt",
+  "architecture": {
+    "64bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/yac/2.0.2/php_yac-2.0.2-7.1-ts-vc14-x64.zip",
+      "hash": "211cb3f932d8ab9778dcba55b95a3c90f770535de3041022bd8493197281f263"
+    },
+    "32bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/yac/2.0.2/php_yac-2.0.2-7.1-ts-vc14-x86.zip",
+      "hash": "854a19dbe9d398fa7412dea790b670308d7c8b8a5c4218fc858adfaa36d19b6f"
+    }
+  },
+  "checkver": "yac/([\\d.]+)/windows",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/yac/$version/php_yac-$version-7.1-ts-vc14-x64.zip"
+      },
+      "32bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/yac/$version/php_yac-$version-7.1-ts-vc14-x86.zip"
+      }
+    }
+  },
+  "post_install": "iex(gc $bucketsdir\\$bucket\\bin\\postinstall.ps1 -Raw)",
+  "uninstaller": {
+    "file": "uninstall.ps1"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "homepage": "https://brookhong.github.io/2021/04/18/brook-build-of-chromium.html",
+  "description": "Brook Hong 编译的 Chromium。允许在禁用插件的页面使用 Surfingkeys，增加了一些不会被合并到 Chromium 官方发行版的功能。默认安装位置和其他的 Chromium 发行版有冲突，注意选择。",
+  "license": "Unknown",
+  "version": "107.0.5304.94",
+  "url": "https://onedrive-vercel-index-yaohappiness.vercel.app/api/raw/?path=/package/brook-hong-chromium/107.0.5304.94/Chromium_installer.exe",
+  "hash": "676016045dacdfee253edf2e987a6ddab9fed55952a8c2cb24071781c90b18b6",
+  "installer": {},
+  "uninstaller": {
+    "script": [
+      "$uninstall = Get-ItemProperty -Path 'HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Chromium' | Select-Object -Expand UninstallString",
+      "powershell /c $uninstall --force-uninstall"
+    ]
+  },
+  "checkver": {
+    "url": "https://onedrive-vercel-index-yaohappiness.vercel.app/api/raw/?path=/package/brook-hong-chromium/latest.txt",
+    "regex": "([\\d.]+)\\.LATEST"
+  },
+  "autoupdate": {
+    "url": "https://onedrive-vercel-index-yaohappiness.vercel.app/api/raw/?path=/package/brook-hong-chromium/$version/Chromium_installer.exe"
+  }
+}

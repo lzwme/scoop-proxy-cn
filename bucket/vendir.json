@@ -1,0 +1,27 @@
+{
+  "version": "0.33.1",
+  "description": "Declaratively state a directory's contents",
+  "homepage": "https://carvel.dev/vendir/",
+  "license": "Apache-2.0",
+  "notes": "See https://carvel.dev/vendir/#examples for some examples",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/carvel-dev/vendir/releases/download/v0.33.1/vendir-windows-amd64.exe#/vendir.exe",
+      "hash": "b46151fb5c9e9ef43e3db599aa559fc2fc36ddeb978eb195ff77790fa2932aae"
+    }
+  },
+  "bin": "vendir.exe",
+  "checkver": {
+    "github": "https://github.com/carvel-dev/vendir"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/carvel-dev/vendir/releases/download/v$version/vendir-windows-amd64.exe#/vendir.exe",
+        "hash": {
+          "url": "$baseurl/checksums.txt"
+        }
+      }
+    }
+  }
+}

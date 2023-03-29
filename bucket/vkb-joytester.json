@@ -1,0 +1,31 @@
+{
+  "version": "1669736547",
+  "description": "VKB controllers axis tester",
+  "homepage": "https://www.vkbcontrollers.com/pages/downloads",
+  "license": "Proprietary",
+  "architecture": {
+    "64bit": {
+      "url": "https://cdn.shopify.com/s/files/1/0551/4739/7238/files/VKB_JoyTester.zip?v=1669736547",
+      "hash": "9a144b65adc4f3edaca86ec9745443856bbac4630c39e03009643d4672c34b61"
+    }
+  },
+  "shortcuts": [
+    [
+      "VKB_JoyTester.exe",
+      "VKB Joystick Axis Tester"
+    ]
+  ],
+  "pre_install": "$null = New-Item -Path $dir -Name VKB_JoyTester.ini -ItemType File",
+  "persist": "VKB_JoyTester.ini",
+  "checkver": {
+    "url": "https://www.vkbcontrollers.com/pages/downloads",
+    "regex": "https://cdn\\.shopify\\.com/(?<installer>s/files/[0-9/]+/files/VKB_JoyTester\\.zip\\?v=([0-9]+))"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://cdn.shopify.com/$matchInstaller"
+      }
+    }
+  }
+}

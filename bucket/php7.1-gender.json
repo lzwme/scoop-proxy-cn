@@ -1,0 +1,30 @@
+{
+  "homepage": "https://pecl.php.net/package/gender",
+  "version": "1.1.0",
+  "license": "http://www.php.net/license/3_01.txt",
+  "architecture": {
+    "64bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/gender/1.1.0/php_gender-1.1.0-7.1-ts-vc14-x64.zip",
+      "hash": "6ca1f57fe7a708acc88c79af6a6e961ffb37cbca9ecbcd24edcfcd77d459d32e"
+    },
+    "32bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/gender/1.1.0/php_gender-1.1.0-7.1-ts-vc14-x86.zip",
+      "hash": "ce5cac478a468b51d3c2ccb6c19bf16229a7468fd026428df15665f3aa233414"
+    }
+  },
+  "checkver": "gender/([\\d.]+)/windows",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/gender/$version/php_gender-$version-7.1-ts-vc14-x64.zip"
+      },
+      "32bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/gender/$version/php_gender-$version-7.1-ts-vc14-x86.zip"
+      }
+    }
+  },
+  "post_install": "iex(gc $bucketsdir\\$bucket\\bin\\postinstall.ps1 -Raw)",
+  "uninstaller": {
+    "file": "uninstall.ps1"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "version": "0.8.0",
+  "autoupdate": {
+    "hash": {
+      "regex": "<d:PackageHash>$base64<.d:PackageHash>",
+      "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id eq 'OpenApi.Pwsh' and Version eq '$version'"
+    },
+    "url": "https://www.powershellgallery.com/api/v2/Package/OpenApi.Pwsh/$version#/mod.nupkg"
+  },
+  "psmodule": {
+    "name": "OpenApi.Pwsh"
+  },
+  "homepage": "https://www.powershellgallery.com/packages/OpenApi.Pwsh",
+  "description": "Import, edit, and invoke OpenAPI documents.",
+  "url": "https://www.powershellgallery.com/api/v2/Package/OpenApi.Pwsh/0.8.0#/mod.nupkg",
+  "hash": "sha512:609f43af060b1a148f797f7f0139f96574fec2708f5f5a7e411726f8d6bc2ab3b080dd926801438482307c3cf66860fa841334ba5bd40cb2abb1077450d1e802",
+  "license": {
+    "url": "https://github.com/matt9ucci/OpenApi.Pwsh/blob/master/LICENSE",
+    "identifier": "Refer to Webpage"
+  },
+  "checkver": {
+    "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id%20eq%20'OpenApi.Pwsh'%20and%20IsLatestVersion%20eq%20true",
+    "regex": "(?i)<d:Version>(?<ver>[^<]+)<.d:Version>",
+    "replace": "${ver}"
+  }
+}

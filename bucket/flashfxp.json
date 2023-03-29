@@ -1,0 +1,34 @@
+{
+  "version": "5.4.0-3970",
+  "description": "FlashFXP is a FTP, FTPS, SFTP client for Windows.",
+  "homepage": "https://www.flashfxp.com/",
+  "license": "Proprietary",
+  "url": "https://get.flashfxp.com/ftp/client/download/FlashFXP$cleanversion_-3970_Portable.exe",
+  "hash": "091977f7bc8b17663fab010dfd10531c2cdf76a8c376bc86594057ceb117c039",
+  "installer": {
+    "script": "cmd /c \"$original_dir\\FlashFXP5_Portable.exe\" /s TARGETDIR=$original_dir "
+  },
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\FlashFXP.ini\")) { New-Item \"$dir\\FlashFXP.ini\" | Out-Null }",
+    "if (!(Test-Path \"$persist_dir\\flashfxp.key\")) { New-Item \"$dir\\flashfxp.key\" | Out-Null }"
+  ],
+  "shortcuts": [
+    [
+      "FlashFXP.exe",
+      "FlashFXP"
+    ]
+  ],
+  "persist": [
+    "FlashFXP.ini",
+    "flashfxp.key"
+  ],
+  "post_install": "Remove-Item \"$dir\\data\", \"$dir\\mia.lib\", \"$dir\\FlashFXP5_Portable.res\", \"$dir\\FlashFXP5_Portable.exe\" -Recurse",
+  "checkver": {
+    "url": "https://www.flashfxp.com/download-portable",
+    "regex": "(?sm)Version:.*?(\\d).(\\d).(\\d) build ([\\d]+)",
+    "replace": "${1}.${2}.${3}-${4}"
+  },
+  "autoupdate": {
+    "url": "https://get.flashfxp.com/ftp/client/download/FlashFXP$cleanversion_$matchTail_Portable.exe"
+  }
+}
