@@ -1,7 +1,7 @@
 {
-  "##": "cursor",
-  "version": "0.1.3",
-  "description": "Write, edit, and chat about your code with GPT-4 in a new type of editor",
+  "##": "cursor 编辑器",
+  "version": "0.1.12",
+  "description": "Cursor 是一个集成了 GPT-4 的代码编辑器，可以让你快速地编写、修改和讨论代码1。Cursor 还提供了 API SDK，可以用于调用 Cursor的接口",
   "license": {
     "identifier": "Proprietary",
     "url": "https://www.cursor.so/"
@@ -12,16 +12,14 @@
     "Remove-Item \"$dir\\`$*\", \"$dir\\Uninstall*\" -Recurse"
   ],
   "url": "https://dl.todesktop.com/230313mzl4w4u92/windows/nsis/x64#/dl.7z",
-  "hash": "a91845d7c72836fc4e5230e0f4cd2c87b1ea9cd6b69efa6d54d5c360ee78a8c3",
+  "hash": "34b4362b6af898bf323d1fbffaf4791048a70cb53aaa7cc3648459e1f4b68350",
   "shortcuts": [
     [
       "Cursor.exe",
       "Cursor"
     ]
   ],
-  "persist": [
-    "resources/lsp"
-  ],
+  "persist": "resources/lsp",
   "checkver": {
     "script": [
       "$response = Invoke-WebRequest -Uri 'https://www.cursor.so/'",
@@ -31,10 +29,10 @@
       "$version = [regex]::Match($filePath, '([\\d.]+)').Groups[1].Value",
       "Write-Output $version $downloadUrl"
     ],
-    "regex": "^([\\d.]+)\\s+(?<downloadUrl>.+)$"
+    "regex": "^([\\d.]+)\\s+https://dl.todesktop.com/(?<dlquerypath>.+)$"
   },
   "autoupdate": {
-    "url": "$matchDownloadUrl#/dl.7z",
+    "url": "https://dl.todesktop.com/$matchDlquerypath#/dl.7z",
     "hash": {
       "mode": "download"
     }

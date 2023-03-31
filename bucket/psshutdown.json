@@ -1,31 +1,33 @@
 {
-  "version": "2.53",
+  "homepage": "https://docs.microsoft.com/en-us/sysinternals/",
   "description": "Shuts down and optionally reboots a computer.",
-  "homepage": "https://learn.microsoft.com/sysinternals/downloads/psshutdown",
   "license": {
     "identifier": "Freeware",
-    "url": "https://learn.microsoft.com/sysinternals/license-terms"
+    "url": "https://docs.microsoft.com/en-us/sysinternals/license-terms"
   },
-  "url": "https://download.sysinternals.com/files/psshutdown.zip",
-  "hash": "6595cbb389b883edc936f7fddeb5051ff56e77c34160fd8b28aa4e3274acdf86",
+  "version": "2.53",
+  "url": "https://download.sysinternals.com/files/PSTools.zip",
+  "hash": "102576f2df817427fee2804380ef8904afb7b46d73d56d1a60e7721d668b6555",
+  "pre_install": "Get-ChildItem \"$dir\" | Where-Object {($_.Name -notlike 'psshutdown*') -and ($_.Name -notlike 'Eula.txt') -and $_.Name -notlike '*.chm'} | Remove-Item",
+  "checkver": {
+    "url": "https://docs.microsoft.com/en-us/sysinternals/downloads/psshutdown",
+    "re": "PsShutdown\\s(?:v|V)?([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://download.sysinternals.com/files/PSTools.zip"
+  },
   "architecture": {
+    "32bit": {
+      "bin": "psshutdown.exe"
+    },
     "64bit": {
       "bin": [
         [
           "psshutdown64.exe",
           "psshutdown"
-        ]
+        ],
+        "psshutdown64.exe"
       ]
-    },
-    "32bit": {
-      "bin": "psshutdown.exe"
     }
-  },
-  "checkver": {
-    "url": "https://ghproxy.com/https://raw.githubusercontent.com/MicrosoftDocs/sysinternals/main/sysinternals/downloads/psshutdown.md",
-    "regex": "#.*?v([\\d.]+)"
-  },
-  "autoupdate": {
-    "url": "https://download.sysinternals.com/files/psshutdown.zip"
   }
 }

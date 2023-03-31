@@ -1,0 +1,28 @@
+{
+  "version": "2023.03.30",
+  "description": "Automate downloading and metadata generation with (integrated) yt-dlp",
+  "homepage": "https://github.com/jmbannon/ytdl-sub",
+  "license": " GPL-3.0-only",
+  "suggest": {
+    "ffmpeg": [
+      "scoop-alts/ffmpeg-shared-nightly",
+      "ffmpeg-yt-dlp",
+      "ffmpeg"
+    ]
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/jmbannon/ytdl-sub/releases/download/2023.03.30/ytdl-sub.exe",
+      "hash": "cd8c57aeb90cff8ab344c10815240bad9ac88656258f4c67aec0dd6387e0735b"
+    }
+  },
+  "bin": "ytdl-sub.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/jmbannon/ytdl-sub/releases/download/$version/ytdl-sub.exe"
+      }
+    }
+  }
+}
