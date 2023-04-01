@@ -1,45 +1,77 @@
 {
-  "##": "Renaming .7z to .7z_ so that the archive will not be automatically extracted by Scoop.",
-  "version": "0.40.4",
-  "license": "OFL-1.1",
-  "homepage": "https://github.com/be5invis/Sarasa-Gothic",
-  "url": "https://mirrors.tuna.tsinghua.edu.cn/github-release/be5invis/Sarasa-Gothic/LatestRelease/sarasa-gothic-ttf-0.40.4.7z#/dl.7z_",
-  "hash": "e4d36ba6b403da02c8e0e1266c73a9c9853f79bf83fd026549e07071162142d4",
+  "autoupdate": {
+    "hash": {
+      "mode": "extract",
+      "regex": "$sha256\\s+$basename",
+      "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/release.txt"
+    },
+    "url": "https://ghproxy.com/https://github.com/be5invis/Sarasa-Gothic/releases/download/v$version/sarasa-gothic-ttf-$version.7z#/dl.7z_"
+  },
+  "checkver": "github",
   "depends": "sudo",
+  "description": "This is SARASA GOTHIC, a CJK programming font based on Iosevka and Source Han Sans.",
+  "hash": "e4d36ba6b403da02c8e0e1266c73a9c9853f79bf83fd026549e07071162142d4",
+  "homepage": "https://github.com/be5invis/Sarasa-Gothic",
   "installer": {
     "script": [
-      "if(!(is_admin)) { error \"Admin rights are required, please run 'sudo scoop install $app'\"; exit 1 }",
-      "Get-ChildItem \"$env:windir\\Fonts\" -Filter 'sarasa*-sc-*.ttf' | ForEach-Object {",
-      "  try {",
-      "    Remove-Item \"$env:windir\\Fonts\\$($_.Name)\" -Force -ErrorAction Stop",
-      "  } catch {",
-      "    Write-Warning \"Something failed, please try again later or after a reboot!`n$($error[0])\"",
+      "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
+      "$windows1809BuildNumber = 17763",
+      "$isPerUserFontInstallationSupported = $currentBuildNumber -ge $windows1809BuildNumber",
+      "$isFontInstallationForAllUsers = $global -or !$isPerUserFontInstallationSupported",
+      "if ($isFontInstallationForAllUsers -and !(is_admin)) {",
+      "    error \"Administrator rights are required to install $app.\"",
       "    exit 1",
-      "  }",
       "}",
-      "Invoke-ExternalCommand 7z -ArgumentList('e', \"$dir\\dl.7z_\", \"-o$dir\", '*-sc-*.ttf') | Out-Null",
-      "Remove-Item \"$dir\\dl.7z_\"",
-      "Get-ChildItem \"$dir\" -Filter 'sarasa*.ttf' | ForEach-Object {",
-      "  New-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $_.Name -Force | Out-Null",
-      "  Copy-Item $_.FullName -destination \"$env:windir\\Fonts\"",
+      "$fontInstallDir = if ($isFontInstallationForAllUsers) { \"$env:windir\\Fonts\" } else { \"$env:LOCALAPPDATA\\Microsoft\\Windows\\Fonts\" }",
+      "$registryRoot = if ($isFontInstallationForAllUsers) { \"HKLM\" } else { \"HKCU\" }",
+      "$registryKey = \"${registryRoot}:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts\"",
+      "New-Item $fontInstallDir -ItemType Directory -ErrorAction SilentlyContinue | Out-Null",
+      "Get-ChildItem $dir -Filter '*.ttf' | ForEach-Object {",
+      "    $value = if ($isFontInstallationForAllUsers) { $_.Name } else { \"$fontInstallDir\\$($_.Name)\" }",
+      "    Copy-Item $_.FullName -Destination $fontInstallDir",
+      "    New-ItemProperty -Path $registryKey -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $value -Force | Out-Null",
       "}"
     ]
   },
+  "license": {
+    "identifier": "OFL-1.1"
+  },
+  "notes": "You may need to restart the system to use recently installed fonts.",
+  "pre_install": [
+    "Invoke-ExternalCommand 7z -ArgumentList('e', \"`\"$dir\\dl.7z_`\"\" ,\"`\"-o$dir`\"\", 'sarasa-gothic-sc*.ttf') | Out-Null",
+    "Remove-Item \"$dir\\dl.7z_\""
+  ],
   "uninstaller": {
     "script": [
-      "if(!(is_admin)) { error \"Admin rights are required, please run 'sudo scoop uninstall $app'\"; exit 1 }",
-      "Get-ChildItem \"$dir\" -Filter 'sarasa*.ttf' | ForEach-Object {",
-      "  Remove-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
-      "  Remove-Item \"$env:windir\\Fonts\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
+      "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
+      "$windows1809BuildNumber = 17763",
+      "$isPerUserFontInstallationSupported = $currentBuildNumber -ge $windows1809BuildNumber",
+      "$isFontInstallationForAllUsers = $global -or !$isPerUserFontInstallationSupported",
+      "if ($isFontInstallationForAllUsers -and !(is_admin)) {",
+      "    error \"Administrator rights are required to uninstall $app.\"",
+      "    exit 1",
       "}",
-      "Write-Host \"The 'Sarasa-Gothic' Font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
+      "$fontInstallDir = if ($isFontInstallationForAllUsers) { \"$env:windir\\Fonts\" } else { \"$env:LOCALAPPDATA\\Microsoft\\Windows\\Fonts\" }",
+      "$registryRoot = if ($isFontInstallationForAllUsers) { \"HKLM\" } else { \"HKCU\" }",
+      "$registryKey = \"${registryRoot}:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts\"",
+      "Get-ChildItem $dir -Filter '*.ttf' | ForEach-Object {",
+      "    Get-ChildItem $fontInstallDir -Filter $_.Name | ForEach-Object {",
+      "        try {",
+      "            Rename-Item $_.FullName $_.FullName -ErrorVariable LockError -ErrorAction Stop",
+      "        } catch {",
+      "            error \"'$app' is being used by another process.\"",
+      "            error \"Please close all applications (e.g. vscode) that are using '$app' before uninstall or upgrade.\"",
+      "            exit 1",
+      "        }",
+      "    }",
+      "}",
+      "Get-ChildItem $dir -Filter '*.ttf' | ForEach-Object {",
+      "    Remove-ItemProperty -Path $registryKey -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
+      "    Remove-Item \"$fontInstallDir\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
+      "}",
+      "Write-Host \"The '$app' Font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
     ]
   },
-  "checkver": {
-    "url": "https://mirrors.tuna.tsinghua.edu.cn/github-release/be5invis/Sarasa-Gothic/LatestRelease/",
-    "regex": "sarasa-gothic-ttf-([\\d.]+)\\.7z"
-  },
-  "autoupdate": {
-    "url": "https://mirrors.tuna.tsinghua.edu.cn/github-release/be5invis/Sarasa-Gothic/LatestRelease/sarasa-gothic-ttf-$version.7z#/dl.7z_"
-  }
+  "url": "https://ghproxy.com/https://github.com/be5invis/Sarasa-Gothic/releases/download/v0.40.4/sarasa-gothic-ttf-0.40.4.7z#/dl.7z_",
+  "version": "0.40.4"
 }
