@@ -1,0 +1,39 @@
+{
+  "version": "2023.03.31.025715",
+  "description": "A youtube-dl fork with additional features and fixes.",
+  "homepage": "https://github.com/yt-dlp/yt-dlp-nightly-builds",
+  "license": "Unlicense",
+  "suggest": {
+    "ffmpeg": "versions/ffmpeg-nightly"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/yt-dlp/yt-dlp-nightly-builds/releases/download/2023.03.31.025715/yt-dlp.exe",
+      "hash": "sha512:950fb6895d0f2aed2660d70770a37545a4737b5eac5fdef3c31935bbcb97fa9d24b0904d2ca370f1e6c499a33cc20d5ca4b006fb9b437074f79776d5303ae7e9"
+    },
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/yt-dlp/yt-dlp-nightly-builds/releases/download/2023.03.31.025715/yt-dlp_x86.exe#/yt-dlp.exe",
+      "hash": "sha512:9acff588ad538575b78c3640cee9aa0921c5aca87d11c8cc4f36736258487ec034f66d9e2ce646dba4c5b0ee5d82c315397918e16ec2c8f5d26f702acd97e1a0"
+    }
+  },
+  "bin": "yt-dlp.exe",
+  "pre_install": "if (-not (Test-Path \"$persist_dir\\yt-dlp.conf\")) { New-Item \"$dir\\yt-dlp.conf\" -ItemType file | Out-Null }",
+  "persist": [
+    "yt-dlp.conf",
+    "ytdlp_plugins"
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/yt-dlp/yt-dlp-nightly-builds/releases/download/$version/yt-dlp.exe"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/yt-dlp/yt-dlp-nightly-builds/releases/download/$version/yt-dlp_x86.exe#/yt-dlp.exe"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/SHA2-512SUMS"
+    }
+  }
+}
