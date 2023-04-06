@@ -1,21 +1,29 @@
 {
-  "version": "1.3.0",
+  "architecture": {
+    "64bit": {
+      "hash": "e95604ad56087e75ee0e387dcf2c9a03d24245d8bb5a63af04216c4a66ed5037",
+      "url": "https://ghproxy.com/https://github.com/Team-Resurgent/Repackinator/releases/download/v1.3.0/Repackinator-win-x64.zip"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/Team-Resurgent/Repackinator/releases/download/v$version/Repackinator-win-x64.zip"
+      }
+    }
+  },
+  "bin": "repackinator.exe",
+  "checkver": "github",
   "description": "Convert your full OG Xbox ISO dumps into split ISO images",
   "homepage": "https://github.com/Team-Resurgent/Repackinator",
   "license": "GPL-3.0-only",
-  "architecture": {
-    "64bit": {
-      "url": "https://ghproxy.com/https://github.com/Team-Resurgent/Repackinator/releases/download/v1.3.0/Repackinator-win-x64.zip",
-      "hash": "e95604ad56087e75ee0e387dcf2c9a03d24245d8bb5a63af04216c4a66ed5037"
-    }
-  },
-  "pre_install": [
-    "if (!(Test-Path \"$persist_dir\\config.json\")) { Set-Content \"$dir\\config.json\" (@('{', '}') -join \"`r`n\") -Encoding Unicode | Out-Null }",
-    "if (!(Test-Path \"$persist_dir\\settings.ini\")) { New-Item \"$dir\\settings.ini\" | Out-Null }"
-  ],
   "persist": [
     "config.json",
     "settings.ini"
+  ],
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\config.json\")) { Set-Content \"$dir\\config.json\" (@('{', '}') -join \"`r`n\") -Encoding Unicode | Out-Null }",
+    "if (!(Test-Path \"$persist_dir\\settings.ini\")) { New-Item \"$dir\\settings.ini\" | Out-Null }"
   ],
   "shortcuts": [
     [
@@ -23,13 +31,5 @@
       "Repackinator"
     ]
   ],
-  "bin": "repackinator.exe",
-  "checkver": "github",
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.com/https://github.com/Team-Resurgent/Repackinator/releases/download/v$version/Repackinator-win-x64.zip"
-      }
-    }
-  }
+  "version": "1.3.0"
 }

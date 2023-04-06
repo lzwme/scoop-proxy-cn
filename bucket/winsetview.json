@@ -1,11 +1,11 @@
 {
-  "version": "8c47b6319a",
+  "version": "b9563c69f2",
   "description": "Globally set File Explorer folder views (*nightly* build)",
   "homepage": "https://github.com/LesFerch/WinSetView",
   "license": "MIT",
-  "url": "https://ghproxy.com/https://github.com/LesFerch/WinSetView/archive/8c47b6319a892016cdeab3e86e2401150752a73f.zip",
-  "hash": "43078e7e0dc147217904cf12f3efd9c09a5deb810e74ce1d9e60a760ce54d6b1",
-  "extract_dir": "WinSetView-8c47b6319a892016cdeab3e86e2401150752a73f",
+  "url": "https://ghproxy.com/https://github.com/LesFerch/WinSetView/archive/b9563c69f27a4f1f0ad0e96a929ffc8cde2ee759.zip",
+  "hash": "e636b6c8904e2c423766bc629e0f6afbf8d33287d8414167349b920f145d8caf",
+  "extract_dir": "WinSetView-b9563c69f27a4f1f0ad0e96a929ffc8cde2ee759",
   "pre_install": "$manifest.persist | ForEach-Object { if (-not (Test-Path \"$persist_dir\\$_\")) { New-Item \"$dir\\$_\" -Force -ItemType \"Directory\" | Out-Null } }",
   "post_install": [
     "$mshta = \"C:\\Windows\\System32\\mshta.exe\"",
@@ -38,6 +38,5 @@
   "autoupdate": {
     "url": "https://ghproxy.com/https://github.com/LesFerch/WinSetView/archive/$matchSha.zip",
     "extract_dir": "WinSetView-$matchSha"
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

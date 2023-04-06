@@ -14,7 +14,7 @@
   "hash": "c90ccf9a1aa51b897f8b33a668c7580a937e83bf3fb32055c383e8c7b8fc94c7",
   "pre_install": [
     "$currentDir = $dir.Replace(\"$version\", 'current')",
-    "Set-Content \"$dir\\burpsuite-pro.cmd\" -Value '@start javaw -jar \"%~dp0burpsuite-pro.jar\"' -Encoding 'utf8' -Force"
+    "Set-Content \"$dir\\burpsuite-pro.cmd\" -Value \"@start javaw -jar \"\"$currentDir\\burpsuite-pro.jar\"\"\" -Encoding 'utf8' -Force"
   ],
   "bin": "burpsuite-pro.jar",
   "shortcuts": [
@@ -29,6 +29,12 @@
     "regex": "([\\d.]+)"
   },
   "autoupdate": {
-    "url": "https://portswigger-cdn.net/burp/releases/download?product=pro&version=$version&type=Jar#/burpsuite-pro.jar"
+    "url": "https://portswigger-cdn.net/burp/releases/download?product=pro&version=$version&type=Jar#/burpsuite-pro.jar",
+    "hash": {
+      "mode": "json",
+      "type": "sha256",
+      "url": "https://portswigger.net/burp/releases/data",
+      "jsonpath": "$.ResultSet.Results[0].builds[1].Sha256Checksum"
+    }
   }
 }
