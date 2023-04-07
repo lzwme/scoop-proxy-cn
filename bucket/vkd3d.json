@@ -1,0 +1,25 @@
+{
+  "version": "2.8",
+  "description": "A Vulkan wrapper for DirectX 12.",
+  "homepage": "https://github.com/HansKristian-Work/vkd3d-proton",
+  "license": "LGPL-2.1-only",
+  "depends": [
+    "git",
+    "zstd"
+  ],
+  "url": "https://ghproxy.com/https://github.com/HansKristian-Work/vkd3d-proton/releases/download/v2.8/vkd3d-proton-2.8.tar.zst",
+  "hash": "6f6157b16cdb860656f45808c9f30df12a0b1a84660537ebb1c9791601693c44",
+  "extract_dir": "vkd3d-proton-2.8",
+  "post_install": [
+    "$Process = New-Object System.Diagnostics.Process",
+    "$Process.StartInfo.FileName =\"$scoopdir\\apps\\git\\current\\usr\\bin\\tar.exe\"",
+    "$Process.StartInfo.Arguments = \"--strip-components=1 -I zstd -xf vkd3d-proton-$version.tar.zst\"",
+    "$Process.StartInfo.WorkingDirectory = \"$original_dir\"",
+    "$Process.Start() | Out-Null"
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/HansKristian-Work/vkd3d-proton/releases/download/v$version/vkd3d-proton-$version.tar.zst",
+    "extract_dir": "vkd3d-proton-$version"
+  }
+}

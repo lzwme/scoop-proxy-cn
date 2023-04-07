@@ -1,42 +1,24 @@
 {
-  "homepage": "https://sourceforge.net/projects/redpanda-cpp",
+  "version": "2.20",
   "description": "A light-weight C/C++ IDE based on Qt",
-  "license": {
-    "identifier": "GPL-3.0",
-    "url": "https://github.com/royqh1979/RedPanda-CPP/blob/master/LICENSE"
-  },
-  "version": "2.19",
-  "architecture": {
-    "64bit": {
-      "url": "https://sourceforge.net/projects/redpanda-cpp/files/2.19/RedPanda.C%2B%2B.2.19.win64.MinGW-w64.X86_64.GCC.11.2.Portable.7z",
-      "hash": "e98dca2be3efce5e3ac86113022805794ea1018a748e37fb1328f88ac2e4499e"
-    },
-    "32bit": {
-      "url": "https://sourceforge.net/projects/redpanda-cpp/files/2.20/RedPanda.C%2B%2B.2.20.win32.MinGW-w64.i686.GCC.8.1.Portable.7z",
-      "hash": "66a12f12e2a7a672ded3df032d0e5de740024e99ed01235d85bd706931d748bf"
-    }
-  },
-  "extract_dir": "RedPanda-Cpp",
-  "persist": "config",
+  "homepage": "https://github.com/royqh1979/RedPanda-CPP",
+  "license": "GPL-3.0-only",
+  "url": "https://ghproxy.com/https://github.com/royqh1979/RedPanda-CPP/releases/download/2.20/RedPanda.C++.2.20.win64.MinGW-w64.X86_64.GCC.11.2.Portable.7z",
+  "hash": "484d476379c6b00951ac6477b091cd6690d069988a68ce60a374f1052071aa2c",
+  "extract_dir": "RedPanda-CPP",
   "shortcuts": [
     [
       "RedPandaIDE.exe",
-      "RedPanda C++"
+      "RedPandaIDE"
     ]
   ],
+  "persist": [
+    "config"
+  ],
   "checkver": {
-    "url": "https://sourceforge.net/projects/redpanda-cpp/rss?path=/",
-    "regex": "RedPanda.C%2B%2B.(?<x86version>[\\d.]+).win32.MinGW-w64.i686.GCC.(?<x86gccversion>[\\d.]+).Portable.7z[\\s\\S]*?RedPanda.C%2B%2B.(?<version>[\\d.]+).win64.MinGW-w64.X86_64.GCC.(?<gccversion>[\\d.]+).Portable.7z"
+    "github": "https://github.com/royqh1979/RedPanda-CPP"
   },
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://sourceforge.net/projects/redpanda-cpp/files/$version/RedPanda.C%2B%2B.$version.win64.MinGW-w64.X86_64.GCC.$matchGccversion.Portable.7z"
-      },
-      "32bit": {
-        "url": "https://sourceforge.net/projects/redpanda-cpp/files/$matchX86version/RedPanda.C%2B%2B.$matchX86version.win32.MinGW-w64.i686.GCC.$matchX86gccversion.Portable.7z"
-      }
-    }
-  },
-  "_from": "okibcn/ScoopMaster"
+    "url": "https://ghproxy.com/https://github.com/royqh1979/RedPanda-CPP/releases/download/$version/RedPanda.C++.$version.win64.MinGW-w64.X86_64.GCC.11.2.Portable.7z"
+  }
 }
