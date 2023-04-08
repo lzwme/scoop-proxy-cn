@@ -1,0 +1,30 @@
+{
+  "version": "2.2.2",
+  "description": "World of Warcraft addon updater.",
+  "homepage": "https://raider.io/addon",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://raider.io/terms-of-use"
+  },
+  "url": "https://ghproxy.com/https://github.com/RaiderIO/raiderio-client-builds/releases/download/v2.2.2/RaiderIO_Client_Setup.exe#/dl.7z",
+  "hash": "a9ee502dd12428b7812742e34355cee36eb019a33e2041127363c941cfe333eb",
+  "extract_dir": "$PLUGINSDIR",
+  "installer": {
+    "script": [
+      "Remove-Item \"$dir\\*\" -Exclude 'app-64.7z'",
+      "Expand-7zipArchive \"$dir\\app-64.7z\" \"$dir\" -Removal"
+    ]
+  },
+  "shortcuts": [
+    [
+      "RaiderIO.exe",
+      "RaiderIO Client"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/RaiderIO/raiderio-client-builds"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/RaiderIO/raiderio-client-builds/releases/download/v$version/RaiderIO_Client_Setup.exe#/dl.7z"
+  }
+}
