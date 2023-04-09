@@ -1,0 +1,27 @@
+{
+  "checkver": {
+    "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id%20eq%20'Az.RecoveryServices'%20and%20IsLatestVersion%20eq%20true",
+    "replace": "${ver}",
+    "regex": "(?i)<d:Version>(?<ver>[^<]+)<.d:Version>"
+  },
+  "hash": "sha512:a74c2dfcd6432db43593f81c25e84144b1ce26560a41d94e9fef959c9bc19775b471070d29dd504a52e2a17b673678b110fd3943fa19f356daeeeb33706c0447",
+  "description": "Microsoft Azure PowerShell - Recovery Services cmdlets for Azure Resource Manager in Windows PowerShell and PowerShell Core.  For more information on Recovery Services Backup, please visit the following: https://learn.microsoft.com/azure/backup/ For more information on Site Recovery, please visit the following: https://learn.microsoft.com/azure/site-recovery/",
+  "psmodule": {
+    "name": "Az.RecoveryServices"
+  },
+  "homepage": "https://www.powershellgallery.com/packages/Az.RecoveryServices",
+  "autoupdate": {
+    "url": "https://www.powershellgallery.com/api/v2/Package/Az.RecoveryServices/$version#/mod.nupkg",
+    "hash": {
+      "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id eq 'Az.RecoveryServices' and Version eq '$version'",
+      "regex": "<d:PackageHash>$base64<.d:PackageHash>"
+    }
+  },
+  "license": {
+    "identifier": "Refer to Webpage",
+    "url": "https://aka.ms/azps-license"
+  },
+  "url": "https://www.powershellgallery.com/api/v2/Package/Az.RecoveryServices/6.3.0#/mod.nupkg",
+  "depends": "Az.Accounts",
+  "version": "6.3.0"
+}

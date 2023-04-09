@@ -1,0 +1,27 @@
+{
+  "checkver": {
+    "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id%20eq%20'Az.DeploymentManager'%20and%20IsLatestVersion%20eq%20true",
+    "replace": "${ver}",
+    "regex": "(?i)<d:Version>(?<ver>[^<]+)<.d:Version>"
+  },
+  "hash": "sha512:5dad2610e7b46383b502e22be939adbabbed9d3de6f688a3fefbb643f0e65add83300ab4fae0a6b7d83d4fcf471c904ee872e240898330e6165806757a8d3a11",
+  "description": "PowerShell .Net Core Microsoft Azure PowerShell - Deployment Manager cmdlets for Azure Resource Manager. For more information, visit https://docs.microsoft.com/en-us/azure/azure-resource-manager/deployment-manager-overview",
+  "psmodule": {
+    "name": "Az.DeploymentManager"
+  },
+  "homepage": "https://www.powershellgallery.com/packages/Az.DeploymentManager",
+  "autoupdate": {
+    "url": "https://www.powershellgallery.com/api/v2/Package/Az.DeploymentManager/$version#/mod.nupkg",
+    "hash": {
+      "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id eq 'Az.DeploymentManager' and Version eq '$version'",
+      "regex": "<d:PackageHash>$base64<.d:PackageHash>"
+    }
+  },
+  "license": {
+    "identifier": "Refer to Webpage",
+    "url": "https://aka.ms/azps-license"
+  },
+  "url": "https://www.powershellgallery.com/api/v2/Package/Az.DeploymentManager/1.1.0#/mod.nupkg",
+  "depends": "Az.Accounts",
+  "version": "1.1.0"
+}

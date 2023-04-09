@@ -1,0 +1,27 @@
+{
+  "checkver": {
+    "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id%20eq%20'Az.Synapse'%20and%20IsLatestVersion%20eq%20true",
+    "replace": "${ver}",
+    "regex": "(?i)<d:Version>(?<ver>[^<]+)<.d:Version>"
+  },
+  "hash": "sha512:99625a95d31284e0e889d2fd4609cb688498781082a9bef316586509f6b3bcfd3f9ffdfbacb0ade8ee400ee9dace4314bfe93d6e2925fc938a6eca4a05ec6fba",
+  "description": "Microsoft Azure PowerShell - Azure Synapse Analytics in Windows PowerShell and PowerShell Core.  For more information on Azure Synapse Analytics, please visit the following: https://azure.microsoft.com/en-us/services/synapse-analytics/",
+  "psmodule": {
+    "name": "Az.Synapse"
+  },
+  "homepage": "https://www.powershellgallery.com/packages/Az.Synapse",
+  "autoupdate": {
+    "url": "https://www.powershellgallery.com/api/v2/Package/Az.Synapse/$version#/mod.nupkg",
+    "hash": {
+      "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id eq 'Az.Synapse' and Version eq '$version'",
+      "regex": "<d:PackageHash>$base64<.d:PackageHash>"
+    }
+  },
+  "license": {
+    "identifier": "Refer to Webpage",
+    "url": "https://aka.ms/azps-license"
+  },
+  "url": "https://www.powershellgallery.com/api/v2/Package/Az.Synapse/2.3.0#/mod.nupkg",
+  "depends": "Az.Accounts",
+  "version": "2.3.0"
+}

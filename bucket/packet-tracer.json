@@ -15,11 +15,11 @@
   "architecture": {
     "64bit": {
       "url": "https://archive.org/download/cisco-packet-tracer-821-ubuntu-64bit/CiscoPacketTracer_821_Windows_64bit.exe",
-      "hash": "fa3dbe172cb9268b5d5b24ead0c32c26c25fb5d5b56fa72348b9099bcd429645"
+      "hash": "md5:12617fe807c3e4bfa5b0c4748c3b6ff2"
     },
     "32bit": {
       "url": "https://archive.org/download/cisco-packet-tracer-821-ubuntu-64bit/CiscoPacketTracer_821_Windows_32bit.exe",
-      "hash": "097afa9683dc11c759ca838cf03d91498b2c4dad038639d9901ece3793bed114"
+      "hash": "md5:5322edb9da792e28a26c809c5bc4869e"
     }
   },
   "innosetup": true,
@@ -79,6 +79,10 @@
       "32bit": {
         "url": "https://archive.org/download/cisco-packet-tracer-$cleanVersion-ubuntu-64bit/CiscoPacketTracer_$cleanVersion_Windows_32bit.exe"
       }
+    },
+    "hash": {
+      "url": "https://www.packettracernetwork.com/download/download-packet-tracer.html",
+      "regex": "$basename</a><br\\s/><strong>MD5</strong>\\s\\:\\s$md5"
     },
     "env_set": {
       "PT$majorVersionHOME": "$dir"

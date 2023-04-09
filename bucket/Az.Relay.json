@@ -1,0 +1,27 @@
+{
+  "checkver": {
+    "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id%20eq%20'Az.Relay'%20and%20IsLatestVersion%20eq%20true",
+    "replace": "${ver}",
+    "regex": "(?i)<d:Version>(?<ver>[^<]+)<.d:Version>"
+  },
+  "hash": "sha512:ea4560134810197a5ce2bc9eb074b5a04184602d640fa0374fd6592c1263d2f1955c6e2aeb07eedf40f4b267c36279363c5008098bd60d37a9222e226e3ea556",
+  "description": "Microsoft Azure PowerShell - Relay service cmdlets for Azure Resource Manager in Windows PowerShell and PowerShell Core.  For more information on Relay, please visit the following: https://learn.microsoft.com/azure/service-bus-relay/relay-what-is-it",
+  "psmodule": {
+    "name": "Az.Relay"
+  },
+  "homepage": "https://www.powershellgallery.com/packages/Az.Relay",
+  "autoupdate": {
+    "url": "https://www.powershellgallery.com/api/v2/Package/Az.Relay/$version#/mod.nupkg",
+    "hash": {
+      "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id eq 'Az.Relay' and Version eq '$version'",
+      "regex": "<d:PackageHash>$base64<.d:PackageHash>"
+    }
+  },
+  "license": {
+    "identifier": "Refer to Webpage",
+    "url": "https://aka.ms/azps-license"
+  },
+  "url": "https://www.powershellgallery.com/api/v2/Package/Az.Relay/1.0.4#/mod.nupkg",
+  "depends": "Az.Accounts",
+  "version": "1.0.4"
+}

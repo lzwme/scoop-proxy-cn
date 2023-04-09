@@ -1,0 +1,27 @@
+{
+  "checkver": {
+    "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id%20eq%20'Az.Compute'%20and%20IsLatestVersion%20eq%20true",
+    "replace": "${ver}",
+    "regex": "(?i)<d:Version>(?<ver>[^<]+)<.d:Version>"
+  },
+  "hash": "sha512:bfc0fbb1ddff8c383cd81388a8e4ddf3228eb10da00736b2b7435b7b3a8eeddabacb4b9748bd57810c96d0e65555010b6ead60f6eaaecade17efd67aba4e1034",
+  "description": "Microsoft Azure PowerShell - Compute service cmdlets for Azure Resource Manager in Windows PowerShell and PowerShell Core.  Manages virtual machines, hosted services, and related resources in Azure Resource Manager.  For more information on Virtual Machines, please visit the following: https://learn.microsoft.com/azure/virtual-machines/ For more information on Virtual Machine Scale Sets, please visit the following: https://learn.microsoft.com/azure/virtual-machine-scale-sets/",
+  "psmodule": {
+    "name": "Az.Compute"
+  },
+  "homepage": "https://www.powershellgallery.com/packages/Az.Compute",
+  "autoupdate": {
+    "url": "https://www.powershellgallery.com/api/v2/Package/Az.Compute/$version#/mod.nupkg",
+    "hash": {
+      "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id eq 'Az.Compute' and Version eq '$version'",
+      "regex": "<d:PackageHash>$base64<.d:PackageHash>"
+    }
+  },
+  "license": {
+    "identifier": "Refer to Webpage",
+    "url": "https://aka.ms/azps-license"
+  },
+  "url": "https://www.powershellgallery.com/api/v2/Package/Az.Compute/5.7.0#/mod.nupkg",
+  "depends": "Az.Accounts",
+  "version": "5.7.0"
+}

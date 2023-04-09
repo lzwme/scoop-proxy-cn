@@ -1,0 +1,27 @@
+{
+  "checkver": {
+    "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id%20eq%20'Az.DesktopVirtualization'%20and%20IsLatestVersion%20eq%20true",
+    "replace": "${ver}",
+    "regex": "(?i)<d:Version>(?<ver>[^<]+)<.d:Version>"
+  },
+  "hash": "sha512:0bd9295d835ce1f93398f87c75ab360a7314db46a7f26c7ad2863519b395dc9fcef04ff6299e8b37c1c17cec1f70d6115d45cd77cc6a66e3fc8310d38dd21c9b",
+  "description": "Microsoft Azure PowerShell: DesktopVirtualization cmdlets",
+  "psmodule": {
+    "name": "Az.DesktopVirtualization"
+  },
+  "homepage": "https://www.powershellgallery.com/packages/Az.DesktopVirtualization",
+  "autoupdate": {
+    "url": "https://www.powershellgallery.com/api/v2/Package/Az.DesktopVirtualization/$version#/mod.nupkg",
+    "hash": {
+      "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id eq 'Az.DesktopVirtualization' and Version eq '$version'",
+      "regex": "<d:PackageHash>$base64<.d:PackageHash>"
+    }
+  },
+  "license": {
+    "identifier": "Refer to Webpage",
+    "url": "https://aka.ms/azps-license"
+  },
+  "url": "https://www.powershellgallery.com/api/v2/Package/Az.DesktopVirtualization/3.1.1#/mod.nupkg",
+  "depends": "Az.Accounts",
+  "version": "3.1.1"
+}

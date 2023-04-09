@@ -1,0 +1,27 @@
+{
+  "checkver": {
+    "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id%20eq%20'Az.Cdn'%20and%20IsLatestVersion%20eq%20true",
+    "replace": "${ver}",
+    "regex": "(?i)<d:Version>(?<ver>[^<]+)<.d:Version>"
+  },
+  "hash": "sha512:ad099c4ab0638cd8ac4129130f7c9a237763ec70bda1b27a661ac6cb6d4af54deabf388f0b8cf1608e123ca6de3b81843fa510f8872aba50094748cce1776e57",
+  "description": "Microsoft Azure PowerShell: Cdn cmdlets",
+  "psmodule": {
+    "name": "Az.Cdn"
+  },
+  "homepage": "https://www.powershellgallery.com/packages/Az.Cdn",
+  "autoupdate": {
+    "url": "https://www.powershellgallery.com/api/v2/Package/Az.Cdn/$version#/mod.nupkg",
+    "hash": {
+      "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id eq 'Az.Cdn' and Version eq '$version'",
+      "regex": "<d:PackageHash>$base64<.d:PackageHash>"
+    }
+  },
+  "license": {
+    "identifier": "Refer to Webpage",
+    "url": "https://aka.ms/azps-license"
+  },
+  "url": "https://www.powershellgallery.com/api/v2/Package/Az.Cdn/2.1.0#/mod.nupkg",
+  "depends": "Az.Accounts",
+  "version": "2.1.0"
+}

@@ -1,0 +1,27 @@
+{
+  "checkver": {
+    "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id%20eq%20'Az.PowerBIEmbedded'%20and%20IsLatestVersion%20eq%20true",
+    "replace": "${ver}",
+    "regex": "(?i)<d:Version>(?<ver>[^<]+)<.d:Version>"
+  },
+  "hash": "sha512:d1522be392b24d0c308c7ef3e32f7f3678effdb39b112673cc90809dd7f5d78c91eead586b9c9ae97ca7743f3b8182c2be84efcad0f40e40b073632acc9cb04c",
+  "description": "Microsoft Azure PowerShell - Power BI Embedded service management cmdlets for Azure Resource Manager in Windows PowerShell and PowerShell Core.  Creates and manages Power BI Embedded workspace collections and Power BI Dedicated Capacities in Azure Resource Manager.  For more information on Power BI Embedded, please visit the following: https://docs.microsoft.com/azure/power-bi-embedded/",
+  "psmodule": {
+    "name": "Az.PowerBIEmbedded"
+  },
+  "homepage": "https://www.powershellgallery.com/packages/Az.PowerBIEmbedded",
+  "autoupdate": {
+    "url": "https://www.powershellgallery.com/api/v2/Package/Az.PowerBIEmbedded/$version#/mod.nupkg",
+    "hash": {
+      "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id eq 'Az.PowerBIEmbedded' and Version eq '$version'",
+      "regex": "<d:PackageHash>$base64<.d:PackageHash>"
+    }
+  },
+  "license": {
+    "identifier": "Refer to Webpage",
+    "url": "https://aka.ms/azps-license"
+  },
+  "url": "https://www.powershellgallery.com/api/v2/Package/Az.PowerBIEmbedded/1.2.0#/mod.nupkg",
+  "depends": "Az.Accounts",
+  "version": "1.2.0"
+}

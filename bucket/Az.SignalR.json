@@ -1,0 +1,27 @@
+{
+  "checkver": {
+    "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id%20eq%20'Az.SignalR'%20and%20IsLatestVersion%20eq%20true",
+    "replace": "${ver}",
+    "regex": "(?i)<d:Version>(?<ver>[^<]+)<.d:Version>"
+  },
+  "hash": "sha512:d02c6c3791aa3873f2274b488aceb3ac5926b9538655b806068bfdfbfd3267de09ccd6d24ccbbabb07f76b49fdc2f1a324d8699857aedd898b0c0221122661ce",
+  "description": "Microsoft Azure PowerShell - Azure SignalR service commands for Windows PowerShell and PowerShell Core.  For more information on SignalR, please visit the following: https://docs.microsoft.com/azure/azure-signalr/",
+  "psmodule": {
+    "name": "Az.SignalR"
+  },
+  "homepage": "https://www.powershellgallery.com/packages/Az.SignalR",
+  "autoupdate": {
+    "url": "https://www.powershellgallery.com/api/v2/Package/Az.SignalR/$version#/mod.nupkg",
+    "hash": {
+      "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id eq 'Az.SignalR' and Version eq '$version'",
+      "regex": "<d:PackageHash>$base64<.d:PackageHash>"
+    }
+  },
+  "license": {
+    "identifier": "Refer to Webpage",
+    "url": "https://aka.ms/azps-license"
+  },
+  "url": "https://www.powershellgallery.com/api/v2/Package/Az.SignalR/1.5.0#/mod.nupkg",
+  "depends": "Az.Accounts",
+  "version": "1.5.0"
+}

@@ -1,0 +1,36 @@
+{
+  "version": "1.0.81",
+  "description": "Unofficial Telegram Desktop.",
+  "homepage": "https://64gr.am",
+  "license": {
+    "identifier": "GPL-3.0-with-OpenSSL-exception",
+    "url": "https://github.com/TDesktop-x64/tdesktop/blob/dev/LICENSE"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/TDesktop-x64/tdesktop/releases/download/v1.0.81/64Gram_1.0.81_x64.zip",
+      "hash": "34c4781391ddd5d7be64a49f3b365e820b42ddd8b082275fab6932640bd56a42"
+    }
+  },
+  "pre_install": "if (Test-Path \"$persist_dir\\log.txt\") { Copy-Item \"$persist_dir\\log.txt\" \"$dir\\\" }",
+  "pre_uninstall": "if (Test-Path \"$dir\\log.txt\") { Copy-Item \"$dir\\log.txt\" \"$persist_dir\\\" }",
+  "bin": "Telegram.exe",
+  "shortcuts": [
+    [
+      "Telegram.exe",
+      "64Gram"
+    ]
+  ],
+  "persist": "tdata",
+  "checkver": {
+    "url": "https://api.github.com/repos/TDesktop-x64/tdesktop/releases",
+    "regex": "releases/download/v([\\d.]+)/(?<file>64Gram_([\\d.]+)(?:.beta)?_x64\\.zip)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/TDesktop-x64/tdesktop/releases/download/v$version/$matchFile"
+      }
+    }
+  }
+}

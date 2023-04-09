@@ -1,0 +1,27 @@
+{
+  "checkver": {
+    "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id%20eq%20'Az.Websites'%20and%20IsLatestVersion%20eq%20true",
+    "replace": "${ver}",
+    "regex": "(?i)<d:Version>(?<ver>[^<]+)<.d:Version>"
+  },
+  "hash": "sha512:8c8c9eb853263eae7f0fde1b686944c1cc1eaf86e5f926852cc3e6b228cac1b23c0ea607d9c1dc8ec8d8496e7085407ce9b5d6a673ba8d53b741443e248383fd",
+  "description": "Microsoft Azure PowerShell - App Service (Web Apps) service cmdlets for Azure Resource Manager in Windows PowerShell and PowerShell Core.  For more information on App Service, please visit the following: https://learn.microsoft.com/azure/app-service-web/",
+  "psmodule": {
+    "name": "Az.Websites"
+  },
+  "homepage": "https://www.powershellgallery.com/packages/Az.Websites",
+  "autoupdate": {
+    "url": "https://www.powershellgallery.com/api/v2/Package/Az.Websites/$version#/mod.nupkg",
+    "hash": {
+      "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id eq 'Az.Websites' and Version eq '$version'",
+      "regex": "<d:PackageHash>$base64<.d:PackageHash>"
+    }
+  },
+  "license": {
+    "identifier": "Refer to Webpage",
+    "url": "https://aka.ms/azps-license"
+  },
+  "url": "https://www.powershellgallery.com/api/v2/Package/Az.Websites/2.14.0#/mod.nupkg",
+  "depends": "Az.Accounts",
+  "version": "2.14.0"
+}

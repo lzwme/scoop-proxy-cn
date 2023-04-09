@@ -1,0 +1,27 @@
+{
+  "checkver": {
+    "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id%20eq%20'Az.DataProtection'%20and%20IsLatestVersion%20eq%20true",
+    "replace": "${ver}",
+    "regex": "(?i)<d:Version>(?<ver>[^<]+)<.d:Version>"
+  },
+  "hash": "sha512:7d94acfdf44961520e4063527eee00cb0c267163c8bca336e478697973370f83f67b44acb8a3bb0ebc9f186512ca3079cd263e5cb70aab440582a2ed049afd36",
+  "description": "Microsoft Azure PowerShell: DataProtection cmdlets",
+  "psmodule": {
+    "name": "Az.DataProtection"
+  },
+  "homepage": "https://www.powershellgallery.com/packages/Az.DataProtection",
+  "autoupdate": {
+    "url": "https://www.powershellgallery.com/api/v2/Package/Az.DataProtection/$version#/mod.nupkg",
+    "hash": {
+      "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id eq 'Az.DataProtection' and Version eq '$version'",
+      "regex": "<d:PackageHash>$base64<.d:PackageHash>"
+    }
+  },
+  "license": {
+    "identifier": "Refer to Webpage",
+    "url": "https://aka.ms/azps-license"
+  },
+  "url": "https://www.powershellgallery.com/api/v2/Package/Az.DataProtection/1.2.0#/mod.nupkg",
+  "depends": "Az.Accounts",
+  "version": "1.2.0"
+}

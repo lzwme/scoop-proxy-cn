@@ -1,0 +1,27 @@
+{
+  "checkver": {
+    "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id%20eq%20'Az.ServiceBus'%20and%20IsLatestVersion%20eq%20true",
+    "replace": "${ver}",
+    "regex": "(?i)<d:Version>(?<ver>[^<]+)<.d:Version>"
+  },
+  "hash": "sha512:95c0a814c6c29e089c938a057a64371af7baa9415da816a0d2f40e30ff506c7a6cb8728f35e924086aeff26c9fa9135def730ac3a898ac4c5d54cb3aee10e6f6",
+  "description": "Microsoft Azure PowerShell - Service Bus service cmdlets for Azure Resource Manager in Windows PowerShell and PowerShell Core.  For more information on Service Bus, please visit the following: https://learn.microsoft.com/azure/service-bus/",
+  "psmodule": {
+    "name": "Az.ServiceBus"
+  },
+  "homepage": "https://www.powershellgallery.com/packages/Az.ServiceBus",
+  "autoupdate": {
+    "url": "https://www.powershellgallery.com/api/v2/Package/Az.ServiceBus/$version#/mod.nupkg",
+    "hash": {
+      "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id eq 'Az.ServiceBus' and Version eq '$version'",
+      "regex": "<d:PackageHash>$base64<.d:PackageHash>"
+    }
+  },
+  "license": {
+    "identifier": "Refer to Webpage",
+    "url": "https://aka.ms/azps-license"
+  },
+  "url": "https://www.powershellgallery.com/api/v2/Package/Az.ServiceBus/2.2.1#/mod.nupkg",
+  "depends": "Az.Accounts",
+  "version": "2.2.1"
+}

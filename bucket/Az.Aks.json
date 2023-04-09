@@ -1,0 +1,27 @@
+{
+  "checkver": {
+    "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id%20eq%20'Az.Aks'%20and%20IsLatestVersion%20eq%20true",
+    "replace": "${ver}",
+    "regex": "(?i)<d:Version>(?<ver>[^<]+)<.d:Version>"
+  },
+  "hash": "sha512:3629b8b82aa52c055c5b131cb982aa361a94175fd99ad8c74da418346c0747221b1ab5918c99c3aa4ce7298b8e523f92adbe37f82db5cf7517f37e1be1461ad3",
+  "description": "Microsoft Azure PowerShell - Azure managed Kubernetes cmdlets for Windows PowerShell and PowerShell Core.  For more information on AKS, please visit the following: https://learn.microsoft.com/azure/aks/",
+  "psmodule": {
+    "name": "Az.Aks"
+  },
+  "homepage": "https://www.powershellgallery.com/packages/Az.Aks",
+  "autoupdate": {
+    "url": "https://www.powershellgallery.com/api/v2/Package/Az.Aks/$version#/mod.nupkg",
+    "hash": {
+      "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id eq 'Az.Aks' and Version eq '$version'",
+      "regex": "<d:PackageHash>$base64<.d:PackageHash>"
+    }
+  },
+  "license": {
+    "identifier": "Refer to Webpage",
+    "url": "https://aka.ms/azps-license"
+  },
+  "url": "https://www.powershellgallery.com/api/v2/Package/Az.Aks/5.3.2#/mod.nupkg",
+  "depends": "Az.Accounts",
+  "version": "5.3.2"
+}

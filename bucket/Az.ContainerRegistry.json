@@ -1,0 +1,27 @@
+{
+  "checkver": {
+    "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id%20eq%20'Az.ContainerRegistry'%20and%20IsLatestVersion%20eq%20true",
+    "replace": "${ver}",
+    "regex": "(?i)<d:Version>(?<ver>[^<]+)<.d:Version>"
+  },
+  "hash": "sha512:35b00ac08914b32a01f1161015d653b9ad439bddb3aeecc7660e09a365d21163da0b4cd3cc6edea04f4942fbca406dd3977c92be9f2663ac184ffe222ce3a3a9",
+  "description": "Microsoft Azure PowerShell - Container Registry service cmdlets for Azure Resource Manager in Windows PowerShell and PowerShell Core.  For more information on Container Registry, please visit the following: https://learn.microsoft.com/azure/container-registry/",
+  "psmodule": {
+    "name": "Az.ContainerRegistry"
+  },
+  "homepage": "https://www.powershellgallery.com/packages/Az.ContainerRegistry",
+  "autoupdate": {
+    "url": "https://www.powershellgallery.com/api/v2/Package/Az.ContainerRegistry/$version#/mod.nupkg",
+    "hash": {
+      "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id eq 'Az.ContainerRegistry' and Version eq '$version'",
+      "regex": "<d:PackageHash>$base64<.d:PackageHash>"
+    }
+  },
+  "license": {
+    "identifier": "Refer to Webpage",
+    "url": "https://aka.ms/azps-license"
+  },
+  "url": "https://www.powershellgallery.com/api/v2/Package/Az.ContainerRegistry/3.0.3#/mod.nupkg",
+  "depends": "Az.Accounts",
+  "version": "3.0.3"
+}

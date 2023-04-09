@@ -1,0 +1,27 @@
+{
+  "checkver": {
+    "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id%20eq%20'Az.Databricks'%20and%20IsLatestVersion%20eq%20true",
+    "replace": "${ver}",
+    "regex": "(?i)<d:Version>(?<ver>[^<]+)<.d:Version>"
+  },
+  "hash": "sha512:74eb243330bafcb8535f235a2e168d6b563a3675e9a6dce8c0aff0468eeaa44c3d870e77cda190a36139244684bf90732361821258fb9ca0a1cc3509796de565",
+  "description": "Microsoft Azure PowerShell: Databricks cmdlets",
+  "psmodule": {
+    "name": "Az.Databricks"
+  },
+  "homepage": "https://www.powershellgallery.com/packages/Az.Databricks",
+  "autoupdate": {
+    "url": "https://www.powershellgallery.com/api/v2/Package/Az.Databricks/$version#/mod.nupkg",
+    "hash": {
+      "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id eq 'Az.Databricks' and Version eq '$version'",
+      "regex": "<d:PackageHash>$base64<.d:PackageHash>"
+    }
+  },
+  "license": {
+    "identifier": "Refer to Webpage",
+    "url": "https://aka.ms/azps-license"
+  },
+  "url": "https://www.powershellgallery.com/api/v2/Package/Az.Databricks/1.5.0#/mod.nupkg",
+  "depends": "Az.Accounts",
+  "version": "1.5.0"
+}
