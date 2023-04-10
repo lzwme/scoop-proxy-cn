@@ -1,0 +1,89 @@
+{
+  "version": "1.66-4.20-1.2",
+  "description": "2-screen filer especially for keyboard-only usage",
+  "homepage": "http://akt.d.dooo.jp/akt_afxw.html",
+  "license": "Freeware",
+  "architecture": {
+    "64bit": {
+      "url": [
+        "http://akt.d.dooo.jp/lzh/afxw64_166.zip",
+        "https://bitbucket.org/k_takata/bregonig/downloads/bron420.zip",
+        "http://files.kaoriya.net/goto/cmigemo_w64#/migemo.zip"
+      ],
+      "hash": [
+        "8d07c725858bad69d1248e36aea8eb75d29c10497846bc96049cfe839a99da9e",
+        "15f58dd292aa6fc8fd592fa97a75d58b5680ddf7aa66ba10a2dd5c9f0ee159c1",
+        "80adcf55848b46f8eb006ff4f73c5b840e7e322529d5d4e534be235ff0bb4ad0"
+      ],
+      "post_install": [
+        "Write-Host \"Placing bregonig.dll, migemo.dll and dict folder\"",
+        "New-Item -Type HardLink -Target \"$dir\\bregonig\\x64\\bregonig.dll\" -Path \"$dir\\bregonig.dll\" | Out-Null",
+        "New-Item -Type HardLink -Target \"$dir\\cmigemo-default-win64\\migemo.dll\" -Path \"$dir\\migemo.dll\" | Out-Null",
+        "New-Item -Type Junction -Target \"$dir\\cmigemo-default-win64\\dict\\cp932\" -Path \"$dir\\dict\" | Out-Null"
+      ]
+    },
+    "32bit": {
+      "url": [
+        "http://akt.d.dooo.jp/lzh/afxw32_166.zip",
+        "https://bitbucket.org/k_takata/bregonig/downloads/bron420.zip",
+        "http://files.kaoriya.net/goto/cmigemo_w32#/migemo.zip"
+      ],
+      "hash": [
+        "3510bac5b47623b428da40276c99a6a836037df5532e8df2a8e4ab229a3e3e04",
+        "15f58dd292aa6fc8fd592fa97a75d58b5680ddf7aa66ba10a2dd5c9f0ee159c1",
+        "98e7f28e69f86bf8e44861121bd0472885e9e8162bf16ba1a92740412d86ea89"
+      ],
+      "post_install": [
+        "Write-Host \"Placing bregonig.dll, migemo.dll and dict folder\"",
+        "New-Item -Type HardLink -Target \"$dir\\bregonig\\bregonig.dll\" -Path \"$dir\bregonig.dll\" | Out-Null",
+        "New-Item -Type HardLink -Target \"$dir\\cmigemo-default-win32\\migemo.dll\" -Path \"$dir\\migemo.dll\" | Out-Null",
+        "New-Item -Type Junction -Target \"$dir\\cmigemo-default-win64\\dict\\cp932\" -Path \"$dir\\dict\" | Out-Null"
+      ]
+    }
+  },
+  "extract_to": [
+    "",
+    "bregonig",
+    ""
+  ],
+  "bin": [
+    "AFXW.EXE",
+    "AFXWCFG.EXE"
+  ],
+  "pre_install": "foreach ($ext in ('DEF','HIS','INI','KEY')) { if (-not (Test-Path \"$persist_dir\\AFXW.$ext\")) { New-Item \"$dir\\AFXW.$ext\" | Out-Null } }",
+  "persist": [
+    "AFXW.DEF",
+    "AFXW.HIS",
+    "AFXW.INI",
+    "AFXW.KEY"
+  ],
+  "checkver": {
+    "script": [
+      "# akt_afxw.html is written in Shift_JIS but Content-Type is missing in response headers, so output is garbled. We can extract version information anyway.",
+      "$temp=$page",
+      "$temp+=[System.Text.Encoding]::GetEncoding('Shift_JIS').GetString($wc.DownloadData('http://k-takata.o.oo7.jp/mysoft/bregonig.html'))",
+      "$temp+=[System.Text.Encoding]::GetEncoding('utf-8').GetString($wc.DownloadData('https://github.com/koron/cmigemo/tags'))",
+      "return $temp"
+    ],
+    "regex": "v (?<version1>\\d+)\\.(?<version2>\\d+)(.|\\n)*?bregonig.dll Ver\\.(?<bversion1>\\d+)\\.(?<bversion2>\\d+)(.|\\n)*?/koron/cmigemo/releases/tag/rel-(?<cversion1>\\d+)_(?<cversion2>\\d+)",
+    "replace": "${version1}.${version2}-${bversion1}.${bversion2}-${cversion1}.${cversion2}"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": [
+          "http://akt.d.dooo.jp/lzh/afxw64_$matchVersion1$matchVersion2.zip",
+          "https://bitbucket.org/k_takata/bregonig/downloads/bron$matchBversion1$matchBversion2.zip",
+          "http://files.kaoriya.net/goto/cmigemo_w64#/migemo.zip"
+        ]
+      },
+      "32bit": {
+        "url": [
+          "http://akt.d.dooo.jp/lzh/afxw32_$matchVersion1$matchVersion2.zip",
+          "https://bitbucket.org/k_takata/bregonig/downloads/bron$matchBversion1$matchBversion2.zip",
+          "http://files.kaoriya.net/goto/cmigemo_w32#/migemo.zip"
+        ]
+      }
+    }
+  }
+}

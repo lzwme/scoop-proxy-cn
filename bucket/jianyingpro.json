@@ -1,11 +1,19 @@
 {
-  "homepage": "https://lv.ulikecam.com/",
-  "description": "Video editing application produced by ByteDance",
-  "license": "Proprietary",
-  "version": "3.9.0.9723",
-  "url": "https://lf3-faceucdn-tos.pstatp.com/obj/faceu-packages/Jianying_3_9_0_9723_jianyingpro_0_creatortool.exe#/jianyingpro.7z",
-  "hash": "7d9b937ad666911a0086a621da6d4b2a6ffb9b0a975ef2f46af678e07e3482f4",
-  "extract_dir": "JYPacket/3.9.0.9723",
+  "##": "剪映专业版",
+  "version": "4.0.0.9841",
+  "description": "[剪映专业版] - 剪映专业版拥有强大的素材库，支持多视频轨/音频轨编辑，用AI为创作赋能，满足多种专业剪辑场景。目前这款剪辑软件广泛应用于自媒体从业者和影视后期专业人士的视频创作工作中。",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://sf6-cdn-tos.huoshanstatic.com/obj/ies-hotsoon-draft/vco/ffd22c0b-e01c-400c-a09e-24671a1575a1.html"
+  },
+  "homepage": "https://lv.ulikecam.com",
+  "url": "https://lf3-package.vlabstatic.com/obj/faceu-packages/Jianying_4_0_0_9841_jianyingpro_0_creatortool.exe#/dl.7z",
+  "hash": "d18d22836bbe661cae51c99d6b9ca3a5a462ab8e622cb2a3c9e5cb2c42af835a",
+  "pre_install": [
+    "Move-Item \"$dir\\JYPacket\\$version\\*\" $dir -Force",
+    "Remove-Item \"$dir\\JYPacket\" -Force -Recurse"
+  ],
+  "bin": "JianyingPro.exe",
   "shortcuts": [
     [
       "JianyingPro.exe",
@@ -13,12 +21,15 @@
     ]
   ],
   "checkver": {
-    "url": "https://sf1-hscdn-tos.pstatp.com/obj/ies-fe-bee/bee_prod/biz_80/bee_prod_80_bee_publish_3563.json",
-    "regex": "/Jianying_(?<major>[\\d]+)_(?<minor>[\\d]+)_(?<patch>[\\d]+)_(?<build>[\\d]+)_jianyingpro_0_creatortool.exe",
-    "replace": "${major}.${minor}.${patch}.${build}"
+    "url": "https://lf3-beecdn.bytetos.com/obj/ies-fe-bee/bee_prod/biz_80/bee_prod_80_bee_publish_3563.json",
+    "jsonpath": "$.windows_download_pkg.channel_default",
+    "regex": "https://lf3-package.vlabstatic.com/(?<link>.*?Jianying_(\\d+)_(\\d+)_(\\d+)_(\\d+)_.*?\\.exe)",
+    "replace": "${1}.${2}.${3}.${4}"
   },
   "autoupdate": {
-    "url": "https://lf3-faceucdn-tos.pstatp.com/obj/faceu-packages/Jianying_$underscoreVersion_jianyingpro_0_creatortool.exe#/jianyingpro.7z",
-    "extract_dir": "JYPacket/$version"
+    "url": "https://lf3-package.vlabstatic.com/$matchLink#/dl.7z",
+    "hash": {
+      "mode": "download"
+    }
   }
 }

@@ -3,15 +3,12 @@
     "This is a reduced version of 'SarasaGothic-TC' from nerd-fonts. Only includes 1 fontface with different weights.",
     "For more details about different Sarasa fonts, check https://github.com/be5invis/Sarasa-Gothic#what-are-the-names"
   ],
-  "version": "0.40.5",
-  "license": "OFL-1.1",
-  "homepage": "https://github.com/be5invis/Sarasa-Gothic",
-  "url": "https://ghproxy.com/https://github.com/be5invis/Sarasa-Gothic/releases/download/v0.40.5/sarasa-gothic-ttf-0.40.5.7z#/dl.7z_",
-  "hash": "b532e59c522c8bb2f95bee18a74452d35ee1a1011906feba2effc30f5676e079",
-  "checkver": "github",
   "autoupdate": {
     "url": "https://ghproxy.com/https://github.com/be5invis/Sarasa-Gothic/releases/download/v$version/sarasa-gothic-ttf-$version.7z#/dl.7z_"
   },
+  "checkver": "github",
+  "hash": "b532e59c522c8bb2f95bee18a74452d35ee1a1011906feba2effc30f5676e079",
+  "homepage": "https://github.com/be5invis/Sarasa-Gothic",
   "installer": {
     "script": [
       "Invoke-ExternalCommand 7z -ArgumentList('e', \"$dir\\dl.7z_\" ,\"-o$dir\", '*-gothic-tc-*.ttf') | Out-Null",
@@ -22,6 +19,7 @@
       "}"
     ]
   },
+  "license": "OFL-1.1",
   "uninstaller": {
     "script": [
       "Get-ChildItem $dir -filter 'sarasa*.ttf' | ForEach-Object {",
@@ -30,5 +28,7 @@
       "}",
       "Write-Host \"The 'Sarasa-Gothic' Font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
     ]
-  }
+  },
+  "url": "https://ghproxy.com/https://github.com/be5invis/Sarasa-Gothic/releases/download/v0.40.5/sarasa-gothic-ttf-0.40.5.7z#/dl.7z_",
+  "version": "0.40.5"
 }

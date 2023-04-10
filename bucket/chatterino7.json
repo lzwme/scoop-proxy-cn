@@ -1,32 +1,44 @@
 {
-  "version": "4542721744",
-  "description": "Chat client for https://twitch.tv",
+  "version": "7.4.2",
   "homepage": "https://github.com/SevenTV/chatterino7",
+  "description": "A fork of Chatterino 2 with 7TV subscriber features.",
   "license": "MIT",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.com/https://github.com/SevenTV/chatterino7/releases/download/nightly-build/chatterino-windows-x86-64.zip",
-      "hash": "e50b75e04f33cb401f136e3e406a3efa4158ef487f49599595a76a24e75e3573",
-      "extract_dir": "Chatterino2",
-      "pre_install": "Get-ChildItem \"$dir\\chatterino.exe\" | Rename-Item -NewName { $_.name.Replace('o', 'o7') }"
+      "url": "https://ghproxy.com/https://github.com/SevenTV/chatterino7/releases/download/v7.4.2/Chatterino7.Portable.zip",
+      "hash": "7f9e6f1046952563f195831626bdfd19eeae8e0d6e5430759471409ca84cc86a"
     }
   },
+  "extract_dir": "Chatterino2",
+  "bin": [
+    [
+      "chatterino.exe",
+      "chatterino7"
+    ]
+  ],
   "shortcuts": [
     [
-      "chatterino7.exe",
+      "chatterino.exe",
       "Chatterino7"
     ]
   ],
-  "bin": "chatterino7.exe",
-  "checkver": {
-    "url": "https://api.github.com/repositories/342454835/actions/workflows/build.yml/runs?branch=chatterino7&status=success",
-    "jsonpath": "$.workflow_runs[0].id"
-  },
+  "persist": [
+    "Settings",
+    "Cache",
+    "Logs",
+    "Misc",
+    "ProfileAvatars"
+  ],
+  "checkver": "github",
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.com/https://github.com/SevenTV/chatterino7/releases/download/nightly-build/chatterino-windows-x86-64.zip"
+        "url": "https://ghproxy.com/https://github.com/SevenTV/chatterino7/releases/download/v$version/Chatterino7.Portable.zip"
       }
+    },
+    "hash": {
+      "url": "$baseurl/sha256-checksums.txt",
+      "regex": "$sha256\\s+G\\:\\\\Dev\\\\symbolification\\\\final\\\\$basename"
     }
   }
 }

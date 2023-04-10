@@ -1,0 +1,48 @@
+{
+  "version": "0.3.3",
+  "description": "Desktop application of new Bing's AI-powered chat (Windows, macOS and Linux)",
+  "homepage": "https://github.com/dice2o/BingGPT",
+  "license": {
+    "identifier": "Apache-2.0 license",
+    "url": "https://github.com/dice2o/BingGPT/blob/main/LICENSE"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/dice2o/BingGPT/releases/download/v0.3.3/BingGPT-0.3.3-win32-x64.zip",
+      "hash": "4ad83d1ba32a59e4cfa8be9171ea0d6a98f7a7bea8f09521230272462ac26dca"
+    },
+    "arm64": {
+      "url": "https://ghproxy.com/https://github.com/dice2o/BingGPT/releases/download/v0.3.3/BingGPT-0.3.3-win32-arm64.zip",
+      "hash": "0df5fd7c54874d2375f44dd69a7da8c2f3ef421c2f181d4213a14846f0148874"
+    }
+  },
+  "pre_install": [
+    "if (Test-Path \"$env:AppData\\BingGPT\") {",
+    "    info '[Persistent data]: Copying user data...'",
+    "    ensure \"$dir\\User Data\" | Out-Null",
+    "    Copy-Item \"$env:AppData\\BingGPT\\*\" \"$dir\\User Data\\\" -Recurse -Force -ErrorAction 'SilentlyContinue'",
+    "    Remove-Item \"$env:AppData\\BingGPT\" -Recurse -Force -ErrorAction 'SilentlyContinue'",
+    "}"
+  ],
+  "shortcuts": [
+    [
+      "BingGPT.exe",
+      "BingGPT",
+      "--user-data-dir=\"$dir\\User Data\""
+    ]
+  ],
+  "persist": "User Data",
+  "checkver": {
+    "github": "https://github.com/dice2o/BingGPT"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/dice2o/BingGPT/releases/download/v$version/BingGPT-$version-win32-x64.zip"
+      },
+      "arm64": {
+        "url": "https://ghproxy.com/https://github.com/dice2o/BingGPT/releases/download/v$version/BingGPT-$version-win32-arm64.zip"
+      }
+    }
+  }
+}
