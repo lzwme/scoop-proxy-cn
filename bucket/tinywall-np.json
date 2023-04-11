@@ -1,0 +1,47 @@
+{
+  "version": "3.3.1",
+  "description": "A free, lightweight and non-intrusive firewall.",
+  "homepage": "http://tinywall.pados.hu/",
+  "license": "GPL-3.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://tinywall.pados.hu/files/TinyWall-v3-Installer.msi#/setup.msi_",
+      "hash": "250b56eff2cd5316c6cf8c8b92cb5f29fb3849089e69c8138bf5dd9bd0e9e001"
+    }
+  },
+  "installer": {
+    "script": [
+      "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+      "Start-Process msiexec -ArgumentList @('/i', \"`\"$dir\\setup.msi_`\"\", '/qn', '/norestart') -Wait -Verb RunAs | Out-Null"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+      "Start-Process msiexec -ArgumentList @('/x', \"`\"$dir\\setup.msi_`\"\", '/qn', '/norestart') -Wait -Verb RunAs | Out-Null"
+    ]
+  },
+  "pre_install": [
+    "if (Test-Path \"$persist_dir\") { Copy-Item \"$persist_dir\\TinyWall\" \"$env:APPDATA\\TinyWall\" -Force -Recurse }"
+  ],
+  "pre_uninstall": [
+    "# Persist manually because the uninstaller deletes the 'config' folder",
+    "if (Test-Path \"$env:APPDATA\\TinyWall\") {",
+    "    ensure \"$persist_dir\" | Out-Null",
+    "    Copy-Item \"$env:APPDATA\\TinyWall\" \"$persist_dir\" -Force -Recurse",
+    "}",
+    "Stop-Service -Name 'tinywall*' -Force -ErrorAction SilentlyContinue",
+    "Stop-Process -Name 'tinywall*' -Force -ErrorAction SilentlyContinue"
+  ],
+  "checkver": {
+    "url": "https://tinywall.pados.hu/changelog.txt",
+    "regex": "(\\d.\\d.\\d)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://tinywall.pados.hu/files/TinyWall-v3-Installer.msi#/setup.msi_"
+      }
+    }
+  }
+}

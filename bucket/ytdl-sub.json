@@ -1,6 +1,6 @@
 {
-  "version": "2023.04.04",
-  "description": "Automate downloading and metadata generation with (integrated) yt-dlp",
+  "version": "2023.04.05.post1",
+  "description": "Automate downloading and metadata generation [for Kodi, Jellyfin, Plex etc.] with [built-in] yt-dlp",
   "homepage": "https://github.com/jmbannon/ytdl-sub",
   "license": " GPL-3.0-only",
   "suggest": {
@@ -12,12 +12,15 @@
   },
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.com/https://github.com/jmbannon/ytdl-sub/releases/download/2023.04.04/ytdl-sub.exe",
-      "hash": "ed56160e6ae8daddb00b69e5e8a41619d9af782f74a02f918e35de965c32a3ad"
+      "url": "https://ghproxy.com/https://github.com/jmbannon/ytdl-sub/releases/download/2023.04.05.post1/ytdl-sub.exe",
+      "hash": "a6f518868f156a40dd55a25f4f32308d1d685eb444a1d75588984ed60d447796"
     }
   },
   "bin": "ytdl-sub.exe",
-  "checkver": "github",
+  "checkver": {
+    "url": "https://api.github.com/repos/jmbannon/ytdl-sub/releases?per_page=1",
+    "jsonpath": "$[0].tag_name"
+  },
   "autoupdate": {
     "architecture": {
       "64bit": {

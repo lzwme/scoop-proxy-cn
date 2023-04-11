@@ -1,0 +1,29 @@
+{
+  "version": "0.1.0",
+  "description": "Database commandline client",
+  "homepage": "https://github.com/hymkor/sqlbless",
+  "architecture": {
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/hymkor/sqlbless/releases/download/v0.1.0/sqlbless-v0.1.0-windows-386.zip",
+      "hash": "06aba4fd7d7bb1ddbdc7b4d5d252065ff70f7c21fff1a9c18ce96b28e23e31fd"
+    },
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/hymkor/sqlbless/releases/download/v0.1.0/sqlbless-v0.1.0-windows-amd64.zip",
+      "hash": "6c7ff3920321299f072a702177f9fce8501d41db73892ff3a30551a3da89c861"
+    }
+  },
+  "bin": [
+    "sqlbless.exe"
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/hymkor/sqlbless/releases/download/v$version/sqlbless-v$version-windows-386.zip"
+      },
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/hymkor/sqlbless/releases/download/v$version/sqlbless-v$version-windows-amd64.zip"
+      }
+    }
+  }
+}

@@ -8,12 +8,22 @@
   },
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.com/https://github.com/dice2o/BingGPT/releases/download/v0.3.3/BingGPT-0.3.3-win32-x64.zip",
-      "hash": "4ad83d1ba32a59e4cfa8be9171ea0d6a98f7a7bea8f09521230272462ac26dca"
+      "url": "https://ghproxy.com/https://github.com/dice2o/BingGPT/releases/download/v0.3.3/BingGPT-0.3.3-win32-x64-Setup.exe#/dl.7z",
+      "hash": "e7f650bb3557be51be04f52a3bbbb7a37b222e3d48b9f4477aea38e600ff13c6",
+      "pre_install": [
+        "Expand-7zipArchive \"$dir\\binggpt-0.3.3-full.nupkg\" \"$dir\"",
+        "    Copy-Item \"$dir\\lib\\net45\\*\" \"$dir\" -Recurse -Force -ErrorAction 'SilentlyContinue'",
+        "    Remove-Item \"$dir\\*.gif\", \"$dir\\*.nupkg\", \"$dir\\RELEASES\", \"$dir\\*.ico\", \"$dir\\Update.*\", \"$dir\\lib\", \"$dir\\package\", \"$dir\\_rels\", \"$dir\\*.nuspec\", \"$dir\\*.xml\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
+      ]
     },
     "arm64": {
-      "url": "https://ghproxy.com/https://github.com/dice2o/BingGPT/releases/download/v0.3.3/BingGPT-0.3.3-win32-arm64.zip",
-      "hash": "0df5fd7c54874d2375f44dd69a7da8c2f3ef421c2f181d4213a14846f0148874"
+      "url": "https://ghproxy.com/https://github.com/dice2o/BingGPT/releases/download/v0.3.3/BingGPT-0.3.3-win32-arm64-Setup.exe#/dl.7z",
+      "hash": "57a80c2b1b0d02953528f70cc38064923d748ef360384db076f0d536f58f168e",
+      "pre_install": [
+        "Expand-7zipArchive \"$dir\\binggpt-0.3.3-full.nupkg\" \"$dir\"",
+        "    Copy-Item \"$dir\\lib\\net45\\*\" \"$dir\" -Recurse -Force -ErrorAction 'SilentlyContinue'",
+        "    Remove-Item \"$dir\\*.gif\", \"$dir\\*.nupkg\", \"$dir\\RELEASES\", \"$dir\\*.ico\", \"$dir\\Update.*\", \"$dir\\lib\", \"$dir\\package\", \"$dir\\_rels\", \"$dir\\*.nuspec\", \"$dir\\*.xml\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
+      ]
     }
   },
   "pre_install": [
@@ -38,10 +48,20 @@
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.com/https://github.com/dice2o/BingGPT/releases/download/v$version/BingGPT-$version-win32-x64.zip"
+        "url": "https://ghproxy.com/https://github.com/dice2o/BingGPT/releases/download/v$version/BingGPT-$version-win32-x64-Setup.exe#/dl.7z",
+        "pre_install": [
+          "Expand-7zipArchive \"$dir\\binggpt-$version-full.nupkg\" \"$dir\"",
+          "    Copy-Item \"$dir\\lib\\net45\\*\" \"$dir\" -Recurse -Force -ErrorAction 'SilentlyContinue'",
+          "    Remove-Item \"$dir\\*.gif\", \"$dir\\*.nupkg\", \"$dir\\RELEASES\", \"$dir\\*.ico\", \"$dir\\Update.*\", \"$dir\\lib\", \"$dir\\package\", \"$dir\\_rels\", \"$dir\\*.nuspec\", \"$dir\\*.xml\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
+        ]
       },
       "arm64": {
-        "url": "https://ghproxy.com/https://github.com/dice2o/BingGPT/releases/download/v$version/BingGPT-$version-win32-arm64.zip"
+        "url": "https://ghproxy.com/https://github.com/dice2o/BingGPT/releases/download/v$version/BingGPT-$version-win32-arm64-Setup.exe#/dl.7z",
+        "pre_install": [
+          "Expand-7zipArchive \"$dir\\binggpt-$version-full.nupkg\" \"$dir\"",
+          "    Copy-Item \"$dir\\lib\\net45\\*\" \"$dir\" -Recurse -Force -ErrorAction 'SilentlyContinue'",
+          "    Remove-Item \"$dir\\*.gif\", \"$dir\\*.nupkg\", \"$dir\\RELEASES\", \"$dir\\*.ico\", \"$dir\\Update.*\", \"$dir\\lib\", \"$dir\\package\", \"$dir\\_rels\", \"$dir\\*.nuspec\", \"$dir\\*.xml\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
+        ]
       }
     }
   }
