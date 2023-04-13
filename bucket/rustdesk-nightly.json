@@ -1,16 +1,16 @@
 {
-  "version": "1680741370",
+  "version": "1681260107",
   "description": "An open-source remote desktop software, written in Rust.",
   "homepage": "https://github.com/rustdesk/rustdesk",
   "license": "AGPL-3.0-only",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.com/https://github.com/rustdesk/rustdesk/releases/download/nightly/rustdesk-1.2.0-x86_64-pc-windows-msvc.exe",
-      "hash": "5c3527467b51797d7887a2cd5949b73a56c32e87506ed7b43672fe74a621cc1e"
+      "url": "https://ghproxy.com/https://github.com/rustdesk/rustdesk/releases/download/nightly/rustdesk-1.2.0-x86_64.exe",
+      "hash": "2676c4a00544661d64be179496dfa46f8f1340e799b1ea97b1281b0fa6d4de8b"
     },
     "32bit": {
-      "url": "https://ghproxy.com/https://github.com/rustdesk/rustdesk/releases/download/nightly/rustdesk-1.2.0-i686-pc-windows-msvc-sciter.exe",
-      "hash": "1a70bc2b99e1feba287e49a3bd5c71ee3672d08fcff701b4310479aec4bd55c3"
+      "url": "https://ghproxy.com/https://github.com/rustdesk/rustdesk/releases/download/nightly/rustdesk-1.2.0-x86-sciter.exe",
+      "hash": "b1d8ddbe7136cd23275592273b360546d88533e470c2ec2434d13a43d64d5cf5"
     }
   },
   "shortcuts": [
@@ -24,22 +24,22 @@
     "script": [
       "try {",
       "    $api = Invoke-RestMethod 'https://api.github.com/repositories/299354207/releases/tags/nightly'",
-      "    foreach ($name in $api.assets.name) { if ($name -clike '*-x86_64-pc-windows-msvc.exe') { $asset = $name; break } }",
+      "    foreach ($name in $api.assets.name) { if ($name -clike '*-x86_64.exe') { $asset = $name; break } }",
       "    (Get-Date $api.assets[0].updated_at -UFormat %s), $asset -join ' '",
       "}",
       "catch {",
       "    ''",
       "}"
     ],
-    "regex": "\\A(\\d+) rustdesk-(?<release>[\\d.-]+)-x86_64-pc-windows-msvc.exe\\Z"
+    "regex": "\\A(\\d+) rustdesk-(?<release>[\\d.-]+)-x86_64.exe\\Z"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.com/https://github.com/rustdesk/rustdesk/releases/download/nightly/rustdesk-$matchRelease-x86_64-pc-windows-msvc.exe"
+        "url": "https://ghproxy.com/https://github.com/rustdesk/rustdesk/releases/download/nightly/rustdesk-$matchRelease-x86_64.exe"
       },
       "32bit": {
-        "url": "https://ghproxy.com/https://github.com/rustdesk/rustdesk/releases/download/nightly/rustdesk-$matchRelease-i686-pc-windows-msvc-sciter.exe"
+        "url": "https://ghproxy.com/https://github.com/rustdesk/rustdesk/releases/download/nightly/rustdesk-$matchRelease-x86-sciter.exe"
       }
     }
   }
