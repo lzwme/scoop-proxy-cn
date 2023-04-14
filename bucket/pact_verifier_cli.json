@@ -1,0 +1,31 @@
+{
+  "version": "0.10.5",
+  "description": "Installer for the Pact Verifier CLI",
+  "homepage": "https://github.com/pact-foundation/pact-reference/blob/master/rust/pact_verifier_cli/README.md",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": [
+        "https://ghproxy.com/https://github.com/pact-foundation/pact-reference/releases/download/pact_verifier_cli-v0.10.5/pact_verifier_cli-windows-x86_64.exe.gz"
+      ],
+      "hash": [
+        "a4d7270b29970cd50ad4ec6d98a87068e0bb1ad9df52e86b7d3174564ac7ca73"
+      ],
+      "bin": [
+        "pact_verifier_cli.exe"
+      ]
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": [
+          "https://ghproxy.com/https://github.com/pact-foundation/pact-reference/releases/download/pact_verifier_cli-v$version/pact_verifier_cli-windows-x86_64.exe.gz"
+        ]
+      }
+    },
+    "hash": {
+      "url": "$url.sha256"
+    }
+  }
+}

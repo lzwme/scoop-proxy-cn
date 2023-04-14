@@ -1,47 +1,10 @@
 {
-  "architecture": {
-    "32bit": {
-      "hash": [
-        "4fc42942c727f6acb1008764013f5ff81fc206a6451845fecb716fa42cc6b0d4",
-        "b65d66860d9ccc18bfb05237b03e06db0d6c574be3d4b946c2a5e6865c08cb28",
-        "df2a5162e72e2518e2b75b4337c8e7b46c136554872af90fa0de1cf6ebef376f"
-      ],
-      "url": [
-        "https://code.visualstudio.com/sha/download?build=insider&os=win32-archive#/dl.7z",
-        "https://ghproxy.com/https://raw.githubusercontent.com/naderi/scoop-bucket/master/scripts/visual-studio-code/vscode-install-context.reg",
-        "https://ghproxy.com/https://raw.githubusercontent.com/naderi/scoop-bucket/master/scripts/visual-studio-code/vscode-uninstall-context.reg"
-      ]
-    },
-    "64bit": {
-      "hash": [
-        "5181c5330860483d511654203871f08f7f277c640b6df9c7f7d60e08b4af417a",
-        "b65d66860d9ccc18bfb05237b03e06db0d6c574be3d4b946c2a5e6865c08cb28",
-        "df2a5162e72e2518e2b75b4337c8e7b46c136554872af90fa0de1cf6ebef376f"
-      ],
-      "url": [
-        "https://code.visualstudio.com/sha/download?build=insider&os=win32-x64-archive#/dl.7z",
-        "https://ghproxy.com/https://raw.githubusercontent.com/naderi/scoop-bucket/master/scripts/visual-studio-code/vscode-install-context.reg",
-        "https://ghproxy.com/https://raw.githubusercontent.com/naderi/scoop-bucket/master/scripts/visual-studio-code/vscode-uninstall-context.reg"
-      ]
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "32bit": {
-        "hash": {
-          "jsonpath": "$.products[?(@.platform.os == 'win32-archive')].sha256hash",
-          "url": "https://code.visualstudio.com/sha?build=insider"
-        },
-        "url": "https://code.visualstudio.com/sha/download?build=insider&os=win32-archive#/dl.7z"
-      },
-      "64bit": {
-        "hash": {
-          "jsonpath": "$.products[?(@.platform.os == 'win32-x64-archive')].sha256hash",
-          "url": "https://code.visualstudio.com/sha?build=insider"
-        },
-        "url": "https://code.visualstudio.com/sha/download?build=insider&os=win32-x64-archive#/dl.7z"
-      }
-    }
+  "version": "1681362991969",
+  "homepage": "https://code.visualstudio.com/",
+  "description": "Visual Studio Code is a lightweight but powerful source code editor (Portable Edition).",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://code.visualstudio.com/License/"
   },
   "bin": [
     [
@@ -49,21 +12,11 @@
       "code-insiders"
     ]
   ],
-  "checkver": {
-    "jsonpath": "$.products[?(@.platform.os == 'win32-x64-archive')].timestamp",
-    "url": "https://code.visualstudio.com/sha?build=insider"
-  },
-  "description": "Visual Studio Code is a lightweight but powerful source code editor (Portable Edition).",
-  "homepage": "https://code.visualstudio.com/",
-  "license": {
-    "identifier": "Freeware",
-    "url": "https://code.visualstudio.com/License/"
-  },
-  "notes": [
-    "Visual Studio Code now supports Portable Mode! Please move the following directories:",
-    "From \"$env:USERPROFILE\\.vscode-insiders\\extensions\" to \"$env:SCOOP\\persist\\vscode-insider\\data\\extensions\"",
-    "From \"$env:APPDATA\\Code - Insiders\" to \"$env:SCOOP\\persist\\vscode-insider\\data\\user-data\"",
-    "Add Visual Studio Code as a context menu option by running: \"$dir\\vscode-install-context.reg\""
+  "shortcuts": [
+    [
+      "Code - Insiders.exe",
+      "Visual Studio Code - Insiders"
+    ]
   ],
   "persist": "data",
   "post_install": [
@@ -86,11 +39,58 @@
     "  $content | Set-Content -Path \"$dir\\vscode-uninstall-context.reg\"",
     "}"
   ],
-  "shortcuts": [
-    [
-      "Code - Insiders.exe",
-      "Visual Studio Code - Insiders"
-    ]
-  ],
-  "version": "1681276707477"
+  "architecture": {
+    "64bit": {
+      "url": [
+        "https://code.visualstudio.com/sha/download?build=insider&os=win32-x64-archive#/dl.7z",
+        "https://ghproxy.com/https://raw.githubusercontent.com/naderi/scoop-bucket/master/scripts/visual-studio-code/vscode-install-context.reg",
+        "https://ghproxy.com/https://raw.githubusercontent.com/naderi/scoop-bucket/master/scripts/visual-studio-code/vscode-uninstall-context.reg"
+      ],
+      "hash": [
+        "21a56d5dc1c7b2df9ebac78bdd6f69f81e754d2d3de80cbcc1c9e995a3f7fccb",
+        "b65d66860d9ccc18bfb05237b03e06db0d6c574be3d4b946c2a5e6865c08cb28",
+        "df2a5162e72e2518e2b75b4337c8e7b46c136554872af90fa0de1cf6ebef376f"
+      ]
+    },
+    "32bit": {
+      "url": [
+        "https://code.visualstudio.com/sha/download?build=insider&os=win32-archive#/dl.7z",
+        "https://ghproxy.com/https://raw.githubusercontent.com/naderi/scoop-bucket/master/scripts/visual-studio-code/vscode-install-context.reg",
+        "https://ghproxy.com/https://raw.githubusercontent.com/naderi/scoop-bucket/master/scripts/visual-studio-code/vscode-uninstall-context.reg"
+      ],
+      "hash": [
+        "221adaf501599bca22fe4ae48f64081d8d0bb624019b12c7dcd6b91b2d6280ed",
+        "b65d66860d9ccc18bfb05237b03e06db0d6c574be3d4b946c2a5e6865c08cb28",
+        "df2a5162e72e2518e2b75b4337c8e7b46c136554872af90fa0de1cf6ebef376f"
+      ]
+    }
+  },
+  "checkver": {
+    "url": "https://code.visualstudio.com/sha?build=insider",
+    "jsonpath": "$.products[?(@.platform.os == 'win32-x64-archive')].timestamp"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://code.visualstudio.com/sha/download?build=insider&os=win32-x64-archive#/dl.7z",
+        "hash": {
+          "url": "https://code.visualstudio.com/sha?build=insider",
+          "jsonpath": "$.products[?(@.platform.os == 'win32-x64-archive')].sha256hash"
+        }
+      },
+      "32bit": {
+        "url": "https://code.visualstudio.com/sha/download?build=insider&os=win32-archive#/dl.7z",
+        "hash": {
+          "url": "https://code.visualstudio.com/sha?build=insider",
+          "jsonpath": "$.products[?(@.platform.os == 'win32-archive')].sha256hash"
+        }
+      }
+    }
+  },
+  "notes": [
+    "Visual Studio Code now supports Portable Mode! Please move the following directories:",
+    "From \"$env:USERPROFILE\\.vscode-insiders\\extensions\" to \"$env:SCOOP\\persist\\vscode-insider\\data\\extensions\"",
+    "From \"$env:APPDATA\\Code - Insiders\" to \"$env:SCOOP\\persist\\vscode-insider\\data\\user-data\"",
+    "Add Visual Studio Code as a context menu option by running: \"$dir\\vscode-install-context.reg\""
+  ]
 }
