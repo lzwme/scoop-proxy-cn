@@ -1,19 +1,25 @@
 {
-  "version": "2.9.3",
-  "description": "World of Warcraft addon updater. (Beta version)",
-  "homepage": "https://wowup.io",
-  "license": {
-    "identifier": "GPL-3.0-or-later",
-    "url": "https://github.com/WowUp/WowUp/blob/master/LICENSE"
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/WowUp/WowUp/releases/download/v$version/WowUp-Setup-$version.exe#/dl.7z"
   },
-  "url": "https://ghproxy.com/https://github.com/WowUp/WowUp/releases/download/v2.9.3/WowUp-Setup-2.9.3.exe#/dl.7z",
-  "hash": "463dc704520b6fe11c893ac0630590cc9ff9ccc8f2b34a5793d036d6f1b15f09",
+  "checkver": {
+    "jsonpath": "$[0].tag_name",
+    "regex": "(?!v)(.+)",
+    "url": "https://api.github.com/repos/WowUp/WowUp/releases"
+  },
+  "description": "World of Warcraft addon updater. (Beta version)",
   "extract_dir": "$PLUGINSDIR",
+  "hash": "463dc704520b6fe11c893ac0630590cc9ff9ccc8f2b34a5793d036d6f1b15f09",
+  "homepage": "https://wowup.io",
   "installer": {
     "script": [
       "Remove-Item \"$dir\\*\" -Exclude 'app-64.7z'",
       "Expand-7zipArchive \"$dir\\app-64.7z\" \"$dir\" -Removal"
     ]
+  },
+  "license": {
+    "identifier": "GPL-3.0-or-later",
+    "url": "https://github.com/WowUp/WowUp/blob/master/LICENSE"
   },
   "shortcuts": [
     [
@@ -21,12 +27,6 @@
       "WowUp"
     ]
   ],
-  "checkver": {
-    "url": "https://api.github.com/repos/WowUp/WowUp/releases",
-    "jsonpath": "$[0].tag_name",
-    "regex": "(?!v)(.+)"
-  },
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/WowUp/WowUp/releases/download/v$version/WowUp-Setup-$version.exe#/dl.7z"
-  }
+  "url": "https://ghproxy.com/https://github.com/WowUp/WowUp/releases/download/v2.9.3/WowUp-Setup-2.9.3.exe#/dl.7z",
+  "version": "2.9.3"
 }

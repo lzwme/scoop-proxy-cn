@@ -1,9 +1,10 @@
 {
+  "version": "1.6.1",
   "homepage": "https://altstore.io/",
   "description": "A home for apps that push the boundaries of iOS. No jailbreak required.",
   "license": "AGPL-3.0",
-  "version": "nightly",
   "url": "https://cdn.altstore.io/file/altstore/altinstaller.zip",
+  "hash": "",
   "installer": {
     "script": [
       "if ([Environment]::OSVersion.Version.Major -ne \"10\") {",
@@ -19,6 +20,16 @@
       "AltServer"
     ]
   ],
+  "chekver": {
+    "url": "https://faq.altstore.io/release-notes/altserver",
+    "regex": "AltServer\\s(\\d+(\\.\\d+)?)"
+  },
+  "autoupdate": {
+    "url": "https://cdn.altstore.io/file/altstore/altinstaller.zip",
+    "hash": {
+      "mode": "download"
+    }
+  },
   "notes": [
     "AltServer requires both iTunes and iCloud installed to work, you must download and install them from Apple's webstie.",
     "Refer to https://faq.altstore.io/ for more inforamtion."

@@ -1,70 +1,52 @@
 {
-  "homepage": "https://www.vmware.com/products/workstation-pro.html",
-  "version": "16.1.0.17198959",
-  "description": "VMWare. Industry standard for running multiple operating systems as virtual machines (VMs) on a single PC.",
+  "version": "17.0.0-20800274",
+  "homepage": "https://www.vmware.com/ca/products/workstation-player.html",
+  "description": "An application for creating and running virtual machines on your computer.",
   "license": {
-    "identifier": "Proprietary",
-    "url": "https://www.vmware.com/content/dam/digitalmarketing/vmware/en/pdf/downloads/eula/universal_eula.pdf"
+    "identifier": "Freeware",
+    "url": "https://www.vmware.com/ca/help/legal.html"
   },
   "architecture": {
     "64bit": {
-      "url": "https://download3.vmware.com/software/wkst/file/VMware-workstation-full-16.1.0-17198959.exe#/cosi.exe",
-      "hash": "342e92eed1ed1b90b11eda462d5bfc40252cdfdd247112be00fba51d4f8f7525",
-      "installer": {
-        "args": [
-          "/s",
-          "/v\"",
-          "/qn",
-          "EULAS_AGREED=1",
-          "DATACOLLECTION=0",
-          "DESKTOP_SHORTCUT=0",
-          "STARTMENU_SHORTCUT=0",
-          "AUTOSOFTWAREUPDATE=0",
-          "INSTALLDIR=\"\"$dir\"\"",
-          "\""
-        ],
-        "keep": true
-      },
-      "uninstaller": {
-        "file": "cosi.exe",
-        "args": [
-          "/s",
-          "/v\"",
-          "/qn",
-          "REMOVE=ALL",
-          "\""
-        ]
-      },
-      "shortcuts": [
-        [
-          "vmware.exe",
-          "VMware Workstation Pro"
-        ],
-        [
-          "vmplayer.exe",
-          "VMware Workstation Player"
-        ],
-        [
-          "vmnetcfg.exe",
-          "Virtual Network Editor"
-        ]
-      ]
+      "url": "https://download3.vmware.com/software/WKST-PLAYER-1700/VMware-player-full-17.0.0-20800274.exe#/setup.exe",
+      "hash": "ae238c457a100f15a6d009bfeee4ff277dce181e96a279d486f07f30da433183"
     }
   },
+  "pre_install": [
+    "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+    "Start-Process \"$dir\\setup.exe\" -Wait -Verb 'RunAs' -ArgumentList '/x'; Remove-Item \"$dir\\setup.exe\"",
+    "$msiInstaller = (Get-ChildItem \"$env:TEMP\" -Filter 'VMware*' -Recurse -Force).FullName; Copy-Item $msiInstaller \"$dir\\setup.msi\" -Force",
+    "Start-Process 'msiexec' -Wait -Verb 'RunAs' -ArgumentList @('/i', \"$dir\\setup.msi\", '/qn', '/norestart', 'REBOOT=ReallySuppress', 'EULAS_AGREED=1', 'ADDLOCAL=ALL')",
+    "Remove-Item $msiInstaller -Force"
+  ],
+  "pre_uninstall": [
+    "if ($cmd -eq 'uninstall') {",
+    "   if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+    "   Start-Process 'msiexec' -Wait -Verb 'RunAs' -ArgumentList @('/x', \"$dir\\setup.msi\", '/qn', '/norestart', 'REBOOT=ReallySuppress')",
+    "   Start-Sleep -Seconds 2",
+    "   Write-Host \"Please restart your computer to uninstall $app properly\" -F 'Red'",
+    "}"
+  ],
   "checkver": {
-    "url": "https://chocolatey.org/packages/vmwareworkstation",
-    "regex": "Downloads of v\\s+([\\d.]+)"
+    "url": "https://scoop.sh/",
+    "script": [
+      "$userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'",
+      "(Invoke-WebRequest 'https://www.vmware.com/go/getplayer-win' -UserAgent $userAgent).BaseResponse.RequestMessage.RequestUri.AbsoluteUri"
+    ],
+    "regex": "WKST-PLAYER-(?<Half>[\\d]+)/VMware-player-full-([\\w.-]+)\\.exe"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://download3.vmware.com/software/wkst/file/VMware-workstation-full-$version.exe#/cosi.exe",
+        "url": "https://download3.vmware.com/software/WKST-PLAYER-$matchHalf/VMware-player-full-$version.exe#/setup.exe",
         "hash": {
-          "url": "https://my.vmware.com/web/vmware/details?downloadGroup=WKST-$majorVersion$minorVersion$patchVersion-WIN&productId=686",
-          "regex": "(?sm)$basename.*?SHA256SUM</span>:\\s+$sha256"
+          "type": "sha256",
+          "url": "https://customerconnect.vmware.com/channel/public/api/v1.0/dlg/details?locale=en_US&downloadGroup=WKST-PLAYER-$matchHalf",
+          "mode": "json",
+          "jsonpath": "$.downloadFiles[0].sha256checksum",
+          "find": "$sha256"
         }
       }
     }
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

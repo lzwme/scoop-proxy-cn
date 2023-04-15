@@ -1,28 +1,28 @@
 {
-  "version": "0.3.7",
-  "description": "UPYUN Storage Command Tool",
-  "homepage": "https://github.com/upyun/upx",
-  "license": "MIT",
   "architecture": {
-    "64bit": {
-      "url": "https://ghproxy.com/https://github.com/upyun/upx/releases/download/v0.3.7/upx_0.3.7_Windows_x86_64.zip",
-      "hash": "62439d782391729917990ca404a347525b165e6caf63d7b2263e802482a4f5c4"
-    },
     "32bit": {
-      "url": "https://ghproxy.com/https://github.com/upyun/upx/releases/download/v0.3.7/upx_0.3.7_Windows_i386.zip",
-      "hash": "559b2e772d35facdf88e418bbace19f34369562dddb19542f4d4c9951752ecb5"
+      "hash": "559b2e772d35facdf88e418bbace19f34369562dddb19542f4d4c9951752ecb5",
+      "url": "https://ghproxy.com/https://github.com/upyun/upx/releases/download/v0.3.7/upx_0.3.7_Windows_i386.zip"
+    },
+    "64bit": {
+      "hash": "62439d782391729917990ca404a347525b165e6caf63d7b2263e802482a4f5c4",
+      "url": "https://ghproxy.com/https://github.com/upyun/upx/releases/download/v0.3.7/upx_0.3.7_Windows_x86_64.zip"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/upyun/upx/releases/download/v$version/upx_$version_Windows_i386.zip"
+      },
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/upyun/upx/releases/download/v$version/upx_$version_Windows_x86_64.zip"
+      }
     }
   },
   "bin": "upx.exe",
   "checkver": "github",
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.com/https://github.com/upyun/upx/releases/download/v$version/upx_$version_Windows_x86_64.zip"
-      },
-      "32bit": {
-        "url": "https://ghproxy.com/https://github.com/upyun/upx/releases/download/v$version/upx_$version_Windows_i386.zip"
-      }
-    }
-  }
+  "description": "UPYUN Storage Command Tool",
+  "homepage": "https://github.com/upyun/upx",
+  "license": "MIT",
+  "version": "0.3.7"
 }
