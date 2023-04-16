@@ -1,0 +1,31 @@
+{
+  "version": "0.3.0",
+  "description": "Utility to automatically create backups with restic",
+  "homepage": "https://github.com/a4albers/backup-release",
+  "license": "Unknown",
+  "url": "https://ghproxy.com/https://github.com/a4albers/backup-release/releases/download/v0.3.0/backup-x86_64-pc-windows-msvc.zip",
+  "hash": "c52840487c549af523bea9f4fe3c9551611cdd4768e75424a51690b594e1b58e",
+  "bin": [
+    "backup.exe",
+    "backup-config.exe"
+  ],
+  "depends": [
+    "restic",
+    "rclone"
+  ],
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\backup-config.yaml\")) {",
+    "  New-Item \"$persist_dir\\backup-config.yaml\" -ItemType File",
+    "}"
+  ],
+  "post_install": [
+    "New-ItemProperty -Path \"HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\" -Name a4albers-backup -Value \"$dir\\backup.exe\""
+  ],
+  "pre_uninstall": [
+    "Get-Process backup -ErrorAction SilentlyContinue | Where-Object {$_.id} | Stop-Process | Wait-Process -Timeout 30"
+  ],
+  "post_uninstall": [
+    "Remove-ItemProperty -Path \"HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\" -Name a4albers-backup"
+  ],
+  "persist": "backup-config.yaml"
+}

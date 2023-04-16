@@ -1,0 +1,42 @@
+{
+  "$schema": "https://ghproxy.com/https://raw.githubusercontent.com/ScoopInstaller/Scoop/master/schema.json",
+  "version": "2.0.2",
+  "description": "A lightweight virtual CD/DVD/Blu-ray drive software.",
+  "homepage": "https://www.yubsoft.com/imgdrivelite/",
+  "license": "Freeware",
+  "url": "https://download.yubsoft.com/imgdrivelite_2.0.2.zip",
+  "hash": "8f55f0977c1bcb16a4b0ba17680f9fe1f10aa04d2997725f83ce3c722eb3bbc6",
+  "architecture": {
+    "64bit": {
+      "shortcuts": [
+        [
+          "imgdrivelite_x64.exe",
+          "ImgDrive Lite"
+        ]
+      ]
+    },
+    "32bit": {
+      "shortcuts": [
+        [
+          "imgdrivelite_x86.exe",
+          "ImgDrive Lite"
+        ]
+      ]
+    },
+    "arm64": {
+      "shortcuts": [
+        [
+          "imgdrivelite_arm64.exe",
+          "ImgDrive Lite"
+        ]
+      ]
+    }
+  },
+  "checkver": {
+    "url": "https://www.yubsoft.com/imgdrivelite/",
+    "regex": "ImgDrive Lite ([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://download.yubsoft.com/imgdrivelite_$version.zip"
+  }
+}
