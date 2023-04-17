@@ -1,37 +1,37 @@
 {
-  "homepage": "http://www.tuxpaint.org/",
-  "license": "GPL-2.0-only",
-  "version": "0.9.28",
   "architecture": {
-    "64bit": {
-      "url": "https://master.dl.sourceforge.net/project/tuxpaint/tuxpaint/0.9.28/tuxpaint-0.9.28-windows-sdl2.0-x86_64.zip",
-      "hash": "sha1:b4e3c83c68fdf0d0d55ce64b4775805b470ae1be"
-    },
     "32bit": {
-      "url": "https://master.dl.sourceforge.net/project/tuxpaint/tuxpaint/0.9.28/tuxpaint-0.9.28-windows-sdl2.0-i686.zip",
-      "hash": "sha1:6839d23cfcab641c4d16fea1f6cacfaa51760bec"
+      "hash": "sha1:6839d23cfcab641c4d16fea1f6cacfaa51760bec",
+      "url": "https://sourceforge.net/projects/tuxpaint/files/tuxpaint/0.9.29/tuxpaint-0.9.29-windows-i686-installer.exe/download"
+    },
+    "64bit": {
+      "hash": "sha1:b4e3c83c68fdf0d0d55ce64b4775805b470ae1be",
+      "url": "https://sourceforge.net/projects/tuxpaint/files/tuxpaint/0.9.29/tuxpaint-0.9.29-windows-x86_64-installer.exe/download"
     }
   },
-  "extract_dir": "TuxPaint",
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://sourceforge.net/projects/tuxpaint/files/tuxpaint/$version/tuxpaint-$version-windows-i686-installer.exe/download"
+      },
+      "64bit": {
+        "url": "https://sourceforge.net/projects/tuxpaint/files/tuxpaint/$version/tuxpaint-$version-windows-x86_64-installer.exe/download"
+      }
+    }
+  },
   "bin": "tuxpaint.exe",
+  "checkver": {
+    "regex": "Current Version \\(([\\d.]+)\\):</h3>",
+    "url": "http://www.tuxpaint.org/download/"
+  },
+  "extract_dir": "TuxPaint",
+  "homepage": "http://www.tuxpaint.org/",
+  "license": "GPL-2.0-only",
   "shortcuts": [
     [
       "tuxpaint.exe",
       "TuxPaint"
     ]
   ],
-  "checkver": {
-    "url": "http://www.tuxpaint.org/download/",
-    "regex": "Current Version \\(([\\d.]+)\\):</h3>"
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://master.dl.sourceforge.net/project/tuxpaint/tuxpaint/$version/tuxpaint-$version-windows-sdl2.0-x86_64.zip"
-      },
-      "32bit": {
-        "url": "https://master.dl.sourceforge.net/project/tuxpaint/tuxpaint/$version/tuxpaint-$version-windows-sdl2.0-i686.zip"
-      }
-    }
-  }
+  "version": "0.9.29"
 }

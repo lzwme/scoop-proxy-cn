@@ -1,35 +1,53 @@
 {
+  "version": "1.2.1",
+  "description": "Composit font of BIZ UD Gothic and JetBrains Mono",
   "homepage": "https://github.com/yuru7/udev-gothic",
-  "description": "UDEV Gothic is a programming font that combines BIZ UD Gothic, a universal design font, and JetBrains Mono, a developer's font.",
-  "license": "https://github.com/yuru7/udev-gothic/blob/main/OFL.txt",
-  "version": "1.2.0",
-  "url": "https://ghproxy.com/https://github.com/yuru7/udev-gothic/releases/download/v1.2.0/UDEVGothic_v1.2.0.zip",
-  "hash": "565b021d9268d9f10e88628799b4b4c2637e19605902c74d28689f5fbcdfe64d",
-  "checkver": {
-    "github": "https://github.com/yuru7/udev-gothic"
-  },
-  "extract_dir": "UDEVGothic_1.2.0",
+  "license": "OFL-1.1",
+  "url": "https://ghproxy.com/https://github.com/yuru7/udev-gothic/releases/download/v1.2.1/UDEVGothic_v1.2.1.zip",
+  "hash": "27ce8efce29c05142e75684ab1eb62902f920358cfb47638c53ebf41b1f19c30",
+  "checkver": "github",
   "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/yuru7/udev-gothic/releases/download/v$version/UDEVGothic_v$version.zip",
-    "extract_dir": "UDEVGothic_$version"
+    "url": "https://ghproxy.com/https://github.com/yuru7/udev-gothic/releases/download/v$version/UDEVGothic_v$version.zip"
   },
   "installer": {
     "script": [
-      "Get-ChildItem $dir -filter '*.ttf' | ForEach-Object {",
-      "   $fontdir = \"$env:LocalAppData\\Microsoft\\Windows\\Fonts\"",
-      "   New-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value \"$fontdir\\$($_.Name)\" -Force | Out-Null",
-      "   Copy-Item $_.Fullname -destination \"$fontdir\"",
+      "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
+      "$windows1809BuildNumber = 17763",
+      "$isPerUserFontInstallationSupported = $currentBuildNumber -ge $windows1809BuildNumber",
+      "$isFontInstallationForAllUsers = $global -or !$isPerUserFontInstallationSupported",
+      "if ($isFontInstallationForAllUsers -and !(is_admin)) {",
+      "    error \"Administrator rights are required to install $app.\"",
+      "    exit 1",
+      "}",
+      "$fontInstallDir = if ($isFontInstallationForAllUsers) { \"$env:windir\\Fonts\" } else { \"$env:LOCALAPPDATA\\Microsoft\\Windows\\Fonts\" }",
+      "$registryRoot = if ($isFontInstallationForAllUsers) { \"HKLM\" } else { \"HKCU\" }",
+      "$registryKey = \"${registryRoot}:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts\"",
+      "New-Item $fontInstallDir -ItemType Directory -ErrorAction SilentlyContinue | Out-Null",
+      "Get-ChildItem $dir -Filter '*.ttf' -Recurse | ForEach-Object {",
+      "    $value = if ($isFontInstallationForAllUsers) { $_.Name } else { \"$fontInstallDir\\$($_.Name)\" }",
+      "    New-ItemProperty -Path $registryKey -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $value -Force | Out-Null",
+      "    Copy-Item $_.FullName -Destination $fontInstallDir",
       "}"
     ]
   },
   "uninstaller": {
     "script": [
-      "Get-ChildItem $dir -filter '*.ttf' | ForEach-Object {",
-      "   $fontdir = \"$env:LocalAppData\\Microsoft\\Windows\\Fonts\"",
-      "   Remove-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
-      "   Remove-Item \"$fontdir\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
-      "}"
+      "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
+      "$windows1809BuildNumber = 17763",
+      "$isPerUserFontInstallationSupported = $currentBuildNumber -ge $windows1809BuildNumber",
+      "$isFontInstallationForAllUsers = $global -or !$isPerUserFontInstallationSupported",
+      "if ($isFontInstallationForAllUsers -and !(is_admin)) {",
+      "    error \"Administrator rights are required to uninstall $app.\"",
+      "    exit 1",
+      "}",
+      "$fontInstallDir = if ($isFontInstallationForAllUsers) { \"$env:windir\\Fonts\" } else { \"$env:LOCALAPPDATA\\Microsoft\\Windows\\Fonts\" }",
+      "$registryRoot = if ($isFontInstallationForAllUsers) { \"HKLM\" } else { \"HKCU\" }",
+      "$registryKey = \"${registryRoot}:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts\"",
+      "Get-ChildItem $dir -Filter '*.ttf' -Recurse | ForEach-Object {",
+      "    Remove-ItemProperty -Path $registryKey -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
+      "    Remove-Item \"$fontInstallDir\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
+      "}",
+      "Write-Host \"The '$app' Font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
     ]
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }
