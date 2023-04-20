@@ -1,10 +1,10 @@
 {
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Utility to automatically create backups with restic",
   "homepage": "https://github.com/a4albers/backup-release",
   "license": "Unknown",
-  "url": "https://ghproxy.com/https://github.com/a4albers/backup-release/releases/download/v0.4.0/backup-x86_64-pc-windows-msvc.zip",
-  "hash": "3021e82414afb8d423ec0c8145e81f81f2cfb261ce9b2f0104eec6dab3c29a7d",
+  "url": "https://ghproxy.com/https://github.com/a4albers/backup-release/releases/download/v0.5.0/backup-x86_64-pc-windows-msvc.zip",
+  "hash": "b16d0d454b9cf8707c4486c5862065444253a7e3b47a1266e436dc426a908f17",
   "bin": [
     "backup.exe",
     "backup-config.exe",
@@ -26,7 +26,7 @@
   ],
   "pre_install": [
     "if (!(Test-Path \"$persist_dir\\backup-config.yaml\")) {",
-    "  New-Item \"$persist_dir\\backup-config.yaml\" -ItemType File",
+    "  New-Item \"$persist_dir\\backup-config.yaml\" -ItemType File -Force",
     "}"
   ],
   "post_install": [

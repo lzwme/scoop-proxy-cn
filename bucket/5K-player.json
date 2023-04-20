@@ -1,0 +1,47 @@
+{
+  "architecture": {
+    "32bit": {
+      "hash": "3f3a6be97009d858b62c46876d42499c85b83e37e6bb05399d150fa0ba3aecaa",
+      "url": "https://www.5kplayer.com/download/5kplayer-32bit.exe"
+    },
+    "64bit": {
+      "hash": "8c3dd952e77977a3d41474af223b43c92eb12b074160a041f35c3869fec64dfc",
+      "url": "https://www.5kplayer.com/download/5kplayer-64bit.exe"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://www.5kplayer.com/download/5kplayer-32bit.exe"
+      },
+      "64bit": {
+        "url": "https://www.5kplayer.com/download/5kplayer-64bit.exe"
+      }
+    }
+  },
+  "bin": "5KPlayer.exe",
+  "checkver": {
+    "regex": "Stable version: ([\\d.]+)",
+    "url": "https://www.5kplayer.com/5kplayer-download-windows.htm"
+  },
+  "homepage": "https://www.5kplayer.com/",
+  "installer": {
+    "script": [
+      "Remove-Item \"$dir\\5KPlayer.exe\" -Force",
+      "Expand-7ZipArchive \"$dir\\app.7z\" \"$dir\" -Removal",
+      "Remove-Item \"$dir\\uninstaller.exe\",\"$dir\\`$PLUGINSDIR\",\"$dir\\logo\"  -Force -Recurse"
+    ]
+  },
+  "license": "freeware",
+  "shortcuts": [
+    [
+      "5KPlayer.exe",
+      "5KPlayer"
+    ],
+    [
+      "5KPlayer.exe -auto",
+      "5KPlayer Autorun"
+    ]
+  ],
+  "version": "6.9"
+}

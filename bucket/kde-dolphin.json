@@ -1,14 +1,8 @@
 {
   "version": "22.12.3-1878",
-  "description": "A file manager developed by KDE that lets you navigate and browse the contents of your hard drives, USB sticks, SD cards, and more.",
   "homepage": "https://apps.kde.org/dolphin/",
+  "description": "A file manager developed by KDE that lets you navigate and browse the contents of your hard drives, USB sticks, SD cards, and more.",
   "license": "GPL-2.0-or-later",
-  "notes": [
-    "- 'Move to trash' is not working in the KDE Dolphin for Windows as reported in 'https://www.mail-archive.com/kde-bugs-dist@kde.org/msg677905.html'.",
-    "- If you click the storage info widget on the right-bottom of the KDE Dolphin for Windows, you don't need to download the software that it will show because it doesn't change something even if you put the software under the system PATH.",
-    "- If you want a somehow smooth experience of the KDE Dolphin for Windows, you can enable 'Delete' in 'Context Menu' under 'Configure Dolphin...'. But YOU SHOULD KNOW the 'Delete' can PERMANENTLY delete files.",
-    "- If you want to get the latest development branch-based installer, please install `versions/kde-dolphin-nightly`"
-  ],
   "architecture": {
     "64bit": {
       "url": "https://binary-factory.kde.org/job/Dolphin_Release_win64/1878/artifact/dolphin-22.12.3-1878-windows-cl-msvc2019-x86_64.7z",
@@ -19,8 +13,18 @@
   "shortcuts": [
     [
       "bin\\dolphin.exe",
-      "Dolphin"
+      "KDE Dolphin"
     ]
+  ],
+  "notes": [
+    "1. 'Move to trash' is not working in the KDE Dolphin for Windows as reported in 'https://www.mail-archive.com/kde-bugs-dist@kde.org/msg677905.html'.",
+    "2. If you click the storage info widget on the right-bottom of the KDE Dolphin for Windows, you don't need to download the software that it will show because it doesn't change something even if you put the software under the system PATH.",
+    "3. If you want a somehow smooth experience of the KDE Dolphin for Windows, you can enable 'Delete' in 'Context Menu' under 'Configure Dolphin...'. But YOU SHOULD KNOW the 'Delete' can PERMANENTLY delete files.",
+    "4. If you want to get the latest development branch-based installer, please install `kde-dolphin-nightly` from Versions bucket."
+  ],
+  "pre_uninstall": [
+    "Write-Host 'Killing dbus processes.'",
+    "Stop-Process -Name 'dbus*' -ErrorAction 'SilentlyContinue' -Force"
   ],
   "checkver": {
     "url": "https://binary-factory.kde.org/job/Dolphin_Release_win64/",
