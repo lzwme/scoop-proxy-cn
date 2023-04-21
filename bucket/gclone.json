@@ -1,22 +1,58 @@
 {
-  "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/dogbutcat/gclone/releases/download/$version/gclone-$version-windows-amd64.zip"
+  "version": "1.62.2-mod1.5.2",
+  "description": "A modified version of the rclone, Provide dynamic replacement sa file support for google drive operation.",
+  "homepage": "https://github.com/dogbutcat/gclone",
+  "license": "Apache License 2.0",
+  "suggest": {
+    "Windows File System Proxy": "nonportable/winfsp-np"
   },
-  "bin": "gclone\\gclone-v1.59.1-mod1.5.0-windows-amd64\\gclone.exe",
-  "checkver": "github",
-  "description": "A modified version of the rclone - Provide dynamic replacement sa file support for google drive operation",
-  "extract_to": "gclone",
-  "hash": "e596b9a2e9cd00e9d265af9acf8bd8309a936b9154572cbfe73a1a42b4d98388",
-  "license": "Open Source",
   "notes": [
-    "\nA modified version of the rclone - Provide dynamic replacement sa file support for google drive operation\n"
+    "To use Mount the remote as file system on a mountpoint on Windows, you will need to download and install WinFsp.",
+    "For more info: https://rclone.org/commands/rclone_mount/"
   ],
-  "shortcuts": [
-    [
-      "gclone\\gclone-v1.59.1-mod1.5.0-windows-amd64\\gclone.exe",
-      "gclone"
-    ]
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/dogbutcat/gclone/releases/download/v1.62.2-mod1.5.2/gclone-v1.62.2-mod1.5.2-windows-amd64.zip",
+      "hash": "5693A3B5412CDBE6A385D022D69418762739AE3A3990BF5E721AD0A1D9F475C4",
+      "extract_dir": "gclone-v1.62.2-mod1.5.2-windows-amd64"
+    },
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/dogbutcat/gclone/releases/download/v1.62.2-mod1.5.2/gclone-v1.62.2-mod1.5.2-windows-386.zip",
+      "hash": "72EDA2B656E3CDAB07E8F54CE0208F7AB7D32E13CAEAEC313001B8171EF0ADDD",
+      "extract_dir": "gclone-v1.62.2-mod1.5.2-windows-386"
+    }
+  },
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\rclone.conf\") -or !(Get-Item \"$persist_dir\\rclone.conf\").Length) {",
+    "   New-Item \"$persist_dir\\rclone.conf\" -ItemType File -Force | Out-Null",
+    "",
+    "   $tilde = if ($env:HOME) {",
+    "       $env:HOME",
+    "   } elseif ($env:USERPROFILE) {",
+    "       $env:USERPROFILE",
+    "   } else {",
+    "       \"$env:HOMEDRIVE%\\$env:HOMEPATH\"",
+    "   }",
+    "}"
   ],
-  "url": "https://ghproxy.com/https://github.com/dogbutcat/gclone/releases/download/v1.59.1-mod1.5.0/gclone-v1.59.1-mod1.5.0-windows-amd64.zip",
-  "version": "1.59.1-mod1.5.0"
+  "uninstaller": {
+    "script": "if ((Test-Path \"$dir\\rclone.conf\") -and !(Get-Item \"$dir\\rclone.conf\").LinkType -and (Test-Path $persist_dir)) { Copy-Item \"$dir\\rclone.conf\" $persist_dir }"
+  },
+  "bin": "gclone.exe",
+  "persist": "rclone.conf",
+  "checkver": {
+    "github": "https://github.com/dogbutcat/gclone"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/dogbutcat/gclone/releases/download/v$version/gclone-v$version-windows-amd64.zip",
+        "extract_dir": "rclone-v$version-windows-amd64"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/dogbutcat/gclone/releases/download/v$version/gclone-v$version-windows-386.zip",
+        "extract_dir": "rclone-v$version-windows-386"
+      }
+    }
+  }
 }

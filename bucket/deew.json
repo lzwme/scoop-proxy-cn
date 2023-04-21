@@ -1,0 +1,48 @@
+{
+  "version": "2.9.5",
+  "description": "Dolby Encoding Engine Wrapper",
+  "homepage": "https://github.com/pcroland/deew",
+  "license": "MIT License",
+  "suggest": {
+    "Dolby Encoding Engine": "Dolby.Encoding.Engine"
+  },
+  "notes": [
+    "it's highly recommended to use FFmpeg-Master-Builds because bug fixes and other improvements are added on a daily basis."
+  ],
+  "url": "https://ghproxy.com/https://github.com/pcroland/deew/releases/download/2.9.5/deew.exe",
+  "hash": "E4CDCC4A815A291A501E901E0206EA30C98D1E44F8B8979F6A80511F7D72BF90",
+  "pre_install": [
+    "while ($true) {",
+    "Write-Host \"Choose FFmpeg build to install:\" -ForegroundColor Yellow",
+    "Write-Host \"1. FFmpeg-Master-Builds\"",
+    "Write-Host \"2. FFmpeg-Stable-Builds\"",
+    "",
+    "$choice = Read-Host \"Enter the number of the FFmpeg build you want to install\"",
+    "",
+    "if ($choice -eq \"1\") {",
+    "    Write-Host \"Installing FFmpeg-Master-Builds...\"",
+    "    iex \"powershell -command scoop install 7zip\" | out-null",
+    "    iex \"powershell -command scoop install git\" | out-null",
+    "    iex \"powershell -command scoop bucket add versions\" | out-null",
+    "    scoop install ffmpeg-nightly",
+    "    break",
+    "}",
+    "elseif ($choice -eq \"2\") {",
+    "        Write-Host \"Installing FFmpeg-Stable-Builds...\"",
+    "        iex \"powershell -command scoop install 7zip\" | out-null",
+    "        scoop install ffmpeg",
+    "        break",
+    "}",
+    "else {",
+    "    Write-Host \"Invalid choice. Please enter 1 or 2.\" -ForegroundColor Red",
+    "}",
+    "}"
+  ],
+  "bin": "deew.exe",
+  "checkver": {
+    "github": "https://github.com/pcroland/deew"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/pcroland/deew/releases/download/v$version/deew.exe"
+  }
+}
