@@ -1,27 +1,39 @@
 {
-  "homepage": "https://docs.shuax.com/MouseInc/",
-  "description": "mouse",
-  "version": "2.10.21",
-  "license": "Freeware",
-  "url": "https://dl.shuax.com/MouseInc2.10.21.7z",
-  "hash": "FDB6DC659DC583FC3C7DE911910DEFDAE80B2C593180B6039F36D348EF345BB5",
+  "autoupdate": {
+    "extract_dir": "MouseInc",
+    "url": "https://update.shuax.com/MouseInc$version.7z"
+  },
+  "bin": [
+    [
+      "MouseInc.exe"
+    ]
+  ],
+  "checkver": {
+    "jsonpath": "$.version",
+    "url": "https://scoop-apps-version.vercel.app/MouseInc"
+  },
+  "description": "MouseInc是一款小巧好用的全局鼠标手势软件。郑重承诺永久免费，无广告，不扫描硬盘，不上传隐私。",
   "extract_dir": "MouseInc",
-  "pre_install": "if (!(Test-Path \"$persist_dir\\MouseInc.json\")) { Set-Content \"$dir\\MouseInc.json\" '' -Encoding ASCII }",
-  "post_install": [
-    "$env:TEMP_PATH=\"$env:USERPROFILE\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\"",
-    "$env:APPS=\"$env:TEMP_PATH\\Scoop Apps\"",
-    "$env:START_UP=\"$env:TEMP_PATH\\Startup\"",
-    "Copy-Item \"$env:APPS\\MouseInc.lnk\" -Destination \"$env:START_UP\\MouseInc.lnk\""
+  "hash": "6769ebcd404fbf73a83925a449c143c29e9c009a288f71a5a6ebc0e543fe945c",
+  "homepage": "https://shuax.com/project/mouseinc/",
+  "license": "Freeware",
+  "notes": [
+    "个人作者没有能力和精力解决报毒的问题，只能承诺永无任何恶意行为。",
+    "杀软报毒，如果信任我，请加入白名单。如果信不过，就不要使用，不要找我反馈！！！",
+    "便携化设计，单执行文件，无运行库依赖，不需要安装就能运行。",
+    "首次运行时会在当前目录释放MouseInc.json配置文件。",
+    "",
+    "软件官网：https://shuax.com/project/mouseinc/",
+    "使用手册：https://docs.shuax.com/MouseInc/",
+    "问题反馈：https://github.com/shuax/MouseInc.Settings/discussions"
   ],
-  "persist": [
-    "MouseInc.json"
-  ],
-  "bin": "MouseInc.exe",
+  "persist": "MouseInc.json",
   "shortcuts": [
     [
       "MouseInc.exe",
       "MouseInc"
     ]
   ],
-  "_from": "okibcn/ScoopMaster"
+  "url": "https://update.shuax.com/MouseInc2.11.8.7z",
+  "version": "2.11.8"
 }

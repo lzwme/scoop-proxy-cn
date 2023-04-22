@@ -1,0 +1,72 @@
+{
+  "architecture": {
+    "32bit": {
+      "hash": "1faaabe3980db6d65138b982d46edcc12df55af8255d2cac2e03af665ae34832",
+      "url": "https://scoop-apps-version.vercel.app/msedge-stable-win-X86#/dl.7z"
+    },
+    "64bit": {
+      "hash": "aef22fbd9acca568665bbcbee02949af23087a4516bdbde8246d9a0de6cc5541",
+      "url": "https://scoop-apps-version.vercel.app/msedge-stable-win-X64#/dl.7z"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "hash": {
+          "jsonpath": "$[?(@.Product == 'stable')].Release[?(@.Architecture == 'x86')].Hash",
+          "mode": "json",
+          "url": "https://ghproxy.com/https://raw.githubusercontent.com/JaimeZeng/scoop-apps-version/main/msedge"
+        },
+        "url": "https://scoop-apps-version.vercel.app/msedge-stable-win-X86#/dl.7z"
+      },
+      "64bit": {
+        "hash": {
+          "jsonpath": "$[?(@.Product == 'stable')].Release[?(@.Architecture == 'x64')].Hash",
+          "mode": "json",
+          "url": "https://ghproxy.com/https://raw.githubusercontent.com/JaimeZeng/scoop-apps-version/main/msedge"
+        },
+        "url": "https://scoop-apps-version.vercel.app/msedge-stable-win-X64#/dl.7z"
+      }
+    }
+  },
+  "bin": [
+    [
+      "msedge.exe",
+      "msedge",
+      "--user-data-dir=\"$dir\\User Data\" --disk-cache-dir=\"$dir\\Cache\" --no-first-run --enable-ftp --enable-gpu-rasterization --enable-leak-detection --enable-potentially-annoying-security-features --disable-component-update --disable-crash-reporter --disable-breakpad --disable-background-networking --disable-logging --disable-notifications --no-report-upload --print-to-pdf-no-header --save-page-as-mhtml --site-per-process --crash-server-url=\"0.0.0.0\" --force-update-remote-url=\"0.0.0.0\" --google-url=\"0.0.0.0\" --trace-upload-url=\"0.0.0.0\""
+    ],
+    [
+      "msedge.exe",
+      "microsoft-edge-stable",
+      "--user-data-dir=\"$dir\\User Data\" --disk-cache-dir=\"$dir\\Cache\" --no-first-run --enable-ftp --enable-gpu-rasterization --enable-leak-detection --enable-potentially-annoying-security-features --disable-component-update --disable-crash-reporter --disable-breakpad --disable-background-networking --disable-logging --disable-notifications --no-report-upload --print-to-pdf-no-header --save-page-as-mhtml --site-per-process --crash-server-url=\"0.0.0.0\" --force-update-remote-url=\"0.0.0.0\" --google-url=\"0.0.0.0\" --trace-upload-url=\"0.0.0.0\""
+    ]
+  ],
+  "checkver": {
+    "jsonpath": "$[?(@.Product == 'stable')].Version",
+    "url": "https://ghproxy.com/https://raw.githubusercontent.com/JaimeZeng/scoop-apps-version/main/msedge"
+  },
+  "description": "The chromium based Microsoft Edge browser(Stable Channel, Portable Edition).",
+  "homepage": "https://www.microsoft.com/en-us/edge",
+  "installer": {
+    "script": "Expand-7zipArchive -Path \"$dir\\MSEDGE.7z\" -ExtractDir \"Chrome-bin\\$version\" -Removal"
+  },
+  "license": "Freeware",
+  "notes": [
+    "If you encounter \"URL is not valid. The remote server returned an error: (308) Permanent Redirect.\" error",
+    "Please utilize aria2 to use multi-connection downloads.",
+    "   scoop install aria2",
+    "   scoop config aria2-warning-enabled true"
+  ],
+  "persist": [
+    "User Data",
+    "Cache"
+  ],
+  "shortcuts": [
+    [
+      "msedge.exe",
+      "Microsoft Edge",
+      "--user-data-dir=\"$dir\\User Data\" --disk-cache-dir=\"$dir\\Cache\" --no-first-run --enable-ftp --enable-gpu-rasterization --enable-leak-detection --enable-potentially-annoying-security-features --disable-component-update --disable-crash-reporter --disable-breakpad --disable-background-networking --disable-logging --disable-notifications --no-report-upload --print-to-pdf-no-header --save-page-as-mhtml --site-per-process --crash-server-url=\"0.0.0.0\" --force-update-remote-url=\"0.0.0.0\" --google-url=\"0.0.0.0\" --trace-upload-url=\"0.0.0.0\""
+    ]
+  ],
+  "version": "97.0.1072.62"
+}

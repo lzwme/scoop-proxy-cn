@@ -1,0 +1,67 @@
+{
+  "architecture": {
+    "64bit": {
+      "hash": "d45f87d819df7d41ac37ac385eadcf484f898e34abf036d1f214a147ef839e00",
+      "url": "https://ghproxy.com/https://github.com/sileshn/EndeavourOSWSL2/releases/download/20230401/EndeavourOSWSL2.zip"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/sileshn/EndeavourOSWSL2/releases/download/$version/EndeavourOSWSL2.zip"
+      }
+    }
+  },
+  "bin": "Endeavour.exe",
+  "checkver": "github",
+  "description": "Install Endeavour as a WSL Instance",
+  "homepage": "https://github.com/sileshn/DebianSidWSL2",
+  "license": "MIT",
+  "notes": "Even when you are logging in as 'root', some operations (like service command) require Windows administrator privileges",
+  "persist": "data",
+  "post_install": [
+    "$installable = $true",
+    "$user = [Security.Principal.WindowsIdentity]::GetCurrent() -as [Security.Principal.WindowsPrincipal]",
+    "$permission = Get-Acl $persist_dir | Select-Object -ExpandProperty Access | Where-Object {",
+    "    ($user.IsInRole($_.IdentityReference)) -and `",
+    "    ($_.FileSystemRights.ToString() -eq 'FullControl') -and `",
+    "    ($_.InheritanceFlags -band 3) -and `",
+    "    ($_.PropagationFlags.ToString() -ne 'NoPropagateInherit')",
+    "}",
+    "if ($null -eq $permission) {",
+    "   warn 'Full Control access to the scoop directory is necessary to install WSL distribution.'",
+    "   warn 'Change directory security and reinstall Endeavour.'",
+    "   $installable = $false",
+    "}",
+    "if ($null -eq (Get-Command 'wslconfig' -ErrorAction SilentlyContinue)) {",
+    "    warn 'WSL appears not to be enabled!'",
+    "    warn 'Run ''Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux'''",
+    "    warn 'from an elevated PowerShell. Restart your computer when prompted and reinstall Endeavour.'",
+    "    $installable = $false",
+    "}",
+    "$installable = $installable -and !(Invoke-ExternalCommand \"$dir\\Endeavour.exe\" 'isregd')",
+    "if ($installable) {",
+    "    warn 'DO NOT KILL THE PROCESS. Installation is still running!'",
+    "    Copy-Item \"$dir\\Endeavour.exe\" \"$persist_dir\\data\\Endeavour.exe\"",
+    "    $res = Invoke-ExternalCommand \"$persist_dir\\data\\Endeavour.exe\" 'install', \"$dir\\rootfs.tar.gz\"",
+    "    Remove-Item \"$persist_dir\\data\\Endeavour.exe\" -Force",
+    "    if(!$res) { error 'Endeavour installation failed!'; return }",
+    "}",
+    "Remove-Item \"$dir\\rootfs.tar.gz\" -Force"
+  ],
+  "shortcuts": [
+    [
+      "Endeavour.exe",
+      "Endeavour"
+    ]
+  ],
+  "uninstaller": {
+    "script": [
+      "if ($cmd -ne 'uninstall') { return }",
+      "$res = Invoke-ExternalCommand \"$dir\\Endeavour.exe\" 'isregd'",
+      "if(!$res) { error 'Endeavour is not registered!'; return }",
+      "Invoke-ExternalCommand \"$dir\\Endeavour.exe\" 'clean', '-y' | Out-Null"
+    ]
+  },
+  "version": "20230401"
+}

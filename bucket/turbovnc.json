@@ -1,13 +1,32 @@
 {
+  "version": "3.0.3",
+  "description": "A derivative of VNC that is tuned to provide peak performance for 3D and video workloads.",
+  "homepage": "https://turbovnc.org",
+  "license": {
+    "identifier": "GPL-2.0-or-later",
+    "url": "https://github.com/TurboVNC/turbovnc/blob/master/LICENSE.txt"
+  },
   "architecture": {
     "32bit": {
-      "hash": "6eb05a155b152989e660001d15fe8abaabbe7cea5b7e2b88c2a6eae28a1dfcc7",
-      "url": "https://sourceforge.net/projects/turbovnc/files/2.2.90%20(3.0%20beta1)/TurboVNC-2.2.90-x86.exe"
+      "url": "https://sourceforge.net/projects/turbovnc/files/3.0.3/TurboVNC-3.0.3-x86.exe",
+      "hash": "sha1:0f23326608f060b1c32c7584edf72e9e9ca56308"
     },
     "64bit": {
-      "hash": "042785e8871cf2cce115da024c3411f42e14af35a686bcc9836061fd85717a33",
-      "url": "https://sourceforge.net/projects/turbovnc/files/2.2.90%20(3.0%20beta1)/TurboVNC-2.2.90-x64.exe"
+      "url": "https://sourceforge.net/projects/turbovnc/files/3.0.3/TurboVNC-3.0.3-x64.exe",
+      "hash": "sha1:61a3671ce5f57d3419a71f6305250565e2ad130b"
     }
+  },
+  "innosetup": true,
+  "shortcuts": [
+    [
+      "vncviewerw.bat",
+      "TurboVNC Viewer",
+      "",
+      "vncviewer.ico"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/TurboVNC/turbovnc"
   },
   "autoupdate": {
     "architecture": {
@@ -18,31 +37,5 @@
         "url": "https://sourceforge.net/projects/turbovnc/files/$version/TurboVNC-$version-x64.exe"
       }
     }
-  },
-  "checkver": {
-    "disable": true,
-    "github": "https://github.com/TurboVNC/turbovnc"
-  },
-  "description": "A derivative of VNC that is tuned to provide peak performance for 3D and video workloads.",
-  "homepage": "https://turbovnc.org",
-  "innosetup": true,
-  "license": {
-    "identifier": "GPL-2.0-or-later",
-    "url": "https://github.com/TurboVNC/turbovnc/blob/master/LICENSE.txt"
-  },
-  "shortcuts": [
-    [
-      "vncviewerw.bat",
-      "TurboVNC Viewer",
-      "",
-      "vncviewer.ico"
-    ],
-    [
-      "vncviewerw.bat",
-      "TurboVNC Viewer (Listen Mode)",
-      "-listen",
-      "vncviewer.ico"
-    ]
-  ],
-  "version": "2.2.90"
+  }
 }

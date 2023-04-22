@@ -1,0 +1,67 @@
+{
+  "architecture": {
+    "64bit": {
+      "hash": "9e8fa2cff767fb210120dbdd4365739c967bb2ffb3aa3d7086af4a22736c79ec",
+      "url": "https://ghproxy.com/https://github.com/sileshn/LinuxmintWSL2/releases/download/20230410/LinuxmintWSL2.zip"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/sileshn/LinuxmintWSL2/releases/download/$version/LinuxmintWSL2.zip"
+      }
+    }
+  },
+  "bin": "Linuxmint.exe",
+  "checkver": "github",
+  "description": "Install Linuxmint as a WSL Instance",
+  "homepage": "https://github.com/sileshn/LinuxmintWSL2",
+  "license": "MIT",
+  "notes": "Even when you are logging in as 'root', some operations (like service command) require Windows administrator privileges",
+  "persist": "data",
+  "post_install": [
+    "$installable = $true",
+    "$user = [Security.Principal.WindowsIdentity]::GetCurrent() -as [Security.Principal.WindowsPrincipal]",
+    "$permission = Get-Acl $persist_dir | Select-Object -ExpandProperty Access | Where-Object {",
+    "    ($user.IsInRole($_.IdentityReference)) -and `",
+    "    ($_.FileSystemRights.ToString() -eq 'FullControl') -and `",
+    "    ($_.InheritanceFlags -band 3) -and `",
+    "    ($_.PropagationFlags.ToString() -ne 'NoPropagateInherit')",
+    "}",
+    "if ($null -eq $permission) {",
+    "   warn 'Full Control access to the scoop directory is necessary to install WSL distribution.'",
+    "   warn 'Change directory security and reinstall LinuxmintWSL.'",
+    "   $installable = $false",
+    "}",
+    "if ($null -eq (Get-Command 'wslconfig' -ErrorAction SilentlyContinue)) {",
+    "    warn 'WSL appears not to be enabled!'",
+    "    warn 'Run ''Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux'''",
+    "    warn 'from an elevated PowerShell. Restart your computer when prompted and reinstall LinuxmintWSL.'",
+    "    $installable = $false",
+    "}",
+    "$installable = $installable -and !(Invoke-ExternalCommand \"$dir\\Linuxmint.exe\" 'isregd')",
+    "if ($installable) {",
+    "    warn 'DO NOT KILL THE PROCESS. Installation is still running!'",
+    "    Copy-Item \"$dir\\Linuxmint.exe\" \"$persist_dir\\data\\Linuxmint.exe\"",
+    "    $res = Invoke-ExternalCommand \"$persist_dir\\data\\Linuxmint.exe\" 'install', \"$dir\\rootfs.tar.gz\"",
+    "    Remove-Item \"$persist_dir\\data\\Linuxmint.exe\" -Force",
+    "    if(!$res) { error 'LinuxmintWsl installation failed!'; return }",
+    "}",
+    "Remove-Item \"$dir\\rootfs.tar.gz\" -Force"
+  ],
+  "shortcuts": [
+    [
+      "Linuxmint.exe",
+      "Linuxmint"
+    ]
+  ],
+  "uninstaller": {
+    "script": [
+      "if ($cmd -ne 'uninstall') { return }",
+      "$res = Invoke-ExternalCommand \"$dir\\Linuxmint.exe\" 'isregd'",
+      "if(!$res) { error 'LinuxmintWsl is not registered!'; return }",
+      "Invoke-ExternalCommand \"$dir\\Linuxmint.exe\" 'clean', '-y' | Out-Null"
+    ]
+  },
+  "version": "20230410"
+}

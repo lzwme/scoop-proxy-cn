@@ -6,18 +6,15 @@
   "changelog": "https://github.com/ramensoftware/windhawk/releases",
   "url": "https://ghproxy.com/https://github.com/ramensoftware/windhawk/releases/download/v1.3.1/windhawk_setup.exe#/setup.exe",
   "hash": "fb1ecc8b6eeebda10fa06c1c5dce004e53ff17288929c0e77a0daaa384d2edf4",
-  "persist": "AppData",
+  "persist": "Windhawk\\AppData",
   "installer": {
-    "file": "setup.exe",
-    "args": [
-      "/S",
-      "/PORTABLE",
-      "/D=$dir\\"
+    "script": [
+      "Start-Process -Wait \"$dir\\setup.exe\" -ArgumentList '/S /portable' -Verb RunAs"
     ]
   },
   "shortcuts": [
     [
-      "windhawk.exe",
+      "Windhawk\\windhawk.exe",
       "Windhawk"
     ]
   ],
