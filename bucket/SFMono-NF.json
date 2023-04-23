@@ -1,11 +1,11 @@
 {
-  "version": "main",
-  "description": "Apple's SFMono font nerd-font patched and ligaturized",
-  "homepage": "https://github.com/shaunsingh/SFMono-Nerd-Font-Ligaturized",
+  "version": "18.0d1e1.0",
+  "description": "Apple's SF Mono font patched with the Nerd Fonts patcher",
+  "homepage": "https://github.com/epk/SF-Mono-Nerd-Font",
   "license": "MIT",
-  "url": "https://ghproxy.com/https://github.com/shaunsingh/SFMono-Nerd-Font-Ligaturized/archive/refs/heads/main.zip",
-  "hash": "b2b6facb9a238ed059c54edbb289ab0719b1fafb06d3f90ad3448afb7f119841",
-  "extract_dir": "SFMono-Nerd-Font-Ligaturized-main",
+  "url": "https://ghproxy.com/https://github.com/epk/SF-Mono-Nerd-Font/archive/refs/tags/v18.0d1e1.0.zip",
+  "hash": "8d69d7fa7404c59dad161c363c928bab2010aa1f1489642b6e035ca4b4094294",
+  "extract_dir": "SF-Mono-Nerd-Font-18.0d1e1.0",
   "installer": {
     "script": [
       "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
@@ -61,8 +61,17 @@
       "    Remove-Item \"$fontInstallDir\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
       "}",
       "if ($cmd -eq \"uninstall\") {",
-      "    Write-Host \"The '$($app.Replace('-NFL', ''))' Font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta",
+      "    Write-Host \"The '$($app.Replace('-NF', ''))' Font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta",
       "}"
     ]
+  },
+  "checkver": {
+    "url": "https://api.github.com/repos/epk/SF-Mono-Nerd-Font/releases/latest",
+    "jsonpath": "$.name",
+    "regex": "v([\\d.\\w]+)"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/epk/SF-Mono-Nerd-Font/archive/refs/tags/v$version.zip",
+    "extract_dir": "SF-Mono-Nerd-Font-$version"
   }
 }
