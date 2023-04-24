@@ -41,17 +41,18 @@
   "bin": "gclone.exe",
   "persist": "rclone.conf",
   "checkver": {
-    "github": "https://github.com/dogbutcat/gclone"
+    "github": "https://github.com/dogbutcat/gclone",
+    "regex": "releases/tag/v([\\d.]+-mod[\\d.]+)"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
         "url": "https://ghproxy.com/https://github.com/dogbutcat/gclone/releases/download/v$version/gclone-v$version-windows-amd64.zip",
-        "extract_dir": "rclone-v$version-windows-amd64"
+        "extract_dir": "gclone-v$version-windows-amd64"
       },
       "32bit": {
         "url": "https://ghproxy.com/https://github.com/dogbutcat/gclone/releases/download/v$version/gclone-v$version-windows-386.zip",
-        "extract_dir": "rclone-v$version-windows-386"
+        "extract_dir": "gclone-v$version-windows-386"
       }
     }
   }

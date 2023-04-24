@@ -1,6 +1,25 @@
 {
-  "version": "5.7.9",
+  "autoupdate": {
+    "hash": {
+      "mode": "extract",
+      "regex": "^$sha256([\\s]+)$basename",
+      "url": "https://ghproxy.com/https://raw.githubusercontent.com/JaimeZeng/scoop-apps-version/main/Music"
+    },
+    "url": "https://pan.jiemi.workers.dev/?file=/scoop/Music/$matchFilename"
+  },
+  "bin": [
+    [
+      "TTPlayer.exe",
+      "TTPlayer"
+    ]
+  ],
+  "checkver": {
+    "regex": "(?s)(?<filename>TTPlayer_v(?<version>([\\d.]+))\\.(?:7z|zip|rar))",
+    "url": "https://ghproxy.com/https://raw.githubusercontent.com/JaimeZeng/scoop-apps-version/main/Music"
+  },
   "description": "千千静听经典本地版",
+  "extract_dir": "TTPlayer",
+  "hash": "abc73e7f005787a47a435497ea89afe5e092c7dfa70d0e5ccb42bf4503093208",
   "homepage": "http://ttplayer.qianqian.com",
   "license": "Unknown",
   "notes": [
@@ -10,14 +29,9 @@
     "* 去歌词广告及弹窗，去右侧音乐窗口，去歌曲铃铛图标，剥离百度模块 (2012 年修改特点)",
     "* 千千静听最终版，经典纯本地版，体积小巧、功能强大，适合本地听歌（收藏版特点总结）"
   ],
-  "url": "https://pan.jiemi.workers.dev/?file=/scoop/Music/TTPlayer_v5.7.9.7z",
-  "hash": "abc73e7f005787a47a435497ea89afe5e092c7dfa70d0e5ccb42bf4503093208",
-  "extract_dir": "TTPlayer",
-  "bin": [
-    [
-      "TTPlayer.exe",
-      "TTPlayer"
-    ]
+  "persist": [
+    "AddIn",
+    "PlayList"
   ],
   "shortcuts": [
     [
@@ -25,20 +39,6 @@
       "千千静听"
     ]
   ],
-  "persist": [
-    "AddIn",
-    "PlayList"
-  ],
-  "checkver": {
-    "url": "https://scoop-apps.vercel.app/music",
-    "regex": "(?s)(?<filename>TTPlayer_v(?<version>([\\d.]+))\\.(?:7z|zip|rar))"
-  },
-  "autoupdate": {
-    "url": "https://pan.jiemi.workers.dev/?file=/scoop/Music/$matchFilename",
-    "hash": {
-      "url": "https://scoop-apps.vercel.app/music",
-      "mode": "extract",
-      "regex": "^$sha256([\\s]+)$basename"
-    }
-  }
+  "url": "https://pan.jiemi.workers.dev/?file=/scoop/Music/TTPlayer_v5.7.9.7z",
+  "version": "5.7.9"
 }
