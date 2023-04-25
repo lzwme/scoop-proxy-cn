@@ -1,35 +1,34 @@
 {
-  "version": "967",
-  "description": "Dolphin is KDE's file manager that lets you navigate and browse the contents of your hard drives, USB sticks, SD cards, and more. Creating, moving, or deleting files and folders is simple and fast.",
   "homepage": "https://apps.kde.org/dolphin/",
-  "license": "LGPL-2.0-only",
+  "version": "968",
+  "description": "A file manager developed by KDE that lets you navigate and browse the contents of your hard drives, USB sticks, SD cards, and more.",
+  "license": "GPL-2.0-or-later",
   "architecture": {
     "64bit": {
-      "url": "https://binary-factory.kde.org/view/Windows%2064-bit/job/Dolphin_Nightly_win64/967/artifact/dolphin-master-967-windows-cl-msvc2019-x86_64.7z",
-      "hash": "b3fc505c3f6f2a96e18bf6ed26b8fc8ab72830c6da2c8aa48c2bbe55dcfbe403"
+      "url": "https://binary-factory.kde.org/job/Dolphin_Nightly_win64/lastSuccessfulBuild/artifact/dolphin-master-968-windows-cl-msvc2019-x86_64.7z",
+      "hash": "5a3588783f44ccc1ff25f4f4a27bef80d93b02bab779c55eef2f96d682b91d82"
     }
   },
   "bin": "bin\\dolphin.exe",
   "shortcuts": [
     [
       "bin\\dolphin.exe",
-      "Dolphin"
+      "KDE Dolphin Nightly"
     ]
   ],
+  "pre_install": "Stop-Process -Name 'dbus-daemon' -Force -ErrorAction 'SilentlyContinue'",
   "checkver": {
-    "url": "https://binary-factory.kde.org/view/Windows%2064-bit/job/Dolphin_Nightly_win64/lastSuccessfulBuild/artifact/",
-    "regex": "dolphin-master-([\\d.-]+)-windows-cl-msvc2019-x86_64.7z"
+    "url": "https://binary-factory.kde.org/job/Dolphin_Nightly_win64/",
+    "regex": "dolphin-master-([\\d]+)-windows-cl-msvc(?<Year>[\\d]+)-x86_64"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://binary-factory.kde.org/view/Windows%2064-bit/job/Dolphin_Nightly_win64/$preReleaseVersion/artifact/dolphin-master-$version-windows-cl-msvc2019-x86_64.7z"
+        "url": "https://binary-factory.kde.org/job/Dolphin_Nightly_win64/lastSuccessfulBuild/artifact/dolphin-master-$version-windows-cl-msvc$matchYear-x86_64.7z",
+        "hash": {
+          "url": "$url.sha256"
+        }
       }
-    },
-    "hash": {
-      "url": "$url.sha256",
-      "regex": "$sha256"
     }
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

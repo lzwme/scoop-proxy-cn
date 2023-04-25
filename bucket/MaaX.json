@@ -1,0 +1,22 @@
+{
+  "version": "2.0.0-beta.4",
+  "description": "MAA GUI with Electron & Vue3",
+  "homepage": "https://www.maa.plus/",
+  "license": "AGPL-3.0",
+  "url": "https://ghproxy.com/https://github.com/MaaAssistantArknights/MaaX/releases/download/v2.0.0-beta.4/maa-x-win32-x64-2.0.0-beta.4.zip",
+  "hash": "3A6CAE5DCE51F5C9FAEDBB30D237980B79216BD9F9EA2B169FAB04F02EF0A4CD",
+  "bin": "maa-x.exe",
+  "shortcuts": [
+    [
+      "maa-x.exe",
+      "MaaX"
+    ]
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/MaaAssistantArknights/MaaX/releases",
+    "regex": "/releases/tag/v([\\d.]+(-alpha|-beta|-rc)?(\\.\\d+)?)"
+  },
+  "autoupdate": {
+    "url": "https://github.com/MaaAssistantArknights/MaaX/download/v$version/maa-x-win32-x64-v$version.zip"
+  }
+}
