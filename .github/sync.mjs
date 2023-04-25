@@ -95,10 +95,10 @@ async function syncDir(src, dest, repo = '') {
         content = content.replace(/(https:\/\/nodejs\.org\/dist\/)/gim, 'https://registry.npmmirror.com/-/binary/node/');
       } else if (content.includes('github.com') || content.includes('githubusercontent.com')) {
         content = content
-          .replace(/(https:\/\/github\.com.+\/releases\/download\/)/gim, 'https://ghproxy.com/$1')
-          .replace(/(https:\/\/github\.com.+\/archive\/)/gim, 'https://ghproxy.com/$1')
-          .replace(/(https\:\/\/(raw|gist)\.githubusercontent\.com)/gim, 'https://ghproxy.com/$1')
-          .replaceAll('https://ghproxy.com/https://ghproxy.com', 'https://ghproxy.com');
+          .replace(/(https:\/\/github\.com.+\/releases\/download\/)/gim, `${CONFIG.ghproxy}/$1`)
+          .replace(/(https:\/\/github\.com.+\/archive\/)/gim, `${CONFIG.ghproxy}/$1`)
+          .replace(/(https\:\/\/(raw|gist)\.githubusercontent\.com)/gim, `${CONFIG.ghproxy}/$1`)
+          .replaceAll(`${CONFIG.ghproxy}/${CONFIG.ghproxy}`, CONFIG.ghproxy);
       }
       cacheItem.fixed = content !== rawContent;
       fs.writeFileSync(dest, content, 'utf8');
@@ -158,7 +158,7 @@ async function updateReadme() {
 
 function updateInstallps1() {
   logger.debug('starting update install.ps1');
-  const installUrl = `${CONFIG.debug ? 'https://ghproxy.com/' : ''}https://raw.githubusercontent.com/scoopinstaller/install/master/install.ps1`;
+  const installUrl = `${CONFIG.debug ? `${CONFIG.ghproxy}/` : ''}https://raw.githubusercontent.com/scoopinstaller/install/master/install.ps1`;
   execSync(`curl ${installUrl} > install.ps1`);
   syncDir('install.ps1', 'install.ps1');
 }
