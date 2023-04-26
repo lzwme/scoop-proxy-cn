@@ -1,6 +1,6 @@
 {
   "autoupdate": {
-    "url": "https://ghproxy.com/https://ghproxy.net/https://github.com/SuslikV/cfg-cam/releases/download/$version/WebCameraConfig.exe"
+    "url": "https://ghproxy.net/https://github.com/SuslikV/cfg-cam/releases/download/$version/WebCameraConfig.exe"
   },
   "checkver": "github",
   "description": "Command-line application that saves and loads DirectShow webcam settings to/from the file",
@@ -15,6 +15,6 @@
   "persist": "cam_sett.cfg",
   "post_install": "Start-Process -FilePath \"$dir\\WebCameraConfig.exe\" -ArgumentList \"--savedev\" -NoNewWindow -Wait -RedirectStandardOutput \"$dir\\cam_sett.cfg\"",
   "pre_install": "if (!(Test-Path \"$persist_dir\\cam_sett.cfg\")) { New-Item \"$dir\\cam_sett.cfg\" | Out-Null }",
-  "url": "https://ghproxy.com/https://ghproxy.net/https://github.com/SuslikV/cfg-cam/releases/download/1.0/WebCameraConfig.exe",
+  "url": "https://ghproxy.net/https://github.com/SuslikV/cfg-cam/releases/download/1.0/WebCameraConfig.exe",
   "version": "1.0"
 }

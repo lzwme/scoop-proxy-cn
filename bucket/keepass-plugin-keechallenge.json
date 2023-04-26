@@ -4,13 +4,13 @@
   "homepage": "https://richardbenjaminrush.com/keechallenge/",
   "license": "GPL-3.0-or-later",
   "depends": "extras/keepass",
-  "url": "https://ghproxy.com/https://ghproxy.net/https://github.com/brush701/keechallenge/releases/download/1.5/KeeChallenge_1.5.zip",
+  "url": "https://ghproxy.net/https://github.com/brush701/keechallenge/releases/download/1.5/KeeChallenge_1.5.zip",
   "hash": "sha1:06C3B96ED674E5617F0DAFF5101E23EF95AFF71C",
   "checkver": {
     "github": "https://github.com/brush701/keechallenge"
   },
   "autoupdate": {
-    "url": "https://ghproxy.com/https://ghproxy.net/https://github.com/brush701/keechallenge/releases/download/$version/KeeChallenge_$version.zip"
+    "url": "https://ghproxy.net/https://github.com/brush701/keechallenge/releases/download/$version/KeeChallenge_$version.zip"
   },
   "installer": {
     "script": "Copy-Item \"$dir\\KeeChallenge_$version\\KeeChallenge.dll\" \"$(appdir keepass $global)\\current\\Plugins\"; Copy-Item \"$dir\\KeeChallenge_$version\\32bit\" \"$(appdir keepass $global)\\current\\Plugins\" -Recurse; Copy-Item \"$dir\\KeeChallenge_$version\\64bit\" \"$(appdir keepass $global)\\current\\Plugins\" -Recurse"
