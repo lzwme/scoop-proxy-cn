@@ -1,26 +1,33 @@
 {
-  "architecture": {
-    "64bit": {
-      "hash": "5a1f0e066c2c6b68c85d67de54d52f170f539dff117ce97f4166d8e984a728ba",
-      "url": "https://ghproxy.com/https://github.com/caddyserver/xcaddy/releases/download/v0.3.2/xcaddy_0.3.2_windows_amd64.zip"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "hash": {
-          "regex": "$sha256\\s+$basename",
-          "url": "$baseurl/xcaddy_$version_checksums.txt"
-        },
-        "url": "https://ghproxy.com/https://github.com/caddyserver/xcaddy/releases/download/v$version/xcaddy_$version_windows_amd64.zip"
-      }
-    }
-  },
-  "bin": "xcaddy.exe",
-  "checkver": "github",
-  "depends": "main/go",
+  "version": "0.3.3",
   "description": "Build Caddy with plugins",
   "homepage": "https://github.com/caddyserver/xcaddy",
   "license": "Apache-2.0",
-  "version": "0.3.2"
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/caddyserver/xcaddy/releases/download/v0.3.3/xcaddy_0.3.3_windows_amd64.zip",
+      "hash": "5f12a0689d96905dde76213b09d5ed5bd5c73356260f11bf784d061ecbbf219e"
+    },
+    "arm64": {
+      "url": "https://ghproxy.net/https://github.com/caddyserver/xcaddy/releases/download/v0.3.3/xcaddy_0.3.3_windows_arm64.zip",
+      "hash": "bf43c9ec859a6b2e82044ba2cbd8fcfd2bd4ee82afa247dd91fbf6b14ef86cfc"
+    }
+  },
+  "bin": "xcaddy.exe",
+  "depends": "main/go",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/caddyserver/xcaddy/releases/download/v$version/xcaddy_$version_windows_amd64.zip"
+      },
+      "arm64": {
+        "url": "https://ghproxy.net/https://github.com/caddyserver/xcaddy/releases/download/v$version/xcaddy_$version_windows_arm64.zip"
+      },
+      "hash": {
+        "url": "$baseurl/xcaddy_$version_checksums.txt",
+        "regex": "$sha256\\s+$basename"
+      }
+    }
+  }
 }

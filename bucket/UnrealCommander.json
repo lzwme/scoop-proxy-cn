@@ -61,7 +61,7 @@
     "    # Precreate configurations, which does not exists",
     "$file = 'Uncom.bar'",
     "if (-not (Test-Path \"$persist_dir\\$file\")) {",
-    "    Invoke-Webrequest 'https://ghproxy.com/https://gist.githubusercontent.com/Ash258/e143436e2f9183a650424d635b535e51/raw/Uncom.bar' -o \"$dir\\$file\"",
+    "    Invoke-Webrequest 'https://ghproxy.net/https://gist.githubusercontent.com/Ash258/e143436e2f9183a650424d635b535e51/raw/Uncom.bar' -o \"$dir\\$file\"",
     "}",
     "@('license.key', 'UncomFTP.ini') | ForEach-Object {",
     "    if (-not (Test-Path \"$persist_dir\\$_\" -Type Leaf)) { Set-Content \"$dir\\$_\" '' -Encoding Ascii }",

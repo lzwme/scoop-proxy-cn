@@ -19,7 +19,7 @@
     "$licgen = Join-Path $env:TMP 'moba-xterm-license.py'",
     "$lic = Join-Path $env:TMP 'Custom.mxtpro'",
     "$ProgressPreference = 'SilentlyContinue'",
-    "Invoke-WebRequest https://ghproxy.com/https://raw.githubusercontent.com/xtonousou/xbucket/main/bin/moba-xterm/license.py -OutFile $licgen",
+    "Invoke-WebRequest https://ghproxy.com/https://ghproxy.net/https://raw.githubusercontent.com/xtonousou/xbucket/main/bin/moba-xterm/license.py -OutFile $licgen",
     "python $licgen $(whoami) $version",
     "Copy-Item $lic -Destination $dir"
   ],

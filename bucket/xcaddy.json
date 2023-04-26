@@ -1,25 +1,26 @@
 {
-  "version": "0.3.2",
-  "description": "Custom Caddy Builder",
+  "version": "0.3.3",
+  "description": "Build Caddy with plugins",
   "homepage": "https://github.com/caddyserver/xcaddy",
   "license": "Apache-2.0",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.com/https://github.com/caddyserver/xcaddy/releases/download/v0.3.2/xcaddy_0.3.2_windows_amd64.zip",
-      "hash": "c74b20bedb0c691905435ef9ba7a90bb421aae9c6eca26f9fc4e809d260e5a62"
+      "url": "https://ghproxy.net/https://github.com/caddyserver/xcaddy/releases/download/v0.3.3/xcaddy_0.3.3_windows_amd64.zip",
+      "hash": "sha512:9ebb94cf9e30c3763d95ee0f1b7ac6eddf3ac6b622cc693a220099752fa7ca30bdb55be450f9b7ceca4c7e903df2e8120436791dfb6cf504d88b2a7e23af5132"
     }
   },
   "bin": "xcaddy.exe",
+  "depends": "main/go",
   "checkver": "github",
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.com/https://github.com/caddyserver/xcaddy/releases/download/v$version/xcaddy_$version_windows_amd64.zip"
-      },
-      "hash": {
-        "url": "$baseurl/xcaddy_$version_checksums.txt"
+        "url": "https://ghproxy.net/https://github.com/caddyserver/xcaddy/releases/download/v$version/xcaddy_$version_windows_amd64.zip",
+        "hash": {
+          "url": "$baseurl/xcaddy_$version_checksums.txt",
+          "regex": "$sha512\\s+$basename"
+        }
       }
     }
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }
