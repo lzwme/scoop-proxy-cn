@@ -1,17 +1,20 @@
 {
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "This utility is designed to allow you to apply themes to the modern Steam friends and library interfaces",
   "homepage": "https://github.com/PhantomGamers/SFP",
   "license": "MIT",
+  "suggest": {
+    ".NET Desktop Runtime": "extras/windowsdesktop-runtime"
+  },
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.net/https://github.com/PhantomGamers/SFP/releases/download/0.0.14/SFP_UI-SelfContained-win10-x64.zip",
-      "hash": "53a95d830905af81d20e1f39f8a2b0b0a21de9c0050a03515e1855eda3161aff"
+      "url": "https://ghproxy.net/https://github.com/PhantomGamers/SFP/releases/download/0.0.15/SFP_UI-win10-x64-net7.zip",
+      "hash": "5a1f0496a06904ce8e4f515c4236fcea984c8f52ee9695cf72ff27fe6219cde5"
     }
   },
   "pre_install": [
     "if (!(Test-Path \"$persist_dir\\SFP.config\")) {",
-    "\tAdd-Content \"$dir\\SFP.config\" '{\"userSettings\":{\"roaming\":{\"SFP.Properties.Settings\":{\"CheckForUpdates\":\"False\"}}}}' -Encoding Ascii",
+    "    Add-Content \"$dir\\SFP.config\" '{\"userSettings\":{\"roaming\":{\"SFP.Properties.Settings\":{\"CheckForUpdates\":\"False\"}}}}' -Encoding Ascii",
     "}"
   ],
   "shortcuts": [
@@ -25,9 +28,8 @@
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.net/https://github.com/PhantomGamers/SFP/releases/download/$version/SFP_UI-SelfContained-win10-x64.zip"
+        "url": "https://ghproxy.net/https://github.com/PhantomGamers/SFP/releases/download/$version/SFP_UI-win10-x64-net7.zip"
       }
     }
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

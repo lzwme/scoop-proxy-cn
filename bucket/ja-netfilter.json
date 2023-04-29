@@ -1,20 +1,26 @@
 {
-  "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/ja-netfilter/ja-netfilter/releases/download/$version/ja-netfilter-$version.zip"
-  },
+  "version": "1126574",
+  "description": "A javaagent framework.",
+  "homepage": "https://web.archive.org/web/20220518133701/https://github.com/ja-netfilter/ja-netfilter",
+  "license": "GPL-3.0-only",
+  "url": "https://bafybeiatyghkzrrtodzt3stm652rkrjxndg4hq2ublfdmifk7plg5k5brq.ipfs.dweb.link/files/jetbra-1126574a2f82debceb72e7f948eb7d4f616ffddf.zip",
+  "hash": "d705555d2032ef817414a2e53ea1555baacb51f28ede14eb55839a30a76e4bd6",
+  "extract_dir": "jetbra",
+  "persist": [
+    "plugins",
+    "config",
+    "logs"
+  ],
+  "post_install": [
+    "Get-Content \"$dir\\readme.txt\"",
+    "Write-Host \"Java agent path: $dir\\ja-netfilter.jar\"",
+    "Write-Host \"JetBrains:  IDE Menu -> Help -> Edit Custom VM Options\""
+  ],
   "checkver": {
-    "github": "https://github.com/ja-netfilter/ja-netfilter/"
+    "url": "https://bafybeiatyghkzrrtodzt3stm652rkrjxndg4hq2ublfdmifk7plg5k5brq.ipfs.dweb.link/",
+    "regex": "files/jetbra-([0-9a-f]{7})(?<tail>[0-9a-f]+).zip"
   },
-  "description": "A javaagent framework",
-  "extract_dir": "ja-netfilter",
-  "hash": "2e60fe0febb617388ae7faa51724f2c3233921a3ec4f08f9e8d9118a3b094280",
-  "homepage": "https://zhile.io/2021/11/29/ja-netfilter-javaagent-lib.html",
-  "license": {
-    "identifier": "GPL-3.0-only",
-    "url": "https://github.com/ja-netfilter/ja-netfilter/blob/master/LICENSE"
-  },
-  "notes": "Configure as described in \"$dir\\README.pdf\"! For testing purposes only, not for commercial use!",
-  "persist": "config",
-  "url": "https://ghproxy.net/https://github.com/ja-netfilter/ja-netfilter/releases/download/2022.1.0/ja-netfilter-2022.1.0.zip",
-  "version": "2022.1.0"
+  "autoupdate": {
+    "url": "https://bafybeiatyghkzrrtodzt3stm652rkrjxndg4hq2ublfdmifk7plg5k5brq.ipfs.dweb.link/files/jetbra-$version$matchTail.zip"
+  }
 }

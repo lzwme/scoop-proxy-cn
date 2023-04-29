@@ -1,0 +1,39 @@
+{
+  "$schema": "https://ghproxy.net/https://raw.githubusercontent.com/ScoopInstaller/Scoop/master/schema.json",
+  "version": "1.19.8",
+  "description": "An open source programming language that makes it easy to build simple, reliable, and efficient software.",
+  "homepage": "https://go.dev/",
+  "license": {
+    "identifier": "BSD-3-Clause",
+    "url": "https://go.dev/LICENSE"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://dl.google.com/go/go1.19.8.windows-amd64.zip",
+      "hash": "433558e81b8be2983f370bf8e21ac52e76e9e1e50c69b6dc0047f1b6acde97fd"
+    },
+    "32bit": {
+      "url": "https://dl.google.com/go/go1.19.8.windows-386.zip",
+      "hash": "c9ceb1445cbe01ad817b1f74cc26d67d57a78f85b7c615f7816179d1c82873dc"
+    }
+  },
+  "extract_dir": "go",
+  "env_add_path": "bin",
+  "checkver": {
+    "url": "https://golang.org/dl/",
+    "regex": "go(1\\.19\\.[\\d.]+)\\.windows-"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://dl.google.com/go/go$version.windows-amd64.zip"
+      },
+      "32bit": {
+        "url": "https://dl.google.com/go/go$version.windows-386.zip"
+      }
+    },
+    "hash": {
+      "url": "$url.sha256"
+    }
+  }
+}
