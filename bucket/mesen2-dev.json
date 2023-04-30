@@ -1,0 +1,44 @@
+{
+  "##": [
+    "name:Mesen2",
+    "logo:https://2.bp.blogspot.com/-uVbj8LUOaYs/V35eFxQuf1I/AAAAAAAAVHc/LMq6m5XGqkMyD2zr24A20JOYhl-0-014gCLcB/s320/GetIcon.jpg"
+  ],
+  "version": "178-20230426-4c603ca",
+  "description": [
+    "Mesen is a NES/Famicom emulator and NSF player. It is still a work in progress - some features are currently incomplete or may change in future versions.",
+    "",
+    "Mesen Features:",
+    "* High Accuracy - A lot of effort has gone into making Mesen as accurate as possible",
+    "* Stand-alone - Put the Mesen application into any folder and run it from there",
+    "* Supports: Save States, Movie/Audio Recording, Screenshots, Cheat Codes",
+    "* Supported Mapper List (130+): 0 to 13, 15 to 19, 21 to 27, 32 to 34, 37, 38, 44, 45, 47, 49, 52, 57, 58, 60 to 62, 64 to 80, 82, 85 to 89, 91 to 95, 97, 99, 101, 107, 112, 113, 115, 118, 119, 137 to 141, 143 to 157, 159, 163, 164, 176, 180, 184, 185, 189, 191 to 195, 200 to 203, 205 to 207, 210, 218, 225 to 228, 230 to 232, 240 to 243, 246",
+    "* NES and Famicom (including Famicom Disk System) support. Also supports: NSF, NSFe, VS System",
+    "* Net Play - Play online with friends",
+    "* Automatic updates - Mesen is able to check for updates and automatically install new versions of itself.",
+    "* Built-in Debugger",
+    "* Other Features: 7z/zip archive support, numerous　video filters (xBRZ, Scale2x, NTSC, etc.), sound recorder, sound effects, etc."
+  ],
+  "homepage": "https://github.com/SourMesen/Mesen2",
+  "license": "Unknown",
+  "url": "https://nightly.link/SourMesen/Mesen2/workflows/build/master/Mesen%20%28Windows%29.zip",
+  "hash": "b5f68f2e19d27dbddba8a9bfee816cfaa1bf1fcde65c2e186bd335d57e28c12c",
+  "bin": [],
+  "checkver": {
+    "url": "https://api.github.com/repos/SourMesen/Mesen2/actions/workflows/build.yml/runs?event=push&branch=master&status=success",
+    "regex": "^(?<run>[^ ]+) (?<year>\\d{4})-(?<month>\\d{2})-(?<day>\\d{2})[^ ]+ (?<suite>\\d+) (?<artifact>\\d+) (?<commit>[\\da-f]{7})(?<sha>[\\da-f]+)$",
+    "replace": "${run}-${year}${month}${day}-${commit}",
+    "script": [
+      "$sha = json_path $page $.workflow_runs[0].head_sha",
+      "$runId = json_path $page $.workflow_runs[0].run_number",
+      "$suiteId = json_path $page $.workflow_runs[0].check_suite_id",
+      "$artUrl = json_path $page $.workflow_runs[0].artifacts_url",
+      "$date = json_path $page $.workflow_runs[0].created_at",
+      "$cont = (Invoke-WebRequest $artUrl).Content | ConvertFrom-Json",
+      "$artId = $cont.artifacts[0].id",
+      "Write-Output \"$runId $date $suiteId $artId $sha\""
+    ]
+  },
+  "autoupdate": {
+    "url": "https://nightly.link/SourMesen/Mesen2/workflows/build/master/Mesen%20%28Windows%29.zip"
+  }
+}

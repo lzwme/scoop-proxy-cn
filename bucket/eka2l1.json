@@ -1,0 +1,23 @@
+{
+  "version": "378-20230417-c55f897",
+  "description": "EKA2L1 is a Experimental Symbian OS emulator, written in C++ 17. The emulator currently emulates Symbian OS's EKA2 behavior (with planned EKA1 support), and reimplement most of its critical app servers. It can already boot many EKA2's apps and games, with EKA1 being worked on at the moment.",
+  "homepage": "https://github.com/EKA2L1/EKA2L1",
+  "license": "GPL-3",
+  "url": "https://ghproxy.net/https://github.com/EKA2L1/EKA2L1/releases/download/continous/windows-latest.zip",
+  "hash": "70b96794d6907d550b250cd5a9ccc01dcc765e4e7bc2d65ea5d04e8fd7002ebc",
+  "bin": "",
+  "checkver": {
+    "url": "https://api.github.com/repos/EKA2L1/EKA2L1/actions/workflows/build.yml/runs?branch=master&status=success",
+    "script": [
+      "$sha = json_path $page $.workflow_runs[0].head_sha",
+      "$runId = json_path $page $.workflow_runs[0].run_number",
+      "$date = json_path $page $.workflow_runs[0].created_at",
+      "Write-Output \"$runId $date $sha\""
+    ],
+    "regex": "^(?<version>[^ ]+) (?<year>\\d{4})-(?<month>\\d{2})-(?<day>\\d{2})[^ ]+ (?<hash>.{7})(?<rest>.*)$",
+    "replace": "${version}-${year}${month}${day}-${hash}"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/EKA2L1/EKA2L1/releases/download/continous/windows-latest.zip"
+  }
+}

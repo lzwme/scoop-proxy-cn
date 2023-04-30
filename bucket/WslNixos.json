@@ -1,0 +1,26 @@
+{
+  "autoupdate": {
+    "hash": {
+      "url": "https://ghproxy.net/https://github.com/nix-community/NixOS-WSL/releases/download/$version/nixos-wsl-x86_64-linux.tar.gz.sha256"
+    },
+    "url": "https://ghproxy.net/https://github.com/nix-community/NixOS-WSL/releases/download/$version/nixos-wsl-x86_64-linux.tar.gz"
+  },
+  "checkver": {
+    "regex": "\\[((\\d)*.(\\d)*-([a-f0-9])*)\\]",
+    "url": "https://github.com/nix-community/NixOS-WSL/releases"
+  },
+  "description": "A minimal root filesystem for running NixOS on WSL",
+  "hash": "4776aa5115edb422763736f63eb9452479c4214d33f46c3b26659c77963ced25",
+  "homepage": "https://github.com/nix-community/NixOS-WSL",
+  "license": "Apache-2.0",
+  "persist": "NixOS",
+  "post_install": [
+    "wsl --import NixOS \"$dir\\NixOS\\\" \"$dir\\nixos-wsl-installer\" --version 2",
+    "Remove-Item \"$dir\\nixos-wsl-installer\""
+  ],
+  "uninstaller": {
+    "script": "wsl --unregister NixOS"
+  },
+  "url": "https://ghproxy.net/https://github.com/nix-community/NixOS-WSL/releases/download/22.05-5c211b47/nixos-wsl-x86_64-linux.tar.gz",
+  "version": "22.05-5c211b47"
+}

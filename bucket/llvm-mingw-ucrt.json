@@ -1,0 +1,37 @@
+{
+  "$schema": "https://github.com/ScoopInstaller/Scoop/raw/master/schema.json",
+  "version": "16.0.2-20230427",
+  "description": "An LLVM/Clang/LLD based mingw-w64 toolchain",
+  "homepage": "https://github.com/mstorsjo/llvm-mingw",
+  "license": "ISC",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/mstorsjo/llvm-mingw/releases/download/20230427/llvm-mingw-20230427-ucrt-x86_64.zip",
+      "hash": "3326c70e304ff54ec099e7d77a8a6da16d2affdf76a16ff20881dda157e5f47e",
+      "extract_dir": "llvm-mingw-20230427-ucrt-x86_64"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/mstorsjo/llvm-mingw/releases/download/20230427/llvm-mingw-20230427-ucrt-i686.zip",
+      "hash": "b81426bedb4928af12137b6e9f5888e7f00d4d15fd78437d93185bee8a6a7a8e",
+      "extract_dir": "llvm-mingw-20230427-ucrt-i686"
+    }
+  },
+  "env_add_path": [
+    "bin"
+  ],
+  "checkver": {
+    "github": "https://github.com/mstorsjo/llvm-mingw"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/mstorsjo/llvm-mingw/releases/download/$version/llvm-mingw-$version-ucrt-x86_64.zip",
+        "extract_dir": "llvm-mingw-$version-ucrt-x86_64"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/mstorsjo/llvm-mingw/releases/download/$version/llvm-mingw-$version-ucrt-i686.zip",
+        "extract_dir": "llvm-mingw-$version-ucrt-i686"
+      }
+    }
+  }
+}

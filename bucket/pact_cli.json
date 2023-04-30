@@ -1,18 +1,36 @@
 {
-  "version": "1.92.0",
+  "version": "2.0.0",
   "description": "Installer for the Pact Ruby Standalone CLI",
   "homepage": "https://github.com/pact-foundation/pact-ruby-standalone",
   "license": "MIT",
   "architecture": {
     "64bit": {
       "url": [
-        "https://ghproxy.net/https://github.com/pact-foundation/pact-ruby-standalone/releases/download/v1.92.0/pact-1.92.0-win32.zip"
+        "https://ghproxy.net/https://github.com/pact-foundation/pact-ruby-standalone/releases/download/v2.0.0/pact-2.0.0-windows-x86_64.zip"
       ],
       "hash": [
-        "cf49fcefb45fe8eb80b8dd55c89bd03bff49f5ace598ceca5cf1e59df16df2d7"
+        "bc1b7c172f2fb09c799ac83ed2e271946e38042807bbcbc62028365a37232d71"
       ],
       "bin": [
         "pact\\bin\\pact-plugin-cli.exe",
+        "pact\\bin\\pact-broker.bat",
+        "pact\\bin\\pact-stub-service.bat",
+        "pact\\bin\\pact-message.bat",
+        "pact\\bin\\pact-provider-verifier.bat",
+        "pact\\bin\\pact.bat",
+        "pact\\bin\\pact-mock-service.bat",
+        "pact\\bin\\pact-publish.bat",
+        "pact\\bin\\pactflow.bat"
+      ]
+    },
+    "32bit": {
+      "url": [
+        "https://ghproxy.net/https://github.com/pact-foundation/pact-ruby-standalone/releases/download/v2.0.0/pact-2.0.0-windows-x86.zip"
+      ],
+      "hash": [
+        "282d411bb1cd6e1bbc8b3c352017e0f5b21f26442bd60ec41f938868a2c7094e"
+      ],
+      "bin": [
         "pact\\bin\\pact-broker.bat",
         "pact\\bin\\pact-stub-service.bat",
         "pact\\bin\\pact-message.bat",
@@ -28,7 +46,12 @@
     "architecture": {
       "64bit": {
         "url": [
-          "https://ghproxy.net/https://github.com/pact-foundation/pact-ruby-standalone/releases/download/v$version/pact-$version-win32.zip"
+          "https://ghproxy.net/https://github.com/pact-foundation/pact-ruby-standalone/releases/download/v$version/pact-$version-windows-x86_64.zip"
+        ]
+      },
+      "32bit": {
+        "url": [
+          "https://ghproxy.net/https://github.com/pact-foundation/pact-ruby-standalone/releases/download/v$version/pact-$version-windows-x86.zip"
         ]
       }
     }

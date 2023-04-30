@@ -1,0 +1,26 @@
+{
+  "autoupdate": {
+    "extract_dir": "gcc-arm-$version-mingw-w64-i686-arm-none-eabi",
+    "hash": {
+      "url": "https://developer.arm.com/-/media/Files/downloads/gnu/$version/binrel/arm-gnu-toolchain-$version-mingw-w64-i686-arm-none-eabi.zip.sha256asc"
+    },
+    "url": "https://developer.arm.com/-/media/Files/downloads/gnu/$version/binrel/arm-gnu-toolchain-$version-mingw-w64-i686-arm-none-eabi.zip"
+  },
+  "checkver": {
+    "regex": "Version\\s+([\\d.-]+.*)</",
+    "url": "https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads"
+  },
+  "description": "Pre-built GNU toolchain for Arm Cortex-A Family processors",
+  "env_add_path": "bin",
+  "env_set": {
+    "GCC_AARCH32_BARE_INSTALL_ROOT": "$dir",
+    "TL_PATH": "$dir\\bin"
+  },
+  "extract_dir": "gcc-arm-12.2.MPACBTI-Rel1-mingw-w64-i686-arm-none-eabi",
+  "hash": "9f5f5492447212001aa8b708e237cdfecb1296ba0f1c699e2aa2fd87249e5b00",
+  "homepage": "https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-a",
+  "license": "GPL-3.0-only",
+  "notes": "This toolchain targets processors from the Arm Cortex-A family and implements the Arm A-profile architectures.",
+  "url": "https://developer.arm.com/-/media/Files/downloads/gnu/12.2.MPACBTI-Rel1/binrel/arm-gnu-toolchain-12.2.MPACBTI-Rel1-mingw-w64-i686-arm-none-eabi.zip",
+  "version": "12.2.MPACBTI-Rel1"
+}
