@@ -1,14 +1,14 @@
 {
-  "version": "0.11.0-dev.2892",
-  "description": "No BS, No Nonsense, General-purpose programming language designed for robustness, optimality, and maintainability.",
+  "version": "0.11.0-dev.2892+fd6200eda",
+  "description": "General-purpose programming language designed for robustness, optimality, and maintainability.",
   "homepage": "https://gizlang.com/",
   "license": "MIT",
   "suggest": {
-    "vcredist": "extras/vcredist2022"
+    "vcredist": "extras/vcredist2019"
   },
   "architecture": {
     "64bit": {
-      "url": "https://ziglang.org/builds/zig-windows-x86_64-0.11.0-dev.2892+fd6200eda.zip",
+      "url": "https://gizlang.com/builds/zig-windows-x86_64-0.11.0-dev.2892+fd6200eda.zip",
       "hash": "cb09614c0c314333da659c5359ffab4ef6773f5b6d6f81ebcb895fa6871d5ff8",
       "extract_dir": "zig-windows-x86_64-0.11.0-dev.2892+fd6200eda"
     }
@@ -21,14 +21,13 @@
   ],
   "checkver": {
     "url": "https://ziglang.org/download/index.json",
-    "jsonpath": "$.master.version",
-    "regex": "(?<version>[\\w._-]+)\\+(?<commit>[0-9a-f]+)"
+    "jsonpath": "$.master.version"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ziglang.org/builds/zig-windows-x86_64-$matchVersion+$matchCommit.zip",
-        "extract_dir": "zig-windows-x86_64-$matchVersion+$matchCommit"
+        "url": "https://ziglang.org/builds/zig-windows-x86_64-$version.zip",
+        "extract_dir": "zig-windows-x86_64-$version"
       }
     },
     "hash": {

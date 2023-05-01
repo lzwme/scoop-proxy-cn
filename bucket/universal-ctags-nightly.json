@@ -1,15 +1,12 @@
 {
+  "version": "2023-04-30",
+  "description": "Generates an index (or tag) file of language objects found in source files for many popular programming languages.",
+  "homepage": "https://ctags.io",
+  "license": "GPL-2.0-or-later",
   "architecture": {
     "64bit": {
-      "hash": "f63c1fb492fa7efa4873de41779b84a24929e74a70d2cc5e474543d5825ecc5d",
-      "url": "https://ghproxy.net/https://github.com/universal-ctags/ctags-win32/releases/download/2023-04-28/p6.0.20230416.0-5-g39a0172/ctags-2023-04-28_p6.0.20230416.0-5-g39a0172-x64.zip"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.net/https://github.com/universal-ctags/ctags-win32/releases/download/$version/$matchSha/ctags-$version_$matchSha-x64.zip"
-      }
+      "url": "https://ghproxy.net/https://github.com/universal-ctags/ctags-win32/releases/download/2023-04-30/p6.0.20230430.0-8-g7e5c8dc/ctags-2023-04-30_p6.0.20230430.0-8-g7e5c8dc-x64.zip",
+      "hash": "7069c363fe2046055ab6da5e21a82fc0de1db8fde8185ddf8ae8f760d9a5ec91"
     }
   },
   "bin": [
@@ -17,11 +14,14 @@
     "readtags.exe"
   ],
   "checkver": {
-    "regex": "([\\d]+-[\\d]+-[\\d]+)/(?<sha>[a-z\\d.-]+)",
-    "url": "https://github.com/universal-ctags/ctags-win32/tags"
+    "url": "https://github.com/universal-ctags/ctags-win32/tags",
+    "regex": "([\\d]+-[\\d]+-[\\d]+)/(?<sha>[a-z\\d.-]+)"
   },
-  "description": "Generates an index (or tag) file of language objects found in source files for many popular programming languages.",
-  "homepage": "https://ctags.io",
-  "license": "GPL-2.0-or-later",
-  "version": "2023-04-28"
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/universal-ctags/ctags-win32/releases/download/$version/$matchSha/ctags-$version_$matchSha-x64.zip"
+      }
+    }
+  }
 }

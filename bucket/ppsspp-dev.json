@@ -1,41 +1,26 @@
 {
-  "version": "1.14.4-1443-26d012889",
-  "description": "Sony PlayStation Portable (PSP) emulator",
+  "version": "1.14.4-1461-g2507fcb89",
+  "description": "Sony PlayStation Portable (PSP) emulator. Development build",
   "homepage": "https://www.ppsspp.org",
-  "license": {
-    "url": "https://github.com/hrydgard/ppsspp/blob/master/LICENSE.TXT",
-    "identifier": "GPL 2.0 or later"
-  },
+  "license": "GPL-2.0-or-later",
   "architecture": {
     "64bit": {
-      "url": "https://buildbot.orphis.net/ppsspp/index.php?m=dl&rev=v1.14.4-1443-g26d012889&platform=windows-amd64#/dl.zip",
-      "hash": "5b6c61b9fd45a077638cb21bb92658cfc152199dc5e4a4bed882aa0b9cda0e81",
-      "bin": [
-        [
-          "PPSSPPWindows64.exe",
-          "ppsspp-dev"
-        ]
-      ],
+      "url": "https://buildbot.orphis.net/ppsspp/index.php?m=dl&rev=v1.14.4-1461-g2507fcb89&platform=windows-amd64#/dl.zip",
+      "hash": "dc870c6c50c697667d79a357a53968811a08161889b0ae1c801643db7e1b9df8",
       "shortcuts": [
         [
           "PPSSPPWindows64.exe",
-          "PPSSPP (dev)"
+          "PPSSPP (Development)"
         ]
       ]
     },
     "32bit": {
-      "url": "https://buildbot.orphis.net/ppsspp/index.php?m=dl&rev=v1.14.4-1443-g26d012889&platform=windows-x86#/dl.zip",
-      "hash": "bdfdfe5ee8ade3a7446d2c858157c69ec4b22ebdd60b3522933cebec42a090a2",
-      "bin": [
-        [
-          "PPSSPPWindows.exe",
-          "ppsspp-dev"
-        ]
-      ],
+      "url": "https://buildbot.orphis.net/ppsspp/index.php?m=dl&rev=v1.14.4-1461-g2507fcb89&platform=windows-x86#/dl.zip",
+      "hash": "f507e939ed435169fddc8216c984536b49417146052e72e132ac957ba46459a9",
       "shortcuts": [
         [
           "PPSSPPWindows.exe",
-          "PPSSPP (dev)"
+          "PPSSPP (Development)"
         ]
       ]
     }
@@ -55,7 +40,7 @@
   "checkver": {
     "url": "https://buildbot.orphis.net/ppsspp/index.php",
     "regex": "rev=v(?<version>[\\d.]+)-(?<build>[\\d]+)-g(?<commit>[\\da-fA-F]+)&(?:amp;)platform=windows-amd64",
-    "replace": "${version}-${build}-${commit}"
+    "replace": "${version}-${build}-g${commit}"
   },
   "autoupdate": {
     "architecture": {

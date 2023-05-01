@@ -1,21 +1,56 @@
 {
+  "description": "The leading toolkit for web security testing.",
   "homepage": "https://portswigger.net/",
-  "description": "",
-  "version": "2.1.04",
-  "license": "",
-  "url": "https://portswigger.net/burp/releases/download?product=community&version=2.1.04&type=windowsx64&componentid=100#/BurpSuiteInstaller.exe",
-  "hash": "fd97f9959dd0d073b77cbd951896f24cc3915905df624c79f3b66556f2305c70",
-  "bin": "BurpSuiteCommunity.exe",
+  "license": "Proprietary",
+  "version": "2023.3.5",
+  "notes": "需要自行注册",
+  "architecture": {
+    "64bit": {
+      "url": "https://portswigger-cdn.net/burp/releases/download?product=pro&version=2023.3.5&type=WindowsX64",
+      "hash": "md5:a1dcbac204f1b07994db9b19497138e1"
+    }
+  },
   "installer": {
-    "file": "BurpSuiteInstaller.exe",
-    "args": [
-      "-q",
-      "-dir \"$dir\""
+    "script": [
+      "Move-Item \"$dir\\download\" \"$dir\\burp.exe\"",
+      "Start-Process -Wait \"$dir\\burp.exe\" -ArgumentList @('-q', \"-dir $dir\",'-overwrite') | Out-Null",
+      "Remove-Item \"$dir\\burp.exe\"",
+      "Remove-Item \"$([Environment]::GetFolderPath('startmenu'))\\Programs\\Burp Suite Professional\" -Recurse",
+      "New-Item -ItemType SymbolicLink -Path \"$dir\" -Name \"chrome.exe\" -Value \"$dir\\burpbrowser\\*\\chrome.exe\" | Out-Null"
     ]
   },
   "uninstaller": {
     "file": "uninstall.exe",
     "args": "-q"
   },
-  "_from": "okibcn/ScoopMaster"
+  "persist": [
+    "crack",
+    "BurpSuitePro.vmoptions"
+  ],
+  "shortcuts": [
+    [
+      "chrome.exe",
+      "chrome"
+    ],
+    [
+      "BurpSuitePro.exe",
+      "BurpSuitePro"
+    ]
+  ],
+  "checkver": {
+    "url": "https://portswigger.net/burp/releases/data?pageSize=4",
+    "jp": "$.ResultSet.Results.[?(@.releaseChannels[0] == 'Stable' && @.title =~ /Professional.*/)].version"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://portswigger-cdn.net/burp/releases/download?product=pro&version=$version&type=WindowsX64"
+      }
+    },
+    "hash": {
+      "mode": "json",
+      "url": "https://portswigger.net/burp/releases/data?pageSize=4",
+      "jp": "$.ResultSet.Results.[?(@.releaseChannels[0] == 'Stable' && @.title =~ /Professional.*/)].builds.[?(@.ProductId == 'pro' && @.ProductPlatform == 'WindowsX64')].Md5Checksum"
+    }
+  }
 }
