@@ -11,7 +11,8 @@
       "pre_install": [
         "Get-ChildItem \"$dir\\chatterino.exe\" | Rename-Item -NewName { $_.name.Replace('chatterino', 'technorino-portable') }",
         "$modes = \"$dir\\modes\"",
-        "Invoke-Expression \"'portable' >$(if (Test-Path $modes) { '>' }) $modes\""
+        "$PSDefaultParameterValues['Out-File:Encoding'] = 'utf8'",
+        "Invoke-Expression \"'portable' >$(if (Test-Path $modes) { '>' }) `$modes\""
       ]
     }
   },

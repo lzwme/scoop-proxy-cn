@@ -11,6 +11,10 @@
     "32bit": {
       "url": "https://ghproxy.net/https://github.com/YerongAI/Office-Tool/releases/download/v10.1.7.1/Office_Tool_with_runtime_v10.1.7.1_x86.zip",
       "hash": "842ef6b8fa4d0ba5ca662a158fb12eed9f4e617786d669d64e75873d83f892eb"
+    },
+    "arm64": {
+      "url": "https://ghproxy.net/https://github.com/YerongAI/Office-Tool/releases/download/v10.1.7.1/Office_Tool_with_runtime_v10.1.7.1_arm64.zip",
+      "hash": "0b0569b8481dfc7d6d94774a80956d6b89da8acfbaaf326eb57c8955c7d0ec5f"
     }
   },
   "extract_dir": "Office Tool",
@@ -28,21 +32,18 @@
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.net/https://github.com/YerongAI/Office-Tool/releases/download/v$version/Office_Tool_with_runtime_v$version_x64.zip",
-        "hash": {
-          "url": "https://github.com/YerongAI/Office-Tool/releases/tag/v$version",
-          "mode": "extract",
-          "regex": "(?sm)Office_Tool_with_runtime_v$version_x64.zip.*?$sha256"
-        }
+        "url": "https://ghproxy.net/https://github.com/YerongAI/Office-Tool/releases/download/v$version/Office_Tool_with_runtime_v$version_x64.zip"
       },
       "32bit": {
-        "url": "https://ghproxy.net/https://github.com/YerongAI/Office-Tool/releases/download/v$version/Office_Tool_with_runtime_v$version_x86.zip",
-        "hash": {
-          "url": "https://github.com/YerongAI/Office-Tool/releases/tag/v$version",
-          "mode": "extract",
-          "regex": "(?sm)Office_Tool_with_runtime_v$version_x86.zip.*?$sha256"
-        }
+        "url": "https://ghproxy.net/https://github.com/YerongAI/Office-Tool/releases/download/v$version/Office_Tool_with_runtime_v$version_x86.zip"
+      },
+      "arm64": {
+        "url": "https://ghproxy.net/https://github.com/YerongAI/Office-Tool/releases/download/v$version/Office_Tool_with_runtime_v$version_arm64.zip"
       }
+    },
+    "hash": {
+      "url": "https://github.com/YerongAI/Office-Tool/releases",
+      "regex": "(?s)$basename.*?$sha256"
     }
   }
 }

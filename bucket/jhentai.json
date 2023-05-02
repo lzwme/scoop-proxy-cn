@@ -1,0 +1,31 @@
+{
+  "description": "A cross-platform app made for e-hentai & exhentai by Flutter",
+  "homepage": "https://github.com/jiangtian616/JHenTai",
+  "license": "Apache-2.0",
+  "version": "7.1.1",
+  "checkver": {
+    "url": "https://github.com/jiangtian616/JHenTai/releases/latest",
+    "regex": "<h1[^>]*>v(?<version>[\\d\\.]+)\\+(?<idx>\\d+)</h1>"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/jiangtian616/JHenTai/releases/download/v$matchVersion%2B$matchIdx/JHenTai_$matchVersion+$matchIdx_Windows.zip",
+    "extract_dir": "JHenTai_$matchVersion+$matchIdx",
+    "hash": {
+      "mode": "download"
+    }
+  },
+  "url": "https://ghproxy.net/https://github.com/jiangtian616/JHenTai/releases/download/v7.1.1%2B126/JHenTai_7.1.1+126_Windows.zip",
+  "hash": "5b724a6abf4e3a54850634fbb985ff9da6951eb36c3f89007650c31d597436c8",
+  "extract_dir": "JHenTai_7.1.1+126",
+  "shortcuts": [
+    [
+      "jhentai.exe",
+      "JHenTai"
+    ]
+  ],
+  "post_uninstall": [
+    "if (Test-Path -Path \"$Home\\AppData\\Roaming\\top.jtmonster\\jhentai\") {",
+    "\tRemove-Item -Path \"$Home\\AppData\\Roaming\\top.jtmonster\\jhentai\" -Recurse",
+    "}"
+  ]
+}

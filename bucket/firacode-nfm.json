@@ -1,5 +1,5 @@
 {
-  "version": "2.3.3",
+  "version": "3.0.0",
   "description": "A project that patches developer targeted fonts with a high number of glyphs (icons)",
   "homepage": "https://github.com/ryanoasis/nerd-fonts",
   "license": {
@@ -10,8 +10,8 @@
     "If you are using Windows 11 Dev Channel and are not using the global installation option,",
     "please note that there is a bug will cause your computer unable to find these fonts after restart."
   ],
-  "url": "https://ghproxy.net/https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/FiraCode.zip",
-  "hash": "12c58f67731354f78e1a55030954bd326e380d1726c7f96f3db1089d53ecf609",
+  "url": "https://ghproxy.net/https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.0/FiraCode.zip",
+  "hash": "705b7eaa5b687987cc0e65a961314250be0cbdac71e6ae5a8be5c8064361f37c",
   "installer": {
     "script": [
       "$currentBuildNumber = [Int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
@@ -26,7 +26,7 @@
       "$registryRoot = if ($isInstallForAllUsers) { \"HKLM\" } else { \"HKCU\" }",
       "$registryKey = \"${registryRoot}:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts\"",
       "New-Item $fontDir -ItemType Directory -ErrorAction SilentlyContinue | Out-Null",
-      "Get-ChildItem $dir -Filter \"Fira*Mono Windows Compatible.ttf\" | ForEach-Object {",
+      "Get-ChildItem $dir -Filter \"FiraCodeNerdFontMono*.ttf\" | ForEach-Object {",
       "    $value = if ($isInstallForAllUsers) { $_.Name } else { \"$fontDir\\$($_.Name)\" }",
       "    New-ItemProperty -Path $registryKey -Name \"$($_.BaseName) (TrueType)\" -Value $value -Force | Out-Null",
       "    Copy-Item $_.FullName -Destination $fontDir -Force -ErrorAction SilentlyContinue",
@@ -47,7 +47,7 @@
       "$registryRoot = if ($isInstallForAllUsers) { \"HKLM\" } else { \"HKCU\" }",
       "$registryKey = \"${registryRoot}:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts\"",
       "New-Item $fontDir -ItemType Directory -ErrorAction SilentlyContinue | Out-Null",
-      "Get-ChildItem $dir -Filter \"*Fira Code*Mono Windows Compatible.ttf\" | ForEach-Object {",
+      "Get-ChildItem $dir -Filter \"FiraCodeNerdFontMono*.ttf\" | ForEach-Object {",
       "    Remove-ItemProperty -Path $registryKey -Name \"$($_.BaseName) (TrueType)\" -Force -ErrorAction SilentlyContinue",
       "    Remove-Item \"$fontDir\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
       "}",
