@@ -1,0 +1,31 @@
+{
+  "version": "0.2.3",
+  "description": "Tiny CUI app to handle bookmarks for afxw",
+  "homepage": "http://akt.d.dooo.jp/akt_afxw.html",
+  "license": "Public Domain",
+  "notes": [
+    "afxbkmk.mnu is NOT treated as persistent",
+    "In 64 bit env, 32bit exe is moved to x86 folder"
+  ],
+  "url": "http://akt.d.dooo.jp/lzh/afxbkmk_v0.2.3.zip",
+  "hash": "d2f2af459a23588d4310c6f822a43ed82061c564972c74cee243709c2f8e26db",
+  "extract_dir": "afxbkmk_v0.2.3",
+  "architecture": {
+    "64bit": {
+      "pre_install": [
+        "ensure \"$dir\\x86\"",
+        "Move-Item -Path \"$dir\\afxbkmk.exe\" -Destination \"$dir\\x86\\afxbkmk.exe\"",
+        "Move-Item -Path \"$dir\\x64\\afxbkmk.exe\" -Destination \"$dir\\afxbkmk.exe\"",
+        "Remove-Item -Path \"$dir\\x64\\\" -Recurse"
+      ]
+    }
+  },
+  "bin": "afxbkmk.exe",
+  "checkver": {
+    "regex": "<div id=\"bkm\">(?:.|\\n)*?v([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "http://akt.d.dooo.jp/lzh/afxbkmk_v$version.zip",
+    "extract_dir": "afxbkmk_v$version"
+  }
+}

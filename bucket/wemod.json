@@ -1,6 +1,6 @@
 {
-  "version": "8.6.0",
-  "description": "Thousands of free mods and trainers for your favorite single-player PC games — all in one place",
+  "version": "8.7.0",
+  "description": "Thousands of free mods and trainers for your favorite single-player PC games — all in one place.",
   "license": {
     "identifier": "Freeware",
     "url": "https://www.wemod.com/terms"
@@ -8,8 +8,8 @@
   "homepage": "https://www.wemod.com",
   "architecture": {
     "64bit": {
-      "url": "https://storage-cdn.wemod.com/app/releases/stable/WeMod-8.6.0-full.nupkg",
-      "hash": "1b663486c0bf5ea10ecc69c3eaa7b46c565f3cf6c1144dcde260fa8611cfb20f",
+      "url": "https://storage-cdn.wemod.com/app/releases/stable/WeMod-8.7.0-full.nupkg",
+      "hash": "17e9a108fdd8b106c0a37280007087b5d07acc812b3f4ee5eaeec1cfeec1379b",
       "shortcuts": [
         [
           "WeMod.exe",
@@ -30,14 +30,14 @@
       "$body = $resp.Content -replace '^\\xEF\\xBB\\xBF', ''",
       "$download_url = $body -split '\\s' -match '^http(s?)://'",
       "$version = $download_url -split '-' -match '\\d(\\.\\d+)+'",
-      "Write-Output $version"
+      "Write-Output \"$version $download_url\""
     ],
     "regex": "(?<version>[\\d\\.]+)\\s(?<url>.+)"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://storage-cdn.wemod.com/app/releases/stable/WeMod-$version-full.nupkg"
+        "url": "$matchUrl"
       }
     }
   }

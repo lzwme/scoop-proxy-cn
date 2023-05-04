@@ -2,7 +2,7 @@
   "version": "1.62.2-mod1.5.2",
   "description": "A modified version of the rclone, Provide dynamic replacement sa file support for google drive operation.",
   "homepage": "https://github.com/dogbutcat/gclone",
-  "license": "Apache License 2.0",
+  "license": "Apache-2.0",
   "suggest": {
     "Windows File System Proxy": "nonportable/winfsp-np"
   },
@@ -13,12 +13,12 @@
   "architecture": {
     "64bit": {
       "url": "https://ghproxy.net/https://github.com/dogbutcat/gclone/releases/download/v1.62.2-mod1.5.2/gclone-v1.62.2-mod1.5.2-windows-amd64.zip",
-      "hash": "5693A3B5412CDBE6A385D022D69418762739AE3A3990BF5E721AD0A1D9F475C4",
+      "hash": "5693a3b5412cdbe6a385d022d69418762739ae3a3990bf5e721ad0a1d9f475c4",
       "extract_dir": "gclone-v1.62.2-mod1.5.2-windows-amd64"
     },
     "32bit": {
       "url": "https://ghproxy.net/https://github.com/dogbutcat/gclone/releases/download/v1.62.2-mod1.5.2/gclone-v1.62.2-mod1.5.2-windows-386.zip",
-      "hash": "72EDA2B656E3CDAB07E8F54CE0208F7AB7D32E13CAEAEC313001B8171EF0ADDD",
+      "hash": "72eda2b656e3cdab07e8f54ce0208f7ab7d32e13caeaec313001b8171ef0addd",
       "extract_dir": "gclone-v1.62.2-mod1.5.2-windows-386"
     }
   },
@@ -26,13 +26,6 @@
     "if (!(Test-Path \"$persist_dir\\rclone.conf\") -or !(Get-Item \"$persist_dir\\rclone.conf\").Length) {",
     "   New-Item \"$persist_dir\\rclone.conf\" -ItemType File -Force | Out-Null",
     "",
-    "   $tilde = if ($env:HOME) {",
-    "       $env:HOME",
-    "   } elseif ($env:USERPROFILE) {",
-    "       $env:USERPROFILE",
-    "   } else {",
-    "       \"$env:HOMEDRIVE%\\$env:HOMEPATH\"",
-    "   }",
     "}"
   ],
   "uninstaller": {

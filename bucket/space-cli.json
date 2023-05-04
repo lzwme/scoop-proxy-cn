@@ -1,0 +1,37 @@
+{
+  "version": "0.3.4",
+  "description": "A CLI tool for deta.space",
+  "homepage": "https://github.com/deta/space-cli",
+  "license": "MIT",
+  "notes": [
+    "Don't forget to run `space login`.",
+    "See the manual `https://deta.space/docs/en/basics/cli`"
+  ],
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/deta/space-cli/releases/download/v0.3.4/space-windows-x86_64.zip",
+      "hash": "d578f1926e8a4f1bc116b08bf3a48c2d2ffa78e324afbea9a95e6cf9164d5e74"
+    },
+    "arm64": {
+      "url": "https://ghproxy.net/https://github.com/deta/space-cli/releases/download/v0.3.4/space-windows-arm64.zip",
+      "hash": "f3e513c60c831ef737731cdc32c3641fdc2507e53e5a99f904634eff53c302db"
+    }
+  },
+  "bin": "bin\\space.exe",
+  "extract_to": "bin",
+  "env_add_path": "bin",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/deta/space-cli/releases/download/v$version/space-windows-x86_64.zip"
+      },
+      "arm64": {
+        "url": "https://ghproxy.net/https://github.com/deta/space-cli/releases/download/v$version/space-windows-arm64.zip"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/checksums.txt"
+    }
+  }
+}
