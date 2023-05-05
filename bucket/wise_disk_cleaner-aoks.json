@@ -1,29 +1,29 @@
 {
-  "##": "see installer options here - https://jrsoftware.org/ishelp/index.php?topic=setupcmdline",
-  "autoupdate": {
-    "url": "https://www.wisecleaner.com/index.php?r=download-product/latest-version&product=wise-disk-cleaner#/WDCFree.exe"
-  },
-  "bin": "WiseDiskCleaner.exe",
-  "checkver": {
-    "regex": "<span>Version: <em>([\\d+.]+)</em></span>"
-  },
-  "description": "Free Disk Cleaner and Defragmenter.",
-  "hash": "f26e0b59a0cc02345644eae6560b1c93ea50c2f17fef242b7de4b23d243cdebe",
   "homepage": "https://www.wisecleaner.com/wise-disk-cleaner.html",
+  "description": "Free Disk Cleaner and Defragmenter.",
+  "version": "11.0.1",
+  "license": "https://www.wisecleaner.com/eula.html",
+  "url": "https://www.wisecleaner.com/index.php?r=download-product/latest-version&product=wise-disk-cleaner#/WDCFree.exe",
+  "hash": "cdba30bd832bcd834b24004e00e5bd8c139a743592d5b63b97c26597d3257dc6",
+  "##": "see installer options here - https://jrsoftware.org/ishelp/index.php?topic=setupcmdline",
   "installer": {
     "script": "Invoke-ExternalCommand -FilePath \"$dir\\WDCFree.exe\" -Args @(\"/VERYSILENT\", \"/SUPPRESSMSGBOXES\", \"/LOG=${dir}\\WDCFree.log\", \"/DIR=${dir}\") -RunAs | Out-Null"
   },
-  "license": "https://www.wisecleaner.com/eula.html",
-  "persist": "DefragOptions.ini",
+  "uninstaller": {
+    "script": "Invoke-ExternalCommand -FilePath \"$dir\\unins000.exe\" -Args @(\"/VERYSILENT\", \"/SUPPRESSMSGBOXES\", \"/NORESTART\") -RunAs | Out-Null"
+  },
+  "bin": "WiseDiskCleaner.exe",
   "shortcuts": [
     [
       "WiseDiskCleaner.exe",
       "Wise Disk Cleaner"
     ]
   ],
-  "uninstaller": {
-    "script": "Invoke-ExternalCommand -FilePath \"$dir\\unins000.exe\" -Args @(\"/VERYSILENT\", \"/SUPPRESSMSGBOXES\", \"/NORESTART\") -RunAs | Out-Null"
+  "persist": "DefragOptions.ini",
+  "checkver": {
+    "regex": "<span>Version: <em>([\\d+.]+)</em></span>"
   },
-  "url": "https://www.wisecleaner.com/index.php?r=download-product/latest-version&product=wise-disk-cleaner#/WDCFree.exe",
-  "version": "10.9.8"
+  "autoupdate": {
+    "url": "https://www.wisecleaner.com/index.php?r=download-product/latest-version&product=wise-disk-cleaner#/WDCFree.exe"
+  }
 }
