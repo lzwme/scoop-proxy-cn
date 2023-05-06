@@ -1,0 +1,37 @@
+{
+  "version": "6.5.28",
+  "description": "嘉立创 EDA 标准版",
+  "license": "Freeware",
+  "architecture": {
+    "64bit": {
+      "url": "https://image.lceda.cn/files/lceda-windows-x64-6.5.28.exe",
+      "hash": "0f5409885b33429769b1e5bc190b88c3e8ba84823617c5e70e39f5fc6522f31a"
+    },
+    "32bit": {
+      "url": "https://image.lceda.cn/files/lceda-windows-ia32-6.5.28.exe",
+      "hash": "40320205268656c971d029d49df5768c3258452f60ad1946b8536aa488cc609c"
+    }
+  },
+  "homepage": "https://lceda.cn/",
+  "innosetup": true,
+  "shortcuts": [
+    [
+      "lceda.exe",
+      "嘉立创 EDA 标准版"
+    ]
+  ],
+  "checkver": {
+    "url": "https://lceda.cn/page/download?src=index",
+    "regex": "lceda-windows-x64-([\\d\\.]+)\\.exe"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://image.lceda.cn/files/lceda-windows-x64-$version.exe"
+      },
+      "32bit": {
+        "url": "https://image.lceda.cn/files/lceda-windows-ia32-$version.exe"
+      }
+    }
+  }
+}

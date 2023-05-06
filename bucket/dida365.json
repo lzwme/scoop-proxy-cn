@@ -1,0 +1,37 @@
+{
+  "version": "4.5.0.0",
+  "description": "让你的 Windows 电脑成为高效办公平台",
+  "license": "Unknown",
+  "architecture": {
+    "64bit": {
+      "url": "https://www.dida365.com/down/getApp/download?type=win64",
+      "hash": "18668184eeadf093ab9811f4735a54f6586030cfb4c71a8163d33fdd92da9f0d"
+    },
+    "32bit": {
+      "url": "https://www.dida365.com/down/getApp/download?type=win",
+      "hash": "7e74526b789ea60b48836d7890c8c8a868abdeaac3ae0e67b97334a8176c997e"
+    }
+  },
+  "innosetup": true,
+  "homepage": "https://www.dida365.com/",
+  "shortcuts": [
+    [
+      "TickTick.exe",
+      "滴答清单"
+    ]
+  ],
+  "checkver": {
+    "url": "https://pull.dida365.com/windows/release_note.json",
+    "regex": "\"version\"\\s*:\\s*\"([\\d.]+)\""
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://www.dida365.com/down/getApp/download?type=win64"
+      },
+      "32bit": {
+        "url": "https://www.dida365.com/down/getApp/download?type=win"
+      }
+    }
+  }
+}

@@ -1,38 +1,38 @@
 {
+  "version": "1.18.1",
+  "homepage": "https://goreleaser.com",
+  "description": "Deliver Go binaries as fast and easily as possible",
+  "license": "MIT",
   "architecture": {
     "32bit": {
-      "hash": "8575dd73d86f374f5053387fb6c6bcc233cd6fe1becfd13d1dc622cec4ee093d",
-      "url": "https://ghproxy.net/https://github.com/goreleaser/goreleaser/releases/download/v1.17.2/goreleaser_Windows_i386.zip"
+      "url": "https://ghproxy.net/https://github.com/goreleaser/goreleaser/releases/download/v1.18.1/goreleaser_Windows_i386.zip",
+      "hash": "c683f31e95048dd09f9cd20ff93a0a9331d281dfbda7688bdd6c3a25aa3ad11f"
     },
     "64bit": {
-      "hash": "127dd4ab6e5e6de7e87b30717c12546a57975f7c716cba1d3c8d0c64e421d4c4",
-      "url": "https://ghproxy.net/https://github.com/goreleaser/goreleaser/releases/download/v1.17.2/goreleaser_Windows_x86_64.zip"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "32bit": {
-        "hash": {
-          "regex": "$sha256\\s+$basename",
-          "url": "$baseurl/checksums.txt"
-        },
-        "url": "https://ghproxy.net/https://github.com/goreleaser/goreleaser/releases/download/v$version/goreleaser_Windows_i386.zip"
-      },
-      "64bit": {
-        "hash": {
-          "regex": "$sha256\\s+$basename",
-          "url": "$baseurl/checksums.txt"
-        },
-        "url": "https://ghproxy.net/https://github.com/goreleaser/goreleaser/releases/download/v$version/goreleaser_Windows_x86_64.zip"
-      }
+      "url": "https://ghproxy.net/https://github.com/goreleaser/goreleaser/releases/download/v1.18.1/goreleaser_Windows_x86_64.zip",
+      "hash": "1af2e28ef1d6236424568ebc4a3e794103930ec1bf110b8a46491172f5b04fec"
     }
   },
   "bin": "goreleaser.exe",
   "checkver": {
     "github": "https://github.com/goreleaser/goreleaser"
   },
-  "description": "Deliver Go binaries as fast and easily as possible",
-  "homepage": "https://goreleaser.com",
-  "license": "MIT",
-  "version": "1.17.2"
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/goreleaser/goreleaser/releases/download/v$version/goreleaser_Windows_x86_64.zip",
+        "hash": {
+          "url": "$baseurl/checksums.txt",
+          "regex": "$sha256\\s+$basename"
+        }
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/goreleaser/goreleaser/releases/download/v$version/goreleaser_Windows_i386.zip",
+        "hash": {
+          "url": "$baseurl/checksums.txt",
+          "regex": "$sha256\\s+$basename"
+        }
+      }
+    }
+  }
 }
