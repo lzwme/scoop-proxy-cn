@@ -1,56 +1,15 @@
 {
+  "version": "2023.4.1",
   "description": "The leading toolkit for web security testing.",
   "homepage": "https://portswigger.net/",
   "license": "Proprietary",
-  "version": "2023.3.5",
-  "notes": "需要自行注册",
-  "architecture": {
-    "64bit": {
-      "url": "https://portswigger-cdn.net/burp/releases/download?product=pro&version=2023.3.5&type=WindowsX64",
-      "hash": "md5:a1dcbac204f1b07994db9b19497138e1"
-    }
-  },
-  "installer": {
-    "script": [
-      "Move-Item \"$dir\\download\" \"$dir\\burp.exe\"",
-      "Start-Process -Wait \"$dir\\burp.exe\" -ArgumentList @('-q', \"-dir $dir\",'-overwrite') | Out-Null",
-      "Remove-Item \"$dir\\burp.exe\"",
-      "Remove-Item \"$([Environment]::GetFolderPath('startmenu'))\\Programs\\Burp Suite Professional\" -Recurse",
-      "New-Item -ItemType SymbolicLink -Path \"$dir\" -Name \"chrome.exe\" -Value \"$dir\\burpbrowser\\*\\chrome.exe\" | Out-Null"
-    ]
-  },
-  "uninstaller": {
-    "file": "uninstall.exe",
-    "args": "-q"
-  },
-  "persist": [
-    "crack",
-    "BurpSuitePro.vmoptions"
-  ],
-  "shortcuts": [
+  "notes": "需要自行注册,方法请参考文件-说明.txt",
+  "url": "http://pan.assass1n.top/directlink/share/BurpSuite-v2023.4.1.zip",
+  "hash": "e7f1716575798552cb370114d18bd741f064f37514018e015cf7069cd03e4764",
+  "bin": [
     [
-      "chrome.exe",
-      "chrome"
-    ],
-    [
-      "BurpSuitePro.exe",
-      "BurpSuitePro"
+      "CNBurp.VBS",
+      "Burpsuite"
     ]
-  ],
-  "checkver": {
-    "url": "https://portswigger.net/burp/releases/data?pageSize=4",
-    "jp": "$.ResultSet.Results.[?(@.releaseChannels[0] == 'Stable' && @.title =~ /Professional.*/)].version"
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://portswigger-cdn.net/burp/releases/download?product=pro&version=$version&type=WindowsX64"
-      }
-    },
-    "hash": {
-      "mode": "json",
-      "url": "https://portswigger.net/burp/releases/data?pageSize=4",
-      "jp": "$.ResultSet.Results.[?(@.releaseChannels[0] == 'Stable' && @.title =~ /Professional.*/)].builds.[?(@.ProductId == 'pro' && @.ProductPlatform == 'WindowsX64')].Md5Checksum"
-    }
-  }
+  ]
 }

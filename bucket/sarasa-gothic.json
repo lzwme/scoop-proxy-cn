@@ -1,33 +1,12 @@
 {
-  "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/be5invis/Sarasa-Gothic/releases/download/v$version/sarasa-gothic-ttf-$version.7z"
-  },
-  "checkver": "github",
-  "depends": "sudo",
-  "description": "This is SARASA GOTHIC, a CJK programming font based on Iosevka and Source Han Sans.",
-  "hash": "8f30edba2bc2e333b0d60bfc717ddcdb880e9c1ff4926834ef4b488f293dc4df",
   "homepage": "https://github.com/be5invis/Sarasa-Gothic",
-  "installer": {
-    "script": [
-      "if(!(is_admin)) { error \"Admin rights are required, please run 'sudo scoop uninstall $app'\"; exit 1 }",
-      "Get-ChildItem $dir -filter 'sarasa*.ttf' | ForEach-Object {",
-      "  New-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $_.Name -Force | Out-Null",
-      "  Copy-Item $_.FullName -destination \"$env:windir\\Fonts\"",
-      "}"
-    ]
-  },
-  "license": "SIL Open Font License",
-  "notes": "You may need to restart the system to use recently installed fonts.",
-  "uninstaller": {
-    "script": [
-      "if(!(is_admin)) { error \"Admin rights are required, please run 'sudo scoop uninstall $app'\"; exit 1 }",
-      "Get-ChildItem $dir -filter 'sarasa*.ttf' | ForEach-Object {",
-      "  Remove-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
-      "  Remove-Item \"$env:windir\\Fonts\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
-      "}",
-      "Write-Host \"The 'Sarasa Gothic' Font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
-    ]
-  },
-  "url": "https://ghproxy.net/https://github.com/be5invis/Sarasa-Gothic/releases/download/v0.40.6/sarasa-gothic-ttf-0.40.6.7z",
-  "version": "0.40.6"
+  "version": "0.40.7",
+  "description": "This is SARASA GOTHIC, a CJK programming font based on Iosevka and Source Han Sans.",
+  "license": "OFL-1.1",
+  "url": "https://ghproxy.net/https://github.com/be5invis/Sarasa-Gothic/releases/download/v0.40.7/sarasa-gothic-ttc-0.40.7.7z",
+  "hash": "9aec66a137c06562e13e9e2bc7dd4f0e7628801187b83e1eb188c4da46623806",
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/be5invis/Sarasa-Gothic/releases/download/v$version/sarasa-gothic-ttc-$version.7z"
+  }
 }
