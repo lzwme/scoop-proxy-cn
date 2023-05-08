@@ -1,0 +1,46 @@
+{
+  "version": "3.0.5",
+  "description": "Google's mobile app SDK for crafting high-quality native interfaces on iOS and Android",
+  "homepage": "https://flutter.dev",
+  "license": "BSD-3-Clause",
+  "depends": [
+    "android-sdk",
+    "java/temurin8-jdk"
+  ],
+  "suggest": {
+    "Visual Studio Code with Flutter Extension": "vscode"
+  },
+  "url": [
+    "https://storage.googleapis.com/flutter_infra_release/releases/stable/windows/flutter_windows_3.0.5-stable.zip",
+    "https://ghproxy.net/https://gist.githubusercontent.com/rivy/9f76563589188990c9f2facb2ff24fcf/raw/69b3e98e8e2a51bcd6107043497dffbe8627b9be/flutter-dev-setup.ps1"
+  ],
+  "hash": [
+    "sha256:487528699af7a0536e7cd8c770e8c0626d7449864ab12c0bfed770b2d0f99b95",
+    "sha256:e953a62d8bd0a72bdce2822e7ebe2a24e4f1255feb8f514c0350b605f1ad8afe"
+  ],
+  "extract_dir": "flutter",
+  "post_install": [
+    "flutter-dev-setup.ps1",
+    "flutter doctor"
+  ],
+  "bin": [
+    "bin\\flutter.bat",
+    "flutter-dev-setup.ps1"
+  ],
+  "env_set": {
+    "FLUTTER_ROOT": "$dir"
+  },
+  "env_add_path": "bin\\cache\\dart-sdk\\bin",
+  "checkver": {
+    "url": "https://storage.googleapis.com/flutter_infra_release/releases/releases_windows.json",
+    "regex": "windows_(v?[\\d.]+)(?<delim>[-+]?)(?<build>[\\w.]*)-stable",
+    "replace": "$1${delim}${build}"
+  },
+  "autoupdate": {
+    "url": "https://storage.googleapis.com/flutter_infra_release/releases/stable/windows/flutter_windows_$matchHead$matchDelim$matchBuild-stable.zip",
+    "hash": {
+      "url": "https://storage.googleapis.com/flutter_infra_release/releases/releases_windows.json",
+      "jsonpath": "$.releases[?(@.archive =~ /.*flutter_windows_$matchHead$matchDelim$matchBuild-stable.zip/)].sha256"
+    }
+  }
+}

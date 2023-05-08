@@ -1,20 +1,13 @@
 {
-  "description": "Oracle JDK 8",
   "homepage": "https://www.oracle.com/technetwork/java/javase/overview/index.html",
-  "version": "8u341",
-  "license": "https://www.oracle.com/downloads/licenses/javase-license1.html",
+  "description": "Oracle JDK 8",
+  "license": "https://java.com/otnlicense",
+  "version": "8u371",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.net/https://github.com/ZvonimirSun/oracle-java/releases/download/8u341/jdk-8u341-windows-x64.exe#/dl.7z",
-      "hash": "64c7f56a7085053e0fa895efcbd044c82a2015807aa269e4dd873906b9f95d75"
-    },
-    "32bit": {
-      "url": "https://ghproxy.net/https://github.com/ZvonimirSun/oracle-java/releases/download/8u341/jdk-8u341-windows-i586.exe#/dl.7z",
-      "hash": "cbedb7f0d9fe275d7f333accc3866b4c2a7cff8a2d78b0a8ca0670af2cb6a13b"
+      "url": "https://sourceforge.net/projects/tomato-extra/files/apps/jdk-8u371-windows-x64.exe#/dl.7z",
+      "hash": "e1c8e1b5ec827e6681f80091c3c4f4e1aafc84dc8151fc4ec1279f1b3d121988"
     }
-  },
-  "cookie": {
-    "oraclelicense": "accept-securebackup-cookie"
   },
   "extract_to": "tmp",
   "installer": {
@@ -40,21 +33,20 @@
   },
   "env_add_path": "bin",
   "env_set": {
-    "JAVA_HOME": "$dir",
-    "classpath": ".;%JAVA_HOME%\\lib\\dt.jar;%JAVA_HOME%\\lib\\tools.jar"
+    "JAVA_HOME": "$dir"
   },
   "checkver": {
-    "url": "https://github.com/ZvonimirSun/oracle-java/releases/latest",
-    "re": "jdk-([u\\d]+)-windows"
+    "url": "https://sourceforge.net/projects/tomato-extra/files/apps/",
+    "regex": "jdk-(8u\\d+)-windows-x64.exe"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.net/https://github.com/ZvonimirSun/oracle-java/releases/download/$version/jdk-$version-windows-x64.exe#/dl.7z"
-      },
-      "32bit": {
-        "url": "https://ghproxy.net/https://github.com/ZvonimirSun/oracle-java/releases/download/$version/jdk-$version-windows-i586.exe#/dl.7z"
+        "url": "https://sourceforge.net/projects/tomato-extra/files/apps/jdk-$version-windows-x64.exe#/dl.7z"
       }
+    },
+    "hash": {
+      "url": "https://master.dl.sourceforge.net/project/tomato-extra/apps/sha256sum.txt"
     }
   }
 }

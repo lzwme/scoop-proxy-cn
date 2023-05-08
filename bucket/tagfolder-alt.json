@@ -1,0 +1,34 @@
+{
+  "description": "Edit tag of directories with attributes in desktop.ini",
+  "homepage": "https://github.com/ChiotOnAGE/TagFolder",
+  "license": "Unknown",
+  "version": "0.0.1",
+  "url": "https://ghproxy.net/https://github.com/ChiotOnAGE/TagFolder/releases/download/0.0.1/tagfolder-0.0.1.zip",
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/ChiotOnAGE/TagFolder/releases/download/$version/tagfolder-$version.zip",
+    "hash": "download"
+  },
+  "extract_dir": "tagfolder",
+  "post_install": [
+    "$exePath = Join-Path -Path $dir -ChildPath \"tagfolder.exe\"",
+    "@\"",
+    "Windows Registry Editor Version 5.00",
+    "",
+    "[HKEY_CLASSES_ROOT\\Directory\\shell\\TagFolder]",
+    "",
+    "[HKEY_CLASSES_ROOT\\Directory\\shell\\TagFolder\\command]",
+    "@=\"\\\"$($exePath -replace '\\\\', '\\\\')\\\" \\\"%V\\\"\"",
+    "\"@ | Out-File -FilePath (Join-Path -Path $dir -ChildPath \"install_contextmenu.reg\")",
+    "@\"",
+    "Windows Registry Editor Version 5.00",
+    "",
+    "[-HKEY_CLASSES_ROOT\\Directory\\shell\\TagFolder]",
+    "\"@ | Out-File -FilePath (Join-Path -Path $dir -ChildPath \"uninstall_contextmenu.reg\")"
+  ],
+  "notes": [
+    "Run install_contextmenu.reg to add tagfolder to the context menu. A rerun is required after updating tagfolder.",
+    "Run uninstall_contextmenu.reg to remove tagfolder from the context menu. Remember to run this before uninstalling."
+  ],
+  "hash": "532466fda77c29ed1de393cdf7a98963bcc4f8be362aeadab3d39d8eb80f296f"
+}
