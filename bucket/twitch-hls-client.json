@@ -1,0 +1,29 @@
+{
+  "version": "0.3.0",
+  "description": "Lightweight CLI client for watching low latency Twitch streams with ad blocking",
+  "homepage": "https://github.com/2bc4/twitch-hls-client",
+  "license": "GPL-3.0-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/2bc4/twitch-hls-client/releases/download/0.3.0/twitch-hls-client-x86_64-pc-windows-msvc.zip",
+      "hash": "3541cf08aaec6656985ee1ac006418cc411b935a64c8fcaab59eb87ca0150179"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/2bc4/twitch-hls-client/releases/download/0.3.0/twitch-hls-client-i686-pc-windows-msvc.zip",
+      "hash": "08eff7c65ff03fa6a68d246dcb138671d3dcf5939522c7017e1ddd5b14aceebe"
+    }
+  },
+  "pre_install": "'README.md', 'LICENSE' | ForEach-Object { Remove-Item \"$dir\\$_\" }",
+  "bin": "twitch-hls-client.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/2bc4/twitch-hls-client/releases/download/$version/twitch-hls-client-x86_64-pc-windows-msvc.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/2bc4/twitch-hls-client/releases/download/$version/twitch-hls-client-i686-pc-windows-msvc.zip"
+      }
+    }
+  }
+}

@@ -1,24 +1,26 @@
 {
-  "architecture": {
-    "64bit": {
-      "hash": "5a4045b9b5532520391e451aad5f5422dc619e98ffd66abc9fad7bd932b10759",
-      "url": "https://central.github.com/deployments/desktop/desktop/latest/win32?format=msi#/setup.msi_"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://central.github.com/deployments/desktop/desktop/latest/win32?format=msi#/setup.msi_"
-      }
-    }
-  },
-  "checkver": {
-    "regex": "GitHubDesktop-([\\d.]+)-full.nupkg",
-    "reverse": true,
-    "url": "https://central.github.com/api/deployments/desktop/desktop/latest/RELEASES"
-  },
+  "version": "3.2.3",
   "description": "GitHub Desktop. Extend your GitHub workflow beyond your browser.",
   "homepage": "https://desktop.github.com/",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://central.github.com/deployments/desktop/desktop/latest/win32?format=msi#/setup.msi_",
+      "hash": "2efd4b287da11faa366600a7f56f2b81aa27c9c59ae6bba67be3f1df490df361"
+    }
+  },
+  "pre_install": [
+    "$processname = \"GitHubDesktop\"",
+    "$process = Get-Process $processname -ErrorAction SilentlyContinue",
+    "if ($process) {",
+    "   $process.CloseMainWindow()",
+    "   Start-Sleep -Seconds 5",
+    "   if (!$process.HasExited) {",
+    "       Start-Sleep -Seconds 25",
+    "       $process | Stop-Process -Force",
+    "   }",
+    "}"
+  ],
   "installer": {
     "script": [
       "$programname = \"GitHub Desktop Machine-Wide Installer*\"",
@@ -40,22 +42,20 @@
       "if (Test-Path -Path \"$dir\\setup.msi_\") { Remove-Item \"$dir\\setup.msi_\" -Force }"
     ]
   },
-  "license": "MIT",
   "post_install": [
     "$DesktopDirectory = [Environment]::GetFolderPath(\"DesktopDirectory\")",
     "if (Test-Path \"$DesktopDirectory\\GitHub Desktop.lnk\") {Remove-Item \"$DesktopDirectory\\GitHub Desktop.lnk\" -Force}"
   ],
-  "pre_install": [
-    "$processname = \"GitHubDesktop\"",
-    "$process = Get-Process $processname -ErrorAction SilentlyContinue",
-    "if ($process) {",
-    "   $process.CloseMainWindow()",
-    "   Start-Sleep -Seconds 5",
-    "   if (!$process.HasExited) {",
-    "       Start-Sleep -Seconds 25",
-    "       $process | Stop-Process -Force",
-    "   }",
-    "}"
-  ],
-  "version": "3.2.2"
+  "checkver": {
+    "url": "https://central.github.com/api/deployments/desktop/desktop/latest/RELEASES",
+    "regex": "GitHubDesktop-([\\d.]+)-full.nupkg",
+    "reverse": true
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://central.github.com/deployments/desktop/desktop/latest/win32?format=msi#/setup.msi_"
+      }
+    }
+  }
 }

@@ -1,20 +1,6 @@
 {
-  "autoupdate": {
-    "hash": {
-      "url": "https://ghproxy.net/https://github.com/GNS3/gns3-gui/releases/download/v$version/GNS3-$version-all-in-one.exe.sha256"
-    },
-    "url": "https://ghproxy.net/https://github.com/GNS3/gns3-gui/releases/download/v$version/GNS3-$version-all-in-one.exe#/dl.7z"
-  },
-  "bin": [
-    "gns3.ps1",
-    "gns3server.ps1",
-    "gns3vmnet.ps1"
-  ],
-  "checkver": {
-    "github": "https://github.com/GNS3/gns3-gui"
-  },
+  "version": "2.2.39",
   "description": "An advanced network simulator to design and configure virtual networks",
-  "hash": "62aac90e0666f5f60b300f67bad222b33af1f14690c102c6ae19bf9fd83beb58",
   "homepage": "https://gns3.com",
   "license": "GPL-3.0-only",
   "notes": [
@@ -23,6 +9,11 @@
     "bundled version is available at $dir\\npcap-*.exe,",
     "latest version can be downloaded from https://nmap.org/npcap"
   ],
+  "suggest": {
+    "Nmap (includes Npcap)": "nmap"
+  },
+  "url": "https://ghproxy.net/https://github.com/GNS3/gns3-gui/releases/download/v2.2.39/GNS3-2.2.39-all-in-one.exe#/dl.7z",
+  "hash": "3f20ff9efa5222bff51197b5d66eee4098f2325c7ae412c6f6cc276491d29e8c",
   "pre_install": [
     "Move-Item \"$dir\\`$TEMP\\*\" \"$dir\"",
     "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$TEMP\" -Recurse",
@@ -37,15 +28,24 @@
     "\"@",
     "}"
   ],
+  "bin": [
+    "gns3.ps1",
+    "gns3server.ps1",
+    "gns3vmnet.ps1"
+  ],
   "shortcuts": [
     [
       "gns3.exe",
       "GNS3"
     ]
   ],
-  "suggest": {
-    "Nmap (includes Npcap)": "nmap"
+  "checkver": {
+    "github": "https://github.com/GNS3/gns3-gui"
   },
-  "url": "https://ghproxy.net/https://github.com/GNS3/gns3-gui/releases/download/v2.2.38/GNS3-2.2.38-all-in-one.exe#/dl.7z",
-  "version": "2.2.38"
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/GNS3/gns3-gui/releases/download/v$version/GNS3-$version-all-in-one.exe#/dl.7z",
+    "hash": {
+      "url": "https://ghproxy.net/https://github.com/GNS3/gns3-gui/releases/download/v$version/GNS3-$version-all-in-one.exe.sha256"
+    }
+  }
 }

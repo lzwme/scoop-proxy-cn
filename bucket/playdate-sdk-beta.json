@@ -1,0 +1,35 @@
+{
+  "version": "2.0.0-beta.2",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://play.date/dev/sdk-license"
+  },
+  "url": "https://beta.panic.com/playdate/2.0.0-beta.2/PlaydateSDK-2.0.0-beta.2.exe",
+  "homepage": "https://play.date/dev/",
+  "hash": [
+    "sha1:2582044e9dadb92656e5ec598c46e77821b1f008",
+    "sha256:16cd26baf1033208231d2a749a83b693f10d7b21a55d80bdccfbe585727a7fcb",
+    "sha512:844883389dc53a1de82a5e360268a8d9a12578c6cd4b13de0c2b7b8b96391da4bd6761161a5a66938266f9e225de50ceaf953a84c7a404b1536e688db9cfd014"
+  ],
+  "checkver": {
+    "url": "https://play.date/dev/",
+    "re": "Download Playdate SDK ([\\d.]+) beta"
+  },
+  "bin": [
+    "bin/pdc.exe",
+    "bin/pdutil.exe"
+  ],
+  "env_set": {
+    "PLAYDATE_SDK_PATH": "$dir"
+  },
+  "installer": {
+    "args": [
+      "/S",
+      "/D=$dir"
+    ]
+  },
+  "uninstaller": {
+    "file": "Uninstall_Playdate_SDK.exe",
+    "args": "/S"
+  }
+}

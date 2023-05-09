@@ -1,0 +1,26 @@
+{
+  "version": "1.2.0-sp1",
+  "description": "Cyber Security ALL-IN-ONE Platform",
+  "homepage": "https://github.com/yaklang/yakit",
+  "notes": "安装成功后需手动启动并初始化本地引擎^-^",
+  "license": "AGPL-3.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://yaklang.oss-cn-beijing.aliyuncs.com/yak/1.2.0-sp1/Yakit-1.2.0-sp1-windows-amd64.exe#/dl.7z",
+      "hash": "c75ba7759be2b109584a94375581dc9ac926962a7c08ba295370e895b79834ec",
+      "installer": {
+        "script": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR/app-64.7z\" \"$dir\""
+      }
+    }
+  },
+  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$R0\" -Force -Recurse",
+  "bin": "Yakit.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://yaklang.oss-cn-beijing.aliyuncs.com/yak/$version/Yakit-$version-windows-amd64.exe#/dl.7z"
+      }
+    }
+  }
+}

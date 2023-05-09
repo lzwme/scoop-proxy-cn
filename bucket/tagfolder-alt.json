@@ -12,6 +12,8 @@
   "extract_dir": "tagfolder",
   "post_install": [
     "$exePath = Join-Path -Path $dir -ChildPath \"tagfolder.exe\"",
+    "$installerRegPath = Join-Path -Path $dir -ChildPath \"install_contextmenu.reg\"",
+    "$uninstallerRegPath = Join-Path -Path $dir -ChildPath \"uninstall_contextmenu.reg\"",
     "@\"",
     "Windows Registry Editor Version 5.00",
     "",
@@ -19,14 +21,36 @@
     "",
     "[HKEY_CLASSES_ROOT\\Directory\\shell\\TagFolder\\command]",
     "@=\"\\\"$($exePath -replace '\\\\', '\\\\')\\\" \\\"%V\\\"\"",
-    "\"@ | Out-File -FilePath (Join-Path -Path $dir -ChildPath \"install_contextmenu.reg\")",
+    "\"@ | Out-File -FilePath $installerRegPath",
     "@\"",
     "Windows Registry Editor Version 5.00",
     "",
     "[-HKEY_CLASSES_ROOT\\Directory\\shell\\TagFolder]",
-    "\"@ | Out-File -FilePath (Join-Path -Path $dir -ChildPath \"uninstall_contextmenu.reg\")"
+    "\"@ | Out-File -FilePath $uninstallerRegPath",
+    "(Get-Content $installerRegPath) -replace 'HKEY_CLASSES_ROOT', 'HKEY_LOCAL_MACHINE\\SOFTWARE\\Classes' | Select-Object -Skip 1 >> $installerRegPath",
+    "(Get-Content $uninstallerRegPath) -replace 'HKEY_CLASSES_ROOT', 'HKEY_LOCAL_MACHINE\\SOFTWARE\\Classes' | Select-Object -Skip 1 >> $uninstallerRegPath",
+    "$isAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)",
+    "if ($isAdmin) { reg import $installerRegPath }",
+    "else {",
+    "   Write-Warning \"Context menu item not installed due to no Administrator right.\"",
+    "   Write-Warning \"Use $installerRegPath to install it manually.\"",
+    "}"
+  ],
+  "pre_uninstall": [
+    "if ((Test-Path \"HKCR:\\Directory\\shell\\TagFolder\") -or (Test-Path \"HKLM:\\SOFTWARE\\Classes\\Directory\\shell\\TagFolder\")) {",
+    "   $uninstallerRegPath = Join-Path -Path $dir -ChildPath \"uninstall_contextmenu.reg\"",
+    "   $isAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)",
+    "   if ($isAdmin) { reg import $uninstallerRegPath }",
+    "   else {",
+    "       $uninstallerRegBakPath = Join-Path -Path $Env:TEMP -ChildPath \"uninstall_contextmenu.reg\"",
+    "       Move-Item -Path $uninstallerRegPath -Destination $Env:TEMP",
+    "       Write-Warning \"Context menu item not removed due to no Administrator right.\"",
+    "       Write-Warning \"Use $uninstallerRegBakPath to uninstall it manually.\"",
+    "   }",
+    "}"
   ],
   "notes": [
+    "In case a warning about context menu item is not installed is shown:",
     "Run install_contextmenu.reg to add tagfolder to the context menu. A rerun is required after updating tagfolder.",
     "Run uninstall_contextmenu.reg to remove tagfolder from the context menu. Remember to run this before uninstalling."
   ],

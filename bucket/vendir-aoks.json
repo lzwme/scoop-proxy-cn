@@ -1,29 +1,29 @@
 {
+  "homepage": "https://carvel.dev/vendir/",
+  "version": "0.33.2",
+  "description": "Declaratively state directory's contents.",
+  "license": "Apache-2.0",
   "architecture": {
     "64bit": {
-      "hash": "b46151fb5c9e9ef43e3db599aa559fc2fc36ddeb978eb195ff77790fa2932aae",
-      "url": "https://ghproxy.net/https://github.com/vmware-tanzu/carvel-vendir/releases/download/v0.33.1/vendir-windows-amd64.exe#/vendir.exe"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "hash": {
-          "regex": "$sha256\\s+$basename",
-          "url": "$baseurl/checksums.txt"
-        },
-        "url": "https://ghproxy.net/https://github.com/vmware-tanzu/carvel-vendir/releases/download/v$version/vendir-windows-amd64.exe#/vendir.exe"
-      }
+      "url": "https://ghproxy.net/https://github.com/vmware-tanzu/carvel-vendir/releases/download/v0.33.2/vendir-windows-amd64.exe#/vendir.exe",
+      "hash": "4ca1697bb65622ca9b7ab858c6d01048959b18493c9d833f5bfb01e2847eb14d"
     }
   },
   "bin": "vendir.exe",
   "checkver": {
     "github": "https://github.com/vmware-tanzu/carvel-vendir"
   },
-  "description": "Declaratively state directory's contents.",
-  "homepage": "https://carvel.dev/vendir/",
-  "license": "Apache-2.0",
-  "notes": "See https://carvel.dev/vendir/#examples for some examples",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/vmware-tanzu/carvel-vendir/releases/download/v$version/vendir-windows-amd64.exe#/vendir.exe",
+        "hash": {
+          "url": "$baseurl/checksums.txt",
+          "regex": "$sha256\\s+$basename"
+        }
+      }
+    }
+  },
   "post_install": "vendir version",
-  "version": "0.33.1"
+  "notes": "See https://carvel.dev/vendir/#examples for some examples"
 }
