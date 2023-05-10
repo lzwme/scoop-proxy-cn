@@ -1,0 +1,37 @@
+{
+  "version": "5.4.5.2",
+  "description": "Idling Steam cards from multiple accounts simultaneously.",
+  "homepage": "https://github.com/JustArchiNET/ArchiSteamFarm",
+  "license": "Apache-2.0",
+  "notes": [
+    "ArchiSteamFarm has a built-in updater, So you should disable it in configuration file,",
+    "Or run 'scoop hold archisteamfarm' to disable updates via Scoop.",
+    "ASF Config Generator:",
+    "https://justarchinet.github.io/ASF-WebConfigGenerator/"
+  ],
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/JustArchiNET/ArchiSteamFarm/releases/download/5.4.5.2/ASF-win-x64.zip",
+      "hash": "7f1622bca858c95ee603e2e7575b81c203323a0e8db5c8942844fd978fc36e66"
+    }
+  },
+  "bin": "ArchiSteamFarm.exe",
+  "shortcuts": [
+    [
+      "ArchiSteamFarm.exe",
+      "ArchiSteamFarm"
+    ]
+  ],
+  "persist": [
+    "config",
+    "plugins"
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/JustArchiNET/ArchiSteamFarm/releases/download/$version/ASF-win-x64.zip"
+      }
+    }
+  }
+}

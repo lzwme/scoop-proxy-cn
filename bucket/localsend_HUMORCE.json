@@ -1,0 +1,28 @@
+{
+  "version": "1.9.1",
+  "description": "An open source cross-platform alternative to AirDrop.",
+  "homepage": "https://localsend.org",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/localsend/localsend/releases/download/v1.9.1/LocalSend-1.9.1-windows.zip",
+      "hash": "fc2e8aa24dca5f126992a0072d03339f2ce9e5fe27a8dd87cf798bf765236636"
+    }
+  },
+  "shortcuts": [
+    [
+      "localsend_app.exe",
+      "LocalSend"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/localsend/localsend"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/localsend/localsend/releases/download/v$version/LocalSend-$version-windows.zip"
+      }
+    }
+  }
+}

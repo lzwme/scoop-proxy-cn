@@ -1,0 +1,34 @@
+{
+  "version": "2.0.43",
+  "description": "The all-in-one workspace for your notes, tasks, wikis, and databases.",
+  "homepage": "https://www.notion.so",
+  "license": "Proprietary",
+  "notes": "Your Notion data are storaged in '%LOCALAPPDATA%\\Notion'.",
+  "url": "https://desktop-release.notion-static.com/Notion%20Setup%202.0.43.exe#/dl.7z",
+  "hash": "sha512:34d5a1723a114bfa7ce08bdcf6df20172612cf120bf42bff80aed505bb2d9204e5205afc7eee43d3bcb91d9c6c3cf347454d4099d253077acfeed2f30abfe998",
+  "extract_dir": "$PLUGINSDIR",
+  "installer": {
+    "script": [
+      "Remove-Item \"$dir\\*\" -Exclude \"app-64.7z\"",
+      "Expand-7zipArchive \"$dir\\app-64.7z\" \"$dir\"",
+      "Remove-Item \"$dir\\app-64.7z\""
+    ]
+  },
+  "shortcuts": [
+    [
+      "Notion.exe",
+      "Notion"
+    ]
+  ],
+  "checkver": {
+    "url": "https://desktop-release.notion-static.com/latest.yml",
+    "regex": "version:\\s+([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://desktop-release.notion-static.com/Notion%20Setup%20$version.exe#/dl.7z",
+    "hash": {
+      "url": "$baseurl/latest.yml",
+      "regex": "sha512:\\s+$base64"
+    }
+  }
+}

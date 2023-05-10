@@ -1,0 +1,20 @@
+{
+  "version": "2.0.9",
+  "description": "A Sudo for Windows",
+  "homepage": "https://github.com/gerardog/gsudo",
+  "license": "MIT",
+  "url": "https://ghproxy.net/https://github.com/gerardog/gsudo/releases/download/v2.0.9/gsudo.portable.zip",
+  "hash": "cc9e0bfbeaf95ed239969399c783b1b5127ec76fbf33801f31ee0087fc6c9b75",
+  "bin": [
+    [
+      "gsudo.exe",
+      "sudo"
+    ]
+  ],
+  "post_install": "try { & \"$dir\\gsudo.exe\" -k 2>&1 | Out-Null } catch { info $_.Exception.Message }",
+  "env_add_path": ".",
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/gerardog/gsudo/releases/download/v$version/gsudo.portable.zip"
+  }
+}

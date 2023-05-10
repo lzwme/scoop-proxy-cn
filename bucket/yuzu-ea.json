@@ -1,6 +1,7 @@
 {
-  "version": "EA3507",
-  "description": "Early Access channel of yuzu, an experimental emulator for the Nintendo Switch.",
+  "$schema": "https://ghproxy.net/https://raw.githubusercontent.com/ScoopInstaller/Scoop/master/schema.json",
+  "version": "20230509.7",
+  "description": "Experimental emulator for the Nintendo Switch",
   "homepage": "https://yuzu-emu.org/",
   "license": {
     "identifier": "GPL-2.0",
@@ -8,11 +9,22 @@
   },
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.net/https://github.com/Kryptuq/Yuzu-Early-Access-files/releases/download/EA3507/yuzu-early-access-EA3507.zip",
-      "hash": "9c46a2b7b79b558e124fbd8dcc06fe01f6c1d0420a1ed156f5095f629dfa3329"
+      "url": "https://ghproxy.net/https://github.com/kiennq/yuzu-build/releases/download/ea-20230509.7/yuzu-windows-msvc-20230508-16d244d50.7z",
+      "hash": "c8ba94183a11be2c7f7cdd1e07414f19908669a67fcd6317e1a05d31ad3d9471"
     }
   },
-  "extract_dir": "yuzu-early-access",
+  "extract_dir": "yuzu-windows-msvc-ea",
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\")) {",
+    "   New-item \"$persist_dir\" -ItemType Directory | Out-Null",
+    "   New-item \"$persist_dir\\user\" -ItemType Directory | Out-Null",
+    "   if (Test-Path \"$env:APPDATA\\yuzu\") {",
+    "       Write-host \"Migrating AppData...\" -ForegroundColor yellow",
+    "       Copy-Item -Path \"$env:APPDATA\\yuzu\\*\" -Destination \"$persist_dir\\user\" -Recurse",
+    "       Remove-Item -Path \"$env:APPDATA\\yuzu\" -Recurse",
+    "   }",
+    "}"
+  ],
   "bin": [
     [
       "yuzu.exe",
@@ -26,22 +38,21 @@
   "shortcuts": [
     [
       "yuzu.exe",
-      "yuzu Early Access"
+      "Yuzu (EA)"
     ]
   ],
   "persist": [
     "user",
     "plugins"
   ],
-  "notes": "Data directory is $dir\\user\\",
   "checkver": {
-    "url": "https://github.com/Kryptuq/Yuzu-Early-Access-files/releases/latest",
-    "regex": "/Kryptuq/Yuzu-Early-Access-files/releases/tag/([^/]+?)\""
+    "url": "https://api.github.com/repos/kiennq/yuzu-build/releases/latest",
+    "re": "/download/ea-([\\d.-]+)/yuzu-windows-msvc-(?<date>[\\d]{8})-(?<commit>[\\da-f]+).7z"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.net/https://github.com/Kryptuq/Yuzu-Early-Access-files/releases/download/$version/yuzu-early-access-$version.zip"
+        "url": "https://ghproxy.net/https://github.com/kiennq/yuzu-build/releases/download/ea-$version/yuzu-windows-msvc-$matchDate-$matchCommit.7z"
       }
     }
   }

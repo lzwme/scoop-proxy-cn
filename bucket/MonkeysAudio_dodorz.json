@@ -1,0 +1,37 @@
+{
+  "homepage": "https://monkeysaudio.com/",
+  "version": "10.11",
+  "license": "",
+  "architecture": {
+    "64bit": {
+      "url": "https://monkeysaudio.com/files/MAC_1011_x64.exe",
+      "hash": "4557645e5a50f3a1bfc4989bb6aecbba28e460c61ba11dbb524715eec3543046"
+    },
+    "32bit": {
+      "url": "https://monkeysaudio.com/files/MAC_1011.exe",
+      "hash": "c547870682d4fbe9cf52001c843c3d09ae9e60bedd783a011695c79c54516ca1"
+    }
+  },
+  "innosetup": true,
+  "bin": [
+    "MAC.exe",
+    "Monkey's Audio.exe"
+  ],
+  "shortcuts": [
+    [
+      "Monkey's Audio.exe",
+      "Monkey's Audio"
+    ]
+  ],
+  "checkver": "([\\d.]+) <small>",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://monkeysaudio.com/files/MAC_$cleanVersion_x64.exe"
+      },
+      "32bit": {
+        "url": "https://monkeysaudio.com/files/MAC_$cleanVersion.exe"
+      }
+    }
+  }
+}

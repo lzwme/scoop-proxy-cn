@@ -1,0 +1,53 @@
+{
+  "version": "0.20.22",
+  "description": "A Windows GUI based on Clash.",
+  "homepage": "https://github.com/Fndroid/clash_for_windows_pkg",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/0.20.22/Clash.for.Windows-0.20.22-win.7z",
+      "hash": "e0c142644264fa8c6d36657eabc6b266b67b640bc1675c2f80e66c6fd2bdfeef"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/0.20.22/Clash.for.Windows-0.20.22-ia32-win.7z",
+      "hash": "cf158d7ce92a7ea96c69e6312b0ec8b194c61f3904cadca24d36f430503493f1"
+    },
+    "arm64": {
+      "url": "https://ghproxy.net/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/0.20.22/Clash.for.Windows-0.20.22-arm64-win.7z",
+      "hash": "1957fa056e4518f9e80d113a17bc3b3b06e802f8c42a9d0c4a5c8d69da3fe354"
+    }
+  },
+  "shortcuts": [
+    [
+      "Clash for Windows.exe",
+      "Clash for Windows"
+    ]
+  ],
+  "persist": "data",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/$version/Clash.for.Windows-$version-win.7z",
+        "hash": {
+          "url": "https://ghproxy.net/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/$version/sha256sum",
+          "regex": "^7z: $sha256"
+        }
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/$version/Clash.for.Windows-$version-ia32-win.7z",
+        "hash": {
+          "url": "https://ghproxy.net/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/$version/sha256sum",
+          "regex": "^ia32-7z: $sha256"
+        }
+      },
+      "arm64": {
+        "url": "https://ghproxy.net/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/$version/Clash.for.Windows-$version-arm64-win.7z",
+        "hash": {
+          "url": "https://ghproxy.net/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/$version/sha256sum",
+          "regex": "^arm64-7z: $sha256"
+        }
+      }
+    }
+  }
+}

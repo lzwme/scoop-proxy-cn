@@ -1,0 +1,29 @@
+{
+  "version": "1.14.1",
+  "homepage": "https://stripe.com",
+  "license": "Apache-2.0",
+  "architecture": {
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/stripe/stripe-cli/releases/download/v1.14.1/stripe_1.14.1_windows_i386.zip",
+      "hash": "2ee1bfed2a6b8d3ed7861c9ddd8c394468a2402c8219976a2f87ec1ba8934cbe"
+    },
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/stripe/stripe-cli/releases/download/v1.14.1/stripe_1.14.1_windows_x86_64.zip",
+      "hash": "bc57920649a7b58e3474e7db09db34f39d6c40188014872f8ead8127dd32925d"
+    }
+  },
+  "bin": "stripe.exe",
+  "checkver": {
+    "github": "https://github.com/stripe/stripe-cli"
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/stripe/stripe-cli/releases/download/v$version/stripe_$version_windows_i386.zip"
+      },
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/stripe/stripe-cli/releases/download/v$version/stripe_$version_windows_x86_64.zip"
+      }
+    }
+  }
+}

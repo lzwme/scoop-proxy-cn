@@ -1,0 +1,24 @@
+{
+  "version": "1.43.0",
+  "description": "☁️ Live reload for Go apps",
+  "homepage": "https://github.com/cosmtrek/air",
+  "license": "GPL-3.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/cosmtrek/air/releases/download/v1.43.0/air_1.43.0_windows_amd64.tar.gz",
+      "hash": "6612fedf51714044933cfe3ce36bc2ffc9c0f91af915efa18bbbf78a25ebd71c"
+    }
+  },
+  "bin": "air.exe",
+  "checkver": {
+    "github": "https://github.com/cosmtrek/air"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/cosmtrek/air/releases/download/v$version/air_$version_windows_amd64.tar.gz",
+    "hash": {
+      "mode": "extract",
+      "url": "https://ghproxy.net/https://github.com/cosmtrek/air/releases/download/v$version/air_$version_checksums.txt",
+      "regex": "$sha256  air_$version_windows_amd64.tar.gz"
+    }
+  }
+}

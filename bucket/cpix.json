@@ -1,23 +1,22 @@
 {
-  "homepage": "http://www.filefriend.net/index.html#CPix",
-  "description": "A compact and fast photo viewer that supports APNG, WebP, MPO, encryption, format conversion, resizing and more.",
   "version": "2.9.1",
-  "license": "AS IS",
-  "url": "http://www.filefriend.net/CPix/cn/CPix.zip",
-  "hash": "c4583cf3e70ccf66bb18c750fa3b47d0c362109895575422fa6a3651156700a8",
+  "description": "A compact and fast photo viewer that supports APNG, WebP, MPO, encryption, format conversion, resizing and more.",
+  "homepage": "http://filefriend.net/index.html#CPix",
+  "license": "Freeware",
+  "url": "http://filefriend.net/CPix/en/CPix.zip",
+  "hash": "967c3531b7526f754cf4f3d184346f59d9a28ac2b909b7cdcf058567d801254f",
   "shortcuts": [
     [
       "CPix.exe",
       "CPix"
     ]
   ],
-  "pre_install": "if (-not (Test-Path \"$persist_dir\\CPix.ini\")) { New-Item \"$dir\\CPix.ini\" | Out-Null }",
+  "pre_install": "if (!(Test-Path \"$persist_dir\\CPix.ini\")) { Set-Content -Encoding ASCII -Path \"$dir\\CPix.ini\" -Value $null }",
   "persist": "CPix.ini",
   "checkver": {
-    "re": "Version ([\\d.]+)"
+    "regex": "(?sm)Version ([\\d.]+).*?CPix.zip"
   },
   "autoupdate": {
-    "url": "http://www.filefriend.net/CPix/cn/CPix.zip"
-  },
-  "_from": "okibcn/ScoopMaster"
+    "url": "http://filefriend.net/CPix/en/CPix.zip"
+  }
 }

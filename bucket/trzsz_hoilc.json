@@ -1,0 +1,37 @@
+{
+  "version": "1.1.0",
+  "description": "A simple file transfer tools, similar to lrzsz ( rz / sz ), and compatible with tmux.",
+  "homepage": "https://github.com/trzsz/trzsz-go",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/trzsz/trzsz-go/releases/download/v1.1.0/trzsz_1.1.0_windows_x86_64.zip",
+      "hash": "5bb77ffd3a2a4ba8f42bac210908ac967e3cd74b2497218d86d0c8fdda53b7cf",
+      "extract_dir": "trzsz_1.1.0_windows_x86_64"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/trzsz/trzsz-go/releases/download/v1.1.0/trzsz_1.1.0_windows_i386.zip",
+      "hash": "acd2e84a2166db58007ca27b7af4f9460b7f52d9d6e6179bd9830d0d69cc50e3",
+      "extract_dir": "trzsz_1.1.0_windows_i386"
+    }
+  },
+  "extract_dir": "bin",
+  "bin": [
+    "trz.exe",
+    "trzsz.exe",
+    "tsz.exe"
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/trzsz/trzsz-go/releases/download/v$version/trzsz_$version_windows_x86_64.zip",
+        "extract_dir": "trzsz_$version_windows_x86_64"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/trzsz/trzsz-go/releases/download/v$version/trzsz_$version_windows_i386.zip",
+        "extract_dir": "trzsz_$version_windows_i386"
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "version": "1.9.8",
+  "description": " 一款完善的安全评估工具，支持常见 web 安全问题扫描和自定义 poc ",
+  "homepage": "https://github.com/chaitin/xray",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://github.com/chaitin/xray/blob/master/Disclaimer.md"
+  },
+  "architecture": {
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/chaitin/xray/releases/download/1.9.8/xray_windows_386.exe.zip",
+      "hash": "e82c8e351ac553b3e4f360138414249723ec734b01809392811151094c55ef8a",
+      "pre_install": [
+        "Rename-Item \"$dir\\xray_windows_386.exe\" 'xray.exe'",
+        "if (!(Test-Path \"$dir\\ca.crt\")) {",
+        "    warn 'GenerateToFile CA certificate and key ...'",
+        "    Start-Process -NoNewWindow -FilePath \"$dir\\xray.exe\" -WorkingDirectory \"$dir\" -ArgumentList @('genca') -Wait | Out-Null ",
+        "}"
+      ]
+    },
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/chaitin/xray/releases/download/1.9.8/xray_windows_amd64.exe.zip",
+      "hash": "1517325e108c59f28722bf9894552dfc1e631a51e51376761f6424e3e857e74b",
+      "pre_install": [
+        "Rename-Item \"$dir\\xray_windows_amd64.exe\" 'xray.exe'",
+        "if (!(Test-Path \"$dir\\ca.crt\")) {",
+        "    warn 'GenerateToFile CA certificate and key ...'",
+        "    Start-Process -NoNewWindow -FilePath \"$dir\\xray.exe\" -WorkingDirectory \"$dir\" -ArgumentList @('genca') -Wait | Out-Null ",
+        "}"
+      ]
+    }
+  },
+  "bin": "xray.exe",
+  "persist": [
+    "ca.crt",
+    "ca.key"
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/chaitin/xray/releases/download/$version/xray_windows_386.exe.zip"
+      },
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/chaitin/xray/releases/download/$version/xray_windows_amd64.exe.zip"
+      }
+    }
+  }
+}

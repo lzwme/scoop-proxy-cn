@@ -1,0 +1,36 @@
+{
+  "version": "1.2.7",
+  "description": "Powerful knowledge base that works on top of a local folder of plain text Markdown files.",
+  "homepage": "https://obsidian.md",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://obsidian.md/eula"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/obsidianmd/obsidian-releases/releases/download/v1.2.7/Obsidian.1.2.7.exe#/dl.7z",
+      "hash": "7cfb8aedd26c1f9bc14d9362874941b08f5a5ead4cfd1bc9aabd2f4d6099d8bc",
+      "pre_install": [
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+        "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall*\" -Force -Recurse"
+      ]
+    }
+  },
+  "shortcuts": [
+    [
+      "Obsidian.exe",
+      "Obsidian"
+    ]
+  ],
+  "checkver": {
+    "url": "https://obsidian.md/",
+    "regex": "Version ([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/obsidianmd/obsidian-releases/releases/download/v$version/Obsidian.$version.exe#/dl.7z"
+      }
+    }
+  }
+}

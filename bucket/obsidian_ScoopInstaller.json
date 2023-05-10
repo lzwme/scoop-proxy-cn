@@ -1,0 +1,49 @@
+{
+  "version": "1.2.7",
+  "description": "Powerful knowledge base that works on top of a local folder of plain text Markdown files.",
+  "homepage": "https://obsidian.md",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://obsidian.md/eula"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/obsidianmd/obsidian-releases/releases/download/v1.2.7/Obsidian.1.2.7.exe#/dl.7z",
+      "hash": "7cfb8aedd26c1f9bc14d9362874941b08f5a5ead4cfd1bc9aabd2f4d6099d8bc"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/obsidianmd/obsidian-releases/releases/download/v1.2.7/Obsidian.1.2.7-32.exe#/dl.7z",
+      "hash": "d6dbc805f74ba3139eba0f68dda13257404ccfd6a9bf0d14b71fa35e640f2f52"
+    },
+    "arm64": {
+      "url": "https://ghproxy.net/https://github.com/obsidianmd/obsidian-releases/releases/download/v1.2.7/Obsidian.1.2.7-arm64.exe#/dl.7z",
+      "hash": "3c2a2fc28a421cdb39e1b0bdb0c2994a35448de682168defb7b4671bb1379652"
+    }
+  },
+  "pre_install": [
+    "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app*.7z\" \"$dir\"",
+    "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall*\" -Force -Recurse"
+  ],
+  "shortcuts": [
+    [
+      "Obsidian.exe",
+      "Obsidian"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/obsidianmd/obsidian-releases"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/obsidianmd/obsidian-releases/releases/download/v$version/Obsidian.$version.exe#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/obsidianmd/obsidian-releases/releases/download/v$version/Obsidian.$version-32.exe#/dl.7z"
+      },
+      "arm64": {
+        "url": "https://ghproxy.net/https://github.com/obsidianmd/obsidian-releases/releases/download/v$version/Obsidian.$version-arm64.exe#/dl.7z"
+      }
+    }
+  }
+}
