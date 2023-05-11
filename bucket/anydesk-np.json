@@ -1,0 +1,19 @@
+{
+  "version": "1.0.0",
+  "description": "Anydesk. Remote support tool",
+  "homepage": "https://anydesk.com/",
+  "license": "Shareware",
+  "url": "https://download.anydesk.com/AnyDesk.exe",
+  "hash": "5b70972c72bf8af098350f8a53ec830ddbd5c2c7809c71649c93f32a8a3f1371",
+  "installer": {
+    "script": [
+      "Start-Process -Wait \"$dir\\anydesk.exe\" -ArgumentList @('--silent','--start-with-win',\"--install $dir\") -Verb RunAs | Out-Null"
+    ]
+  },
+  "shortcuts": [
+    [
+      "Anydesk.exe",
+      "Anydesk"
+    ]
+  ]
+}

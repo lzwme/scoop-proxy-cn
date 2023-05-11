@@ -1,30 +1,46 @@
 {
-  "version": "0.1.7",
-  "description": "ChatBox. a cross-platform desktop client for OpenAI API, also a prompt debugging and management tool.",
+  "version": "0.4.2",
+  "description": "A desktop app for ChatGPT API (OpenAI API) that supports Windows, Mac & Linux. 开源的ChatGPT桌面应用，prompt 开发神器，全平台支持",
   "homepage": "https://github.com/Bin-Huang/chatbox",
-  "license": "NO LICENSE",
-  "changelog": "https://github.com/Bin-Huang/chatbox/releases",
+  "license": {
+    "identifier": "GPL-3.0 license",
+    "url": "https://github.com/Bin-Huang/chatbox/blob/main/LICENSE"
+  },
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.net/https://github.com/Bin-Huang/chatbox/releases/download/v0.1.7/chatbox-win32-x64-0.1.7.zip",
-      "hash": "9df482f55fa9c65bf40a72efad8556a895a3e385b028b3f1e661d2fde1302bf1"
+      "url": "https://ghproxy.net/https://github.com/Bin-Huang/chatbox/releases/download/Chatbox-v0.4.2/chatbox_0.4.2_x64_en-US.msi",
+      "hash": "60deb90e6b0f30c18be5b3d4f2743786b799287c2bf366509cefb474a5fe563c"
     }
   },
-  "extract_dir": "chatbox-win32-x64",
-  "bin": "chatbox.exe",
+  "extract_dir": "PFiles\\chatbox",
+  "installer": {
+    "script": [
+      "# handle runtime cache",
+      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name apps) scripts/AppsUtils.psm1)",
+      "Mount-ExternalRuntimeData -Source \"$persist_dir\\appdata\" -Target \"$env:APPDATA\\xyz.chatboxapp.app\"",
+      "Mount-ExternalRuntimeData -Source \"$persist_dir\\appdata\" -Target \"$env:LOCALAPPDATA\\xyz.chatboxapp.app\"",
+      "Remove-Module -Name AppsUtils"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name apps) scripts/AppsUtils.psm1)",
+      "Dismount-ExternalRuntimeData -Target \"$env:APPDATA\\xyz.chatboxapp.app\"",
+      "Dismount-ExternalRuntimeData -Target \"$env:LOCALAPPDATA\\xyz.chatboxapp.app\"",
+      "Remove-Module -Name AppsUtils"
+    ]
+  },
   "shortcuts": [
     [
       "chatbox.exe",
-      "ChatBox"
+      "chatbox"
     ]
   ],
   "checkver": {
-    "github": "https://github.com/Bin-Huang/chatbox"
+    "url": "https://api.github.com/repos/Bin-Huang/chatbox/releases",
+    "regex": "(?sm)browser_download_url.*?releases/download/(?<tag>Chatbox-v([\\d.]+))/chatbox_([\\d.]+)_x64_en-US\\.msi"
   },
   "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/Bin-Huang/chatbox/releases/download/v$version/chatbox-win32-x64-$version.zip",
-    "hash": {
-      "mode": "download"
-    }
+    "url": "https://ghproxy.net/https://github.com/Bin-Huang/chatbox/releases/download/$matchTag/chatbox_$version_x64_en-US.msi"
   }
 }
