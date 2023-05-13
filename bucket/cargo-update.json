@@ -1,13 +1,17 @@
 {
-  "version": "13.0.1",
-  "description": "A cargo subcommand for checking and applying updates to installed executables",
-  "license": "MIT",
-  "homepage": "https://github.com/nabijaczleweli/cargo-update",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.net/https://github.com/nabijaczleweli/cargo-update/releases/download/v13.0.1/cargo-update-v13.0.1.zip",
-      "hash": "20f10700e0d2ff1b8bf6c0803024af53105cc2895359f26c8c9a260065a7db30",
-      "extract_dir": "cargo-update-v13.0.1"
+      "extract_dir": "cargo-update-v13.0.2",
+      "hash": "739efeacce71b3c53371c4661c4aa0452c472f8b500099101f7296395cc5eb84",
+      "url": "https://ghproxy.net/https://github.com/nabijaczleweli/cargo-update/releases/download/v13.0.2/cargo-update-v13.0.2.zip"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "extract_dir": "cargo-update-v$version",
+        "url": "https://ghproxy.net/https://github.com/nabijaczleweli/cargo-update/releases/download/v$version/cargo-update-v$version.zip"
+      }
     }
   },
   "bin": [
@@ -15,13 +19,8 @@
     "cargo-install-update-config.exe"
   ],
   "checkver": "github",
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.net/https://github.com/nabijaczleweli/cargo-update/releases/download/v$version/cargo-update-v$version.zip",
-        "extract_dir": "cargo-update-v$version"
-      }
-    }
-  },
-  "_from": "okibcn/ScoopMaster"
+  "description": "A cargo subcommand for checking and applying updates to installed executables",
+  "homepage": "https://github.com/nabijaczleweli/cargo-update",
+  "license": "MIT",
+  "version": "13.0.2"
 }

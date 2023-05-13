@@ -1,10 +1,10 @@
 {
-  "version": "7986",
+  "version": "7987",
   "description": "Chromium's certificate revocation list",
   "homepage": "https://www.chromium.org/Home/chromium-security/crlsets/",
   "license": "BSD-3-Clause",
-  "url": "https://www.google.com/dl/release2/chrome_component/lbx4nkfsloeotlrloyabhaqpgm_7986/hfnkpimlhhgieaddgfemjhofmfblmnib_7986_all_ac6lyao6sfkrhpg6xeo5rsvoj22q.crx3",
-  "hash": "7f311cfeaefdc5559670780fa29076ab05eb45a780c6621299f9a16234354437",
+  "url": "https://www.google.com/dl/release2/chrome_component/ad7jfkoljjhgkpygn5jhmsve3gfq_7987/hfnkpimlhhgieaddgfemjhofmfblmnib_7987_all_acauxvebh4b3yrxp66be7snv67xa.crx3",
+  "hash": "0b92fca7d3987074d7c6570e2cff21ac3f0badddfe4b3286812d3efef6fe0aec",
   "installer": {
     "script": [
       "$dest = \"$dir\\CertificateRevocation\"",
@@ -22,6 +22,10 @@
     "regex": "version:\"(\\d+)\"\\surl:\"(?:https?://.+/(?<urlone>.+)/(?<basename>.+)\\.crx3)\""
   },
   "autoupdate": {
-    "url": "https://www.google.com/dl/release2/chrome_component/$matchUrlone/$matchBasename.crx3"
+    "url": "https://www.google.com/dl/release2/chrome_component/$matchUrlone/$matchBasename.crx3",
+    "hash": {
+      "url": "https://clients2.google.com/service/update2/crx?x=id%3Dhfnkpimlhhgieaddgfemjhofmfblmnib%26v%3D%26uc%26acceptformat%3Dcrx3",
+      "regex": "hash_sha256=\"([a-fA-F0-9]{64})\""
+    }
   }
 }

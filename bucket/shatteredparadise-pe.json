@@ -1,0 +1,32 @@
+{
+  "version": "20230211",
+  "description": "Shattered Paradise is an expansion for Tiberian Sun on OpenRA, its goal is to (im)balance the game by adding new factions (Mutants, C.A.B.A.L. and Scrin) and reworking the original sides, all of this to create a game a little more varied and balanced than TS. The mod puts a lot of emphasis on making the factions as asymmetric as possible.",
+  "homepage": "https://www.moddb.com/mods/shattered-paradise",
+  "license": "GPL-3.0",
+  "notes": "playtest edition",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/ABrandau/Shattered-Paradise-SDK/releases/download/playtest-20230211/ShatteredParadise-playtest-20230211-x64-winportable.zip",
+      "hash": "ac558733faa980f033b001d398cd586dd4af02bc523d4dda605391a664c72ea8"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/ABrandau/Shattered-Paradise-SDK/releases/download/playtest-20230211/ShatteredParadise-playtest-20230211-x86-winportable.zip",
+      "hash": "aaab1b4ec6d937f095c8c113bf73c9614b88f8ffd94ad72a4653dc75d4f476f3"
+    }
+  },
+  "bin": "ShatteredParadise.exe",
+  "checkver": {
+    "url": "https://github.com/ABrandau/Shattered-Paradise-SDK",
+    "regex": "playtest-(\\d{8})"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/ABrandau/Shattered-Paradise-SDK/releases/download/playtest-$version/ShatteredParadise-playtest-$version-x64-winportable.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/ABrandau/Shattered-Paradise-SDK/releases/download/playtest-$version/ShatteredParadise-playtest-$version-x86-winportable.zip"
+      }
+    }
+  }
+}

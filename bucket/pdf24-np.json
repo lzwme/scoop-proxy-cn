@@ -1,10 +1,10 @@
 {
-  "version": "11.11.1",
+  "version": "11.12.0",
   "description": "Free and user-friendly PDF creator with many functions.",
   "homepage": "https://tools.pdf24.org/",
   "license": "Freeware",
-  "url": "https://stx.pdf24.org/products/pdf-creator/download/pdf24-creator-11.11.1.msi#/setup.msi_",
-  "hash": "832cbdf6678d89bc151676417e318f1bd5852563fb9cff995881c92785ae9ca8",
+  "url": "https://stx.pdf24.org/products/pdf-creator/download/pdf24-creator-11.12.0.msi#/setup.msi_",
+  "hash": "ff2fdcb6bdd02fef37f33acadaa935a4a37df4009f7db90716a98ec610c844d6",
   "installer": {
     "script": "Invoke-ExternalCommand msiexec -ArgumentList @('/i', \"$dir\\setup.msi_\", 'DESKTOPICONS=No', '/qn', '/norestart') -RunAs -ContinueExitCodes @{ 3010 = 'A system reboot is required to finalize the installation.' } | Out-Null"
   },
@@ -17,6 +17,5 @@
   },
   "autoupdate": {
     "url": "https://stx.pdf24.org/products/pdf-creator/download/pdf24-creator-$version.msi#/setup.msi_"
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }
