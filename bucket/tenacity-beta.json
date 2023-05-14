@@ -1,5 +1,5 @@
 {
-  "version": "1.3-beta2",
+  "version": "1.3-beta3-1",
   "homepage": "https://tenacityaudio.org/",
   "description": "An easy-to-use, privacy-friendly, FLOSS, cross-platform multi-track audio editor.",
   "license": "GPL-2.0",
@@ -11,15 +11,16 @@
   ],
   "architecture": {
     "32bit": {
-      "url": "https://codeberg.org/tenacityteam/tenacity/releases/download/v1.3-beta2/tenacity-win-v1.3-beta2-x86.zip",
-      "hash": "de958623c703ac323f06a7aa5a02144df448955f92175614dc0142185665d855"
+      "url": "https://codeberg.org/tenacityteam/tenacity/releases/download/v1.3-beta3-1/tenacity-win-v1.3-beta3-x86.zip",
+      "hash": "d4e87595313664efe47b12d4db43f0cff4ed421a15071df9c6744250588323fe",
+      "extract_dir": "tenacity-win-v1.3-beta3-x86"
     },
     "64bit": {
-      "url": "https://codeberg.org/tenacityteam/tenacity/releases/download/v1.3-beta2/tenacity-win-v1.3-beta2-x86_64.zip",
-      "hash": "c1f17a2e8f93c08c32eac73093eb665a20d98ad749f0a2241d6cc5314a0e75e9"
+      "url": "https://codeberg.org/tenacityteam/tenacity/releases/download/v1.3-beta3-1/tenacity-win-v1.3-beta3-x86_64.zip",
+      "hash": "ce86d558c23ed1630bdae4e1ec9cf1be8c500e0844153a4fad9abaf855ddf6a4",
+      "extract_dir": "tenacity-win-v1.3-beta3-x86_64"
     }
   },
-  "extract_dir": "tenacity-win-v1.3-beta2",
   "shortcuts": [
     [
       "Tenacity.exe",
@@ -56,18 +57,25 @@
     "}"
   ],
   "checkver": {
-    "url": "https://codeberg.org/tenacityteam/tenacity/releases",
-    "regex": "tag/v([\\w.-]+)"
+    "script": [
+      "$content = Invoke-RestMethod 'https://codeberg.org/tenacityteam/tenacity/releases'",
+      "$regex = @('tag/v(?<Version>[\\w.-]+)', 'tenacity-win-v(?<fVersion>[\\w.-]+)-(?:x86|x86_64)\\.zip')",
+      "$content -match $regex[0] | Out-Null; $version = $Matches.Version",
+      "$content -match $regex[1] | Out-Null; $fVersion = $Matches.fVersion",
+      "Write-Output \"$version $fVersion\""
+    ],
+    "regex": "([\\w.-]+)\\s(?<Fversion>[\\w.-]+)"
   },
   "autoupdate": {
     "architecture": {
       "32bit": {
-        "url": "https://codeberg.org/tenacityteam/tenacity/releases/download/v$version/tenacity-win-v$version-x86.zip"
+        "url": "https://codeberg.org/tenacityteam/tenacity/releases/download/v$version/tenacity-win-v$matchFversion-x86.zip",
+        "extract_dir": "tenacity-win-v$matchFversion-x86"
       },
       "64bit": {
-        "url": "https://codeberg.org/tenacityteam/tenacity/releases/download/v$version/tenacity-win-v$version-x86_64.zip"
+        "url": "https://codeberg.org/tenacityteam/tenacity/releases/download/v$version/tenacity-win-v$matchFversion-x86_64.zip",
+        "extract_dir": "tenacity-win-v$matchFversion-x86_64"
       }
-    },
-    "extract_dir": "tenacity-win-v$version"
+    }
   }
 }
