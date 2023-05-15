@@ -1,46 +1,48 @@
 {
-  "version": "0.4.3",
-  "description": "A desktop app for ChatGPT API (OpenAI API) that supports Windows, Mac & Linux. 开源的ChatGPT桌面应用，prompt 开发神器，全平台支持",
+  "description": "Chatbox is a desktop app for GPT-4 / GPT-3.5 (OpenAI API)",
   "homepage": "https://github.com/Bin-Huang/chatbox",
-  "license": {
-    "identifier": "GPL-3.0 license",
-    "url": "https://github.com/Bin-Huang/chatbox/blob/main/LICENSE"
+  "license": "GPL-3.0-only",
+  "version": "0.4.3",
+  "checkver": {
+    "url": "https://github.com/Bin-Huang/chatbox/releases/latest",
+    "regex": "<h1[^>]*>Chatbox v(?<version>[\\d\\.]+)</h1>"
   },
-  "architecture": {
-    "64bit": {
-      "url": "https://ghproxy.net/https://github.com/Bin-Huang/chatbox/releases/download/Chatbox-v0.4.3/chatbox_0.4.3_x64_en-US.msi",
-      "hash": "d754239badb6c05d12d36b59d39f7caf736d157b10c68978eaeb0387277fcfed"
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/Bin-Huang/chatbox/releases/download/Chatbox-v$version/chatbox_$version_x64_en-US.msi",
+    "hash": {
+      "mode": "download"
     }
   },
   "extract_dir": "PFiles\\chatbox",
-  "installer": {
-    "script": [
-      "# handle runtime cache",
-      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name apps) scripts/AppsUtils.psm1)",
-      "Mount-ExternalRuntimeData -Source \"$persist_dir\\appdata\" -Target \"$env:APPDATA\\xyz.chatboxapp.app\"",
-      "Mount-ExternalRuntimeData -Source \"$persist_dir\\appdata\" -Target \"$env:LOCALAPPDATA\\xyz.chatboxapp.app\"",
-      "Remove-Module -Name AppsUtils"
-    ]
-  },
-  "uninstaller": {
-    "script": [
-      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name apps) scripts/AppsUtils.psm1)",
-      "Dismount-ExternalRuntimeData -Target \"$env:APPDATA\\xyz.chatboxapp.app\"",
-      "Dismount-ExternalRuntimeData -Target \"$env:LOCALAPPDATA\\xyz.chatboxapp.app\"",
-      "Remove-Module -Name AppsUtils"
-    ]
-  },
+  "url": "https://ghproxy.net/https://github.com/Bin-Huang/chatbox/releases/download/Chatbox-v0.4.3/chatbox_0.4.3_x64_en-US.msi",
+  "hash": "d754239badb6c05d12d36b59d39f7caf736d157b10c68978eaeb0387277fcfed",
   "shortcuts": [
     [
       "chatbox.exe",
-      "chatbox"
+      "ChatGPT"
     ]
   ],
-  "checkver": {
-    "url": "https://api.github.com/repos/Bin-Huang/chatbox/releases",
-    "regex": "(?sm)browser_download_url.*?releases/download/(?<tag>Chatbox-v([\\d.]+))/chatbox_([\\d.]+)_x64_en-US\\.msi"
-  },
-  "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/Bin-Huang/chatbox/releases/download/$matchTag/chatbox_$version_x64_en-US.msi"
-  }
+  "post_install": [
+    "if (Get-Command magick -ErrorAction SilentlyContinue) {",
+    "   Push-Location $dir",
+    "   Invoke-WebRequest https://cdn.openai.com/brand/openai-logos.zip -OutFile openai-logos.zip",
+    "   Expand-Archive openai-logos.zip -DestinationPath logos",
+    "   Move-Item -Path logos\\openai-logos\\SVGs\\openai-logomark.svg -Destination logo.svg",
+    "   Remove-Item -Path openai-logos.zip",
+    "   Remove-Item -Path logos -Recurse",
+    "   magick -size 256x256 xc:none -fill \"#1ea078\" -draw \"circle 128,128 128,0\" logo_circle.png",
+    "   magick convert -density 128x128 -background transparent logo.svg -define icon:auto-resize -colors 256 logo.png",
+    null,
+    "   magick logo.png -resize 150x150 logo_resized.png",
+    "   magick composite -gravity center logo_resized.png logo_circle.png OpenAI.ico",
+    "   Remove-Item logo*",
+    "   $shortcutPath = Join-Path -Path (Convert-Path([System.IO.Path]::Combine([Environment]::GetFolderPath($global ? 'CommonStartMenu':'StartMenu'), 'Programs', 'Scoop Apps'))) -ChildPath 'ChatGPT.lnk'",
+    "   Copy-Item -Path $shortcutPath -Destination OriginalShortcut.lnk",
+    "   $shortcut = (New-Object -ComObject WScript.Shell).CreateShortcut($shortcutPath)",
+    "   $shortcut.IconLocation = (Join-Path -Path $dir -ChildPath 'OpenAI.ico')",
+    "   $shortcut.Save()",
+    "   Pop-Location",
+    "   Write-Host 'A custom icon has been set for the shortcut. The original shortcut is saved as OriginalShortcut.lnk in the app folder.'",
+    "}"
+  ]
 }

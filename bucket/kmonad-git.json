@@ -1,0 +1,35 @@
+{
+  "version": "3aa2f52536de853efbcb0f6e790c97a3734687ec",
+  "depends": [
+    "stack"
+  ],
+  "homepage": "https://github.com/kmonad/kmonad",
+  "license": "MIT",
+  "url": "https://ghproxy.net/https://github.com/kmonad/kmonad/archive/refs/heads/master.zip",
+  "hash": "60d84fbdfe1acc09b67e1a513c7266c388bbd026adac73576eda67ccec4f90ec",
+  "extract_dir": "kmonad-master",
+  "installer": {
+    "script": [
+      "Write-Output \"Building...\"",
+      "$checkpoint = Get-Location",
+      "cd $dir",
+      "stack build",
+      "stack install",
+      "cd $checkpoint",
+      "Move-Item $env:APPDATA\\local\\bin\\kmonad.exe $dir\\kmonad.exe"
+    ]
+  },
+  "notes": [
+    "kmonad was copy to scoop, not "
+  ],
+  "bin": [
+    "kmonad.exe"
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/kmonad/kmonad/commits/master",
+    "jsonpath": "$.sha"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/kmonad/kmonad/archive/refs/heads/master.zip"
+  }
+}

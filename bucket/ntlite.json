@@ -1,28 +1,22 @@
 {
+  "##": "Based on https://github.com/anderlli0053/DEV-tools/blob/master/bucket/NTLite-Portable.json",
+  "depends": "innounp",
   "version": "2023.5.9235",
   "description": "Local control for updating and editing Windows images and deployments.",
   "homepage": "https://www.ntlite.com",
   "license": {
-    "identifier": "Proprietary",
+    "identifier": "Shareware",
     "url": "https://www.ntlite.com/shop/"
   },
-  "architecture": {
-    "64bit": {
-      "url": "https://downloads.ntlite.com/files/NTLite_setup_x64.exe",
-      "hash": "927a021f621ec4b3ad68d4c2d7faa018f0f10647cbbe45e74c3110aa7d37447c"
-    },
-    "32bit": {
-      "url": "https://downloads.ntlite.com/files/NTLite_setup_x86.exe",
-      "hash": "a323d6f0a15d34f8eeea76c8e79f50793f2672b8b1d617b5da7528f19343680a"
-    }
+  "url": "https://downloads.ntlite.com/files/NTLite_setup_x64.exe",
+  "hash": "927a021f621ec4b3ad68d4c2d7faa018f0f10647cbbe45e74c3110aa7d37447c",
+  "pre_install": "If (!(Test-Path \"$persist_dir\\settings.xml\")) { New-Item \"$dir\\settings.xml\" -ItemType File | Out-Null }",
+  "installer": {
+    "script": [
+      "Expand-InnoArchive -Path \"$dir\\$fname\"",
+      "Expand-InnoArchive -Path \"$dir\\$fname\" -ExtractDir '{code_CefInstallDir}' -Removal"
+    ]
   },
-  "innosetup": true,
-  "pre_install": [
-    "if (!(Test-Path \"$persist_dir\\settings.xml\")) {",
-    "    $settings = '<?xml version=\"1.0\" encoding=\"utf-8\"?><GeneralOptions xmlns=\"urn:schemas-nliteos-com:pn.v1\"><CheckUpdate>false</CheckUpdate><AutoUpdate>false</AutoUpdate></GeneralOptions>'",
-    "    Set-Content \"$dir\\settings.xml\" $settings -Encoding Ascii",
-    "}"
-  ],
   "shortcuts": [
     [
       "NTLite.exe",
@@ -36,24 +30,9 @@
   ],
   "checkver": {
     "url": "https://www.ntlite.com/download/",
-    "regex": "\\>v([\\d.]+)"
+    "regex": "<span.+>v([\\d.]+)<\\/span>"
   },
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://downloads.ntlite.com/files/NTLite_setup_x64.exe",
-        "hash": {
-          "url": "https://www.ntlite.com/download/",
-          "regex": "SHA-256: $sha256"
-        }
-      },
-      "32bit": {
-        "url": "https://downloads.ntlite.com/files/NTLite_setup_x86.exe",
-        "hash": {
-          "url": "https://www.ntlite.com/download/",
-          "regex": "NTLite_setup_x86.exe.*SHA-256: $sha256"
-        }
-      }
-    }
+    "url": "https://downloads.ntlite.com/files/NTLite_setup_x64.exe"
   }
 }
