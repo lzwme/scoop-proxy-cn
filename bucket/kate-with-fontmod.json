@@ -1,0 +1,37 @@
+{
+  "version": "23.04.1-2033",
+  "description": "Multi-document editor with FontMod DLL",
+  "homepage": "https://kate-editor.org",
+  "license": "LGPL-2.0-only",
+  "##": "The App manifest is from the official bucket plus an extra download and placement of FontMod DLL.",
+  "architecture": {
+    "64bit": {
+      "url": "https://binary-factory.kde.org/job/Kate_Release_win64/2033/artifact/kate-23.04.1-2033-windows-cl-msvc2019-x86_64.7z",
+      "hash": "7a90b44d18d8ab000d522478ed0110fee702d73755338d46a8528e8edc9370fc"
+    }
+  },
+  "pre_install": [
+    "Invoke-WebRequest -Uri https://ghproxy.net/https://github.com/ysc3839/FontMod/releases/download/v3.0.1/FontMod64.dll -Method Get -Outfile $dir\\bin\\winmm.dll"
+  ],
+  "bin": "bin\\kate.exe",
+  "shortcuts": [
+    [
+      "bin\\kate.exe",
+      "Kate"
+    ]
+  ],
+  "checkver": {
+    "url": "https://binary-factory.kde.org/job/Kate_Release_win64/",
+    "regex": "kate-([\\d.-]+)-windows-cl-(?<lib>\\w+)-x86_64\\.7z"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://binary-factory.kde.org/job/Kate_Release_win64/$preReleaseVersion/artifact/kate-$version-windows-cl-$matchLib-x86_64.7z",
+        "hash": {
+          "url": "$url.sha256"
+        }
+      }
+    }
+  }
+}

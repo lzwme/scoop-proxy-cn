@@ -1,10 +1,10 @@
 {
-  "version": "0.11.0.13333",
+  "version": "0.11.0.13450",
   "description": "云游戏, 让好玩触手可及",
   "homepage": "https://start.qq.com/",
   "license": "Unknown",
-  "url": "https://imgcdn.start.qq.com/cdn/win.client/installer/START-installer-v0.11.0.13333.exe#/dl.7z",
-  "hash": "md5:33308fa4ff94a85ffc8e0e02a1aaf441",
+  "url": "https://imgcdn.start.qq.com/cdn/win.client/installer/START-installer-v0.11.0.13450.exe#/dl.7z",
+  "hash": "md5:09db1d20e2c19d4842f65b5d0208a23b",
   "installer": {
     "script": [
       "Expand-7zipArchive \"$dir\\app.7z\" \"$dir\"",
@@ -48,13 +48,13 @@
   ],
   "checkver": {
     "url": "https://api.start.qq.com/cfg/get?biztypes=windows-update-info&supplyid=start",
-    "regex": "v([\\d.]+).exe"
+    "regex": "latestversion.*?([\\d.]+)"
   },
   "autoupdate": {
     "url": "https://imgcdn.start.qq.com/cdn/win.client/installer/START-installer-v$version.exe#/dl.7z",
     "hash": {
-      "url": "https://api.start.qq.com/cfg/get?biztypes=windows-update-info&supplyid=start",
-      "regex": "md5.*?$md5"
+      "url": "https://api.start.qq.com/cfg/get?biztypes=windows-update-info",
+      "regex": "hashcode.*?$md5"
     }
   }
 }

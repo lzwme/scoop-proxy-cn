@@ -1,25 +1,36 @@
 {
-  "version": "4.16.4",
-  "description": "An Arknights assistant, supports ZH and EN client",
-  "homepage": "https://www.maa.plus/",
+  "version": "4.17.0-beta.1",
+  "homepage": "https://github.com/MaaAssistantArknights/MaaAssistantArknights",
   "license": "AGPL-3.0",
-  "url": "https://ghproxy.net/https://github.com/MaaAssistantArknights/MaaAssistantArknights/releases/download/v4.16.4/MAA-v4.16.4-win-x64.zip",
-  "hash": "ce01238ca2707231ff258f27d044e559b6c06feeadf4c66c5caad3e4eb98e75b",
-  "bin": "MAA.exe",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/MaaAssistantArknights/MaaAssistantArknights/releases/download/v4.17.0-beta.1/MAA-v4.17.0-beta.1-win-x64.zip",
+      "hash": "20177a8e23fbcc6c709108a3d6324ae76cd721ef4adac3642ebbe8ed354ef2f1"
+    }
+  },
   "shortcuts": [
     [
       "MAA.exe",
-      "MAA Assistant Arknights"
+      "MAA"
     ]
   ],
-  "persist": [
-    "config",
-    "debug"
+  "pre_install": [
+    "$file='gui.json'",
+    "if (!(Test-Path \"$persist_dir\\$file\")) {",
+    "    New-Item \"$dir\\$file\" -Type File | Out-Null",
+    "}"
   ],
+  "persist": "gui.json",
   "checkver": {
-    "github": "https://github.com/MaaAssistantArknights/MaaAssistantArknights"
+    "url": "https://api.github.com/repos/MaaAssistantArknights/MaaAssistantArknights/releases",
+    "jsonpath": "$[0].tag_name",
+    "re": "v(.+)"
   },
   "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/MaaAssistantArknights/MaaAssistantArknights/releases/download/v$version/MAA-v$version-win-x64.zip"
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/MaaAssistantArknights/MaaAssistantArknights/releases/download/v$version/MAA-v$version-win-x64.zip"
+      }
+    }
   }
 }
