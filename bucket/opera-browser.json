@@ -1,34 +1,21 @@
 {
-  "architecture": {
-    "32bit": {
-      "hash": "a20182014248e2998c1d1c664ff9156df7ed812bf1061ba6fb1e005fa2207b28",
-      "url": "https://download1.operacdn.com/pub/opera/desktop/98.0.4759.6/win/Opera_98.0.4759.6_Setup.exe#/dl.7z"
-    },
-    "64bit": {
-      "hash": "93ddf3ae08b009aa2f47cdcd62ab17ae95e217e7c01a85e360a8700eac063d0f",
-      "url": "https://download1.operacdn.com/pub/opera/desktop/98.0.4759.6/win/Opera_98.0.4759.6_Setup_x64.exe#/dl.7z"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "32bit": {
-        "url": "https://download1.operacdn.com/pub/opera/desktop/$version/win/Opera_$version_Setup.exe#/dl.7z"
-      },
-      "64bit": {
-        "url": "https://download1.operacdn.com/pub/opera/desktop/$version/win/Opera_$version_Setup_x64.exe#/dl.7z"
-      }
-    },
-    "hash": {
-      "url": "$url.sha256sum"
-    }
-  },
-  "checkver": {
-    "regex": "([\\d.]+)/",
-    "reverse": true,
-    "url": "http://get.opera.com/ftp/pub/opera/desktop/"
-  },
+  "version": "99.0.4788.9",
   "description": "Fast, secure, easy-to-use browser.",
   "homepage": "https://www.opera.com/",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://www.opera.com/eula/computers"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://download1.operacdn.com/pub/opera/desktop/99.0.4788.9/win/Opera_99.0.4788.9_Setup_x64.exe#/dl.7z",
+      "hash": "6e4b336edb2c074b76d4307bf9c15dea33fa14db6c3fd052412a8fc6d7f499e1"
+    },
+    "32bit": {
+      "url": "https://download1.operacdn.com/pub/opera/desktop/99.0.4788.9/win/Opera_99.0.4788.9_Setup.exe#/dl.7z",
+      "hash": "a1980aa1077ab916cbddd93e2db4156b9dacf8b9f33d514247ae10ac01698528"
+    }
+  },
   "installer": {
     "script": [
       "Remove-Item -Path \"$dir\\*_list\" -Force",
@@ -40,16 +27,29 @@
       "Set-Content -Path \"$dir\\installer_prefs.json\" -Value (@{ 'autoupdate'= $false; 'enable_stats' = $false; 'single_profile' = $true } | ConvertTo-Json) -Encoding ASCII"
     ]
   },
-  "license": {
-    "identifier": "Freeware",
-    "url": "https://www.opera.com/eula/computers"
-  },
-  "persist": "profile",
   "shortcuts": [
     [
       "launcher.exe",
       "Opera"
     ]
   ],
-  "version": "98.0.4759.6"
+  "persist": "profile",
+  "checkver": {
+    "url": "http://get.opera.com/ftp/pub/opera/desktop/",
+    "regex": "([\\d.]+)/",
+    "reverse": true
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://download1.operacdn.com/pub/opera/desktop/$version/win/Opera_$version_Setup_x64.exe#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://download1.operacdn.com/pub/opera/desktop/$version/win/Opera_$version_Setup.exe#/dl.7z"
+      }
+    },
+    "hash": {
+      "url": "$url.sha256sum"
+    }
+  }
 }

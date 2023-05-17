@@ -1,14 +1,12 @@
 {
-  "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/xavierfoucrier/inbox-notifier/releases/download/v$version/Inbox.Notifier.$version.exe"
-  },
-  "checkver": "github",
+  "version": "3.10.0",
   "description": "A tray utility to receive Gmail notifications instantly in the Windows taskbar",
-  "hash": "7d7d05cb52d645aeb76bad7bcaf00ee3e5daea334835fe72d60b819be28777da",
   "homepage": "https://github.com/xavierfoucrier/inbox-notifier",
-  "innosetup": true,
   "license": "MIT",
   "notes": "Some data is contained within \"C:\\Users\\<username>\\AppData\\Local\\Xavier_Foucrier\".",
+  "url": "https://ghproxy.net/https://github.com/xavierfoucrier/inbox-notifier/releases/download/v3.10.0/Inbox.Notifier.3.10.0.exe",
+  "hash": "e0f6d9b69efdf46ba714236d564ce9a2b6e92f69af3cf11749daf8c4a4c3bc56",
+  "innosetup": true,
   "pre_install": [
     "Get-ChildItem \"$dir\\*\" -Include @('*.exe', '*.dll', '*.json', '*.config') -Recurse | Select -ExpandProperty FullName | ForEach-Object {",
     "    if ($architecture -eq '64bit') {",
@@ -35,6 +33,8 @@
       "Inbox Notifier"
     ]
   ],
-  "url": "https://ghproxy.net/https://github.com/xavierfoucrier/inbox-notifier/releases/download/v3.9.0/Inbox.Notifier.3.9.0.exe",
-  "version": "3.9.0"
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/xavierfoucrier/inbox-notifier/releases/download/v$version/Inbox.Notifier.$version.exe"
+  }
 }
