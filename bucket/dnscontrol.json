@@ -1,23 +1,32 @@
 {
   "version": "4.0.0",
-  "description": "Synchronize your DNS to multiple providers from a simple DSL.",
-  "homepage": "https://stackexchange.github.io/dnscontrol/",
+  "description": "Synchronize your DNS to multiple providers from a simple DSL",
+  "homepage": "https://github.com/StackExchange/dnscontrol",
   "license": "MIT",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.net/https://github.com/StackExchange/dnscontrol/releases/download/v4.0.0/dnscontrol.exe",
-      "hash": "82e1f93247a529c07cd97f5f1047524c1c13c5009303e8a2e1a7f0744430acc6"
+      "url": "https://ghproxy.net/https://github.com/StackExchange/dnscontrol/releases/download/v4.0.0/dnscontrol_4.0.0_windows_amd64.zip",
+      "hash": "1ada6077c67e10eaf00d05daf7442866c603580b9a8ba451565993c7dcf97664"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/StackExchange/dnscontrol/releases/download/v4.0.0/dnscontrol_4.0.0_windows_386.zip",
+      "hash": "3772f91912a44da442f2af6d278fd5d98627eb0fd8fddc6ef004c55855b96c79"
     }
   },
   "bin": "dnscontrol.exe",
-  "checkver": {
-    "github": "https://github.com/StackExchange/dnscontrol"
-  },
+  "checkver": "github",
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.net/https://github.com/StackExchange/dnscontrol/releases/download/v$version/dnscontrol.exe"
+        "url": "https://ghproxy.net/https://github.com/StackExchange/dnscontrol/releases/download/v$version/dnscontrol_$version_windows_amd64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/StackExchange/dnscontrol/releases/download/v$version/dnscontrol_$version_windows_386.zip"
       }
+    },
+    "hash": {
+      "url": "$baseurl/checksums.txt",
+      "find": "^$sha256 $basename$"
     }
   }
 }

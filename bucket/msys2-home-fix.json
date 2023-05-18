@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ghproxy.net/https://raw.githubusercontent.com/lukesampson/scoop/master/schema.json",
+  "version": "1.0.1",
+  "description": "Fix MSYS2 home. This link Windows user folder to MSYS2 home directory.",
+  "depends": "main/msys2",
+  "url": "https://example.com/index.html",
+  "hash": "ea8fac7c65fb589b0d53560f5251f74f9e9b243478dcb6b3ea79b5e36449c8d9",
+  "installer": {
+    "script": [
+      "if (Test-Path -Path \"$persist_dir\\..\\msys2\\home\\$env:UserName\" -PathType Container) {",
+      "  Remove-Item -Path \"$persist_dir\\..\\msys2\\home\\$env:UserName\" -Recurse > $null",
+      "}",
+      "New-Item -ItemType Junction -Path \"$persist_dir\\..\\msys2\\home\\$env:UserName\" -Target \"$env:UserProfile\" > $null"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Remove-Item -Path \"$persist_dir\\..\\msys2\\home\\$env:UserName\" > $null"
+    ]
+  }
+}

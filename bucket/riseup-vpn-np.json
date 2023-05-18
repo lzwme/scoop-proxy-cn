@@ -23,7 +23,7 @@
   "checkver": {
     "script": [
       "# This checkver script is needed because the files, are not in a newest-to-oldest order",
-      "$content = (Invoke-WebRequest 'https://downloads.leap.se/RiseupVPN/windows/').Content",
+      "$content = Invoke-RestMethod 'https://downloads.leap.se/RiseupVPN/windows/'",
       "$releaseDate = Select-String -InputObject $content -AllMatches '([\\d]+-[\\w]+-[\\d]+\\s[\\d:]+)'",
       "$releaseDate = $releaseDate.Matches.Value | Get-Date | Sort-Object -Unique -Descending",
       "$releaseDate = $releaseDate[0] | Get-Date -UFormat '%d-%b-%Y %R'",
