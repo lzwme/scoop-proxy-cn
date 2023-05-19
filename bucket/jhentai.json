@@ -23,9 +23,8 @@
       "JHenTai"
     ]
   ],
-  "post_uninstall": [
-    "if (Test-Path -Path \"$Home\\AppData\\Roaming\\top.jtmonster\\jhentai\") {",
-    "\tRemove-Item -Path \"$Home\\AppData\\Roaming\\top.jtmonster\\jhentai\" -Recurse",
-    "}"
+  "notes": [
+    "Config and data are stored in %USERPROFILE%\\AppData\\Roaming\\top.jtmonster\\jhentai",
+    "They will not be automatically removed during uninstallation even with -p flag. Delete them manually if needed."
   ]
 }

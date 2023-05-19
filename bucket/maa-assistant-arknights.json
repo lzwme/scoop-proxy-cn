@@ -1,0 +1,35 @@
+{
+  "version": "4.17.0",
+  "license": "GPL-3.0-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/MaaAssistantArknights/MaaAssistantArknights/releases/download/v4.17.0/MAA-v4.17.0-win-x64.zip",
+      "hash": "6034416624673337df4ee021c8d25de2cbbe8e68fa7e92ade475192116355f21"
+    },
+    "arm64": {
+      "url": "https://ghproxy.net/https://github.com/MaaAssistantArknights/MaaAssistantArknights/releases/download/v4.17.0/MAA-v4.17.0-win-arm64.zip",
+      "hash": "aca562d0af27ab252c837686edadd22253d08764bad07e4f3879e91a3b7eeb7c"
+    }
+  },
+  "homepage": "https://github.com/MaaAssistantArknights/MaaAssistantArknights",
+  "checkver": "github",
+  "persist": [
+    "config"
+  ],
+  "shortcuts": [
+    [
+      "MAA.exe",
+      "MAA"
+    ]
+  ],
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/MaaAssistantArknights/MaaAssistantArknights/releases/download/$version/MAA-$version-win-x64.zip"
+      },
+      "arm64": {
+        "url": "https://ghproxy.net/https://github.com/MaaAssistantArknights/MaaAssistantArknights/releases/download/$version/MAA-$version-win-arm64.zip"
+      }
+    }
+  }
+}
