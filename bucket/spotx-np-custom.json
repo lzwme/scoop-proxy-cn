@@ -1,6 +1,6 @@
 {
   "version": "1.7-20230518-9f3b24",
-  "description": "Modified spotify client. Blocks ads and updates, and more. This manifests uses Spotify's old theme, as well as enabling SpotX's cache cleaning",
+  "description": "Modified spotify client. Blocks ads and updates, and more. This manifest uses Spotify's old theme, as well as enabling SpotX's cache cleaning",
   "homepage": "https://github.com/amd64fox/SpotX",
   "license": "MIT",
   "url": "https://ghproxy.net/https://raw.githubusercontent.com/amd64fox/SpotX/main/Install.ps1",
@@ -10,7 +10,7 @@
       "# older versions of Powershell 5 requires BOM to recognize UTF8 scripts",
       "$cont = Get-Content \"$dir\\Install.ps1\" -Encoding utf8",
       "Set-Content \"$dir\\Install.ps1\" $cont -Encoding utf8",
-      "& \"$dir\\Install.ps1\" -confirm_uninstall_ms_spoti -confirm_spoti_recomended_over -podcasts_off -cache_on 15 -enhance_like_off -block_update_on"
+      "& \"$dir\\Install.ps1\" -confirm_uninstall_ms_spoti -confirm_spoti_recomended_over -podcasts_off -cache_limit 15 -enhance_like_off -block_update_on"
     ]
   },
   "uninstaller": {

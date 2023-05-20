@@ -1,26 +1,30 @@
 {
   "homepage": "https://github.com/cnlh/nps",
-  "version": "0.26.10",
+  "version": "0.26.12",
+  "license": "GPL-3.0-only",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.net/https://github.com/cnlh/nps/releases/download/v0.26.10/windows_amd64_client.tar.gz",
-      "hash": "16afee7d73fe52da0e14c545f3e8e4e5bdba765d02cbd72cc63e5f383233c152"
+      "url": "https://ghproxy.net/https://github.com/cesaryuan/nps/releases/download/v0.26.12/windows_amd64_client.tar.gz",
+      "hash": "14ef22ffcd4e5e2753d3d81b4324438ea6b333c25a22bd0018e0daafde7cbf7d"
     },
     "32bit": {
-      "url": "https://ghproxy.net/https://github.com/cnlh/nps/releases/download/v0.26.10/windows_386_client.tar.gz",
-      "hash": "f353882be5638a4461ece7e9bc6548ca5172d5cf388f36956e0ccade079d0592"
+      "url": "https://ghproxy.net/https://github.com/cesaryuan/nps/releases/download/v0.26.12/windows_386_client.tar.gz",
+      "hash": "d8c7ff9598ce3b380f609705db2dd3840468bd3ea6d782e45d7398d6169be50c"
     }
   },
-  "checkver": "github",
+  "persist": "conf",
+  "bin": "npc.exe",
+  "checkver": {
+    "github": "https://github.com/cesaryuan/nps"
+  },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.net/https://github.com/cnlh/nps/releases/download/v$version/windows_amd64_client.tar.gz"
+        "url": "https://ghproxy.net/https://github.com/cesaryuan/nps/releases/download/v$version/windows_amd64_client.tar.gz"
       },
       "32bit": {
-        "url": "https://ghproxy.net/https://github.com/cnlh/nps/releases/download/v$version/windows_386_client.tar.gz"
+        "url": "https://ghproxy.net/https://github.com/cesaryuan/nps/releases/download/v$version/windows_386_client.tar.gz"
       }
     }
-  },
-  "bin": "npc.exe"
+  }
 }
