@@ -1,8 +1,8 @@
 {
   "homepage": "https://github.com/Fndroid/clash_for_windows_pkg",
-  "description": "A Windows/macOS/Linux GUI based on Clash and Electron.",
+  "description": "A Windows GUI based on Clash",
   "version": "0.20.23",
-  "license": "Proprietary|Freeware",
+  "license": "MIT",
   "architecture": {
     "64bit": {
       "url": "https://ghproxy.net/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/0.20.23/Clash.for.Windows-0.20.23-win.7z",
@@ -13,7 +13,38 @@
       "hash": "95e046c2c71696c533c5b9d314a544520c8683d273f303d4e3c6ba1a2208cf49"
     }
   },
-  "bin": "Clash for Windows.exe",
+  "installer": {
+    "script": [
+      "if (!(Test-Path \"$persist_dir\\data\")) {",
+      "    New-Item \"$persist_dir\\data\" -Type Directory -Force | Out-Null",
+      "    if (Test-Path \"$env:USERPROFILE\\.config\\clash\") {",
+      "        Copy-Item -Path \"$env:USERPROFILE\\.config\\clash\\*\" -Destination \"$persist_dir\\data\" -Recurse -Container",
+      "    }",
+      "}",
+      "$runtimeCache = \"$env:APPDATA\\clash_win\"",
+      "$runtimeCachePersist = \"$persist_dir\\clash_win\"",
+      "if (Test-Path $runtimeCachePersist) {",
+      "    Remove-Item $runtimeCache -Force -Recurse -ErrorAction SilentlyContinue",
+      "    New-Item -Type Junction -Path $runtimeCache -Target $runtimeCachePersist | Out-Null",
+      "} else {",
+      "    if (Test-Path $runtimeCache) {",
+      "        Move-Item $runtimeCache $runtimeCachePersist -Force",
+      "        New-Item -Type Junction -Path $runtimeCache -Target $runtimeCachePersist | Out-Null",
+      "    }",
+      "}"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$runtimeCache = \"$env:APPDATA\\clash_win\"",
+      "$runtimeCachePersist = \"$persist_dir\\clash_win\"",
+      "if (!(Test-Path $runtimeCachePersist)) {",
+      "    Move-Item $runtimeCache $runtimeCachePersist -Force",
+      "} else {",
+      "    Remove-Item $runtimeCache -Force -Recurse -ErrorAction SilentlyContinue",
+      "}"
+    ]
+  },
   "shortcuts": [
     [
       "Clash for Windows.exe",
@@ -21,48 +52,26 @@
     ]
   ],
   "persist": "data",
-  "pre_uninstall": [
-    "if (Get-Process -Name 'clash-core-service' -ErrorAction SilentlyContinue) {",
-    "  start-process powershell -verb runas -ArgumentList \"Stop-Process -Force -Name 'clash-core-service' -ErrorAction SilentlyContinue\"",
-    "  echo \"Waiting remove running process 'clash-core-service'\";Start-Sleep -Seconds 1;echo \"Finished.\"",
-    "  if (Get-Process -Name 'clash-core-service' -ErrorAction SilentlyContinue) {",
-    "    Get-Process -Name 'clash-core-service'",
-    "    error \"$app requires to remove running process 'clash-core-service.exe'\";break",
-    "  }",
-    "}",
-    "if (Get-Process -Name 'clash-win64' -ErrorAction SilentlyContinue) {",
-    "  start-process powershell -verb runas -ArgumentList \"Stop-Process -Force -Name 'clash-win64' -ErrorAction SilentlyContinue\"",
-    "  echo \"Waiting remove running process 'clash-win64.exe'\";Start-Sleep -Seconds 1;echo \"Finished.\"",
-    "  if (Get-Process -Name 'clash-win64' -ErrorAction SilentlyContinue) {",
-    "    Get-Process -Name 'clash-win64'",
-    "    error \"$app requires to remove running process 'clash-win64.exe'\";break",
-    "  }",
-    "}",
-    "if (Get-Process -Name 'Clash for Windows' -ErrorAction SilentlyContinue) {",
-    "  start-process powershell -verb runas -ArgumentList \"Stop-Process -Force -Name 'Clash for Windows' -ErrorAction SilentlyContinue\"",
-    "  echo \"Waiting remove running process 'Clash for Windows'\";Start-Sleep -Seconds 1;echo \"Finished.\"",
-    "  if (Get-Process -Name 'Clash for Windows' -ErrorAction SilentlyContinue) {",
-    "    Get-Process -Name 'Clash for Windows'",
-    "    error \"$app requires to remove running process 'Clash for Windows.exe'\";break",
-    "  }",
-    "}"
-  ],
-  "post_install": [
-    "if ($cmd -eq 'update') { start-process powershell -verb runas -ArgumentList \"Start-Service -Name 'Clash Core Service' -ErrorAction SilentlyContinue\" }",
-    "$checkCFW = !(Get-Process -Name 'Clash for Windows' -ErrorAction SilentlyContinue)",
-    "$checkClash = !(Get-Process -Name 'clash-win64' -ErrorAction SilentlyContinue)",
-    "if (($cmd -eq 'update') -and $checkCFW -and $checkClash) { Start-Process -WindowStyle hidden \"Clash for Windows.exe\" }",
-    "echo \"Please Waiting for restart 'Clash for Windows.exe'.\""
-  ],
   "checkver": "github",
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.net/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/$version/Clash.for.Windows-$version-win.7z"
+        "url": "https://ghproxy.net/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/$version/Clash.for.Windows-$version-win.7z",
+        "hash": {
+          "url": "https://ghproxy.net/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/$version/sha256sum",
+          "mode": "extract",
+          "regex": "(?m)^7z: $sha256"
+        }
       },
       "32bit": {
-        "url": "https://ghproxy.net/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/$version/Clash.for.Windows-$version-ia32-win.7z"
+        "url": "https://ghproxy.net/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/$version/Clash.for.Windows-$version-ia32-win.7z",
+        "hash": {
+          "url": "https://ghproxy.net/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/$version/sha256sum",
+          "mode": "extract",
+          "regex": "^ia32-7z: $sha256"
+        }
       }
     }
-  }
+  },
+  "notes": "Clash for Windows data are now saved into '$persist_dir' and persisted by Scoop."
 }

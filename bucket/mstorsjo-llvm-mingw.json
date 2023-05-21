@@ -1,15 +1,19 @@
 {
-  "version": "20230504",
+  "version": "20230517",
   "description": "An LLVM/Clang/LLD based mingw-w64 toolchain.",
   "homepage": "https://github.com/mstorsjo/llvm-mingw",
   "license": "https://github.com/mstorsjo/llvm-mingw/blob/master/LICENSE.txt",
-  "url": "https://ghproxy.net/https://github.com/mstorsjo/llvm-mingw/releases/download/20230504/llvm-mingw-20230504-ucrt-x86_64.zip",
-  "hash": "55cfffa33a03bf479c3cc72c822b1f78d478286b75f9fe1159bf5920fef9193e",
+  "url": "https://ghproxy.net/https://github.com/mstorsjo/llvm-mingw/releases/download/20230517/llvm-mingw-20230517-ucrt-x86_64.zip",
+  "hash": "bf3540dac6e2581f218c48c09f73d02f687bcbcc40c276fcc124e1d3797c33ed",
   "pre_install": [
     "Move-Item -Path $dir\\llvm-mingw-$version-ucrt-x86_64\\* -Destination $dir\\",
     "Remove-Item -Recurse $dir\\llvm-mingw-$version-ucrt-x86_64"
   ],
-  "env_add_path": [
-    "bin"
-  ]
+  "env_add_path": "bin",
+  "checkver": {
+    "github": "https://github.com/mstorsjo/llvm-mingw"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/mstorsjo/llvm-mingw/releases/download/$version/llvm-mingw-$version-ucrt-x86_64.zip"
+  }
 }
