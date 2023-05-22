@@ -1,68 +1,21 @@
 {
-  "version": "0.3.5",
-  "description": "Desktop application of new Bing's AI-powered chat (Windows, macOS and Linux)",
+  "description": "Desktop application of new Bing's AI-powered chat",
   "homepage": "https://github.com/dice2o/BingGPT",
-  "license": {
-    "identifier": "Apache-2.0 license",
-    "url": "https://github.com/dice2o/BingGPT/blob/main/LICENSE"
-  },
-  "architecture": {
-    "64bit": {
-      "url": "https://ghproxy.net/https://github.com/dice2o/BingGPT/releases/download/v0.3.5/BingGPT-0.3.5-win32-x64-Setup.exe#/dl.7z",
-      "hash": "f301b9e3157d5f196e4eccc29fe5acd560c83093de2896f5e925dc6d4a9b4258",
-      "pre_install": [
-        "Expand-7zipArchive \"$dir\\binggpt-0.3.5-full.nupkg\" \"$dir\"",
-        "    Copy-Item \"$dir\\lib\\net45\\*\" \"$dir\" -Recurse -Force -ErrorAction 'SilentlyContinue'",
-        "    Remove-Item \"$dir\\*.gif\", \"$dir\\*.nupkg\", \"$dir\\RELEASES\", \"$dir\\*.ico\", \"$dir\\Update.*\", \"$dir\\lib\", \"$dir\\package\", \"$dir\\_rels\", \"$dir\\*.nuspec\", \"$dir\\*.xml\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
-      ]
-    },
-    "arm64": {
-      "url": "https://ghproxy.net/https://github.com/dice2o/BingGPT/releases/download/v0.3.5/BingGPT-0.3.5-win32-arm64-Setup.exe#/dl.7z",
-      "hash": "84469251000127f95d716751078c183c4a6532e9bcd3ae8ee49fd7364af11687",
-      "pre_install": [
-        "Expand-7zipArchive \"$dir\\binggpt-0.3.5-full.nupkg\" \"$dir\"",
-        "    Copy-Item \"$dir\\lib\\net45\\*\" \"$dir\" -Recurse -Force -ErrorAction 'SilentlyContinue'",
-        "    Remove-Item \"$dir\\*.gif\", \"$dir\\*.nupkg\", \"$dir\\RELEASES\", \"$dir\\*.ico\", \"$dir\\Update.*\", \"$dir\\lib\", \"$dir\\package\", \"$dir\\_rels\", \"$dir\\*.nuspec\", \"$dir\\*.xml\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
-      ]
+  "license": "Apache-2.0",
+  "version": "0.3.5",
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/dice2o/BingGPT/releases/download/v$version/BingGPT-$version-win32-x64.zip",
+    "hash": {
+      "mode": "download"
     }
   },
-  "pre_install": [
-    "if (Test-Path \"$env:AppData\\BingGPT\") {",
-    "    info '[Persistent data]: Copying user data...'",
-    "    ensure \"$dir\\User Data\" | Out-Null",
-    "    Copy-Item \"$env:AppData\\BingGPT\\*\" \"$dir\\User Data\\\" -Recurse -Force -ErrorAction 'SilentlyContinue'",
-    "    Remove-Item \"$env:AppData\\BingGPT\" -Recurse -Force -ErrorAction 'SilentlyContinue'",
-    "}"
-  ],
+  "url": "https://ghproxy.net/https://github.com/dice2o/BingGPT/releases/download/v0.3.5/BingGPT-0.3.5-win32-x64.zip",
+  "hash": "124e0348fd8265c9a41a8497e330a8929cebe4ac229eed4b169e0c9ccf91c56a",
   "shortcuts": [
     [
       "BingGPT.exe",
-      "BingGPT",
-      "--user-data-dir=\"$dir\\User Data\""
+      "BingGPT"
     ]
-  ],
-  "persist": "User Data",
-  "checkver": {
-    "github": "https://github.com/dice2o/BingGPT"
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.net/https://github.com/dice2o/BingGPT/releases/download/v$version/BingGPT-$version-win32-x64-Setup.exe#/dl.7z",
-        "pre_install": [
-          "Expand-7zipArchive \"$dir\\binggpt-$version-full.nupkg\" \"$dir\"",
-          "    Copy-Item \"$dir\\lib\\net45\\*\" \"$dir\" -Recurse -Force -ErrorAction 'SilentlyContinue'",
-          "    Remove-Item \"$dir\\*.gif\", \"$dir\\*.nupkg\", \"$dir\\RELEASES\", \"$dir\\*.ico\", \"$dir\\Update.*\", \"$dir\\lib\", \"$dir\\package\", \"$dir\\_rels\", \"$dir\\*.nuspec\", \"$dir\\*.xml\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
-        ]
-      },
-      "arm64": {
-        "url": "https://ghproxy.net/https://github.com/dice2o/BingGPT/releases/download/v$version/BingGPT-$version-win32-arm64-Setup.exe#/dl.7z",
-        "pre_install": [
-          "Expand-7zipArchive \"$dir\\binggpt-$version-full.nupkg\" \"$dir\"",
-          "    Copy-Item \"$dir\\lib\\net45\\*\" \"$dir\" -Recurse -Force -ErrorAction 'SilentlyContinue'",
-          "    Remove-Item \"$dir\\*.gif\", \"$dir\\*.nupkg\", \"$dir\\RELEASES\", \"$dir\\*.ico\", \"$dir\\Update.*\", \"$dir\\lib\", \"$dir\\package\", \"$dir\\_rels\", \"$dir\\*.nuspec\", \"$dir\\*.xml\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
-        ]
-      }
-    }
-  }
+  ]
 }

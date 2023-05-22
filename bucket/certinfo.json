@@ -1,17 +1,31 @@
 {
-  "autoupdate": {
-    "hash": {
-      "mode": "download"
+  "version": "1.0.16",
+  "description": "Print X.509 certificate info",
+  "homepage": "https://github.com/pete911/certinfo",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/pete911/certinfo/releases/download/v1.0.16/certinfo_1.0.16_windows_amd64.zip",
+      "hash": "e75b4786a4b829f5ead9e29cc15087100f330e607ac0421ccd9a1c096e8f4ddc"
     },
-    "url": "https://ghproxy.net/https://github.com/pete911/certinfo/releases/download/v$version/certinfo_$version_windows_amd64.zip"
+    "arm64": {
+      "url": "https://ghproxy.net/https://github.com/pete911/certinfo/releases/download/v1.0.16/certinfo_1.0.16_windows_arm64.zip",
+      "hash": "8d6f77ce539194ed68b7f57291be12db1b13fc7d3cb4f8e49c97e401e124cd32"
+    }
   },
   "bin": "certinfo.exe",
   "checkver": "github",
-  "description": "print x509 certificate info",
-  "extract_to": "",
-  "hash": "e75b4786a4b829f5ead9e29cc15087100f330e607ac0421ccd9a1c096e8f4ddc",
-  "homepage": "https://github.com/pete911/certinfo",
-  "license": "MIT",
-  "url": "https://ghproxy.net/https://github.com/pete911/certinfo/releases/download/v1.0.16/certinfo_1.0.16_windows_amd64.zip",
-  "version": "1.0.16"
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/pete911/certinfo/releases/download/v$version/certinfo_$version_windows_amd64.zip"
+      },
+      "arm64": {
+        "url": "https://ghproxy.net/https://github.com/pete911/certinfo/releases/download/v$version/certinfo_$version_windows_arm64.zip"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/checksums.txt"
+    }
+  }
 }
