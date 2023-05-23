@@ -1,16 +1,16 @@
 {
   "homepage": "https://opencc.byvoid.com/",
-  "description": "Open Chinese Convert Command Line Tool.",
-  "version": "1.1.6",
+  "description": "Open Chinese Convert Command Line Tool. (latest prebuilt)",
+  "version": "fd372f6",
   "license": "APL-2.0",
   "architecture": {
     "64bit": {
       "url": "https://ci.appveyor.com/api/projects/Carbo/opencc/artifacts/OpenCC.zip?branch=master&job=Environment:%20nodejs_version=none;%20Platform:%20x64",
-      "hash": "f9172495247ebf0ff184dbc821f27f49bc81d42ac1b7cf6e4f7581065899ed68"
+      "hash": "829f5b337ea457fe80bcd0b8df573eef3c1f2c23ea1cdde08c8c4c10b8d4d70e"
     },
     "32bit": {
       "url": "https://ci.appveyor.com/api/projects/Carbo/opencc/artifacts/OpenCC.zip?branch=master&job=Environment:%20nodejs_version=none;%20Platform:%20x86",
-      "hash": "47ab384e3233b39a1bcb96e7d06c45b0f1a9b78aa3f9b4164c07775ba21c1a61"
+      "hash": "7711836983e1707e591a5cdf65bbcdd8f61d3085b5195df6c055f9b030aeb5cd"
     }
   },
   "extract_dir": "build",
@@ -19,8 +19,9 @@
     "bin\\opencc_dict.exe"
   ],
   "checkver": {
-    "url": "https://github.com/BYVoid/OpenCC/releases/latest",
-    "regex": "/releases/tag/ver.([\\d.]+)"
+    "url": "https://ci.appveyor.com/api/projects/Carbo/opencc/",
+    "jsonpath": "$.build.commitId",
+    "regex": "([0-9a-f]{7})"
   },
   "autoupdate": {
     "architecture": {

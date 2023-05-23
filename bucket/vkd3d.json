@@ -10,13 +10,6 @@
   "url": "https://ghproxy.net/https://github.com/HansKristian-Work/vkd3d-proton/releases/download/v2.9/vkd3d-proton-2.9.tar.zst",
   "hash": "2c1543244dd8932c2e64d39546fa392e76ef307cef4e01b6363beef986a3fc15",
   "extract_dir": "vkd3d-proton-2.9",
-  "post_install": [
-    "$Process = New-Object System.Diagnostics.Process",
-    "$Process.StartInfo.FileName =\"$scoopdir\\apps\\git\\current\\usr\\bin\\tar.exe\"",
-    "$Process.StartInfo.Arguments = \"--strip-components=1 -I zstd -xf vkd3d-proton-$version.tar.zst\"",
-    "$Process.StartInfo.WorkingDirectory = \"$original_dir\"",
-    "$Process.Start() | Out-Null"
-  ],
   "checkver": "github",
   "autoupdate": {
     "url": "https://ghproxy.net/https://github.com/HansKristian-Work/vkd3d-proton/releases/download/v$version/vkd3d-proton-$version.tar.zst",

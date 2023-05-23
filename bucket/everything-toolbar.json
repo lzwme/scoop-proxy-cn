@@ -1,18 +1,18 @@
 {
   "version": "1.1.0",
+  "homepage": "https://github.com/srwi/EverythingToolbar",
+  "description": "Everything integration for the Windows taskbar",
+  "url": "https://ghproxy.net/https://github.com/stnkl/EverythingToolbar/releases/download/1.1.0/EverythingToolbar-1.1.0.msi#/setup.msi_",
   "license": "MIT",
-  "homepage": "https://github.com/stnkl/EverythingToolbar",
-  "url": "https://ghproxy.net/https://github.com/stnkl/EverythingToolbar/releases/download/1.1.0/EverythingToolbar-1.1.0.msi",
   "hash": "deaef3e58fe14a67e90578b9d4d8e026dce3181c1ec21a35d5bf8f7d07a6985a",
-  "extract_dir": "EverythingToolbar",
-  "shortcuts": [
-    [
-      "EverythingToolbar.Launcher.exe",
-      "Everything Toolbar"
-    ]
-  ],
+  "installer": {
+    "script": "Start-Process -Wait msiexec \"/i `\"$dir\\setup.msi_`\"/norestart /qn INSTALLFOLDER=`\"$dir`\"\" -Verb RunAs"
+  },
+  "uninstaller": {
+    "script": "Start-Process -Wait msiexec \"/x `\"$dir\\setup.msi_`\" /qn /norestart\" -Verb RunAs"
+  },
   "checkver": "github",
   "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/stnkl/EverythingToolbar/releases/download/$version/EverythingToolbar-$version.msi"
+    "url": "https://ghproxy.net/https://github.com/stnkl/EverythingToolbar/releases/download/$version/EverythingToolbar-$version.msi#/setup.msi_"
   }
 }

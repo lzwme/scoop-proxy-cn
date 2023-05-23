@@ -19,14 +19,18 @@
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.net/https://github.com/caddyserver/xcaddy/releases/download/v$version/xcaddy_$version_windows_amd64.zip"
+        "url": "https://ghproxy.net/https://github.com/caddyserver/xcaddy/releases/download/v$version/xcaddy_$version_windows_amd64.zip",
+        "hash": {
+          "url": "$baseurl/xcaddy_$version_checksums.txt",
+          "regex": "$sha256\\s+$basename"
+        }
       },
       "arm64": {
-        "url": "https://ghproxy.net/https://github.com/caddyserver/xcaddy/releases/download/v$version/xcaddy_$version_windows_arm64.zip"
-      },
-      "hash": {
-        "url": "$baseurl/xcaddy_$version_checksums.txt",
-        "regex": "$sha256\\s+$basename"
+        "url": "https://ghproxy.net/https://github.com/caddyserver/xcaddy/releases/download/v$version/xcaddy_$version_windows_arm64.zip",
+        "hash": {
+          "url": "$baseurl/xcaddy_$version_checksums.txt",
+          "regex": "$sha256\\s+$basename"
+        }
       }
     }
   }
