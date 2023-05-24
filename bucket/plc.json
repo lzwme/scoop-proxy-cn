@@ -1,0 +1,24 @@
+{
+  "version": "v0.1.345",
+  "homepage": "https://lang.pivotstudio.cn",
+  "license": "MIT",
+  "description": "Pivot Lang Compiler and language server",
+  "bin": [
+    "plc.exe"
+  ],
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/Pivot-Studio/pivot-lang/releases/download/v0.1.345/pivot-lang-0.1.345-windows-amd64.tar.gz",
+      "type": "tar.xz",
+      "sha256": "c4a0552d0fccf26563da96be63d76f9e54921440fa501f22691ae8a0a228e5f4"
+    }
+  },
+  "env_add_path": [
+    "$dir"
+  ],
+  "post_install": [
+    "tar xvf pivot-lang-0.1.345-windows-amd64.tar.gz",
+    "setx KAGARI_LIB_ROOT \"$dir\\win64\\planglib\"",
+    "setx PL_ROOT \"$dir\\win64\""
+  ]
+}
