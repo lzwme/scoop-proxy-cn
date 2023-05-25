@@ -1,35 +1,20 @@
 {
-  "architecture": {
-    "64bit": {
-      "hash": "sha512:efe1f160977fc55791c802eb5a4c3e61b94e0eebc1e8a6bd7227612ec1a3e622e930143e10c3b7edc4cd3a52b79631b4bd4258f6a2d21e26ed1d7c1b8155f907",
-      "pre_install": [
-        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
-        "Remove-Item \"$dir\\$*\" -Recurse",
-        "Remove-Item \"$dir\\Uninst*\" -Recurse"
-      ],
-      "url": "https://downloads.getfiddler.com/win/Fiddler%20Everywhere%204.2.1.exe#/dl.7z"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://downloads.getfiddler.com/win/Fiddler%20Everywhere%20$version.exe#/dl.7z"
-      }
-    },
-    "hash": {
-      "regex": "sha512:\\s+$base64",
-      "url": "$baseurl/latest.yml"
-    }
-  },
-  "checkver": {
-    "regex": "version:\\s+([\\d.]+)",
-    "url": "https://downloads.getfiddler.com/win/latest.yml"
-  },
+  "version": "4.3.0",
   "description": "Network traffic analyzer",
   "homepage": "https://www.telerik.com/fiddler-everywhere",
   "license": {
     "identifier": "Proprietary",
     "url": "https://www.telerik.com/purchase/license-agreement/fiddler"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://downloads.getfiddler.com/win/Fiddler%20Everywhere%204.3.0.exe#/dl.7z",
+      "hash": "fd093bae722e77ebc0be0a2c3a591abaf2df5bd37f37a6ee5f4d32d8261b0abb",
+      "pre_install": [
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+        "Remove-Item \"$dir/`$PLUGINSDIR\" -Recurse"
+      ]
+    }
   },
   "shortcuts": [
     [
@@ -37,5 +22,15 @@
       "Fiddler Everywhere"
     ]
   ],
-  "version": "4.2.1"
+  "checkver": {
+    "url": "https://downloads.getfiddler.com/win/latest.yml",
+    "regex": "version:\\s+([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://downloads.getfiddler.com/win/Fiddler%20Everywhere%20$version.exe#/dl.7z"
+      }
+    }
+  }
 }

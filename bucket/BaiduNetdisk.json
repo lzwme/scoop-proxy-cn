@@ -1,17 +1,10 @@
 {
-  "version": "7.28.1.6",
   "homepage": "https://pan.baidu.com/download",
-  "license": "Freeware",
-  "description": "百度网盘 PC 版",
+  "description": "百度网盘PC版 ",
+  "version": "7.28.1.6",
   "url": "http://issuecdn.baidupcs.com/issue/netdisk/yunguanjia/BaiduNetdisk_7.28.1.6.exe#dl.7z",
   "hash": "93f6c3035f3d3369e3b0548a683bc1d72fb4b64291c6fc9c6a9d1d0f7a45b3a3",
   "bin": "BaiduNetdisk.exe",
-  "shortcuts": [
-    [
-      "BaiduNetdisk.exe",
-      "百度网盘"
-    ]
-  ],
   "persist": "users",
   "post_install": [
     "Remove-Item \"$dir\\`$PLUGINSDIR\" -Recurse",
@@ -23,5 +16,11 @@
   },
   "autoupdate": {
     "url": "http://issuecdn.baidupcs.com/issue/netdisk/yunguanjia/BaiduNetdisk_$version.exe#dl.7z"
-  }
+  },
+  "shortcuts": [
+    [
+      "BaiduNetdisk.exe",
+      "百度网盘"
+    ]
+  ]
 }

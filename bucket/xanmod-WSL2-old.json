@@ -1,5 +1,6 @@
 {
   "homepage": "https://github.com/Locietta/xanmod-kernel-WSL2",
+  "description": "Xanmod Kernel for WSL2.",
   "license": "GPL-2.0",
   "extract_dir": "",
   "bin": "",
@@ -32,7 +33,10 @@
   "url": "https://ghproxy.net/https://github.com/Locietta/xanmod-kernel-WSL2/releases/download/6.3.3-locietta-WSL2-xanmod1.1/bzImage-old",
   "hash": "696ae42dd4e6c9cb5ebe286699794c6461cc8f147edb20ebf316560dacbc0ea0",
   "checkver": {
-    "github": "https://github.com/Locietta/xanmod-kernel-WSL2",
+    "script": [
+      "$LATEST = ((curl.exe -sL -H \"Authorization: Bearer $(Get-GitHubToken)\" https://api.github.com/repos/Locietta/xanmod-kernel-WSL2/tags?per_page=60 | ConvertFrom-Json).name | Select-String 'lts' -NotMatch)[0]",
+      "$LATEST"
+    ],
     "regex": "(?<main>[\\d.]+)-locietta-WSL2-xanmod(?<xanmod>[\\d.]+)",
     "replace": "${1}-${2}"
   },

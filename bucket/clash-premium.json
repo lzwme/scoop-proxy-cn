@@ -1,28 +1,67 @@
 {
+  "homepage": "https://github.com/Dreamacro/clash/wiki/Premium-Core-Features",
+  "description": "close-sourced pre-built Clash binary with TUN support and more (it's free)",
   "version": "2023.05.19",
-  "description": "A rule-based tunnel with TUN support and more. (close-sourced)",
-  "homepage": "https://github.com/Dreamacro/clash",
-  "license": "Freeware",
+  "license": "Proprietary",
+  "persist": [
+    "config.yaml",
+    "Country.mmdb"
+  ],
+  "pre_install": [
+    "$config = \"$dir\\config.yaml\"",
+    "$value  = \"# Configuration reference:",
+    "# https: //github.com/Dreamacro/clash/wiki/configuration\"",
+    "if (!(Test-Path $config)) {",
+    "    Add-Content -Path $config -Value $value",
+    "}",
+    "$mmdb     = \"$dir\\Country.mmdb\"",
+    "$mmdb_url = \"https://cdn.jsdelivr.net/gh/Hackl0us/GeoIP2-CN@release/Country.mmdb\"",
+    "if (!(Test-Path $mmdb)) {",
+    "   Invoke-WebRequest -uri $mmdb_url -OutFile $mmdb",
+    "}"
+  ],
   "architecture": {
     "64bit": {
       "url": "https://ghproxy.net/https://github.com/Dreamacro/clash/releases/download/premium/clash-windows-amd64-2023.05.19.zip",
-      "hash": "34781a780a2574f73bb83466a8af014fba08d693467107ada4538bd59f1dc439"
+      "hash": "34781a780a2574f73bb83466a8af014fba08d693467107ada4538bd59f1dc439",
+      "bin": [
+        [
+          "clash-windows-amd64.exe",
+          "clashd",
+          "-d $dir"
+        ],
+        [
+          "clash-windows-amd64.exe",
+          "clash-premium"
+        ]
+      ]
     },
     "32bit": {
       "url": "https://ghproxy.net/https://github.com/Dreamacro/clash/releases/download/premium/clash-windows-386-2023.05.19.zip",
-      "hash": "266c76661e172f5b63c541c65411687d4d335125a27e906862754a5a21b0555b"
+      "hash": "266c76661e172f5b63c541c65411687d4d335125a27e906862754a5a21b0555b",
+      "bin": [
+        [
+          "clash-windows-386.exe",
+          "clashd",
+          "-d $dir"
+        ],
+        [
+          "clash-windows-386.exe",
+          "clash-premium"
+        ]
+      ]
     }
   },
-  "pre_install": "Get-ChildItem \"$dir\\clash-windows-*.exe\" | Rename-Item -NewName 'clash-premium.exe'",
-  "bin": [
-    [
-      "clash-premium.exe",
-      "clash-premium"
-    ]
-  ],
+  "suggest": {
+    "Dashboard": [
+      "clash-dashboard",
+      "yacd"
+    ],
+    "Daemon": "nssm"
+  },
   "checkver": {
     "url": "https://github.com/Dreamacro/clash/releases/tag/premium",
-    "regex": "Premium ([\\d.]+)"
+    "regex": "Premium\\s+([\\d.]+)"
   },
   "autoupdate": {
     "architecture": {
