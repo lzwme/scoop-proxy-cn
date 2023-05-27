@@ -1,22 +1,20 @@
 {
   "homepage": "https://www.bypass.cn/",
-  "description": "Bypass - Eaiser to buy your tickets",
   "version": "1.15.11",
-  "license": "Freeware",
-  "url": "https://www.bypass.cn/api/download?name=Bypass.zip#/dl.7z",
-  "hash": "90811905e91f1000e91d8d5c48e5b822b2b0ad893f452e42b37413ec98d788fa",
+  "url": "https://www.bypass.cn/api/download?name=Bypass.zip#/dl.zip",
+  "hash": "a57239e92bcee6355ff58ea2b14070131f8507700768cb9c5724ecdf6b4ebd28",
   "extract_dir": "Bypass",
+  "checkver": {
+    "url": "https://www.bypass.cn/",
+    "regex": "Version&#xFF1A;([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://www.bypass.cn/api/download?name=Bypass.zip#/dl.zip"
+  },
   "shortcuts": [
     [
       "Bypass.exe",
-      "分流抢票"
+      "Bypass"
     ]
-  ],
-  "checkver": {
-    "regex": "Version.*?([\\d.]+)</label>"
-  },
-  "autoupdate": {
-    "url": "https://www.bypass.cn/api/download?name=Bypass.zip#/dl.7z"
-  },
-  "notes": "Tips: the Bypass software requires elevated privileges to run."
+  ]
 }

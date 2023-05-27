@@ -1,0 +1,24 @@
+{
+  "version": "0.5.0",
+  "description": "A Command Line Interface for KubeBlocks",
+  "homepage": "https://kubeblocks.io/",
+  "license": "AGPL-3.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/apecloud/kbcli/releases/download/v0.5.0/kbcli-windows-amd64-v0.5.0.zip"
+    }
+  },
+  "extract_dir": "windows-amd64",
+  "bin": "kbcli.exe",
+  "checkver": {
+    "url": "https://api.github.com/repos/apecloud/kbcli/releases/latest",
+    "regex": "v([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/apecloud/kbcli/releases/download/v$version/kbcli-windows-amd64-v$version.zip"
+      }
+    }
+  }
+}

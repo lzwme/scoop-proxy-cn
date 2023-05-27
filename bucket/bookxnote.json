@@ -1,39 +1,34 @@
 {
-  "version": "2.0.0.1108",
-  "description": "全新设计的电子书阅读学习笔记软件，以不同的思维方式重塑我们的学习过程",
+  "version": "2.0.0.1109",
+  "description": "笔记整理交给我, 一心只读圣贤书。",
   "homepage": "http://www.bookxnote.com/",
-  "license": "Unknown",
+  "license": "Proprietary",
   "architecture": {
     "64bit": {
-      "url": "http://www.bookxnote.com/setup/bookxnotepro-windows-x64-2.0.0.1108-20230508.zip",
-      "hash": "28363aef9ea185a0f53b172fed1bd882e174f9e68a8d5e61cf4460ee26ec8f34"
-    },
-    "32bit": {
-      "url": "http://www.bookxnote.com/setup/bookxnotepro-windows-x86-2.0.0.1108-20230508.zip",
-      "hash": "c62890555d28ce21c1af069bf8a292760d37c6836f7954bfcd30c184a7985ca1"
+      "url": "http://www.bookxnote.com/setup/bookxnotepro-windows-x64-2.0.0.1109-20230525.zip",
+      "hash": "256d6e45d27eccc0180e7b365f32a077568086c0bd2ed9491d68194307faa7fc"
     }
   },
-  "pre_install": [
-    "Expand-7zipArchive \"$dir\\bookxnotepro-windows-*.exe\" \"$dir\"",
-    "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\uninst*\", \"$dir\\bookxnotepro-windows-*.exe\" -Force -Recurse"
-  ],
-  "bin": "BookxNotePro.exe",
+  "installer": {
+    "script": [
+      "Move-Item \"$dir\\bookxnotepro-windows-x64*.exe\" \"$dir\\bookxnote.7z\"",
+      "Expand-7zipArchive \"$dir\\bookxnote.7z\" \"$dir\" -Removal",
+      "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\uninst.exe.nsis\" -Recurse"
+    ]
+  },
   "shortcuts": [
     [
       "BookxNotePro.exe",
-      "BookxNote Pro"
+      "BookxNote"
     ]
   ],
   "checkver": {
-    "regex": "bookxnotepro-windows-x64-([\\d.]+)-(?<date>\\d+).zip"
+    "re": "bookxnotepro-windows-x64-([\\d.]+)-(\\d+).zip"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "http://www.bookxnote.com/setup/bookxnotepro-windows-x64-$version-$matchDate.zip"
-      },
-      "32bit": {
-        "url": "http://www.bookxnote.com/setup/bookxnotepro-windows-x86-$version-$matchDate.zip"
+        "url": "http://www.bookxnote.com/setup/bookxnotepro-windows-x64-$match1-$match2.zip"
       }
     }
   }
