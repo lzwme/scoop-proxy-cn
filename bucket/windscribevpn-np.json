@@ -1,19 +1,11 @@
 {
   "##": "This package is non-portable because the app requires installing drivers/services to work properly.",
-  "autoupdate": {
-    "url": "https://deploy.totallyacdn.com/desktop-apps/$version/Windscribe_$version.exe#/vpnsetup.exe"
-  },
-  "checkver": {
-    "regex": "/desktop-apps/([\\d.]+)/",
-    "script": [
-      "$redirURL = [System.Net.HttpWebRequest]::Create('https://windscribe.com/install/desktop/windows').GetResponse().ResponseUri.AbsoluteUri",
-      "Return $redirURL"
-    ]
-  },
+  "version": "2.5.18",
   "description": "Open Source VPN with AdBlocking Proxy.",
-  "hash": "f5534fd03b47615cac91ddbcbd204a4ce35fe5ad2d420f9fde019f4612db0281",
   "homepage": "https://windscribe.com/",
   "license": "GPL-2.0",
+  "url": "https://deploy.totallyacdn.com/desktop-apps/2.5.18/Windscribe_2.5.18.exe#/vpnsetup.exe",
+  "hash": "a58515e3c3b350de864bfd41ebd570724efdffe44e17de571f78da74b5ef7475",
   "post_install": [
     "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
     "Start-Process \"$dir\\vpnsetup.exe\" -Wait -Verb 'RunAs' -WindowStyle 'Hidden' -ArgumentList @('-silent', '-dir', \"$dir\\Windscribe\")",
@@ -31,6 +23,14 @@
     "Start-Process \"$currentDir\\Windscribe\\uninstall.exe\" -WindowStyle 'Hidden' -Verb 'RunAs' -ArgumentList '/VERYSILENT' -Wait",
     "Start-Sleep -Seconds 2"
   ],
-  "url": "https://deploy.totallyacdn.com/desktop-apps/2.6.14/Windscribe_2.6.14.exe#/vpnsetup.exe",
-  "version": "2.6.14"
+  "checkver": {
+    "script": [
+      "$userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.26 Safari/537.36'",
+      "(Invoke-WebRequest 'https://windscribe.com/install/desktop/windows' -UserAgent $userAgent -MaximumRedirection 1 -Method 'Get').BaseResponse.RequestMessage.RequestUri.AbsoluteUri"
+    ],
+    "regex": "/desktop-apps/([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://deploy.totallyacdn.com/desktop-apps/$version/Windscribe_$version.exe#/vpnsetup.exe"
+  }
 }
