@@ -1,0 +1,30 @@
+{
+  "version": "1.6",
+  "description": "Simple DNS bench util that supports encrypted protocols.",
+  "homepage": "https://github.com/ameshkov/godnsbench",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/ameshkov/godnsbench/releases/download/v1.6/godnsbench-windows-amd64-v1.6.zip",
+      "hash": "1be1e1fa546c656e174dfa4f68738bfc66946d5e41a67a3da29901f262907ebc",
+      "extract_dir": "windows-amd64"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/ameshkov/godnsbench/releases/download/v1.6/godnsbench-windows-386-v1.6.zip",
+      "hash": "de0b83935843ee1461f688601229ba039c82d01ec6a7ead889e6613acf5c4830",
+      "extract_dir": "windows-386"
+    }
+  },
+  "bin": "godnsbench.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/ameshkov/godnsbench/releases/download/v$version/godnsbench-windows-amd64-v$version.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/ameshkov/godnsbench/releases/download/v$version/godnsbench-windows-386-v$version.zip"
+      }
+    }
+  }
+}
