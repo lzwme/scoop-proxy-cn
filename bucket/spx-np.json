@@ -1,14 +1,15 @@
 {
-  "version": "1.7-20230527-da0910",
+  "version": "1.7-20230529-d1a024",
   "description": "Client mod for a green circle three-lined app. (Manifest based on nonportable's)",
   "homepage": "https://github.com/amd64fox/SpotX",
   "license": "MIT",
   "url": "https://ghproxy.net/https://raw.githubusercontent.com/amd64fox/SpotX/main/Install.ps1",
-  "hash": "685c2e5fa4ae4c2cd764f2a4c95a02404ccb58c20940d22c85d234711a5a6e40",
+  "hash": "d941962310e87e130f6e5b8fa38633aa63527f83eec069da6b9c4dd073dfc293",
   "installer": {
     "script": [
       "# older versions of Powershell 5 requires BOM to recognize UTF8 scripts",
       "$cont = Get-Content \"$dir\\Install.ps1\" -Encoding utf8",
+      "$cont = $cont -ireplace [regex]::Escape('Etc\\hosts'), 'NUL'",
       "Set-Content \"$dir\\Install.ps1\" $cont -Encoding utf8",
       "& \"$dir\\Install.ps1\" -confirm_uninstall_ms_spoti -confirm_spoti_recomended_over -podcasts_off -cache_limit 1024 -block_update_on -adsections_off -no_shortcut"
     ]

@@ -1,42 +1,47 @@
 {
-  "version": "1.0.1",
+  "version": "1.4.10",
   "description": "解决电脑、手机看电视直播的苦恼，收集各种直播源，电视直播网站",
   "homepage": "https://github.com/biancangming/wtv",
-  "license": "Freeware",
+  "license": "Unknown",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.net/https://github.com/biancangming/wtv/releases/download/v1.0.1/pro._1.0.1-beta.1_x64.exe#/dl.7z",
-      "hash": "4D2FF920DACCBF30E2A62F2A685BE735F1C1443957DAF0BB1716CF71585EC8C9"
-    },
-    "32bit": {
-      "url": "https://ghproxy.net/https://github.com/biancangming/wtv/releases/download/v1.0.1/pro._1.0.1-beta.1_ia32.exe#/dl.7z",
-      "hash": "7D350D7D124C88481F288B31814B26E286FCE602A15A0FBB17000F3836A0C50F"
+      "url": "https://ghproxy.net/https://github.com/biancangming/wtv/releases/download/1.4.10/yigechengzipro_1.4.10_x64.exe#/dl.7z",
+      "hash": "e024613556ad59b01a2436fa0d18cf78d3e09436f024581a3532a08640a93d85",
+      "pre_install": [
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+        "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$R0\" -Force -Recurse"
+      ]
     }
   },
-  "extract_dir": "yigechengzipro",
   "installer": {
-    "script": []
+    "script": [
+      "# handle runtime cache",
+      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name apps) scripts/AppsUtils.psm1)",
+      "Mount-ExternalRuntimeData -Source \"$persist_dir\\appdata\" -Target \"$env:APPDATA\\yigechengzipro\"",
+      "Remove-Module -Name AppsUtils"
+    ]
   },
   "uninstaller": {
-    "script": []
+    "script": [
+      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name apps) scripts/AppsUtils.psm1)",
+      "Dismount-ExternalRuntimeData -Target \"$env:APPDATA\\yigechengzipro\"",
+      "Remove-Module -Name AppsUtils"
+    ]
   },
-  "bin": "一个橙子pro工具箱.exe",
   "shortcuts": [
     [
       "一个橙子pro工具箱.exe",
-      "wtv"
+      "一个橙子Pro工具箱"
     ]
   ],
   "checkver": {
-    "github": "https://github.com/biancangming/wtv"
+    "url": "https://api.github.com/repos/biancangming/wtv/releases",
+    "regex": "/releases/tag/([\\d.]+)"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.net/https://github.com/biancangming/wtv/releases/download/v$version/pro._$version-beta.1_x64.exe#dl.7z"
-      },
-      "32bit": {
-        "url": "https://ghproxy.net/https://github.com/biancangming/wtv/releases/download/v$version/pro._$version-beta.1_ia32.exe#dl.7z"
+        "url": "https://ghproxy.net/https://github.com/biancangming/wtv/releases/download/$version/yigechengzipro_$version_x64.exe#/dl.7z"
       }
     }
   }
