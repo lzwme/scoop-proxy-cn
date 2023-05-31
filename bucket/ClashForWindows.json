@@ -1,29 +1,67 @@
 {
-  "version": "0.20.24",
-  "description": "A Windows/macOS GUI based on Clash",
   "homepage": "https://github.com/Fndroid/clash_for_windows_pkg",
-  "license": "No License",
+  "description": "A Windows/macOS/Linux GUI based on Clash and Electron.",
+  "version": "0.20.24",
+  "license": "Proprietary|Freeware",
   "architecture": {
     "64bit": {
       "url": "https://ghproxy.net/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/0.20.24/Clash.for.Windows-0.20.24-win.7z",
       "hash": "6d70716075b56320a0ae386c5f834596f21ff19ff3f00f2e6e60986d432b5b8e"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/0.20.24/Clash.for.Windows-0.20.24-ia32-win.7z",
+      "hash": "a41ce893ae30fd817b144a4e6a97d053257f19b402410049a89738a214eb0356"
     }
   },
+  "bin": "Clash for Windows.exe",
   "shortcuts": [
     [
       "Clash for Windows.exe",
       "Clash for Windows"
     ]
   ],
+  "persist": "data",
+  "pre_uninstall": [
+    "if (Get-Process -Name 'clash-core-service' -ErrorAction SilentlyContinue) {",
+    "  start-process powershell -verb runas -ArgumentList \"Stop-Process -Force -Name 'clash-core-service' -ErrorAction SilentlyContinue\"",
+    "  echo \"Waiting remove running process 'clash-core-service'\";Start-Sleep -Seconds 1;echo \"Finished.\"",
+    "  if (Get-Process -Name 'clash-core-service' -ErrorAction SilentlyContinue) {",
+    "    Get-Process -Name 'clash-core-service'",
+    "    error \"$app requires to remove running process 'clash-core-service.exe'\";break",
+    "  }",
+    "}",
+    "if (Get-Process -Name 'clash-win64' -ErrorAction SilentlyContinue) {",
+    "  start-process powershell -verb runas -ArgumentList \"Stop-Process -Force -Name 'clash-win64' -ErrorAction SilentlyContinue\"",
+    "  echo \"Waiting remove running process 'clash-win64.exe'\";Start-Sleep -Seconds 1;echo \"Finished.\"",
+    "  if (Get-Process -Name 'clash-win64' -ErrorAction SilentlyContinue) {",
+    "    Get-Process -Name 'clash-win64'",
+    "    error \"$app requires to remove running process 'clash-win64.exe'\";break",
+    "  }",
+    "}",
+    "if (Get-Process -Name 'Clash for Windows' -ErrorAction SilentlyContinue) {",
+    "  start-process powershell -verb runas -ArgumentList \"Stop-Process -Force -Name 'Clash for Windows' -ErrorAction SilentlyContinue\"",
+    "  echo \"Waiting remove running process 'Clash for Windows'\";Start-Sleep -Seconds 1;echo \"Finished.\"",
+    "  if (Get-Process -Name 'Clash for Windows' -ErrorAction SilentlyContinue) {",
+    "    Get-Process -Name 'Clash for Windows'",
+    "    error \"$app requires to remove running process 'Clash for Windows.exe'\";break",
+    "  }",
+    "}"
+  ],
+  "post_install": [
+    "if ($cmd -eq 'update') { start-process powershell -verb runas -ArgumentList \"Start-Service -Name 'Clash Core Service' -ErrorAction SilentlyContinue\" }",
+    "$checkCFW = !(Get-Process -Name 'Clash for Windows' -ErrorAction SilentlyContinue)",
+    "$checkClash = !(Get-Process -Name 'clash-win64' -ErrorAction SilentlyContinue)",
+    "if (($cmd -eq 'update') -and $checkCFW -and $checkClash) { Start-Process -WindowStyle hidden \"Clash for Windows.exe\" }",
+    "echo \"Please Waiting for restart 'Clash for Windows.exe'.\""
+  ],
   "checkver": "github",
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.net/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/$version/Clash.for.Windows-$version-win.7z",
-        "hash": {
-          "url": "$baseurl/sha256sum",
-          "find": "[^-]7z: $sha256"
-        }
+        "url": "https://ghproxy.net/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/$version/Clash.for.Windows-$version-win.7z"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/$version/Clash.for.Windows-$version-ia32-win.7z"
       }
     }
   }

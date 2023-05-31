@@ -1,46 +1,34 @@
 {
-  "version": "1.16.10261.0",
-  "description": "The new Windows Terminal, and the original Windows console host - all in the same place!",
   "homepage": "https://github.com/microsoft/terminal",
-  "license": "MIT",
-  "suggest": {
-    "vcredist": "extras/vcredist2022"
+  "description": "The new Windows Terminal, and the original Windows console host -- all in the same place!",
+  "version": "0.7.3451.0",
+  "license": {
+    "identifier": "MIT",
+    "url": "https://github.com/microsoft/terminal/blob/master/LICENSE"
   },
-  "url": "https://ghproxy.net/https://github.com/microsoft/terminal/releases/download/v1.16.10261.0/Microsoft.WindowsTerminal_Win10_1.16.10261.0_8wekyb3d8bbwe.msixbundle#/dl.7z",
-  "hash": "ba6fc6854e713094b4009cf2021e8b4887cff737ab4b9c4f9390462dd2708298",
-  "architecture": {
-    "64bit": {
-      "pre_install": "Get-ChildItem \"$dir\" -Exclude '*x64.msix' | Remove-Item -Force -Recurse"
-    },
-    "32bit": {
-      "pre_install": "Get-ChildItem \"$dir\" -Exclude '*x86.msix' | Remove-Item -Force -Recurse"
-    }
-  },
+  "url": "https://ghproxy.net/https://github.com/microsoft/terminal/releases/download/v0.7.3451.0/Microsoft.WindowsTerminal_0.7.3451.0_8wekyb3d8bbwe.msixbundle#/windowsterminal.msixbundle",
+  "hash": "2bfbc43906448179afe250954a38714662693456b10a57a51d3302197422a2b6",
   "installer": {
     "script": [
-      "$winVer = [Environment]::OSVersion.Version",
-      "if (($winver.Major -lt '10') -or ($winVer.Build -lt 18362)) { error 'At least Windows 10 19H1 (build 18362) is required.'; break }",
-      "Get-ChildItem \"$dir\" '*.msix' | Select-Object -ExpandProperty Fullname | Expand-7zipArchive -DestinationPath \"$dir\" -Removal",
-      "Get-ChildItem \"$dir\\ProfileIcons\" '*.png' | Rename-Item -NewName { $_.Name.Replace('%7B', '{').Replace('%7D', '}') }"
+      "if ([Environment]::OSVersion.Version.Major -ne \"10\") {",
+      "    throw \"Windows Terminal requires Windows 10 to work.\"",
+      "}",
+      "if ([Environment]::OSVersion.Version.Build -lt \"18362\") {",
+      "    throw \"Windows Terminal requires at least Windows 10 version 1903 (build 18362) to work.\"",
+      "}",
+      "Add-AppxPackage -Path \"$dir\\windowsterminal.msixbundle\"",
+      "Remove-Item \"$dir\\windowsterminal.msixbundle\""
     ]
   },
-  "bin": [
-    "WindowsTerminal.exe",
-    "wt.exe"
-  ],
-  "shortcuts": [
-    [
-      "WindowsTerminal.exe",
-      "Windows Terminal"
-    ],
-    [
-      "wt.exe",
-      "Windows Terminal Quake Mode",
-      "-w _quake"
-    ]
-  ],
-  "checkver": "github",
+  "uninstaller": {
+    "script": "Get-AppxPackage -Name Microsoft.WindowsTerminal | Remove-AppxPackage"
+  },
+  "checkver": {
+    "url": "https://github.com/microsoft/terminal/releases",
+    "regex": "WindowsTerminal_([\\d.]+)_(?<hash>[\\w]+)\\.msix"
+  },
   "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/microsoft/terminal/releases/download/v$version/Microsoft.WindowsTerminal_Win10_$version_8wekyb3d8bbwe.msixbundle#/dl.7z"
-  }
+    "url": "https://ghproxy.net/https://github.com/microsoft/terminal/releases/download/v$version/Microsoft.WindowsTerminal_$version_$matchHash.msixbundle#/windowsterminal.msixbundle"
+  },
+  "_from": "okibcn/ScoopMaster"
 }
