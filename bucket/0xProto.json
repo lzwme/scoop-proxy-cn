@@ -23,7 +23,7 @@
       "Get-ChildItem $dir -File -Filter '*.ttf' | ForEach-Object {",
       "    Write-Host Uninstalling $_.Name",
       "    $fontdir = \"$env:WinDir\\Fonts\"",
-      "    $fontname = 'DejaVu Sans Mono - Bront (TrueType)'",
+      "    $fontname = '0xProto Regular (TrueType)'",
       "    sudo Remove-ItemProperty -Path 'registry::HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name \"$fontname\" -Force -ErrorAction SilentlyContinue",
       "    sudo Remove-Item -LiteralPath \"$fontdir\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
       "}",

@@ -12,14 +12,23 @@
       ],
       "hash": [
         "fb25e1cd0117756a2bc55a12e6b3d7781037ace3f21cb4d8008eddb16570f790",
-        "0f90f919edd27a3be76f1b00ee4f4fb12fe516a6762c6770cbd42ec1729c7548"
+        "1fbf884c0b19b58b83e70a57032775857d2772de81344dd25b06b929ff2be79c"
       ]
     }
   },
+  "shortcuts": [
+    [
+      "pydfmerger.py",
+      "PyDFMerger"
+    ]
+  ],
   "note": "please install python packages listed in requirements.txt",
   "installer": {
     "file": "pyshim.ps1",
-    "args": "$dir"
+    "args": [
+      "$dir",
+      "-noconsole"
+    ]
   },
   "post_install": [
     "try { python -m pip install -r $dir\\requirements.txt --user } finally {}"
