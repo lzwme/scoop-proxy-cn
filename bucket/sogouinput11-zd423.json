@@ -1,0 +1,43 @@
+{
+  "version": "11.9.0.5877",
+  "description": "Sogou Pinyin Input 3rd party modified version, maintained by 423down.com.",
+  "homepage": "https://pinyin.sogou.com",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://pinyin.sogou.com/help.php?list=9&q=1"
+  },
+  "notes": "Features: <https://www.423down.com/587.html>",
+  "url": "https://pan.jiemi.workers.dev/?file=/sogou/搜狗输入法v11.9.0.5877去广告精简优化版.exe",
+  "hash": "9a9443e04638c8c27d487bc82ae846bfb620c90cf3b91a18a5e4e559c2ee7bb1",
+  "installer": {
+    "script": [
+      "ensure \"$persist_dir\\SogouPY\" | Out-Null",
+      "New-Item \"$env:USERPROFILE\\AppData\\LocalLow\\SogouPY\" -ItemType Junction -Target \"$persist_dir\\SogouPY\" | Out-Null",
+      "ensure \"$persist_dir\\SogouPY.users\" | Out-Null",
+      "New-Item \"$env:USERPROFILE\\AppData\\LocalLow\\SogouPY.users\" -ItemType Junction -Target \"$persist_dir\\SogouPY.users\" | Out-Null",
+      "Start-Process \"$dir\\$fname\" -WorkingDirectory \"$dir\" -ArgumentList \"/D=$dir\" -Wait",
+      "Remove-Item \"$dir\\$fname\" -ErrorAction 'SilentlyContinue' -Force"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Remove-Item \"$env:USERPROFILE\\AppData\\LocalLow\\SogouPY\" -ErrorAction 'SilentlyContinue' -Force -Recurse",
+      "Remove-Item \"$env:USERPROFILE\\AppData\\LocalLow\\SogouPY.users\" -ErrorAction 'SilentlyContinue' -Force -Recurse",
+      "Start-Process \"$dir\\Uninstall.exe\" -WorkingDirectory \"$dir\" -ArgumentList \"-y\" -PassThru -NoNewWindow | Wait-Process",
+      "$text = @(",
+      "    'If you encounter \"file in use\" error during uninstallation, try the following steps:'",
+      "    '    1. Reboot.'",
+      "    '    2. Run `scoop uninstall sogouinput11-zd423 (-p)`.'",
+      ")",
+      "warn $($text -join \"`r`n\")"
+    ]
+  },
+  "checkver": {
+    "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/oneindex.txt",
+    "regex": "(?s)(?<filename>搜狗输入法v(11[\\d.]+)去广告精简优化版\\.exe)",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/sogou/$matchFilename"
+  }
+}

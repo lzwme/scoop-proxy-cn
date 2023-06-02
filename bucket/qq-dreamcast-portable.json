@@ -1,0 +1,62 @@
+{
+  "version": "9.6.6.28796",
+  "description": "Tencent QQ third-party modified version, maintained by Dreamcast(Portable Edition).",
+  "homepage": "https://im.qq.com/pcqq",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://ti.qq.com/agreement/index.html"
+  },
+  "notes": [
+    "所有的修改版都有被冻结或封号的风险, 是否使用自己斟酌, 本人不承担任何责任!",
+    "安装使用 QQ 前请先自行安装齐全 Visual C++ 和 Universal C 运行库: 'scoop install vcredist-dreamcast' 或 'scoop install vcredist-aio'.",
+    "安装使用 QQ 前请先自行安装好 Adobe Flash Player 最新版组件, 现在好像非必需但还是会提示, 自己斟酌安装: 'scoop install adobe-flash-player-activex-dreamcast adobe-flash-player-npapi-dreamcast adobe-flash-player-ppapi-dreamcast' 或 'scoop install adobe-flash-player-cy'.",
+    "9.3.8 开始官方对撤回消息相关做了很多改动, 所以目前的防撤回修改默认使用有 bug, 启用后会导致群内撤回消息重新编辑不能用, 好友对话则无此问题, 解决办法是进 QQ 的系统设置 - 会话窗口 - 勾选 ⌈撤回消息设置⌋ , 然后 ⌈自定义消息撤回⌋ 里选择除了《无》之外的其他任意选项即可.",
+    "默认绿化后只是去广告和去校验和小清新的一些功能, 更多的功能需要运行 'Start-Process \"$(scoop prefix qq-ntr-mod-np)\\组件功能切换.bat\" -Wait'. 绿色版的 ⌈组件功能切换⌋ 功能, 现已完美实现了所有安装版的选项切换功能, 按提示操作即可."
+  ],
+  "depends": "sudo",
+  "suggest": {
+    "vcredist": [
+      "vcredist-aio",
+      "vcredist-dreamcast"
+    ],
+    "flash": [
+      "adobe-flash-player-activex-dreamcast",
+      "adobe-flash-player-npapi-dreamcast",
+      "adobe-flash-player-ppapi-dreamcast",
+      "adobe-flash-player-cy",
+      "adobe-flash-player-activex-zd423",
+      "adobe-flash-player-npapi-zd423",
+      "adobe-flash-player-ppapi-zd423"
+    ]
+  },
+  "url": "https://pan.jiemi.workers.dev/?file=/dreamcast/腾讯QQ_9.6.6.28796_绿色版.7z",
+  "hash": "7ef8af09c4daf3e090a2f145655e42859c1e942467d3f7f3ec976297d52c2406",
+  "extract_dir": "QQ",
+  "installer": {
+    "script": [
+      "Stop-Process -Name TXP*,tad*,QQP*,QQC*,QQ -Force -ErrorAction Ignore | Out-Null",
+      "Start-Process \"$dir\\绿化.bat\" -WorkingDirectory \"$dir\" -Wait"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Stop-Process -Name TXP*,tad*,QQP*,QQC*,QQ -Force -ErrorAction Ignore | Out-Null",
+      "Start-Process \"$dir\\卸载.bat\" -WorkingDirectory \"$dir\" -Wait",
+      "Write-Host \"The '$app' has been uninstalled.\" -Foreground Magenta"
+    ]
+  },
+  "shortcuts": [
+    [
+      "Bin\\QQScLauncher.exe",
+      "Tencent\\QQ"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/oneindex.txt",
+    "regex": "(?s)(?<filename>腾讯QQ_([\\d.]+)_绿色版\\.7z)",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/dreamcast/$matchFilename"
+  }
+}

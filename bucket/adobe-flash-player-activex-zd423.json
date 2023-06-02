@@ -1,0 +1,34 @@
+{
+  "version": "34.0.0.267",
+  "description": "The Adobe Flash Player is freeware software for viewing multimedia, executing Rich Internet Applications, and streaming video and audio, content created on the Adobe Flash platform.",
+  "homepage": "https://www.adobe.com/software/flash/about/",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://www.adobe.com/products/clients/all_dist_agreement.html"
+  },
+  "notes": "Warning: The installation of Flash Player ActiveX fails with a 1603 error when Internet Explorer is open.",
+  "url": "https://pan.jiemi.workers.dev/?file=/zd423/Adobe_Flash_Player_ActiveX_v34.0.0.267.exe#/setup.exe",
+  "hash": "0ee54414d33e2cad141c97dc96ee3653bd88c95098dfa5bab487d26280fab41e",
+  "installer": {
+    "script": [
+      "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+      "if ([System.Environment]::OSVersion.Version -ge '6.2') {",
+      "    error \"Your Windows version is not suitable for this package. This package is only for Windows XP to Windows 7\"",
+      "    exit 1",
+      "}",
+      "if (Get-Process iexplore -ErrorAction SilentlyContinue) {",
+      "    error \"Internet Explorer is running. The installation will fail an 1603 error. Close Internet Explorer and reinstall this package.\"",
+      "    exit 1",
+      "}",
+      "Invoke-ExternalCommand \"$dir\\setup.exe\" -ArgumentList @('/ai', '/gm2') | Out-Null"
+    ]
+  },
+  "checkver": {
+    "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/oneindex.txt",
+    "regex": "(?<filename>Adobe_Flash_Player_ActiveX_v([\\d.]+)\\.exe)",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/zd423/Adobe_Flash_Player_ActiveX_v$version.exe#/setup.exe"
+  }
+}

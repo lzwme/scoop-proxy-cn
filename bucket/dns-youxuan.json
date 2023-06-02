@@ -1,0 +1,25 @@
+{
+  "version": "0.0.4",
+  "description": "DNS 优选是由吾爱破解论坛用户 @繁华中的沉寂 开发的一款 DNS 优选小工具, 能测试本地机器到第三方的 DNS 的速度, 选择一个延迟最低的第三方 DNS 服务器, 能加快网站首次访问加载速度.",
+  "homepage": "https://www.52pojie.cn/thread-1129234-1-1.html",
+  "license": {
+    "identifier": "Freeware"
+  },
+  "url": "https://pan.jiemi.workers.dev/?file=/else/DNS优选_v0.0.4.zip",
+  "hash": "f1a7895f8473a616ee2ee1ceb2f4ad5e535444be792bc41ed8912a9120904cb1",
+  "pre_install": "Expand-7zipArchive \"$dir\\$fname\" -Switches '-p2022' -Removal",
+  "shortcuts": [
+    [
+      "DNS优选.exe",
+      "DNS 优选"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/oneindex.txt",
+    "regex": "DNS优选_v([\\d.]+).zip",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/else/DNS优选_v$version.zip"
+  }
+}

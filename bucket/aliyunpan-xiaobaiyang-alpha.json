@@ -1,0 +1,38 @@
+{
+  "version": "3.05.23",
+  "description": "A third-party Adrive client that supports Windows and macOS.",
+  "homepage": "https://github.com/liupan1890/aliyunpan",
+  "license": {
+    "identifier": "Freeware"
+  },
+  "url": "https://pan.jiemi.workers.dev/?file=/else/阿里云盘小白羊版_3.05.23.exe",
+  "hash": "be696b62d1792ee4c11945b7c63ab1eac5a650ff6ea7c733178dae29ba4f6fae",
+  "installer": {
+    "script": [
+      "Expand-7zipArchive \"$dir\\$fname\" -Overwrite Rename -Removal",
+      "if (!(Test-Path \"$persist_dir\\appdata\") -and (Test-Path \"$env:APPDATA\\alixby3\")) {",
+      "    Copy-Item \"$env:APPDATA\\alixby3\" \"$persist_dir\\appdata\" -ErrorAction SilentlyContinue -Recurse -Force",
+      "    Remove-Item \"$env:APPDATA\\alixby3\" -ErrorAction 'SilentlyContinue' -Recurse -Force",
+      "}",
+      "ensure \"$persist_dir\\appdata\" | Out-Null",
+      "New-Item \"$env:APPDATA\\alixby3\" -ItemType Junction -Target \"$persist_dir\\appdata\" | Out-Null"
+    ]
+  },
+  "uninstaller": {
+    "script": "Remove-Item \"$env:APPDATA\\alixby3\" -ErrorAction 'SilentlyContinue' -Force -Recurse"
+  },
+  "shortcuts": [
+    [
+      "阿里云盘小白羊版.exe",
+      "阿里云盘小白羊 alpha"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/oneindex.txt",
+    "regex": "阿里云盘小白羊版_([\\d.]+).exe",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/else/阿里云盘小白羊版_$version.exe"
+  }
+}

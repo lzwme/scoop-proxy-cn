@@ -1,0 +1,29 @@
+{
+  "version": "1.0",
+  "description": "Microsoft Key Detection Tool.",
+  "homepage": "https://www.52pojie.cn/thread-1649868-1-1.html",
+  "license": {
+    "identifier": "Freeware"
+  },
+  "url": "https://pan.jiemi.workers.dev/?file=/else/MicroSoftKeys_v1.0.rar#dl.7z_",
+  "hash": "3e7bda16af23faad228e74b4d9701eb8948cc081b020cc8892de823eea07f59c",
+  "pre_install": [
+    "$7z=(Get-ChildItem $dir\\MicroSoftKeys_v*).Name",
+    "7z x -p'52pojie' $dir\\$7z $('-o' + $dir) | Out-Null",
+    "Remove-Item $dir\\$7z -Force -ErrorAction SilentlyContinue"
+  ],
+  "shortcuts": [
+    [
+      "MicroSoftKeys.exe",
+      "MicroSoftKeys"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/oneindex.txt",
+    "regex": "MicroSoftKeys_v([\\d.]+).rar",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/else/MicroSoftKeys_v$version.rar#dl.7z_"
+  }
+}

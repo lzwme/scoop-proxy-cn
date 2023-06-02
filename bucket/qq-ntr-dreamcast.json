@@ -1,0 +1,63 @@
+{
+  "version": "9.6.3.28769",
+  "description": "Tencent QQ third-party modified version, maintained by Dreamcast(With NtrQQ Edition).",
+  "homepage": "https://im.qq.com/pcqq",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://ti.qq.com/agreement/index.html"
+  },
+  "notes": [
+    "所有的修改版都有被冻结或封号的风险, 是否使用自己斟酌, 本人不承担任何责任!",
+    "安装使用 QQ 前请先自行安装齐全 Visual C++ 和 Universal C 运行库: 'scoop install vcredist-dreamcast' 或 'scoop install vcredist-aio'.",
+    "安装使用 QQ 前请先自行安装好 Adobe Flash Player 最新版组件, 现在好像非必需但还是会提示, 自己斟酌安装: 'scoop install adobe-flash-player-activex-dreamcast adobe-flash-player-npapi-dreamcast adobe-flash-player-ppapi-dreamcast' 或 'scoop install adobe-flash-player-cy'.",
+    "9.3.8 开始官方对撤回消息相关做了很多改动, 所以目前的防撤回修改默认使用有 bug, 启用后会导致群内撤回消息重新编辑不能用, 好友对话则无此问题, 解决办法是进 QQ 的系统设置 - 会话窗口 - 勾选 ⌈撤回消息设置⌋ , 然后 ⌈自定义消息撤回⌋ 里选择除了《无》之外的其他任意选项即可.",
+    "默认整合的 NtrQQ 可能会被一些杀软误报和拦截, 至于怎么做我就不多说了, 相关使用上的问题不要问我, 有问题请到官方论坛 <https://iya.app> 反馈. NtrQQ 里关闭了主面板最小高宽的选项, 想要缩的更窄更小的手动去 NtrQQ.ini 里开启：'KillMainPanelSize=1', 更多 NtrQQ 选项设置可以自行翻阅 NtrQQ.ini, Lance.Moe 都有详细说明."
+  ],
+  "depends": "sudo",
+  "suggest": {
+    "vcredist": [
+      "vcredist-aio",
+      "vcredist-dreamcast"
+    ],
+    "flash": [
+      "adobe-flash-player-activex-dreamcast",
+      "adobe-flash-player-npapi-dreamcast",
+      "adobe-flash-player-ppapi-dreamcast",
+      "adobe-flash-player-cy",
+      "adobe-flash-player-activex-zd423",
+      "adobe-flash-player-npapi-zd423",
+      "adobe-flash-player-ppapi-zd423"
+    ]
+  },
+  "url": "https://pan.jiemi.workers.dev/?file=/dreamcast/腾讯QQ_9.6.3.28769_安装版_With_NtrQQ_7.1.2.rar",
+  "hash": "b79c9c4ebfb40533c6e9be431033968882542237eab5b365e744d303cc65380c",
+  "installer": {
+    "script": [
+      "Stop-Process -Name TXP*,tad*,QQP*,QQC*,QQ -Force -ErrorAction Ignore | Out-Null",
+      "Rename-Item \"$dir\\*.exe\" 'installer.exe'",
+      "Start-Process \"$dir\\installer.exe\" -ArgumentList \"/DIR=$dir /SILENT /NORESTART\" -WorkingDirectory \"$dir\" -Wait"
+    ]
+  },
+  "post_install": "@('installer.exe') | ForEach-Object { Remove-Item \"$dir\\$_\" -Force -ErrorAction SilentlyContinue }",
+  "uninstaller": {
+    "script": [
+      "Stop-Process -Name TXP*,tad*,QQP*,QQC*,QQ -Force -ErrorAction Ignore | Out-Null",
+      "Start-Process \"$dir\\unins000.exe\" -ArgumentList \"/VERYSILENT /NORESTART\" -WorkingDirectory \"$dir\" -Wait",
+      "Write-Host \"The '$app' has been uninstalled.\" -Foreground Magenta"
+    ]
+  },
+  "shortcuts": [
+    [
+      "Bin\\QQScLauncher.exe",
+      "Tencent\\QQ"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/oneindex.txt",
+    "regex": "(?s)(?<filename>腾讯QQ_([\\d.]+)_安装版_With_NtrQQ_[\\d.]+\\.rar)",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/dreamcast/$matchFilename"
+  }
+}

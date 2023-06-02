@@ -1,0 +1,26 @@
+{
+  "version": "2.7",
+  "description": "A downloader of Baidu Netdisk.",
+  "homepage": "https://jixia.ink",
+  "license": {
+    "identifier": "Freeware"
+  },
+  "url": "https://pan.jiemi.workers.dev/?file=/else/极下v2.7.zip#dl.zip_",
+  "hash": "4600b170112a298474a7dd4d1b6899e79f4d154c6cb56bf0c8754a99363d3a84",
+  "pre_install": "Expand-7zipArchive \"$dir\\$fname\" -Switches '-p2022' -Removal",
+  "shortcuts": [
+    [
+      "极下.exe",
+      "极下"
+    ]
+  ],
+  "persist": "极下配置",
+  "checkver": {
+    "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/oneindex.txt",
+    "regex": "极下v([\\d.]+).zip",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/else/极下v$version.zip#dl.zip_"
+  }
+}

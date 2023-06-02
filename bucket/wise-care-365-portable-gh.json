@@ -1,0 +1,37 @@
+{
+  "version": "6.3.5.613",
+  "description": "WiseCare365 3rd party modified version, maintained by ghxi.com.",
+  "homepage": "https://www.wisecleaner.com/wise-care-365.html",
+  "license": {
+    "identifier": "Proprietary|Shareware",
+    "url": "https://www.wisecleaner.com/eula.html"
+  },
+  "notes": "Features: <https://www.ghxi.com/wisecare365.html>",
+  "depends": "sudo",
+  "url": "https://pan.jiemi.workers.dev/?file=/zd423/WiseCare365_6.3.5.613_Green.7z",
+  "hash": "3b9b776ea30ce7fff91378adbb47ec13654fa6b8c0888e7a33c4e8e74d7e2c84",
+  "extract_dir": "WiseCare365_6.3.5.613_Green\\WiseCare365",
+  "uninstaller": {
+    "file": "移除残留.bat"
+  },
+  "shortcuts": [
+    [
+      "WiseCare365.exe",
+      "Wise Care 365 Pro"
+    ]
+  ],
+  "persist": [
+    "config.ini",
+    "Config_tray.ini",
+    "DefragOptions.ini"
+  ],
+  "checkver": {
+    "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/oneindex.txt",
+    "regex": "(?<filename>WiseCare365_([\\d.]+)_Green\\.(?:zip|7z))",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/zd423/$matchFilename",
+    "extract_dir": "WiseCare365_$version_Green\\WiseCare365"
+  }
+}

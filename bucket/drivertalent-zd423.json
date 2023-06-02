@@ -1,0 +1,31 @@
+{
+  "version": "8.0.10.58",
+  "description": "Third-party modifications of DriverTalent, maintained by 423down.com.",
+  "homepage": "https://www.drivethelife.com/free-drivers-download-utility.html",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://www.drivethelife.com/EULA.html"
+  },
+  "notes": "Features: <https://www.423down.com/581.html>",
+  "url": "https://pan.jiemi.workers.dev/?file=/zd423/DriverTalent_8.0.10.58_Green.7z",
+  "hash": "d58d928f8130a2210ed7984519aad18a49141157b9c4f5b9b90761533bb83292",
+  "extract_dir": "DriverTalent_8.0.10.58_Green\\DriverTalent",
+  "uninstaller": {
+    "file": "!)清除残留.bat"
+  },
+  "shortcuts": [
+    [
+      "DriverTalent.exe",
+      "DriverTalent"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/ryanjiena/metaversion/raw/main/oneindex.txt",
+    "regex": "(?s)(?<filename>DriverTalent_([\\d.]+)_Green\\.(?:zip|7z))",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/zd423/$matchFilename",
+    "extract_dir": "DriverTalent_$version_Green\\DriverTalent"
+  }
+}

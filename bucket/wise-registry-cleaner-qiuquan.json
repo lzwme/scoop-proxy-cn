@@ -1,0 +1,36 @@
+{
+  "version": "10.8.2.703",
+  "description": "Wise Registry Cleaner 3rd party modified version, maintained by qiuquan.cc.",
+  "homepage": "https://www.wisecleaner.com/wise-registry-cleaner.html",
+  "license": {
+    "identifier": "Proprietary|Shareware",
+    "url": "https://www.wisecleaner.com/eula.html"
+  },
+  "notes": "Features: <http://www.qiuquan.cc/systemtool/wise-registry-cleaner.html>",
+  "url": "https://pan.jiemi.workers.dev/?file=/qiuquan/Wise_Registry_Cleaner_10.8.2.703_QiuQuan_20220728.exe#/Setup.exe",
+  "hash": "f2045fff77b9de38ba8417a070871571d0682789e40dc773c9c61e6dbc7a4f12",
+  "installer": {
+    "args": [
+      "/DIR=\"$dir\"",
+      "/SILENT"
+    ]
+  },
+  "uninstaller": {
+    "file": "UninsFile\\unins000.exe",
+    "args": "/VERYSILENT"
+  },
+  "shortcuts": [
+    [
+      "WiseRegCleaner.exe",
+      "Wise Registry Cleaner"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/oneindex.txt",
+    "regex": "(?<filename>Wise_Registry_Cleaner_([\\d.]+)_QiuQuan_(?<date>\\d{8})\\.exe)",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/qiuquan/$matchFilename#/Setup.exe"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "version": "13.1.6170",
+  "description": "Third-party modifications of 360 SE Browser, maintained by 423down.com.",
+  "homepage": "https://bbs.360.cn/thread-15948589-1-1.html",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "http://www.360.cn/xukexieyi.html#liulanqi"
+  },
+  "notes": "Features: <https://www.423down.com/13888.html>",
+  "url": "https://pan.jiemi.workers.dev/?file=/zd423/360SE-13.1.6170-Stable-Mod-Lite.exe#/dl.7z",
+  "hash": "ae3977c1dd84adc68832577aca5adac3b6371cd785fa91101fca9fb00766dd2b",
+  "extract_dir": "360SE",
+  "pre_uninstall": [
+    "if (Test-Path \"$dir\\360se.ini\") {",
+    "    ensure \"$persist_dir\" | Out-Null",
+    "    Copy-Item \"$dir\\360se.ini\" \"$persist_dir\\\" | Out-Null",
+    "}"
+  ],
+  "uninstaller": {
+    "file": "清理.bat"
+  },
+  "shortcuts": [
+    [
+      "360se.exe",
+      "360se"
+    ]
+  ],
+  "persist": "User Data",
+  "checkver": {
+    "url": "https://github.com/ryanjiena/metaversion/raw/main/oneindex.txt",
+    "regex": "(?s)(?<filename>360SE-([\\d.]+)-Stable-Mod-Lite\\.(?:exe|zip|7z))",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/zd423/$matchFilename#/dl.7z"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "version": "4.3.0.2198",
+  "description": "Sogou Wubi Input 3rd party modified version, maintained by qiuquan.cc.",
+  "homepage": "https://wubi.sogou.com",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://rule.tencent.com/rule/preview/ff3e4cc2-caf4-4f7b-847e-162158ad2d99"
+  },
+  "depends": "sudo",
+  "notes": "Features: <http://www.qiuquan.cc/input/sogouwb.html>",
+  "url": "https://pan.jiemi.workers.dev/?file=/sogou/搜狗五笔输入法_4.3.0.2198_去升级版_20210408.exe",
+  "hash": "0e49696c0875fa8a106253fc74fc7400b15d2a2f41e1f9fa1eac2aadc7a6a5af",
+  "installer": {
+    "script": [
+      "ensure \"$persist_dir\\SogouWB\" | Out-Null",
+      "New-Item \"$env:USERPROFILE\\AppData\\LocalLow\\SogouWB\" -ItemType Junction -Target \"$persist_dir\\SogouWB\" | Out-Null",
+      "ensure \"$persist_dir\\SogouWB.users\" | Out-Null",
+      "New-Item \"$env:USERPROFILE\\AppData\\LocalLow\\SogouWB.users\" -ItemType Junction -Target \"$persist_dir\\SogouWB.users\" | Out-Null",
+      "Start-Process \"$dir\\$fname\" -WorkingDirectory \"$dir\" -ArgumentList \"/S /D=$dir\" -Wait",
+      "Remove-Item \"$dir\\$fname\" -ErrorAction SilentlyContinue -Force"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Remove-Item \"$env:USERPROFILE\\AppData\\LocalLow\\SogouWB\" -ErrorAction 'SilentlyContinue' -Force -Recurse",
+      "Remove-Item \"$env:USERPROFILE\\AppData\\LocalLow\\SogouWB.users\" -ErrorAction 'SilentlyContinue' -Force -Recurse",
+      "Start-Process \"$dir\\$version\\Uninstall.exe\" -WorkingDirectory \"$dir\" -ArgumentList \"/S\" -PassThru -NoNewWindow | Wait-Process",
+      "Write-Host \"'A restart is required to complete the uninstallation.\" -Foreground Magenta"
+    ]
+  },
+  "checkver": {
+    "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/oneindex.txt",
+    "regex": "(?s)(?<filename>搜狗五笔输入法_(4[\\d.]+)_去升级版_[\\d]+\\.exe)",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/sogou/$matchFilename"
+  }
+}

@@ -1,10 +1,10 @@
 {
-  "version": "14.6.1",
+  "version": "15.0",
   "description": "Database Subsetting and Relational Data Browsing Tool",
   "homepage": "https://wisser.github.io/Jailer",
   "license": "Apache-2.0",
-  "url": "https://ghproxy.net/https://github.com/Wisser/Jailer/releases/download/v14.6.1/Jailer-database-tools-14.6.1.msi",
-  "hash": "c7f38c5b4dea602076591568689476acf156c0a0c41b53b8d31b9c149fc2c541",
+  "url": "https://ghproxy.net/https://github.com/Wisser/Jailer/releases/download/v15.0/Jailer-database-tools-15.0.msi",
+  "hash": "27ebb45193bed017bc1a9c58df308501c078d25269d5902ddc01f3e3313d0c4c",
   "extract_dir": "Jailer Database Tools/app",
   "post_install": [
     "(Get-Content \"$dir\\jailer.bat\").replace('=lib','=%~dp0\\lib').replace(';config',';%~dp0\\config').replace('jailer.jar','%~dp0\\jailer.jar') | Set-Content \"$dir\\jailer.bat\"",
@@ -28,6 +28,5 @@
   },
   "autoupdate": {
     "url": "https://ghproxy.net/https://github.com/Wisser/Jailer/releases/download/v$version/Jailer-database-tools-$version.msi"
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

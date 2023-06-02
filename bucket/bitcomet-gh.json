@@ -1,0 +1,67 @@
+{
+  "version": "1.94",
+  "description": "Third-party modifications of BitComet, maintained by ghxi.com.",
+  "homepage": "https://www.xyplorer.com",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://www.bitcomet.com/en/term-of-use"
+  },
+  "notes": "Features: <https://www.ghxi.com/bitcomet.html>",
+  "url": "https://pan.jiemi.workers.dev/?file=/zd423/BitComet_1.94_Green.7z",
+  "hash": "0aff9d1fbf4ae1cc2c2d331eb4b3353908f0b204ab3fd8f6671ebed7f63dc7c2",
+  "extract_dir": "BitComet_1.94_Green\\BitComet",
+  "pre_install": [
+    "'BitComet.xml', 'Downloads.xml' | ForEach-Object {",
+    "    if (Test-Path \"$persist_dir\\$_\") { Copy-Item \"$persist_dir\\$_\" \"$dir\\\" | Out-Null }",
+    "}"
+  ],
+  "installer": {
+    "file": "启用UPnP和提速服务.bat"
+  },
+  "pre_uninstall": [
+    "'BitComet.xml', 'Downloads.xml' | ForEach-Object {",
+    "    if (Test-Path \"$dir\\$_\") {",
+    "        ensure \"$persist_dir\" | Out-Null",
+    "        Copy-Item \"$dir\\$_\" \"$persist_dir\\\" | Out-Null",
+    "    }",
+    "}"
+  ],
+  "uninstaller": {
+    "file": "卸载移除软件相关残留.bat"
+  },
+  "architecture": {
+    "64bit": {
+      "shortcuts": [
+        [
+          "BitComet_x64.exe",
+          "ZoomIt"
+        ]
+      ]
+    },
+    "32bit": {
+      "shortcuts": [
+        [
+          "BitComet.exe",
+          "BitComet"
+        ]
+      ]
+    }
+  },
+  "persist": [
+    "archive",
+    "share",
+    "torrents",
+    "torrent_cache",
+    "cache",
+    "rules"
+  ],
+  "checkver": {
+    "url": "https://github.com/Ryanjiena/metaversion/raw/main/oneindex.txt",
+    "regex": "(?s)(?<filename>BitComet_([\\d.]+)_Green\\.(?:zip|7z))",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/zd423/$matchFilename",
+    "extract_dir": "BitComet_$version_Green\\BitComet"
+  }
+}

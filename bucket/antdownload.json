@@ -1,0 +1,30 @@
+{
+  "version": "3.0.6",
+  "description": "A BaiduNetdisk download tool.",
+  "homepage": "https://www.kelongwo.com/antdownload",
+  "license": {
+    "identifier": "Freeware"
+  },
+  "url": "https://pan.jiemi.workers.dev/?file=/else/antdownload_3.0.6.zip",
+  "hash": "d01332c935199d5841d5f7d9419373b150c68045288227fd2bf66399f10addf1",
+  "extract_dir": "antdownload 3.0.6",
+  "shortcuts": [
+    [
+      "antdownload.exe",
+      "Antdownload"
+    ]
+  ],
+  "persist": [
+    "config",
+    "Download"
+  ],
+  "checkver": {
+    "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/oneindex.txt",
+    "regex": "antdownload_([\\d.]+)\\.zip",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/else/antdownload_$version.zip",
+    "extract_dir": "antdownload $version"
+  }
+}

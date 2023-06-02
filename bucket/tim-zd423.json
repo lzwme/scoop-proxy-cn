@@ -1,0 +1,45 @@
+{
+  "version": "3.3.9.22051",
+  "description": "Tencent TIM third-party modified version, maintained by 423down.com.",
+  "homepage": "https://office.qq.com",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://ti.qq.com/tim/serverinfo.html"
+  },
+  "notes": "Features: <https://www.423down.com/7415.html>",
+  "depends": "sudo",
+  "url": "https://pan.jiemi.workers.dev/?file=/tencent/TIM_3.3.9.22051_Green.7z",
+  "hash": "10e033cf7e55d8ba13480b5cb3f53156b1374569fda4572489f49e84255e9f17",
+  "extract_dir": "TIM",
+  "pre_install": [
+    "Copy-Item \"$bucketsdir\\$bucket\\scripts\\tim\\install.bat\" \"$dir\\install.bat\" -ErrorAction 'SilentlyContinue' -Force | Out-Null",
+    "Copy-Item \"$bucketsdir\\$bucket\\scripts\\tim\\uninstall.bat\" \"$dir\\uninstall.bat\" -ErrorAction 'SilentlyContinue' -Force | Out-Null"
+  ],
+  "installer": {
+    "script": [
+      "Stop-Process -Name TIM,TIMApp,QQProtect,TXPlatform,QQExternal,QQScLauncher -ErrorAction Ignore | Out-Null",
+      "Start-Process \"$dir\\install.bat\" -WorkingDirectory \"$dir\" -Wait"
+    ]
+  },
+  "post_install": "Remove-Item \"$env:USERPROFILE\\Desktop\\腾讯TIM.lnk\" -Force -ErrorAction SilentlyContinue",
+  "uninstaller": {
+    "script": [
+      "Stop-Process -Name TIM,TIMApp,QQProtect,TXPlatform,QQExternal,QQScLauncher -ErrorAction Ignore | Out-Null",
+      "Start-Process \"$dir\\uninstall.bat\" -WorkingDirectory \"$dir\" -Wait"
+    ]
+  },
+  "shortcuts": [
+    [
+      "Bin\\QQScLauncher.exe",
+      "Tencent\\Tim"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/oneindex.txt",
+    "regex": "(?<filename>TIM_([\\d.]+)_Green\\.7z)",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/tencent/$matchFilename"
+  }
+}

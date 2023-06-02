@@ -1,0 +1,43 @@
+{
+  "version": "4.3.0.2212",
+  "description": "Sogou Wubi Input 3rd party modified version, maintained by xingkbjm.com.",
+  "homepage": "https://wubi.sogou.com",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://rule.tencent.com/rule/preview/ff3e4cc2-caf4-4f7b-847e-162158ad2d99"
+  },
+  "notes": "Features: <https://www.xingkbjm.com/sogouwubi/>",
+  "url": "https://pan.jiemi.workers.dev/?file=/sogou/搜狗五笔输入法_v4.3d(4.3.0.2212)_星空不寂寞去广告版.exe",
+  "hash": "a5dc0f853b2f6d4af6d4f4d7ef30ecdc97b114c6963913337eac806634d39d0a",
+  "installer": {
+    "script": [
+      "ensure \"$persist_dir\\SogouWB\" | Out-Null",
+      "New-Item \"$env:USERPROFILE\\AppData\\LocalLow\\SogouWB\" -ItemType Junction -Target \"$persist_dir\\SogouWB\" | Out-Null",
+      "ensure \"$persist_dir\\SogouWB.users\" | Out-Null",
+      "New-Item \"$env:USERPROFILE\\AppData\\LocalLow\\SogouWB.users\" -ItemType Junction -Target \"$persist_dir\\SogouWB.users\" | Out-Null",
+      "Start-Process \"$dir\\$fname\" -WorkingDirectory \"$dir\" -ArgumentList \"/S /D=$dir\" -Wait",
+      "Remove-Item \"$dir\\$fname\" -ErrorAction SilentlyContinue -Force"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Remove-Item \"$env:USERPROFILE\\AppData\\LocalLow\\SogouWB\" -ErrorAction 'SilentlyContinue' -Force -Recurse",
+      "Remove-Item \"$env:USERPROFILE\\AppData\\LocalLow\\SogouWB.users\" -ErrorAction 'SilentlyContinue' -Force -Recurse",
+      "Start-Process \"$dir\\$version\\Uninstall.exe\" -WorkingDirectory \"$dir\" -ArgumentList \"/S\" -PassThru -NoNewWindow -Wait",
+      "$text = @(",
+      "    'If you encounter \"file in use\" error during uninstallation, try the following steps:'",
+      "    '    1. Reboot.'",
+      "    '    2. Run `scoop uninstall sogouwbinput-xingkbjm (-p)`.'",
+      ")",
+      "warn $($text -join \"`r`n\")"
+    ]
+  },
+  "checkver": {
+    "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/oneindex.txt",
+    "regex": "(?s)(?<filename>搜狗五笔输入法_v(?<shortVersion>4[\\w.]+)\\(([\\d.]+)\\)_星空不寂寞去广告版\\.exe)",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/sogou/$matchFilename"
+  }
+}

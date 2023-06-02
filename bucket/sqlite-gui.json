@@ -1,22 +1,22 @@
 {
-  "version": "1.7.8",
+  "version": "1.7.9",
   "description": "Lightweight SQLite editor for Windows.",
   "homepage": "https://github.com/little-brother/sqlite-gui",
   "license": {
-    "identifier": "GPL-2.0 license",
+    "identifier": "GPL-2.0-only",
     "url": "https://github.com/little-brother/sqlite-gui/blob/master/LICENSE"
   },
   "architecture": {
-    "64bit": {
-      "url": "https://ghproxy.net/https://github.com/little-brother/sqlite-gui/releases/download/1.7.8/sqlite-gui.1.7.8-x64.zip",
-      "hash": "6cc527f40663dc96352fdf0e7ada6396c000bd9246a06c3b8c2d4f6c9e575476"
-    },
     "32bit": {
-      "url": "https://ghproxy.net/https://github.com/little-brother/sqlite-gui/releases/download/1.7.8/sqlite-gui.1.7.8.zip",
-      "hash": "93a8532c865bb6fcd41c2d730a87addd31f1c92a82ab0d715db5a274250e70a3"
+      "url": "https://ghproxy.net/https://github.com/little-brother/sqlite-gui/releases/download/1.7.9/sqlite-gui.1.7.9.zip",
+      "hash": "80864419a76438dbc0695107141932bc85005e6e6babbf27cf3118b42224f937"
+    },
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/little-brother/sqlite-gui/releases/download/1.7.9/sqlite-gui.1.7.9-x64.zip",
+      "hash": "4ba3435efe234c32f967ed66922af73dc0618e8c8b0dabf369c584d37c1729f2"
     }
   },
-  "pre_install": "if(!(Test-Path \"$dir/prefs.sqlite\")) { Add-Content \"$dir/prefs.sqlite\" $null }",
+  "pre_install": "If (!(Test-Path \"$persist_dir\\prefs.sqlite\")) { New-Item \"$dir\\prefs.sqlite\" -ItemType File | Out-Null }",
   "shortcuts": [
     [
       "sqlite-gui.exe",
@@ -24,14 +24,16 @@
     ]
   ],
   "persist": "prefs.sqlite",
-  "checkver": "github",
+  "checkver": {
+    "github": "https://github.com/little-brother/sqlite-gui"
+  },
   "autoupdate": {
     "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.net/https://github.com/little-brother/sqlite-gui/releases/download/$version/sqlite-gui.$version-x64.zip"
-      },
       "32bit": {
         "url": "https://ghproxy.net/https://github.com/little-brother/sqlite-gui/releases/download/$version/sqlite-gui.$version.zip"
+      },
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/little-brother/sqlite-gui/releases/download/$version/sqlite-gui.$version-x64.zip"
       }
     }
   }

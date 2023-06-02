@@ -1,0 +1,73 @@
+{
+  "version": "7.27",
+  "description": "Bandizip 3rd party modified version, maintained by 423down.com.",
+  "homepage": "http://www.bandisoft.com/bandizip/",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://en.bandisoft.com/bandizip/eula/"
+  },
+  "notes": "Features: <https://www.423down.com/9735.html>",
+  "url": [
+    "http://dl.bandisoft.com/bandizip.std/BANDIZIP-SETUP-STD-ALL.EXE",
+    "https://pan.jiemi.workers.dev/?file=/zd423/Bandizip_v7.xx_x32-x64_Patch_20201104.zip#dl.7z_"
+  ],
+  "hash": [
+    "eb65e4a952823922385df35688c198d3f6ff201edb8ff79c720f39112a09fa9a",
+    "874ea62e05603ab7c153a9cf4f01ddb37b59b33049f99eb8a323c1ac9d8bcf87"
+  ],
+  "pre_install": [
+    "$7z=(Get-ChildItem $dir\\Bandizip_v7.xx_x32-x64_Patch*).Name",
+    "7z x -p2022 $dir\\$7z $('-o' + $dir) | Out-Null",
+    "if (!(Test-Path \"$persist_dir\\Bandizip.ini\")) { New-Item \"$dir\\Bandizip.ini\" | Out-Null }"
+  ],
+  "architecture": {
+    "64bit": {
+      "installer": {
+        "script": [
+          "Start-Process \"$dir\\BANDIZIP-SETUP-STD-ALL.EXE\" -WorkingDirectory \"$dir\" -ArgumentList \"/D:$dir /auto\" -Wait",
+          "Start-Process \"$dir\\Bandizip.v7.xx.x64.Patch.20201104.exe\" -WorkingDirectory \"$dir\" -ArgumentList \"/silent\" -Wait | Out-Null"
+        ]
+      },
+      "post_install": [
+        "Remove-Item $dir\\BANDIZIP-SETUP-STD-ALL.EXE, $dir\\*dl.7z_ -Force -ErrorAction SilentlyContinue",
+        "Remove-Item $dir\\Bandizip.v7.xx.x32.Patch* -Force -ErrorAction SilentlyContinue"
+      ]
+    },
+    "32bit": {
+      "installer": {
+        "script": [
+          "Start-Process \"$dir\\BANDIZIP-SETUP-STD-ALL.EXE\" -WorkingDirectory \"$dir\" -ArgumentList \"/D:$dir /auto\" -Wait",
+          "Start-Process \"$dir\\Bandizip.v7.xx.x32.Patch.20201104.exe\" -WorkingDirectory \"$dir\" -ArgumentList \"/silent\" -Wait | Out-Null"
+        ]
+      },
+      "post_install": [
+        "Remove-Item $dir\\BANDIZIP-SETUP-STD-ALL.EXE, $dir\\*dl.7z_ -Force -ErrorAction SilentlyContinue",
+        "Remove-Item $dir\\Bandizip.v7.xx.x64.Patch* -Force -ErrorAction SilentlyContinue"
+      ]
+    }
+  },
+  "uninstaller": {
+    "script": [
+      "Push-Location \"$dir\"",
+      "Start-Process \"$dir\\Uninstall.exe\" -WorkingDirectory \"$dir\" -ArgumentList \"/S\" -Wait",
+      "Write-Host \"You may need to restart the system to delete the directory.\" -Foreground Magenta",
+      "Pop-Location"
+    ]
+  },
+  "bin": "bz.exe",
+  "shortcuts": [
+    [
+      "Bandizip.exe",
+      "Bandizip"
+    ]
+  ],
+  "persist": "Bandizip.ini",
+  "env_add_path": ".",
+  "checkver": {
+    "url": "https://en.bandisoft.com/bandizip/history/",
+    "regex": "v([\\d.]+)</font"
+  },
+  "autoupdate": {
+    "url": "http://dl.bandisoft.com/bandizip.std/BANDIZIP-SETUP-STD-ALL.EXE"
+  }
+}

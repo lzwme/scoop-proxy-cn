@@ -1,0 +1,47 @@
+{
+  "version": "2.2.0.56",
+  "description": "Kingsoft TypeEasy 2016 features Wubi typing, Pinyin typing, Chinese typing, typing technique practice, typing speed test and unique task level mode, helping beginners become typing experts easily.",
+  "homepage": "https://www.51dzt.com",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://www.51dzt.com/agreement/personal"
+  },
+  "notes": "Feature: <http://www.qiuquan.cc/other/typeeasy.html>",
+  "url": "https://pan.jiemi.workers.dev/?file=/qiuquan/TypeEasy_2.2.0.56_QiuQuan.7z",
+  "hash": "6866ae7d4ddb80170f8a55de42f2ce40076b78989b2b3a100147c3322a0ec35d",
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\TypeEasyData\") -and (Test-Path \"$env:APPDATA\\TypeEasyData\")) {",
+    "    Copy-Item \"$env:APPDATA\\TypeEasyData\" \"$persist_dir\\TypeEasyData\" -ErrorAction SilentlyContinue -Recurse -Force",
+    "    Remove-Item \"$env:APPDATA\\TypeEasyData\" -ErrorAction 'SilentlyContinue' -Recurse -Force",
+    "}"
+  ],
+  "installer": {
+    "script": [
+      "ensure \"$persist_dir\\TypeEasyData\" | Out-Null",
+      "New-Item \"$env:APPDATA\\TypeEasyData\" -ItemType Junction -Target \"$persist_dir\\TypeEasyData\" | Out-Null",
+      "Rename-Item \"$dir\\*.exe\" 'Installer.exe'",
+      "Start-Process \"$dir\\Installer.exe\" -WorkingDirectory \"$dir\" -ArgumentList \"/DIR=$dir /SILENT /NORESTART\" -Wait",
+      "Remove-Item \"$dir\\Installer.exe\" -ErrorAction SilentlyContinue -Force"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Remove-Item \"$env:APPDATA\\TypeEasyData\" -ErrorAction 'SilentlyContinue' -Force -Recurse",
+      "Start-Process \"$dir\\UninsFile\\unins000.exe\" -WorkingDirectory \"$dir\" -ArgumentList \"/VERYSILENT /NORESTART\" -Wait"
+    ]
+  },
+  "shortcuts": [
+    [
+      "TypeEasy.exe",
+      "TypeEasy"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/oneindex.txt",
+    "regex": "(?s)(?<filename>TypeEasy_([\\d.]+)_QiuQuan.7z)",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/qiuquan/$matchFilename"
+  }
+}
