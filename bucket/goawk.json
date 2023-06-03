@@ -1,27 +1,27 @@
 {
-  "version": "1.23.1",
-  "description": "A POSIX-compliant AWK interpreter written in Go, with CSV support",
   "homepage": "https://github.com/benhoyt/goawk",
-  "license": "MIT License",
+  "description": "GoAWK: an AWK interpreter written in Go",
+  "license": "MIT",
+  "version": "1.23.1",
   "architecture": {
-    "32bit": {
-      "url": "https://ghproxy.net/https://github.com/benhoyt/goawk/releases/download/v1.23.1/goawk_v1.23.1_windows_386.zip",
-      "hash": "ac8ac97a03e96ed6e16050fa1635bec45f3808f008e019467c405877c1c6c57f"
-    },
     "64bit": {
       "url": "https://ghproxy.net/https://github.com/benhoyt/goawk/releases/download/v1.23.1/goawk_v1.23.1_windows_amd64.zip",
       "hash": "8288ce5a02177c80070bb80bcc5252630ea517e6dfbe8c7974c33572dd0062e1"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/benhoyt/goawk/releases/download/v1.23.1/goawk_v1.23.1_windows_386.zip",
+      "hash": "ac8ac97a03e96ed6e16050fa1635bec45f3808f008e019467c405877c1c6c57f"
     }
   },
   "bin": "goawk.exe",
   "checkver": "github",
   "autoupdate": {
     "architecture": {
-      "32bit": {
-        "url": "https://ghproxy.net/https://github.com/benhoyt/goawk/releases/download/v$version/goawk_v$version_windows_386.zip"
-      },
       "64bit": {
         "url": "https://ghproxy.net/https://github.com/benhoyt/goawk/releases/download/v$version/goawk_v$version_windows_amd64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/benhoyt/goawk/releases/download/v$version/goawk_v$version_windows_386.zip"
       }
     }
   }

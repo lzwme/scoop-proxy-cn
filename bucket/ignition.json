@@ -1,15 +1,16 @@
 {
-  "version": "8.1.27",
+  "version": "8.1.28",
   "description": "Unlimited Platform for SCADA and so much more",
   "homepage": "https://inductiveautomation.com/",
   "license": {
     "identifier": "Propietary",
     "url": "https://inductiveautomation.com/ignition/license"
   },
-  "url": "https://files.inductiveautomation.com/release/ia/8.1.27/20230425-0954/Ignition-windows-x86-64-8.1.27.zip",
-  "hash": "fd6c9a7ee9d2417e1643afb562b3046d03a7b86848ab565d47dfeae319556584",
+  "url": "https://files.inductiveautomation.com/release/ia/8.1.28/20230601-1114/Ignition-windows-x86-64-8.1.28.zip",
+  "hash": "96abcb7f47c27804a830563026ce0bb96aa51fcaec38b085ce82b638723d34f4",
   "post_install": [
     "# Update ignition.conf",
+    "(Get-Content \"$dir\\data\\ignition.conf\") -replace '=Ignition Gateway', '=Ignition scoop Gateway' | Out-File \"$dir\\data\\ignition.conf\"",
     "(Get-Content \"$dir\\data\\ignition.conf\") -replace '=Ignition', '=Ignition scoop' | Out-File \"$dir\\data\\ignition.conf\"",
     "# Install Ignition",
     "cmd.exe /c \"$dir\\install-ignition.bat\"",

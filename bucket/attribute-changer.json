@@ -1,6 +1,6 @@
 {
   "##": "The license will be inside the app directory after installation.",
-  "version": "11.10",
+  "version": "11.20",
   "homepage": "https://www.petges.lu",
   "description": "A Windows Explorer shell extension that allows users to easily change file and folder properties with a right-click.",
   "license": "Freeware",
@@ -24,8 +24,8 @@
     "12 = TURKISH",
     "13 = ENGLISH   (ONLY IF YOU NEED TO RESET THE 'messages.ini' FILE BACK TO ENGLISH.)"
   ],
-  "url": "https://www.petges.lu/pubfiles/ac-11_10.exe",
-  "hash": "md5:a0672da9cf77081ef6999959575adbe4",
+  "url": "https://www.petges.lu/pubfiles/ac-11_20.exe",
+  "hash": "md5:943610f1f8c1902de3ee70929d73c0eb",
   "innosetup": true,
   "architecture": {
     "64bit": {
@@ -74,16 +74,12 @@
     "Start-Process 'regsvr32' -ArgumentList @('/u', \"$dir\\acshell.dll\", '/s') -Verb 'RunAs' -Wait; Stop-Process -Name 'explorer' -Force",
     "Start-Sleep -Seconds 2"
   ],
-  "checkver": {
-    "url": "https://www.petges.lu/download/",
-    "regex": "ac-([\\d]+)_([\\w]+)\\.exe",
-    "replace": "$1.$2"
-  },
+  "checkver": "Version\\s([\\w.]+)",
   "autoupdate": {
     "url": "https://www.petges.lu/pubfiles/ac-$underscoreVersion.exe",
     "hash": {
       "url": "https://www.petges.lu/download/",
-      "regex": "<p>MD5\\sChecksum:\\s$md5</p>"
+      "regex": "$version(?:\\s&#[\\d]+;\\sFULL\\sSETUP)\\</a\\>\\</div\\>\\n\\</div\\>\\n+<p>(?:Size\\:\\s[\\d,]+\\s[\\w]+\\s/\\s)MD5\\sChecksum\\:\\s$md5"
     }
   }
 }

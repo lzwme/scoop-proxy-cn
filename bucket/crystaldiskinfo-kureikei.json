@@ -1,21 +1,12 @@
 {
   "version": "9.0.1",
-  "description": "A HDD/SSD utility software which supports a part of USB, Intel RAID and NVMe(Kurei Kei Edition).",
-  "homepage": "https://osdn.net/projects/crystaldiskinfo/",
-  "license": {
-    "identifier": "MIT"
-  },
+  "description": "A HDD/SSD utility software which supports a part of USB, Intel RAID and NVMe.",
+  "homepage": "https://crystalmark.info/en/",
+  "license": "MIT",
   "url": "https://free.nchc.org.tw/osdn//crystaldiskinfo/78831/CrystalDiskInfo9_0_1KureiKei.zip",
   "hash": "5ec5213d80bd1fd77f6b7ad4bcaaee99bdc939446cf6a732779e5dfec796e65d",
-  "pre_install": "if (!(Test-Path \"$persist_dir\\DiskInfo.ini\")) { New-Item \"$dir\\DiskInfo.ini\" | Out-Null }",
   "architecture": {
     "64bit": {
-      "bin": [
-        [
-          "DiskInfo64K.exe",
-          "DiskInfoK"
-        ]
-      ],
       "shortcuts": [
         [
           "DiskInfo64K.exe",
@@ -24,30 +15,40 @@
       ]
     },
     "32bit": {
-      "bin": [
-        [
-          "DiskInfo32K.exe",
-          "DiskInfoK"
-        ]
-      ],
       "shortcuts": [
         [
           "DiskInfo32K.exe",
           "CrystalDiskInfo Kurei Kei Edition"
         ]
       ]
+    },
+    "arm64": {
+      "shortcuts": [
+        [
+          "DiskInfoA64K.exe",
+          "CrystalDiskInfo Kurei Kei Edition"
+        ]
+      ]
     }
   },
-  "persist": [
-    "Smart",
-    "DiskInfo.ini"
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\DiskInfo.ini\")) {",
+    "    New-Item \"$dir\\DiskInfo.ini\" -ItemType File | Out-Null",
+    "}"
   ],
-  "checkver": "<a href=\"/projects/crystaldiskinfo/releases/(?<release>[\\d]*)\">CrystalDiskInfo ([\\d.]+)</a>",
+  "persist": [
+    "DiskInfo.ini",
+    "Smart"
+  ],
+  "checkver": {
+    "url": "https://osdn.net/projects/crystaldiskinfo/",
+    "regex": "releases\\/(?<release>[\\d]+)\">CrystalDiskInfo ([\\w.]+)<"
+  },
   "autoupdate": {
     "url": "https://free.nchc.org.tw/osdn//crystaldiskinfo/$matchRelease/CrystalDiskInfo$underscoreVersionKureiKei.zip",
     "hash": {
-      "url": "https://osdn.net/projects/crystaldiskinfo/downloads/$matchRelease/CrystalDiskInfo$underscoreVersionKureiKei.zip/",
-      "regex": "<dd>$sha256</dd>"
+      "url": "https://osdn.net/projects/crystaldiskinfo/releases/rss",
+      "xpath": "//osdn:file[@url='https://osdn.net/projects/crystaldiskinfo/downloads/$matchRelease/CrystalDiskInfo$underscoreVersionKureiKei.zip/']/@sha256"
     }
   }
 }

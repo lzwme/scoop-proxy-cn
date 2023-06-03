@@ -1,54 +1,55 @@
 {
+  "$schema": "https://ghproxy.net/https://raw.githubusercontent.com/ScoopInstaller/Scoop/master/schema.json",
   "version": "9.0.1",
   "description": "A HDD/SSD utility software which supports a part of USB, Intel RAID and NVMe.",
-  "homepage": "https://crystalmark.info/en/",
+  "homepage": "https://crystalmark.info/en/software/crystaldiskinfo/",
   "license": "MIT",
   "url": "https://free.nchc.org.tw/osdn//crystaldiskinfo/78831/CrystalDiskInfo9_0_1Shizuku.zip",
   "hash": "ff5418b7f440a19c9fc138301c8bb9826e672b4c1792fae220c2ad487cbf3b13",
+  "pre_install": "if (!(Test-Path \"$persist_dir\\DiskInfo.ini\")) { New-Item \"$dir\\DiskInfo.ini\" | Out-Null }",
   "architecture": {
     "64bit": {
+      "bin": [
+        [
+          "DiskInfo64S.exe",
+          "DiskInfo-Shizuku"
+        ]
+      ],
       "shortcuts": [
         [
           "DiskInfo64S.exe",
-          "CrystalDiskInfo Shizuku Edition"
+          "CrystalDiskInfo (Shizuku Edition)"
         ]
       ]
     },
     "32bit": {
-      "shortcuts": [
+      "bin": [
         [
           "DiskInfo32S.exe",
-          "CrystalDiskInfo Shizuku Edition"
+          "DiskInfo-Shizuku"
         ]
-      ]
-    },
-    "arm64": {
+      ],
       "shortcuts": [
         [
-          "DiskInfoA64S.exe",
-          "CrystalDiskInfo Shizuku Edition"
+          "DiskInfo32S",
+          "CrystalDiskInfo (Shizuku Edition)"
         ]
       ]
     }
   },
-  "pre_install": [
-    "if (!(Test-Path \"$persist_dir\\DiskInfo.ini\")) {",
-    "    New-Item \"$dir\\DiskInfo.ini\" -ItemType File | Out-Null",
-    "}"
-  ],
   "persist": [
-    "DiskInfo.ini",
-    "Smart"
+    "Smart",
+    "DiskInfo.ini"
   ],
   "checkver": {
     "url": "https://osdn.net/projects/crystaldiskinfo/",
-    "regex": "releases\\/(?<release>[\\d]+)\">CrystalDiskInfo ([\\w.]+)<"
+    "regex": "releases/(?<release>[\\d]+)\">CrystalDiskInfo ([\\w.]+)<"
   },
   "autoupdate": {
     "url": "https://free.nchc.org.tw/osdn//crystaldiskinfo/$matchRelease/CrystalDiskInfo$underscoreVersionShizuku.zip",
     "hash": {
-      "url": "https://osdn.net/projects/crystaldiskinfo/releases/rss",
-      "xpath": "//osdn:file[@url='https://osdn.net/projects/crystaldiskinfo/downloads/$matchRelease/CrystalDiskInfo$underscoreVersionShizuku.zip/']/@sha256"
+      "url": "https://osdn.net/projects/crystaldiskinfo/downloads/$matchRelease/CrystalDiskInfo$underscoreVersionShizuku.zip/",
+      "regex": "<dd>$sha256</dd>"
     }
   }
 }
