@@ -1,8 +1,8 @@
 {
-  "version": "3.5.999.0",
+  "version": "2.6.0",
   "description": "SurfShark - Secure your digital life",
   "url": "https://downloads.surfshark.com/windows/latest/SurfsharkSetup.exe",
-  "hash": "962e7f4c8ca302b565accd241912cd76a00ba6b4b9b7b83d3149d9cfed991666",
+  "hash": "b8206fbc8ba9fbf42835c8ce9a9e8a46ac9541a1caee8f8eee0e46a93307b799",
   "installer": {
     "script": [
       "Invoke-ExternalCommand \"$dir\\SurfSharkSetup.exe\" -ArgumentList @('/qn', '/norestart') -RunAs | Out-Null"
@@ -15,5 +15,6 @@
       "Write-Host 'Uninstalling SurfShark ...'",
       "Invoke-ExternalCommand \"msiexec\" -ArgumentList @('/x', '{5415EDE6-7F7C-463A-8B60-FE600D7B03B6}', '/qn') -RunAs | Out-Null"
     ]
-  }
+  },
+  "_from": "okibcn/ScoopMaster"
 }
