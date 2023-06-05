@@ -1,18 +1,24 @@
 {
-  "##": [
-    "name:Nebula",
-    "author:ElSemi",
-    "cmd:%BIN% %ROM%",
-    "logo:https://consolo.is.cc/images/emuDownloadCenter/hooks/nebula/emulator_logo.png",
-    "screenshot:https://consolo.is.cc/images/emuDownloadCenter/hooks/nebula/emulator_screen_01.jpg"
-  ],
+  "version": "1.7.2",
+  "description": "A scalable overlay networking tool with a focus on performance, simplicity and security.",
+  "homepage": "https://github.com/slackhq/nebula",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/slackhq/nebula/releases/download/v1.7.2/nebula-windows-amd64.zip",
+      "hash": "e65b7de82a4d99b8c6657ffaf4c0437a4c576ab3e3ceca022fbdf45fae438b03"
+    }
+  },
   "bin": [
-    "nebula.exe"
+    "nebula.exe",
+    "nebula-cert.exe"
   ],
-  "description": "Nebula is a Capcom CPS1 and CPS2 and SNK NeoGeo emulator.",
-  "hash": "375c7ded1a2ee60ec33e770e3b81f14b9b7e4ef472f247fedd17c09da17548be",
-  "homepage": "http://nebula.emulatronia.com",
-  "license": "Freeware",
-  "url": "https://consolo.is.cc/emu/nebula/2.25b.7z",
-  "version": "2.25b"
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/slackhq/nebula/releases/download/v$version/nebula-windows-amd64.zip"
+      }
+    }
+  }
 }

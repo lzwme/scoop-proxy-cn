@@ -1,19 +1,13 @@
 {
   "##": "Evaluation version (30 days). Can be unlocked by licensing keys.",
   "##_2": "BurnInTest stores its config data at '$env:UserProfile\\Documents\\PassMark\\BurnInTest'",
-  "autoupdate": {
-    "url": "https://www.passmark.com/downloads/bitwindows.exe#/setup.exe"
-  },
-  "checkver": {
-    "regex": "(?sm)<strong>Windows</strong> edition V([\\d.]+).*Build\\s(\\d+)</p>",
-    "replace": "${1}.${2}",
-    "url": "https://www.passmark.com/products/burnintest/download.php"
-  },
-  "depends": "sudo",
-  "description": "PC reliability and load testing software",
-  "hash": "49f1654f8bff420e80604f0b5adde8ab7e77372d7e3a61cab3250ed28195b531",
   "homepage": "https://www.passmark.com/products/burnintest/",
+  "version": "10.2.1006",
   "license": "Proprietary",
+  "description": "PC reliability and load testing software",
+  "depends": "sudo",
+  "url": "https://www.passmark.com/downloads/bitwindows.exe#/setup.exe",
+  "hash": "49f1654f8bff420e80604f0b5adde8ab7e77372d7e3a61cab3250ed28195b531",
   "pre_install": [
     "Invoke-ExternalCommand \"$dir\\setup.exe\" -ArgumentList '/verysilent' -RunAs | Out-Null",
     "Remove-Item \"$dir\\setup.exe\"",
@@ -22,6 +16,12 @@
   "uninstaller": {
     "script": "Invoke-ExternalCommand \"$Env:ProgramFiles\\BurnInTest\\unins000.exe\" -ArgumentList '/verysilent' -RunAs | Out-Null"
   },
-  "url": "https://www.passmark.com/downloads/bitwindows.exe#/setup.exe",
-  "version": "10.2.1006"
+  "checkver": {
+    "url": "https://www.passmark.com/products/burnintest/download.php",
+    "regex": "(?sm)<strong>Windows</strong> edition V([\\d.]+).*Build\\s(\\d+)</p>",
+    "replace": "${1}.${2}"
+  },
+  "autoupdate": {
+    "url": "https://www.passmark.com/downloads/bitwindows.exe#/setup.exe"
+  }
 }

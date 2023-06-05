@@ -5,7 +5,7 @@
   "homepage": "https://www.apple.com/itunes/",
   "architecture": {
     "64bit": {
-      "url": "https://scoop.beerpsi.me/itunes?os=windows&type=older_video_cards&dl=12.4.3.1#/dl.7z",
+      "url": "https://beerpsi-scoop.deno.dev/itunes?os=windows&type=older_video_cards&dl=12.4.3.1#/dl.7z",
       "hash": "sha1:cb7e59eca7651140fabd69c3efc7112f8fd9f845",
       "pre_install": [
         "if (-not $global) {",
@@ -64,19 +64,18 @@
     ]
   ],
   "checkver": {
-    "url": "https://scoop.beerpsi.me/itunes?os=windows&type=older_video_cards",
+    "url": "https://beerpsi-scoop.deno.dev/itunes?os=windows&type=older_video_cards",
     "jsonpath": "$[-1:].version"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://scoop.beerpsi.me/itunes?os=windows&type=older_video_cards&dl=$version#/dl.7z",
+        "url": "https://beerpsi-scoop.deno.dev/itunes?os=windows&type=older_video_cards&dl=$version#/dl.7z",
         "hash": {
-          "url": "https://scoop.beerpsi.me/itunes?os=windows&type=older_video_cards",
+          "url": "https://beerpsi-scoop.deno.dev/itunes?os=windows&type=older_video_cards",
           "jsonpath": "$[?(@.version=='$version')].sha1sum"
         }
       }
     }
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

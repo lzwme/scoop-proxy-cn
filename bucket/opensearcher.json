@@ -20,16 +20,18 @@
       "OpenSearcher"
     ]
   ],
-  "checkver": "github",
+  "checkver": {
+    "url": "https://api.github.com/repos/Gaoyongxian666/OpenSearcher/releases",
+    "regex": "(?sm)browser_download_url.*?releases/download/V([\\d.]+)/(?<x86>OpenSearcher_([\\d.]+)_32wei_win10\\.zip).*?(?<x64>OpenSearcher_([\\d.]+)_green_win10\\.zip)"
+  },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.net/https://github.com/Gaoyongxian666/OpenSearcher/releases/download/V$version/OpenSearcher_$version_green_win10.zip"
+        "url": "https://ghproxy.net/https://github.com/Gaoyongxian666/OpenSearcher/releases/download/V$version/$matchX64"
       },
       "32bit": {
-        "url": "https://ghproxy.net/https://github.com/Gaoyongxian666/OpenSearcher/releases/download/V$version/OpenSearcher_$version_32wei_win10.zip"
+        "url": "https://ghproxy.net/https://github.com/Gaoyongxian666/OpenSearcher/releases/download/V$version/$matchX86"
       }
     }
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

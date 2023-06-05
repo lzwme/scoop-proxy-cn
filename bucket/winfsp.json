@@ -1,22 +1,19 @@
 {
+  "homepage": "http://winfsp.dev",
+  "description": "Windows File System Proxy - FUSE for Windows",
   "version": "2.0.23075",
-  "description": "Set of software components that allows the creation of user mode file systems.",
-  "homepage": "http://www.secfs.net/winfsp/",
-  "license": "GPL-3.0-only",
-  "url": "https://ghproxy.net/https://github.com/billziss-gh/winfsp/releases/download/v2.0/winfsp-2.0.23075.msi#/setup.msi_",
+  "license": {
+    "identifier": "GPL-3.0-only",
+    "url": "https://github.com/winfsp/winfsp/blob/master/License.txt"
+  },
+  "url": "https://ghproxy.net/https://github.com/winfsp/winfsp/releases/download/v2.0/winfsp-2.0.23075.msi",
   "hash": "6324dc81194a6a08f97b6aeca303cf5c2325c53ede153bae9fc4378f0838c101",
-  "installer": {
-    "script": "Invoke-ExternalCommand msiexec -ArgumentList @('/i', \"$dir\\setup.msi_\", '/qn') -RunAs | Out-Null"
-  },
-  "uninstaller": {
-    "script": "Invoke-ExternalCommand msiexec -ArgumentList @('/x', \"$dir\\setup.msi_\", '/qn') -RunAs | Out-Null"
-  },
+  "extract_dir": "WinFsp",
   "checkver": {
-    "url": "https://github.com/billziss-gh/winfsp/releases/latest",
-    "regex": "v(?<short>[\\d.]+)/winfsp-(?<version>[\\d.]+).*\\.msi"
+    "github": "https://github.com/winfsp/winfsp",
+    "regex": "winfsp-([\\d.]+).msi"
   },
   "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/billziss-gh/winfsp/releases/download/v$matchShort/winfsp-$matchVersion.msi#/setup.msi_"
-  },
-  "_from": "okibcn/ScoopMaster"
+    "url": "https://ghproxy.net/https://github.com/winfsp/winfsp/releases/download/v$majorVersion.$minorVersion/winfsp-$version.msi"
+  }
 }

@@ -1,22 +1,52 @@
 {
-  "version": "2.1.11",
-  "description": "Image and Video screen capture",
   "homepage": "https://www.screenpresso.com/",
-  "license": "Freeware",
+  "license": "https://www.screenpresso.com/software-license-agreement/",
+  "version": "2.1.11",
   "url": "https://www.screenpresso.com/binaries/releases/stable/dotnet47/Screenpresso.exe",
   "hash": "a2f8a6fbcb0d51fdb18c3c274d3a995875552c6626075efc0d44e67f911988ac",
+  "bin": [
+    [
+      "Screenpresso.exe",
+      "screenpresso",
+      "--portablemode"
+    ]
+  ],
   "shortcuts": [
     [
       "Screenpresso.exe",
-      "Screenpresso"
+      "Screenpresso",
+      "--portablemode"
     ]
+  ],
+  "pre_install": "if (!(Test-Path \"$dir\\settings.xml\")) { New-Item -Force \"$dir\\settings.xml\" -ItemType File | out-null }",
+  "post_install": [
+    "if ((Get-Content \"$dir\\settings.xml\") -eq $Null) { Remove-Item \"$dir\\settings.xml\" }",
+    "if (Test-Path \"$dir\\UpdateBackup\") { Move-Item \"$dir\\UpdateBackup\\*.*\" -Destination \"$dir\" }"
+  ],
+  "uninstaller": {
+    "script": [
+      "Move-Item \"$dir\\settings.xml\" -Destination \"$dir\\UpdateBackup\"",
+      "Move-Item \"$dir\\*.jpg\" -Destination \"$dir\\UpdateBackup\"",
+      "Move-Item \"$dir\\*.gif\" -Destination \"$dir\\UpdateBackup\"",
+      "Move-Item \"$dir\\*.png\" -Destination \"$dir\\UpdateBackup\"",
+      "Move-Item \"$dir\\*.bmp\" -Destination \"$dir\\UpdateBackup\"",
+      "Move-Item \"$dir\\*.tif\" -Destination \"$dir\\UpdateBackup\"",
+      "Move-Item \"$dir\\*.mp4\" -Destination \"$dir\\UpdateBackup\"",
+      "Move-Item \"$dir\\*.wmv\" -Destination \"$dir\\UpdateBackup\"",
+      "Move-Item \"$dir\\*.ogv\" -Destination \"$dir\\UpdateBackup\"",
+      "Move-Item \"$dir\\*.webm\" -Destination \"$dir\\UpdateBackup\""
+    ]
+  },
+  "persist": [
+    "UpdateBackup",
+    "BrandedScreenshots",
+    "Thumbnails"
   ],
   "checkver": {
     "url": "https://www.screenpresso.com/download/",
-    "regex": "Latest version .([\\d.]+)"
+    "re": "Latest version \\(([\\w\\.]+)\\)"
   },
   "autoupdate": {
     "url": "https://www.screenpresso.com/binaries/releases/stable/dotnet47/Screenpresso.exe"
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

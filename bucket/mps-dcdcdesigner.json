@@ -18,13 +18,12 @@
     ]
   },
   "post_install": [
-    "$null, $bucket = find_manifest($appName)",
-    "$bucketdir = Find-BucketDirectory($bucket)",
+    "$bucketdir = Find-BucketDirectory -Name $bucket",
     "",
     "ensure \"$dir\\data\\DCDCDesigner\" | Out-Null",
     "ensure \"$env:UserProfile\\Documents\\MPS\" | Out-Null",
     "if (-not (Test-Path \"$env:UserProfile\\Documents\\MPS\\DCDCDesigner\")) {",
-    "    cmd /c mklink /j \"$env:UserProfile\\Documents\\MPS\\DCDCDesigner\" \"$dir\\data\\DCDCDesigner\"",
+    "    cmd.exe /c mklink /j \"$env:UserProfile\\Documents\\MPS\\DCDCDesigner\" \"$dir\\data\\DCDCDesigner\"",
     "}",
     "",
     ""
@@ -43,6 +42,5 @@
   ],
   "persist": [
     "data"
-  ],
-  "_from": "okibcn/ScoopMaster"
+  ]
 }

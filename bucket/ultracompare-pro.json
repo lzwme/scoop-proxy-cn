@@ -14,8 +14,7 @@
   "extract_to": "Programs",
   "post_install": [
     "",
-    "$null, $bucket = find_manifest($appName)",
-    "$bucketdir = Find-BucketDirectory($bucket)",
+    "$bucketdir = Find-BucketDirectory -Name $bucket",
     "",
     "$hostfile = \"$bucketdir\\..\\scripts\\ultraedit\\hosts.cvp\"",
     "#sudo hostctl replace idm_inc --from $hostfile",
@@ -23,11 +22,11 @@
     "",
     "$evalDir = \"$(appdir ultraedit $global)\\current\".Replace('/', '\\')",
     "if (-not (Test-Path \"$evalDir\\Programs\\uclite\")) {",
-    "   cmd /c mklink /j \"$evalDir\\Programs\\uclite\" \"$dir\\Programs\"",
+    "   cmd.exe /c mklink /j \"$evalDir\\Programs\\uclite\" \"$dir\\Programs\"",
     "}",
     "",
     "if (-not (Test-Path \"$dir\\Programs\\ucl.exe\")) {",
-    "   cmd /c mklink /h \"$dir\\Programs\\ucl.exe\" \"$dir\\Programs\\uc.exe\"",
+    "   cmd.exe /c mklink /h \"$dir\\Programs\\ucl.exe\" \"$dir\\Programs\\uc.exe\"",
     "}",
     "",
     "",
@@ -51,6 +50,5 @@
   },
   "autoupdate": {
     "url": "https://ghproxy.net/https://github.com/SayCV/gh-cdn-cvp/releases/download/v1.0.0/ultracompare-pro-v$version-cvp.7z"
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

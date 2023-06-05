@@ -1,22 +1,16 @@
 {
+  "version": "0.17.1",
+  "description": "A simple and elegant markdown editor",
+  "homepage": "https://github.com/marktext/marktext",
+  "license": "MIT",
   "architecture": {
-    "32bit": {
-      "hash": "cb04c3dc7404223fd241c5479a65ff77c3923896e17a4848ad11a767164b90c7",
-      "url": "https://ghproxy.net/https://github.com/marktext/marktext/releases/download/v0.17.1/marktext-ia32-win.zip"
-    },
     "64bit": {
-      "hash": "2e5ffe0e6e77b8400f60dc0b38bf2615e558b2defaeda5f3ba4b2dc57ee2af15",
-      "url": "https://ghproxy.net/https://github.com/marktext/marktext/releases/download/v0.17.1/marktext-x64-win.zip"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "32bit": {
-        "url": "https://ghproxy.net/https://github.com/marktext/marktext/releases/download/v$version/marktext-ia32-win.zip"
-      },
-      "64bit": {
-        "url": "https://ghproxy.net/https://github.com/marktext/marktext/releases/download/v$version/marktext-x64-win.zip"
-      }
+      "url": "https://ghproxy.net/https://github.com/marktext/marktext/releases/download/v0.17.1/marktext-x64-win.zip",
+      "hash": "2e5ffe0e6e77b8400f60dc0b38bf2615e558b2defaeda5f3ba4b2dc57ee2af15"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/marktext/marktext/releases/download/v0.17.1/marktext-ia32-win.zip",
+      "hash": "cb04c3dc7404223fd241c5479a65ff77c3923896e17a4848ad11a767164b90c7"
     }
   },
   "bin": [
@@ -25,18 +19,22 @@
       "marktext"
     ]
   ],
-  "checkver": {
-    "github": "https://github.com/marktext/marktext"
-  },
-  "description": "A simple and elegant markdown editor",
-  "homepage": "https://marktext.app",
-  "license": "MIT",
-  "persist": "marktext-user-data",
   "shortcuts": [
     [
       "MarkText.exe",
       "Mark Text"
     ]
   ],
-  "version": "0.17.1"
+  "persist": "marktext-user-data",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/marktext/marktext/releases/download/v$version/marktext-x64-win.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/marktext/marktext/releases/download/v$version/marktext-ia32-win.zip"
+      }
+    }
+  }
 }

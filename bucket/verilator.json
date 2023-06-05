@@ -26,8 +26,7 @@
   "extract_to": "",
   "pre_install": [
     "",
-    "$null, $bucket = find_manifest($appName)",
-    "$bucketdir = Find-BucketDirectory($bucket)",
+    "$bucketdir = Find-BucketDirectory -Name $bucket",
     "",
     "pacman -S mingw-w64-x86_64-verilator",
     "",
@@ -41,6 +40,5 @@
   "checkver0": "github",
   "autoupdate0": {
     "url": "https://ghproxy.net/https://github.com/chipsalliance/verible/releases/download/v$version/verible-v$version-win64.zip"
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

@@ -9,8 +9,7 @@
   "extract_dir": "",
   "post_install": [
     "",
-    "$null, $bucket = find_manifest($appName)",
-    "$bucketdir = Find-BucketDirectory($bucket)",
+    "$bucketdir = Find-BucketDirectory -Name $bucket",
     "",
     "$evalDir = \"$(appdir pointofix $global)\\current\".Replace('/', '\\')",
     "$ifile = \"$dir\\pointofix_translation_zh-cn.ini\"",
@@ -25,6 +24,5 @@
   },
   "autoupdate": {
     "url": "https://www.pointofix.de/download/pointofix-translation-$cleanVersion.zip"
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

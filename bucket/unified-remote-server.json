@@ -73,7 +73,7 @@
     "pause",
     "'@",
     "    Set-Content \"$dir\\remove_unified_remote_server_service.cmd\" $value4 -Encoding 'utf8'",
-    "    # Replace the empty line with a command that force the user to give administrator privellages to the '*.bat' files.",
+    "    # Replace the empty line with a command that forces the user to give administrator privileges to the '*.bat' files.",
     "    foreach ($script in (Get-ChildItem \"$dir\\*.bat\")) {",
     "        $cont = ($script | Get-Content) -replace ('^$', 'fltmc >nul 2>&1 || ( powershell -ex \"unrestricted\" -c \"Start-Process ''%0'' -Verb ''RunAs''\" & exit 0 )')",
     "        Set-Content $script $cont -Encoding 'utf8' -Force",

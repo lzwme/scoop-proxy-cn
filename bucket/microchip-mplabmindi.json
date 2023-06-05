@@ -3,7 +3,7 @@
   "description": "Microchip’s MPLAB® Mindi™ Analog Simulator reduces circuit design time and risk by simulating analog circuits prior to hardware prototyping. ",
   "homepage": "https://www.microchip.com/SWLibraryWeb/product.aspx?product=AnalogSimMPLABMindi",
   "license": "Freeware",
-  "depends": [
+  "#depends": [
     ""
   ],
   "notes": [
@@ -25,7 +25,7 @@
     "ensure \"$dir\\Programs\" | Out-Null",
     "",
     "if (-not (Test-Path \"$env:PROGRAMFILES\\MPLAB_Mindi_840\")) {",
-    "    sudo cmd /c mklink /j \"$env:PROGRAMFILES\\MPLAB_Mindi_840\" \"$dir\\Programs\"",
+    "    sudo cmd.exe /c mklink /j \"$env:PROGRAMFILES\\MPLAB_Mindi_840\" \"$dir\\Programs\"",
     "}",
     "",
     ""
@@ -42,8 +42,7 @@
   },
   "post_install": [
     "'data', 'scripts', 'crack' | ForEach-Object { ensure \"$dir\\$_\" | Out-Null }",
-    "$null, $bucket = find_manifest($appName)",
-    "$bucketdir = Find-BucketDirectory($bucket)",
+    "$bucketdir = Find-BucketDirectory -Name $bucket",
     "",
     "ensure \"$dir\\data\\ProgramData\" | Out-Null",
     "ensure \"$dir\\data\\AppData\" | Out-Null",
@@ -55,27 +54,27 @@
     "",
     "#ensure \"$env:ProgramData\\$companyname\" | Out-Null",
     "#if (-not (Test-Path \"$env:ProgramData\\$companyname\")) {",
-    "#    cmd /c mklink /j \"$env:ProgramData\\$companyname\" \"$dir\\data\\ProgramData\"",
+    "#    cmd.exe /c mklink /j \"$env:ProgramData\\$companyname\" \"$dir\\data\\ProgramData\"",
     "#}",
     "",
     "ensure \"$env:AppData\\$companyname\" | Out-Null",
     "if (-not (Test-Path \"$env:AppData\\$companyname\\MPLAB Mindi840\")) {",
-    "    cmd /c mklink /j \"$env:AppData\\$companyname\\MPLAB Mindi840\" \"$dir\\data\\AppData\"",
+    "    cmd.exe /c mklink /j \"$env:AppData\\$companyname\\MPLAB Mindi840\" \"$dir\\data\\AppData\"",
     "}",
     "",
     "#ensure \"$env:LocalAppData\\$companyname\" | Out-Null",
     "#if (-not (Test-Path \"$env:LocalAppData\\$companyname\")) {",
-    "#    cmd /c mklink /j \"$env:LocalAppData\\$companyname\" \"$dir\\data\\LocalAppData\"",
+    "#    cmd.exe /c mklink /j \"$env:LocalAppData\\$companyname\" \"$dir\\data\\LocalAppData\"",
     "#}",
     "",
     "#ensure \"$env:UserProfile\\Documents\\$companyname\" | Out-Null",
     "if (-not (Test-Path \"$env:UserProfile\\Documents\\MPLAB Mindi\")) {",
-    "    cmd /c mklink /j \"$env:UserProfile\\Documents\\MPLAB Mindi\" \"$dir\\data\\UserProfile\"",
+    "    cmd.exe /c mklink /j \"$env:UserProfile\\Documents\\MPLAB Mindi\" \"$dir\\data\\UserProfile\"",
     "}",
     "",
     "#ensure \"$env:Public\\$companyname\" | Out-Null",
     "#if (-not (Test-Path \"$env:Public\\$companyname\")) {",
-    "#    cmd /c mklink /j \"$env:Public\\$companyname\" \"$dir\\data\\PublicProfile\"",
+    "#    cmd.exe /c mklink /j \"$env:Public\\$companyname\" \"$dir\\data\\PublicProfile\"",
     "#}",
     "",
     ""
@@ -101,6 +100,5 @@
   ],
   "persist": [
     "data"
-  ],
-  "_from": "okibcn/ScoopMaster"
+  ]
 }

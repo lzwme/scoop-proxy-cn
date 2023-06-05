@@ -6,7 +6,7 @@
     "identifier": "Trialware"
   },
   "notes": "Boilsoft Video Joiner",
-  "depends": [
+  "#depends": [
     ""
   ],
   "url": "https://www.boilsoft.com/download/bsvideojoiner.exe/#dl.7z",
@@ -27,8 +27,7 @@
     ]
   },
   "post_install": [
-    "$null, $bucket = find_manifest($appName)",
-    "$bucketdir = Find-BucketDirectory($bucket)",
+    "$bucketdir = Find-BucketDirectory -Name $bucket",
     "",
     ""
   ],
@@ -43,6 +42,5 @@
       "Boilsoft Video Joiner.exe",
       "Boilsoft Video Joiner(视频合并软件)"
     ]
-  ],
-  "_from": "okibcn/ScoopMaster"
+  ]
 }

@@ -13,8 +13,7 @@
   ],
   "post_install": [
     "",
-    "$null, $bucket = find_manifest($appName)",
-    "$bucketdir = Find-BucketDirectory($bucket)",
+    "$bucketdir = Find-BucketDirectory -Name $bucket",
     "",
     "Remove-Item \"$dir\\`$PLUGINSDIR\" -Recurse",
     "",
@@ -25,6 +24,5 @@
       "steamchina.exe",
       "steam中国版国服"
     ]
-  ],
-  "_from": "okibcn/ScoopMaster"
+  ]
 }

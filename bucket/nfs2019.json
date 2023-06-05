@@ -13,8 +13,7 @@
   "extract_dir": "program files\\Nuhertz Technologies",
   "post_install": [
     "'data', 'scripts', 'crack' | ForEach-Object { ensure \"$dir\\$_\" | Out-Null }",
-    "$null, $bucket = find_manifest($appName)",
-    "$bucketdir = Find-BucketDirectory($bucket)",
+    "$bucketdir = Find-BucketDirectory -Name $bucket",
     "",
     "ensure \"$dir\\data\\ProgramData\" | Out-Null",
     "ensure \"$dir\\data\\AppData\" | Out-Null",
@@ -26,27 +25,27 @@
     "",
     "#ensure \"$env:ProgramData\\$companyname\" | Out-Null",
     "#if (-not (Test-Path \"$env:ProgramData\\$companyname\")) {",
-    "#    cmd /c mklink /j \"$env:ProgramData\\$companyname\" \"$dir\\data\\ProgramData\"",
+    "#    cmd.exe /c mklink /j \"$env:ProgramData\\$companyname\" \"$dir\\data\\ProgramData\"",
     "#}",
     "",
     "#ensure \"$env:AppData\\$companyname\" | Out-Null",
     "#if (-not (Test-Path \"$env:AppData\\$companyname\")) {",
-    "#    cmd /c mklink /j \"$env:AppData\\$companyname\" \"$dir\\data\\AppData\"",
+    "#    cmd.exe /c mklink /j \"$env:AppData\\$companyname\" \"$dir\\data\\AppData\"",
     "#}",
     "",
     "#ensure \"$env:LocalAppData\\$companyname\" | Out-Null",
     "if (-not (Test-Path \"$env:LocalAppData\\$companyname\")) {",
-    "    cmd /c mklink /j \"$env:LocalAppData\\$companyname\" \"$dir\\data\\LocalAppData\"",
+    "    cmd.exe /c mklink /j \"$env:LocalAppData\\$companyname\" \"$dir\\data\\LocalAppData\"",
     "}",
     "",
     "#ensure \"$env:UserProfile\\Documents\\$companyname\" | Out-Null",
     "#if (-not (Test-Path \"$env:UserProfile\\Documents\\$companyname\")) {",
-    "#    cmd /c mklink /j \"$env:UserProfile\\Documents\\$companyname\" \"$dir\\data\\UserProfile\"",
+    "#    cmd.exe /c mklink /j \"$env:UserProfile\\Documents\\$companyname\" \"$dir\\data\\UserProfile\"",
     "#}",
     "",
     "#ensure \"$env:Public\\$companyname\" | Out-Null",
     "#if (-not (Test-Path \"$env:Public\\$companyname\")) {",
-    "#    cmd /c mklink /j \"$env:Public\\$companyname\" \"$dir\\data\\PublicProfile\"",
+    "#    cmd.exe /c mklink /j \"$env:Public\\$companyname\" \"$dir\\data\\PublicProfile\"",
     "#}",
     "",
     ""
@@ -78,6 +77,5 @@
   ],
   "persist": [
     "data"
-  ],
-  "_from": "okibcn/ScoopMaster"
+  ]
 }

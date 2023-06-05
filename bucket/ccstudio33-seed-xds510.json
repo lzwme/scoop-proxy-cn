@@ -30,8 +30,7 @@
   "extract_to": "",
   "#pre_install": [
     "",
-    "$null, $bucket = find_manifest($appName)",
-    "$bucketdir = Find-BucketDirectory($bucket)",
+    "$bucketdir = Find-BucketDirectory -Name $bucket",
     "",
     "$file = (Get-Item \"$dir\\installer\\*.exe\").FullName",
     "Rename-Item \"$file\" \"$dir\\installer\\setup.exe\"",
@@ -96,6 +95,5 @@
     "url": [
       "https://ghproxy.net/https://github.com/SayCV/gh-cdn-cvp/releases/download/v1.0.0/ccs33-seed-xds510-v$version-cvp.7z"
     ]
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

@@ -22,12 +22,11 @@
   ],
   "pre_install": [
     "",
-    "$null, $bucket = find_manifest($appName)",
-    "$bucketdir = Find-BucketDirectory($bucket)",
+    "$bucketdir = Find-BucketDirectory -Name $bucket",
     "",
     "$evalDir = \"$(appdir xlnx-vivado20183 $global)\\current\".Replace('/', '\\')",
-    "cmd /c mklink /j \"$dir\\SDx\\2018.3\\data\\cache\" \"$dir\\cache\"",
-    "cmd /c mklink /j \"$evalDir\\SDx\" \"$dir\\SDx\"",
+    "cmd.exe /c mklink /j \"$dir\\SDx\\2018.3\\data\\cache\" \"$dir\\cache\"",
+    "cmd.exe /c mklink /j \"$evalDir\\SDx\" \"$dir\\SDx\"",
     "",
     "    # Shortcut creation",
     "    # $target, $shortcutName, $arguments, [System.IO.FileInfo]$icon, $global",
@@ -35,6 +34,5 @@
     "startmenu_shortcut \"$evalDir\\SDx\\2018.3\\bin\\sdx.vbs\" 'EDA\\Xilinx SDx IDE 2018.3 CVP' $null \"$icon\" $global",
     "",
     ""
-  ],
-  "_from": "okibcn/ScoopMaster"
+  ]
 }

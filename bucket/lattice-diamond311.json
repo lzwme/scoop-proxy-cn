@@ -3,7 +3,7 @@
   "description": "Leading edge design software for Lattice FPGA families. ",
   "homepage": "https://www.latticesemi.com/",
   "license": "Trialware",
-  "depends": [
+  "#depends": [
     ""
   ],
   "notes": [
@@ -41,8 +41,7 @@
     "",
     "Move-Item -Path \"$dir\\*\" -Destination \"$inst\" -Exclude 'Programs' -ErrorAction Ignore",
     "",
-    "$null, $bucket = find_manifest($appName)",
-    "$bucketdir = Find-BucketDirectory($bucket)",
+    "$bucketdir = Find-BucketDirectory -Name $bucket",
     "",
     "'data', 'scripts' | ForEach-Object { ensure \"$dir\\$_\" | Out-Null }",
     "",
@@ -68,7 +67,7 @@
     "$inst = Join-Path $dir 'Programs'",
     "ensure $inst | Out-Null",
     "",
-    "cmd /c mklink /d \"$(shortcut_folder $false)\\EDA\\Lattice Diamond 3.11 CVP Drivers\" \"$dir\\Programs\\data\\vmdata\\drivers\"",
+    "cmd.exe /c mklink /d \"$(shortcut_folder $false)\\EDA\\Lattice Diamond 3.11 CVP Drivers\" \"$dir\\Programs\\data\\vmdata\\drivers\"",
     "",
     ""
   ],
@@ -90,6 +89,5 @@
   },
   "autoupdate": {
     "url": "https://ghproxy.net/https://github.com/SayCV/gh-cdn-eda/releases/download/v1.0.0/lattice-diamond311-$version.7z"
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

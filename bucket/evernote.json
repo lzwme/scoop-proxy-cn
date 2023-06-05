@@ -1,26 +1,18 @@
 {
-  "version": "10.57.10",
-  "description": "App for note taking, organizing, task lists, and archiving",
+  "version": "10.57.10.4133-56e857413a",
   "homepage": "https://evernote.com/",
+  "description": "Remember everything and tackle any project with your notes, tasks, and schedule all in one place.",
   "license": {
-    "identifier": "EULA",
-    "url": "https://evernote.com/legal/terms-of-service"
+    "identifier": "Freeware",
+    "url": "https://evernote.com/legal"
   },
-  "notes": "We don't persist your Evernote data, they are still storaged in \"$env:APPDATA\\Evernote\".",
   "url": "https://cdn1.evernote.com/boron/win/builds/Evernote-10.57.10-win-ddl-ga-4133-56e857413a-setup.exe#/dl.7z",
   "hash": "c1b7fcdd092f8ecd4e52ec22a39fbba732647b77a58dba13b984d85ff4403324",
-  "installer": {
-    "script": [
-      "if ([Environment]::Is64BitOperatingSystem) {",
-      "    Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" $dir -Removal",
-      "} else {",
-      "    Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-32.7z\" $dir -Removal",
-      "}",
-      "Remove-Item \"$dir\\Uninstall Evernote.exe\"",
-      "Remove-Item \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
-      "Remove-Item \"$dir\\resources\" -Force -Recurse"
-    ]
-  },
+  "extract_dir": "$PLUGINSDIR",
+  "pre_install": [
+    "if ($architecture -eq '32bit') { Expand-7zipArchive \"$dir\\app-32.7z\" \"$dir\" -Removal; Remove-Item \"$dir\\app-64.7z\" }",
+    "elseif ($architecture -eq '64bit') { Expand-7zipArchive \"$dir\\app-64.7z\" \"$dir\" -Removal; Remove-Item \"$dir\\app-32.7z\" }"
+  ],
   "shortcuts": [
     [
       "Evernote.exe",
@@ -28,10 +20,15 @@
     ]
   ],
   "checkver": {
-    "url": "https://evernote.com/download",
-    "regex": "Evernote-([\\d.]+)(?<tail>.+)\\.exe"
+    "script": [
+      "$ua = [Microsoft.PowerShell.Commands.PSUserAgent]::Chrome",
+      "(Invoke-RestMethod 'https://evernote.com/download' -UserAgent $ua) -match '(?<File>Evernote-(?<Ver>[\\d.]+)-win-ddl-ga-(?<Build>[\\w-]+)-setup\\.exe)' | Out-Null",
+      "$getFile = $Matches['File']; $getVersion = $Matches['Ver']; $getBuild = $Matches['Build']",
+      "Write-Output \"$getFile, $getVersion.$getBuild\""
+    ],
+    "regex": "(?<File>[\\w.-]+),\\s([\\w.-]+)"
   },
   "autoupdate": {
-    "url": "https://cdn1.evernote.com/boron/win/builds/Evernote-$version$matchTail.exe#/dl.7z"
+    "url": "https://cdn1.evernote.com/boron/win/builds/$matchFile#/dl.7z"
   }
 }

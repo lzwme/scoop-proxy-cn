@@ -3,13 +3,25 @@
   "description": "Kotlin Language Interactive Shell",
   "homepage": "https://github.com/Kotlin/kotlin-interactive-shell",
   "license": "Apache-2.0",
-  "url": "https://ghproxy.net/https://github.com/Kotlin/kotlin-interactive-shell/releases/download/v0.5.2/ki-archive.zip",
-  "hash": "9bd5697f9ec29cd63eaf0b503f46edce377bac73e46552aa12231ac5dbda21e4",
-  "extract_dir": "ki",
-  "bin": "bin\\ki",
-  "checkver": "github",
-  "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/Kotlin/kotlin-interactive-shell/releases/download/v$version/ki-archive.zip"
+  "suggest": {
+    "JDK": [
+      "java/oraclejdk",
+      "java/openjdk"
+    ]
   },
-  "_from": "okibcn/ScoopMaster"
+  "url": "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/ki-shell/0.5.2/ki-shell-0.5.2-archive.zip",
+  "hash": "sha1:5a08c6bc3ff15140f3b3b308648813444e8709ca",
+  "extract_dir": "ki",
+  "bin": "bin\\ki.bat",
+  "checkver": {
+    "url": "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/ki-shell/",
+    "regex": "(?<version>(?:\\d\\.)+\\d?)/",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/ki-shell/$matchVersion/ki-shell-$matchVersion-archive.zip",
+    "hash": {
+      "url": "$url.sha1"
+    }
+  }
 }

@@ -1,19 +1,6 @@
 {
-  "autoupdate": {
-    "hash": {
-      "mode": "extract",
-      "regex": "^$sha256([\\s]+)$basename",
-      "url": "https://scoop-apps.vercel.app/ccleaner"
-    },
-    "url": "https://pan.jiemi.workers.dev/?file=/scoop/CCleaner/$matchFilename#/Installer.exe"
-  },
-  "bin": "UninstallTool.exe",
-  "checkver": {
-    "regex": "(?<filename>Uninstall_Tool_(?<version>[\\d.]+).*?\\.exe)",
-    "url": "https://scoop-apps.vercel.app/ccleaner"
-  },
+  "version": "3.5.10.5670",
   "description": "Uninstaller that performs clean removal of any program from your PC. Installation tracing, leftovers removal. Works with lightning speed and controls apps that run on system startup.",
-  "hash": "c735cea43252ce912d415c795b8e97111d030929cafd1d9874c096ff7b9a649f",
   "homepage": "https://crystalidea.com/uninstall-tool",
   "license": {
     "identifier": "Proprietary",
@@ -26,17 +13,30 @@
     "  - 整合 x86 和 x64 于一体，安装时自动识别当前系统位数；",
     "  - 去除帮助菜单多余选项，只保留“关于”；"
   ],
-  "post_install": "Remove-Item $dir\\Installer.exe -Force",
+  "url": "https://pan.jiemi.workers.dev/?file=/scoop/CCleaner/Uninstall_Tool_3.5.10.5670-20200418.exe#/Installer.exe",
+  "hash": "c735cea43252ce912d415c795b8e97111d030929cafd1d9874c096ff7b9a649f",
   "pre_install": "Start-Process -FilePath \"$dir\\Installer.exe\" -ArgumentList /DIR=\"$dir\",/SILENT -Wait",
+  "post_install": "Remove-Item $dir\\Installer.exe -Force",
+  "uninstaller": {
+    "script": "Start-Process -FilePath \"$dir\\UninsFile\\unins000.exe\" -ArgumentList /VERYSILENT -Wait"
+  },
+  "bin": "UninstallTool.exe",
   "shortcuts": [
     [
       "UninstallTool.exe",
       "Uninstaller Tool"
     ]
   ],
-  "uninstaller": {
-    "script": "Start-Process -FilePath \"$dir\\UninsFile\\unins000.exe\" -ArgumentList /VERYSILENT -Wait"
+  "checkver": {
+    "url": "https://scoop-apps.vercel.app/ccleaner",
+    "regex": "(?<filename>Uninstall_Tool_(?<version>[\\d.]+).*?\\.exe)"
   },
-  "url": "https://pan.jiemi.workers.dev/?file=/scoop/CCleaner/Uninstall_Tool_3.5.10.5670-20200418.exe#/Installer.exe",
-  "version": "3.5.10.5670"
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/scoop/CCleaner/$matchFilename#/Installer.exe",
+    "hash": {
+      "url": "https://scoop-apps.vercel.app/ccleaner",
+      "mode": "extract",
+      "regex": "^$sha256([\\s]+)$basename"
+    }
+  }
 }

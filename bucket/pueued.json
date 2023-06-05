@@ -1,9 +1,18 @@
 {
+  "version": "3.1.2",
+  "description": "Manage your shell commands.Pueued is the daemon.",
+  "homepage": "https://github.com/Nukesor/pueue",
+  "license": "MIT",
   "architecture": {
     "64bit": {
-      "hash": "0b92dea7ddf68f589b2800e8125e654a9e27303b56e42743af1ebfda0257a14b",
-      "url": "https://ghproxy.net/https://github.com/Nukesor/pueue/releases/download/v3.1.2/pueued-windows-x86_64.exe#/pueued.exe"
+      "url": "https://ghproxy.net/https://github.com/Nukesor/pueue/releases/download/v3.1.2/pueued-windows-x86_64.exe#/pueued.exe",
+      "hash": "0b92dea7ddf68f589b2800e8125e654a9e27303b56e42743af1ebfda0257a14b"
     }
+  },
+  "bin": "pueued.exe",
+  "checkver": {
+    "url": "https://github.com/Nukesor/pueue/releases",
+    "regex": "/Nukesor/pueue/tree/v([\\d.]+)"
   },
   "autoupdate": {
     "architecture": {
@@ -11,14 +20,5 @@
         "url": "https://ghproxy.net/https://github.com/Nukesor/pueue/releases/download/v$version/pueued-windows-x86_64.exe#/pueued.exe"
       }
     }
-  },
-  "bin": "pueued.exe",
-  "checkver": {
-    "regex": "/Nukesor/pueue/tree/v([\\d.]+)",
-    "url": "https://github.com/Nukesor/pueue/releases"
-  },
-  "description": "Manage your shell commands.Pueued is the daemon.",
-  "homepage": "https://github.com/Nukesor/pueue",
-  "license": "MIT",
-  "version": "3.1.2"
+  }
 }

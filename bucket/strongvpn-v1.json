@@ -22,8 +22,7 @@
   "#extract_to": "",
   "post_install": [
     "",
-    "$null, $bucket = find_manifest($appName)",
-    "$bucketdir = Find-BucketDirectory($bucket)",
+    "$bucketdir = Find-BucketDirectory -Name $bucket",
     "",
     "",
     ""
@@ -65,6 +64,5 @@
   },
   "autoupdate": {
     "url": "https://ghproxy.net/https://github.com/SayCV/gh-cdn-cvp/releases/download/v1.0.0/strongvpn-v1-v$version.exe#/setup.exe"
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

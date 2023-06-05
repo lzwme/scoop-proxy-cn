@@ -1,33 +1,19 @@
 {
+  "$schema": "https://ghproxy.net/https://raw.githubusercontent.com/lukesampson/scoop/master/schema.json",
   "version": "1.18.4",
-  "description": "balenaEtcher. 快速刷写镜像到 to SD cards & USB drives",
-  "homepage": "https://www.balena.io/etcher/",
+  "description": "Tool to flash OS images to SD cards & USB drives.",
+  "homepage": "https://balena.io/etcher",
   "license": "Apache-2.0",
-  "changelog": "https://github.com/balena-io/etcher/blob/master/CHANGELOG.md",
-  "url": "https://ghproxy.net/https://github.com/balena-io/etcher/releases/download/v1.18.4/balenaEtcher-Portable-1.18.4.exe#/dl.7z",
-  "hash": "0d2523e16d82d151881b36867e17fcbf96436865ec85577ead067da0d8f40715",
-  "extract_dir": "$PLUGINSDIR",
   "architecture": {
     "64bit": {
-      "installer": {
-        "script": [
-          "Remove-Item \"$dir\\*\" -Exclude \"app-64.7z\"",
-          "Expand-7zipArchive \"$dir\\app-64.7z\" \"$dir\"",
-          "Remove-Item \"$dir\\app-64.7z\""
-        ]
-      }
+      "url": "https://ghproxy.net/https://github.com/balena-io/etcher/releases/download/v1.18.4/balenaEtcher-1.18.4-win.zip",
+      "hash": "176252a0dca5eab631400745d21c728d2a06ca66e1891875aa95b7db45d690b6"
     },
     "32bit": {
-      "installer": {
-        "script": [
-          "Remove-Item \"$dir\\*\" -Exclude \"app-32.7z\"",
-          "Expand-7zipArchive \"$dir\\app-32.7z\" \"$dir\"",
-          "Remove-Item \"$dir\\app-32.7z\""
-        ]
-      }
+      "url": "https://ghproxy.net/https://github.com/balena-io/etcher/releases/download/v1.18.4/balenaEtcher-1.18.4-ia32-win.zip",
+      "hash": "bc10fa5a1c6544c38835fb639f8b57c38c1bc4eeaadb0c4b1458c0d840615413"
     }
   },
-  "bin": "balenaEtcher.exe",
   "shortcuts": [
     [
       "balenaEtcher.exe",
@@ -38,6 +24,13 @@
     "github": "https://github.com/balena-io/etcher"
   },
   "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/balena-io/etcher/releases/download/v$version/balenaEtcher-Portable-$version.exe#/dl.7z"
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/balena-io/etcher/releases/download/v$version/balenaEtcher-$version-win.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/balena-io/etcher/releases/download/v$version/balenaEtcher-$version-ia32-win.zip"
+      }
+    }
   }
 }

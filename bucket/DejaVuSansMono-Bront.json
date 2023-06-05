@@ -1,4 +1,5 @@
 {
+  "description": "A few tweaked fonts geared for programming",
   "version": "0.0.11",
   "license": "Fonts are (c) Bitstream (see below). DejaVu changes are in public domain.Glyphs imported from Arev fonts are (c) Tavmjong Bah (see below)",
   "homepage": "https://github.com/chrismwendt/bront",
@@ -8,23 +9,25 @@
   "depends": "sudo",
   "installer": {
     "script": [
-      "if(!(is_admin)) { error \"Admin rights are required, please run 'sudo scoop install $app'\"; exit 1 }",
       "Get-ChildItem $dir -File -Filter '*.ttf' | ForEach-Object {",
       "    Write-Host Installing $_.Name",
-      "    New-ItemProperty -Path 'registry::HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name 'DejaVu Sans Mono - Bront (TrueType)' -Value \"$($_.Name)\" -Force | Out-Null",
-      "    Copy-Item $_.FullName -destination \"$env:WinDir\\Fonts\"",
+      "    $fontdir = \"$env:WinDir\\Fonts\"",
+      "    $fontname = 'DejaVu Sans Mono - Bront (TrueType)'",
+      "    sudo New-ItemProperty -Path 'registry::HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name \"$fontname\" -Value \"$($_.Name)\" -Force | Out-Null",
+      "    sudo Copy-Item -LiteralPath \"$($_.FullName)\" -Destination \"$fontdir\"",
       "}"
     ]
   },
   "uninstaller": {
     "script": [
-      "if(!(is_admin)) { error \"Admin rights are required, please run 'sudo scoop uninstall $app'\"; exit 1 }",
       "Get-ChildItem $dir -File -Filter '*.ttf' | ForEach-Object {",
-      "    Remove-ItemProperty -Path 'registry::HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name 'DejaVu Sans Mono - Bront (TrueType)' -Force -ErrorAction SilentlyContinue",
-      "    Remove-Item \"$env:WinDir\\Fonts\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
+      "    Write-Host Uninstalling $_.Name",
+      "    $fontdir = \"$env:WinDir\\Fonts\"",
+      "    $fontname = 'DejaVu Sans Mono - Bront (TrueType)'",
+      "    sudo Remove-ItemProperty -Path 'registry::HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name \"$fontname\" -Force -ErrorAction SilentlyContinue",
+      "    sudo Remove-Item -LiteralPath \"$fontdir\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
       "}",
       "Write-Host \"The '$app' Font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
     ]
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

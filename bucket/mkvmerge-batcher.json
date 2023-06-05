@@ -1,13 +1,10 @@
 {
-  "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/Bazzu85/MKVmergeBatcher/releases/download/$version/MKVmergeBatcher.$version.zip"
-  },
-  "checkver": "github",
+  "version": "2.0.46",
   "description": "A GUI for mkvmerge to create/execute custom created MKV models",
-  "hash": "3ccd20177db206eb80a62df212325e0c93ebef0ea9052076c6758428274fc40b",
   "homepage": "https://github.com/Bazzu85/MKVmergeBatcher",
   "license": "MIT",
-  "persist": "userdata.json",
+  "url": "https://ghproxy.net/https://github.com/Bazzu85/MKVmergeBatcher/releases/download/2.0.46/MKVmergeBatcher.2.0.46.zip",
+  "hash": "3ccd20177db206eb80a62df212325e0c93ebef0ea9052076c6758428274fc40b",
   "pre_install": "if(!(Test-Path \"$persist_dir\\userdata.json\")) {New-Item \"$dir\\userdata.json\" -ItemType File | Out-Null}",
   "shortcuts": [
     [
@@ -15,6 +12,9 @@
       "MKVmergeBatcher"
     ]
   ],
-  "url": "https://ghproxy.net/https://github.com/Bazzu85/MKVmergeBatcher/releases/download/2.0.46/MKVmergeBatcher.2.0.46.zip",
-  "version": "2.0.46"
+  "persist": "userdata.json",
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/Bazzu85/MKVmergeBatcher/releases/download/$version/MKVmergeBatcher.$version.zip"
+  }
 }

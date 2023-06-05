@@ -3,13 +3,13 @@
   "description": "The PyPA recommended tool for installing Python packages",
   "license": "MIT",
   "version": "23.1.2",
-  "url": "https://bootstrap.pypa.io/pip/pip.pyz",
-  "hash": "ccddca624114c381f07af8a18deeb47ddc4e1b1f5c57170cf2ce10554c871986",
+  "url": "https://bootstrap.pypa.io/pip/pip.pyz#/pip-23.1.2.pyz",
+  "hash": "82c00d5b86f4006b0d2fa412773f72add87eec3ec09fd3b8a06d3aae656106b1",
   "bin": [
     [
       "py.exe",
       "pip",
-      "$dir\\pip.pyz"
+      "$dir\\pip-23.1.2.pyz"
     ]
   ],
   "checkver": {
@@ -17,6 +17,13 @@
     "jsonpath": "$.info.version"
   },
   "autoupdate": {
-    "url": "https://bootstrap.pypa.io/pip/pip.pyz"
+    "url": "https://bootstrap.pypa.io/pip/pip.pyz#/pip-$version.pyz",
+    "bin": [
+      [
+        "py.exe",
+        "pip",
+        "$dir\\pip-$version.pyz"
+      ]
+    ]
   }
 }

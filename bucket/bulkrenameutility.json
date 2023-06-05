@@ -1,45 +1,40 @@
 {
-  "homepage": "http://www.bulkrenameutility.co.uk/Download.php",
+  "homepage": "https://www.bulkrenameutility.co.uk",
   "version": "3.4.4.0",
-  "url": "https://www.bulkrenameutility.co.uk/Downloads/BRU_NoInstall.zip",
-  "hash": "md5:8268648df4b9cb329920bbfe0b97bca1",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://www.bulkrenameutility.co.uk/License.php"
+  },
+  "description": "File renaming software for Windows.",
+  "url": "http://www.s3.tgrmn.com/bru/BRU_NoInstall.zip",
+  "hash": "81d1892ffe342bea788da1b79cbe084b8b3a533df33d697c7721d97eaf7ba3d6",
   "architecture": {
     "64bit": {
-      "installer": {
-        "script": [
-          "Move-Item \"$dir\\All\\*\" \"$dir\"",
-          "Move-Item \"$dir\\64-bit\\*\" \"$dir\"",
-          "Remove-Item \"$dir\\All\", \"$dir\\*-*\" -Force -Recurse"
-        ]
-      }
+      "extract_dir": [
+        "64-bit",
+        "All"
+      ]
     },
     "32bit": {
-      "installer": {
-        "script": [
-          "Move-Item \"$dir\\All\\*\" \"$dir\"",
-          "Move-Item \"$dir\\32-bit\\*\" \"$dir\"",
-          "Remove-Item \"$dir\\All\", \"$dir\\*-*\" -Force -Recurse"
-        ]
-      }
+      "extract_dir": [
+        "32-bit",
+        "All"
+      ]
     }
   },
+  "bin": "Bulk Rename Utility.exe",
+  "persist": "Bulk Rename Utility.ini",
   "shortcuts": [
     [
       "Bulk Rename Utility.exe",
       "Bulk Rename Utility"
     ]
   ],
-  "persist": "Bulk Rename Utility.ini",
   "checkver": {
     "url": "https://www.bulkrenameutility.co.uk/Download.php",
-    "re": "version ([\\d.]+)</span>"
+    "regex": "version ([\\d.]+)"
   },
   "autoupdate": {
-    "url": "https://www.bulkrenameutility.co.uk/Downloads/BRU_NoInstall.zip",
-    "hash": {
-      "url": "https://www.bulkrenameutility.co.uk/Download.php",
-      "regex": "MD5 value:[\\S\\s]+?$md5"
-    }
-  },
-  "_from": "okibcn/ScoopMaster"
+    "url": "http://www.s3.tgrmn.com/bru/BRU_NoInstall.zip"
+  }
 }

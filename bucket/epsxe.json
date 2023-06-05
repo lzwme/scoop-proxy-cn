@@ -1,26 +1,38 @@
 {
-  "autoupdate": {
-    "url": "http://www.epsxe.com/files/ePSXe$cleanVersion.zip"
-  },
-  "bin": "ePSXe.exe",
-  "checkver": {
-    "re": "ePSXe v(.*) Windows",
-    "url": "http://www.epsxe.com/download.php"
-  },
-  "description": "Playstation emulator, that has been around for good bit",
+  "notes": "Some settings are saved in registry: \"Computer\\HKEY_CURRENT_USER\\SOFTWARE\\epsxe\"",
+  "homepage": "https://www.epsxe.com/",
+  "version": "2.0.5",
+  "license": "Freeware",
+  "url": "http://www.epsxe.com/files/ePSXe205.zip",
   "hash": "46e1a7ad3dc9c75763440c153465cdccc9a3ba367e3158542953ece4bcdb7b4f",
-  "homepage": "http://www.epsxe.com",
-  "license": {
-    "identifier": "Unknown"
-  },
-  "notes": "May require bioses, also may not work with every PSX game.",
+  "pre_install": "if (!(test-path $dir\\inis)) {mkdir $dir\\inis | out-null}",
   "shortcuts": [
     [
       "ePSXe.exe",
-      "epsxe",
-      "epsxe.exe"
+      "ePSXe"
     ]
   ],
-  "url": "http://www.epsxe.com/files/ePSXe205.zip",
-  "version": "2.0.5"
+  "persist": [
+    "bios",
+    "cheats",
+    "config",
+    "covers",
+    "idx",
+    "info",
+    "isos",
+    "memcards",
+    "patches",
+    "plugins",
+    "shaders",
+    "snap",
+    "sstates",
+    "inis"
+  ],
+  "checkver": {
+    "url": "https://www.epsxe.com/download.php",
+    "regex": "files\\/(?<file>.*)\\.zip.*?ePSXe v(?<version>[\\d.]+) Windows"
+  },
+  "autoupdate": {
+    "url": "http://www.epsxe.com/files/$matchFile.zip"
+  }
 }

@@ -8,9 +8,9 @@
   },
   "notes": [
     "To install file associations, run:",
-    "install-pt-associations",
+    "$dir\\install-pt-associations.ps1",
     "To remove file associations, run:",
-    "remove-pt-associations"
+    "$dir\\remove-pt-associations.ps1"
   ],
   "architecture": {
     "64bit": {
@@ -33,16 +33,13 @@
     "   $verValue = ($_ | Get-Content).Replace('VERSION_HERE', $version); $verValue | Set-Content $_",
     "}"
   ],
-  "bin": [
-    "install-pt-associations.ps1",
-    "remove-pt-associations.ps1"
-  ],
   "shortcuts": [
     [
       "bin\\PacketTracer.exe",
       "Cisco Packet Tracer"
     ]
   ],
+  "persist": "saves",
   "env_set": {
     "PT8HOME": "$dir"
   },

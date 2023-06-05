@@ -3,7 +3,7 @@
   "description": "Vivado Design Suite",
   "homepage": "",
   "license": "Trialware",
-  "depends": [
+  "#depends": [
     ""
   ],
   "notes": [
@@ -14,8 +14,7 @@
   "extract_dir": "",
   "pre_install": [
     "",
-    "$null, $bucket = find_manifest($appName)",
-    "$bucketdir = Find-BucketDirectory($bucket)",
+    "$bucketdir = Find-BucketDirectory -Name $bucket",
     "",
     "cp \"$bucketdir\\..\\scripts\\xlnx-vivado20183-programmer-lite\\xlnx-*.cmd\" \"$dir\"",
     "",
@@ -30,6 +29,5 @@
       "xlnx-programmer-console.cmd",
       "EDA/Xilinx Vivado Programmer Console"
     ]
-  ],
-  "_from": "okibcn/ScoopMaster"
+  ]
 }

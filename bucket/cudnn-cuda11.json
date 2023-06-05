@@ -18,12 +18,26 @@
   "extract_dir": "cudnn-windows-x86_64-8.7.0.84_cuda11-archive",
   "installer": {
     "script": [
-      "foreach ($cuda in $manifest.suggest.cuDNN) {",
-      "    $cudaDir = \"$(appdir $cuda)\\current\"",
-      "    if (!(Test-Path \"$cudaDir\\include\\cudnn.h\") -and (Test-Path \"$cudaDir\")) {",
-      "        Copy-Item \"$dir\\*\" \"$cudaDir\" -Recurse -Force",
-      "        Write-Host \"Installed to $cudaDir\"",
-      "    }",
+      "$cudaDir = $env:CUDA_PATH",
+      "if (!(Test-Path \"$cudaDir\")) {",
+      "    Write-Error \"Not found installed CUDA $cuda\"",
+      "    exit 1",
+      "}",
+      "if (($cudaDir -ne $env:CUDA_PATH_V11_0) -and `",
+      "    ($cudaDir -ne $env:CUDA_PATH_V11_1) -and `",
+      "    ($cudaDir -ne $env:CUDA_PATH_V11_2) -and `",
+      "    ($cudaDir -ne $env:CUDA_PATH_V11_3) -and `",
+      "    ($cudaDir -ne $env:CUDA_PATH_V11_4) -and `",
+      "    ($cudaDir -ne $env:CUDA_PATH_V11_5) -and `",
+      "    ($cudaDir -ne $env:CUDA_PATH_V11_6) -and `",
+      "    ($cudaDir -ne $env:CUDA_PATH_V11_7) -and `",
+      "    ($cudaDir -ne $env:CUDA_PATH_V11_8)) {",
+      "    Write-Error \"Current CUDA version is not supported.\"",
+      "    exit 1",
+      "}",
+      "if (!(Test-Path \"$cudaDir\\include\\cudnn.h\") -and (Test-Path \"$cudaDir\")) {",
+      "    Copy-Item \"$dir\\*\" \"$cudaDir\" -Recurse -Force",
+      "    Write-Host \"Installed to $cudaDir\"",
       "}"
     ]
   },
@@ -43,6 +57,5 @@
   "checkver": {
     "url": "https://developer.download.nvidia.com/compute/redist/cudnn/",
     "regex": "href=\"v([\\d\\.]+)/"
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

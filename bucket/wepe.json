@@ -1,53 +1,55 @@
 {
+  "version": "2.2",
+  "description": "跨时代的PE工具箱，装机维护得力的助手，最后的救命稻草。化繁为简，小材大用，一键安装，极速启动。",
+  "homepage": "https://www.wepe.com.cn/",
+  "license": "Freeware",
   "architecture": {
-    "32bit": {
-      "hash": "sha1:eb3cf86a7cd8e8d1940bf7a8b0cce11a0165428c",
-      "url": "https://mirrors.sdu.edu.cn/software/Windows/WePE/WePE32_V2.2.exe"
-    },
     "64bit": {
-      "hash": "sha1:a67d66ed509a6bd9d44ade9281050eaaa89a2ecf",
-      "url": "https://mirrors.sdu.edu.cn/software/Windows/WePE/WePE64_V2.2.exe"
+      "url": "https://mirrors.sdu.edu.cn/software/Windows/WePE/WePE64_V2.2.exe",
+      "hash": "ec679b53d5257e28b04c92713b8e354a53d3f73ec44953e892472cabf92e6f63",
+      "shortcuts": [
+        [
+          "WePE64_V2.2.exe",
+          "WePE"
+        ]
+      ]
+    },
+    "32bit": {
+      "url": "https://mirrors.sdu.edu.cn/software/Windows/WePE/WePE32_V2.2.exe",
+      "hash": "dcb3bd41fee38a429b1c77124e760112a9b07f0cc47366c3e9c6d7806ea32278",
+      "shortcuts": [
+        [
+          "WePE32_V2.2.exe",
+          "WePE"
+        ]
+      ]
     }
+  },
+  "checkver": {
+    "url": "https://www.wepe.com.cn/download.html",
+    "regex": "微PE工具箱V([\\d.]+)",
+    "reverse": true
   },
   "autoupdate": {
     "architecture": {
-      "32bit": {
-        "hash": {
-          "mode": "extract",
-          "regex": "(?sm)$basename.*?$sha1",
-          "url": "https://mirrors.sdu.edu.cn/software/Windows/WePE/Hash.txt"
-        },
-        "url": "https://mirrors.sdu.edu.cn/software/Windows/WePE/WePE32_V$version.exe"
-      },
       "64bit": {
-        "hash": {
-          "mode": "extract",
-          "regex": "(?sm)$basename.*?$sha1",
-          "url": "https://mirrors.sdu.edu.cn/software/Windows/WePE/Hash.txt"
-        },
-        "url": "https://mirrors.sdu.edu.cn/software/Windows/WePE/WePE64_V$version.exe"
+        "url": "https://mirrors.sdu.edu.cn/software/Windows/WePE/WePE64_V$version.exe",
+        "shortcuts": [
+          [
+            "WePE64_V$version.exe",
+            "WePE"
+          ]
+        ]
+      },
+      "32bit": {
+        "url": "https://mirrors.sdu.edu.cn/software/Windows/WePE/WePE32_V$version.exe",
+        "shortcuts": [
+          [
+            "WePE32_V$version.exe",
+            "WePE"
+          ]
+        ]
       }
     }
-  },
-  "bin": "WePE.exe",
-  "checkver": {
-    "regex": "WePE32_V([\\d.]+)\\.exe",
-    "url": "https://mirrors.sdu.edu.cn/software/Windows/WePE/"
-  },
-  "description": "微 PE 工具箱 - 超好用的 WinPE 装机维护工具",
-  "homepage": "https://www.wepe.com.cn",
-  "license": {
-    "identifier": "Freeware"
-  },
-  "post_install": "Rename-Item \"$dir\\WePE*.exe\" 'WePE.exe'",
-  "shortcuts": [
-    [
-      "WePE.exe",
-      "WePE"
-    ]
-  ],
-  "suggest": {
-    "ventoy": "extras/ventoy"
-  },
-  "version": "2.2"
+  }
 }

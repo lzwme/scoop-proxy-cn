@@ -1,17 +1,28 @@
 {
-  "version": "0.8.0",
-  "description": " A TOML toolkit written in Rust ",
-  "homepage": "https://github.com/tamasfe/taplo",
   "license": "MIT",
+  "description": "A TOML toolkit written in Rust.",
+  "version": "0.8.0",
+  "bin": "taplo.exe",
+  "homepage": "https://taplo.tamasfe.dev/",
   "architecture": {
     "64bit": {
       "url": "https://ghproxy.net/https://github.com/tamasfe/taplo/releases/download/0.8.0/taplo-full-windows-x86_64.zip",
-      "hash": "ceb6d0c33515676f480542a1360c6f7935722f9e229546b1afbe73079a3248f9"
+      "hash": "335f1fa75d70004fcb0d1bb18c6003e6507d3c59f8c6009dcb39a77e576249de"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/tamasfe/taplo/releases/download/0.8.0/taplo-full-windows-x86.zip",
+      "hash": "2eb8b8f14c73302789de83f14d1fd3ed943aeaa185d926fda4c9e52ff75855ee"
     }
   },
-  "bin": "taplo.exe",
-  "checkver": {
-    "github": "https://github.com/tamasfe/taplo"
-  },
-  "_from": "okibcn/ScoopMaster"
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/tamasfe/taplo/releases/download/$version/taplo-full-windows-x86_64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/tamasfe/taplo/releases/download/$version/taplo-full-windows-x86.zip"
+      }
+    }
+  }
 }

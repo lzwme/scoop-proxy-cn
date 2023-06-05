@@ -12,7 +12,16 @@
   "pre_install": [
     "Expand-7zipArchive \"$dir\\setup\\direct-commander-$version-full.nupkg\" \"$dir\\setup\\direct-commander-$version-full\"",
     "Copy-Item \"$dir\\setup\\direct-commander-$version-full\\lib\\net45\\*\" \"$dir\" -Recurse",
-    "Remove-Item \"$dir\\setup\" -Recurse"
+    "Remove-Item \"$dir\\setup\" -Recurse",
+    "if (!(Test-Path \"$persist_dir\\direct-commander\")) { New-Item \"$dir\\direct-commander\" -ItemType Directory | Out-Null }"
+  ],
+  "post_install": [
+    "if (!(Test-Path \"$env:APPDATA\\direct-commander\")) {",
+    "Write-Host \"Create directory direct-commander in APPDATA\"",
+    "New-Item -ItemType Directory -Path \"$env:APPDATA\\direct-commander\"",
+    "}",
+    "Write-Host \"Create userDataPath.txt in APPDATA\"",
+    "Set-Content -Path \"$env:APPDATA\\direct-commander\\userDataPath.txt\" -Value \"$dir\\direct-commander\" -NoNewline"
   ],
   "bin": "Direct Commander.exe",
   "shortcuts": [
@@ -21,6 +30,7 @@
       "Direct Commander"
     ]
   ],
+  "persist": "direct-commander",
   "checkver": {
     "url": "https://yandex.com/direct-commander/update/win32/$version/alpha/releases?id=direct-commander&localversion=$version&arch=amd64",
     "regex": "commander/v(\\d+\\.\\d+\\.\\d+)/"

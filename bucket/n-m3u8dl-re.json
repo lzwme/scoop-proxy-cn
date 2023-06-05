@@ -1,50 +1,42 @@
 {
-  "version": "0.1.6-beta+20230412154851",
-  "description": "DASH/HLS/MSS stream downloader supporting on-demand & live broadcasts",
-  "homepage": "https://github.com/nilaoda/N_m3u8DL-RE",
+  "version": "0.1.6-beta",
+  "description": "Cross-Platform, modern and powerful stream downloader for MPD/M3U8/ISM",
+  "homepage": "https://github.com/nilaoda/N_m3u8DL-RE/blob/main/README.md",
   "license": "MIT",
   "suggest": {
     "ffmpeg": [
-      "scoop-alts/ffmpeg-shared-nightly",
-      "ffmpeg-yt-dlp",
-      "ffmpeg"
-    ],
-    "shaka-packager/mp4decrypt": [
-      "scoop-alts/shaka-packager-mod",
-      "bento4"
-    ],
-    "mkvmerge": "mkvtoolnix"
+      "ffmpeg",
+      "ffmpeg-nightly"
+    ]
   },
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.net/https://github.com/nilaoda/N_m3u8DL-RE/releases/download/v0.1.6-beta/N_m3u8DL-RE_Beta_win-x64_20230412.zip",
-      "hash": "834f434bfe54db61bf70e108eefc8c2a43ea8b5cbee17df856aff3da3a2f629d",
-      "extract_dir": "N_m3u8DL-RE_Beta_win-x64"
+      "url": "https://ghproxy.net/https://github.com/nilaoda/N_m3u8DL-RE/releases/download/v0.1.6-beta/N_m3u8DL-RE_Beta_win-x64_20230412.zip"
+    },
+    "arm64": {
+      "url": "https://ghproxy.net/https://github.com/nilaoda/N_m3u8DL-RE/releases/download/v0.1.6-beta/N_m3u8DL-RE_Beta_win-arm64_20230412.zip"
     }
   },
-  "bin": "N_m3u8DL-RE.exe",
+  "bin": [
+    "N_m3u8DL-RE_Beta_win-x64/N_m3u8DL-RE.exe",
+    [
+      "N_m3u8DL-RE.exe",
+      "N_m3u8DL_RE"
+    ]
+  ],
   "checkver": {
-    "script": [
-      "$cont = (Invoke-RestMethod -UseBasicParsing -Method Get -Headers @{'Accept'='application/vnd.github+json';'Accept-Encoding'='gzip'} -MaximumRedirection 0 -Uri 'https://api.github.com/repos/nilaoda/N_m3u8DL-RE/releases?per_page=1')[0]",
-      "$basever = $cont.tag_name.TrimStart('v')",
-      "foreach ($_ in $cont.assets) {",
-      "  if ($_.name -cmatch '^N_m3u8DL-RE_(?<phase>[A-Za-z]+_)?win-x64_(?<date>\\d+)\\.zip$') {",
-      "    $updated_date = ([DateTime]$_.updated_at).ToString('yyyyMMddHHmmss')",
-      "    Write-Output ('basever:\"' + $basever + '\"') ('phase:\"' + $matches.phase + '\"') ('date:\"' + $matches.date + '\"') ('updated_date:\"' + $updated_date + '\"')",
-      "    break",
-      "  }",
-      "}"
-    ],
-    "regex": "basever:\"(?<basever>[\\w.-]+)\"\\sphase:\"(?<phase>[A-Za-z]+_)?\"\\sdate:\"(?<date>\\d+)\"\\supdated_date:\"(?<updated_date>\\d+)\"",
-    "replace": "${basever}+${updated_date}"
+    "github": "https://github.com/nilaoda/N_m3u8DL-RE",
+    "regex": "/releases/download/v(?<version>[\\d.]+)-beta/N_m3u8DL-RE-_Beta_win-(?<build>\\d{8})",
+    "replace": "${version}${build}"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.net/https://github.com/nilaoda/N_m3u8DL-RE/releases/download/v$matchBasever/N_m3u8DL-RE_$matchPhasewin-x64_$matchDate.zip",
-        "extract_dir": "N_m3u8DL-RE_$matchPhasewin-x64"
+        "url": "https://ghproxy.net/https://github.com/nilaoda/N_m3u8DL-RE/releases/download/v$version/N_m3u8DL-RE_Beta_win-x64_$matchBuild.zip"
+      },
+      "arm64": {
+        "url": "https://ghproxy.net/https://github.com/nilaoda/N_m3u8DL-RE/releases/download/v$version/N_m3u8DL-RE_Beta_win-arm64_$matchBuild.zip"
       }
     }
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

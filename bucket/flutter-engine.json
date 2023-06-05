@@ -3,7 +3,7 @@
   "description": "flutter-engine : The Flutter engine",
   "homepage": "https://github.com/flutter/engine",
   "license": "BSD-3",
-  "depends": [
+  "#depends": [
     ""
   ],
   "url": [
@@ -18,8 +18,7 @@
     "",
     "mkdir $dir/engine > $null",
     "",
-    "$null, $bucket = find_manifest($appName)",
-    "$bucketdir = Find-BucketDirectory($bucket)",
+    "$bucketdir = Find-BucketDirectory -Name $bucket",
     "",
     "$flutterDir = \"$(appdir flutter-cn $global)\\current\".Replace('/', '\\')",
     "",
@@ -38,8 +37,7 @@
   "post_install": [
     "",
     "",
-    "$null, $bucket = find_manifest($appName)",
-    "$bucketdir = Find-BucketDirectory($bucket)",
+    "$bucketdir = Find-BucketDirectory -Name $bucket",
     "",
     "$flutterDir = \"$(appdir flutter-cn $global)\\current\".Replace('/', '\\')",
     "",
@@ -56,6 +54,5 @@
   ],
   "env_set0": {
     "FLUTTER_ENGINE_VERSION": "$dir"
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

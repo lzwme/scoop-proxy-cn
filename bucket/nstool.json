@@ -11,7 +11,13 @@
   "bin": "nstool.exe",
   "checkver": "github",
   "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/jakcron/nstool/releases/download/v$version/nstool-v$version-win_x86_64.zip"
-  },
-  "_from": "okibcn/ScoopMaster"
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/jakcron/nstool/releases/download/v$version/nstool-v$version-win_x86.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/jakcron/nstool/releases/download/v$version/nstool-v$version-win_x64.zip"
+      }
+    }
+  }
 }

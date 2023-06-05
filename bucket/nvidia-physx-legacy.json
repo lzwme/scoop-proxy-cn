@@ -18,6 +18,5 @@
       "$product = get-wmiobject Win32_Product | Where-Object { $_.Name -like \"NVIDIA PhysX (Legacy)\" }",
       "Start-Process -Verb RunAs -Wait -FilePath msiexec.exe -ArgumentList /x, $product.IdentifyingNumber, /qn, /passive"
     ]
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

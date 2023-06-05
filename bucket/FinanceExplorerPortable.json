@@ -1,28 +1,28 @@
 {
-  "autoupdate": {
-    "hash": {
-      "regex": "MD5 Hash: +[\\w]{32}",
-      "url": "https://portableapps.com/apps/office/finance_explorer_portable"
-    },
-    "url": "http://www.metalogicsw.com/download/financeexplorer/FinanceExplorerPortable_$version_English.paf.exe"
-  },
-  "bin": "FinanceExplorerPortable.exe",
-  "checkver": {
-    "re": "Version \\s+([\\w\\.]* for Win",
-    "url": "https://portableapps.com/apps/office/finance_explorer_portable"
-  },
-  "description": "Personal financial management",
-  "hash": "f289472f58db71b7027e8c918df94406ad3d41442be680c7719271c6a2467b27",
   "homepage": "https://portableapps.com/apps/office/finance_explorer_portable",
+  "description": "Personal financial management",
+  "version": "8.2.0",
   "license": "",
-  "persist": "Data",
-  "post_install": "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
+  "url": "http://www.metalogicsw.com/download/financeexplorer/FinanceExplorerPortable_8.2.0_English.paf.exe#/dl.7z",
+  "hash": "md5:4618677c12e02f49de6b755489869887",
+  "bin": "FinanceExplorerPortable.exe",
   "shortcuts": [
     [
       "FinanceExplorerPortable.exe",
       "FinanceExplorerPortable"
     ]
   ],
-  "url": "http://www.metalogicsw.com/download/financeexplorer/FinanceExplorerPortable_8.2.0_English.paf.exe",
-  "version": "8.2.0"
+  "persist": "Data",
+  "checkver": {
+    "url": "https://portableapps.com/apps/office/finance_explorer_portable",
+    "re": "Version \\s+([\\w\\.]* for Win"
+  },
+  "autoupdate": {
+    "url": "http://www.metalogicsw.com/download/financeexplorer/FinanceExplorerPortable_$version_English.paf.exe",
+    "hash": {
+      "url": "https://portableapps.com/apps/office/finance_explorer_portable",
+      "regex": "MD5 Hash: +[\\w]{32}"
+    }
+  },
+  "post_install": "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse"
 }
