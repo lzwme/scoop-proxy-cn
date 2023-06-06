@@ -7,7 +7,7 @@
   "extract_dir": "OTF/SimplifiedChineseHW",
   "post_install": [
     "$shell = New-Object -ComObject shell.application",
-    "$namespace_dir = $test.NameSpace($dir)",
+    "$namespace_dir = $shell.NameSpace($dir)",
     "$namespace_dir.ParseName(\"SourceHanSansHWSC-Bold.otf\").InvokeVerb(\"Install\")",
     "$namespace_dir.ParseName(\"SourceHanSansHWSC-Regular.otf\").InvokeVerb(\"Install\")",
     "Write-Host Installation finish, now you can uninstall it by `scoop uninstall`"
