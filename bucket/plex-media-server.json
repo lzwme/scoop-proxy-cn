@@ -7,39 +7,54 @@
     "identifier": "Proprietary",
     "url": "https://support.plex.tv/articles/204096476-license-information/"
   },
-  "url": "https://downloads.plex.tv/plex-media-server-new/1.32.3.7162-b0a36929b/windows/PlexMediaServer-1.32.3.7162-b0a36929b-x86.exe",
-  "hash": "b06eff30e575bbbf5f4cdd6ecf7c31075eb6b043f9bdb5783895ef3b74e72831",
-  "installer": {
-    "script": [
-      "$extracted = \"$dir\\extracted\"",
-      "$msi = \"$dir\\msi\"",
-      "Expand-DarkArchive \"$dir\\$fname\" \"$extracted\"",
-      "Expand-MsiArchive \"$extracted\\AttachedContainer\\pms.msi\" \"$msi\"",
-      "Move-Item \"$msi\\Msi\\*\" \"$dir\" -Force",
-      "Remove-Item $extracted, $msi, \"$dir\\$fname\" -Force -Recurse"
-    ]
+  "architecture": {
+    "32bit": {
+      "url": "https://downloads.plex.tv/plex-media-server-new/1.32.3.7162-b0a36929b/windows/PlexMediaServer-1.32.3.7162-b0a36929b-x86.exe",
+      "hash": "b06eff30e575bbbf5f4cdd6ecf7c31075eb6b043f9bdb5783895ef3b74e72831",
+      "installer": {
+        "script": [
+          "Start-Process \"$dir\\$fname\" -ArgumentList '/quiet' -Wait -Verb RunAs | Out-Null",
+          "Remove-Item \"$dir\\$fname\""
+        ]
+      },
+      "post_install": [
+        "$ProgramFiles = [Environment]::GetFolderPath(\"ProgramFilesX86\")",
+        "$filepath = \"$ProgramFiles\\Plex\\Plex Media Server\\Plex Media Server.exe\"",
+        "& $filepath"
+      ]
+    },
+    "64bit": {
+      "url": "https://downloads.plex.tv/plex-media-server-new/1.32.3.7162-b0a36929b/windows/PlexMediaServer-1.32.3.7162-b0a36929b-x86_64.exe",
+      "hash": "0a191f57a992492494343dc4da933705019f156a912a18d6d0faf60508630a0c",
+      "pre_install": [
+        "$ProgramFiles = [Environment]::GetFolderPath(\"ProgramFilesX86\")",
+        "$filepath = \"$ProgramFiles\\Plex\\Plex Media Server\\unins000.exe\"",
+        "if (Test-Path \"$ProgramFiles\\Plex\") {",
+        "    warn '32bit version detected, Uninstalling before installing 64bit version...'",
+        "    Start-Process \"$filepath\" -ArgumentList '/quiet' -Wait -Verb RunAs | Out-Null",
+        "}"
+      ],
+      "installer": {
+        "args": [
+          "/verysilent",
+          "/suppressmsgboxes"
+        ]
+      }
+    }
   },
-  "bin": [
-    [
-      "Plex Media Server.exe",
-      "pms"
-    ]
-  ],
-  "shortcuts": [
-    [
-      "Plex Media Server.exe",
-      "Plex Media Server"
-    ]
-  ],
   "checkver": {
-    "url": "https://plex.tv/pms/downloads/5.json",
-    "jsonpath": "$.computer.Windows.version"
+    "url": "https://www.reddit.com/user/samwiseg0/submitted.json?sort=new",
+    "jsonpath": "$...title",
+    "regex": "PMS Version Available - (?<version>[\\d.]+-[a-fA-F0-9]{9})"
   },
   "autoupdate": {
-    "url": "https://downloads.plex.tv/plex-media-server-new/$version/windows/PlexMediaServer-$version-x86.exe",
-    "hash": {
-      "url": "https://plex.tv/api/downloads/1.json",
-      "jsonpath": "$.computer.Windows.releases..checksum"
+    "architecture": {
+      "32bit": {
+        "url": "https://downloads.plex.tv/plex-media-server-new/$version/windows/PlexMediaServer-$version-x86.exe"
+      },
+      "64bit": {
+        "url": "https://downloads.plex.tv/plex-media-server-new/$version/windows/PlexMediaServer-$version-x86_64.exe"
+      }
     }
   }
 }

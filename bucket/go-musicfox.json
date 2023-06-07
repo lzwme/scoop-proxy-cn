@@ -1,43 +1,22 @@
 {
-  "version": "4.1.1",
-  "description": "go-musicfox是用Go写的又一款网易云音乐命令行客户端，支持UnblockNeteaseMusic、各种音质级别、lastfm、MPRIS、MacOS交互响应（睡眠暂停、蓝牙耳机连接断开响应、菜单栏控制等）...",
-  "homepage": "https://github.com/go-musicfox/go-musicfox",
-  "license": {
-    "identifier": "MIT license",
-    "url": "https://github.com/go-musicfox/go-musicfox/blob/master/LICENSE"
-  },
+  "version": "4.1.2",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.net/https://github.com/go-musicfox/go-musicfox/releases/download/v4.1.1/go-musicfox_4.1.1_windows_amd64.zip",
-      "hash": "09c4a7050610f970b428ec93108fce835fa35b827ee0d4d2ef9d39a86fcfd0d8",
-      "extract_dir": "go-musicfox_4.1.1_windows_amd64"
+      "url": "https://ghproxy.net/https://github.com/go-musicfox/go-musicfox/releases/download/v4.1.2/go-musicfox_4.1.2_windows_amd64.zip",
+      "hash": "1af4d8f065a7a231d252b21ba3904fda59adc13141135d956c580606e8fdbd1d",
+      "extract_dir": "go-musicfox_4.1.2_windows_amd64"
     }
   },
-  "installer": {
-    "script": [
-      "# handle runtime cache",
-      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name apps) scripts/AppsUtils.psm1)",
-      "Mount-ExternalRuntimeData -Source \"$persist_dir\\appdata\" -Target \"$env:USERPROFILE\\.go-musicfox\"",
-      "Remove-Module -Name AppsUtils"
-    ]
-  },
-  "uninstaller": {
-    "script": [
-      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name apps) scripts/AppsUtils.psm1)",
-      "Dismount-ExternalRuntimeData -Target \"$env:USERPROFILE\\.go-musicfox\"",
-      "Remove-Module -Name AppsUtils"
-    ]
-  },
   "bin": "musicfox.exe",
-  "shortcuts": [
-    [
-      "musicfox.exe",
-      "musicfox"
-    ]
-  ],
-  "checkver": {
-    "github": "https://github.com/go-musicfox/go-musicfox"
+  "homepage": "https://github.com/go-musicfox/go-musicfox",
+  "license": "MIT",
+  "description": "go-musicfox是用Go写的又一款网易云音乐命令行客户端，支持UnblockNeteaseMusic、各种音质级别、lastfm、MPRIS...",
+  "post_install": "Write-Host '好用记得给go-musicfox一个star✨哦~'",
+  "env_set": {
+    "MUSICFOX_ROOT": "$dir\\data"
   },
+  "persist": "data",
+  "checkver": "github",
   "autoupdate": {
     "architecture": {
       "64bit": {

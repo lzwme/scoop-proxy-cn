@@ -1,20 +1,31 @@
 {
-  "homepage": "https://www.bypass.cn/",
-  "version": "1.15.11",
-  "url": "https://www.bypass.cn/api/download?name=Bypass.zip#/dl.zip",
-  "hash": "a57239e92bcee6355ff58ea2b14070131f8507700768cb9c5724ecdf6b4ebd28",
+  "version": "1.15.12",
+  "description": "Bypass - Eaiser to buy your tickets",
+  "homepage": "https://www.bypass.cn",
+  "license": "Freeware",
+  "notes": "Bypass,Eaiser to buy your tickets",
+  "architecture": {
+    "64bit": {
+      "url": "https://download-aws.bypass.cn/Bypass_1.15.12.zip#/dl.7z",
+      "hash": "6c66bba9f03e29efa97a2e3ef0533b051d458cf83b3f5f2576a03a411b2a96f8"
+    }
+  },
   "extract_dir": "Bypass",
-  "checkver": {
-    "url": "https://www.bypass.cn/",
-    "regex": "Version&#xFF1A;([\\d.]+)"
-  },
-  "autoupdate": {
-    "url": "https://www.bypass.cn/api/download?name=Bypass.zip#/dl.zip"
-  },
   "shortcuts": [
     [
       "Bypass.exe",
-      "Bypass"
+      "分流抢票"
     ]
-  ]
+  ],
+  "checkver": {
+    "url": "https://www.bypass.cn/changelog/",
+    "regex": "<h3>([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://download-aws.bypass.cn/Bypass_$version.zip#/dl.7z"
+      }
+    }
+  }
 }
