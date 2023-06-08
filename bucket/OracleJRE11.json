@@ -1,0 +1,36 @@
+{
+  "description": "Oracle JRE 11",
+  "homepage": "http://www.oracle.com/technetwork/java/javase/overview/index.html",
+  "version": "11.0.3+12",
+  "license": "https://www.oracle.com/technetwork/java/javase/terms/license/javase-license.html",
+  "architecture": {
+    "64bit": {
+      "url": "https://download.oracle.com/otn/java/jdk/11.0.3+12/37f5e150db5247ab9333b11c1dddcd30/jdk-11.0.3_windows-x64_bin.zip",
+      "hash": "79fa21f4bc1e15e61432290247a0f7aead612f6a72117923fa6fe80c77232caf"
+    }
+  },
+  "cookie": {
+    "oraclelicense": "accept-securebackup-cookie"
+  },
+  "extract_dir": "jre1.8.0_211",
+  "env_add_path": "bin",
+  "env_set": {
+    "JAVA_HOME": "$dir"
+  },
+  "checkver": {
+    "url": "https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html",
+    "re": "(?<version>[ub\\-\\d]+)/(?<random>$md5)/jre-(?<short>(?<release>[\\d]+)u(?<update>[\\d]+))_windows-x64_bin.zip"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://download.oracle.com/otn/java/jdk/$version/$matchRandom/jre-$matchShort_windows-x64_bin.zip"
+      }
+    },
+    "extract_dir": "jre1.$matchRelease.0_$matchUpdate",
+    "hash": {
+      "url": "http://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html",
+      "find": "$basename.*($sha256)\"};"
+    }
+  }
+}

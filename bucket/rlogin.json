@@ -1,9 +1,18 @@
 {
-  "homepage": "https://github.com/kmiya-culti/RLogin",
   "version": "2.28.2",
-  "url": "http://nanno.bf1.jp/softlib/rlogin/2.28.2/rlogin_x64.zip",
-  "hash": "f43daab7e834bd535026afd121d50a2ffbdee1eb67cd9cfd053d103141d36601",
-  "persist": "RLogin.ini",
+  "description": "RLogin",
+  "homepage": "http://nanno.dip.jp/softlib/man/rlogin/",
+  "license": "MIT",
+  "architecture": {
+    "32bit": {
+      "url": "https://github.com/kmiya-culti/RLogin/files/11436571/rlogin_x32.zip",
+      "hash": "91b4c759059f246ba6b9e1c8614d609c4f8d3b480c038b511cd42126a8ff732f"
+    },
+    "64bit": {
+      "url": "https://github.com/kmiya-culti/RLogin/files/11436573/rlogin_x64.zip",
+      "hash": "f43daab7e834bd535026afd121d50a2ffbdee1eb67cd9cfd053d103141d36601"
+    }
+  },
   "bin": "RLogin.exe",
   "shortcuts": [
     [
@@ -11,13 +20,18 @@
       "RLogin"
     ]
   ],
-  "pre_install": [
-    "if (!(Test-Path \"$persist_dir\\RLogin.ini\")) {",
-    "    New-Item -Force -Path \"$dir\" -Name 'RLogin.ini' -Value '' | Out-Null",
-    "}"
-  ],
-  "checkver": "github",
+  "checkver": {
+    "github": "https://github.com/kmiya-culti/RLogin",
+    "re": "RLogin-(?<version>\\d+.\\d+.\\d+)[\\s\\S]+files\\/(?<x86url>\\d+)\\/rlogin_x32.zip[\\s\\S]+files\\/(?<x64url>\\d+)\\/rlogin_x64.zip"
+  },
   "autoupdate": {
-    "url": "http://nanno.bf1.jp/softlib/rlogin/$version/rlogin_x64.zip"
+    "architecture": {
+      "32bit": {
+        "url": "https://github.com/kmiya-culti/RLogin/files/$matchX86url/rlogin_x32.zip"
+      },
+      "64bit": {
+        "url": "https://github.com/kmiya-culti/RLogin/files/$matchX64url/rlogin_x64.zip"
+      }
+    }
   }
 }

@@ -1,20 +1,24 @@
 {
-  "autoupdate": {
-    "url": "https://openhardwaremonitor.org/files/openhardwaremonitor-v$version.zip"
-  },
-  "bin": "OpenHardwareMonitor.exe",
-  "checkver": ">Release Version ([\\d.]+)<",
   "description": "free open source software that monitors temperature sensors, fan speeds, voltages, load and clock speeds of a computer.",
-  "extract_dir": "OpenHardwareMonitor",
-  "hash": "5E238C36AE5F8A8AB9AA5E6FA3C568967D61953393384C7C8FD6370F8BC86B85",
   "homepage": "https://openhardwaremonitor.org/",
+  "version": "0.9.6",
   "license": "MPL-2.0",
+  "url": "https://openhardwaremonitor.org/files/openhardwaremonitor-v0.9.6.zip",
+  "hash": "5E238C36AE5F8A8AB9AA5E6FA3C568967D61953393384C7C8FD6370F8BC86B85",
+  "extract_dir": "OpenHardwareMonitor",
+  "pre_install": "if (-not (Test-Path \"$persist_dir\\OpenHardwareMonitor.config\")) { New-Item \"$dir\\OpenHardwareMonitor.config\" -ItemType File | Out-Null }",
+  "bin": "OpenHardwareMonitor.exe",
   "shortcuts": [
     [
       "OpenHardwareMonitor.exe",
       "OpenHardwareMonitor"
     ]
   ],
-  "url": "https://openhardwaremonitor.org/files/openhardwaremonitor-v0.9.6.zip",
-  "version": "0.9.6"
+  "persist": [
+    "OpenHardwareMonitor.config"
+  ],
+  "checkver": ">Release Version ([\\d.]+)<",
+  "autoupdate": {
+    "url": "https://openhardwaremonitor.org/files/openhardwaremonitor-v$version.zip"
+  }
 }

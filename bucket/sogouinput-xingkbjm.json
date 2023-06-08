@@ -1,23 +1,7 @@
 {
-  "autoupdate": {
-    "hash": {
-      "mode": "extract",
-      "regex": "^$sha256([\\s]+)$basename",
-      "url": "https://scoop-apps.vercel.app/sogou"
-    },
-    "url": "https://pan.jiemi.workers.dev/?file=/scoop/sogou/$matchFilename#/installer.exe"
-  },
-  "checkver": {
-    "regex": "(?s)(?<filename>SogouInput_v(?<shortVersion>[\\w.]+)[(]([\\d.]+)[)]_xingkbjm_lite\\.exe)",
-    "reverse": true,
-    "url": "https://scoop-apps.vercel.app/sogou"
-  },
+  "version": "11.9.0.5784",
   "description": "搜狗拼音输入法 - 星空不寂寞去广告版",
-  "hash": "75949c43ffb58c7ce6d06c2a0a5940c34c80c9fd54b5526a087db1c805c568a0",
   "homepage": "https://pinyin.sogou.com",
-  "installer": {
-    "script": "sudo Start-Process -filepath \"$dir\\installer.exe\" -WorkingDirectory \"$dir\" -ArgumentList \"/S /D=$dir\" -Wait"
-  },
   "license": {
     "identifier": "Proprietary",
     "url": "https://pinyin.sogou.com/help.php?list=9&q=1"
@@ -34,6 +18,11 @@
     "",
     "We don't persist your data, they are still storaged in '$env:USERPROFILE\\AppData\\LocalLow\\SogouPY' and '$env:USERPROFILE\\AppData\\LocalLow\\SogouPY.users'."
   ],
+  "url": "https://pan.jiemi.workers.dev/?file=/scoop/sogou/SogouInput_v11.9d(11.9.0.5784)_xingkbjm_lite.exe#/installer.exe",
+  "hash": "75949c43ffb58c7ce6d06c2a0a5940c34c80c9fd54b5526a087db1c805c568a0",
+  "installer": {
+    "script": "sudo Start-Process -filepath \"$dir\\installer.exe\" -WorkingDirectory \"$dir\" -ArgumentList \"/S /D=$dir\" -Wait"
+  },
   "post_install": "Remove-Item \"$dir\\installer.exe\" -Force",
   "uninstaller": {
     "script": [
@@ -41,6 +30,17 @@
       "Write-Host \"'A restart is required to complete the uninstallation.\" -Foreground Magenta"
     ]
   },
-  "url": "https://pan.jiemi.workers.dev/?file=/scoop/sogou/SogouInput_v11.9d(11.9.0.5784)_xingkbjm_lite.exe#/installer.exe",
-  "version": "11.9.0.5784"
+  "checkver": {
+    "url": "https://scoop-apps.vercel.app/sogou",
+    "regex": "(?s)(?<filename>SogouInput_v(?<shortVersion>[\\w.]+)[(]([\\d.]+)[)]_xingkbjm_lite\\.exe)",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/scoop/sogou/$matchFilename#/installer.exe",
+    "hash": {
+      "url": "https://scoop-apps.vercel.app/sogou",
+      "mode": "extract",
+      "regex": "^$sha256([\\s]+)$basename"
+    }
+  }
 }

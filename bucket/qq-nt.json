@@ -6,8 +6,16 @@
     "identifier": "Proprietary",
     "url": "https://ti.qq.com/agreement/index.html"
   },
-  "url": "https://dldir1.qq.com/qqfile/qq/QQNT/2ea7c813/QQ9.8.3.13183.exe#/dl.7z",
-  "hash": "45d7c372e7e77ab8dc47f3cde5a47bc8f763a9c8b22db6aad4b40f195695a131",
+  "architecture": {
+    "64bit": {
+      "url": "https://dldir1.qq.com/qqfile/qq/QQNT/b82c6358/QQ9.8.3.13456_x64.exe#/dl.7z",
+      "hash": "09423fc167688e0b9b114c72e04924dee64c8d39fb1ba6f589de08b6a346f528"
+    },
+    "32bit": {
+      "url": "https://dldir1.qq.com/qqfile/qq/QQNT/b82c6358/QQ9.8.3.13456_x86.exe#/dl.7z",
+      "hash": "bf4c9f0f16f48143a3ca8b77ac8eebd698077346be5f24c893b728f045c8ddf9"
+    }
+  },
   "installer": {
     "script": [
       "$configpath = \"$env:PUBLIC\\Documents\\Tencent\\QQ\"",
@@ -28,8 +36,5 @@
     "script": [
       "Remove-Item -Path \"$env:PUBLIC\\Documents\\Tencent\" -Force | Out-Null"
     ]
-  },
-  "autoupdate": {
-    "url": "https://dldir1.qq.com/qqfile/qq/QQNT/e2c549d2/QQ$version.exe#/dl.7z"
   }
 }

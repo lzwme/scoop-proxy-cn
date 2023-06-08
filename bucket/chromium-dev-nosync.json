@@ -1,42 +1,37 @@
 {
-  "version": "100.0.4863.0-r965290",
-  "description": "An open-source browser project that aims to build a safer, faster, and more stable way for all users to experience the web.",
+  "version": "64.0.3275.0-r518192",
+  "license": "https://chromium.googlesource.com/chromium/src/+/master/LICENSE",
   "homepage": "https://www.chromium.org",
-  "license": "BSD-3-Clause",
-  "notes": [
-    "These builds are no longer up to date as the owner discontinued the project on 20th February 2022.",
-    "64 bit and 32 bit releases have different versions."
-  ],
-  "architecture": {
-    "64bit": {
-      "url": "https://ghproxy.net/https://github.com/RobRich999/Chromium_Clang/releases/download/v100.0.4863.0-r965290-win64-sse3/chrome.zip",
-      "hash": "3ca3f3aa0837c4144b9ee9268e628dbf423aab14828e8963350894c4caa59254"
-    },
-    "32bit": {
-      "url": "https://ghproxy.net/https://github.com/RobRich999/Chromium_Clang/releases/download/v99.0.4844.0-r961558-win32-sse3/chrome.zip",
-      "hash": "9356f30d5e959265b5f94d1435f026811a8e639f5a9a3a848ca386bf62750881"
-    }
+  "checkver": {
+    "url": "https://chromium.woolyss.com/api/v3/?os=windows&bit=64&type=dev-codecs-nosync&out=string",
+    "re": "v([\\d.]+-r(?:\\d+))-win64"
   },
+  "bin": "chrome.exe",
   "extract_dir": "chrome-win32",
-  "bin": [
-    [
-      "chrome.exe",
-      "chromium-dev",
-      "--user-data-dir=\"$dir\\User Data\""
-    ]
-  ],
   "shortcuts": [
     [
       "chrome.exe",
-      "Chromium (Dev)",
-      "--user-data-dir=\"$dir\\User Data\""
+      "Chromium (dev)"
     ]
   ],
-  "post_install": [
-    "if (!(Test-Path \"$dir\\User Data\\*\") -and (Test-Path \"$env:LocalAppData\\Chromium\\User Data\")) {",
-    "    info '[Portable Mode]: Copying user data...'",
-    "    Copy-Item \"$env:LocalAppData\\Chromium\\User Data\\*\" \"$dir\\User Data\" -Recurse",
-    "}"
-  ],
-  "persist": "User Data"
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/henrypp/chromium/releases/download/v64.0.3275.0-r518192-win64/chromium-nosync.zip",
+      "hash": "b1f3ac50d2bef3a8cb85581c3850e562e7e041e93b5efa65b2409bb1cfd74cef"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/henrypp/chromium/releases/download/v64.0.3275.0-r518192-win32/chromium-nosync.zip",
+      "hash": "528e4be8599974ccd065ab0bbebfb736d020218417afd7e443bd1c8bdc4d0767"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/henrypp/chromium/releases/download/v$version-win64/chromium-nosync.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/henrypp/chromium/releases/download/v$version-win32/chromium-nosync.zip"
+      }
+    }
+  }
 }

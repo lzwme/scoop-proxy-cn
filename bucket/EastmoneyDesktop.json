@@ -12,9 +12,7 @@
     "",
     ""
   ],
-  "post_install": [
-    "Remove-Item \"$dir\\`$PLUGINSDIR\" -Recurse"
-  ],
+  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\" -Recurse",
   "shortcuts": [
     [
       "mainfree.exe",
@@ -25,9 +23,7 @@
       "东方财富独立交易"
     ]
   ],
-  "persist": [
-    "data"
-  ],
+  "persist": "data",
   "checkver": {
     "url": "https://pc.qq.com/detail/10/detail_2410.html",
     "regex": "：([\\d.]+)</li>"
