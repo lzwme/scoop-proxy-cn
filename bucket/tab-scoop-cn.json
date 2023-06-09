@@ -1,10 +1,10 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Scoop tab completion script in PowerShell",
   "homepage": "https://github.com/abgox/PS-completions",
   "license": "MIT",
   "url": "https://ghproxy.net/https://raw.githubusercontent.com/abgox/PS-completions/main/scoop/scoop-cn.ps1",
-  "hash": "ddd579f8e1db64e6782cce79881494e5f36d7cf1b03c5a005b1564e86ab58bed",
+  "hash": "a1e2599a0f0f72ccadbddba626ea0be79015ac35b270ae0c7de1a243877042b2",
   "post_install": [
     "function checkProfile($oldPattern, $newContent) {",
     "   if (!(Test-Path $PROFILE)) { New-Item $PROFILE }",
@@ -16,7 +16,7 @@
     "           if ($Matches[0] -ne $newContent) {",
     "               $profileContent[$i] = $profileContent[$i] -replace $oldPattern, $newContent",
     "               echo \"\"",
-    "               echo \"Replace Content(PROFILE):`noldContent:`n$oldPattern`nnewContent:`n$newContent\"",
+    "               echo \"Replace Content($PROFILE):`noldContent:`n$oldPattern`nnewContent:`n$newContent\"",
     "           }",
     "       }",
     "   }",
@@ -48,5 +48,8 @@
   "checkver": {
     "url": "https://ghproxy.net/https://raw.githubusercontent.com/abgox/PS-completions/main/scoop/scoop-cn.ps1",
     "regex": "# @version.+v([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://raw.githubusercontent.com/abgox/PS-completions/main/scoop/scoop-cn.ps1"
   }
 }
