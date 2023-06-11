@@ -1,22 +1,26 @@
 {
-  "version": "2.2.1",
-  "description": "[Map] - A tool to select chunks from Minecraft worlds for deletion or export.",
-  "homepage": "https://github.com/Querz/mcaselector/wiki",
+  "version": "2.2.2",
+  "description": "A tool to select chunks from Minecraft worlds for deletion or export",
+  "homepage": "https://github.com/Querz/mcaselector",
   "license": "MIT",
-  "url": "https://ghproxy.net/https://github.com/Querz/mcaselector/releases/download/2.2.1/MCA_Selector_Setup.exe",
-  "hash": "8f1eaf9611347eba173e1df2bb2bbda23ca415b16b89a11af127b649f9e17b75",
-  "innosetup": true,
-  "bin": "MCA Selector.exe",
+  "suggest": {
+    "JDK": [
+      "java/oraclejdk",
+      "java/openjdk"
+    ]
+  },
+  "url": "https://ghproxy.net/https://github.com/Querz/mcaselector/releases/download/2.2.2/mcaselector-2.2.2.jar#/mcaselector.jar",
+  "hash": "b4e49dccb171bc427d2d7962c1fa2c32481cad02ecad6eea0d2f2fae03f34282",
+  "pre_install": "Set-Content \"$dir\\mcaselector.bat\" '@start javaw.exe -jar \"%~dp0mcaselector.jar\" %*' -Encoding Ascii",
+  "bin": "mcaselector.jar",
   "shortcuts": [
     [
-      "MCA Selector.exe",
+      "mcaselector.bat",
       "MCA Selector"
     ]
   ],
-  "checkver": {
-    "github": "https://github.com/Querz/mcaselector"
-  },
+  "checkver": "github",
   "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/Querz/mcaselector/releases/download/$version/MCA_Selector_Setup.exe"
+    "url": "https://ghproxy.net/https://github.com/Querz/mcaselector/releases/download/$version/mcaselector-$version.jar#/mcaselector.jar"
   }
 }
