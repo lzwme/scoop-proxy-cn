@@ -1,13 +1,14 @@
 {
   "version": "4.9.5",
-  "description": "Automatically finds all installed Steam, Epic and Ubisoft games with their respective DLC-related DLL locations on the user's computer, parses SteamCMD, Steam Store and Epic Games Store for user-selected games' DLCs, then provides a very simple graphical interface utilizing the gathered information.",
   "homepage": "https://cs.rin.ru/forum/viewtopic.php?f=29&t=117227",
-  "license": {
-    "identifier": "GPL-3.0-or-later",
-    "url": "https://ghproxy.net/https://raw.githubusercontent.com/pointfeev/CreamInstaller/main/LICENSE"
+  "description": "An application that automatically finds all installed Steam, Epic and Ubisoft games with their respective DLC-related DLL locations on the user's computer, parses SteamCMD, Steam Store and Epic Games Store for user-selected games' DLCs.",
+  "license": "GPL-3.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/pointfeev/CreamInstaller/releases/download/v4.9.5/CreamInstaller.zip",
+      "hash": "642d42173a7eb9e6c967084856a15aa28a8776802df6fc15767ce17f4078f3c1"
+    }
   },
-  "url": "https://ghproxy.net/https://github.com/pointfeev/CreamInstaller/releases/download/v4.9.5/CreamInstaller.zip",
-  "hash": "642d42173a7eb9e6c967084856a15aa28a8776802df6fc15767ce17f4078f3c1",
   "shortcuts": [
     [
       "CreamInstaller.exe",
@@ -18,6 +19,10 @@
     "github": "https://github.com/pointfeev/CreamInstaller"
   },
   "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/pointfeev/CreamInstaller/releases/download/v$version/CreamInstaller.zip"
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/pointfeev/CreamInstaller/releases/download/v$version/CreamInstaller.zip"
+      }
+    }
   }
 }

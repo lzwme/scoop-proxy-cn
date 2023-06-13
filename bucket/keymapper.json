@@ -1,32 +1,34 @@
 {
-  "version": "1.8.1",
+  "version": "2.6.2",
   "description": "A cross-platform context-aware key remapper.",
   "homepage": "https://github.com/houmain/keymapper",
   "license": "GPL-3.0-only",
   "architecture": {
     "64bit": {
       "url": [
-        "https://ghproxy.net/https://github.com/houmain/keymapper/releases/download/1.8.1/keymapper-windows-x64-1.8.1.zip",
-        "https://ghproxy.net/https://github.com/oblitum/Interception/releases/download/v1.0.1/Interception.zip"
+        "https://ghproxy.net/https://github.com/houmain/keymapper/releases/download/2.6.2/keymapper-2.6.2-win64.zip"
       ],
       "hash": [
-        "ce188634dbdcdbe4a0ca759d6c1cf5cfda77fb7fc8aa75b04f2720a563aa3e38",
-        "ad038963d6413055765128b0b931f6e765147c9916dba79e65d872b261f9af10"
+        "9142957f8bcbbb7b0a22db86c70dbfb474c671e92557df0d2e63b33e57c6c044"
       ]
     }
   },
   "extract_dir": [
-    "",
-    "Interception/library/x64"
+    "keymapper-2.6.2-win64"
   ],
-  "bin": "keymapper.exe",
+  "bin": [
+    "keymapper.exe",
+    "keymapperd.exe"
+  ],
   "checkver": "github",
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.net/https://github.com/houmain/keymapper/releases/download/$version/keymapper-windows-x64-$version.zip"
+        "url": "https://ghproxy.net/https://github.com/houmain/keymapper/releases/download/$version/keymapper-$version-win64.zip"
       }
-    }
-  },
-  "notes": "To use the Interception library (keymapper.exe -i) you must manually install the Interception driver with administrator privileges. https://github.com/oblitum/Interception/#driver-installation"
+    },
+    "extract_dir": [
+      "keymapper-$version-win64"
+    ]
+  }
 }

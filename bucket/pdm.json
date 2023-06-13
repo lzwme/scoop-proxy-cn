@@ -1,11 +1,10 @@
 {
   "homepage": "http://pdm.fming.dev",
-  "version": "2.7.1",
-  "description": "Python package and dependency manager supporting the latest PEP standards",
+  "version": "2.7.2",
   "license": "MIT",
-  "url": "https://files.pythonhosted.org/packages/e5/43/35a86c8781788ef89efe955ffe110cbeacdd7024bf1706516e04f23561ac/pdm-2.7.1-py3-none-any.whl",
+  "url": "https://files.pythonhosted.org/packages/bc/c3/4a431d70b595034f8d516479c76c70c6ae2c39ce1afb99cb455b5c66024b/pdm-2.7.2-py3-none-any.whl",
   "depends": "python",
-  "hash": "a4da4d589e898f950d938be27d0b507689dea8a3a8c095d38a2276a69caa30c5",
+  "hash": "286f19bf6a0f398ed99927a9accb8fab4a57a17226af5a47294b37bdda438cbf",
   "bin": "venv\\Scripts\\pdm.exe",
   "installer": {
     "script": [
@@ -13,25 +12,12 @@
       "& \"$dir\\venv\\Scripts\\python.exe\" -m pip install \"$dir\\$fname\""
     ]
   },
-  "post_install": [
-    "if (-not (Test-Path -Path $PROFILE\\..\\Completions -PathType Container)) {",
-    "    mkdir $PROFILE\\..\\Completions",
-    "    echo @'",
-    "Get-ChildItem \"$PROFILE\\..\\Completions\\\" | ForEach-Object {",
-    "    . $_.FullName",
-    "}",
-    "'@ | Out-File -Append -Encoding utf8 $PROFILE",
-    "}",
-    "& \"$dir\\venv\\Scripts\\pdm.exe\" completion powershell | Out-File -Encoding utf8 $PROFILE\\..\\Completions\\pdm_completion.ps1"
-  ],
+  "post_install": "& \"$dir\\venv\\Scripts\\pdm.exe\" --pep582",
   "uninstaller": {
     "script": [
       "$oldPath = [Environment]::GetEnvironmentVariable(\"PYTHONPATH\", [System.EnvironmentVariableTarget]::User)",
-      "If (-not [string]::IsNullOrWhiteSpace($oldPath)) {",
-      "    $newPath = ($oldPath.Split(';') | Where { $_ -notlike \"$dir\\venv\\*\" }) -join ';'",
-      "    [Environment]::SetEnvironmentVariable(\"PYTHONPATH\", $newPath, [System.EnvironmentVariableTarget]::User)",
-      "}",
-      "Remove-Item -Path $PROFILE\\..\\Completions\\pdm_completion.ps1 -ErrorAction SilentlyContinue"
+      "$newPath = ($oldPath.Split(';') | Where { $_ -notlike \"$dir\\venv\\*\" }) -join ';'",
+      "[Environment]::SetEnvironmentVariable(\"PYTHONPATH\", $newPath, [System.EnvironmentVariableTarget]::User)"
     ]
   },
   "checkver": {
