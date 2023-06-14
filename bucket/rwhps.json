@@ -1,0 +1,22 @@
+{
+  "version": "2.0.0",
+  "description": "Dedicated to Rusted Warfare(RustedWarfare) High Performance Server",
+  "homepage": "https://github.com/RW-HPS/RW-HPS",
+  "license": "MIT",
+  "url": "https://ghproxy.net/https://github.com/RW-HPS/RW-HPS/releases/download/2.0.0/Server-All.jar",
+  "hash": "B62C7B878F4D6B8551A390FE1EE22DD2D8F5D7D05FE9FCFFF4A088301CA6AB7F",
+  "suggest": {
+    "JDK": [
+      "java/openjdk11"
+    ]
+  },
+  "pre_install": "Write-Output \"java -Xmx512M -Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8 -jar $dir\\Server-All.jar\" > \"$dir\\rwhps.cmd\"",
+  "bin": "rwhps.cmd",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/RW-HPS/RW-HPS/releases/download/$version/Server-All.jar",
+    "hash": {
+      "url": "$url.sha256"
+    }
+  },
+  "checkver": "github"
+}

@@ -1,0 +1,27 @@
+{
+  "hash": "f3876343e0af7e5edf949dabe0f3e6bce4a4505b4620edcdbaca96e9f4999444",
+  "homepage": "https://www.vgnclub.com/cms/serve/hub.html",
+  "url": "https://cdn.vgn.cn/device/download/win32/2.2.2/vgn-device-2.2.2.exe#/dl.7z",
+  "license": "Public Domain",
+  "extract_dir": "$PLUGINSDIR",
+  "extract_to": "package",
+  "version": "2.2.2",
+  "installer": {
+    "script": [
+      "Expand-7zipArchive -Path \"$dir/package/app-64.7z\" -DestinationPath \"$dir\"",
+      "Remove-Item \"$dir/package/\" -Recurse -Force"
+    ]
+  },
+  "checkver": {
+    "regex": "https://cdn.vgn.cn/device/download/win32/([\\d.]+)/vgn-device-[\\d.]+.exe"
+  },
+  "autoupdate": {
+    "url": "https://cdn.vgn.cn/device/download/win32/$version/vgn-device-$version.exe#/dl.7z"
+  },
+  "shortcuts": [
+    [
+      "VGN HUB.exe",
+      "VGN HUB"
+    ]
+  ]
+}
