@@ -1,18 +1,28 @@
 {
+  "version": "1.7.5",
+  "description": "美观易用且无广告的漫画和游戏客户端，同时支持MacOS，Windows，Android，iOS。",
   "homepage": "https://github.com/niuhuan/pikapika",
-  "description": "PicACG comic client",
-  "license": "Unlicense",
-  "version": "1.7.4",
-  "url": "https://ghproxy.net/https://github.com/niuhuan/pikapika/releases/download/v1.7.4/z-of-pikapika-v1.7.4-windows-x86_64.zip",
-  "hash": "374c1a05a21e0df4d30d0692950fe02e47ad7c67475c5c4333a1d6bcf8f21327",
+  "license": {
+    "identifier": "MIT"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/niuhuan/pikapika/releases/download/v1.7.5/z-of-pikapika-v1.7.5-windows-x86_64.zip",
+      "hash": "5fd9450ecb17cf367eeccf9152464217effc6c77f58962dae2af6006bfbf55b2"
+    }
+  },
   "shortcuts": [
     [
       "pikapika.exe",
-      "PikaPika"
+      "pikapika"
     ]
   ],
   "checkver": "github",
   "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/niuhuan/pikapika/releases/download/v$version/z-of-pikapika-v$version-windows-x86_64.zip"
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/niuhuan/pikapika/releases/download/v$version/z-of-pikapika-v$version-windows-x86_64.zip"
+      }
+    }
   }
 }

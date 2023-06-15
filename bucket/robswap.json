@@ -4,6 +4,12 @@
   "homepage": "https://icarus-consult.de",
   "license": "non-free",
   "url": "//promptly-apps.icarus-consult.local/Software/TMXTOOLS/robswap/3.1.0/RobSwap 3.1.0.msi",
+  "pre_install": [
+    "if(Get-Process -Name \"tune\" -ErrorAction SilentlyContinue) {",
+    "    Write-Error \"Process Simulate is running. Please close it to continue.\"",
+    "    exit 1",
+    " }"
+  ],
   "post_install": [
     "# Rewrite config file",
     "$executable = $dir + \"\\ABSOLUTEPATH\\RobSwap\\RobSwap.App.exe\"",
@@ -19,6 +25,9 @@
     "        Write-Host Shared Tecnomatix is installed",
     "        $shared = Get-ItemPropertyValue -Path 'HKLM:\\SOFTWARE\\TecnomatixRoot\\' -Name SymbolicLinkLocation",
     "        $emPowerDir = $shared + \"TecnomatixCurrent\\eMPower\"",
+    "        if(!(Test-Path -Path $emPowerDir)) {",
+    "               $emPowerDir = Get-ItemPropertyValue -Path 'HKLM:\\SOFTWARE\\Tecnomatix\\eMPower' -Name eMPowerDir",
+    "        }",
     "} elseif(Test-Path -Path 'HKLM:\\SOFTWARE\\Tecnomatix\\eMPower') {",
     "        Write-Host Single Tecnomatix is installed",
     "        $emPowerDir = Get-ItemPropertyValue -Path 'HKLM:\\SOFTWARE\\Tecnomatix\\eMPower' -Name eMPowerDir",
@@ -31,6 +40,12 @@
     "$cmds = $dir + \"\\ProgramFiles64Folder\\Tecnomatix\\eMPower\\DotNetCommands\"",
     "Copy-Item $cmds -Destination $eMPowerDir -Force -Recurse"
   ],
+  "pre_uninstall": [
+    "if(Get-Process -Name \"tune\" -ErrorAction SilentlyContinue) {",
+    "    Write-Error \"Process Simulate is running. Please close it to continue.\"",
+    "    exit 1",
+    " }"
+  ],
   "post_uninstall": [
     "# Copy to emPower Directory",
     "$emPowerDir = \"\";",
@@ -38,6 +53,9 @@
     "        Write-Host Shared Tecnomatix is installed",
     "        $shared = Get-ItemPropertyValue -Path 'HKLM:\\SOFTWARE\\TecnomatixRoot\\' -Name SymbolicLinkLocation",
     "        $emPowerDir = $shared + \"TecnomatixCurrent\\eMPower\"",
+    "        if(!(Test-Path -Path $emPowerDir)) {",
+    "               $emPowerDir = Get-ItemPropertyValue -Path 'HKLM:\\SOFTWARE\\Tecnomatix\\eMPower' -Name eMPowerDir",
+    "        }",
     "} elseif(Test-Path -Path 'HKLM:\\SOFTWARE\\Tecnomatix\\eMPower') {",
     "        Write-Host Single Tecnomatix is installed",
     "        $emPowerDir = Get-ItemPropertyValue -Path 'HKLM:\\SOFTWARE\\Tecnomatix\\eMPower' -Name eMPowerDir",
