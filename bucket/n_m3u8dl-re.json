@@ -1,46 +1,34 @@
 {
-  "version": "v0.1.7",
-  "description": "Cross-Platform, modern and powerful stream downloader for MPD/M3U8/ISM. English/简体中文/繁體中文.",
+  "version": "v0.1.8-beta",
+  "description": "跨平台的DASH/HLS/MSS下载工具。支持点播、直播(DASH/HLS)。",
   "homepage": "https://github.com/nilaoda/N_m3u8DL-RE",
   "license": "MIT",
-  "suggest": {
-    "ffmpeg": [
-      "ffmpeg",
-      "ffmpeg-nightly"
-    ]
-  },
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.net/https://github.com/nilaoda/N_m3u8DL-RE/releases/download/v0.1.7/N_m3u8DL-RE_Beta_win-x64_20230614.zip",
-      "hash": "3d700e6fc1276a637ac4149b60799c8b6716bfc0ab646a238a31d94a7a275f87",
+      "url": "https://ghproxy.net/https://github.com/nilaoda/N_m3u8DL-RE/releases/download/v0.1.8-beta/N_m3u8DL-RE_Beta_win-x64_20230615.zip",
+      "hash": "55DD36F2C9B153E524C4444F71ECD6E29144096EA4886806EF79979FE685DFF2",
       "extract_dir": "N_m3u8DL-RE_Beta_win-x64"
-    },
-    "arm64": {
-      "url": "https://ghproxy.net/https://github.com/nilaoda/N_m3u8DL-RE/releases/download/v0.1.7/N_m3u8DL-RE_Beta_win-arm64_20230614.zip",
-      "hash": "7706e966fea03e56be8b4393a29521ae4b75717e79567d1a7fbcb64e4d12e0d8",
-      "extract_dir": "N_m3u8DL-RE_Beta_win-arm64"
     }
   },
-  "bin": [
-    "N_m3u8DL-RE.exe",
+  "shortcuts": [
     [
       "N_m3u8DL-RE.exe",
-      "N_m3u8DL"
+      "N_m3u8DL-RE"
     ]
   ],
+  "bin": "N_m3u8DL-RE.exe",
   "checkver": {
-    "url": "https://api.github.com/repos/nilaoda/N_m3u8DL-RE/releases",
-    "regex": "releases/download/(?<tag>[vV]?[\\w-.]+)/N_m3u8DL-RE_Beta_win-x64_(?<date>[\\d.-]+).zip",
-    "replace": "${tag}"
+    "github": "https://github.com/nilaoda/N_m3u8DL-RE",
+    "regex": "/releases/tag/(?<version>.*?)\".*?ver\\. (?<date>\\d+)"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.net/https://github.com/nilaoda/N_m3u8DL-RE/releases/download/$matchTag/N_m3u8DL-RE_Beta_win-x64_$matchDate.zip",
+        "url": "https://ghproxy.net/https://github.com/nilaoda/N_m3u8DL-RE/releases/download/$version/N_m3u8DL-RE_Beta_win-x64_$matchDate.zip",
         "extract_dir": "N_m3u8DL-RE_Beta_win-x64"
       },
       "arm64": {
-        "url": "https://ghproxy.net/https://github.com/nilaoda/N_m3u8DL-RE/releases/download/$matchTag/N_m3u8DL-RE_Beta_win-arm64_$matchDate.zip",
+        "url": "https://ghproxy.net/https://github.com/nilaoda/N_m3u8DL-RE/releases/download/$version/N_m3u8DL-RE_Beta_win-arm64_$date.zip",
         "extract_dir": "N_m3u8DL-RE_Beta_win-arm64"
       }
     }

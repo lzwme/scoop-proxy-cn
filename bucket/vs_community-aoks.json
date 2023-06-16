@@ -1,16 +1,22 @@
 {
-  "version": "16.11.27",
-  "description": "Microsoft Visual Studio Community 2019",
+  "version": "17.6.3",
+  "description": "Microsoft Visual Studio Community 2022",
   "homepage": "https://www.visualstudio.com/downloads/",
   "license": "https://visualstudio.microsoft.com/license-terms/mlt031819/",
-  "url": "https://aka.ms/vs/16/release/vs_community.exe",
-  "hash": "0ac797413a56c6b2772f48a567a32cdddd3b739f5b2af649fcf90be4245762ff",
+  "url": "https://aka.ms/vs/17/release/vs_community.exe",
+  "hash": "09fb381ea2d80a9b45cd5655e1f1c5ebf8d7be32c8304e2ed450a1cc14d7a2d0",
   "installer": {
     "script": "Invoke-ExternalCommand -FilePath \"$dir\\vs_community.exe\" -Args @('--installPath', \"$dir\\vs\", '--add', 'Microsoft.VisualStudio.Workload.NativeDesktop', '--includeRecommended', '--quiet', '--norestart', '--wait') -RunAs | Out-Null"
   },
   "uninstaller": {
     "script": "Invoke-ExternalCommand -FilePath \"$dir\\vs_community.exe\" -Args @('uninstall', '--installPath', \"$dir\\vs\", '--quiet', '--norestart', '--wait') -RunAs | Out-Null"
   },
+  "bin": [
+    "vs\\Common7\\Tools\\LaunchDevCmd.bat",
+    "vs\\Common7\\Tools\\VsDevCmd.bat",
+    "vs\\Common7\\Tools\\VsMSBuildCmd.bat",
+    "vs\\Common7\\Tools\\Launch-VsDevShell.ps1"
+  ],
   "env_add_path": [
     "vs\\Common7\\Tools",
     "vs\\Common7\\IDE",
@@ -22,10 +28,10 @@
     "LIB": "$dir\\vs\\VC\\lib;$dir\\vs\\Microsoft SDKs\\Windows\\v7.0A\\lib"
   },
   "checkver": {
-    "url": "https://docs.microsoft.com/en-us/visualstudio/releases/2019/release-notes",
-    "regex": ">Visual Studio 2019 version ([\\d.]+)</a> <img"
+    "url": "https://docs.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
+    "regex": ">Visual Studio 2022 version ([\\d.]+)</a>"
   },
   "autoupdate": {
-    "url": "https://aka.ms/vs/16/release/vs_community.exe"
+    "url": "https://aka.ms/vs/17/release/vs_community.exe"
   }
 }

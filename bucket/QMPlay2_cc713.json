@@ -1,0 +1,35 @@
+{
+  "version": "23.06.04",
+  "description": "QMPlay2 is a video and audio player which can play most formats and codecs.",
+  "homepage": "https://github.com/zaps166/QMPlay2",
+  "license": "LGPL-3.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/zaps166/QMPlay2/releases/download/23.06.04/QMPlay2-Win64-23.06.04.exe#/dl.7z",
+      "hash": "878c63e009864280391e433583d3e1edd1b81afb9432ae5e07a2a96c7608ad1b"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/zaps166/QMPlay2/releases/download/21.12.24/QMPlay2-Win32-21.12.24.exe#/dl.7z",
+      "hash": ""
+    }
+  },
+  "bin": "QMPlay2.exe",
+  "shortcuts": [
+    [
+      "QMPlay2.exe",
+      "QMPlay2"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/zaps166/QMPlay2/releases/download/$version/QMPlay2-Win64-$version.exe#/dl.7z"
+      }
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/zaps166/QMPlay2/releases/download/$version/QMPlay2-Win32-$version.exe#/dl.7z"
+    }
+  },
+  "post_install": "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse"
+}

@@ -4,6 +4,9 @@
   "homepage": "https://icarus-consult.de",
   "license": "non-free",
   "url": "//promptly-apps.icarus-consult.local/Software/TMXTOOLS/robswap/3.1.0/RobSwap 3.1.0.msi",
+  "autoupdate": {
+    "url": "//promptly-apps.icarus-consult.local/Software/TMXTOOLS/robswap/$version/RobSwap $version.msi"
+  },
   "pre_install": [
     "if(Get-Process -Name \"tune\" -ErrorAction SilentlyContinue) {",
     "    Write-Error \"Process Simulate is running. Please close it to continue.\"",

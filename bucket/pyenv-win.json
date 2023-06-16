@@ -1,10 +1,23 @@
 {
+  "version": "3.1.1",
+  "description": "pyenv for Windows. pyenv is a simple python version management tool. \nwindows下的 pyenv，一个简单的python版本管理工具。",
   "homepage": "https://github.com/pyenv-win/pyenv-win",
-  "description": "pyenv is a simple python version management tool. It lets you easily switch between multiple versions of Python. It's simple, unobtrusive, and follows the UNIX tradition of single-purpose tools that do one thing well.",
-  "license": "MIT",
-  "url": "https://ghproxy.net/https://github.com/pyenv-win/pyenv-win/archive/master.zip",
-  "env_add_path": [
-    "bin/",
-    "shims/"
-  ]
+  "license": "Freeware",
+  "url": "https://ghproxy.net/https://raw.githubusercontent.com/pyenv-win/pyenv-win/master/pyenv-win/install-pyenv-win.ps1",
+  "hash": "ad9611af397ca590d1f8ba17c54c4f7b90545874106199cc87158569fe423d0d",
+  "post_install": [
+    "Invoke-Expression $dir\\install-pyenv-win.ps1",
+    "$data_path=\"$env:userProfile/.pyenv\"",
+    "$count=0;$current_bucket_name=foreach($_ in scoop bucket list,$count){if(($count -eq 0) -and ($_.Source -match \"abgox/abgo_bucket\")){echo $_.Name};$count++}",
+    "$ps1 = \"$bucketsdir\\$current_bucket_name\\bin\\persist_link.ps1 $data_path\\pyenv-win $persist_dir\\pyenv-win\"",
+    "Invoke-Expression \"$ps1\""
+  ],
+  "pre_uninstall": [
+    "$ps1=\"$dir\\install-pyenv-win.ps1 -Uninstall\"",
+    "Invoke-Expression $ps1"
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://raw.githubusercontent.com/pyenv-win/pyenv-win/master/pyenv-win/install-pyenv-win.ps1"
+  }
 }
