@@ -1,26 +1,30 @@
 {
   "version": "4.19.2-beta.1",
-  "description": "An Arknights assistant, supports ZH and EN client",
-  "homepage": "https://www.maa.plus/",
+  "homepage": "https://github.com/MaaAssistantArknights/MaaAssistantArknights",
   "license": "AGPL-3.0",
-  "url": "https://ghproxy.net/https://github.com/MaaAssistantArknights/MaaAssistantArknights/releases/download/v4.19.2-beta.1/MAA-v4.19.2-beta.1-win-x64.zip",
-  "hash": "fb2e6f6bbc8e9a2daf02a578205d149a51aa2dda424bff690c4426038f34c6b6",
-  "bin": "MAA.exe",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/MaaAssistantArknights/MaaAssistantArknights/releases/download/v4.19.2-beta.1/MAA-v4.19.2-beta.1-win-x64.zip",
+      "hash": "fb2e6f6bbc8e9a2daf02a578205d149a51aa2dda424bff690c4426038f34c6b6"
+    }
+  },
   "shortcuts": [
     [
       "MAA.exe",
-      "MAA Assistant Arknights"
+      "MAA"
     ]
   ],
-  "persist": [
-    "config",
-    "debug"
-  ],
+  "persist": "config",
   "checkver": {
     "url": "https://api.github.com/repos/MaaAssistantArknights/MaaAssistantArknights/releases",
-    "regex": "/releases/tag/v([\\d.]+(-alpha|-beta|-rc)?(\\.\\d+)?)"
+    "jsonpath": "$[0].tag_name",
+    "re": "v(.+)"
   },
   "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/MaaAssistantArknights/MaaAssistantArknights/releases/download/v$version/MAA-v$version-win-x64.zip"
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/MaaAssistantArknights/MaaAssistantArknights/releases/download/v$version/MAA-v$version-win-x64.zip"
+      }
+    }
   }
 }
