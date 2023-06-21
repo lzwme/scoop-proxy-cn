@@ -1,11 +1,102 @@
 {
-  "version": "4.2",
-  "extract_dir": "BeyondCompare",
-  "url": "https://sourceforge.net/projects/bearapps/files/BeyondCompare.zip",
+  "version": "4.4.6.27483",
+  "description": "Beyond Compare 4 (zh-cn)",
+  "homepage": "https://www.scootersoftware.com",
+  "license": "Proprietary",
+  "url": "https://files.lesscode.dev/scoop/BCompare-zh-4.4.6.27483.zip",
+  "hash": "b7cd7ae8e1a8a5821e5be6fbe3dcb8d5d98ab44719f4c1f27e71cee765d98a0c",
+  "bin": "BCompare.exe",
   "shortcuts": [
     [
       "BCompare.exe",
-      "BCompare"
+      "bcompare"
     ]
-  ]
+  ],
+  "persist": [
+    "BCFileFormats.xml",
+    "BCFileFormats.xml.bak",
+    "BCPreferences.xml",
+    "BCPreferences.xml.bak",
+    "BCProfiles.xml",
+    "BCProfiles.xml.bak",
+    "BCSessions.xml",
+    "BCSessions.xml.bak",
+    "BCState.xml",
+    "BCState.xml.bak"
+  ],
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\BCFileFormats.xml\") -or !(Get-Item \"$persist_dir\\BCFileFormats.xml\").Length) {",
+    "   New-Item \"$persist_dir\\BCFileFormats.xml\" -ItemType File -Force | Out-Null",
+    "}",
+    "if (!(Test-Path \"$persist_dir\\BCFileFormats.xml.bak\") -or !(Get-Item \"$persist_dir\\BCFileFormats.xml.bak\").Length) {",
+    "   New-Item \"$persist_dir\\BCFileFormats.xml.bak\" -ItemType File -Force | Out-Null",
+    "}",
+    "if (!(Test-Path \"$persist_dir\\BCPreferences.xml\") -or !(Get-Item \"$persist_dir\\BCPreferences.xml\").Length) {",
+    "   New-Item \"$persist_dir\\BCPreferences.xml\" -ItemType File -Force | Out-Null",
+    "}",
+    "if (!(Test-Path \"$persist_dir\\BCPreferences.xml.bak\") -or !(Get-Item \"$persist_dir\\BCPreferences.xml.bak\").Length) {",
+    "   New-Item \"$persist_dir\\BCPreferences.xml.bak\" -ItemType File -Force | Out-Null",
+    "}",
+    "if (!(Test-Path \"$persist_dir\\BCProfiles.xml\") -or !(Get-Item \"$persist_dir\\BCProfiles.xml\").Length) {",
+    "   New-Item \"$persist_dir\\BCProfiles.xml\" -ItemType File -Force | Out-Null",
+    "}",
+    "if (!(Test-Path \"$persist_dir\\BCProfiles.xml.bak\") -or !(Get-Item \"$persist_dir\\BCProfiles.xml.bak\").Length) {",
+    "   New-Item \"$persist_dir\\BCProfiles.xml.bak\" -ItemType File -Force | Out-Null",
+    "}",
+    "if (!(Test-Path \"$persist_dir\\BCSessions.xml\") -or !(Get-Item \"$persist_dir\\BCSessions.xml\").Length) {",
+    "   New-Item \"$persist_dir\\BCSessions.xml\" -ItemType File -Force | Out-Null",
+    "}",
+    "if (!(Test-Path \"$persist_dir\\BCSessions.xml.bak\") -or !(Get-Item \"$persist_dir\\BCSessions.xml.bak\").Length) {",
+    "   New-Item \"$persist_dir\\BCSessions.xml.bak\" -ItemType File -Force | Out-Null",
+    "}",
+    "if (!(Test-Path \"$persist_dir\\BCState.xml\") -or !(Get-Item \"$persist_dir\\BCState.xml\").Length) {",
+    "   New-Item \"$persist_dir\\BCState.xml\" -ItemType File -Force | Out-Null",
+    "}",
+    "if (!(Test-Path \"$persist_dir\\BCState.xml.bak\") -or !(Get-Item \"$persist_dir\\BCState.xml.bak\").Length) {",
+    "   New-Item \"$persist_dir\\BCState.xml.bak\" -ItemType File -Force | Out-Null",
+    "}"
+  ],
+  "uninstaller": {
+    "script": [
+      "if (Test-Path $persist_dir) {",
+      "  if ((Test-Path \"$dir\\BCFileFormats.xml\") -and !(Get-Item \"$dir\\BCFileFormats.xml\").LinkType) {",
+      "    Copy-Item \"$dir\\BCFileFormats.xml\" $persist_dir",
+      "  }",
+      "  if ((Test-Path \"$dir\\BCFileFormats.xml.bak\") -and !(Get-Item \"$dir\\BCFileFormats.xml.bak\").LinkType) {",
+      "    Copy-Item \"$dir\\BCFileFormats.xml.bak\" $persist_dir",
+      "  }",
+      "  if ((Test-Path \"$dir\\BCPreferences.xml\") -and !(Get-Item \"$dir\\BCPreferences.xml\").LinkType) {",
+      "    Copy-Item \"$dir\\BCPreferences.xml\" $persist_dir",
+      "  }",
+      "  if ((Test-Path \"$dir\\BCPreferences.xml.bak\") -and !(Get-Item \"$dir\\BCPreferences.xml.bak\").LinkType) {",
+      "    Copy-Item \"$dir\\BCPreferences.xml.bak\" $persist_dir",
+      "  }",
+      "  if ((Test-Path \"$dir\\BCProfiles.xml\") -and !(Get-Item \"$dir\\BCProfiles.xml\").LinkType) {",
+      "    Copy-Item \"$dir\\BCProfiles.xml\" $persist_dir",
+      "  }",
+      "  if ((Test-Path \"$dir\\BCProfiles.xml.bak\") -and !(Get-Item \"$dir\\BCProfiles.xml.bak\").LinkType) {",
+      "    Copy-Item \"$dir\\BCProfiles.xml.bak\" $persist_dir",
+      "  }",
+      "  if ((Test-Path \"$dir\\BCSessions.xml\") -and !(Get-Item \"$dir\\BCSessions.xml\").LinkType) {",
+      "    Copy-Item \"$dir\\BCSessions.xml\" $persist_dir",
+      "  }",
+      "  if ((Test-Path \"$dir\\BCSessions.xml.bak\") -and !(Get-Item \"$dir\\BCSessions.xml.bak\").LinkType) {",
+      "    Copy-Item \"$dir\\BCSessions.xml.bak\" $persist_dir",
+      "  }",
+      "  if ((Test-Path \"$dir\\BCState.xml\") -and !(Get-Item \"$dir\\BCState.xml\").LinkType) {",
+      "    Copy-Item \"$dir\\BCState.xml\" $persist_dir",
+      "  }",
+      "  if ((Test-Path \"$dir\\BCState.xml.bak\") -and !(Get-Item \"$dir\\BCState.xml.bak\").LinkType) {",
+      "    Copy-Item \"$dir\\BCState.xml.bak\" $persist_dir",
+      "  }",
+      "}"
+    ]
+  },
+  "checkver": {
+    "url": "https://www.scootersoftware.com/download",
+    "regex": "/files/BCompare-(?<version>[\\d.]+).exe"
+  },
+  "autoupdate": {
+    "url": "https://www.scootersoftware.com/files/BCompare-zh-$version.exe"
+  }
 }

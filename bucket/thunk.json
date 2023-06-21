@@ -1,0 +1,28 @@
+{
+  "version": "0.2.0",
+  "description": "Use Thunk to build your Rust program. Then it can run on Windows XP and more!",
+  "homepage": "https://github.com/felixmaker/thunk/",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/felixmaker/thunk/releases/download/v0.2.0/thunk_v0.2.0_x86_64-pc-windows-gnu.zip",
+      "hash": "d108f56ebcd17c2d961c8dba5ab8264605c34dd4ebe96e774cc54135951833e5"
+    }
+  },
+  "depends": [
+    "vc-ltl5-beta",
+    "yy-thunks-beta"
+  ],
+  "env_add_path": ".",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/felixmaker/thunk/releases/download/v$version/thunk_v$version_x86_64-pc-windows-gnu.zip",
+        "hash": {
+          "url": "$url.sha256sum"
+        }
+      }
+    }
+  }
+}
