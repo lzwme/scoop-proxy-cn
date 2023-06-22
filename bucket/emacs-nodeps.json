@@ -1,0 +1,24 @@
+{
+  "homepage": "https://github.com/ShuguangSun/emacs-build",
+  "version": "30.14.20230621.e357d3d",
+  "description": "Scripts to build a distribution of Emacs from sources, using MSYS2 and Mingw64(32).",
+  "license": "GPL (Emacs) + MIT (build script)",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/ShuguangSun/emacs-build/releases/download/v30.14.20230621.e357d3d/emacs-master-x86_64-nodeps.zip",
+      "hash": "7d6cb75f208666174aa3ab24181b24faba4e786f8bcde798c45b760c31caeb84"
+    }
+  },
+  "checkver": {
+    "url": "https://api.github.com/repos/ShuguangSun/emacs-build/releases",
+    "jsonpath": "$[0].tag_name",
+    "regex": "v([\\d.a-z]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/ShuguangSun/emacs-build/releases/download/v$version/emacs-master-x86_64-nodeps.zip"
+      }
+    }
+  }
+}

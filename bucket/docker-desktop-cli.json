@@ -1,14 +1,14 @@
 {
   "$schema": "https://ghproxy.net/https://raw.githubusercontent.com/lukesampson/scoop/master/schema.json",
-  "version": "4.19.0.106363",
+  "version": "4.20.1.110738",
   "description": "Accelerate how you build, share, and run modern applications.",
   "homepage": "https://docker.com",
   "license": {
     "identifier": "Apache-2.0",
     "url": "https://github.com/docker/cli/blob/master/LICENSE"
   },
-  "url": "https://desktop.docker.com/win/main/amd64/106363/Docker%20Desktop%20Installer.exe#/dl.exe",
-  "hash": "2b4bf2bd517fec7f5c36ea91c5c4d3a9c201e5c886774a54de17f78f0f4a72ee",
+  "url": "https://desktop.docker.com/win/main/amd64/110738/Docker%20Desktop%20Installer.exe#/dl.exe",
+  "hash": "54bf2d57b3845b25b4f629d8b77512682d7e8371a28ed21c817489bed72ed0ef",
   "installer": {
     "script": [
       "Expand-7zipArchive -Path \"$dir\\dl.exe\" -ExtractDir 'resources' -DestinationPath \"$dir\\_tmp\" -Removal",
@@ -27,9 +27,7 @@
       "}"
     ]
   },
-  "bin": [
-    "bin/docker.exe"
-  ],
+  "bin": "bin/docker.exe",
   "checkver": {
     "url": "https://desktop.docker.com/win/main/amd64/appcast.xml",
     "xpath": "/rss/channel/item/title",
