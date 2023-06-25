@@ -86,7 +86,7 @@ export const CONFIG = {
     `jingyu9575/scoop-jingyu9575`,
     // `tetradice/scoop-iyokan-jp`,
     // `kkzzhizhou/scoop-apps`, // 抓其他仓库自动同步【会将 todo、deprecated 的都抓进来】
-    `anderlli0053/DEV-tools`, // low quality
+    // `anderlli0053/DEV-tools`, // low quality
     `okibcn/ScoopMaster`, // 抓取其他仓库(https://rasa.github.io/scoop-directory/by-apps.html)自动同步(879+)
   ]),
   filter: /audacity_installer|\.gitkeep|__/,
