@@ -1,0 +1,38 @@
+{
+  "homepage": "https://brave.com",
+  "version": "1.54.41",
+  "description": "Secure, Fast & Private Web Browser with Adblocker (nightly release)",
+  "license": {
+    "identifier": "Freeware,BSD-3-Clause,GPL-3.0-only,...",
+    "url": "https://github.com/brave/brave-browser/blob/master/LICENSE"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/brave/brave-browser/releases/download/v1.54.41/brave-v1.54.41-win32-x64.zip",
+      "hash": "5583f6e1adb0477d677a5b59700cd6d2b302b22c426df4e5638ede25436a24e7"
+    }
+  },
+  "bin": [
+    [
+      "brave.exe",
+      "brave-nightly"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "brave.exe",
+      "Brave Nightly"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/brave/brave-browser/releases",
+    "regex": "Nightly v([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/brave/brave-browser/releases/download/v$version/brave-v$version-win32-x64.zip"
+      }
+    }
+  }
+}

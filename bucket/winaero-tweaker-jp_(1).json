@@ -1,0 +1,37 @@
+{
+  "##": [
+    "winaero-tweakerを jpバイナリにパッチを当てて最新にする",
+    "パッチ当てを自動でやるのは厳しいためとりあえずコピーだけ",
+    "エクスプローラでwinaero-tweaker/currentが開かれるのでパッチ当ては手動でやる"
+  ],
+  "homepage": "https://donkichirou.okoshi-yasu.net/index.html",
+  "description": "Japanease Lang patches",
+  "version": "1.40.0.0",
+  "depends": "winaero-tweaker",
+  "url": "http://www7b.biglobe.ne.jp/~donkichirou/Lang/WinaeroTweaker_1_40_0_0_jp.zip",
+  "hash": "e97c80a59b4003fd0e89f0092413f060e5a56edc3e3b2573d7c7e06dc4532079",
+  "pre_install": [
+    "function UpdateRelatedapp([String] $dest, [String] $file) {",
+    "   $destdir = \"$(appdir $dest $global)\\current\"",
+    "   if (Test-Path \"$destdir\") {",
+    "       Copy-Item \"$dir\\$file\" \"$destdir\" -Recurse -Force",
+    "       Write-Host \"  [pre-install] Overwriting $file to $destdir\"",
+    "   }",
+    "}",
+    "UpdateRelatedapp 'winaero-tweaker' '*.exe'"
+  ],
+  "installer": {
+    "script": "Invoke-Item \"$(appdir winaero-tweaker $global)\\current\""
+  },
+  "checkver": {
+    "url": "https://donkichirou.web.fc2.com/WinaeroTweaker/WinaeroTweaker_JP.html",
+    "re": "Version : ([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "http://www7b.biglobe.ne.jp/~donkichirou/Lang/WinaeroTweaker_$underscoreVersion_jp.zip"
+  },
+  "notes": [
+    "日本語化パッチファイルをwinaero-tweaker/currentにコピーしました。",
+    "WinaeroTweaker_???_jp.exe を実行してパッチを当ててください。"
+  ]
+}

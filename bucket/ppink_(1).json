@@ -1,0 +1,31 @@
+{
+  "version": "nightly",
+  "description": "On-screen annotation software under Windows, forked from gInk",
+  "homepage": "https://github.com/pubpub-zz/ppInk",
+  "license": "MIT",
+  "url": "https://ghproxy.net/https://github.com/pubpub-zz/ppInk/releases/download/pp1.2-RC2/ppink.zip",
+  "hash": "97597E7FC3153BD8D622304A5AE5DA0802D77B7C65882CC23641BE302449E168",
+  "extract_dir": "ppink",
+  "pre_install": [
+    "if (-not (Test-Path \"$persist_dir\\config.ini\")) {",
+    "    $cur = \"$persist_dir\\Snapshots\\\" -replace '\\\\', '/'",
+    "    $c = (Get-Content \"$dir\\config_defaut.ini\") -replace '^(Snapshot_Path =).*$', \"`$1 $cur\"",
+    "    Set-Content  \"$dir\\config.ini\" $c -Encoding Ascii -Force",
+    "}"
+  ],
+  "bin": "ppInk.exe",
+  "shortcuts": [
+    [
+      "ppInk.exe",
+      "ppInk"
+    ]
+  ],
+  "persist": [
+    "Snapshots",
+    "config.ini",
+    "hotkeys.ini",
+    "pens.ini"
+  ],
+  "checkver": "github",
+  "autoupdate": {}
+}

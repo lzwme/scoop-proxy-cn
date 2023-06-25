@@ -1,0 +1,31 @@
+{
+  "version": "1.15.3",
+  "description": "A fast tunnel proxy",
+  "homepage": "https://shadowsocks.org",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/shadowsocks/shadowsocks-rust/releases/download/v1.15.3/shadowsocks-v1.15.3.x86_64-pc-windows-msvc.zip",
+      "hash": "dacc1af8d1cd1e64941e448f33d0fef6dfafe4619caa5db587d059aebaa1d8da"
+    }
+  },
+  "bin": [
+    "sslocal.exe",
+    "ssmanager.exe",
+    "ssserver.exe",
+    "ssurl.exe"
+  ],
+  "checkver": {
+    "github": "https://github.com/shadowsocks/shadowsocks-rust"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/shadowsocks/shadowsocks-rust/releases/download/v$version/shadowsocks-v$version.x86_64-pc-windows-msvc.zip"
+      }
+    },
+    "hash": {
+      "url": "$url.sha256"
+    }
+  }
+}

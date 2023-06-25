@@ -1,0 +1,38 @@
+{
+  "version": "2021.02.27",
+  "description": "波音リツ 追加語尾音源（通常版）",
+  "homepage": "http://www.canon-voice.com/normal.html",
+  "license": [
+    {
+      "identifier": "Proprietary",
+      "url": "http://www.canon-voice.com/kiyaku.html"
+    }
+  ],
+  "url": "http://www.canon-voice.com/voice/r73_normal_gobi.zip",
+  "hash": "b8ea17877774bedd6863334d65e4c0ff45405be757f8b69eed6e0138c08233f7",
+  "extract_dir": "r73_normal_gobi\\リツ語尾通常",
+  "extract_to": "voice\\波音リツ\\リツ語尾通常",
+  "suggest": {
+    "UTAU": [
+      "utau",
+      "dtm/utau",
+      "namine-ritsu-utau-cv",
+      "dtm/namine-ritsu-utau-cv",
+      "namine-ritsu-utau-vcv",
+      "dtm/namine-ritsu-utau-vcv"
+    ]
+  },
+  "installer": {
+    "script": [
+      "$voice=\"波音リツ\"",
+      "Copy-Item -Force -Recurse -Path \"${dir}\\voice\\${voice}\" -Destination \"${persist_dir}\\..\\utau\\utau\\voice\"",
+      "Remove-Item -Force -Recurse -Path \"${dir}\\voice\\${voice}\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$voice=\"波音リツ\\リツ語尾通常\"",
+      "Remove-Item -Force -Recurse -Path \"${persist_dir}\\..\\utau\\utau\\voice\\${voice}\""
+    ]
+  }
+}

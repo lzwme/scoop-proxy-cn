@@ -1,0 +1,27 @@
+{
+  "homepage": "https://www.samsung.com/semiconductor/minisite/ssd/product/consumer/magician/",
+  "description": "Tool for managing Samsung SSDs.",
+  "license": {
+    "identifier": "Freeware, LGPL-2.1, MIT,...",
+    "url": "https://www.samsung.com/semiconductor/global.semi.static/Open_Source_Announcement_v1.0.pdf"
+  },
+  "version": "6.1.0",
+  "url": "https://s3.ap-northeast-2.amazonaws.com/global.semi.static/SAMSUNG_SSD_v6_1_0_200310/SW/675B9E5CD0C5F99B41D766B27C8E0055C3909ECE3AA2FB6B74A2A1EAC1BAC402/Samsung_Magician_Installer.zip",
+  "hash": "9daeed4fdd5b4492442c706ee71d305b00824e716415fb616235e00174403dfd",
+  "installer": {
+    "script": "Expand-InnoArchive $dir\\Samsung_Magician_Installer.exe -Removal"
+  },
+  "shortcuts": [
+    [
+      "SamsungMagician.exe",
+      "Samsung Magician"
+    ]
+  ],
+  "checkver": {
+    "regex": "(?<Wholeurl>https:\\/\\/[\\w\\d-.\\/]+SAMSUNG_SSD_v(?<major>\\d+)_(?<minor>\\d+)_(?<patch>\\d+)[\\w\\d-.\\/]+\\/Samsung_Magician_Installer\\.zip)",
+    "replace": "${major}.${minor}.${patch}"
+  },
+  "autoupdate": {
+    "url": "$matchWholeurl"
+  }
+}

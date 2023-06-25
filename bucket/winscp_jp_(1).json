@@ -1,0 +1,42 @@
+{
+  "version": "5.21.8",
+  "description": "Copy files between a local computer and remote servers using FTP, FTPS, SCP, SFTP, WebDAV or S3 file transfer protocols. Add translate japanese file.",
+  "homepage": "https://winscp.net",
+  "license": "GPL-3.0-or-later",
+  "url": [
+    "https://downloads.sourceforge.net/project/winscp/WinSCP/5.21.8/WinSCP-5.21.8-Portable.zip",
+    "https://winscp.net/translations/dll/5.19.6/jp.zip"
+  ],
+  "hash": [
+    "a2fe8fab9ad3c6d640de407234c6949d9c3c39d7b775827abcc91a13b5d02504",
+    "d71b174073a65c4a424aec581b77c91cfc22198cbdb13eb30d166dfc4c90c494"
+  ],
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\winscp.ini\")) {",
+    "    @(",
+    "        '[Configuration\\Interface]'",
+    "        'RandomSeedFile=.\\winscp.rnd'",
+    "    ) | Add-Content -Path \"$dir\\winscp.ini\" -Encoding ASCII -Force",
+    "}"
+  ],
+  "bin": "WinSCP.exe",
+  "shortcuts": [
+    [
+      "WinSCP.exe",
+      "WinSCP"
+    ]
+  ],
+  "persist": "winscp.ini",
+  "checkver": {
+    "url": "https://winscp.net/eng/downloads.php",
+    "regex": "WinSCP-([\\d.]+)-Portable\\.zip"
+  },
+  "autoupdate": {
+    "url": "https://downloads.sourceforge.net/project/winscp/WinSCP/$version/WinSCP-$version-Portable.zip",
+    "hash": {
+      "url": "https://winscp.net/download/WinSCP-$version-ReadMe.txt",
+      "regex": "(?sm)$basename.*?SHA-256: $sha256"
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

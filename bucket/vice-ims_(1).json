@@ -1,0 +1,88 @@
+{
+  "version": "3.7-42601",
+  "description": "Updated builds of the VICE emulator",
+  "homepage": "https://github.com/Zibri/VICE",
+  "license": "GPL-2.0",
+  "url": "https://ghproxy.net/https://github.com/Zibri/VICE/releases/download/r42601/GTK3VICE-3.7-dev-win64-r42601.7z",
+  "hash": "b9d815934783ddabaeba9c68d9cac5fb01a95daa6fe81601a55c7f40131edbc0",
+  "extract_dir": "GTK3VICE-3.7-dev-win64-r42601",
+  "bin": [
+    "bin\\c1541.exe",
+    "bin\\cartconv.exe",
+    "bin\\petcat.exe",
+    "bin\\vsid.exe",
+    "bin\\x128.exe",
+    "bin\\x64.exe",
+    "bin\\x64dtv.exe",
+    "bin\\x64sc.exe",
+    "bin\\xcbm2.exe",
+    "bin\\xcbm5x0.exe",
+    "bin\\xpet.exe",
+    "bin\\xplus4.exe",
+    "bin\\xscpu64.exe",
+    "bin\\xvic.exe"
+  ],
+  "shortcuts": [
+    [
+      "bin\\c1541.exe",
+      "Vice\\C1541 (cmd)"
+    ],
+    [
+      "bin\\petcat.exe",
+      "Vice\\patcat (cmd)"
+    ],
+    [
+      "bin\\vsid.exe",
+      "Vice\\Vice (VSID)"
+    ],
+    [
+      "bin\\x64.exe",
+      "Vice\\Vice (C64)"
+    ],
+    [
+      "bin\\x64dtv.exe",
+      "Vice\\Vice (C64DTV)"
+    ],
+    [
+      "bin\\x64sc.exe",
+      "Vice\\Vice (C64SC)"
+    ],
+    [
+      "bin\\x128.exe",
+      "Vice\\Vice (C128)"
+    ],
+    [
+      "bin\\xcbm2.exe",
+      "Vice\\Vice (CBM-II)"
+    ],
+    [
+      "bin\\xcbm5x0.exe",
+      "Vice\\Vice (CBM-II-5x0)"
+    ],
+    [
+      "bin\\xpet.exe",
+      "Vice\\Vice (PET)"
+    ],
+    [
+      "bin\\xplus4.exe",
+      "Vice\\Vice (PLUS4)"
+    ],
+    [
+      "bin\\xscpu64.exe",
+      "Vice\\Vice (SCPU64)"
+    ],
+    [
+      "bin\\xvic.exe",
+      "Vice\\Vice (VIC20)"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/Zibri/VICE",
+    "regex": "GTK3VICE-(?<release>[\\d.]+)-dev-win64-r(?<build>[\\d]+).7z",
+    "replace": "${release}-${build}"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/Zibri/VICE/releases/download/r$matchBuild/GTK3VICE-$matchRelease-dev-win64-r$matchBuild.7z",
+    "extract_dir": "GTK3VICE-$matchRelease-dev-win64-r$matchBuild"
+  }
+}

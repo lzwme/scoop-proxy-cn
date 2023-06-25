@@ -1,0 +1,80 @@
+{
+  "description": "Distributed version control system",
+  "env_set": {
+    "GIT_INSTALL_ROOT": "$dir"
+  },
+  "bin": [
+    "bin\\sh.exe",
+    "bin\\bash.exe",
+    "cmd\\git.exe",
+    "cmd\\gitk.exe",
+    "cmd\\git-gui.exe",
+    "cmd\\scalar.exe",
+    "usr\\bin\\tig.exe",
+    "git-bash.exe"
+  ],
+  "version": "2.41.0.windows.1",
+  "license": "GPL-2.0-only",
+  "shortcuts": [
+    [
+      "git-bash.exe",
+      "Git Bash",
+      "--cd-to-home"
+    ],
+    [
+      "cmd\\git-gui.exe",
+      "Git GUI"
+    ]
+  ],
+  "homepage": "https://registry.npmmirror.com/binary.html?path=git-for-windows/",
+  "notes": [
+    "Set Git Credential Manager Core by running: \"git config --global credential.helper manager\"",
+    "",
+    "To add context menu entries, run '$dir\\install-context.reg'",
+    "",
+    "To create file-associations for .git* and .sh files, run '$dir\\install-file-associations.reg'"
+  ],
+  "checkver": {
+    "regex": "tag/v([\\d.]+\\.windows\\.\\d)",
+    "github": "https://github.com/git-for-windows/git"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://registry.npmmirror.com/-/binary/git-for-windows/v2.41.0.windows.1/PortableGit-2.41.0-64-bit.7z.exe#/dl.7z",
+      "hash": "fcbaeffd24fdf435a1f7844825253509136377915e6720aa66aa256ec1f83c30"
+    },
+    "32bit": {
+      "url": "https://registry.npmmirror.com/-/binary/git-for-windows/v2.41.0.windows.1/PortableGit-2.41.0-32-bit.7z.exe#/dl.7z",
+      "hash": "12190f5bec59a187ec0368f39dba55a7802706076b91fe400ef5da4247999467"
+    }
+  },
+  "post_install": [
+    "'install-context', 'uninstall-context', 'install-file-associations', 'uninstall-file-associations' | ForEach-Object {",
+    "    $reg_file_in  = \"$bucketsdir\\$bucket\\scripts\\git\\$_.reg\"",
+    "    $reg_file_out = \"$dir\\$_.reg\"",
+    "    $git_root     = \"$dir\".Replace('\\', '\\\\')",
+    "    if (Test-Path $reg_file_in) {",
+    "        $content = Get-Content $reg_file_in",
+    "        $content = $content.Replace('$git_root', $git_root)",
+    "        if ($global) {",
+    "            $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE')",
+    "        }",
+    "        Set-Content -Path $reg_file_out -Value $content -Encoding Ascii",
+    "    }",
+    "}"
+  ],
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://registry.npmmirror.com/-/binary/git-for-windows/v$version/PortableGit-$matchHead-64-bit.7z.exe#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://registry.npmmirror.com/-/binary/git-for-windows/v$version/PortableGit-$matchHead-32-bit.7z.exe#/dl.7z"
+      }
+    },
+    "hash": {
+      "url": "https://github.com/git-for-windows/git/releases/tag/v$version",
+      "regex": "(?s)$basename.*?$sha256"
+    }
+  }
+}

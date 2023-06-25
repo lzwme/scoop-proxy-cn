@@ -1,0 +1,70 @@
+{
+  "homepage": "https://www.duckstation.org/",
+  "version": "nightly-2023-05-24",
+  "description": "Sony Playstation emulator",
+  "license": {
+    "identifier": "GPL-3.0-only",
+    "url": "https://github.com/stenzek/duckstation/blob/master/LICENSE"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-x64-release.zip#/duckstation-x64-nightly-2023-05-24.zip",
+      "hash": "3dfd879d7dcf246fa656cfc2b4f3cb215b35c149f36941bbb76d6b5fd7584364",
+      "bin": [
+        [
+          "duckstation-qt-x64-ReleaseLTCG.exe",
+          "duckstation"
+        ]
+      ],
+      "shortcuts": [
+        [
+          "duckstation-qt-x64-ReleaseLTCG.exe",
+          "Playstation"
+        ]
+      ]
+    }
+  },
+  "pre_install": [
+    "function create($path, $type, $content) {",
+    "   if (-not (Test-Path \"$path\")) {",
+    "       New-Item \"$path\" -ItemType $type -Value $content | Out-Null",
+    "       Write-Output \"Creating $path...\"",
+    "   }",
+    "}",
+    "$settings = \"$dir\\settings.ini\"",
+    "$portable = \"$dir\\portable.txt\"",
+    "create $settings File",
+    "create $portable File"
+  ],
+  "persist": [
+    "portable.txt",
+    "settings.ini",
+    "bios",
+    "cache",
+    "cheats",
+    "covers",
+    "dump",
+    "gamesettings",
+    "inputprofiles",
+    "memcards",
+    "savestates",
+    "screenshots",
+    "shaders",
+    "textures"
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/stenzek/duckstation/commits/master",
+    "jsonpath": {
+      "version": "$.commit.author.date"
+    },
+    "regex": "(\\d+)\\/(\\d+)\\/(\\d+)",
+    "replace": "nightly-${3}-${2}-${1}"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-x64-release.zip#/duckstation-x64-$version.zip"
+      }
+    }
+  }
+}

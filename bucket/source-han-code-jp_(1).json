@@ -1,0 +1,41 @@
+{
+  "homepage": "https://github.com/adobe-fonts/source-han-code-jp",
+  "description": "Japanese monospace font for programming",
+  "license": "OFL-1.1",
+  "version": "2.011",
+  "url": "https://ghproxy.net/https://github.com/adobe-fonts/source-han-code-jp/archive/2.011R.zip",
+  "hash": "0f98beb0a381d9d19067f9b58f65d2dd65c808a3012ac9cb9866e575ad6d2e7f",
+  "checkver": {
+    "url": "https://github.com/adobe-fonts/source-han-code-jp/releases/latest",
+    "re": "archive/(?<version>[\\d.]+)R.zip"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/adobe-fonts/source-han-code-jp/archive/$versionR.zip",
+    "extract_dir": "source-han-code-jp-$versionR"
+  },
+  "pre_install": [
+    "$fontdir = \"$env:LocalAppData\\Microsoft\\Windows\\Fonts\"",
+    "If(!(Test-Path $fontdir)) {",
+    "    New-Item -ItemType Directory -Path $fontdir",
+    "}"
+  ],
+  "extract_dir": "source-han-code-jp-2.011R",
+  "installer": {
+    "script": [
+      "Get-ChildItem $dir\\OTF -filter '*.otf' | ForEach-Object {",
+      "   $fontdir = \"$env:LocalAppData\\Microsoft\\Windows\\Fonts\"",
+      "   New-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value \"$fontdir\\$($_.Name)\" -Force | Out-Null",
+      "   Copy-Item $_.Fullname -destination \"$fontdir\"",
+      "}"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Get-ChildItem $dir\\OTF -filter '*.otf' | ForEach-Object {",
+      "   $fontdir = \"$env:LocalAppData\\Microsoft\\Windows\\Fonts\"",
+      "   Remove-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
+      "   Remove-Item \"$fontdir\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
+      "}"
+    ]
+  }
+}

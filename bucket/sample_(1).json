@@ -1,0 +1,26 @@
+{
+  "version": "2.0",
+  "url": "https://ghproxy.net/https://github.com/sakura-editor/sakura/releases/download/v2.4.1/sakura-tag-v2.4.1-build2849-ee8234f-Win32-Release-Exe.zip",
+  "##": "自動でcapsをctrlに置き換える(要 管理者権限)",
+  "pre_install": {
+    "script": "scoop install sudo"
+  },
+  "installer": {
+    "script": [
+      "sudo $dir\\ctrl2cap.exe /install",
+      "if ($? == $false) {",
+      "    Write-Host '===================================' -Foreground Red",
+      "    Write-Host 'ctrl2capの実行に失敗しました。' -Foreground Red",
+      "    Write-Host 'スタートメニューから再度起動してください。' -Foreground Red",
+      "    Write-Host '===================================' -Foreground Red",
+      "}"
+    ]
+  },
+  "bin": "ctrl2cap.exe",
+  "shortcuts": [
+    [
+      "ctrl2cap.exe",
+      "ctrl2cap"
+    ]
+  ]
+}

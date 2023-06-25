@@ -1,0 +1,27 @@
+{
+  "description": "iZotope Product Portal",
+  "homepage": "https://www.izotope.com/",
+  "version": "1.4.5",
+  "license": [
+    {
+      "identifier": "Proprietary",
+      "url": "https://www.izotope.com/en/software-license-agreement.html"
+    }
+  ],
+  "url": "https://s3.amazonaws.com/izotopedownloads/product_download/iZotope_Product_Portal_v1_4_5.exe",
+  "hash": "427b8c1d33a8b3d4cc55c443e67409052b1ed223a327c22d4b65857724b73123",
+  "installer": {
+    "script": [
+      "Start-Process -Wait -Verb runAs -FilePath \"${dir}\\iZotope_Product_Portal_v1_4_5.exe\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$uninstaller=(Get-ItemProperty -Path \"Registry::HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Product Portal\" -ErrorAction SilentlyContinue | Select-Object -ExpandProperty UninstallString)",
+      "if([string]::IsNullOrEmpty($uninstaller)){",
+      " $uninstaller=(Get-ItemProperty -Path \"Registry::HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Product Portal\" | Select-Object -ExpandProperty UninstallString)",
+      "}",
+      "Start-Process -Wait -Verb runAs -FilePath \"${uninstaller}\" -ArgumentList \" --mode unattended --unattendedmodeui minimal\""
+    ]
+  }
+}

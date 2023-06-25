@@ -1,0 +1,22 @@
+{
+  "homepage": "https://ksonnet.io/",
+  "version": "0.13.1",
+  "license": "Apache 2.0",
+  "url": "https://ghproxy.net/https://github.com/ksonnet/ksonnet/releases/download/v0.13.1/ks_0.13.1_windows_amd64.zip",
+  "hash": "ca76063a2819ade0c4e2749c59fb92cfd7210d1c1196e7b4c20b0f4b4bd2bebc",
+  "extract_dir": "ks_0.13.1_windows_amd64",
+  "bin": [
+    "ks.exe"
+  ],
+  "checkver": {
+    "github": "https://github.com/ksonnet/ksonnet"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/ksonnet/ksonnet/releases/download/v$version/ks_$version_windows_amd64.zip",
+    "extract_dir": "ks_$version_windows_amd64",
+    "hash": {
+      "url": "https://ghproxy.net/https://github.com/ksonnet/ksonnet/releases/download/v$version/ks_$version_checksums.txt",
+      "find": "([a-fA-F0-9]{64})\\s+ks_$version_windows_amd64.zip"
+    }
+  }
+}

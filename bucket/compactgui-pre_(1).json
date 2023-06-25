@@ -1,0 +1,26 @@
+{
+  "version": "3.0.0-alpha.7",
+  "description": "Transparently compress active games and programs using Windows 10/11 APIs",
+  "homepage": "https://github.com/ImminentFate/CompactGUI",
+  "license": "GPL-3.0-only",
+  "url": "https://ghproxy.net/https://github.com/ImminentFate/CompactGUI/releases/download/v3.0.0-alpha.7/CompactGUI.exe",
+  "hash": "9e0138f3330f524851c0eae6dc24499bbacd3eaee9fdd1418dac1c714e8bfcb7",
+  "bin": "CompactGUI.exe",
+  "shortcuts": [
+    [
+      "CompactGUI.exe",
+      "CompactGUI"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/IridiumIO/CompactGUI/releases",
+    "regex": "/v(.+)/CompactGUI.exe"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/ImminentFate/CompactGUI/releases/download/v$version/CompactGUI.exe",
+    "hash": {
+      "url": "https://github.com/ImminentFate/CompactGUI/releases/tag/v$version/",
+      "regex": "SHA-256</span>:\\s+<span\\sclass=\"pl-s\">([a-fA-F0-9]{64})"
+    }
+  }
+}

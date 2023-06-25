@@ -1,0 +1,27 @@
+{
+  "version": "3.1.3",
+  "description": "A hijacking patch making tool, Search and Replace Patch supports feature code search and replace memory data, Exception Breakpoint Patch supports simulating the exception breakpoint function of debugger and modifying register, memory and other data after setting and triggering breakpoint to achieve the purpose of modifying program execution flow.",
+  "homepage": "https://github.com/sicaril/Baymax-Patch-toOls",
+  "license": {
+    "identifier": "Freeware"
+  },
+  "url": "https://ghproxy.net/https://github.com/sicaril/Baymax-Patch-toOls/releases/download/628dc3e/Baymax.Patch.Tools.v3.1.3.zip#dl.zip_",
+  "hash": "525b595ce91f1ab47caef025721275f1e6abd94bf7f5b782032044ada1d721df",
+  "pre_install": [
+    "$zip=(Get-ChildItem $dir\\Baymax.Patch.Tools*).Name",
+    "7z x $dir\\$zip -p\"www.chinapyg.com\" $('-o' + $dir) | Out-Null"
+  ],
+  "shortcuts": [
+    [
+      "Baymax.exe",
+      "Baymax x86"
+    ]
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/sicaril/Baymax-Patch-toOls/releases",
+    "re": "(?<tag>\\w+)\\/Baymax\\.Patch\\.Tools\\.v(?<version>\\d+\\.\\d+(?:\\.\\d+)?)\\.zip"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/sicaril/Baymax-Patch-toOls/releases/download/$matchTag/Baymax.Patch.Tools.v$version.zip#dl.zip_"
+  }
+}

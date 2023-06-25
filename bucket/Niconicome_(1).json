@@ -1,0 +1,28 @@
+{
+  "version": "0.11.0",
+  "homepage": "https://github.com/Hayao-H/Niconicome",
+  "license": "MIT",
+  "description": "",
+  "hash": "f64df2c0f55d57086076cd450674c8ac09ae9055488fa3074e5114f248a1553d",
+  "url": "https://ghproxy.net/https://github.com/Hayao-H/Niconicome/releases/download/v0.11.0/niconicome-win-x64-v0.11.0.zip",
+  "extract_dir": "win-x64",
+  "pre_install": "if (-not(Test-Path $persist_dir/niconicome.db)) {Start-Process $dir\\Niconicome.exe -WorkingDirectory $dir;Start-Sleep 10; ps Niconicome | Stop-Process};if (-not(Test-Path $persist_dir/addons)) {New-Item $dir/addons -ItemType Directory}",
+  "depends": "",
+  "persist": [
+    "niconicome.db",
+    "addons",
+    "log",
+    "cache"
+  ],
+  "bin": "",
+  "checkver": "github",
+  "shortcuts": [
+    [
+      "niconicome.exe",
+      "Niconicome"
+    ]
+  ],
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/Hayao-H/Niconicome/releases/download/v$version/niconicome-win-x64-v$version.zip"
+  }
+}

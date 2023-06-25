@@ -1,0 +1,16 @@
+{
+  "version": "2.4.71",
+  "description": "Files. A modern file explorer that pushes the boundaries of the Windows platform.",
+  "homepage": "https://files.community/",
+  "license": "MIT",
+  "changelog": "https://github.com/files-community/Files/releases",
+  "url": "https://cdn.files.community/files/download/Files.Stable.exe",
+  "hash": "a0a547efd57d394e33ebabfdcbd04278f73982f27173547e385ebff84977e84f",
+  "pre_install": "Start-Process 'powershell' -Wait -WindowStyle 'Hidden' -ArgumentList @('-C', \"Add-AppxPackage \"\"$dir\\installer.exe\"\"\")",
+  "checkver": {
+    "github": "https://github.com/files-community/Files"
+  },
+  "autoupdate": {
+    "url": "https://cdn.files.community/files/download/Files.Stable.exe"
+  }
+}

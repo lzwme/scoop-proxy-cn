@@ -1,0 +1,41 @@
+{
+  "version": "2.16.30",
+  "description": "WinMerge. Differencing and merging tool, that compares both folders and files, presenting differences in a visual text format that is easy to understand and handle.",
+  "homepage": "https://winmerge.org",
+  "license": "GPL-2.0-only",
+  "changelog": "https://winmerge.org/docs/changelog.php?lang=en",
+  "suggest": {
+    "vcredist2008": "extras/vcredist2008"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/WinMerge/winmerge/releases/download/v2.16.30/winmerge-2.16.30-x64-exe.zip",
+      "hash": "d8fd843c6f4f132f3e7cf1585520ddd0a20ac49949d5f9a425f51ef697753899"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/WinMerge/winmerge/releases/download/v2.16.30/winmerge-2.16.30-exe.zip",
+      "hash": "1a3449c50d7c181ad8b4d15e3fb88c2530f86728da827548959511c99509a3c8"
+    }
+  },
+  "extract_dir": "WinMerge",
+  "bin": "WinMergeU.exe",
+  "shortcuts": [
+    [
+      "WinMergeU.exe",
+      "WinMerge"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/WinMerge/winmerge/"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/WinMerge/winmerge/releases/download/v$version/winmerge-$version-x64-exe.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/WinMerge/winmerge/releases/download/v$version/winmerge-$version-exe.zip"
+      }
+    }
+  }
+}

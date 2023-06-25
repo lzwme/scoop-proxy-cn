@@ -1,0 +1,37 @@
+{
+  "homepage": "https://gstreamer.freedesktop.org/",
+  "##": "Adapted from https://github.com/nopsak/scoop-nopsak1/blob/master/gstreamer.json",
+  "version": "1.19.90",
+  "description": "Open-source multimedia framework core library",
+  "license": {
+    "identifier": "LGPL-2.1",
+    "url": "https://gitlab.freedesktop.org/gstreamer/gstreamer/-/raw/master/COPYING"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://gstreamer.freedesktop.org/data/pkg/windows/1.19.90/msvc/gstreamer-1.0-msvc-x86_64-1.19.90.msi",
+      "hash": "b0312755f919642c68651557bdb6f53c222c94909b7c98d344ed6321aecfaee4"
+    },
+    "32bit": {
+      "url": "https://gstreamer.freedesktop.org/data/pkg/windows/1.19.90/msvc/gstreamer-1.0-msvc-x86-1.19.90.msi",
+      "hash": "eb5529924f750f822124d1de0c17b3179ccbbd80bf5ebe26bd06a61246690bd2"
+    }
+  },
+  "env_add_path": [
+    "gstreamer\\1.0\\msvc_x86_64\\bin"
+  ],
+  "checkver": {
+    "url": "https://gstreamer.freedesktop.org/data/pkg/windows/",
+    "re": "(\\d+?\\.\\d+?\\.\\d+?)/"
+  },
+  "autoupdate": {
+    "64bit": {
+      "url": "https://gstreamer.freedesktop.org/data/pkg/windows/$version/msvc/gstreamer-1.0-msvc-x86_64-$version.msi",
+      "hash": "https://gstreamer.freedesktop.org/data/pkg/windows/$version/msvc/gstreamer-1.0-msvc-x86_64-$version.msi.sha256sum"
+    },
+    "32bit": {
+      "url": "https://gstreamer.freedesktop.org/data/pkg/windows/$version/msvc/gstreamer-1.0-msvc-x86-$version.msi",
+      "hash": "https://gstreamer.freedesktop.org/data/pkg/windows/$version/msvc/gstreamer-1.0-msvc-x86-$version.msi.sha256sum"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "version": "2.2",
+  "url": "https://ftp.vector.co.jp/74/89/3348/CsFileCopy22.zip",
+  "##": "バージョンチェックと自動アップデート",
+  "hash": "46cbccbf3d2529e720e2429a560b0ccefae10e60823cda617a965111afc377c5",
+  "depends": "sudo",
+  "bin": "CsFileCopy.exe",
+  "shortcuts": [
+    [
+      "CsFileCopy.exe",
+      "CsFileCopy"
+    ]
+  ],
+  "checkver": {
+    "url": "https://www.vector.co.jp/download/file/winnt/util/fh748959.html",
+    "re": "ftp.vector.co.jp/(?<Url1>[\\d]*)/(?<Url2>[\\d]*)/(?<Url3>[\\d]*)/CsFileCopy(?<Ver>[\\d])(?<Rev>[\\d]).zip",
+    "replace": "${Ver}.${Rev}"
+  },
+  "autoupdate": {
+    "url": "https://ftp.vector.co.jp/$matchUrl1/$matchUrl2/$matchUrl3/CsFileCopy$matchVer$matchRev.zip"
+  }
+}

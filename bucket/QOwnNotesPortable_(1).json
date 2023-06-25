@@ -1,0 +1,28 @@
+{
+  "autoupdate": {
+    "hash": {
+      "regex": "MD5 Hash: +[\\w]{32}",
+      "url": "https://portableapps.com/apps/office/qownnotes-portable"
+    },
+    "url": "https://ayera.dl.sourceforge.net/project/portableapps/QOwnNotes%20Portable/QOwnNotesPortable_$version.paf.exe"
+  },
+  "bin": "QOwnNotesPortable.exe",
+  "checkver": {
+    "re": "Version \\s+([\\w\\.]* for Win",
+    "url": "https://portableapps.com/apps/office/qownnotes-portable"
+  },
+  "description": "Markdown note taker",
+  "hash": "ed1ab88ad3686e9b4ee764b7e3c1a72a41b9a442537a528a971966bbd581ea67",
+  "homepage": "https://portableapps.com/apps/office/qownnotes-portable",
+  "license": "",
+  "persist": "Data",
+  "post_install": "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
+  "shortcuts": [
+    [
+      "QOwnNotesPortable.exe",
+      "QOwnNotesPortable"
+    ]
+  ],
+  "url": "https://ayera.dl.sourceforge.net/project/portableapps/QOwnNotes%20Portable/QOwnNotesPortable_22.11.6.paf.exe",
+  "version": "22.11.6"
+}

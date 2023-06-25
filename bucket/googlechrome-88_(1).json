@@ -1,0 +1,51 @@
+{
+  "version": "88.0.4324.96",
+  "description": "Fast, secure, and free web browser, built for the modern web.",
+  "homepage": "https://www.google.com/chrome/",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://www.google.com/chrome/privacy/eula_text.html"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://dl.google.com/release2/chrome/AKRHmlKaGBtL2gYEAaYvjMM_88.0.4324.96/88.0.4324.96_chrome_installer.exe#/dl.7z",
+      "hash": "566d0be9b1e7f8b508c4bc608262e121a11430e6b5df1990b46d8f9f506a312d"
+    },
+    "32bit": {
+      "url": "https://dl.google.com/release2/chrome/AOIglBsvf6v9tI9Z6-RvHq8_88.0.4324.96/88.0.4324.96_chrome_installer.exe#/dl.7z",
+      "hash": "ed965355f2e3b2e01c1f545706ffaa5e34de6003f06871cc329a5df081b104be"
+    }
+  },
+  "installer": {
+    "script": "Expand-7zipArchive \"$dir\\chrome.7z\" -ExtractDir 'Chrome-bin' -Removal"
+  },
+  "bin": "chrome.exe",
+  "shortcuts": [
+    [
+      "chrome.exe",
+      "Google Chrome"
+    ]
+  ],
+  "checkver": {
+    "url": "https://chrome-dl.com/api/chrome.min.xml",
+    "regex": "(?sm)<stable32><version>(?<version>[\\d.]+)</version>.+release2/chrome/(?<32>[\\w-]+)_.+<stable64>.+release2/chrome/(?<64>[\\w-]+)_.+</stable64>"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://dl.google.com/release2/chrome/$match64_$version/$version_chrome_installer.exe#/dl.7z",
+        "hash": {
+          "url": "https://chrome-dl.com/api/chrome.min.xml",
+          "xpath": "/chromechecker/stable64[version='$version']/sha256"
+        }
+      },
+      "32bit": {
+        "url": "https://dl.google.com/release2/chrome/$match32_$version/$version_chrome_installer.exe#/dl.7z",
+        "hash": {
+          "url": "https://chrome-dl.com/api/chrome.min.xml",
+          "xpath": "/chromechecker/stable32[version='$version']/sha256"
+        }
+      }
+    }
+  }
+}

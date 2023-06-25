@@ -1,0 +1,31 @@
+{
+  "version": "1.0.0",
+  "description": "Synthesizer V 琴葉 茜・葵 ライト版",
+  "homepage": "https://www.ah-soft.com/trial/synth-v.html",
+  "license": [
+    {
+      "identifier": "Proprietary",
+      "url": "https://www.ah-soft.com/trial/synth-v.html"
+    }
+  ],
+  "notes": [
+    "※ライト版は商用利用をいただくことができません。",
+    "※ライト版は個人に限り制作した作品の発表が許諾されています。",
+    "※ライト版で製作した作品を個人が発表する場合は、\"Synthesizer V 琴葉 茜・葵 ライト版を使用\"と必ず明記してください。"
+  ],
+  "url": "https://www.ah-soft.com/trial/synthesizer_v_kotonoha_lite.zip",
+  "hash": "7e036fb1e0bb0f80d9185a394a3b2f16c541446b4b545c3328241d20bde7eaa9",
+  "extract_dir": "Synthesizer V Kotonoha Lite",
+  "suggest": {
+    "Synthesizer V": [
+      "synthesizer-v-basic",
+      "dtm/synthesizer-v-basic"
+    ]
+  },
+  "installer": {
+    "script": [
+      "$svpk = $dir + \"\\kotonoha-lite-install.svpk\"",
+      "Start-Process -FilePath \"${dir}\\..\\..\\synthesizer-v-basic\\current\\synthv-studio.exe\" -ArgumentList $svpk"
+    ]
+  }
+}

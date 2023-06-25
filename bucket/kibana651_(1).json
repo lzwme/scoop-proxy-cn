@@ -1,0 +1,31 @@
+{
+  "homepage": "http://www.elasticsearch.org/overview/kibana/",
+  "version": "6.5.1",
+  "depends": "nssm224",
+  "url": [
+    "https://artifacts.elastic.co/downloads/kibana/kibana-6.5.1-windows-x86_64.zip",
+    "https://ghproxy.net/https://raw.githubusercontent.com/Utdanningsdirektoratet/PAS-scoop-public/02045e138e1bd8bba5454df36a471c3174f68366/scripts/kibanasrv.ps1"
+  ],
+  "hash": [
+    "sha512:4ca3af736172a553b133b360a5fa420f36aaffb9f3a3382836451b6f749275493401b42e149505f9087a0b52c5f8b1bb9a9b4252d9c06c48117b4bd8572339fc",
+    "61A3C07953A1ED5D53D6AF1AF4163D401B32F06F00DD762C7CB020BE2DFA94FD"
+  ],
+  "extract_dir": "kibana-6.5.1-windows-x86_64",
+  "bin": [
+    [
+      "kibanasrv.ps1",
+      "kibanasrv"
+    ],
+    [
+      "bin\\kibana.bat",
+      "kibana"
+    ],
+    [
+      "bin\\kibana-plugin.bat",
+      "kibanaplugin"
+    ]
+  ],
+  "travel_dirs": [
+    "logs"
+  ]
+}

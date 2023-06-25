@@ -1,0 +1,47 @@
+{
+  "version": "5.03.2398",
+  "description": "Third-party modifications of AIMP, maintained by ghxi.com.",
+  "homepage": "http://www.aimp.ru",
+  "license": {
+    "identifier": "Freeware",
+    "url": "http://www.aimp.ru/files/windows/EULA_lang-en.txt"
+  },
+  "notes": "Features: <https://www.ghxi.com/aimp.html>",
+  "url": "https://pan.jiemi.workers.dev/?file=/zd423/AIMP_5.03.2398_Green.7z",
+  "hash": "571e257d1b9108747dab5df0041a731fc749199491975946a939ef8f0d33bd20",
+  "extract_dir": "AIMP_5.03.2398_Green\\AIMP",
+  "bin": [
+    "AIMP.exe",
+    "AIMPac.exe",
+    "AIMPate.exe"
+  ],
+  "shortcuts": [
+    [
+      "AIMP.exe",
+      "AIMP"
+    ],
+    [
+      "AIMPac.exe",
+      "AIMP Audio Converter"
+    ],
+    [
+      "AIMPate.exe",
+      "AIMP Advanced Tag Editor"
+    ]
+  ],
+  "persist": [
+    "Profile",
+    "Plugins",
+    "Skins",
+    "Icons"
+  ],
+  "checkver": {
+    "url": "https://github.com/ryanjiena/metaversion/raw/main/oneindex.txt",
+    "regex": "(?s)(?<filename>AIMP_([\\d.]+)_Green\\.(?:exe|zip|7z))",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/zd423/$matchFilename",
+    "extract_dir": "AIMP_$version_Green\\AIMP"
+  }
+}

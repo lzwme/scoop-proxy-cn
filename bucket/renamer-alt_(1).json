@@ -1,0 +1,80 @@
+{
+  "description": "ReNamer Pro cracked version by Dayanzai.me",
+  "homepage": "http://www.dayanzai.me/renamer-pro.html",
+  "license": "Unknown",
+  "version": "7.5",
+  "depends": [
+    "baidupcs-go",
+    "7zip"
+  ],
+  "url": "https://www.den4b.com/download/renamer/portable/7.5?token=scoop#/unmodified.zip_",
+  "hash": "b11342a59f22d9c48482a7f08e060109da21bb25cfc8acdd42d2b40ea6489168",
+  "installer": {
+    "script": [
+      "Write-Host \"The hashcheck is only performed for the unmodified version. Use the cracked version at your own risk.\"",
+      "$webResponse = Invoke-WebRequest \"http://www.dayanzai.me/renamer-pro.html\"",
+      "$downloadURL = ($webResponse.Links | Where-Object {($_.outerHTML -like \"*>点击下载<*\") -and ($_.href -like \"*pan.baidu.com*\")} | Select-Object -first 1).href",
+      "$webResponse.Content -match \"资源：\\s*(?<filename>\\d+\\.rar)\" | Out-Null",
+      "$filename = $matches[\"filename\"]",
+      "$resolved = $false",
+      "$useBuiltin = New-Object System.Management.Automation.Host.ChoiceDescription \"&BaiduPCS-Go\",\"An opensource cli Baidu Netdisk client. The download can take up to 5 minutes without a subscription.\"",
+      "$useManual = New-Object System.Management.Automation.Host.ChoiceDescription \"&Manually download to the installation directory\",\"Make sure to put the downloaded file in $dir\"",
+      "$options = [System.Management.Automation.Host.ChoiceDescription[]]($useBuiltin, $useManual)",
+      "$prompt = \"How would you like to download from $downloadURL\"",
+      "while (!$resolved) {",
+      "    $choice = $host.ui.PromptForChoice($prompt, \"\", $options, 0)",
+      "    switch ($choice) {",
+      "        0 {",
+      "           $passcode = $downloadURL.Split(\"?pwd=\")[-1]",
+      "           $downloadURL = $downloadURL.Split(\"?pwd=\")[0]",
+      "           $baiduLogedin = (BaiduPCS-Go loglist | Measure-Object -l).Lines -gt 1",
+      "           while (!$baiduLogedin) {",
+      "               Write-Host \"Please login to Baidu to download:\"",
+      "               BaiduPCS-Go login",
+      "               $baiduLogedin = (BaiduPCS-Go loglist | Measure-Object -l).Lines -gt 1",
+      "           }",
+      "           BaiduPCS-Go cd /",
+      "           BaiduPCS-Go rm $filename | Out-Null",
+      "           BaiduPCS-Go transfer $downloadURL $passcode",
+      "           BaiduPCS-Go download $filename --saveto $dir",
+      "           $resolved = $true",
+      "           break",
+      "        }",
+      "        1 {",
+      "           Write-Host \"Press any key to continue after you make sure the file is downloaded to $dir\"",
+      "           $Host.UI.RawUI.ReadKey(\"NoEcho,IncludeKeyDown\") | Out-Null",
+      "           if (Test-Path $dir\\$filename) {",
+      "               $resolved = $true",
+      "           }",
+      "           else {",
+      "               Write-Host \"File $dir\\$filename not found. Please try again.\"",
+      "           }",
+      "           break",
+      "        }",
+      "    }",
+      "}",
+      "Push-Location $dir && (7z e $filename renamer-$version.zip | Out-Null) && Remove-Item $filename && Expand-Archive renamer-$version.zip -DestinationPath . && Remove-Item renamer-$version.zip &&  Pop-Location"
+    ]
+  },
+  "checkver": {
+    "url": "http://www.dayanzai.me/renamer-pro.html",
+    "regex": "<title>.* ([\\d\\.]+) .*</title>"
+  },
+  "autoupdate": {
+    "url": "https://www.den4b.com/download/renamer/portable/$version?token=scoop#/unmodified.zip_",
+    "hash": {
+      "mode": "download"
+    }
+  },
+  "shortcuts": [
+    [
+      "ReNamer.exe",
+      "ReNamer"
+    ]
+  ],
+  "persist": [
+    "Settings.ini",
+    "Presets"
+  ],
+  "bin": "ReNamer.exe"
+}

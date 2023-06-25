@@ -1,0 +1,27 @@
+{
+  "checkver": {
+    "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id%20eq%20'Az.LogicApp'%20and%20IsLatestVersion%20eq%20true",
+    "replace": "${ver}",
+    "regex": "(?i)<d:Version>(?<ver>[^<]+)<.d:Version>"
+  },
+  "hash": "sha512:d57c4aecace907b0bda0eecc1681d16af3c81071a27f6074896ce5e6e8bcbbb74cfb44d9d1f1dc4fe98fac677336b7ca00adc409b99bcdd23734dcaadf41a364",
+  "description": "Microsoft Azure PowerShell - Logic Apps cmdlets for Azure Resource Manager in Windows PowerShell and PowerShell Core.  For more information on Logic Apps, please visit the following: https://docs.microsoft.com/azure/logic-apps/",
+  "psmodule": {
+    "name": "Az.LogicApp"
+  },
+  "homepage": "https://www.powershellgallery.com/packages/Az.LogicApp",
+  "autoupdate": {
+    "url": "https://www.powershellgallery.com/api/v2/Package/Az.LogicApp/$version#/mod.nupkg",
+    "hash": {
+      "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id eq 'Az.LogicApp' and Version eq '$version'",
+      "regex": "<d:PackageHash>$base64<.d:PackageHash>"
+    }
+  },
+  "license": {
+    "identifier": "Refer to Webpage",
+    "url": "https://aka.ms/azps-license"
+  },
+  "url": "https://www.powershellgallery.com/api/v2/Package/Az.LogicApp/1.5.0#/mod.nupkg",
+  "depends": "Az.Accounts",
+  "version": "1.5.0"
+}

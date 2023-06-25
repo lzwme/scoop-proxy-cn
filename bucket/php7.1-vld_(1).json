@@ -1,0 +1,30 @@
+{
+  "homepage": "https://pecl.php.net/package/vld",
+  "version": "0.14.0",
+  "license": "http://www.php.net/license/3_01.txt",
+  "architecture": {
+    "64bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/vld/0.14.0/php_vld-0.14.0-7.1-ts-vc14-x64.zip",
+      "hash": "94e328b10da07f5c9e6bd743f4bdda7c96b7edbf5ded5bf33588eaecd5f91607"
+    },
+    "32bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/vld/0.14.0/php_vld-0.14.0-7.1-ts-vc14-x86.zip",
+      "hash": "1d359206fd2d928bd12afe7e96e87176d8e527f8ba881e3497470ea6911d5c42"
+    }
+  },
+  "checkver": "vld/([\\d.]+)/windows",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/vld/$version/php_vld-$version-7.1-ts-vc14-x64.zip"
+      },
+      "32bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/vld/$version/php_vld-$version-7.1-ts-vc14-x86.zip"
+      }
+    }
+  },
+  "post_install": "iex(gc $bucketsdir\\$bucket\\bin\\postinstall.ps1 -Raw)",
+  "uninstaller": {
+    "file": "uninstall.ps1"
+  }
+}

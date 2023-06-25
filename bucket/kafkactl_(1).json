@@ -1,0 +1,38 @@
+{
+  "version": "3.1.0",
+  "description": "Command line tool for managing Apache Kafka",
+  "homepage": "https://github.com/deviceinsight/kafkactl",
+  "license": "Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/deviceinsight/kafkactl/releases/download/v3.1.0/kafkactl_3.1.0_windows_amd64.tar.gz",
+      "hash": "5adbf92bbe5faea240d8426c935aa5015019cfcea071480098c7e272dfc6f7c9"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/deviceinsight/kafkactl/releases/download/v3.1.0/kafkactl_3.1.0_windows_386.tar.gz",
+      "hash": "ebde1a56a95a3b37a51f663337b672cdf75e2c3621b8c1884778f5c528a2dabd"
+    },
+    "arm64": {
+      "url": "https://ghproxy.net/https://github.com/deviceinsight/kafkactl/releases/download/v3.1.0/kafkactl_3.1.0_windows_arm64.tar.gz",
+      "hash": "4d1157e2ffefa757fe4c9126d5c14f88e712fb3301ca313c5bf88b75bd04c277"
+    }
+  },
+  "bin": "kafkactl.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/deviceinsight/kafkactl/releases/download/v$version/kafkactl_$version_windows_amd64.tar.gz"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/deviceinsight/kafkactl/releases/download/v$version/kafkactl_$version_windows_386.tar.gz"
+      },
+      "arm64": {
+        "url": "https://ghproxy.net/https://github.com/deviceinsight/kafkactl/releases/download/v$version/kafkactl_$version_windows_arm64.tar.gz"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/checksums.txt"
+    }
+  }
+}

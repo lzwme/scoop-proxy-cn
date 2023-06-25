@@ -1,0 +1,36 @@
+{
+  "homepage": "https://rawgraphs.io/",
+  "description": "Usage: additional data visualisation options",
+  "_comment": "Categorisation: Standalone Tool",
+  "version": "1.3.0",
+  "url": "https://ghproxy.net/https://github.com/densitydesign/raw/archive/v1.3.0.zip",
+  "hash": "74ed17d7303eeb5675ffcd9bf4e2d9cae32e27da9e7106394309c60bfe93c59c",
+  "notes": "Shortcut requires python3 to run the web server. Replace 'http.server' with 'SimpleHTTPServer' or another web server command of your choice.",
+  "depends": [
+    "nodejs",
+    "yarn"
+  ],
+  "suggest": {
+    "Python 3 Installation (for running the web server)": [
+      "extras/miniconda3"
+    ]
+  },
+  "extract_dir": "raw-1.3.0",
+  "pre_install": "Push-Location $dir; 'START \"RAWGraphs Server: Close when finished\" cmd /c \"COLOR FA && echo. & echo.Starting RAWGraphs ... your browser will open shortly. & echo. && python -m http.server 4000\" && START /MIN cmd /c \"TIMEOUT 5 && start chrome http://localhost:4000\"' | Out-File 'RAWGraphs.bat' -Encoding ASCII; Pop-Location",
+  "post_install": "Push-Location $dir; yarn add bower; yarn bower install; Pop-Location",
+  "checkver": {
+    "github": "https://github.com/densitydesign/raw"
+  },
+  "shortcuts": [
+    [
+      "RAWGraphs.bat",
+      "propositum\\RAWGraphs",
+      "",
+      "favicon.ico"
+    ]
+  ],
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/densitydesign/raw/archive/v$version.zip",
+    "extract_dir": "raw-$version"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "version": "3.7",
+  "description": "VICE is an emulator collection which emulates the C64, the C64-DTV, the C128, the VIC20, practically all PET models, the PLUS4 and the CBM-II (aka C610)",
+  "homepage": "https://vice-emu.sourceforge.io/",
+  "license": "GPL-2.0-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://downloads.sourceforge.net/projects/vice-emu/files/releases/binaries/windows/GTK3VICE-3.7-win64.7z",
+      "hash": "77516db8476eba5d6c7b6bbf22062c8afd13ab4d60b6a2ff84eb2e48f5e1b281",
+      "extract_dir": "GTK3VICE-3.7-win64"
+    },
+    "32bit": {
+      "url": "https://downloads.sourceforge.net/projects/vice-emu/files/releases/binaries/windows/GTK3VICE-3.7-win32.7z",
+      "hash": "07662e4a1919080b97d1752311909f8a9e29e3a123def69d3b996acd811087ba",
+      "extract_dir": "GTK3VICE-3.7-win32"
+    }
+  },
+  "bin": [
+    "bin\\c1541.exe",
+    "bin\\cartconv.exe",
+    "bin\\petcat.exe"
+  ],
+  "shortcuts": [
+    [
+      "bin\\vsid.exe",
+      "VICE-GTK3 (VSID)"
+    ],
+    [
+      "bin\\x64dtv.exe",
+      "VICE-GTK3 (C64DTV)"
+    ],
+    [
+      "bin\\x64sc.exe",
+      "VICE-GTK3 (C64SC)"
+    ],
+    [
+      "bin\\x128.exe",
+      "VICE-GTK3 (C128)"
+    ],
+    [
+      "bin\\xcbm2.exe",
+      "VICE-GTK3 (CBM-II)"
+    ],
+    [
+      "bin\\xcbm5x0.exe",
+      "VICE-GTK3 (CBM-II-5x0)"
+    ],
+    [
+      "bin\\xpet.exe",
+      "VICE-GTK3 (PET)"
+    ],
+    [
+      "bin\\xplus4.exe",
+      "VICE-GTK3 (PLUS4)"
+    ],
+    [
+      "bin\\xscpu64.exe",
+      "VICE-GTK3 (SCPU64)"
+    ],
+    [
+      "bin\\xvic.exe",
+      "VICE-GTK3 (VIC20)"
+    ]
+  ],
+  "checkver": {
+    "sourceforge": "vice-emu/releases/binaries/windows",
+    "regex": "VICE-([\\d.]+)-win"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://downloads.sourceforge.net/projects/vice-emu/files/releases/binaries/windows/GTK3VICE-$version-win64.7z",
+        "extract_dir": "GTK3VICE-$version-win64"
+      },
+      "32bit": {
+        "url": "https://downloads.sourceforge.net/projects/vice-emu/files/releases/binaries/windows/GTK3VICE-$version-win32.7z",
+        "extract_dir": "GTK3VICE-$version-win32"
+      }
+    }
+  },
+  "_from": "hermanjustnu/scoop-emulators"
+}

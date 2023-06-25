@@ -1,0 +1,40 @@
+{
+  "##": "Renaming .msi to .msi_ so that it will not be automatically extracted by Scoop.",
+  "homepage": "http://www.github.com/billziss-gh/sshfs-win/",
+  "description": "SSHFS For Windows",
+  "version": "3.5.21011",
+  "license": "GPL-2.0-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/billziss-gh/sshfs-win/releases/download/v3.5.21011/sshfs-win-3.5.21011-x64.msi#/setup.msi_",
+      "hash": "e93d40ef00b5f077985b09e7ea48f43235a6651832fe7aa0ade54f7eeb64a9b6"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/billziss-gh/sshfs-win/releases/download/v3.5.21011/sshfs-win-3.5.21011-x86.msi#/setup.msi_",
+      "hash": "318e955d24000280a6d4eef0809faac21d8ccf96954225c1ef8597e502d530bd"
+    }
+  },
+  "depends": {
+    "winfsp-np": "winfsp-np"
+  },
+  "installer": {
+    "script": "Invoke-ExternalCommand msiexec -ArgumentList @('/i', \"$dir\\setup.msi_\", '/qn') -RunAs | Out-Null"
+  },
+  "uninstaller": {
+    "script": "Invoke-ExternalCommand msiexec -ArgumentList @('/x', \"$dir\\setup.msi_\", '/qn') -RunAs | Out-Null"
+  },
+  "checkver": {
+    "url": "https://github.com/billziss-gh/sshfs-win/releases",
+    "re": "(?<short>[\\d.]+)/sshfs-win-(?<version>[\\d.]+).*\\.msi"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/billziss-gh/sshfs-win/releases/download/v$matchShort/sshfs-win-$matchVersion-x64.msi#/setup.msi_"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/billziss-gh/sshfs-win/releases/download/v$matchShort/sshfs-win-$matchVersion-x86.msi#/setup.msi_"
+      }
+    }
+  }
+}

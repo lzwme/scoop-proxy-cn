@@ -1,0 +1,47 @@
+{
+  "homepage": "http://beefway.sakura.ne.jp/download.html",
+  "description": "A bulk renaming tool with various modification modes",
+  "license": "Freeware",
+  "version": "4.9.2",
+  "url": "http://beefway.sakura.ne.jp/files/allren492.zip",
+  "hash": "20697bca4557414fe60f9d9dc16b34e0f69528f37e0e3a2f8ae01a75dca2cd6c",
+  "extract_dir": "allrename",
+  "bin": [
+    "allrename.exe",
+    "allrenmacroedit.exe"
+  ],
+  "shortcuts": [
+    [
+      "allrename.exe",
+      "AllRename"
+    ],
+    [
+      "allrenmacroedit.exe",
+      "AllRename Macro Editor"
+    ]
+  ],
+  "persist": [
+    "allrename.ini",
+    "bregonig.dll"
+  ],
+  "pre_install": [
+    "function CreateEmptyFile($name) {",
+    "    if (!(Test-Path \"$persist_dir\\$name\")) {",
+    "        New-Item -Path \"$dir\\$name\" -ItemType File | Out-Null",
+    "        New-Item -Path \"$dir\\$name.empty\" -ItemType File | Out-Null",
+    "    }",
+    "}",
+    "CreateEmptyFile allrename.ini",
+    "CreateEmptyFile bregonig.dll"
+  ],
+  "post_install": [
+    "Remove-Item \"$dir\\*.empty\""
+  ],
+  "checkver": {
+    "url": "http://beefway.sakura.ne.jp/dl-allrename.html",
+    "re": "ver([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "http://beefway.sakura.ne.jp/files/allren$cleanVersion.zip"
+  }
+}

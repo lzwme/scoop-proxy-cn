@@ -1,0 +1,20 @@
+{
+  "homepage": "https://github.com/holmium/dnsforwarder",
+  "version": "6.1.15",
+  "license": "GUN",
+  "url": [
+    "https://ghproxy.net/https://github.com/holmium/dnsforwarder/releases/download/6.1.15/dnsforwarder-x86_64.exe",
+    "https://ghproxy.net/https://raw.githubusercontent.com/holmium/dnsforwarder/6/default.config"
+  ],
+  "hash": "2f3ee9f70d88566625a821bb7d11cbee4fe3d08fd049303eb237d7984fbffb1f",
+  "bin": "dnsforwarder.exe",
+  "pre_install": [
+    "Get-ChildItem \"$dir\\dnsforwarder-*.exe\" | Rename-Item -NewName \"$dir\\dnsforwarder.exe\""
+  ],
+  "post_install": [
+    "Get-ChildItem \"$dir\\default.config\" | Copy-Item -Destination \"$dir\\data\\dnsforwarder.config\""
+  ],
+  "persist": [
+    "data"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "version": "0.7.8",
+  "description": "Decompiler GUI for Java",
+  "homepage": "https://github.com/shotav/Decompiler",
+  "license": "Apache-2.0",
+  "pre_install": "Get-ChildItem $dir '*' | % { Rename-Item $_.Fullname 'decompiler.jar' }",
+  "suggest": {
+    "JDK": [
+      "java/oraclejdk",
+      "java/temurin-jdk"
+    ]
+  },
+  "url": "https://ghproxy.net/https://github.com/shotav/Decompiler/releases/download/v0.7.8/decompiler-0.7.8.jar",
+  "hash": "ba043fbdea22b00b18f40afac55d80e04accfcb863974e9fef183633356b3723",
+  "bin": "decompiler.jar",
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/shotav/Decompiler/releases/download/v$version/decompiler-$version.jar"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "version": "23.1.31",
+  "description": "A tabbed file manager with Add-on support.",
+  "homepage": "https://tablacus.github.io/explorer_en.html",
+  "license": {
+    "identifier": "MIT",
+    "url": "https://github.com/tablacus/TablacusExplorer/blob/master/LICENSE"
+  },
+  "url": "https://ghproxy.net/https://github.com/tablacus/TablacusExplorer/releases/download/23.1.31/te230131.zip",
+  "hash": "5c4f6a24fd0e3168268a2d8b047306127a92e0912c3bd94c61e5b411ebdb3d7c",
+  "architecture": {
+    "64bit": {
+      "bin": [
+        [
+          "TE64.exe",
+          "te"
+        ],
+        [
+          "TE64.exe",
+          "tablacus"
+        ]
+      ],
+      "shortcuts": [
+        [
+          "TE64.exe",
+          "Tablacus Explorer"
+        ]
+      ]
+    },
+    "32bit": {
+      "bin": [
+        [
+          "TE32.exe",
+          "te"
+        ],
+        [
+          "TE32.exe",
+          "tablacus"
+        ]
+      ],
+      "shortcuts": [
+        [
+          "TE32.exe",
+          "Tablacus Explorer"
+        ]
+      ]
+    }
+  },
+  "persist": [
+    "config",
+    "addons",
+    "icons"
+  ],
+  "checkver": {
+    "regex": "Version <span id=\"ver\">([\\d.]+)</span>[\\w\\W]*?te(?<cleanpadding>\\d+)\\.zip"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/tablacus/TablacusExplorer/releases/download/$version/te$matchCleanpadding.zip"
+  }
+}

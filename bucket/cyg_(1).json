@@ -1,0 +1,26 @@
+{
+  "homepage": "https://github.com/pfmoore/cyg",
+  "description": "A wrapper for cygwin utilities",
+  "license": "MIT",
+  "version": "1.0",
+  "url": "https://ghproxy.net/https://github.com/pfmoore/cyg/releases/download/v1.0/cyg.exe",
+  "hash": "3f68cd64aedc09b63925868130fc47d37c2b6ef559f3f2b0ad59324c7716a438",
+  "env_add_path": "bin",
+  "persist": [
+    "config"
+  ],
+  "post_install": [
+    "$bin = (Join-Path $dir bin)",
+    "New-Item -Type Directory $bin > $null",
+    "Copy-Item (Join-Path $dir cyg.exe) $bin",
+    "$cygwin = (Get-ItemProperty HKLM:\\Software\\Cygwin\\Setup).rootdir",
+    "Set-Content -Path (Join-Path $bin cygwin.toml) -Value \"base = '$cygwin'\" -Encoding UTF8",
+    "$links = (Join-Path (Join-Path $persist_dir config) links.txt)",
+    "if (! (Test-Path $links)) { New-Item -Type File $links > $null }",
+    "Get-Content $links | Foreach-Object { New-Item -Type HardLink -Path (Join-Path $bin \"$_.exe\") -Target (Join-Path $bin cyg.exe) > $null }"
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/pfmoore/cyg/releases/download/v$version/cyg.exe"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "autoupdate": {
+    "hash": {
+      "regex": "MD5 Hash: +[\\w]{32}",
+      "url": "https://portableapps.com/apps/graphics_pictures/rawtherapee-portable"
+    },
+    "url": "https://cfhcable.dl.sourceforge.net/project/portableapps/RawTherapee%20Portable/RawTherapeePortable_$version.paf.exe"
+  },
+  "bin": "RawTherapeePortable.exe",
+  "checkver": {
+    "re": "Version \\s+([\\w\\.]* for Win",
+    "url": "https://portableapps.com/apps/graphics_pictures/rawtherapee-portable"
+  },
+  "description": "RAW image processor",
+  "hash": "10bf9c4eb26b571cd55749643887dc5d37e2dec3602134d88209cfe408d56666",
+  "homepage": "https://portableapps.com/apps/graphics_pictures/rawtherapee-portable",
+  "license": "",
+  "persist": "Data",
+  "post_install": "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
+  "shortcuts": [
+    [
+      "RawTherapeePortable.exe",
+      "RawTherapeePortable"
+    ]
+  ],
+  "url": "https://cfhcable.dl.sourceforge.net/project/portableapps/RawTherapee%20Portable/RawTherapeePortable_5.9.paf.exe",
+  "version": "5.9"
+}

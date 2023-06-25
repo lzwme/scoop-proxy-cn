@@ -1,0 +1,46 @@
+{
+  "version": "6.0.1",
+  "description": "An Internet censorship circumventing tunnel tool, forked from shadowsocksR, maintained now by HMBSbige.",
+  "homepage": "https://github.com/HMBSbige/ShadowsocksR-Windows",
+  "license": "GPL-3.0-only",
+  "url": "https://ghproxy.net/https://github.com/HMBSbige/ShadowsocksR-Windows/releases/download/6.0.1/ShadowsocksR-6.0.1.7z",
+  "hash": "7053E63C0B57760A3E559C3E65FB043FCC4F199611072B5DBCF0A01CF31C936C",
+  "extract_dir": "ShadowsocksR",
+  "bin": "ShadowsocksR.exe",
+  "shortcuts": [
+    [
+      "ShadowsocksR.exe",
+      "ShadowsocksR"
+    ]
+  ],
+  "pre_install": [
+    "#Create placeholder files",
+    "function CreateFile([String] $file, [String] $content = $null) {",
+    "    if(!(Test-Path \"$persist_dir\\$file\")) {",
+    "        Write-Host \"Create placeholder for shadowsocksR: $file\"",
+    "        if($file -eq 'pac.txt'){",
+    "            Invoke-WebRequest -Uri \"https://ghproxy.net/https://raw.githubusercontent.com/HMBSbige/ShadowsocksR-Windows/master/shadowsocks-csharp/Data/proxy.pac.txt\" -OutFile $original_dir\\pac.txt",
+    "        }else{",
+    "            New-Item -Force -Path \"$persist_dir\\$file\" -ItemType file -Value $content | Out-Null",
+    "        }",
+    "    }",
+    "}",
+    "#CreateFile 'pac.txt'",
+    "CreateFile 'gui-config.json' '{}'",
+    "CreateFile 'transfer_log.json' '{}'",
+    "CreateFile 'user-rule.txt' \"! Put user rules line by line in this file.`r`n! See https://adblockplus.org/en/filter-cheatsheet`r`n\""
+  ],
+  "persist": [
+    "gui-config.json",
+    "transfer_log.json",
+    "user-rule.txt"
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/HMBSbige/ShadowsocksR-Windows/releases/download/$matchVersion/$matchFilename",
+    "hash": {
+      "url": "https://github.com/HMBSbige/ShadowsocksR-Windows/releases",
+      "find": "(?s)$basename.*?$sha256"
+    }
+  }
+}

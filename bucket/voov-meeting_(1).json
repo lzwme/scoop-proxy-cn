@@ -1,0 +1,40 @@
+{
+  "version": "3.13.2.405",
+  "description": "Cloud meeting solutions covering 100+ countries and regions.",
+  "homepage": "https://voovmeeting.com/",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://voovmeeting.com/df/en/service-agreement.html"
+  },
+  "url": "https://updatecdn.meeting.qq.com/f97fec45859a13e47a838efbb91a5a68/VooVMeeting_1410000197_3.13.2.405.publish.exe#/dl.7z",
+  "hash": "d870d9ee32075dc71fd5fd41b51bdaa00bfa3592375bdda4b7b831dbc4e99d56",
+  "pre_install": "Rename-Item -Path \"$dir\\`$_*\" -NewName \"$version\" -Force",
+  "installer": {
+    "script": [
+      "ensure \"$persist_dir\" | Out-Null",
+      "New-Item \"$env:APPDATA\\Tencent\\VooVMeeting\" -ItemType Junction -Target \"$persist_dir\" | Out-Null"
+    ]
+  },
+  "post_install": [
+    "Remove-Item \"$dir\\`$*\" -Recurse -Force -ErrorAction SilentlyContinue",
+    "Remove-Item \"$dir\\voovmeetingapp_new.exe\" -Force -ErrorAction SilentlyContinue"
+  ],
+  "uninstaller": {
+    "script": "Remove-Item \"$env:APPDATA\\Tencent\\VooVMeeting\" -ErrorAction 'SilentlyContinue' -Force -Recurse"
+  },
+  "shortcuts": [
+    [
+      "voovmeetingapp.exe",
+      "Voov Meeting"
+    ]
+  ],
+  "checkver": {
+    "url": "https://meeting.tencent.com/wemeet-webapi/v2/config/query-download-info",
+    "script": "(Invoke-WebRequest -Body '[{\"instance\":\"windows\",\"type\":\"1410000197\"}]' -Method 'POST' -Uri $url).Content",
+    "regex": "\"md5\":\"(?<hash>[a-f0-9]+)\".+\"version\":\"([\\d\\.]+)\""
+  },
+  "autoupdate": {
+    "url": "https://updatecdn.meeting.qq.com/$matchHash/VooVMeeting_1410000197_$version.publish.exe#/dl.7z"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

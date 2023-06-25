@@ -1,0 +1,58 @@
+{
+  "version": "1014-20221218-e1e11cf",
+  "description": "ares is a multi-system emulator that began development on October 14th, 2004. It is a descendent of higan and bsnes, and focuses on accuracy and preservation.",
+  "homepage": "https://github.com/ares-emulator/ares",
+  "license": "https://ghproxy.net/https://raw.githubusercontent.com/ares-emulator/ares/master/LICENSE",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/ares-emulator/ares/releases/download/nightly/ares-windows.zip",
+      "hash": "5455b913797ee0ffd098cb19ca210cfa724203b68f4e61c63fbeb75491115129"
+    }
+  },
+  "extract_dir": "ares-nightly",
+  "bin": "ares.exe",
+  "shortcuts": [
+    [
+      "ares.exe",
+      "ares (dev)"
+    ]
+  ],
+  "post_install": [
+    "if (!(Test-Path \"$persist_dir\\settings.bml.bak\")) {",
+    "   New-Item -ItemType File \"$dir\\settings.bml\" | Out-Null",
+    "   Set-Content \"$dir\\settings.bml\" 'Paths'",
+    "   Add-Content \"$dir\\settings.bml\" \"  Home`:` $persist_dir\\Systems\\\" ",
+    "   'Saves', 'Screenshots', 'Debugging' | ForEach-Object {",
+    "   Add-Content \"$dir\\settings.bml\" \"  $_`:` $persist_dir\\$_\\\" }",
+    "} else {",
+    "   Copy-Item \"$persist_dir\\settings.bml.bak\" \"$dir\\settings.bml\" -Force",
+    "}"
+  ],
+  "uninstaller": {
+    "script": [
+      "'settings.bml' | ForEach-Object {",
+      "    Copy-Item \"$dir\\$_\" \"$persist_dir\\$_.bak\" -Force",
+      "}"
+    ]
+  },
+  "persist": [
+    "Systems",
+    "Saves",
+    "Screenshots",
+    "Debugging"
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/ares-emulator/ares/actions/workflows/build.yml/runs?branch=master&status=success",
+    "script": [
+      "$sha = json_path $page $.workflow_runs[0].head_sha",
+      "$runId = json_path $page $.workflow_runs[0].run_number",
+      "$date = json_path $page $.workflow_runs[0].created_at",
+      "Write-Output \"$runId $date $sha\""
+    ],
+    "regex": "^(?<version>[^ ]+) (?<year>\\d{4})-(?<month>\\d{2})-(?<day>\\d{2})[^ ]+ (?<hash>.{7})(?<rest>.*)$",
+    "replace": "${version}-${year}${month}${day}-${hash}"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/ares-emulator/ares/releases/download/nightly/ares-windows.zip"
+  }
+}

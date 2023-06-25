@@ -1,0 +1,28 @@
+{
+  "##": "This package is for private use only. Requires password for installation to proceed.",
+  "version": "7.02.2",
+  "description": "Boilsoft Video Joiner (language: Chinese traditional)",
+  "license": "Proprietary",
+  "url": "https://www.googleapis.com/drive/v3/files/1eiOdiF27No6qZYEZcyc1AUz1WLJ1rLuz?alt=media&key=AIzaSyAiaA0bWx34SyfTRvyl4UCCHwsCkvUBECc#/dl.7z_",
+  "hash": "9F2547A3198000515CEFCDFB361F17ADC2C9C97C74A1320ABD9C17F5B0FCEB38",
+  "installer": {
+    "script": [
+      "$scriptdir = (Find-BucketDirectory $bucket)+'\\..\\scripts'",
+      "Import-Module $scriptdir\\pw\\pw_check.psm1",
+      "Expand-EncryptedArchive -aPath \"$dir\\dl.7z_\" -oDir \"$dir\" -ExitIfError -Removal",
+      "Invoke-ExternalCommand reg -ArgumentList @('import', \"$dir\\bvj.reg\") -RunAs | Out-Null"
+    ]
+  },
+  "bin": [
+    [
+      "Portable_Boilsoft_Video_Joiner_7.02.2_TW.exe",
+      "VideoJoiner"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "Portable_Boilsoft_Video_Joiner_7.02.2_TW.exe",
+      "Boilsoft Video Joiner"
+    ]
+  ]
+}

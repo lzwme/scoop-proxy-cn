@@ -1,0 +1,40 @@
+{
+  "homepage": "https://github.com/Mikubill/cowtransfer-uploader",
+  "description": "上传/下载文件到奶牛快传的小工具，支持分块并发上传下载 Simple cowTransfer Uploader/Downloader",
+  "license": "MIT",
+  "version": "0.4.23",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/Mikubill/cowtransfer-uploader/releases/download/v0.4.23/cowtransfer-uploader_0.4.23_windows_amd64.zip#/dl.7z",
+      "hash": "9d5a44021f29af8518c0a9d791d563255c3db825c105ed508fd621d7baa68ad5"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/Mikubill/cowtransfer-uploader/releases/download/v0.4.23/cowtransfer-uploader_0.4.23_windows_386.zip#/dl.7z",
+      "hash": "8f3823d414adc38f876443c0af63aed383698e25e4437f7b0d6ab54d63eb19f7"
+    }
+  },
+  "bin": "cowtransfer-uploader.exe",
+  "shortcuts": [
+    [
+      "cowtransfer-uploader.exe",
+      "cowtransfer"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/Mikubill/cowtransfer-uploader/releases/latest",
+    "re": "cowtransfer-uploader_(?<version>\\d+\\.\\d+\\.\\d+)_checksums\\.txt"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/Mikubill/cowtransfer-uploader/releases/download/v$matchVersion/cowtransfer-uploader_$matchVersion_windows_amd64.zip#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/Mikubill/cowtransfer-uploader/releases/download/v$matchVersion/cowtransfer-uploader_$matchVersion_windows_386.zip#/dl.7z"
+      }
+    },
+    "hash": {
+      "url": "https://ghproxy.net/https://github.com/Mikubill/cowtransfer-uploader/releases/download/v$matchVersion/cowtransfer-uploader_$matchVersion_checksums.txt"
+    }
+  }
+}

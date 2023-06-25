@@ -1,0 +1,33 @@
+{
+  "version": "1.0",
+  "description": "SSS 沖縄あわも　連続音",
+  "homepage": "https://zunko.jp/con_voice.html#kitaminami_utau",
+  "license": [
+    {
+      "identifier": "Proprietary",
+      "url": "https://zunko.jp/guideline.html"
+    }
+  ],
+  "url": "https://zunko.jp/sozai/utau/OkinawaAwamo.zip",
+  "hash": "fdd9554a3e139dd5222b9325ebde6ef009d9ca7b7a4cb55c1240a595fb1eb303",
+  "extract_to": "voice",
+  "suggest": {
+    "UTAU": [
+      "utau",
+      "dtm/utau"
+    ]
+  },
+  "installer": {
+    "script": [
+      "$voice=\"沖縄あわも(連続音)\"",
+      "Copy-Item -Force -Recurse -Path \"${dir}\\voice\\${voice}\" -Destination \"${persist_dir}\\..\\utau\\utau\\voice\"",
+      "Remove-Item -Force -Recurse -Path \"${dir}\\voice\\${voice}\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$voice=\"沖縄あわも(連続音)\"",
+      "Remove-Item -Force -Recurse -Path \"${persist_dir}\\..\\utau\\utau\\voice\\${voice}\""
+    ]
+  }
+}

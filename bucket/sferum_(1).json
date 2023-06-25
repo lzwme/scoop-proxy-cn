@@ -1,0 +1,55 @@
+{
+  "version": "1.1.12",
+  "description": "Education platform by VK-group.",
+  "homepage": "https://sferum.ru",
+  "license": "MIT",
+  "url": "https://st.mycdn.me/static/sferum/1-1-12/sferum.exe#/dl.7z",
+  "hash": "006a58253dcc75ec3127ceeaae0fb93c9e007c24bf47053c49ffe5f3df0a9f3b",
+  "bin": [
+    [
+      "app\\Sferum.exe",
+      "Sferum",
+      "--user-data-dir=\"$dir\\User Data\""
+    ]
+  ],
+  "shortcuts": [
+    [
+      "app\\Sferum.exe",
+      "Sferum",
+      "--user-data-dir=\"$dir\\User Data\""
+    ]
+  ],
+  "architecture": {
+    "32bit": {
+      "installer": {
+        "script": [
+          "New-Item -Path \"$dir\\app\" -ItemType Directory",
+          "7z x -y \"$dir\\`$PLUGINSDIR\\app-32.7z\" -o\"$dir\\app\"",
+          "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall Sferum.exe\" -Recurse"
+        ]
+      }
+    },
+    "64bit": {
+      "installer": {
+        "script": [
+          "New-Item -Path \"$dir\\app\" -ItemType Directory",
+          "7z x -y \"$dir\\`$PLUGINSDIR\\app-64.7z\" -o\"$dir\\app\"",
+          "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall Sferum.exe\" -Recurse"
+        ]
+      }
+    }
+  },
+  "post_install": [
+    "if (!(Test-Path \"$dir\\User Data\\*\") -and (Test-Path \"$env:AppData\\Sferum\")) {",
+    "    info '[Portable Mode]: Copying user data...'",
+    "    Copy-Item \"$env:AppData\\Sferum\\*\" \"$dir\\User Data\" -Recurse",
+    "}"
+  ],
+  "checkver": {
+    "url": "https://st.mycdn.me/static/sferum/latest/",
+    "regex": "sferum-([\\d.]+).exe"
+  },
+  "autoupdate": {
+    "url": "https://st.mycdn.me/static/sferum/$version/sferum.exe#/dl.7z"
+  }
+}

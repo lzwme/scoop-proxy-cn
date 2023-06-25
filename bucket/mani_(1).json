@@ -1,0 +1,33 @@
+{
+  "version": "0.24.0",
+  "description": "A command line tool to help you manage repositories",
+  "homepage": "https://manicli.com/",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/alajmo/mani/releases/download/v0.24.0/mani_0.24.0_windows_amd64.zip",
+      "hash": "7f6afbefac676bec18a73b6dfb027ba1023e2529d893829681011758a1e8b62e"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/alajmo/mani/releases/download/v0.24.0/mani_0.24.0_windows_386.zip",
+      "hash": "cb6cd7eb9257ba71ebc0f7c4d0ef740bd4ada52818e3fb1fe5be2a2ab49952d3"
+    }
+  },
+  "bin": "mani.exe",
+  "checkver": {
+    "github": "https://github.com/alajmo/mani"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/alajmo/mani/releases/download/v$version/mani_$version_windows_amd64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/alajmo/mani/releases/download/v$version/mani_$version_windows_386.zip"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/checksums.txt"
+    }
+  }
+}

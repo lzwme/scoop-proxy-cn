@@ -1,0 +1,17 @@
+{
+  "homepage": "https://github.com/dvx/lofi",
+  "description": "Mini Spotify player with visualizations.",
+  "version": "2.0.0",
+  "license": "MIT",
+  "url": "https://ghproxy.net/https://github.com/dvx/lofi/releases/download/v2.0.0/lofi-Setup-2.0.0.exe",
+  "hash": "e00b07ef4fec603253a26953370840c580c78249a6bf6b8a585f664893051d09",
+  "installer": {
+    "script": "Invoke-Expression -command \"$dir\\lofi-Setup-$version.exe /S /D=$dir\""
+  },
+  "checkver": {
+    "github": "https://github.com/dvx/lofi"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/dvx/lofi/releases/download/v$version/lofi-Setup-$version.exe"
+  }
+}

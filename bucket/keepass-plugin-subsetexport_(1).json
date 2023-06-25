@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ghproxy.net/https://raw.githubusercontent.com/ScoopInstaller/Scoop/f93028001fbe5c78cc41f59e3814d2ac8e595724/schema.json",
+  "license": "MIT",
+  "version": "0.7.0",
+  "url": "https://ghproxy.net/https://github.com/lukeIam/KeePassSubsetExport/releases/download/0.7.0/KeePassSubsetExport.plgx",
+  "description": "KeeSubseAutoExec This plugin allows to automatically open additional databases when opening a database.",
+  "hash": "797ccaa354439221f406678f0e0f9277d2a1e9abac52b877bb7c3ded97b40818",
+  "depends": "extras/keepass",
+  "homepage": "https://github.com/lukeIam/KeePassSubsetExport",
+  "checkver": {
+    "github": "https://github.com/lukeIam/KeePassSubsetExport"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/lukeIam/KeePassSubsetExport/releases/download/$version/KeePassSubsetExport.plgx",
+    "hash": {
+      "find": "sha512:\\s+(.*)"
+    }
+  },
+  "post_uninstall": "Remove-Item \"$(appdir keepass $global)\\current\\Plugins\\KeePassSubsetExport.plgx\" -Force",
+  "post_install": "Copy-Item \"$dir\\KeePassSubsetExport.plgx\" \"$(appdir keepass $global)\\current\\Plugins\\KeePassSubsetExport.plgx\"",
+  "notes": [
+    "You need to restart Keepass to compile new plugins"
+  ]
+}

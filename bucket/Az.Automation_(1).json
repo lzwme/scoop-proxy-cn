@@ -1,0 +1,27 @@
+{
+  "checkver": {
+    "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id%20eq%20'Az.Automation'%20and%20IsLatestVersion%20eq%20true",
+    "replace": "${ver}",
+    "regex": "(?i)<d:Version>(?<ver>[^<]+)<.d:Version>"
+  },
+  "hash": "sha512:3c659f8c416b34c8ca4ec124485757bf94f4ea4bce96fad81cf041445bd872b2f336283a98c8bca712b6f56163c0b7284e2777962b3a7ab76b513cf2206cda48",
+  "description": "Microsoft Azure PowerShell - Automation service cmdlets for Azure Resource Manager in Windows PowerShell and PowerShell Core.  For more information on Automation, please visit the following: https://docs.microsoft.com/azure/automation/",
+  "psmodule": {
+    "name": "Az.Automation"
+  },
+  "homepage": "https://www.powershellgallery.com/packages/Az.Automation",
+  "autoupdate": {
+    "url": "https://www.powershellgallery.com/api/v2/Package/Az.Automation/$version#/mod.nupkg",
+    "hash": {
+      "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id eq 'Az.Automation' and Version eq '$version'",
+      "regex": "<d:PackageHash>$base64<.d:PackageHash>"
+    }
+  },
+  "license": {
+    "identifier": "Refer to Webpage",
+    "url": "https://aka.ms/azps-license"
+  },
+  "url": "https://www.powershellgallery.com/api/v2/Package/Az.Automation/1.9.1#/mod.nupkg",
+  "depends": "Az.Accounts",
+  "version": "1.9.1"
+}

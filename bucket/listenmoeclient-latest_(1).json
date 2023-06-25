@@ -1,0 +1,20 @@
+{
+  "version": "0.3.0",
+  "description": "Official LISTEN.moe Desktop Client",
+  "homepage": "https://github.com/LISTEN-moe/desktop-app",
+  "url": "https://ghproxy.net/https://github.com/LISTEN-moe/desktop-app/releases/download/0.3.0/LISTEN.moe.0.3.0.exe",
+  "hash": "741fad8615ab491cfa356aba3cadbc8140f639899382d22f726d2aeebaee7aad",
+  "pre_install": "Move-Item -Path \"$dir\\LISTEN.moe.$version.exe\" -Destination \"$dir\\LISTEN.moe.exe\"",
+  "bin": "LISTEN.moe.exe",
+  "extract_dir": "ListenMoeClient-Latest",
+  "shortcuts": [
+    [
+      "LISTEN.moe.exe",
+      "ListenMoe Client"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/LISTEN-moe/desktop-app/releases/download/$version/LISTEN.moe.$version.exe"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "version": "2.5.1",
+  "description": "Fully featured and highly configurable SFTP server with optional FTP/S and WebDAV support - S3, Google Cloud Storage, Azure Blob.",
+  "homepage": "https://github.com/drakkan/sftpgo",
+  "license": "AGPL-3.0",
+  "url": "https://ghproxy.net/https://github.com/drakkan/sftpgo/releases/download/v2.5.1/sftpgo_v2.5.1_windows_portable.zip",
+  "hash": "0ead64ba4a07bcb409b4e306f3ece635e1f4524c79ec7ceadc6fffece08ffa06",
+  "architecture": {
+    "64bit": {
+      "pre_install": "Remove-Item \"$dir\\x86\", \"$dir\\arm64\" -Force -Recurse"
+    },
+    "32bit": {
+      "pre_install": [
+        "Copy-Item -Path \"$dir\\x86\\sftpgo.exe\" -Destination \"$dir\\sftpgo.exe\" -Force",
+        "Remove-Item \"$dir\\x86\", \"$dir\\arm64\" -Force -Recurse"
+      ]
+    }
+  },
+  "bin": "sftpgo.exe",
+  "env_set": {
+    "SFTPGO_CONFIG_DIR": "$dir\\config",
+    "SFTPGO_HTTPD__TEMPLATES_PATH": "$dir\\templates",
+    "SFTPGO_HTTPD__STATIC_FILES_PATH": "$dir\\static",
+    "SFTPGO_HTTPD__BACKUPS_PATH": "$dir\\backups"
+  },
+  "persist": [
+    "config",
+    "backups"
+  ],
+  "post_install": [
+    "if (! (Test-Path \"$dir\\config\\sftpgo.json\")) { Copy-Item -Path \"$dir\\sftpgo.json\" -Destination \"$dir\\config\\sftpgo.json\" }",
+    "if (! (Test-Path \"$dir\\config\\sftpgo.db\")) { Copy-Item -Path \"$dir\\sftpgo.db\" -Destination \"$dir\\config\\sftpgo.db\" }",
+    "Remove-Item \"$dir\\sftpgo.json\", \"$dir\\sftpgo.db\" -Force"
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/drakkan/sftpgo/releases/download/v$version/sftpgo_v$version_windows_portable.zip"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "description": "腾讯会议是腾讯云旗下的一款音视频会议软件",
+  "ext": {
+    "url": "https://meeting.tencent.com/download/"
+  },
+  "homepage": "https://meeting.tencent.com",
+  "installer": {
+    "script": [
+      "Rename-Item \"$dir\\`$_10_\" \"$dir\\$version\"",
+      "Remove-Item \"$dir\\wemeetapp_new.exe\" -Force",
+      "Remove-Item \"$dir\\`$TEMP\", \"$dir\\`$WINDIR\", \"$dir\\`$PLUGINSDIR\" -Force -Recurse"
+    ]
+  },
+  "license": "BSD-3-Clause",
+  "shortcuts": [
+    [
+      "wemeetapp.exe",
+      "Tencent Meetings"
+    ]
+  ],
+  "url": "https://updatecdn.meeting.qq.com/cos/308b6677538a958e58e9a3d7594ea736/TencentMeeting_0300000000_3.13.2.469.publish.exe#/dl.7z",
+  "version": "3.13.2.469"
+}

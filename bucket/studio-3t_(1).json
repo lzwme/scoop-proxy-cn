@@ -1,0 +1,58 @@
+{
+  "$schema": "https://ghproxy.net/https://raw.githubusercontent.com/lukesampson/scoop/master/schema.json",
+  "version": "2023.4.1",
+  "description": "The professional GUI for MongoDB.",
+  "homepage": "https://studio3t.com/",
+  "license": "Proprietary",
+  "architecture": {
+    "64bit": {
+      "url": [
+        "https://aluigi.altervista.org/papers/quickbms.zip",
+        "https://aluigi.altervista.org/bms/install4j.bms",
+        "https://download.studio3t.com/studio-3t/windows/2023.4.1/studio-3t-x64.zip",
+        "https://ghproxy.net/https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.2+8/OpenJDK17U-jre_x64_windows_hotspot_17.0.2_8.zip"
+      ],
+      "hash": [
+        "b9d4f9efb55692994cd42a491cfea11f86e3375a618b9bd771583ce40ddb3828",
+        "9b92e3600c2b8589701c890e8db73706244dcb40139609ad0a16cb7da213c8a8",
+        "4507880e294db19207cb995b6b163f520db554355b839eb5a3ab2398331bc7d2",
+        "c3204a19aede95ed02ad0f427210855a951d845ab7f806fb56b774daf2572454"
+      ],
+      "installer": {
+        "script": [
+          "New-Item -Type Directory -Path \"$dir\\tmp\" > $null",
+          "while (Get-Process | Where-Object { $_.Path -like \"$dir\\*\" }){",
+          "    Get-Process | Where-Object { $_.Path -like \"$dir\\*\" }",
+          "}",
+          "Move-Item -Path \"$dir\\*\" -Destination \"$dir\\tmp\" -Exclude \"$dir\\tmp\" -ErrorAction SilentlyContinue",
+          "& \"$dir\\tmp\\quickbms.exe\" -Q \"$dir\\tmp\\install4j.bms\" \"$dir\\tmp\\studio-3t-x64.exe\" \"$dir\" > $null",
+          "New-Item -Type Directory -Path \"$dir\\jre\" > $null",
+          "Move-Item -Path \"$dir\\tmp\\jdk-17.0.2+8-jre\\*\" -Destination \"$dir\\jre\"",
+          "Remove-Item -Recurse -Force -Path \"$dir\\tmp\", \"$dir\\install4j\""
+        ]
+      }
+    }
+  },
+  "shortcuts": [
+    [
+      "Studio 3T.exe",
+      "Studio 3T"
+    ]
+  ],
+  "checkver": {
+    "url": "https://files.studio3t.com/changelog/changelog.txt",
+    "regex": "(?<version>\\d{4}\\.\\d+\\.\\d+) \\(\\d{2}-[A-Z][a-z]{2}-\\d{4}\\)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": [
+          "https://aluigi.altervista.org/papers/quickbms.zip",
+          "https://aluigi.altervista.org/bms/install4j.bms",
+          "https://download.studio3t.com/studio-3t/windows/$version/studio-3t-x64.zip",
+          "https://ghproxy.net/https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.2+8/OpenJDK17U-jre_x64_windows_hotspot_17.0.2_8.zip"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "version": "1.6.1",
+  "description": "KeePass 2 plugin to automatically unlock databases with Windows Hello.",
+  "homepage": "https://github.com/Angelelz/WinHelloUnlock",
+  "license": "MIT",
+  "depends": "extras/keepass",
+  "url": "https://ghproxy.net/https://github.com/Angelelz/WinHelloUnlock/releases/download/v1.6.1/WinHelloUnlock.dll",
+  "hash": "cfd33b58f496aebd6d812f194d08e42fa5429539801af27aa013fdb2ad8f4bb9",
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/Angelelz/WinHelloUnlock/releases/download/v$version/WinHelloUnlock.dll"
+  },
+  "installer": {
+    "script": "Copy-Item \"$dir\\WinHelloUnlock.dll\" \"$(appdir keepass $global)\\current\\Plugins\""
+  },
+  "uninstaller": {
+    "script": "Remove-Item \"$(appdir keepass $global)\\current\\Plugins\\WinHelloUnlock.dll\""
+  }
+}

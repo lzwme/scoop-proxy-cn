@@ -1,0 +1,46 @@
+{
+  "version": "4.0.3",
+  "description": "Authenticating HTTP(s) proxy server facade",
+  "homepage": "https://github.com/ecovaci/winfoom",
+  "license": "Apache-2.0",
+  "url": [
+    "https://ghproxy.net/https://github.com/ecovaci/winfoom/releases/download/v4.0.3/winfoom-windows.zip",
+    "https://ghproxy.net/https://raw.githubusercontent.com/nicerloop/scoop-nicerloop/main/resources/winfoom.ico"
+  ],
+  "hash": [
+    "1c08ee00909e04ec836301369b31814a1ae9274937387490bb0aa17af4ccf0ce",
+    "cba97883e1879793a9633e6f38d26a75284c876b1f3cb1e62261fd5167a76651"
+  ],
+  "pre_install": [
+    "Set-Content \"$dir\\winfoom.ps1\" (@('if (Get-Command find-java -errorAction SilentlyContinue) { find-java -version 11 -setsession }','$CWD = [Environment]::CurrentDirectory','Push-Location $PSScriptRoot','[Environment]::CurrentDirectory = $PWD','.\\launchGui.bat','Pop-Location','[Environment]::CurrentDirectory = $CWD') -join \"`r`n\") -Encoding Ascii",
+    "Set-Content \"$dir\\winfoom.cmd\" (@('@echo off','start /b powershell -executionpolicy bypass -file \"./winfoom.ps1\"') -join \"`r`n\") -Encoding Ascii"
+  ],
+  "suggest": {
+    "find-java": "extras/find-java",
+    "JRE": "java/temurin11-jre"
+  },
+  "bin": [
+    "winfoom.ps1"
+  ],
+  "shortcuts": [
+    [
+      "winfoom.cmd",
+      "Winfoom",
+      "",
+      "winfoom.ico"
+    ]
+  ],
+  "persist": [
+    "config",
+    "out"
+  ],
+  "checkver": {
+    "github": "https://github.com/ecovaci/winfoom"
+  },
+  "autoupdate": {
+    "url": [
+      "https://ghproxy.net/https://github.com/ecovaci/winfoom/releases/download/v$version/winfoom-windows.zip",
+      "https://ghproxy.net/https://raw.githubusercontent.com/nicerloop/scoop-nicerloop/main/resources/winfoom.ico"
+    ]
+  }
+}

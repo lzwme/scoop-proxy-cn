@@ -1,0 +1,39 @@
+{
+  "homepage": "https://github.com/BennyThink/TimeM/",
+  "version": "0.38",
+  "description": "Subtitle",
+  "license": "GPL v3",
+  "architecture": {
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/BennyThink/TimeM/releases/download/0.38/TimeM.zip",
+      "hash": {
+        "mode": "download"
+      }
+    }
+  },
+  "bin": [
+    [
+      "TimeM.exe",
+      "timem"
+    ]
+  ],
+  "persist": [
+    "UserData"
+  ],
+  "checkver": {
+    "github": "https://github.com/BennyThink/TimeM"
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/BennyThink/TimeM/releases/download/$version/TimeM.zip",
+        "hash": {
+          "mode": "download"
+        }
+      }
+    }
+  },
+  "note": [
+    "May need to install vobsub manually"
+  ]
+}

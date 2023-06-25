@@ -1,0 +1,56 @@
+{
+  "version": "3.19",
+  "description": "A typeface specially designed for user interfaces with focus on high legibility of small-to-medium sized text on computer screens.",
+  "homepage": "https://rsms.me/inter/",
+  "license": "OFL-1.1",
+  "url": "https://ghproxy.net/https://github.com/rsms/inter/releases/download/v3.19/Inter-3.19.zip",
+  "hash": "150ab6230d1762a57bebf35dfc04d606ff91598a31d785f7f100356ecdcc0032",
+  "extract_dir": "Inter Variable",
+  "checkver": {
+    "github": "https://github.com/rsms/inter"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/rsms/inter/releases/download/v$version/Inter-$version.zip"
+  },
+  "installer": {
+    "script": [
+      "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
+      "$windows1809BuildNumber = 17763",
+      "$isPerUserFontInstallationSupported = $currentBuildNumber -ge $windows1809BuildNumber",
+      "$isFontInstallationForAllUsers = $global -or !$isPerUserFontInstallationSupported",
+      "if ($isFontInstallationForAllUsers -and !(is_admin)) {",
+      "    error \"Administrator rights are required to install $app.\"",
+      "    exit 1",
+      "}",
+      "$fontInstallDir = if ($isFontInstallationForAllUsers) { \"$env:windir\\Fonts\" } else { \"$env:LOCALAPPDATA\\Microsoft\\Windows\\Fonts\" }",
+      "$registryRoot = if ($isFontInstallationForAllUsers) { \"HKLM\" } else { \"HKCU\" }",
+      "$registryKey = \"${registryRoot}:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts\"",
+      "New-Item $fontInstallDir -ItemType Directory -ErrorAction SilentlyContinue | Out-Null",
+      "Get-ChildItem $dir -Filter '*.ttf' -Recurse | ForEach-Object {",
+      "    $value = if ($isFontInstallationForAllUsers) { $_.Name } else { \"$fontInstallDir\\$($_.Name)\" }",
+      "    New-ItemProperty -Path $registryKey -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $value -Force | Out-Null",
+      "    Copy-Item $_.FullName -Destination $fontInstallDir",
+      "}"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
+      "$windows1809BuildNumber = 17763",
+      "$isPerUserFontInstallationSupported = $currentBuildNumber -ge $windows1809BuildNumber",
+      "$isFontInstallationForAllUsers = $global -or !$isPerUserFontInstallationSupported",
+      "if ($isFontInstallationForAllUsers -and !(is_admin)) {",
+      "    error \"Administrator rights are required to uninstall $app.\"",
+      "    exit 1",
+      "}",
+      "$fontInstallDir = if ($isFontInstallationForAllUsers) { \"$env:windir\\Fonts\" } else { \"$env:LOCALAPPDATA\\Microsoft\\Windows\\Fonts\" }",
+      "$registryRoot = if ($isFontInstallationForAllUsers) { \"HKLM\" } else { \"HKCU\" }",
+      "$registryKey = \"${registryRoot}:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts\"",
+      "Get-ChildItem $dir -Filter '*.ttf' -Recurse | ForEach-Object {",
+      "    Remove-ItemProperty -Path $registryKey -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
+      "    Remove-Item \"$fontInstallDir\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
+      "}",
+      "Write-Host \"The 'Inter' Font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
+    ]
+  }
+}

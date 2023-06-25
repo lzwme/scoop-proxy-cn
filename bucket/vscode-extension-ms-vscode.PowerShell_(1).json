@@ -1,0 +1,17 @@
+{
+  "version": "2023.4.1",
+  "homepage": "https://marketplace.visualstudio.com/items?itemName=ms-vscode.PowerShell",
+  "hash": "4772b805364978026de254b4f436f1cfdccc070ba1d7407914dbc7d099be1f9e",
+  "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-vscode/vsextensions/PowerShell/2023.4.1/vspackage#/ext.vsix.7z",
+  "checkver": {
+    "re": "(?s)Version.:.([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-vscode/vsextensions/PowerShell/$version/vspackage#/ext.vsix.7z"
+  },
+  "post_install": [
+    "if ( Get-Command -Name code -ErrorAction SilentlyContinue ) { &code --install-extension $dir/ext.vsix --force }",
+    "if ( Get-Command -Name azuredatastudio -ErrorAction SilentlyContinue ) { &azuredatastudio --install-extension $dir/ext.vsix --force }"
+  ],
+  "_from": "okibcn/ScoopMaster"
+}

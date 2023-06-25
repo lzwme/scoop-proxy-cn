@@ -1,0 +1,30 @@
+{
+  "homepage": "https://pecl.php.net/package/scrypt",
+  "version": "1.4.2",
+  "license": "http://www.php.net/license/3_01.txt",
+  "architecture": {
+    "64bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/scrypt/1.4.2/php_scrypt-1.4.2-7.1-ts-vc14-x64.zip",
+      "hash": "18703b1b2ea3b01059f43e218b727e7fa3efb85de6579dd47171b4d95921844a"
+    },
+    "32bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/scrypt/1.4.2/php_scrypt-1.4.2-7.1-ts-vc14-x86.zip",
+      "hash": "69996b94fd8284035dc963cbe449454e96a10177764a20bceef99d3b4cd738d3"
+    }
+  },
+  "checkver": "scrypt/([\\d.]+)/windows",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/scrypt/$version/php_scrypt-$version-7.1-ts-vc14-x64.zip"
+      },
+      "32bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/scrypt/$version/php_scrypt-$version-7.1-ts-vc14-x86.zip"
+      }
+    }
+  },
+  "post_install": "iex(gc $bucketsdir\\$bucket\\bin\\postinstall.ps1 -Raw)",
+  "uninstaller": {
+    "file": "uninstall.ps1"
+  }
+}

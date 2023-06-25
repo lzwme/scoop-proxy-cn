@@ -1,0 +1,43 @@
+{
+  "version": "3.1.0",
+  "description": "TLS/SSL toolkit",
+  "homepage": "https://slproweb.com/products/Win32OpenSSL.html",
+  "license": {
+    "identifier": "OpenSSL|Freeware",
+    "url": "https://www.openssl.org/source/license-openssl-ssleay.txt"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://slproweb.com/download/Win64OpenSSL-3_1_0.exe",
+      "hash": "2bfda3e88f94852a378214f229aed822d2d98bd209e271325fa81063fbab322d"
+    },
+    "32bit": {
+      "url": "https://slproweb.com/download/Win32OpenSSL-3_1_0.exe",
+      "hash": "0e1e85810367ef0b8384c09e7a71895de91a8a714bc848d9b32ef5a73f832923"
+    }
+  },
+  "innosetup": true,
+  "bin": "bin\\openssl.exe",
+  "env_add_path": "bin",
+  "env_set": {
+    "OPENSSL_CONF": "$dir\\bin\\cnf\\openssl.cnf",
+    "OPENSSL_LIB_DIR": "$dir\\lib",
+    "OPENSSL_INCLUDE_DIR": "$dir\\include"
+  },
+  "checkver": "Win32 OpenSSL v([^\\s]+)",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://slproweb.com/download/Win64OpenSSL-$underscoreVersion.exe"
+      },
+      "32bit": {
+        "url": "https://slproweb.com/download/Win32OpenSSL-$underscoreVersion.exe"
+      }
+    },
+    "hash": {
+      "url": "https://ghproxy.net/https://raw.githubusercontent.com/slproweb/opensslhashes/master/win32_openssl_hashes.json",
+      "jsonpath": "$.files.['$basename'].sha256"
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

@@ -1,0 +1,28 @@
+{
+  "autoupdate": {
+    "hash": {
+      "regex": "MD5 Hash: +[\\w]{32}",
+      "url": "https://portableapps.com/apps/office/libreoffice_portable"
+    },
+    "url": "https://ftp.osuosl.org/pub/tdf/libreoffice/portable/$version/LibreOfficePortable_$version_MultilingualStandard.paf.exe"
+  },
+  "bin": "LibreOfficePortable.exe",
+  "checkver": {
+    "re": "Version \\s+([\\w\\.]* for Win",
+    "url": "https://portableapps.com/apps/office/libreoffice_portable"
+  },
+  "description": "Complete office suite",
+  "hash": "79b3fa6fc77e823864180d2319c331e02e6b535b92a99f975aec83db57f094fb",
+  "homepage": "https://portableapps.com/apps/office/libreoffice_portable",
+  "license": "",
+  "persist": "Data",
+  "post_install": "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
+  "shortcuts": [
+    [
+      "LibreOfficePortable.exe",
+      "LibreOfficePortable"
+    ]
+  ],
+  "url": "https://ftp.osuosl.org/pub/tdf/libreoffice/portable/7.4.5/LibreOfficePortable_7.4.5_MultilingualStandard.paf.exe",
+  "version": "7.4.5"
+}

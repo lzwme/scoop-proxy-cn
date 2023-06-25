@@ -1,0 +1,22 @@
+{
+  "version": "9.0.176",
+  "description": "Transformation grids for Manifold 9",
+  "homepage": "https://manifold.net/updates/download_9.shtml",
+  "license": "Proprietary",
+  "depends": "scoop-manifold/manifold-xtra",
+  "url": "https://manifold.net/files/grids.dat",
+  "hash": "06995736a007f0fa75f4bc5a80b8596f7a81e9b5d124ee92afd0502347314f5d",
+  "installer": {
+    "script": [
+      "$sharedDir = \"$(appdir 'manifold-xtra' $global)\\current\\shared\"",
+      "Copy-Item \"$dir\\*\" \"$sharedDir\\\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$sharedDir = \"$(appdir 'manifold-xtra' $global)\\current\\shared\"",
+      "$xtraPath = \"$sharedDir\\grids.dat\"",
+      "if (Test-Path $xtraPath) { Remove-Item $xtraPath }"
+    ]
+  }
+}

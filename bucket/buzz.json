@@ -1,0 +1,39 @@
+{
+  "version": "0.8.2",
+  "description": "Buzz transcribes and translates audio offline on your personal computer. Powered by OpenAI's Whisper.",
+  "homepage": "https://buzzcaptions.com/",
+  "license": "MIT license",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/chidiwilliams/buzz/releases/download/v0.8.2/Buzz-0.8.2-windows.exe",
+      "hash": "13dbbdf409656f67e7a30a89ce1f822006b841296fa0f89e264d7143a6cb6928"
+    }
+  },
+  "innosetup": true,
+  "installer": {
+    "script": [
+      "ensure \"$persist_dir\" | Out-Null",
+      "New-Item \"$env:LOCALAPPDATA\\Buzz\" -ItemType Junction -Target \"$persist_dir\" | Out-Null"
+    ]
+  },
+  "uninstaller": {
+    "script": "Remove-Item \"$env:LOCALAPPDATA\\Buzz\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
+  },
+  "shortcuts": [
+    [
+      "Buzz.exe",
+      "Buzz"
+    ]
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/chidiwilliams/buzz/releases",
+    "regex": "(?sm)browser_download_url.*?releases/download/v([\\d.]+)/Buzz-([\\d.]+)-windows\\.exe"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/chidiwilliams/buzz/releases/download/v$version/Buzz-$version-windows.exe"
+      }
+    }
+  }
+}

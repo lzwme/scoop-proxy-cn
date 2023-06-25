@@ -1,0 +1,30 @@
+{
+  "version": "0.3.0",
+  "description": "SMake (Make by S-expression)",
+  "homepage": "https://github.com/hymkor/smake",
+  "license": "MIT License",
+  "architecture": {
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/hymkor/smake/releases/download/v0.3.0/smake-v0.3.0-windows-386.zip",
+      "hash": "90032d961884c4676be95d3f22f21dd5accc8dd2b13f92e332366de14361c6df"
+    },
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/hymkor/smake/releases/download/v0.3.0/smake-v0.3.0-windows-amd64.zip",
+      "hash": "30e91782fa21bfd3f53459abe5f2c172df1ba4ffcb636838d4ce53965113c5c1"
+    }
+  },
+  "bin": [
+    "smake.exe"
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/hymkor/smake/releases/download/v$version/smake-v$version-windows-386.zip"
+      },
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/hymkor/smake/releases/download/v$version/smake-v$version-windows-amd64.zip"
+      }
+    }
+  }
+}

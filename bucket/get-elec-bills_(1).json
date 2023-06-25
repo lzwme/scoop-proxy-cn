@@ -1,0 +1,17 @@
+{
+  "homepage": "https://github.com/acdzh/winutils",
+  "description": "Get TCU charge bills.",
+  "version": "2020.02.13.083923",
+  "license": "WTFPL",
+  "url": "https://ghproxy.net/https://raw.githubusercontent.com/acdzh/winutils/b87497fa0b557cd62e9aad7454a0c9506e45c833/get-elec-bills/get-elec-bills.exe",
+  "hash": "2dd9e16903852ddc1563d9b1c127d4a0293f34ff3ddd5ad64842b8d2d844eef9",
+  "bin": "get-elec-bills.exe",
+  "checkver": {
+    "url": "https://github.com/acdzh/winutils",
+    "re": "get-elec-bills[\\S\\s]*?/(?<sha>[0-9a-f]{40})[\\S\\s]*?(\\d+)-(\\d+)-(\\d+)T(\\d+):(\\d+):(\\d+)Z",
+    "replace": "${1}.${2}.${3}.${4}${5}${6}"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://raw.githubusercontent.com/acdzh/winutils/$matchSha/get-elec-bills/get-elec-bills.exe"
+  }
+}

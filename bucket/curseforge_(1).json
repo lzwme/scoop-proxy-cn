@@ -1,0 +1,35 @@
+{
+  "version": "0.226.3-10512",
+  "description": "Download and manage your addons, CC and mods.",
+  "homepage": "https://download.curseforge.com",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://www.overwolf.com/legal/terms"
+  },
+  "url": "https://appsdl-overwolf-com.akamaized.net/prod/apps/cfiahnpaolfnlgaihhmobmnjdafknjnjdpdabpcm/0.226.3-10512/setup.exe#/dl.7z",
+  "hash": "sha512:919cc265ef8b4fa80205a67e12d7e85e55b8b79ff2de172490228484a5443cc89b220087b3d7f02f5ced06e19824e812966ba1c7bc1cf0933509274d7145e045",
+  "extract_dir": "$PLUGINSDIR",
+  "installer": {
+    "script": [
+      "Remove-Item \"$dir\\*\" -Exclude 'app-64.7z'",
+      "Expand-7zipArchive \"$dir\\app-64.7z\" \"$dir\" -Removal"
+    ]
+  },
+  "shortcuts": [
+    [
+      "CurseForge.exe",
+      "CurseForge"
+    ]
+  ],
+  "checkver": {
+    "url": "https://electron-updates.overwolf.com/electron-updates/electron/cfiahnpaolfnlgaihhmobmnjdafknjnjdpdabpcm/latest.yml",
+    "regex": "version:\\s*([\\d.-]+)"
+  },
+  "autoupdate": {
+    "url": "https://appsdl-overwolf-com.akamaized.net/prod/apps/cfiahnpaolfnlgaihhmobmnjdafknjnjdpdabpcm/$version/setup.exe#/dl.7z",
+    "hash": {
+      "url": "https://electron-updates.overwolf.com/electron-updates/electron/cfiahnpaolfnlgaihhmobmnjdafknjnjdpdabpcm/latest.yml",
+      "regex": "sha512:\\s*(.+)"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "version": "0.1.13",
+  "description": "Superfast Genshin Impact artifacts scanner.",
+  "homepage": "https://github.com/wormtql/yas",
+  "license": "Unknown",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/wormtql/yas/releases/download/v0.1.13/yas_v0.1.13.exe",
+      "hash": "54d4df2fdcc756a24edf603ccb64ebde3fc1201adde650d0584df248d7839d06"
+    }
+  },
+  "pre_install": "ren $dir\\yas_v$version.exe yas.exe",
+  "bin": "yas.exe",
+  "checkver": {
+    "github": "https://github.com/wormtql/yas"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/wormtql/yas/releases/download/v$version/yas_v$version.exe",
+    "hash": {
+      "mode": "download"
+    }
+  }
+}

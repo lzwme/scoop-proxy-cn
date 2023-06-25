@@ -1,0 +1,26 @@
+{
+  "homepage": "https://github.com/cplussharp/graph-studio-next",
+  "description": "A tool for developers to build and test DirectShow Graphs",
+  "license": {
+    "identifier": "GPL",
+    "url": "https://ghproxy.net/https://raw.githubusercontent.com/cplussharp/graph-studio-next/master/GPL.txt"
+  },
+  "version": "0.7.3",
+  "url": "https://ci.appveyor.com/api/projects/cplussharp/graph-studio-next/artifacts/bin/graphstudionext64.exe?job=Environment%3A%20CONFIGURATION%3DRelease%2C%20PLATFORM%3Dx64",
+  "hash": "36cda996b6b51e95dc03a32847f4400384482dd925dada8672aea0147c062328",
+  "bin": "graphstudionext64.exe",
+  "checkver": {
+    "url": "https://ghproxy.net/https://raw.githubusercontent.com/cplussharp/graph-studio-next/master/src/VersionNo.h",
+    "regex": "VERSION_MAJOR\\s+([0-9]+)[\\s\\S]+VERSION_MINOR\\s+([0-9]+)[\\s\\S]+VERSION_REVISION\\s+([0-9]+)",
+    "replace": "${1}.${2}.${3}"
+  },
+  "autoupdate": {
+    "url": "https://ci.appveyor.com/api/projects/cplussharp/graph-studio-next/artifacts/bin/graphstudionext64.exe?job=Environment%3A%20CONFIGURATION%3DRelease%2C%20PLATFORM%3Dx64"
+  },
+  "shortcuts": [
+    [
+      "graphstudionext64.exe",
+      "GraphStudioNext"
+    ]
+  ]
+}

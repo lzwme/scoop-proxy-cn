@@ -1,0 +1,22 @@
+{
+  "version": "3.5.6.0",
+  "description": "Splashtop Streamer",
+  "homepage": "https://www.splashtop.com/downloads#pers",
+  "url": "https://download.splashtop.com/win/Splashtop_Streamer_Win_INSTALLER_v3.5.6.0.exe#/setup.exe",
+  "hash": "29bcd474489a4c5e39bef34dd6c9c96af9e67c4b4dd9bd465d2d5675945ce18f",
+  "installer": {
+    "script": [
+      "Start-Process -Wait \"$dir\\setup.exe\" \"-s\" -Verb RunAs",
+      "Remove-Item \"$dir\\setup.exe\" -Force"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+      "$id_array = wmic product where \"name like 'Splashtop Streamer%'\" get IdentifyingNumber",
+      "if (!($id_array[2] -match '({[0-9A-F-]+})')) { error 'Could not find product ID'; break }",
+      "$id = $matches[1]",
+      "Invoke-ExternalCommand msiexec -ArgumentList @('/x', \"$id\", '/qn', '/norestart') -RunAs | Out-Null"
+    ]
+  }
+}

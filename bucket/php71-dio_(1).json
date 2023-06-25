@@ -1,0 +1,33 @@
+{
+  "homepage": "https://pecl.php.net/package/dio",
+  "version": "0.1.0",
+  "license": "http://www.php.net/license/3_01.txt",
+  "architecture": {
+    "64bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/dio/0.1.0/php_dio-0.1.0-7.1-ts-vc14-x64.zip",
+      "hash": "914b0c7c28c409d59153e3a54e35b2a284dcce558e58b0566909011734920810"
+    },
+    "32bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/dio/0.1.0/php_dio-0.1.0-7.1-ts-vc14-x86.zip",
+      "hash": "d3e654f0fadea70e19091169f9af3b6eb7f2e78aded2bcb5241791f30fa9f640"
+    }
+  },
+  "depends": [
+    "php"
+  ],
+  "post_install": "$phpconfd = \"$persist_dir\\..\\php\\cli\\conf.d\"; if((test-path $phpconfd)) { echo \"Enabling extension $(Convert-Path $phpconfd)\\dio.ini\"; echo \"extension=$dir\\php_dio.dll\" | sc \"$phpconfd\\dio.ini\"; echo \"Remove-Item '$(Convert-Path $phpconfd)\\dio.ini'\" | sc \"$dir\\uninstall.ps1\" } else { write-host -f yellow \"PHP was not installed through scoop, you have to activate php_dio.dll manually!\" }",
+  "checkver": "dio/([\\d.]+)/windows",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/dio/$version/php_dio-$version-7.1-ts-vc14-x64.zip"
+      },
+      "32bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/dio/$version/php_dio-$version-7.1-ts-vc14-x86.zip"
+      }
+    }
+  },
+  "uninstaller": {
+    "file": "uninstall.ps1"
+  }
+}

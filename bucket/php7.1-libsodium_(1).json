@@ -1,0 +1,30 @@
+{
+  "homepage": "https://pecl.php.net/package/libsodium",
+  "version": "2.0.10",
+  "license": "http://www.php.net/license/3_01.txt",
+  "architecture": {
+    "64bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/libsodium/2.0.10/php_libsodium-2.0.10-7.1-ts-vc14-x64.zip",
+      "hash": "97434627f6dede4c78d39d0ec6e5980a59a66a20b59a453d15f816201b1944a0"
+    },
+    "32bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/libsodium/2.0.10/php_libsodium-2.0.10-7.1-ts-vc14-x86.zip",
+      "hash": "de80e12109e440670aa775f3348880a4f8b2351b62da04e1e856af456592a9c0"
+    }
+  },
+  "checkver": "libsodium/([\\d.]+)/windows",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/libsodium/$version/php_libsodium-$version-7.1-ts-vc14-x64.zip"
+      },
+      "32bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/libsodium/$version/php_libsodium-$version-7.1-ts-vc14-x86.zip"
+      }
+    }
+  },
+  "post_install": "iex(gc $bucketsdir\\$bucket\\bin\\postinstall.ps1 -Raw)",
+  "uninstaller": {
+    "file": "uninstall.ps1"
+  }
+}

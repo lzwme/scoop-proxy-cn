@@ -1,0 +1,34 @@
+{
+  "version": "2020-07-22",
+  "description": "Generates an index (or tag) file of language objects found in source files for many popular programming languages.",
+  "homepage": "https://ctags.io",
+  "license": "GPL-2.0-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/universal-ctags/ctags-win32/releases/download/2020-07-22/631690ad/ctags-2020-07-22_631690ad-x64.zip",
+      "hash": "e464a3a78e32e7ee1bdae7c64884e1a7b18e55b7d789ee87479922ea1bdd0871"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/universal-ctags/ctags-win32/releases/download/2020-07-22/631690ad/ctags-2020-07-22_631690ad-x86.zip",
+      "hash": "19748b8797ab449f9d91258d3ce4c02871bee389c866d5eb5c36fcfdcc0c7601"
+    }
+  },
+  "bin": [
+    "ctags.exe",
+    "readtags.exe"
+  ],
+  "checkver": {
+    "github": "https://github.com/universal-ctags/ctags-win32",
+    "regex": "ctags-([\\d-]+)_(?<sha>[\\da-f]+)-x64"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/universal-ctags/ctags-win32/releases/download/$version/$matchSha/ctags-$version_$matchSha-x64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/universal-ctags/ctags-win32/releases/download/$version/$matchSha/ctags-$version_$matchSha-x86.zip"
+      }
+    }
+  }
+}

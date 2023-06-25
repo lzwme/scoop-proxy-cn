@@ -1,0 +1,24 @@
+{
+  "_comment": "Examples -> https://github.com/ScoopInstaller/Main/tree/master/bucket",
+  "version": "0.7.0",
+  "description": "Keep awake is a cli tool that can be used to keep your computer awake .",
+  "homepage": "https://github.com/mdpadberg/keep-awake",
+  "license": "AGPL-3.0 license",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/mdpadberg/keep-awake/releases/download/0.7.0/ka-0.7.0-x86_64-pc-windows-gnu.zip",
+      "hash": "d40eef7e9850900cb046c2a9084ab8bba3dd50337f5ff5fabb4be990549b567a"
+    }
+  },
+  "bin": "ka.exe",
+  "checkver": {
+    "github": "https://github.com/mdpadberg/keep-awake"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/mdpadberg/keep-awake/releases/download/$version/ka-$version-x86_64-pc-windows-gnu.zip"
+      }
+    }
+  }
+}

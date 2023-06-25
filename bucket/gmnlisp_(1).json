@@ -1,0 +1,33 @@
+{
+  "version": "0.2.1",
+  "description": "gmnlisp - the subset of ISLisp",
+  "homepage": "https://github.com/hymkor/gmnlisp",
+  "license": "MIT License",
+  "architecture": {
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/hymkor/gmnlisp/releases/download/v0.2.1/gmnlisp-v0.2.1-windows-386.zip",
+      "hash": "354b14fbb7a5d95c51892fb8499dabcc455a0466f6b3987fa6a00c6f53b9fa56"
+    },
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/hymkor/gmnlisp/releases/download/v0.2.1/gmnlisp-v0.2.1-windows-amd64.zip",
+      "hash": "956f1fc892ae8e6e0ab7c6d7a4ab03733ef206ea13b501776ec0856a48f5c788"
+    }
+  },
+  "bin": [
+    "gmnlisp.exe"
+  ],
+  "checkver": {
+    "github": "https://github.com/hymkor/gmnlisp",
+    "regex": "tag/([\\d\\._]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/hymkor/gmnlisp/releases/download/v$version/gmnlisp-v$version-windows-386.zip"
+      },
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/hymkor/gmnlisp/releases/download/v$version/gmnlisp-v$version-windows-amd64.zip"
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "architecture": {
+    "64bit": {
+      "extract_dir": "cmake-3.22.0-rc1-windows-x86_64",
+      "hash": "d25742917fdee361bf9759fe2e81602d95245e85f4b2b55bcb0faf42efb7b139",
+      "url": "https://cmake.org/files/v3.22/cmake-3.22.0-rc1-windows-x86_64.zip"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "extract_dir": "cmake-$version-windows-x86_64",
+        "url": "https://cmake.org/files/v$majorVersion.$minorVersion/cmake-$version-windows-x86_64.zip"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/cmake-$version-SHA-256.txt"
+    }
+  },
+  "checkver": {
+    "regex": "v([\\d.]+)-rc([\\d]+)",
+    "replace": "${1}-rc${2}",
+    "url": "https://gitlab.kitware.com/cmake/cmake/tags?sort=name_desc&format=atom"
+  },
+  "description": "An open-source, cross-platform family of tools designed to build, test and package software.",
+  "homepage": "https://cmake.org/",
+  "license": "BSD-3-Clause",
+  "shortcuts": [
+    [
+      "bin\\cmake-gui.exe",
+      "cmake-gui"
+    ]
+  ],
+  "version": "3.22.0-rc1"
+}

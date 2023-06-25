@@ -1,0 +1,34 @@
+{
+  "version": "nightly-20220806",
+  "description": "Cross-platform advanced subtitle editor, @AmusementClub internal fork.",
+  "homepage": "https://github.com/AmusementClub/Aegisub",
+  "license": "MIT, BDSL, MPL1.1",
+  "notes": [
+    "This is a portable version of Aegisub.",
+    "To use it, you can simply type 'aegisub' in the command line."
+  ],
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/AmusementClub/Aegisub/releases/download/nightly-20220806/aegisub-win64-cmake-GHA.zip",
+      "hash": "f5b7991b3d36f821a9bd042d2ad32991dd6989e6bdb5e180073dfc4dd67ecc98"
+    }
+  },
+  "extract_to": "",
+  "bin": [
+    [
+      "Aegisub.exe",
+      "aegisub"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/AmusementClub/Aegisub/tags",
+    "regex": "/releases/tag/((nightly)?(?:v|V)?([0-9]+.[0-9]+.[0-9]+)?-?([0-9A-Za-z]+)?)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/AmusementClub/Aegisub/releases/download/$version/aegisub-win64-cmake-GHA.zip"
+      }
+    }
+  }
+}

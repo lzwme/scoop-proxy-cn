@@ -1,0 +1,29 @@
+{
+  "version": "2.0.8",
+  "description": "Professional review software for VFX, animation, and film production",
+  "homepage": "https://darbyjohnston.github.io/djv",
+  "license": "BSD-3-Clause",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/darbyjohnston/DJV/releases/download/2.0.8/DJV-2.0.8-win64.zip",
+      "hash": "FE8732F822F8502A9A535D6692A241A0AD56890053DCB6990355BAD9EFA34DA5",
+      "extract_dir": "DJV-2.0.8-win64"
+    }
+  },
+  "bin": "bin/djv.exe",
+  "shortcuts": [
+    [
+      "bin/djv.exe",
+      "DJV"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/darbyjohnston/DJV"
+  },
+  "autoupdate": {
+    "architecture": {
+      "url": "https://ghproxy.net/https://github.com/darbyjohnston/DJV/releases/download/$version/DJV-$version-win64.zip",
+      "extract_dir": "DJV-$version-win64"
+    }
+  }
+}

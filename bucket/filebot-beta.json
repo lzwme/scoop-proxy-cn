@@ -1,0 +1,42 @@
+{
+  "version": "5.0.3-230625.0149",
+  "description": "Movies, TV Shows and Anime files organizer and renamer",
+  "homepage": "https://www.filebot.net/",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://www.filebot.net/eula.html"
+  },
+  "url": "https://get.filebot.net/filebot/BETA/FileBot_5.0.3-portable.zip",
+  "hash": "cf2e7b51d00ed390bc569d23f1766e2b88bc2eb6c3db50e55612f3791b8fda23",
+  "bin": "filebot.exe",
+  "shortcuts": [
+    [
+      "filebot.launcher.exe",
+      "FileBot"
+    ]
+  ],
+  "persist": "data",
+  "checkver": {
+    "regex": "(?<version>[\\w.]+)-(?<date>[\\w.]+)",
+    "replace": "${version}-${date}",
+    "script": [
+      "try {",
+      "    $url = 'https://get.filebot.net/filebot/BETA/'",
+      "    $response = Invoke-WebRequest -Uri $url",
+      "    $content = $response.Content",
+      "    $regex = 'FileBot_(?<version>[\\d.]+)-portable\\.zip'",
+      "    $versionRegex = '(?<date>\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2})'",
+      "    $fileMatch = [regex]::Match($content, $regex)",
+      "    $versionMatch = [regex]::Match($content, $versionRegex)",
+      "    $fileBotVersion = $fileMatch.Groups['version'].Value",
+      "    $timestamp = $versionMatch.Groups['date'].Value",
+      "    $versionNumber = [DateTime]::ParseExact($timestamp, 'yyyy-MM-dd HH:mm', $null).ToString('yyMMdd.HHmm')",
+      "    Write-Output \"$fileBotVersion-$versionNumber\"",
+      "}",
+      "catch { throw $_.Exception.Message }"
+    ]
+  },
+  "autoupdate": {
+    "url": "https://get.filebot.net/filebot/BETA/FileBot_$matchVersion-portable.zip"
+  }
+}

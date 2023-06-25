@@ -1,0 +1,35 @@
+{
+  "architecture": {
+    "32bit": {
+      "hash": "sha512:a2f776cfabcfbd4b9278198301d289ed1c56febd47259520c50b8b8d130a79d0ea99c857aec96865cc635ddf078fd575368c030ce11d61bb9991d296df87a4a7",
+      "url": "https://dotnetcli.blob.core.windows.net/dotnet/WindowsDesktop/7.0.5/windowsdesktop-runtime-7.0.5-win-x86.exe"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "hash": {
+          "regex": "value=\"$sha512\"",
+          "url": "https://dotnet.microsoft.com/download/dotnet/thank-you/runtime-desktop-$version-windows-x86-installer"
+        },
+        "url": "https://dotnetcli.blob.core.windows.net/dotnet/WindowsDesktop/$version/windowsdesktop-runtime-$version-win-x86.exe"
+      }
+    }
+  },
+  "checkver": {
+    "regex": "([\\d.]+)$",
+    "url": "https://dotnetcli.blob.core.windows.net/dotnet/WindowsDesktop/Current/latest.version"
+  },
+  "description": "Microsoft .NET 5.0 Desktop Runtime",
+  "homepage": "https://dotnet.microsoft.com/download/dotnet",
+  "installer": {
+    "script": "Invoke-ExternalCommand \"$dir\\$fname\" -ArgumentList '/install', '/quiet', '/norestart' -RunAs | Out-Null"
+  },
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://www.microsoft.com/en-us/legal/intellectualproperty/copyright/default.aspx"
+  },
+  "notes": "You can now remove this installer with 'scoop uninstall windowsdesktop-runtime-x86'",
+  "pre_install": "if (!(is_admin)) { error 'Admin privileges are required.'; break }",
+  "version": "7.0.5"
+}

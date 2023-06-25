@@ -1,0 +1,25 @@
+{
+  "version": "2.0.1",
+  "description": "Legit DLC Unlocker for Steamworks, Epic Online Services, and Ubisoft Connect",
+  "homepage": "https://cs.rin.ru/forum/viewtopic.php?f=10&t=112021",
+  "license": {
+    "identifier": "Unlicense",
+    "url": "https://ghproxy.net/https://raw.githubusercontent.com/acidicoala/Koalageddon2/master/UNLICENSE.txt"
+  },
+  "url": "https://ghproxy.net/https://github.com/acidicoala/Koalageddon2/releases/download/v2.0.1/Koalageddon-2.0.1.msi#/setup.msi_",
+  "hash": "793a6b5980872bc0c16c53ee550f860b90e8955fbbf2f0bd15734e05e9b4c3b8",
+  "pre_install": [
+    "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+    "Start-Process msiexec -ArgumentList @('/i', \"`\"$dir\\setup.msi_`\"\", '/qn', '/norestart') -Wait -Verb RunAs"
+  ],
+  "checkver": {
+    "github": "https://github.com/acidicoala/Koalageddon2"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/acidicoala/Koalageddon2/releases/download/v$version/Koalageddon-$version.msi#/setup.msi_"
+  },
+  "pre_uninstall": [
+    "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+    "Start-Process msiexec -ArgumentList @('/x', \"`\"$dir\\setup.msi_`\"\", '/qn', '/norestart') -Wait -Verb RunAs"
+  ]
+}

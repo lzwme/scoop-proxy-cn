@@ -1,0 +1,19 @@
+{
+  "description": "AdoptOpenJDK 11 with Eclipse OpenJ9 JVM, China USTC mirror",
+  "homepage": "https://adoptopenjdk.net",
+  "version": "11.0.11-9-0.26.0",
+  "license": "GPL-2.0-only WITH Classpath-exception-2.0,EPL-2.0",
+  "url": "https://mirrors.ustc.edu.cn/github-release/AdoptOpenJDK/openjdk11-binaries/jdk-11.0.11+9_openj9-0.26.0/OpenJDK11U-jdk_x64_windows_openj9_11.0.11_9_openj9-0.26.0.zip",
+  "hash": "e566e899150eee684e26282c341d91cda34417b3b579a26fa8ccd7fd3780e430",
+  "extract_dir": "jdk-11.0.11+9",
+  "checkver": {
+    "url": "https://api.adoptopenjdk.net/v3/assets/version/%5B8%2C%29?release_type=ga&lts=true&jvm_impl=openj9&heap_size=normal&os=windows&architecture=x64&image_type=jdk&project=jdk&vendor=adoptopenjdk&page_size=1&sort_order=DESC",
+    "jp": "$..binaries[0].package.link",
+    "re": "https://github.com/(?<url>.*?(?<tag>jdk-(?<major>(?<jdk>[\\d]+)[\\d.]+)(?:\\%2B|\\+)(?<build>[\\d]+)(?<patch>[\\d.]*)(?:(?<oj>_openj9?)(?<jvmver>-[\\d.]+))?)/.*?).zip",
+    "replace": "${major}-${build}${patch}${jvmver}"
+  },
+  "autoupdate": {
+    "url": "https://mirrors.ustc.edu.cn/github-release/AdoptOpenJDK/openjdk11-binaries/jdk-$matchMajor+$matchBuild_openj9$matchJvmver/OpenJDK11U-jdk_x64_windows_openj9_$matchMajor_$matchBuild_openj9$matchJvmver.zip",
+    "extract_dir": "jdk-$matchMajor+$matchBuild"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "version": "0.4.5",
+  "description": "A lightweight alternative to elasticsearch that requires minimal resources, written in Go.",
+  "homepage": "https://docs.zinclabs.io/",
+  "license": "Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/prabhatsharma/zinc/releases/download/v0.4.5/zincsearch_0.4.5_Windows_x86_64.tar.gz",
+      "hash": "fce11b74a4ee164dc65b73071085a51d9b6f5604c46252ec2ca295b8d98a9470"
+    },
+    "arm64": {
+      "url": "https://ghproxy.net/https://github.com/prabhatsharma/zinc/releases/download/v0.4.5/zincsearch_0.4.5_Windows_arm64.tar.gz",
+      "hash": "5c14097f091e5c39d98f8715dc01486a1c156260d0f53db78ec3296768579846"
+    }
+  },
+  "bin": "zincsearch.exe",
+  "persist": "data",
+  "env_set": {
+    "ZINC_DATA_PATH": "$dir\\data"
+  },
+  "notes": [
+    "You would need ZINC_FIRST_ADMIN_USER and ZINC_FIRST_ADMIN_PASSWORD environment variables when you start zinc for the first time.",
+    "You don't need them on subsequent runs of zinc.",
+    "-----",
+    "$env:ZINC_FIRST_ADMIN_USER=\"admin\"",
+    "$env:ZINC_FIRST_ADMIN_PASSWORD=\"Complexpass#123\"",
+    "zincsearch.exe",
+    "-----",
+    "Now point your browser to http://localhost:4080 and login."
+  ],
+  "checkver": {
+    "github": "https://github.com/zincsearch/zincsearch"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/prabhatsharma/zinc/releases/download/v$version/zincsearch_$version_Windows_x86_64.tar.gz"
+      },
+      "arm64": {
+        "url": "https://ghproxy.net/https://github.com/prabhatsharma/zinc/releases/download/v$version/zincsearch_$version_Windows_arm64.tar.gz"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/checksums.txt"
+    }
+  }
+}

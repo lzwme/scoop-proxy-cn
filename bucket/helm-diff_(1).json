@@ -1,0 +1,26 @@
+{
+  "version": "3.8.1",
+  "homepage": "https://github.com/databus23/helm-diff",
+  "description": "A helm plugin that shows a diff explaining what a helm upgrade would change",
+  "license": "Apache-2.0",
+  "depends": "helm",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/databus23/helm-diff/releases/download/v3.8.1/helm-diff-windows-amd64.tgz",
+      "hash": "193437cca97d3ea19952f22a709380b4decd27a303d22a0c75dd564abc17e6b0"
+    }
+  },
+  "extract_dir": "diff",
+  "post_install": "New-Item -ItemType Junction -Path (Join-Path (helm env HELM_PLUGINS) 'helm-diff') -Target $dir -Force | Out-Null",
+  "uninstaller": {
+    "script": "Remove-Item -Path (Join-Path (helm env HELM_PLUGINS) 'helm-diff') -Recurse -Force | Out-Null"
+  },
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/databus23/helm-diff/releases/download/v$version/helm-diff-windows-amd64.tgz"
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "homepage": "https://github.com/mzyy94/RictyDiminished-for-Powerline",
+  "license": "SIL Open Font License (OFL) Version 1.1",
+  "version": "3.2.4",
+  "url": "https://ghproxy.net/https://github.com/mzyy94/RictyDiminished-for-Powerline/archive/refs/heads/master.zip",
+  "hash": "df22959c7e25e48921f0027380feb0e614857342a59fcdfea2a606abde468295",
+  "extract_dir": "RictyDiminished-for-Powerline-master",
+  "installer": {
+    "script": [
+      "Get-ChildItem $dir\\powerline-fontpatched -filter '*.ttf' | ForEach-Object {",
+      "   $fontdir = \"$env:LocalAppData\\Microsoft\\Windows\\Fonts\"",
+      "   New-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value \"$fontdir\\$($_.Name)\" -Force | Out-Null",
+      "   Copy-Item $_.Fullname -destination \"$fontdir\"",
+      "}"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Get-ChildItem $dir\\powerline-fontpatched -filter '*.ttf' | ForEach-Object {",
+      "   $fontdir = \"$env:LocalAppData\\Microsoft\\Windows\\Fonts\"",
+      "   Remove-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
+      "   Remove-Item \"$fontdir\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
+      "}"
+    ]
+  }
+}

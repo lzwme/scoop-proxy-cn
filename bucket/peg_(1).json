@@ -1,0 +1,22 @@
+{
+  "version": "0.9",
+  "description": "The keyboard flashing solution you've always wanted.",
+  "homepage": "https://getpeg.xyz",
+  "license": "Proprietary",
+  "url": "https://getpeg.xyz/api/peg.exe#/dl.7z",
+  "hash": "4681573da2605e9f450c3d1db630ed22cb7930f1340117fef047ffb0a197d80f",
+  "architecture": {
+    "64bit": {
+      "pre_install": [
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+        "Remove-Item \"$dir\\`$*\", \"$dir\\Uninstall*\" -Recurse"
+      ]
+    }
+  },
+  "shortcuts": [
+    [
+      "Peg.exe",
+      "Peg"
+    ]
+  ]
+}

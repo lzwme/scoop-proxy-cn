@@ -1,0 +1,30 @@
+{
+  "autoupdate": {
+    "url": "https://mirrors.sdu.edu.cn/github-release/M2Team_NanaZip/$matchTag/40174MouriNaruto.NanaZip_$version_gnj4mf6z9tkrc.msixbundle"
+  },
+  "checkver": {
+    "regex": "releases/download/(?<tag>[\\w-.]+)/40174MouriNaruto.NanaZip_([\\d.]+)_gnj4mf6z9tkrc.msixbundle",
+    "url": "https://api.github.com/repos/M2Team/NanaZip/releases"
+  },
+  "description": "NanaZip is an open source file archiver, forked from the source code of well-known file archiver 7-Zip(Download from SDU mirror).",
+  "hash": "2bee289d9e026255073ddcee8082e8d0ad8496b9fe9fe8f8a29080a81a95872e",
+  "homepage": "https://github.com/M2Team/NanaZip",
+  "installer": {
+    "script": [
+      "if($PSVersionTable.PSVersion.Major -ge 6) { Import-Module Appx -UseWindowsPowershell | Out-Null }",
+      "Add-AppxPackage -Path \"$dir\\$fname\""
+    ]
+  },
+  "license": {
+    "identifier": "Freeware"
+  },
+  "uninstaller": {
+    "script": [
+      "taskkill /F /IM NanaZip.exe /FI \"status eq running\" | Out-Null",
+      "if($PSVersionTable.PSVersion.Major -ge 6) { Import-Module Appx -UseWindowsPowershell | Out-Null }",
+      "Get-AppxPackage '40174MouriNaruto.NanaZip' | Remove-AppxPackage"
+    ]
+  },
+  "url": "https://mirrors.sdu.edu.cn/github-release/M2Team_NanaZip/2.0.450/40174MouriNaruto.NanaZip_2.0.450.0_gnj4mf6z9tkrc.msixbundle",
+  "version": "2.0.450.0"
+}

@@ -1,0 +1,22 @@
+{
+  "homepage": "https://rime.im/",
+  "license": "GPL-3.0-or-later",
+  "version": "0.14.3.91",
+  "url": "https://ghproxy.net/https://github.com/fxliang/weasel/releases/download/0.14.3_dev_0.91/weasel-0.14.3.91-installer.exe#/dl.7z",
+  "hash": "bd88e8dbaea53a3bf51b154b310183230e9796d2f5ff53af92e3276585582ea7",
+  "installer": {
+    "script": [
+      "& \"$dir\\WeaselSetup.exe\" /i",
+      "& \"$dir\\WeaselDeployer.exe\" /install",
+      "& \"$dir\\WeaselServer.exe\""
+    ]
+  },
+  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\" -Recurse",
+  "uninstaller": "\"$dir\\uninstall.exe\"",
+  "checkver": {
+    "url": "https://github.com/fxliang/weasel"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/fxliang/weasel/releases/download/$matchHead/weasel-$version-installer.exe#/dl.7z"
+  }
+}

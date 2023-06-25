@@ -1,0 +1,24 @@
+{
+  "version": "8.7",
+  "description": "Safely compacts the size of the ever-growing WSL vhdx images.",
+  "homepage": "https://github.com/okibcn/wslcompact",
+  "license": "GPL-3.0-only",
+  "notes": [
+    "Type wslcompact -h before using it for the first time to learn how it works.",
+    "Visit https://github.com/okibcn/wslcompact for more information."
+  ],
+  "url": "https://ghproxy.net/https://github.com/okibcn/wslcompact/releases/download/8.7/WslCompact-v8.7.zip",
+  "hash": "003d53c78cf7d5fd9f102048de400eda37f406856a0d14df5ea9a72e79b3d2c2",
+  "bin": "wslcompact.ps1",
+  "pre_install": [
+    "(get-content \"$dir/wslcompact/WslCompact.psm1\") -replace '^Export.*', 'WslCompact @args' | Set-Content \"$dir/wslcompact.ps1\"",
+    "Remove-Item \"$dir/wslcompact\" -Recurse -Force"
+  ],
+  "checkver": {
+    "github": "https://api.github.com/repos/okibcn/wslcompact",
+    "regex": "v([\\d\\.\\-]+)\\.zip"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/okibcn/wslcompact/releases/download/$version/WslCompact-v$version.zip"
+  }
+}

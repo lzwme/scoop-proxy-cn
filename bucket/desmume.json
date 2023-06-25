@@ -1,27 +1,23 @@
 {
-  "version": "1207",
+  "version": "ba83b68",
   "description": "Nintendo DS emulator",
   "homepage": "https://desmume.org",
   "license": {
-    "url": "https://github.com/TASEmulators/desmume/blob/master/license.txt",
-    "identifier": "GPL-2.0"
+    "identifier": "GPL-2.0",
+    "url": "https://github.com/TASEmulators/desmume/blob/master/license.txt"
   },
-  "architecture": {
-    "64bit": {
-      "url": "https://nightly.link/TASEmulators/desmume/actions/runs/5339282924/desmume-win-x64.zip",
-      "hash": "ae09e34bf79f4dfc28630c203e783e2ef7244766954fe164fd26a693d21a9be5",
-      "bin": [
-        [
-          "DeSmuME-VS2019-x64-Release.exe",
-          "DeSmuME"
-        ]
-      ]
-    }
-  },
+  "url": "https://nightly.link/TASEmulators/desmume/workflows/build_win/master/desmume-win-x64.zip",
+  "hash": "6a9f952fb520d13de6b9039b6f3d025aa03d32c97553aa4da86930e8637d28e8",
   "pre_install": [
     "if (!(Test-Path \"$persist_dir\\desmume.ini\")) {",
     "    New-Item \"$dir\\desmume.ini\" -Type File | Out-Null",
     "}"
+  ],
+  "bin": [
+    [
+      "DeSmuME-VS2019-x64-Release.exe",
+      "DeSmuME"
+    ]
   ],
   "shortcuts": [
     [
@@ -43,14 +39,10 @@
     "desmume.ini"
   ],
   "checkver": {
-    "url": "https://nightly.link/TASEmulators/desmume/workflows/build_win/master/desmume-win-x64",
-    "regex": "(?smi)runs/(?<run>\\d+)/desmume-win-x64\\.zip.*pipelines/[\\d]+/runs/([\\d]+)/"
+    "url": "https://github.com/TASEmulators/desmume/actions/workflows/build_win.yml?query=branch%3Amaster+is%3Asuccess",
+    "regex": "([a-f0-9]{7})<"
   },
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://nightly.link/TASEmulators/desmume/actions/runs/$matchRun/desmume-win-x64.zip"
-      }
-    }
+    "url": "https://nightly.link/TASEmulators/desmume/workflows/build_win/master/desmume-win-x64.zip"
   }
 }

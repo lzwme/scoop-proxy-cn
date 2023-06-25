@@ -1,0 +1,46 @@
+{
+  "homepage": "https://www.7-zip.org/",
+  "description": "A multi-format file archiver with high compression ratios",
+  "license": {
+    "identifier": "Freeware,LGPL-2.0-only,BSD-3-Clause",
+    "url": "https://www.7-zip.org/license.txt"
+  },
+  "version": "21.02",
+  "architecture": {
+    "64bit": {
+      "url": "https://7-zip.org/a/7z2102-x64.exe",
+      "hash": "4ed310c3a54e28d98f4500987da5391fc1ffa1c62301b96482e693c3ce76b741"
+    }
+  },
+  "bin": [
+    "7z.exe",
+    "7zFM.exe",
+    "7zG.exe"
+  ],
+  "installer": {
+    "args": [
+      "/S",
+      "/D=$dir"
+    ]
+  },
+  "checkver": {
+    "url": "https://www.7-zip.org/history.txt",
+    "regex": "\\n([\\d.]+) alpha"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://7-zip.org/a/7z$cleanVersion-x64.exe"
+      },
+      "32bit": {
+        "url": "https://7-zip.org/a/7z$cleanVersion.exe"
+      }
+    }
+  },
+  "shortcuts": [
+    [
+      "7zFM.exe",
+      "7-Zip"
+    ]
+  ]
+}

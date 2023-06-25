@@ -1,0 +1,35 @@
+{
+  "version": "0.7.0",
+  "architecture": {
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/lunush/rates/releases/download/0.7.0/rates-0.7.0-i686-pc-windows-msvc.zip",
+      "hash": "0a4eb1d5fb8beb97cef311984ccd34873aba5e748d92b4bdf42d459dce082b87",
+      "extract_dir": "rates-0.7.0-i686-pc-windows-msvc",
+      "bin": "rates.exe"
+    },
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/lunush/rates/releases/download/0.7.0/rates-0.7.0-x86_64-pc-windows-msvc.zip",
+      "hash": "526e6c035b7d73d12260fee898d73a4e78012013184efbd7e2f072498136198e",
+      "extract_dir": "rates-0.7.0-x86_64-pc-windows-msvc",
+      "bin": "rates.exe"
+    }
+  },
+  "homepage": "https://rates.rs",
+  "checkver": {
+    "github": "https://github.com/lunush/rates"
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/lunush/rates/releases/download/$version/rates-$version-i686-pc-windows-msvc.zip",
+        "extract_dir": "rates-$version-i686-pc-windows-msvc"
+      },
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/lunush/rates/releases/download/$version/rates-$version-x86_64-pc-windows-msvc.zip",
+        "extract_dir": "rates-$version-x86_64-pc-windows-msvc"
+      }
+    }
+  },
+  "license": "MIT",
+  "description": "Currency exchange rates in your terminal"
+}

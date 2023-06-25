@@ -1,0 +1,50 @@
+{
+  "version": "8.9.6.9",
+  "homepage": "https://imageglass.org",
+  "description": "ImageGlass. A lightweight, versatile image viewer",
+  "license": "GPL-3.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/d2phap/ImageGlass/releases/download/8.9.6.9/ImageGlass_Kobe_8.9.6.9_x64.zip",
+      "hash": "63c24add7ec21cd085ebeb520f6f544fda84d4a635f1bf0026b25b5dfcf4763b",
+      "extract_dir": "ImageGlass_Kobe_8.9.6.9_x64"
+    }
+  },
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\igconfig.xml\")) {",
+    "    Add-Content \"$dir\\igconfig.xml\" '<ImageGlass><Configuration><Info/><Content><Item key=\"AutoUpdate\" value=\"0\" /></Content></Configuration></ImageGlass>' -Encoding Ascii",
+    "}"
+  ],
+  "bin": [
+    "ImageGlass.exe",
+    "igcmd.exe",
+    "igcmdWin10.exe",
+    "igtasks.exe"
+  ],
+  "shortcuts": [
+    [
+      "ImageGlass.exe",
+      "ImageGlass"
+    ]
+  ],
+  "persist": [
+    "Themes",
+    "igconfig.xml"
+  ],
+  "checkver": {
+    "github": "https://github.com/d2phap/ImageGlass/"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/d2phap/ImageGlass/releases/download/$version/ImageGlass_Kobe_$version_x64.zip",
+        "hash": {
+          "url": "https://imageglass.org/download",
+          "regex": "(?sm)Download portable x64 version.*?$sha1"
+        },
+        "extract_dir": "ImageGlass_Kobe_$version_x64"
+      }
+    }
+  },
+  "notes": "If this app doesn't work maybe you need to clean '$dir\\igconfig.xml'."
+}

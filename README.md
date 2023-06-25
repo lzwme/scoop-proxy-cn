@@ -101,7 +101,6 @@ scoop-search act
 - [hu3rror/scoop-muggle](https://github.com/hu3rror/scoop-muggle)
 - [starise/Scoop-Confetti](https://github.com/starise/Scoop-Confetti)
 - [jingyu9575/scoop-jingyu9575](https://github.com/jingyu9575/scoop-jingyu9575)
-- [anderlli0053/DEV-tools](https://github.com/anderlli0053/DEV-tools)
 - [okibcn/ScoopMaster](https://github.com/okibcn/ScoopMaster)
 
 ## 声明

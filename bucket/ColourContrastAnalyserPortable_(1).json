@@ -1,0 +1,28 @@
+{
+  "autoupdate": {
+    "hash": {
+      "regex": "MD5 Hash: +[\\w]{32}",
+      "url": "https://portableapps.com/apps/utilities/colour-contrast-analyser-portable"
+    },
+    "url": "https://downloads.sourceforge.net/portableapps/ColourContrastAnalyserPortable_$version.paf.exe"
+  },
+  "bin": "ColourContrastAnalyserPortable.exe",
+  "checkver": {
+    "re": "Version \\s+([\\w\\.]* for Win",
+    "url": "https://portableapps.com/apps/utilities/colour-contrast-analyser-portable"
+  },
+  "description": "Analyze color contrast & readability",
+  "hash": "de2b277601841d9222c65658447cbcb8b67459aee70c4a1fd614fa59d083777d",
+  "homepage": "https://portableapps.com/apps/utilities/colour-contrast-analyser-portable",
+  "license": "",
+  "persist": "Data",
+  "post_install": "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
+  "shortcuts": [
+    [
+      "ColourContrastAnalyserPortable.exe",
+      "ColourContrastAnalyserPortable"
+    ]
+  ],
+  "url": "https://downloads.sourceforge.net/portableapps/ColourContrastAnalyserPortable_3.2.0.paf.exe",
+  "version": "3.2.0"
+}

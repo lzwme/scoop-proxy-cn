@@ -1,0 +1,16 @@
+{
+  "homepage": "https://www.natfrp.com",
+  "version": "2300",
+  "license": "Apache-2.0",
+  "url": "https://cdn.tcotp.cn:4443/client/Sakura_frpc_windows_amd64.exe",
+  "hash": "f6093eee96013902e1a4520dd10de6565a6ec1f4ab02cab864698cb9df41aff2",
+  "bin": [
+    "sakura_frpc.exe"
+  ],
+  "pre_install": [
+    "Get-ChildItem \"$dir\\Sakura_frpc_windows_amd64.exe\" | Rename-Item -NewName \"$dir\\sakura_frpc.exe\""
+  ],
+  "comments": [
+    "sakura_frpc --su=账号 --sp=密码 --sid=服务器ID"
+  ]
+}

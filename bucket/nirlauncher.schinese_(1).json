@@ -1,0 +1,26 @@
+{
+  "version": "1.30.2",
+  "description": "Most of NirSoft utilities are translated to other languages by volunteers from around the world. In the following section, you can download all translations of the desired language in one zip file, and extract them into NirSoft folder with all other utilities. After you do that, you'll be able to use the utilities of NirSoft in your preferred language, as long as there is a translation file for the utility that you use.",
+  "homepage": "https://launcher.nirsoft.net/",
+  "license": "Freeware",
+  "url": "https://download.nirsoft.net/nirsoft_package_schinese.zip",
+  "hash": "e92ea1296177b98a3c5e1a912a151ec31c80dcfd9af8f957c4aff1b19bba1c15",
+  "depends": "nirlauncher",
+  "post_install": [
+    "Copy-Item -Path \"$dir\\*_lng.ini\" -Destination \"$(appdir nirlauncher $global)\\current\\NirSoft\"",
+    "Copy-Item -Path \"$dir\\*_lng.ini\" -Destination \"$(appdir nirlauncher $global)\\current\\NirSoft\\x64\""
+  ],
+  "uninstaller": {
+    "script": [
+      "Remove-Item -Path \"$(appdir nirlauncher $global)\\current\\NirSoft\\*_lng.ini\" -Force",
+      "Remove-Item -Path \"$(appdir nirlauncher $global)\\current\\NirSoft\\x64\\*_lng.ini\" -Force"
+    ]
+  },
+  "checkver": {
+    "url": "https://launcher.nirsoft.net/downloads/index.html",
+    "regex": "nirsoft_package_enc_([\\d.]+)\\.zip"
+  },
+  "autoupdate": {
+    "url": "https://download.nirsoft.net/nirsoft_package_schinese.zip"
+  }
+}

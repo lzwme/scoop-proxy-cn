@@ -1,0 +1,29 @@
+{
+  "version": "1.7.0",
+  "description": "A flexible lightweight multi-language test report tool",
+  "homepage": "https://github.com/EvilBeaver/OneScript",
+  "license": "Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://oscript.io/downloads/latest/x64/OneScript-1.7.0-x64.zip"
+    },
+    "32bit": {
+      "url": "https://oscript.io/downloads/latest/OneScript-1.7.0-x86.zip"
+    }
+  },
+  "env_add_path": "bin",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/EvilBeaver/OneScript/releases/download/v$version/OneScript-$version_x86.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/EvilBeaver/OneScript/releases/download/v$version/OneScript-$version_x64.zip"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/checksums.txt"
+    }
+  }
+}

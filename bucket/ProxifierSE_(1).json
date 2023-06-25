@@ -1,0 +1,28 @@
+{
+  "homepage": "http://www.proxifier.com",
+  "description": "The Most Advanced Proxy Client",
+  "version": "4.05",
+  "license": "© 2002–2020 Initex. All rights reserved.",
+  "url": "http://www.proxifier.com/download/ProxifierSetup.exe#/ProxifierSetup-Install.exe",
+  "hash": "f62aabdd02cda18fb1e3d1b89379f91ae7e89a12ee156c23897d43c7375c95aa",
+  "installer": {
+    "script": [
+      "Start-Process -Wait $dir\\ProxifierSetup-Install.exe /i",
+      "Remove-Item \"$dir\\ProxifierSetup-Install.exe\" -Recurse -Force"
+    ],
+    "keep": true
+  },
+  "shortcuts": [
+    [
+      "Proxifier\\Proxifier.exe",
+      "Proxifier"
+    ]
+  ],
+  "checkver": {
+    "url": "http://www.proxifier.com/download/",
+    "regex": "<div class=\"download-item__info\"><div class=\"download-item__head\">Proxifier Standard Edition v4</div><div class=\"download-item__description\"><p>Version: <a href=\"../new\">([\\d.]+)</a>"
+  },
+  "autoupdate": {
+    "url": "http://www.proxifier.com/download/ProxifierSetup.exe#/ProxifierSetup-Install.exe"
+  }
+}

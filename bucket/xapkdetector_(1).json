@@ -1,0 +1,38 @@
+{
+  "homepage": "https://github.com/horsicq/XAPKDetector/",
+  "version": "0.03",
+  "description": "APK/DEX detector for Windows, Linux and MacOS.",
+  "license": "MIT License",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/horsicq/XAPKDetector/releases/download/0.03/xapkdetector_win64_portable_0.03.zip",
+      "hash": "6467cb9cb76b730336552c23fe40846e83e18d0a1c25abcebfd01ea04216f458"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/horsicq/XAPKDetector/releases/download/0.03/xapkdetector_win32_portable_0.03.zip",
+      "hash": "ae6e513859e07972402c3028a85d18069bc83e4756a65f0daa9511a75067e279"
+    }
+  },
+  "pre_install": "if(!(Test-Path \"$persist_dir\\xapkd.ini\")) {New-Item \"$dir\\xapkd.ini\" | Out-Null}",
+  "shortcuts": [
+    [
+      "xapkd.exe",
+      "XAPKDetector"
+    ]
+  ],
+  "bin": "xapkdc.exe",
+  "persist": "xapkd.ini",
+  "checkver": {
+    "github": "https://github.com/horsicq/XAPKDetector/"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/horsicq/XAPKDetector/releases/download/$version/xapkdetector_win64_portable_$version.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/horsicq/XAPKDetector/releases/download/$version/xapkdetector_win32_portable_$version.zip"
+      }
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "homepage": "https://www.mythicsoft.com/agentransack/",
+  "license": "unknown",
+  "version": "3389",
+  "architecture": {
+    "64bit": {
+      "url": "https://download.mythicsoft.com/flp/3389/agentransack_inx64_3389.exe",
+      "hash": "99fbf087abc484e61c977fc243500a56ec4d4aa2b5dd918231990dffb41242f9"
+    },
+    "32bit": {
+      "url": "https://download.mythicsoft.com/flp/3389/agentransack_in_3389.exe",
+      "hash": "6feea21516fda4cb3bbdc42a3a6ae09e1eb9a3167a027cf609892ee210c99ddc"
+    }
+  },
+  "innosetup": true,
+  "bin": [
+    "AgentRansack.exe",
+    "flpsearch.exe"
+  ],
+  "shortcuts": [
+    [
+      "AgentRansack.exe",
+      "Agent Ransack"
+    ]
+  ],
+  "persist": [
+    "config\\config.xml",
+    "config\\flpui.xml",
+    "config\\history.xml",
+    "regkey.xml"
+  ],
+  "checkver": {
+    "url": "https://www.mythicsoft.com/agentransack/download/",
+    "regex": "Build ([\\d.]+)</a>"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://download.mythicsoft.com/flp/$version/agentransack_inx64_$version.exe"
+      },
+      "32bit": {
+        "url": "https://download.mythicsoft.com/flp/$version/agentransack_in_$version.exe"
+      }
+    }
+  }
+}

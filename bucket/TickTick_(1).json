@@ -1,0 +1,38 @@
+{
+  "version": "4.5.0.8",
+  "description": "Your wonderful to-do & task list to make all things done and get life well organized.",
+  "homepage": "https://ticktick.com/home",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ticktick.com/static/getApp/download?type=win64",
+      "hash": "25a01ebe497faa99520b3f1758e7331d7eaaf9aa996b1737fd500f54227d934f"
+    },
+    "32bit": {
+      "url": "https://ticktick.com/static/getApp/download?type=win",
+      "hash": "c8067ed543d841a8a5f1b17b1d1e6495bfb574f526964934fb8f96bed336cb70"
+    }
+  },
+  "shortcuts": [
+    [
+      "TickTick.exe",
+      "TickTick"
+    ]
+  ],
+  "persist": "TickTick.exe.config",
+  "checkver": {
+    "url": "https://gist.github.com/qyurila/f85676b9caeb1917d0f3eecfa2d5fcc0",
+    "regex": "ticktick: ([\\.\\d]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ticktick.com/static/getApp/download?type=win64"
+      },
+      "32bit": {
+        "url": "https://ticktick.com/static/getApp/download?type=win"
+      }
+    }
+  },
+  "innosetup": true
+}

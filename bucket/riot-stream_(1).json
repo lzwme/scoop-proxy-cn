@@ -1,0 +1,27 @@
+{
+  "homepage": "https://developer.redis.com/riot",
+  "description": "Redis Input/Output Tools",
+  "version": "2.18.4",
+  "license": "Apache-2.0",
+  "url": "https://ghproxy.net/https://github.com/redis-developer/riot/releases/download/v2.18.4/riot-stream-2.18.4.zip",
+  "hash": "sha256:0ca52f6e4d803c615befcbf0ef8c3ce472a47f894e808d33465460959f4e336b",
+  "extract_dir": "riot-stream-2.18.4",
+  "env_add_path": "bin",
+  "suggest": {
+    "JDK": [
+      "java/oraclejdk",
+      "java/openjdk"
+    ]
+  },
+  "checkver": {
+    "url": "https://github.com/redis-developer/riot/releases/latest",
+    "re": "v([\\d.]+).zip"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/redis-developer/riot/releases/download/v$version/riot-stream-$version.zip",
+    "extract_dir": "riot-stream-$version",
+    "hash": {
+      "url": "$url.sha256"
+    }
+  }
+}

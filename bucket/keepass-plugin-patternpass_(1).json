@@ -1,0 +1,19 @@
+{
+  "version": "1.0",
+  "description": "A KeePass plugin that allows storage and viewing of pattern-based passwords (like the Android lock-screen). ",
+  "homepage": "https://github.com/zedseven/PatternPass",
+  "license": "MIT",
+  "depends": "extras/keepass",
+  "url": "https://ghproxy.net/https://github.com/zedseven/PatternPass/releases/download/v1.0/PatternPass.plgx",
+  "hash": "3c605d569493b1277ef2caf70a9181a5fc574c12ef2ef62936a0d61ad5b7649d",
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/zedseven/PatternPass/releases/download/$version/PatternPass.plgx"
+  },
+  "installer": {
+    "script": "Copy-Item \"$dir\\PatternPass.plgx\" \"$(appdir keepass $global)\\current\\Plugins\""
+  },
+  "uninstaller": {
+    "script": "Remove-Item \"$(appdir keepass $global)\\current\\Plugins\\PatternPass.plgx\""
+  }
+}

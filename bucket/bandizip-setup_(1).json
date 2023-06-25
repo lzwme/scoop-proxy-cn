@@ -1,0 +1,57 @@
+{
+  "version": "7.30",
+  "description": "Yet another typical ZIP archiver",
+  "homepage": "http://www.bandisoft.com/bandizip/",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://en.bandisoft.com/bandizip/eula/"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://dl.bandisoft.com/bandizip.std/BANDIZIP-SETUP-STD-X64.EXE#dl.7z",
+      "hash": "c19d053bff6d4ce60d3aaa997ccd30e3881a1878a437b20bed967833b1358509",
+      "pre_install": "Rename-Item \"$dir\\Bandizip.x64.exe\" 'Bandizip.exe'"
+    },
+    "32bit": {
+      "url": "https://dl.bandisoft.com/bandizip.std/BANDIZIP-SETUP-STD-ALL.EXE",
+      "hash": "6ea0803b2a16f10705834a4149b4eed268f1459613ae8c96b5078aa71bab580d",
+      "pre_install": "Rename-Item \"$dir\\Bandizip.x86.exe\" 'Bandizip.exe'"
+    }
+  },
+  "installer": {
+    "script": [
+      "Get-ChildItem \"$dir\\Bandizip.x*.exe\" | Remove-Item",
+      "if (!(Test-Path \"$persist_dir\\Bandizip.ini\")) { New-Item \"$dir\\Bandizip.ini\" | Out-Null }"
+    ]
+  },
+  "post_install": [
+    "if ((Get-CimInstance Win32_OperatingSystem).Version -ge '10.0.22000'){",
+    "    Start-Process -FilePath \"$dir\\data\\RegPackage.x86.exe\" -ArgumentList '/reg \"$dir\\data\\bzshell.x64.msix\"' -Wait",
+    "}"
+  ],
+  "bin": "Bandizip.exe",
+  "shortcuts": [
+    [
+      "Bandizip.exe",
+      "Bandizip"
+    ]
+  ],
+  "persist": "Bandizip.ini",
+  "checkver": {
+    "url": "https://en.bandisoft.com/bandizip/history/",
+    "regex": "v([\\d.]+)</font"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://dl.bandisoft.com/bandizip.std/BANDIZIP-SETUP-STD-X64.EXE"
+      },
+      "32bit": {
+        "url": "https://dl.bandisoft.com/bandizip.std/BANDIZIP-SETUP-STD-ALL.EXE"
+      }
+    },
+    "hash": {
+      "mode": "download"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "autoupdate": {
+    "hash": {
+      "regex": "MD5 Hash: +[\\w]{32}",
+      "url": "https://portableapps.com/apps/education/stellarium_portable"
+    },
+    "url": "https://ayera.dl.sourceforge.net/project/portableapps/Stellarium%20Portable/StellariumPortable_$version.paf.exe"
+  },
+  "bin": "StellariumPortable.exe",
+  "checkver": {
+    "re": "Version \\s+([\\w\\.]* for Win",
+    "url": "https://portableapps.com/apps/education/stellarium_portable"
+  },
+  "description": "Stargazing observatory",
+  "hash": "aca07a95ea509a5446adc8acad5d660eeaf6ce7ffbd8b0d6f4852bba0d28f745",
+  "homepage": "https://portableapps.com/apps/education/stellarium_portable",
+  "license": "",
+  "persist": "Data",
+  "post_install": "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
+  "shortcuts": [
+    [
+      "StellariumPortable.exe",
+      "StellariumPortable"
+    ]
+  ],
+  "url": "https://ayera.dl.sourceforge.net/project/portableapps/Stellarium%20Portable/StellariumPortable_1.22.4.paf.exe",
+  "version": "1.22.4"
+}

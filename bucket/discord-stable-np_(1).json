@@ -1,0 +1,47 @@
+{
+  "version": "0.0.311",
+  "description": "Free Voice and Text Chat",
+  "homepage": "https://discordapp.com/",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://discordapp.com/terms"
+  },
+  "url": "https://discord.com/api/downloads/distributions/app/installers/latest?channel=stable&platform=win&arch=x86#/dl.7z",
+  "hash": "d7d109e6d48cbc08320b4af0ed2080826699867c80803fec9e49ce0cf47d2d0f",
+  "pre_install": [
+    "$packages = New-Item $dir -Name 'packages' -ItemType 'directory'",
+    "Move-Item $dir\\RELEASES -Destination $packages",
+    "Move-Item $dir\\*.nupkg -Destination $packages",
+    "Move-Item $dir\\Update.exe -Destination $packages"
+  ],
+  "installer": {
+    "file": "packages\\Update.exe",
+    "keep": true,
+    "args": [
+      "--install",
+      "$dir\\packages"
+    ]
+  },
+  "post_install": [
+    "$discord_appdata = Join-Path $env:LocalAppData 'Discord'",
+    "$discord_install = Join-Path $dir 'Discord'",
+    "New-Item $discord_install -ItemType 'directory' -Name 'Discord' | Out-Null",
+    "New-Item $discord_appdata -ItemType SymbolicLink -Value $discord_install -Force | Out-Null"
+  ],
+  "uninstaller": {
+    "script": [
+      "$discord_appdata = Join-Path $env:LocalAppData 'Discord'",
+      "if (Test-Path $discord_appdata) { Remove-Item $discord_appdata }"
+    ]
+  },
+  "checkver": {
+    "url": "https://discordapp.com/api/updates/stable/RELEASES",
+    "regex": "Discord-([\\d.]+)-full"
+  },
+  "autoupdate": {
+    "url": "http://dl.discordapp.net/apps/win/Discord-$version-full.nupkg",
+    "hash": {
+      "url": "https://discordapp.com/api/updates/stable/RELEASES"
+    }
+  }
+}

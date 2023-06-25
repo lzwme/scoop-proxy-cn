@@ -1,0 +1,24 @@
+{
+  "version": "1.6.1",
+  "description": "Device Tree Compiler",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/Logiase/dtc-win/releases/download/v1.6.1/dtc-win32-x64.zip",
+      "hash": "11fd582960b5c27ae801dbf853aa336cf8df5997f77fe3fad1c00aad18fd3075",
+      "extract_dir": "dtc"
+    }
+  },
+  "bin": "bin/dtc.exe",
+  "checkver": {
+    "url": "https://github.com/Logiase/dtc-win",
+    "regex": "/releases/tag/v(.*)\">"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/Logiase/dtc-win/releases/download/v$version/dtc-win32-x64.zip",
+        "extract_dir": "dtc"
+      }
+    }
+  }
+}

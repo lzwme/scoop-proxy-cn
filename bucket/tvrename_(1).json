@@ -1,0 +1,25 @@
+{
+  "version": "3.3.1",
+  "description": "TV Rename is a media management tool that runs on Windows 7 and later and looks after all your TV show files; making them presentable for Kodi (XBMC), Mede8er, PyTivo and other media hubs.",
+  "homepage": "https://www.tvrename.com",
+  "license": {
+    "identifier": "GPL-3.0-or-later",
+    "url": "https://github.com/TV-Rename/tvrename/blob/master/LICENSE.md"
+  },
+  "url": "https://ghproxy.net/https://github.com/TV-Rename/tvrename/releases/download/3.3.1/TVRename-3.3.1.exe#/dl.7z",
+  "hash": "sha256:8776f756da4346f29f757596b9a1a15f67c62b42fb996d4ceb71f79f68ee16b1",
+  "bin": "TVRename.exe",
+  "shortcuts": [
+    [
+      "TVRename.exe",
+      "TV Rename"
+    ]
+  ],
+  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall*\" -Force -Recurse",
+  "checkver": {
+    "github": "https://github.com/TV-Rename/tvrename"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/TV-Rename/tvrename/releases/download/$version/TVRename-$version.exe#/dl.7z"
+  }
+}

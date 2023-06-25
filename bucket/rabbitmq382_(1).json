@@ -1,0 +1,36 @@
+{
+  "homepage": "https://www.rabbitmq.com/",
+  "version": "3.8.2",
+  "license": "https://github.com/rabbitmq/rabbitmq-server/blob/master/LICENSE-MPL-RabbitMQ",
+  "depends": "erlang2210",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/rabbitmq/rabbitmq-server/releases/download/v3.8.2/rabbitmq-server-3.8.2.exe",
+      "hash": "sha256:3be90ab1baf75e21c94c840927f3c0cd797f089f280d5020f2bf50e27cf07c2b"
+    }
+  },
+  "bin": [
+    "rabbitmq_server-3.8.2\\sbin\\rabbitmq-server.bat",
+    "rabbitmq_server-3.8.2\\sbin\\rabbitmq-service.bat",
+    "rabbitmq_server-3.8.2\\sbin\\rabbitmqctl.bat",
+    "rabbitmq_server-3.8.2\\sbin\\rabbitmq-plugins.bat",
+    "rabbitmq_server-3.8.2\\sbin\\rabbitmq-env.bat",
+    "rabbitmq_server-3.8.2\\sbin\\rabbitmq-echopid.bat",
+    "rabbitmq_server-3.8.2\\sbin\\rabbitmq-defaults.bat"
+  ],
+  "env_set": {
+    "RABBITMQ_SERVER": "$dir"
+  },
+  "installer": {
+    "args": [
+      "/S",
+      "/D=$dir"
+    ]
+  },
+  "uninstaller": {
+    "file": "Uninstall.exe",
+    "args": [
+      "/S"
+    ]
+  }
+}

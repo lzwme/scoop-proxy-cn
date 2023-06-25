@@ -1,0 +1,38 @@
+{
+  "version": "0.0.271",
+  "description": "An extremely fast Python linter, written in Rust",
+  "homepage": "https://github.com/charliermarsh/ruff",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/charliermarsh/ruff/releases/download/v0.0.271/ruff-x86_64-pc-windows-msvc.zip",
+      "hash": "56ec98ed1e54a839171a74eb3560714447648d207cc50aa950ef9a61957dd7bb"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/charliermarsh/ruff/releases/download/v0.0.271/ruff-i686-pc-windows-msvc.zip",
+      "hash": "0370838a1506285c99c3f35ad991cd8fefe349542359c54dcbabfcead432aed7"
+    },
+    "arm64": {
+      "url": "https://ghproxy.net/https://github.com/charliermarsh/ruff/releases/download/v0.0.271/ruff-aarch64-pc-windows-msvc.zip",
+      "hash": "09ff69a213ea6babe078e7c34dc770f04bcb438cfa29cf0a26227643d3e39176"
+    }
+  },
+  "bin": "ruff.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/charliermarsh/ruff/releases/download/v$version/ruff-x86_64-pc-windows-msvc.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/charliermarsh/ruff/releases/download/v$version/ruff-i686-pc-windows-msvc.zip"
+      },
+      "arm64": {
+        "url": "https://ghproxy.net/https://github.com/charliermarsh/ruff/releases/download/v$version/ruff-aarch64-pc-windows-msvc.zip"
+      }
+    },
+    "hash": {
+      "url": "$url.sha256"
+    }
+  }
+}

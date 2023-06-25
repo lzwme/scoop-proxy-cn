@@ -1,0 +1,42 @@
+{
+  "homepage": "https://www.oracle.com/database/technologies/instant-client.html",
+  "version": "19.6.0.0.0dbru",
+  "license": "GPL",
+  "description": "Oracle instance client",
+  "architecture": {
+    "32bit": {
+      "url": "https://download.oracle.com/otn_software/nt/instantclient/19600/instantclient-basic-nt-19.6.0.0.0dbru.zip",
+      "extract_dir": "instantclient_19_6",
+      "hash": "1ed470335006eb2d1856bdf10162bbb0cac74dc93f75008fa77149b12bfc4ca0"
+    },
+    "64bit": {
+      "url": "https://download.oracle.com/otn_software/nt/instantclient/19600/instantclient-basic-windows.x64-19.6.0.0.0dbru.zip",
+      "extract_dir": "instantclient_19_6",
+      "hash": "fab19d6398b8e8adae9ac3065bdc2d3ce649cb555eac4fe30c0503d6e094584a"
+    }
+  },
+  "bin": [],
+  "shortcuts": [],
+  "checkver": {
+    "url": "https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html",
+    "regex": "<h4>Version *(\\d+.\\d+.\\d+.\\d+)(?<last>.+)</h4>"
+  },
+  "env_set": {
+    "ORACLE_HOME": "$dir",
+    "TNS_ADMIN": "$dir",
+    "NLS_LANG": "AMERICAN_AMERICA.ZHS16GBK"
+  },
+  "env_add_path": ".",
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://download.oracle.com/otn_software/nt/instantclient/$majorVersion$minorVersion$patchVersion$buildVersion/instantclient-basic-nt-$version.zip",
+        "extract_dir": "instantclient_$majorVersion_$minorVersion"
+      },
+      "64bit": {
+        "url": "https://download.oracle.com/otn_software/nt/instantclient/$majorVersion$minorVersion$patchVersion$buildVersion/instantclient-basic-windows.x64-$version.zip",
+        "extract_dir": "instantclient_$majorVersion_$minorVersion"
+      }
+    }
+  }
+}

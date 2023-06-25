@@ -1,0 +1,37 @@
+{
+  "homepage": "https://developers.weixin.qq.com/miniprogram/dev/devtools/devtools.html",
+  "description": "为了帮助开发者简单和高效地开发和调试微信小程序，我们在原有的公众号网页调试工具的基础上，推出了全新的 微信开发者工具，集成了公众号网页调试和小程序调试两种开发模式。",
+  "version": "1.06.2306020",
+  "license": "Freeware",
+  "architecture": {
+    "64bit": {
+      "url": "https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&from=mpwiki&download_version=1062306020&version_type=1#/dl.7z",
+      "hash": "6d591a0dbdd078c88718c6772cbc196a5374ba892035676cfde67fbda6203de6"
+    },
+    "32bit": {
+      "url": "https://servicewechat.com/wxa-dev-logic/download_redirect?type=ia32&from=mpwiki&download_version=1062306020&version_type=1#/dl.7z",
+      "hash": "1edee6be4b9f4b362c53cd3fa7ccdb7b82f110aee306121f8b4c0f979e32fc17"
+    }
+  },
+  "shortcuts": [
+    [
+      "微信开发者工具.exe",
+      "微信开发者工具"
+    ]
+  ],
+  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\卸载微信开发者工具.exe.nsis\" -Force -Recurse",
+  "checkver": {
+    "url": "https://developers.weixin.qq.com/miniprogram/dev/devtools/stable.html",
+    "regex": "#</a> ([\\d.]+) <a href=\"https://.*Windows"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&from=mpwiki&download_version=$majorVersion$minorVersion$patchVersion$buildVersion&version_type=1#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://servicewechat.com/wxa-dev-logic/download_redirect?type=ia32&from=mpwiki&download_version=$majorVersion$minorVersion$patchVersion$buildVersion&version_type=1#/dl.7z"
+      }
+    }
+  }
+}

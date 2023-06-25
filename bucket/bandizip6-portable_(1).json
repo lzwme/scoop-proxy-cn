@@ -1,0 +1,24 @@
+{
+  "version": "6.29",
+  "description": "Yet another typical ZIP archiver",
+  "homepage": "http://www.bandisoft.com/bandizip/",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://en.bandisoft.com/bandizip/eula/"
+  },
+  "url": "https://en.bandisoft.com/bandizip/dl.php?old#/dl.7z",
+  "hash": "37d68f273d0479adec08db3a75bd229c6fad121894ae9bd456fedd8b5f2d2ede",
+  "installer": {
+    "script": [
+      "New-Item \"$persist_dir\\Bandizip.ini\" -ErrorAction Ignore | Out-Null"
+    ]
+  },
+  "persist": "Bandizip.ini",
+  "checkver": {
+    "url": "https://en.bandisoft.com/bandizip/old/6/",
+    "regex": ">Download Bandizip v([\\d.]+)</a>"
+  },
+  "autoupdate": {
+    "url": "https://en.bandisoft.com/bandizip/dl.php?old#/dl.7z"
+  }
+}

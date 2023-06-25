@@ -1,0 +1,28 @@
+{
+  "##": "This package is for private use only. Requires password for installation to proceed.",
+  "version": "1.000",
+  "description": "Chinese (traditional) Font",
+  "license": "Proprietary",
+  "url": "https://www.googleapis.com/drive/v3/files/10UaqR0YnQ4BUsAKD_xAcPDOI9QvHH1x4?alt=media&key=AIzaSyAiaA0bWx34SyfTRvyl4UCCHwsCkvUBECc#/dl.7z_",
+  "hash": "16F1D20496B6D9B92275909ADE3DE9927E1F90CEB3DFFADE9C94E2E4B269CF76",
+  "installer": {
+    "script": [
+      "$scriptdir = (Find-BucketDirectory $bucket)+'\\..\\scripts'",
+      "Import-Module $scriptdir\\pw\\pw_check.psm1",
+      "Expand-EncryptedArchive -aPath \"$dir\\dl.7z_\" -oDir \"$dir\" -ExitIfError -Removal",
+      "Get-ChildItem $dir -filter '*.otf' | ForEach-Object {",
+      "  New-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $_.Name -Force | Out-Null",
+      "  Copy-Item $_.FullName -destination \"$env:windir\\Fonts\"",
+      "}"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Get-ChildItem $dir -filter '*.otf' | ForEach-Object {",
+      "  Remove-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
+      "  Remove-Item \"$env:windir\\Fonts\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
+      "}",
+      "Write-Host \"Font 'XinGothic-TC' has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
+    ]
+  }
+}

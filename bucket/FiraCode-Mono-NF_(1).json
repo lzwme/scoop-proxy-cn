@@ -1,0 +1,42 @@
+{
+  "version": "6.2.0",
+  "license": "MIT",
+  "homepage": "https://github.com/epoweripione/terminal-custom",
+  "url": "https://ghproxy.net/https://github.com/epoweripione/fonts/releases/download/v0.1.0/FiraCode-Mono-6.2.0.zip",
+  "hash": "a8c42b38e6dbee505b77cffe60c30e0fa5c9c2614ad34185b458d12b43ffaabd",
+  "depends": "sudo",
+  "installer": {
+    "script": [
+      "if(!(is_admin)) { error \"Admin rights are required, please run 'sudo scoop install $app'\"; exit 1 }",
+      "Get-ChildItem \"$env:windir\\Fonts\" -Filter 'Fira Code*.ttf' | ForEach-Object {",
+      "  try {",
+      "    Remove-Item \"$env:windir\\Fonts\\$($_.Name)\" -Force -ErrorAction Stop",
+      "  } catch {",
+      "    Write-Warning \"Something failed, please try again later or after a reboot!`n$($error[0])\"",
+      "    exit 1",
+      "  }",
+      "}",
+      "Get-ChildItem \"$dir\" -Filter 'Fira Code*.ttf' | ForEach-Object {",
+      "    New-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $_.Name -Force | Out-Null",
+      "    Copy-Item $_.FullName -destination \"$env:windir\\Fonts\"",
+      "}"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "if(!(is_admin)) { error \"Admin rights are required, please run 'sudo scoop uninstall $app'\"; exit 1 }",
+      "Get-ChildItem \"$dir\" -Filter 'Fira Code*.ttf' | ForEach-Object {",
+      "    Remove-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
+      "    Remove-Item \"$env:windir\\Fonts\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
+      "}",
+      "Write-Host \"The '$($app.Replace('-NF', ''))' Font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
+    ]
+  },
+  "checkver": {
+    "url": "https://github.com/epoweripione/fonts/blob/main/README.md",
+    "regex": "FiraCode-Mono-([\\d.]+)\\.zip"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/epoweripione/fonts/releases/download/v0.1.0/FiraCode-Mono-$version.zip"
+  }
+}

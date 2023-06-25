@@ -1,0 +1,27 @@
+{
+  "version": "1.15.21",
+  "description": "Spaced repetition with markdown cards.",
+  "license": "",
+  "url": "https://mochi.cards/releases/Mochi Setup 1.15.21.exe#/dl.7z",
+  "pre_install": [
+    "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+    "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall Mochi.exe\" -Recurse -Force"
+  ],
+  "bin": "Mochi.exe",
+  "shortcuts": [
+    [
+      "mochi.exe",
+      "mochi"
+    ]
+  ],
+  "homepage": "https://mochi.cards",
+  "hash": "b07ec930a419562b0894c8bcfd5cee50e2503e8e65c90e13d51962354aaced76",
+  "checkver": {
+    "url": "https://mochi.cards",
+    "regex": "<a class=\"download-link\" href=\"releases/Mochi Setup ([\\d.]+).exe"
+  },
+  "autoupdate": {
+    "url": "https://mochi.cards/releases/Mochi Setup $version.exe#/dl.7z"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

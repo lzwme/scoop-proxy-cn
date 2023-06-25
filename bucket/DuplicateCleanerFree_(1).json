@@ -1,0 +1,22 @@
+{
+  "homepage": "https://www.digitalvolcano.co.uk/duplicatecleaner.html",
+  "version": "5.19",
+  "license": "freeware",
+  "url": "https://www.digitalvolcano.co.uk/download/DuplicateCleaner-Setup-5.msi#/dl.7z",
+  "hash": "474585aaea21953dcda59e22d864c0264a6b7bf3bfbdccdbf681af2397c4e01d",
+  "bin": "DuplicateCleaner.exe",
+  "shortcuts": [
+    [
+      "DuplicateCleaner.exe",
+      "Duplicate Cleaner Free"
+    ]
+  ],
+  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
+  "checkver": {
+    "url": "https://www.digitalvolcano.co.uk/dcdownloads.html",
+    "regex": "Version ([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://www.digitalvolcano.co.uk/download/DuplicateCleaner-Setup-5.msi#/dl.7z"
+  }
+}

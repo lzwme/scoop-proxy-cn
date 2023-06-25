@@ -1,0 +1,37 @@
+{
+  "architecture": {
+    "32bit": {
+      "hash": "d9c5711d12573a0f6d977792caa58364b1d46217521ae5c25cf5cc378a7c23c0",
+      "url": "http://strawberryperl.com/download/5.32.1.1/strawberry-perl-5.32.1.1-32bit-portable.zip"
+    },
+    "64bit": {
+      "hash": "692646105b0f5e058198a852dc52a48f1cebcaf676d63bbdeae12f4eaee9bf5c",
+      "url": "http://strawberryperl.com/download/5.32.1.1/strawberry-perl-5.32.1.1-64bit-portable.zip"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "http://strawberryperl.com/download/$version/strawberry-perl-$version-32bit-portable.zip"
+      },
+      "64bit": {
+        "url": "http://strawberryperl.com/download/$version/strawberry-perl-$version-64bit-portable.zip"
+      }
+    }
+  },
+  "checkver": "Recommended version:</b></p>\\s*<a href=\"\\/download\\/([^\\/]+)\\/strawberry-perl-[\\d.]+-64bit.msi",
+  "env_add_path": [
+    "perl\\site\\bin",
+    "perl\\bin",
+    "c\\bin"
+  ],
+  "homepage": "http://strawberryperl.com",
+  "license": "Artistic-1.0-Perl|GPL-1.0-only",
+  "post_install": [
+    "# enable standard idiomatic access to user's home directory",
+    "## remove HomeDir section from portable.perl (disables Portable.pm override of File::HomeDir)",
+    "## NOTE: conversion to byte[] avoids adding an extra trailing newline to the output file",
+    "[System.IO.File]::WriteAllBytes(\"$dir\\portable.perl\", ([byte[]][char[]]((Get-Content -Raw \"$dir\\portable.perl\") -replace \"(?ms)^HomeDir:.*?^(?=\\S)\",\"\")))"
+  ],
+  "version": "5.32.1.1"
+}

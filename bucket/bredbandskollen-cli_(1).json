@@ -1,0 +1,34 @@
+{
+  "version": "1.0",
+  "description": "Bredbandskollen CLI is a command line client to measureconnection speeds",
+  "homepage": "https://www.bredbandskollen.se/bredbandskollen-cli/",
+  "license": {
+    "url": "https://github.com/dotse/bbk/raw/master/src/LICENSE",
+    "identifier": "GPL-2.0"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://frontend.bredbandskollen.se/download/bbk_cli_win_amd64-1.0#/bbk_cli.exe",
+      "hash": "f83ace095ff7699621da983ffb07ddc394db02d4edadd1adc59407626007b396"
+    },
+    "32bit": {
+      "url": "https://frontend.bredbandskollen.se/download/bbk_cli_win_i386-1.0#/bbk_cli.exe",
+      "hash": "3571d23fe3c55dc6234334758a8042bae779fad0ce729e201aa2d9fe175ccfbf"
+    }
+  },
+  "bin": "bbk_cli.exe",
+  "checkver": {
+    "url": "https://www.bredbandskollen.se/bredbandskollen-cli/",
+    "regex": "bbk_cli_win_amd64-([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://frontend.bredbandskollen.se/download/bbk_cli_win_amd64-$version#/bbk_cli.exe"
+      },
+      "32bit": {
+        "url": "https://frontend.bredbandskollen.se/download/bbk_cli_win_i386-$version#/bbk_cli.exe"
+      }
+    }
+  }
+}

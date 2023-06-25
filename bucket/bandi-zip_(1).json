@@ -1,0 +1,37 @@
+{
+  "version": "6.18",
+  "url": "https://www.bandisoft.com/bandizip/dl.php?web",
+  "homepage": "https://www.bandisoft.com/bandizip/",
+  "checkver": {
+    "url": "https://www.bandisoft.com/bandizip/",
+    "re": "Latest\\sSetup\\sfile:\\sV\\s([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://www.bandisoft.com/bandizip/dl.php?web"
+  },
+  "shortcuts": [
+    [
+      "Bandizip.exe",
+      "Bandizip"
+    ]
+  ],
+  "installer": {
+    "file": "BANDIZIP-SETUP.EXE",
+    "args": [
+      "/VERYSILENT",
+      "/DIR=$dir",
+      "/SUPPRESSMSGBOXES",
+      "/NORESTART",
+      "/CLOSEAPPLICATIONS",
+      "/NORESTARTAPPLICATIONS"
+    ]
+  },
+  "uninstaller": {
+    "file": "Uninstall.exe",
+    "args": [
+      "/VERYSILENT",
+      "/SUPPRESSMSGBOXES",
+      "/NORESTART"
+    ]
+  }
+}

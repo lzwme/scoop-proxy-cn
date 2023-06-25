@@ -1,0 +1,27 @@
+{
+  "checkver": {
+    "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id%20eq%20'Az.StorageSync'%20and%20IsLatestVersion%20eq%20true",
+    "replace": "${ver}",
+    "regex": "(?i)<d:Version>(?<ver>[^<]+)<.d:Version>"
+  },
+  "hash": "sha512:6dbe8148019ecbf9d150a04a7d6f68887de808ee043d4db6fc2f7fd9abb4770f42dc42b5af7f65732f34354ad78806bda46fa5358c6827f0db4a683a8126043f",
+  "description": "Microsoft Azure PowerShell - Storage Sync cmdlets in Windows PowerShell and PowerShell Core. Manages operations pertaining to Azure File Sync in PowerShell.",
+  "psmodule": {
+    "name": "Az.StorageSync"
+  },
+  "homepage": "https://www.powershellgallery.com/packages/Az.StorageSync",
+  "autoupdate": {
+    "url": "https://www.powershellgallery.com/api/v2/Package/Az.StorageSync/$version#/mod.nupkg",
+    "hash": {
+      "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id eq 'Az.StorageSync' and Version eq '$version'",
+      "regex": "<d:PackageHash>$base64<.d:PackageHash>"
+    }
+  },
+  "license": {
+    "identifier": "Refer to Webpage",
+    "url": "https://aka.ms/azps-license"
+  },
+  "url": "https://www.powershellgallery.com/api/v2/Package/Az.StorageSync/2.0.0#/mod.nupkg",
+  "depends": "Az.Accounts",
+  "version": "2.0.0"
+}

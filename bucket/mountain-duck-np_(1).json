@@ -1,0 +1,77 @@
+{
+  "$schema": "https://ghproxy.net/https://raw.githubusercontent.com/lukesampson/scoop/master/schema.json",
+  "version": "4.14.1.21330",
+  "description": "This lets you mount server and cloud storage as a disk in Finder on macOS and the File Explorer on Windows. Open remote files with any application and work like on a local volume.",
+  "homepage": "https://mountainduck.io/",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://cyberduck.io/license/"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://dist.mountainduck.io/Mountain%20Duck%20Installer-4.14.1.21330.exe#/dl.exe",
+      "hash": "acbb67950707bba0918bda49167689d9c403febdf472bb5890330d7cf26f4cc9"
+    }
+  },
+  "installer": {
+    "script": [
+      "if (-not (is_admin)) { error 'This package requires admin privileges to install'; break }",
+      "Expand-DarkArchive -Path \"$dir\\dl.exe\" -DestinationPath \"$dir\\_tmp\" -Removal",
+      "New-Item -Type Directory -Path \"$dir\\msi\" > $null",
+      "Get-ChildItem \"$dir\\_tmp\\AttachedContainer\\*.msi\" |",
+      "    ForEach-Object {",
+      "        Copy-Item -Path $_.FullName -Destination \"$dir\\msi\\$($_.Name.TrimStart('Mountain Duck ')).msi\"",
+      "    }",
+      "Remove-Item \"$dir\\_tmp\" -Force -Recurse",
+      "Get-ChildItem \"$dir\\msi\\*.msi\" |",
+      "    ForEach-Object {",
+      "        Invoke-ExternalCommand msiexec -ArgumentList @(",
+      "            '/i',",
+      "            \"`\"$($_.FullName)`\"\",",
+      "            '/qn',",
+      "            '/norestart',",
+      "            \"INSTALLLOCATION=\"\"$dir\"\"\",",
+      "            'ARPSYSTEMCOMPONENT=0',",
+      "            'MSIFASTINSTALL=7'",
+      "        ) -ContinueExitCodes @{",
+      "            3010='This package requires restart to complete the installation.'",
+      "        } -RunAs > $null",
+      "    }"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "if (-not (is_admin)) { error 'This package requires admin privileges to uninstall'; break }",
+      "Get-ChildItem \"$dir\\msi\\*.msi\" |",
+      "    ForEach-Object {",
+      "        Invoke-ExternalCommand msiexec -ArgumentList @(",
+      "            '/x',",
+      "            \"`\"$($_.FullName)`\"\",",
+      "            '/qn',",
+      "            '/norestart',",
+      "            \"INSTALLLOCATION=\"\"$dir\"\"\",",
+      "            'ARPSYSTEMCOMPONENT=0',",
+      "            'MSIFASTINSTALL=7'",
+      "        ) -ContinueExitCodes @{",
+      "            3010='This package requires restart to complete the uninstallation.'",
+      "        } -RunAs > $null",
+      "    }"
+    ]
+  },
+  "shortcuts": [
+    [
+      "Mountain Duck.exe",
+      "Mountain Duck"
+    ]
+  ],
+  "checkver": {
+    "regex": "Mountain Duck Installer ([\\d.]+)\\.exe"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://dist.mountainduck.io/Mountain%20Duck%20Installer-$version.exe#/dl.exe"
+      }
+    }
+  }
+}

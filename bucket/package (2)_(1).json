@@ -1,0 +1,26 @@
+{
+  "name": "scoop-buckets-web",
+  "version": "1.1.0",
+  "description": "[![Netlify Status](https://api.netlify.com/api/v1/badges/965df306-a386-4e0b-9351-ee2bdb712857/deploy-status)](https://scoop.airbrain.app)\r <a href='https://ko-fi.com/J3J113VYZ' target='_blank'><img height='26' style='border:0px;' src='https://az743702.vo.msecnd.net/cdn/kofi2.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>",
+  "main": "update_buckets_index.js",
+  "scripts": {
+    "algolia": "atomic-algolia",
+    "build": "zola build && node ./update_buckets_index.js && npm run algolia"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/demoslam/scoop-buckets-web-netlify.git"
+  },
+  "author": "Xiangbo Mao",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/demoslam/scoop-buckets-web-netlify/issues"
+  },
+  "homepage": "https://github.com/demoslam/scoop-buckets-web-netlify#readme",
+  "devDependencies": {
+    "atomic-algolia": "^0.3.19",
+    "node-fetch": "^3.2.10"
+  },
+  "dependencies": {},
+  "type": "module"
+}

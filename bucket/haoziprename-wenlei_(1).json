@@ -1,0 +1,43 @@
+{
+  "version": "6.4.0.11148",
+  "description": "Batch file renaming tool extracted from haozip, maintained by wenlei.",
+  "homepage": "https://haozip.2345.cc/help/help1-2.htm",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://haozip.2345.cc/help/help1-2.htm"
+  },
+  "url": "https://pan.jiemi.workers.dev/?file=/wenlei/好压批量文件改名_v6.4.0.11148.7z",
+  "hash": "c24e368e6b14ba856b1382a7fe3b7d38a98dc221ebcf7358c206f558965cc810",
+  "architecture": {
+    "64bit": {
+      "extract_dir": "HaoZipRename_64bit"
+    },
+    "32bit": {
+      "extract_dir": "HaoZipRename_32bit"
+    }
+  },
+  "installer": {
+    "script": [
+      "Copy-Item \"$bucketsdir\\$bucket\\scripts\\haoziprename\\install.bat\" \"$dir\\install.bat\" -ErrorAction 'SilentlyContinue' -Force | Out-Null",
+      "Copy-Item \"$bucketsdir\\$bucket\\scripts\\haoziprename\\uninstall.bat\" \"$dir\\uninstall.bat\" -ErrorAction 'SilentlyContinue' -Force | Out-Null",
+      "Start-Process \"$dir\\install.bat\" -WorkingDirectory \"$dir\" -Wait -ErrorAction 'SilentlyContinue' -Force | Out-Null"
+    ]
+  },
+  "uninstaller": {
+    "script": "Start-Process \"$dir\\uninstall.bat\" -WorkingDirectory \"$dir\" -Wait -ErrorAction 'SilentlyContinue' -Force | Out-Null"
+  },
+  "shortcuts": [
+    [
+      "HaoZipRename.exe",
+      "2345\\HaoZipRename"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/oneindex.txt",
+    "regex": "好压批量文件改名_v([\\d.]+)\\.7z",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/wenlei/好压批量文件改名_v$version.7z"
+  }
+}

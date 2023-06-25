@@ -1,0 +1,33 @@
+{
+  "homepage": "https://groonga.org/ja/",
+  "version": "13.0.1",
+  "bin": "bin/groonga.exe",
+  "license": "LGPL-2.1",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/groonga/groonga/releases/download/v13.0.1/groonga-13.0.1-x64-vs2019-with-vcruntime.zip",
+      "hash": "878096c39ae50ba5fb103774baca788e9dd43f0b2e369a310ceee1a6262bf05a",
+      "extract_dir": "groonga-13.0.1-x64-vs2019-with-vcruntime"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/groonga/groonga/releases/download/v13.0.1/groonga-13.0.1-x86-vs2019-with-vcruntime.zip",
+      "hash": "a6d4c8d4a11d3aa5ecac9b9504f921af4e5025b202cdf371aaabd27acc2c96bf",
+      "extract_dir": "groonga-13.0.1-x86-vs2019-with-vcruntime"
+    }
+  },
+  "checkver": {
+    "github": "https://github.com/groonga/groonga"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/groonga/groonga/releases/download/v$version/groonga-$version-x64-vs2019-with-vcruntime.zip",
+        "extract_dir": "groonga-$version-x64-vs2019-with-vcruntime"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/groonga/groonga/releases/download/v$version/groonga-$version-x86-vs2019-with-vcruntime.zip",
+        "extract_dir": "groonga-$version-x86-vs2019-with-vcruntime"
+      }
+    }
+  }
+}

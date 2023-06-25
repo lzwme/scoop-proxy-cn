@@ -1,0 +1,32 @@
+{
+  "version": "1.5.0",
+  "description": "Japanese font based on IBM Plex",
+  "homepage": "https://github.com/yuru7/PlemolJP",
+  "license": "OFL-1.1-RFN",
+  "url": "https://ghproxy.net/https://github.com/yuru7/PlemolJP/releases/download/v1.5.0/PlemolJP_v1.5.0.zip",
+  "hash": "6a39148e888036f74143ea340c938abae9d514e197a4625a87517e600bb68276",
+  "depends": [
+    "sudo",
+    "unoun/scoop-helper"
+  ],
+  "installer": {
+    "script": [
+      "$helper = \"$(appdir scoop-helper)\\current\\scoop-font-helper.ps1\"",
+      "if (!(Test-Path $helper)) { error 'File not found'; exit 1 }",
+      ". $helper",
+      "Install-Font($dir)"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$helper = \"$(appdir scoop-helper)\\current\\scoop-font-helper.ps1\"",
+      "if (!(Test-Path $helper)) { error 'File not found'; exit 1 }",
+      ". $helper",
+      "Uninstall-Font($dir)"
+    ]
+  },
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/yuru7/PlemolJP/releases/download/v$version/PlemolJP_v$version.zip"
+  }
+}

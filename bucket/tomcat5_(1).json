@@ -1,0 +1,41 @@
+{
+  "homepage": "https://tomcat.apache.org",
+  "version": "5.5.36",
+  "checkver": {
+    "url": "https://archive.apache.org/dist/tomcat/tomcat-5/?C=M;O=D",
+    "re": "v(?<version>[\\d.]+)"
+  },
+  "autoupdate": {
+    "extract_dir": "apache-tomcat-$version",
+    "architecture": {
+      "32bit": {
+        "url": "https://archive.apache.org/dist/tomcat/tomcat-5/v$version/bin/apache-tomcat-$version.zip"
+      },
+      "64bit": {
+        "url": "https://archive.apache.org/dist/tomcat/tomcat-5/v$version/bin/apache-tomcat-$version.zip"
+      }
+    },
+    "hash": {
+      "url": "$url.md5"
+    }
+  },
+  "extract_dir": "apache-tomcat-5.5.36",
+  "bin": "bin\\catalina.bat",
+  "env_set": {
+    "CATALINA_HOME": "$dir",
+    "CATALINA_BASE": "$dir"
+  },
+  "suggest": {
+    "JRE": "java/openjdk"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://archive.apache.org/dist/tomcat/tomcat-5/v5.5.36/bin/apache-tomcat-5.5.36.zip",
+      "hash": "md5:c5a613bffd8fa951def538c6dbf811e5"
+    },
+    "32bit": {
+      "url": "https://archive.apache.org/dist/tomcat/tomcat-5/v5.5.36/bin/apache-tomcat-5.5.36.zip",
+      "hash": "md5:c5a613bffd8fa951def538c6dbf811e5"
+    }
+  }
+}

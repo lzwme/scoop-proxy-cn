@@ -1,0 +1,33 @@
+{
+  "version": "20230513",
+  "description": "一个打包齐全、便于上手、附完整解决方案的mpv版本（懒人包）",
+  "homepage": "https://github.com/hooke007/MPV_lazy",
+  "license": "url: https://github.com/hooke007/MPV_lazy/blob/main/LICENSE.MD",
+  "architecture": {
+    "64bit": {
+      "extract_dir": "mpv-lazy",
+      "hash": "8f0b395b0e7e86b69009e6660e3bf7b17b601aaaada057d35cac6ff89c65befa",
+      "url": "https://ghproxy.net/https://github.com/hooke007/MPV_lazy/releases/download/20230513/mpv-lazy-20230513.exe#/dl.7z"
+    }
+  },
+  "bin": [
+    [
+      "mpv.exe",
+      "mpvlazy"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "mpv.exe",
+      "mpvlazy"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/hooke007/MPV_lazy/releases/download/$version/mpv-lazy-$version.exe#/dl.7z"
+      }
+    }
+  }
+}

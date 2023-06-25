@@ -1,0 +1,31 @@
+{
+  "version": "0.1.16",
+  "description": "A tiling window manager for Windows",
+  "homepage": "https://github.com/LGUG2Z/komorebi",
+  "license": "MIT",
+  "notes": [
+    "Grab the example configuration from here: https://github.com/LGUG2Z/komorebi/#scoop",
+    "Once have the example configuration, you can run 'komorebic start --await-configuration' to start the window manager."
+  ],
+  "suggest": {
+    "autohotkey": "extras/autohotkey"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/LGUG2Z/komorebi/releases/download/v0.1.16/komorebi-0.1.16-x86_64-pc-windows-msvc.zip",
+      "hash": "45c7047ccf96df59c4a91a5ee5c6c1e4fdcc40799625f4ebb57d2adedacb12cc"
+    }
+  },
+  "bin": [
+    "komorebi.exe",
+    "komorebic.exe"
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/LGUG2Z/komorebi/releases/download/v$version/komorebi-$version-x86_64-pc-windows-msvc.zip"
+      }
+    }
+  }
+}

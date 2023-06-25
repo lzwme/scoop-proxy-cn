@@ -1,0 +1,32 @@
+{
+  "##": "This package is for private use only. Requires password for installation to proceed.",
+  "version": "13.00.1021.0",
+  "description": "Image editing tool (language: Traditional Chinese)",
+  "license": "Proprietary",
+  "url": "https://www.googleapis.com/drive/v3/files/12ATclYglckWbY26-ywo5pVSI7NKvZoeq?alt=media&key=AIzaSyAiaA0bWx34SyfTRvyl4UCCHwsCkvUBECc#/dl.7z_",
+  "hash": "2D4B30296F2A2B7C9F3A6753C458FCD348C915DA759A27ACC885F5EF940E7223",
+  "depends": "sudo",
+  "installer": {
+    "script": [
+      "$scriptdir = (Find-BucketDirectory $bucket)+'\\..\\scripts'",
+      "Import-Module $scriptdir\\pw\\pw_check.psm1",
+      "Expand-EncryptedArchive -aPath \"$dir\\dl.7z_\" -oDir \"$dir\\setup\" -ExitIfError -Removal",
+      "# --- '/s' switch requires setup.iss, it can be created with setup.exe /r",
+      "Invoke-ExternalCommand \"$dir\\setup\\PhotoImpact X3\\setup.exe\" -ArgumentList @('/s') -RunAs | Out-Null",
+      "Stop-Process -Name Monitor -ErrorAction SilentlyContinue | Out-Null",
+      "Start-Sleep -Seconds 5",
+      "# --- not sure why Invoke-ExternalCommand is not working, need to fix later.",
+      "# Invoke-ExternalCommand reg -ArgumentList @('delete', 'HKLM\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Run', '/v', 'Ulead AutoDetector v2', '/f') -RunAs | Out-Null",
+      "sudo \"$scriptdir\\photoimpactX3\\remove_startup.ps1\"",
+      "Copy-Item \"$dir\\setup\\PhotoImpact X3\\Ulead PhotoImpact X3.msi\" \"$dir\\uninst.msi\" | Out-Null",
+      "Remove-Item \"$dir\\setup\" -Force -Recurse"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Invoke-ExternalCommand msiexec -ArgumentList @('/x', \"$dir\\uninst.msi\", '/qb') -RunAs | Out-Null",
+      "# --- probably a bug in the official uninstaller",
+      "Remove-Item \"$env:SystemDrive\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Corel\" -Force -Recurse"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "version": "7.8.4",
+  "checkver": {
+    "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id%20eq%20'ImportExcel'%20and%20IsLatestVersion%20eq%20true",
+    "regex": "(?i)<d:Version>(?<ver>[^<]+)<.d:Version>",
+    "replace": "${ver}"
+  },
+  "autoupdate": {
+    "hash": {
+      "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id eq 'ImportExcel' and Version eq '$version'",
+      "regex": "<d:PackageHash>$base64<.d:PackageHash>"
+    },
+    "url": "https://www.powershellgallery.com/api/v2/Package/ImportExcel/$version#/mod.nupkg"
+  },
+  "url": "https://www.powershellgallery.com/api/v2/Package/ImportExcel/7.8.4#/mod.nupkg",
+  "license": {
+    "identifier": "Refer to Webpage",
+    "url": "https://github.com/dfinke/ImportExcel/blob/master/LICENSE.txt"
+  },
+  "description": "PowerShell module to import/export Excel spreadsheets, without Excel. Check out the How To Videos https://www.youtube.com/watch?v=U3Ne_yX4tYo&list=PL5uoqS92stXioZw-u-ze_NtvSo0k0K0kq",
+  "hash": "sha512:f9b8e769e97aa4adc8e90c3bf4970fb8f69eae7dd029a27e9980533a8b706cfe9cb7d296b1d6dd472d3df6ab2bae19c1cd8a45fbe497fd39303134631bb14f58",
+  "homepage": "https://www.powershellgallery.com/packages/ImportExcel",
+  "psmodule": {
+    "name": "ImportExcel"
+  }
+}

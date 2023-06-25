@@ -1,0 +1,28 @@
+{
+  "##": "This package is for private use only. Requires password for installation to proceed.",
+  "version": "1.0",
+  "description": "Chinese (traditional) Font",
+  "license": "Proprietary",
+  "url": "https://www.googleapis.com/drive/v3/files/13qnovC4COm1PjPVSe53AL2UAfdeRTVY0?alt=media&key=AIzaSyAiaA0bWx34SyfTRvyl4UCCHwsCkvUBECc#/dl.7z_",
+  "hash": "48605991B7ACBDFD7CAFC5F720DE983ECA321981A34011F914C6438AF07DDCBA",
+  "installer": {
+    "script": [
+      "$scriptdir = (Find-BucketDirectory $bucket)+'\\..\\scripts'",
+      "Import-Module $scriptdir\\pw\\pw_check.psm1",
+      "Expand-EncryptedArchive -aPath \"$dir\\dl.7z_\" -oDir \"$dir\" -ExitIfError -Removal",
+      "Get-ChildItem $dir -filter '*.ttf' | ForEach-Object {",
+      "  New-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $_.Name -Force | Out-Null",
+      "  Copy-Item $_.FullName -destination \"$env:windir\\Fonts\"",
+      "}"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Get-ChildItem $dir -filter '*.ttf' | ForEach-Object {",
+      "  Remove-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
+      "  Remove-Item \"$env:windir\\Fonts\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
+      "}",
+      "Write-Host \"Font '老報宋 Sung' has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
+    ]
+  }
+}

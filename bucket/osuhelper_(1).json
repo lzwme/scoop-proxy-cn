@@ -1,0 +1,32 @@
+{
+  "version": "2.4",
+  "description": "Beatmap suggester for osu!",
+  "homepage": "https://github.com/Tyrrrz/OsuHelper",
+  "license": {
+    "identifier": "GPL-3.0-or-later",
+    "url": "https://github.com/Tyrrrz/OsuHelper/blob/master/License.txt"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/Tyrrrz/OsuHelper/releases/download/2.4/OsuHelper.zip#/dl.7z",
+      "hash": "25d65297c942143384ce616b657511f7e0535db7a5ebf8d6be7e6e39295f979a"
+    }
+  },
+  "pre_install": "if (!(test-path \"$dir\\Config.dat\")) { new-item -force \"$dir\\Config.dat\" -itemtype file | out-null }",
+  "persist": "Config.dat",
+  "bin": "osu!helper.exe",
+  "shortcuts": [
+    [
+      "osu!helper.exe",
+      "osu!helper"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/Tyrrrz/OsuHelper/releases/download/$version/OsuHelper.zip#/dl.7z"
+      }
+    }
+  }
+}

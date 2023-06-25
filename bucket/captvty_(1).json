@@ -1,0 +1,30 @@
+{
+  "version": "2.10.3.2",
+  "description": "Accédez, depuis un point unique grâce à Captvty, aux directs et à une multitude d’émissions proposées au rattrapage par différentes chaînes de télévision",
+  "homepage": "https://captvty.fr/",
+  "license": "Unknown",
+  "bin": "Captvty.exe",
+  "persist": [
+    "captvty.ini",
+    "Vidéos"
+  ],
+  "url": "https://releases.captvty.fr/a2166290d3c716b5a61175ebdf9e538bec88fd4d/captvty-2.10.3.2.zip",
+  "hash": "sha1:42e51553f3e58af90fe1b646a64b0e0252046fed",
+  "shortcuts": [
+    [
+      "Captvty.exe",
+      "Captvty"
+    ]
+  ],
+  "checkver": {
+    "url": "https://captvty.fr",
+    "regex": "<span>([\\d]*\\.[\\d]*\\.[\\d]*\\.[\\d]*)<\\/span>"
+  },
+  "autoupdate": {
+    "url": "https://releases.captvty.fr/a2166290d3c716b5a61175ebdf9e538bec88fd4d/captvty-$version.zip",
+    "hash": {
+      "url": "https://captvty.fr",
+      "regex": "<td>$sha1<\\/td>"
+    }
+  }
+}

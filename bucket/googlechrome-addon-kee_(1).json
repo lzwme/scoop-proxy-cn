@@ -1,0 +1,35 @@
+{
+  "version": "3.9.5",
+  "description": "Kee - Password Manager for Google Chrome",
+  "homepage": "https://www.kee.pm/",
+  "licence": "GNU AGPL v3",
+  "depends": "googlechrome",
+  "url": "https://clients2.google.com/service/update2/crx?response=redirect&acceptformat=crx3&prodversion=97.0&x=id%3Dmmhlniccooihdimnnjhamobppdhaolme%26installsource%3Dondemand%26uc#/dl.crx",
+  "hash": "a4d576b4b2aef10113666683234f04afa6f1cd01de7a1501b7c0285af86b69da",
+  "installer": {
+    "script": [
+      "$packageName = 'google-addon-kee'",
+      "$extensionID = 'mmhlniccooihdimnnjhamobppdhaolme'",
+      "$extensionFolder = \"$(appdir googlechrome $global)\\current\\User Data\\Default\\Extensions\\$extensionID\\$version\"",
+      "if (!(Test-Path $extensionFolder)) {",
+      "New-Item -Force -ItemType directory -Path $extensionFolder | Out-Null",
+      "Move-Item \"$dir\\dl.crx\" \"$dir\\dl.7z\" -Force",
+      "Expand-7zipArchive -Path \"$dir\\dl.7z\" -DestinationPath $extensionFolder",
+      "} else {",
+      "Write-Host \"$packageName already exists\"",
+      "}"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$packageName = 'google-addon-kee'",
+      "$extensionID = 'mmhlniccooihdimnnjhamobppdhaolme'",
+      "$extensionFolder = \"$(appdir googlechrome $global)\\current\\User Data\\Default\\Extensions\\$extensionID\\$version\"",
+      "Remove-Item \"$extensionFolder\" -Force -Recurse -ErrorAction SilentlyContinue"
+    ]
+  },
+  "checkver": {
+    "regex": "Version[^\\d.]+([\\d.]+)",
+    "url": "https://chrome.google.com/webstore/detail/kee-password-manager/mmhlniccooihdimnnjhamobppdhaolme"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "version": "2023.04.16",
+  "description": "Clash Premium",
+  "homepage": "https://github.com/Dreamacro/clash",
+  "license": "Freeware+GPL-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/Dreamacro/clash/releases/download/premium/clash-windows-amd64-2023.04.16.zip",
+      "hash": "52f45bf0e7f47ecb11da21af00c75350923efd1c42f4e02e8e50e1e2c703ca59",
+      "pre_install": "Rename-Item \"$dir\\clash-windows-amd64.exe\" \"$dir\\clashp.exe\""
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/Dreamacro/clash/releases/download/premium/clash-windows-386-2023.04.16.zip",
+      "hash": "0d1765f5d48717cd43fa4977c2fd65b232fd904a9ed5a770409024df872b9f5c",
+      "pre_install": "Rename-Item \"$dir\\clash-windows-386.exe\" \"$dir\\clashp.exe\""
+    }
+  },
+  "bin": [
+    [
+      "clashp.exe",
+      "clashp"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/Dreamacro/clash/releases/tag/premium",
+    "re": "<h2>Changelog</h2>\\s*<h3>(\\d{4}\\.\\d\\d\\.\\d\\d)</h3>"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/Dreamacro/clash/releases/download/premium/clash-windows-amd64-$version.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/Dreamacro/clash/releases/download/premium/clash-windows-386-$version.zip"
+      }
+    }
+  }
+}

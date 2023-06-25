@@ -1,0 +1,19 @@
+{
+  "homepage": "https://github.com/JanisEst/KeePassQuickUnlock",
+  "description": "KeePass 2.x plugin which lets you unlock databases quickly. ",
+  "license": "MIT",
+  "version": "2.4",
+  "url": "https://ghproxy.net/https://github.com/JanisEst/KeePassQuickUnlock/releases/download/v2.4/KeePassQuickUnlock.plgx",
+  "hash": "FEAF3323F30DEF99448F170E5C39DB1F58FC9008FE8D3686FA99C98B9039CD50",
+  "depends": "extras/keepass",
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/JanisEst/KeePassQuickUnlock/releases/download/v$version/KeePassQuickUnlock.plgx"
+  },
+  "installer": {
+    "script": "Copy-Item \"$dir\\KeePassQuickUnlock.plgx\" \"$(appdir keepass $global)\\current\\Plugins\""
+  },
+  "uninstaller": {
+    "script": "Remove-Item \"$(appdir keepass $global)\\current\\Plugins\\KeePassQuickUnlock.plgx\""
+  }
+}

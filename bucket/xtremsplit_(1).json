@@ -1,0 +1,29 @@
+{
+  "version": "1.2.0.54",
+  "description": "Tool to split / join files",
+  "homepage": "https://www.lesnumeriques.com/telecharger/xtremsplit-23582",
+  "license": "Proprietary",
+  "url": "http://xtremsplit.free.fr/12/Xtremsplit.exe",
+  "hash": "69eae94b7921f3e9683636632743fb1ff13516bdd34acd925af861e8150153f5",
+  "installer": {
+    "script": [
+      "if (-not (Test-Path \"$persist_dir\\Xtremsplit.ini\")) {",
+      "  New-Item \"$dir\\Xtremsplit.ini\" | Out-Null",
+      "}"
+    ]
+  },
+  "shortcuts": [
+    [
+      "Xtremsplit.exe",
+      "Xtremsplit"
+    ]
+  ],
+  "persist": "Xtremsplit.ini",
+  "checkver": {
+    "url": "https://www.lesnumeriques.com/telecharger/xtremsplit-23582",
+    "regex": "\"softwareVersion\":\"([\\d.]+)\""
+  },
+  "autoupdate": {
+    "url": "http://xtremsplit.free.fr/12/Xtremsplit.exe"
+  }
+}

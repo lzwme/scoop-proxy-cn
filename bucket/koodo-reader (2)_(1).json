@@ -1,0 +1,34 @@
+{
+  "version": "1.5.4",
+  "homepage": "https://koodo.960960.xyz/en",
+  "description": "All-in-one ebook reader.",
+  "license": "AGPL-3.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/troyeguo/koodo-reader/releases/download/v1.5.4/Koodo-Reader-1.5.4.exe#/dl.7z",
+      "hash": "sha512:c2fcdf4a8c06d780e00b5b929b4361d6d6a44feb55ce4ec5ff9b6e425ab65d4fcd08c349bd2b0d86b54a835a48e85c26895f38a77fb0a71cdfee790cf45f03fd"
+    }
+  },
+  "extract_dir": "$PLUGINSDIR",
+  "pre_install": "Expand-7zipArchive \"$dir\\app-64.7z\" $dir -Removal",
+  "shortcuts": [
+    [
+      "Koodo Reader.exe",
+      "Koodo Reader"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/troyeguo/koodo-reader"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/troyeguo/koodo-reader/releases/download/v$version/Koodo-Reader-$version.exe#/dl.7z",
+        "hash": {
+          "url": "$baseurl/latest.yml",
+          "regex": "sha512:\\s$base64"
+        }
+      }
+    }
+  }
+}

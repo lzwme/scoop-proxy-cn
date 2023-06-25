@@ -1,0 +1,39 @@
+{
+  "homepage": "https://github.com/v2fly/v2ray-core",
+  "description": "A unified platform for anti-censorship. (This is V2Fly, a community-driven edition of V2Ray)",
+  "version": "5.6.0",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/v2fly/v2ray-core/releases/download/v5.6.0/v2ray-windows-64.zip",
+      "hash": "43698c3152a4ad1ceccb06d5802e35f9aad12eac80702660093726801f386641"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/v2fly/v2ray-core/releases/download/v5.6.0/v2ray-windows-32.zip",
+      "hash": "8f59ba6ae0290a71d9d636eb09cfcdf02f256240fdac20e9a7d5067354ba9fda"
+    }
+  },
+  "bin": [
+    "v2ctl.exe",
+    "v2ray.exe",
+    "wv2ray.exe"
+  ],
+  "persist": "config.json",
+  "checkver": {
+    "github": "https://github.com/v2fly/v2ray-core"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/v2fly/v2ray-core/releases/download/v$version/v2ray-windows-64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/v2fly/v2ray-core/releases/download/v$version/v2ray-windows-32.zip"
+      }
+    },
+    "hash": {
+      "url": "$url.dgst",
+      "regex": "SHA512= $sha512"
+    }
+  }
+}

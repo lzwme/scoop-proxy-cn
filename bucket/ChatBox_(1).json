@@ -1,0 +1,48 @@
+{
+  "description": "Chatbox is a desktop app for GPT-4 / GPT-3.5 (OpenAI API)",
+  "homepage": "https://github.com/Bin-Huang/chatbox",
+  "license": "GPL-3.0-only",
+  "version": "0.4.5",
+  "checkver": {
+    "url": "https://github.com/Bin-Huang/chatbox/releases/latest",
+    "regex": "<h1[^>]*>Chatbox v(?<version>[\\d\\.]+)</h1>"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/Bin-Huang/chatbox/releases/download/v$version/chatbox_$version_x64_en-US.msi",
+    "hash": {
+      "mode": "download"
+    }
+  },
+  "extract_dir": "PFiles\\chatbox",
+  "url": "https://ghproxy.net/https://github.com/Bin-Huang/chatbox/releases/download/v0.4.5/chatbox_0.4.5_x64_en-US.msi",
+  "hash": "1fb0987ada9159bd498eebe5cc49f7c169b28692452532e5c0f3a38dbc283bd8",
+  "shortcuts": [
+    [
+      "chatbox.exe",
+      "ChatGPT"
+    ]
+  ],
+  "post_install": [
+    "if (Get-Command magick -ErrorAction SilentlyContinue) {",
+    "   Push-Location $dir",
+    "   Invoke-WebRequest https://cdn.openai.com/brand/openai-logos.zip -OutFile openai-logos.zip",
+    "   Expand-Archive openai-logos.zip -DestinationPath logos",
+    "   Move-Item -Path logos\\openai-logos\\SVGs\\openai-logomark.svg -Destination logo.svg",
+    "   Remove-Item -Path openai-logos.zip",
+    "   Remove-Item -Path logos -Recurse",
+    "   magick -size 256x256 xc:none -fill \"#1ea078\" -draw \"circle 128,128 128,0\" logo_circle.png",
+    "   magick convert -density 128x128 -background transparent logo.svg -define icon:auto-resize -colors 256 logo.png",
+    null,
+    "   magick logo.png -resize 150x150 logo_resized.png",
+    "   magick composite -gravity center logo_resized.png logo_circle.png OpenAI.ico",
+    "   Remove-Item logo*",
+    "   $shortcutPath = Join-Path -Path (Convert-Path([System.IO.Path]::Combine([Environment]::GetFolderPath($global ? 'CommonStartMenu':'StartMenu'), 'Programs', 'Scoop Apps'))) -ChildPath 'ChatGPT.lnk'",
+    "   Copy-Item -Path $shortcutPath -Destination OriginalShortcut.lnk",
+    "   $shortcut = (New-Object -ComObject WScript.Shell).CreateShortcut($shortcutPath)",
+    "   $shortcut.IconLocation = (Join-Path -Path $dir -ChildPath 'OpenAI.ico')",
+    "   $shortcut.Save()",
+    "   Pop-Location",
+    "   Write-Host 'A custom icon has been set for the shortcut. The original shortcut is saved as OriginalShortcut.lnk in the app folder.'",
+    "}"
+  ]
+}

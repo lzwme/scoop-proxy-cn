@@ -1,0 +1,33 @@
+{
+  "version": "1.0",
+  "description": "SSS ずんだもん　連続音",
+  "homepage": "https://zunko.jp/con_voice.html#zmon_utau",
+  "license": [
+    {
+      "identifier": "Proprietary",
+      "url": "https://zunko.jp/guideline.html"
+    }
+  ],
+  "url": "https://zunko.jp/sozai/utau/Zundamon.zip",
+  "hash": "3d2655508cfd7c8d2ad11fcb2332d43c48818bb33b972eb7ae24dd3ddd7374f8",
+  "extract_to": "voice",
+  "suggest": {
+    "UTAU": [
+      "utau",
+      "dtm/utau"
+    ]
+  },
+  "installer": {
+    "script": [
+      "$voice=\"ずんだもん(連続音)\"",
+      "Copy-Item -Force -Recurse -Path \"${dir}\\voice\\*\" -Destination \"${persist_dir}\\..\\utau\\utau\\voice\"",
+      "Remove-Item -Force -Recurse -Path \"${dir}\\voice\\${voice}\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$voice=\"ずんだもん(連続音)\"",
+      "Remove-Item -Force -Recurse -Path \"${persist_dir}\\..\\utau\\utau\\voice\\${voice}\""
+    ]
+  }
+}

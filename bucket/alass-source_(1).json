@@ -1,0 +1,31 @@
+{
+  "version": "2.0.0",
+  "description": "A command line tool to synchronize subtitles to movies.",
+  "homepage": "https://github.com/kaegi/alass",
+  "license": "GPL-3.0-or-later",
+  "depends": [
+    "ffmpeg",
+    "rust",
+    "gcc"
+  ],
+  "url": "https://ghproxy.net/https://github.com/kaegi/alass/archive/v2.0.0.zip",
+  "hash": "cf2a1472a290330e99aea7b82ed57e022ccb8a78705700bf7ac528999eecbc03",
+  "extract_dir": "alass-2.0.0",
+  "installer": {
+    "script": [
+      "cargo build --release --manifest-path=$dir\\Cargo.toml --bin alass-cli --target-dir=$cachedir\\alass-source#$version",
+      "New-Item -Path \"$dir\" -Name \"bin\" -ItemType \"directory\"",
+      "Move-Item -Path \"$cachedir\\alass-source#$version\\release\\alass-cli.exe\" -Destination \"$dir\\bin\""
+    ]
+  },
+  "bin": [
+    [
+      "bin/alass-cli.exe",
+      "alass"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/kaegi/alass/archive/v$version.zip"
+  }
+}

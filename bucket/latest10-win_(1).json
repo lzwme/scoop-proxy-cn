@@ -1,0 +1,29 @@
+{
+  "version": "19043.1237",
+  "description": "Get the latest Win10 images.(Chinese language pack only.)",
+  "homepage": "https://latest10.win/",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://www.microsoft.com/en-us/legal/intellectualproperty/copyright/default.aspx"
+  },
+  "url": "https://sharepoint.latest10.win/19043.1237/19043.1237.210912-2127.21H1_RELEASE_SVC_PROD1_CLIENTMULTI_X64FRE_ZH-CN.ISO#/setup.iso_",
+  "hash": "sha1:6bd6bc71ff0a241d79507fe9751b146443279680",
+  "installer": {
+    "script": "Rename-Item \"$dir\\setup.iso_\" \"$dir\\WIN10_X64_ZH_CN.ISO\""
+  },
+  "checkver": {
+    "url": "https://latest10.win/get",
+    "regex": "\\.win/(?<version>[\\d.]+).(?<filenameinfo>.+?)\\.ISO"
+  },
+  "autoupdate": {
+    "url": "https://sharepoint.latest10.win/$version/$matchFilenameinfo.ISO#/setup.iso_",
+    "hash": {
+      "url": "https://latest10.win/get",
+      "regex": "SHA1：$sha1"
+    }
+  },
+  "notes": [
+    "Mount WIN10_X64_ZH_CN.ISO to install/update Windows 10,",
+    "which contains only the Chinese language pack."
+  ]
+}

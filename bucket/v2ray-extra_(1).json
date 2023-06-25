@@ -1,0 +1,22 @@
+{
+  "version": "5.7.0",
+  "description": "A platform for building proxies to bypass network restrictions.",
+  "homepage": "https://www.v2fly.org/en_US/",
+  "license": "MIT",
+  "depends": "v2ray",
+  "url": "https://ghproxy.net/https://github.com/v2fly/v2ray-core/releases/download/v5.7.0/v2ray-extra.zip",
+  "hash": "41b92d33ebfa835971c0836347a94afb0e2c0c08b240a700350148d9e39906fe",
+  "checkver": {
+    "github": "https://github.com/v2fly/v2ray-core"
+  },
+  "post_install": [
+    "if (Test-Path \\$(appdir v2ray)\\current\\v2ray.exe\\) {",
+    "    foreach ($obj in Get-ChildItem $dir) {",
+    "        New-Item -Path \\$(appdir v2ray)\\current\\$($obj.Name)\\ -ItemType SymbolicLink -Value $obj\\",
+    "    }",
+    "}"
+  ],
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/v2fly/v2ray-core/releases/download/v$version/v2ray-extra.zip"
+  }
+}

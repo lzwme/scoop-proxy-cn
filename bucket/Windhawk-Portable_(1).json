@@ -1,0 +1,30 @@
+{
+  "version": "1.3.1",
+  "description": "Windhawk. The customization marketplace for Windows programs",
+  "homepage": "https://windhawk.net/",
+  "license": "",
+  "changelog": "https://github.com/ramensoftware/windhawk/releases",
+  "url": "https://ghproxy.net/https://github.com/ramensoftware/windhawk/releases/download/v1.3.1/windhawk_setup.exe#/setup.exe",
+  "hash": "fb1ecc8b6eeebda10fa06c1c5dce004e53ff17288929c0e77a0daaa384d2edf4",
+  "persist": "windhawk\\AppData",
+  "installer": {
+    "script": [
+      "Start-Process -Wait \"$dir\\setup.exe\" -ArgumentList '/S /portable /d=$dir' -Verb RunAs"
+    ]
+  },
+  "post_install": [
+    "if (Test-Path -Path \"$dir\\setup.exe\") { Remove-Item \"$dir\\setup.exe\" -Force }"
+  ],
+  "shortcuts": [
+    [
+      "windhawk\\windhawk.exe",
+      "Windhawk"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/ramensoftware/windhawk"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/ramensoftware/windhawk/releases/download/v$version/windhawk_setup.exe#/setup.exe"
+  }
+}

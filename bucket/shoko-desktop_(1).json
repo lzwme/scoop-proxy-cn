@@ -1,0 +1,35 @@
+{
+  "homepage": "https://shokoanime.com/downloads/shoko-desktop/",
+  "description": "Desktop client for Shoko Server",
+  "version": "4.1.2",
+  "license": "MIT",
+  "depends": "shoko-server",
+  "url": "https://shokoanime.com/files/shoko-desktop/Shoko_Desktop_Setup_4.1.2.zip",
+  "hash": "f4ccdcf8fd4db9b4b775155d4efdbca3e99aa6711da7346f3c569f363d251885",
+  "installer": {
+    "script": [
+      "$setup = Get-ChildItem -Path $dir -Include *.exe -Name",
+      "Expand-InnoArchive $dir\\$setup -Removal"
+    ]
+  },
+  "shortcuts": [
+    [
+      "ShokoDesktop.exe",
+      "Shoko Desktop"
+    ]
+  ],
+  "bin": [
+    [
+      "ShokoDesktop.exe",
+      "shoko-desktop"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/ShokoAnime/ShokoDesktop/releases/latest",
+    "regex": "Shoko Desktop ([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://shokoanime.com/files/shoko-desktop/Shoko_Desktop_Setup_$version.zip"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

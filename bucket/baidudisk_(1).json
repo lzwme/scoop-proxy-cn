@@ -1,0 +1,29 @@
+{
+  "version": "7.29.4.2",
+  "description": "baidu net disk client",
+  "homepage": "http://pan.baidu.com/",
+  "license": {
+    "identifier": "Unknown",
+    "url": "http://pan.baidu.com/disk/duty/"
+  },
+  "url": "https://issuepcdn.baidupcs.com/issue/netdisk/yunguanjia/BaiduNetdisk_7.29.4.2.exe#/dl.7z",
+  "hash": "938d9cd0dedd088b0866b3edf6adb22b3cc6638085332ff3716f48cecf64751b",
+  "pre_install": "Remove-Item -R -Path \"$dir\\`$TEMP\",\"$dir\\`$PLUGINSDIR\"",
+  "shortcuts": [
+    [
+      "BaiduNetdisk.exe",
+      "Baidu Netdisk"
+    ]
+  ],
+  "persist": "users",
+  "checkver": {
+    "url": "http://pan.baidu.com/disk/cmsdata?do=client",
+    "regex": "\\\\/yunguanjia\\\\/(?<name>Baidu[\\w]+_)(\\d+\\.\\d+\\.\\d+\\.\\d+)\\.exe"
+  },
+  "autoupdate": {
+    "url": "https://issuepcdn.baidupcs.com/issue/netdisk/yunguanjia/$matchName$version.exe#/dl.7z",
+    "hash": {
+      "mode": "download"
+    }
+  }
+}

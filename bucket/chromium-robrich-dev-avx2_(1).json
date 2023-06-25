@@ -1,0 +1,41 @@
+{
+  "version": "116.0.5812.0-r1152984",
+  "description": "Browser aiming for safer, faster, and more stable way for all users to experience the web.",
+  "license": "BSD-3-Clause",
+  "homepage": "https://www.chromium.org",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/RobRich999/Chromium_Clang/releases/download/v116.0.5812.0-r1152984-win64-avx2/chrome.zip",
+      "hash": "sha1:32f2b14a060c8d9f682f138e87271ffdbdb3c035",
+      "extract_dir": "chrome-win32"
+    }
+  },
+  "bin": [
+    [
+      "chrome.exe",
+      "chromium-robrich-dev-avx2"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "chrome.exe",
+      "Chromium (RobRich-dev-avx2)"
+    ]
+  ],
+  "checkver": {
+    "url": "https://ghproxy.net/https://raw.githubusercontent.com/RobRich999/Chromium_Clang/master/README.md",
+    "regex": "v([\\d.]+-r\\d+)-win64-avx2\\s+"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/RobRich999/Chromium_Clang/releases/download/v$version-win64-avx2/chrome.zip",
+        "extract_dir": "chrome-win32",
+        "hash": {
+          "url": "https://github.com/RobRich999/Chromium_Clang/releases/tag/v$version-win64-avx2",
+          "regex": "chrome\\.zip\\s\\-\\s([a-fA-F0-9]{40})"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "version": "2.46.01",
+  "description": "Clipboard Help+Spell is a clipboard history utility",
+  "homepage": "https://www.donationcoder.com/software/mouser/popular-apps/clipboard-help-and-spell",
+  "license": "Freeware",
+  "url": "https://www.donationcoder.com/Software/Mouser/clipboardhelpandspell/downloads/ClipboardHelpAndSpellPortable.zip",
+  "hash": "6d370910db843289f6204c87a6cbfb5405f0cd3e4824be07f8a3952ee85c000c",
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\ClipboardHelpAndSpell.ini\")) { New-Item \"$dir\\ClipboardHelpAndSpell.ini\" | Out-Null }",
+    "if (!(Test-Path \"$persist_dir\\dcuniversaloneLicenseKey.dat\")) { New-Item \"$dir\\dcuniversaloneLicenseKey.dat\" | Out-Null }",
+    "if (!(Test-Path \"$persist_dir\\DonationCoder_clipboardhelpandspell_Key.dat\")) { Copy-Item  \"$persist_dir\\dcuniversaloneLicenseKey.dat\" \"$persist_dir\\DonationCoder_clipboardhelpandspell_Key.dat\"}"
+  ],
+  "post_install": "Remove-Item -Recurse -Force -Path $dir\\*.original",
+  "shortcuts": [
+    [
+      "ClipboardHelpAndSpell.exe",
+      "ClipboardHelpAndSpell"
+    ]
+  ],
+  "persist": [
+    "ClipboardHelpAndSpell.ini",
+    "DonationCoder_clipboardhelpandspell_Key.dat",
+    "Backups",
+    "Database",
+    "Dictionaries",
+    "PresetFormats",
+    "PresetViews",
+    "Sounds",
+    "Tools"
+  ],
+  "checkver": {
+    "url": "https://www.donationcoder.com/software/mouser/popular-apps/clipboard-help-and-spell",
+    "regex": "Download v([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://www.donationcoder.com/Software/Mouser/clipboardhelpandspell/downloads/ClipboardHelpAndSpellPortable.zip"
+  }
+}

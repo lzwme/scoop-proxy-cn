@@ -1,0 +1,31 @@
+{
+  "homepage": "https://docs.docker.com/install/windows/docker-ee/",
+  "description": "Docker Engine - Enterprise enables native Docker containers on Windows Server. Windows Server 2016 and later versions are supported. This does NOT require Hyper-V to be enabled on your Windows 10 system.",
+  "version": "19.03.3-rc1",
+  "license": "unknwon",
+  "url": [
+    "https://download.docker.com/components/engine/windows-server/19.03/docker-19.03.3-rc1.zip#/dl.7z"
+  ],
+  "hash": [
+    "sha1:a962ce93fdfdc71845ad75eede54c6b02889ffd7"
+  ],
+  "extract_dir": "docker",
+  "bin": [
+    "docker.exe",
+    "dockerd.exe"
+  ],
+  "post_install": [
+    "sudo dockerd --exec-opt isolation=process --experimental --register-service",
+    "sudo Start-Service docker"
+  ],
+  "uninstaller": {
+    "script": [
+      "sudo Stop-Service docker",
+      "sudo dockerd --unregister-service"
+    ]
+  },
+  "notes": [
+    "See more https://www.kauffmann.nl/2019/03/04/how-to-install-docker-on-windows-10-without-hyper-v/"
+  ],
+  "_from": "okibcn/ScoopMaster"
+}

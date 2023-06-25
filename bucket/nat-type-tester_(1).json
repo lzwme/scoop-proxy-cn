@@ -1,0 +1,40 @@
+{
+  "version": "6.2.0",
+  "description": "NAT type tester (STUN).",
+  "homepage": "https://github.com/HMBSbige/NatTypeTester",
+  "license": "MIT",
+  "url": "https://ghproxy.net/https://github.com/HMBSbige/NatTypeTester/releases/download/6.2.0/NatTypeTester-6.2.0.7z",
+  "hash": "7bd1e7ed40ea7e6e194c23b6f5249498a6745d9dcab6285ba060050dc592bed0",
+  "pre_install": [
+    "Move-Item -Path $dir\\NatTypeTester\\* -Destination $dir\\",
+    "Remove-Item -Recurse $dir\\NatTypeTester"
+  ],
+  "architecture": {
+    "32bit": {
+      "shortcuts": [
+        [
+          "NatTypeTester-x86.exe",
+          "NAT Type Tester"
+        ]
+      ]
+    },
+    "64bit": {
+      "shortcuts": [
+        [
+          "NatTypeTester-x64.exe",
+          "NAT Type Tester"
+        ]
+      ]
+    }
+  },
+  "checkver": {
+    "github": "https://github.com/HMBSbige/NatTypeTester"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/HMBSbige/NatTypeTester/releases/download/$version/NatTypeTester-$version.7z",
+    "hash": {
+      "url": "https://github.com/HMBSbige/NatTypeTester/releases/tag/$version",
+      "find": "7z\\s([A-Fa-f0-9]{64})"
+    }
+  }
+}

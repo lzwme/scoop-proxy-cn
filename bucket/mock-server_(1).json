@@ -1,0 +1,22 @@
+{
+  "version": "5.15.0",
+  "description": "MockServer enables easy mocking of any system you integrate with via HTTP or HTTPS with clients written in Java, JavaScript and Ruby. MockServer also includes a proxy that introspects all proxied traffic including encrypted SSL traffic and supports Port Forwarding, Web Proxying (i.e. HTTP proxy), HTTPS Tunneling Proxying (using HTTP CONNECT) and…",
+  "homepage": "https://mock-server.com/",
+  "license": "Apache-2.0",
+  "suggest": {
+    "JDK": "java/openjdk"
+  },
+  "url": "https://repo1.maven.org/maven2/org/mock-server/mockserver-netty/5.15.0/mockserver-netty-5.15.0-shaded.jar#/mockserver.jar",
+  "hash": "sha1:89a733b32443cf5f0781b2623b037d391b2d3c96",
+  "bin": "mockserver.jar",
+  "checkver": {
+    "url": "https://repo1.maven.org/maven2/org/mock-server/mockserver-netty/maven-metadata.xml",
+    "xpath": "/metadata/versioning/latest"
+  },
+  "autoupdate": {
+    "url": "https://repo1.maven.org/maven2/org/mock-server/mockserver-netty/$version/mockserver-netty-$version-shaded.jar#/mockserver.jar",
+    "hash": {
+      "url": "$url.sha1"
+    }
+  }
+}

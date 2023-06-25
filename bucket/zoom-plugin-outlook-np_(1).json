@@ -1,0 +1,44 @@
+{
+  "$schema": "https://ghproxy.net/https://raw.githubusercontent.com/lukesampson/scoop/master/schema.json",
+  "version": "5.11.3.563",
+  "description": "This installs a button on the Microsoft Outlook tool bar to enable you to start or schedule a meeting with one-click.",
+  "homepage": "https://zoom.us/",
+  "license": "Proprietary",
+  "url": "https://cdn.zoom.us/prod/5.11.3.563/ZoomOutlookPluginSetup.msi#/dl.msi_",
+  "hash": "b461eb454d3a464a0fcdc9628c1b763593147b93cfa61e60742566904b5d713f",
+  "installer": {
+    "script": [
+      "if (-not (is_admin)) { error 'This package requires admin privileges to install'; break }",
+      "Invoke-ExternalCommand msiexec -ArgumentList @(",
+      "    '/i',",
+      "    \"$dir\\dl.msi_\",",
+      "    '/qn',",
+      "    '/norestart',",
+      "    \"TARGETDIR=\"\"$dir\"\"\",",
+      "    'ARPSYSTEMCOMPONENT=0',",
+      "    'MSIFASTINSTALL=7'",
+      ") -RunAs > $null"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "if (-not (is_admin)) { error 'This package requires admin privileges to uninstall'; break }",
+      "Invoke-ExternalCommand msiexec -ArgumentList @(",
+      "    '/x',",
+      "    \"$dir\\dl.msi_\",",
+      "    '/qn',",
+      "    '/norestart',",
+      "    \"TARGETDIR=\"\"$dir\"\"\",",
+      "    'ARPSYSTEMCOMPONENT=0',",
+      "    'MSIFASTINSTALL=7'",
+      ") -RunAs > $null"
+    ]
+  },
+  "checkver": {
+    "url": "https://zoom.us/download",
+    "regex": "ZoomOutlookPluginSetup\\.msi(?s:.)*?Version ([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://cdn.zoom.us/prod/$version/ZoomOutlookPluginSetup.msi#/dl.msi_"
+  }
+}

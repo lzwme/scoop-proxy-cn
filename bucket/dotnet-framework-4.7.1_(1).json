@@ -1,0 +1,21 @@
+{
+  "##": "https://github.com/Microsoft/dotnet/blob/master/releases/net471/README.md",
+  "description": "Microsoft .NET Framework 4.7.1 is a highly compatible, in-place update to Microsoft .NET Framework 4, 4.5, 4.5.1, 4.5.2, 4.6, 4.6.1, 4.6.2, and 4.7. You can see the full set of changes in the .NET Framework 4.7.1 in the [what's new list](https://docs.microsoft.com/en-us/dotnet/framework/whats-new/index#v471), [change list](https://github.com/Microsoft/dotnet/blob/master/releases/net471/dotnet471-changes.md) and [API diff](https://github.com/Microsoft/dotnet/blob/master/releases/net471/dotnet471-api-changes.md) on [GitHub](https://github.com/microsoft/dotnet).",
+  "hash": "df6e700d37ff416e2e1d8463dededdf76522ceaf5bb4cc3f197a7f2b9eccc4ad",
+  "homepage": "https://dotnet.microsoft.com/download/dotnet-framework",
+  "installer": {
+    "script": [
+      "$ec = @{",
+      "    0 = 'This product has been installed successfully, a reboot is not required.';",
+      "    3010 = 'This product has been installed, but a reboot is required to finalize the installation. Until the computer is rebooted, dependent packages may fail to install or function properly.';",
+      "}",
+      "Invoke-ExternalCommand \"$dir\\$fname\" -ArgumentList '/install', '/quiet', '/norestart' -ContinueExitCodes $ec -RunAs | Out-Null"
+    ]
+  },
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://www.microsoft.com/en-us/legal/intellectualproperty/copyright/default.aspx"
+  },
+  "url": "https://download.visualstudio.microsoft.com/download/pr/4312fa21-59b0-4451-9482-a1376f7f3ba4/9947fce13c11105b48cba170494e787f/ndp471-kb4033342-x86-x64-allos-enu.exe",
+  "version": "4.7.1"
+}

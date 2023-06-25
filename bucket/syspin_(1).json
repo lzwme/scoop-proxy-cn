@@ -1,0 +1,22 @@
+{
+  "version": "0.99.9.1",
+  "description": "Windows 7, 8, 10 Pin To Taskbar Command Prompt Utility.",
+  "homepage": "https://www.technosys.net/products/utils/pintotaskbar",
+  "license": "Freeware",
+  "url": "https://www.technosys.net/download.aspx?file=syspin.exe",
+  "hash": "sha256:07D6C3A19A8E3E243E9545A41DD30A9EE1E9AD79CDD6D446C229D689E5AB574A",
+  "bin": [
+    [
+      "syspin.exe",
+      "syspin"
+    ]
+  ],
+  "pre_install": "Rename-Item $dir\\download.aspx -NewName syspin.exe",
+  "checkver": {
+    "url": "https://www.technosys.net/products/utils/pintotaskbar",
+    "regex": "<p>x64 Version : ([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "http://www.technosys.net/download.aspx?file=syspin.exe"
+  }
+}

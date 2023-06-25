@@ -1,0 +1,38 @@
+{
+  "version": "1.256",
+  "description": "Real-time game translator with OCR.",
+  "homepage": "https://github.com/killkimno/MORT",
+  "license": "Unknown",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/killkimno/MORT/releases/download/1.256/MORT.1.256v.-.20230617.zip",
+      "hash": "8f8e8b6c994ed78100c4eb8f5bbb69dc240c4395a398b1130ec5191049eee701"
+    }
+  },
+  "shortcuts": [
+    [
+      "MORT.exe",
+      "MORT"
+    ]
+  ],
+  "persist": [
+    "UserData",
+    "setting",
+    "DIC",
+    "DB",
+    "VersionData.txt"
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/killkimno/MORT/releases",
+    "jsonpath": "$[0].assets[0].browser_download_url",
+    "regex": "(?<url>https:\\/\\/github\\.com\\/killkimno\\/MORT\\/releases\\/download\\/(?<version>[\\d\\.]+)\\/MORT\\.([\\d\\.]+)v\\.-\\.\\d+\\.zip)"
+  },
+  "notes": "See system requirement here: https://github.com/killkimno/MORT#system-requirement",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "$matchUrl"
+      }
+    }
+  }
+}

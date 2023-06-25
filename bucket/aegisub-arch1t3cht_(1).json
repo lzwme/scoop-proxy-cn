@@ -1,0 +1,28 @@
+{
+  "version": "feature_09",
+  "description": "arch1t3cht's Aegisub fork",
+  "homepage": "https://github.com/arch1t3cht/Aegisub",
+  "license": "https://ghproxy.net/https://raw.githubusercontent.com/arch1t3cht/Aegisub/feature/LICENCE",
+  "url": "https://ghproxy.net/https://github.com/arch1t3cht/Aegisub/releases/download/feature_09/Windows.MSVC.Release.-.portable.zip",
+  "hash": "5a1e54666f1bee497e17afd38eaf367f741f6029e7a600922a540388e05c1938",
+  "pre_install": [
+    "Expand-Archive -Path $dir\\aegisub-portable-64.zip -DestinationPath $dir\\",
+    "Move-Item -Path $dir\\aegisub-portable\\* -Destination $dir\\",
+    "Remove-Item -Recurse $dir\\aegisub-portable",
+    "Remove-Item $dir\\aegisub-portable-64.zip"
+  ],
+  "shortcuts": [
+    [
+      "Aegisub.exe",
+      "Aegisub"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/arch1t3cht/Aegisub/releases",
+    "regex": "tag/(feature_\\d+)"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/arch1t3cht/Aegisub/releases/download/$version/Windows.MSVC.Release.-.portable.zip"
+  },
+  "notes": "Automation scripts will fail to load for unknown reason. If you need the feature, use the installer instead of the portable build."
+}

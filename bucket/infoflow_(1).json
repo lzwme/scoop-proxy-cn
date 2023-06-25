@@ -1,0 +1,19 @@
+{
+  "version": "6.3.14.3",
+  "description": "如流，是百度全新推出，专门为企业打造的新一代智能工作平台，整合聊天、日历、项目、在线文档等功能，打造通讯流、工作流、会议流新工作模式，为组织提供如行云流水的流式工作体验，成就企业和个人。下载如流，开启流式工作模式！",
+  "homepage": "http://infoflow.baidu.com/#/",
+  "license": "Freeware",
+  "url": "https://hi-static.cdn.bcebos.com/hi-official/infoflow_setup.exe#/dl.7z",
+  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\uninst.exe.nsis\" -Force -Recurse",
+  "notes": "We don't persist your infoflow data, they are still storaged in '%UserProfile%\\Documents\\Baidu\\Baidu Hi'.",
+  "bin": "infoflow.exe",
+  "shortcuts": [
+    [
+      "infoflow.exe",
+      "百度如流"
+    ]
+  ],
+  "autoupdate": {
+    "url": "https://hi-static.cdn.bcebos.com/hi-official/infoflow_setup.exe#/dl.7z"
+  }
+}

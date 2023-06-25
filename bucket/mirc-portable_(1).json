@@ -1,0 +1,39 @@
+{
+  "version": "7.67",
+  "description": "mIRC is a full featured IRC client for Windows",
+  "homepage": "https://www.mirc.com/",
+  "license": {
+    "identifier": "mIRC End User License Agreement",
+    "url": "https://www.mirc.co.uk/eula.html"
+  },
+  "depends": "xdelta",
+  "url": [
+    "https://www.mirc.com/get.php#/dl.7z",
+    "https://github.com/nixxo/nixxo-scoop-bucket/raw/main/extras/mirc767.xdelta"
+  ],
+  "hash": [
+    "fd880d16e527227af14008a32488c70d21d3e391b9c95b4d34c37279e4ff56b9",
+    "db5fc5ad637c3191e1a671aad18156334f15d4f4a31777da1d5ef7d4894f8fc9"
+  ],
+  "post_install": [
+    "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$_16_\", \"$dir\\uninstall.exe\" -Force -Recurse",
+    "Rename-Item -Path \"$dir\\mirc.exe\" -NewName \"mirc.old.exe\"",
+    "$clean = $version.Replace('.','')",
+    "xdelta -d -s \"$dir\\mirc.old.exe\" \"$dir\\mirc$clean.xdelta\" \"$dir\\mirc.exe\""
+  ],
+  "shortcuts": [
+    [
+      "mirc.exe",
+      "mIRC",
+      "-noreg -r\"$dir\\defaults\""
+    ]
+  ],
+  "persist": "defaults",
+  "checkver": {
+    "url": "https://www.mirc.com/versions.txt",
+    "regex": "mIRC v([\\d\\.]+)"
+  },
+  "autoupdate": {
+    "url": "https://www.mirc.com/get.php#/dl.7z"
+  }
+}

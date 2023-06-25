@@ -1,0 +1,31 @@
+{
+  "version": "1.6.2",
+  "homepage": "https://novelwriter.io/",
+  "description": "An open source plain text editor designed for writing novels. It supports a minimal markdown-like syntax for formatting text.",
+  "license": "GPL-3.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/vkbo/novelWriter/releases/download/v1.6.2/novelwriter-1.6.2-win10-amd64-setup.exe",
+      "hash": "b382384d08698005e616f69e09507e2a9538a8089320ad46e019ee084efcee2f"
+    }
+  },
+  "innosetup": true,
+  "shortcuts": [
+    [
+      "pythonw.exe",
+      "novelWriter",
+      "novelWriter.pyw",
+      "novelwriter.ico"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/vkbo/novelWriter"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/vkbo/novelWriter/releases/download/v$version/novelwriter-$version-win10-amd64-setup.exe"
+      }
+    }
+  }
+}

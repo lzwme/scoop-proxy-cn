@@ -1,0 +1,39 @@
+{
+  "##": "name:HITACHI MB-S1",
+  "version": "072",
+  "description": [
+    "HITACHI MB-S1 is a emulator for Model05 Emulator from Hitachi.",
+    "",
+    "Download: HITACHI MB-S1 v0.7.2 x86"
+  ],
+  "homepage": "http://s-sasaji.ddo.jp/bml3mk5/download.htm",
+  "license": "",
+  "architecture": {
+    "32bit": {
+      "url": "http://s-sasaji.ddo.jp/bml3mk5/mbs1_win32_072.zip",
+      "hash": "da87b95bae066101e1295b385fede768f3bc456e646e533563487e341142ff75"
+    },
+    "64bit": {
+      "url": "http://s-sasaji.ddo.jp/bml3mk5/mbs1_win64_072.zip",
+      "hash": "a257c8bf344645cdf8865959368133dc8b4d27d1dc58f5e1e229f26579982d75"
+    }
+  },
+  "bin": [
+    "mbs1/mbs1.exe",
+    "MBS1"
+  ],
+  "checkver": {
+    "url": "http://s-sasaji.ddo.jp/bml3mk5/download.htm",
+    "regex": "mbs1_win32_(\\d+).zip"
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "http://s-sasaji.ddo.jp/bml3mk5/mbs1_win32_$version.zip"
+      },
+      "64bit": {
+        "url": "http://s-sasaji.ddo.jp/bml3mk5/mbs1_win64_$version.zip"
+      }
+    }
+  }
+}

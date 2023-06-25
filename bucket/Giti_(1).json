@@ -1,0 +1,28 @@
+{
+  "version": "0.2.0",
+  "description": "A simple tool for customizing git commit message.",
+  "homepage": "https://github.com/garyng/Giti",
+  "license": {
+    "identifier": "Freeware"
+  },
+  "url": "https://ghproxy.net/https://github.com/garyng/Giti/releases/download/0.2.0/Giti-0.2.0.zip",
+  "hash": "6ee9d1fde436941857a431f77863c79eb9c5746ed0fd7663c900e9b31900dca8",
+  "bin": "Giti.exe",
+  "shortcuts": [
+    [
+      "Giti.exe",
+      "Giti"
+    ]
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/garyng/Giti/releases",
+    "jsonpath": "$[0].name"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/garyng/Giti/releases/download/$version/Giti-$version.zip",
+    "hash": {
+      "url": "$url.sha256",
+      "regex": "$sha256"
+    }
+  }
+}

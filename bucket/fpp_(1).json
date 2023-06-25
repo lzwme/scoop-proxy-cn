@@ -1,0 +1,27 @@
+{
+  "version": "1.1.0",
+  "description": "Find Program Path: iterate through the PATH environment variable to search for the given programs",
+  "homepage": "https://github.com/jftuga/fpp",
+  "license": {
+    "identifier": "MIT",
+    "url": "https://github.com/jftuga/fpp/blob/main/LICENSE"
+  },
+  "changelog": "https://github.com/jftuga/fpp/releases/tag/v$version",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/jftuga/fpp/releases/download/v1.1.0/fpp_1.1.0_windows_amd64.zip",
+      "extract_dir": "fpp_1.1.0_windows_amd64"
+    }
+  },
+  "bin": "fpp.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "changelog": "https://github.com/jftuga/fpp/releases/tag/v$version",
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/jftuga/fpp/releases/download/v$version/fpp-$version-windows-amd64.zip",
+        "extract_dir": "fpp_$version_windows_amd64"
+      }
+    }
+  }
+}

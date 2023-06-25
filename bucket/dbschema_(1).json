@@ -1,0 +1,22 @@
+{
+  "homepage": "https://dbschema.com",
+  "version": "9.4.0",
+  "license": "Proprietary",
+  "url": "https://dbschema.com/download/DbSchema_9_4_0.zip",
+  "hash": "31e95f981451f746d2c250ab76575a302af7a554cb2d052862ab94eb0d39a77d",
+  "extract_dir": "DbSchema",
+  "shortcuts": [
+    [
+      "DbSchema.exe",
+      "DbSchema"
+    ]
+  ],
+  "checkver": {
+    "url": "https://dbschema.com/download.html",
+    "regex": "<a href=\"https://dbschema.com/download/DbSchema_(\\d+)_(\\d+)_(\\d+).zip\"",
+    "replace": "${1}.${2}.${3}"
+  },
+  "autoupdate": {
+    "url": "https://dbschema.com/download/DbSchema_$underscoreVersion.zip"
+  }
+}

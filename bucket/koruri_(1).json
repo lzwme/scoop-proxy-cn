@@ -1,0 +1,34 @@
+{
+  "homepage": "https://koruri.github.io/",
+  "description": "Japanese TrueType font obtained by mixing M+ FONTS and Open Sans.",
+  "license": "https://github.com/Koruri/Koruri/blob/master/LICENSE",
+  "version": "20210720",
+  "url": "https://ghproxy.net/https://github.com/Koruri/Koruri/releases/download/20210720/Koruri-20210720.7z",
+  "hash": "82ee0c64f922f01d95e1a6d08d5bf5bee156f20f1deb3237dbba1006da0c8922",
+  "checkver": {
+    "github": "https://github.com/Koruri/Koruri"
+  },
+  "extract_dir": "Koruri_20210720",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/Koruri/Koruri/releases/download/$version/Koruri-$version.7z",
+    "extract_dir": "Koruri_$version"
+  },
+  "installer": {
+    "script": [
+      "Get-ChildItem $dir -filter '*.ttf' | ForEach-Object {",
+      "   $fontdir = \"$env:LocalAppData\\Microsoft\\Windows\\Fonts\"",
+      "   New-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value \"$fontdir\\$($_.Name)\" -Force | Out-Null",
+      "   Copy-Item $_.Fullname -destination \"$fontdir\"",
+      "}"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Get-ChildItem $dir -filter '*.ttf' | ForEach-Object {",
+      "   $fontdir = \"$env:LocalAppData\\Microsoft\\Windows\\Fonts\"",
+      "   Remove-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
+      "   Remove-Item \"$fontdir\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
+      "}"
+    ]
+  }
+}

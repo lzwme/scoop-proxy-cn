@@ -1,0 +1,46 @@
+{
+  "homepage": "https://nodejs.org",
+  "description": "As an asynchronous event driven JavaScript runtime, Node is designed to build scalable network applications.",
+  "version": "20.0.0",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://registry.npmmirror.com/-/binary/node/v20.0.0/node-v20.0.0-win-x64.7z",
+      "hash": "e78b9cdc58b0d9ab6c980180b574b38d91d5939d18b55b8772897e63d9ce4b9c",
+      "extract_dir": "node-v20.0.0-win-x64"
+    },
+    "32bit": {
+      "url": "https://registry.npmmirror.com/-/binary/node/v20.0.0/node-v20.0.0-win-x86.7z",
+      "hash": "a147b247e19e1324d8f7edef6c1ae4e24e5bdad9867843a2b4b491a0f3d73dd5",
+      "extract_dir": "node-v20.0.0-win-x86"
+    }
+  },
+  "persist": [
+    "bin",
+    "cache"
+  ],
+  "env_add_path": [
+    ".",
+    "bin"
+  ],
+  "## maint! [2020-05-31; rivy]": "maybe we don't need `yarn` to hold the `npm` dependency anymore? ref: <https://github.com/npm/cli/issues/713>)",
+  "checkver": {
+    "url": "https://registry.npmmirror.com/-/binary/node/latest/",
+    "re": "node-v([\\d.]+)-x86.msi"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://registry.npmmirror.com/-/binary/node/v$version/node-v$version-win-x64.7z",
+        "extract_dir": "node-v$version-win-x64"
+      },
+      "32bit": {
+        "url": "https://registry.npmmirror.com/-/binary/node/v$version/node-v$version-win-x86.7z",
+        "extract_dir": "node-v$version-win-x86"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/SHASUMS256.txt.asc"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "version": "1.3.3",
+  "description": "Twake - The Open Digital Workplace; Twake is a secure open source collaboration platform to improve organizational productivity.",
+  "homepage": "https://twake.app",
+  "license": {
+    "identifier": "AGPLv3",
+    "url": "https://github.com/linagora/Twake/blob/main/LICENSE.md"
+  },
+  "url": "https://ghproxy.net/https://github.com/linagora/Twake-Desktop/releases/download/v1.3.3/Setup_Twake_lastest.msi",
+  "hash": "08329b67d60c2c7c9b20115f87538c6dd40e7748baad7c5120d68f681c38a0a9",
+  "persist": "data",
+  "architecture": {
+    "64bit": {
+      "installer": {
+        "script": "Expand-MSIArchive \"$dir\\Setup_Twake_lastest.msi\" \"$dir\"; robocopy /MOVE /NJH /NJS /NFL /NDL /S /E \"$dir\\twake\" \"$dir\\..\\$version\"; $null = mkdir -Force \"$persist_dir\\data\"; if (Test-Path -Path \"$scoopdir\\..\\AppData\\Roaming\\Twake\") {$null = New-Item -ItemType Junction -Path \"$scoopdir\\..\\AppData\\Roaming\\Twake\" -Target \"$persist_dir\\data\"} "
+      },
+      "uninstaller": {
+        "script": "attrib \"$scoopdir\\..\\AppData\\Roaming\\Twake\" -R /L; rmdir \"$scoopdir\\..\\AppData\\Roaming\\Twake\" "
+      }
+    }
+  },
+  "bin": "twake.exe",
+  "shortcuts": [
+    [
+      "twake.exe",
+      "Twake"
+    ]
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "version": "2.3.26.0",
+  "description": "Statistical spreadsheet",
+  "homepage": "https://www.jamovi.org",
+  "license": "AGPL-3.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://www.jamovi.org/downloads/jamovi-2.3.26.0-win64.zip",
+      "hash": "1ca98c58004d58c6e743ccb77d8105131d9292f8037ff52d3cb382af7e9fb0a2",
+      "extract_dir": "jamovi-2.3.26.0-win64"
+    }
+  },
+  "shortcuts": [
+    [
+      "bin\\jamovi.exe",
+      "Jamovi"
+    ]
+  ],
+  "checkver": {
+    "url": "https://www.jamovi.org/download.html",
+    "regex": "(?sm)/downloads/jamovi-([\\d.]+)\\-win64\\.exe.*?solid"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://www.jamovi.org/downloads/jamovi-$version-win64.zip",
+        "extract_dir": "jamovi-$version-win64"
+      }
+    }
+  }
+}

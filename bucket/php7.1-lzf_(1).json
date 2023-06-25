@@ -1,0 +1,30 @@
+{
+  "homepage": "https://pecl.php.net/package/lzf",
+  "version": "1.6.6",
+  "license": "http://www.php.net/license/3_01.txt",
+  "architecture": {
+    "64bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/lzf/1.6.6/php_lzf-1.6.6-7.1-ts-vc14-x64.zip",
+      "hash": "585c3cc2c3d9ca9cb8b2a04d0b38ea900e3eb227c317f6f8d1395876ed3d61d7"
+    },
+    "32bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/lzf/1.6.6/php_lzf-1.6.6-7.1-ts-vc14-x86.zip",
+      "hash": "38aefb09af4aa1cd0fff4eb63a5853249eee12c6985f38372234145cab8c7eba"
+    }
+  },
+  "checkver": "lzf/([\\d.]+)/windows",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/lzf/$version/php_lzf-$version-7.1-ts-vc14-x64.zip"
+      },
+      "32bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/lzf/$version/php_lzf-$version-7.1-ts-vc14-x86.zip"
+      }
+    }
+  },
+  "post_install": "iex(gc $bucketsdir\\$bucket\\bin\\postinstall.ps1 -Raw)",
+  "uninstaller": {
+    "file": "uninstall.ps1"
+  }
+}

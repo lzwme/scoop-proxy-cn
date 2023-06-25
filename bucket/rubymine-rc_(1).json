@@ -1,0 +1,43 @@
+{
+  "architecture": {
+    "32bit": {
+      "shortcuts": [
+        [
+          "IDE\\bin\\rubymine.exe",
+          "JetBrains\\RubyMine (Release Candidate)"
+        ]
+      ]
+    },
+    "64bit": {
+      "shortcuts": [
+        [
+          "IDE\\bin\\rubymine64.exe",
+          "JetBrains\\RubyMine (Release Candidate)"
+        ]
+      ]
+    }
+  },
+  "autoupdate": {
+    "hash": {
+      "url": "$url.sha256"
+    },
+    "url": "https://download.jetbrains.com/ruby/RubyMine-$preReleaseVersion.exe#/cosi.7z"
+  },
+  "checkver": {
+    "regex": "version\":\"(?<ver>[\\d.]+)\".*\"build\":\"(?<build>[\\d.]+)\"",
+    "replace": "${ver}-${build}",
+    "url": "https://data.services.jetbrains.com/products/releases?code=RM&latest=true&platform=zip&type=rc"
+  },
+  "description": "RubyMine Release Candidate. Cross-Platform Ruby on Rails IDE by JetBrains.",
+  "extract_to": "IDE",
+  "hash": "cbc24b10b5709850499832b73fcc60c7d843418b40cd6faeafdad4236216b2e4",
+  "homepage": "https://www.jetbrains.com/ruby/",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://www.jetbrains.com/store/license.html"
+  },
+  "persist": "IDE\\bin\\idea.properties",
+  "pre_install": "Remove-Item \"$dir\\IDE\\`$*\" -Force -Recurse",
+  "url": "https://download.jetbrains.com/ruby/RubyMine-191.7141.46.exe#/cosi.7z",
+  "version": "2019.1.2-191.7141.46"
+}

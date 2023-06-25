@@ -1,0 +1,60 @@
+{
+  "homepage": "https://github.com/sandboxie-plus/Sandboxie",
+  "description": "Sandboxie is a sandbox-based isolation software for 32- and 64-bit Windows NT-based operating systems.",
+  "version": "5.47.1",
+  "license": "GPL-3.0 License",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/sandboxie-plus/Sandboxie/releases/download/0.6.7/Sandboxie-Classic-x64-v5.47.1.exe#/Sandboxie-install.exe",
+      "hash": "9e1026ed405af4b3493b975b356ff0e86052433b2ad0192e7078f0de03df8114",
+      "installer": {
+        "script": [
+          "Invoke-ExternalCommand \"$dir\\Sandboxie-install.exe\" -ArgumentList @('/install','/S',\"/D=$dir\") -RunAs | Out-Null",
+          "Remove-Item \"$dir\\Sandboxie-install.exe\" -Force -Recurse"
+        ]
+      },
+      "uninstaller": {
+        "script": [
+          "$uninstaller = (Get-Item Env:windir).Value+'\\installer\\SandboxieInstall64.exe'",
+          "Invoke-ExternalCommand \"$uninstaller\" -ArgumentList @('/remove','/S') -RunAs | Out-Null"
+        ]
+      }
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/sandboxie-plus/Sandboxie/releases/download/0.6.7/Sandboxie-Classic-x86-v5.47.1.exe#/Sandboxie-install.exe",
+      "hash": "d6b38a60ba7cfb7d6066d8982dd931928ae1acca8456443a9f1623ee4e259d61",
+      "installer": {
+        "script": [
+          "Invoke-ExternalCommand \"$dir\\Sandboxie-install.exe\" -ArgumentList @('/install','/S',\"/D=$dir\") -RunAs | Out-Null",
+          "Remove-Item \"$dir\\Sandboxie-install.exe\" -Force -Recurse"
+        ]
+      },
+      "uninstaller": {
+        "script": [
+          "$uninstaller = (Get-Item Env:windir).Value+'\\installer\\SandboxieInstall.exe'",
+          "Invoke-ExternalCommand \"$uninstaller\" -ArgumentList @('/remove','/S') -RunAs | Out-Null"
+        ]
+      }
+    }
+  },
+  "shortcuts": [
+    [
+      "SbieCtrl.exe",
+      "Sandboxie"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/sandboxie-plus/Sandboxie",
+    "regex": "/ ([\\d.]+)</span><span title=\"Label: Latest\" class=\"Label Label--success flex-shrink-0\">Latest</span></div>"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/sandboxie-plus/Sandboxie/releases/download/$matchPlus/Sandboxie-Classic-x64-v$version.exe#/Sandboxie-install.exe"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/sandboxie-plus/Sandboxie/releases/download/$matchPlus/Sandboxie-Classic-x86-v$version.exe#/Sandboxie-install.exe"
+      }
+    }
+  }
+}

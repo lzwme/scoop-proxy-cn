@@ -1,0 +1,27 @@
+{
+  "homepage": "https://github.com/fontworks-fonts/Stick",
+  "description": "True to its name, Stick is designed with straight lines that create a cute and playful feel.",
+  "license": "https://github.com/fontworks-fonts/Stick/blob/master/OFL.txt",
+  "version": "0.0.1",
+  "url": "https://ghproxy.net/https://github.com/fontworks-fonts/Stick/archive/master.zip",
+  "hash": "be847554e96bf9ecda9a3efe7f9b9359653b473d320dc55ef2f01fa09cbeb4e2",
+  "extract_dir": "Stick-master/fonts/ttf",
+  "installer": {
+    "script": [
+      "Get-ChildItem $dir -filter '*.ttf' | ForEach-Object {",
+      "   $fontdir = \"$env:LocalAppData\\Microsoft\\Windows\\Fonts\"",
+      "   New-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value \"$fontdir\\$($_.Name)\" -Force | Out-Null",
+      "   Copy-Item $_.Fullname -destination \"$fontdir\"",
+      "}"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Get-ChildItem $dir -filter '*.ttf' | ForEach-Object {",
+      "   $fontdir = \"$env:LocalAppData\\Microsoft\\Windows\\Fonts\"",
+      "   Remove-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
+      "   Remove-Item \"$fontdir\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
+      "}"
+    ]
+  }
+}

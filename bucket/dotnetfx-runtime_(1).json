@@ -1,0 +1,21 @@
+{
+  "version": "4.7.1",
+  "license": "BSD-3-Clause",
+  "description": ".Net 4.7.1 Offline installer",
+  "homepage": "https://go.microsoft.com/fwlink/?LinkID=2099383",
+  "notes": [
+    "Install .Net 4.7.1 runtime"
+  ],
+  "architecture": {
+    "64bit": {
+      "url": "https://go.microsoft.com/fwlink/?LinkID=2099383#/ndp471-enu.exe",
+      "hash": "df6e700d37ff416e2e1d8463dededdf76522ceaf5bb4cc3f197a7f2b9eccc4ad",
+      "installer": {
+        "script": "& \"$dir\\ndp471-enu.exe\" \"/q\"  \"/log\" \"$env:TEMP\\dotnetlog.txt\""
+      },
+      "uninstaller": {
+        "script": "& \"$dir\\ndp471-enu.exe\" \"/uninstall\" \"/q\" "
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "version": "4.0.0",
+  "notes": "记得康康 readme, 有依赖要装",
+  "description": "uLister is a powerful document viewer which can open more than 500 file formats.",
+  "homepage": "https://totalcmd.net/plugring/oilister.html",
+  "license": "Freeware",
+  "suggest": {
+    "totalcmd": "extra/totalcommander"
+  },
+  "depends": "extras/vcredist2013",
+  "architecture": {
+    "64bit": {
+      "url": "http://wincmd.ru/files/wlx64_uLister_4.0.0.zip",
+      "hash": "9e8f0023d74908b6abf4cf388a334c2b77854051886c916f4cd5b05d489c385b"
+    }
+  },
+  "persist": "redist",
+  "checkver": {
+    "re": "<h1>uLister ([\\d.]+)</h1>"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "http://wincmd.ru/files/wlx64_uLister_$version.zip"
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "version": "7.2.8.9",
+  "description": "BaiduNetdisk 3rd party modified version, maintained by 423down.com.",
+  "homepage": "https://pan.baidu.com",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://pan.baidu.com/disk/main#/protocol/duty_mobi"
+  },
+  "notes": "Features: <https://www.423down.com/8999.html>",
+  "url": "https://pan.jiemi.workers.dev/?file=/wenlei/BaiduNetdisk_v6.5.0.3_NoAD_Green_NoP2P.7z",
+  "hash": "41cf786ed460d3f4c33fe0b6581647aa3e156059c465714aeac213d26d206b40",
+  "extract_dir": "BaiduNetdisk",
+  "installer": {
+    "script": "Start-Process \"$dir\\!)绿化处理.bat\" -WorkingDirectory \"$dir\" -Wait -Verb runAs | Out-Null"
+  },
+  "uninstaller": {
+    "script": "Start-Process \"$dir\\!)卸载清除.bat\" -WorkingDirectory \"$dir\" -Wait -Verb runAs | Out-Null"
+  },
+  "shortcuts": [
+    [
+      "BaiduNetdisk.exe",
+      "Baidu\\BaiduNetdisk 7 Mod"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/oneindex.txt",
+    "regex": "BaiduNetdisk_v([\\d.]+)_NoAD_Green_NoWorkspace\\.7z",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/wenlei/BaiduNetdisk_v$version_NoAD_Green_NoWorkspace.7z"
+  }
+}

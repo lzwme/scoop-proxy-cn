@@ -1,0 +1,24 @@
+{
+  "version": "1.10",
+  "description": "A utility for launching Far Cry 2 with various fixes without modifying the game executable files.",
+  "homepage": "https://github.com/FoxAhead/Far-Cry-2-Multi-Fixer",
+  "license": "Unknown",
+  "url": "https://ghproxy.net/https://github.com/FoxAhead/Far-Cry-2-Multi-Fixer/releases/download/v1.10/FarCry2MF.v1.10.0.72.zip",
+  "hash": "sha256:434429ECBB13C018A202F272932336D5186B3A88AF7CD06D3696E820F45B3718",
+  "pre_install": "If (!(Test-Path \"$persist_dir\\FarCry2MFLauncher.ini\")) { New-Item \"$dir\\FarCry2MFLauncher.ini\" -ItemType File | Out-Null }",
+  "shortcuts": [
+    [
+      "FarCry2MFLauncher.exe",
+      "Far Cry 2 Multi Fixer"
+    ]
+  ],
+  "persist": "FarCry2MFLauncher.ini",
+  "checkver": {
+    "url": "https://api.github.com/repos/FoxAhead/Far-Cry-2-Multi-Fixer/releases",
+    "jsonpath": "$.[*].assets.[*].browser_download_url",
+    "regex": "FarCry2MF.v(?<Build>[\\d.]+).zip"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/FoxAhead/Far-Cry-2-Multi-Fixer/releases/download/v$version/FarCry2MF.v$matchBuild.zip"
+  }
+}

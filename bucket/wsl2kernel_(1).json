@@ -1,0 +1,24 @@
+{
+  "version": "5.15.90.1-2.0",
+  "description": "Latest WSL2 kernel from Microsoft with multiple configurations. Available before the WSL release.",
+  "homepage": "https://github.com/okibcn/WSL2-linux-kernel",
+  "license": "GPL-2.0",
+  "notes": [
+    "Default kernel have been configured, no other setting has been modified. Find a backup of",
+    "the old config file at \"$dir\\.wslconfig\"",
+    "Visit https://github.com/okibcn/WSL2-linux-kernel for more information",
+    "or type 'wsl2kernel h' for usage instructions."
+  ],
+  "url": "https://ghproxy.net/https://github.com/okibcn/WSL2-linux-kernel/releases/download/5.15.90.1-2.0/WSL2kernel_5.15.90.1-2.0.zip#/dl.7z",
+  "hash": "5c7beafa4ee1bda2176d2998aeba7767205ee158d1a2358c5c4b136648378ba3",
+  "bin": "wsl2kernel.ps1",
+  "pre_install": "powershell.exe $dir/wsl2kernel.ps1 i std",
+  "pre_uninstall": "powershell.exe $dir/wsl2kernel.ps1 u",
+  "checkver": {
+    "github": "https://api.github.com/repos/okibcn/WSL2-linux-kernel",
+    "regex": "_([\\d\\.\\-]+)\\.zip"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/okibcn/WSL2-linux-kernel/releases/download/$version/WSL2kernel_$version.zip#/dl.7z"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "version": "112.0.5615.138",
+  "description": "Browser aiming for safer, faster, and more stable way for all users to experience the web (Hibbiki/chromium-win64)",
+  "homepage": "https://www.chromium.org",
+  "license": "BSD-3-Clause",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/Hibbiki/chromium-win64/releases/download/v112.0.5615.138-r1109224/chrome.sync.7z",
+      "hash": "sha1:38c53db625954c3fdb6c592c443c4b2ec992855e"
+    }
+  },
+  "extract_dir": "Chrome-bin",
+  "bin": [
+    "chrome.exe",
+    [
+      "chrome.exe",
+      "chromium"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "chrome.exe",
+      "Chromium"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/Hibbiki/chromium-win64",
+    "regex": "v([\\d.]+)-r(?<rev>\\d+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/Hibbiki/chromium-win64/releases/download/v$version-r$matchRev/chrome.sync.7z",
+        "hash": {
+          "url": "https://github.com/Hibbiki/chromium-win64/releases/v$version-r$matchRev",
+          "regex": "$sha1 /mnt/d/out/x64/$basename"
+        }
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

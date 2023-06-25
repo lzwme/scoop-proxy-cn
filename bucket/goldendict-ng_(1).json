@@ -1,0 +1,44 @@
+{
+  "version": "v23.06.01-ChildrenDay.230601.6d3d4053",
+  "description": "A feature-rich dictionary lookup program, supporting multiple dictionary formats (StarDict/Babylon/Lingvo/Dictd/AARD/MDict/SDict) and online dictionaries, featuring perfect article rendering with the complete markup, illustrations and other content retained, and allowing you to type in words without any accents or correct case.",
+  "license": "GPL-3.0-or-later",
+  "homepage": "https://github.com/xiaoyifang/goldendict",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/xiaoyifang/goldendict-ng/releases/download/v23.06.01-ChildrenDay.230601.6d3d4053/6.4.3-GoldenDict.exe_windows-2019_20230601-xapian.zip",
+      "hash": "3865aa38fc64296c667114e6db2127bd61bbc3c59afed7c89de8a4a373c5d2b7",
+      "shortcuts": [
+        [
+          "GoldenDict.exe",
+          "GoldenDict"
+        ]
+      ]
+    }
+  },
+  "persist": [
+    "content",
+    "portable"
+  ],
+  "pre_install": [
+    "$unzip_dir = (Get-ChildItem -Path $original_dir -Directory)[0].FullName",
+    "Move-Item -Path \"${unzip_dir}\\*\" -Destination \"$original_dir\" -Force",
+    "Remove-Item –Path $unzip_dir -Recurse -Force"
+  ],
+  "checkver": {
+    "script": [
+      "$resp = Invoke-WebRequest -Uri 'https://api.github.com/repos/xiaoyifang/goldendict/releases/latest'",
+      "$json = $resp.Content | ConvertFrom-Json",
+      "$download_url = ($json.assets | Where-Object name -Match '^6.*_windows.*.zip$')[-1].browser_download_url",
+      "$version = $json.tag_name",
+      "Write-Output \"$version $download_url\""
+    ],
+    "regex": "(?<version>.+)\\s(?<url>.+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "$matchUrl"
+      }
+    }
+  }
+}

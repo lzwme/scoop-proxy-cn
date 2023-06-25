@@ -1,0 +1,21 @@
+{
+  "version": "7.0.10",
+  "homepage": "https://www.seafile.com",
+  "description": "Client for syncing Seafile libraries to the client.",
+  "shortcuts": [
+    [
+      "Pfiles/Seafile/bin/seafile-applet.exe",
+      "Seafile"
+    ]
+  ],
+  "checkver": {
+    "url": "https://www.seafile.com/en/download/",
+    "regex": "/(?<url>https:\\/\\/[^\"]*seafile-[^\"]*\\.msi)\\\"[^>]*>(?<version>\\d+\\.\\d+\\.\\d+)<\\/a><br\\/>(?:\\s*<a[^<]*>\\d+\\.\\d+\\.\\d+ beta<\\/a><br\\/>\\s*)?\\s*<a href=\"https:\\/\\/manual\\.seafile\\.com\\/changelog\\/client-changelog\\/\""
+  },
+  "url": "https://s3.eu-central-1.amazonaws.com/download.seadrive.org/seafile-7.0.10-en.msi",
+  "hash": "ce80a4d7e8f8dc8fcefb671ebf020a2dd18f56a46c0c1a9095d1421324ff3f5a",
+  "autoupdate": {
+    "url": "$matchUrl"
+  },
+  "license": "Apache-2.0"
+}

@@ -1,0 +1,39 @@
+{
+  "homepage": "https://github.com/rigaya/NVEnc",
+  "description": "Transcoding software using NVENC of NVIDIA.",
+  "version": "7.27",
+  "license": "MIT",
+  "architecture": {
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/rigaya/NVEnc/releases/download/7.27/NVEncC_7.27_Win32.7z",
+      "hash": "195d81ccef290ab9206c7556e94e9b30d16ee7c7c0fec5044e2ec8efa85bae6e",
+      "bin": [
+        [
+          "NVEncC.exe",
+          "nvencc"
+        ]
+      ]
+    },
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/rigaya/NVEnc/releases/download/7.27/NVEncC_7.27_x64.7z",
+      "hash": "f4641d346e50ca876601dd7070345053fc8e6af5418f8968b4937e064865ff5b",
+      "bin": [
+        [
+          "NVEncC64.exe",
+          "nvencc"
+        ]
+      ]
+    }
+  },
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/rigaya/NVEnc/releases/download/$version/NVEncC_$version_Win32.7z"
+      },
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/rigaya/NVEnc/releases/download/$version/NVEncC_$version_x64.7z"
+      }
+    }
+  }
+}

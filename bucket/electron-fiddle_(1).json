@@ -1,0 +1,42 @@
+{
+  "version": "0.32.8",
+  "description": "Create and play with small Electron experiments",
+  "homepage": "https://www.electronjs.org/fiddle",
+  "license": "MIT",
+  "suggest": {
+    "yarn": "yarn"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/electron/fiddle/releases/download/v0.32.8/electron-fiddle-0.32.8-win32-x64-setup.exe#/dl.7z",
+      "hash": "f45ebc58fe8c06e4ef82cd20edf663389f29bf78320602728fe3041582d8317d"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/electron/fiddle/releases/download/v0.32.8/electron-fiddle-0.32.8-win32-ia32-setup.exe#/dl.7z",
+      "hash": "333eb5f9818eb4c435fe3431216acc7bc35ba8763292a59c876719a39af33c54"
+    }
+  },
+  "pre_install": [
+    "Get-ChildItem \"$dir\\*\" -Exclude 'electron-fiddle-*nupkg' | Remove-Item",
+    "Expand-7zipArchive \"$dir\\electron-fiddle-*-full.nupkg\" -ExtractDir 'lib\\net45' -Removal"
+  ],
+  "shortcuts": [
+    [
+      "electron-fiddle.exe",
+      "Electron Fiddle"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/electron/fiddle"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/electron/fiddle/releases/download/v$version/electron-fiddle-$version-win32-x64-setup.exe#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/electron/fiddle/releases/download/v$version/electron-fiddle-$version-win32-ia32-setup.exe#/dl.7z"
+      }
+    }
+  }
+}

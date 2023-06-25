@@ -1,0 +1,21 @@
+{
+  "homepage": "https://github.com/TransposonY/GestureSign",
+  "description": "A gesture recognition software for Windows tablet.",
+  "version": "8.1",
+  "license": "GPL-2.0-only",
+  "url": "https://ghproxy.net/https://github.com/TransposonY/GestureSign/releases/download/v8.1/GestureSignPortable-8.1.0.0.zip",
+  "hash": "27ae0d9c7b205a80c526984b39dd4d9ba8194068214c90e10675f848711e4c45",
+  "bin": "GestureSign.exe",
+  "shortcuts": [
+    [
+      "GestureSign.exe",
+      "GestureSign"
+    ]
+  ],
+  "persist": "AppData",
+  "pre_install": "Expand-7zipArchive \"$dir\\GestureSignPortable.exe\" -ExtractDir 'GestureSignPortable' -Removal",
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/TransposonY/GestureSign/releases/download/v$version/GestureSignPortable-$version.0.0.zip"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "version": "v3.0.3",
+  "description": "A file list program that supports multiple storage, powered by Gin and Solidjs.",
+  "homepage": "https://alist.nn.ci/",
+  "license": {
+    "identifier": "AGPL-3.0",
+    "url": "https://www.gnu.org/licenses/agpl-3.0.en.html"
+  },
+  "changelog": "https://github.com/alist-org/alist/releases",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/alist-org/alist/releases/download/v3.0.3/alist-windows-4.0-amd64.zip",
+      "hash": "1538caab9c9a30e9796d03372669efa45922dbe07c30431d2af5b1708ec965ee",
+      "shortcuts": [
+        [
+          "alist.exe",
+          "Alist"
+        ]
+      ]
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/alist-org/alist/releases/download/v3.0.1/alist-windows-4.0-386.zip",
+      "hash": "f5265934f2cd71931587311672cd0d9956d500b8fd19ee107949e0c461ecea29",
+      "shortcuts": [
+        [
+          "alist.exe",
+          "Alist"
+        ]
+      ]
+    }
+  },
+  "bin": "alist.exe",
+  "persist": "data",
+  "post_install": [],
+  "checkver": {
+    "github": "https://github.com/alist-org/alist"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/alist-org/alist/releases/download/$version/alist-windows-4.0-amd64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/alist-org/alist/releases/download/$version/alist-windows-4.0-386.zip"
+      }
+    }
+  }
+}

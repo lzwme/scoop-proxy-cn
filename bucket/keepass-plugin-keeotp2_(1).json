@@ -1,0 +1,18 @@
+{
+  "version": "1.5.9",
+  "description": "KeeOtp2 provides a form to display one-time passwords. It also can be used as a GUI for the built-in OTP function.",
+  "homepage": "https://github.com/tiuub/KeeOtp2",
+  "license": "MIT",
+  "url": "https://ghproxy.net/https://github.com/tiuub/KeeOtp2/releases/download/v1.5.9/KeeOtp2.plgx",
+  "hash": "f5c797cea710e0cd170c47133d6144faa8d14b9c3d1e045da2d08c82682990c9",
+  "installer": {
+    "script": "Copy-Item \"$dir\\KeeOtp2.plgx\" \"$(appdir keepass $global)\\current\\Plugins\""
+  },
+  "uninstaller": {
+    "script": "Remove-Item \"$(appdir keepass $global)\\current\\Plugins\\KeeOtp2.plgx\""
+  },
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/tiuub/KeeOtp2/releases/download/v$version/KeeOtp2.plgx"
+  }
+}

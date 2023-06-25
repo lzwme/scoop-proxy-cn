@@ -1,0 +1,43 @@
+{
+  "architecture": {
+    "32bit": {
+      "shortcuts": [
+        [
+          "IDE\\bin\\idea.exe",
+          "JetBrains\\IntelliJ IDEA Community (Early Access Program)"
+        ]
+      ]
+    },
+    "64bit": {
+      "shortcuts": [
+        [
+          "IDE\\bin\\idea64.exe",
+          "JetBrains\\IntelliJ IDEA Community (Early Access Program)"
+        ]
+      ]
+    }
+  },
+  "autoupdate": {
+    "hash": {
+      "url": "$url.sha256"
+    },
+    "url": "https://download.jetbrains.com/idea/ideaIC-$preReleaseVersion.win.zip"
+  },
+  "checkver": {
+    "regex": "version\":\"(?<ver>[\\d.]+)\".*\"build\":\"(?<build>[\\d.]+)\"",
+    "replace": "${ver}-${build}",
+    "url": "https://data.services.jetbrains.com/products/releases?code=IIC&latest=true&platform=zip&type=eap"
+  },
+  "description": "IntelliJ IDEA Community Early Access Program. Cross-Platform Java IDE for professional developers by JetBrains.",
+  "extract_to": "IDE",
+  "hash": "9c78b07594132b06be7088f37fbecfb3e36671a5cf1e33ce4c55afdce3f9f1c6",
+  "homepage": "https://www.jetbrains.com/idea/",
+  "license": {
+    "identifier": "Apache-2.0",
+    "url": "https://sales.jetbrains.com/hc/en-gb/articles/115001015290-Where-can-I-find-the-EULA-End-User-License-Agreement-"
+  },
+  "persist": "IDE\\bin\\idea.properties",
+  "pre_install": "Remove-Item \"$dir\\IDE\\`$*\" -Force -Recurse",
+  "url": "https://download.jetbrains.com/idea/ideaIC-231.8770.17.win.zip",
+  "version": "2023.1.1-231.8770.17"
+}

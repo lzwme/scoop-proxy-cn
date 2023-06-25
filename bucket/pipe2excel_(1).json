@@ -1,0 +1,30 @@
+{
+  "version": "0.5.2",
+  "description": "Make Pipeline To Excel and send each CSV To Excel cell as a string",
+  "homepage": "https://github.com/hymkor/pipe2excel",
+  "license": "MIT License",
+  "architecture": {
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/hymkor/pipe2excel/releases/download/v0.5.2/pipe2excel-v0.5.2-windows-386.zip",
+      "hash": "44e99363704418f94ea68a7ed20cdd3573f1d9410e0c94cc7a43af5a1e46fc60"
+    },
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/hymkor/pipe2excel/releases/download/v0.5.2/pipe2excel-v0.5.2-windows-amd64.zip",
+      "hash": "705f951b7a2944ed235e4adff0d69d37d6fe63ee15aec879be10c47cf2b1f733"
+    }
+  },
+  "bin": [
+    "pipe2excel.exe"
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/hymkor/pipe2excel/releases/download/v$version/pipe2excel-v$version-windows-386.zip"
+      },
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/hymkor/pipe2excel/releases/download/v$version/pipe2excel-v$version-windows-amd64.zip"
+      }
+    }
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "version": "2022-07-04",
+  "description": "An open-source binary debugger for Windows, aimed at malware analysis and reverse engineering of executables you do not have the source code for. There are many features available and a comprehensive plugin system to add your own.",
+  "homepage": "https://x64dbg.com/",
+  "license": {
+    "identifier": "GPL-3.0-only"
+  },
+  "notes": [
+    "Feature: <https://www.ghxi.com/x64_dbg.html>",
+    "Add x64dbg as a context menu option by running: '$dir\\install.bat'"
+  ],
+  "url": "https://pan.jiemi.workers.dev/?file=/zd423/x64dbg_2022-07-04_Mod_Green.7z#dl.7z_",
+  "hash": "7637d275af6c264cba833ceca29ce7d9a460150eb9917b3877012e648e29821f",
+  "pre_install": [
+    "7z x -p2022 $dir\\$fname $('-o' + $dir) | Out-Null",
+    "Remove-Item \"$dir\\$fname\" -ErrorAction SilentlyContinue -Force",
+    "if (!(Test-Path \"$persist_dir\\release\\x96dbg.ini\")) { New-Item -ItemType File \"$dir\\release\\x96dbg.ini\" | Out-Null }",
+    "Copy-Item \"$bucketsdir\\$bucket\\scripts\\x64dbg\\install.bat\" \"$dir\\install.bat\" -ErrorAction 'SilentlyContinue' -Force | Out-Null",
+    "Copy-Item \"$bucketsdir\\$bucket\\scripts\\x64dbg\\uninstall.bat\" \"$dir\\uninstall.bat\" -ErrorAction 'SilentlyContinue' -Force | Out-Null"
+  ],
+  "architecture": {
+    "64bit": {
+      "bin": [
+        "release\\x96dbg.exe",
+        "release\\x32\\x32dbg.exe",
+        "release\\x64\\x64dbg.exe"
+      ],
+      "shortcuts": [
+        [
+          "release\\x96dbg.exe",
+          "x96dbg"
+        ],
+        [
+          "release\\x32\\x32dbg.exe",
+          "x32dbg"
+        ],
+        [
+          "release\\x64\\x64dbg.exe",
+          "x64dbg"
+        ]
+      ]
+    },
+    "32bit": {
+      "bin": [
+        "release\\x96dbg.exe",
+        "release\\x32\\x32dbg.exe"
+      ],
+      "shortcuts": [
+        [
+          "release\\x96dbg.exe",
+          "x96dbg"
+        ],
+        [
+          "release\\x32\\x32dbg.exe",
+          "x32dbg"
+        ]
+      ]
+    }
+  },
+  "persist": [
+    "release\\x96dbg.ini",
+    "release\\x32\\x32dbg.ini",
+    "release\\x32\\memdumps",
+    "release\\x32\\garbage",
+    "release\\x32\\db",
+    "release\\x32\\plugins",
+    "release\\x64\\x64dbg.ini",
+    "release\\x64\\memdumps",
+    "release\\x64\\garbage",
+    "release\\x64\\db",
+    "release\\x64\\plugins"
+  ],
+  "checkver": {
+    "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/oneindex.txt",
+    "regex": "x64dbg_([\\d-]+)_Mod_Green.7z",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/zd423/x64dbg_$version_Mod_Green.7z#dl.7z_"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "description": "Edit tag of directories with attributes in desktop.ini",
+  "homepage": "https://github.com/ChiotOnAGE/TagFolder",
+  "license": "Unknown",
+  "version": "0.0.2",
+  "url": "https://ghproxy.net/https://github.com/ChiotOnAGE/TagFolder/releases/download/0.0.2/tagfolder-0.0.2.zip",
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/ChiotOnAGE/TagFolder/releases/download/$version/tagfolder-$version.zip",
+    "hash": "download"
+  },
+  "extract_dir": "tagfolder",
+  "post_install": [
+    "$exePath = Join-Path -Path $dir -ChildPath \"tagfolder.exe\"",
+    "$installerRegPath = Join-Path -Path $dir -ChildPath \"install_contextmenu.reg\"",
+    "$uninstallerRegPath = Join-Path -Path $dir -ChildPath \"uninstall_contextmenu.reg\"",
+    "@\"",
+    "Windows Registry Editor Version 5.00",
+    "",
+    "[HKEY_CLASSES_ROOT\\Directory\\shell\\TagFolder]",
+    "",
+    "[HKEY_CLASSES_ROOT\\Directory\\shell\\TagFolder\\command]",
+    "@=\"\\\"$($exePath -replace '\\\\', '\\\\')\\\" \\\"%V\\\"\"",
+    "\"@ | Out-File -FilePath $installerRegPath",
+    "@\"",
+    "Windows Registry Editor Version 5.00",
+    "",
+    "[-HKEY_CLASSES_ROOT\\Directory\\shell\\TagFolder]",
+    "\"@ | Out-File -FilePath $uninstallerRegPath",
+    "(Get-Content $installerRegPath) -replace 'HKEY_CLASSES_ROOT', 'HKEY_LOCAL_MACHINE\\SOFTWARE\\Classes' | Select-Object -Skip 1 >> $installerRegPath",
+    "(Get-Content $uninstallerRegPath) -replace 'HKEY_CLASSES_ROOT', 'HKEY_LOCAL_MACHINE\\SOFTWARE\\Classes' | Select-Object -Skip 1 >> $uninstallerRegPath",
+    "$isAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)",
+    "if ($isAdmin) { reg import $installerRegPath }",
+    "else {",
+    "   Write-Warning \"Context menu item not installed due to no Administrator right.\"",
+    "   Write-Warning \"Use $installerRegPath to install it manually.\"",
+    "}"
+  ],
+  "pre_uninstall": [
+    "if ((Test-Path \"HKCR:\\Directory\\shell\\TagFolder\") -or (Test-Path \"HKLM:\\SOFTWARE\\Classes\\Directory\\shell\\TagFolder\")) {",
+    "   $uninstallerRegPath = Join-Path -Path $dir -ChildPath \"uninstall_contextmenu.reg\"",
+    "   $isAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)",
+    "   if ($isAdmin) { reg import $uninstallerRegPath }",
+    "   else {",
+    "       $uninstallerRegBakPath = Join-Path -Path $Env:TEMP -ChildPath \"uninstall_contextmenu.reg\"",
+    "       Move-Item -Path $uninstallerRegPath -Destination $Env:TEMP",
+    "       Write-Warning \"Context menu item not removed due to no Administrator right.\"",
+    "       Write-Warning \"Use $uninstallerRegBakPath to uninstall it manually.\"",
+    "   }",
+    "}"
+  ],
+  "notes": [
+    "In case a warning about context menu item is not installed is shown:",
+    "Run install_contextmenu.reg to add tagfolder to the context menu. A rerun is required after updating tagfolder.",
+    "Run uninstall_contextmenu.reg to remove tagfolder from the context menu. Remember to run this before uninstalling."
+  ],
+  "hash": "d189257d48e0ec4b84ab2ff6b1f214f568622f9caaf54c879570a1519039576c"
+}

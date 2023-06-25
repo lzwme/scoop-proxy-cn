@@ -1,0 +1,38 @@
+{
+  "version": "2021.02.27",
+  "description": "波音リツ 追加母音無声化「す」音源(通常音源版)",
+  "homepage": "http://www.canon-voice.com/normal.html",
+  "license": [
+    {
+      "identifier": "Proprietary",
+      "url": "http://www.canon-voice.com/kiyaku.html"
+    }
+  ],
+  "url": "http://www.canon-voice.com/voice/r73_normal_devs.zip",
+  "hash": "9d22e7fec41be0118a5f86b4f4b9dcc3ad2864a7ef1634d19607525be3425f28",
+  "extract_dir": "r73_normal_devs\\リツ母音無声化_s通常",
+  "extract_to": "voice\\波音リツ\\リツ母音無声化_s通常",
+  "suggest": {
+    "UTAU": [
+      "utau",
+      "dtm/utau",
+      "namine-ritsu-utau-cv",
+      "dtm/namine-ritsu-utau-cv",
+      "namine-ritsu-utau-vcv",
+      "dtm/namine-ritsu-utau-vcv"
+    ]
+  },
+  "installer": {
+    "script": [
+      "$voice=\"波音リツ\"",
+      "Copy-Item -Force -Recurse -Path \"${dir}\\voice\\${voice}\" -Destination \"${persist_dir}\\..\\utau\\utau\\voice\"",
+      "Remove-Item -Force -Recurse -Path \"${dir}\\voice\\${voice}\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$voice=\"波音リツ\\リツ母音無声化_s通常\"",
+      "Remove-Item -Force -Recurse -Path \"${persist_dir}\\..\\utau\\utau\\voice\\${voice}\""
+    ]
+  }
+}

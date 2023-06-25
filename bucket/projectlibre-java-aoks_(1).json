@@ -1,0 +1,25 @@
+{
+  "homepage": "https://www.projectlibre.com/",
+  "version": "1.9.3",
+  "description": "Open Source replacement of Microsoft Project.",
+  "license": "CPAL-1.0",
+  "url": "https://sourceforge.net/projects/projectlibre/files/ProjectLibre/1.9.3/projectlibre-1.9.3.zip/download#/projectlibre.zip",
+  "hash": "1256fa9d4906a957389ae6f35e79b9d84a90c15d2c432cdd916ffff420f7c1ec",
+  "extract_dir": "projectlibre-1.9.3",
+  "depends": "java/openjdk",
+  "shortcuts": [
+    [
+      "projectlibre.bat",
+      "ProjectLibre"
+    ]
+  ],
+  "bin": "projectlibre.bat",
+  "checkver": {
+    "url": "https://sourceforge.net/projects/projectlibre/files/ProjectLibre/",
+    "regex": "a href=\"/projects/projectlibre/files/ProjectLibre/([\\d.]+)/\""
+  },
+  "autoupdate": {
+    "url": "https://sourceforge.net/projects/projectlibre/files/ProjectLibre/$version/projectlibre-$version.zip/download#/projectlibre.zip",
+    "extract_dir": "projectlibre-$version"
+  }
+}

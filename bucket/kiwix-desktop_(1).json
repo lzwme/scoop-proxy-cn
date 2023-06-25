@@ -1,0 +1,28 @@
+{
+  "homepage": "https://www.kiwix.org/",
+  "description": "The Kiwix Desktop is a viewer/manager of ZIM files for GNU/Linux and Microsoft Windows OSes.",
+  "license": {
+    "identifier": "GPL-3.0",
+    "url": "https://github.com/kiwix/kiwix-desktop/blob/master/LICENSE"
+  },
+  "version": "2.3.1-2",
+  "url": "https://download.kiwix.org/release/kiwix-desktop/kiwix-desktop_windows_x64_2.3.1-2.zip",
+  "hash": "e8ce25498e7e3fb83568500bfa1ef317b41967614cae26c2f1c3b1453131a1c0",
+  "installer": {
+    "script": "Move-Item \"$dir\\kiwix-desktop_windows_x64_$version\\*\" \"$dir\\\""
+  },
+  "shortcuts": [
+    [
+      "kiwix-desktop.exe",
+      "Kiwix"
+    ]
+  ],
+  "checkver": {
+    "url": "https://download.kiwix.org/release/kiwix-desktop/?C=M;O=D",
+    "regex": "kiwix-desktop_windows_x64_([\\d.-]+?).zip"
+  },
+  "autoupdate": {
+    "url": "https://download.kiwix.org/release/kiwix-desktop/kiwix-desktop_windows_x64_$version.zip"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

@@ -1,0 +1,22 @@
+{
+  "homepage": "https://dokan-dev.github.io/",
+  "description": "User mode file system library for windows with FUSE Wrapper.",
+  "license": "MIT,LGPL-3.0",
+  "version": "1.2.1.2000",
+  "url": "https://ghproxy.net/https://github.com/dokan-dev/dokany/releases/download/v1.2.1.2000/DokanSetup.exe",
+  "hash": "7f4f439acc3d570880e5407791cb3e1d736939cfee42a562168551194bb9d847",
+  "installer": {
+    "script": "run \"$dir/DokanSetup.exe\" \"/passive /norestart\""
+  },
+  "checkver": {
+    "github": "https://github.com/dokan-dev/dokany"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/dokan-dev/dokany/releases/download/v$version/DokanSetup.exe"
+  },
+  "notes": [
+    "Permissions need to be granted to install the filesystem driver.",
+    "You can remove installer with 'scoop uninstall dokany' after installation.",
+    "To truely uninstall Dokany, please run 'Appwiz.cpl' then select and uninstall 'Dokan Library X.X.X.X Bundle'."
+  ]
+}

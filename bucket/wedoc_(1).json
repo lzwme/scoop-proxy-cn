@@ -1,0 +1,20 @@
+{
+  "version": "nightly",
+  "description": "Tencent Docs",
+  "homepage": "https://docs.qq.com/",
+  "license": {
+    "identifier": "EULA",
+    "url": "https://work.weixin.qq.com/nl/eula"
+  },
+  "url": "https://down.qq.com/qqweb/PC_DOCS/TencentDocsSetup.exe#/dl.7z",
+  "shortcuts": [
+    [
+      "TencentDocs.exe",
+      "腾讯文档"
+    ]
+  ],
+  "post_install": [
+    "Remove-Item \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
+    "Remove-Item \"$dir\\Uninstall TencentDocs\" -Force -Recurse"
+  ]
+}

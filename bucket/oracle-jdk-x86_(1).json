@@ -1,0 +1,26 @@
+{
+  "homepage": "http://www.oracle.com/technetwork/java/javase/overview/index.html",
+  "version": "1.8.0-u92",
+  "url": [
+    "http://download.oracle.com/otn-pub/java/jdk/8u92-b14/jdk-8u92-windows-i586.exe#/dl.7z",
+    "https://ghproxy.net/https://raw.githubusercontent.com/monotykamary/toms-scoop-bucket/master/scripts/oraclejdk.ps1"
+  ],
+  "hash": [
+    "9e5ddcbf9f6c967d38f0bfb6d602095874f29e6117929c7cf1206f561fafdf30",
+    "c65572efae9168de2054f264e51a04d5f156fb2de1d2feedfb621f626a1ab81c"
+  ],
+  "cookie": {
+    "oraclelicense": "accept-securebackup-cookie"
+  },
+  "installer": {
+    "_comment": "oraclejdk unpacks .pack into .jar files",
+    "file": "oraclejdk.ps1",
+    "args": [
+      "$dir"
+    ]
+  },
+  "env_add_path": "bin",
+  "env_set": {
+    "JAVA_HOME": "$dir"
+  }
+}

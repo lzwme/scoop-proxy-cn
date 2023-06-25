@@ -1,0 +1,26 @@
+{
+  "description": "A .Net Framework Interaction Module for PowerShell",
+  "autoupdate": {
+    "hash": {
+      "regex": "<d:PackageHash>$base64<.d:PackageHash>",
+      "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id eq 'Reflection' and Version eq '$version'"
+    },
+    "url": "https://www.powershellgallery.com/api/v2/Package/Reflection/$version#/mod.nupkg"
+  },
+  "psmodule": {
+    "name": "Reflection"
+  },
+  "checkver": {
+    "replace": "${ver}",
+    "regex": "(?i)<d:Version>(?<ver>[^<]+)<.d:Version>",
+    "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id%20eq%20'Reflection'%20and%20IsLatestVersion%20eq%20true"
+  },
+  "hash": "sha512:604bfe910d8f440b0ab64ba18c3ca240ca42a7a42dc330fd5ba9dda076fb999bce379015144182414962f90ffc046827457bc2b039604c9d9b7a74dc7dae2272",
+  "license": {
+    "url": "https://github.com/Jaykul/Reflection/blob/master/license.txt",
+    "identifier": "Refer to Webpage"
+  },
+  "url": "https://www.powershellgallery.com/api/v2/Package/Reflection/4.8#/mod.nupkg",
+  "homepage": "https://www.powershellgallery.com/packages/Reflection",
+  "version": "4.8"
+}

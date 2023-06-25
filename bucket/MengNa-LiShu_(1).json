@@ -1,0 +1,28 @@
+{
+  "##": "This package is for private use only. Requires password for installation to proceed.",
+  "version": "1.10",
+  "description": "Chinese (traditional) Li calligraphy font",
+  "license": "Proprietary",
+  "url": "https://www.googleapis.com/drive/v3/files/1dNZDZhVh9XHBbpw3GzhtPOzSyMgxZvod?alt=media&key=AIzaSyAiaA0bWx34SyfTRvyl4UCCHwsCkvUBECc#/dl.7z_",
+  "hash": "A146FA8BDFF0EC20E3F1C7F111B4EA2F3B11DDD6E995FE64B148BB5ACBEF78FB",
+  "installer": {
+    "script": [
+      "$scriptdir = (Find-BucketDirectory $bucket)+'\\..\\scripts'",
+      "Import-Module $scriptdir\\pw\\pw_check.psm1",
+      "Expand-EncryptedArchive -aPath \"$dir\\dl.7z_\" -oDir \"$dir\" -ExitIfError -Removal",
+      "Get-ChildItem $dir -filter '*.otf' | ForEach-Object {",
+      "  New-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $_.Name -Force | Out-Null",
+      "  Copy-Item $_.FullName -destination \"$env:windir\\Fonts\"",
+      "}"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Get-ChildItem $dir -filter '*.otf' | ForEach-Object {",
+      "  Remove-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
+      "  Remove-Item \"$env:windir\\Fonts\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
+      "}",
+      "Write-Host \"Font '蒙納繁古隸' has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
+    ]
+  }
+}

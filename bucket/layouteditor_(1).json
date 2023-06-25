@@ -1,0 +1,29 @@
+{
+  "extract_dir": "layout",
+  "description": "The LayoutEditor is the most popular software to edit designs for MEMS and IC fabrication",
+  "license": "Proprietary",
+  "url": "https://layouteditor.com/releases/20230301/layout-20230301-win-64bit.zip",
+  "homepage": "https://layouteditor.com/",
+  "bin": "bin\\layout.exe",
+  "hash": "83130795ebc0f9c395f1909356d8f3154d0c87bfdc456903e9fb4a346b5737e4",
+  "version": "20230301",
+  "shortcuts": [
+    [
+      "bin\\layout.exe",
+      "LayoutEditor"
+    ]
+  ],
+  "suggest": {
+    "JRE": [
+      "java/openjdk",
+      "java/zulu-jre"
+    ]
+  },
+  "checkver": {
+    "url": "https://layouteditor.com/download",
+    "re": "layout-(?<version>\\d+)-win-64bit\\.zip"
+  },
+  "autoupdate": {
+    "url": "https://layouteditor.com/releases/$matchVersion/layout-$matchVersion-win-64bit.zip"
+  }
+}

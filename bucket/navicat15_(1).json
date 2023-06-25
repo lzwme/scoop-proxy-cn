@@ -1,0 +1,56 @@
+{
+  "version": "15.0.29",
+  "description": "Navicat Premium is a database development tool that allows you to simultaneously connect to MySQL, MariaDB, MongoDB, SQL Server, Oracle, PostgreSQL, and SQLite databases from a single application(Chinese Simplified Edition).",
+  "homepage": "https://www.navicat.com/en/products/navicat-premium",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "http://legal.navicat.com/navicatcloud/NavicatCloudLicenseAgreement.rtf"
+  },
+  "notes": [
+    "打开hosts文件，添加如下一行：",
+    "127.0.0.1 activate.navicat.com",
+    "双击Navicat Keygen Patch v5.6.0 DFoX.exe文件：",
+    "1. 点击Patch，选择navicat.exe",
+    "2. 点击Generate，生成Serial Keygen",
+    "3. 将生成的Serial Keygen粘贴到navicat注册，将请求码复制出来",
+    "4. 粘贴到Reqeust Code，生成激活码"
+  ],
+  "architecture": {
+    "64bit": {
+      "url": "https://dn.navicat.com/download/navicat150_premium_cs_x64.exe",
+      "hash": "115ab755fea61e1e6f6ef8b55c363e5427cff013204b1dfc7483fae404e679c7"
+    },
+    "32bit": {
+      "url": "https://dn.navicat.com/download/navicat150_premium_cs_x86.exe",
+      "hash": "e70870b0feb98f44d29fcf6801dc3c8895d255217165b5508930aa0c6fcbf49f"
+    }
+  },
+  "post_install": [
+    "Invoke-WebRequest -Uri \"http://soft.102323.xyz:9090/Navicat_Keygen_Patch_v5.6.0_DFoX.7z\" -OutFile \"$dir\\Navicat_Keygen_Patch_v5.6.0_DFoX.7z\"",
+    "7z x -o\"$dir\" \"$dir\\Navicat_Keygen_Patch_v5.6.0_DFoX.7z\" -y",
+    "rm $dir\\Navicat_Keygen_Patch_v5.6.0_DFoX.7z"
+  ],
+  "innosetup": true,
+  "bin": "navicat.exe",
+  "shortcuts": [
+    [
+      "navicat.exe",
+      "Navicat Premium"
+    ]
+  ],
+  "checkver": {
+    "url": "https://www.navicat.com/en/products/navicat-premium-release-note",
+    "regex": "<b>Navicat Premium \\(Windows\\) version (15[\\d.]+)</b>"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://dn.navicat.com/download/navicat$majorVersion$minorVersion_premium_cs_x64.exe"
+      },
+      "32bit": {
+        "url": "https://dn.navicat.com/download/navicat$majorVersion$minorVersion_premium_cs_x86.exe"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

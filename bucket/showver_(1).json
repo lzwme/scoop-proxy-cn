@@ -1,0 +1,30 @@
+{
+  "version": "1.0.2",
+  "description": "Show the version number , timestamp and MD5SUM of Windows Executables",
+  "homepage": "https://github.com/hymkor/vo",
+  "license": "MIT License",
+  "architecture": {
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/hymkor/vo/releases/download/v1.0.2/showver-v1.0.2-windows-386.zip",
+      "hash": "13aa8718ffb7e6506cf13b6f1c7a147d38886045f676ee3b2f58c3995a41b95f"
+    },
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/hymkor/vo/releases/download/v1.0.2/showver-v1.0.2-windows-amd64.zip",
+      "hash": "40f85edaec2f9344fed51fcfe0b74e2d4aaf2dfc21bf67df501b1552e7e3949d"
+    }
+  },
+  "bin": [
+    "showver.exe"
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/hymkor/vo/releases/download/v$version/showver-v$version-windows-386.zip"
+      },
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/hymkor/vo/releases/download/v$version/showver-v$version-windows-amd64.zip"
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "version": "7.0.5",
+  "description": "Realtime, fast and secure data-sync server for mobile, web & iot",
+  "homepage": "https://deepstream.io",
+  "license": "AGPL-3.0-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/deepstreamIO/deepstream.io/releases/download/v7.0.5/deepstream.io-windows-7.0.5.zip",
+      "hash": "8322c039767c528af44eec9be95322380a698bea10c0197eb1cdcaeb789c5614"
+    }
+  },
+  "bin": "deepstream.exe",
+  "env_set": {
+    "DEEPSTREAM_CONFIG_DIRECTORY": "$dir\\conf\\config.yml"
+  },
+  "persist": "conf",
+  "checkver": {
+    "github": "https://github.com/deepstreamIO/deepstream.io"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/deepstreamIO/deepstream.io/releases/download/v$version/deepstream.io-windows-$version.zip"
+      }
+    }
+  }
+}

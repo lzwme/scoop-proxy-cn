@@ -1,0 +1,32 @@
+{
+  "version": "5.21.1300",
+  "description": "Ludashi 3rd party modified version, maintained by 423down.com.",
+  "homepage": "http://www.ludashi.com",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "http://www.ludashi.com/licence.html"
+  },
+  "url": "https://pan.jiemi.workers.dev/?file=/wenlei/LuDaShi_v5.21.1300_NoAD_Green.7z",
+  "hash": "3a5904ec2569eebe6623195d90dc18c750370d635a296f22ae339881c78b60ce",
+  "extract_dir": "LuDaShi",
+  "installer": {
+    "script": "Copy-Item \"$bucketsdir\\$bucket\\scripts\\ludashi\\uninstall.bat\" \"$dir\\uninstall.bat\" -ErrorAction 'SilentlyContinue' -Force | Out-Null"
+  },
+  "uninstaller": {
+    "script": "Start-Process \"$dir\\uninstall.bat\" -WorkingDirectory \"$dir\" -Wait -ErrorAction 'SilentlyContinue' -Force | Out-Null"
+  },
+  "shortcuts": [
+    [
+      "computerz_cn.exe",
+      "ludashi"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/oneindex.txt",
+    "regex": "LuDaShi_v([\\d.]+)_NoAD_Green\\.7z",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/wenlei/LuDaShi_v$version_NoAD_Green.7z"
+  }
+}

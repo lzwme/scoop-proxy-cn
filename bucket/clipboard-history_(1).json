@@ -1,0 +1,77 @@
+{
+  "homepage": "https://blank-note.sakura.ne.jp/",
+  "description": "Clipboard history and notes (snippets / fixed phrase) manager",
+  "license": "GPL-2.0-or-later",
+  "version": "1.9.0",
+  "architecture": {
+    "32bit": {
+      "url": "https://ftp.vector.co.jp/73/41/2750/ClipboardHistory_x86_190.zip",
+      "hash": "f4627aee9387c293f5b586fa334db0e8e68b4282b54a9fcc401ca084068fcf09",
+      "bin": "ClipboardHistory.exe",
+      "shortcuts": [
+        [
+          "ClipboardHistory.exe",
+          "Clipboard History"
+        ]
+      ]
+    },
+    "64bit": {
+      "url": "https://ftp.vector.co.jp/73/41/2750/ClipboardHistory_x64_190.zip",
+      "hash": "19e9e9ed5ee4d0e174d09bdaad2128e4034785a9c88d5b97ee0931b712148318",
+      "bin": "ClipboardHistory_x64.exe",
+      "shortcuts": [
+        [
+          "ClipboardHistory_x64.exe",
+          "Clipboard History"
+        ]
+      ]
+    }
+  },
+  "persist": [
+    "Config.txt",
+    "ClipboardHistory.dat",
+    "script",
+    "template",
+    "migemo.dll",
+    "dict"
+  ],
+  "pre_install": [
+    "function CreateEmptyFile($name) {",
+    "    if (!(Test-Path \"$persist_dir\\$name\")) {",
+    "        New-Item -Path \"$dir\\$name\" -ItemType File | Out-Null",
+    "        New-Item -Path \"$dir\\$name.empty\" -ItemType File | Out-Null",
+    "    }",
+    "}",
+    "CreateEmptyFile Config.txt",
+    "CreateEmptyFile ClipboardHistory.dat",
+    "CreateEmptyFile migemo.dll"
+  ],
+  "post_install": [
+    "function RemoveEmptyFile($name) {",
+    "    if (Test-Path \"$dir\\$name.empty\") {",
+    "        Remove-Item -Path \"$dir\\$name\"",
+    "        Remove-Item -Path \"$persist_dir\\$name\"",
+    "    }",
+    "}",
+    "RemoveEmptyFile Config.txt",
+    "Remove-Item \"$dir\\*.empty\""
+  ],
+  "notes": [
+    "If the config file does not exist, a default config file will be created at the first run.",
+    "You need to create a hard link manually or to run `scoop reset`."
+  ],
+  "checkver": {
+    "url": "https://www.vector.co.jp/soft/dl/winnt/util/se512783.html",
+    "re": "<span class=\"version\">(?<version>[\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ftp.vector.co.jp/73/41/2750/ClipboardHistory_x86_$cleanVersion.zip"
+      },
+      "64bit": {
+        "url": "https://ftp.vector.co.jp/73/41/2750/ClipboardHistory_x64_$cleanVersion.zip"
+      }
+    }
+  }
+}

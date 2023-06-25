@@ -1,0 +1,32 @@
+{
+  "version": "2.5.0-beta",
+  "description": "Fun vector functions for Manifold 9",
+  "homepage": "https://github.com/rkolka/OnionTopologySuite",
+  "license": "MIT",
+  "depends": "scoop-manifold/manifold-xtra",
+  "url": "https://ghproxy.net/https://github.com/rkolka/OnionTopologySuite/releases/download/v2.5.0-beta/OnionTopologySuite.zip",
+  "hash": "4c2f2709e3fba3ca152ce837dc686aeff1a4de677146e1339fe7862e69a2c6c0",
+  "extract_dir": "OnionTopologySuite",
+  "installer": {
+    "script": [
+      "$extrasDir = \"$(appdir 'manifold-xtra' $global)\\current\\extras\"",
+      "$addinDir = New-Item -ItemType Directory \"$extrasDir\\Addins\\OnionTopologySuite\"",
+      "Copy-Item \"$dir\\*\" \"$addinDir\\\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$extrasDir = \"$(appdir 'manifold-xtra' $global)\\current\\extras\"",
+      "$addinDir = \"$extrasDir\\Addins\\OnionTopologySuite\"",
+      "if (Test-Path $addinDir) { Remove-Item -Recurse $addinDir }"
+    ]
+  },
+  "checkver": {
+    "github": "https://github.com/rkolka/OnionTopologySuite",
+    "regex": "releases/tag/v([\\d.]+)-([\\w\\d]+)",
+    "replace": "${1}-${2}"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/rkolka/OnionTopologySuite/releases/download/v$version/OnionTopologySuite.zip"
+  }
+}

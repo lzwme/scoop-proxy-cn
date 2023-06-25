@@ -1,0 +1,12 @@
+{
+  "version": "no-version",
+  "description": "Visual Studio C++ Compiler for Python 2.7. Originally provided by Microsoft, no longer available. Mirrored on octoprint.org for maintenance purposes.",
+  "url": "https://octoprint.org/files/VCForPython27.msi#/setup.msi_",
+  "hash": "070474db76a2e625513a5835df4595df9324d820f9cc97eab2a596dcbc2f5cbf",
+  "installer": {
+    "script": "Invoke-ExternalCommand msiexec -ArgumentList @('/i', \"$dir\\setup.msi_\", '/qn') -RunAs | Out-Null"
+  },
+  "uninstaller": {
+    "script": "Invoke-ExternalCommand msiexec -ArgumentList @('/x', \"$dir\\setup.msi_\", '/qn') -RunAs | Out-Null"
+  }
+}

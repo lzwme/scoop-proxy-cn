@@ -1,0 +1,55 @@
+{
+  "version": "4.8.0.4",
+  "description": "Computer monitoring and classroom management software.",
+  "homepage": "https://veyon.io/",
+  "license": "GPL-2.0-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/veyon/veyon/releases/download/v4.8.0/veyon-4.8.0.4-win64-setup.exe#/installer.exe",
+      "hash": "2bd4a6a36cf73095ef6f88ae7f1861606efc66e1f688ce7939eecf3aef924845"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/veyon/veyon/releases/download/v4.8.0/veyon-4.8.0.4-win32-setup.exe#/installer.exe",
+      "hash": "f6ee1370f47be99a24428ad2d7c3e2a42e96f78f6753d8a70a679cb80c238b40"
+    }
+  },
+  "installer": {
+    "script": [
+      "Invoke-ExternalCommand \"$dir\\installer.exe\" -ArgumentList @('/S', \"/D=$dir\") -RunAs | Out-Null",
+      "Remove-Item -Recurse \"$([Environment]::GetFolderPath('commonstartmenu'))\\Programs\\Veyon\"",
+      "Remove-Item \"$dir\\installer.exe\""
+    ]
+  },
+  "uninstaller": {
+    "script": "Start-Process \"$dir\\uninstall.exe\" -ArgumentList @('/S') -Verb RunAs -Wait | Out-Null"
+  },
+  "bin": [
+    "veyon-cli.exe",
+    "veyon-configurator.exe",
+    "veyon-master.exe"
+  ],
+  "shortcuts": [
+    [
+      "veyon-configurator.exe",
+      "Veyon Configurator"
+    ],
+    [
+      "veyon-master.exe",
+      "Veyon Master"
+    ]
+  ],
+  "checkver": {
+    "url": "https://veyon.io/download/",
+    "regex": "veyon-([\\d.]+)-win64-setup.exe"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/veyon/veyon/releases/download/v$majorVersion.$minorVersion.$patchVersion/veyon-$version-win64-setup.exe#/installer.exe"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/veyon/veyon/releases/download/v$majorVersion.$minorVersion.$patchVersion/veyon-$version-win32-setup.exe#/installer.exe"
+      }
+    }
+  }
+}

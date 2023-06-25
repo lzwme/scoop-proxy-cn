@@ -1,0 +1,20 @@
+{
+  "homepage": "https://github.com/acdzh/winutils",
+  "description": "提取自软媒魔方的dock",
+  "version": "2019.12.09.071222",
+  "license": "WTFPL",
+  "url": "https://ghproxy.net/https://raw.githubusercontent.com/acdzh/winutils/219855dd8b0b708071f30fe7f1d8d75c983a6929/Dock/dock.exe",
+  "hash": "ba5ac33889b604ac2573a3301561baeb0abc4d8d4feaaafc1a711640a97d823f",
+  "bin": "dock.exe",
+  "persist": [
+    "config"
+  ],
+  "checkver": {
+    "url": "https://github.com/acdzh/winutils",
+    "re": "Dock[\\S\\s]*?/(?<sha>[0-9a-f]{40})[\\S\\s]*?(\\d+)-(\\d+)-(\\d+)T(\\d+):(\\d+):(\\d+)Z",
+    "replace": "${1}.${2}.${3}.${4}${5}${6}"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://raw.githubusercontent.com/acdzh/winutils/$matchSha/Dock/dock.exe"
+  }
+}

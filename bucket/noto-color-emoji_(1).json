@@ -1,0 +1,68 @@
+{
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/googlefonts/noto-emoji/archive/refs/tags/v$Version.tar.gz"
+  },
+  "checkver": "github",
+  "hash": "47d8b39733a1e82efced7dee96e30cb31d205b150dc3ca44d59abbb22d027195",
+  "homepage": "https://github.com/googlefonts/noto-emoji",
+  "installer": {
+    "script": [
+      "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
+      "$windows10Version1809BuildNumber = 17763",
+      "$isPerUserFontInstallationSupported = $currentBuildNumber -ge $windows10Version1809BuildNumber",
+      "if (!$isPerUserFontInstallationSupported -and !$global) {",
+      "    scoop uninstall $app",
+      "    Write-Host \"\"",
+      "    Write-Host \"For Windows version before Windows 10 Version 1809 (OS Build 17763),\" -Foreground DarkRed",
+      "    Write-Host \"Font can only be installed for all users.\" -Foreground DarkRed",
+      "    Write-Host \"\"",
+      "    Write-Host \"Please use following commands to install '$app' Font for all users.\" -Foreground DarkRed",
+      "    Write-Host \"\"",
+      "    Write-Host \"        scoop install sudo\"",
+      "    Write-Host \"        sudo scoop install -g $app\"",
+      "    Write-Host \"\"",
+      "    exit 1",
+      "}",
+      "$fontInstallDir = if ($global) { \"$env:windir\\Fonts\" } else { \"$env:LOCALAPPDATA\\Microsoft\\Windows\\Fonts\" }",
+      "if (-not $global) {",
+      "    # Ensure user font install directory exists and has correct permission settings",
+      "    New-Item $fontInstallDir -ItemType Directory -ErrorAction SilentlyContinue | Out-Null",
+      "    $accessControlList = Get-Acl $fontInstallDir",
+      "    $allApplicationPackagesAccessRule = New-Object System.Security.AccessControl.FileSystemAccessRule([System.Security.Principal.SecurityIdentifier]::new(\"S-1-15-2-1\"), \"ReadAndExecute\", \"ContainerInherit,ObjectInherit\", \"None\", \"Allow\")",
+      "    $allRestrictedApplicationPackagesAccessRule = New-Object System.Security.AccessControl.FileSystemAccessRule([System.Security.Principal.SecurityIdentifier]::new(\"S-1-15-2-2\"), \"ReadAndExecute\", \"ContainerInherit,ObjectInherit\", \"None\", \"Allow\")",
+      "    $accessControlList.SetAccessRule($allApplicationPackagesAccessRule)",
+      "    $accessControlList.SetAccessRule($allRestrictedApplicationPackagesAccessRule)",
+      "    Set-Acl -AclObject $accessControlList $fontInstallDir",
+      "}",
+      "$registryRoot = if ($global) { \"HKLM\" } else { \"HKCU\" }",
+      "$registryKey = \"${registryRoot}:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts\"",
+      "Invoke-ExternalCommand 7z -ArgumentList('e', \"$dir\\noto-emoji.tar.gz\", \"-o$dir\") | Out-Null",
+      "Get-ChildItem \"$dir\" -Filter '*.tar' | Rename-Item -NewName \"$dir\\noto-emoji.tar\" | Out-Null",
+      "Invoke-ExternalCommand 7z -ArgumentList('e', \"$dir\\noto-emoji.tar\", \"-o$dir\", '*.ttf', '-r') | Out-Null",
+      "Remove-Item \"$dir\\noto-emoji.tar\"",
+      "Remove-Item \"$dir\\noto-emoji.tar.gz\"",
+      "Get-ChildItem \"$dir\" -Include 'NotoColorEmoji*.ttf','NotoEmoji*.ttf' -Recurse | ForEach-Object {",
+      "    $value = if ($global) { $_.Name } else { \"$fontInstallDir\\$($_.Name)\" }",
+      "    New-ItemProperty -Path $registryKey -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $value -Force | Out-Null",
+      "    Copy-Item $_.FullName -Destination $fontInstallDir",
+      "}"
+    ]
+  },
+  "license": "Apache-2.0",
+  "uninstaller": {
+    "script": [
+      "$fontInstallDir = if ($global) { \"$env:windir\\Fonts\" } else { \"$env:LOCALAPPDATA\\Microsoft\\Windows\\Fonts\" }",
+      "$registryRoot = if ($global) { \"HKLM\" } else { \"HKCU\" }",
+      "$registryKey = \"${registryRoot}:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts\"",
+      "Get-ChildItem \"$dir\" -Include 'NotoColorEmoji*.ttf','NotoEmoji*.ttf' -Recurse | ForEach-Object {",
+      "    Remove-ItemProperty -Path $registryKey -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
+      "    Remove-Item \"$fontInstallDir\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
+      "}",
+      "if ($cmd -eq \"uninstall\") {",
+      "    Write-Host \"The 'Noto-Emoji' Font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta",
+      "}"
+    ]
+  },
+  "url": "https://ghproxy.net/https://github.com/googlefonts/noto-emoji/archive/refs/tags/v2.038.tar.gz",
+  "version": "2.038"
+}

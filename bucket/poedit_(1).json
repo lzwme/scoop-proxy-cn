@@ -1,0 +1,24 @@
+{
+  "version": "3.3.1",
+  "description": "Gettext translations editor.",
+  "homepage": "https://poedit.net",
+  "license": "MIT",
+  "url": "https://download.poedit.net/Poedit-3.3.1-setup.exe",
+  "hash": "c582463e6f68237a2cd817c3c7f14b6f82078ab83f3c393a296c4d3bacf44d61",
+  "innosetup": true,
+  "bin": "Poedit.exe",
+  "shortcuts": [
+    [
+      "Poedit.exe",
+      "Poedit"
+    ]
+  ],
+  "post_install": "Get-ChildItem \"$dir\\Resources\" 'Poedit,1.ico' | Rename-Item -NewName 'Poedit.ico'",
+  "checkver": {
+    "url": "https://poedit.net/download",
+    "regex": "Poedit-([\\d.]+)-setup"
+  },
+  "autoupdate": {
+    "url": "https://download.poedit.net/Poedit-$version-setup.exe"
+  }
+}

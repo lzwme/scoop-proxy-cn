@@ -1,0 +1,20 @@
+{
+  "architecture": {
+    "32bit": {
+      "bin": "WMAEncode.exe",
+      "hash": "baa3dde4573aaff7ec78fb4f0bde2f8a240bab6bc16daf9b2d282ba0d6ff374f",
+      "post_install": "Remove-Item \"$dir\\WMAEncode64.exe\" | Out-Null",
+      "url": "https://ghproxy.net/https://github.com/MaxwellCody/WMAEncode/releases/download/v0.2.9c/WMAEncode_0.2.9c.zip"
+    },
+    "64bit": {
+      "bin": "WMAEncode64.exe",
+      "hash": "baa3dde4573aaff7ec78fb4f0bde2f8a240bab6bc16daf9b2d282ba0d6ff374f",
+      "post_install": "Remove-Item \"$dir\\WMAEncode.exe\" | Out-Null",
+      "url": "https://ghproxy.net/https://github.com/MaxwellCody/WMAEncode/releases/download/v0.2.9c/WMAEncode_0.2.9c.zip"
+    }
+  },
+  "description": "Command-line WMA enoder for Windows",
+  "homepage": "https://github.com/MaxwellCody/WMAEncode",
+  "license": "MIT",
+  "version": "0.29"
+}

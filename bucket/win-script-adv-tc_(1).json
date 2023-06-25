@@ -1,0 +1,29 @@
+{
+  "version": "1.7",
+  "description": "WinScriptAdv content plugin runs your scripts for files and folders and displays returned from script info into columns.",
+  "homepage": "https://totalcmd.net/plugring/WinScriptAdv.html",
+  "license": "Freeware",
+  "suggest": {
+    "totalcmd": "extra/totalcommander"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "http://wincmd.ru/files/9924367/wdx_WinScriptAdv_1.7.zip",
+      "hash": "4cf4312feb7d97f94a53f82f21aabb1a05a9a670d5911c296d82d1f7fee61374"
+    }
+  },
+  "persist": [
+    "Scripts",
+    "options.ini"
+  ],
+  "checkver": {
+    "re": "<h1>WinScript Advanced ([\\d.]+)</h1>"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "http://wincmd.ru/files/9924367/wdx_WinScriptAdv_$version.zip"
+      }
+    }
+  }
+}

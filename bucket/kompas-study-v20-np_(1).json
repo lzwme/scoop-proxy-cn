@@ -1,0 +1,31 @@
+{
+  "version": "20",
+  "description": "KOMPAS-3D v20 Educational version. Base + Mechanical Engineering + Instrumentation.",
+  "homepage": "https://kompas.ru/kompas-educational/about/",
+  "license": "Proprietary",
+  "architecture": {
+    "64bit": {
+      "url": "https://archive.org/download/kompas-3-d-study-v20-and-v21/KOMPAS-3D_v20_Study_x64.zip#/dl.7z",
+      "hash": "ddb3f0d06fb83071d0ff3bdff2b4359a4cb85f5253276cafec50e92af0b81bb5",
+      "installer": {
+        "script": "Start-Process -Wait $env:SystemRoot\\System32\\msiexec.exe \"/i `\"$dir\\KOMPAS-3D_v20_Study_x64.msi`\" /qn /norestart\" -Verb RunAs"
+      },
+      "uninstaller": {
+        "script": "Start-Process -Wait $env:SystemRoot\\System32\\msiexec.exe \"/x {CA7F44B5-173E-4C7D-A32A-716B3F0C0425} /qn /norestart\" -Verb RunAs"
+      }
+    },
+    "32bit": {
+      "url": "https://archive.org/download/kompas-3-d-study-v20-and-v21/KOMPAS-3D_v20_Study_x86.zip#/dl.7z",
+      "hash": "25ec404b96d1072ed8ac361a07008da4d64b29629f9527f9c0e4df6ec26598a5",
+      "installer": {
+        "script": "Start-Process -Wait $env:SystemRoot\\System32\\msiexec.exe \"/i `\"$dir\\KOMPAS-3D_v20_Study_x86.msi`\" /qn /norestart\" -Verb RunAs"
+      },
+      "uninstaller": {
+        "script": "Start-Process -Wait $env:SystemRoot\\System32\\msiexec.exe \"/x {CE16AD4B-2AFF-49E0-8F24-79428AD0C010} /qn /norestart\" -Verb RunAs"
+      }
+    }
+  },
+  "post_install": [
+    "Remove-Item -Recurse \"$dir\\*\""
+  ]
+}

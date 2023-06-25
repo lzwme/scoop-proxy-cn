@@ -1,0 +1,40 @@
+{
+  "version": "6.1.7",
+  "description": "Professional collaborative platform for embedded development",
+  "homepage": "https://platformio.org/",
+  "license": "Apache-2.0",
+  "depends": "python",
+  "url": "https://ghproxy.net/https://raw.githubusercontent.com/platformio/platformio-core-installer/master/get-platformio.py",
+  "hash": "d945782af074c90b668ae146192bf46b0e26fd650696fd20e28c82ebf17101e4",
+  "pre_install": "if (!(Test-Path \"$persist_dir\\packages\")) { New-Item -Path \"$dir\\packages\" -ItemType Directory | Out-Null }",
+  "installer": {
+    "script": [
+      "$env:PLATFORMIO_CORE_DIR=\"$dir\"",
+      "$env:PLATFORMIO_PENV_DIR=\"$dir\\penv\"",
+      "pushd \"$dir\"",
+      "try {",
+      "    Invoke-Expression -Command \"$(scoop which python3.exe) $fname\" -ErrorAction Stop",
+      "}",
+      "finally {",
+      "    popd",
+      "}"
+    ]
+  },
+  "post_install": "Remove-Item \"$dir\\$fname\" -Force",
+  "bin": [
+    "penv\\Scripts\\platformio.exe",
+    "penv\\Scripts\\pio.exe",
+    "penv\\Scripts\\piodebuggdb.exe"
+  ],
+  "env_set": {
+    "PLATFORMIO_CORE_DIR": "$dir",
+    "PLATFORMIO_PENV_DIR": "$dir\\penv"
+  },
+  "checkver": {
+    "github": "https://github.com/platformio/platformio-core/"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://raw.githubusercontent.com/platformio/platformio-core-installer/master/get-platformio.py"
+  },
+  "persist": "packages"
+}

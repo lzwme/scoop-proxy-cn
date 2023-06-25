@@ -1,0 +1,31 @@
+{
+  "version": "0.3.0",
+  "description": "fersk is a utility for propagating version numbers using methods such as regex replacement in files and templates.",
+  "homepage": "https://github.com/forbjok/fersk",
+  "license": "MIT|Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/forbjok/fersk/releases/download/v0.3.0/fersk-0.3.0-windows-x86_64.zip",
+      "hash": "5ca63bb8ea034a0f4257b5a7421cc2d35d9a1898ab9bfc6e36e59d9d3c6e6e6d"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/forbjok/fersk/releases/download/v0.3.0/fersk-0.3.0-windows-i686.zip",
+      "hash": "259dc93e22f2ac6063f531693ab9718d47ebc172a7c95bb0ce57e2211f077515"
+    }
+  },
+  "bin": "fersk.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/forbjok/fersk/releases/download/v$version/fersk-$version-windows-x86_64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/forbjok/fersk/releases/download/v$version/fersk-$version-windows-i686.zip"
+      }
+    },
+    "hash": {
+      "url": "$url.sha256.txt"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://ghproxy.net/https://raw.githubusercontent.com/ScoopInstaller/Scoop/master/schema.json",
+  "version": "0.20",
+  "description": "Local Github actions runner.",
+  "homepage": "https://github.com/0xERR0R/blocky/",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/0xERR0R/blocky/releases/download/v0.20/blocky_0.20_Windows_x86_64.zip",
+      "hash": "8104a8e7694477b3def92cdbeb668f56d363de2a6fa632c833fd545b9709efb0"
+    }
+  },
+  "pre_install": [
+    "if(!(Test-Path \"$dir\\config.yml\")) {",
+    "   (New-Item -Type File \"$dir\\config.yml\") | Out-Null",
+    "}"
+  ],
+  "post_install": [
+    "Set-Content -Value \"upstream:`n  default:`n    - tcp-tls:dns.google`n    - tcp-tls:tcp-tls:anycast.uncensoreddns.org`n    - 1.1.1.1`n    - 8.8.8.8\" -Path \"$dir\\config.yml\""
+  ],
+  "persist": [
+    [
+      "config.yml"
+    ]
+  ],
+  "bin": "blocky.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/0xERR0R/blocky/releases/download/v$version/blocky_$version_Windows_x86_64.zip"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/blocky_checksums.txt"
+    }
+  }
+}

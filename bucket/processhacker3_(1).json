@@ -1,0 +1,45 @@
+{
+  "version": "3.0.4905",
+  "description": "A free, powerful, multi-purpose tool that helps you monitor system resources, debug software and detect malware.",
+  "homepage": "https://wj32.org/processhacker",
+  "url": "https://ghproxy.net/https://github.com/ProcessHackerRepoTool/nightly-builds-mirror/releases/download/v3.0.4905/processhacker-3.0.4905-bin.zip",
+  "hash": "56a35bf65e5c88cc52f9c93678dd44770f3f3b61d066436addde6fd91997e34c",
+  "architecture": {
+    "64bit": {
+      "extract_dir": "64bit"
+    },
+    "32bit": {
+      "extract_dir": "32bit"
+    }
+  },
+  "post_install": [
+    "$file = \"$persist_dir\\ProcessHacker.exe.settings.xml\"",
+    "if (Test-Path $file) {",
+    "    $content = (Get-Content $file) -Replace '<setting name=\"IconGuids\">.+</setting>', ''",
+    "    Set-Content $file $content -Encoding Ascii -Force",
+    "}"
+  ],
+  "bin": "ProcessHacker.exe",
+  "shortcuts": [
+    [
+      "ProcessHacker.exe",
+      "Process Hacker"
+    ]
+  ],
+  "persist": [
+    "ProcessHacker.exe.settings.xml",
+    "usernotesdb.xml"
+  ],
+  "checkver": {
+    "url": "https://wj32.org/processhacker/nightly.php?phupdater",
+    "jsonpath": "$.bin_url",
+    "regex": "https://ghproxy.net/https://github.com/ProcessHackerRepoTool/nightly-builds-mirror/releases/download/v(?<version>.+)/processhacker-(?<version>.+)-bin.zip"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/ProcessHackerRepoTool/nightly-builds-mirror/releases/download/v$version/processhacker-$version-bin.zip",
+    "hash": {
+      "url": "https://wj32.org/processhacker/nightly.php?phupdater",
+      "jsonpath": "$.bin_hash"
+    }
+  }
+}

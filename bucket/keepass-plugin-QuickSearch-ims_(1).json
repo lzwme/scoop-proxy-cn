@@ -1,0 +1,19 @@
+{
+  "version": "2.30",
+  "description": "QuickSearch is a plugin providing enhanced search capabilities. It can be used as a replacement for the built-in QuickFind toolbar control.",
+  "homepage": "https://github.com/iamkarlson/keepass-quicksearch/",
+  "license": "MIT",
+  "depends": "extras/keepass",
+  "url": "https://ghproxy.net/https://github.com/iamkarlson/keepass-quicksearch/releases/download/2.30/QuickSearch.plgx",
+  "hash": "2b14aa091b26fc2131cae51787cc4c416716316bc84690359f2348284ec9ef3d",
+  "installer": {
+    "script": "Copy-Item \"$dir\\QuickSearch.plgx\" \"$(appdir keepass $global)\\current\\Plugins\""
+  },
+  "uninstaller": {
+    "script": "Remove-Item \"$(appdir keepass $global)\\current\\Plugins\\QuickSearch.plgx\""
+  },
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/iamkarlson/keepass-quicksearch/releases/download/v$version/QuickSearch.plgx"
+  }
+}

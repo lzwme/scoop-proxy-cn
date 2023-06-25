@@ -1,0 +1,42 @@
+{
+  "version": "7.11.0",
+  "description": "Very customizable imageboard/booru downloader with powerful filenaming features.",
+  "homepage": "https://bionus.github.io/imgbrd-grabber",
+  "license": "Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/Bionus/imgbrd-grabber/releases/download/v7.11.0/Grabber_v7.11.0_x64.zip",
+      "hash": "5dc8b5fa7339f08a4d4e83dc3ed3bd514710d7c057e72f82174fb0ac4dca03eb"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/Bionus/imgbrd-grabber/releases/download/v7.11.0/Grabber_v7.11.0_x86.zip",
+      "hash": "f8ee0206197c6b61ae325929edb6de02cc02abad8ede080146450ad02b584404"
+    }
+  },
+  "bin": [
+    [
+      "Grabber-cli.exe",
+      "Grabber"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "Grabber.exe",
+      "Grabber"
+    ]
+  ],
+  "persist": "settings.ini",
+  "checkver": {
+    "github": "https://github.com/Bionus/imgbrd-grabber"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/Bionus/imgbrd-grabber/releases/download/v$version/Grabber_v$version_x64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/Bionus/imgbrd-grabber/releases/download/v$version/Grabber_v$version_x86.zip"
+      }
+    }
+  }
+}

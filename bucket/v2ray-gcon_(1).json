@@ -1,0 +1,33 @@
+{
+  "version": "1.4.7",
+  "description": "Graphic configer for v2ray-core.",
+  "homepage": "https://github.com/vrnobody/V2RayGCon/",
+  "license": "GPL-3.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/vrnobody/V2RayGCon/releases/download/1.5.7/V2RayGCon.zip",
+      "hash": "MD5:B4758ACF8E7514F0AFE49C504A3F03A8"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/vrnobody/V2RayGCon/releases/download/1.5.7/V2RayGCon.zip",
+      "hash": "MD5:B4758ACF8E7514F0AFE49C504A3F03A8"
+    }
+  },
+  "pre_install": [
+    "cp $dir/userSettings.json $env:temp/userSettings.json -ErrorAction Ignore;",
+    "cp $dir/userSettings.bak $env:temp/userSettings.bak -ErrorAction Ignore;"
+  ],
+  "post_install": [
+    "cp $env:temp/userSettings.bak  $dir/userSettings.bak -ErrorAction Ignore;",
+    "cp $env:temp/userSettings.json $dir/userSettings.json -ErrorAction Ignore;"
+  ],
+  "shortcuts": [
+    [
+      "V2RayGCon.exe",
+      "V2RayGCon"
+    ]
+  ],
+  "persist": [
+    "core"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "version": "0.1.0",
+  "homepage": "https://github.com/jez/pandoc-sidenote",
+  "license": "MIT",
+  "description": "Pandoc filter for adding sidenotes to a document",
+  "url": "https://ghproxy.net/https://github.com/jez/pandoc-sidenote/archive/refs/heads/master.zip",
+  "depends": [
+    "haskell",
+    "stack",
+    "pandoc",
+    "7zip"
+  ],
+  "installer": {
+    "script": [
+      "$start_dir = pwd",
+      "7z x $fname -o $original_dir",
+      "cd $original_dir/pandoc-sidenote-master",
+      "stack build",
+      "stack install --local-bin-path $dir",
+      "cd $start_dir"
+    ]
+  },
+  "bin": "pandoc-sidenote.exe",
+  "shortcuts": [
+    [
+      "pandoc-sidenote.exe",
+      "PandocSideNote"
+    ]
+  ]
+}

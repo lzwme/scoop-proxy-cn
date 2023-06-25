@@ -1,0 +1,40 @@
+{
+  "version": "2.28.0",
+  "description": "One for all free music in China",
+  "homepage": "http://listen1.github.io/listen1",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/listen1/listen1_desktop/releases/download/v2.28.0/listen1_2.28.0_win_x64.7z",
+      "hash": "f5f305fabcc6a27ff682e1f1b72ff0b00ddae741940e516334d3037a99c32174"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/listen1/listen1_desktop/releases/download/v2.28.0/listen1_2.28.0_win_ia32.7z",
+      "hash": "26ea8a2ff7015a1cec62c58e313e80fc0bb9cd8fff65330c31883a4c45d3da18"
+    }
+  },
+  "post_install": "New-Item -ItemType Junction -Path $env:APPDATA\\listen1 -Target $persist_dir\\appdata -ErrorAction SilentlyContinue | Out-Null",
+  "uninstaller": {
+    "script": "Remove-Item -Path $env:APPDATA\\listen1 -Recurse -Force -ErrorAction SilentlyContinue | Out-Null"
+  },
+  "shortcuts": [
+    [
+      "Listen1.exe",
+      "Listen1"
+    ]
+  ],
+  "persist": "appdata",
+  "checkver": {
+    "github": "https://github.com/listen1/listen1_desktop"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/listen1/listen1_desktop/releases/download/v$version/listen1_$version_win_x64.7z"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/listen1/listen1_desktop/releases/download/v$version/listen1_$version_win_ia32.7z"
+      }
+    }
+  }
+}

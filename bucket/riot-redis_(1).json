@@ -1,0 +1,27 @@
+{
+  "version": "2.19.0",
+  "description": "Redis Input/Output Tools",
+  "homepage": "https://developer.redis.com/riot",
+  "license": "Apache-2.0",
+  "url": "https://ghproxy.net/https://github.com/redis-developer/riot/releases/download/v2.19.0/riot-redis-2.19.0.zip",
+  "hash": "sha256:b7db6f5e2a15d73017e2132a86f9c3285b9333eb58dc29e2f0e2e58f3133f836",
+  "extract_dir": "riot-redis-2.19.0",
+  "env_add_path": "bin",
+  "suggest": {
+    "JDK": [
+      "java/oraclejdk",
+      "java/openjdk"
+    ]
+  },
+  "checkver": {
+    "url": "https://github.com/redis-developer/riot/releases/latest",
+    "re": "v([\\d.]+).zip"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/redis-developer/riot/releases/download/v$version/riot-redis-$version.zip",
+    "extract_dir": "riot-redis-$version",
+    "hash": {
+      "url": "$url.sha256"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "version": "2012.03.26",
+  "description": "波音リツ 追加ロングトーン母音",
+  "homepage": "http://www.canon-voice.com/normal.html",
+  "license": [
+    {
+      "identifier": "Proprietary",
+      "url": "http://www.canon-voice.com/kiyaku.html"
+    }
+  ],
+  "url": "http://www.canon-voice.com/voice/r73_normal_longtone.zip",
+  "hash": "6db187d9b197f2be371545731c6d1d7aae45cdd78dbd4b2161101aa9fbdb8d0f",
+  "extract_dir": "リツlong\\long",
+  "extract_to": "voice\\波音リツ\\long",
+  "suggest": {
+    "UTAU": [
+      "utau",
+      "dtm/utau",
+      "namine-ritsu-utau-cv",
+      "dtm/namine-ritsu-utau-cv",
+      "namine-ritsu-utau-vcv",
+      "dtm/namine-ritsu-utau-vcv"
+    ]
+  },
+  "installer": {
+    "script": [
+      "$voice=\"波音リツ\"",
+      "Copy-Item -Force -Recurse -Path \"${dir}\\voice\\${voice}\" -Destination \"${persist_dir}\\..\\utau\\utau\\voice\"",
+      "Remove-Item -Force -Recurse -Path \"${dir}\\voice\\${voice}\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$voice=\"波音リツ\\long\"",
+      "Remove-Item -Force -Recurse -Path \"${persist_dir}\\..\\utau\\utau\\voice\\${voice}\""
+    ]
+  }
+}

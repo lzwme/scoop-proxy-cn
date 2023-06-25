@@ -1,0 +1,26 @@
+{
+  "version": "1.6.0.dev0",
+  "homepage": "https://python-poetry.org/",
+  "description": "Python dependency management and packaging made easy.",
+  "url": "https://ghproxy.net/https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py",
+  "hash": "ca709d8c4a954b45ddde98b2f879f108e34fce063fa4177221d92e98894b8039",
+  "license": "MIT",
+  "depends": "python",
+  "env_set": {
+    "POETRY_HOME": "$dir"
+  },
+  "bin": "bin\\poetry.exe",
+  "checkver": {
+    "url": "https://ghproxy.net/https://raw.githubusercontent.com/python-poetry/poetry/master/pyproject.toml",
+    "regex": "version = \"([\\d.\\-a-z]+)\""
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py"
+  },
+  "installer": {
+    "script": "$env:POETRY_HOME=$dir; python $dir/$fname --preview -y"
+  },
+  "uninstaller": {
+    "script": "python $dir/install-poetry.py --uninstall -y"
+  }
+}

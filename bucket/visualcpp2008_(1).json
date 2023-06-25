@@ -1,0 +1,37 @@
+{
+  "version": "15.00.21022.08",
+  "description": "The command-line compiler functions of VS 2008 C++.",
+  "homepage": "https://www.visualstudio.com",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://www.microsoft.com/en-us/legal/intellectualproperty/copyright/default.aspx"
+  },
+  "url": [
+    "https://ghproxy.net/https://github.com/mike-macmullin/vm-bucket/releases/download/v1.0/vc_stdx86.cab",
+    "https://ghproxy.net/https://github.com/mike-macmullin/vm-bucket/releases/download/v1.0/vc_stdx86.msi",
+    "https://ghproxy.net/https://github.com/mike-macmullin/vm-bucket/releases/download/v1.0/vc_stdamd64.cab",
+    "https://ghproxy.net/https://github.com/mike-macmullin/vm-bucket/releases/download/v1.0/vc_stdamd64.msi",
+    "https://ghproxy.net/https://gist.githubusercontent.com/mike-macmullin/fcd5c341a88ff6b43b8d3858d100f24b/raw/c4b398ee94be80968226f5d71a03d10f3d8ed0b5/visualc2008_install.ps1"
+  ],
+  "hash": [
+    "0B64D4C9BAF24E484D39988B96BFD32D63AC5D0B8FB95F921847DF3AC5A479FC",
+    "9B6B83AB262B854533264D922F2C3DB88E7AD3F0B67143D756FCE75CA6DCD336",
+    "82B29A93FC021702960CC754AD021926D97A084C87CD07D21581AC91758A8675",
+    "64EB303D7FAAD86EE8187D35CA302483B46DD966B745A587C4C335E5703558E0"
+  ],
+  "installer": {
+    "file": "visualc2008_install.ps1",
+    "args": "$dir"
+  },
+  "env_add_path": [
+    "Program Files\\Microsoft Visual Studio 9.0\\Common7\\IDE",
+    "Program Files\\Microsoft Visual Studio 9.0\\Vc7\\bin",
+    "Program Files(64)\\Microsoft Visual Studio 9.0\\Common7\\IDE",
+    "Program Files(64)\\Microsoft Visual Studio 9.0\\Vc7\\bin",
+    "Program Files(64)\\Microsoft Visual Studio 9.0\\Vc7\\bin\\amd64"
+  ],
+  "env_set": {
+    "INCLUDE": "$dir\\Program Files\\Microsoft Visual Studio 9.0\\Vc7\\include;$dir\\Program Files(64)\\Microsoft Visual Studio 9.0\\Vc7\\include;",
+    "LIB": "$dir\\Program Files\\Microsoft Visual Studio 9.0\\Vc7\\lib;$dir\\Program Files(64)\\Microsoft Visual Studio 9.0\\Vc7\\lib;"
+  }
+}

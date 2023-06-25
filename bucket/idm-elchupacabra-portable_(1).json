@@ -1,0 +1,39 @@
+{
+  "version": "6.41.2",
+  "description": "IDM is a tool to increase download speeds by up to 5 times, resume and schedule downloads.",
+  "homepage": "http://internetdownloadmanager.com/index.html",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "http://internetdownloadmanager.com/support/terms-and-conditions.html"
+  },
+  "depends": "sudo",
+  "notes": "Feature: <https://lrepacks.net/repaki-programm-dlya-interneta/56-internet-download-manager-repack.html>",
+  "url": "https://pan.jiemi.workers.dev/?file=/wenlei/IDM_v6.41.2_Repack_Elchupacabra.7z",
+  "hash": "d6f2334831719e357e3799ab0350efcf9c6d79b1af7da88461795790ece566d2",
+  "extract_dir": "Internet Download Manager",
+  "pre_install": [
+    "Copy-Item \"$bucketsdir\\$bucket\\scripts\\idm\\idm-custom-settings.reg\" \"$dir\\idm-custom-settings.reg\" -ErrorAction 'SilentlyContinue' -Force | Out-Null",
+    "Copy-Item \"$bucketsdir\\$bucket\\scripts\\idm\\install.bat\" \"$dir\\install.bat\" -ErrorAction 'SilentlyContinue' -Force | Out-Null",
+    "Copy-Item \"$bucketsdir\\$bucket\\scripts\\idm\\uninstall.bat\" \"$dir\\uninstall.bat\" -ErrorAction 'SilentlyContinue' -Force | Out-Null"
+  ],
+  "installer": {
+    "script": [
+      "Start-Process \"$dir\\install.bat\" -WorkingDirectory \"$dir\" -Wait",
+      "sudo regedit /s \"$dir\\idm-custom-settings.reg\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Start-Process \"$dir\\uninstall.bat\" -WorkingDirectory \"$dir\" -Wait",
+      "Write-Host \"You may need to restart the system to delete the directory.\" -Foreground Magenta"
+    ]
+  },
+  "checkver": {
+    "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/oneindex.txt",
+    "regex": "(?<filename>IDM_v(?<version>[\\d.]+)_Repack_Elchupacabra\\.7z)",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/wenlei/$matchFilename"
+  }
+}

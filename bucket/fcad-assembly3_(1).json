@@ -1,0 +1,35 @@
+{
+  "version": "0.11",
+  "description": "General-purpose parametric 3D CAD modeler and a building information modeling software with finite-element-method support.",
+  "homepage": "https://www.freecadweb.org",
+  "license": "LGPL-2.0-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/realthunder/FreeCAD_assembly3/releases/download/0.11/FreeCAD-asm3-Daily-Win64-Py3-Qt5-20210205.7z",
+      "hash": "e54a42710b816c4c450d5b79758d96e7d5e62b5069922cefee619125bf7475a3"
+    }
+  },
+  "pre_install": "Remove-Item \"$dir\\`$*\", \"$dir\\Uninstall*\" -Recurse -Force",
+  "bin": "FreeCAD-asm3-Daily-Win64-Py3-Qt5-20210205\\bin\\FreeCADLink.exe",
+  "shortcuts": [
+    [
+      "FreeCAD-asm3-Daily-Win64-Py3-Qt5-20210205\\bin\\FreeCADLink.exe",
+      "FreeCAD 0.11 Assembly3"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/FreeCAD/FreeCAD",
+    "regex": "releases/download/([\\d.]+)/FreeCAD-(?<build>[\\w.]+)-WIN"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/realthunder/FreeCAD_assembly3/releases/download/$version/FreeCAD-asm3-Daily-Win64-Py3-Qt5-20210205.7z"
+      }
+    },
+    "hash": {
+      "url": "$url-SHA256.txt",
+      "regex": "(?sm):\\s+([a-fA-F\\d\\s]+)CertUtil"
+    }
+  }
+}

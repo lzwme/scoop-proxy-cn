@@ -1,0 +1,17 @@
+{
+  "version": "2.17-b3",
+  "description": "LetoDB is a client-server database management system, an alternative for Advantage Database Server (ADS)",
+  "homepage": "http://kresin.ru/en/letodb.html",
+  "license": "Freeware",
+  "url": "http://kresin.ru/down/letodb/letodb-2.17-b3.mingw.zip",
+  "hash": "605d1f159c714930849e65c69a594cc90bb58b61c9a45991f4c36c99f8ae972f",
+  "extract_dir": "letodb",
+  "checkver": {
+    "url": "http://kresin.ru/en/letodb.html",
+    "re": "Letodb (?<version>[\\d.]+) b(?<build>\\d+)",
+    "replace": "${1}-b${2}"
+  },
+  "autoupdate": {
+    "url": "http://kresin.ru/down/letodb/letodb-$matchVersion-b$matchBuild.mingw.zip"
+  }
+}

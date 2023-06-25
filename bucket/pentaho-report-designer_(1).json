@@ -1,0 +1,33 @@
+{
+  "##": "Rename from zip to 7z is needed due to 'unsupported compression method' error.",
+  "homepage": "https://pentaho.sourceforge.io/",
+  "description": "Pentaho Report Designer is a sophisticated report creation tool that you can use standalone, or as part of the larger Pentaho Business Analytics distribution.",
+  "license": "GPL-2.0-only|LGPL-2.0-only|MPL-1.1",
+  "version": "9.1.0.0-324",
+  "url": "https://downloads.sourceforge.net/project/pentaho/Pentaho%209.1/client-tools/prd-ce-9.1.0.0-324.zip#dl.7z",
+  "hash": "916c108bcbe87b3b279865fe9557b7b546c05d625a74a1a61b65a931c35836da",
+  "extract_dir": "report-designer",
+  "bin": "report-designer.bat",
+  "shortcuts": [
+    [
+      "report-designer.bat",
+      "Pentaho Report Designer (PRD)",
+      "",
+      "icon.ico"
+    ]
+  ],
+  "pre_install": [
+    "if (!$url) { $url = \"$(manifest_path $app $bucket)\" }",
+    "$icon = $url -replace '.json$', '.ico'",
+    "Copy-Item \"$icon\" \"$dir\\icon.ico\""
+  ],
+  "post_install": "Remove-Item \"$dir\\Pentaho Report Designer.app\" -Recurse",
+  "checkver": {
+    "url": "https://sourceforge.net/projects/pentaho/rss?path=/",
+    "re": "Pentaho\\s+[\\d.]+/client-tools/prd-ce-([\\w.-]+)\\.zip"
+  },
+  "autoupdate": {
+    "url": "https://downloads.sourceforge.net/project/pentaho/Pentaho%20$majorVersion.$minorVersion/client-tools/prd-ce-$version.zip#dl.7z"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

@@ -1,0 +1,35 @@
+{
+  "version": "20221106",
+  "description": "A tool for converting video from nearly any format to a selection of modern, widely supported codecs.",
+  "homepage": "https://github.com/HandBrake/handbrake-snapshots/releases/tag/win",
+  "license": "GPL-2.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/HandBrake/HandBrake-snapshots/releases/download/win/HandBrake-20221106-4d6a697a3-x86_64-Win_GUI.zip",
+      "hash": "90BDFBAA99FD2D9616DD020A620BC897AA13076C4547FAC9C1284CE6B4F079AA"
+    }
+  },
+  "extract_dir": "HandBrake",
+  "installer": {
+    "script": [
+      "if (!(Test-Path \"$persist_dir\\portable.ini\")) {",
+      "    if (!(Test-Path \"$persist_dir\\storage\") -And (Test-Path \"$env:APPDATA\\HandBrake\")) {",
+      "        New-Item \"$persist_dir\" -ItemType Directory -ErrorAction SilentlyContinue | Out-Null",
+      "        Move-Item -Path \"$env:APPDATA\\HandBrake\" -Destination \"$persist_dir\\storage\" -Force",
+      "    }",
+      "    Copy-Item \"$dir\\portable.ini.template\" \"$dir\\portable.ini\" -Force",
+      "}"
+    ]
+  },
+  "persist": [
+    "portable.ini",
+    "storage",
+    "tmp"
+  ],
+  "shortcuts": [
+    [
+      "HandBrake.exe",
+      "HandBrake Nightly"
+    ]
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "version": "3.0.0",
+  "description": "Okta AWS CLI assume role tool",
+  "homepage": "https://github.com/oktadev/okta-aws-cli-assume-role",
+  "license": "Apache-2.0",
+  "depends": [
+    "aws",
+    "gluon-openjfx-sdk"
+  ],
+  "suggest": {
+    "JDK11": [
+      "java/openjdk11",
+      "java/temurin11-jdk"
+    ]
+  },
+  "url": [
+    "https://ghproxy.net/https://github.com/oktadev/okta-aws-cli-assume-role/releases/download/v3.0.0/okta-aws-cli-3.0.0.jar",
+    "https://ghproxy.net/https://gist.githubusercontent.com/astelmachonak-nydig/daafaa07bfb39e6200ea2857cf8b5516/raw/5f4b79915be6265cd99f4ddce8522aa0b9e69e8f/OktaAwsCli.psm1"
+  ],
+  "hash": [
+    "d57b8fd6de20e2bf595782690c273eb806aa555ceab20d5fa7608774f49aee78",
+    "60098bb6f6972eb39290868cde74d10319c92097045f694b50d48db13b56d0b1"
+  ],
+  "psmodule": {
+    "name": "OktaAwsCli"
+  },
+  "post_install": "New-Item -ItemType Directory -Force \"$Env:USERPROFILE/.okta\" | Out-Null; Copy-Item \"$original_dir/okta-aws-cli-$version.jar\" \"$Env:USERPROFILE/.okta/okta-aws-cli.jar\"",
+  "uninstaller": {
+    "script": "Remove-Item -Recurse -Force \"$Env:USERPROFILE/.okta\""
+  },
+  "checkver": {
+    "github": "https://github.com/oktadev/okta-aws-cli-assume-role"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/oktadev/okta-aws-cli-assume-role/releases/download/v$version/okta-aws-cli-$version.jar"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "checkver": {
+    "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id%20eq%20'Az.DataShare'%20and%20IsLatestVersion%20eq%20true",
+    "replace": "${ver}",
+    "regex": "(?i)<d:Version>(?<ver>[^<]+)<.d:Version>"
+  },
+  "hash": "sha512:c2cc0265e7788294ae7c45842441c93036544599be4990191a401ded570754d49d6ea5dc4262a832036d9a80c8c17b0317ccbae1ee24d9b2ecbee04fdf66f2c4",
+  "description": "Microsoft Azure PowerShell - DataShare service cmdlets for Azure Resource Manager in Windows PowerShell and PowerShell Core.",
+  "psmodule": {
+    "name": "Az.DataShare"
+  },
+  "homepage": "https://www.powershellgallery.com/packages/Az.DataShare",
+  "autoupdate": {
+    "url": "https://www.powershellgallery.com/api/v2/Package/Az.DataShare/$version#/mod.nupkg",
+    "hash": {
+      "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id eq 'Az.DataShare' and Version eq '$version'",
+      "regex": "<d:PackageHash>$base64<.d:PackageHash>"
+    }
+  },
+  "license": {
+    "identifier": "Refer to Webpage",
+    "url": "https://aka.ms/azps-license"
+  },
+  "url": "https://www.powershellgallery.com/api/v2/Package/Az.DataShare/1.0.1#/mod.nupkg",
+  "depends": "Az.Accounts",
+  "version": "1.0.1"
+}

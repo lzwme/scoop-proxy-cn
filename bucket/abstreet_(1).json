@@ -1,0 +1,62 @@
+{
+  "version": "0.3.44",
+  "description": "Transportation planning and traffic simulation software for creating cities friendlier to walking, biking, and public transit.",
+  "homepage": "https://github.com/a-b-street/abstreet",
+  "license": "Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/a-b-street/abstreet/releases/download/v0.3.44/abstreet_windows_v0_3_44.zip",
+      "hash": "84da67ffe514ee6e2c31f8b44a6ce6050fd4385d685bc6f6ce5ed987c7c35982",
+      "extract_dir": "abstreet_windows_v0_3_44"
+    }
+  },
+  "bin": [
+    [
+      "cli.exe",
+      "abstreet-cli"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "game.exe",
+      "AB Street"
+    ],
+    [
+      "game.exe",
+      "AB Street - Ungap the Map",
+      "--ungap"
+    ],
+    [
+      "fifteen_min.exe",
+      "AB Street - 15-minute Neighborhoods"
+    ],
+    [
+      "ltn.exe",
+      "AB Street - Low-traffic Neighborhoods"
+    ],
+    [
+      "osm_viewer.exe",
+      "AB Street - OpenStreetMap Viewer"
+    ],
+    [
+      "parking_mapper.exe",
+      "AB Street - Parking Mapper"
+    ],
+    [
+      "santa.exe",
+      "AB Street - 15-minute Santa"
+    ]
+  ],
+  "persist": "data\\player",
+  "checkver": {
+    "github": "https://github.com/a-b-street/abstreet"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/a-b-street/abstreet/releases/download/v$version/abstreet_windows_v$underscoreVersion.zip",
+        "extract_dir": "abstreet_windows_v$underscoreVersion"
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "homepage": "https://github.com/lptstr/sultan",
+  "description": "An un-opinionated, cross-platform utility to stress-test your server",
+  "license": {
+    "identifier": "MIT",
+    "url": "https://ghproxy.net/https://raw.githubusercontent.com/lptstr/sultan/master/LICENSE"
+  },
+  "version": "0.4.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/lptstr/sultan/releases/download/v0.4.0/sultan-win64.zip",
+      "hash": "1664e9516a95c2c69bb97c9919679d24af7d1704ca57f6e9481895f8b84d1c44",
+      "extract_dir": "bin/Release/netcoreapp2.1/win10-x64/publish"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/lptstr/sultan/releases/download/v0.4.0/sultan-win86.zip",
+      "hash": "b798b41a02c6e9531ab60c489c99d094935e0764cb0fe7bb885a9fccd04d85ed",
+      "extract_dir": "bin/Release/netcoreapp2.1/win10-x86/publish"
+    }
+  },
+  "bin": "sultan.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/lptstr/sultan/releases/download/v$version/sultan-win64.zip",
+        "extract_dir": "bin/Release/netcoreapp2.1/win10-x64/publish"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/lptstr/sultan/releases/download/v$version/sultan-win86.zip",
+        "extract_dir": "bin/Release/netcoreapp2.1/win10-x86/publish"
+      }
+    }
+  }
+}

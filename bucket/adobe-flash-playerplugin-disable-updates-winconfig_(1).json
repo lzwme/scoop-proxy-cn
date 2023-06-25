@@ -1,0 +1,30 @@
+{
+  "##": "https://community.chocolatey.org/packages/flashplayerplugin-disable-updates-winconfig",
+  "description": "This package disables the Adobe Flash Player Updater(Updates will be installed only by Scoop).",
+  "homepage": "https://community.chocolatey.org/packages/flashplayerplugin-disable-updates-winconfig",
+  "installer": {
+    "script": [
+      "SchTasks /Change /Disable /TN \"Adobe Flash Player Updater\" | Out-Null",
+      "Stop-Service \"AdobeFlashPlayerUpdateSvc\" -force | Out-Null",
+      "Set-Service \"AdobeFlashPlayerUpdateSvc\" -StartupType Disabled | Out-Null",
+      "Write-Host \"  ** Adobe Flash Player Updater disabled.\" -foreground magenta",
+      "Write-Host \"  ** Adobe Flash Player will only be updated by Scoop.\" -foreground magenta"
+    ]
+  },
+  "license": {
+    "identifier": "Freeware"
+  },
+  "notes": [
+    "This package disables the Adobe Flash Player Updater(Updates will be installed only by Scoop).",
+    "Uninstalling the package will re-enable Adobe Flash Player Updater."
+  ],
+  "uninstaller": {
+    "script": [
+      "SchTasks /Change /Enable /TN \"Adobe Flash Player Updater\" | Out-Null",
+      "Set-Service \"AdobeFlashPlayerUpdateSvc\" -StartupType Manual | Out-Null",
+      "Write-Host \"  ** Adobe Flash Player Updater re-enabled.\" -foreground magenta",
+      "Write-Host \"  ** Adobe Flash Player will be updated by Adobe Flash Player Updater and Scoop.\" -foreground magenta"
+    ]
+  },
+  "version": "0.0.1"
+}

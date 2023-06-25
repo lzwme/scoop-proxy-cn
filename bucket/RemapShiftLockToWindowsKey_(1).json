@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ghproxy.net/https://raw.githubusercontent.com/lukesampson/scoop/master/schema.json",
+  "homepage": "https://github.com/MarkMichaelis/ScoopBucket",
+  "description": "Remap Shift-Lock key to Windows Key",
+  "url": "https://ghproxy.net/https://raw.githubusercontent.com/MarkMichaelis/ScoopBucket/master/blank",
+  "notes": "Of course, this script is placed in the MarkMichaelis bucket so you it presents a chicken and egg problem.",
+  "version": "0.8.1",
+  "installer": {
+    "script": [
+      "reg add 'HKLM\\SYSTEM\\CurrentControlSet\\Control\\Keyboard Layout' /v 'Scancode Map' /t REG_BINARY /d 0000000000000000020000005BE03A0000000000 /f"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "reg delete 'HKLM\\SYSTEM\\CurrentControlSet\\Control\\Keyboard Layout' /v 'Scancode Map' /f"
+    ]
+  }
+}

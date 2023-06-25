@@ -1,0 +1,44 @@
+{
+  "homepage": "http://futucraft.com/category/kairatune/",
+  "description": "A software synthesizer",
+  "version": "1-2-4",
+  "license": {
+    "identifier": "Freeware"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "http://futucraft.com/download/kairatune-1-2-4-vsti-win64/#dl.zip",
+      "hash": "95413cc308ebcf0760bae5950261dbcc0f06f5a4b3e1a6b9a5108498dd42dbba"
+    },
+    "32bit": {
+      "url": "http://futucraft.com/download/kairatune-1-2-4-vsti-win32/#dl.zip",
+      "hash": ""
+    }
+  },
+  "extract_dir": "Kairatune",
+  "post_install": [
+    "New-Item -ErrorAction Ignore $env:USERPROFILE\\.vst -ItemType Directory",
+    "New-Item -Type Junction -Path $env:USERPROFILE\\.vst\\kairatune -Value $dir"
+  ],
+  "uninstaller": {
+    "script": [
+      "(Get-Item $env:USERPROFILE\\.vst\\kairatune).Delete()"
+    ]
+  },
+  "checkver": {
+    "url": "http://futucraft.com/category/kairatune/release/",
+    "re": "http://futucraft\\.com/download/kairatune\\-(\\d+\\-\\d+\\-\\d+)\\-vsti\\-win64/"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "http://futucraft.com/download/kairatune-$version-vsti-win64/#dl.zip",
+        "hash": ""
+      },
+      "32bit": {
+        "url": "http://futucraft.com/download/kairatune-$version-vsti-win32/#dl.zip",
+        "hash": ""
+      }
+    }
+  }
+}

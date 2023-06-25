@@ -1,0 +1,25 @@
+{
+  "version": "1.6",
+  "description": "nerds.de LoopBe1 A Free Virtual MIDI Driver",
+  "homepage": "https://nerds.de/en/loopbe1.html",
+  "license": [
+    {
+      "identifier": "Proprietary",
+      "url": "https://nerds.de/en/loopbe1.html"
+    }
+  ],
+  "url": "https://nerds.de/data/setuploopbe1.exe",
+  "hash": "0958b39c23e02f86ba63f520cfc333842e3f7c31e197416c12f2718756ecb9be",
+  "installer": {
+    "script": [
+      "Start-Process -Verb RunAs -FilePath \"${dir}\\setuploopbe1.exe\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$regkey=\"LoopBe1\"",
+      "$uninstaller=(Get-ItemProperty -Path \"Registry::HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\${regkey}\" | Select-Object -ExpandProperty UninstallString)",
+      "Start-Process -Wait -Verb RunAs -FilePath \"${uninstaller}\""
+    ]
+  }
+}

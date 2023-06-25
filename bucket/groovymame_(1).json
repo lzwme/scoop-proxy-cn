@@ -1,0 +1,22 @@
+{
+  "version": "0.254-2.002s",
+  "description": "GroovyMame is a custom M.A.M.E. build mainly aimed at CRT monitors, as we are convinced CRT technology is a must when it comes to enjoying emulation in its full glory. However you can use GroovyMAME to alliviate some of the annoyances associated to emulation on LCD displays, specially for those models which are capable of refreshing at custom rates.",
+  "homepage": "https://github.com/antonioginer/GroovyMAME",
+  "license": "https://ghproxy.net/https://raw.githubusercontent.com/antonioginer/GroovyMAME/groovymame0248/COPYING",
+  "url": "https://ghproxy.net/https://github.com/antonioginer/GroovyMAME/releases/download/gm0254sr002s/groovymame_0254.002s_win-7-8-10.7z",
+  "hash": "5a53a380b8beff5d39186cd4b7c7f076e64dd41847d057ab78482b1b9d82dce0",
+  "bin": "mame.exe",
+  "checkver": {
+    "url": "https://api.github.com/repos/antonioginer/GroovyMAME/releases/latest",
+    "script": [
+      "$name = json_path $page $.name",
+      "$dl = json_path $page $.assets[2].browser_download_url",
+      "Write-Output \"$dl $name\""
+    ],
+    "regex": "^https://ghproxy.net/https://github.com/antonioginer/GroovyMAME/releases/download/(?<dl>[^ ]+) GroovyMAME (?<ver>[^ ]*) - Switchres (?<minor>.*)$",
+    "replace": "${ver}-${minor}"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/antonioginer/GroovyMAME/releases/download/$matchDl"
+  }
+}

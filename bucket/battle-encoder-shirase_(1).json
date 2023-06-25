@@ -1,0 +1,49 @@
+{
+  "version": "1.7.9",
+  "description": "Controls Per-Process CPU Usage",
+  "homepage": "https://mion.yosei.fi/BES/",
+  "license": {
+    "identifier": "GPL-3.0-or-later"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://mion.yosei.fi/archive/BES/bes_1.7.9.zip#/dl.7z",
+      "hash": "9fa2a852328872daa769e6d738c43e07b4b4348c1ca2e15e7aff84eafd5b1c33"
+    },
+    "32bit": {
+      "url": "https://mion.yosei.fi/archive/BES/bes_1.7.9.zip#/dl.7z",
+      "hash": "9fa2a852328872daa769e6d738c43e07b4b4348c1ca2e15e7aff84eafd5b1c33"
+    }
+  },
+  "pre_install": [
+    "Get-ChildItem -Path \"$dir\\BES_$version\\*\" -Recurse | Move-Item -Destination \"$dir\"",
+    "Remove-Item \"$dir\\BES_$version\\\"",
+    "if (!(test-path \"$dir\\bes.ini\")) { new-item -force \"$dir\\bes.ini\" -itemtype file | out-null }",
+    "if (!(test-path \"$dir\\bes_sw.ini\")) { new-item -force \"$dir\\bes_sw.ini\" -itemtype file | out-null }"
+  ],
+  "persist": [
+    "bes.ini",
+    "bes_sw.ini"
+  ],
+  "bin": "BES.exe",
+  "shortcuts": [
+    [
+      "BES.exe",
+      "BES"
+    ]
+  ],
+  "checkver": {
+    "url": "https://mion.yosei.fi/BES/",
+    "regex": "Version ([\\d.]+) \\(stable\\)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://mion.yosei.fi/archive/BES/bes_$version.zip#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://mion.yosei.fi/archive/BES/bes_$version.zip#/dl.7z"
+      }
+    }
+  }
+}

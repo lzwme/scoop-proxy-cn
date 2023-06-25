@@ -1,0 +1,32 @@
+{
+  "homepage": "https://github.com/ars3niy/tdlib-purple",
+  "description": "libpurple Telegram plugin using tdlib",
+  "version": "0.8.1",
+  "license": "GPL-2.0-or-later",
+  "notes": [
+    "This installation- given its methods- will be wiped out when Pidgin updates.",
+    "If only Pidgin supported putting pixmaps, locale and other extraneous dependencies in the \".purple\" folder...",
+    "Please force reinstall this manifest after an update of Pidgin to fix."
+  ],
+  "url": "https://ghproxy.net/https://github.com/ars3niy/tdlib-purple/releases/download/v0.8.1/tdlib-purple-0.8.1.exe#/dl.7z",
+  "hash": "4565a2eea63cece3197a8d9179535ba4cd68e4cefa1ff10127378252a9a18db9",
+  "post_install": [
+    "$pidgin = \"$(appdir pidgin)\\current\"",
+    "Copy-Item \"$dir\\`$_4_\\*\" \"$pidgin\" -Recurse -Force",
+    "Remove-Item \"$dir\\`$_4_\" -Recurse",
+    "Remove-Item \"$dir\\`$PLUGINSDIR\" -Recurse"
+  ],
+  "uninstaller": {
+    "script": [
+      "$pidgin = \"$(appdir pidgin)\\current\"",
+      "Remove-Item \"$pidgin\\locale\\*\" -Include tdlib-purple.mo -Recurse -Force",
+      "Remove-Item \"$pidgin\\pixmaps\\*\" -Include telegram.png -Recurse -Force",
+      "Remove-Item \"$pidgin\\plugins\\libtelegram-tdlib.dll\" -Force"
+    ]
+  },
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/ars3niy/tdlib-purple/releases/download/v$version/tdlib-purple-$version.exe#/dl.7z"
+  },
+  "depends": "pidgin"
+}

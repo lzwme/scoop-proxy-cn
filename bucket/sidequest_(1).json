@@ -1,0 +1,21 @@
+{
+  "homepage": "https://github.com/SideQuestVR/SideQuest",
+  "version": "0.10.36",
+  "license": "MIT",
+  "url": "https://ghproxy.net/https://github.com/SideQuestVR/SideQuest/releases/download/v0.10.36/SideQuest-Setup-0.10.36-x64-win.exe#/dl.7z",
+  "hash": "267de19e24ab5df4f90c73586089f40180924ad38aa958bcba526bd118790009",
+  "extract_dir": "$PLUGINSDIR",
+  "installer": {
+    "script": "Expand-7zipArchive \"$dir\\app-64.7z\" \"$dir\""
+  },
+  "shortcuts": [
+    [
+      "sidequest.exe",
+      "Sidequest"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/SideQuestVR/SideQuest/releases/download/v$version/SideQuest-Setup-$version-x64-win.exe#/dl.7z"
+  }
+}

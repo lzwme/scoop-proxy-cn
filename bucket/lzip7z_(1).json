@@ -1,0 +1,23 @@
+{
+  "version": "1.6",
+  "homepage": "https://www.tc4shell.com/en/7zip/lzip/",
+  "license": "https://www.tc4shell.com/en/termsofuse/",
+  "description": "A small plugin for the popular 7-Zip archiver. You can use Lzip7z to open, modify, or create .lz archives that are widely used on Unix-like systems.",
+  "url": "https://www.tc4shell.com/binary/Lzip.zip",
+  "hash": "839b684384701e4b55a96e351517dc3c97ed727dfc834d96569d02aa2e5baa70",
+  "depends": "7zip",
+  "post_install": [
+    "$arch = $architecture.Substring(0, 2)",
+    "New-Item -ItemType SymbolicLink -Path \"$(appdir 7zip $global)\\current\\Formats\\Lzip.$arch.dll\" -Target $dir\\Lzip.$arch.dll | Out-Null",
+    "New-Item -ItemType SymbolicLink -Path \"$(appdir 7zip $global)\\current\\Formats\\lzip.ini\" -Target $dir\\lzip.ini | Out-Null"
+  ],
+  "uninstaller": {
+    "script": [
+      "Remove-Item -Path \"$(appdir 7zip $global)\\current\\Formats\\Lzip.*.dll\" -Recurse -Force | Out-Null",
+      "Remove-Item -Path \"$(appdir 7zip $global)\\current\\Formats\\lzip.ini\" -Recurse -Force | Out-Null"
+    ]
+  },
+  "checkver": {
+    "regex": "Plugin version: ([0-9.]+)"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "version": "2.138",
+  "description": "Roboto type family. ",
+  "homepage": "https://fonts.google.com/specimen/Roboto",
+  "license": "Apache License Version 2.0",
+  "url": "https://fonts.google.com/download?family=Roboto#/dl.7z",
+  "installer": {
+    "script": [
+      "$fonts = (New-Object -ComObject Shell.Application).Namespace(0x14)",
+      "dir \"$dir/*.ttf\" | %{ $fonts.CopyHere($_.fullname) }"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "if ($cmd -eq \"uninstall\") {",
+      "    Write-Host \"To uninstall it completely, you have to delete it from the fonts in the control panel, which can be launched with ``control fonts``.\" -Foreground Magenta",
+      "}"
+    ]
+  },
+  "autoupdate": {
+    "url": "https://fonts.google.com/download?family=Roboto#/dl.7z"
+  }
+}

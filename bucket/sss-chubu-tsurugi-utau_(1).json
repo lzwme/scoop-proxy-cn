@@ -1,0 +1,33 @@
+{
+  "version": "1.0",
+  "description": "SSS 中部つるぎ　連続音",
+  "homepage": "https://zunko.jp/con_voice.html#daitokai_utau",
+  "license": [
+    {
+      "identifier": "Proprietary",
+      "url": "https://zunko.jp/guideline.html"
+    }
+  ],
+  "url": "https://zunko.jp/sozai/utau/ChubuTsurugi.zip",
+  "hash": "cc36877b3e01bfec6ebe28956c6c3a9362afb3e1b98d78c3879cb9ac3bf9c781",
+  "extract_to": "voice",
+  "suggest": {
+    "UTAU": [
+      "utau",
+      "dtm/utau"
+    ]
+  },
+  "installer": {
+    "script": [
+      "$voice=\"中部つるぎ\"",
+      "Copy-Item -Force -Recurse -Path \"${dir}\\voice\\*\" -Destination \"${persist_dir}\\..\\utau\\utau\\voice\"",
+      "Remove-Item -Force -Recurse -Path \"${dir}\\voice\\${voice}\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$voice=\"中部つるぎ\"",
+      "Remove-Item -Force -Recurse -Path \"${persist_dir}\\..\\utau\\utau\\voice\\${voice}\""
+    ]
+  }
+}

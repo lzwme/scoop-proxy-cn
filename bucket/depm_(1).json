@@ -1,0 +1,30 @@
+{
+  "version": "0.6.5",
+  "description": "Visualize depndency packages and modules",
+  "homepage": "https://github.com/goark/depm",
+  "license": "Apache License 2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/goark/depm/releases/download/v0.6.5/depm_0.6.5_Windows_64bit.zip",
+      "hash": "0aee89e14c1fcd359617d140a6c4981d953355e0755ec2924ce13737d8654e58"
+    },
+    "arm64": {
+      "url": "https://ghproxy.net/https://github.com/goark/depm/releases/download/v0.6.5/depm_0.6.5_Windows_ARM64.zip",
+      "hash": "02da6eb38cb6fcf3d3cf4a265071bf5132f2bd9349e2513f8c3099605ada4fa7"
+    }
+  },
+  "bin": [
+    "depm.exe"
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/goark/depm/releases/download/v$version/depm_$version_Windows_64bit.zip"
+      },
+      "arm64": {
+        "url": "https://ghproxy.net/https://github.com/goark/depm/releases/download/v$version/depm_$version_Windows_ARM64.zip"
+      }
+    }
+  }
+}

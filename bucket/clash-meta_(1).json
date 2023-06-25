@@ -1,0 +1,39 @@
+{
+  "version": "1.14.5",
+  "description": "A rule-based tunnel in Go.",
+  "homepage": "https://github.com/MetaCubeX/Clash.Meta",
+  "license": {
+    "identifier": "Freeware"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/MetaCubeX/Clash.Meta/releases/download/v1.14.5/clash.meta-windows-386-cgo-v1.14.5.zip",
+      "hash": "4896961f6119d1b8bec717e42c78678ee7754531b4a8fea1cf26f5ff6260d078"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/MetaCubeX/Clash.Meta/releases/download/v1.14.5/clash.meta-windows-amd64-cgo-v1.14.5.zip",
+      "hash": "43e18f6712074a89e9cd4c70a532c3ba93feb6bb1aa01eb75af412b89671f4a5"
+    }
+  },
+  "pre_install": "Get-ChildItem \"$dir\\Clash.Meta*.exe\" | Rename-Item -NewName 'Clash.Meta.exe'",
+  "bin": [
+    [
+      "Clash.Meta.exe",
+      "Clash Meta"
+    ]
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/MetaCubeX/Clash.Meta/releases/latest",
+    "regex": "(?sm)releases/download/v([\\d.]+)/(?<x86>clash.meta-windows-386.*?\\.zip).*?(?<x64>clash.meta-windows-amd64.*?\\.zip)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/MetaCubeX/Clash.Meta/releases/download/v$version/$matchX86"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/MetaCubeX/Clash.Meta/releases/download/v$version/$matchX64"
+      }
+    }
+  }
+}

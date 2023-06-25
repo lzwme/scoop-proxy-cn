@@ -1,0 +1,33 @@
+{
+  "homepage": "https://github.com/Hibbiki/chromium-win64",
+  "description": "Chromium for Windows x64, built by Hibbiki.",
+  "version": "114.0.5735.91-r1135570",
+  "url": "https://ghproxy.net/https://github.com/Hibbiki/chromium-win64/releases/download/v114.0.5735.91-r1135570/chrome.nosync.7z",
+  "hash": "b0f0096066436577811dacbffcdac28da41692abe58af00e925cde01d2b2d06e",
+  "installer": {
+    "script": [
+      "Get-ChildItem -Path \"$dir\\Chrome-bin\" | Move-Item -Destination \"$dir\"",
+      "Remove-Item -Path \"$dir\\Chrome-bin\" -Recurse -Force"
+    ]
+  },
+  "bin": [
+    [
+      "chrome.exe",
+      "chromium-hibbiki"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "chrome.exe",
+      "Chromium x64 (by Hibbiki)"
+    ]
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/Hibbiki/chromium-win64/releases/latest",
+    "jp": "tag_name",
+    "re": "(?:v|V)?([\\d.]+-r\\d+)"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/Hibbiki/chromium-win64/releases/download/v$version/chrome.nosync.7z"
+  }
+}

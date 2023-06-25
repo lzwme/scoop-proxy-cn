@@ -1,0 +1,44 @@
+{
+  "version": "2.9.17",
+  "description": "High-Performance server for NATS.io, the cloud and edge native messaging system",
+  "homepage": "https://github.com/nats-io/nats-server",
+  "license": "Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/nats-io/nats-server/releases/download/v2.9.17/nats-server-v2.9.17-windows-amd64.zip",
+      "hash": "5648a1feb86600d6634fdc405a3b08b77ac8ee7695248c10587e9809a07baae8",
+      "extract_dir": "nats-server-v2.9.17-windows-amd64"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/nats-io/nats-server/releases/download/v2.9.17/nats-server-v2.9.17-windows-386.zip",
+      "hash": "590278ccf14eb431d2c6db5a5535e5e0240df3cf419f0361a6c8c7e448f1cd0c",
+      "extract_dir": "nats-server-v2.9.17-windows-386"
+    },
+    "arm64": {
+      "url": "https://ghproxy.net/https://github.com/nats-io/nats-server/releases/download/v2.9.17/nats-server-v2.9.17-windows-arm64.zip",
+      "hash": "68f7afbb3ab7075af6e8390b008dc748814735fe32e73585c0fd28743ad0d2be",
+      "extract_dir": "nats-server-v2.9.17-windows-arm64"
+    }
+  },
+  "bin": "nats-server.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/nats-io/nats-server/releases/download/v$version/nats-server-v$version-windows-amd64.zip",
+        "extract_dir": "nats-server-v$version-windows-amd64"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/nats-io/nats-server/releases/download/v$version/nats-server-v$version-windows-386.zip",
+        "extract_dir": "nats-server-v$version-windows-386"
+      },
+      "arm64": {
+        "url": "https://ghproxy.net/https://github.com/nats-io/nats-server/releases/download/v$version/nats-server-v$version-windows-arm64.zip",
+        "extract_dir": "nats-server-v$version-windows-arm64"
+      }
+    },
+    "hash": {
+      "url": "https://ghproxy.net/https://github.com/nats-io/nats-server/releases/download/v$version/SHA256SUMS"
+    }
+  }
+}

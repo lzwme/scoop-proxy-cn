@@ -1,0 +1,54 @@
+{
+  "autoupdate": {
+    "hash": {
+      "jsonpath": "$[?(@.name == 'DingTalk')].hash",
+      "mode": "json",
+      "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/alibaba.json"
+    },
+    "url": "https://dtapp-pub.dingtalk.com/dingtalk-desktop/win_installer/Release/DingTalk_v$version.exe#/dl.7z"
+  },
+  "bin": [
+    [
+      "DingtalkLauncher.exe",
+      "dingtalk"
+    ]
+  ],
+  "checkver": {
+    "jsonpath": "$[?(@.name == 'DingTalk')].version",
+    "regex": "(?<main>[\\d.]+)-Release.(?<build>\\d+)",
+    "replace": "${main}.${build}",
+    "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/alibaba.json"
+  },
+  "description": "DingTalk is an intelligent working platform created by Alibaba Group to support tens of millions of enterprises to achieve higher working efficiency with the new digitalized working method.",
+  "hash": "md5:acbe0dd6701410478ac42aa3f340b67d",
+  "homepage": "https://www.dingtalk.com",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://page.dingtalk.com/wow/dingtalk/act/service-en-lite"
+  },
+  "post_install": "@('$PLUGINSDIR', '[NSIS].nsi', 'uninst.exe.nsis') | ForEach-Object { Remove-Item \"$dir\\$_\" -Recurse -Force -ErrorAction SilentlyContinue }",
+  "pre_install": [
+    "info '[Portable Mode]: Copying user data...'",
+    "if (Test-Path \"$persist_dir\\User Data\\*\") {",
+    "    ensure \"$env:AppData\\DingTalk\" | Out-Null",
+    "    Copy-Item \"$persist_dir\\User Data\\*\" \"$env:AppData\\DingTalk\\\" -Recurse -Force | Out-Null",
+    "}"
+  ],
+  "shortcuts": [
+    [
+      "DingtalkLauncher.exe",
+      "Alibaba\\DingTalk"
+    ]
+  ],
+  "uninstaller": {
+    "script": [
+      "info '[Portable Mode]: Backing up user data...'",
+      "if (Test-Path \"$env:AppData\\DingTalk\\*\") {",
+      "    ensure \"$persist_dir\\User Data\" | Out-Null",
+      "    Copy-Item \"$env:AppData\\DingTalk\\*\" \"$persist_dir\\User Data\\\" -Recurse -Force | Out-Null",
+      "}"
+    ]
+  },
+  "url": "https://dtapp-pub.dingtalk.com/dingtalk-desktop/win_installer/Release/DingTalk_v6.5.50.11089104.exe#/dl.7z",
+  "version": "6.5.50.11089104"
+}

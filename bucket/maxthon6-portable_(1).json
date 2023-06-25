@@ -1,0 +1,29 @@
+{
+  "homepage": "https://www.maxthon.cn",
+  "description": "Maxthon Browser 6",
+  "notes": "This is the portable version, user data directory is created under installation folder.",
+  "version": "6.2.0.1000",
+  "url": "https://dl.maxthon.cn/mx6/maxthon_portable_6.2.0.1000_x64.zip",
+  "hash": "f01021864c3ab23a4fa8442dddba20eff5fb21b79ac18753c0abaf7f5c7e9b7d",
+  "extract_dir": "MaxthonPortable",
+  "bin": [
+    [
+      "Maxthon.exe",
+      "maxthon6"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "Maxthon.exe",
+      "Maxthon 6 Portable"
+    ]
+  ],
+  "persist": "User Data",
+  "checkver": {
+    "url": "https://www.maxthon.cn/mx6/changelog/",
+    "regex": "<a\\s*name=\"([\\d\\.]+)\">"
+  },
+  "autoupdate": {
+    "url": "https://dl.maxthon.cn/mx6/maxthon_portable_$version_x64.zip"
+  }
+}

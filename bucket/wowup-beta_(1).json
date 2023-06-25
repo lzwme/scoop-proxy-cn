@@ -1,0 +1,32 @@
+{
+  "version": "2.10.0-beta.3",
+  "description": "World of Warcraft addon updater. (Beta version)",
+  "homepage": "https://wowup.io",
+  "license": {
+    "identifier": "GPL-3.0-or-later",
+    "url": "https://github.com/WowUp/WowUp/blob/master/LICENSE"
+  },
+  "url": "https://ghproxy.net/https://github.com/WowUp/WowUp/releases/download/v2.10.0-beta.3/WowUp-Setup-2.10.0-beta.3.exe#/dl.7z",
+  "hash": "602029b88eada33b02fe653b7e86d3f19bc9155e005e318ebf4993b470e0d634",
+  "extract_dir": "$PLUGINSDIR",
+  "installer": {
+    "script": [
+      "Remove-Item \"$dir\\*\" -Exclude 'app-64.7z'",
+      "Expand-7zipArchive \"$dir\\app-64.7z\" \"$dir\" -Removal"
+    ]
+  },
+  "shortcuts": [
+    [
+      "WowUp.exe",
+      "WowUp"
+    ]
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/WowUp/WowUp/releases",
+    "jsonpath": "$[0].tag_name",
+    "regex": "(?!v)(.+)"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/WowUp/WowUp/releases/download/v$version/WowUp-Setup-$version.exe#/dl.7z"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "version": "114.0.5735.110",
+  "description": "Chromium woth GOST algorithm support.",
+  "homepage": "https://github.com/deemru/Chromium-Gost",
+  "license": "MIT",
+  "architecture": {
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/deemru/Chromium-Gost/releases/download/114.0.5735.110/chromium-gost-114.0.5735.110-windows-386.zip",
+      "hash": "00a874946d00d3fa5f4c71756737770a1ffa715057bbda57cf1e21eb7f5871d8"
+    },
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/deemru/Chromium-Gost/releases/download/114.0.5735.110/chromium-gost-114.0.5735.110-windows-amd64.zip",
+      "hash": "1309e8aca70938c90a92f0718e055debe536fbe595ecd977f6d0ed75f0511bc3"
+    }
+  },
+  "bin": [
+    [
+      "app\\chrome.exe",
+      "chromium-gost",
+      "--user-data-dir=\"$dir\\User Data\""
+    ]
+  ],
+  "shortcuts": [
+    [
+      "app\\chrome.exe",
+      "Chromium-GOST",
+      "--user-data-dir=\"$dir\\User Data\""
+    ]
+  ],
+  "installer": {
+    "script": "Move-Item -Path \"$dir\\chromium-gost-$version\" -Destination \"$dir\\app\""
+  },
+  "persist": "User Data",
+  "checkver": {
+    "github": "https://github.com/deemru/Chromium-Gost"
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/deemru/Chromium-Gost/releases/download/$version/chromium-gost-$version-windows-386.zip"
+      },
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/deemru/Chromium-Gost/releases/download/$version/chromium-gost-$version-windows-amd64.zip"
+      }
+    }
+  }
+}

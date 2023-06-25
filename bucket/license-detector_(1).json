@@ -1,0 +1,30 @@
+{
+  "version": "4.3.0",
+  "description": "Project license detector",
+  "homepage": "https://github.com/go-enry/go-license-detector",
+  "license": "Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/go-enry/go-license-detector/releases/download/v4.3.0/license-detector-v4.3.0-windows-amd64.zip",
+      "hash": "md5:9d6d0bbb153367b02e205c6e3d4694f6"
+    }
+  },
+  "bin": "license-detector.exe",
+  "shortcuts": [
+    [
+      "license-detector.exe",
+      "license-detector"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/go-enry/go-license-detector/"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/go-enry/go-license-detector/releases/download/v$version/license-detector-v$version-windows-amd64.zip",
+        "hash": "md5:https://ghproxy.net/https://github.com/go-enry/go-license-detector/releases/download/v$version/license-detector-v$version-windows-amd64.zip.md5"
+      }
+    }
+  }
+}

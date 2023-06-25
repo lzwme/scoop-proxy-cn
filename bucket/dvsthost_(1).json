@@ -1,0 +1,40 @@
+{
+  "version": "1.57",
+  "description": "A software host for VST instrument and effect plugins (double precision)",
+  "homepage": "https://www.hermannseib.com/english/vsthost.htm",
+  "license": "Freeware",
+  "architecture": {
+    "64bit": {
+      "url": "https://www.hermannseib.com/programs/dvsthostx64.zip",
+      "hash": "581292b59c06131fd257f1b8aaace8523744f9dc296df5bcff31d52999e12ae7"
+    },
+    "32bit": {
+      "url": "https://www.hermannseib.com/programs/dvsthostx86.zip",
+      "hash": "3081925edbb140d83e2804cf77cc532751bdc35546d45fed2fdd4b03d9efecad"
+    }
+  },
+  "pre_install": "if (!(Test-Path \"$persist_dir\\vsthost.INI\")) { New-Item -ItemType File \"$dir\\vsthost.INI\" | Out-Null }",
+  "shortcuts": [
+    [
+      "vsthost.exe",
+      "VSTHost (Double Precision)"
+    ]
+  ],
+  "persist": [
+    "Data",
+    "vsthost.INI"
+  ],
+  "checkver": {
+    "regex": "Current version: ([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://www.hermannseib.com/programs/dvsthostx64.zip"
+      },
+      "32bit": {
+        "url": "https://www.hermannseib.com/programs/dvsthostx86.zip"
+      }
+    }
+  }
+}

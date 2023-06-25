@@ -1,0 +1,25 @@
+{
+  "version": "0.0.2",
+  "description": "A Java-based UPnP server for the Xbox 360 console (antiquated!)",
+  "homepage": "https://sourceforge.net/projects/x360mediaserve/",
+  "license": "GPL-2.0-only",
+  "notes": [
+    "Requires a Java runtime for usage. Works fine with oraclejre8 from \"java\" bucket.",
+    "For transcoding, some decoders are needed:",
+    "oggdec.exe (or sox.exe) - Vorbis, faad.exe - AAC, flac.exe - FLAC",
+    "lame.exe is needed for the final encoding into MP3 format.",
+    "None of these are necessary if only sharing formats already compatible with your Xbox 360.",
+    "Navigate to \"localhost:7000/configure\" and change settings as needed after running."
+  ],
+  "url": "http://downloads.sourceforge.net/project/x360mediaserve/x360mediaserve/0.0.2/x360mediaserve-0.0.2.zip",
+  "hash": "eb087d8072def73997627a39bfa907044d8a66505dd79a71ec1b0114d4560a4e",
+  "extract_dir": "x360mediaserve-0.0.2",
+  "pre_install": "if(!(Test-Path \"$persist_dir\\config.xml\")) { Set-Content \"$dir\\config.xml\" (@('<Configuration>', '</Configuration>') -join \"`r`n\") -Encoding Unicode | Out-Null }",
+  "shortcuts": [
+    [
+      "start.bat",
+      "360 Media Server"
+    ]
+  ],
+  "persist": "config.xml"
+}

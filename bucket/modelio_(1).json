@@ -1,0 +1,32 @@
+{
+  "version": "5.1.0",
+  "description": "Modeling solution offering a wide range of functionalities based on the main standards of enterprise architecture, software development and systems engineering.",
+  "homepage": "https://www.modelio.org/",
+  "license": "GPL-3.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/ModelioOpenSource/Modelio/releases/download/v5.1.0/Windows.10.Modelio.Open.Source.5.1.0.-.64.exe",
+      "hash": "c2b64a8a05884960568eb64f8a2eaeeb146c09b7b96faa098b39c73ef1a7a258"
+    }
+  },
+  "pre_install": "echo \"Please enter this as the installation directory : \n$dir\"",
+  "installer": {
+    "file": ""
+  },
+  "shortcuts": [
+    [
+      "modelio.exe",
+      "Modelio"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/ModelioOpenSource/Modelio"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/ModelioOpenSource/Modelio/releases/download/v$version/Windows.10.Modelio.Open.Source.$version.-.64.exe"
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "version": "0.0.41-alpha",
+  "description": "This utility is designed to allow you to apply themes to the modern Steam client interface (Steam Beta)",
+  "homepage": "https://github.com/PhantomGamers/SFP",
+  "license": "MIT",
+  "suggest": {
+    ".NET Desktop Runtime": "extras/windowsdesktop-runtime"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/PhantomGamers/SFP/releases/download/0.0.41-alpha/SFP_UI-win10-x64-net7.zip",
+      "hash": "ab38d54584583abfba0f9581486759e5c1c489ccdd2da75e04c5d14ac4daf4d4"
+    }
+  },
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\SFP.config\")) {",
+    "    Add-Content \"$dir\\SFP.config\" '{\"userSettings\":{\"roaming\":{\"SFP.Properties.Settings\":{\"CheckForUpdates\":\"False\"}}}}' -Encoding Ascii",
+    "}"
+  ],
+  "shortcuts": [
+    [
+      "SFP_UI.exe",
+      "SFP"
+    ]
+  ],
+  "persist": "SFP.config",
+  "checkver": {
+    "url": "https://api.github.com/repos/PhantomGamers/SFP/releases?per_page=1",
+    "jsonpath": "$[0].tag_name",
+    "regex": "([\\w.-]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/PhantomGamers/SFP/releases/download/$version/SFP_UI-win10-x64-net7.zip"
+      }
+    }
+  }
+}

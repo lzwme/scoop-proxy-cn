@@ -1,0 +1,35 @@
+{
+  "homepage": "https://wiki.mumble.info/wiki/Main_Page",
+  "license": "BSD-3-Clause",
+  "version": "1.4.287",
+  "url": "https://sourceforge.net/projects/portableapps/files/Mumble%20Portable/MumblePortable_1.4.287.paf.exe#/dl.7z",
+  "hash": "1ae66e7037213b27e49dbd890f92ab0d7bcc95441f3eea11c1a01aba36d81242",
+  "bin": [
+    [
+      "MumblePortable.exe",
+      "mumble"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "MumblePortable.exe",
+      "Mumble"
+    ]
+  ],
+  "persist": "Data",
+  "post_install": [
+    "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
+    "if(!(test-path \"$dir\\MumblePortable.ini\")) {",
+    "   Copy-Item \"$dir\\Other\\Source\\AppNamePortable.ini\" \"$dir\\MumblePortable.ini\"",
+    "   (Get-Content \"$dir\\MumblePortable.ini\").replace('DisableSplashScreen=false', 'DisableSplashScreen=true') | Set-Content \"$dir\\MumblePortable.ini\"",
+    "}"
+  ],
+  "checkver": {
+    "url": "https://sourceforge.net/projects/portableapps/rss?path=/Mumble%20Portable",
+    "re": "/Mumble Portable/MumblePortable_([\\d.]+(?:_Rev_[\\d.])?).paf.exe]]>"
+  },
+  "autoupdate": {
+    "url": "https://sourceforge.net/projects/portableapps/files/Mumble%20Portable/MumblePortable_$version.paf.exe#/dl.7z"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

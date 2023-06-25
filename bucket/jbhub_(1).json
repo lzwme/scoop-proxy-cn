@@ -1,0 +1,50 @@
+{
+  "##": "JBHub name do not conflict with Hub (github) command line utility",
+  "autoupdate": {
+    "extract_dir": "hub-$version",
+    "hash": {
+      "url": "$url.sha256"
+    },
+    "url": "https://download.jetbrains.com/hub/hub-$version.zip"
+  },
+  "bin": [
+    "jbhub.ps1",
+    [
+      "jbhub.ps1",
+      "hub"
+    ]
+  ],
+  "checkver": {
+    "regex": "version\":\"(?<ver>[\\d.]+)\".*\"build\":\"(?<build>[\\d.]+)\"",
+    "replace": "${ver}.${build}",
+    "url": "https://data.services.jetbrains.com/products/releases?code=HB&latest=true&type=release"
+  },
+  "description": "Hub. Integration Across Team Collaboration Tools by JetBrains.",
+  "extract_dir": "hub-2023.1.15741",
+  "hash": "a8c3f4e4b3c2dae01eff80d79fccd9c6767a4dd0c7073be06de9a4424862459f",
+  "homepage": "https://www.jetbrains.com/hub/",
+  "installer": {
+    "script": [
+      "$ver_path = \"$dir\\bin\"",
+      "$cont = @(",
+      "    \"Push-Location \"\"$ver_path\"\"\"",
+      "    '& .\\hub.bat @args'",
+      "    'Pop-Location'",
+      ")",
+      "Set-Content \"$dir\\jbhub.ps1\" $cont -Encoding Ascii"
+    ]
+  },
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://www.jetbrains.com/hub/download/license.html"
+  },
+  "notes": "Hub could be executed from anywhere using 'jbhub' command.",
+  "persist": [
+    "backups",
+    "conf",
+    "data",
+    "logs"
+  ],
+  "url": "https://download.jetbrains.com/hub/hub-2023.1.15741.zip",
+  "version": "2023.1.15741"
+}

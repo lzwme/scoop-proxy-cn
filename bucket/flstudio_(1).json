@@ -1,0 +1,32 @@
+{
+  "version": "20.9.2.2963",
+  "description": "FL STUDIO",
+  "homepage": "https://www.image-line.com/fl-studio/",
+  "license": [
+    {
+      "identifier": "Proprietary",
+      "url": "https://www.image-line.com/fl-studio/compare-editions/"
+    }
+  ],
+  "url": "https://support.image-line.com/redirect/flstudio20_win_installer#/flstudio_win64_20.9.2.2963.exe",
+  "hash": "0af2ebe4f6eff8fb35eba8e3ee23fddd10205f11dd2ce7953503504446fcbe14",
+  "installer": {
+    "script": [
+      "Start-Process -Wait -NoNewWindow -FilePath \"${dir}\\flstudio_win64_20.9.2.2963.exe\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$regkey=\"FL Studio 20\"",
+      "$uninstaller=(Get-ItemProperty -Path \"Registry::HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\${regkey}\" | Select-Object -ExpandProperty UninstallString)",
+      "Start-Process -Wait -NoNewWindow -FilePath \"${uninstaller}\"",
+      "$regkey=\"FL Studio ASIO\"",
+      "$uninstaller=(Get-ItemProperty -Path \"Registry::HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\${regkey}\" | Select-Object -ExpandProperty UninstallString)",
+      "Start-Process -Wait -NoNewWindow -FilePath \"${uninstaller}\""
+    ]
+  },
+  "checkver": {
+    "url": "https://support.image-line.com/api.php?call=get_version_info&callback=il_get_version_info_cb",
+    "regex": "pc\\\\\",\\\\\"version\\\\\":\\\\\"([\\d\\.]+)"
+  }
+}

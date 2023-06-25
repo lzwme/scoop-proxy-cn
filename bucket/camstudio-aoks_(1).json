@@ -1,0 +1,49 @@
+{
+  "autoupdate": {
+    "url": "https://cs07112018.s3.us-east-2.amazonaws.com/CamStudioSetup.exe"
+  },
+  "bin": "CamCommandLine.exe",
+  "checkver": {
+    "regex": "Latest Version</strong></span><strong>: CamStudio ([\\d.-]+) ",
+    "url": "https://camstudio.org/"
+  },
+  "depends": "extras/vcredist2010",
+  "description": "Free Desktop Recorder Streaming Video Software.",
+  "hash": "3fbe450e3267799f372a775e4c7e7c47c8bbffeebb0bd0c9690e63374eba8ba0",
+  "homepage": "https://camstudio.org/",
+  "installer": {
+    "args": [
+      "/VERYSILENT",
+      "/DIR=\"$dir\"",
+      "/SUPPRESSMSGBOXES",
+      "/NORESTART",
+      "/CLOSEAPPLICATIONS",
+      "/NORESTARTAPPLICATIONS"
+    ]
+  },
+  "license": "GPL-3.0-only",
+  "shortcuts": [
+    [
+      "Recorder.exe",
+      "Camstudio Recorder"
+    ],
+    [
+      "Producer.exe",
+      "Camstudio Producer"
+    ],
+    [
+      "PlayerPlus.exe",
+      "Camstudio PlayerPlus"
+    ]
+  ],
+  "uninstaller": {
+    "args": [
+      "/VERYSILENT",
+      "/SUPPRESSMSGBOXES",
+      "/NORESTART"
+    ],
+    "file": "unins000.exe"
+  },
+  "url": "https://cs07112018.s3.us-east-2.amazonaws.com/CamStudioSetup.exe",
+  "version": "2.7.4"
+}

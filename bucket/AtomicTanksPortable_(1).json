@@ -1,0 +1,28 @@
+{
+  "autoupdate": {
+    "hash": {
+      "regex": "MD5 Hash: +[\\w]{32}",
+      "url": "https://portableapps.com/apps/games/atomic_tanks_portable"
+    },
+    "url": "https://pilotfiber.dl.sourceforge.net/project/portableapps/Atomic%20Tanks%20Portable/AtomicTanksPortable_$version.paf.exe"
+  },
+  "bin": "AtomicTanksPortable.exe",
+  "checkver": {
+    "re": "Version \\s+([\\w\\.]* for Win",
+    "url": "https://portableapps.com/apps/games/atomic_tanks_portable"
+  },
+  "description": "Turn-based tank game",
+  "hash": "5cda3e1cbcd3004687b599ccd5819ffce3ab8c5ed4a0cda6e57f7a14c119e3cc",
+  "homepage": "https://portableapps.com/apps/games/atomic_tanks_portable",
+  "license": "",
+  "persist": "Data",
+  "post_install": "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
+  "shortcuts": [
+    [
+      "AtomicTanksPortable.exe",
+      "AtomicTanksPortable"
+    ]
+  ],
+  "url": "https://pilotfiber.dl.sourceforge.net/project/portableapps/Atomic%20Tanks%20Portable/AtomicTanksPortable_6.6.paf.exe",
+  "version": "6.6"
+}

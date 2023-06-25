@@ -1,0 +1,45 @@
+{
+  "version": "2.4.2",
+  "description": "A free Japanese text editor for Windows.",
+  "homepage": "https://sakura-editor.github.io/",
+  "license": "zlib",
+  "url": "https://ghproxy.net/https://github.com/sakura-editor/sakura/releases/download/v2.4.2/sakura-tag-v2.4.2-build4203-a3e63915b-Win32-Release-Exe.zip",
+  "hash": "md5:ba11783ae05419c76817f04d7a78467d",
+  "post_install": [
+    "if ($bucket) {",
+    "    $scriptsdir = \"$bucketsdir\\$bucket\\scripts\"",
+    "} else {",
+    "    $scriptsdir = \"$(Split-Path $(Split-Path $url -Parent) -Parent)\\scripts\"",
+    "}",
+    "'install-context.reg', 'uninstall-context.reg' | ForEach-Object {",
+    "    $sakurapath = \"$dir\\sakura.exe\".Replace('\\', '\\\\')",
+    "    $content = (Get-Content \"$scriptsdir\\sakura-editor\\$_\").Replace('$sakura', $sakurapath)",
+    "    if ($global) { $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE') }",
+    "    Set-Content \"$dir\\$_\" $content",
+    "}",
+    "@\"",
+    "[Settings]",
+    "MultiUser=1",
+    "UserRootFolder=0",
+    "UserSubFolder=sakura",
+    "\"@ | Out-File \"$dir\\sakura.exe.ini\""
+  ],
+  "bin": "sakura.exe",
+  "shortcuts": [
+    [
+      "sakura.exe",
+      "Sakura Editor"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/sakura-editor/sakura",
+    "regex": "(?<file>sakura-tag-v(?<version>[\\d.]+)-[\\w-]*-Exe\\.zip)"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/sakura-editor/sakura/releases/download/v$version/$matchFile",
+    "hash": {
+      "url": "$url.md5",
+      "find": "$md5"
+    }
+  }
+}

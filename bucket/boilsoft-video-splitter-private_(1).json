@@ -1,0 +1,26 @@
+{
+  "##": "This package is for private use only. Requires password for installation to proceed.",
+  "version": "6.34.15",
+  "description": "Boilsoft Video Splitter",
+  "license": "Proprietary",
+  "url": "https://www.googleapis.com/drive/v3/files/1uCVhvp8upULQsWdxZtrdw4TKg7F5rgBs?alt=media&key=AIzaSyAiaA0bWx34SyfTRvyl4UCCHwsCkvUBECc#/dl.7z_",
+  "hash": "FD6526D314319343E938EC167AC4191A35054024FE7DC0225273DEEC0DE1B692",
+  "installer": {
+    "script": [
+      "$scriptdir = (Find-BucketDirectory $bucket)+'\\..\\scripts'",
+      "Import-Module $scriptdir\\pw\\pw_check.psm1",
+      "Expand-EncryptedArchive -aPath \"$dir\\dl.7z_\" -oDir \"$dir\" -ExitIfError -Removal",
+      "Start-Process cmd -ArgumentList @('/C', \"$dir\\register.bat\") -WorkingDirectory \"$dir\" -Verb RunAs"
+    ]
+  },
+  "uninstaller": {
+    "script": "Start-Process cmd -ArgumentList @('/C', \"$dir\\clean.cmd\") -WorkingDirectory \"$dir\" -Verb RunAs"
+  },
+  "bin": "VideoSplitter.exe",
+  "shortcuts": [
+    [
+      "VideoSplitter.exe",
+      "Boilsoft Video Splitter"
+    ]
+  ]
+}

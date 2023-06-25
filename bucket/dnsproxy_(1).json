@@ -1,0 +1,14 @@
+{
+  "version": "1.0.1",
+  "description": "DnsProxy is a lightweight DNS forwarder designed to forward DNS queries to real, recursive DNS servers based on configurable rules",
+  "homepage": "https://github.com/gpailler/DnsProxy",
+  "license": "MIT",
+  "pre_install": "if (!(Test-Path \"$persist_dir\\appsettings.json\")) { Copy-Item \"$dir\\appsettings.example.json\" \"$dir\\appsettings.json\" | Out-Null }",
+  "url": "https://ghproxy.net/https://github.com/gpailler/DnsProxy/releases/download/v1.0.1/DnsProxy-win-x64-1.0.1.zip",
+  "hash": "7FE388BADFF3CE2728FF3074BA750206B226D8E0348AB0396F6637BBC6FCBB9C",
+  "persist": "appsettings.json",
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/gpailler/DnsProxy/releases/download/v$version/DnsProxy-win-x64-1.0.1.zip"
+  }
+}

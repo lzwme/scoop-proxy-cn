@@ -1,0 +1,45 @@
+{
+  "homepage": "http://pdm.fming.dev",
+  "version": "2.7.1",
+  "description": "Python package and dependency manager supporting the latest PEP standards",
+  "license": "MIT",
+  "url": "https://files.pythonhosted.org/packages/e5/43/35a86c8781788ef89efe955ffe110cbeacdd7024bf1706516e04f23561ac/pdm-2.7.1-py3-none-any.whl",
+  "depends": "python",
+  "hash": "a4da4d589e898f950d938be27d0b507689dea8a3a8c095d38a2276a69caa30c5",
+  "bin": "venv\\Scripts\\pdm.exe",
+  "installer": {
+    "script": [
+      "python -m venv \"$dir\\venv\"",
+      "& \"$dir\\venv\\Scripts\\python.exe\" -m pip install \"$dir\\$fname\""
+    ]
+  },
+  "post_install": [
+    "if (-not (Test-Path -Path $PROFILE\\..\\Completions -PathType Container)) {",
+    "    mkdir $PROFILE\\..\\Completions",
+    "    echo @'",
+    "Get-ChildItem \"$PROFILE\\..\\Completions\\\" | ForEach-Object {",
+    "    . $_.FullName",
+    "}",
+    "'@ | Out-File -Append -Encoding utf8 $PROFILE",
+    "}",
+    "& \"$dir\\venv\\Scripts\\pdm.exe\" completion powershell | Out-File -Encoding utf8 $PROFILE\\..\\Completions\\pdm_completion.ps1"
+  ],
+  "uninstaller": {
+    "script": [
+      "$oldPath = [Environment]::GetEnvironmentVariable(\"PYTHONPATH\", [System.EnvironmentVariableTarget]::User)",
+      "If (-not [string]::IsNullOrWhiteSpace($oldPath)) {",
+      "    $newPath = ($oldPath.Split(';') | Where { $_ -notlike \"$dir\\venv\\*\" }) -join ';'",
+      "    [Environment]::SetEnvironmentVariable(\"PYTHONPATH\", $newPath, [System.EnvironmentVariableTarget]::User)",
+      "}",
+      "Remove-Item -Path $PROFILE\\..\\Completions\\pdm_completion.ps1 -ErrorAction SilentlyContinue"
+    ]
+  },
+  "checkver": {
+    "url": "https://pypi.org/project/pdm/#files",
+    "re": "https://files.pythonhosted.org/(packages/.*/pdm-(?<version>[\\d.]+)-.*\\.whl)",
+    "replace": "${version}"
+  },
+  "autoupdate": {
+    "url": "https://files.pythonhosted.org/$match1"
+  }
+}

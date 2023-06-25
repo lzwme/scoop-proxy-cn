@@ -1,0 +1,45 @@
+{
+  "homepage": "https://www.thunderbird.net/",
+  "description": "A free email application that's easy to set up and customize.",
+  "license": "MPL-2.0",
+  "version": "102.11.2",
+  "architecture": {
+    "64bit": {
+      "url": "https://download-installer.cdn.mozilla.net/pub/thunderbird/releases/102.11.2/win64/zh-CN/Thunderbird%20Setup%20102.11.2.exe#/dl.7z",
+      "hash": "63f436d5f1cc146ca56bd184ef1054a31f1b15c4937c950b3d5206df63a6add5"
+    },
+    "32bit": {
+      "url": "https://download-installer.cdn.mozilla.net/pub/thunderbird/releases/102.11.2/win32/zh-CN/Thunderbird%20Setup%20102.11.2.exe#/dl.7z",
+      "hash": "7c949b5b1ee84f984c09ba9d7e35ebb7fd9b24381b530243a2594f1d7350dcce"
+    }
+  },
+  "extract_dir": "core",
+  "shortcuts": [
+    [
+      "thunderbird.exe",
+      "Thunderbird Simplified Chinese Edition"
+    ]
+  ],
+  "checkver": {
+    "url": "https://www.thunderbird.net/en-US/",
+    "regex": "itemprop=\"softwareVersion\" content=\"([\\d.]+?)\""
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://download-installer.cdn.mozilla.net/pub/thunderbird/releases/$version/win64/zh-CN/Thunderbird%20Setup%20$version.exe#/dl.7z",
+        "hash": {
+          "url": "https://download-installer.cdn.mozilla.net/pub/thunderbird/releases/$version/SHA256SUMS",
+          "regex": "$sha256\\s+win64/zh-CN/$basename"
+        }
+      },
+      "32bit": {
+        "url": "https://download-installer.cdn.mozilla.net/pub/thunderbird/releases/$version/win32/zh-CN/Thunderbird%20Setup%20$version.exe#/dl.7z",
+        "hash": {
+          "url": "https://download-installer.cdn.mozilla.net/pub/thunderbird/releases/$version/SHA256SUMS",
+          "regex": "$sha256\\s+win32/zh-CN/$basename"
+        }
+      }
+    }
+  }
+}

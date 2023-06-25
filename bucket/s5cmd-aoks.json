@@ -1,39 +1,47 @@
 {
-  "architecture": {
-    "32bit": {
-      "hash": "0445d78ee6e461e447152bc8c94bdcb9dff0ff94d02e45e4e71e022bec0e056b",
-      "url": "https://ghproxy.net/https://github.com/peak/s5cmd/releases/download/v2.1.0-beta.1/s5cmd_2.1.0-beta.1_Windows-32bit.zip"
-    },
-    "64bit": {
-      "hash": "59fc304e63d2296080679e233913177d7edad06ccc5a19bdc7fc3a54a9d0acd1",
-      "url": "https://ghproxy.net/https://github.com/peak/s5cmd/releases/download/v2.1.0-beta.1/s5cmd_2.1.0-beta.1_Windows-64bit.zip"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "32bit": {
-        "hash": {
-          "regex": "$sha256\\s+$basename",
-          "url": "$baseurl/s5cmd_checksums.txt"
-        },
-        "url": "https://ghproxy.net/https://github.com/peak/s5cmd/releases/download/v$version/s5cmd_$version_Windows-32bit.zip"
-      },
-      "64bit": {
-        "hash": {
-          "regex": "$sha256\\s+$basename",
-          "url": "$baseurl/s5cmd_checksums.txt"
-        },
-        "url": "https://ghproxy.net/https://github.com/peak/s5cmd/releases/download/v$version/s5cmd_$version_Windows-64bit.zip"
-      }
-    }
-  },
-  "bin": "s5cmd.exe",
-  "checkver": {
-    "github": "https://github.com/peak/s5cmd",
-    "regex": "s5cmd_([\\w.-]+)_Windows-(?:64|32)bit\\.zip"
-  },
+  "version": "2.1.0",
   "description": "Parallel S3 and local filesystem execution tool.",
   "homepage": "https://github.com/peak/s5cmd",
   "license": "MIT",
-  "version": "2.1.0-beta.1"
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/peak/s5cmd/releases/download/v2.1.0/s5cmd_2.1.0_Windows-64bit.zip",
+      "hash": "f5035bb0e12adf541847f685d1db708aabb285541a88dc70c869d85210523881"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/peak/s5cmd/releases/download/v2.1.0/s5cmd_2.1.0_Windows-32bit.zip",
+      "hash": "565d026071cdf03b3e16cb703203e28a285eb2aae627b75afadac030e228fad1"
+    },
+    "arm64": {
+      "url": "https://ghproxy.net/https://github.com/peak/s5cmd/releases/download/v2.1.0/s5cmd_2.1.0_Windows-arm64.zip",
+      "hash": "90d0e629d6dc2b8a549da56e10e5a7a3a14f4f7b2adb6b5396ebc0c2fb1938a4"
+    }
+  },
+  "bin": "s5cmd.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/peak/s5cmd/releases/download/v$version/s5cmd_$version_Windows-64bit.zip",
+        "hash": {
+          "url": "$baseurl/s5cmd_checksums.txt",
+          "regex": "$sha256\\s+$basename"
+        }
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/peak/s5cmd/releases/download/v$version/s5cmd_$version_Windows-32bit.zip",
+        "hash": {
+          "url": "$baseurl/s5cmd_checksums.txt",
+          "regex": "$sha256\\s+$basename"
+        }
+      },
+      "arm64": {
+        "url": "https://ghproxy.net/https://github.com/peak/s5cmd/releases/download/v$version/s5cmd_$version_Windows-arm64.zip",
+        "hash": {
+          "url": "$baseurl/s5cmd_checksums.txt",
+          "regex": "$sha256\\s+$basename"
+        }
+      }
+    }
+  }
 }

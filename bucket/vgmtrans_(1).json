@@ -1,0 +1,25 @@
+{
+  "version": "v1.1",
+  "description": "Video game music translator.",
+  "homepage": "https://github.com/vgmtrans/vgmtrans",
+  "license": "Zlib",
+  "url": "https://ghproxy.net/https://github.com/vgmtrans/vgmtrans/releases/download/v1.1/vgmtrans-preview-v1.1-windows_x64.zip",
+  "hash": "c6f3672a10cbe882913df8e5cf51eb8960b5da45595776662dd35000f1fa88cd",
+  "extract_dir": "vgmtrans-preview-v1.1-windows_x64",
+  "bin": "vgmtrans.exe",
+  "shortcuts": [
+    [
+      "vgmtrans.exe",
+      "VGMTrans"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/vgmtrans/vgmtrans/releases",
+    "regex": "/releases/tag/(.+?)\""
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/vgmtrans/vgmtrans/releases/download/$version/vgmtrans-preview-$version-windows_x64.zip",
+    "hash": "$url.sha256",
+    "extract_dir": "vgmtrans-preview-$version-windows_x64"
+  }
+}

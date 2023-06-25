@@ -1,0 +1,31 @@
+{
+  "version": "34.0.0.267",
+  "description": "The Adobe Flash Player is freeware software for viewing multimedia, executing Rich Internet Applications, and streaming video and audio, content created on the Adobe Flash platform.",
+  "homepage": "https://www.adobe.com/software/flash/about/",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://www.adobe.com/products/clients/all_dist_agreement.html"
+  },
+  "url": "https://pan.jiemi.workers.dev/?file=/dreamcast/Adobe_Flash_Player_PPAPI_34.0.0.267_dreamcast.exe#/setup.exe",
+  "hash": "af9ee19e22dfc33336ad7d55bd1465130f627c16d4459ddf5599ab3bd37f5fca",
+  "installer": {
+    "script": [
+      "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+      "Invoke-ExternalCommand \"$dir\\setup.exe\" -ArgumentList @('/SILENT', '/NORESTART') | Out-Null"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+      "Invoke-ExternalCommand \"$dir\\setup.exe\" -ArgumentList @('/SILENT', '/NORESTART') | Out-Null"
+    ]
+  },
+  "checkver": {
+    "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/oneindex.txt",
+    "regex": "(?<filename>Adobe_Flash_Player_PPAPI_([\\d.]+)_dreamcast\\.exe)",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/dreamcast/Adobe_Flash_Player_PPAPI_$version_dreamcast.exe#/setup.exe"
+  }
+}

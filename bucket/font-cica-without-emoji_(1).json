@@ -1,0 +1,29 @@
+{
+  "checkver": "github",
+  "depends": [
+    "sudo",
+    "unoun/scoop-helper"
+  ],
+  "description": "Monospace Japanese font for programming(without emoji version)",
+  "hash": "e14c95c8c3e98d3778632f577a2cafa69ee82cd8c2efdb1f38c821e37c487dbf",
+  "homepage": "https://github.com/miiton/Cica",
+  "installer": {
+    "script": [
+      "$helper = \"$(appdir scoop-helper)\\current\\scoop-font-helper.ps1\"",
+      "if (!(Test-Path $helper)) { error 'File not found'; exit 1 }",
+      ". $helper",
+      "Install-Font($dir)"
+    ]
+  },
+  "license": "OFL-1.1-RFN",
+  "uninstaller": {
+    "script": [
+      "$helper = \"$(appdir scoop-helper)\\current\\scoop-font-helper.ps1\"",
+      "if (!(Test-Path $helper)) { error 'File not found'; exit 1 }",
+      ". $helper",
+      "Uninstall-Font($dir)"
+    ]
+  },
+  "url": "https://ghproxy.net/https://github.com/miiton/Cica/releases/download/v5.0.3/Cica_v5.0.3_without_emoji.zip",
+  "version": "5.0.3"
+}

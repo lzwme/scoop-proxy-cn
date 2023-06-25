@@ -1,0 +1,86 @@
+{
+  "homepage": "https://boostnote.io/",
+  "description": "An intuitive and stylish markdown note app for the developers.",
+  "license": "GPL-3.0-or-later",
+  "version": "0.23.1",
+  "url": "https://github.com/BoostIO/BoostNote.next/releases/latest/download/boost-note-win.exe#/dl.7z",
+  "hash": "1fa75a8cb1483064e41d2a4f68fcad6c025ba22d4e11d6b694858ea7cd93e4d5",
+  "architecture": {
+    "64bit": {
+      "installer": {
+        "script": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\""
+      }
+    },
+    "32bit": {
+      "installer": {
+        "script": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-32.7z\" \"$dir\""
+      }
+    }
+  },
+  "pre_install": [
+    "function CreateRoamingLink([String] $folder) {",
+    "   $roamingdir = \"$env:APPDATA\\$folder\"",
+    "   if(!(Test-Path \"$persist_dir\\$folder\")) {",
+    "       New-Item -Force -Path \"$persist_dir\\$folder\" -ItemType Directory | Out-Null",
+    "   }",
+    "   if (Test-Path \"$roamingdir\") {",
+    "       if (Get-ChildItem \"$env:APPDATA\" -Attributes ReparsePoint -include \"$folder\" -Name) {",
+    "           Write-Host \"  UnLinking $roamingdir\"",
+    "           Remove-Item -Path \"$roamingdir\" -force -Recurse",
+    "       }",
+    "       # Try to move to 'persist' when you already have data in 'roaming'",
+    "       elseif (!(Test-Path \"$persist_dir\\$folder\\*.*\")){",
+    "           Write-Host \"Moving $roamingdir -> $persist_dir\\$folder\"",
+    "           Move-Item  -Force -Path \"$roamingdir\" \"$persist_dir\"",
+    "           for($i=10; $i -ge 0; $i--) {",
+    "               if (!(Test-Path \"$roamingdir\")) { break }",
+    "               Write-Host \"Wait...\"",
+    "               Start-Sleep -s 3",
+    "           }",
+    "           if ($i -le 0) { Write-Host \"  Move-Item Error $roamingdir\" -BackgroundColor Red }",
+    "       }",
+    "   }",
+    "   if (Test-Path \"$roamingdir\") {",
+    "       Write-Host \"  Please check manually link to the $roamingdir - $persist_dir$folder.\" -ForegroundColor Magenta",
+    "   } else { ",
+    "       Write-Host \"  Linking $roamingdir -> $persist_dir\\$folder\"",
+    "       # Start-Process -FilePath \"$env:COMSPEC\" -ArgumentList '/c','mklink',\"/J $q$roamingdir$q $q$persist_dir\\$folder$q\" | out-null",
+    "       New-Item -ItemType Junction -Path \"$roamingdir\" -Target \"$persist_dir\\$folder\" | out-null",
+    "   }",
+    "}",
+    "CreateRoamingLink 'Boost Note'"
+  ],
+  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\" -Recurse",
+  "uninstaller": {
+    "script": [
+      "function RemoveRoamingLink([String] $folder) {",
+      "   $roamingdir = \"$env:APPDATA\\$folder\"",
+      "   if ((Test-Path \"$roamingdir\")) {",
+      "       if (Get-ChildItem \"$env:APPDATA\" -Attributes ReparsePoint -include \"$folder\" -Name) {",
+      "           Write-Host \"  UnLinking $roamingdir\"",
+      "           Remove-Item -Path \"$roamingdir\" -force -Recurse",
+      "       }",
+      "   }",
+      "}",
+      "RemoveRoamingLink 'Boost Note'"
+    ]
+  },
+  "bin": [
+    [
+      "Boost Note.exe",
+      "Boost-note"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "Boost Note.exe",
+      "Boost Note.next"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/BoostIO/BoostNote.next"
+  },
+  "autoupdate": {
+    "url": "https://github.com/BoostIO/BoostNote.next/releases/latest/download/boost-note-win.exe#/dl.7z"
+  }
+}

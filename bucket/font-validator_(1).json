@@ -1,0 +1,27 @@
+{
+  "version": "2.1.6",
+  "description": "Font Validator is a tool for testing fonts prior to release.",
+  "homepage": "https://github.com/HinTak/Font-Validator",
+  "license": {
+    "identifier": "MIT",
+    "url": "https://ghproxy.net/https://raw.githubusercontent.com/HinTak/Font-Validator/master/License.md"
+  },
+  "url": "https://ghproxy.net/https://github.com/HinTak/Font-Validator/releases/download/FontVal-2.1.6/FontVal-2.1.6-win32+64.zip",
+  "hash": "9635d24f6cbd19bf3b96ed988ffa59b31cee662085e20fcfe1f14167e5118fa9",
+  "extract_dir": "FontVal-2.1.6\\bin",
+  "bin": [
+    "CFFInfo.exe",
+    "DSIGInfo.exe",
+    "FontVal.exe",
+    "FontValidator.exe",
+    "SVGInfo.exe"
+  ],
+  "checkver": {
+    "url": "https://github.com/HinTak/Font-Validator/releases/latest",
+    "regex": "/releases/tag/FontVal-([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/HinTak/Font-Validator/releases/download/FontVal-$version/FontVal-$version-win32+64.zip",
+    "extract_dir": "FontVal-$version\\bin"
+  }
+}

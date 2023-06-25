@@ -1,0 +1,28 @@
+{
+  "homepage": "https://www.mongodb.com/download-center?jmp=hero#compass",
+  "version": "1.18.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://downloads.mongodb.com/compass/mongodb-compass-community-1.18.0-win32-x64.zip",
+      "hash": "3dfbab1f17fd1ab6f0ac88c0f9c180925ffd4455ac2ff6c107f157176143a70d"
+    }
+  },
+  "checkver": {
+    "url": "https://www.mongodb.com/download-center?jmp=hero#compass",
+    "re": "([\\d.]+) \\(Community Edition Stable\\)"
+  },
+  "bin": "MongoDBCompassCommunity.exe",
+  "shortcuts": [
+    [
+      "MongoDBCompassCommunity.exe",
+      "MongoDBCompass Community Edition"
+    ]
+  ],
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://downloads.mongodb.com/compass/mongodb-compass-community-$version-win32-x64.zip"
+      }
+    }
+  }
+}

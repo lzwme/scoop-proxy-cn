@@ -1,0 +1,23 @@
+{
+  "autoupdate": {
+    "hash": {
+      "regex": "$sha256",
+      "url": "$url.sha256"
+    },
+    "url": "https://scoop-zapps.ziiyc.com/d/SogouPinyin-Portable/SogouPinyin-Portable-$version.exe#/dl.7z"
+  },
+  "checkver": {
+    "regex": "([\\d.]+)",
+    "url": "https://ghproxy.net/https://raw.githubusercontent.com/kkzzhizhou/scoop-zapps/master/versions/SogouPinyin-Portable.latest"
+  },
+  "hash": "99540f002294174f3a95da4fc33a3f31861a97c11320a45ce423aebbb826912e",
+  "homepage": "https://portableappk.com/portable-sogoupy/",
+  "installer": {
+    "script": "Start-Process -Wait $dir\\SogouPYPortable.exe /i"
+  },
+  "uninstaller": {
+    "script": "Start-Process -Wait $dir\\SogouPYPortable.exe /u"
+  },
+  "url": "https://scoop-zapps.ziiyc.com/d/SogouPinyin-Portable/SogouPinyin-Portable-0.3.exe#/dl.7z",
+  "version": "0.3"
+}

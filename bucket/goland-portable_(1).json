@@ -1,0 +1,66 @@
+{
+  "architecture": {
+    "32bit": {
+      "bin": "IDE\\bin\\goland.exe",
+      "shortcuts": [
+        [
+          "IDE\\bin\\goland.exe",
+          "JetBrains\\GoLand"
+        ]
+      ]
+    },
+    "64bit": {
+      "bin": [
+        "IDE\\bin\\goland64.exe",
+        [
+          "IDE\\bin\\goland64.exe",
+          "goland"
+        ]
+      ],
+      "shortcuts": [
+        [
+          "IDE\\bin\\goland64.exe",
+          "JetBrains\\GoLand"
+        ]
+      ]
+    }
+  },
+  "autoupdate": {
+    "hash": {
+      "url": "$url.sha256"
+    },
+    "url": "https://download.jetbrains.com/go/goland-$matchHead.exe#/cosi.7z"
+  },
+  "changelog": "https://www.jetbrains.com/goland/whatsnew/",
+  "checkver": {
+    "regex": "version\":\"(?<ver>[\\d.]+)\".*\"build\":\"(?<build>[\\d.]+)\"",
+    "replace": "${ver}-${build}",
+    "url": "https://data.services.jetbrains.com/products/releases?code=GO&latest=true&platform=zip&type=release"
+  },
+  "description": "GoLand. Cross-Platform, Clever IDE to Go by JetBrains.",
+  "extract_to": "IDE",
+  "hash": [
+    "83e7e804d9588eb8513f2a269cd1d74f75f6d76a9426e456a998f9aeed6efb0a",
+    "2255673952a7909596b8783f6e913d2301f91f0def0275fcfbc6371b0ca021f8"
+  ],
+  "homepage": "https://www.jetbrains.com/goland/",
+  "installer": {
+    "script": [
+      "& \"$dir\\portable.ps1\" $dir $persist_dir",
+      "Remove-Item \"$dir\\IDE\\`$*\", \"$dir\\portable.ps1\" -Force -Recurse"
+    ]
+  },
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://www.jetbrains.com/store/license.html"
+  },
+  "persist": [
+    "IDE\\bin\\idea.properties",
+    "profile"
+  ],
+  "url": [
+    "https://download.jetbrains.com/go/goland-2023.1.exe#/cosi.7z",
+    "https://ghproxy.net/https://raw.githubusercontent.com/Ash258/Scoop-JetBrains/main/scripts/portable.ps1"
+  ],
+  "version": "2023.1-231.8109.199"
+}

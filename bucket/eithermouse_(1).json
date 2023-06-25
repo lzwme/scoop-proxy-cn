@@ -1,0 +1,22 @@
+{
+  "version": "0.85",
+  "description": "Keep unique mouse settings for all of your pointer devices",
+  "homepage": "https://eithermouse.com",
+  "license": {
+    "identifier": "Unknown",
+    "url": "https://eithermouse.com/eula.txt"
+  },
+  "notes": "EitherMouse saves its settings to \"HKCU\\SOFTWARE\\EitherMouse\".",
+  "url": "https://eithermouse.com/EitherMouse.exe",
+  "hash": "ce9a60aeebba7971fdae41c3bddbd8ebefc9ce9717d1bdb8d11cc3e3bf825baf",
+  "shortcuts": [
+    [
+      "EitherMouse.exe",
+      "EitherMouse"
+    ]
+  ],
+  "pre_install": [
+    "if(!(Test-Path \"HKCU:\\SOFTWARE\\EitherMouse\")) { New-Item -Path \"HKCU:\\SOFTWARE\\EitherMouse\" -Force | Out-Null }",
+    "if(Test-Path \"HKCU:\\SOFTWARE\\EitherMouse\") { New-ItemProperty -Path \"HKCU:\\SOFTWARE\\EitherMouse\" -Name UpdateChecked -Value Skip -PropertyType String -Force | Out-Null }"
+  ]
+}

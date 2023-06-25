@@ -1,0 +1,40 @@
+{
+  "homepage": "https://sourcefoundry.org/hack/",
+  "description": "A typeface designed for source code.",
+  "license": "MIT",
+  "version": "1.6.0",
+  "url": "https://ghproxy.net/https://github.com/source-foundry/Hack-windows-installer/archive/refs/tags/v1.6.0.zip",
+  "hash": "de20cf7ab41dd277214f5fcc1288ec81d0634fbd00533e1950d6322f7c2a4fc8",
+  "checkver": {
+    "github": "https://github.com/source-foundry/Hack-windows-installer/"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/source-foundry/Hack-windows-installer/releases/download/v$version.zip",
+    "extract_dir": "Hack-windows-installer-$version"
+  },
+  "pre_install": [
+    "$fontdir = \"$env:LocalAppData\\Microsoft\\Windows\\Fonts\"",
+    "If(!(Test-Path $fontdir)) {",
+    "    New-Item -ItemType Directory -Path $fontdir",
+    "}"
+  ],
+  "extract_dir": "Hack-windows-installer-1.6.0",
+  "installer": {
+    "script": [
+      "Get-ChildItem $dir\\fonts\\Hack_v3_003 -filter '*.ttf' | ForEach-Object {",
+      "   $fontdir = \"$env:LocalAppData\\Microsoft\\Windows\\Fonts\"",
+      "   New-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value \"$fontdir\\$($_.Name)\" -Force | Out-Null",
+      "   Copy-Item $_.Fullname -destination \"$fontdir\"",
+      "}"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Get-ChildItem $dir\\fonts\\Hack_v3_003 -filter '*.ttf' | ForEach-Object {",
+      "   $fontdir = \"$env:LocalAppData\\Microsoft\\Windows\\Fonts\"",
+      "   Remove-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
+      "   Remove-Item \"$fontdir\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
+      "}"
+    ]
+  }
+}

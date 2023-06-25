@@ -1,0 +1,29 @@
+{
+  "version": "1.5.9",
+  "description": "A faster, better and more stable redis desktop manager [GUI client], compatible with Linux, Windows, Mac. What's more, it won't crash when loading massive keys.",
+  "homepage": "https://github.com/qishibo/AnotherRedisDesktopManager",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/qishibo/AnotherRedisDesktopManager/releases/download/v1.5.9/Another-Redis-Desktop-Manager.1.5.9.exe#/dl.7z",
+      "hash": "ef53153ab35700470c57402e89af33df8ec7e3c9e0ba5f9a61695b69e4d48bf4"
+    }
+  },
+  "pre_install": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\" -Recurse",
+  "checkver": {
+    "github": "https://github.com/qishibo/AnotherRedisDesktopManager"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/qishibo/AnotherRedisDesktopManager/releases/download/v$version/Another-Redis-Desktop-Manager.$version.exe#/dl.7z"
+      }
+    }
+  },
+  "shortcuts": [
+    [
+      "Another Redis Desktop Manager.exe",
+      "Another Redis Desktop Manager"
+    ]
+  ]
+}

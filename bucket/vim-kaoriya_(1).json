@@ -1,0 +1,66 @@
+{
+  "version": "8.2.1287.20200724",
+  "description": "Vim text editor. (KaoriYa version)",
+  "homepage": "https://github.com/koron/vim-kaoriya",
+  "license": "Vim",
+  "url": "https://ghproxy.net/https://github.com/koron/vim-kaoriya/releases/download/v8.2.1287-20200724/vim82-kaoriya-win64-8.2.1287-20200724.zip",
+  "hash": "72e9035943a4fd437c453bd089bc23dd8c440e401735334c0cbe51d5b9e418a0",
+  "extract_dir": "vim82-kaoriya-win64",
+  "post_install": [
+    "if ($bucket) {",
+    "    $scriptsdir = \"$bucketsdir\\$bucket\\scripts\"",
+    "} else {",
+    "    $scriptsdir = \"$(Split-Path $(Split-Path $url -Parent) -Parent)\\scripts\"",
+    "}",
+    "'install-context.reg', 'uninstall-context.reg' | ForEach-Object {",
+    "    $vimpath = \"$dir\\gvim.exe\".Replace('\\', '\\\\')",
+    "    $content = (Get-Content \"$scriptsdir\\vim-kaoriya\\$_\").Replace('$vim', $vimpath)",
+    "    if ($global) { $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE') }",
+    "    Set-Content \"$dir\\$_\" $content",
+    "}"
+  ],
+  "bin": [
+    "vim.exe",
+    [
+      "vim.exe",
+      "vi"
+    ],
+    [
+      "vim.exe",
+      "view",
+      "-R"
+    ],
+    [
+      "vim.exe",
+      "vimdiff",
+      "-d"
+    ],
+    "gvim.exe",
+    [
+      "gvim.exe",
+      "gview",
+      "-R"
+    ],
+    [
+      "gvim.exe",
+      "gvimdiff",
+      "-d"
+    ],
+    "xxd.exe"
+  ],
+  "shortcuts": [
+    [
+      "gvim.exe",
+      "GVim (KaoriYa version)"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/koron/vim-kaoriya",
+    "regex": "(?<file>vim(?<short>[\\d]+)-kaoriya-win64-(?<code>[\\d.]+)-(?<date>[\\d]{8})\\.zip)",
+    "replace": "${code}.${date}"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/koron/vim-kaoriya/releases/download/v$matchCode-$matchDate/$matchFile",
+    "extract_dir": "vim$matchShort-kaoriya-win64"
+  }
+}

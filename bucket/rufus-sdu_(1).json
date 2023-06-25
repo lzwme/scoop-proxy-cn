@@ -1,0 +1,30 @@
+{
+  "autoupdate": {
+    "url": "https://mirrors.sdu.edu.cn/github-release/pbatard_rufus/v$version/rufus-$versionp.exe#/rufus.exe"
+  },
+  "bin": "rufus.exe",
+  "checkver": {
+    "regex": "v(\\d[\\d.]+)",
+    "reverse": true,
+    "url": "https://mirrors.sdu.edu.cn/github-release/pbatard_rufus/"
+  },
+  "description": "A utility that helps format and create bootable USB flash drives.",
+  "hash": "bfecf4dcf1a63d8b64b900906102edf666642316291c9bba42eb0fb9c7bccbd6",
+  "homepage": "https://rufus.ie/",
+  "license": {
+    "identifier": "GPL-3.0-only"
+  },
+  "persist": [
+    "rufus.ini",
+    "rufus_files"
+  ],
+  "pre_install": "if (!(Test-Path \"$persist_dir\\rufus.ini\")) { New-Item \"$dir\\rufus.ini\" | Out-Null }",
+  "shortcuts": [
+    [
+      "rufus.exe",
+      "Rufus"
+    ]
+  ],
+  "url": "https://mirrors.sdu.edu.cn/github-release/pbatard_rufus/v4.0/rufus-4.0p.exe#/rufus.exe",
+  "version": "4.0"
+}

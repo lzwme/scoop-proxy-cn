@@ -1,0 +1,20 @@
+{
+  "homepage": "https://github.com/prezesp/scoop-viewer",
+  "description": "A gui client for scoop",
+  "version": "v0.8.1",
+  "url": "https://ghproxy.net/https://github.com/prezesp/scoop-viewer/releases/download/v0.8.1/scoop-viewer.zip",
+  "hash": "2fbc575cd4f537d7cae88eb42d89fe12472876189ef2d5e870b45fd1e039ac8b",
+  "bin": "scoop-viewer\\scoopviewer.exe",
+  "installer": {
+    "script": [
+      "# Add alias",
+      "scoop alias add gui scoopviewer 'ScoopViewer gui'"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "# Remove alias",
+      "scoop alias rm gui"
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "homepage": "https://pecl.php.net/package/fann",
+  "version": "1.1.1",
+  "license": "http://www.php.net/license/3_01.txt",
+  "architecture": {
+    "64bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/fann/1.1.1/php_fann-1.1.1-7.1-ts-vc14-x64.zip",
+      "hash": "8080f399b090bd78be956aff4bec3aa19ad384cfdd3ed56ee05b67062012a780"
+    },
+    "32bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/fann/1.1.1/php_fann-1.1.1-7.1-ts-vc14-x86.zip",
+      "hash": "776f22df3cb3535130eaa290bd22481c96d73aad3cd70d9130a128d622b58d98"
+    }
+  },
+  "checkver": "fann/([\\d.]+)/windows",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/fann/$version/php_fann-$version-7.1-ts-vc14-x64.zip"
+      },
+      "32bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/fann/$version/php_fann-$version-7.1-ts-vc14-x86.zip"
+      }
+    }
+  },
+  "post_install": "iex(gc $bucketsdir\\$bucket\\bin\\postinstall.ps1 -Raw)",
+  "uninstaller": {
+    "file": "uninstall.ps1"
+  }
+}

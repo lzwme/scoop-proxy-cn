@@ -1,0 +1,86 @@
+{
+  "version": "9.0",
+  "homepage": "https://www.vim.org",
+  "description": "A highly configurable text editor",
+  "license": "Vim",
+  "url": "https://ftp.nluug.nl/pub/vim/pc/gvim90.exe#/dl.7z",
+  "hash": "sha256:57a5b0d3e42695eaeca962364cde3f257227e967436821b81c19434bf4e1042c",
+  "extract_dir": "$0",
+  "bin": [
+    "vim.exe",
+    [
+      "vim.exe",
+      "vi"
+    ],
+    [
+      "vim.exe",
+      "ex",
+      "-e"
+    ],
+    [
+      "vim.exe",
+      "view",
+      "-R"
+    ],
+    [
+      "vim.exe",
+      "rvim",
+      "-Z"
+    ],
+    [
+      "vim.exe",
+      "rview",
+      "-RZ"
+    ],
+    [
+      "vim.exe",
+      "vimdiff",
+      "-d"
+    ],
+    "gvim.exe",
+    [
+      "gvim.exe",
+      "gview",
+      "-R"
+    ],
+    [
+      "gvim.exe",
+      "evim",
+      "-y"
+    ],
+    [
+      "gvim.exe",
+      "eview",
+      "-Ry"
+    ],
+    [
+      "gvim.exe",
+      "rgvim",
+      "-Z"
+    ],
+    [
+      "gvim.exe",
+      "rgview",
+      "-RZ"
+    ],
+    [
+      "gvim.exe",
+      "gvimdiff",
+      "-d"
+    ],
+    "xxd.exe"
+  ],
+  "checkver": {
+    "url": "https://ftp.nluug.nl/pub/vim/pc",
+    "regex": "gvim(?<ver>[\\d-]+)\\.exe\\s+V([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://ftp.nluug.nl/pub/vim/pc/gvim$matchVer.exe#/dl.7z",
+    "hash": {
+      "url": "$baseurl/MD5SUMS"
+    }
+  },
+  "suggest": {
+    "vimtutor": "vimtutor"
+  }
+}

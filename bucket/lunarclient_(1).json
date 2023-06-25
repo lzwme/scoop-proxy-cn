@@ -1,0 +1,17 @@
+{
+  "version": "2.10.1",
+  "description": "Lunar Client: A modpack for all modern versions of Minecraft!",
+  "architecture": {
+    "32bit": {
+      "url": "https://launcherupdates.lunarclientcdn.com/lunarclient-2.10.1-ia32.nsis.7z",
+      "hash": "7BBE55D4A1D517CDB7FCB72AB7048494A0C230BDA71313E06A6B234EC3E62525"
+    },
+    "64bit": {
+      "url": "https://launcherupdates.lunarclientcdn.com/lunarclient-2.10.1-x64.nsis.7z",
+      "hash": "DDFEFAFF39F3D606992FB2BE60323CE7491E7DB0FD72E2EDB95675C08614A629"
+    }
+  },
+  "post_install": [
+    "irm https://ghproxy.net/https://raw.githubusercontent.com/Aetopia/Bucket/main/lunarclient/lunarclient.ps1 | iex"
+  ]
+}

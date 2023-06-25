@@ -1,0 +1,28 @@
+{
+  "architecture": {
+    "64bit": {
+      "hash": "654a962877dc9c5962b8cc7c6db37891dd9105add825a7306601a380d4623e0b",
+      "url": "https://ghproxy.net/https://github.com/ouqiang/gocron/releases/download/v1.5.3/gocron-v1.5.3-windows-amd64.zip"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/ouqiang/gocron/releases/download/v$version/gocron-v$version-windows-amd64.zip"
+      }
+    }
+  },
+  "bin": "gocron.exe",
+  "checkver": {
+    "jsonpath": "$[0].tag_name",
+    "regex": "^v(.+)$",
+    "url": "https://api.github.com/repos/ouqiang/gocron/releases?per_page=1"
+  },
+  "description": "A lightweight centralized scheduling and management system for scheduled tasks developed in Goto language to replace Linux crontab.",
+  "homepage": "https://github.com/ouqiang/gocron",
+  "license": {
+    "identifier": "MIT"
+  },
+  "persist": "conf",
+  "version": "1.5.3"
+}

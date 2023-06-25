@@ -1,0 +1,61 @@
+{
+  "version": "8_4_0-esp-2021r2-patch1",
+  "description": "Toolchain for 32-bit RISC-V based on GCC",
+  "homepage": "https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/tools/idf-tools.html#list-of-idf-tools",
+  "license": "GPL-3.0-with-GCC-exception",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/espressif/crosstool-NG/releases/download/esp-2021r2/riscv32-esp-elf-gcc8_4_0-esp-2021r2-patch1-win64.zip",
+      "hash": "791b8c8ed99934a2ec7f42100f2c71fb1ef7042efa7c6267c0d59394175c827a"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/espressif/crosstool-NG/releases/download/esp-2021r2/riscv32-esp-elf-gcc8_4_0-esp-2021r2-patch1-win32.zip",
+      "hash": "f1ff7d2a87e1f1515371c1e4868b982e6a0958df144e2f1b2bd7e684ec1f9c93"
+    }
+  },
+  "bin": [
+    "riscv-esp-elf\\bin\\riscv32-esp-elf-addr2line.exe",
+    "riscv-esp-elf\\bin\\riscv32-esp-elf-ar.exe",
+    "riscv-esp-elf\\bin\\riscv32-esp-elf-as.exe",
+    "riscv-esp-elf\\bin\\riscv32-esp-elf-c++.exe",
+    "riscv-esp-elf\\bin\\riscv32-esp-elf-c++filt.exe",
+    "riscv-esp-elf\\bin\\riscv32-esp-elf-cc.exe",
+    "riscv-esp-elf\\bin\\riscv32-esp-elf-cpp.exe",
+    "riscv-esp-elf\\bin\\riscv32-esp-elf-elfedit.exe",
+    "riscv-esp-elf\\bin\\riscv32-esp-elf-g++.exe",
+    "riscv-esp-elf\\bin\\riscv32-esp-elf-gcc.exe",
+    "riscv-esp-elf\\bin\\riscv32-esp-elf-gcc-8.4.0.exe",
+    "riscv-esp-elf\\bin\\riscv32-esp-elf-gcc-ar.exe",
+    "riscv-esp-elf\\bin\\riscv32-esp-elf-gcc-nm.exe",
+    "riscv-esp-elf\\bin\\riscv32-esp-elf-gcc-ranlib.exe",
+    "riscv-esp-elf\\bin\\riscv32-esp-elf-gcov.exe",
+    "riscv-esp-elf\\bin\\riscv32-esp-elf-gcov-dump.exe",
+    "riscv-esp-elf\\bin\\riscv32-esp-elf-gcov-tool.exe",
+    "riscv-esp-elf\\bin\\riscv32-esp-elf-gdb.exe",
+    "riscv-esp-elf\\bin\\riscv32-esp-elf-gprof.exe",
+    "riscv-esp-elf\\bin\\riscv32-esp-elf-ld.bfd.exe",
+    "riscv-esp-elf\\bin\\riscv32-esp-elf-ld.exe",
+    "riscv-esp-elf\\bin\\riscv32-esp-elf-nm.exe",
+    "riscv-esp-elf\\bin\\riscv32-esp-elf-objcopy.exe",
+    "riscv-esp-elf\\bin\\riscv32-esp-elf-objdump.exe",
+    "riscv-esp-elf\\bin\\riscv32-esp-elf-ranlib.exe",
+    "riscv-esp-elf\\bin\\riscv32-esp-elf-readelf.exe",
+    "riscv-esp-elf\\bin\\riscv32-esp-elf-size.exe",
+    "riscv-esp-elf\\bin\\riscv32-esp-elf-strings.exe",
+    "riscv-esp-elf\\bin\\riscv32-esp-elf-strip.exe"
+  ],
+  "checkver": {
+    "url": "https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/tools/idf-tools.html",
+    "regex": "riscv32-esp-elf-gcc([\\d_]+-esp-([\\w]+))-win64.zip"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/espressif/crosstool-NG/releases/download/esp-$match2/riscv32-esp-elf-gcc$version-win64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/espressif/crosstool-NG/releases/download/esp-$match2/riscv32-esp-elf-gcc$version-win32.zip"
+      }
+    }
+  }
+}

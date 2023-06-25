@@ -1,0 +1,19 @@
+{
+  "bin": "nu.exe",
+  "homepage": "https://github.com/nushell/nushell",
+  "url": "https://ghproxy.net/https://github.com/nushell/nushell/releases/download/0.81.0/nu-0.81.0-x86_64-pc-windows-msvc.zip",
+  "version": "0.81.0",
+  "license": "Freeware",
+  "hash": "bbf7e0245980828bbf0fce2049a70948259e7cb2e1a4322b58c04e5bb6e91e55",
+  "shortcuts": [
+    [
+      "nu.exe",
+      "Nushell"
+    ]
+  ],
+  "post_install": " [System.Drawing.Icon]::ExtractAssociatedIcon(\"$dir\\nu.exe\" ).ToBitmap().Save(\"$dir\\nu.bmp\")",
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/nushell/nushell/releases/download/$version/nu-$version-x86_64-pc-windows-msvc.zip"
+  }
+}

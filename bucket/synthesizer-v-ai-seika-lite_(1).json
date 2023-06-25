@@ -1,0 +1,31 @@
+{
+  "version": "1.0.1",
+  "description": "Synthesizer V AI 京町セイカ ライト版",
+  "homepage": "https://www.ah-soft.com/trial/synth-v.html",
+  "license": [
+    {
+      "identifier": "Proprietary",
+      "url": "https://www.ah-soft.com/trial/synth-v.html"
+    }
+  ],
+  "notes": [
+    "※ライト版は商用利用をいただくことができません。",
+    "※ライト版は個人に限り制作した作品の発表が許諾されています。",
+    "※ライト版で製作した作品を個人が発表する場合は、\"Synthesizer V AI 京町セイカ ライト版を使用\"と必ず明記してください。"
+  ],
+  "url": "https://www.ah-soft.com/trial/synthesizer_v_ai_seika_lite.zip",
+  "hash": "aabcd21508b304b42b37f5721e48b0be0ee635969190940036d0500a884f9ca3",
+  "extract_dir": "Synthesizer V AI Seika Lite",
+  "suggest": {
+    "Synthesizer V": [
+      "synthesizer-v-basic",
+      "dtm/synthesizer-v-basic"
+    ]
+  },
+  "installer": {
+    "script": [
+      "$svpk = $dir + \"\\seika-ai-lite-installer.svpk\"",
+      "Start-Process -FilePath \"${dir}\\..\\..\\synthesizer-v-basic\\current\\synthv-studio.exe\" -ArgumentList $svpk"
+    ]
+  }
+}

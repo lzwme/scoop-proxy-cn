@@ -1,0 +1,30 @@
+{
+  "version": "0.2.7",
+  "description": "EDMC plugin: track biological scans of the artemis suit..",
+  "homepage": "https://github.com/Balvald/ArtemisScannerTracker",
+  "license": "GPL-3.0",
+  "depends": "edmc",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/Balvald/ArtemisScannerTracker/archive/refs/tags/v0.2.7.zip",
+      "hash": "e8557d49caaa8413c4a26f3236ebc956a3b4421ed37dc07e79c3ad36f070580b"
+    }
+  },
+  "checkver": {
+    "url": "https://github.com/Balvald/ArtemisScannerTracker",
+    "regex": "/releases/tag/v?([\\d.]+[\\-a-z]*)"
+  },
+  "installer": {
+    "script": "Copy-Item -Path \"$dir\\ArtemisScannerTracker-$version\" -Destination \"$env:LocalAppData\\EDMarketConnector\\plugins\\ArtemisScannerTracker\" -Recurse -Force -ErrorAction SilentlyContinue"
+  },
+  "uninstaller": {
+    "script": "Remove-Item -Path \"$env:LocalAppData\\EDMarketConnector\\plugins\\ArtemisScannerTracker\" -Recurse -Force -ErrorAction SilentlyContinue"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/Balvald/ArtemisScannerTracker/archive/refs/tags/v$version.zip"
+      }
+    }
+  }
+}

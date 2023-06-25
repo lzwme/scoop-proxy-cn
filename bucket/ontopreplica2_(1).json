@@ -1,0 +1,27 @@
+{
+  "##": "Data is stored in %LOCALAPPDATA%.",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/LorenzCK/OnTopReplica/releases/download/v$version/OnTopReplica-v$version.zip"
+  },
+  "bin": "OnTopReplica.exe",
+  "checkver": "github",
+  "description": "A real-time always-on-top “replica” of a window of your choice (on Windows).",
+  "extract_to": "tmp",
+  "hash": "3206460ce10eb563ac3acc600cb2d7143a569b745fd2a11937aac2d60dba5236",
+  "homepage": "https://github.com/LorenzCK/OnTopReplica",
+  "installer": {
+    "script": "Expand-MsiArchive \"$dir\\tmp\\OnTopReplica.msi\" \"$dir\""
+  },
+  "license": "MS-RL",
+  "post_install": [
+    "Remove-Item \"$dir\\tmp\" -Recurse -Force"
+  ],
+  "shortcuts": [
+    [
+      "OnTopReplica.exe",
+      "OnTopReplica"
+    ]
+  ],
+  "url": "https://ghproxy.net/https://github.com/LorenzCK/OnTopReplica/releases/download/v3.5.1-fix/OnTopReplica-v3.5.1-fix.zip",
+  "version": "3.5.1-fix"
+}

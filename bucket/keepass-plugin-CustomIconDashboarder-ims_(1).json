@@ -1,0 +1,19 @@
+{
+  "version": "1.3.0",
+  "description": "This plugin provides some management features and statistics for custom icons in KeePass.",
+  "homepage": "https://github.com/incognito1234/KeePass-Custom-Icon-Dashboarder",
+  "license": "GPL2",
+  "depends": "extras/keepass",
+  "url": "https://ghproxy.net/https://github.com/incognito1234/KeePass-Custom-Icon-Dashboarder/releases/download/v1.3.0/CustomIconDashboarder.plgx",
+  "hash": "3794a8e6179426e5474e52f923c889f948f1883d967102d3f1f881a5450597aa",
+  "installer": {
+    "script": "Copy-Item \"$dir\\CustomIconDashboarder.plgx\" \"$(appdir keepass $global)\\current\\Plugins\""
+  },
+  "uninstaller": {
+    "script": "Remove-Item \"$(appdir keepass $global)\\current\\Plugins\\CustomIconDashboarder.plgx\""
+  },
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/incognito1234/KeePass-Custom-Icon-Dashboarder/releases/download/v$version/CustomIconDashboarder.plgx"
+  }
+}

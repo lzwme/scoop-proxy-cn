@@ -1,0 +1,21 @@
+{
+  "homepage": "https://toolbelt.heroku.com/",
+  "version": "3.42.25",
+  "license": "MIT",
+  "url": [
+    "https://ghproxy.net/https://github.com/heroku/heroku/archive/v3.42.25.zip",
+    "https://raw.github.com/maman/scoop-bucket/master/scripts/heroku.bat"
+  ],
+  "hash": [
+    "d1cec4f58f318b15bdc259c16b82bb492d4008e2ed5d34ce8ddf8f74bdc79ef7",
+    "4caad9ab9ffd562b67b9c8eeca1c0b12604bf4fc08cc5d1e0c640be3719b2e75"
+  ],
+  "extract_dir": "heroku-3.42.25",
+  "depends": [
+    "ruby",
+    "openssh"
+  ],
+  "bin": "heroku.bat",
+  "post_install": "gem install excon heroku-api rest-client --no-ri --no-rdoc;",
+  "notes": "Use `scoop update heroku-toolbelt` to update. Don't update directly via heroku command."
+}

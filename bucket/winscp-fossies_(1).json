@@ -1,0 +1,21 @@
+{
+  "homepage": "https://winscp.net",
+  "license": "GPL-3.0-or-later",
+  "version": "5.15.2",
+  "url": "https://fossies.org/windows/misc/WinSCP-5.15.2-Portable.zip",
+  "hash": "sha1:f83ec357237b7e15c3ec568cd3d2a547494b063f",
+  "bin": "WinSCP.exe",
+  "persist": "winscp.ini",
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\winscp.ini\")) {",
+    "    new-item \"$dir\\winscp.ini\" -type file | out-null",
+    "    write-output \"[Configuration\\Interface]`r`nRandomSeedFile=.\\winscp.rnd\" | Out-File -encoding \"ASCII\" \"$dir\\winscp.ini\"",
+    "}"
+  ],
+  "shortcuts": [
+    [
+      "WinSCP.exe",
+      "WinSCP"
+    ]
+  ]
+}

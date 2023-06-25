@@ -1,0 +1,38 @@
+{
+  "homepage": "https://github.com/horsicq/XPEViewer/",
+  "version": "0.04",
+  "description": "MachO file viewer/editor for Windows, Linux and macOS.",
+  "license": "MIT License",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/horsicq/XMachOViewer/releases/download/0.04/xmachoviewer_win64_portable_0.04.zip",
+      "hash": "edc42181660ded523d05db8a8134557af2994b67207d465f42790b9e659284ac"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/horsicq/XMachOViewer/releases/download/0.04/xmachoviewer_win64_portable_0.04.zip",
+      "hash": "edc42181660ded523d05db8a8134557af2994b67207d465f42790b9e659284ac"
+    }
+  },
+  "pre_install": "if(!(Test-Path \"$persist_dir\\xmachoviewer.ini\")) {New-Item \"$dir\\xmachoviewer.ini\" | Out-Null}",
+  "shortcuts": [
+    [
+      "xmachoviewer.exe",
+      "XMachOViewer"
+    ]
+  ],
+  "bin": "xmachoviewer.exe",
+  "persist": "xmachoviewer.ini",
+  "checkver": {
+    "github": "https://github.com/horsicq/XMachOViewer/"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/horsicq/XMachOViewer/releases/download/$version/xmachoviewer_win64_portable_$version.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/horsicq/XMachOViewer/releases/download/$version/xmachoviewer_win32_portable_$version.zip"
+      }
+    }
+  }
+}

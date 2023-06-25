@@ -1,0 +1,31 @@
+{
+  "version": "4.16.1",
+  "description": "Reads and applies migrations in correct order to a database.",
+  "homepage": "https://github.com/golang-migrate/migrate",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/golang-migrate/migrate/releases/download/v4.16.1/migrate.windows-amd64.zip",
+      "hash": "4416301d3fdb12d2d029ab5635a8594ab1ff98dffa0c0fa7cd1bfe88d5d7c6c3"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/golang-migrate/migrate/releases/download/v4.16.1/migrate.windows-386.zip",
+      "hash": "e1d0ca043000dd9f2e7b4bf75116d906b4b72e7719ddb4f03aa4e68fde4ab8c2"
+    }
+  },
+  "bin": "migrate.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/golang-migrate/migrate/releases/download/v$version/migrate.windows-amd64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/golang-migrate/migrate/releases/download/v$version/migrate.windows-386.zip"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/sha256sum.txt"
+    }
+  }
+}

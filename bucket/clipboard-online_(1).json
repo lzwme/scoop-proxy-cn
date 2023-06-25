@@ -1,0 +1,51 @@
+{
+  "version": "0.2.7",
+  "description": "在各平台间同步剪贴板 好用好用好用 Windows和iOS打通啦",
+  "homepage": "https://github.com/YanxinTang/clipboard-online",
+  "license": "Unknown",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/YanxinTang/clipboard-online/releases/download/v0.2.7/clipboard-online.exe",
+      "hash": "123252db2add7af730062878737a8e989017a42a70c47f90560103800b9a9a69"
+    }
+  },
+  "bin": "clipboard-online.exe",
+  "pre_install": [
+    "$config = \"$persist_dir\\config.json\"",
+    "if (!(Test-Path $config)) {",
+    "    @{",
+    "         'port' = '8086'",
+    "         'authkey' = 'vemodalen'",
+    "         'logLevel' = 'warning'",
+    "         'tempDir' = './temp'",
+    "         'reserveHistory' = $false",
+    "         'notify' = @{",
+    "           'copy' = $true",
+    "           'paste' = $true",
+    "         }",
+    "       } | ConvertToPrettyJson | Set-Content \"$dir\\config.json\" -Encoding Ascii",
+    "}"
+  ],
+  "notes": [
+    "https://ghproxy.net/https://raw.githubusercontent.com/hu3rror/scoop-muggle/master/bucket/clipboard-online.json",
+    "By default, config.json and tempDir are stored in '$persist_dir'."
+  ],
+  "persist": [
+    "config.json",
+    "temp"
+  ],
+  "shortcuts": [
+    [
+      "clipboard-online.exe",
+      "clipboard-online"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/YanxinTang/clipboard-online/releases/download/v$version/clipboard-online.exe"
+      }
+    }
+  }
+}

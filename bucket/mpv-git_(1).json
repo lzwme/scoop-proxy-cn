@@ -1,0 +1,39 @@
+{
+  "version": "20230607",
+  "description": "Video player based on MPlayer(2) (qwerty12's *modified* nightly builds - AVX2 required)",
+  "homepage": "https://mpv.io",
+  "license": "LGPL-2.1-or-later,GPL-2.0-or-later",
+  "notes": [
+    "To set and unset file type associations and AutoPlay handlers, run '$dir\\installer\\mpv-install.bat' and '$dir\\installer\\mpv-uninstall.bat' as administrator, respectively.",
+    "You can use Icaros ('nonportable/icaros-np') to enable thumbnails for all media types."
+  ],
+  "suggest": {
+    "yt-dlp": "yt-dlp"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/qwerty12/mpv-winbuild/releases/download/2023-06-07/mpv-x86_64-v3-20230607-git-46ee31b.7z",
+      "hash": "55960de5b69165adc46000727173946adc8e492b1795815d3e0453692b724384"
+    }
+  },
+  "env_add_path": ".",
+  "shortcuts": [
+    [
+      "mpv.exe",
+      "mpv"
+    ]
+  ],
+  "persist": "portable_config",
+  "checkver": {
+    "url": "https://api.github.com/repos/qwerty12/mpv-winbuild/releases/latest",
+    "jsonpath": "$.assets",
+    "regex": "/(?<date>[\\d-]+)/mpv-x86_64-v3-(\\d+)-git-(?<commit>[\\da-f]+)\\.7z"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/qwerty12/mpv-winbuild/releases/download/$matchDate/mpv-x86_64-v3-$version-git-$matchCommit.7z"
+      }
+    }
+  }
+}

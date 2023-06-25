@@ -1,0 +1,33 @@
+{
+  "homepage": "https://helm.sh",
+  "description": "The package manager for Kubernetes. Installs helm 2.x as helm2",
+  "license": "Apache-2.0",
+  "version": "2.16.6",
+  "architecture": {
+    "64bit": {
+      "url": "https://get.helm.sh/helm-v2.16.6-windows-amd64.zip",
+      "hash": "3ea3f33f02816d647068864d97233fe8ef529cf905ad0dcd4b4a3fb5770de903"
+    }
+  },
+  "extract_dir": "windows-amd64",
+  "bin": [
+    [
+      "helm.exe",
+      "helm2"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/kubernetes/helm",
+    "regex": "tag/v(2\\.[\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://get.helm.sh/helm-v$version-windows-amd64.zip"
+      }
+    },
+    "hash": {
+      "url": "$url.sha256"
+    }
+  }
+}

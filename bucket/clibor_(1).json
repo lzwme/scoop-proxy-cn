@@ -1,0 +1,65 @@
+{
+  "homepage": "https://chigusa-web.com/clibor/",
+  "description": "Simple and feature-rich clipboard manager",
+  "license": "Freeware",
+  "version": "2.3.1",
+  "url": "https://dforest.watch.impress.co.jp/library/c/clibor/10713/clibor.zip",
+  "hash": "cf909d1ba2899ba4a2616ec91f529949da2f10e629fb28aa5eb6ef653a32d0bd",
+  "extract_dir": "clibor",
+  "bin": "Clibor.exe",
+  "shortcuts": [
+    [
+      "Clibor.exe",
+      "Clibor"
+    ]
+  ],
+  "persist": [
+    "Clibor.xml",
+    "excl.dat",
+    "frmt.dat",
+    "ww.dat",
+    "ch",
+    "ct",
+    "clb_ex.bat",
+    "migemo.dll",
+    "dict"
+  ],
+  "pre_install": [
+    "function CreateEmptyFile($name) {",
+    "    if (!(Test-Path \"$persist_dir\\$name\")) {",
+    "        New-Item -Path \"$dir\\$name\" -ItemType File | Out-Null",
+    "        New-Item -Path \"$dir\\$name.empty\" -ItemType File | Out-Null",
+    "    }",
+    "}",
+    "CreateEmptyFile Clibor.xml",
+    "CreateEmptyFile excl.dat",
+    "CreateEmptyFile frmt.dat",
+    "CreateEmptyFile ww.dat",
+    "CreateEmptyFile clb_ex.bat",
+    "CreateEmptyFile migemo.dll"
+  ],
+  "post_install": [
+    "function RemoveEmptyFile($name) {",
+    "    if (Test-Path \"$dir\\$name.empty\") {",
+    "        Remove-Item -Path \"$dir\\$name\"",
+    "        Remove-Item -Path \"$persist_dir\\$name\"",
+    "    }",
+    "}",
+    "RemoveEmptyFile Clibor.xml",
+    "RemoveEmptyFile excl.dat",
+    "RemoveEmptyFile frmt.dat",
+    "RemoveEmptyFile ww.dat",
+    "Remove-Item \"$dir\\*.empty\"",
+    "if (!(Test-Path \"$dir\\Clibor.xml\")) {",
+    "    Write-Host \"The config and data files seem not to have been created yet.\" -ForeGroundColor DarkYellow",
+    "    Write-Host \"You may need to create hard links manually after the first run.\" -ForeGroundColor DarkYellow",
+    "}"
+  ],
+  "checkver": {
+    "url": "https://chigusa-web.com/clibor/history/",
+    "re": "ver (\\d[\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://dforest.watch.impress.co.jp/library/c/clibor/10713/clibor.zip"
+  }
+}

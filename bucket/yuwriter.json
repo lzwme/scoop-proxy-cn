@@ -1,8 +1,7 @@
 {
-  "description": "Efficient cross-platform Markdown text editor",
   "homepage": "https://ivarptr.github.io/yu-writer.site",
   "version": "0.5.3",
-  "license": "Proprietary",
+  "license": "Apache-2.0",
   "architecture": {
     "64bit": {
       "url": "https://ghproxy.net/https://github.com/ivarptr/yu-writer.site/releases/download/v0.5.3/yu-writer-beta-0.5.3-windows-x64.zip",
@@ -13,31 +12,28 @@
       "hash": "50e8f7457bc591b1393f3ea30696e9c5dbba135da61fd50f7a0144682d048a09"
     }
   },
-  "extract_dir": "Yu Writer",
-  "bin": "Yu Writer.exe",
   "shortcuts": [
     [
-      "Yu Writer.exe",
+      "Yu Writer\\Yu Writer.exe",
       "Yu Writer"
     ]
   ],
+  "persist": [
+    "Yu Writer\\bootstrap.config",
+    "Libraries",
+    "Resources"
+  ],
   "checkver": {
-    "url": "https://ivarptr.github.io/yu-writer.site/",
-    "re": "https://ghproxy.net/https://github.com/ivarptr/yu-writer.site/releases/download/v([\\d\\.]+)"
+    "url": "https://github.com/ivarptr/yu-writer.site/releases",
+    "regex": "Beta ([\\d.]+)"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.net/https://github.com/ivarptr/yu-writer.site/releases/download/v$version/yu-writer-beta-$version-windows-x64.zip",
-        "hash": {
-          "url": "$url.sha256"
-        }
+        "url": "https://ghproxy.net/https://github.com/ivarptr/yu-writer.site/releases/download/beta.$version/yu-writer-beta-$version-windows-x64.zip"
       },
       "32bit": {
-        "url": "https://ghproxy.net/https://github.com/ivarptr/yu-writer.site/releases/download/v$version/yu-writer-beta-$version-windows.zip",
-        "hash": {
-          "url": "$url.sha256"
-        }
+        "url": "https://ghproxy.net/https://github.com/ivarptr/yu-writer.site/releases/download/beta.$version/yu-writer-beta-$version-windows.zip"
       }
     }
   }

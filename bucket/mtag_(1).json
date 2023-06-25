@@ -1,0 +1,28 @@
+{
+  "version": "0.5.2",
+  "description": "A command line mpeg-4 metadata editor.",
+  "homepage": "https://github.com/insomnimus/mtag",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/insomnimus/mtag/releases/download/v0.5.2/mtag-x86_64-windows.zip",
+      "hash": "d320bcacd023100ffd6f9e12f9a262823704e822da3e04cd18369c7be03866f8"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/insomnimus/mtag/releases/download/v0.5.2/mtag-i686-windows.zip",
+      "hash": "93e3747c7a903ea6fd7785348a11d17da8e56cab6d05fd6a65dcef9aede8c64c"
+    }
+  },
+  "bin": "mtag.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/insomnimus/mtag/releases/download/v$version/mtag-x86_64-windows.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/insomnimus/mtag/releases/download/v$version/mtag-i686-windows.zip"
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "checkver": {
+    "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id%20eq%20'Az.HealthcareApis'%20and%20IsLatestVersion%20eq%20true",
+    "replace": "${ver}",
+    "regex": "(?i)<d:Version>(?<ver>[^<]+)<.d:Version>"
+  },
+  "hash": "sha512:e25b9d272136503675ac2194f1838573f21b1c497b28a11a99ce7d01a2e950491459fe5f439371ec7ac2b11f03fa1a62d8d7f836e24183b8f56821aa72ba6c0a",
+  "description": "Microsoft Azure PowerShell: HealthcareApis cmdlets",
+  "psmodule": {
+    "name": "Az.HealthcareApis"
+  },
+  "homepage": "https://www.powershellgallery.com/packages/Az.HealthcareApis",
+  "autoupdate": {
+    "url": "https://www.powershellgallery.com/api/v2/Package/Az.HealthcareApis/$version#/mod.nupkg",
+    "hash": {
+      "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id eq 'Az.HealthcareApis' and Version eq '$version'",
+      "regex": "<d:PackageHash>$base64<.d:PackageHash>"
+    }
+  },
+  "license": {
+    "identifier": "Refer to Webpage",
+    "url": "https://aka.ms/azps-license"
+  },
+  "url": "https://www.powershellgallery.com/api/v2/Package/Az.HealthcareApis/2.0.0#/mod.nupkg",
+  "depends": "Az.Accounts",
+  "version": "2.0.0"
+}

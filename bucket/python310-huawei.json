@@ -1,12 +1,12 @@
 {
   "architecture": {
     "32bit": {
-      "hash": "md5:1a9f582557f00efdde16d46dd0339f71",
-      "url": "https://repo.huaweicloud.com/python/3.10.9/python-3.10.9.exe#/setup.exe"
+      "hash": "md5:83a67e1c4f6f1472bf75dd9681491bf1",
+      "url": "https://repo.huaweicloud.com/python/3.10.11/python-3.10.11.exe#/setup.exe"
     },
     "64bit": {
-      "hash": "md5:dce578fe177892488cadb6c34aea58ee",
-      "url": "https://repo.huaweicloud.com/python/3.10.9/python-3.10.9-amd64.exe#/setup.exe"
+      "hash": "md5:a55e9c1e6421c84a4bd8b4be41492f51",
+      "url": "https://repo.huaweicloud.com/python/3.10.11/python-3.10.11-amd64.exe#/setup.exe"
     }
   },
   "autoupdate": {
@@ -19,8 +19,8 @@
       }
     },
     "hash": {
-      "regex": "(?sm)$basename.*?$md5",
-      "url": "https://www.python.org/downloads/release/python-$cleanVersion/"
+      "url": "https://www.python.org/downloads/release/python-$cleanVersion/",
+      "regex": "$basename[\\S\\s]+?([A-Fa-f\\d]{32})"
     }
   },
   "bin": [
@@ -40,19 +40,20 @@
     [
       "Lib\\idlelib\\idle.bat",
       "idle310"
-    ],
-    "pypi-mirror.ps1"
+    ]
   ],
   "checkver": {
-    "regex": "(3.10.\\d+)",
-    "reverse": true,
-    "url": "https://repo.huaweicloud.com/python/"
+    "url": "https://www.python.org/downloads/windows/",
+    "regex": "python-(3\\.10\\.[\\d.]+)-"
   },
   "description": "A programming language that lets you work quickly and integrate systems more effectively.",
   "env_add_path": [
     "Scripts",
     "."
   ],
+  "env_set": {
+    "PYTHONUTF8": "1"
+  },
   "homepage": "https://www.python.org/",
   "installer": {
     "script": [
@@ -83,7 +84,7 @@
     "Write-Output \"`e[0m\" # Reset ansi to prevent color leak from installer",
     "sudo regedit /s \"$dir\\install-pep-514.reg\"",
     "Copy-Item \"$bucketsdir\\$bucket\\scripts\\python\\pypi-mirror.ps1\" \"$dir\\pypi-mirror.ps1\" -ErrorAction 'SilentlyContinue' -Force | Out-Null",
-    "pwsh \"$dir\\pypi-mirror.ps1\" -m tuna | Out-Null"
+    ". \"$dir\\pypi-mirror.ps1\" -m tencent | Out-Null"
   ],
   "pre_install": [
     "$py_root = \"$dir\".Replace('\\', '\\\\')",
@@ -112,5 +113,5 @@
       "sudo regedit /s \"$dir\\uninstall-pep-514.reg\""
     ]
   },
-  "version": "3.10.9"
+  "version": "3.10.11"
 }

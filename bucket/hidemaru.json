@@ -48,13 +48,18 @@
     "} else { # 32bit assumed",
     "    Remove-Item @(\"$dir\\HmRegIni.chm\",\"$dir\\HmRegIni64.dll\",\"$dir\\HmRegIniInst.exe\")",
     "}",
-    "# Create SendTo shortcut",
-    "$sendto=\"$env:USERPROFILE\\AppData\\Roaming\\Microsoft\\Windows\\SendTo\"",
+    "# Create shortcuts",
     "$wsh_shell = New-Object -comObject WScript.Shell",
-    "$shortcut = $wsh_shell.CreateShortcut(\"$sendto\\秀丸.lnk\")",
-    "$shortcut.TargetPath = \"$dir\\Hidemaru.exe\"",
-    "$shortcut.WorkingDirectory = $dir",
-    "$shortcut.Save()",
+    "$sendto_dir=\"$env:USERPROFILE\\AppData\\Roaming\\Microsoft\\Windows\\SendTo\"",
+    "$startup_dir=\"$env:USERPROFILE\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\"",
+    "$sendto = @(\"$sendto_dir\\秀丸.lnk\", \"$dir\\Hidemaru.exe\", $dir)",
+    "$startup = @(\"$startup_dir\\秀丸エディタ.lnk\", \"$dir\\HmResident.exe\", $dir)",
+    "$sendto, $startup | ForEach-Object {",
+    "    $shortcut = $wsh_shell.CreateShortcut($_[0])",
+    "    $shortcut.TargetPath = $_[1]",
+    "    $shortcut.WorkingDirectory = $_[2]",
+    "    $shortcut.Save()",
+    "}",
     "# Adjust reg files for file associations",
     "'install-file-associations', 'uninstall-file-associations' | ForEach-Object {",
     "    $reg_file_in  = \"$bucketsdir\\$bucket\\scripts\\hidemaru\\$_.reg\"",
@@ -71,8 +76,13 @@
     "}"
   ],
   "post_uninstall": [
-    "$sendto=\"$env:USERPROFILE\\AppData\\Roaming\\Microsoft\\Windows\\SendTo\"",
-    "Remove-Item -Path \"$sendto\\秀丸.lnk\""
+    "$sendto_dir=\"$env:USERPROFILE\\AppData\\Roaming\\Microsoft\\Windows\\SendTo\"",
+    "$startup_dir=\"$env:USERPROFILE\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\"",
+    "\"$sendto_dir\\秀丸.lnk\", \"$startup_dir\\秀丸エディタ.lnk\" | ForEach-Object {",
+    "    if (Test-Path $_) {",
+    "        Remove-Item -Path $_",
+    "    }",
+    "}"
   ],
   "checkver": {
     "script": [

@@ -1,0 +1,105 @@
+{
+  "version": "9.21-2.11",
+  "description": "A text editor well-known in Japan",
+  "homepage": "https://hide.maruo.co.jp/software/hidemaru.html",
+  "license": "Shareware",
+  "notes": [
+    "portable kit is applied, so that configuration is stored not into registry but into an ini-like file",
+    "",
+    "To create file-associations for .c, .cpp, .h, .mac, and .txt, and to add into an application list for text files, run '$dir\\install-file-associations.reg'"
+  ],
+  "architecture": {
+    "64bit": {
+      "url": [
+        "https://hide.maruo.co.jp/software/bin/hm921_x64_signed.exe#/hm.7z",
+        "https://hide.maruo.co.jp/software/bin/hmmtakeout211_signed.exe#/kit.7z"
+      ],
+      "hash": [
+        "f2cc5922a508d9bbac416e01035987d3a4e3f3f8bb8084a0aa194187d2c20f34",
+        "009c57c6a9f65f056146c7c6a4da114072dd4736daa2509ccce9975df559684f"
+      ]
+    },
+    "32bit": {
+      "url": [
+        "https://hide.maruo.co.jp/software/bin/hm921_signed.exe#/hm.7z",
+        "https://hide.maruo.co.jp/software/bin/hmmtakeout211_signed.exe#/kit.7z"
+      ],
+      "hash": [
+        "7dcfd3642f464265843d4a165ddbead5097280130e1d10b5247f51ffef6e16ba",
+        "009c57c6a9f65f056146c7c6a4da114072dd4736daa2509ccce9975df559684f"
+      ]
+    }
+  },
+  "pre_install": "if (-not (Test-Path \"$persist_dir\\HmRegIni.ini\")) { New-Item \"$dir\\HmRegIni.ini\" | Out-Null }",
+  "persist": "HmRegIni.ini",
+  "bin": [
+    "Hidemaru.exe",
+    "Hidetags.exe",
+    "HmHang.exe",
+    "HmRegAsm.exe",
+    "HmResident.exe",
+    "hmsetup.exe"
+  ],
+  "post_install": [
+    "# Adjust portable kit content",
+    "if ($architecture -eq '64bit') {",
+    "    Remove-Item @(\"$dir\\HmRegIni.chm\",\"$dir\\HmRegIni.dll\",\"$dir\\HmRegIniInst.exe\")",
+    "    Rename-Item \"$dir\\HmRegIni64.dll\" \"$dir\\HmRegIni.dll\"",
+    "} else { # 32bit assumed",
+    "    Remove-Item @(\"$dir\\HmRegIni.chm\",\"$dir\\HmRegIni64.dll\",\"$dir\\HmRegIniInst.exe\")",
+    "}",
+    "# Create SendTo shortcut",
+    "$sendto=\"$env:USERPROFILE\\AppData\\Roaming\\Microsoft\\Windows\\SendTo\"",
+    "$wsh_shell = New-Object -comObject WScript.Shell",
+    "$shortcut = $wsh_shell.CreateShortcut(\"$sendto\\秀丸.lnk\")",
+    "$shortcut.TargetPath = \"$dir\\Hidemaru.exe\"",
+    "$shortcut.WorkingDirectory = $dir",
+    "$shortcut.Save()",
+    "# Adjust reg files for file associations",
+    "'install-file-associations', 'uninstall-file-associations' | ForEach-Object {",
+    "    $reg_file_in  = \"$bucketsdir\\$bucket\\scripts\\hidemaru\\$_.reg\"",
+    "    $reg_file_out = \"$dir\\$_.reg\"",
+    "    $hidemaru_root     = \"$dir\".Replace('\\', '\\\\')",
+    "    if (Test-Path $reg_file_in) {",
+    "        $content = Get-Content $reg_file_in",
+    "        $content = $content.Replace('$hidemaru_root', $hidemaru_root)",
+    "        if ($global) {",
+    "            $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE')",
+    "        }",
+    "        Set-Content -Path $reg_file_out -Value $content -Encoding Unicode",
+    "    }",
+    "}"
+  ],
+  "post_uninstall": [
+    "$sendto=\"$env:USERPROFILE\\AppData\\Roaming\\Microsoft\\Windows\\SendTo\"",
+    "Remove-Item -Path \"$sendto\\秀丸.lnk\""
+  ],
+  "checkver": {
+    "script": [
+      "$temp=$page",
+      "$stream=[System.Net.WebRequest]::Create('https://hide.maruo.co.jp/software/hmmtakeout.html').GetResponse().GetResponseStream()",
+      "$encoding = [System.Text.Encoding]::GetEncoding('utf-8')",
+      "$temp+=(New-Object System.IO.StreamReader($stream, $encoding)).ReadToEnd()",
+      "$temp=$temp -replace '(?ms)<!--.*?-->',''",
+      "return $temp"
+    ],
+    "regex": "(?ms)hm\\d+_signed.exe.*?Ver(?<hmMajor>\\d+)\\.(?<hmMinor>\\d+)</TD>.*?hmmtakeout\\d+_signed.exe.*?Ver(?<kitMajor>\\d+)\\.(?<kitMinor>\\d+)</TD>",
+    "replace": "${hmMajor}.${hmMinor}-${kitMajor}.${kitMinor}"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": [
+          "https://hide.maruo.co.jp/software/bin/hm$matchHmmajor$matchHmminor_x64_signed.exe#/hm.7z",
+          "https://hide.maruo.co.jp/software/bin/hmmtakeout$matchKitmajor$matchKitminor_signed.exe#/kit.7z"
+        ]
+      },
+      "32bit": {
+        "url": [
+          "https://hide.maruo.co.jp/software/bin/hm$matchHmmajor$matchHmminor_signed.exe#/hm.7z",
+          "https://hide.maruo.co.jp/software/bin/hmmtakeout$matchKitmajor$matchKitminor_signed.exe#/kit.7z"
+        ]
+      }
+    }
+  }
+}

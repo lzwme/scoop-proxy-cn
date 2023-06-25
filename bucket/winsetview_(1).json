@@ -1,0 +1,47 @@
+{
+  "version": "20230602032052+353b6e82ff",
+  "description": "Globally set File Explorer folder views (*nightly* build)",
+  "homepage": "https://github.com/LesFerch/WinSetView",
+  "license": "MIT",
+  "url": "https://ghproxy.net/https://github.com/LesFerch/WinSetView/archive/353b6e82ffb7ffb120d0833ab52a225bd8d5d3f9.zip",
+  "hash": "53b8808acf9d3f6ec383b74956cbc0d6e661d6d6ceec40547a91133ca3888c43",
+  "extract_dir": "WinSetView-353b6e82ffb7ffb120d0833ab52a225bd8d5d3f9",
+  "pre_install": "$manifest.persist | ForEach-Object { if (-not (Test-Path \"$persist_dir\\$_\")) { New-Item \"$dir\\$_\" -Force -ItemType \"Directory\" | Out-Null } }",
+  "post_install": [
+    "$mshta = \"C:\\Windows\\System32\\mshta.exe\"",
+    "$winsetviewhta = \"\"\"$dir\\WinSetView.hta\"\"\"",
+    "# Shim creation",
+    "shim $mshta $global \"WinSetView\" $winsetviewhta",
+    "# Shortcut creation",
+    "$scoop_startmenu_folder = shortcut_folder $global",
+    "$wsShell = (New-Object -ComObject WScript.Shell).CreateShortcut(\"$scoop_startmenu_folder\\WinSetView.lnk\")",
+    "$wsShell.TargetPath = \"$mshta\"",
+    "$wsShell.WorkingDirectory = \"\"\"$dir\"\"\"",
+    "$wsShell.Arguments = $winsetviewhta",
+    "$wsShell.IconLocation = \"$dir\\AppParts\\WinSetView.ico\"",
+    "$wsShell.Save()"
+  ],
+  "post_uninstall": [
+    "rm_shim WinSetView (shimdir $global) $app",
+    "$scoop_startmenu_folder = shortcut_folder $global",
+    "Remove-Item \"$scoop_startmenu_folder\\WinSetView.lnk\" -Force"
+  ],
+  "persist": [
+    "AppData\\Backup",
+    "Tools\\WinViewBak"
+  ],
+  "checkver": {
+    "script": [
+      "$cont = (Invoke-RestMethod -UseBasicParsing -Method Get -Headers @{'Accept-Encoding'='gzip'} -MaximumRedirection 0 -Uri 'https://github.com/LesFerch/WinSetView/commits/main.atom')[0]",
+      "$id = $cont.id",
+      "$commit_timestamp = ([DateTime]$cont.updated).ToUniversalTime().ToString('yyyyMMddHHmmss')",
+      "Write-Output ('id:\"' + $id + '\"') ('commit_timestamp:\"' + $commit_timestamp + '\"')"
+    ],
+    "regex": "id:\"(\\s*\\S+/(?<sha>(?<shortSha>[0-9a-f]{10})[0-9a-f]*)\\s*)\"\\scommit_timestamp:\"(?<commit_timestamp>\\d+)\"",
+    "replace": "${commit_timestamp}+${shortSha}"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/LesFerch/WinSetView/archive/$matchSha.zip",
+    "extract_dir": "WinSetView-$matchSha"
+  }
+}

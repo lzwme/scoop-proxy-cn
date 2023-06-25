@@ -1,0 +1,30 @@
+{
+  "version": "0.22.347.1526",
+  "description": "Observatory Core plugin: send a notification when it detects Unregistered Communications signals, Listening Posts, or Notable Stellar Phenomenon in a system.",
+  "homepage": "https://edjp.colacube.net/observatory",
+  "license": "Proprietary",
+  "depends": "observatory-core",
+  "architecture": {
+    "64bit": {
+      "url": "https://edjp.colacube.net/download/observatorysignalmonitor#/ObservatorySignalMonitor.eop",
+      "hash": "be53ab170bf4bce35dda87f80b83a94e05dd341f6db4da4f36b3cde3e263e624"
+    }
+  },
+  "checkver": {
+    "url": "https://edjp.colacube.net/observatory",
+    "regex": "SignalMonitor</th>[\\n\\r\\t ]*<td>?([\\d.]+)"
+  },
+  "installer": {
+    "script": "Copy-Item -Path \"$dir\\ObservatorySignalMonitor.eop\" -Destination \"$(appdir observatory-core)\\current\\plugins\" -Force -ErrorAction SilentlyContinue"
+  },
+  "uninstaller": {
+    "script": "Remove-Item -Path \"$(appdir observatory-core)\\current\\plugins\\ObservatorySignalMonitor.*\" -Force -ErrorAction SilentlyContinue"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://edjp.colacube.net/download/observatorysignalmonitor#/ObservatorySignalMonitor.eop"
+      }
+    }
+  }
+}

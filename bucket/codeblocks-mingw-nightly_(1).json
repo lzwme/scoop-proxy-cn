@@ -1,0 +1,44 @@
+{
+  "architecture": {
+    "64bit": {
+      "hash": [
+        "b52bee400f58311abc19d1447c7df07e5951cace75294127b49802c455f79c13",
+        "sha1:7096f0cf0109e31cfaa0388237f1e3f118c8742c",
+        "sha1:9452ff62c7fff1346d1afc91683d0f3d7d21e84f"
+      ],
+      "url": [
+        "https://sourceforge.net/projects/codeblocks/files/Binaries/Nightlies/2022/CB_20221210_rev13107_win64.7z",
+        "https://sourceforge.net/projects/codeblocks/files/Binaries/Nightlies/Prerequisites/wxmsw31u_gcc_cb_wx315_2D_gcc810-mingw64.7z",
+        "http://sourceforge.net/projects/codeblocks/files/Binaries/Nightlies/Prerequisites/Mingw64dlls8.1.0.7z"
+      ]
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://sourceforge.net/projects/codeblocks/files/Binaries/Nightlies/2022/CB_$matchDate_rev$matchRev_win64.7z"
+      }
+    }
+  },
+  "bin": [
+    "codeblocks.exe",
+    "codeblocks-nightly"
+  ],
+  "checkver": {
+    "regex": "/Binaries/Nightlies/2022/CB_(?<date>\\d{8})_rev(?<rev>\\d{5})_win64.7z",
+    "replace": "${date}.${rev}",
+    "url": "https://sourceforge.net/projects/codeblocks/rss?path=/Binaries/Nightlies/"
+  },
+  "description": "Free open-source C/C++/Fortran IDE (includes additional GCC/G++ compiler and GDB debugger)",
+  "homepage": "http://www.codeblocks.org",
+  "license": {
+    "identifier": "GPL-3.0-or-later"
+  },
+  "shortcuts": [
+    [
+      "codeblocks.exe",
+      "CodeBlocks Nightly"
+    ]
+  ],
+  "version": "20221210.13107"
+}

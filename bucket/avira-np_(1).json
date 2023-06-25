@@ -1,0 +1,32 @@
+{
+  "##": [
+    "The downloaded file could be a newer version rather than indicated in: https://support.avira.com/hc/en-us/articles/360010656158-Current-versions. Therefore checkver is not used.",
+    "Check installer exit codes at https://servereye.freshdesk.com/support/solutions/articles/14000080956-auflistung-der-avira-antivirus-setup-return-codes-exit-codes"
+  ],
+  "version": "nightly",
+  "description": "Avira Free Antivirus",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://www.avira.com/en/license-agreement-terms-of-use"
+  },
+  "url": "https://download.avira.com/package/antivirus/win/en-us/avira_antivirus_en-us.exe#/dl.7z_",
+  "hash": "84901b37493a5d72c39184e6d3722d89981781bab896b39bca9d879ff48cf6c9",
+  "installer": {
+    "script": [
+      "$scriptdir = (Find-BucketDirectory $bucket)+'\\..\\scripts'",
+      "New-Item \"$dir\\setup\" -Itemtype directory | Out-Null",
+      "Expand-7zipArchive \"$dir\\dl.7z_\" -DestinationPath \"$dir\\setup\" -Overwrite all -Removal | Out-Null",
+      "Invoke-ExternalCommand \"$dir\\setup\\presetup.exe\" -ArgumentList @(\"/INF=$scriptdir\\avira\\setup.inf\") | Out-Null",
+      "Remove-Item \"$dir\\setup\" -Force -Recurse | Out-Null",
+      "Remove-Item \"$([Environment]::GetFolderPath('CommonDesktopDirectory'))\\Avira.lnk\"",
+      "warn 'You need to restart the PC for Avira Antivirus to work properly'"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Invoke-ExternalCommand \"${env:ProgramFiles(x86)}\\Avira\\Antivirus\\setup.exe\" -ArgumentList @('/REMOVE') | Out-Null",
+      "Invoke-ExternalCommand \"$env:ProgramData\\Package Cache\\{21098ed5-59e9-4203-b79e-63f3c373e022}\\Avira.OE.Setup.Bundle.exe\" -ArgumentList @('/uninstall', '/quiet') -RunAs | Out-Null",
+      "warn 'Avira Antivirus will be removed after you restart the PC'"
+    ]
+  }
+}

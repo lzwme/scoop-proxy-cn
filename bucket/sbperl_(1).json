@@ -1,0 +1,27 @@
+{
+  "version": "5.30.3.1",
+  "description": "Strawberry Perl - A programming language suitable for writing simple scripts as well as complex applications.",
+  "homepage": "https://strawberryperl.com",
+  "license": "GPL-1.0-or-later|Artistic-1.0-Perl",
+  "architecture": {
+    "64bit": {
+      "url": "https://strawberryperl.com/download/5.30.3.1/strawberry-perl-5.30.3.1-64bit-portable.zip",
+      "hash": "sha1:487a15ab60bdc41ed72626b6b4fb260d755d4a98"
+    },
+    "32bit": {
+      "url": "https://strawberryperl.com/download/5.30.3.1/strawberry-perl-5.30.3.1-32bit-portable.zip",
+      "hash": "sha1:bbda07beadaeaf82b54bbfdc8635d8ec2e5adaba"
+    }
+  },
+  "post_install": [
+    "# enable standard idiomatic access to user's home directory",
+    "## remove HomeDir section from portable.perl (disables Portable.pm override of File::HomeDir)",
+    "## NOTE: conversion to byte[] avoids adding an extra trailing newline to the output file",
+    "[System.IO.File]::WriteAllBytes(\"$dir\\portable.perl\", ([byte[]][char[]]((Get-Content -Raw \"$dir\\portable.perl\") -replace \"(?ms)^HomeDir:.*?^(?=\\S)\",\"\")))"
+  ],
+  "env_add_path": [
+    "perl\\site\\bin",
+    "perl\\bin",
+    "c\\bin"
+  ]
+}

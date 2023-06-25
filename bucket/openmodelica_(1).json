@@ -1,0 +1,76 @@
+{
+  "version": "1.16.5",
+  "homepage": "https://www.openmodelica.org",
+  "description": "Distributed version control system.",
+  "license": "GPL-3.0/OSMC Public License",
+  "architecture": {
+    "64bit": {
+      "url": "https://build.openmodelica.org/omc/builds/windows/releases/1.16/5/64bit/OpenModelica-v1.16.5-64bit.exe#/dl.7z",
+      "hash": "md5:7f57696b87d887df9d53721392cb4807",
+      "pre_install": [
+        "Move-Item \"$dir\\_\\`$INSTDIR`\\*\" \"$dir\"",
+        "Remove-Item -Path \"$dir\\_\" -Force -Recurse"
+      ]
+    },
+    "32bit": {
+      "url": "https://build.openmodelica.org/omc/builds/windows/releases/1.16/5/32bit/OpenModelica-v1.16.5-32bit.exe#/dl.7z",
+      "hash": "md5:cb3e2b791c08c507d711f57b9085cbe1",
+      "pre_install": [
+        "Move-Item \"$dir\\_\\`$INSTDIR`\\*\" \"$dir\"",
+        "Remove-Item -Path \"$dir\\_\" -Force -Recurse"
+      ]
+    }
+  },
+  "bin": [
+    "bin\\BreakProcess.exe",
+    "bin\\OMCppOSUSimulation.exe",
+    "bin\\OMOptim.exe",
+    "bin\\OMSimulator.exe",
+    "bin\\FMIWrapper.exe",
+    "bin\\OMEdit.exe",
+    "bin\\OMPlot.exe",
+    "bin\\omc-diff.exe",
+    "bin\\OMCZeroMQ.exe",
+    "bin\\OMNotebook.exe",
+    "bin\\OMShell.exe",
+    "bin\\omc.exe"
+  ],
+  "shortcuts": [
+    [
+      "bin\\OMEdit.exe",
+      "OpenModelica Edit"
+    ],
+    [
+      "bin\\OMNotebook.exe",
+      "OpenModelica Notebook"
+    ],
+    [
+      "bin\\OMShell.exe",
+      "OpenModelica Shell"
+    ]
+  ],
+  "checkver": {
+    "url": "https://www.openmodelica.org/download/download-windows",
+    "regex": "https://build.openmodelica.org/omc/builds/windows/releases/(?<version>(?<major>[\\d.]+)/(?<minor>[\\d.]+))/",
+    "replace": "$2.$3"
+  },
+  "env_set": {
+    "GIT_INSTALL_ROOT": "$dir"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://build.openmodelica.org/omc/builds/windows/releases/$majorVersion.$minorVersion/$patchVersion/64bit/OpenModelica-v$version-64bit.exe#/dl.7z",
+        "hash": {
+          "url": "https://build.openmodelica.org/omc/builds/windows/releases/$majorVersion.$minorVersion/$patchVersion/64bit/OpenModelica-latest.md5sum"
+        }
+      },
+      "32bit": {
+        "url": "https://build.openmodelica.org/omc/builds/windows/releases/$majorVersion.$minorVersion/$patchVersion/32bit/OpenModelica-v$version-32bit.exe#/dl.7z",
+        "hash": {
+          "url": "https://build.openmodelica.org/omc/builds/windows/releases/$majorVersion.$minorVersion/$patchVersion/32bit/OpenModelica-latest.md5sum"
+        }
+      }
+    }
+  }
+}

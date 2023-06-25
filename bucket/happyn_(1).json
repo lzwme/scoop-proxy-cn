@@ -1,0 +1,44 @@
+{
+  "homepage": "https://github.com/happynclient/happynwindows",
+  "description": "Happyn Windows 客户端。卸载目前有 Bug，调用的 nssm 是交互式的。checkver 默认在 github 仓库首页（homepage 设定的地址）里搜索，但是这个仓库的首页的 README.md 引用了其他仓库的 releases。所以要修改 checkver 的 url。",
+  "version": "1.7",
+  "hash": "da4ce6eceaa52054b4f70114d0b0446482c07eb9e03cde631af79776da27e304",
+  "license": "GPL-3.0-only",
+  "url": "https://ghproxy.net/https://github.com/happynclient/happynwindows/releases/download/1.7-en-us/happynet-win-x86-x64-all-1.7-en-us.zip",
+  "checkver": {
+    "url": "https://github.com/happynclient/happynwindows/releases/latest",
+    "regex": "/releases/tag/([\\d.]+)(.*?)\""
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/happynclient/happynwindows/releases/download/$match1$match2/happynet-win-x86-x64-all-$match1$match2.zip"
+  },
+  "pre_install": [
+    "if (!(is_admin)) {",
+    "    error \"Administrator rights are required to install $app.\"",
+    "    exit 1",
+    "}"
+  ],
+  "installer": {
+    "script": [
+      "$installer = Get-Item $dir\\happynet-win-x86-x64-all-*.exe",
+      "&$installer /S"
+    ]
+  },
+  "pre_uninstall": [
+    "if (!(is_admin)) {",
+    "    error \"Administrator rights are required to uninstall $app.\"",
+    "    exit 1",
+    "}"
+  ],
+  "uninstaller": {
+    "script": [
+      "if(Test-Path $Env:ProgramFiles\\happynet\\happynet_uninst.exe) {",
+      "$uninstaller = \"$Env:ProgramFiles\\happynet\\happynet_uninst.exe\"",
+      "}",
+      "else {",
+      "$uninstaller = \"${env:ProgramFiles(x86)}\\happynet\\happynet_uninst.exe\"",
+      "}",
+      "&\"$uninstaller\" /S"
+    ]
+  }
+}

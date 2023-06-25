@@ -1,0 +1,19 @@
+{
+  "version": "2022-12-24",
+  "description": "Collection of paint.net plugins by Ed Harvey",
+  "homepage": "https://forums.getpaint.net/topic/18811-ed-harvey-effects-v-50-2022-12-24/",
+  "license": "MIT",
+  "depends": "extras/paint.net",
+  "url": "https://forums.getpaint.net/applications/core/interface/file/attachment.php?id=22589&key=92283df77975319eb99aa6580fc1482b#/dl.zip",
+  "hash": "3df006dba2d4f009fb31668ecd554da3154e1e95fc6d250cb122998b4b9f20c4",
+  "post_install": [
+    "$paintdotnet = \"$(appdir paint.net)\\current\\Effects\"",
+    "Move-Item -Path \"$dir\\EdHarvey.Edfects.*\" -Destination \"$paintdotnet\" -Force"
+  ],
+  "uninstaller": {
+    "script": [
+      "$paintdotnet = \"$(appdir paint.net)\\current\\Effects\"",
+      "Remove-Item \"$paintdotnet\\EdHarvey.Edfects.*\" -Force"
+    ]
+  }
+}

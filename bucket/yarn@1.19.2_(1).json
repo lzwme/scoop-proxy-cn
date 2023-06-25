@@ -1,0 +1,33 @@
+{
+  "homepage": "https://yarnpkg.com/",
+  "description": "Node.js dependency manager",
+  "version": "1.22.19",
+  "license": "BSD-2-Clause",
+  "url": "https://yarnpkg.com/downloads/1.22.19/yarn-1.22.19.msi",
+  "hash": "df205f19ece536f2a55481d5c0deb70898c6b462c92b17deb0d26b3cbeb2bd91",
+  "persist": [
+    "cache",
+    "mirror",
+    "global"
+  ],
+  "post_install": [
+    "yarn config set cache-folder \"$dir\\cache\"",
+    "yarn config set yarn-offline-mirror \"$dir\\mirror\"",
+    "yarn config set global-folder \"$dir\\global\"",
+    "yarn config set prefix \"$dir\\global\""
+  ],
+  "env_add_path": [
+    "global\\node_modules\\.bin",
+    "Yarn\\bin"
+  ],
+  "env_set": {
+    "NODE_PATH": "$dir\\global\\node_modules"
+  },
+  "checkver": {
+    "url": "https://yarnpkg.com/latest-version",
+    "re": "([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://yarnpkg.com/downloads/$version/yarn-$version.msi"
+  }
+}

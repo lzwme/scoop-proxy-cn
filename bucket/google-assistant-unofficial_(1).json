@@ -1,0 +1,30 @@
+{
+  "homepage": "https://github.com/Melvin-Abraham/Google-Assistant-Unofficial-Desktop-Client",
+  "version": "1.0.0-rc.2",
+  "license": "Apache-2.0",
+  "url": "https://ghproxy.net/https://github.com/Melvin-Abraham/Google-Assistant-Unofficial-Desktop-Client/releases/download/v1.0.0-rc.2/Google_Assistant-Setup-1.0.0-rc.2.exe#/dl.7z",
+  "hash": "sha256:2277e085c3bdc1f2f5b09281b403517caefeec45e443777baee3d90a9a571929",
+  "bin": "Google Assistant.exe",
+  "shortcuts": [
+    [
+      "Google Assistant.exe",
+      "Google Assistant"
+    ]
+  ],
+  "architecture": {
+    "64bit": {
+      "installer": {
+        "script": [
+          "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+          "Remove-Item \"$dir\\`$PLUGINSDIR\" -Recurse"
+        ]
+      }
+    }
+  },
+  "checkver": {
+    "github": "https://github.com/Melvin-Abraham/Google-Assistant-Unofficial-Desktop-Client"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/Melvin-Abraham/Google-Assistant-Unofficial-Desktop-Client/releases/download/$version/Google.Assistant-Setup-$version.exe#/dl.7z"
+  }
+}

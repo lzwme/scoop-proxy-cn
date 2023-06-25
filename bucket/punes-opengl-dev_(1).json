@@ -1,0 +1,71 @@
+{
+  "version": "443-20230405-48f0d8a",
+  "description": "Qt-based Nintendo Entertaiment System emulator and NSF/NSFe Music Player (OpenGL Version)",
+  "homepage": "https://github.com/punesemu/puNES",
+  "license": "GPL-2.0",
+  "architecture": {
+    "32bit": {
+      "url": "https://nightly.link/punesemu/puNES/workflows/build/master/punes32.wip.opengl.zip",
+      "hash": "2d759a21729e8811eded202ffcca9c5d492598ed05d8a52e43cc9da369bb3e12"
+    },
+    "64bit": {
+      "url": "https://nightly.link/punesemu/puNES/workflows/build/master/punes64.wip.opengl.zip",
+      "hash": "35139922b9b4aa03f37a4d32713b199f802e26e265f7c1006b88a116958b11f3"
+    }
+  },
+  "bin": [
+    [
+      "punes.exe",
+      "puNES (OpenGL) (dev)",
+      "--portable"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "punes.exe",
+      "puNES (OpenGL) (dev)",
+      "--portable"
+    ]
+  ],
+  "persist": [
+    "bios",
+    "cheat",
+    "diff",
+    "jsc",
+    "pgs",
+    "prb",
+    "save",
+    "screenshot",
+    "shp",
+    "tmp",
+    "input.cfg",
+    "puNES.cfg",
+    "recent.cfg"
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/punesemu/puNES/actions/workflows/build.yml/runs?branch=master&status=success",
+    "script": [
+      "$sha = json_path $page $.workflow_runs[0].head_sha",
+      "$runId = json_path $page $.workflow_runs[0].run_number",
+      "$suiteId = json_path $page $.workflow_runs[0].check_suite_id",
+      "$artUrl = json_path $page $.workflow_runs[0].artifacts_url",
+      "$date = json_path $page $.workflow_runs[0].created_at",
+      "$cont = (Invoke-WebRequest $artUrl).Content | ConvertFrom-Json",
+      "$art32Id = $cont.artifacts[0].id",
+      "$art64Id = $cont.artifacts[2].id",
+      "Write-Output \"$runId $date $suiteId $art32Id $art64Id $sha\""
+    ],
+    "regex": "^(?<run>[^ ]+) (?<year>\\d{4})-(?<month>\\d{2})-(?<day>\\d{2})[^ ]+ (?<suite>\\d+) (?<artifact32>\\d+) (?<artifact64>\\d+) (?<commit>[\\da-f]{7})(?<sha>[\\da-f]+)$",
+    "replace": "${run}-${year}${month}${day}-${commit}"
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://nightly.link/punesemu/puNES/workflows/build/master/punes32.wip.opengl.zip"
+      },
+      "64bit": {
+        "url": "https://nightly.link/punesemu/puNES/workflows/build/master/punes64.wip.opengl.zip"
+      }
+    }
+  }
+}

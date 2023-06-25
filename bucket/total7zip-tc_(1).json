@@ -1,0 +1,32 @@
+{
+  "version": "0.8.5.6",
+  "notes": "记得康康 readme",
+  "description": "Packer plug-in based on 7z.dll and 7zG.exe for Total Commander.",
+  "homepage": "http://totalcmd.net/plugring/total7zip.html",
+  "license": "Freeware",
+  "suggest": {
+    "totalcmd": "extra/totalcommander"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "http://wincmd.ru/files/wcx_Total7zip_0856.rar",
+      "hash": "d4aff43302e38b4fcc4d3f4b04ba626ca5ef736bf8279117f712c1c2ad01bcaa"
+    }
+  },
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\")) {",
+    "   Copy-Item \"$dir\\total7zip.template.xml\" \"$dir\\Total7zip.xml\"",
+    "}"
+  ],
+  "persist": "Total7zip.xml",
+  "checkver": {
+    "re": "<h1>Total7zip ([\\d.]+)</h1>"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "http://wincmd.ru/files/wcx_Total7zip_$cleanVersion.rar"
+      }
+    }
+  }
+}

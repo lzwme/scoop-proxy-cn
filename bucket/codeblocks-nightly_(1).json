@@ -1,0 +1,40 @@
+{
+  "architecture": {
+    "64bit": {
+      "hash": "b52bee400f58311abc19d1447c7df07e5951cace75294127b49802c455f79c13",
+      "url": "https://sourceforge.net/projects/codeblocks/files/Binaries/Nightlies/2022/CB_20221210_rev13107_win64.7z"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://sourceforge.net/projects/codeblocks/files/Binaries/Nightlies/2022/CB_$matchDate_rev$matchRev_win64.7z"
+      }
+    }
+  },
+  "bin": [
+    "codeblocks.exe",
+    "codeblocks-nightly"
+  ],
+  "checkver": {
+    "regex": "/Binaries/Nightlies/2022/CB_(?<date>\\d{8})_rev(?<rev>\\d{5})_win64.7z",
+    "replace": "${date}.${rev}",
+    "url": "https://sourceforge.net/projects/codeblocks/rss?path=/Binaries/Nightlies/"
+  },
+  "description": "Free open-source C/C++/Fortran IDE (nightly version)",
+  "homepage": "http://www.codeblocks.org",
+  "license": {
+    "identifier": "GPL-3.0-or-later"
+  },
+  "notes": [
+    "This is the standalone version of the Code::Blocks IDE (does not include compilers/debuggers).",
+    "Check 'codeblocks-mingw-nightly' for Code::Blocks with integrated compilers/debuggers."
+  ],
+  "shortcuts": [
+    [
+      "codeblocks.exe",
+      "CodeBlocks Nightly"
+    ]
+  ],
+  "version": "20221210.13107"
+}

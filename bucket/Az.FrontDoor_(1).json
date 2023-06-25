@@ -1,0 +1,27 @@
+{
+  "checkver": {
+    "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id%20eq%20'Az.FrontDoor'%20and%20IsLatestVersion%20eq%20true",
+    "replace": "${ver}",
+    "regex": "(?i)<d:Version>(?<ver>[^<]+)<.d:Version>"
+  },
+  "hash": "sha512:91195dac8c2a6a71fedfffd1d64589ed6db2b40217e9ca928bbbc44dfa682349cc5737da9d95804e39a4b1ab4819597f1cb7d2435007428a458e3645eeca5344",
+  "description": "Microsoft Azure PowerShell - Front Door service cmdlets for Azure Resource Manager in Windows PowerShell and PowerShell Core.  For more information on Front Door, please visit the following: https://learn.microsoft.com/azure/frontdoor/",
+  "psmodule": {
+    "name": "Az.FrontDoor"
+  },
+  "homepage": "https://www.powershellgallery.com/packages/Az.FrontDoor",
+  "autoupdate": {
+    "url": "https://www.powershellgallery.com/api/v2/Package/Az.FrontDoor/$version#/mod.nupkg",
+    "hash": {
+      "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id eq 'Az.FrontDoor' and Version eq '$version'",
+      "regex": "<d:PackageHash>$base64<.d:PackageHash>"
+    }
+  },
+  "license": {
+    "identifier": "Refer to Webpage",
+    "url": "https://aka.ms/azps-license"
+  },
+  "url": "https://www.powershellgallery.com/api/v2/Package/Az.FrontDoor/1.10.0#/mod.nupkg",
+  "depends": "Az.Accounts",
+  "version": "1.10.0"
+}

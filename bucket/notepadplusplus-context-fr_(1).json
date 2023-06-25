@@ -1,0 +1,29 @@
+{
+  "version": "0.0.1",
+  "description": "Add explorer context menu entries for notepad++ - French version.",
+  "depends": "extras/notepadplusplus",
+  "url": [
+    "https://ghproxy.net/https://raw.githubusercontent.com/mbl-35/scoop-srsrns/master/scripts/notepadplusplus-install-context.reg",
+    "https://ghproxy.net/https://raw.githubusercontent.com/mbl-35/scoop-srsrns/master/scripts/notepadplusplus-uninstall-context.reg"
+  ],
+  "hash": [
+    "e294e70aa62c6bca91349e9eeb9cdfdd4f4921f6211a5ede576a3deb1e0f7527",
+    "9b7fcbf7b3a7006cb7088493ab779476839e4dddb91dc62215d0503d5b2e67be"
+  ],
+  "installer": {
+    "script": [
+      "$npppath = \"$(appdir notepadplusplus $global)\\current\\notepad++.exe\".Replace('\\','\\\\')",
+      "$content = Get-Content \"$dir\\notepadplusplus-install-context.reg\"",
+      "$content = $content.Replace('$npp', $npppath)",
+      "$content = $content.Replace('Open with ','Ouvrir avec ')",
+      "$content | Set-Content -Path \"$dir\\notepadplusplus-install-context.reg\"",
+      "$Ucontent = Get-Content \"$dir\\notepadplusplus-uninstall-context.reg\"",
+      "$Ucontent = $Ucontent.Replace('Open with ','Ouvrir avec ')",
+      "$Ucontent | Set-Content -Path \"$dir\\notepadplusplus-uninstall-context.reg\"",
+      "&(Get-Command reg.exe) import \"$dir\\notepadplusplus-install-context.reg\""
+    ]
+  },
+  "uninstaller": {
+    "script": "&(Get-Command reg.exe) import \"$dir\\notepadplusplus-uninstall-context.reg\""
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "homepage": "https://frippery.org/busybox",
+  "description": "BusyBox is a single binary that contains many common Unix tools",
+  "version": "3329-gcf0fa4d13",
+  "license": "GPL-2.0-only",
+  "architecture": {
+    "32bit": {
+      "url": "https://frippery.org/files/busybox/busybox-w32-FRP-3329-gcf0fa4d13.exe#/busybox.exe",
+      "hash": "bfaeb88638e580fc522a68e69072e305308f9747563e51fa085eec60ca39a5ae"
+    },
+    "64bit": {
+      "url": "https://frippery.org/files/busybox/busybox-w64-FRP-3329-gcf0fa4d13.exe#/busybox.exe",
+      "hash": "8bb42c9758c8d4628d79b255e015bc891c8eb044fc9fba5265928fcb4a2a9f24"
+    }
+  },
+  "checkver": {
+    "url": "https://frippery.org/busybox/",
+    "re": ">busybox-w32-FRP-([\\w-]+)\\."
+  },
+  "autoupdate": {
+    "hash": {
+      "url": "$baseurl/SHA256SUM"
+    },
+    "architecture": {
+      "32bit": {
+        "url": "https://frippery.org/files/busybox/busybox-w32-FRP-$version.exe#/busybox.exe"
+      },
+      "64bit": {
+        "url": "https://frippery.org/files/busybox/busybox-w64-FRP-$version.exe#/busybox.exe"
+      }
+    }
+  },
+  "post_install": [
+    "if(!(test-path ~/.profile)) {",
+    "    'creating ~/.profile'",
+    "@\"",
+    "if [ -e ~/.bashrc ]",
+    "then",
+    "   source ~/.bashrc",
+    "fi",
+    "\"@ | out-file -en oem ~/.profile",
+    "}"
+  ],
+  "bin": [
+    "busybox.exe"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "version": "0.9.11",
+  "description": "An Open Source YouTube app for privacy ",
+  "license": "https://github.com/rickbutton/workspacer/blob/master/LICENSE",
+  "homepage": "https://workspacer.org/ ",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/rickbutton/workspacer/releases/download/v0.9.11/workspacer-0.9.11-stable.zip",
+      "hash": "0b19779a84adefb9646de4598586eb67a563920195b66fabc39c5cf11f6a3c4c"
+    }
+  },
+  "checkver": {
+    "github": "https://github.com/rickbutton/workspacer"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/rickbutton/workspacer/releases/download/v$version/workspacer-$version-stable.zip",
+    "hash": {
+      "find": "sha512:\\s+(.*)"
+    }
+  },
+  "bin": "Workspacer.exe"
+}

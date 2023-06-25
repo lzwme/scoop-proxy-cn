@@ -1,0 +1,43 @@
+{
+  "version": "0.1.8",
+  "description": "Alternative downloader for https://goplay.anontpp.com",
+  "homepage": "https://github.com/lastmodified/kdramadl",
+  "license": "GPL-3.0-or-later",
+  "depends": "ffmpeg",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/lastmodified/kdramadl/releases/download/0.1.8/kdramadl_windows_64bit_v0.1.8.zip",
+      "hash": "aedefe5f94efabbd0095b2bb2632d3056d252c8a8777175735408cf888b4afb6"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/lastmodified/kdramadl/releases/download/0.1.8/kdramadl_windows_32bit_v0.1.8.zip",
+      "hash": "e61bed717ec77dfb46f049afe53abc9eb1174f875c1ee4c9fb27a1265dea2132"
+    }
+  },
+  "bin": [
+    [
+      "kdramadl.exe",
+      "kdramadl",
+      "--folder Downloads"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "kdramadl.exe",
+      "kdramadl",
+      "--folder Downloads"
+    ]
+  ],
+  "persist": "Downloads",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/lastmodified/kdramadl/releases/download/$version/kdramadl_windows_64bit_v$version.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/lastmodified/kdramadl/releases/download/$version/kdramadl_windows_32bit_v$version.zip"
+      }
+    }
+  }
+}

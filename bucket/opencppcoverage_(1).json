@@ -1,0 +1,41 @@
+{
+  "homepage": "https://github.com/OpenCppCoverage/OpenCppCoverage",
+  "license": "GNU General Public License v3.0",
+  "version": "0.9.9.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/OpenCppCoverage/OpenCppCoverage/releases/download/release-0.9.9.0/OpenCppCoverageSetup-x64-0.9.9.0.exe",
+      "hash": "2295a733da39412c61e4f478677519dd0bb1893d88313ce56b468c9e50517888"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/OpenCppCoverage/OpenCppCoverage/releases/download/release-0.9.9.0/OpenCppCoverageSetup-x86-0.9.9.0.exe",
+      "hash": "d6ce9f61457ac084defc7a37b383e81ceeb01ef30933e104017db9f33bc3ab05"
+    }
+  },
+  "installer": {
+    "args": [
+      "/VERYSILENT",
+      "/DIR=\"$dir\""
+    ],
+    "keep": true
+  },
+  "uninstaller": {
+    "file": "uninst000.exe",
+    "args": []
+  },
+  "bin": "OpenCppCoverage.exe",
+  "checkver": {
+    "url": "https://github.com/OpenCppCoverage/OpenCppCoverage/releases",
+    "re": "OpenCppCoverage ([\\d\\.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/OpenCppCoverage/OpenCppCoverage/releases/download/release-$version/OpenCppCoverageSetup-x64-$version.exe"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/OpenCppCoverage/OpenCppCoverage/releases/download/release-$version/OpenCppCoverageSetup-x86-$version.exe"
+      }
+    }
+  }
+}

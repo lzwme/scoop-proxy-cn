@@ -1,0 +1,21 @@
+{
+  "homepage": "https://fsd.it/shop/fonts/pragmatapro/",
+  "version": "0.829-2",
+  "description": "PragmataPro is a monospaced font family designed for programming, created by Fabrizio Schiavi. It is a narrow programming font designed for legibility. The font implements Unicode characters, including Greek, Cyrillic, Arabic, Hebrew and the APL codepoints.",
+  "checkver": {
+    "url": "https://www.dropbox.com/s/vdvljxu1jg1fmi4/pragmatapro.html?dl=1",
+    "re": ">\\s+version (.*?)\\s+<"
+  },
+  "url": "https://www.dropbox.com/s/ixta7bxbyy6hf37/pragmatapro.7z?dl=1#/pragmatapro.7zc",
+  "hash": "3a875dc6e764059da54747dae7defad8db473a0f9ea9b56ca5ce4ee200509c32",
+  "autoupdate": {
+    "url": "https://www.dropbox.com/s/ixta7bxbyy6hf37/pragmatapro.7z?dl=1#/pragmatapro.7zc"
+  },
+  "installer": {
+    "script": [
+      "Move-Item -Path \"$dir\\pragmatapro.7zc\" -Destination \"$dir\\pragmatapro.7z\" > $null",
+      "7z x -o\"$dir\" -p\"$Env:SCOOP_PWD\" \"$dir\\pragmatapro.7z\" > $null",
+      "Remove-Item \"$dir\\pragmatapro.7z\" > $null"
+    ]
+  }
+}

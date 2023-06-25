@@ -1,0 +1,45 @@
+{
+  "version": "1.0.0",
+  "homepage": "https://github.com/textext/gtksourceview-for-inkscape-windows",
+  "description": "A package providing GtkSourceView libraries for Inkscape 1.0 and later on Windows.",
+  "license": "LGPL-2.1-only",
+  "notes": "You have to re-install GtkSourceView for Inkscape every time Inkscape is updated.",
+  "depends": "extras/inkscape",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/textext/gtksourceview-for-inkscape-windows/releases/download/1.0.0/GtkSourceView-3.24-Inkscape-1.0-64bit.zip",
+      "hash": "c5a1b48ecb896b439bd648a7d0365da8c5b88ce63ace529a2e310ca37fa89a32"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/textext/gtksourceview-for-inkscape-windows/releases/download/1.0.0/GtkSourceView-3.24-Inkscape-1.0-32bit.zip",
+      "hash": "72878a80765a1ef4fc7031a51eb2ee2337ccbc237720db1af8f727dfc04d7d32"
+    }
+  },
+  "installer": {
+    "script": [
+      "Copy-Item -Path \"$dir\\*\" -Destination \"$scoopdir\\apps\\inkscape\\current\" -Recurse -ErrorVariable capturedErrors -ErrorAction SilentlyContinue",
+      "$capturedErrors | ForEach-Object { if ($_ -notmatch \"already exists\") { Write-Error $_ } }"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Remove-Item \"$scoopdir\\apps\\inkscape\\current\\bin\\libgtksourceview-3.0-1.dll\" -ErrorAction SilentlyContinue",
+      "Remove-Item \"$scoopdir\\apps\\inkscape\\current\\lib\\girepository-1.0\\GtkSource-3.0.typelib\" -ErrorAction SilentlyContinue",
+      "Remove-Item \"$scoopdir\\apps\\inkscape\\current\\share\\gtksourceview-3.0\" -Recurse -ErrorAction SilentlyContinue"
+    ]
+  },
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/textext/gtksourceview-for-inkscape-windows/releases/download/1.0.0/GtkSourceView-3.24-Inkscape-1.0-64bit.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/textext/gtksourceview-for-inkscape-windows/releases/download/1.0.0/GtkSourceView-3.24-Inkscape-1.0-32bit.zip"
+      }
+    }
+  },
+  "suggest": {
+    "GtkSourceView for Inkscape 1.0": "gtksourceview-for-inkscape-windows"
+  }
+}

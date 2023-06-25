@@ -1,0 +1,33 @@
+{
+  "homepage": "https://pecl.php.net/package/crypto",
+  "version": "0.3.1",
+  "license": "http://www.php.net/license/3_01.txt",
+  "architecture": {
+    "64bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/crypto/0.3.1/php_crypto-0.3.1-7.1-ts-vc14-x64.zip",
+      "hash": "33795465d16fb8bf9373daf6b625b55a5e4ff86b5543d6ae5c3d7bd99c0f3eee"
+    },
+    "32bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/crypto/0.3.1/php_crypto-0.3.1-7.1-ts-vc14-x86.zip",
+      "hash": "3ba4c7bf41f65ea8ac2ded92088efb6e3fedf0421f368dbcde7afbac07c31272"
+    }
+  },
+  "depends": [
+    "php"
+  ],
+  "post_install": "$phpconfd = \"$persist_dir\\..\\php\\cli\\conf.d\"; if((test-path $phpconfd)) { echo \"Enabling extension $(Convert-Path $phpconfd)\\crypto.ini\"; echo \"extension=$dir\\php_crypto.dll\" | sc \"$phpconfd\\crypto.ini\"; echo \"Remove-Item '$(Convert-Path $phpconfd)\\crypto.ini'\" | sc \"$dir\\uninstall.ps1\" } else { write-host -f yellow \"PHP was not installed through scoop, you have to activate php_crypto.dll manually!\" }",
+  "checkver": "crypto/([\\d.]+)/windows",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/crypto/$version/php_crypto-$version-7.1-ts-vc14-x64.zip"
+      },
+      "32bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/crypto/$version/php_crypto-$version-7.1-ts-vc14-x86.zip"
+      }
+    }
+  },
+  "uninstaller": {
+    "file": "uninstall.ps1"
+  }
+}

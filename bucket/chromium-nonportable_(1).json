@@ -1,0 +1,31 @@
+{
+  "version": "114.0.5735.110",
+  "description": "Chromium is an open-source browser project that aims to build a safer, faster, and more stable way for all Internet users to experience the web",
+  "homepage": "https://github.com/Hibbiki/chromium-win64",
+  "license": "BSD-3-Clause",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/Hibbiki/chromium-win64/releases/download/v114.0.5735.110-r1135570/mini_installer.sync.exe",
+      "hash": "06aeda46566f2263cddd459f3239e70f1c4f041fe18a6ae243fc13b8928ae089"
+    }
+  },
+  "installer": {
+    "args": "--do-not-launch-chrome"
+  },
+  "uninstaller": {
+    "##": "Using 'script' instead of 'file' because it exits with error code 19.",
+    "script": "Start-Process -FilePath \"${env:LOCALAPPDATA}\\Chromium\\Application\\$version\\Installer\\setup.exe\" -ArgumentList \"--uninstall --force-uninstall\""
+  },
+  "checkver": {
+    "url": "https://github.com/Hibbiki/chromium-win64/releases//latest",
+    "regex": "v(?<version>[\\d.]+)-r(?<rev>[\\d]+)",
+    "replace": "${version}"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/Hibbiki/chromium-win64/releases/download/v$version-r$matchRev/mini_installer.sync.exe"
+      }
+    }
+  }
+}

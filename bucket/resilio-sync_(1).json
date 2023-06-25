@@ -1,0 +1,38 @@
+{
+  "architecture": {
+    "32bit": {
+      "hash": "f68ce817832191f8b8c5fe5bfcaa47dcba548db995571eb220473ff92ad14d23",
+      "url": "https://download-cdn.resilio.com/2.7.3/windows/Resilio-Sync.exe"
+    },
+    "64bit": {
+      "hash": "dc9c72e709cc7a2ea74999ce3756e6f4879cd6eae50a888a1f8ca011a1d6efa3",
+      "url": "https://download-cdn.resilio.com/2.7.3/windows64/Resilio-Sync_x64.exe"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://download-cdn.resilio.com/$version/windows/Resilio-Sync.exe"
+      },
+      "64bit": {
+        "url": "https://download-cdn.resilio.com/$version/windows64/Resilio-Sync_x64.exe"
+      }
+    }
+  },
+  "checkver": {
+    "regex": "([\\d.]+)",
+    "url": "https://download-cdn.resilio.com/stable/windows64/version.txt"
+  },
+  "description": "Resilio Sync is a fast, reliable, and simple file sync and share solution, powered by P2P technology.",
+  "homepage": "https://www.resilio.com/individuals/",
+  "installer": {
+    "script": "Start-Process \"$dir\\$fname\" -ArgumentList @('/PERFORMINSTALL', '/S') -WorkingDirectory \"$dir\"  -Wait"
+  },
+  "license": {
+    "identifier": "Shareware"
+  },
+  "uninstaller": {
+    "script": "Start-Process \"$dir\\$fname\" -ArgumentList @('/UNINSTALL', '/S', '/REMSETTINGS') -WorkingDirectory \"$dir\"  -Wait"
+  },
+  "version": "2.7.3"
+}

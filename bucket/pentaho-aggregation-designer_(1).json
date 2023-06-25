@@ -1,0 +1,42 @@
+{
+  "homepage": "https://pentaho.sourceforge.io/",
+  "description": "The Pentaho Aggregation Designer simplifies the creation and deployment of aggregate tables that improve the performance of your Pentaho Analysis (Mondrian) OLAP cubes.",
+  "license": "GPL-2.0-only|LGPL-2.0-only|MPL-1.1",
+  "version": "9.1.0.0-324",
+  "url": "https://downloads.sourceforge.net/project/pentaho/Pentaho%209.1/client-tools/pad-ce-9.1.0.0-324.zip",
+  "hash": "61c737c9657947b70abcfcb045db322b6c8dccf0e8c837865a7645f149a590a1",
+  "extract_dir": "aggregation-designer",
+  "bin": "startaggregationdesigner.bat",
+  "shortcuts": [
+    [
+      "startaggregationdesigner.bat",
+      "Pentaho Aggregation Designer (PAD)",
+      "",
+      "icon.ico"
+    ]
+  ],
+  "persist": [
+    "drivers",
+    "plugins"
+  ],
+  "pre_install": [
+    "if (!$url) { $url = \"$(manifest_path $app $bucket)\" }",
+    "$icon = $url -replace '.json$', '.ico'",
+    "Copy-Item \"$icon\" \"$dir\\icon.ico\""
+  ],
+  "post_install": [
+    "$file = \"$dir\\startaggregationdesigner.bat\"",
+    "$cont = (Get-Content $file) -replace '=java','=javaw'",
+    "$cont = $cont -replace '(\"%_PENTAHO_JAVA%\")', 'start \"\" $1'",
+    "Set-Content $file $cont -Encoding ASCII",
+    "Remove-Item \"$dir\\Aggregation Designer.app\" -Recurse"
+  ],
+  "checkver": {
+    "url": "https://sourceforge.net/projects/pentaho/rss?path=/",
+    "re": "Pentaho\\s+[\\d.]+/client-tools/pad-ce-([\\w.-]+)\\.zip"
+  },
+  "autoupdate": {
+    "url": "https://downloads.sourceforge.net/project/pentaho/Pentaho%20$majorVersion.$minorVersion/client-tools/pad-ce-$version.zip"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

@@ -1,0 +1,24 @@
+{
+  "version": "0.10.31",
+  "description": "A graphical interface that allows you to launch emulators, video players, and other programs",
+  "homepage": "http://retrofe.nl",
+  "license": "",
+  "depends": "extras/vcredist2015",
+  "url": "http://retrofe.nl/Download/Release/RetroFE_full_0.10.31.zip",
+  "hash": "f9fcfba5640eb181f6abb086f7d2110dd6984c49bd48a07697ae585ef26f3aeb",
+  "extract_dir": "RetroFE",
+  "persist": [
+    "collections",
+    "launchers.windows",
+    "layouts",
+    "meta"
+  ],
+  "bin": "core\\retrofe.exe",
+  "checkver": {
+    "url": "http://retrofe.nl/download/",
+    "regex": "RetroFE_full_([\\d.]+)\\.zip"
+  },
+  "autoupdate": {
+    "url": "http://retrofe.nl/Download/Release/RetroFE_full_$version.zip"
+  }
+}

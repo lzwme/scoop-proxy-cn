@@ -1,0 +1,31 @@
+{
+  "version": "3.1.2",
+  "description": "ClickUp. Tasks, docs, conversations, timelines, spreadsheets, and mind maps in one place, based on Ash258 repository version",
+  "homepage": "https://clickup.com",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://clickup.com/terms"
+  },
+  "url": "https://desktop.clickup.com/windows/msi",
+  "hash": "sha512:81eb1afe28b52d5a9a939873ddc9d7f068b4acc8a2d8026c5041568a804622586f3d3682ed8c9803651211d58733041e5299f2a4add97677a23965b5bf70e91f",
+  "persist": [
+    "Roaming",
+    "Updater"
+  ],
+  "architecture": {
+    "64bit": {
+      "installer": {
+        "script": "$null = mkdir -Force \"$persist_dir\\Updater\"; $null = New-Item -ItemType Junction -Path \"$scoopdir\\..\\AppData\\Local\\clickup-updater\" -Target \"$persist_dir\\Roaming\"; $null = New-Item -ItemType Junction -Path \"$scoopdir\\..\\AppData\\Roaming\\Clickup\" -Target \"$persist_dir\\Roaming\"; Start-Process \"$scoopdir\\cache\\clickup##3.1.2##https_desktop.clickup.com_windows_\" -ArgumentList \"/S /currentuser /disableAutoUpdates /D=$dir\"; "
+      },
+      "uninstaller": {
+        "script": "attrib \"$scoopdir\\..\\AppData\\Roaming\\Clickup\" -R /L; rmdir \"$scoopdir\\..\\AppData\\Roaming\\Clickup\";attrib \"$scoopdir\\..\\AppData\\Local\\clickup-updater\" -R /L; rmdir \"$scoopdir\\..\\AppData\\Local\\clickup-updater\"; Start-Process \"$dir\\Clickup Setup 3.1.2-x64.exe\" -ArgumentList \"/S\"; "
+      }
+    }
+  },
+  "shortcuts": [
+    [
+      "ClickUp.exe",
+      "ClickUp"
+    ]
+  ]
+}

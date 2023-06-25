@@ -1,0 +1,52 @@
+{
+  "architecture": {
+    "32bit": {
+      "bin": "IDE\\bin\\idea.exe",
+      "shortcuts": [
+        [
+          "IDE\\bin\\idea.exe",
+          "JetBrains\\IntelliJ IDEA Ultimate"
+        ]
+      ]
+    },
+    "64bit": {
+      "bin": [
+        "IDE\\bin\\idea64.exe",
+        [
+          "IDE\\bin\\idea64.exe",
+          "idea"
+        ]
+      ],
+      "shortcuts": [
+        [
+          "IDE\\bin\\idea64.exe",
+          "JetBrains\\IntelliJ IDEA Ultimate"
+        ]
+      ]
+    }
+  },
+  "autoupdate": {
+    "hash": {
+      "url": "$url.sha256"
+    },
+    "url": "https://download.jetbrains.com/idea/ideaIU-$matchHead.win.zip"
+  },
+  "changelog": "https://www.jetbrains.com/idea/whatsnew/",
+  "checkver": {
+    "regex": "version\":\"(?<ver>[\\d.]+)\".*\"build\":\"(?<build>[\\d.]+)\"",
+    "replace": "${ver}-${build}",
+    "url": "https://data.services.jetbrains.com/products/releases?code=IIU&latest=true&platform=zip&type=release"
+  },
+  "description": "IntelliJ IDEA Ultimate. Cross-Platform Java IDE for professional developers by JetBrains.",
+  "extract_to": "IDE",
+  "hash": "2bd115c7425d128e24a6cdfc9b6f82762d6e1b7d9868d0974faeaa18b54c3de3",
+  "homepage": "https://www.jetbrains.com/idea/",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://www.jetbrains.com/store/license.html"
+  },
+  "persist": "IDE\\bin\\idea.properties",
+  "pre_install": "Remove-Item \"$dir\\IDE\\`$*\" -Force -Recurse",
+  "url": "https://download.jetbrains.com/idea/ideaIU-2023.1.1.win.zip",
+  "version": "2023.1.1-231.8770.65"
+}

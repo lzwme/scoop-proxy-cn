@@ -1,0 +1,20 @@
+{
+  "homepage": "https://github.com/ojdkbuild/ojdkbuild",
+  "version": "1.8.0_102-2",
+  "license": "GPL2",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/ojdkbuild/ojdkbuild/releases/download/1.8.0.102-2/java-1.8.0-openjdk-1.8.0.102-2.b14.ojdkbuild.windows.x86_64.zip",
+      "hash": "8103db54f94d7379e8866a9b2eaec17d38f9164ee1159806e826a61be4905cc2",
+      "extract_dir": "java-1.8.0-openjdk-1.8.0.102-2.b14.ojdkbuild.windows.x86_64"
+    }
+  },
+  "env_add_path": "bin",
+  "env_set": {
+    "JAVA_HOME": "$dir"
+  },
+  "checkver": {
+    "url": "https://github.com/ojdkbuild/ojdkbuild/releases/latest",
+    "re": "/releases/tag/([\\d.\\-]+)"
+  }
+}

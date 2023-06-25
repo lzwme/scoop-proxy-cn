@@ -1,0 +1,21 @@
+{
+  "homepage": "http://www.rs.tus.ac.jp/yyusa/ricty_diminished.html",
+  "description": "Japanese monospace font for programming: Inconsolata + CircleM+1m",
+  "license": "OFL-1.1",
+  "depends": [
+    "jp-util-font"
+  ],
+  "version": "4.1.1",
+  "url": "http://www.rs.tus.ac.jp/yyusa/ricty_diminished/ricty_diminished-4.1.1.tar.gz",
+  "hash": "09d6cf8eaf3402205dd8a0fa35469d41833b4e85bedddfac235255d78747766b",
+  "checkver": "ricty_diminished-(?<version>[\\d.]+).tar.gz",
+  "autoupdate": {
+    "url": "http://www.rs.tus.ac.jp/yyusa/ricty_diminished/ricty_diminished-$version.tar.gz"
+  },
+  "installer": {
+    "script": "jp-font-util $true $dir 'RictyDiminished*.ttf'"
+  },
+  "uninstaller": {
+    "script": "jp-font-util $false $dir 'RictyDiminished*.ttf'"
+  }
+}

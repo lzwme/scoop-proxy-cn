@@ -1,0 +1,41 @@
+{
+  "version": "0.10.2",
+  "description": "KeeTheme Plugin changes the appearance of KeePass, to make it look better at night.",
+  "homepage": "https://github.com/xatupal/KeeTheme",
+  "license": "MIT",
+  "depends": "extras/keepass",
+  "url": [
+    "https://ghproxy.net/https://github.com/xatupal/KeeTheme/releases/download/v0.10.2/KeeTheme.dll",
+    "https://ghproxy.net/https://github.com/xatupal/KeeTheme/releases/download/v0.10.2/KeeTheme.plgx"
+  ],
+  "hash": [
+    "14713cdd8da7ebd1414c635b23ea45367ddb37c0859d068508555631ad0a72f7",
+    "e3886e0f8955ae826e7ea95a4896e89a40cabdc0e4a493c8d32bd5aa622090c3"
+  ],
+  "pre_install": [
+    "$keePass = Get-Process KeePass -ErrorAction SilentlyContinue",
+    "if ($keePass) {",
+    "  $keePass.CloseMainWindow()",
+    "  Sleep 5",
+    "  if (!$keePass.HasExited) {",
+    "    $keePass | Stop-Process -Force",
+    "  }",
+    "}"
+  ],
+  "installer": {
+    "script": "Copy-Item \"$dir\\KeeTheme*\" \"$(appdir keepass $global)\\current\\Plugins\\\""
+  },
+  "uninstaller": {
+    "script": "Get-Item \"$(appdir keepass $global)\\current\\Plugins\\KeeTheme*\" | Remove-Item -Force"
+  },
+  "checkver": "github",
+  "autoupdate": {
+    "url": [
+      "https://ghproxy.net/https://github.com/xatupal/KeeTheme/releases/download/v$version/KeeTheme.dll",
+      "https://ghproxy.net/https://github.com/xatupal/KeeTheme/releases/download/v$version/KeeTheme.plgx"
+    ],
+    "hash": {
+      "find": "sha512:\\s+(.*)"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "homepage": "https://subgit.com",
+  "version": "3.3.10",
+  "license": "https://subgit.com/eula",
+  "architecture": {
+    "64bit": {
+      "url": "https://subgit.com/files/subgit-3.3.10.zip",
+      "hash": "d3a1bda99bc6b791f73e14775fd5addd3401d356c68f058a96be78079faaecfc",
+      "extract_dir": "subgit-3.3.10"
+    },
+    "32bit": {
+      "url": "https://subgit.com/files/subgit-3.3.10.zip",
+      "hash": "d3a1bda99bc6b791f73e14775fd5addd3401d356c68f058a96be78079faaecfc",
+      "extract_dir": "subgit-3.3.10"
+    }
+  },
+  "checkver": {
+    "url": "https://subgit.com/download",
+    "re": "(?<version>\\d+\\.\\d+\\.\\d+) build #(?<build>[\\d]+) of (?<date>[\\d\\.]+)",
+    "reverse": false
+  },
+  "autoupdate": {
+    "note": "This scoop install manifest was created by Brett Brewer. If you encounter issues please post an issue on the github page.",
+    "architecture": {
+      "64bit": {
+        "url": "https://subgit.com/files/subgit-$version.zip",
+        "extract_dir": "subgit-$version"
+      },
+      "32bit": {
+        "url": "https://subgit.com/files/subgit-$version.zip",
+        "extract_dir": "subgit-$version"
+      }
+    }
+  },
+  "bin": "bin\\subgit.bat",
+  "persist": "daemon-shared",
+  "env_add_path": "bin",
+  "pre_install": [
+    "$daemon_shared = \"$persist_dir\\daemon-shared\"",
+    "if((test-path $daemon_shared\\shared-daemon.pid) -and (test-path $dir\\bin\\subgit.bat)) {",
+    "    Write-Output \"Stopping subgit shared daemon at $(Convert-Path $daemon_shared)\"",
+    "    subgit daemon stop \"$daemon_shared\"",
+    "} else {",
+    "    Write-Host -f Yellow \"Subgit shared daemon is not running or it was not installed via scoop.\"",
+    "}"
+  ],
+  "post_install": "subgit daemon start \"$dir\\daemon-shared\"",
+  "uninstaller": {
+    "script": [
+      "$daemon_shared = \"$persist_dir\\daemon-shared\"",
+      "if((test-path $daemon_shared\\shared-daemon.pid) -and (test-path $dir\\bin\\subgit.bat)) {",
+      "    Write-Output \"Stopping subgit shared daemon at $(Convert-Path $daemon_shared)\"",
+      "    subgit daemon stop \"$daemon_shared\"",
+      "} else {",
+      "    Write-Host -f Yellow \"Subgit shared daemon is not running or it was not installed via scoop.\"",
+      "}"
+    ]
+  },
+  "suggest": {
+    "JDK": [
+      "java/adoptopenjdk",
+      "java/oraclejdk",
+      "java/openjdk",
+      "java/zulu"
+    ]
+  },
+  "notes": "If you don't have some flavor of Java7 or higher installed, subgit won't work at all, so if you get errors trying to run the 'subgit' command you probably need to install a jdk from the java bucket. Run 'scoop bucket add java' then install a jdk."
+}

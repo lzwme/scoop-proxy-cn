@@ -1,0 +1,24 @@
+{
+  "homepage": "https://github.com/Icalingua-plus-plus/Icalingua-plus-plus",
+  "description": "A client for QQ",
+  "license": "AGPL-3.0",
+  "version": "2.9.13",
+  "url": "https://ghproxy.net/https://github.com/Icalingua-plus-plus/Icalingua-plus-plus/releases/download/v2.9.13/Icalingua++-2.9.13_x64.exe#/dl.7z",
+  "hash": "54bbe0c4aa10de9e3f2d59b1b2181689a5b4702f92e17cb73182ecfa3c1274c6",
+  "installer": {
+    "script": [
+      "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+      "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall*\" -Force -Recurse"
+    ]
+  },
+  "shortcuts": [
+    [
+      "Icalingua++.exe",
+      "Icalingua++"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/Icalingua-plus-plus/Icalingua-plus-plus/releases/download/v$version/Icalingua++-$version_x64.exe#/dl.7z"
+  }
+}

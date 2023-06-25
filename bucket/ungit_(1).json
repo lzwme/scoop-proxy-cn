@@ -1,0 +1,43 @@
+{
+  "homepage": "https://github.com/FredrikNoren/ungit",
+  "version": "1.5.23",
+  "description": "The easiest way to use git. On any platform. Anywhere.",
+  "license": {
+    "identifier": "MIT",
+    "url": "https://github.com/FredrikNoren/ungit/blob/master/LICENSE.md"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/FredrikNoren/ungit/releases/download/v1.5.23/ungit-1.5.23-win32-x64.zip",
+      "bin": "ungit.exe",
+      "hash": "5f46ecdd750458d2d0efd0130c968e45e13043660e0b7ab729a972626ca1d80b",
+      "extract_dir": "ungit-win32-x64"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/FredrikNoren/ungit/releases/download/v1.5.23/ungit-1.5.23-win32-ia32.zip",
+      "bin": "ungit.exe",
+      "hash": "809bd86752682d3f844a2075459a3b36b4d8da3bdeecfa96a0420ffb3be8eb49",
+      "extract_dir": "ungit-win32-ia32"
+    }
+  },
+  "checkver": {
+    "github": "https://github.com/FredrikNoren/ungit",
+    "regex": "\\/releases\\/tag\\/v([\\d.]+)"
+  },
+  "shortcuts": [
+    [
+      "ungit.exe",
+      "Ungit"
+    ]
+  ],
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/FredrikNoren/ungit/releases/download/v$version/ungit-$version-win32-x64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/FredrikNoren/ungit/releases/download/v$version/ungit-$version-win32-ia32.zip"
+      }
+    }
+  }
+}

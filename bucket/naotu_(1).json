@@ -1,0 +1,38 @@
+{
+  "homepage": "https://github.com/NaoTu/DesktopNaotu",
+  "version": "3.2.3",
+  "license": "GPL",
+  "description": "百度脑图.",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/NaoTu/DesktopNaotu/releases/download/v3.2.3/DesktopNaotu-win32-x64.zip",
+      "extract_dir": "DesktopNaotu-win32-x64"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/NaoTu/DesktopNaotu/releases/download/v3.2.3/DesktopNaotu-win32-ia32.zip",
+      "extract_dir": "DesktopNaotu-win32-ia32"
+    }
+  },
+  "bin": [
+    "DesktopNaotu.exe"
+  ],
+  "shortcuts": [
+    [
+      "DesktopNaotu.exe",
+      "脑图"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/NaoTu/DesktopNaotu"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/NaoTu/DesktopNaotu/releases/download/v$version/DesktopNaotu-win32-x64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/NaoTu/DesktopNaotu/releases/download/v$version/DesktopNaotu-win32-ia32.zip"
+      }
+    }
+  }
+}

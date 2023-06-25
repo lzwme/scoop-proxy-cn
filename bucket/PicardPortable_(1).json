@@ -1,0 +1,28 @@
+{
+  "autoupdate": {
+    "hash": {
+      "regex": "MD5 Hash: +[\\w]{32}",
+      "url": "https://portableapps.com/apps/music_video/picard-portable"
+    },
+    "url": "https://astuteinternet.dl.sourceforge.net/project/portableapps/Picard%20Portable/PicardPortable_$version.paf.exe"
+  },
+  "bin": "PicardPortable.exe",
+  "checkver": {
+    "re": "Version \\s+([\\w\\.]* for Win",
+    "url": "https://portableapps.com/apps/music_video/picard-portable"
+  },
+  "description": "Audio file tagger",
+  "hash": "62e799bc88b8aa49b01a8d834242154b07244a8219eb628ae431c20b19675603",
+  "homepage": "https://portableapps.com/apps/music_video/picard-portable",
+  "license": "",
+  "persist": "Data",
+  "post_install": "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
+  "shortcuts": [
+    [
+      "PicardPortable.exe",
+      "PicardPortable"
+    ]
+  ],
+  "url": "https://astuteinternet.dl.sourceforge.net/project/portableapps/Picard%20Portable/PicardPortable_2.8.5.paf.exe",
+  "version": "2.8.5"
+}

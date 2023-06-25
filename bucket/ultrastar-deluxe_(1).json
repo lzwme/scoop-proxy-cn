@@ -1,0 +1,29 @@
+{
+  "homepage": "https://usdx.eu",
+  "version": "2023.5.0",
+  "description": "The free and open source karaoke singing game UltraStar Deluxe, inspired by Sony SingStar™",
+  "license": {
+    "identifier": "GPL-2.0-only",
+    "url": "https://github.com/UltraStar-Deluxe/USDX/blob/master/LICENSE"
+  },
+  "url": "https://ghproxy.net/https://github.com/UltraStar-Deluxe/USDX/releases/download/v2023.5.0/UltraStar.Deluxe_v2023.5.0_portable.zip",
+  "bin": "ultrastardx.exe",
+  "hash": "62a768a7edb7b6ddd8e3d986c06ad179c127c747c2eacb24457272d1fe2587f6",
+  "shortcuts": [
+    [
+      "ultrastardx.exe",
+      "UltraStar Deluxe"
+    ]
+  ],
+  "persist": [
+    "config.ini",
+    "songs"
+  ],
+  "checkver": {
+    "github": "https://github.com/UltraStar-Deluxe/USDX",
+    "regex": "\\/releases\\/tag\\/v([\\d\\.]*)"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/UltraStar-Deluxe/USDX/releases/download/v$version/UltraStar.Deluxe_v$version_portable.zip"
+  }
+}

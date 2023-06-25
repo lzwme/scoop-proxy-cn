@@ -1,0 +1,38 @@
+{
+  "version": "0.9998",
+  "description": "SQLite ODBC Driver",
+  "homepage": "http://www.ch-werner.de/sqliteodbc/",
+  "license": {
+    "identifier": "Unknown",
+    "url": "http://www.ch-werner.de/sqliteodbc/license.terms"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "http://www.ch-werner.de/sqliteodbc/sqliteodbc_w64.exe",
+      "hash": "bd93e8450bcbd4ae16894e06ecb1b8572d6a01448df5b8dd2964eb6d3d302db7"
+    }
+  },
+  "bin": "sqlite3.exe",
+  "installer": {
+    "script": [
+      "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+      "Start-Process -Wait \"$dir\\sqliteodbc_w64.exe\" -ArgumentList @('/S', \"/D=$dir\") | Out-Null",
+      "Remove-Item \"$([Environment]::GetFolderPath('startmenu'))\\Programs\\SQLite ODBC Driver for Win64\" -Recurse",
+      "Remove-Item \"$dir\\sqliteodbc_w64.exe\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+      "Start-Process -Wait \"$dir\\uninstall.exe\" -ArgumentList '/S' | Out-Null"
+    ]
+  },
+  "checkver": {
+    "re": "sqliteodbc-([\\d.]+)\\.tar.gz"
+  },
+  "autoupdate": {
+    "hash": {
+      "mode": "download"
+    }
+  }
+}

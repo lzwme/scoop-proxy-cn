@@ -1,0 +1,25 @@
+{
+  "version": "v2020.05.22",
+  "description": "Furibisha Shogi Engine.",
+  "homepage": "https://github.com/32hiko/HoneyWaffleWCSC28",
+  "architecture": {
+    "64bit": {
+      "url": [
+        "https://ghproxy.net/https://github.com/topstone/HoneyWaffleWCSC28/releases/download/v2018.05.09/HoneyWaffle_WCSC28.7z",
+        "https://ghproxy.net/https://github.com/32hiko/HoneyWaffleBook/releases/download/wcsoc2020/user_book2.db"
+      ],
+      "hash": [
+        "bb6cce35b807a1fd25495b4015c7e41c5ece7554c6c6c60701b8e7680a7725ec",
+        "a55158a7c82625f6ce14657b07f59638c94d8c6e2798821fb6e9952d650bdd93"
+      ],
+      "extract_dir": [
+        "HoneyWaffle_WCSC28",
+        ""
+      ],
+      "post_install": [
+        "Remove-Item \"$dir\\book\\user_book2.db\"",
+        "Move-Item \"$dir\\user_book2.db\" \"$dir\\book\\\""
+      ]
+    }
+  }
+}

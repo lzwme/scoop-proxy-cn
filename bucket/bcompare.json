@@ -41,27 +41,6 @@
     "New-PersistFile \"$persist_dir\\BCState.xml\"",
     "New-PersistFile \"$persist_dir\\BCState.xml.bak\""
   ],
-  "uninstaller": {
-    "script": [
-      "function Copy-PersistFile([String] $path) {",
-      "  if ((Test-Path $path) -and !(Get-Item $path).LinkType) {",
-      "    Copy-Item $path $persist_dir",
-      "  }",
-      "}",
-      "if (Test-Path $persist_dir) {",
-      "  Copy-PersistFile \"$dir\\BCFileFormats.xml\"",
-      "  Copy-PersistFile \"$dir\\BCFileFormats.xml.bak\"",
-      "  Copy-PersistFile \"$dir\\BCPreferences.xml\"",
-      "  Copy-PersistFile \"$dir\\BCPreferences.xml.bak\"",
-      "  Copy-PersistFile \"$dir\\BCProfiles.xml\"",
-      "  Copy-PersistFile \"$dir\\BCProfiles.xml.bak\"",
-      "  Copy-PersistFile \"$dir\\BCSessions.xml\"",
-      "  Copy-PersistFile \"$dir\\BCSessions.xml.bak\"",
-      "  Copy-PersistFile \"$dir\\BCState.xml\"",
-      "  Copy-PersistFile \"$dir\\BCState.xml.bak\"",
-      "}"
-    ]
-  },
   "checkver": {
     "url": "https://www.scootersoftware.com/download",
     "regex": "/files/BCompare-(?<version>[\\d.]+).exe"

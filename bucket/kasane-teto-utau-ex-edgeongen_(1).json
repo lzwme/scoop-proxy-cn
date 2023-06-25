@@ -1,0 +1,42 @@
+{
+  "version": "211010",
+  "description": "TWINDRILL 重音テト　エッジ音源",
+  "homepage": "https://kasaneteto.jp/ongen_down2.html",
+  "license": [
+    {
+      "identifier": "Proprietary",
+      "url": "https://kasaneteto.jp/guide_ongen.html"
+    }
+  ],
+  "url": "https://kasaneteto.jp/ongendl/index.cgi/extra/TETO-edgeongen211010.zip",
+  "hash": "8b2834699ac23ce8dc7bb3d95f93a468d64faf8a3545faf78a5cc062f76cfae4",
+  "extract_to": "voice",
+  "suggest": {
+    "UTAU": [
+      "utau",
+      "dtm/utau",
+      "kasane-teto-utau-vcv-cv",
+      "dtm/kasane-teto-utau-vcv-cv",
+      "kasane-teto-utau-vcv",
+      "dtm/kasane-teto-utau-vcv"
+    ]
+  },
+  "installer": {
+    "script": [
+      "$voice=\"重音テト音声ライブラリー\"",
+      "Copy-Item -Force -Recurse -Path \"${dir}\\voice\\${voice}\" -Destination \"${persist_dir}\\..\\utau\\utau\\voice\"",
+      "Remove-Item -Force -Recurse -Path \"${dir}\\voice\\${voice}\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$voice=\"重音テト音声ライブラリー\\重音テトエッジ単独音\"",
+      "Remove-Item -Force -Recurse -Path \"${persist_dir}\\..\\utau\\utau\\voice\\${voice}\"",
+      "$voice=\"重音テト音声ライブラリー\\重音テトエッジ連続音\"",
+      "Remove-Item -Force -Recurse -Path \"${persist_dir}\\..\\utau\\utau\\voice\\${voice}\"",
+      "$voice=\"重音テト音声ライブラリー\\重音テト語尾息吸\"",
+      "Remove-Item -Force -Recurse -Path \"${persist_dir}\\..\\utau\\utau\\voice\\${voice}\""
+    ]
+  },
+  "checkver": "TETO-edgeongen([\\d]+).zip"
+}

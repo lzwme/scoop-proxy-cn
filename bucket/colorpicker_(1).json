@@ -1,0 +1,30 @@
+{
+  "homepage": "https://github.com/Toinane/colorpicker",
+  "version": "2.0.3",
+  "license": "GPL-3.0",
+  "url": "https://ghproxy.net/https://github.com/Toinane/colorpicker/releases/download/2.0.3/colorpicker_setup_2.0.3.exe#/dl.7z",
+  "hash": "sha256:ea138d1b98b6237cce27e20ffd9dbc82fc52a15ff519c0ff5f9addf1888ebf99",
+  "bin": "Colorpicker.exe",
+  "shortcuts": [
+    [
+      "Colorpicker.exe",
+      "Color Picker"
+    ]
+  ],
+  "architecture": {
+    "64bit": {
+      "installer": {
+        "script": [
+          "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+          "Remove-Item \"$dir\\`$PLUGINSDIR\" -Recurse"
+        ]
+      }
+    }
+  },
+  "checkver": {
+    "github": "https://github.com/Toinane/colorpicker"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/Toinane/colorpicker/releases/download/$version/colorpicker_setup_$version.exe#/dl.7z"
+  }
+}
