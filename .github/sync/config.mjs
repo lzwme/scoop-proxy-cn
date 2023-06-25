@@ -11,7 +11,7 @@ export const CONFIG = {
   debug,
   isCI,
   /** 是否忽略 manifest JSON 解析失败的应用 */
-  ignoreParseFailed: false,
+  ignoreParseFailed: true,
   tmpDir: path.resolve(rootDir, 'tmp'),
   ghproxy: 'https://ghproxy.net',
   /** 同步仓库列表，按仓库质量排序 */
