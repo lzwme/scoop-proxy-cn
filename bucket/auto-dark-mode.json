@@ -1,24 +1,26 @@
 {
-  "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/AutoDarkMode/Windows-Auto-Night-Mode/releases/download/$version/AutoDarkModeX_$version.exe"
-  },
-  "bin": "AutoDarkModeShell.exe",
-  "checkver": "github",
-  "description": "Automatically switches between the dark and light theme of Windows 10 and Windows 11.",
-  "hash": "fd164bb994ffb23682b19354994ef5069bf9d5261c4347b6267ba91289bcd9b3",
-  "homepage": "https://github.com/AutoDarkMode/Windows-Auto-Night-Mode",
-  "innosetup": true,
-  "license": {
-    "identifier": "GPL-3.0-only",
-    "url": "https://github.com/AutoDarkMode/Windows-Auto-Night-Mode/blob/master/LICENSE"
-  },
-  "notes": "We don't persist your data, they are still storaged in '$env:APPDATA\\AutoDarkMode'.",
+  "version": "10.3.0.90",
+  "description": "Auto Dark Mode. Automatically switches between the dark and light theme of Windows 10 at scheduled times.",
+  "homepage": "https://github.com/Armin2208/Windows-Auto-Night-Mode",
+  "license": "GPL-3.0-only",
+  "changelog": "https://github.com/Armin2208/Windows-Auto-Night-Mode/releases",
+  "url": "https://ghproxy.net/https://github.com/AutoDarkMode/Windows-Auto-Night-Mode/releases/download/10.3.0.90/AutoDarkModeX_10.3.0.90.zip",
+  "hash": "eee63f033dd1fd0994907b761093bcac9b93c48b85f045d9ef33c23b8ba19b5d",
+  "bin": "AutoDarkModeApp.exe",
   "shortcuts": [
     [
       "AutoDarkModeApp.exe",
       "Auto Dark Mode"
     ]
   ],
-  "url": "https://ghproxy.net/https://github.com/AutoDarkMode/Windows-Auto-Night-Mode/releases/download/10.3.0.90/AutoDarkModeX_10.3.0.90.exe",
-  "version": "10.3.0.90"
+  "checkver": {
+    "github": "https://github.com/Armin2208/Windows-Auto-Night-Mode"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/AutoDarkMode/Windows-Auto-Night-Mode/releases/download/$version/AutoDarkModeX_$version.zip",
+    "hash": {
+      "url": "https://ghproxy.net/https://github.com/AutoDarkMode/Windows-Auto-Night-Mode/releases/download/$version/AutoDarkModeX_$version.sha256",
+      "mode": "extract"
+    }
+  }
 }

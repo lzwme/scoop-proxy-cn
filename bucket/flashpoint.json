@@ -1,31 +1,32 @@
 {
   "version": "11.1",
-  "description": "BlueMaxima's Flashpoint Infinity. Archive of old flashpoint games/animations",
   "homepage": "https://bluemaxima.org/flashpoint/",
-  "license": {
-    "identifier": "MIT",
-    "url": "https://github.com/FlashpointProject/launcher/blob/master/LICENSE"
-  },
-  "url": "https://bluemaxima.org/flashpoint/Flashpoint%2011.1%20Infinity.exe#/cosi.7z",
-  "hash": "a76138d401ad522db4f7d9cb9de0751727fc58134a3712c63689f7e22ee26bcf",
+  "description": "A preservation project that allows anyone to make usage of 100,000+ Flash games/animations that are no longer supported on today's web browsers.",
+  "license": "MIT",
+  "url": "https://bluemaxima.org/flashpoint/Flashpoint%2011.1%20Infinity.exe#/dl.7z",
+  "hash": "17006b5c8e1670522991b8eac3dcafb335f5776a4bc8844340d77c8057f85e49",
   "extract_dir": "Flashpoint 11.1 Infinity",
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\extConfig.json\")) { Set-Content \"$dir\\extConfig.json\" -Value \"{`r}\" -Encoding 'utf8' -Force }",
+    "Copy-Item \"$persist_dir\\Data\\*\" \"$dir\\Data\" -ErrorAction 'SilentlyContinue' -Recurse"
+  ],
   "shortcuts": [
     [
-      "Launcher\\Flashpoint.exe",
-      "Flashpoint Infinity"
+      "Start Flashpoint.exe",
+      "Start Flashpoint"
     ]
   ],
   "persist": [
-    "Data\\Playlists",
-    "Flash Save Backup",
-    "Launcher\\config.json"
+    "extConfig.json",
+    "Curations"
   ],
+  "pre_uninstall": "Copy-Item \"$dir\\Data\\*\" \"$persist_dir\\Data\" -ErrorAction 'SilentlyContinue' -Recurse",
   "checkver": {
     "url": "https://bluemaxima.org/flashpoint/changelog.txt",
-    "regex": "Flashpoint\\s+([\\d.]+)"
+    "regex": "Flashpoint\\s([\\d?.]+)"
   },
   "autoupdate": {
-    "url": "https://bluemaxima.org/flashpoint/Flashpoint%20$version%20Infinity.exe#/cosi.7z",
+    "url": "https://bluemaxima.org/flashpoint/Flashpoint%20$version%20Infinity.exe#/dl.7z",
     "extract_dir": "Flashpoint $version Infinity"
   }
 }
