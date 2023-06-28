@@ -1,51 +1,11 @@
 {
-  "version": "4.4.6.27483",
-  "description": "Beyond Compare 4 (zh-cn)",
-  "homepage": "https://www.scootersoftware.com",
-  "license": "Proprietary",
-  "url": "https://files.lesscode.dev/scoop/BCompare-zh-4.4.6.27483.zip",
-  "hash": "b7cd7ae8e1a8a5821e5be6fbe3dcb8d5d98ab44719f4c1f27e71cee765d98a0c",
-  "bin": "BCompare.exe",
+  "version": "4.2",
+  "extract_dir": "BeyondCompare",
+  "url": "https://sourceforge.net/projects/bearapps/files/BeyondCompare.zip",
   "shortcuts": [
     [
       "BCompare.exe",
-      "bcompare"
+      "BCompare"
     ]
-  ],
-  "persist": [
-    "BCFileFormats.xml",
-    "BCFileFormats.xml.bak",
-    "BCPreferences.xml",
-    "BCPreferences.xml.bak",
-    "BCProfiles.xml",
-    "BCProfiles.xml.bak",
-    "BCSessions.xml",
-    "BCSessions.xml.bak",
-    "BCState.xml",
-    "BCState.xml.bak"
-  ],
-  "pre_install": [
-    "function New-PersistFile([String] $path) {",
-    "  if (!(Test-Path $path) -or !(Get-Item $path).Length) {",
-    "    New-Item $path -ItemType File -Force | Out-Null",
-    "  }",
-    "}",
-    "New-PersistFile \"$persist_dir\\BCFileFormats.xml\"",
-    "New-PersistFile \"$persist_dir\\BCFileFormats.xml.bak\"",
-    "New-PersistFile \"$persist_dir\\BCPreferences.xml\"",
-    "New-PersistFile \"$persist_dir\\BCPreferences.xml.bak\"",
-    "New-PersistFile \"$persist_dir\\BCProfiles.xml\"",
-    "New-PersistFile \"$persist_dir\\BCProfiles.xml.bak\"",
-    "New-PersistFile \"$persist_dir\\BCSessions.xml\"",
-    "New-PersistFile \"$persist_dir\\BCSessions.xml.bak\"",
-    "New-PersistFile \"$persist_dir\\BCState.xml\"",
-    "New-PersistFile \"$persist_dir\\BCState.xml.bak\""
-  ],
-  "checkver": {
-    "url": "https://www.scootersoftware.com/download",
-    "regex": "/files/BCompare-(?<version>[\\d.]+).exe"
-  },
-  "autoupdate": {
-    "url": "https://www.scootersoftware.com/files/BCompare-zh-$version.exe"
-  }
+  ]
 }

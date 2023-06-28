@@ -1,0 +1,47 @@
+{
+  "version": "8.3.0",
+  "description": "The universal log analyzer",
+  "homepage": "https://logmx.com/",
+  "license": "Proprietary",
+  "url": "https://logmx.com/download_file.php?id=0#/dl.zip",
+  "hash": "76108B9F31C0977DC845E4E6E1FDFF03AC02C8811AA7BF5D9E55B214EBD330CE",
+  "extract_dir": "LogMX_v8.3.0_eval",
+  "architecture": {
+    "64bit": {
+      "bin": [
+        [
+          "LogMX-64.exe",
+          "logmx"
+        ]
+      ],
+      "shortcuts": [
+        [
+          "LogMX-64.exe",
+          "LogMX"
+        ]
+      ]
+    },
+    "32bit": {
+      "bin": [
+        [
+          "LogMX.exe",
+          "logmx"
+        ]
+      ],
+      "shortcuts": [
+        [
+          "LogMX.exe",
+          "LogMX"
+        ]
+      ]
+    }
+  },
+  "persist": "config",
+  "checkver": {
+    "url": "https://logmx.com/download",
+    "regex": "v([\\d.]+)"
+  },
+  "autoupdate": {
+    "extract_dir": "LogMX_v$version_eval"
+  }
+}

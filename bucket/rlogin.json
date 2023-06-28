@@ -1,20 +1,23 @@
 {
+  "homepage": "https://github.com/kmiya-culti/RLogin",
   "version": "2.28.2",
-  "description": "RLogin is a terminal software that runs on Windows",
-  "license": "MIT",
-  "##": "RLogin は GitHub でリリースバイナリを Assets にしていないので、ウェブサイト側から DL するようにしている",
-  "homepage": "https://github.com/kmiya-culti/RLogin/releases",
-  "url": "http://nanno.dip.jp/softlib/program/rlogin_x64.zip",
-  "hash": "",
-  "checkver": "RLogin-([\\d.]+)",
-  "autoupdate": {
-    "url": "http://nanno.dip.jp/softlib/program/rlogin_x64.zip"
-  },
+  "url": "http://nanno.bf1.jp/softlib/rlogin/2.28.2/rlogin_x64.zip",
+  "hash": "f43daab7e834bd535026afd121d50a2ffbdee1eb67cd9cfd053d103141d36601",
+  "persist": "RLogin.ini",
   "bin": "RLogin.exe",
   "shortcuts": [
     [
       "RLogin.exe",
       "RLogin"
     ]
-  ]
+  ],
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\RLogin.ini\")) {",
+    "    New-Item -Force -Path \"$dir\" -Name 'RLogin.ini' -Value '' | Out-Null",
+    "}"
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "url": "http://nanno.bf1.jp/softlib/rlogin/$version/rlogin_x64.zip"
+  }
 }
