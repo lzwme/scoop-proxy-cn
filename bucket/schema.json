@@ -43,15 +43,11 @@
           "pattern": "^\\$[.[].*$",
           "type": "string"
         },
-        "xpath": {
-          "type": "string"
-        },
         "mode": {
           "enum": [
             "download",
             "extract",
             "json",
-            "xpath",
             "rdf",
             "metalink",
             "fosshub",
@@ -94,12 +90,6 @@
         },
         "checkver": {
           "$ref": "#/definitions/checkver"
-        },
-        "env_add_path": {
-          "$ref": "#/definitions/stringOrArrayOfStrings"
-        },
-        "env_set": {
-          "type": "object"
         },
         "extract_dir": {
           "$ref": "#/definitions/stringOrArrayOfStrings"
@@ -245,9 +235,6 @@
             },
             "jsonpath": {
               "pattern": "^\\$[.[].*$",
-              "type": "string"
-            },
-            "xpath": {
               "type": "string"
             },
             "reverse": {
@@ -445,7 +432,8 @@
       "$ref": "#/definitions/stringOrArrayOfStrings"
     },
     "extract_to": {
-      "$ref": "#/definitions/stringOrArrayOfStrings"
+      "$ref": "#/definitions/stringOrArrayOfStrings",
+      "description": "No longer used."
     },
     "hash": {
       "$ref": "#/definitions/hash"

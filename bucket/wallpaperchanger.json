@@ -1,0 +1,15 @@
+{
+  "version": "1.8",
+  "description": "A command line utility for changing the wallpaper (desktop background) in Windows",
+  "homepage": "https://github.com/philhansen/WallpaperChanger",
+  "license": "MIT",
+  "url": "https://ghproxy.net/https://github.com/philhansen/WallpaperChanger/releases/download/v1.8/WallpaperChanger.exe",
+  "hash": "8ddb37ad0ce04fb6561daa7a68e2ef200b8cd43bcd13f3fa0d75a53bb86356b2",
+  "bin": "WallpaperChanger.exe",
+  "pre_install": "if (!(Test-Path \"$persist_dir\\config\")) { New-Item -ItemType File \"$dir\\config\" | Out-Null }",
+  "persist": "config",
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/philhansen/WallpaperChanger/releases/download/v$version/WallpaperChanger.exe"
+  }
+}

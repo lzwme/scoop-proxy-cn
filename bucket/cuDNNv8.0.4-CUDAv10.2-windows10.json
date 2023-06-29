@@ -1,15 +1,4 @@
 {
-  "architecture": {
-    "64bit": {
-      "url": "https://developer.download.nvidia.com/compute/redist/cudnn/v8.0.4/cudnn-10.2-windows10-x64-v8.0.4.30.zip"
-    }
-  },
-  "depends": [
-    "cuda"
-  ],
-  "description": "NVIDIA CUDA Deep Neural Network (cuDNN) is a GPU-accelerated library of primitives for deep neural networks.",
-  "extract_dir": "cuda",
-  "homepage": "https://developer.nvidia.com/rdp/cudnn-download",
   "installer": {
     "script": [
       "if (-not $env:CUDA_PATH) {",
@@ -21,6 +10,14 @@
       "   Copy-Item -Destination $env:CUDA_PATH -Recurse -Force"
     ]
   },
+  "version": "8.0.4",
+  "extract_dir": "cuda",
+  "architecture": {
+    "64bit": {
+      "url": "https://developer.download.nvidia.com/compute/redist/cudnn/v8.0.4/cudnn-10.2-windows10-x64-v8.0.4.30.zip"
+    }
+  },
+  "description": "NVIDIA CUDA Deep Neural Network (cuDNN) is a GPU-accelerated library of primitives for deep neural networks.",
   "uninstaller": {
     "script": [
       "if (-not $env:CUDA_PATH) {",
@@ -35,5 +32,8 @@
       "Remove-Item -LiteralPath $files -Force"
     ]
   },
-  "version": "8.0.4"
+  "homepage": "https://developer.nvidia.com/rdp/cudnn-download",
+  "depends": [
+    "cuda"
+  ]
 }

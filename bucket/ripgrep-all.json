@@ -1,15 +1,19 @@
 {
-  "homepage": "https://github.com/phiresky/ripgrep-all",
-  "description": "rga: ripgrep, but also search in PDFs, E-Books, Office documents, zip, tar.gz, etc.",
-  "license": "AGPL",
   "version": "0.9.6",
+  "description": "ripgrep-all: ripgrep, but also search in PDFs, E-Books, Office documents, zip, tar.gz, etc.",
+  "homepage": "https://github.com/phiresky/ripgrep-all",
+  "license": "AGPL-3.0-or-later",
   "architecture": {
     "64bit": {
       "url": "https://ghproxy.net/https://github.com/phiresky/ripgrep-all/releases/download/v0.9.6/ripgrep_all-v0.9.6-x86_64-pc-windows-msvc.zip",
+      "hash": "1A223E59BA1F6F0E393D24207615D2872A08C3A1B84E48216308CF8E849FE0CE",
       "extract_dir": "ripgrep_all-v0.9.6-x86_64-pc-windows-msvc"
     }
   },
-  "bin": "rga.exe",
+  "bin": [
+    "rga.exe",
+    "rga-preproc.exe"
+  ],
   "checkver": "github",
   "autoupdate": {
     "architecture": {
@@ -18,5 +22,16 @@
         "extract_dir": "ripgrep_all-v$version-x86_64-pc-windows-msvc"
       }
     }
+  },
+  "suggest": {
+    "ripgrep": "ripgrep",
+    "poppler": "versions/poppler068",
+    "pandoc": "pandoc",
+    "ffmpeg": [
+      "ffmpeg",
+      "ffmpeg-nightly",
+      "ffmpeg-shared"
+    ],
+    "vcredist": "extras/vcredist2019"
   }
 }

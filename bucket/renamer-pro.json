@@ -24,13 +24,10 @@
       "    BaiduPCS-Go login",
       "    $baiduLogedin = (BaiduPCS-Go loglist | Measure-Object -l).Lines -gt 1",
       "}",
-      "BaiduPCS-Go cd / | Out-Null",
-      "BaiduPCS-Go mkdir Scoop | Out-Null",
-      "BaiduPCS-Go cd Scoop | Out-Null",
+      "BaiduPCS-Go cd /",
       "BaiduPCS-Go rm $filename | Out-Null",
       "BaiduPCS-Go transfer $downloadURL $passcode",
       "BaiduPCS-Go download $filename --saveto $dir",
-      "BaiduPCS-Go cd / | Out-Null",
       "Push-Location $dir && (7z e $filename renamer-$version.zip | Out-Null) && Remove-Item $filename && Expand-Archive renamer-$version.zip -DestinationPath . -Force && Remove-Item renamer-$version.zip &&  Pop-Location"
     ]
   },
