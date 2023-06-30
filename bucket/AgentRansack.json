@@ -1,18 +1,21 @@
 {
-  "version": "3389",
-  "description": "Free File Searching Utility",
   "homepage": "https://www.mythicsoft.com/agentransack/",
-  "checkver": {
-    "url": "https://www.mythicsoft.com/agentransack/information/#version-history",
-    "regex": "\\((\\d+)\\)"
+  "license": "unknown",
+  "version": "3389",
+  "architecture": {
+    "64bit": {
+      "url": "https://download.mythicsoft.com/flp/3389/agentransack_inx64_3389.exe",
+      "hash": "99fbf087abc484e61c977fc243500a56ec4d4aa2b5dd918231990dffb41242f9"
+    },
+    "32bit": {
+      "url": "https://download.mythicsoft.com/flp/3389/agentransack_in_3389.exe",
+      "hash": "6feea21516fda4cb3bbdc42a3a6ae09e1eb9a3167a027cf609892ee210c99ddc"
+    }
   },
-  "license": "All rights reserved",
-  "url": "https://download.mythicsoft.com/flp/3389/agentransack_3389.exe#/dl.7z",
-  "hash": "74fa40b1050d42b165bed8644c04b23604eaef25dd761845c244b166e55eb527",
-  "pre_install": "Expand-7zipArchive \"$dir\\`$TEMP\\`$_4_\\`$_5_\" \"$dir\"",
+  "innosetup": true,
   "bin": [
     "AgentRansack.exe",
-    "AgentRansack.exe"
+    "flpsearch.exe"
   ],
   "shortcuts": [
     [
@@ -20,7 +23,24 @@
       "Agent Ransack"
     ]
   ],
+  "persist": [
+    "config\\config.xml",
+    "config\\flpui.xml",
+    "config\\history.xml",
+    "regkey.xml"
+  ],
+  "checkver": {
+    "url": "https://www.mythicsoft.com/agentransack/download/",
+    "regex": "Build ([\\d.]+)</a>"
+  },
   "autoupdate": {
-    "url": "https://download.mythicsoft.com/flp/$version/agentransack_$version.exe#/dl.7z"
+    "architecture": {
+      "64bit": {
+        "url": "https://download.mythicsoft.com/flp/$version/agentransack_inx64_$version.exe"
+      },
+      "32bit": {
+        "url": "https://download.mythicsoft.com/flp/$version/agentransack_in_$version.exe"
+      }
+    }
   }
 }

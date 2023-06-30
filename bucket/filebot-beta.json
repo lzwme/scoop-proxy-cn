@@ -24,16 +24,13 @@
       "    $url = 'https://get.filebot.net/filebot/BETA/'",
       "    $response = Invoke-WebRequest -Uri $url",
       "    $content = $response.Content",
-      "    $regex = 'FileBot_(?<version>[\\d.]+)-portable\\.zip'",
-      "    $versionRegex = '(?<date>\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2})'",
-      "    $fileMatch = [regex]::Match($content, $regex)",
-      "    $versionMatch = [regex]::Match($content, $versionRegex)",
-      "    $fileBotVersion = $fileMatch.Groups['version'].Value",
-      "    $timestamp = $versionMatch.Groups['date'].Value",
-      "    $versionNumber = [DateTime]::ParseExact($timestamp, 'yyyy-MM-dd HH:mm', $null).ToString('yyMMdd.HHmm')",
-      "    Write-Output \"$fileBotVersion-$versionNumber\"",
-      "}",
-      "catch { throw $_.Exception.Message }"
+      "    $filebotVersion = [regex]::Match($content, 'FileBot_(?<version>[\\d.]+)-portable\\.zip').Groups['version'].Value",
+      "    $timestamp = [regex]::Match($content, '(?<date>\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2})').Groups['date'].Value",
+      "    $dateNumber = [DateTime]::ParseExact($timestamp, 'yyyy-MM-dd HH:mm', $null).ToString('yyMMdd.HHmm')",
+      "    Write-Output \"$filebotVersion-$dateNumber\"",
+      "} catch {",
+      "    throw $_.Exception.Message",
+      "}"
     ]
   },
   "autoupdate": {

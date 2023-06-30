@@ -44,7 +44,7 @@
   },
   "pre_uninstall": [
     "Copy-Item \"$dir\\shell.nss\" \"$persist_dir\\shell.nss\" -ErrorAction SilentlyContinue",
-    "Copy-Item \"$dir\\imports\\*\" \"$persist_dir\\imports\" -Recurse -ErrorAction SilentlyContinue",
+    "Copy-Item \"$dir\\imports\\*\" \"$persist_dir\\imports\" -ErrorAction SilentlyContinue",
     "if ($cmd -eq 'uninstall') {",
     "    $regkey = Get-ItemProperty -Path 'HKLM:\\SOFTWARE\\Classes\\Directory\\background\\shellex\\ContextMenuHandlers\\nilesoft.shell' -ErrorAction SilentlyContinue",
     "    if ($regkey) {",

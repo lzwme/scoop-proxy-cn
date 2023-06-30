@@ -1,34 +1,33 @@
 {
-  "version": "2.2.6.1",
+  "version": "2.2.6.7",
   "description": "Ultracopier is free and open source software licensed under GPL3 that acts as a replacement for files copy dialogs.",
-  "homepage": "https://ultracopier.first-world.info/",
+  "homepage": "https://ultracopier.herman-brule.com/",
   "license": "GPL-3.0-only",
   "architecture": {
     "64bit": {
-      "url": "https://cdn.confiared.com/ultracopier.first-world.info/files/2.2.6.1/ultracopier-windows-x86_64-2.2.6.1-setup.exe#/dl.7z",
-      "hash": "a99b467e0589223918086e68d24104c1f65fee30ae68bc1c96a783687eaf0087"
-    },
-    "32bit": {
-      "url": "https://cdn.confiared.com/ultracopier.first-world.info/files/2.2.6.1/ultracopier-windows-x86-2.2.6.1-setup.exe#/dl.7z",
-      "hash": "0d2577ced3f6a6a7632a018cddd05bbd1d833d22d9449caa92cac6c9859480d1"
+      "url": "https://ultracopier.herman-brule.com/#download",
+      "hash": "cae96dba1e1e56b71ab750caa507894b629973aad669a6268c61de8345dc4854"
     }
   },
-  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$R0\" -Force -Recurse",
-  "bin": "ultracopier.exe",
-  "shortcuts": [
-    [
-      "ultracopier.exe",
-      "UltraCopier"
+  "installer": {
+    "args": [
+      "/S"
     ]
-  ],
-  "checkver": "Version ([\\d.]+)</td>",
+  },
+  "uninstaller": {
+    "file": "uninstall.exe",
+    "args": [
+      "/S"
+    ]
+  },
+  "checkver": {
+    "url": "https://ultracopier.herman-brule.com/#download",
+    "regex": "ultracopier-windows-x86_64-([\\d.]+)-setup.exe"
+  },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://cdn.confiared.com/ultracopier.first-world.info/files/$version/ultracopier-windows-x86_64-$version-setup.exe#/dl.7z"
-      },
-      "32bit": {
-        "url": "https://cdn.confiared.com/ultracopier.first-world.info/files/$version/ultracopier-windows-x86-$version-setup.exe#/dl.7z"
+        "url": "https://ultracopier.herman-brule.com/#download/ultracopier-windows-x86_64-$version-setup.exe"
       }
     }
   }

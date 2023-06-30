@@ -1,0 +1,39 @@
+{
+  "version": "4.0.6052",
+  "description": "An online translator",
+  "homepage": "https://www.deepl.com/",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://www.deepl.com/pro-license.html#free"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://appdownload.deepl.com/windows/0install/DeepLSetup.exe",
+      "hash": "sha1:c59c414abea635f5bbaba70fdd8e526e264ea96c"
+    }
+  },
+  "installer": {
+    "args": [
+      "-S"
+    ]
+  },
+  "pre_uninstall": "Stop-Process -Name 'DeepL' -Force -ErrorAction SilentlyContinue",
+  "uninstaller": {
+    "script": "Start-Process \"$env:AppData\\Programs\\Zero Install\\0install-win.exe\" -ArgumentList 'remove https://appdownload.deepl.com/windows/0install/deepl.xml --batch --background' -Wait"
+  },
+  "checkver": {
+    "url": "https://appdownload.deepl.com/windows/x64/RELEASES",
+    "regex": "DeepL-([\\d.]+)-full.nupkg"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://www.deepl.com/windows/download/x64/$underscoreVersion/DeepL-$version-full.nupkg",
+        "hash": {
+          "url": "https://appdownload.deepl.com/windows/x64/RELEASES",
+          "regex": "^$sha1 https.*?$basename"
+        }
+      }
+    }
+  }
+}

@@ -13,7 +13,6 @@
     "script": [
       "ensure $persist_dir | Out-Null",
       "Start-Process \"$dir\\Setup.exe\" -Wait -Args '-s'",
-      "if (\"$dir\\Setup.exe\" -match (Get-Process -Name 'Setup' -ErrorAction 'SilentlyContinue').Path[0]) { Stop-Process -Name 'Setup' -Force }",
       "Start-Sleep -Seconds 3; Remove-Item \"$dir\\Setup.exe\" -Force",
       "Copy-Item \"$persist_dir\\settings.json\" \"$env:LOCALAPPDATA\\SidebarDiagnostics\\settings.json\" -ErrorAction 'SilentlyContinue'"
     ]

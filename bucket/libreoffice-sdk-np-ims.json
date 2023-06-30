@@ -1,0 +1,27 @@
+{
+  "version": "7.5.4.2",
+  "description": "LibreOffice SDK.",
+  "homepage": "https://libreoffice.org/",
+  "license": "MPL-2.0",
+  "url": "https://downloadarchive.documentfoundation.org/libreoffice/old/7.5.4.2/win/x86_64/LibreOffice_7.5.4.2_Win_x86-64_sdk.msi#/setup.msi_",
+  "hash": "128c8f6bdaab44d8287280dd8f8383c6fc36c84ab4ca33b3e5c741aa1f2ed518",
+  "installer": {
+    "script": [
+      "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+      "Start-Process 'msiexec' -Wait -Verb 'RunAs' --ArgumentList @('/i', \"$dir\\setup.msi_\", '/qn', '/norestart')"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+      "Start-Process 'msiexec' -Wait -Verb 'RunAs' --ArgumentList @('/x', \"$dir\\setup.msi_\", '/qn', '/norestart')"
+    ]
+  },
+  "checkver": {
+    "url": "https://downloadarchive.documentfoundation.org/libreoffice/old/latest/win/x86_64/",
+    "regex": "LibreOffice_([\\d.]+)_Win_x86-64_sdk\\.msi"
+  },
+  "autoupdate": {
+    "url": "https://downloadarchive.documentfoundation.org/libreoffice/old/$version/win/x86_64/LibreOffice_$version_Win_x86-64_sdk.msi#/setup.msi_"
+  }
+}
