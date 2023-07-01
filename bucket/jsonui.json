@@ -1,31 +1,26 @@
 {
   "version": "1.0.1",
-  "description": "interactive JSON explorer on your command line",
-  "license": "Apache 2.0",
+  "description": "An interactive, command line JSON explorer. (archived)",
   "homepage": "https://github.com/gulyasm/jsonui",
-  "checkver": "github",
+  "license": "MIT",
   "architecture": {
-    "32bit": {
-      "url": "https://ghproxy.net/https://github.com/gulyasm/jsonui/releases/download/v1.0.1/jsonui_windows_386.exe#/jsonui.exe"
-    },
     "64bit": {
-      "url": "https://ghproxy.net/https://github.com/gulyasm/jsonui/releases/download/v1.0.1/jsonui_windows_amd64.exe#/jsonui.exe"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "32bit": {
-        "url": "https://ghproxy.net/https://github.com/gulyasm/jsonui/releases/download/v$version/jsonui_windows_386.exe"
-      },
-      "64bit": {
-        "url": "https://ghproxy.net/https://github.com/gulyasm/jsonui/releases/download/v$version/jsonui_windows_amd64.exe"
-      }
+      "url": "https://ghproxy.net/https://github.com/gulyasm/jsonui/releases/download/v1.0.1/jsonui_windows_amd64.exe",
+      "hash": "a5618415bea0f6dc1a366557872431c6e4948447f8c7b5f92c6cc0c02ae6b4c0"
     }
   },
   "bin": [
     [
-      "jsonui.exe",
+      "jsonui_windows_amd64.exe",
       "jsonui"
     ]
-  ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/gulyasm/jsonui/releases/download/v$version/jsonui_windows_amd64.exe"
+      }
+    }
+  }
 }

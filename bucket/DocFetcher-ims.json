@@ -8,18 +8,20 @@
   "extract_dir": "DocFetcher-1.1.25",
   "installer": {
     "script": [
-      "Copy-Item \"$dir\\misc\\DocFetcher.bat\" \"$dir\\DocFetcher.bat\"",
-      "Get-Content \"$dir\\misc\\DocFetcher.bat\" | %{Add-Content \"$dir\\DocFetcher.bat\" $_.Replace(\"java \",\"start /b javaw \")}"
+      "Copy-Item \"$dir\\misc\\DocFetcher.bat\" \"$dir\\DocFetcher.bat\""
     ]
   },
   "bin": [
     "DocFetcher.exe",
-    "docfetcher-daemon-windows.exe"
+    "docfetcher-daemon-windows.exe",
+    "docfetcher.bat"
   ],
   "shortcuts": [
     [
-      "DocFetcher.exe",
-      "DocFetcher"
+      "DocFetcher.bat",
+      "DocFetcher",
+      "",
+      "DocFetcher.exe"
     ]
   ],
   "persist": "conf",

@@ -5,8 +5,16 @@
   "license": "GPL-2.0 license",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.net/https://github.com/Jvcon/EhAria2/releases/download/v0.1.1/EhAria2_v0.1.1.zip",
-      "hash": "21e04937b1f6c2847c017e8d3572360624e810dd3357d217b45c781b187ea99d"
+      "url": [
+        "https://ghproxy.net/https://github.com/Jvcon/EhAria2/releases/download/v0.1.1/EhAria2_v0.1.1.zip",
+        "https://github.com/P3TERX/aria2.conf/raw/master/dht.dat",
+        "https://github.com/P3TERX/aria2.conf/raw/master/dht6.dat"
+      ],
+      "hash": [
+        "21e04937b1f6c2847c017e8d3572360624e810dd3357d217b45c781b187ea99d",
+        "C80023968EC6DF359BE576C82C772793910E6768B8169E2D90C8FAA3D6AD7D08",
+        "2DD69993CDAFD891BCE2D7F933F43F55110A8294A9DDF1C38F1B5D7B8A9C6182"
+      ]
     }
   },
   "installer": {
@@ -32,7 +40,9 @@
   "persist": [
     "EhAria2.ini",
     "aria2.conf",
-    "aria2.session"
+    "aria2.session",
+    "dht.dat",
+    "dht6.dat"
   ],
   "checkver": {
     "url": "https://api.github.com/repos/Jvcon/EhAria2/releases",

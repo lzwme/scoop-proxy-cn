@@ -1,0 +1,47 @@
+{
+  "version": "02ba78a",
+  "description": "A rule-based tunnel in Go.",
+  "homepage": "https://github.com/MetaCubeX/Clash.Meta",
+  "license": {
+    "identifier": "Freeware"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/MetaCubeX/Clash.Meta/releases/download/Prerelease-Alpha/clash.meta-windows-amd64-cgo-alpha-02ba78a.zip",
+      "hash": "650a0e1cf2bcc4b017fc327e4e0972881fd03458c75522169d888b992c996f61"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/MetaCubeX/Clash.Meta/releases/download/Prerelease-Alpha/clash.meta-windows-386-cgo-alpha-02ba78a.zip",
+      "hash": "72beb0e8e2f86c2e31df7166468f9b6ec49497c3feab1eb8476045549f182938"
+    },
+    "arm64": {
+      "url": "https://ghproxy.net/https://github.com/MetaCubeX/Clash.Meta/releases/download/Prerelease-Alpha/clash.meta-windows-arm64-alpha-02ba78a.zip",
+      "hash": "1742f109db32d9a538cda249a9eeb8a865e34ae4ccf0e8e0f9aa5f120211ab89"
+    }
+  },
+  "pre_install": "Get-ChildItem \"$dir\\Clash.Meta*.exe\" | Rename-Item -NewName 'Clash.Meta.exe'",
+  "bin": [
+    [
+      "Clash.Meta.exe",
+      "Clash Meta"
+    ]
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/MetaCubeX/Clash.Meta/releases",
+    "regex": "(?sm)releases/download/Prerelease-Alpha/(?<x86>clash.meta-windows-386-cgo-alpha-(?<commit>[0-9a-f]{7})\\.zip).*?(?<x64>clash.meta-windows-amd64-cgo-alpha-(?<commit>[0-9a-f]{7})\\.zip).*?(?<xarm64>clash.meta-windows-arm64-alpha-(?<commit>[0-9a-f]{7})\\.zip)",
+    "replace": "${commit}"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/MetaCubeX/Clash.Meta/releases/download/Prerelease-Alpha/$matchX64"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/MetaCubeX/Clash.Meta/releases/download/Prerelease-Alpha/$matchX86"
+      },
+      "arm64": {
+        "url": "https://ghproxy.net/https://github.com/MetaCubeX/Clash.Meta/releases/download/Prerelease-Alpha/$matchXarm64"
+      }
+    }
+  }
+}

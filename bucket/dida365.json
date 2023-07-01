@@ -1,15 +1,15 @@
 {
-  "version": "4.5.5.0",
+  "version": "4.5.5.1",
   "description": "让你的 Windows 电脑成为高效办公平台",
   "license": "Unknown",
   "architecture": {
     "64bit": {
       "url": "https://www.dida365.com/down/getApp/download?type=win64",
-      "hash": "2d2518d8be21192f2cedb520bb4ea3a25188f11d6f27324d6cb5220e695298fd"
+      "hash": "7fb65060db3823e9d298aa427d9cf351352e572107b499c491a1dd2f6974c97f"
     },
     "32bit": {
       "url": "https://www.dida365.com/down/getApp/download?type=win",
-      "hash": "491b8e4625870ebb19446c3012a05c6e3b8bdf541d982d6cb5cdbbd328a0149d"
+      "hash": "7b79e6cee87fb6468590d57235f8137a6fffa08ede6b7e5dcbf5425440e8ce75"
     }
   },
   "innosetup": true,
@@ -21,8 +21,15 @@
     ]
   ],
   "checkver": {
-    "url": "https://pull.dida365.com/windows/release_note.json",
-    "regex": "\"version\"\\s*:\\s*\"([\\d.]+)\""
+    "script": [
+      "$dl_url = 'https://www.dida365.com/down/getApp/download?type=win64'",
+      "$dl = cache_path 'dida365' '64bit' $dl_url",
+      "Invoke-WebRequest $dl_url -OutFile $dl",
+      "$ver = (Get-Item $dl).VersionInfo.ProductVersion",
+      "Move-Item -Force $dl (cache_path 'dida365' $ver $dl_url)",
+      "$ver"
+    ],
+    "regex": "(\\S+)"
   },
   "autoupdate": {
     "architecture": {
