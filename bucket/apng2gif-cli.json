@@ -6,18 +6,22 @@
   "architecture": {
     "64bit": {
       "url": "https://downloads.sourceforge.net/project/apng2gif/1.8/apng2gif-1.8-bin-win64.zip",
-      "hash": "sha1:0c0f9a38845d100db1eb197ced7dd62888feaf94"
+      "hash": "md5:36f1b7925c3a54cfb72d794076127306"
     }
   },
   "bin": "apng2gif.exe",
   "checkver": {
-    "sourceforge": "apng2gif",
+    "url": "https://sourceforge.net/projects/apng2gif/rss?path=",
     "regex": "apng2gif-([\\d.]+)-bin"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://downloads.sourceforge.net/project/apng2gif/$version/apng2gif-$version-bin-win64.zip"
+        "url": "https://downloads.sourceforge.net/project/apng2gif/$version/apng2gif-$version-bin-win64.zip",
+        "hash": {
+          "url": "https://sourceforge.net/projects/apng2gif/rss?path=",
+          "regex": "$basename/download\" filesize=\"\\d+\"><media:hash algo=\"md5\">$md5</media:hash>"
+        }
       }
     }
   }

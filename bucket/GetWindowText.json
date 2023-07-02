@@ -1,21 +1,24 @@
 {
+  "homepage": "http://softwareok.com/?seite=Microsoft/GetWindowText",
+  "description": "read window texts and contents",
+  "license": "freeware",
   "version": "4.88",
-  "description": "Get Window text is a very small Windows program with which you can read window texts and contents super easy!",
-  "homepage": "https://www.softwareok.de/?seite=Microsoft/GetWindowText",
-  "license": "Proprietary",
   "architecture": {
     "64bit": {
-      "url": "https://www.softwareok.de/Download/GetWindowText_x64.zip",
+      "url": "http://softwareok.com/Download/GetWindowText_x64.zip",
       "hash": "71474e68b38301c19a18f20fec96d67db7b342d5d3a86b94a4ef7409cf988035"
     },
     "32bit": {
-      "url": "https://www.softwareok.de/Download/GetWindowText.zip",
+      "url": "http://softwareok.com/Download/GetWindowText.zip",
       "hash": "09e32a5135d3ba0965ff8a8cc48e848596aefc2fc45609969895d2d4cec3f126"
     }
   },
   "pre_install": [
-    "Get-ChildItem \"$dir\\GetWindowText*.exe\" | Rename-Item -NewName 'GetWindowText.exe'",
-    "if(!(Test-Path \"$persist_dir\\GetWindowText.ini\")) { New-Item \"$dir\\GetWindowText.ini\" | Out-Null }"
+    "$exefile = (Get-ChildItem \"$dir\" '*.exe' | Select-Object -First 1).FullName",
+    "Rename-Item \"$exefile\" \"$dir\\GetWindowText.exe\"",
+    "if(!(Test-Path \"$persist_dir\\GetWindowText.ini\")) {",
+    "    New-Item \"$dir\\GetWindowText.ini\" -Type File -Force | Out-Null",
+    "}"
   ],
   "bin": "GetWindowText.exe",
   "shortcuts": [
@@ -25,17 +28,22 @@
     ]
   ],
   "persist": "GetWindowText.ini",
-  "checkver": {
-    "url": "https://www.softwareok.de/?Download=GetWindowText",
-    "regex": "Download GetWindowText ([\\d\\.]+)"
-  },
+  "checkver": "GetWindowText ([\\d.]+)",
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://www.softwareok.de/Download/GetWindowText_x64.zip"
+        "url": "http://softwareok.com/Download/GetWindowText_x64.zip",
+        "hash": {
+          "url": "http://softwareok.com/?Download=GetWindowText",
+          "find": "GetWindowText_x64\\.zip.+?target=_blank>($sha256)"
+        }
       },
       "32bit": {
-        "url": "https://www.softwareok.de/Download/GetWindowText.zip"
+        "url": "http://softwareok.com/Download/GetWindowText.zip",
+        "hash": {
+          "url": "http://softwareok.com/?Download=GetWindowText",
+          "find": "GetWindowText\\.zip.+?target=_blank>($sha256)"
+        }
       }
     }
   }
