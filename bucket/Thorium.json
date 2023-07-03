@@ -1,37 +1,48 @@
 {
   "version": "114.0.5735.134",
-  "description": "Chromium fork for linux named after radioactive element No. 90.",
-  "license": "GNU General Public License v3.0",
-  "homepage": "https://alex313031.blogspot.com/",
+  "description": "Google Chromium with additional performance optimization patches and new features.",
+  "homepage": "https://thorium.rocks/",
+  "license": "GPL-3.0-only",
   "architecture": {
     "64bit": {
       "url": "https://ghproxy.net/https://github.com/Alex313031/Thorium-Win/releases/download/M114.0.5735.134/Thorium_114.0.5735.134.zip",
       "hash": "62a0445a30f201ace5ef45989e37abebcb670594fbe5ef7aedf123911478ef7e"
     }
   },
+  "extract_dir": "Thorium_114.0.5735.134\\BIN",
   "bin": [
     [
-      "THORIUM.BAT",
-      "Thorium"
+      "thorium.exe",
+      "thorium",
+      "--user-data-dir=\"$dir\\User Data\" --allow-outdated-plugins --disable-logging --disable-breakpad --enable-experimental-web-platform-features --new-canvas-2d-api"
     ]
   ],
   "shortcuts": [
     [
-      "THORIUM.BAT",
-      "Thorium"
+      "thorium.exe",
+      "Thorium",
+      "--user-data-dir=\"$dir\\User Data\" --allow-outdated-plugins --disable-logging --disable-breakpad --enable-experimental-web-platform-features --new-canvas-2d-api"
     ]
   ],
-  "persist": "USER_DATA",
+  "post_install": [
+    "Remove-Item \"$dir\\`Thorium_$version\" -Recurse",
+    "if (!(Test-Path \"$dir\\UserData\\*\") -and (Test-Path \"$env:LocalAppData\\Thorium\\User Data\")) {",
+    "    info '[Portable Mode]: Copying user data...'",
+    "    Copy-Item \"$env:LocalAppData\\Thorium\\User Data\\*\" \"$dir\\User Data\" -Recurse",
+    "}"
+  ],
+  "persist": "User Data",
   "checkver": {
-    "url": "https://api.github.com/repos/Alex313031/Thorium-Win/releases/latest",
-    "jsonpath": "$.tag_name",
-    "regex": "M(?<version>[\\d]+\\.[\\d]+\\.[\\d]+\\.[\\d]+)"
+    "url": "https://api.github.com/repos/Alex313031/Thorium-Win/tags",
+    "jsonpath": "$..name",
+    "regex": "M([\\d.\\-r]+)"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
         "url": "https://ghproxy.net/https://github.com/Alex313031/Thorium-Win/releases/download/M$version/Thorium_$version.zip"
       }
-    }
+    },
+    "extract_dir": "Thorium_$version\\BIN"
   }
 }
