@@ -1,0 +1,44 @@
+{
+  "version": "0.1.5",
+  "description": "支持 trzsz ( trz / tsz ) 的 ssh 客户端",
+  "homepage": "https://github.com/trzsz/trzsz-ssh",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/trzsz/trzsz-ssh/releases/download/v0.1.5/tssh_0.1.5_windows_x86_64.zip",
+      "hash": "51551b1103251b04d66ddbc623b3da94de4806199bbb40a79802f3aacb6fac1f",
+      "extract_dir": "tssh_0.1.5_windows_x86_64"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/trzsz/trzsz-ssh/releases/download/v0.1.5/tssh_0.1.5_windows_i386.zip",
+      "hash": "8ec4c0f3a0fa36bd8a3d309b0e0ef77e399f7dd88573ddc9250b6d867aa029bc",
+      "extract_dir": "tssh_0.1.5_windows_i386"
+    },
+    "arm64": {
+      "url": "https://ghproxy.net/https://github.com/trzsz/trzsz-ssh/releases/download/v0.1.5/tssh_0.1.5_windows_aarch64.zip",
+      "hash": "5c812d398fe86f05fefca4c02600db5966563cb6f3ee632db1333ec3454d18ef",
+      "extract_dir": "tssh_0.1.5_windows_aarch64"
+    }
+  },
+  "bin": "tssh.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/trzsz/trzsz-ssh/releases/download/v$version/tssh_$version_windows_x86_64.zip",
+        "extract_dir": "tssh_$version_windows_x86_64"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/trzsz/trzsz-ssh/releases/download/v$version/tssh_$version_windows_i386.zip",
+        "extract_dir": "tssh_$version_windows_i386"
+      },
+      "arm64": {
+        "url": "https://ghproxy.net/https://github.com/trzsz/trzsz-ssh/releases/download/v$version/tssh_$version_windows_aarch64.zip",
+        "extract_dir": "tssh_$version_windows_aarch64"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/tssh_$version_checksums.txt"
+    }
+  }
+}

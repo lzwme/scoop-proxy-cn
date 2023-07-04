@@ -1,17 +1,15 @@
 {
-  "version": "20220616-cee69880",
+  "version": "20230702-023e8f72",
   "description": "An open-source open-world RPG game engine that supports playing Morrowind. (nightly version)",
-  "homepage": "http://openmw.org/",
+  "homepage": "https://openmw.org/",
   "license": "GPL-3.0-or-later",
   "notes": "Please run the OpenMW Launcher in the start menu to configure the game data path. Otherwise, OpenMW won't start correctly.",
   "architecture": {
     "64bit": {
-      "url": "https://gitlab.com/OpenMW/openmw/-/jobs/2602374059/artifacts/download#/dl.7z",
-      "hash": "37c5a297cc7506f93b2df4f181885e985c95ad8f4bd648decf3bd6680fc11d9b"
+      "url": "https://gitlab.com/api/v4/projects/7107382/jobs/4579117582/artifacts/OpenMW_MSVC2019_64_RelWithDebInfo_master.zip#/dl.7z",
+      "hash": "823d7e87bab7d3449e9a14133ef94f0bbfeedbd1852615785c3cb032fd653d40"
     }
   },
-  "pre_install": "Expand-ZipArchive \"$dir\\OpenMW_MSVC2019_64_Engine_RelWithDebInfo_master.zip\" \"$dir\"",
-  "post_install": "Remove-Item \"$dir\\MSVC2019_64\", \"$dir\\chocolatey.log\", \"$dir\\OpenMW_MSVC2019_64_Engine_RelWithDebInfo_*.zip\" -Force -Recurse",
   "bin": [
     "openmw.exe",
     "openmw-launcher.exe",
@@ -35,14 +33,24 @@
     ]
   ],
   "checkver": {
-    "url": "https://gitlab.com/OpenMW/openmw/-/jobs",
-    "regex": "\\/commit\\/[0-9a-f]{40}\">(?<commit>[0-9a-f]{8})<\\/a>(?:.*\\n){21}.*datetime=\"(?<year>[0-9]{4})-(?<month>[0-9]{2})-(?<day>[0-9]{2})(?:.*\\n){16}passed(?:.*\\n){4}.*(?<job>[0-9]{10})\">Windows_MSBuild_Engine_RelWithDebInfo(?:.*\\n){7}.*>master<",
-    "replace": "${year}${month}${day}-${commit}"
+    "url": "https://gitlab.com/api/v4/projects/7107382/pipelines/?source=schedule",
+    "script": [
+      "$openmw_recent_pipeline = ((Invoke-WebRequest -Uri 'https://gitlab.com/api/v4/projects/7107382/pipelines/?source=schedule').Content | ConvertFrom-Json | Where-Object ref -eq 'master')[0].id",
+      "$openmw_pipeline_jobs_url = 'https://gitlab.com/api/v4/projects/7107382/pipelines/' + $openmw_recent_pipeline + '/jobs/'",
+      "$openmw_jobs = ((Invoke-WebRequest -Uri $openmw_pipeline_jobs_url))",
+      "$openmw_winjob = ($openmw_jobs | ConvertFrom-Json | Where-Object Name -like 'Windows*' | Where-Object status -eq 'success' | Where-Object ref -eq 'master')",
+      "$openmw_job_date = $openmw_winjob.finished_at",
+      "$openmw_job_commit = $openmw_winjob.commit.short_id",
+      "$openmw_winjob_id = $openmw_winjob.id",
+      "Write-Output (Get-Date $openmw_job_date -Format 'yyyyMMdd') $openmw_job_commit $openmw_winjob_id"
+    ],
+    "regex": "(?<date>.+?)\\s(?<commit>.+?)\\s(?<job>.+)",
+    "replace": "${date}-${commit}"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://gitlab.com/OpenMW/openmw/-/jobs/$matchJob/artifacts/download#/dl.7z"
+        "url": "https://gitlab.com/api/v4/projects/7107382/jobs/$matchJob/artifacts/OpenMW_MSVC2019_64_RelWithDebInfo_master.zip#/dl.7z"
       }
     }
   }

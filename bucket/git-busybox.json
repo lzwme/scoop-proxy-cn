@@ -31,6 +31,16 @@
     ],
     [
       "mingw64\\bin\\busybox.exe",
+      "diff",
+      "diff"
+    ],
+    [
+      "mingw64\\bin\\busybox.exe",
+      "grep",
+      "grep"
+    ],
+    [
+      "mingw64\\bin\\busybox.exe",
       "sed",
       "sed"
     ],
@@ -45,7 +55,7 @@
   },
   "checkver": {
     "github": "https://github.com/git-for-windows/git",
-    "regex": "v([\\w.]+)/MinGit-(?<full>[\\w.]+)-64-bit"
+    "regex": "tag/v([\\d.]+\\.windows\\.\\d)"
   },
   "autoupdate": {
     "architecture": {
@@ -58,7 +68,7 @@
     },
     "hash": {
       "url": "https://github.com/git-for-windows/git/releases/tag/v$version",
-      "regex": "<td>$basename</td>\\s*<td>$sha256</td>"
+      "regex": "(?s)$basename.*?$sha256"
     }
   }
 }

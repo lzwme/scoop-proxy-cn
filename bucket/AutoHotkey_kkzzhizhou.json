@@ -1,0 +1,57 @@
+{
+  "version": "1.1.37.00",
+  "description": "The ultimate automation scripting language for Windows.",
+  "homepage": "https://www.autohotkey.com/",
+  "license": "GPL-2.0-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/Lexikos/AutoHotkey_L/releases/download/v1.1.37.00/AutoHotkey_1.1.37.00_setup.exe#/setup.exe",
+      "hash": "e16e14a5902618298c24b6b6a2503d83d435bd647dcbdc2a20fa5f7285c57168",
+      "installer": {
+        "script": "Start-Process -Wait \"$dir\\setup.exe\" \"/S /x64 /uiAccess=0 /IsHostApp=1 /D=$dir\" -Verb RunAs",
+        "keep": true
+      },
+      "uninstaller": {
+        "script": "Start-Process -Wait \"$dir\\setup.exe\" \"/Uninstall\" -Verb RunAs"
+      },
+      "bin": [
+        [
+          "autohotkeyu64.exe",
+          "autohotkey"
+        ],
+        "compiler/ahk2exe.exe"
+      ]
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/Lexikos/AutoHotkey_L/releases/download/v1.1.37.00/AutoHotkey_1.1.37.00_setup.exe#/setup.exe",
+      "hash": "e16e14a5902618298c24b6b6a2503d83d435bd647dcbdc2a20fa5f7285c57168",
+      "installer": {
+        "script": "Start-Process -Wait \"$dir\\setup.exe\" \"/S /U32 /uiAccess=0 /IsHostApp=1 /D=$dir\" -Verb RunAs",
+        "keep": true
+      },
+      "uninstaller": {
+        "script": "Start-Process -Wait \"$dir\\setup.exe\" \"/Uninstall\" -Verb RunAs"
+      },
+      "bin": [
+        [
+          "autohotkeyu32.exe",
+          "autohotkey"
+        ],
+        "compiler/ahk2exe.exe"
+      ]
+    }
+  },
+  "checkver": {
+    "github": "https://github.com/lexikos/autohotkey_l"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/Lexikos/AutoHotkey_L/releases/download/v$version/AutoHotkey_$version_setup.exe#/setup.exe"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/Lexikos/AutoHotkey_L/releases/download/v$version/AutoHotkey_$version_setup.exe#/setup.exe"
+      }
+    }
+  }
+}
