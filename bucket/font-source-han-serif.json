@@ -1,15 +1,14 @@
 {
-  "checkver": {
-    "regex": "/releases/tag/(?:v|V)?([\\d.R]+)",
-    "url": "https://github.com/adobe-fonts/source-han-serif/releases/latest"
-  },
+  "version": "2.001R",
+  "description": "Pan-CJK font",
+  "homepage": "https://github.com/adobe-fonts/source-han-serif",
+  "license": "OFL-1.1-RFN",
+  "url": "https://ghproxy.net/https://github.com/adobe-fonts/source-han-serif/releases/download/2.001R/01_SourceHanSerif.ttc.zip",
+  "hash": "50b76bb4f2edcec81f6441d692be1e6c2fc5491387056249543f8fcdd209e8e8",
   "depends": [
     "sudo",
     "unoun/scoop-helper"
   ],
-  "description": "Pan-CJK font",
-  "hash": "50b76bb4f2edcec81f6441d692be1e6c2fc5491387056249543f8fcdd209e8e8",
-  "homepage": "https://github.com/adobe-fonts/source-han-serif",
   "installer": {
     "script": [
       "$helper = \"$(appdir scoop-helper)\\current\\scoop-font-helper.ps1\"",
@@ -18,7 +17,6 @@
       "Install-Font($dir)"
     ]
   },
-  "license": "OFL-1.1-RFN",
   "uninstaller": {
     "script": [
       "$helper = \"$(appdir scoop-helper)\\current\\scoop-font-helper.ps1\"",
@@ -27,6 +25,8 @@
       "Uninstall-Font($dir)"
     ]
   },
-  "url": "https://ghproxy.net/https://github.com/adobe-fonts/source-han-serif/releases/download/2.001R/01_SourceHanSerif.ttc.zip",
-  "version": "2.001R"
+  "checkver": {
+    "url": "https://github.com/adobe-fonts/source-han-serif/releases/latest",
+    "regex": "/releases/tag/(?:v|V)?([\\d.R]+)"
+  }
 }

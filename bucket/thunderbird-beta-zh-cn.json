@@ -1,14 +1,16 @@
 {
-  "description": "Thunderbird is a free email application that’s easy to set up and customize (Beta)",
+  "description": "Thunderbird is a free email application that's easy to set up and customize (Beta)",
   "homepage": "https://www.thunderbird.net/zh-CN/",
-  "version": "nightly",
+  "version": "115.0b6",
   "license": "MPL-2.0",
   "architecture": {
     "64bit": {
-      "url": "https://download.mozilla.org/?product=thunderbird-beta-latest-ssl&os=win64&lang=zh-CN#/thunderbird-beta.7z"
+      "url": "https://download-installer.cdn.mozilla.net/pub/thunderbird/releases/115.0b6/win64/zh-CN/Thunderbird%20Setup%20115.0b6.exe#/dl.7z",
+      "hash": "c5bcaf29e54e99a540207a1dd5f9966167a6951454f62a382989209c540f3162"
     },
     "32bit": {
-      "url": "https://download.mozilla.org/?product=thunderbird-beta-latest-ssl&os=win&lang=zh-CN#/thunderbird-beta.7z"
+      "url": "https://download-installer.cdn.mozilla.net/pub/thunderbird/releases/115.0b6/win32/zh-CN/Thunderbird%20Setup%20115.0b6.exe#/dl.7z",
+      "hash": "5b638ba0aaf49017c665f7dc502a8932322075876a6a3e772e7470bae901afdd"
     }
   },
   "extract_dir": "core",
@@ -16,6 +18,25 @@
     [
       "thunderbird.exe",
       "Thunderbird Beta"
+    ],
+    [
+      "thunderbird.exe",
+      "Thunderbird Beta - Profile Manager",
+      " -p"
     ]
-  ]
+  ],
+  "checkver": {
+    "url": "https://www.thunderbird.net/en-US/thunderbird/beta/all/",
+    "regex": "thunderbird-(.*?)-SSL"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://download-installer.cdn.mozilla.net/pub/thunderbird/releases/$version/win64/zh-CN/Thunderbird%20Setup%20$version.exe#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://download-installer.cdn.mozilla.net/pub/thunderbird/releases/$version/win32/zh-CN/Thunderbird%20Setup%20$version.exe#/dl.7z"
+      }
+    }
+  }
 }

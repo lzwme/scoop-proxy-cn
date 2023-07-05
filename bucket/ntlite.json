@@ -1,45 +1,38 @@
 {
+  "##": "Based on https://github.com/anderlli0053/DEV-tools/blob/master/bucket/NTLite-Portable.json",
+  "depends": "innounp",
   "version": "2023.6.9292",
-  "description": "",
-  "homepage": "https://www.ntlite.com/",
-  "license": "",
-  "notes": "",
-  "architecture": {
-    "64bit": {
-      "url": "https://downloads.ntlite.com/files/NTLite_setup_x64.exe#/setup.exe",
-      "hash": "6ac83658f79ac28d04af7f8f844fc531697d81ecbc04ee5419a0a1df15004ddf"
-    },
-    "32bit": {
-      "url": "https://downloads.ntlite.com/files/NTLite_setup_x64.exe#/setup.exe",
-      "hash": "6ac83658f79ac28d04af7f8f844fc531697d81ecbc04ee5419a0a1df15004ddf"
-    }
+  "description": "Local control for updating and editing Windows images and deployments.",
+  "homepage": "https://www.ntlite.com",
+  "license": {
+    "identifier": "Shareware",
+    "url": "https://www.ntlite.com/shop/"
   },
+  "url": "https://downloads.ntlite.com/files/NTLite_setup_x64.exe",
+  "hash": "6ac83658f79ac28d04af7f8f844fc531697d81ecbc04ee5419a0a1df15004ddf",
+  "pre_install": "If (!(Test-Path \"$persist_dir\\settings.xml\")) { New-Item \"$dir\\settings.xml\" -ItemType File | Out-Null }",
   "installer": {
     "script": [
-      "# Using Start-Process as a workaround because the installer will not work properly when args are quoted (e.g. \"`\"/S`\"\")",
-      "Start-Process \"$dir\\setup.exe\" -WorkingDirectory \"$dir\" -ArgumentList @(\"/DIR=$dir\") "
+      "Expand-InnoArchive -Path \"$dir\\$fname\"",
+      "Expand-InnoArchive -Path \"$dir\\$fname\" -ExtractDir '{code_CefInstallDir}' -Removal"
     ]
   },
-  "bin": [
-    "NTLite.exe",
+  "shortcuts": [
     [
       "NTLite.exe",
-      "ntlite"
+      "NTLite"
     ]
   ],
-  "persist": "Presets",
+  "persist": [
+    "Presets",
+    "Updates",
+    "settings.xml"
+  ],
   "checkver": {
     "url": "https://www.ntlite.com/download/",
-    "regex": "v([\\d]+.[\\d]+.[\\d]+)"
+    "regex": "<span.+>v([\\d.]+)<\\/span>"
   },
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://downloads.ntlite.com/files/NTLite_setup_x64.exe#/setup.exe"
-      },
-      "32bit": {
-        "url": "https://downloads.ntlite.com/files/NTLite_setup_x64.exe#/setup.exe"
-      }
-    }
+    "url": "https://downloads.ntlite.com/files/NTLite_setup_x64.exe"
   }
 }

@@ -1,0 +1,48 @@
+{
+  "version": "2023-07-01",
+  "description": "2^x Image Super-Resolution",
+  "homepage": "https://github.com/Tohrusky/Final2x",
+  "license": {
+    "identifier": "BSD-3-Clause license",
+    "url": "https://github.com/Tohrusky/Final2x/blob/main/LICENSE"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/Tohrusky/Final2x/releases/download/2023-07-01/Final2x-windows-x64-unpacked.zip",
+      "hash": "ba53addf6d79d02c5ab62c52d45c559dbef73f2d7c0298476b3ce0e5c617039e"
+    },
+    "arm64": {
+      "url": "https://ghproxy.net/https://github.com/Tohrusky/Final2x/releases/download/2023-07-01/Final2x-windows-arm64-unpacked.zip",
+      "hash": "9876aa05b0d9572244d44aa7f4385c419b8b721a70a3642db33092fe93546aae"
+    }
+  },
+  "installer": {
+    "script": [
+      "ensure \"$persist_dir\" | Out-Null",
+      "New-Item \"$env:APPDATA\\Final2x\" -ItemType Junction -Target \"$persist_dir\" | Out-Null"
+    ]
+  },
+  "uninstaller": {
+    "script": "Remove-Item \"$env:APPDATA\\Final2x\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
+  },
+  "shortcuts": [
+    [
+      "Final2x.exe",
+      "Final2x"
+    ]
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/Tohrusky/Final2x/releases",
+    "regex": "/releases/tag/([\\d-]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/Tohrusky/Final2x/releases/download/$version/Final2x-windows-x64-unpacked.zip"
+      },
+      "arm64": {
+        "url": "https://ghproxy.net/https://github.com/Tohrusky/Final2x/releases/download/$version/Final2x-windows-arm64-unpacked.zip"
+      }
+    }
+  }
+}
