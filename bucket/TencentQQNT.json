@@ -5,7 +5,7 @@
   "license": "Unknown",
   "notes": [
     "The app runtime is persisted by scoop, while user date are storaged in",
-    "\"$env:homedrive$env:homepath\\Documents\\Tencent Files\""
+    "\"$env:USERPROFILE\\Documents\\Tencent Files\""
   ],
   "architecture": {
     "64bit": {
@@ -50,15 +50,15 @@
   },
   "checkver": {
     "url": "https://cdn-go.cn/qq-web/im.qq.com_new/latest/rainbow/windowsDownloadUrl.js",
-    "regex": "ntVersion\":\"(?<version>[\\d\\.]+)\".+QQNT\\/(?<Address32>\\w+\\/QQ[\\d\\.]+_x86\\.exe)\".+QQNT\\/(?<Address64>\\w+\\/QQ[\\d\\.]+_x64\\.exe)"
+    "regex": "ntVersion\":\"(?<version>[\\d\\.]+)\".+ntDownloadUrl\":\"(?<URL32>https:\\/\\/.+_x86\\.exe)\".+ntDownloadX64Url\":\"(?<URL64>https:\\/\\/.+_x64\\.exe)"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://dldir1.qq.com/qqfile/qq/QQNT/$matchAddress64#/dl.7z"
+        "url": "$matchURL64#/dl.7z"
       },
       "32bit": {
-        "url": "https://dldir1.qq.com/qqfile/qq/QQNT/$matchAddress32#/dl.7z"
+        "url": "$matchURL32#/dl.7z"
       }
     }
   }

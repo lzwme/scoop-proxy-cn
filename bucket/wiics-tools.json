@@ -1,14 +1,4 @@
 {
-  "version": "0.3",
-  "description": "Wii WAD tools.",
-  "homepage": "https://code.google.com/archive/p/showmiiwads/",
-  "license": "GPL-3.0-only",
-  "url": "https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/showmiiwads/Wii.cs%20Tools%200.3.rar",
-  "hash": "059810f9098e4d101d76daa7ef3dddeeb01f499ff3525f856a9031ac3bd8c87f",
-  "post_install": [
-    "[byte[]] $ckey = 235,228,42,34,94,133,147,228,72,217,197,69,115,129,170,247",
-    "Set-Content $ckey -Path \"$dir\\common-key.bin\" -AsByteStream -NoNewline"
-  ],
   "bin": [
     "DolMii.exe",
     "Lz77Mii.exe",
@@ -16,6 +6,14 @@
     "U8Mii.exe",
     "UltimateU8.exe",
     "WadMii.exe"
+  ],
+  "description": "Wii WAD tools.",
+  "hash": "059810f9098e4d101d76daa7ef3dddeeb01f499ff3525f856a9031ac3bd8c87f",
+  "homepage": "https://code.google.com/archive/p/showmiiwads/",
+  "license": "GPL-3.0-only",
+  "post_install": [
+    "[byte[]] $ckey = 235,228,42,34,94,133,147,228,72,217,197,69,115,129,170,247",
+    "Set-Content $ckey -Path \"$dir\\common-key.bin\" -AsByteStream -NoNewline"
   ],
   "shortcuts": [
     [
@@ -42,5 +40,7 @@
       "WadMii.exe",
       "WadMii"
     ]
-  ]
+  ],
+  "url": "https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/showmiiwads/Wii.cs%20Tools%200.3.rar",
+  "version": "0.3"
 }

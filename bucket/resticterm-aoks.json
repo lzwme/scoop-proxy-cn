@@ -1,10 +1,14 @@
 {
-  "version": "0.8.0",
+  "version": "0.9.0.0",
   "description": "Multi-platform UI for the restic backup software.",
   "homepage": "https://github.com/GPh83/resticterm",
   "license": "Apache-2.0",
-  "url": "https://ghproxy.net/https://github.com/GPh83/resticterm/releases/download/V0.8.0/resticterm_v0.8.0.zip",
-  "hash": "ae87038e50ff11721cd7fb9e2f3ea136457583ce1f8e3a022461c3312449d389",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/GPh83/resticterm/releases/download/V0.9.0.0/resticterm_Win_x64_V0.9.0.0.zip",
+      "hash": "6eb18c380116acb49c4b1153ac3d4535f1ec5afced6ce365831a0dbea07689d8"
+    }
+  },
   "bin": "resticterm.exe",
   "shortcuts": [
     [
@@ -15,6 +19,10 @@
   "persist": "config.json",
   "checkver": "github",
   "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/GPh83/resticterm/releases/download/V$version/resticterm_v$version.zip"
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/GPh83/resticterm/releases/download/V$version/resticterm_Win_x64_V$version.zip"
+      }
+    }
   }
 }

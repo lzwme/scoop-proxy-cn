@@ -1,0 +1,36 @@
+{
+  "version": "1.1",
+  "description": "Open selected file(s) from TC in defined editor(s) - A minimalistic clone of F4Menu",
+  "homepage": "https://github.com/hi5/F4MiniMenu",
+  "license": "MIT",
+  "url": "https://ghproxy.net/https://github.com/hi5/F4MiniMenu/releases/download/v1.1/F4MiniMenu-Compiled.zip",
+  "hash": "E0B245E29FA9B49A7F35666D53B6A317F0649AB205DC49640A1FEA4536E3FAE1",
+  "bin": [
+    "F4TCIE-64.exe",
+    "F4TCIE-32.exe"
+  ],
+  "shortcuts": [
+    [
+      "F4MiniMenu-64.exe",
+      "F4MiniMenu"
+    ],
+    [
+      "F4MiniMenu-32.exe",
+      "F4MiniMenu32"
+    ]
+  ],
+  "persist": [
+    "F4MiniMenu.xml"
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/hi5/F4MiniMenu/releases",
+    "regex": "/releases/tag/(?:v|V)?([\\w.-]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/hi5/F4MiniMenu/releases/download/v$version/F4MiniMenu-Compiled.zip"
+      }
+    }
+  }
+}

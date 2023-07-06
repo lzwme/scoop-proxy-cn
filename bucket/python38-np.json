@@ -16,8 +16,8 @@
   "installer": {
     "args": [
       "/passive",
-      "InstallAllUsers=$(@{$true=1;$false=0}[$global])",
-      "InstallLauncherAllUsers=$(@{$true=1;$false=0}[$global])",
+      "InstallAllUsers=$(@{$true=1;$false=0}[$global -or $false])",
+      "InstallLauncherAllUsers=$(@{$true=1;$false=0}[$global -or $false])",
       "PrependPath=1"
     ],
     "keep": true

@@ -1,0 +1,39 @@
+{
+  "version": "1.3",
+  "description": "Flip Clock Screensaver. Inspired by Fliqlo. Fliqlo on Windows stopped working with a recent (Dec 2015?) Flash update which prompted this project. This project does NOT use Flash.",
+  "homepage": "https://github.com/phaselden/FlipIt",
+  "license": {
+    "identifier": "Attribution-ShareAlike 2.0 Generic (CC BY-SA 2.0)",
+    "url": "https://creativecommons.org/licenses/by-sa/2.0/"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/phaselden/FlipIt/releases/download/v1.1/FlipIt.scr",
+      "hash": "ae9c2434eaa38183c4957ed356542fd74401557e4a9f3ad1947fb0158b5babcd"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/phaselden/FlipIt/releases/download/v1.1/FlipIt.scr",
+      "hash": "ae9c2434eaa38183c4957ed356542fd74401557e4a9f3ad1947fb0158b5babcd"
+    }
+  },
+  "bin": "FlipIt.scr",
+  "notes": [
+    "111 ",
+    "222 ",
+    "333."
+  ],
+  "checkver": {
+    "url": "https://github.com/phaselden/FlipIt/releases",
+    "re": "releases/tag/v(?<version>[0-9\\.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/phaselden/FlipIt/releases/download/v$version/FlipIt.scr"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/phaselden/FlipIt/releases/download/v$version/FlipIt.scr"
+      }
+    }
+  }
+}
