@@ -1,0 +1,39 @@
+{
+  "version": "0.8.2",
+  "description": "Game Launcher for miHoYo/hoyoverse.",
+  "homepage": "https://github.com/Scighost/Starward",
+  "license": {
+    "identifier": "MIT",
+    "url": "https://github.com/Scighost/Starward/blob/main/LICENSE"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/Scighost/Starward/releases/download/0.8.2/Starward_Portable_0.8.2_x64.7z",
+      "hash": "d679b2289a931ba718a78198999857d656c10710107f5f76c6e3c7e4c3882c18"
+    },
+    "arm64": {
+      "url": "https://ghproxy.net/https://github.com/Scighost/Starward/releases/download/0.8.2/Starward_Portable_0.8.2_arm64.7z",
+      "hash": "72db6f5a86ffc079bb70eddf9d8b139f9473bbc62b75e0ca851ca8513ae8dc22"
+    }
+  },
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/Scighost/Starward/releases/download/$version/Starward_Portable_$version_x64.7z"
+      },
+      "arm64": {
+        "url": "https://ghproxy.net/https://github.com/Scighost/Starward/releases/download/$version/Starward_Portable_$version_arm64.7z"
+      }
+    }
+  },
+  "extract_dir": "Starward",
+  "shortcuts": [
+    [
+      "Starward.exe",
+      "Starward"
+    ]
+  ],
+  "persist": "data",
+  "notes": "Please choose the data folder in the installation folder as userdata storage."
+}

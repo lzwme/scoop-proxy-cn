@@ -1,0 +1,51 @@
+{
+  "version": "1.3.4",
+  "description": "High speed downloader that supports all platforms.",
+  "homepage": "https://github.com/GopeedLab/gopeed",
+  "license": "GPL-3.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/GopeedLab/gopeed/releases/download/v1.3.4/gopeed-web-v1.3.4-windows-amd64.zip",
+      "hash": "3d56d628f007432d49314b18e03c98a838e683cc8d35e73bff6b77a262353882",
+      "extract_dir": "gopeed-web-v1.3.4-windows-amd64"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/GopeedLab/gopeed/releases/download/v1.3.4/gopeed-web-v1.3.4-windows-386.zip",
+      "hash": "f82e337bbd5af418244660a6b5bcadb5d93c51963cfcddc42508f4620ad01990",
+      "extract_dir": "gopeed-web-v1.3.4-windows-386"
+    },
+    "arm64": {
+      "url": "https://ghproxy.net/https://github.com/GopeedLab/gopeed/releases/download/v1.3.4/gopeed-web-v1.3.4-windows-arm64.zip",
+      "hash": "4bb7ad0ce59b432b70bd4a5f341fdb3da95ffa501f4537b612b85f715d8ae171",
+      "extract_dir": "gopeed-web-v1.3.4-windows-arm64"
+    }
+  },
+  "shortcuts": [
+    [
+      "gopeed.exe",
+      "Gopeed"
+    ]
+  ],
+  "pre_install": "if (!(Test-Path \"$persist_dir\\gopeed.db\")) { Set-Content -Encoding ASCII -Path \"$dir\\gopeed.db\" -Value $null }",
+  "persist": "gopeed.db",
+  "checkver": {
+    "url": "https://api.github.com/repos/GopeedLab/gopeed/releases",
+    "regex": "/releases/tag/v([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/GopeedLab/gopeed/releases/download/v$version/gopeed-web-v$version-windows-amd64.zip",
+        "extract_dir": "gopeed-web-v$version-windows-amd64"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/GopeedLab/gopeed/releases/download/v$version/gopeed-web-v$version-windows-386.zip",
+        "extract_dir": "gopeed-web-v$version-windows-386"
+      },
+      "arm64": {
+        "url": "https://ghproxy.net/https://github.com/GopeedLab/gopeed/releases/download/v$version/gopeed-web-v$version-windows-arm64.zip",
+        "extract_dir": "gopeed-web-v$version-windows-arm64"
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 {
-  "version": "1.7.4684",
-  "description": "A feature rich FOSS PlayStation 2 emulator (development version)",
+  "version": "1.7.4690",
+  "description": "Sony PlayStation 2 emulator",
   "homepage": "https://pcsx2.net/",
   "license": {
     "identifier": "GPL-3.0",
@@ -14,15 +14,11 @@
   "suggest": {
     "Microsoft Visual C++ Runtime 2022": "extras/vcredist2022"
   },
-  "architecture": {
-    "64bit": {
-      "url": "https://ghproxy.net/https://github.com/PCSX2/pcsx2/releases/download/v1.7.4684/pcsx2-v1.7.4684-windows-64bit-Qt.7z",
-      "hash": "d0c75876832de578d43226ded100b6268a8cf39ffce5c7f21930e35358a50b34"
-    }
-  },
+  "url": "https://ghproxy.net/https://github.com/PCSX2/pcsx2/releases/download/v1.7.4690/pcsx2-v1.7.4690-windows-64bit-Qt.7z",
+  "hash": "fdcb878cd5d0b02854fd9089e4846482f64e99e456e662518d090d37c176b6c0",
   "pre_install": [
     "if (!(Test-Path \"$persist_dir\")) {",
-    "   New-Item \"$persist_dir\" -ItemType Directory | Out-Null",
+    "   New-item \"$persist_dir\" -ItemType Directory | Out-Null",
     "   if (Test-Path \"$env:USERPROFILE\\Documents\\PCSX2\") {",
     "       Write-host \"Migrating AppData...\" -ForegroundColor yellow",
     "       Copy-Item -Path \"$env:USERPROFILE\\Documents\\PCSX2\\*\" -Destination \"$persist_dir\" -Recurse",
@@ -48,14 +44,17 @@
   ],
   "persist": [
     "bios",
+    "cache",
     "cheats_ws",
     "cheats",
     "covers",
     "gamesettings",
     "inis",
+    "inputprofiles",
     "logs",
     "memcards",
     "portable.ini",
+    "shaders",
     "snaps",
     "sstates",
     "textures"
@@ -66,10 +65,6 @@
     "regex": "v([\\d.]+)"
   },
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.net/https://github.com/PCSX2/pcsx2/releases/download/v$version/pcsx2-v$version-windows-64bit-Qt.7z"
-      }
-    }
+    "url": "https://ghproxy.net/https://github.com/PCSX2/pcsx2/releases/download/v$version/pcsx2-v$version-windows-64bit-Qt.7z"
   }
 }

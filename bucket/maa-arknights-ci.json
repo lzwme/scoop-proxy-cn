@@ -1,13 +1,13 @@
 {
   "notes": "CI version, the second last string in version is not stable, if there is a new version which has not been updated in manifest, please contact me via github issues.",
-  "version": "4.19.3-beta.2",
+  "version": "4.19.3-beta.2.d015.g96eb8b8d0",
   "description": "An Arknights game assissant",
   "homepage": "https://maa.plus/",
   "license": "AGPL-3.0-only",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.net/https://github.com/MaaAssistantArknights/MaaRelease/releases/download/v4.19.3-beta.2/MAA-v4.19.3-beta.2-win-x64.zip",
-      "hash": "dcd7cfac2001f9806aeb48ac7ec1c886dd93d40ed89cfbb85cbb36aed70f0cb1"
+      "url": "https://ghproxy.net/https://github.com/MaaAssistantArknights/MaaRelease/releases/download/v4.19.3-beta.2.d015.g96eb8b8d0/MAA-v4.19.3-beta.2.d015.g96eb8b8d0-win-x64.zip",
+      "hash": "c0f43cfb71d203cb1995cbb7e1c57fb0cce1b84c2f715ff92d1feb0a1aa7d048"
     }
   },
   "bin": [
@@ -32,7 +32,7 @@
   "persist": "config",
   "checkver": {
     "url": "https://api.github.com/repos/MaaAssistantArknights/MaaRelease/releases",
-    "regex": "/releases/tag/(?:v)?([\\d.]+(-(alpha\\.\\d(.\\w+.\\w+)?|(beta|rc)\\.\\d+))?)"
+    "regex": "/releases/tag/(?:v)?([\\d.]+(-((alpha|beta|rc)\\.\\d(.\\w+.\\w+)?)?))"
   },
   "autoupdate": {
     "url": "https://ghproxy.net/https://github.com/MaaAssistantArknights/MaaRelease/releases/download/v$version/MAA-v$version-win-x64.zip"

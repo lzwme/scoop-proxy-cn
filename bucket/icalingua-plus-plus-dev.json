@@ -1,0 +1,64 @@
+{
+  "version": "2.9.21-9d0875a2",
+  "description": "A client for QQ and more.",
+  "homepage": "https://github.com/Icalingua-plus-plus/Icalingua-plus-plus",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://nightly.link/Icalingua-plus-plus/Icalingua-plus-plus/actions/runs/5460657367/Icalingua_Windows64.exe.zip",
+      "hash": "2eddc59b759b616888324287fb89183087772865642937f1bb75d33cc083cc31",
+      "pre_install": [
+        "Expand-7zipArchive \"$dir\\Icalingua++-2.9.21-5-g9d0875a2_x64.exe\" \"$dir\"",
+        "Remove-Item \"$dir\\Icalingua++-2.9.21-5-g9d0875a2_x64.exe\" -Force -Recurse",
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+        "Remove-Item \"$dir\\`$*\", \"$dir\\Uninst*\" -Force -Recurse"
+      ]
+    },
+    "arm64": {
+      "url": "https://nightly.link/Icalingua-plus-plus/Icalingua-plus-plus/actions/runs/5460657367/Icalingua_Windows_arm64.exe.zip",
+      "hash": "6d5c01426db7f68c8c80d374a4e156ba243e03a174e0d8e41eb6e7f93d5d843a",
+      "pre_install": [
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-arm64.7z\" \"$dir\"",
+        "Remove-Item \"$dir\\`$*\", \"$dir\\Uninst*\" -Force -Recurse"
+      ]
+    }
+  },
+  "shortcuts": [
+    [
+      "Icalingua++.exe",
+      "Icalingua++"
+    ]
+  ],
+  "checkver": {
+    "script": [
+      "$actions = Invoke-RestMethod -Uri 'https://api.github.com/repos/Icalingua-plus-plus/Icalingua-plus-plus/actions/workflows/main.yml/runs'",
+      "$latest_develop = $actions.workflow_runs.PSObject.Properties.Value | Where-Object { $_.head_branch -eq 'develop' } | Where-Object { $_.conclusion -eq 'success' } | Select-Object -first 1",
+      "$latest_stable_version = ($actions.workflow_runs.PSObject.Properties.Value | Where-Object { $_.display_title -match 'release: v\\d+\\.\\d+\\.\\d+' } | Where-Object { $_.conclusion -eq 'success' } | Select-Object -first 1).head_branch.TrimStart('v')",
+      "$version = $latest_stable_version + '-' + $latest_develop.head_sha.substring(0,8)",
+      "Write-Output $version $latest_develop.id"
+    ],
+    "regex": "(?<version>[^\\s]+)\\s(?<id>\\d+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://nightly.link/Icalingua-plus-plus/Icalingua-plus-plus/actions/runs/$matchId/Icalingua_Windows64.exe.zip",
+        "pre_install": [
+          "Expand-7zipArchive \"$dir\\Icalingua++-$matchVersion_x64.exe\" \"$dir\"",
+          "Remove-Item \"$dir\\Icalingua++-$matchVersion_x64.exe\" -Force -Recurse",
+          "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+          "Remove-Item \"$dir\\`$*\", \"$dir\\Uninst*\" -Force -Recurse"
+        ]
+      },
+      "arm64": {
+        "url": "https://nightly.link/Icalingua-plus-plus/Icalingua-plus-plus/actions/runs/$matchId/Icalingua_Windows_arm64.exe.zip",
+        "pre_install": [
+          "Expand-7zipArchive \"$dir\\Icalingua++-$matchVersion_arm64.exe\" \"$dir\"",
+          "Remove-Item \"$dir\\Icalingua++-$matchVersion_arm64.exe\" -Force -Recurse",
+          "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-arm64.7z\" \"$dir\"",
+          "Remove-Item \"$dir\\`$*\", \"$dir\\Uninst*\" -Force -Recurse"
+        ]
+      }
+    }
+  }
+}
