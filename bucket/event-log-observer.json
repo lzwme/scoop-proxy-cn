@@ -1,0 +1,30 @@
+{
+  "version": "2022.01.04-13.42.14",
+  "homepage": "https://www.lizard-labs.com/",
+  "description": "An easy and customizable tool for exploring, and analyzing Windows event logs.",
+  "license": {
+    "identifier": "Shareware",
+    "url": "https://lizard-labs.com/Docs/TERMS_AND_CONDITIONS.html"
+  },
+  "url": "https://www.lizard-labs.com/Downloads/EventLogObserverSetup.msi",
+  "hash": "7d2c013988b21a10aa8f1532515652e533dfa18da8f725283174f4bcf296b4be",
+  "pre_install": "Remove-Item \"$dir\\updater.exe\"",
+  "shortcuts": [
+    [
+      "EventLogObserver.exe",
+      "Event Log Observer"
+    ]
+  ],
+  "checkver": {
+    "script": [
+      "# Using a custom script to get the date for when it was last modified, due to the",
+      "# version provided in the website (eg. '1.6') being unreliable for future updates.",
+      "[datetime][string]$date = (Invoke-WebRequest 'https://www.lizard-labs.com/Downloads/EventLogObserverSetup.msi').Headers['Last-Modified']",
+      "Write-Output ($date.ToString('yyyy.MM.dd-HH.mm.ss'))"
+    ],
+    "regex": "([\\d.-]+)"
+  },
+  "autoupdate": {
+    "url": "https://www.lizard-labs.com/Downloads/EventLogObserverSetup.msi"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "version": "0.2023.07.02",
+  "description": "LOOT masterlist for TES V: Skyrim Special Edition",
+  "homepage": "https://github.com/loot/skyrimse",
+  "license": "CC0-1.0",
+  "url": "https://ghproxy.net/https://raw.githubusercontent.com/loot/skyrimse/ff7af306e0819621ba16f9bcbbf27d8a21fe1a36/masterlist.yaml",
+  "hash": "d675e9731c975e842803c9457e815917634999daeee1a7010bad0520df318d4f",
+  "checkver": {
+    "url": "https://github.com/loot/skyrimse/commits/v0.18/masterlist.yaml.atom",
+    "regex": "(?s)>(\\d+)-(\\d+)-(\\d+)T.*?/(?<sha>[0-9a-f]{40})",
+    "replace": "0.${1}.${2}.${3}"
+  },
+  "post_install": [
+    "$path = join-path $env:appdata 'Vortex\\skyrimse\\masterlist\\masterlist.yaml'",
+    "New-Item -ItemType Hardlink -Path $path -Target $dir\\masterlist.yaml -force"
+  ],
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://raw.githubusercontent.com/loot/skyrimse/$matchSha/masterlist.yaml"
+  }
+}

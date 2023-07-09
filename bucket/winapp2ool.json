@@ -1,6 +1,7 @@
 {
-  "version": "1.4+",
+  "bin": "winapp2ool.exe",
   "description": "A utility for updating and trimming Winapp2.ini, a cleaning-routines file for CCleaner and other compatible cleaners",
+  "hash": "59467eb6dac8716afbd617f7e01b1b32dc00056ad2dd92f4016ae721809fd1af",
   "homepage": "https://github.com/MoscaDotTo/Winapp2",
   "license": "GPL-3.0-only",
   "notes": [
@@ -14,15 +15,14 @@
     "If reinstalled with Scoop (after having updated), persisted winapp2.ini may cause issues with older build.",
     "Fix at your leisure!"
   ],
-  "url": "https://ghproxy.net/https://github.com/MoscaDotTo/Winapp2/releases/download/1.4/winapp2ool.exe",
-  "hash": "59467eb6dac8716afbd617f7e01b1b32dc00056ad2dd92f4016ae721809fd1af",
-  "bin": "winapp2ool.exe",
+  "persist": "winapp2ool.ini",
+  "pre_install": "if(!(Test-Path \"$persist_dir\\winapp2ool.ini\")) { Set-Content \"$dir\\winapp2ool.ini\" (@('[Winapp2ool]', 'saveSettingsToDisk=True', 'readSettingsFromDisk=True') -join \"`r`n\") -Encoding Unicode | Out-Null }",
   "shortcuts": [
     [
       "winapp2ool.exe",
       "winapp2ool"
     ]
   ],
-  "pre_install": "if(!(Test-Path \"$persist_dir\\winapp2ool.ini\")) { Set-Content \"$dir\\winapp2ool.ini\" (@('[Winapp2ool]', 'saveSettingsToDisk=True', 'readSettingsFromDisk=True') -join \"`r`n\") -Encoding Unicode | Out-Null }",
-  "persist": "winapp2ool.ini"
+  "url": "https://ghproxy.net/https://github.com/MoscaDotTo/Winapp2/releases/download/1.4/winapp2ool.exe",
+  "version": "1.4+"
 }
