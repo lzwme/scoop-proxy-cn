@@ -1,54 +1,25 @@
 {
+  "[powershell]": {
+    "editor.formatOnSave": true
+  },
+  "powershell.scriptAnalysis.settingsPath": "PSScriptAnalyzerSettings.psd1",
+  "powershell.codeFormatting.preset": "OTBS",
+  "powershell.codeFormatting.alignPropertyValuePairs": true,
+  "powershell.codeFormatting.ignoreOneLineBlock": true,
   "json.schemas": [
     {
-      "url": "https://ghproxy.net/https://raw.githubusercontent.com/lukesampson/scoop/master/schema.json",
+      "url": "https://ghproxy.net/https://raw.githubusercontent.com/ScoopInstaller/Scoop/master/schema.json",
       "fileMatch": [
-        ".vscode/Template.jsonc",
         "bucket/*.json"
       ]
     }
   ],
-  "powershell.codeFormatting.preset": "OTBS",
-  "yaml.format.bracketSpacing": true,
-  "yaml.format.enable": true,
-  "yaml.format.singleQuote": true,
-  "yaml.validate": true,
-  "yaml.schemas": {
-    "http://json.schemastore.org/appveyor": "appveyor.yml",
-    "https://ghproxy.net/https://raw.githubusercontent.com/lukesampson/scoop/master/schema.json": [
-      "bucket/*.yml"
-    ]
-  },
-  "terminals.terminals": [
-    {
-      "name": "Powershell",
-      "shellPath": "powershell.exe",
-      "shellArgs": [
-        "-NoLogo",
-        "-NoExit"
-      ],
-      "focus": true,
-      "open": true
-    },
-    {
-      "name": "Powershell Core",
-      "shellPath": "pwsh.exe",
-      "shellArgs": [
-        "-NoLogo",
-        "-NoExit"
-      ],
-      "focus": true,
-      "open": true
-    },
-    {
-      "name": "Powershell Core (Preview)",
-      "shellPath": "pwsh-preview.exe",
-      "shellArgs": [
-        "-NoLogo",
-        "-NoExit"
-      ],
-      "focus": true,
-      "open": true
-    }
-  ]
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/tmp": true
+  }
 }

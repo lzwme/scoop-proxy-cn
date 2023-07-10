@@ -1,30 +1,25 @@
 {
-  "description": "A cross-platform app made for e-hentai & exhentai by Flutter",
+  "version": "7.3.3+136",
+  "description": "An E-Hentai app for Android & iOS & Windows & MacOS & Linux.",
   "homepage": "https://github.com/jiangtian616/JHenTai",
   "license": "Apache-2.0",
-  "version": "7.2.3",
-  "checkver": {
-    "url": "https://github.com/jiangtian616/JHenTai/releases/latest",
-    "regex": "<h1[^>]*>v(?<version>[\\d\\.]+)\\+(?<idx>\\d+)</h1>"
-  },
-  "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/jiangtian616/JHenTai/releases/download/v$matchVersion%2B$matchIdx/JHenTai_$matchVersion+$matchIdx_Windows.zip",
-    "extract_dir": "JHenTai_$matchVersion+$matchIdx",
-    "hash": {
-      "mode": "download"
-    }
-  },
-  "url": "https://ghproxy.net/https://github.com/jiangtian616/JHenTai/releases/download/v7.2.3%2B132/JHenTai_7.2.3+132_Windows.zip",
-  "hash": "8530a65606077d5ff245a55fa4dcaae2085bec2c84e5c3c15a231e3a062197dd",
-  "extract_dir": "JHenTai_7.2.3+132",
+  "url": "https://ghproxy.net/https://github.com/jiangtian616/JHenTai/releases/download/v7.3.3%2B136/JHenTai_7.3.3+136_Windows.zip",
+  "hash": "294FAA55D9640920D21B942A536CD0995DBBEB5DEF82081249290C88DB6F74CE",
+  "bin": "jhentai.exe",
+  "pre_install": [
+    "Move-Item -Path \"$dir\\JHenTai_*\\*\" -Destination \"$dir\"",
+    "Remove-Item \"$dir\\JHenTai_*\" -Force -Recurse"
+  ],
   "shortcuts": [
     [
       "jhentai.exe",
       "JHenTai"
     ]
   ],
-  "notes": [
-    "Config and data are stored in %USERPROFILE%\\AppData\\Roaming\\top.jtmonster\\jhentai",
-    "They will not be automatically removed during uninstallation even with -p flag. Delete them manually if needed."
-  ]
+  "checkver": {
+    "github": "https://github.com/jiangtian616/JHenTai"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/jiangtian616/JHenTai/releases/download/v$version/JHenTai_$version_Windows.zip"
+  }
 }
