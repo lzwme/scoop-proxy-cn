@@ -15,6 +15,9 @@
     "while (!(Get-Process -Name 'mullvad-daemon' -ErrorAction 'SilentlyContinue')) { Start-Sleep -Seconds 10 }",
     "Remove-Item \"$dir\\setup.exe\""
   ],
+  "post_install": [
+    "Remove-Item \"$Env:Public\\Desktop\\Mullvad VPN.lnk\""
+  ],
   "pre_uninstall": [
     "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
     "Stop-Service -Name 'MullvadVPN' -ErrorAction 'SilentlyContinue' -Force; Stop-Process -Name 'Mullvad VPN' -ErrorAction 'SilentlyContinue' -Force",
@@ -23,7 +26,7 @@
   ],
   "checkver": {
     "url": "https://api.github.com/repos/mullvad/mullvadvpn-app/releases",
-    "regex": "MullvadVPN-([\\d.]+|[\\d.]+-beta[\\d]+)\\.exe"
+    "regex": "MullvadVPN-([\\d.]+(-beta[\\d]+)?)\\.exe"
   },
   "autoupdate": {
     "architecture": {
