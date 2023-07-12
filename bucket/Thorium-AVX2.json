@@ -1,37 +1,30 @@
 {
   "version": "114.0.5735.134",
-  "description": "Chromium fork for linux named after radioactive element No. 90.",
-  "license": "GNU General Public License v3.0",
-  "homepage": "https://alex313031.blogspot.com/",
-  "architecture": {
-    "64bit": {
-      "url": "https://ghproxy.net/https://github.com/Alex313031/Thorium-AVX2/releases/download/M114.0.5735.134/Thorium_AVX2_114.0.5735.134.zip",
-      "hash": "136bf152a7fcf74337991fcb5600d7d822e42f35188b4edd30335b59ef790384"
-    }
-  },
+  "description": "Chromium fork for Windows named after radioactive element No. 90 built for AVX2 CPUs",
+  "homepage": "https://thorium.rocks/",
+  "license": "GPL-3.0-only",
+  "url": "https://ghproxy.net/https://github.com/Alex313031/Thorium-AVX2/releases/download/M114.0.5735.134/Thorium_AVX2_114.0.5735.134.zip",
+  "hash": "136bf152a7fcf74337991fcb5600d7d822e42f35188b4edd30335b59ef790384",
   "bin": [
     [
       "THORIUM.BAT",
-      "Thorium-AVX2"
+      "thorium-avx2"
     ]
   ],
   "shortcuts": [
     [
       "THORIUM.BAT",
-      "Thorium-AVX2"
+      "Thorium-avx2",
+      "",
+      "BIN\\thorium.exe"
     ]
   ],
   "persist": "USER_DATA",
   "checkver": {
-    "url": "https://api.github.com/repos/Alex313031/Thorium-AVX2/releases/latest",
-    "jsonpath": "$.tag_name",
-    "regex": "M(?<version>[\\d]+\\.[\\d]+\\.[\\d]+\\.[\\d]+)"
+    "github": "https://github.com/Alex313031/Thorium-AVX2",
+    "regex": "M([\\d]+\\.[\\d]+\\.[\\d]+\\.[\\d]+)"
   },
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.net/https://github.com/Alex313031/Thorium-AVX2/releases/download/M$version/Thorium_AVX2_$version.zip"
-      }
-    }
+    "url": "https://ghproxy.net/https://github.com/Alex313031/Thorium-AVX2/releases/download/M$version/Thorium_AVX2_$version.zip"
   }
 }

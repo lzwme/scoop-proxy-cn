@@ -1,0 +1,34 @@
+{
+  "version": "1.0.10",
+  "homepage": "https://mhoefs.eu/software_xmizer.php?lang=en",
+  "description": "A tool that modifies your Windows 10 system files so it get the new style of Windows 11",
+  "license": "Freeware",
+  "url": "https://mhoefs.eu/software_count.php",
+  "hash": "0f3cf46a5020aaecca5d7f218f8ef35282e5129a5fa81b577bdf38194edb1dcd",
+  "pre_install": [
+    "Remove-Item \"$dir\\*\";",
+    "$does_exist = Test-Path \"$persist_dir\\ElevenMizer_setup.exe\"",
+    "if ((Get-Command 'curl.exe' -ErrorAction 'SilentlyContinue') -and !($does_exist)) {",
+    "    info 'Downloading ElevenMizer_setup.exe ...'",
+    "    curl 'https://mhoefs.eu/software_count.php' -X 'POST' -H 'Content-Type: application/x-www-form-urlencoded' --data-raw 'ElevenMizer=ElevenMizer&id=ElevenMizer' --output \"$dir\\ElevenMizer_setup.exe\"",
+    "    Wait-Process -Name 'curl' -ErrorAction 'SilentlyContinue'",
+    "} elseif (!($does_exist)) {",
+    "    info 'Downloading ElevenMizer_setup.exe ...'",
+    "    Invoke-WebRequest 'https://mhoefs.eu/software_count.php' -Method 'POST' -ContentType 'application/x-www-form-urlencoded' -Body 'ElevenMizer=ElevenMizer&id=ElevenMizer' -OutFile \"$dir\\ElevenMizer_setup.exe\"",
+    "} elseif ($does_exist) { info 'Grabbing ElevenMizer_setup.exe from persist dir...'; Move-Item \"$persist_dir\\ElevenMizer_setup.exe\" \"$dir\\ElevenMizer_setup.exe\" }",
+    "info 'Testing file integrity...'; 7z t \"$dir\\ElevenMizer_setup.exe\" | Out-Null",
+    "if (!($LASTEXITCODE -eq 0)) { error 'FILE INTEGRITY TEST FAILED!'; error 'Please try again later...'; break }",
+    "else { Write-Host 'File integrity is ok!' -ForegroundColor 'Green' }"
+  ],
+  "pre_uninstall": "ensure $persist_dir | Out-Null; if (Test-Path \"$dir\\ElevenMizer_setup.exe\") { Copy-Item \"$dir\\ElevenMizer_setup.exe\" \"$persist_dir\\ElevenMizer_setup.exe\" }",
+  "shortcuts": [
+    [
+      "ElevenMizer_setup.exe",
+      "ElevenMizer Lite Setup"
+    ]
+  ],
+  "checkver": "Changes\\s([\\d.]+)\\s\\(",
+  "autoupdate": {
+    "url": "https://mhoefs.eu/software_count.php"
+  }
+}

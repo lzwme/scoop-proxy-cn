@@ -1,16 +1,16 @@
 {
-  "homepage": "https://crystalmark.info/ja/software/crystaldiskinfo/",
-  "description": "CrystalDiskInfo is a HDD/SSD utility software which supports S.M.A.R.T and a part of USB-HDD.",
+  "version": "9.1.1",
+  "description": "A HDD/SSD utility software which supports a part of USB, Intel RAID and NVMe.",
+  "homepage": "https://crystalmark.info/en/",
   "license": "MIT",
-  "version": "9.0.1",
-  "url": "https://osdn.net/frs/redir.php?m=auto&f=crystaldiskinfo%2F78831%2FCrystalDiskInfo9_0_1KureiKei.zip#/dl.zip",
-  "hash": "5ec5213d80bd1fd77f6b7ad4bcaaee99bdc939446cf6a732779e5dfec796e65d",
+  "url": "https://crystalmark.info/download/zz/CrystalDiskInfo9_1_1KureiKei.zip",
+  "hash": "3a3f62783dc65b5d173c10df96c843df0bb56e33c4c513d461c5f63f8e75d4e3",
   "architecture": {
     "64bit": {
       "shortcuts": [
         [
           "DiskInfo64K.exe",
-          "CrystalDiskInfo KureiKei Edition"
+          "CrystalDiskInfo Kurei Kei Edition"
         ]
       ]
     },
@@ -18,22 +18,33 @@
       "shortcuts": [
         [
           "DiskInfo32K.exe",
-          "CrystalDiskInfo KureiKei Edition"
+          "CrystalDiskInfo Kurei Kei Edition"
+        ]
+      ]
+    },
+    "arm64": {
+      "shortcuts": [
+        [
+          "DiskInfoA64K.exe",
+          "CrystalDiskInfo Kurei Kei Edition"
         ]
       ]
     }
   },
-  "persist": "DiskInfo.ini",
-  "pre_install": "if(!(Test-Path \"$dir/DiskInfo.ini\")) { Add-Content \"$dir/DiskInfo.ini\" $null }",
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\DiskInfo.ini\")) {",
+    "    New-Item \"$dir\\DiskInfo.ini\" -ItemType File | Out-Null",
+    "}"
+  ],
+  "persist": [
+    "DiskInfo.ini",
+    "Smart"
+  ],
   "checkver": {
-    "url": "https://osdn.net/projects/crystaldiskinfo/",
-    "regex": "<a href=\"/projects/crystaldiskinfo/releases/(?<release>[\\d]*)\">CrystalDiskInfo ([\\d+\\.*]+)</a>"
+    "url": "https://crystalmark.info/en/download/",
+    "regex": "meta name=\"description.+CrystalDiskInfo ([\\w\\.]+) - Manual"
   },
   "autoupdate": {
-    "url": "https://osdn.net/frs/redir.php?m=auto&f=crystaldiskinfo%2F$matchRelease%2FCrystalDiskInfo$underscoreVersionKureiKei.zip#/dl.zip",
-    "hash": {
-      "url": "https://osdn.net/projects/crystaldiskinfo/downloads/$matchRelease/CrystalDiskInfo$underscoreVersionKureiKei.zip/",
-      "regex": "<dd>$sha256</dd>"
-    }
+    "url": "https://crystalmark.info/download/zz/CrystalDiskInfo$underscoreVersionKureiKei.zip"
   }
 }

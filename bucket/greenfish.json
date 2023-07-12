@@ -1,9 +1,9 @@
 {
   "version": "4.2",
-  "description": "Greenfish Icon Editor Pro (GFIE Pro) is a freeware image editor for icons, cursors, etc.",
-  "homepage": "http://greenfishsoftware.org/gfie.php",
-  "license": "Freeware",
-  "url": "http://greenfishsoftware.org/dl/gfie/gfie4.2.zip#/dl.zip",
+  "license": "GPL-3.0-only",
+  "url": "http://greenfishsoftware.org/dl.php?filename=gfie4.2.zip#/dl.zip",
+  "homepage": "http://greenfishsoftware.org",
+  "description": "Greenfish Icon Editor Pro (GFIE Pro) is a powerful open source image editor, especially suitable for creating icons, cursors, animations and icon libraries.",
   "hash": "d7d1a91895bb8660a29f952cbe8a72496454175b78d1cc5bba14dd20f5d99a9a",
   "extract_dir": "Greenfish Icon Editor Pro 4.2",
   "checkver": {
@@ -11,8 +11,7 @@
     "re": "\\((?<version>[\\d.]+)\\)"
   },
   "autoupdate": {
-    "url": "http://greenfishsoftware.org/dl/gfie/gfie$version.zip#/dl.zip",
-    "extract_dir": "Greenfish Icon Editor Pro $version"
+    "url": "http://greenfishsoftware.org/dl.php?filename=gfie$version.zip#/dl.zip"
   },
   "pre_install": "if (!(Test-Path \"$persist_dir\\data\\config.json\")) { New-Item \"$dir\\data\\config.json\" -Force | Out-Null }",
   "persist": "data\\config.json",

@@ -1,15 +1,19 @@
 {
   "homepage": "https://github.com/phiresky/ripgrep-all",
-  "description": "rga: ripgrep, but also search in PDFs, E-Books, Office documents, zip, tar.gz, etc.",
-  "license": "AGPL",
-  "version": "0.9.6",
+  "description": "Wraps ripgrep and enables it to search in pdf, docx, sqlite, jpg, movie subtitles (mkv, mp4), etc.",
+  "license": "AGPL-3.0-or-later",
+  "version": "1.0.0-alpha.5",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.net/https://github.com/phiresky/ripgrep-all/releases/download/v0.9.6/ripgrep_all-v0.9.6-x86_64-pc-windows-msvc.zip",
-      "extract_dir": "ripgrep_all-v0.9.6-x86_64-pc-windows-msvc"
+      "url": "https://ghproxy.net/https://github.com/phiresky/ripgrep-all/releases/download/v1.0.0-alpha.5/ripgrep_all-v1.0.0-alpha.5-x86_64-pc-windows-msvc.zip",
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "extract_dir": "ripgrep_all-v1.0.0-alpha.5-x86_64-pc-windows-msvc"
     }
   },
-  "bin": "rga.exe",
+  "bin": [
+    "rga.exe",
+    "rga-preproc.exe"
+  ],
   "checkver": "github",
   "autoupdate": {
     "architecture": {
