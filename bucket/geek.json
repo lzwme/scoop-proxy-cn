@@ -1,19 +1,35 @@
 {
-  "version": "1.4.7.142",
-  "url": "https://geekuninstaller.com/geek.7z",
-  "hash": "c179703bb29dd12f5a90abbf1632d05417eab8b818822319266ee84de9daca48",
+  "version": "1.5.1",
+  "description": "Gendloop's app",
+  "homepage": "https://github.com/gendloop/geek",
+  "license": "LGPL-2.1-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/gendloop/geek/archive/refs/tags/v1.5.1.zip",
+      "hash": "99648c15365e0b4f843b8585a020f1c022d207f2af0054a59c36a2086195abb0"
+    }
+  },
+  "installer": {
+    "script": [
+      "Push-Location \"$dir\"",
+      "7z x geek-$version\\dist\\geek.7z",
+      "Remove-Item geek-$version -Recurse",
+      "Pop-Location"
+    ]
+  },
   "bin": "geek.exe",
-  "autoupdate": {
-    "url": "https://geekuninstaller.com/geek.7z"
-  },
-  "checkver": {
-    "url": "https://geekuninstaller.com/download",
-    "re": "<b>([\\d\\.]*)<\\/b>.*\\[[\\d\\w\\s]*\\]"
-  },
   "shortcuts": [
     [
       "geek.exe",
-      "Geek Uninstaller"
+      "geek"
     ]
-  ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/gendloop/geek/archive/refs/tags/v$version.zip"
+      }
+    }
+  }
 }

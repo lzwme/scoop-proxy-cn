@@ -1,16 +1,19 @@
 {
+  "homepage": "https://www.haijin-boys.com/",
+  "description": "Simple text editor",
+  "license": "Freeware",
   "version": "3.5.5",
-  "description": "A free Japanese text editor for Windows.",
-  "homepage": "https://www.haijin-boys.com/wiki/",
-  "license": "zlib",
-  "url": "http://www.haijin-boys.com/download/MeryPortable-x64-3.5.5.zip",
-  "hash": "bf8b67a2597ea43b36757cae0149cadd1c9e4f927a61e48f333f9e95dbf7b8be",
+  "architecture": {
+    "32bit": {
+      "url": "https://www.haijin-boys.com/download/Mery-3.5.5.zip",
+      "hash": "a95a967b8eee4a7f451d298d69e854652ad26329e358d437c49d4c4712fe7442"
+    },
+    "64bit": {
+      "url": "https://www.haijin-boys.com/download/Mery-x64-3.5.5.zip",
+      "hash": "7921f39e7d3eb49f52a9130960cf18a12dc77fb97adc02e401f0e3a7daeb322c"
+    }
+  },
   "extract_dir": "Mery",
-  "pre_install": [
-    "$manifest.persist | ForEach-Object {",
-    "    if (-not (Test-Path \"$persist_dir\\$_\")) { New-Item \"$dir\\$_\" -ItemType file | Out-Null }",
-    "}"
-  ],
   "bin": "Mery.exe",
   "shortcuts": [
     [
@@ -20,13 +23,36 @@
   ],
   "persist": [
     "Mery.ini",
-    "Mery.his"
+    "Mery.his",
+    "Dicts",
+    "Ext",
+    "Macros",
+    "Plugins",
+    "migemo.dll",
+    "dict"
+  ],
+  "pre_install": [
+    "function CreateEmptyFile($name) {",
+    "    if (!(Test-Path \"$persist_dir\\$name\")) {",
+    "        New-Item -Path \"$dir\\$name\" -ItemType File | Out-Null",
+    "    }",
+    "}",
+    "CreateEmptyFile Mery.ini",
+    "CreateEmptyFile Mery.his",
+    "CreateEmptyFile migemo.dll"
   ],
   "checkver": {
     "url": "https://www.haijin-boys.com/software/mery",
-    "re": "Ver ([\\d.]+)"
+    "re": "Ver (?<version>[\\d.]+)"
   },
   "autoupdate": {
-    "url": "http://www.haijin-boys.com/download/MeryPortable-x64-$version.zip"
+    "architecture": {
+      "32bit": {
+        "url": "https://www.haijin-boys.com/download/Mery-$version.zip"
+      },
+      "64bit": {
+        "url": "https://www.haijin-boys.com/download/Mery-x64-$version.zip"
+      }
+    }
   }
 }

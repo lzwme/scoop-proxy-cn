@@ -1,62 +1,35 @@
 {
-  "##": "Consider depends sudo and running all mppreference commands via sudo",
-  "version": "10.2.0",
-  "description": "KMSpico. The most successful, frequently updated and 100% clean tool to permanently activate any version of Windows or Microsoft office within matter of seconds.",
-  "homepage": "https://forums.mydigitallife.net/threads/kmspico-official-thread.65739/",
-  "license": "Unknown",
-  "notes": [
-    "All needed Windows Defender exclusions were set.",
-    "Automatic activation could be run via \"AutoPico /silent\"",
-    "If you plan to use some different antivirus. Make sure to exclude all these:",
-    "    ..\\scoop\\apps\\KMS",
-    "    C:\\Windows\\SECOH-QAD.dll)",
-    "    C:\\Windows\\SECOH-QAD.exe)",
-    "🎉🎉You are all clear and ready to go 😍🎉🎉"
-  ],
-  "pre_download": "Assert-Administrator",
-  "url": "https://ghproxy.net/https://gist.githubusercontent.com/Ash258/e143436e2f9183a650424d635b535e51/raw/kmi.exe",
-  "hash": "64c731adbe1b96cb5765203b1e215093dcf268d020b299445884a4ae62ed2d3a",
-  "pre_install": [
-    "try { Get-Command 'Test-Persistence' -ErrorAction 'Stop' | Out-Null } catch { error 'Shovel flavour of scoop is required'; exit 258 }",
-    "Add-MpPreference -ExclusionPath $dir",
-    "Write-UserMessage 'Disabling Realtime Defender Protection' -Color Yellow",
-    "Set-MpPreference -DisableRealtimeMonitoring $true"
-  ],
+  "version": "24.6.1",
+  "description": "Gendloop's app",
+  "homepage": "https://github.com/gendloop/KMS",
+  "license": "LGPL-2.1-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/gendloop/KMS/archive/refs/tags/v24.6.1.zip",
+      "hash": "5ce9b70604a8c7602be7f550dbe121cf27fc5a647a751b91d6839de94a30144a"
+    }
+  },
   "installer": {
-    "args": [
-      "/VERYSILENT",
-      "/NOICONS",
-      "/LOG=\"$dir\\ScoopInstall.log\"",
-      "/DIR=\"$dir\""
+    "script": [
+      "Push-Location \"$dir\"",
+      "7z x KMS-$version\\dist\\KMS.7z",
+      "Remove-Item KMS-$version -Recurse",
+      "Pop-Location"
     ]
   },
-  "post_install": [
-    "Add-MpPreference -ExclusionProcess \"$dir\\Service_KMS.exe\"",
-    "Add-MpPreference -ExclusionProcess \"$dir\\Autopico.exe\"",
-    "Add-MpPreference -ExclusionProcess \"$dir\\KMSELDI.exe\"",
-    "Add-MpPreference -ExclusionProcess \"$env:windir\\SECOH-QAD.exe\"",
-    "Add-MpPreference -ExclusionPath \"$env:windir\\SECOH-QAD.dll\"",
-    "Add-MpPreference -ExclusionPath \"$env:windir\\SECOH-QAD.exe\"",
-    "Set-MpPreference -DisableRealtimeMonitoring $false",
-    "Write-UserMessage 'Realtime Defender Protection Enabled' -Color Yellow"
-  ],
-  "uninstaller": {
-    "file": "unins000.exe",
-    "args": "/VERYSILENT"
-  },
-  "bin": "AutoPico.exe",
+  "bin": "HEU_KMS_Activator_v24.6.1.exe",
   "shortcuts": [
     [
-      "KMSELDI.exe",
-      "KMSpico"
+      "HEU_KMS_Activator_v24.6.1.exe",
+      "KMS"
     ]
   ],
-  "persist": "TokensBackup",
-  "checkver": {
-    "url": "https://kmspico.co/download/",
-    "regex": "Version: ([\\d\\.]+), Date:"
-  },
+  "checkver": "github",
   "autoupdate": {
-    "url": "https://ghproxy.net/https://gist.githubusercontent.com/Ash258/e143436e2f9183a650424d635b535e51/raw/kmi.exe"
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/gendloop/KMS/archive/refs/tags/v$version.zip"
+      }
+    }
   }
 }

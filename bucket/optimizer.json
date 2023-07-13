@@ -1,25 +1,23 @@
 {
   "version": "15.4",
-  "description": "Advanced configuration utility that helps you restore your privacy and increase your security.",
   "homepage": "https://github.com/hellzerg/optimizer",
-  "license": {
-    "identifier": "GPL-3.0 license",
-    "url": "https://github.com/hellzerg/optimizer/blob/master/LICENSE"
-  },
-  "url": "https://ghproxy.net/https://github.com/hellzerg/optimizer/releases/download/15.4/Optimizer-15.4.exe",
+  "description": "An advanced configuration utility that helps you restore your privacy and increase your security.",
+  "license": "GPL-3.0",
+  "url": "https://ghproxy.net/https://github.com/hellzerg/optimizer/releases/download/15.4/Optimizer-15.4.exe#/Optimizer.exe",
   "hash": "b62ab6e0fabfc3e58b7af5777fb4bdbc5fdd807f4a44f7cf91dbf9518721f2b1",
-  "pre_install": "Get-ChildItem \"$dir\\Optimizer*.exe\" | Rename-Item -NewName 'Optimizer.exe'",
+  "bin": "Optimizer.exe",
   "shortcuts": [
     [
       "Optimizer.exe",
       "Optimizer"
     ]
   ],
-  "checkver": {
-    "url": "https://api.github.com/repos/hellzerg/optimizer/releases",
-    "regex": "/releases/tag/([\\d.]+)"
-  },
+  "checkver": "github",
   "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/hellzerg/optimizer/releases/download/$version/Optimizer-$version.exe"
+    "url": "https://ghproxy.net/https://github.com/hellzerg/optimizer/releases/download/$version/Optimizer-$version.exe#/Optimizer.exe",
+    "hash": {
+      "url": "https://github.com/hellzerg/optimizer/releases/latest",
+      "find": "<p>$sha256</p></div>"
+    }
   }
 }

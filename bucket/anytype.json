@@ -1,0 +1,36 @@
+{
+  "version": "0.32.3",
+  "description": "Anytype is a local-first, P2P and open-source note-taking application",
+  "homepage": "https://anytype.io/",
+  "license": "Proprietary",
+  "architecture": {
+    "64bit": {
+      "url": "https://anytype-release.fra1.cdn.digitaloceanspaces.com/Anytype%20Setup%200.32.3.exe#/dl.7z",
+      "hash": "cbaf929c16bc93b41ddb3b6b2f50f1fa240c0a67990ccd9839913cd998cb35fb",
+      "pre_install": [
+        "$innerZip = 'app-64.7z'",
+        "Move-Item -Path \"$dir\\`$PLUGINSDIR\\$innerZip\" -Destination \"$dir\\$innerZip\"",
+        "Invoke-ExternalCommand 7z @('x', \"$dir\\$innerZip\", \"-o$dir\", '-y') | Out-Null",
+        "Remove-Item \"$dir\\`$R0\", \"$dir\\`$PLUGINSDIR\", \"$dir\\$innerZip\" -Recurse"
+      ]
+    }
+  },
+  "bin": "Anytype.exe",
+  "shortcuts": [
+    [
+      "Anytype.exe",
+      "Anytype"
+    ]
+  ],
+  "checkver": {
+    "url": "https://download.anytype.io/",
+    "regex": "Desktop \\n\\s+?<span class=\"version\">v(\\d+?\\.\\d+?\\.\\d+?)<"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://anytype-release.fra1.cdn.digitaloceanspaces.com/Anytype%20Setup%20$version.exe#/dl.7z"
+      }
+    }
+  }
+}

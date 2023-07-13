@@ -1,6 +1,6 @@
 {
   "version": "2.8.5",
-  "description": "A snipping tool, which allows you to pin the screenshot back onto the screen.\n一个剪切工具，可以让你把截图固定在屏幕上",
+  "description": "A snipping tool, which allows you to pin the screenshot back onto the screen. 一个剪切工具，可以让你把截图固定在屏幕上",
   "homepage": "https://www.snipaste.com/",
   "license": "Unknown",
   "suggest": {
@@ -16,7 +16,7 @@
     }
   },
   "post_install": [
-    "echo \"Persisting config.ini\"",
+    "Write-Host \"Persisting config.ini\" -f Green",
     "if (!(Test-Path \"$persist_dir\\config.ini\")) {",
     "   New-Item \"$persist_dir\\config.ini\" > $null",
     "}",
