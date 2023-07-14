@@ -1,12 +1,13 @@
 {
-  "$schema": "https://ghproxy.net/https://raw.githubusercontent.com/ScoopInstaller/Scoop/master/schema.json",
   "version": "1.19.11",
   "description": "An open source programming language that makes it easy to build simple, reliable, and efficient software.",
-  "homepage": "https://go.dev/",
-  "license": {
-    "identifier": "BSD-3-Clause",
-    "url": "https://go.dev/LICENSE"
-  },
+  "homepage": "https://golang.org",
+  "license": "BSD-3-Clause",
+  "notes": [
+    "Your GOROOT has been set to: $dir",
+    "You can run 'go env GOROOT' to view this at any time.",
+    "\"$env:USERPROFILE\\go\\bin\" has been added to your PATH."
+  ],
   "architecture": {
     "64bit": {
       "url": "https://dl.google.com/go/go1.19.11.windows-amd64.zip",
@@ -18,10 +19,22 @@
     }
   },
   "extract_dir": "go",
-  "env_add_path": "bin",
+  "installer": {
+    "script": "add_first_in_path \"$env:USERPROFILE\\go\\bin\" $global"
+  },
+  "uninstaller": {
+    "script": "remove_from_path \"$env:USERPROFILE\\go\\bin\" $global"
+  },
+  "bin": [
+    "bin\\go.exe",
+    "bin\\gofmt.exe"
+  ],
+  "env_set": {
+    "GOROOT": "$dir"
+  },
   "checkver": {
     "url": "https://golang.org/dl/",
-    "regex": "go(1\\.19\\.[\\d.]+)\\.windows-"
+    "regex": "go(1\\.19\\.\\d+)\\.windows-"
   },
   "autoupdate": {
     "architecture": {
