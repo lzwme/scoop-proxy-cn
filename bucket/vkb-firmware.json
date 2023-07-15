@@ -1,18 +1,19 @@
 {
-  "version": "2.12.2",
+  "version": "2.14.A",
   "description": "VKB controllers firmwares",
   "homepage": "https://www.vkbcontrollers.com/pages/downloads",
   "license": "Proprietary",
   "architecture": {
     "64bit": {
-      "url": "https://cdn.shopify.com/s/files/1/0551/4739/7238/files/v2_12_2.zip",
-      "hash": "a22867abb7279d0ba6589b10ee4dd8c3f6339e2616c6d9ecfdea41ad744bd2c3",
-      "extract_dir": "v2_12_2"
+      "url": "https://cdn.shopify.com/s/files/1/0551/4739/7238/files/v2_14_A.zip",
+      "hash": "62cd08d86b631365ecc27a0a3b0f5bd28383ecd88099a8ad5a231e53c2e781a0",
+      "extract_dir": "v2_14_A"
     }
   },
   "checkver": {
     "url": "https://www.vkbcontrollers.com/pages/downloads",
-    "regex": "<a href=\"https://cdn.shopify.com/s/files/(?<path>[\\d/]+)/files/v[\\d_]+.zip\\?v=[\\d]+\" title=\"VKB Device Firmware \\(v?([\\d.]+)\\)"
+    "regex": "<a href=\"https://cdn.shopify.com/s/files/(?<path>[\\d/]+)/files/v([\\d]+)_([\\d]+)_([\\w]+).zip",
+    "replace": "${1}.${2}.${3}"
   },
   "autoupdate": {
     "architecture": {

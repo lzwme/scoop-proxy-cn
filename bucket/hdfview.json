@@ -1,4 +1,30 @@
 {
-  "version": "3.0",
-  "url": "https://sourceforge.net/projects/bearapps/files/HDFView-3.1.0.msi"
+  "version": "3.3.0",
+  "description": "HDFView uses the Java HDF Object Package, which implements HDF4 and HDF5 data objects in an object-oriented form.  ",
+  "homepage": "https://www.hdfgroup.org/downloads/hdfview/",
+  "license": "Freeware",
+  "architecture": {
+    "64bit": {
+      "url": "https://support.hdfgroup.org/ftp/HDF5/releases/HDF-JAVA/hdfview-3.3.0/bin/HDFViewApp-3.3.0-win10_64-vs17.zip",
+      "hash": "ff4623dfeef68b8a2eff85a3635e3fecc3f5ef8a02a9a9a95281d9efe0ed9197"
+    }
+  },
+  "extract_dir": "HDFView",
+  "shortcuts": [
+    [
+      "HDFView.exe",
+      "HDFView"
+    ]
+  ],
+  "checkver": {
+    "url": "https://support.hdfgroup.org/ftp/HDF5/releases/HDF-JAVA/",
+    "regex": "hdfview-([\\d.]+)(?![\\s\\S]*?hdfview-([\\d.]+))"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://support.hdfgroup.org/ftp/HDF5/releases/HDF-JAVA/hdfview-${version}/bin/HDFViewApp-${version}-win10_64-vs17.zip"
+      }
+    }
+  }
 }

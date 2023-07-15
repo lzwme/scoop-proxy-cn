@@ -1,12 +1,12 @@
 {
-  "version": "3.6.5.51733",
+  "version": "3.6.6.52191",
   "license": "Proprietary",
   "description": "Spark is the perfect tool for businesses, allowing you to compose, delegate and manage emails directly with your colleagues",
   "homepage": "https://www.sparkmailapp.com/",
   "architecture": {
     "64bit": {
-      "url": "https://downloads.sparkmailapp.com/Spark3/win/dist/3.6.5.51733/Spark.exe",
-      "hash": "266d16730d657142757d099e3c63e32c4952f5b48b651bb6e4e579d3122741d2",
+      "url": "https://downloads.sparkmailapp.com/Spark3/win/dist/3.6.6.52191/Spark.exe",
+      "hash": "6181f4a394233a598a0d49d423f6bee32806296729471f157c6804e825be2366",
       "installer": {
         "args": [
           "/s",
@@ -24,6 +24,18 @@
       }
     }
   },
+  "post_install": [
+    "$null, $null2, $bucket = Get-Manifest($app)",
+    "$bucketdir = Find-BucketDirectory($bucket)",
+    "$bucketdir = $bucketdir.Trim()",
+    "& \"$bucketdir\\scripts\\track.ps1\" install $app $version"
+  ],
+  "post_uninstall": [
+    "$null, $null2, $bucket = Get-Manifest($app)",
+    "$bucketdir = Find-BucketDirectory($bucket)",
+    "$bucketdir = $bucketdir.Trim()",
+    "& \"$bucketdir\\scripts\\track.ps1\" uninstall $app $version"
+  ],
   "checkver": {
     "url": "https://downloads.sparkmailapp.com/Spark3/win/dist/appcast.xml",
     "regex": "Version ([\\d.]+)"
