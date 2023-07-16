@@ -1,12 +1,20 @@
 {
+  "version": "12.9.0",
   "description": "HTTP load testing tool and library. It's over 9000!",
   "homepage": "https://github.com/tsenart/vegeta",
-  "version": "12.8.3",
   "license": "MIT",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.net/https://github.com/tsenart/vegeta/releases/download/v12.8.3/vegeta-12.8.3-windows-amd64.zip",
-      "hash": "f83f448d200885ccf032374c99b71acfb484ea8fb5e4c3c8dcc96693e6e1c294"
+      "url": "https://ghproxy.net/https://github.com/tsenart/vegeta/releases/download/v12.9.0/vegeta_12.9.0_windows_amd64.zip",
+      "hash": "d54c5a79e533a7111d7b66e698196d143bef9aa93b3f52aae1569730e3ca12b7"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/tsenart/vegeta/releases/download/v12.9.0/vegeta_12.9.0_windows_386.zip",
+      "hash": "3b0a23494b7cde315400bf23c3038ac31156c06b476316f4ddea242edf2d6862"
+    },
+    "arm64": {
+      "url": "https://ghproxy.net/https://github.com/tsenart/vegeta/releases/download/v12.9.0/vegeta_12.9.0_windows_arm64.zip",
+      "hash": "072fdcffc44624ba4642a393a1a3422aa63a6b3bca91c0ab6c24327add4bfaf5"
     }
   },
   "bin": "vegeta.exe",
@@ -14,11 +22,17 @@
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.net/https://github.com/tsenart/vegeta/releases/download/v$version/vegeta-$version-windows-amd64.zip",
-        "hash": {
-          "url": "https://ghproxy.net/https://github.com/tsenart/vegeta/releases/download/v12.7.0/vegeta-checksums.txt"
-        }
+        "url": "https://ghproxy.net/https://github.com/tsenart/vegeta/releases/download/v$version/vegeta_$version_windows_amd64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/tsenart/vegeta/releases/download/v$version/vegeta_$version_windows_386.zip"
+      },
+      "arm64": {
+        "url": "https://ghproxy.net/https://github.com/tsenart/vegeta/releases/download/v$version/vegeta_$version_windows_arm64.zip"
       }
+    },
+    "hash": {
+      "url": "$baseurl/vegeta_$version_checksums.txt"
     }
   }
 }

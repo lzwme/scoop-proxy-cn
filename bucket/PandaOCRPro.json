@@ -1,18 +1,34 @@
 {
   "homepage": "https://github.com/miaomiaosoft/PandaOCR.Pro",
   "description": "多引擎OCR图文识别、翻译、朗读、游戏机翻汉化工具",
-  "version": "5.48",
-  "license": "Freemium",
-  "url": "https://ghproxy.net/https://github.com/miaomiaosoft/PandaOCR.Pro/releases/download/5.48/PandaOCR.Pro_5.48.zip",
-  "hash": "417ce5c202648e01c6f44973fa20acf34327cfa18e1477bcb2cf1da19abc5c00",
+  "version": "5.49",
+  "license": "Shareware",
+  "url": "https://ghproxy.net/https://github.com/miaomiaosoft/PandaOCR.Pro/releases/download/5.49/PandaOCR.Pro_5.49.zip",
+  "hash": "e8a35d0d08198d8928f7b5cd4ada9bf83150822c5daf44d62245d7f4e11755fa",
   "bin": "PandaOCR.Pro.exe",
-  "persist": "程序配置.INI",
   "shortcuts": [
     [
       "PandaOCR.Pro.exe",
       "PandaOCR Pro"
     ]
   ],
+  "pre_install": "if (!(Test-Path \"$persist_dir\\AppConfig.json\")) { New-Item \"$dir\\程序配置.INI\" -ItemType \"file\" | Out-Null }",
+  "pre_uninstall": [
+    "if (Get-Process -Name 'PandaOCR.Pro' -ErrorAction SilentlyContinue) {",
+    "  start-process powershell -verb runas -ArgumentList \"Stop-Process -Force -Name 'PandaOCR.Pro' -ErrorAction SilentlyContinue\"",
+    "  echo \"Waiting remove running process 'PandaOCR.Pro'\";Start-Sleep -Seconds 1;echo \"Finished.\"",
+    "  if (Get-Process -Name 'PandaOCR.Pro' -ErrorAction SilentlyContinue) {",
+    "    Get-Process -Name 'PandaOCR.Pro'",
+    "    error \"$app requires to remove running process 'PandaOCR.Pro.exe'\";break",
+    "  }",
+    "}"
+  ],
+  "post_install": [
+    "$checkPandaOCRPro = !(Get-Process -Name 'PandaOCR.Pro' -ErrorAction SilentlyContinue)",
+    "if (($cmd -eq 'update') -and $checkPandaOCRPro) { Start-Process -WindowStyle hidden PandaOCR.Pro.exe }",
+    "echo \"Please Waiting for restart 'PandaOCR.Pro.exe'.\""
+  ],
+  "persist": "程序配置.INI",
   "checkver": "github",
   "autoupdate": {
     "url": "https://ghproxy.net/https://github.com/miaomiaosoft/PandaOCR.Pro/releases/download/$version/PandaOCR.Pro_$version.zip"
