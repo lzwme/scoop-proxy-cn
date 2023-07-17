@@ -8,8 +8,9 @@
       "url": "https://nightly.link/Icalingua-plus-plus/Icalingua-plus-plus/actions/runs/5555361182/Icalingua_Windows64.exe.zip",
       "hash": "04ef1cd7303e6740acdd4e2cacf202293a4e3719594869f665382aa703f3cc6a",
       "pre_install": [
-        "Expand-7zipArchive \"$dir\\Icalingua++-2.9.21-5-g9d0875a2_x64.exe\" \"$dir\"",
-        "Remove-Item \"$dir\\Icalingua++-2.9.21-5-g9d0875a2_x64.exe\" -Force -Recurse",
+        "$file = Get-ChildItem -Path $dir -Name -File -Include *.exe",
+        "Expand-7zipArchive \"$dir\\$file\" \"$dir\"",
+        "Remove-Item \"$dir\\$file\" -Force -Recurse",
         "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
         "Remove-Item \"$dir\\`$*\", \"$dir\\Uninst*\" -Force -Recurse"
       ]
@@ -18,6 +19,9 @@
       "url": "https://nightly.link/Icalingua-plus-plus/Icalingua-plus-plus/actions/runs/5555361182/Icalingua_Windows_arm64.exe.zip",
       "hash": "09a9a70cb95b5fcf7d31627ca27aad52e30deb972c1d2711e871044003de96fe",
       "pre_install": [
+        "$file = Get-ChildItem -Path $dir -Name -File -Include *.exe",
+        "Expand-7zipArchive \"$dir\\$file\" \"$dir\"",
+        "Remove-Item \"$dir\\$file\" -Force -Recurse",
         "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-arm64.7z\" \"$dir\"",
         "Remove-Item \"$dir\\`$*\", \"$dir\\Uninst*\" -Force -Recurse"
       ]
@@ -42,22 +46,10 @@
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://nightly.link/Icalingua-plus-plus/Icalingua-plus-plus/actions/runs/$matchId/Icalingua_Windows64.exe.zip",
-        "pre_install": [
-          "Expand-7zipArchive \"$dir\\Icalingua++-$matchVersion_x64.exe\" \"$dir\"",
-          "Remove-Item \"$dir\\Icalingua++-$matchVersion_x64.exe\" -Force -Recurse",
-          "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
-          "Remove-Item \"$dir\\`$*\", \"$dir\\Uninst*\" -Force -Recurse"
-        ]
+        "url": "https://nightly.link/Icalingua-plus-plus/Icalingua-plus-plus/actions/runs/$matchId/Icalingua_Windows64.exe.zip"
       },
       "arm64": {
-        "url": "https://nightly.link/Icalingua-plus-plus/Icalingua-plus-plus/actions/runs/$matchId/Icalingua_Windows_arm64.exe.zip",
-        "pre_install": [
-          "Expand-7zipArchive \"$dir\\Icalingua++-$matchVersion_arm64.exe\" \"$dir\"",
-          "Remove-Item \"$dir\\Icalingua++-$matchVersion_arm64.exe\" -Force -Recurse",
-          "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-arm64.7z\" \"$dir\"",
-          "Remove-Item \"$dir\\`$*\", \"$dir\\Uninst*\" -Force -Recurse"
-        ]
+        "url": "https://nightly.link/Icalingua-plus-plus/Icalingua-plus-plus/actions/runs/$matchId/Icalingua_Windows_arm64.exe.zip"
       }
     }
   }

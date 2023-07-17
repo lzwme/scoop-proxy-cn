@@ -6,7 +6,7 @@
   "changelog": "https://github.com/Rem0o/FanControl.Releases/releases",
   "url": "https://github.com/Rem0o/FanControl.Releases/raw/V163/FanControl.zip",
   "hash": "854d55c935c59cdf80a357909a9c99b68c065c4b248fee36625087efe335b1f1",
-  "pre_install": "if(!(Test-Path \"$dir/userConfig.json\")) { Add-Content \"$dir/userConfig.json\" $null }",
+  "pre_install": "Test-Persistence ('userConfig.json') -Content '{}'",
   "shortcuts": [
     [
       "FanControl.exe",

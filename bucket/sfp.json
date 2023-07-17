@@ -1,22 +1,14 @@
 {
   "version": "0.0.49",
-  "description": "This utility is designed to allow you to apply themes to the modern Steam client interface (Steam Beta)",
+  "description": "This utility is designed to allow you to apply themes to the modern Steam friends and library interfaces",
   "homepage": "https://github.com/PhantomGamers/SFP",
   "license": "MIT",
-  "suggest": {
-    ".NET Desktop Runtime": "extras/windowsdesktop-runtime"
-  },
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.net/https://github.com/PhantomGamers/SFP/releases/download/0.0.49/SFP_UI-win10-x64-net7.zip",
-      "hash": "3cc0ad40fabd05645b93ff336f16bedd1dcce12644baa1b70a912301cda93d3c"
+      "url": "https://ghproxy.net/https://github.com/PhantomGamers/SFP/releases/download/0.0.49/SFP_UI-win10-x64-SelfContained.zip",
+      "hash": "199d9c2b2a40e68e4451b5fe5d4eb09b1232cb1794536b616945e918bc650eb4"
     }
   },
-  "pre_install": [
-    "if (!(Test-Path \"$persist_dir\\SFP.config\")) {",
-    "    Add-Content \"$dir\\SFP.config\" '{\"userSettings\":{\"roaming\":{\"SFP.Properties.Settings\":{\"CheckForUpdates\":\"False\"}}}}' -Encoding Ascii",
-    "}"
-  ],
   "shortcuts": [
     [
       "SFP_UI.exe",
@@ -25,14 +17,12 @@
   ],
   "persist": "SFP.config",
   "checkver": {
-    "url": "https://api.github.com/repos/PhantomGamers/SFP/releases?per_page=1",
-    "jsonpath": "$[0].tag_name",
-    "regex": "([\\w.-]+)"
+    "github": "https://github.com/PhantomGamers/SFP"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.net/https://github.com/PhantomGamers/SFP/releases/download/$version/SFP_UI-win10-x64-net7.zip"
+        "url": "https://ghproxy.net/https://github.com/PhantomGamers/SFP/releases/download/$version/SFP_UI-win10-x64-SelfContained.zip"
       }
     }
   }

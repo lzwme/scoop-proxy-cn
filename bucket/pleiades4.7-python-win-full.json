@@ -1,12 +1,12 @@
 {
   "architecture": {
     "32bit": {
-      "hash": "md5:96543883260ac8d0a86edcd10670133e",
-      "url": "http://ftp.jaist.ac.jp/pub/mergedoc/pleiades/4.5/pleiades-e4.5-php-32bit_20160312.zip#/dl.7z"
+      "hash": "md5:e7dadcbb5e94a10157f0dd0a83e5c31a",
+      "url": "http://ftp.jaist.ac.jp/pub/mergedoc/pleiades/4.7/pleiades-4.7.3-python-win-32bit-jre_20180411.zip#/dl.7z"
     },
     "64bit": {
-      "hash": "md5:febe545affd202a33739e95f2712e7a5",
-      "url": "http://ftp.jaist.ac.jp/pub/mergedoc/pleiades/4.5/pleiades-e4.5-php_20160312.zip#/dl.7z"
+      "hash": "md5:98dd6e723f863e2768de3c9f366c52c4",
+      "url": "http://ftp.jaist.ac.jp/pub/mergedoc/pleiades/4.7/pleiades-4.7.3-python-win-64bit-jre_20180411.zip#/dl.7z"
     }
   },
   "autoupdate": {
@@ -20,8 +20,9 @@
     }
   },
   "checkver": {
-    "re": "Pleiades All in One ((?<fileVersion>[\\d.]+).*\\.v(?<date>[\\d]+))",
-    "url": "http://mergedoc.osdn.jp/pleiades_distros4.5.html"
+    "re": "Pleiades All in One ((?<fileVersion>[\\w\\d\\.]+) \\(Windows (?<date>[\\w\\d\\.]+).+\\))",
+    "replace": "${fileVersion}.v${date}",
+    "url": "http://mergedoc.osdn.jp/pleiades_distros4.7.html"
   },
   "extract_dir": "pleiades",
   "homepage": "http://mergedoc.osdn.jp/",
@@ -34,8 +35,8 @@
   "shortcuts": [
     [
       "eclipse/eclipse.exe",
-      "Pleiades All in One PHP 4.5.2.v20160312"
+      "Pleiades All in One Python 4.7.3a.v20180411"
     ]
   ],
-  "version": "4.5.2.v20160312"
+  "version": "4.7.3a.v20180411"
 }
