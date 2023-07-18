@@ -1,18 +1,27 @@
 {
-  "version": "2.052",
-  "description": "Complete cleaning for your Windows PC",
-  "homepage": "https://kurtzimmermann.com",
-  "license": "freeware",
+  "version": "2.053",
+  "homepage": "https://kurtzimmermann.com/index_e.html",
+  "description": "An application that offers a comprehensive toolkit for system maintenance. Developed by Kurt Zimmermann.",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://kurtzimmermann-com.translate.goog/datenschutz_en.html?_x_tr_sl=auto&_x_tr_tl=en-US&_x_tr_hl=en-US"
+  },
+  "##": [
+    "For a guide on how to use this app, click the link below:",
+    "https://kurtzimmermann-com.translate.goog/hdhelp_de.html?_x_tr_sl=auto&_x_tr_tl=en-US&_x_tr_hl=en-US"
+  ],
   "architecture": {
-    "64bit": {
-      "url": "https://kurtzimmermann.com/files/HDCleanerX64.zip",
-      "hash": "3af36fba13e611706b9a0cf65e83a866c4ac821620522d9bbba2595f1471aa5b"
-    },
     "32bit": {
       "url": "https://kurtzimmermann.com/files/HDCleanerX32.zip",
-      "hash": "fb58a80c644d50d2a37560f183f7472afc66b00176ae66c6ca40c5f8b3919bb9"
+      "hash": "889b8925e911060a9fb7345e5feeb95b7ae32b92245443819acfc7fcbe0bdf89"
+    },
+    "64bit": {
+      "url": "https://kurtzimmermann.com/files/HDCleanerX64.zip",
+      "hash": "1be2374958897343342cfe5d4f929c7324662a8ea2acc8d5d124e3e8ce6ecaf6"
     }
   },
+  "pre_install": "Remove-Item \"$dir\\Uninstaller.exe\" | Out-Null",
+  "bin": "HDCleaner.exe",
   "shortcuts": [
     [
       "HDCleaner.exe",
@@ -20,17 +29,22 @@
     ]
   ],
   "persist": "Settings",
+  "pre_uninstall": [
+    "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+    "Start-Process 'regsvr32' -Wait -Verb 'RunAs' -ArgumentList @('/u', \"$dir\\HDCleanerContextMenu.dll\", '/s')",
+    "Start-Sleep -Seconds 2"
+  ],
   "checkver": {
-    "url": "https://kurtzimmermann.com/index_e.html",
-    "regex": "HDCleaner</h4>[\\w\\W]*?Version ([\\d.]+)"
+    "url": "https://kurtzimmermann.com/hdcleanerversions_de.html",
+    "regex": "v([\\d.]+)"
   },
   "autoupdate": {
     "architecture": {
-      "64bit": {
-        "url": "https://kurtzimmermann.com/files/HDCleanerX64.zip"
-      },
       "32bit": {
         "url": "https://kurtzimmermann.com/files/HDCleanerX32.zip"
+      },
+      "64bit": {
+        "url": "https://kurtzimmermann.com/files/HDCleanerX64.zip"
       }
     }
   }

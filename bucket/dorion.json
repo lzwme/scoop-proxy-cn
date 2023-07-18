@@ -1,5 +1,5 @@
 {
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "Lightweight alternative Discord client with a smaller footprint and some fancy extensible features.",
   "homepage": "https://github.com/SpikeHD/Dorion",
   "license": {
@@ -8,15 +8,41 @@
   },
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.net/https://github.com/SpikeHD/Dorion/releases/download/v0.6.1/Dorion_Win64_SemiPortable.zip",
-      "hash": "ca4e456ea934908a9285113cc9b7a21b416de2088d3897b2dc7b54cdf02790ba"
+      "url": "https://ghproxy.net/https://github.com/SpikeHD/Dorion/releases/download/v0.6.2/Dorion_Win64_Portable.zip",
+      "hash": "200d3a110a2a2d1fa98be0dbe1d46b13381733a3d65b45f6c3790d834047c306"
     }
   },
+  "post_install": [
+    "if (Test-Path -Path \"~\\dorion\") {",
+    "Write-Warning \"Moving data from home folder $(Get-ChildItem -Path \"~\" -Filter dorion | Select-Object -ExpandProperty FullName)\"",
+    "Move-Item -Path \"~\\dorion\\plugins\\*\" -Destination \"$dir\\plugins\" -Force",
+    "Remove-Item \"~\\dorion\\plugins\" -Force -Recurse",
+    "Move-Item -Path \"~\\dorion\\themes\\*\" -Destination \"$dir\\themes\" -Force",
+    "Remove-Item \"~\\dorion\\themes\" -Force -Recurse",
+    "Move-Item -Path \"~\\dorion\\*\" -Destination \"$dir\" -Force",
+    "Remove-Item \"~\\dorion\" -Force -Recurse",
+    "}",
+    "if (Test-Path -Path \"$env:APPDATA\\dorion\") {",
+    "Write-Warning \"Moving data from app data folder $(Get-ChildItem -Path \"$env:APPDATA\" -Filter dorion | Select-Object -ExpandProperty FullName)\"",
+    "Move-Item -Path \"$env:APPDATA\\dorion\\plugins\\*\" -Destination \"$dir\\plugins\" -Force",
+    "Remove-Item \"$env:APPDATA\\dorion\\plugins\" -Force -Recurse",
+    "Move-Item -Path \"$env:APPDATA\\dorion\\themes\\*\" -Destination \"$dir\\themes\" -Force",
+    "Remove-Item \"$env:APPDATA\\dorion\\themes\" -Force -Recurse",
+    "Move-Item -Path \"$env:APPDATA\\dorion\\*\" -Destination \"$dir\" -Force",
+    "Remove-Item \"$env:APPDATA\\dorion\" -Force -Recurse",
+    "}",
+    "Remove-Item \"$dir\\*.original\" -Force -Recurse"
+  ],
+  "persist": [
+    "config.json",
+    "plugins",
+    "themes"
+  ],
   "checkver": "github",
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.net/https://github.com/SpikeHD/Dorion/releases/download/v$version/Dorion_Win64_SemiPortable.zip"
+        "url": "https://ghproxy.net/https://github.com/SpikeHD/Dorion/releases/download/v$version/Dorion_Win64_Portable.zip"
       }
     }
   },
