@@ -1,5 +1,5 @@
 {
-  "version": "4.1.2",
+  "version": "4.1.3",
   "homepage": "https://www.pcloud.com",
   "description": "The official Windows 10/11 client for synchronizing local files/folders to your pCloud drive, and vice versa.",
   "license": {
@@ -9,7 +9,7 @@
   "architecture": {
     "64bit": {
       "url": "https://partner.pcloud.com/dl/win64#/setup.exe",
-      "hash": "ad7820c5046c4a61c7aca2b768013a624ab88421b3e9869d5f123bde09b83c9e",
+      "hash": "29e97cff346428774837a04e3e281060ae7110a3fab471d249977bf6e14399f6",
       "post_install": [
         "Start-Process 'regsvr32' -ArgumentList @(\"$dir\\OverlayIcon64.dll\", '/s') -Verb 'RunAs' -Wait",
         "Stop-Process -Name 'explorer' -ErrorAction 'SilentlyContinue' -Force; Start-Sleep -Seconds 2"
@@ -17,7 +17,7 @@
     },
     "32bit": {
       "url": "https://partner.pcloud.com/dl/win#/setup.exe",
-      "hash": "ef56af892813a86ea37e268d194321f69f97a31f04faef11a4dd473d58b06322",
+      "hash": "6a9941497b8fe1d8cc547173bc74ed95959854d0f6f5a32d8a1491628e767e93",
       "post_install": [
         "Start-Process 'regsvr32' -ArgumentList @(\"$dir\\OverlayIcon.dll\", '/s') -Verb 'RunAs' -Wait",
         "Stop-Process -Name 'explorer' -ErrorAction 'SilentlyContinue' -Force; Start-Sleep -Seconds 2"

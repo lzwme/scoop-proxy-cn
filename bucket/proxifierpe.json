@@ -1,30 +1,39 @@
 {
-  "version": "4.11",
-  "description": "Allows network applications that do not support working through proxy servers to operate through a SOCKS or HTTPS proxy and chains.",
-  "homepage": "https://www.proxifier.com/",
+  "autoupdate": {
+    "hash": {
+      "jp": "$.[0].x86_64.hash",
+      "url": "http://127.0.0.1:8123/ipns/k51qzi5uqu5dim6iey988wcz8xl5mlvgoigd0hk7w875zomh3f0knmyf2gfpma/Versions/ProxifierPE"
+    },
+    "url": "http://127.0.0.1:8123/ipns/k51qzi5uqu5dim6iey988wcz8xl5mlvgoigd0hk7w875zomh3f0knmyf2gfpma/Software/ProxifierPE/ProxifierPE_$version_x86_64.zip#/ProxifierPE.zip"
+  },
+  "bin": [
+    "Proxifier.exe"
+  ],
+  "checkver": {
+    "jp": "$.[0].version",
+    "url": "http://127.0.0.1:8123/ipns/k51qzi5uqu5dim6iey988wcz8xl5mlvgoigd0hk7w875zomh3f0knmyf2gfpma/Versions/ProxifierPE"
+  },
+  "description": "允许不支持通过代理服务器工作的网络应用程序通过SOCKS或HTTPS代理和链进行操作。",
+  "extract_dir": "Proxifier PE",
+  "hash": "6bade77f0157d5f3d80711ba4e4c031ffb66bc5fded3ad27b522a9dc88aaa7a0",
+  "homepage": "https://www.proxifier.com",
   "license": {
     "identifier": "Shareware",
     "url": "https://www.proxifier.com/docs/win-v4/eula.html"
   },
-  "url": "https://www.proxifier.com/download/ProxifierPE.zip",
-  "hash": "6bade77f0157d5f3d80711ba4e4c031ffb66bc5fded3ad27b522a9dc88aaa7a0",
-  "extract_dir": "Proxifier PE",
-  "pre_install": "if (!(Test-Path \"$persist_dir\\Settings.ini\")) { Set-Content \"$dir\\Settings.ini\" '[Settings]', 'UpdateCheck=0' -Encoding Ascii }",
-  "shortcuts": [
-    [
-      "Proxifier.exe",
-      "Proxifier"
-    ]
-  ],
   "persist": [
     "Profiles",
     "Settings.ini"
   ],
-  "checkver": {
-    "url": "https://www.proxifier.com/changelog/",
-    "regex": "changelog-version\">Version ([\\d].+)<\\/div>"
-  },
-  "autoupdate": {
-    "url": "https://www.proxifier.com/download/ProxifierPE.zip"
-  }
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\Settings.ini\")) {\n\t\t\t   Set-Content \"$dir\\Settings.ini\" (\n\t\t\t\t\t'[Settings]',\n\t\t\t \t\t'UpdateCheck=0', \n\t\t\t\t\t'[License]', \n\t\t\t\t\t'Owner=foxxorcat', \n\t\t\t\t\t'Key=L6Z8A-XY2J4-BTZ3P-ZZ7DF-A2Q9C'\n\t\t\t\t) -Encoding Ascii\n\t\t\t}"
+  ],
+  "shortcuts": [
+    [
+      "Proxifier.exe",
+      "Proxifier PE"
+    ]
+  ],
+  "url": "http://127.0.0.1:8123/ipfs/QmXcV1G8ptAZ9oqX8FJ4DLTVR4HvakHyLT1Rt2hTPy9NKG#/ProxifierPE.zip",
+  "version": "4.11"
 }
