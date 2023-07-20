@@ -1,0 +1,22 @@
+{
+  "version": "master-b1f4290",
+  "description": "Port of Facebook's LLaMA model in C/C++",
+  "homepage": "https://github.com/ggerganov/llama.cpp",
+  "license": "MIT",
+  "notes": "Default URL is http://localhost:8080",
+  "url": "https://ghproxy.net/https://github.com/ggerganov/llama.cpp/releases/download/master-b1f4290/llama-master-b1f4290-bin-win-avx2-x64.zip",
+  "hash": "74cc79ca690ef82a31a676ada6c0ea5779044c60a36ef305e7f9e760831a7107",
+  "bin": [
+    [
+      "server.exe",
+      "llama-cpp-avx2-server"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/ggerganov/llama.cpp/releases",
+    "regex": "tag/(master-.{7})"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/ggerganov/llama.cpp/releases/download/$version/llama-$version-bin-win-avx2-x64.zip"
+  }
+}

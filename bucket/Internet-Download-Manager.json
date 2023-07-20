@@ -11,7 +11,7 @@
   "pre_install": [
     "Get-Process IDM* | Stop-Process -Force",
     "Get-Process IEMon* | Stop-Process -Force",
-    "Get-ChildItem \"$dir\\Internet Download Manager*.exe\" | Rename-Item  -newname 'Installer.exe'",
+    "Rename-Item \"$dir\\Internet Download Manager*.exe\" 'Installer.exe'",
     "Get-ChildItem $dir -Exclude Installer.exe, install.json, manifest.json | ForEach-Object {  Remove-Item \"$dir\\$($_.Name)\" -Force -ErrorAction SilentlyContinue }"
   ],
   "installer": {

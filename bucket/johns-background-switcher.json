@@ -1,6 +1,6 @@
 {
   "version": "5.5.1.2",
-  "description": "John’s Background Switcher: periodically changes the background image on your Windows computer to something awesome",
+  "description": "John's Background Switcher. JBS periodically changes the background image on your Windows computer to something awesome",
   "homepage": "https://johnsad.ventures/software/backgroundswitcher/windows/",
   "license": "Proprietary",
   "url": "https://dl.johnsadventures.com/JBS-5.5.1.2.zip",
@@ -9,14 +9,14 @@
   "shortcuts": [
     [
       "BackgroundSwitcher.exe",
-      "JohnsBackgroundSwitcher"
+      "BackgroundSwitcher"
     ]
   ],
   "checkver": {
     "url": "https://johnsad.ventures/software/backgroundswitcher/windows/",
-    "regex": "<a href=\"(?<url>[^\"]+-([0-9.]+)\\.zip)\">zip archive</a>"
+    "regex": "JBS-([\\d.]+).zip"
   },
   "autoupdate": {
-    "url": "$matchUrl"
+    "url": "https://dl.johnsadventures.com/JBS-$version.zip"
   }
 }
