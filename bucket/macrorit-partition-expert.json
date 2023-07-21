@@ -5,14 +5,26 @@
   "license": "Freeware",
   "architecture": {
     "64bit": {
-      "url": "https://disk-tool.com/download/mde/mde-free-portable.zip"
+      "url": "https://disk-tool.com/download/mde/mde-free-portable.zip",
+      "hash": "3fb8df8d0b42af3e690e92a971d39a881eb468c255a9a8ed3c1dafb7ea3c5702"
     }
   },
   "bin": "mde-free-portable/x64/dm.exe",
   "shortcuts": [
     [
       "mde-free-portable/x64/dm.exe",
-      "Macrorit Partition Manager"
+      "Macrorit Partition Expert"
     ]
-  ]
+  ],
+  "checkver": {
+    "url": "https://macrorit.com/partition-magic-manager/free-edition.html",
+    "regex": "Version:\\s+(\\d+\\.\\d+\\.\\d+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://disk-tool.com/download/mde/mde-free-portable.zip"
+      }
+    }
+  }
 }

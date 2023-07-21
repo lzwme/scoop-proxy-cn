@@ -1,8 +1,8 @@
 {
-  "homepage": "http://nagatsuki.la.coocan.jp/bunbackup/",
   "version": "6.11",
-  "_comment": "license from Readme.txt",
-  "license": "BunBackupはフリーソフトです 個人使用、企業内での業務使用に関わらず、BunBackupの使用は自由です",
+  "description": "BunBackup is an easy and fast way to back up your files.",
+  "homepage": "http://nagatsuki.la.coocan.jp/bunbackup/",
+  "license": "Freeware",
   "architecture": {
     "64bit": {
       "url": "http://nagatsuki.la.coocan.jp/bunbackup/64bit/BunBackupS611.zip",
@@ -14,14 +14,14 @@
     }
   },
   "pre_install": [
-    "",
-    "if(!(Test-Path(\"$dir\\BunBackup.env\"))) { New-Item \"$dir\\BunBackup.env\" | Out-Null }",
-    "if(!(Test-Path(\"$dir\\BunBackup.ini\"))) { New-Item \"$dir\\BunBackup.ini\" | Out-Null }",
-    ""
+    "if(!(Test-Path(\"$persist_dir\"))) { New-Item \"$persist_dir\" -type directory | Out-Null }",
+    "if(!(Test-Path(\"$persist_dir\\BunBackup.ini\"))) { New-Item \"$persist_dir\\BunBackup.ini\" -type file | Out-Null }",
+    "if(!(Test-Path(\"$persist_dir\\バックアップ.lbk\"))) { New-Item \"$persist_dir\\バックアップ.lbk\" -type file | Out-Null }"
   ],
+  "bin": "BunBackup.exe",
   "persist": [
-    "BunBackup.env",
-    "BunBackup.ini"
+    "BunBackup.ini",
+    "バックアップ.lbk"
   ],
   "shortcuts": [
     [
@@ -31,15 +31,15 @@
   ],
   "checkver": {
     "url": "http://nagatsuki.la.coocan.jp/bunbackup/download.htm",
-    "re": "<B>BunBackup Ver\\.([\\d\\.]+)</B>"
+    "regex": "<B>BunBackup Ver.([\\d.]+)</B>([\\s\\S]*?)<TD><A href=\"download/BunBackup(?<file>[\\d]+).zip"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "http://nagatsuki.la.coocan.jp/bunbackup/64bit/BunBackupS$cleanVersion.zip"
+        "url": "http://nagatsuki.la.coocan.jp/bunbackup/64bit/BunBackupS$matchFile.zip"
       },
       "32bit": {
-        "url": "http://nagatsuki.la.coocan.jp/bunbackup/download/BunBackup$cleanVersion.zip"
+        "url": "http://nagatsuki.la.coocan.jp/bunbackup/download/BunBackup$matchFile.zip"
       }
     }
   }

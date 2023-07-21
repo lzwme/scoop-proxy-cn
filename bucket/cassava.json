@@ -1,8 +1,7 @@
 {
   "homepage": "https://www.asukaze.net/soft/cassava/",
-  "description": "CSV/TSV editor",
-  "license": "Freeware",
   "version": "2.5.4",
+  "license": "Freeware",
   "url": "https://www.asukaze.net/soft/cassava/arc/Cassava2_5_4.zip",
   "hash": "3c92a5537943921fbd4254b85afd149187bca7acc39a71536e7622a9c622d955",
   "extract_dir": "Cassava",
@@ -10,22 +9,12 @@
   "shortcuts": [
     [
       "Cassava.exe",
-      "Cassava Editor"
+      "Cassava"
     ]
-  ],
-  "persist": [
-    "Cassava.ini",
-    "Macro",
-    "Export"
-  ],
-  "pre_install": [
-    "if (!(Test-Path \"$persist_dir\\Cassava.ini\")) {",
-    "    New-Item -Path \"$dir\\Cassava.ini\" -ItemType File | Out-Null",
-    "}"
   ],
   "checkver": {
     "url": "https://www.asukaze.net/soft/cassava/",
-    "re": "Ver.(?<version>[\\d.]+)"
+    "re": ">Ver.([\\d.]+) "
   },
   "autoupdate": {
     "url": "https://www.asukaze.net/soft/cassava/arc/Cassava$underscoreVersion.zip"
