@@ -1,18 +1,6 @@
 {
-  "autoupdate": {
-    "extract_dir": "typoraCracker-$matchSha",
-    "url": "https://ghproxy.net/https://github.com/Mas0nShi/typoraCracker/archive/$matchSha.zip"
-  },
-  "bin": "typoraCracker.ps1",
-  "checkver": {
-    "regex": "(?s)>(\\d+)-(\\d+)-(\\d+)T.*?/(?<sha>[0-9a-f]{40})",
-    "replace": "0.${1}.${2}.${3}",
-    "url": "https://github.com/Mas0nShi/typoraCracker/commits/master.atom"
-  },
-  "depends": "typora",
+  "version": "0.2022.04.06",
   "description": "A extract & decryption and pack & encryption tools for typora.",
-  "extract_dir": "typoraCracker-3ac472a198920a239a8dcd86b9830c92b44c729c",
-  "hash": "b1724e17a9c0387b9c16d48a6c8ecacfea4daff65e5da6ddbf8bc483d841cb46",
   "homepage": "https://github.com/Mas0nShi/typoraCracker",
   "license": {
     "identifier": "MIT",
@@ -27,6 +15,10 @@
     "仅供学习和讨论，请不要从事任何非法行为。",
     "由此产生的任何问题都将由用户（您）承担。"
   ],
+  "depends": "typora",
+  "url": "https://ghproxy.net/https://github.com/Mas0nShi/typoraCracker/archive/3ac472a198920a239a8dcd86b9830c92b44c729c.zip",
+  "hash": "b1724e17a9c0387b9c16d48a6c8ecacfea4daff65e5da6ddbf8bc483d841cb46",
+  "extract_dir": "typoraCracker-3ac472a198920a239a8dcd86b9830c92b44c729c",
   "pre_install": [
     "$cont = @(",
     "    'if (-not $env:SCOOP_APPS) { $env:SCOOP_APPS = \"$env:SCOOP\\apps\" }'",
@@ -46,6 +38,14 @@
     "if (!(Test-Path \"$dir\\typoraCracker.ps1\")) { New-Item -Path \"$dir\\typoraCracker.ps1\" -ItemType file | Out-Null  }",
     "Set-Content \"$dir\\typoraCracker.ps1\" -Value $cont -Encoding Ascii"
   ],
-  "url": "https://ghproxy.net/https://github.com/Mas0nShi/typoraCracker/archive/3ac472a198920a239a8dcd86b9830c92b44c729c.zip",
-  "version": "0.2022.04.06"
+  "bin": "typoraCracker.ps1",
+  "checkver": {
+    "url": "https://github.com/Mas0nShi/typoraCracker/commits/master.atom",
+    "regex": "(?s)>(\\d+)-(\\d+)-(\\d+)T.*?/(?<sha>[0-9a-f]{40})",
+    "replace": "0.${1}.${2}.${3}"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/Mas0nShi/typoraCracker/archive/$matchSha.zip",
+    "extract_dir": "typoraCracker-$matchSha"
+  }
 }

@@ -7,54 +7,39 @@
     "identifier": "Proprietary",
     "url": "https://support.plex.tv/articles/204096476-license-information/"
   },
-  "architecture": {
-    "32bit": {
-      "url": "https://downloads.plex.tv/plex-media-server-new/1.32.5.7328-2632c9d3a/windows/PlexMediaServer-1.32.5.7328-2632c9d3a-x86.exe",
-      "hash": "63068bd2aa1364375703b1248bb1bcd6ebc0490bf97381994561e8e6c9bbf8e8",
-      "installer": {
-        "script": [
-          "Start-Process \"$dir\\$fname\" -ArgumentList '/quiet' -Wait -Verb RunAs | Out-Null",
-          "Remove-Item \"$dir\\$fname\""
-        ]
-      },
-      "post_install": [
-        "$ProgramFiles = [Environment]::GetFolderPath(\"ProgramFilesX86\")",
-        "$filepath = \"$ProgramFiles\\Plex\\Plex Media Server\\Plex Media Server.exe\"",
-        "& $filepath"
-      ]
-    },
-    "64bit": {
-      "url": "https://downloads.plex.tv/plex-media-server-new/1.32.5.7328-2632c9d3a/windows/PlexMediaServer-1.32.5.7328-2632c9d3a-x86_64.exe",
-      "hash": "7d2da1cad6fce97797e507cc5ec0e4d5697cfde1dff05eff91a46e640372dbeb",
-      "pre_install": [
-        "$ProgramFiles = [Environment]::GetFolderPath(\"ProgramFilesX86\")",
-        "$filepath = \"$ProgramFiles\\Plex\\Plex Media Server\\unins000.exe\"",
-        "if (Test-Path \"$ProgramFiles\\Plex\") {",
-        "    warn '32bit version detected, Uninstalling before installing 64bit version...'",
-        "    Start-Process \"$filepath\" -ArgumentList '/quiet' -Wait -Verb RunAs | Out-Null",
-        "}"
-      ],
-      "installer": {
-        "args": [
-          "/verysilent",
-          "/suppressmsgboxes"
-        ]
-      }
-    }
+  "url": "https://downloads.plex.tv/plex-media-server-new/1.32.5.7328-2632c9d3a/windows/PlexMediaServer-1.32.5.7328-2632c9d3a-x86.exe",
+  "hash": "63068bd2aa1364375703b1248bb1bcd6ebc0490bf97381994561e8e6c9bbf8e8",
+  "installer": {
+    "script": [
+      "$extracted = \"$dir\\extracted\"",
+      "$msi = \"$dir\\msi\"",
+      "Expand-DarkArchive \"$dir\\$fname\" \"$extracted\"",
+      "Expand-MsiArchive \"$extracted\\AttachedContainer\\pms.msi\" \"$msi\"",
+      "Move-Item \"$msi\\Msi\\*\" \"$dir\" -Force",
+      "Remove-Item $extracted, $msi, \"$dir\\$fname\" -Force -Recurse"
+    ]
   },
+  "bin": [
+    [
+      "Plex Media Server.exe",
+      "pms"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "Plex Media Server.exe",
+      "Plex Media Server"
+    ]
+  ],
   "checkver": {
-    "url": "https://www.reddit.com/user/samwiseg0/submitted.json?sort=new",
-    "jsonpath": "$...title",
-    "regex": "PMS Version Available - (?<version>[\\d.]+-[a-fA-F0-9]{9})"
+    "url": "https://plex.tv/pms/downloads/5.json",
+    "jsonpath": "$.computer.Windows.version"
   },
   "autoupdate": {
-    "architecture": {
-      "32bit": {
-        "url": "https://downloads.plex.tv/plex-media-server-new/$version/windows/PlexMediaServer-$version-x86.exe"
-      },
-      "64bit": {
-        "url": "https://downloads.plex.tv/plex-media-server-new/$version/windows/PlexMediaServer-$version-x86_64.exe"
-      }
+    "url": "https://downloads.plex.tv/plex-media-server-new/$version/windows/PlexMediaServer-$version-x86.exe",
+    "hash": {
+      "url": "https://plex.tv/api/downloads/1.json",
+      "jsonpath": "$.computer.Windows.releases..checksum"
     }
   }
 }

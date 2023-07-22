@@ -1,47 +1,24 @@
 {
-  "version": "202307202209",
-  "description": "Data files from Loyalsoldier/v2ray-rules-dat, works for v2ray and Xray.",
+  "version": "202307212208",
+  "description": "Enhanced ruleset for V2Ray (unofficial)",
   "homepage": "https://github.com/Loyalsoldier/v2ray-rules-dat",
-  "license": {
-    "identifier": "GPL-3.0-or-later",
-    "url": "https://github.com/Loyalsoldier/v2ray-rules-dat/raw/master/LICENSE"
-  },
+  "license": "GPL-3.0-only",
   "depends": "v2ray",
-  "url": [
-    "https://ghproxy.net/https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/202307202209/geoip.dat",
-    "https://ghproxy.net/https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/202307202209/geosite.dat"
-  ],
-  "hash": [
-    "b013925834f69dbcffa4a18c615ee909cf6c39564ade38081d4b558bc918eaf0",
-    "1812c71993dbf5d5f51bf9ca2b502cb197e50019b08059f8bf90a6bf566d3a1d"
-  ],
+  "url": "https://ghproxy.net/https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/202307212208/rules.zip",
+  "hash": "b0c60258c2de22a72d6a33be1430b97742214f879becd24ea8eb2c4d124e5f01",
   "installer": {
     "script": [
-      "@('LoyalsoldierSite.dat', 'LoyalsoldierGeoIP.dat', 'geosite.dat', 'geoip.dat') | ForEach-Object { Remove-Item \"$(appdir v2ray $global)\\current\\$_\" -Force -ErrorAction SilentlyContinue }",
-      "New-Item \"$(appdir v2ray $global)\\current\\LoyalsoldierSite.dat\" -ItemType HardLink -Target \"$dir\\geosite.dat\" | Out-Null",
-      "New-Item \"$(appdir v2ray $global)\\current\\LoyalsoldierIP.dat\" -ItemType HardLink -Target \"$dir\\geoip.dat\" | Out-Null",
-      "New-Item \"$(appdir v2ray $global)\\current\\geosite.dat\" -ItemType HardLink -Target \"$dir\\geosite.dat\" | Out-Null",
-      "New-Item \"$(appdir v2ray $global)\\current\\geoip.dat\" -ItemType HardLink -Target \"$dir\\geoip.dat\" | Out-Null",
-      "Write-Host \"v2ray-rules-dat installation finished, it's suggested to restart your applications using v2ray-rules-dat now.\" -ForegroundColor Magenta"
+      "function LinkFile([String] $file, [String] $source = $file) {",
+      "    Write-Host \"Creating SymbolicLink for $file\"",
+      "    New-Item -Force -ItemType SymbolicLink -Path \"$(appdir v2ray $global)\\current\" -Name $file -Target \"$dir\\$source\" | Out-Null",
+      "}",
+      "LinkFile 'geoip.dat'",
+      "LinkFile 'geosite.dat'"
     ]
-  },
-  "uninstaller": {
-    "script": [
-      "Remove-Item \"$(appdir v2ray $global)\\current\\LoyalsoldierIP.dat\" -Force -ErrorAction 'SilentlyContinue'",
-      "Remove-Item \"$(appdir v2ray $global)\\current\\LoyalsoldierSite.dat\" -Force -ErrorAction 'SilentlyContinue'",
-      "Remove-Item \"$(appdir v2ray $global)\\current\\geosite.dat\" -Force -ErrorAction 'SilentlyContinue'",
-      "Remove-Item \"$(appdir v2ray $global)\\current\\geoip.dat\" -Force -ErrorAction 'SilentlyContinue'"
-    ]
-  },
-  "env_set": {
-    "V2RAY_LOCATION_ASSET": "$(scoop prefix v2ray)"
   },
   "checkver": "github",
   "autoupdate": {
-    "url": [
-      "https://ghproxy.net/https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/$version/geoip.dat",
-      "https://ghproxy.net/https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/$version/geosite.dat"
-    ],
+    "url": "https://ghproxy.net/https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/$version/rules.zip",
     "hash": {
       "url": "$url.sha256sum"
     }
