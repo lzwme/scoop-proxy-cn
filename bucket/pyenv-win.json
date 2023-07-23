@@ -5,11 +5,15 @@
   "license": "Freeware",
   "url": "https://ghproxy.net/https://raw.githubusercontent.com/pyenv-win/pyenv-win/master/pyenv-win/install-pyenv-win.ps1",
   "hash": "ad9611af397ca590d1f8ba17c54c4f7b90545874106199cc87158569fe423d0d",
+  "pre_install": [
+    "Write-Host \"please ensure your network can access Github,and continue install\" -ForegroundColor Red",
+    "pause"
+  ],
   "post_install": [
     "Invoke-Expression $dir\\install-pyenv-win.ps1",
-    "$data_path=\"$env:userProfile/.pyenv\"",
+    "$data_path=\"$env:userProfile/.pyenv/pyenv-win/install_cache\"",
     "$count=0;$current_bucket_name=foreach($_ in scoop bucket list,$count){if(($count -eq 0) -and ($_.Source -match \"abgox/abgo_bucket\")){echo $_.Name};$count++}",
-    "$ps1 = \"$bucketsdir\\$current_bucket_name\\bin\\persist_link.ps1 $data_path\\pyenv-win $persist_dir\\pyenv-win\"",
+    "$ps1 = \"$bucketsdir\\$current_bucket_name\\bin\\persist_link.ps1 $data_path $persist_dir\\install_cache\"",
     "Invoke-Expression \"$ps1\""
   ],
   "pre_uninstall": [

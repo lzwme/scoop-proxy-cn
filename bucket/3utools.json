@@ -1,22 +1,17 @@
 {
-  "version": "2.65.003",
+  "version": "3.02.012",
   "homepage": "https://www.3u.com/",
   "description": "An All-in-One Tool for iOS Devices.",
   "license": {
     "identifier": "Freeware",
     "url": "https://www.3u.com/statement"
   },
-  "url": "https://d-updater.3u.com/3utools/download/3uTools_v2.65.003_Setup.exe#/dl.7z",
-  "hash": "84f885bf443d5070412cb86c1c49b22963e65187000ba665c12b3c623ab59951",
+  "url": "https://dl.3u.com/update/v300/dl/3uTools_v3.02.012_Setup_x86.exe#/dl.7z",
+  "hash": "80d8b372bca6f2dcadc5e93be8a98718689e21d88c11ecac56c4de56566d9e19",
   "pre_install": [
     "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
-    "foreach ($f in @('record.db', 'setting.cfg', 'cache', 'Download')) {",
-    "    if (!(Test-Path \"$persist_dir\\$f\")) {",
-    "        Start-Process \"$dir\\3uTools.exe\" -Verb 'RunAs'",
-    "        $windowPattern.SetWindowVisualState('Minimized')",
-    "        while (!(Test-Path \"$dir\\$f\")) { Start-Sleep -Milliseconds 1312 }",
-    "        Start-Sleep -Seconds 2; Stop-Process -Name '3uTools' -Force",
-    "    }",
+    "ensure $persist_dir | Out-Null; foreach ($f in @('record.db', 'setting.cfg', 'cache', 'Download')) {",
+    "    Copy-Item \"$persist_dir\\$f\" \"$dir\\$f\" -ErrorAction 'SilentlyContinue' -Recurse",
     "}"
   ],
   "shortcuts": [
@@ -25,19 +20,16 @@
       "3uTools"
     ]
   ],
-  "persist": [
-    "record.db",
-    "setting.cfg",
-    "cache",
-    "Download"
-  ],
   "pre_uninstall": [
+    "foreach ($f in @('record.db', 'setting.cfg', 'cache', 'Download')) {",
+    "    Copy-Item \"$dir\\$f\" \"$persist_dir\\$f\" -ErrorAction 'SilentlyContinue' -Recurse",
+    "}",
     "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }; Write-Host 'A GUI UN-INSTALLATION PROMPT WILL POP UP IN A FEW SECONDS!' -B 'Red'",
     "Start-Process \"$dir\\uninstall.exe\" -Wait -Verb 'RunAs'; Start-Sleep -Seconds 2; Stop-Process -Name 'explorer' -Force",
     "$rkeys = @(",
-    "'HKLM:\\SOFTWARE\\Classes\\PC3uTools', 'HKCU:\\SOFTWARE\\Classes\\iTunes.ipa\\shell',",
-    "'HKCU:\\SOFTWARE\\Classes\\PlistEditor.plist\\shell', 'HKCU:\\SOFTWARE\\Classes\\i4ap\\shell',",
-    "'HKCU:\\SOFTWARE\\Classes\\3uViewer.heic', 'HKCU:\\SOFTWARE\\Classes\\3uViewer.svg'",
+    "    'HKLM:\\SOFTWARE\\Classes\\PC3uTools', 'HKCU:\\SOFTWARE\\Classes\\iTunes.ipa\\shell',",
+    "    'HKCU:\\SOFTWARE\\Classes\\PlistEditor.plist\\shell', 'HKCU:\\SOFTWARE\\Classes\\i4ap\\shell',",
+    "    'HKCU:\\SOFTWARE\\Classes\\3uViewer.heic', 'HKCU:\\SOFTWARE\\Classes\\3uViewer.svg'",
     ")",
     "foreach ($rkey in $rkeys) {",
     "    Remove-Item $rkey -ErrorAction 'SilentlyContinue' -Recurse -Force",
@@ -49,9 +41,9 @@
       "Out-Null ((Invoke-RestMethod 'https://www.3u.com/' -UserAgent $ua) -match '\"(?<URL>https://url.*/[\\w]+)\"')",
       "$url = $Matches.URL; (Invoke-WebRequest $url -UserAgent $ua).BaseResponse.RequestMessage.RequestUri.AbsoluteUri"
     ],
-    "regex": "3uTools_v([\\d.]+)_Setup\\.exe"
+    "regex": "3uTools_v([\\d.]+)_Setup_x86\\.exe"
   },
   "autoupdate": {
-    "url": "https://d-updater.3u.com/3utools/download/3uTools_v$version_Setup.exe#/dl.7z"
+    "url": "https://dl.3u.com/update/v$majorVersion00/dl/3uTools_v$version_Setup_x86.exe#/dl.7z"
   }
 }

@@ -1,12 +1,12 @@
 {
-  "version": "3.0.34-stable_y0",
+  "version": "3.0.34-stable_y1",
   "description": "a non-caching web proxy with advanced filtering capabilities - enhanced patch version",
   "homepage": "https://github.com/yak1ex/privoxy-enhanced/",
   "license": "GPL-2.0-or-later",
   "notes": "Assuming our own configuration is separeted as 'my.action' and 'my.fitler'.",
-  "url": "https://ghproxy.net/https://github.com/yak1ex/privoxy-enhanced/releases/download/privoxy-3.0.34-stable_y0/privoxy-3.0.34-stable_y0.zip",
-  "hash": "6e1aac66cafb0d50abca9dc802403140491ea864edd1f5171cdf50a88eb2a943",
-  "extract_dir": "privoxy-3.0.34-stable_y0",
+  "url": "https://ghproxy.net/https://github.com/yak1ex/privoxy-enhanced/releases/download/privoxy-3.0.34-stable_y1/privoxy-3.0.34-stable_y1.zip",
+  "hash": "1a4b91f7b8374a3ab1bdc3952404592662fe14421e6d62d8a62515156fda53e6",
+  "extract_dir": "privoxy-3.0.34-stable_y1",
   "pre_install": [
     "'my.action', 'my.filter' | ForEach-Object {",
     "    if (-not (Test-Path \"$persist_dir\\$_\")) { New-Item \"$dir\\$_\" | Out-Null }",
@@ -35,7 +35,7 @@
   ],
   "checkver": {
     "regex": "/releases/tag/privoxy-([-\\d._a-z]+)",
-    "type": "github"
+    "github": "https://github.com/yak1ex/privoxy-enhanced/"
   },
   "autoupdate": {
     "url": "https://ghproxy.net/https://github.com/yak1ex/privoxy-enhanced/releases/download/privoxy-$version/privoxy-$version.zip",
