@@ -5,10 +5,15 @@
   "license": "MIT",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.net/https://github.com/PhantomGamers/SFP/releases/download/0.0.50/SFP_UI-win10-x64-SelfContained.zip",
-      "hash": "533c55f29d0a7078c3f6b010dd7bbbc3be2a337e963b4231fe39a8ddec31e1b3"
+      "url": "https://ghproxy.net/https://github.com/PhantomGamers/SFP/releases/download/0.0.50/SFP_UI-win10-x64-net7.zip",
+      "hash": "843202426b4555f29767e833fce229c2ea9ab60faceb87ff3e338e15d001b1b9"
     }
   },
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\SFP.config\")) {",
+    "    Add-Content \"$dir\\SFP.config\" '{\"userSettings\":{\"roaming\":{\"SFP.Properties.Settings\":{\"CheckForUpdates\":\"False\"}}}}' -Encoding Ascii",
+    "}"
+  ],
   "shortcuts": [
     [
       "SFP_UI.exe",
@@ -17,12 +22,23 @@
   ],
   "persist": "SFP.config",
   "checkver": {
-    "github": "https://github.com/PhantomGamers/SFP"
+    "url": "https://api.github.com/repos/PhantomGamers/SFP/releases",
+    "jsonpath": "$[0].tag_name"
   },
+  "suggest": {
+    ".Net 7": [
+      "extras/windowsdesktop-runtime",
+      "main/dotnet-sdk"
+    ]
+  },
+  "notes": [
+    ".Net 7 runtime is required.",
+    "If you are first updating to this version after the major Steam update, run \"Reset Steam\" on the old version of SFP before updating, or delete your steamui and clientui folders and restart Steam."
+  ],
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.net/https://github.com/PhantomGamers/SFP/releases/download/$version/SFP_UI-win10-x64-SelfContained.zip"
+        "url": "https://ghproxy.net/https://github.com/PhantomGamers/SFP/releases/download/$version/SFP_UI-win10-x64-net7.zip"
       }
     }
   }

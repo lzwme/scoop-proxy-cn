@@ -7,10 +7,6 @@
     "64bit": {
       "url": "https://beerpsi-scoop.deno.dev/itunes?os=windows&type=x64&dl=12.12.6.1#/dl.7z",
       "hash": "sha1:3883de0be7f68918daf36855faa30786883f54f9"
-    },
-    "32bit": {
-      "url": "https://beerpsi-scoop.deno.dev/itunes?os=windows&type=x86&dl=12.12.6.1#/dl.7z",
-      "hash": "sha1:b9531346a761cdb9dff41bc41474e3de084f5682"
     }
   },
   "pre_install": [
@@ -85,13 +81,6 @@
         "url": "https://beerpsi-scoop.deno.dev/itunes?os=windows&type=x64&dl=$version#/dl.7z",
         "hash": {
           "url": "https://beerpsi-scoop.deno.dev/itunes?os=windows&type=x64",
-          "jsonpath": "$[?(@.version=='$version')].sha1sum"
-        }
-      },
-      "32bit": {
-        "url": "https://beerpsi-scoop.deno.dev/itunes?os=windows&type=x86&dl=$version#/dl.7z",
-        "hash": {
-          "url": "https://beerpsi-scoop.deno.dev/itunes?os=windows&type=x86",
           "jsonpath": "$[?(@.version=='$version')].sha1sum"
         }
       }

@@ -1,0 +1,40 @@
+{
+  "version": "1.1",
+  "description": "Fast Android <-> Windows file manager using ADB protocol",
+  "homepage": "https://github.com/T0biasCZe/AdbFileManager",
+  "license": "Unknown",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/T0biasCZe/AdbFileManager/releases/download/v1.1/afm.zip",
+      "hash": "f4373b9acec4e4fec4f1a8a0fea3977eddf25c43132e8dffe0bda209d6d0545d"
+    }
+  },
+  "bin": "AdbFileManager.exe",
+  "shortcuts": [
+    [
+      "AdbFileManager.exe",
+      "AdbFileManager"
+    ]
+  ],
+  "checkver": {
+    "script": [
+      "$cont = (Invoke-RestMethod -UseBasicParsing -Method Get -Headers @{'Accept'='application/vnd.github+json';'Accept-Encoding'='gzip'} -MaximumRedirection 0 -Uri 'https://api.github.com/repos/T0biasCZe/AdbFileManager/releases?per_page=1')[0]",
+      "$basever = $cont.tag_name.TrimStart('v')",
+      "foreach ($_ in $cont.assets) {",
+      "  if ($_.name -match '^(?<name>afm.*)\\.zip$') {",
+      "    Write-Output ('basever:\"' + $basever + '\"') ('name:\"' + $matches.name + '\"')",
+      "    break",
+      "  }",
+      "}"
+    ],
+    "regex": "basever:\"(?<basever>[\\w.-]+)\"\\sname:\"(?<name>afm.*)\"",
+    "replace": "${basever}"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/T0biasCZe/AdbFileManager/releases/download/v$matchBasever/$matchName.zip"
+      }
+    }
+  }
+}
