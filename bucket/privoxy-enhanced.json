@@ -14,10 +14,12 @@
   ],
   "post_install": [
     "'config.txt', 'default.action', 'default.filter', 'match-all.action', 'trust.txt', 'user.action', 'user.filter' | ForEach-Object {",
-    "    if ((Get-Content $dir\\$_ -Raw) -eq (Get-Content $dir\\$_.original -Raw)) {",
-    "        Remove-Item $dir\\$_.original",
-    "    } else {",
-    "        Write-Host -ForegroundColor DarkYellow \"Distributed '$_', stored as '$_.original', is not matched with the persisted file, you may need to merge with '$_'.\"",
+    "    if (Test-Path $dir\\$_.original) {",
+    "        if ((Get-Content $dir\\$_ -Raw) -eq (Get-Content $dir\\$_.original -Raw)) {",
+    "            Remove-Item $dir\\$_.original",
+    "        } else {",
+    "            Write-Host -ForegroundColor DarkYellow \"Distributed '$_', stored as '$_.original', is not matched with the persisted file, you may need to merge with '$_'.\"",
+    "        }",
     "    }",
     "}"
   ],

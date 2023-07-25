@@ -9,20 +9,29 @@
   "architecture": {
     "64bit": {
       "url": "https://downloadarchive.documentfoundation.org/libreoffice/old/7.6.0.1/win/x86_64/LibreOffice_7.6.0.1_Win_x86-64.msi#/setup.msi_",
-      "hash": "175f4d2a008ad4c75b1226c17609771dbd173224a9840bcb0dccb8000c73f7f0"
+      "hash": "175f4d2a008ad4c75b1226c17609771dbd173224a9840bcb0dccb8000c73f7f0",
+      "pre_install": "foreach ($z in @('soffice', 'unopkg')) { Set-Content \"$dir\\$z.cmd\" \"@`\"$env:ProgramFiles\\LibreOffice\\program\\$z.com`\"  %*\" -Encoding 'utf8' }"
     },
     "32bit": {
       "url": "https://downloadarchive.documentfoundation.org/libreoffice/old/7.6.0.1/win/x86/LibreOffice_7.6.0.1_Win_x86.msi#/setup.msi_",
-      "hash": "341bc003ad694a052cfcc00c53717d638fd49daf56d2e0efdb46f9e56a083dcf"
+      "hash": "341bc003ad694a052cfcc00c53717d638fd49daf56d2e0efdb46f9e56a083dcf",
+      "pre_install": "foreach ($z in @('soffice', 'unopkg')) { Set-Content \"$dir\\$z.cmd\" \"@`\"${env:ProgramFiles(x86)}\\LibreOffice\\program\\$z.com`\"  %*\" -Encoding 'utf8' }"
     },
     "arm64": {
       "url": "https://downloadarchive.documentfoundation.org/libreoffice/old/7.6.0.1/win/aarch64/LibreOffice_7.6.0.1_Win_aarch64.msi#/setup.msi_",
-      "hash": "baf2ff9e2785834addf11067f4f59bce03e648c4516d69a7141fc5f7ea17d5b9"
+      "hash": "baf2ff9e2785834addf11067f4f59bce03e648c4516d69a7141fc5f7ea17d5b9",
+      "pre_install": "foreach ($z in @('soffice', 'unopkg')) { Set-Content \"$dir\\$z.cmd\" \"@`\"$env:ProgramFiles\\LibreOffice\\program\\$z.com`\"  %*\" -Encoding 'utf8' }"
     }
   },
-  "pre_install": [
-    "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
-    "Start-Process 'msiexec' -Wait -Verb 'RunAs' -WindowStyle 'Hidden' -Args @('/i', \"$dir\\setup.msi_\", '/qn', '/norestart')"
+  "installer": {
+    "script": [
+      "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+      "Start-Process 'msiexec' -Wait -Verb 'RunAs' -WindowStyle 'Hidden' -Args @('/i', \"$dir\\setup.msi_\", '/qn', '/norestart')"
+    ]
+  },
+  "bin": [
+    "soffice.cmd",
+    "unopkg.cmd"
   ],
   "pre_uninstall": [
     "if ($cmd -eq 'uninstall') {",

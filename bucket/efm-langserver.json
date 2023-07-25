@@ -1,15 +1,22 @@
 {
   "homepage": "https://github.com/mattn/efm-langserver",
-  "version": "0.0.44",
+  "version": "0.0.46",
   "license": "MIT",
-  "url": "https://ghproxy.net/https://github.com/mattn/efm-langserver/releases/download/v0.0.44/efm-langserver_v0.0.44_windows_amd64.zip",
-  "extract_dir": "efm-langserver_v0.0.44_windows_amd64",
-  "bin": "efm-langserver.exe",
-  "checkver": {
-    "github": "https://github.com/mattn/efm-langserver"
+  "description": " General purpose Language Server .",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/mattn/efm-langserver/releases/download/v0.0.46/efm-langserver_v0.0.46_windows_amd64.zip",
+      "hash": "7dfdc40be7fa1b91958eee6467c3e10b29f9ce7b0bc1f7ebb874fb07b5b9801d",
+      "extract_dir": "efm-langserver_v0.0.46_windows_amd64"
+    }
   },
+  "checkver": "github",
   "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/mattn/efm-langserver/releases/download/v$version/efm-langserver_v$version_windows_amd64.zip",
-    "extract_dir": "efm-langserver_v$version_windows_amd64"
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/mattn/efm-langserver/releases/download/v$version/efm-langserver_v$version_windows_amd64.zip",
+        "extract_dir": "efm-langserver_v$version_windows_amd64"
+      }
+    }
   }
 }

@@ -1,0 +1,23 @@
+{
+  "version": "6.0",
+  "depends": "tenacity",
+  "description": "Tenacity ffmpeg plugins",
+  "homepage": "https://codeberg.org/tenacityteam/tenacity",
+  "license": "GPL-2.0",
+  "url": "https://codeberg.org/attachments/99503766-875f-4174-9b36-0dd0e68a92fa#dl.zip",
+  "hash": "7d435482eea7aefe60418922fd38392580d93f8fb1162d4fcba5336fd37dc295",
+  "extract_dir": "x86_64",
+  "extract_to": "../../tenacity/current",
+  "checkver": {
+    "url": "https://codeberg.org/tenacityteam/tenacity/releases",
+    "regex": "(?m)href=\"https://codeberg\\.org/attachments/(?<fileid>[0-9a-z-]+)\"(?:.*[\\r\\n]+.*)tenacity-ffmpeg-(?<version>(?:v|V)?([\\d.]+))-win-x86_64\\.zip"
+  },
+  "autoupdate": {
+    "url": "https://codeberg.org/attachments/$matchFileid#dl.zip"
+  },
+  "post_uninstall": [
+    "Remove-Item -Recurse $dir\\..\\..\\tenacity\\current\\avcodec-*.dll",
+    "Remove-Item -Recurse $dir\\..\\..\\tenacity\\current\\avformat-*.dll",
+    "Remove-Item -Recurse $dir\\..\\..\\tenacity\\current\\avutil-*.dll"
+  ]
+}

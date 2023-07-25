@@ -1,8 +1,8 @@
 {
-  "version": "9.1.1",
-  "description": "A HDD/SSD utility software which supports a part of USB, Intel RAID and NVMe.",
-  "homepage": "https://crystalmark.info/en/",
+  "homepage": "https://crystalmark.info/ja/software/crystaldiskinfo/",
+  "description": "CrystalDiskInfo is a HDD/SSD utility software which supports S.M.A.R.T and a part of USB-HDD.",
   "license": "MIT",
+  "version": "9.1.1",
   "url": "https://crystalmark.info/download/zz/CrystalDiskInfo9_1_1Shizuku.zip",
   "hash": "cee8575b8e19855495a1072e628ed7967aa0fd687b1650adf5864fbd7ce88607",
   "architecture": {
@@ -21,28 +21,13 @@
           "CrystalDiskInfo Shizuku Edition"
         ]
       ]
-    },
-    "arm64": {
-      "shortcuts": [
-        [
-          "DiskInfoA64S.exe",
-          "CrystalDiskInfo Shizuku Edition"
-        ]
-      ]
     }
   },
-  "pre_install": [
-    "if (!(Test-Path \"$persist_dir\\DiskInfo.ini\")) {",
-    "    New-Item \"$dir\\DiskInfo.ini\" -ItemType File | Out-Null",
-    "}"
-  ],
-  "persist": [
-    "DiskInfo.ini",
-    "Smart"
-  ],
+  "persist": "DiskInfo.ini",
+  "pre_install": "if(!(Test-Path \"$dir/DiskInfo.ini\")) { Add-Content \"$dir/DiskInfo.ini\" $null }",
   "checkver": {
     "url": "https://crystalmark.info/en/download/",
-    "regex": "meta name=\"description.+CrystalDiskInfo ([\\w\\.]+) - Manual"
+    "regex": "CrystalDiskInfo\\s+([\\w.]+)\\s"
   },
   "autoupdate": {
     "url": "https://crystalmark.info/download/zz/CrystalDiskInfo$underscoreVersionShizuku.zip"

@@ -1,0 +1,34 @@
+{
+  "version": "1.6.0",
+  "description": "A commandline downloader for Bilibili.",
+  "homepage": "https://github.com/nilaoda/BBDown",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/nilaoda/BBDown/releases/download/1.6.0/BBDown_1.6.0_20230715_win-x64.zip",
+      "hash": "bfdaddf9fd84bae5dbc8cd13a876ee015675ffdfbe7f3e4f096f002a0b0c80bb"
+    },
+    "arm64": {
+      "url": "https://ghproxy.net/https://github.com/nilaoda/BBDown/releases/download/1.6.0/BBDown_1.6.0_20230715_win-arm64.zip",
+      "hash": "0ce0c42d40b503c4642ca65a79c6ca658c1fe5e77f22f5c5483c19409b2ec621"
+    }
+  },
+  "bin": "BBDown.exe",
+  "suggest": {
+    "ffmpeg": "ffmpeg"
+  },
+  "checkver": {
+    "url": "https://api.github.com/repos/nilaoda/BBDown/releases/latest",
+    "regex": "BBDown_([\\d.]+)_(?<date>\\d+)_win-x64"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/nilaoda/BBDown/releases/download/$version/BBDown_$version_$matchDate_win-x64.zip"
+      },
+      "arm64": {
+        "url": "https://ghproxy.net/https://github.com/nilaoda/BBDown/releases/download/$version/BBDown_$version_$matchDate_win-arm64.zip"
+      }
+    }
+  }
+}
