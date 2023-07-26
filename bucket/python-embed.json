@@ -1,18 +1,17 @@
 {
-  "homepage": "https://www.python.org",
-  "description": "Python embeddable.",
+  "homepage": "https://www.python.org/",
+  "license": "Python-2.0",
   "version": "3.11.4",
   "architecture": {
     "64bit": {
       "url": "https://www.python.org/ftp/python/3.11.4/python-3.11.4-embed-amd64.zip",
-      "hash": "126802ff9fe787b961ae4d877262e6d6ce807d636295ef429c02e4dfd3e48041"
+      "hash": "md5:d0e85bf50d2adea597c40ee28e774081"
     },
     "32bit": {
       "url": "https://www.python.org/ftp/python/3.11.4/python-3.11.4-embed-win32.zip",
-      "hash": "004cbfe7d33bc568bbc279944c15ac6e5c74eb8545e661f0f152ae9132fd3cc4"
+      "hash": "md5:81b0acfcdd31a73d1577d6e977acbdc6"
     }
   },
-  "bin": "python.exe",
   "checkver": {
     "url": "https://www.python.org/downloads/windows/",
     "re": "Latest Python 3 Release - Python ([\\d\\.]+)"
@@ -25,6 +24,10 @@
       "32bit": {
         "url": "https://www.python.org/ftp/python/$version/python-$version-embed-win32.zip"
       }
+    },
+    "hash": {
+      "url": "https://www.python.org/downloads/release/python-$cleanVersion/",
+      "find": "(?sm)$basename.*?$md5"
     }
   }
 }

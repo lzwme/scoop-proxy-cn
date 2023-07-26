@@ -3,13 +3,13 @@
   "description": "Plugin manager for x64dbg",
   "homepage": "https://github.com/horsicq/x64dbg-Plugin-Manager",
   "license": "MIT",
+  "depends": "extras/x64dbg",
   "url": "https://ghproxy.net/https://github.com/horsicq/x64dbg-Plugin-Manager/releases/download/0.06/x64plgmnr_win32_portable_0.06.zip",
   "hash": "bf71d051b267bd9152a2de6affdcc5dbdfc52ac8def78d945fe454a92ac447bc",
+  "extract_dir": "x64plgmnr_win32_portable",
   "bin": [
-    [
-      "x64plgmnrc.exe",
-      "x64plgmnrc"
-    ]
+    "x64plgmnr.exe",
+    "x64plgmnrc.exe"
   ],
   "shortcuts": [
     [
@@ -17,18 +17,9 @@
       "x64dbg Plugin Manager"
     ]
   ],
-  "pre_install": [
-    "if (!(Test-Path \"$persist_dir\\x64plgmnr.ini\")) { New-Item \"$dir\\x64plgmnr.ini\" | Out-Null }"
-  ],
-  "persist": [
-    "x64plgmnr.ini"
-  ],
-  "extract_dir": "x64plgmnr_win32_portable",
-  "checkver": {
-    "github": "https://github.com/horsicq/x64dbg-Plugin-Manager",
-    "re": "(\\d+\\.\\d+(\\.\\d+)?)"
-  },
+  "checkver": "github",
   "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/horsicq/x64dbg-Plugin-Manager/releases/download/$version/x64plgmnr_win32_portable_$version.zip"
+    "url": "https://ghproxy.net/https://github.com/horsicq/x64dbg-Plugin-Manager/releases/download/$version/x64plgmnr_win32_portable_$version.zip",
+    "extract_dir": "x64plgmnr_win32_portable"
   }
 }
