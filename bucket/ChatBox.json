@@ -1,29 +1,57 @@
 {
-  "version": "0.6.2",
-  "description": "Gendloop's app",
-  "homepage": "https://github.com/gendloop/chatbox",
-  "license": "LGPL-2.1-or-later",
-  "architecture": {
-    "64bit": {
-      "url": "https://ghproxy.net/https://github.com/gendloop/chatbox/archive/refs/tags/v0.6.2.zip",
-      "hash": "4baabbc93e7973d7a7a47cd5a3c0b45f8f3cea5d130d5aeb0cdfe31ff7bff1c1"
+  "description": "Chatbox is a desktop app for GPT-4 / GPT-3.5 (OpenAI API)",
+  "homepage": "https://github.com/Bin-Huang/chatbox",
+  "license": "GPL-3.0-only",
+  "version": "0.6.3",
+  "checkver": {
+    "url": "https://github.com/Bin-Huang/chatbox/releases/latest",
+    "regex": "<h1[^>]*>Chatbox v(?<version>[\\d\\.]+)</h1>"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/Bin-Huang/chatbox/releases/download/v$version/Chatbox-$version-Setup.exe#/setup.7z",
+    "hash": {
+      "mode": "download"
     }
   },
+  "url": "https://ghproxy.net/https://github.com/Bin-Huang/chatbox/releases/download/v0.6.3/Chatbox-0.6.3-Setup.exe#/setup.7z",
+  "hash": "161010206239dcb2a1312fd0b321c21d6cb4002678193ac677ca22ebb61afccf",
+  "shortcuts": [
+    [
+      "Chatbox.exe",
+      "ChatGPT"
+    ]
+  ],
   "installer": {
     "script": [
-      "Push-Location \"$dir\"",
-      "7z x chatbox-$version\\dist\\chatbox.7z",
-      "Remove-Item chatbox-$version -Recurse",
-      "Start-Process chatbox.exe",
-      "Pop-Location"
+      "Move-Item -Path \"$dir\\`$PLUGINSDIR\\*\" -Destination $dir\\ -Force",
+      "Move-Item -Path \"$dir\\`$R0\\*\" -Destination $dir\\ -Force",
+      "Remove-Item -Path \"$dir\\`$PLUGINSDIR\" -Recurse -Force",
+      "Remove-Item -Path \"$dir\\`$R0\" -Recurse -Force",
+      "7z x -o\"$dir\" \"$dir\\app-64.7z\" -y | Out-Null",
+      "Remove-Item -Path \"$dir\\app-64.7z\" -Force"
     ]
   },
-  "checkver": "github",
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.net/https://github.com/gendloop/chatbox/archive/refs/tags/v$version.zip"
-      }
-    }
-  }
+  "post_install": [
+    "if (Get-Command magick -ErrorAction SilentlyContinue) {",
+    "   Push-Location $dir",
+    "   Invoke-WebRequest https://cdn.openai.com/brand/openai-logos.zip -OutFile openai-logos.zip",
+    "   Expand-Archive openai-logos.zip -DestinationPath logos",
+    "   Move-Item -Path logos\\openai-logos\\SVGs\\openai-logomark.svg -Destination logo.svg",
+    "   Remove-Item -Path openai-logos.zip",
+    "   Remove-Item -Path logos -Recurse",
+    "   magick -size 256x256 xc:none -fill \"#1ea078\" -draw \"circle 128,128 128,0\" logo_circle.png",
+    "   magick convert -density 128x128 -background transparent logo.svg -define icon:auto-resize -colors 256 logo.png",
+    null,
+    "   magick logo.png -resize 150x150 logo_resized.png",
+    "   magick composite -gravity center logo_resized.png logo_circle.png OpenAI.ico",
+    "   Remove-Item logo*",
+    "   $shortcutPath = Join-Path -Path (Convert-Path([System.IO.Path]::Combine([Environment]::GetFolderPath($global ? 'CommonStartMenu':'StartMenu'), 'Programs', 'Scoop Apps'))) -ChildPath 'ChatGPT.lnk'",
+    "   Copy-Item -Path $shortcutPath -Destination OriginalShortcut.lnk",
+    "   $shortcut = (New-Object -ComObject WScript.Shell).CreateShortcut($shortcutPath)",
+    "   $shortcut.IconLocation = (Join-Path -Path $dir -ChildPath 'OpenAI.ico')",
+    "   $shortcut.Save()",
+    "   Pop-Location",
+    "   Write-Host 'A custom icon has been set for the shortcut. The original shortcut is saved as OriginalShortcut.lnk in the app folder.'",
+    "}"
+  ]
 }
