@@ -9,31 +9,17 @@
       "hash": "0f5ef40a78abdd64fe8f1c46338e6969c7c039ef8fe646cdecb7a3bb855b9258"
     }
   },
-  "bin": "AdbFileManager.exe",
   "shortcuts": [
     [
       "AdbFileManager.exe",
       "AdbFileManager"
     ]
   ],
-  "checkver": {
-    "script": [
-      "$cont = (Invoke-RestMethod -UseBasicParsing -Method Get -Headers @{'Accept'='application/vnd.github+json';'Accept-Encoding'='gzip'} -MaximumRedirection 0 -Uri 'https://api.github.com/repos/T0biasCZe/AdbFileManager/releases?per_page=1')[0]",
-      "$basever = $cont.tag_name.TrimStart('v')",
-      "foreach ($_ in $cont.assets) {",
-      "  if ($_.name -match '^(?<name>afm.*)\\.zip$') {",
-      "    Write-Output ('basever:\"' + $basever + '\"') ('name:\"' + $matches.name + '\"')",
-      "    break",
-      "  }",
-      "}"
-    ],
-    "regex": "basever:\"(?<basever>[\\w.-]+)\"\\sname:\"(?<name>afm.*)\"",
-    "replace": "${basever}"
-  },
+  "checkver": "github",
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.net/https://github.com/T0biasCZe/AdbFileManager/releases/download/v$matchBasever/$matchName.zip"
+        "url": "https://ghproxy.net/https://github.com/T0biasCZe/AdbFileManager/releases/download/v$version/afm.zip"
       }
     }
   }

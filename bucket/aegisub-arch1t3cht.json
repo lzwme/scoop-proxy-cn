@@ -1,39 +1,28 @@
 {
-  "version": "feature_09",
-  "description": "Cross-platform advanced subtitle editor, with new feature branches.",
+  "version": "feature_10",
+  "description": "arch1t3cht's Aegisub fork",
   "homepage": "https://github.com/arch1t3cht/Aegisub",
   "license": "https://ghproxy.net/https://raw.githubusercontent.com/arch1t3cht/Aegisub/feature/LICENCE",
-  "architecture": {
-    "64bit": {
-      "url": "https://ghproxy.net/https://github.com/arch1t3cht/Aegisub/releases/download/feature_09/Windows.MSVC.Release.-.portable.zip",
-      "hash": "5A1E54666F1BEE497E17AFD38EAF367F741F6029E7A600922A540388E05C1938",
-      "installer": {
-        "script": [
-          "Expand-7zipArchive \"$dir\\aegisub-portable-64.zip\" \"$dir\" -ExtractDir \"aegisub-portable\"",
-          "Remove-Item \"$dir\\aegisub-portable-64.zip\""
-        ]
-      },
-      "checkver": {
-        "url": "https://github.com/arch1t3cht/Aegisub/releases",
-        "regex": "Feature Release \\d+"
-      },
-      "bin": "aegisub.exe",
-      "shortcuts": [
-        [
-          "aegisub.exe",
-          "Aegisub"
-        ]
-      ]
-    }
+  "url": "https://ghproxy.net/https://github.com/arch1t3cht/Aegisub/releases/download/feature_10/Windows.MSVC.Release.-.portable.zip",
+  "hash": "6dde45c221ba109ee3756169ccdf06d70f052f5adc489d26da16f4413ab50ae6",
+  "pre_install": [
+    "Expand-Archive -Path $dir\\aegisub-portable-64.zip -DestinationPath $dir\\",
+    "Move-Item -Path $dir\\aegisub-portable\\* -Destination $dir\\",
+    "Remove-Item -Recurse $dir\\aegisub-portable",
+    "Remove-Item $dir\\aegisub-portable-64.zip"
+  ],
+  "shortcuts": [
+    [
+      "Aegisub.exe",
+      "Aegisub"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/arch1t3cht/Aegisub/releases",
+    "regex": "tag/(feature_\\d+)"
   },
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.net/https://github.com/arch1t3cht/Aegisub/releases/download/$version/Windows.MSVC.Release.-.portable.zip",
-        "hash": {
-          "url": "$url.sha256"
-        }
-      }
-    }
-  }
+    "url": "https://ghproxy.net/https://github.com/arch1t3cht/Aegisub/releases/download/$version/Windows.MSVC.Release.-.portable.zip"
+  },
+  "notes": "Automation scripts will fail to load for unknown reason. If you need the feature, use the installer instead of the portable build."
 }
