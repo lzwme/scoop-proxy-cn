@@ -1,16 +1,16 @@
 {
-  "version": "2023.07.19.183406+9bc1b50",
+  "version": "2023.07.27.202010+260f8d9",
   "description": "Unofficial revival of dnSpy, a .NET debugger and assembly editor",
   "homepage": "https://github.com/dnSpyEx/dnSpy",
   "license": "GPL-3.0-only",
   "architecture": {
     "64bit": {
-      "url": "https://nightly.link/dnSpyEx/dnSpy/actions/runs/5602829155/dnSpy-net-win64.zip",
-      "hash": "7843c92161bf679776a5719fea84d9964ad317bac2606f9ae9dbd0e41132fb0f"
+      "url": "https://nightly.link/dnSpyEx/dnSpy/actions/runs/5685099672/dnSpy-net-win64.zip",
+      "hash": "2a9267e2e3a18ad6e1bf51f66ac730beb1b4d88507558b5660a451b252bffbdb"
     },
     "32bit": {
-      "url": "https://nightly.link/dnSpyEx/dnSpy/actions/runs/5602829155/dnSpy-net-win32.zip",
-      "hash": "b924f29bfa9032d499229a927278f1ee058c6e379433a625416b161711668c7e"
+      "url": "https://nightly.link/dnSpyEx/dnSpy/actions/runs/5685099672/dnSpy-net-win32.zip",
+      "hash": "96b9c1f4059add3a4e140935a63cda0aba2d64bde03799c79a77c5cb103f77f5"
     }
   },
   "bin": "dnSpy.Console.exe",
@@ -20,9 +20,7 @@
       "dnSpy"
     ]
   ],
-  "persist": [
-    "bin\\Extensions"
-  ],
+  "persist": "bin\\Extensions",
   "pre_install": [
     "$manifest.persist | ForEach-Object {",
     "    $dest = \"$dir\\$_\"",

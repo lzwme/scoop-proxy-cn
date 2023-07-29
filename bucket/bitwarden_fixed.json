@@ -33,7 +33,8 @@
   ],
   "checkver": {
     "url": "https://api.github.com/repos/bitwarden/clients/releases",
-    "regex": "tag/desktop-v([\\d.]+)"
+    "jsonpath": "$[*].tag_name",
+    "regex": "desktop-v([\\d.]+)"
   },
   "autoupdate": {
     "architecture": {

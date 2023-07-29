@@ -1,21 +1,9 @@
 {
   "version": "14.0.0",
-  "description": "Searches and downloads shows from various German-language public broadcasters.",
+  "description": "Durchsucht die Online-Mediatheken verschiedener Sender und listet die gefundenen Sendungen zum Herunterladen auf.",
   "homepage": "https://mediathekview.de/",
-  "license": {
-    "identifier": "GPL-3.0-only"
-  },
-  "architecture": {
-    "64bit": {
-      "url": "https://download.mediathekview.de/stabil/MediathekView-14.0.0-win.zip",
-      "hash": "6a984afb14bc596edd4e05ceb4e7da3fdbc57086f09e8b7b7e7e53d3c470d670"
-    },
-    "32bit": {
-      "url": "https://download.mediathekview.de/stabil/MediathekView-14.0.0-win32.zip",
-      "hash": "0a3a95cbcfc69417bfcaa61259d8c3c355f3f318e48c6cf3d98098115becd2ef"
-    }
-  },
-  "bin": "MediathekView_Portable.exe",
+  "url": "https://download.mediathekview.de/stabil/MediathekView-latest-win.zip",
+  "hash": "6a984afb14bc596edd4e05ceb4e7da3fdbc57086f09e8b7b7e7e53d3c470d670",
   "extract_dir": "MediathekView",
   "shortcuts": [
     [
@@ -25,25 +13,10 @@
   ],
   "persist": "Einstellungen",
   "checkver": {
-    "url": "https://download.mediathekview.de/stabil/updates-win.xml",
-    "regex": "newVersion=\"([\\d\\.]+)\""
+    "url": "https://mediathekview.de/changelog/",
+    "regex": "Version ([\\d.]+)"
   },
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://download.mediathekview.de/stabil/MediathekView-$version-win.zip",
-        "hash": {
-          "url": "https://download.mediathekview.de/stabil/updates-win.xml",
-          "xpath": "/updateDescriptor/entry[2]/@sha256Sum"
-        }
-      },
-      "32bit": {
-        "url": "https://download.mediathekview.de/stabil/MediathekView-$version-win32.zip",
-        "hash": {
-          "url": "https://download.mediathekview.de/stabil/updates-win32.xml",
-          "xpath": "/updateDescriptor/entry[2]/@sha256Sum"
-        }
-      }
-    }
+    "url": "https://download.mediathekview.de/stabil/MediathekView-latest-win.zip"
   }
 }

@@ -1,0 +1,32 @@
+{
+  "##": "This file is a template. Fill the blanks and add or remove fields as necessary.",
+  "version": "2.3.0",
+  "description": "The Eurorack simulator.",
+  "homepage": "https://vcvrack.com/",
+  "license": "Freeware, GPL-3.0-or-later",
+  "notes": "",
+  "architecture": {
+    "64bit": {
+      "url": "https://vcvrack.com/downloads/RackFree-2.3.0-win-x64.exe#/dl.7z",
+      "hash": "96ef3ae12870307e6568c4e50cbf936d04ccdcf74f5c383e6dcf80cf72c182f7"
+    }
+  },
+  "post_install": "'$PLUGINSDIR', 'Uninstall.exe' | ForEach-Object { Remove-Item \"$dir\\$_\" -Recurse -Force }",
+  "shortcuts": [
+    [
+      "Rack.exe",
+      "VCV Rack 2 Free"
+    ]
+  ],
+  "checkver": {
+    "url": "https://vcvrack.com/Rack",
+    "regex": "([\\d.]+)\\sDownload"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://vcvrack.com/downloads/RackFree-$version-win-x64.exe#/dl.7z"
+      }
+    }
+  }
+}
