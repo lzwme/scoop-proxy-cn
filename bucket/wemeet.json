@@ -12,7 +12,7 @@
   "post_install": [
     "Rename-Item \"$dir\\`$_*_\" \"$dir\\$version\"",
     "Remove-Item \"$dir\\$*\" -Recurse -Force -ErrorAction SilentlyContinue",
-    "Remove-Item \"$dir\\wemeetapp_new.exe\" -Force -ErrorAction SilentlyContinue",
+    "Remove-Item \"$dir\\wemeetapp_new.exe\", \"$dir\\$version\\WeMeetUninstall.exe\" -Force -ErrorAction SilentlyContinue",
     "create_startmenu_shortcuts $manifest \"$original_dir\" $global $architecture *>$null"
   ],
   "shortcuts": [

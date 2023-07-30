@@ -1,0 +1,33 @@
+{
+  "version": "23.0.13.0",
+  "description": "Filestar",
+  "homepage": "https://filestar.com/",
+  "license": "Proprietary",
+  "url": "https://meta.filestar.com/download2/win-x64#/setup.exe",
+  "hash": "4c9ac900d1457e3c13c48fe28baf839f786ad01cbe6e196bbf82fcd47bf16bca",
+  "installer": {
+    "args": [
+      "/SP-",
+      "/verysilent",
+      "/suppressmsgboxes",
+      "/nocancel",
+      "/norestart",
+      "/norun"
+    ]
+  },
+  "uninstaller": {
+    "file": "unins000.exe",
+    "args": [
+      "/verysilent",
+      "/suppressmsgboxes",
+      "/norestart"
+    ]
+  },
+  "checkver": {
+    "url": "https://filestar.com/download",
+    "regex": "Windows"
+  },
+  "autoupdate": {
+    "url": "https://meta.filestar.com/download2/win-x64/#/setup.exe"
+  }
+}

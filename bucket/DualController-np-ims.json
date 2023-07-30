@@ -1,0 +1,19 @@
+{
+  "version": "2.77",
+  "description": "Dual Controller",
+  "homepage": "https://www.lg.com/de/support/software-firmware?csSalesCode=49WL95C-W.AEU",
+  "license": "Proprietary",
+  "url": "https://gscs-b2c.lge.com/downloadFile?fileId=0efhmXDnvLzxsiSppqjA#/dl.7z",
+  "hash": "48de5ce99a6e1f655c4b0c2fae9396872442dd9e0f77f996df4ab28b1f19f579",
+  "post_install": [
+    "Get-ChildItem \"$dir\\DC_Setup_*.exe\" | Rename-Item -NewName 'setup.exe'",
+    "Start-Process -Wait \"$dir\\setup.exe\""
+  ],
+  "checkver": {
+    "url": "https://www.lg.com/de/support/software-firmware?csSalesCode=49WL95C-W.AEU",
+    "regex": "Dual Controller (\\d{1,}.\\d{2}) for Windows"
+  },
+  "autoupdate": {
+    "url": "https://gscs-b2c.lge.com/downloadFile?fileId=0efhmXDnvLzxsiSppqjA#/dl.7z"
+  }
+}

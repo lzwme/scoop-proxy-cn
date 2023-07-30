@@ -1,0 +1,28 @@
+{
+  "version": "1.0.18",
+  "description": "Sky X",
+  "homepage": "https://skyx.sky.at/willkommen-bei-sky-x",
+  "license": "Proprietary",
+  "url": "https://desktopclient.ott.sky.com/skygodesktop/AT/SkyXInstaller.exe",
+  "hash": "0341eff58f2ec865881a9d9c98515b6d0b3f165af014659649adcd78a8bc2296",
+  "installer": {
+    "args": [
+      "/SP-",
+      "/verysilent",
+      "/suppressmsgboxes",
+      "/nocancel",
+      "/norestart",
+      "/norun"
+    ]
+  },
+  "uninstaller": {
+    "script": "Start-Process \"$env:AppData\\Sky\\Sky X\\unins000.exe\" -ArgumentList '/verysilent /suppressmsgboxes /norestart' -Wait"
+  },
+  "checkver": {
+    "url": "https://skyx.sky.at/willkommen-bei-sky-x",
+    "regex": "Windows App"
+  },
+  "autoupdate": {
+    "url": "https://desktopclient.ott.sky.com/skygodesktop/AT/SkyXInstaller.exe"
+  }
+}

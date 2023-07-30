@@ -1,0 +1,24 @@
+{
+  "version": "4.2.7",
+  "description": "Sky X",
+  "homepage": "https://www.tvbrowser.org/",
+  "license": "GPL-3.0",
+  "url": "https://sourceforge.net/projects/tvbrowser/files/TV-Browser%20Releases%20%28Java%2011%20and%20higher%29/4.2.7/tvbrowser-lite_4.2.7_win.exe/download",
+  "hash": "sha1:8e4b24f9181f2c2e9d36f3a0c27696f5cde40703",
+  "installer": {
+    "args": "/S"
+  },
+  "pre_uninstall": [
+    "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }"
+  ],
+  "uninstaller": {
+    "script": "Start-Process \"$env:ProgramFiles\\TV-Browser\\uninstall.exe\" -ArgumentList '/S --batch --background' -Wait"
+  },
+  "checkver": {
+    "url": "https://www.tvbrowser.org/index.php?id=windows/",
+    "regex": "tvbrowser-lite_([\\d.]+)_win.exe"
+  },
+  "autoupdate": {
+    "url": "https://sourceforge.net/projects/tvbrowser/files/TV-Browser%20Releases%20%28Java%2011%20and%20higher%29/$version/tvbrowser-lite_$version_win.exe"
+  }
+}

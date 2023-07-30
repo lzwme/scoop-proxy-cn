@@ -1,18 +1,26 @@
 {
-  "version": "2.3.6",
+  "version": "2.2.37",
   "description": "All-in-one collaboration platform for API documentation, API debugging, API Mock and API test automation.",
   "homepage": "https://apifox.com",
   "license": "Freeware",
   "architecture": {
     "64bit": {
-      "url": "https://cdn.apifox.cn/download/2.3.6/Apifox-2.3.6.exe#/dl.7z",
-      "hash": "sha512:33a6c87c224fe293d3be88a9cc7ba2d6ffebeb220dacaef72fc5da642a6197b71f1cddb42c759117cf777dc5b233e457920d10fcbda281dc8d5fed58507ed9f7"
+      "url": "https://cdn.apifox.cn/download/2.2.37/Apifox-2.2.37.exe#/dl.7z",
+      "hash": "sha512:621b49a93a24586af3835382b3b3d87117a42e190af7939a416efdc3154c526a62d6c30ab017b0e2322ca3a99fcb7cbc926baccf32e60e5cc38116d2c6d565af",
+      "pre_install": [
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+        "Remove-Item \"$dir\\`$*\", \"$dir\\Uninstall*\" -Force -Recurse"
+      ]
+    },
+    "32bit": {
+      "url": "https://cdn.apifox.cn/download/2.2.37/Apifox-windows-x86-2.2.37.exe#/dl.7z",
+      "hash": "sha512:fbe53ab6d237bbfa55b2833ba5940cb25fb833a28b1679ca83fdff53065ec9bfb05b975a0aa59291d388f5553091ef6e9604060ca7a3282f5c6f4d94499a7b47",
+      "pre_install": [
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-32.7z\" \"$dir\"",
+        "Remove-Item \"$dir\\`$*\", \"$dir\\Uninstall*\" -Force -Recurse"
+      ]
     }
   },
-  "pre_install": [
-    "Get-Item \"$dir\\`$PLUGINSDIR\\app*.7z\" | Expand-7zipArchive -DestinationPath \"$dir\"",
-    "Remove-Item \"$dir\\`$*\", \"$dir\\Uninstall*\" -Force -Recurse"
-  ],
   "shortcuts": [
     [
       "Apifox.exe",
@@ -21,10 +29,6 @@
     ]
   ],
   "persist": "UserData",
-  "pre_uninstall": [
-    "Stop-Process -Name 'ApifoxAppAgent' -ErrorAction SilentlyContinue",
-    "Wait-Process -Name 'ApifoxAppAgent' -ErrorAction SilentlyContinue -Timeout 30"
-  ],
   "checkver": {
     "url": "https://cdn.apifox.cn/download/latest.yml",
     "regex": "version: ([\\d.]+)"
@@ -34,7 +38,14 @@
       "64bit": {
         "url": "https://cdn.apifox.cn/download/$version/Apifox-$version.exe#/dl.7z",
         "hash": {
-          "url": "$baseurl/latest.yml",
+          "url": "https://cdn.apifox.cn/download/latest.yml",
+          "regex": "sha512: $base64"
+        }
+      },
+      "32bit": {
+        "url": "https://cdn.apifox.cn/download/$version/Apifox-windows-x86-$version.exe#/dl.7z",
+        "hash": {
+          "url": "https://cdn.apifox.cn/download/x32/latest.yml",
           "regex": "sha512: $base64"
         }
       }
