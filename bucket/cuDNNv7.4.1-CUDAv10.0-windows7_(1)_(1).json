@@ -1,0 +1,39 @@
+{
+  "installer": {
+    "script": [
+      "if (-not $env:CUDA_PATH) {",
+      "   Write-Error 'Environment variable \"CUDA_PATH\" not set.'",
+      "   return",
+      "}",
+      "Get-ChildItem -LiteralPath $dir |",
+      "   ForEach-Object { $_.fullname } |",
+      "   Copy-Item -Destination $env:CUDA_PATH -Recurse -Force"
+    ]
+  },
+  "version": "7.4.1",
+  "extract_dir": "cuda",
+  "architecture": {
+    "64bit": {
+      "url": "https://developer.download.nvidia.com/compute/redist/cudnn/v7.4.1/cudnn-10.0-windows7-x64-v7.4.1.5.zip"
+    }
+  },
+  "description": "NVIDIA CUDA Deep Neural Network (cuDNN) is a GPU-accelerated library of primitives for deep neural networks.",
+  "uninstaller": {
+    "script": [
+      "if (-not $env:CUDA_PATH) {",
+      "   Write-Error 'Environment variable \"CUDA_PATH\" not set.'",
+      "   return",
+      "}",
+      "$files = Get-ChildItem -LiteralPath $env:CUDA_PATH -File -Recurse | Where-Object {",
+      "   $_.name -Like \"cudnn64.*.dll\" -or",
+      "   $_.name -Like \"cudnn.h\" -or",
+      "   $_.name -Like \"cudnn.lib\"",
+      "}",
+      "Remove-Item -LiteralPath $files -Force"
+    ]
+  },
+  "homepage": "https://developer.nvidia.com/rdp/cudnn-download",
+  "depends": [
+    "cuda"
+  ]
+}

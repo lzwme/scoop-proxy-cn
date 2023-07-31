@@ -1,0 +1,31 @@
+{
+  "version": "2.3.0",
+  "description": "Rule-based double-entry bookkeeping importer (from Alipay/WeChat/Huobi to Beancount).",
+  "homepage": "https://github.com/deb-sig/double-entry-generator",
+  "license": "Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/deb-sig/double-entry-generator/releases/download/v2.3.0/double-entry-generator_2.3.0_Windows_x86_64.tar.gz",
+      "hash": "f685b5e7e3449386eafeb1c657207c387fde2bd6ec62e35cd33b849b7df7e5b2"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/deb-sig/double-entry-generator/releases/download/v2.3.0/double-entry-generator_2.3.0_Windows_i386.tar.gz",
+      "hash": "d04ed122ec1c78a18fda9d4d6472bccc3b3c3902175390f56eae9b429cc2e065"
+    }
+  },
+  "bin": "double-entry-generator.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/deb-sig/double-entry-generator/releases/download/v$version/double-entry-generator_$version_Windows_x86_64.tar.gz"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/deb-sig/double-entry-generator/releases/download/v$version/double-entry-generator_$version_Windows_i386.tar.gz"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/checksums.txt"
+    }
+  }
+}

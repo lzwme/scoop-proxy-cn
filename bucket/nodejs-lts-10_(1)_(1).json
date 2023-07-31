@@ -1,0 +1,50 @@
+{
+  "homepage": "https://nodejs.org",
+  "description": "As an asynchronous event driven JavaScript runtime, Node is designed to build scalable network applications. (Long Term Support)",
+  "version": "18.15.0",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://registry.npmmirror.com/-/binary/node/v18.15.0/node-v18.15.0-win-x64.7z",
+      "hash": "cad3cc0910dc216e8b6dcfc3c5b3be0a619c2d4a4b29f2e674820b70e4f374dd",
+      "extract_dir": "node-v18.15.0-win-x64"
+    },
+    "32bit": {
+      "url": "https://registry.npmmirror.com/-/binary/node/v18.15.0/node-v18.15.0-win-x86.7z",
+      "hash": "370dbe4ac8fa516a33540821d409153035c50a449ca12f74f78bcf0b634d1957",
+      "extract_dir": "node-v18.15.0-win-x86"
+    }
+  },
+  "persist": [
+    "bin",
+    "cache"
+  ],
+  "env_add_path": [
+    ".",
+    "bin"
+  ],
+  "post_install": [
+    "# Set npm prefix to install modules inside bin and npm cache so they persist",
+    "Set-Content -Value \"prefix=$persist_dir\\bin`ncache=$persist_dir\\cache\" -Path \"$dir\\node_modules\\npm\\npmrc\""
+  ],
+  "checkver": {
+    "url": "https://nodejs.org/en/download/",
+    "re": "LTS Version: <strong>([\\d.]+)</strong>"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://registry.npmmirror.com/-/binary/node/v$version/node-v$version-win-x64.7z",
+        "extract_dir": "node-v$version-win-x64"
+      },
+      "32bit": {
+        "url": "https://registry.npmmirror.com/-/binary/node/v$version/node-v$version-win-x86.7z",
+        "extract_dir": "node-v$version-win-x86"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/SHASUMS256.txt.asc"
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

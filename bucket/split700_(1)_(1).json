@@ -1,0 +1,33 @@
+{
+  "version": "2.0",
+  "description": "Extracts BRR samples from SNES SPC700 format (*.spc).",
+  "homepage": "https://github.com/gocha/split700",
+  "license": "MIT",
+  "architecture": {
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/gocha/split700/releases/download/v2.0/split700-2.0-win32.zip",
+      "hash": "6ba3b0305671789d17751ce87064ed4433f04d1b8d8f90464a26b2324f7f76d4"
+    },
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/gocha/split700/releases/download/v2.0/split700-2.0-win64.zip",
+      "hash": "ea8d756fd38b4f6cfb1cc8b8ae080c32706844a966e026d0f82f520916750ae9"
+    }
+  },
+  "bin": [
+    "split700.exe",
+    "brr2wav.exe"
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/gocha/split700/releases/download/v$version/split700-$version-win32.zip",
+        "hash": "$url.sha256"
+      },
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/gocha/split700/releases/download/v$version/split700-$version-win64.zip",
+        "hash": "$url.sha256"
+      }
+    }
+  }
+}

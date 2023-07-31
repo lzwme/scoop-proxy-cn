@@ -1,0 +1,39 @@
+{
+  "version": "78",
+  "description": "Wii Backup Manager is a program to work with DVD backups, FAT32, NTFS and WBFS drives to convert between DVD, ISO, CISO and WBFS. It can also extract Wii games to the format used by SNEEK.",
+  "homepage": "http://www.wiibackupmanager.co.uk/home.html",
+  "license": "Unknown",
+  "url": "http://www.wiibackupmanager.co.uk/index.php?file=WiiBackupManager_Build78#/dl.7z",
+  "hash": "be913ae19093797d3fe5c15fda18b2bb6af99df5a48d1a579941e6f3b3cc8edd",
+  "shortcuts": [
+    [
+      "WiiBackupManager_Win64.exe",
+      "Wii Backup Manager 64bit"
+    ],
+    [
+      "WiiBackupManager_Win32.exe",
+      "Wii Backup Manager 32bit"
+    ]
+  ],
+  "checkver": {
+    "url": "http://www.wiibackupmanager.co.uk/latest.html",
+    "regex": "Wii Backup Manager Build ([\\d.]+)"
+  },
+  "pre_install": [
+    "if (!(Test-Path \"$dir\\covers\")) { New-Item -Path \"$dir\\covers\" -ItemType Directory | Out-Null }",
+    "if (!(Test-Path \"$dir\\logs\")) { New-Item -Path \"$dir\\logs\" -ItemType Directory | Out-Null }",
+    "if (!(Test-Path \"$persist_dir\\settings.ini\")) { New-Item \"$dir\\settings.ini\" | Out-Null }",
+    "if (!(Test-Path \"$persist_dir\\wiidb.db\")) { New-Item \"$dir\\wiitdb.db\" | Out-Null }",
+    "if (!(Test-Path \"$persist_dir\\wiidb.idx\")) { New-Item \"$dir\\wiitdb.idx\" | Out-Null }"
+  ],
+  "persist": [
+    "covers",
+    "logs",
+    "settings.ini",
+    "wiitdb.db",
+    "wiitdb.idx"
+  ],
+  "autoupdate": {
+    "url": "http://www.wiibackupmanager.co.uk/index.php?file=WiiBackupManager_Build$version#/dl.7z"
+  }
+}

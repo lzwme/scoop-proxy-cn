@@ -1,5 +1,5 @@
 {
-  "version": "0.0.181+2255af7.5570195805",
+  "version": "0.0.183+4c23e26.5706671983",
   "description": "A command line tool for editing and distributing Minecraft modpacks, using a git-friendly TOML format. Supports CurseForge and Modrinth mods with automated updates!",
   "homepage": "https://github.com/comp500/packwiz/",
   "license": {
@@ -8,19 +8,22 @@
   },
   "architecture": {
     "64bit": {
-      "url": "https://nightly.link/packwiz/packwiz/actions/runs/5570195805/Windows%2064-bit.zip",
-      "hash": "7deb307e9fa2e79a4698ea859b9ffe27b0b2387c7685902027b1c66b18252e07"
+      "url": "https://nightly.link/packwiz/packwiz/actions/runs/5706671983/Windows%2064-bit.zip",
+      "hash": "4b2e0eb657211c765d8842120bc80f8a98c692f31766343f415c568cac828a12"
     },
     "arm64": {
-      "url": "https://nightly.link/packwiz/packwiz/actions/runs/5570195805/Windows%2064-bit%20ARM.zip",
-      "hash": "18ad8bddb6933d254d1f1b76bb6b701265b2185c2a15d07317a9bcd2938316a1"
+      "url": "https://nightly.link/packwiz/packwiz/actions/runs/5706671983/Windows%2064-bit%20ARM.zip",
+      "hash": "51fc746178974ee17ae963f3854e2db127fed25bb21de05cf192647e3aaa85f2"
     }
   },
   "checkver": {
-    "url": "https://api.github.com/repos/packwiz/packwiz/actions/workflows/go.yml/runs",
-    "jsonpath": "$.workflow_runs",
-    "regex": "\"id\": ?(?<id>\\d+),\\s+(\"[\\w_]+\": ?[\"\\w\\d_\\/\\.-]+,\\s+)*\"head_branch\": ?\"main\",\\s+\"head_sha\": ?\"(?<commit>[\\w\\d]{7})[\\w\\d]+\",\\s+(\"[\\w_]+\": ?[\"\\w\\d_\\/\\.\\-\\s]+,\\s+)*\"run_number\": ?(?<run>\\d+),\\s+(\"[\\w_]+\": ?[\"\\w\\d_\\/\\.\\-\\s]+,\\s+)*\"conclusion\": ?\"success\"",
-    "replace": "0.0.${run}+${commit}.${id}"
+    "script": [
+      "$actions = Invoke-RestMethod -Uri 'https://api.github.com/repos/packwiz/packwiz/actions/workflows/go.yml/runs'",
+      "$latest_develop = $actions.workflow_runs.PSObject.Properties.Value | Where-Object { $_.head_branch -eq 'main' } | Where-Object { $_.conclusion -eq 'success' } | Select-Object -first 1",
+      "$version = '0.0.' + $latest_develop.run_number + '+' + $latest_develop.head_sha.substring(0,7) + '.' + $latest_develop.id",
+      "Write-Output $version $latest_develop.id"
+    ],
+    "regex": "(?<version>[^\\s]+)\\s(?<id>\\d+)"
   },
   "autoupdate": {
     "architecture": {

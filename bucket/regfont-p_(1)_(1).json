@@ -1,0 +1,24 @@
+{
+  "homepage": "http://www.marshwiggle.net/regfont",
+  "description": "Usage: temporarily register fonts without installing",
+  "_comment": "Categorisation: Standalone tool",
+  "license": "GPL-3.0",
+  "version": "20160109",
+  "url": "https://ghproxy.net/https://github.com/dcpurton/regfont/releases/download/regfont-20160109/regfont-20160109-x86_64.zip",
+  "hash": "e207753dff17a9d76a1da0b1e90f7b88bbeb7f97fc2fd976ddb8ff7e33351484",
+  "extract_dir": "regfont-20160109-x86_64",
+  "bin": [
+    [
+      "regfont.exe",
+      "regfont"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/dcpurton/regfont",
+    "re": "regfont-(\\d{8})"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/dcpurton/regfont/releases/download/regfont-$version/regfont-$version-x86_64.zip",
+    "extract_dir": "regfont-$version-x86_64"
+  }
+}

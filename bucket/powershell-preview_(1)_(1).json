@@ -1,0 +1,41 @@
+{
+  "homepage": "https://github.com/PowerShell/PowerShell/",
+  "description": "PowerShell (Preview), the cross-platform task automation and configuration management framework/tool.",
+  "version": "7.4.0-preview.3",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/PowerShell/PowerShell/releases/download/v7.4.0-preview.3/PowerShell-7.4.0-preview.3-win-x64.zip",
+      "hash": "2709bdde16b769bf10fb67229348af95e5980a2b6d280bfd99babac0b9f96971"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/PowerShell/PowerShell/releases/download/v7.4.0-preview.3/PowerShell-7.4.0-preview.3-win-x86.zip",
+      "hash": "93f8a23c489c1e1cf51fd3b6c0bc98a73e8adab5148d352881abbc4c8ac87343"
+    }
+  },
+  "bin": "pwsh.exe",
+  "shortcuts": [
+    [
+      "pwsh.exe",
+      "PowerShell Preview"
+    ]
+  ],
+  "checkver": {
+    "url": "https://ghproxy.net/https://raw.githubusercontent.com/PowerShell/PowerShell/master/README.md",
+    "regex": "\\[pv-windows-64\\].*releases/download/v([\\d.]+-[\\w.]+)/PowerShell"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/PowerShell/PowerShell/releases/download/v$version/PowerShell-$version-win-x64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/PowerShell/PowerShell/releases/download/v$version/PowerShell-$version-win-x86.zip"
+      }
+    },
+    "hash": {
+      "url": "https://github.com/PowerShell/PowerShell/releases/tag/v$version/",
+      "regex": "$basename\\s*<ul>\\s*<li>($sha256)"
+    }
+  }
+}

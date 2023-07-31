@@ -1,0 +1,20 @@
+{
+  "version": "0.7.5b",
+  "description": "A GUI utility for cropping JPEG images without re-compressing",
+  "homepage": "http://ekot.dk/programmer/JPEGCrops",
+  "license": {
+    "identifier": "Freeware",
+    "url": "http://ekot.dk/programmer/JPEGCrops/license.html"
+  },
+  "url": "http://ekot.dk/programmer/JPEGCrops/JPEGCropsLatest.zip",
+  "hash": "498f967be1a516ffc2ffa34094f012b7d8c45f7a24c41b9002c35c785d28d189",
+  "bin": "jpegtran.exe",
+  "shortcuts": [
+    [
+      "JPEGCrops.exe",
+      "JPEGCrops"
+    ]
+  ],
+  "pre_install": "if (!(Test-Path \"$persist_dir\\JPEGCrops.ini\")) { New-Item \"$dir\\JPEGCrops.ini\" | Out-Null }",
+  "persist": "JPEGCrops.ini"
+}

@@ -1,0 +1,30 @@
+{
+  "homepage": "https://kyolucam.wixsite.com/tamokuteki",
+  "description": "キングオブキングスＧ / King of Kings G",
+  "license": "Freeware",
+  "version": "16.2",
+  "##": [
+    "本家のダウンロードサイトは直リンクでダウンロードできない。",
+    "よって、共有ストレージ（Google drive）にファイルを置いている。",
+    "本家ダウンロード https://www.dropbox.com/s/eya4003gg5cok8l/KOKG16_2.exe?dl=0"
+  ],
+  "url": "https://drive.google.com/uc?export=download&id=1ZQqn_E450QBAFRzHMR30Ln-FhVftiM_y#/KOKG16_2.zip",
+  "hash": "bc778d3a07ce0953da1789643b746bbe35afd05a13a5e70fa86ec85dc77d0413",
+  "extract_dir": "KOKG16_2\\kingofkingsG",
+  "bin": "KingofKingsG.exe",
+  "shortcuts": [
+    [
+      "KingofKingsG.exe",
+      "King of Kings G KOKG16.2"
+    ]
+  ],
+  "persist": [
+    "Datas",
+    "Stages",
+    "system.txt"
+  ],
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\")) { New-Item -ItemType directory \"$persist_dir\" | Out-Null }",
+    "if (!(Test-Path \"$persist_dir\\system.txt\")) { Copy-Item -Path \"$dir\\system.txt\" -Destination \"$persist_dir\\system.txt\" | Out-Null }"
+  ]
+}

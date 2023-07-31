@@ -1,0 +1,55 @@
+{
+  "architecture": {
+    "32bit": {
+      "hash": "sha512:a2f776cfabcfbd4b9278198301d289ed1c56febd47259520c50b8b8d130a79d0ea99c857aec96865cc635ddf078fd575368c030ce11d61bb9991d296df87a4a7",
+      "url": "https://dotnetcli.blob.core.windows.net/dotnet/WindowsDesktop/7.0.5/windowsdesktop-runtime-7.0.5-win-x86.exe"
+    },
+    "64bit": {
+      "hash": "sha512:8907aa0e934a31c63f0a840bf9e734c2f5ba109b766c1a775f8adbb169049753664790c0a15b216f02a942392819a3500e4a33918df10fb967341dc167f82d11",
+      "url": "https://dotnetcli.blob.core.windows.net/dotnet/WindowsDesktop/7.0.5/windowsdesktop-runtime-7.0.5-win-x64.exe"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "hash": {
+          "jsonpath": "$.releases[0].windowsdesktop.files[?(@.name == 'windowsdesktop-runtime-win-x86.exe')].hash",
+          "url": "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/7.0/releases.json"
+        },
+        "url": "https://dotnetcli.blob.core.windows.net/dotnet/WindowsDesktop/$version/windowsdesktop-runtime-$version-win-x86.exe"
+      },
+      "64bit": {
+        "hash": {
+          "jsonpath": "$.releases[0].windowsdesktop.files[?(@.name == 'windowsdesktop-runtime-win-x64.exe')].hash",
+          "url": "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/7.0/releases.json"
+        },
+        "url": "https://dotnetcli.blob.core.windows.net/dotnet/WindowsDesktop/$version/windowsdesktop-runtime-$version-win-x64.exe"
+      }
+    }
+  },
+  "bin": "dotnet.exe",
+  "checkver": {
+    "jsonpath": "$.releases[0].windowsdesktop.version",
+    "url": "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/7.0/releases.json"
+  },
+  "depends": "dark",
+  "description": "Microsoft .NET 7 Desktop Runtime.",
+  "env_set": {
+    "DOTNET_ROOT": "$dir"
+  },
+  "homepage": "https://dotnet.microsoft.com/download/dotnet-core",
+  "installer": {
+    "script": [
+      "Expand-DarkArchive \"$dir\\$fname\" \"$dir\\extracted\" -Removal",
+      "Get-ChildItem \"$dir\\extracted\\AttachedContainer\\*.msi\" | ForEach-Object { Expand-MsiArchive $_ \"$dir\" }",
+      "Move-Item \"$dir\\dotnet\\*\" \"$dir\" -Force",
+      "@('dotnet', 'extracted') | ForEach-Object { Remove-Item \"$dir\\$_\" -Recurse }"
+    ]
+  },
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://www.microsoft.com/en-us/legal/intellectualproperty/copyright/default.aspx"
+  },
+  "notes": "This package only contains the .NET 7 desktop runtime, install 'dotnet-sdk' instead if you need .NET Core SDK",
+  "version": "7.0.5"
+}

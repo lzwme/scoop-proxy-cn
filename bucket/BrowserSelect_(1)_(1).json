@@ -1,0 +1,26 @@
+{
+  "homepage": "https://github.com/zumoshi/BrowserSelect",
+  "description": "Browser Select is a utility to dynamically select the browser you want instead of just having one default for all links.",
+  "license": "GPL-2.0-only",
+  "version": "1.4.1",
+  "url": "https://ghproxy.net/https://github.com/zumoshi/BrowserSelect/releases/download/1.4.1/BrowserSelect.exe/#BrowserSelectInstaller.exe",
+  "hash": "42a8f7ea2f79106f24c6657891b1c940cd98961c469e280c768f6eb354d6e0bd",
+  "installer": {
+    "args": [
+      "/S",
+      "/D=$dir"
+    ]
+  },
+  "bin": "BrowserSelect.exe",
+  "uninstaller": {
+    "file": "Uninstall.exe",
+    "args": "/S"
+  },
+  "checkver": {
+    "url": "https://github.com/zumoshi/BrowserSelect/releases",
+    "regex": "/zumoshi/BrowserSelect/releases/download/(\\d+\\.\\d+\\.\\d+)/BrowserSelect.exe"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/zumoshi/BrowserSelect/releases/download/$version/BrowserSelect.exe/#BrowserSelectInstaller.exe"
+  }
+}

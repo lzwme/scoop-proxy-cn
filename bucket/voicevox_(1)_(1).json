@@ -1,0 +1,41 @@
+{
+  "version": "0.13.1",
+  "description": "VOICEVOX GPU/CPU",
+  "homepage": "https://voicevox.hiroshiba.jp/",
+  "notes": "インストーラーの利用が公式により推奨されています。",
+  "license": [
+    {
+      "identifier": "Proprietary"
+    }
+  ],
+  "url": [
+    "https://ghproxy.net/https://github.com/VOICEVOX/voicevox/releases/download/0.13.1/VOICEVOX.Web.Setup.0.13.1.exe",
+    "https://ghproxy.net/https://github.com/VOICEVOX/voicevox/releases/download/0.13.1/voicevox-0.13.1-x64.nsis.7z.0"
+  ],
+  "hash": [
+    "8187559f7013cde09d881a4196e79595b2b12cb2abe7b85eec7266a5aaaf8928",
+    "bdb17dec9a1f2fd3de100c18e23e2ee6bd67f06410f1e08d488d842a33e51652"
+  ],
+  "installer": {
+    "file": "VOICEVOX.Web.Setup.0.13.1.exe"
+  },
+  "uninstaller": {
+    "script": [
+      "$regkey = \"92713bbc-5c5b-5df6-b6d1-5b09e302bf58\"",
+      "$uninstaller=(Get-ItemProperty -Path \"Registry::HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\${regkey}\" | Select-Object -ExpandProperty UninstallString)",
+      "if([string]::IsNullOrEmpty($uninstaller)){",
+      " $uninstaller=(Get-ItemProperty -Path \"Registry::HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\${regkey}\" | Select-Object -ExpandProperty UninstallString)",
+      "}",
+      "cmd /c \"${uninstaller}\""
+    ]
+  },
+  "checkver": {
+    "github": "https://github.com/VOICEVOX/voicevox"
+  },
+  "autoupdate": {
+    "url": [
+      "https://ghproxy.net/https://github.com/VOICEVOX/voicevox/releases/download/$version/VOICEVOX.Web.Setup.$version.exe",
+      "https://ghproxy.net/https://github.com/VOICEVOX/voicevox/releases/download/$version/voicevox-$version-x64.nsis.7z.0"
+    ]
+  }
+}

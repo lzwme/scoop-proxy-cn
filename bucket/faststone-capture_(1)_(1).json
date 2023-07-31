@@ -1,0 +1,46 @@
+{
+  "version": "9.7",
+  "description": "FastStone Capture is a powerful, lightweight, yet full-featured screen capture tool and screen video recorder. It allows you to easily capture and annotate anything on the screen including windows, objects, menus, full screen, rectangular / freehand / fixed regions as well as scrolling windows / web pages.",
+  "homepage": "https://www.faststone.org/FSCaptureDetail.htm",
+  "license": {
+    "identifier": "Shareware",
+    "url": "https://www.faststone.org/order.htm"
+  },
+  "notes": "[FastStone - PYGQY-RAMMO-QDFAB-VAHWB]",
+  "url": [
+    "http://www.faststonesoft.net/DN/FSCapture97.zip",
+    "https://pan.jiemi.workers.dev/?file=/else/FastStone.7z#/dl.7z_"
+  ],
+  "hash": [
+    "87c1ac0b95a0314d2d2d02eef09d24cd37813c6d0f9a156c2ed2bfae6bb3abcc",
+    "457fd02ce5329286c3f2ab6b1a0d6cfae68e9fbd323203b12d558154d412c90f"
+  ],
+  "extract_dir": "FSCapture97",
+  "pre_install": [
+    "7z x -p2022 \"$dir\\dl.7z_\" $('-o' + $dir) | Out-Null",
+    "Remove-Item \"$dir\\dl.7z_\", \"$dir\\FSIV-ASO.exe\" -ErrorAction SilentlyContinue -Force",
+    "if (Test-Path \"$persist_dir\\fsc.db\") {",
+    "    Copy-Item \"$persist_dir\\fsc.db\" \"$dir\\\" | Out-Null",
+    "}"
+  ],
+  "uninstaller": {
+    "script": [
+      "if (Test-Path \"$dir\\fsc.db\") {",
+      "    ensure \"$persist_dir\" | Out-Null",
+      "    Copy-Item \"$dir\\fsc.db\" \"$persist_dir\\\" | Out-Null",
+      "}"
+    ]
+  },
+  "bin": "FSCapture.exe",
+  "shortcuts": [
+    [
+      "FSCapture.exe",
+      "FastStone Capture"
+    ]
+  ],
+  "checkver": "Version\\s+([\\d.]+)",
+  "autoupdate": {
+    "url": "http://www.faststonesoft.net/DN/FSCapture$cleanVersion.zip",
+    "extract_dir": "FSCapture$cleanVersion"
+  }
+}

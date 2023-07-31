@@ -1,0 +1,45 @@
+{
+  "homepage": "https://puredata.info/",
+  "version": "0.50-1",
+  "description": "Pure Data (or just Pd) is an open source visual programming language for multimedia",
+  "license": {
+    "identifier": "Standard Improved BSD License",
+    "url": "https://puredata.info/about/pdlicense"
+  },
+  "architecture": {
+    "extract_dir": "pd-0.50-1",
+    "64bit": {
+      "url": "http://msp.ucsd.edu/Software/pd-0.50-1.msw.zip",
+      "hash": "111B8E446D1229FA687F84877AED5B6E897F393ADA436FF593C6884743271081"
+    },
+    "32bit": {
+      "url": "http://msp.ucsd.edu/Software/pd-0.50-1-i386.msw.zip",
+      "hash": "055FA21F4D43AC575B25335852489C7BB98394EAEE5E5CE7A2E5DA89D6F40D4C"
+    }
+  },
+  "checkver": {
+    "url": "https://puredata.info/downloads/pure-data",
+    "regex": "pd-([^\\ ]+).src"
+  },
+  "bin": [
+    "bin\\pd.exe"
+  ],
+  "shortcuts": [
+    [
+      "bin\\pd.exe",
+      "pd",
+      "puredata"
+    ]
+  ],
+  "autoupdate": {
+    "architecture": {
+      "extract_dir": "pd-$version",
+      "64bit": {
+        "url": "http://msp.ucsd.edu/Software/pd-$version.msw.zip"
+      },
+      "32bit": {
+        "url": "http://msp.ucsd.edu/Software/pd-$version-i386.msw.zip"
+      }
+    }
+  }
+}

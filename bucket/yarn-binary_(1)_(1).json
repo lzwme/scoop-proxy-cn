@@ -1,0 +1,24 @@
+{
+  "homepage": "https://github.com/yarnpkg/yarn",
+  "description": "Fast, reliable, and secure dependency management.",
+  "notes": "Will download tarball instead of msi, will download from github instead of yarnpkg.com.",
+  "version": "1.22.19",
+  "url": "https://ghproxy.net/https://github.com/yarnpkg/yarn/releases/download/v1.22.19/yarn-v1.22.19.tar.gz",
+  "hash": "732620bac8b1690d507274f025f3c6cfdc3627a84d9642e38a07452cc00e0f2e",
+  "extract_dir": "yarn-v1.22.19",
+  "bin": [
+    [
+      "bin\\yarn.cmd",
+      "yarn"
+    ],
+    [
+      "bin\\yarnpkg.cmd",
+      "yarnpkg"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/yarnpkg/yarn/releases/download/v$version/yarn-v$version.tar.gz",
+    "extract_dir": "yarn-v$version"
+  }
+}

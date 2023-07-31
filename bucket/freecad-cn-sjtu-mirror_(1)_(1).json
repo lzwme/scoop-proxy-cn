@@ -1,0 +1,24 @@
+{
+  "version": "0.19.3",
+  "description": "General-purpose parametric 3D CAD modeler and a building information modeling software with finite-element-method support. China SJTU mirror.",
+  "homepage": "https://www.freecadweb.org",
+  "license": "LGPL-2.0-or-later",
+  "url": "https://s3.jcloud.sjtu.edu.cn/899a892efef34b1b944a19981040f55b-oss01/github-release/FreeCAD/FreeCAD/releases/download/0.19.3/FreeCAD-0.19.3-WIN-x64-portable.7z",
+  "hash": "b457a6ca8f65b643461ab22cdad6535df558f9745edc40e4e7a78c3501bd0b58",
+  "extract_dir": "conda-0.19.3",
+  "bin": "bin\\FreeCADCmd.exe",
+  "shortcuts": [
+    [
+      "bin\\FreeCAD.exe",
+      "FreeCAD"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/FreeCAD/FreeCAD",
+    "regex": "releases/download/([\\d.]+)/FreeCAD-(?<build>[\\w.]+)-WIN"
+  },
+  "autoupdate": {
+    "url": "https://s3.jcloud.sjtu.edu.cn/899a892efef34b1b944a19981040f55b-oss01/github-release/FreeCAD/FreeCAD/releases/download/$version/FreeCAD-$version-WIN-x64-portable.7z",
+    "extract_dir": "conda-$version"
+  }
+}

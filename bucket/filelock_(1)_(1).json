@@ -1,0 +1,30 @@
+{
+  "version": "0.1.0",
+  "description": "Keep the file in use until EOF is encountered on standard input for testing file locking.",
+  "homepage": "https://github.com/hymkor/filelock",
+  "license": "MIT License",
+  "architecture": {
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/hymkor/filelock/releases/download/v0.1.0/filelock-v0.1.0-windows-386.zip",
+      "hash": "07307abe377dd2dd17ad91d3a17858876fb0b413dacf4fa17535608cd6a86cbd"
+    },
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/hymkor/filelock/releases/download/v0.1.0/filelock-v0.1.0-windows-amd64.zip",
+      "hash": "c359a1028fe2e048ef0a7fd6c08970c60e0d106f92b944729b4a72d3afb95c1b"
+    }
+  },
+  "bin": [
+    "filelock.exe"
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/hymkor/filelock/releases/download/v$version/filelock-v$version-windows-386.zip"
+      },
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/hymkor/filelock/releases/download/v$version/filelock-v$version-windows-amd64.zip"
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "homepage": "http://www.storeroom.info/cdm/",
+  "description": "CD Manipulator",
+  "license": {
+    "identifier": "Freeware",
+    "url": "http://www.storeroom.info/cdm/cdm-license.txt"
+  },
+  "version": "2.70",
+  "url": "http://www.storeroom.info/cdm/cdm270.zip",
+  "hash": "386778c9f6db1e0c151bf4d773326cbdbf54f2bd4770db08763c23fe704f0550",
+  "bin": "CdManipulator.exe",
+  "shortcuts": [
+    [
+      "CdManipulator.exe",
+      "CD Manipulator"
+    ]
+  ],
+  "persist": [
+    "CdManipulator.ini"
+  ],
+  "pre_install": [
+    "$src = \"$dir\\CdManipulator.ini\"",
+    "if (!(Test-Path \"$src\")) {",
+    "  New-Item -ItemType file \"$src\" | Out-Null",
+    "}"
+  ]
+}

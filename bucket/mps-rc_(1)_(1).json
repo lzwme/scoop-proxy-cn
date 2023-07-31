@@ -1,0 +1,33 @@
+{
+  "autoupdate": {
+    "hash": {
+      "url": "$url.sha256"
+    },
+    "url": "https://download.jetbrains.com/mps/$majorVersion.$minorVersion/MPS-$matchHead-RC$matchRC.exe#/cosi.7z"
+  },
+  "checkver": {
+    "regex": "RC(?<RC>\\d+)\\.exe.*version\":\"(?<ver>[\\d.]+)\".*\"build\":\"(?<build>[\\d.]+)\"",
+    "replace": "${ver}-${build}-RC${RC}",
+    "url": "https://data.services.jetbrains.com/products/releases?code=MPS&latest=true&platform=zip&type=rc"
+  },
+  "description": "MPS Release Candidate. The Domain-Specific language creator by JetBrains.",
+  "extract_to": "IDE",
+  "hash": "06afe3ecad9da302609d3d7f385593ccc7081a5bcbbf4d3443590e0956d4529e",
+  "homepage": "https://www.jetbrains.com/mps/",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://www.jetbrains.com/store/license.html"
+  },
+  "persist": "IDE\\bin\\idea.properties",
+  "pre_install": "Remove-Item \"$dir\\IDE\\`$*\" -Force -Recurse",
+  "shortcuts": [
+    [
+      "IDE\\bin\\mps.bat",
+      "JetBrains\\MPS (Release Candidate)",
+      "",
+      "IDE\\bin\\mps.ico"
+    ]
+  ],
+  "url": "https://download.jetbrains.com/mps/2019.3/MPS-2019.3-RC1.exe#/cosi.7z",
+  "version": "2019.3-193.1034-RC1"
+}

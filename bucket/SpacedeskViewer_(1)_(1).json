@@ -1,0 +1,20 @@
+{
+  "homepage": "https://spacedesk.net/",
+  "description": "Multi Monitor Viewer",
+  "version": "0941_BETA",
+  "url": "https://spacedesk.net/downloads/spacedeskWindowsVIEWER_v0941_BETA.msi#/setup.msi_",
+  "hash": "81656dea57a8bea9a2f174186dc1ee1249476cfa4276a46c00ca7032b7c0acee",
+  "installer": {
+    "script": "Start-Process -Wait msiexec \"/i `\"$dir\\setup.msi_`\" /qn INSTALLFOLDER=`\"$dir`\"\" -Verb RunAs"
+  },
+  "checkver": {
+    "url": "https://ghproxy.net/https://raw.githubusercontent.com/kkzzhizhou/scoop-zapps/master/versions/SpacedeskViewer.latest",
+    "regex": "VIEWER_v(.*).msi"
+  },
+  "autoupdate": {
+    "url": "https://spacedesk.net/downloads/spacedeskWindowsVIEWER_v$version.msi#/setup.msi_"
+  },
+  "uninstaller": {
+    "script": "Start-Process -Wait msiexec \"/x `\"$dir\\setup.msi_`\" /qn\" -Verb RunAs"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "version": "1.3.6",
+  "description": "A system-ui alternative font for all cross-platform",
+  "homepage": "https://cactus.tistory.com/306",
+  "license": "OFL-1.1",
+  "url": "https://ghproxy.net/https://github.com/orioncactus/pretendard/releases/download/v1.3.6/PretendardStd-1.3.6.zip",
+  "hash": "bc7525b7046fa0748bf6573fcaed3c75f9af10d478d46ad014e55b5040d9b7f9",
+  "extract_dir": "public/static/alternative",
+  "installer": {
+    "script": [
+      "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
+      "$windows1809BuildNumber = 17763",
+      "$isPerUserFontInstallationSupported = $currentBuildNumber -ge $windows1809BuildNumber",
+      "$isFontInstallationForAllUsers = $global -or !$isPerUserFontInstallationSupported",
+      "if ($isFontInstallationForAllUsers -and !(is_admin)) {",
+      "    error \"Administrator rights are required to install $app.\"",
+      "    exit 1",
+      "}",
+      "$fontInstallDir = if ($isFontInstallationForAllUsers) { \"$env:windir\\Fonts\" } else { \"$env:LOCALAPPDATA\\Microsoft\\Windows\\Fonts\" }",
+      "$registryRoot = if ($isFontInstallationForAllUsers) { \"HKLM\" } else { \"HKCU\" }",
+      "$registryKey = \"${registryRoot}:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts\"",
+      "New-Item $fontInstallDir -ItemType Directory -ErrorAction SilentlyContinue | Out-Null",
+      "Get-ChildItem $dir -Filter '*.ttf' | ForEach-Object {",
+      "    $value = if ($isFontInstallationForAllUsers) { $_.Name } else { \"$fontInstallDir\\$($_.Name)\" }",
+      "    New-ItemProperty -Path $registryKey -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $value -Force | Out-Null",
+      "    Copy-Item $_.FullName -Destination $fontInstallDir",
+      "}"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
+      "$windows1809BuildNumber = 17763",
+      "$isPerUserFontInstallationSupported = $currentBuildNumber -ge $windows1809BuildNumber",
+      "$isFontInstallationForAllUsers = $global -or !$isPerUserFontInstallationSupported",
+      "if ($isFontInstallationForAllUsers -and !(is_admin)) {",
+      "    error \"Administrator rights are required to uninstall $app.\"",
+      "    exit 1",
+      "}",
+      "$fontInstallDir = if ($isFontInstallationForAllUsers) { \"$env:windir\\Fonts\" } else { \"$env:LOCALAPPDATA\\Microsoft\\Windows\\Fonts\" }",
+      "$registryRoot = if ($isFontInstallationForAllUsers) { \"HKLM\" } else { \"HKCU\" }",
+      "$registryKey = \"${registryRoot}:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts\"",
+      "Get-ChildItem $dir -Filter '*.ttf' | ForEach-Object {",
+      "    Remove-ItemProperty -Path $registryKey -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
+      "    Remove-Item \"$fontInstallDir\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
+      "}",
+      "Write-Host \"The '$($app.Replace('-NF', ''))' Font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
+    ]
+  },
+  "checkver": {
+    "github": "https://github.com/orioncactus/pretendard"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/orioncactus/pretendard/releases/download/v$version/PretendardStd-$version.zip",
+    "hash": {
+      "mode": "download"
+    }
+  }
+}

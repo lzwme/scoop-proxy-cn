@@ -1,0 +1,35 @@
+{
+  "version": "0.2.7",
+  "description": "A cross platform electron-based desktop app aiming to give you a snappier Discord experience with Vencord pre-installed",
+  "homepage": "https://vencord.dev/",
+  "license": "GPL-3.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/Vencord/Vesktop/releases/download/v0.2.7/Vesktop-Setup-0.2.7.exe#/dl.7z",
+      "hash": "7DAA2C2D000AA773600CE860FF1E9E4CEA2F08EA7D51EF21D5D8D206A4C76FCC"
+    }
+  },
+  "installer": {
+    "script": [
+      "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+      "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall*\" -Force -Recurse"
+    ]
+  },
+  "bin": "vesktop.exe",
+  "shortcuts": [
+    [
+      "vesktop.exe",
+      "Vencord Desktop"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/Vencord/Vesktop"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/Vencord/Vesktop/releases/download/v$version/Vesktop-Setup-$version.exe#/dl."
+      }
+    }
+  }
+}

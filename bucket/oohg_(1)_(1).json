@@ -1,0 +1,31 @@
+{
+  "version": "20.06.08.rc1",
+  "description": "OOHG is an object-oriented extended adaptation of the MiniGUI library for building Windows applications using Harbour and xHarbour languages",
+  "homepage": "https://oohg.github.io",
+  "license": "GPL-2.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/oohg/core/releases/download/v20.06.08.rc1/oohg_hm3264_v200608rc1.exe",
+      "hash": "e89a029160619cdc0b6c208cabced20ee787797d83209d2d899342a5a5bc2b79"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/oohg/core/releases/download/v20.06.08.rc1/oohg_hm32_v200608rc1.exe",
+      "hash": "bc4cf022eb1229fa7f48ba5914ca2fd5f26218d6a529bb4843fe3832060ef757"
+    }
+  },
+  "extract_dir": "OOHG",
+  "env_add_path": ".",
+  "checkver": {
+    "github": "https://github.com/oohg/core"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/oohg/core/releases/download/v$version/oohg_hm3264_v$cleanVersion.exe"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/oohg/core/releases/download/v$version/oohg_hm32_v$cleanVersion.exe"
+      }
+    }
+  }
+}

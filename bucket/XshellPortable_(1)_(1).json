@@ -1,0 +1,57 @@
+{
+  "version": "7.0.0090",
+  "description": "The Industry’s Most Powerful SSH Client(Portable Edition).",
+  "homepage": "https://www.netsarang.com/en/xshell",
+  "license": {
+    "identifier": "NetSarang Computer Software License",
+    "url": "https://www.netsarang.com/docs/ver6_free_eula.pdf"
+  },
+  "notes": [
+    "资源均来源于网络, 仅供用户交流学习与研究使用, 版权归属原版权方所有。",
+    "用户下载后不能用作商业或非法用途, 需在 24 小时之内删除, 否则后果均由用户承担责任。"
+  ],
+  "url": [
+    "https://pan.jiemi.workers.dev/?file=/scoop/Xshell/Xshell_v7.0.0090.7z",
+    "https://ghproxy.net/https://raw.githubusercontent.com/JaimeZeng/scoop-apps/main/scripts/xshell/install.bat",
+    "https://ghproxy.net/https://raw.githubusercontent.com/JaimeZeng/scoop-apps/main/scripts/xshell/uninstall.bat"
+  ],
+  "hash": [
+    "9833f61d2591d56cf11be0fe139aa1b76797879de48bc708ab0c6954f2e04d16",
+    "77d9b0de6ce3e0075165e8f36f6c6aded7576b23655c904c30e4ace0d9b00399",
+    "8f2ea5fa6ec7b13003f9a4de9b6f351282796e240340efe0cdb506e6f060bfb3"
+  ],
+  "extract_dir": "Xshell",
+  "installer": {
+    "script": "Start-Process \"$dir\\install.bat\" -Verb RunAs"
+  },
+  "uninstaller": {
+    "script": [
+      "Start-Process \"$dir\\uninstall.bat\" -Verb RunAs",
+      "Write-Host \"The '$app' has been uninstalled.\" -Foreground Magenta"
+    ]
+  },
+  "bin": [
+    [
+      "Xshell.exe",
+      "xshell"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "Xshell.exe",
+      "Xshell"
+    ]
+  ],
+  "checkver": {
+    "url": "https://ghproxy.net/https://raw.githubusercontent.com/JaimeZeng/scoop-apps/main/version/XShell",
+    "regex": "(?<filename>Xshell_v(?<version>[\\d.]+)\\.(?:zip|7z))"
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/scoop/XShell/$matchFilename",
+    "hash": {
+      "url": "https://ghproxy.net/https://raw.githubusercontent.com/JaimeZeng/scoop-apps/main/version/XShell",
+      "mode": "extract",
+      "regex": "^$sha256([\\s]+)$basename"
+    }
+  }
+}

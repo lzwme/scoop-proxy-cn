@@ -1,0 +1,22 @@
+{
+  "version": "2.07",
+  "description": "A handy toolkit to merge, split and analyze TIFF files.(English version)",
+  "homepage": "https://www.cnblogs.com/stronghorse",
+  "license": "Freeware",
+  "url": "https://ghproxy.net/https://raw.githubusercontent.com/sqliuchang/strnghrs_packages/main/TiffToy_eng.zip",
+  "hash": "b72d82127f08f7afc8db1bbbd344a3e7af6a6604c396569b566a5a4b8c2e49e0",
+  "pre_install": [
+    "# Create initial config files",
+    "if (!(Test-Path -Path \"$dir\\TiffToy.ini\")) {",
+    "    (New-Item -ItemType \"file\" -Path \"$dir\" -Name \"TiffToy.ini\") | Out-Null",
+    "}"
+  ],
+  "bin": "TiffToy.exe",
+  "shortcuts": [
+    [
+      "TiffToy.exe",
+      "TiffToy"
+    ]
+  ],
+  "persist": "TiffToy.ini"
+}

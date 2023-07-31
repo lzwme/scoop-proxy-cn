@@ -1,0 +1,38 @@
+{
+  "version": "2.8.0",
+  "homepage": "http://heroicgameslauncher.com/",
+  "description": "An Open Source Game Launcher for Linux, Windows and MacOS",
+  "url": "https://ghproxy.net/https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher/releases/download/v2.8.0/Heroic-2.8.0-Setup-x64.exe#/dl.7z",
+  "hash": "1a9458938ecf2c40e7a10485b351ae29702639c4dc3360e8f6de86ba232b9d9b",
+  "license": "GPL-3.0",
+  "architecture": {
+    "64bit": {
+      "installer": {
+        "script": [
+          "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+          "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninst*\" -Force -Recurse"
+        ]
+      }
+    },
+    "32bit": {
+      "installer": {
+        "script": [
+          "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-32.7z\" \"$dir\"",
+          "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninst*\" -Force -Recurse"
+        ]
+      }
+    }
+  },
+  "shortcuts": [
+    [
+      "Heroic.exe",
+      "Heroic"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher/releases/download/v$version/Heroic-$version-Setup-x64.exe#/dl.7z"
+  }
+}

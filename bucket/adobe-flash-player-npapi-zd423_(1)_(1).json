@@ -1,0 +1,25 @@
+{
+  "version": "34.0.0.267",
+  "description": "The Adobe Flash Player is freeware software for viewing multimedia, executing Rich Internet Applications, and streaming video and audio, content created on the Adobe Flash platform.",
+  "homepage": "https://www.adobe.com/software/flash/about/",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://www.adobe.com/products/clients/all_dist_agreement.html"
+  },
+  "url": "https://pan.jiemi.workers.dev/?file=/zd423/Adobe_Flash_Player_NPAPI_v34.0.0.267.exe#/setup.exe",
+  "hash": "7fc9e001f8f3790637eadfd660dabc434aa6e42ee602884843d12078f191dfc2",
+  "installer": {
+    "script": [
+      "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+      "Invoke-ExternalCommand \"$dir\\setup.exe\" -ArgumentList @('/ai', '/gm2') | Out-Null"
+    ]
+  },
+  "checkver": {
+    "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/oneindex.txt",
+    "regex": "(?<filename>Adobe_Flash_Player_NPAPI_v([\\d.]+)\\.exe)",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/zd423/Adobe_Flash_Player_NPAPI_v$version.exe#/setup.exe"
+  }
+}

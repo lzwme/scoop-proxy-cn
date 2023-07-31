@@ -1,0 +1,42 @@
+{
+  "version": "17.0.9",
+  "description": "A developer tool to test a HTTP request.",
+  "homepage": "https://install.advancedrestclient.com",
+  "license": {
+    "identifier": "Apache License 2.0",
+    "url": "https://github.com/advanced-rest-client/arc-electron/blob/master/LICENSE.md"
+  },
+  "url": "https://ghproxy.net/https://github.com/advanced-rest-client/arc-electron/releases/download/v17.0.9/arc-setup.exe#/dl.7z",
+  "hash": "e122f343fcdb22558bf7987b5b1c9229e5865201f94f0af581fee24c7e7a352f",
+  "extract_dir": "$PLUGINSDIR",
+  "architecture": {
+    "32bit": {
+      "installer": {
+        "script": [
+          "Remove-Item \"$dir\\*\" -Exclude 'app-32.7z'",
+          "Expand-7zipArchive \"$dir\\app-32.7z\" \"$dir\" -Removal"
+        ]
+      }
+    },
+    "64bit": {
+      "installer": {
+        "script": [
+          "Remove-Item \"$dir\\*\" -Exclude 'app-64.7z'",
+          "Expand-7zipArchive \"$dir\\app-64.7z\" \"$dir\" -Removal"
+        ]
+      }
+    }
+  },
+  "shortcuts": [
+    [
+      "AdvancedRestClient.exe",
+      "Advanced REST Client"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/advanced-rest-client/arc-electron"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/advanced-rest-client/arc-electron/releases/download/v$version/arc-setup.exe#/dl.7z"
+  }
+}

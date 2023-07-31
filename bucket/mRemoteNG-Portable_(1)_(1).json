@@ -1,0 +1,28 @@
+{
+  "version": "1.76.20.24669",
+  "description": "Tabbed, multi-protocol, remote connections manager (portable)",
+  "homepage": "https://mremoteng.org",
+  "license": "GPL-2.0-only",
+  "url": "https://ghproxy.net/https://github.com/mRemoteNG/mRemoteNG/releases/download/v1.76.20/mRemoteNG-Portable-1.76.20.24669.zip",
+  "hash": "97b0e94bbdc409f3eb09b1017b3b58ccc0eae145a98a3bc6ea651ef1d5bc2d8e",
+  "bin": "mRemoteNG.exe",
+  "shortcuts": [
+    [
+      "mRemoteNG.exe",
+      "mRemoteNG"
+    ]
+  ],
+  "persist": [
+    "confCons.xml",
+    "extApps.xml",
+    "mRemoteNG.settings",
+    "pnlLayout.xml"
+  ],
+  "checkver": {
+    "github": "https://github.com/mRemoteNG/mRemoteNG",
+    "regex": "mRemoteNG-Portable-([\\d.]+)\\.zip"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/mRemoteNG/mRemoteNG/releases/download/v$matchHead/mRemoteNG-Portable-$version.zip"
+  }
+}

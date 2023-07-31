@@ -1,0 +1,52 @@
+{
+  "version": "20211015",
+  "description": "Freecad RealThunder Assembly3 builds",
+  "homepage": "https://github.com/realthunder/FreeCAD_assembly3",
+  "license": "GPL-2.0",
+  "url": "https://ghproxy.net/https://github.com/realthunder/FreeCAD_assembly3/releases/download/0.11/FreeCAD-asm3-Daily-Win64-Py3-Qt5-20211015.7z",
+  "extract_dir": "FreeCAD-asm3-Daily-Win64-Py3-Qt5-20211015",
+  "hash": "23e469350985a57774b00ffa1c58267c36611f081d34072ea8bd6e9669750587",
+  "pre_install": [
+    "# Create a persist dir",
+    "if (!(Test-Path \"$dir\\UserData\")) {",
+    "    (New-Item -Type directory \"$dir\\UserData\") | Out-Null",
+    "}",
+    "# Create a startup batch file",
+    "$content = 'set FREECAD_USER_DATA='",
+    "$content += \"$dir\"",
+    "$content += \"\\UserData`n\"",
+    "$content += 'start '",
+    "$content += \"$dir\"",
+    "$content += \"\\bin\\FreeCadLink.exe`n\"",
+    "$content | Set-Content $dir\\FreeCad_rt.bat"
+  ],
+  "persist": "UserData",
+  "bin": [
+    [
+      "FreeCad_rt.bat",
+      "freecad"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "FreeCad_rt.bat",
+      "FreeCAD Link3 - Daily",
+      "",
+      "bin\\FreeCadLink.exe"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/realthunder/FreeCAD_assembly3/releases/latest",
+    "re": "FreeCAD-asm3-Daily-Win64-Py3-Qt5-(\\d+)\\.7z"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/realthunder/FreeCAD_assembly3/releases/download/0.11/FreeCAD-asm3-Daily-Win64-Py3-Qt5-$version.7z",
+    "extract_dir": "FreeCAD-asm3-Daily-Win64-Py3-Qt5-$version"
+  },
+  "notes": [
+    "FreeCAD versions use the same userdata repository and they may be incompatible between them,",
+    "make sure to backup your user data/config before changing between FreeCAD, FreeCAD pre releases and",
+    "different FreeCAD builds",
+    "If FreeCAD merges/fixes the Portable versions, this may be solved in the future."
+  ]
+}

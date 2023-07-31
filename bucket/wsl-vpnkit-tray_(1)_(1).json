@@ -1,0 +1,54 @@
+{
+  "version": "1.0.2",
+  "description": "Controls (start/stop) Wsl-Vpnkit instance with a tray icon.",
+  "homepage": "https://github.com/mbl-35/wsl-vpnkit-tray",
+  "license": "GPL-2.0-only",
+  "depends": "main/dotnet-sdk",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/mbl-35/wsl-vpnkit-tray/releases/download/v1.0.2/wsl-vpnkit-tray-v1.0.2-win64.zip",
+      "hash": "84dd7760eeaf804d136ca01d3a9bcdd14845fff62ec2987870dfad4cb0a11158"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/mbl-35/wsl-vpnkit-tray/releases/download/v1.0.2/wsl-vpnkit-tray-v1.0.2-win32.zip",
+      "hash": "84dd7760eeaf804d136ca01d3a9bcdd14845fff62ec2987870dfad4cb0a11158"
+    }
+  },
+  "bin": "wsl-vpnkit-tray.cmd",
+  "installer": {
+    "script": [
+      "$s=(New-Object -COM WScript.Shell).CreateShortcut(\"$env:USERPROFILE\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Scoop Apps\\Wsl Vpnkit Tray.lnk\")",
+      "$s.TargetPath=\"$dir\\wsl-vpnkit-tray.cmd\"",
+      "$s.WindowStyle=7",
+      "$s.IconLocation=\"$dir\\wsl-vpnkit-tray.ico\"",
+      "$s.Save()",
+      "Copy-Item \"$env:USERPROFILE\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Scoop Apps\\Wsl Vpnkit Tray.lnk\" \"$env:USERPROFILE\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\Wsl Vpnkit Tray.lnk\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "if (Test-Path \"$env:USERPROFILE\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Scoop Apps\\Wsl Vpnkit Tray.lnk\") {",
+      "     Remove-Item -Path \"$env:USERPROFILE\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Scoop Apps\\Wsl Vpnkit Tray.lnk\" ",
+      "}",
+      "if (Test-Path \"$env:USERPROFILE\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\Wsl Vpnkit Tray.lnk\") {",
+      "     Remove-Item -Path \"$env:USERPROFILE\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\Wsl Vpnkit Tray.lnk\" ",
+      "}"
+    ]
+  },
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/mbl-35/wsl-vpnkit-tray/releases/download/v$version/wsl-vpnkit-tray-v$version-win64.zip",
+        "extract_dir": "Wslctl-$version-win64"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/mbl-35/wsl-vpnkit-tray/releases/download/v$version/wsl-vpnkit-tray-v$version-win32.zip",
+        "extract_dir": "Wslctl-$version-win32"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/sha256sums.txt"
+    }
+  }
+}

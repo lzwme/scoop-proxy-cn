@@ -1,0 +1,37 @@
+{
+  "architecture": {
+    "32bit": {
+      "pre_install": "Get-ChildItem \"$dir\" -Exclude '*x86.msix' | Remove-Item -Force -Recurse"
+    },
+    "64bit": {
+      "pre_install": "Get-ChildItem \"$dir\" -Exclude '*x64.msix' | Remove-Item -Force -Recurse"
+    }
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/M2Team/NanaZip/releases/download/$matchTag/40174MouriNaruto.NanaZip$matchPre_$version_gnj4mf6z9tkrc.msixbundle#/dl.7z"
+  },
+  "checkver": {
+    "regex": "releases/download/(?<tag>[\\w-.]+)/40174MouriNaruto.NanaZip(?<pre>Preview)?_([\\d.]+)_gnj4mf6z9tkrc.msixbundle",
+    "url": "https://api.github.com/repos/M2Team/NanaZip/releases"
+  },
+  "description": "NanaZip is an open source file archiver, forked from the source code of well-known file archiver 7-Zip.",
+  "hash": "69e8e6054e60377f9a6231789f399c8791a7bf9851b96621877c58eff553fbf1",
+  "homepage": "https://github.com/M2Team/NanaZip",
+  "installer": {
+    "script": [
+      "$appmsix = (Get-ChildItem \"$dir\" '*.msix' | Select-Object -ExpandProperty Fullname)",
+      "Add-AppxPackage -Path $appmsix"
+    ]
+  },
+  "license": {
+    "identifier": "Freeware"
+  },
+  "shortcuts": [
+    [
+      "NanaZip.exe",
+      "NanaZip"
+    ]
+  ],
+  "url": "https://ghproxy.net/https://github.com/M2Team/NanaZip/releases/download/2.1.451/40174MouriNaruto.NanaZipPreview_2.1.451.0_gnj4mf6z9tkrc.msixbundle#/dl.7z",
+  "version": "2.1.451.0"
+}

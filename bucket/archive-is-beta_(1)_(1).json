@@ -1,0 +1,45 @@
+{
+  "architecture": {
+    "32bit": {
+      "hash": "0812480654cb7405c40d2e769d82d50a1835236e0d5014cbe87f2ec0d61523fd",
+      "url": "https://ghproxy.net/https://github.com/wabarc/archive.is/releases/download/v1.3.0/archive.is-windows-386-1.3.0.zip"
+    },
+    "64bit": {
+      "hash": "2928771e476af9774fedb38f233922ce5e58a9788c5376ac78deb547b3e9d872",
+      "url": "https://ghproxy.net/https://github.com/wabarc/archive.is/releases/download/v1.3.0/archive.is-windows-amd64-1.3.0.zip"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "hash": {
+          "mode": "extract",
+          "regex": "$sha256\\s+$basename",
+          "url": "https://github.com/wabarc/archive.is/releases/tag/v$version"
+        },
+        "url": "https://ghproxy.net/https://github.com/wabarc/archive.is/releases/download/v$version/archive.is-windows-386-$version.zip"
+      },
+      "64bit": {
+        "hash": {
+          "mode": "extract",
+          "regex": "$sha256\\s+$basename",
+          "url": "https://github.com/wabarc/archive.is/releases/tag/v$version"
+        },
+        "url": "https://ghproxy.net/https://github.com/wabarc/archive.is/releases/download/v$version/archive.is-windows-amd64-$version.zip"
+      }
+    }
+  },
+  "bin": "archive.is.exe",
+  "checkver": {
+    "jsonpath": "$[0].tag_name",
+    "regex": "^v(.+)$",
+    "url": "https://api.github.com/repos/wabarc/archive.is/releases?per_page=1"
+  },
+  "description": "Archive.is is a command-line tool named archive.is saving webpage to archive.today, it also supports imports as a Golang package for a programmatic.",
+  "homepage": "https://github.com/wabarc/archive.is",
+  "license": {
+    "identifier": "GPL-3.0-or-later"
+  },
+  "pre_install": "Rename-Item \"$dir\\archive.is*.exe\" \"$dir\\archive.is.exe\" -Force",
+  "version": "1.3.0"
+}

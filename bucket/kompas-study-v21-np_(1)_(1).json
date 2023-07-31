@@ -1,0 +1,19 @@
+{
+  "version": "21",
+  "description": "KOMPAS-3D Educational version. Base + Mechanical Engineering + Instrumentation.",
+  "homepage": "https://kompas.ru/kompas-educational/about/",
+  "license": "Proprietary",
+  "architecture": {
+    "64bit": {
+      "url": "https://archive.org/download/kompas-3-d-study-v20-and-v21/KOMPAS-3D_v21_Study_x64_1174.zip#/dl.7z",
+      "hash": "221351ba82d072081a3c49f81a2a74bc491e377c6059d500f7b222d448d30495",
+      "installer": {
+        "script": "Start-Process -Wait $env:SystemRoot\\System32\\msiexec.exe \"/i `\"$dir\\KOMPAS-3D_v21_Study_x64.msi`\" /qn /norestart\" -Verb RunAs"
+      },
+      "uninstaller": {
+        "script": "Start-Process -Wait $env:SystemRoot\\System32\\msiexec.exe \"/x {CB665C14-9B4C-49B7-99CE-2EAA3ABD6BDE} /qn /norestart\" -Verb RunAs"
+      }
+    }
+  },
+  "post_install": "Remove-Item -Recurse \"$dir\\*\""
+}

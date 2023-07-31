@@ -1,0 +1,37 @@
+{
+  "homepage": "https://hyperspace.marquiskurt.net/",
+  "description": "Cross-platform client for the fediverse.",
+  "license": "Non-violent Public License v4+",
+  "bin": "Hyperspace Desktop.exe",
+  "version": "1.1.4",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/hyperspacedev/hyperspace/releases/download/v1.1.4/Hyperspace.Desktop.Setup.1.1.4.exe#/dl.7z",
+      "hash": "sha256:c47c63fda9d14bf91fd7a9023018b58ebf743087956e0e9bed987a148b84be4d",
+      "pre_install": [
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+        "Remove-Item \"$dir\\`$*\", \"$dir\\Uninstall*\" -Force -Recurse"
+      ]
+    }
+  },
+  "shortcuts": [
+    [
+      "Hyperspace Desktop.exe",
+      "Hyperspace Desktop"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/hyperspacedev/hyperspace"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/hyperspacedev/hyperspace/releases/download/v$version/Hyperspace.Desktop.Setup.$version.exe#/dl.7z",
+        "hash": {
+          "url": "$baseurl/latest.yml",
+          "regex": "sha512:\\s+$base64"
+        }
+      }
+    }
+  }
+}

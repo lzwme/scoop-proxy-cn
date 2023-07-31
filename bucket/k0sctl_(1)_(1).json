@@ -1,0 +1,25 @@
+{
+  "version": "0.15.0",
+  "description": "A bootstrapping and management tool for k0s clusters.",
+  "homepage": "https://github.com/k0sproject/k0sctl",
+  "license": "Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/k0sproject/k0sctl/releases/download/v0.15.0/k0sctl-win-x64.exe#/k0sctl.exe",
+      "hash": "948cdcf9eab223b4ccf72cb8574d471b3b4ad4a0509e3494b8f3bf4a903011dd"
+    }
+  },
+  "bin": "k0sctl.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/k0sproject/k0sctl/releases/download/v$version/k0sctl-win-x64.exe#/k0sctl.exe",
+        "hash": {
+          "url": "$baseurl/checksums.txt",
+          "regex": "$sha256\\s+\\*$basename"
+        }
+      }
+    }
+  }
+}

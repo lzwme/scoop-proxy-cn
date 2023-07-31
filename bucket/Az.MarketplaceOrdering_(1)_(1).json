@@ -1,0 +1,27 @@
+{
+  "checkver": {
+    "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id%20eq%20'Az.MarketplaceOrdering'%20and%20IsLatestVersion%20eq%20true",
+    "replace": "${ver}",
+    "regex": "(?i)<d:Version>(?<ver>[^<]+)<.d:Version>"
+  },
+  "hash": "sha512:7251e5c679c8cb29195c59994450caadb03a75b1491a742fcbcb148e9fdbcd957e8ff18c4ed21f867d77af1234c6d21f54a500fcff5a5c9fb9c31a415901c4b8",
+  "description": "Microsoft Azure PowerShell: MarketplaceOrdering cmdlets",
+  "psmodule": {
+    "name": "Az.MarketplaceOrdering"
+  },
+  "homepage": "https://www.powershellgallery.com/packages/Az.MarketplaceOrdering",
+  "autoupdate": {
+    "url": "https://www.powershellgallery.com/api/v2/Package/Az.MarketplaceOrdering/$version#/mod.nupkg",
+    "hash": {
+      "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id eq 'Az.MarketplaceOrdering' and Version eq '$version'",
+      "regex": "<d:PackageHash>$base64<.d:PackageHash>"
+    }
+  },
+  "license": {
+    "identifier": "Refer to Webpage",
+    "url": "https://aka.ms/azps-license"
+  },
+  "url": "https://www.powershellgallery.com/api/v2/Package/Az.MarketplaceOrdering/2.0.0#/mod.nupkg",
+  "depends": "Az.Accounts",
+  "version": "2.0.0"
+}

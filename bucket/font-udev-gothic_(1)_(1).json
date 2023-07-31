@@ -1,0 +1,32 @@
+{
+  "version": "1.2.1",
+  "description": "Japanese font based on BIZ UD Gothic",
+  "homepage": "https://github.com/yuru7/udev-gothic",
+  "license": "OFL-1.1-RFN",
+  "url": "https://ghproxy.net/https://github.com/yuru7/udev-gothic/releases/download/v1.2.1/UDEVGothic_v1.2.1.zip",
+  "hash": "27ce8efce29c05142e75684ab1eb62902f920358cfb47638c53ebf41b1f19c30",
+  "depends": [
+    "sudo",
+    "unoun/scoop-helper"
+  ],
+  "installer": {
+    "script": [
+      "$helper = \"$(appdir scoop-helper)\\current\\scoop-font-helper.ps1\"",
+      "if (!(Test-Path $helper)) { error 'File not found'; exit 1 }",
+      ". $helper",
+      "Install-Font($dir)"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$helper = \"$(appdir scoop-helper)\\current\\scoop-font-helper.ps1\"",
+      "if (!(Test-Path $helper)) { error 'File not found'; exit 1 }",
+      ". $helper",
+      "Uninstall-Font($dir)"
+    ]
+  },
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/yuru7/udev-gothic/releases/download/v$version/UDEVGothic_v$version.zip"
+  }
+}

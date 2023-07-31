@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ghproxy.net/https://raw.githubusercontent.com/lukesampson/scoop/master/schema.json",
+  "version": "1.0.0",
+  "description": "Fix Syncthing firewall. This enables the basic firewall rules according to https://docs.syncthing.net/users/firewall.",
+  "depends": "syncthing",
+  "url": "https://example.com/index.html",
+  "hash": "ea8fac7c65fb589b0d53560f5251f74f9e9b243478dcb6b3ea79b5e36449c8d9",
+  "notes": [
+    "This package needs to be reinstalled every time when `syncthing` is installed or upgraded."
+  ],
+  "installer": {
+    "script": [
+      "if (-not (is_admin)) { error 'This package requires admin privileges to install'; break }",
+      "$syncthingExe = \"$(appdir syncthing)\\$((ConvertFrom-Json (Get-Content -Raw \"$(appdir syncthing)\\current\\manifest.json\")).version)\\syncthing.exe\"",
+      "New-NetFirewallRule -Action Allow -Direction Inbound -Program \"$syncthingExe\" -DisplayName \"Syncthing Discovery ($app)\" -LocalPort 21027 -Protocol UDP > $null",
+      "New-NetFirewallRule -Action Allow -Direction Inbound -Program \"$syncthingExe\" -DisplayName \"Syncthing Sync (TCP) ($app)\" -LocalPort 22000 -Protocol TCP > $null",
+      "New-NetFirewallRule -Action Allow -Direction Inbound -Program \"$syncthingExe\" -DisplayName \"Syncthing Sync (QUIC) ($app)\" -LocalPort 22000 -Protocol UDP > $null"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "if (-not (is_admin)) { error 'This package requires admin privileges to uninstall'; break }",
+      "Remove-NetFirewallRule -DisplayName \"Syncthing Discovery ($app)\" > $null",
+      "Remove-NetFirewallRule -DisplayName \"Syncthing Sync (TCP) ($app)\" > $null",
+      "Remove-NetFirewallRule -DisplayName \"Syncthing Sync (QUIC) ($app)\" > $null"
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "version": "1.8.0",
+  "description": "A viewer for high-fidelity web archives (WARC, ARC, HAR) on your local machine",
+  "homepage": "https://github.com/webrecorder/webrecorder-player",
+  "license": "Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/webrecorder/webrecorder-player/releases/download/v1.8.0/webrecorder-player-win-x86_64-1.8.0.exe#/webrecorder-player.exe",
+      "hash": "32f7270ae5c02f2b301e0691012523e778fd52c5553d3b484124e2a74fa2a5c1"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/webrecorder/webrecorder-player/releases/download/v1.8.0/webrecorder-player-win-x86-1.8.0.exe#/webrecorder-player.exe",
+      "hash": "5de20aa1f535be786caaff02cc4443fde065d0dc6bdc003ec1900a223fae7cd9"
+    }
+  },
+  "shortcuts": [
+    [
+      "webrecorder-player.exe",
+      "Webrecorder Player"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/webrecorder/webrecorder-player/releases",
+    "regex": "x86_64-([\\d\\w.-]+)\\.exe"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/webrecorder/webrecorder-player/releases/download/v$version/webrecorder-player-win-x86_64-$version.exe#/webrecorder-player.exe"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/webrecorder/webrecorder-player/releases/download/v$version/webrecorder-player-win-x86-$version.exe#/webrecorder-player.exe"
+      }
+    }
+  }
+}

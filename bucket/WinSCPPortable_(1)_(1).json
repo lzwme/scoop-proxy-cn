@@ -1,0 +1,28 @@
+{
+  "autoupdate": {
+    "hash": {
+      "regex": "MD5 Hash: +[\\w]{32}",
+      "url": "https://portableapps.com/WinSCPPortable"
+    },
+    "url": "https://pilotfiber.dl.sourceforge.net/project/portableapps/WinSCP%20Portable/WinSCPPortable_$version.paf.exe"
+  },
+  "bin": "WinSCPPortable.exe",
+  "checkver": {
+    "re": "Version \\s+([\\w\\.]* for Win",
+    "url": "https://portableapps.com/WinSCPPortable"
+  },
+  "description": "SFTP, FTP, SCP client",
+  "hash": "986f21c573831401745738eb3ac05f41fe80eaa70cf7a66710f786592bf2b1ba",
+  "homepage": "https://portableapps.com/WinSCPPortable",
+  "license": "",
+  "persist": "Data",
+  "post_install": "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
+  "shortcuts": [
+    [
+      "WinSCPPortable.exe",
+      "WinSCPPortable"
+    ]
+  ],
+  "url": "https://pilotfiber.dl.sourceforge.net/project/portableapps/WinSCP%20Portable/WinSCPPortable_5.21.6.paf.exe",
+  "version": "5.21.6"
+}

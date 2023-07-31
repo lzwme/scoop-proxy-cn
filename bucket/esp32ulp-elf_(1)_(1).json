@@ -1,0 +1,49 @@
+{
+  "version": "2.28.51-esp-20191205",
+  "description": "Toolchain for ESP32 ULP coprocessor",
+  "homepage": "https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/tools/idf-tools.html#list-of-idf-tools",
+  "license": "GPL-2.0-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/espressif/binutils-esp32ulp/releases/download/v2.28.51-esp-20191205/binutils-esp32ulp-win32-2.28.51-esp-20191205.zip",
+      "hash": "bade309353a9f0a4e5cc03bfe84845e33205f05502c4b199195e871ded271ab5"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/espressif/binutils-esp32ulp/releases/download/v2.28.51-esp-20191205/binutils-esp32ulp-win32-2.28.51-esp-20191205.zip",
+      "hash": "bade309353a9f0a4e5cc03bfe84845e33205f05502c4b199195e871ded271ab5"
+    }
+  },
+  "bin": [
+    "esp32ulp-elf-binutils\\bin\\esp32ulp-elf-addr2line.exe",
+    "esp32ulp-elf-binutils\\bin\\esp32ulp-elf-ar.exe",
+    "esp32ulp-elf-binutils\\bin\\esp32ulp-elf-as.exe",
+    "esp32ulp-elf-binutils\\bin\\esp32ulp-elf-c++filt.exe",
+    "esp32ulp-elf-binutils\\bin\\esp32ulp-elf-elfedit.exe",
+    "esp32ulp-elf-binutils\\bin\\esp32ulp-elf-g++.exe",
+    "esp32ulp-elf-binutils\\bin\\esp32ulp-elf-gprof.exe",
+    "esp32ulp-elf-binutils\\bin\\esp32ulp-elf-ld.bfd.exe",
+    "esp32ulp-elf-binutils\\bin\\esp32ulp-elf-ld.exe",
+    "esp32ulp-elf-binutils\\bin\\esp32ulp-elf-nm.exe",
+    "esp32ulp-elf-binutils\\bin\\esp32ulp-elf-objcopy.exe",
+    "esp32ulp-elf-binutils\\bin\\esp32ulp-elf-objdump.exe",
+    "esp32ulp-elf-binutils\\bin\\esp32ulp-elf-ranlib.exe",
+    "esp32ulp-elf-binutils\\bin\\esp32ulp-elf-readelf.exe",
+    "esp32ulp-elf-binutils\\bin\\esp32ulp-elf-size.exe",
+    "esp32ulp-elf-binutils\\bin\\esp32ulp-elf-strings.exe",
+    "esp32ulp-elf-binutils\\bin\\esp32ulp-elf-strip.exe"
+  ],
+  "checkver": {
+    "url": "https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/tools/idf-tools.html",
+    "regex": "binutils-esp32ulp-win32-([\\d_]+-esp-([\\w]+)).zip"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/espressif/binutils-esp32ulp/releases/download/binutils-esp-$match2/binutils-esp32ulp-win32-$version.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/espressif/binutils-esp32ulp/releases/download/binutils-esp-$match2/binutils-esp32ulp-win32-$version.zip"
+      }
+    }
+  }
+}

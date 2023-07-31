@@ -1,0 +1,32 @@
+{
+  "version": "2.004R",
+  "description": "Pan-CJK font",
+  "homepage": "https://github.com/adobe-fonts/source-han-sans",
+  "license": "OFL-1.1-RFN",
+  "url": "https://ghproxy.net/https://github.com/adobe-fonts/source-han-sans/releases/download/2.004R/SourceHanSans.ttc.zip",
+  "hash": "6f59118a9adda5a7fe4e9e6bb538309f7e1d3c5411f9a9d32af32a79501b7e4f",
+  "depends": [
+    "sudo",
+    "unoun/scoop-helper"
+  ],
+  "installer": {
+    "script": [
+      "$helper = \"$(appdir scoop-helper)\\current\\scoop-font-helper.ps1\"",
+      "if (!(Test-Path $helper)) { error 'File not found'; exit 1 }",
+      ". $helper",
+      "Install-Font($dir)"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$helper = \"$(appdir scoop-helper)\\current\\scoop-font-helper.ps1\"",
+      "if (!(Test-Path $helper)) { error 'File not found'; exit 1 }",
+      ". $helper",
+      "Uninstall-Font($dir)"
+    ]
+  },
+  "checkver": {
+    "url": "https://github.com/adobe-fonts/source-han-sans/releases/latest",
+    "regex": "/releases/tag/(?:v|V)?([\\d.R]+)"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "version": "2.1.0",
+  "description": "KuMir - a programming system designed to support computer science courses.",
+  "homepage": "https://www.niisi.ru/kumir/",
+  "license": "GPL-2.0-only",
+  "url": "https://www.niisi.ru/kumir/kumir2-2.1.0-rc11-install.exe#/dl.7z",
+  "hash": "868402a80ace8df37345afc8555676a003705a86bda864d9d547ca0a5644280e",
+  "bin": [
+    "bin\\kumir2-classic.exe",
+    "bin\\kumir2-ide.exe",
+    "bin\\kumir2-teacher.exe",
+    "bin\\kumir2-highgrade.exe"
+  ],
+  "shortcuts": [
+    [
+      "bin\\kumir2-classic.exe",
+      "Кумир-Стандарт"
+    ],
+    [
+      "bin\\kumir2-ide.exe",
+      "Кумир-Про"
+    ],
+    [
+      "bin\\kumir2-teacher.exe",
+      "Кумир для учителей"
+    ],
+    [
+      "bin\\kumir2-highgrade.exe",
+      "Кумир для старших классов"
+    ]
+  ],
+  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall.exe.nsis\" -Recurse",
+  "checkver": {
+    "url": "https://www.niisi.ru/kumir/dl.htm",
+    "regex": "kumir2\\-([\\d.]+)\\-rc(?<rc>\\d+)-install.exe"
+  },
+  "autoupdate": {
+    "url": "https://www.niisi.ru/kumir/kumir2-$version-rc$matchRc-install.exe#/dl.7z"
+  }
+}

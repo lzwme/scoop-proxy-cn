@@ -1,0 +1,42 @@
+{
+  "homepage": "https://github.com/zufuliu/notepad2",
+  "description": "A modified version (fork) of Notepad2-mod.",
+  "version": "4.23.04r4766",
+  "license": "BSD 3-Clause",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/zufuliu/notepad2/releases/download/v4.23.04r4766/Notepad2_zh-Hans_x64_v4.23.04r4766.zip",
+      "hash": "81b9c061e7557df6d291ea599d0e5d0e5cd90a7130e957ef46e5c7663309310f"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/zufuliu/notepad2/releases/download/v4.23.04r4766/Notepad2_zh-Hans_Win32_v4.23.04r4766.zip",
+      "hash": "c2498982d5f0416750012e282571f3736b5d63ce2b5a03bb9a9fe30313b7e7f0"
+    }
+  },
+  "bin": "Notepad2.exe",
+  "shortcuts": [
+    [
+      "Notepad2.exe",
+      "Notepad2"
+    ]
+  ],
+  "persist": [
+    "metapath.ini",
+    "Notepad2 DarkTheme.ini",
+    "Notepad2.ini"
+  ],
+  "checkver": {
+    "url": "https://github.com/zufuliu/notepad2/releases/latest",
+    "regex": "<title>Release v([\\d.]+r[\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/zufuliu/notepad2/releases/download/v$version/Notepad2_zh-Hans_x64_v$version.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/zufuliu/notepad2/releases/download/v$version/Notepad2_zh-Hans_Win32_v$version.zip"
+      }
+    }
+  }
+}

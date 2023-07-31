@@ -1,0 +1,40 @@
+{
+  "version": "0.2",
+  "description": "wsl-tray is a lightweight Windows tray application for easily managing WSL 2 VMs.",
+  "homepage": "https://github.com/yzgyyang/wsl-tray",
+  "license": "BSD-3-Clause",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/yzgyyang/wsl-tray/releases/download/v0.2/wsl-tray_v0.2_x64.zip",
+      "hash": "1b3131bc97e8cbb0f847da887941850eaf3035c69c2e4a6acc5b6ca59bc95e20",
+      "installer": {
+        "script": [
+          "Push-Location \"$dir\"",
+          "Rename-Item wsl-tray_v0.2_x64.exe wsl-tray.exe",
+          "Pop-Location"
+        ]
+      }
+    }
+  },
+  "shortcuts": [
+    [
+      "wsl-tray.exe",
+      "WSL Tray"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/yzgyyang/wsl-tray/releases/download/v$version/wsl-tray_v$version_x64.zip",
+        "installer": {
+          "script": [
+            "Push-Location \"$dir\"",
+            "Rename-Item wsl-tray_v$version_x64.exe wsl-tray.exe",
+            "Pop-Location"
+          ]
+        }
+      }
+    }
+  }
+}

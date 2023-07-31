@@ -1,0 +1,60 @@
+{
+  "homepage": "https://www.lazarus-ide.org",
+  "version": "2.2.6",
+  "description": "A Delphi compatible cross-platform IDE for Rapid Application Development.",
+  "license": "GPL-2.0-or-later|FPC-modified-LGPL-2.0-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://downloads.sourceforge.net/project/lazarus/Lazarus%20Windows%2064%20bits/Lazarus%202.2.6/lazarus-2.2.6-fpc-3.2.2-win64.exe",
+      "hash": "97461dfe6e282b172f33b80b00d771f2780b2d76bd346beccc43bc98e1a80a8d"
+    },
+    "32bit": {
+      "url": "https://downloads.sourceforge.net/project/lazarus/Lazarus%20Windows%2032%20bits/Lazarus%202.2.6/lazarus-2.2.6-fpc-3.2.2-win32.exe",
+      "hash": "158a2f7de4e42807ae667a5b79f59da9723ab0f99be8d4e7a04e94bf4c20217b"
+    }
+  },
+  "innosetup": true,
+  "post_install": [
+    "$fpcdir = \"$dir\\fpc\\\" + ($fname -replace '.*fpc-([\\d.]+)-.*', '$1')",
+    "& \"$fpcdir\\bin\\x86_64-win64\\fpcmkcfg.exe\" -d \"basepath=$fpcdir\" -o \"$fpcdir\\bin\\x86_64-win64\\fpc.cfg\""
+  ],
+  "shortcuts": [
+    [
+      "lazarus.exe",
+      "Lazarus"
+    ],
+    [
+      "startlazarus.exe",
+      "Lazarus (debug)",
+      "--debug"
+    ]
+  ],
+  "env_set": {
+    "LazarusDir": "$dir",
+    "LazDir": "$dir"
+  },
+  "bin": [
+    "lazarus.exe",
+    "lazbuild.exe",
+    "startlazarus.exe"
+  ],
+  "checkver": "lazarus-([\\d.]+)-fpc-(?<fpc>[\\d.]+)-win64.exe",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://downloads.sourceforge.net/project/lazarus/Lazarus%20Windows%2064%20bits/Lazarus%20$version/lazarus-$version-fpc-$matchFpc-win64.exe",
+        "hash": {
+          "url": "http://www.lazarus-ide.org/index.php?page=checksums",
+          "regex": "$sha256.*$basename"
+        }
+      },
+      "32bit": {
+        "url": "https://downloads.sourceforge.net/project/lazarus/Lazarus%20Windows%2032%20bits/Lazarus%20$version/lazarus-$version-fpc-$matchFpc-win32.exe",
+        "hash": {
+          "url": "http://www.lazarus-ide.org/index.php?page=checksums",
+          "regex": "$sha256.*$basename"
+        }
+      }
+    }
+  }
+}

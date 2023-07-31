@@ -1,0 +1,47 @@
+{
+  "version": "2022.1",
+  "description": "UltraEdit is a commercial text editor.",
+  "homepage": "https://www.ultraedit.com/products/mobility",
+  "license": "Proprietary",
+  "depends": "7zip",
+  "architecture": {
+    "64bit": {
+      "url": "https://downloads.ultraedit.com/main/ue/win/portable/uep_english64.zip#/dl.7z",
+      "hash": "f0de29bf1844598f713cc2798f9f44cb001edff46b3388bc0193fbd3ca272a1a"
+    },
+    "32bit": {
+      "url": "https://downloads.ultraedit.com/main/ue/win/portable/uep_english.zip#/dl.7z",
+      "hash": "8331bb1e1a81de6d1acb7a395d7e0eb4edf3b6cf6735228283720cecde172355"
+    }
+  },
+  "installer": {
+    "script": "7z.exe x -bb0 -bd -y \"$original_dir\\UltraEditPortable.paf.exe\" -o\"$original_dir\" > \"$original_dir\\null\""
+  },
+  "checkver": {
+    "url": "https://www.ultraedit.com/downloads/mobility-thank-you.html",
+    "regex": "Download UltraEdit Mobile <small>v([\\d.]+)"
+  },
+  "post_install": "Remove-Item \"$dir\\*PLUGINSDIR\", \"$dir\\UltraEditPortable.paf.exe\", \"$dir\\null\" -Recurse",
+  "shortcuts": [
+    [
+      "UltraEditPortable.exe",
+      "UltraEdit Mobile"
+    ]
+  ],
+  "persist": "Data",
+  "notes": [
+    "If you want encounter issue downloading the binaries, make sure you are using aria2 and fix user agent to real browser one.",
+    "See https://github.com/lukesampson/scoop#multi-connection-downloads-with-aria2.",
+    "example: scoop config aria2-options \" -U 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36'\""
+  ],
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://downloads.ultraedit.com/main/ue/win/portable/uep_english64.zip#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://downloads.ultraedit.com/main/ue/win/portable/uep_english.zip#/dl.7z"
+      }
+    }
+  }
+}

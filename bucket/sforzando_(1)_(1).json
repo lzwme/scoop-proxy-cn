@@ -1,0 +1,36 @@
+{
+  "homepage": "https://www.plogue.com/products/sforzando.html",
+  "description": "SFZ player VSTi",
+  "version": "1.973",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://www.plogue.com/products/sforzando.html"
+  },
+  "url": "https://s3.amazonaws.com/sforzando/WIN_sforzando_v1.973.exe",
+  "hash": "77a6f0f493064f14cf53aa75fb8c37178f4fbe341ea0b5b6f64700fcd796ae49",
+  "installer": {
+    "args": [
+      "/VERYSILENT",
+      "/DIR=\"$dir\"",
+      "/SUPPRESSMSGBOXES"
+    ]
+  },
+  "post_install": [
+    "New-Item -ErrorAction Ignore $env:USERPROFILE\\.vst -ItemType Directory",
+    "New-Item -Type Junction -Path $env:USERPROFILE\\.vst\\sforzando -Value $dir"
+  ],
+  "uninstaller": {
+    "script": [
+      ". $dir\\unins000.exe /VERYSILENT /SUPPRESSMSGBOXES | Out-Null",
+      "(Get-Item $env:USERPROFILE\\.vst\\sforzando).Delete()"
+    ]
+  },
+  "checkver": {
+    "url": "https://www.plogue.com/downloads.html",
+    "re": "https://s3\\.amazonaws\\.com/sforzando/WIN_sforzando_v(\\d+\\.\\d+).exe"
+  },
+  "autoupdate": {
+    "url": "https://s3.amazonaws.com/sforzando/WIN_sforzando_v$version.exe"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

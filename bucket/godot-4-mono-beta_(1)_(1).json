@@ -1,0 +1,28 @@
+{
+  "license": "",
+  "version": "4.0-beta17",
+  "url": "https://downloads.tuxfamily.org/godotengine/4.0/beta17/mono/Godot_v4.0-beta17_mono_win64.zip",
+  "homepage": "https://godotengine.org/",
+  "hash": "fc85d1fa053f79701737b830ae44b5a016794233c5e92fbd4748824dfd19459f",
+  "extract_dir": "Godot_v4.0-beta17_mono_win64",
+  "pre_install": [
+    "Remove-Item \"$dir\\Godot_*_console.*\"",
+    "Get-Item \"$dir\\Godot_*.exe\" | Rename-Item -NewName 'godot-mono-beta.exe'"
+  ],
+  "bin": "godot-mono-beta.exe",
+  "shortcuts": [
+    [
+      "godot-mono-beta.exe",
+      "Godot Engine 4 Beta (Mono)"
+    ]
+  ],
+  "checkver": {
+    "script": "Invoke-WebRequest https://downloads.tuxfamily.org/godotengine/4.0/ | Select-Object -ExpandProperty Content | Out-String -Stream | Select-String -Pattern 'beta([0-9]+)' -AllMatches | % { $_.Matches } | % { $_.Groups[1] } | % { $_.Value } | Sort-Object {[int]$_} | Get-Unique | Select-Object -Last 1",
+    "regex": "(\\S+)",
+    "replace": "4.0-beta$1"
+  },
+  "autoupdate": {
+    "url": "https://downloads.tuxfamily.org/godotengine/4.0/beta$match1/mono/Godot_v$version_mono_win64.zip",
+    "extract_dir": "Godot_v$version_mono_win64"
+  }
+}

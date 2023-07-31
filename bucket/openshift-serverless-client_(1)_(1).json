@@ -1,0 +1,29 @@
+{
+  "homepage": "https://developers.redhat.com/topics/serverless-architecture",
+  "description": "Knative is an open source community project that offers developers a Kubernetes-native API, adding components to build, deploy, and manage modern serverless workloads and serverless-style functions. This manifest installs the client (KN).",
+  "license": "Apache-2.0",
+  "version": "1.7.1",
+  "architecture": {
+    "64bit": {
+      "url": "https://mirror.openshift.com/pub/openshift-v4/clients/serverless/1.7.1/kn-windows-amd64.zip",
+      "hash": "0e2760047d67a28995fdb8d1792847969c8957ae523d4b7efa03292f47824ae9"
+    }
+  },
+  "bin": "tkn.exe",
+  "checkver": {
+    "url": "https://mirror.openshift.com/pub/openshift-v4/clients/serverless/",
+    "regex": "<a href=\"([\\d.]+)/\">",
+    "reverse": true
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://mirror.openshift.com/pub/openshift-v4/clients/serverless/$version/kn-windows-amd64.zip"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/sha256sum.txt"
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

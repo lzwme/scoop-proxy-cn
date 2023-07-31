@@ -1,0 +1,31 @@
+{
+  "version": "1.0.1",
+  "description": "Synthesizer V Saki AI ライト版",
+  "homepage": "https://www.ah-soft.com/trial/synth-v.html",
+  "license": [
+    {
+      "identifier": "Proprietary",
+      "url": "https://www.ah-soft.com/trial/synth-v.html"
+    }
+  ],
+  "notes": [
+    "※ライト版は商用利用をいただくことができません。",
+    "※ライト版は個人に限り制作した作品の発表が許諾されています。",
+    "※ライト版で製作した作品を個人が発表する場合は、\"Synthesizer V Saki AI ライト版を使用\"と必ず明記してください。"
+  ],
+  "url": "https://www.ah-soft.com/trial/synthesizer_v_saki_ai_lite.zip",
+  "hash": "273773e3db1e97bd6eff49354b63fb4bc7c0aa4421c1c16b9104939f7bbf3b80",
+  "extract_dir": "Synthesizer V Saki AI Lite",
+  "suggest": {
+    "Synthesizer V": [
+      "synthesizer-v-basic",
+      "dtm/synthesizer-v-basic"
+    ]
+  },
+  "installer": {
+    "script": [
+      "$svpk = $dir + \"\\saki-ai-lite-install.svpk\"",
+      "Start-Process -FilePath \"${dir}\\..\\..\\synthesizer-v-basic\\current\\synthv-studio.exe\" -ArgumentList $svpk"
+    ]
+  }
+}

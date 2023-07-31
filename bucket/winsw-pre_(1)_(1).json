@@ -1,0 +1,33 @@
+{
+  "version": "3.0.0-alpha.11",
+  "description": "A wrapper executable that can run any executable as a Windows service, in a permissive license.",
+  "homepage": "https://github.com/winsw/winsw",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/winsw/winsw/releases/download/v3.0.0-alpha.11/WinSW-x64.exe#/winsw.exe",
+      "hash": "a2daa6a33a9c2b791ae31d9092e7935c339d1e03e89bfb747618ce2f4e819e20"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/winsw/winsw/releases/download/v3.0.0-alpha.11/WinSW-x86.exe#/winsw.exe",
+      "hash": "3201432b44825b0dc763eb4052dc84b179314e2a338794c9f5f797e8fe2bb0fc"
+    }
+  },
+  "bin": "winsw.exe",
+  "persist": "config",
+  "checkver": {
+    "url": "https://api.github.com/repos/winsw/winsw/releases",
+    "jsonpath": "$.[?(@.prerelease==true)].tag_name",
+    "regex": "v([-\\d.\\w]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/rsteube/carapace-bin/releases/download/v$version/carapace-bin_windows_amd64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/rsteube/carapace-bin/releases/download/v$version/carapace-bin_windows_386.zip"
+      }
+    }
+  }
+}

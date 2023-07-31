@@ -1,0 +1,39 @@
+{
+  "version": "0.102.2",
+  "description": "Data version control for your data lake | Git for data.",
+  "homepage": "https://github.com/treeverse/lakeFS",
+  "license": "Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/treeverse/lakeFS/releases/download/v0.102.2/lakeFS_0.102.2_Windows_x86_64.zip",
+      "hash": "1f6ba6df841595897e3f9885f54c5b9d783629530e5d1576bceca9a870f2b506"
+    },
+    "arm64": {
+      "url": "https://ghproxy.net/https://github.com/treeverse/lakeFS/releases/download/v0.102.2/lakeFS_0.102.2_Windows_arm64.zip",
+      "hash": "ebdc7e379a7f8f8ddb5ff255b5a8eb8b543b46bdfa331f965cacd9927f2394ef"
+    }
+  },
+  "bin": [
+    "lakectl.exe",
+    "lakefs.exe"
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/treeverse/lakeFS/releases/download/v$version/lakeFS_$version_Windows_x86_64.zip",
+        "hash": {
+          "url": "$baseurl/checksums.txt",
+          "regex": "$sha256\\s+$basename"
+        }
+      },
+      "arm64": {
+        "url": "https://ghproxy.net/https://github.com/treeverse/lakeFS/releases/download/v$version/lakeFS_$version_Windows_arm64.zip",
+        "hash": {
+          "url": "$baseurl/checksums.txt",
+          "regex": "$sha256\\s+$basename"
+        }
+      }
+    }
+  }
+}

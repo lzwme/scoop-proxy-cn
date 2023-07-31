@@ -1,0 +1,55 @@
+{
+  "version": "220830",
+  "description": "Potplayer Dev, NoAD, Portable Edition, maintained by wenlei.",
+  "homepage": "https://potplayer.daum.net",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://potplayer.daum.net/publicRelation"
+  },
+  "notes": "Feature: <https://pan.lanzoui.com/b0i38vsd>",
+  "depends": "sudo",
+  "suggest": {
+    "potplayer-skins": "potplayer-skins"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://pan.jiemi.workers.dev/?file=/wenlei/Pot_Player64_v220830(1.7.21790)_Dev.7z",
+      "hash": "488ae9864f8f1b07d4b450410fdd63808b2498e16ab1d64ab3d59a1fd4f03e06",
+      "extract_dir": "PotPlayer64",
+      "installer": {
+        "script": [
+          "Copy-Item \"$bucketsdir\\$bucket\\scripts\\potplayer\\potplayer64-settings.reg\" \"$dir\\potplayer64-settings.reg\" -ErrorAction 'SilentlyContinue' -Force | Out-Null",
+          "sudo regedit /s \"$dir\\potplayer64-settings.reg\""
+        ]
+      },
+      "shortcuts": [
+        [
+          "PotPlayerMini64.exe",
+          "PotPlayer"
+        ]
+      ]
+    }
+  },
+  "persist": [
+    "Capture",
+    "Extension",
+    "Extention",
+    "IconPack",
+    "Logos",
+    "Playlist",
+    "Skins",
+    "UrlList"
+  ],
+  "checkver": {
+    "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/oneindex.txt",
+    "regex": "(?s)(?<filename>Pot_Player(?:64|32)_v(?<version>[\\d]+)[(](?<build>[\\d.]+)[)]_(?:Dev)\\.(?:zip|7z))",
+    "reverse": true
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://pan.jiemi.workers.dev/?file=/wenlei/$matchFilename"
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "version": "24.1.1",
+  "description": "Versatile typeface for code, from code.",
+  "license": "OFL-1.1",
+  "homepage": "https://github.com/be5invis/Iosevka",
+  "url": "https://ghproxy.net/https://github.com/be5invis/Iosevka/releases/download/v24.1.1/super-ttc-iosevka-aile-24.1.1.zip",
+  "hash": "d6a59203c2ac5cc0ceac355c58a2d5c894d552cf6a6e372b71824eaffbcb3dac",
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/be5invis/Iosevka/releases/download/v$version/super-ttc-iosevka-aile-$version.zip"
+  },
+  "installer": {
+    "script": [
+      "if(!(is_admin)) { error \"Admin rights are required.\"; exit 1 }",
+      "Get-ChildItem $dir -Filter '*.ttc' -Recurse | ForEach-Object {",
+      "  New-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $_.Name -Force | Out-Null",
+      "  Copy-Item $_.FullName -destination \"$env:windir\\Fonts\"",
+      "}"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "if(!(is_admin)) { error \"Admin rights are required.\"; exit 1 }",
+      "Get-ChildItem $dir -filter '*.ttc' -Recurse | ForEach-Object {",
+      "  Remove-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
+      "  Remove-Item \"$env:windir\\Fonts\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
+      "}",
+      "Write-Host \"'Iosevka Aile' has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
+    ]
+  }
+}

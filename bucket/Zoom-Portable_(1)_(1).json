@@ -1,0 +1,56 @@
+{
+  "version": "5.14.10.17221",
+  "description": "Zoom. Video and audio conferencing, chat, and webinars",
+  "homepage": "https://zoom.us",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://zoom.us/terms"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://www.zoom.us/client/5.14.10.17221/ZoomInstallerFull.msi?archType=x64",
+      "hash": "18c600aaddd641e333de7343954d5e8e5b08f7385575cb9912986e241e2e65d9",
+      "extract_dir": "Program Files (64-bit) Folder\\Zoom\\bin"
+    },
+    "32bit": {
+      "url": "https://www.zoom.us/client/5.14.10.17221/ZoomInstallerFull.msi",
+      "hash": "744f82b14075fb1cf54979d9b9dec57284e603998f6c06dfa20cf2f11e7e6cf8",
+      "extract_dir": "Program Files (32-bit) Folder\\Zoom\\bin"
+    }
+  },
+  "extract_dir": "Program Files (64-bit) Folder\\Zoom\\bin",
+  "post_install": [
+    "Write-Host \"Registering zoommtg:// protocol handler\"",
+    "$regpath = \"HKCU:\\SOFTWARE\\Classes\\zoommtg\"",
+    "New-Item -Path $regpath -Value \"Zoom (Application Name)\" -Force | Out-Null",
+    "New-ItemProperty -Path $regpath -Name \"URL Protocol\" -PropertyType String -Force | Out-Null",
+    "New-Item -Path \"$regpath\\shell\\open\\command\" -Value \"`\"$dir\\Zoom.exe`\" --url=`\"%1`\"\" -Force| Out-Null"
+  ],
+  "uninstaller": {
+    "script": [
+      "Write-Host \"Unregistering zoommtg:// protocol handler\"",
+      "Remove-Item \"HKCU:\\SOFTWARE\\Classes\\zoommtg\" -Recurse -Force"
+    ]
+  },
+  "bin": "Zoom.exe",
+  "shortcuts": [
+    [
+      "Zoom.exe",
+      "Zoom"
+    ]
+  ],
+  "checkver": {
+    "url": "https://launcher.zoom.us/upgrade?os=win",
+    "regex": "Current-version=([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://www.zoom.us/client/$version/ZoomInstallerFull.msi?archType=x64"
+      },
+      "32bit": {
+        "url": "https://www.zoom.us/client/$version/ZoomInstallerFull.msi"
+      }
+    }
+  }
+}

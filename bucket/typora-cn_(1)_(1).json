@@ -1,0 +1,36 @@
+{
+  "version": "1.6.7",
+  "description": "一款 Markdown 编辑器和阅读器",
+  "homepage": "https://www.typoraio.cn",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://support.typora.io/License-Agreement/"
+  },
+  "notes": "For old beta version, install: versions/typora0.11.18",
+  "url": [
+    "https://download2.typoraio.cn/windows/typora-setup-x64-1.6.7.exe",
+    "https://github.moeyy.xyz/https://ghproxy.net/https://raw.githubusercontent.com/markyin0707/typora-activation/master/winmm.dll"
+  ],
+  "hash": [
+    "221b154bdaffe150216afef23eeaa643381ccf7147775da5d28bc25b27d218dc",
+    "364d4e21ab46ab0ad21a02e5cf709177428a5e29b044522eacec9ba987861adf"
+  ],
+  "pre_install": [
+    "$setupfile = (Get-ChildItem \"$dir\" 'typora-setup-*.exe' | Select-Object -First 1).FullName",
+    "Expand-InnoArchive \"$setupfile\" \"$dir\" -Removal"
+  ],
+  "bin": "Typora.exe",
+  "shortcuts": [
+    [
+      "Typora.exe",
+      "Typora"
+    ]
+  ],
+  "checkver": {
+    "url": "https://www.typoraio.cn/releases/stable?no-warning",
+    "regex": "typora-setup-x64-([\\d.]+).exe"
+  },
+  "autoupdate": {
+    "url": "https://download2.typoraio.cn/windows/typora-setup-x64-$version.exe"
+  }
+}

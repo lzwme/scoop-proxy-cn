@@ -1,0 +1,35 @@
+{
+  "version": "2.90-alpha",
+  "description": "3D creation suite",
+  "homepage": "https://www.blender.org",
+  "license": "GPL-3.0-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://builder.blender.org/download/blender-2.90.0-2deb6c517787-windows64.zip",
+      "hash": "",
+      "extract_dir": "blender-2.90.0-2deb6c517787-windows64"
+    }
+  },
+  "bin": "blender.exe",
+  "shortcuts": [
+    [
+      "blender.exe",
+      "Blender"
+    ]
+  ],
+  "checkver": {
+    "url": "https://builder.blender.org/download/",
+    "regex": "blender-2.90.0-([\\w.]+)-windows64\\.zip"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://builder.blender.org/download/blender-2.90.0-$version-windows64.zip",
+        "extract_dir": "blender-2.90.0-$version-windows64"
+      }
+    },
+    "hash": {
+      "url": ""
+    }
+  }
+}

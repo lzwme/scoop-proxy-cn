@@ -1,0 +1,39 @@
+{
+  "homepage": "https://resoph.com/ResophNotes",
+  "description": "Quick Notes on Windows",
+  "license": "Freeware",
+  "version": "1.7.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://resoph.com/ResophNotes/Welcome_files/ResophNotesPortable170.zip",
+      "hash": "a77c6fca6e6a38c969369e01c185c28441251d43bf5e6acb69de37e5f01d6716"
+    },
+    "32bit": {
+      "url": "https://resoph.com/ResophNotes/Welcome_files/ResophNotesPortable170-32.zip",
+      "hash": "f8926e985fb31972ec34f0840009a4f7bd8aaa8fa2ba8f6cb2faf08302711cb5"
+    }
+  },
+  "extract_dir": "ResophNotes",
+  "persist": ".ResophNotes",
+  "bin": "ResophNotes.exe",
+  "shortcuts": [
+    [
+      "ResophNotes.exe",
+      "ResophNotes"
+    ]
+  ],
+  "checkver": {
+    "url": "https://resoph.com/ResophNotes/Welcome.html",
+    "re": "Ver.[ ]*([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://resoph.com/ResophNotes/Welcome_files/ResophNotesPortable$cleanVersion.zip"
+      },
+      "32bit": {
+        "url": "https://resoph.com/ResophNotes/Welcome_files/ResophNotesPortable$cleanVersion-32.zip"
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "version": "1.02",
+  "description": "SSS 東北イタコ　連続音（通常＋強音源＋弱音源）＋単独音",
+  "homepage": "https://zunko.jp/con_voice.html#itako_utau",
+  "license": [
+    {
+      "identifier": "Proprietary",
+      "url": "https://zunko.jp/guideline.html"
+    }
+  ],
+  "url": "https://zunko.jp/sozai/utau/TohokuItako_VCV_and_CV_All_ver1.02.zip",
+  "hash": "4f0de23f022be07ff548142a89a22303e82b711f4f8dfb5c9b31087fa0ede1f0",
+  "extract_to": "voice",
+  "suggest": {
+    "UTAU": [
+      "utau",
+      "dtm/utau"
+    ]
+  },
+  "installer": {
+    "script": [
+      "Copy-Item -Force -Recurse -Path \"${dir}\\voice\\*\" -Destination \"${persist_dir}\\..\\utau\\utau\\voice\"",
+      "Remove-Item -Force -Recurse -Path \"${dir}\\voice\\東北イタコ *ver1.02\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Remove-Item -Force -Recurse -Path \"${persist_dir}\\..\\utau\\utau\\voice\\東北イタコ *ver1.02\""
+    ]
+  }
+}

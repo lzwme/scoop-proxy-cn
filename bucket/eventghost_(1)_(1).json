@@ -1,0 +1,89 @@
+{
+  "version": "0.4.1.r1722",
+  "description": "Advanced, yet easy-to-use extensible automation tool for Windows.",
+  "homepage": "https://github.com/EventGhost/EventGhost/releases/latest",
+  "license": {
+    "identifier": "GPL-2.0-only",
+    "url": "https://github.com/EventGhost/EventGhost/blob/master/gpl-2.0.md"
+  },
+  "depends": "innounp",
+  "url": "https://ghproxy.net/https://github.com/EventGhost/EventGhost/releases/download/v0.4.1.r1722/EventGhost_0.4.1.r1722_Setup.exe",
+  "hash": "43824B90CCD778BA9B1780E0916548896A0287CE110AA98AECEE0AA9D3CDCFB2",
+  "installer": {
+    "script": [
+      "Expand-InnoArchive -Path \"$dir\\$fname\" -DestinationPath \"$dir\" -ExtractDir \"{app}\" -Removal"
+    ]
+  },
+  "shortcuts": [
+    [
+      "EventGhost.exe",
+      "EventGhost"
+    ]
+  ],
+  "post_install": [
+    "$ApplicationData = [Environment]::GetFolderPath(\"ApplicationData\")",
+    "$linkPath = \"$ApplicationData\\EventGhost\"",
+    "$targetPath = \"$persist_dir\\AppData\"",
+    "If(Test-path $targetPath) {",
+    "    If(Test-path $linkPath) {",
+    "        Remove-Item -LiteralPath \"$linkPath\" -Force -Recurse -ErrorAction SilentlyContinue",
+    "    }",
+    "} else {",
+    "    If(Test-path $linkPath) {",
+    "        md \"$persist_dir\" | out-null",
+    "        Copy-Item -Path \"$linkPath\" -Destination \"$targetPath\" -Recurse",
+    "        Remove-Item -LiteralPath \"$linkPath\" -Force -Recurse -ErrorAction SilentlyContinue",
+    "    } else {",
+    "        md \"$targetPath\" | out-null",
+    "    }",
+    "}",
+    "& \"$env:COMSPEC\" /c \"mklink /j `\"$linkPath`\" `\"$targetPath`\"\" | out-null",
+    "attrib \"$linkPath\" +R /L",
+    "",
+    "$zipPath = \"$persist_dir\\EventGhost_CommonAppData_Backup.zip\"",
+    "If(Test-path $zipPath) {",
+    "    $CommonAppDataPath = [Environment]::GetFolderPath(\"CommonApplicationData\")",
+    "    $extractPath = \"$CommonAppDataPath\\EventGhost\"",
+    "    If(Test-path $extractPath) {",
+    "        Remove-Item -LiteralPath \"$extractPath\" -Force -Recurse -ErrorAction SilentlyContinue",
+    "    }",
+    "    Add-Type -assembly \"system.io.compression.filesystem\"",
+    "    [io.compression.zipfile]::ExtractToDirectory($zipPath, $extractPath)",
+    "}"
+  ],
+  "uninstaller": {
+    "script": [
+      "$ApplicationData = [Environment]::GetFolderPath(\"ApplicationData\")",
+      "$linkPath = \"$ApplicationData\\EventGhost\"",
+      "If(Test-path $linkPath) {",
+      "    attrib $linkPath -R /L",
+      "    & \"$env:COMSPEC\" /c \"rmdir `\"$linkPath`\"\"",
+      "}",
+      "",
+      "$CommonAppDataPath = [Environment]::GetFolderPath(\"CommonApplicationData\")",
+      "$sourcePath = \"$CommonAppDataPath\\EventGhost\"",
+      "If(Test-path $sourcePath) {",
+      "    $zipPath = \"$persist_dir\\EventGhost_CommonAppData_Backup.zip\"",
+      "    If(Test-path $zipPath) {",
+      "        Remove-Item -LiteralPath \"$zipPath\" -Force -ErrorAction SilentlyContinue",
+      "    }",
+      "    Add-Type -assembly \"system.io.compression.filesystem\"",
+      "    [io.compression.zipfile]::CreateFromDirectory($sourcePath, $zipPath)",
+      "    ## Remove the # if you want to delete the common application data for all users.",
+      "    #Remove-Item -LiteralPath \"$sourcePath\" -Force -Recurse -ErrorAction SilentlyContinue",
+      "}",
+      "## If exists, delete autostart shortcut in users startup directory.",
+      "$startup = [environment]::getfolderpath(\"Startup\")",
+      "If(Test-path $startup\\EventGhost.lnk) {",
+      "    Remove-Item -LiteralPath \"$startup\\EventGhost.lnk\"",
+      "}"
+    ]
+  },
+  "checkver": {
+    "url": "https://github.com/EventGhost/EventGhost/releases/latest",
+    "regex": "<title>Release (?:v|V)?([\\d.r]+)"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/EventGhost/EventGhost/releases/download/v$version/EventGhost_$version_Setup.exe"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "version": "0.2.0",
+  "description": "seek - color-grep for ansi/utf8 (Windows)",
+  "homepage": "https://github.com/hymkor/seek",
+  "license": "BSD 3-Clause \"New\" or \"Revised\" License",
+  "architecture": {
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/hymkor/seek/releases/download/v0.2.0/seek-v0.2.0-windows-386.zip",
+      "hash": "c7285ec43fe30e4825bacfe80f4749f7a7522f744d330dcbeaf1165c02d4e169"
+    },
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/hymkor/seek/releases/download/v0.2.0/seek-v0.2.0-windows-amd64.zip",
+      "hash": "9ddb1092239a684746d13def56deb86e83f3edcbbc3b6352f99c3041c6869f5f"
+    }
+  },
+  "bin": [
+    "seek.exe"
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/hymkor/seek/releases/download/v$version/seek-v$version-windows-386.zip"
+      },
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/hymkor/seek/releases/download/v$version/seek-v$version-windows-amd64.zip"
+      }
+    }
+  }
+}

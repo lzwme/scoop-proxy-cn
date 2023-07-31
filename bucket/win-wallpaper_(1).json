@@ -1,0 +1,28 @@
+{
+  "version": "3.0.2",
+  "description": " Manage the desktop wallpaper on Windows",
+  "homepage": "https://github.com/sindresorhus/win-wallpaper",
+  "license": "MIT License",
+  "url": "https://ghproxy.net/https://github.com/sindresorhus/win-wallpaper/releases/download/v3.0.2/wallpaper-x86_64-pc-windows.zip",
+  "hash": "7a5cd01aa0ad88296a6411f4ad017cfdbe3a28e9c877f1c033ea8963442cb165",
+  "bin": [
+    "wallpaper.exe",
+    [
+      "wallpaper.exe",
+      "wallpaper"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "wallpaper.exe",
+      "wallpaper"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/sindresorhus/win-wallpaper/releases/latest",
+    "regex": "\\/releases\\/tag\\/(?:v|V)?([\\d.]+\\-[a-z]+\\.[\\d]+)"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/sindresorhus/win-wallpaper/releases/download/v$version/wallpaper-x86_64-pc-windows.zip"
+  }
+}

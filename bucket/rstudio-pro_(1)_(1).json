@@ -1,0 +1,45 @@
+{
+  "version": "1.5.233-9",
+  "homepage": "https://www.rstudio.com/",
+  "description": "An IDE for R, which includes a console, syntax-highlighting editor that supports direct code execution, as well as tools for plotting, history, debugging and workspace management.",
+  "license": "AGPL-3.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://s3.amazonaws.com/rstudio-ide-build/desktop/windows/RStudio-pro-1.5.233-9.zip",
+      "hash": "f0c1ebb38246abee014ab2ee95a85421fad22f1cd700749911dc9dc1a744a867",
+      "post_install": [
+        "if (!(Test-Path \"$env:Appdata\\RStudio\")) {",
+        "    New-Item \"$env:Appdata\\RStudio\" -ItemType Directory -Force | Out-Null",
+        "    @(",
+        "        '[General]'",
+        "        \"RBinDir=`\"$(appdir r $global)\\current\\bin\\x64`\"\".Replace('\\', '/')",
+        "    ) | Add-Content -Path \"$env:Appdata\\RStudio\\desktop.ini\" -Encoding UTF8 -Force",
+        "}"
+      ]
+    }
+  },
+  "depends": "r",
+  "bin": [
+    [
+      "bin\\rstudio.exe",
+      "rstudio"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "bin\\rstudio.exe",
+      "RStudio Pro"
+    ]
+  ],
+  "checkver": {
+    "url": "https://dailies.rstudio.com/rstudio/pro/windows/xcopy/",
+    "regex": "RStudio-pro-([\\d\\.\\-]+).zip"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://s3.amazonaws.com/rstudio-ide-build/desktop/windows/RStudio-pro-$matchHead$matchTail.zip"
+      }
+    }
+  }
+}

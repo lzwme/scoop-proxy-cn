@@ -1,0 +1,36 @@
+{
+  "version": "11.1.12.1692",
+  "description": "Thunder 3rd party modified version, maintained by 423down.com.",
+  "homepage": "https://www.xunlei.com",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "http://i.xunlei.com/policy/agreement.html"
+  },
+  "url": "https://pan.jiemi.workers.dev/?file=/wenlei/Thunder_11_v11.1.12.1692_NoAD_SVIP_Green.7z",
+  "hash": "0e79ff37c9e1fc3ed1a766154d71dff55a1b63a4756545c27ef9c3a5b867db35",
+  "extract_dir": "Thunder",
+  "installer": {
+    "script": [
+      "Copy-Item \"$bucketsdir\\$bucket\\scripts\\thunder11\\install.bat\" \"$dir\\install.bat\" -ErrorAction 'SilentlyContinue' -Force | Out-Null",
+      "Copy-Item \"$bucketsdir\\$bucket\\scripts\\thunder11\\uninstall.bat\" \"$dir\\uninstall.bat\" -ErrorAction 'SilentlyContinue' -Force | Out-Null",
+      "Start-Process \"$dir\\install.bat\" -WorkingDirectory \"$dir\" -Wait -ErrorAction 'SilentlyContinue' | Out-Null"
+    ]
+  },
+  "uninstaller": {
+    "script": "Start-Process \"$dir\\uninstall.bat\" -WorkingDirectory \"$dir\" -Wait -ErrorAction 'SilentlyContinue' | Out-Null"
+  },
+  "shortcuts": [
+    [
+      "Program\\Thunder.exe",
+      "Thunder\\Thunder 11"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/oneindex.txt",
+    "regex": "Thunder_11_v([\\d.]+)_NoAD_SVIP_Green\\.7z",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/wenlei/Thunder_11_v$version_NoAD_SVIP_Green.7z"
+  }
+}

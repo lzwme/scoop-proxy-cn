@@ -1,0 +1,22 @@
+{
+  "version": "0.4",
+  "description": "A plugin to allow other plugins to check for updates on SourceForge",
+  "homepage": "https://sourceforge.net/projects/kpsfupdatechecker/",
+  "license": "Unknown",
+  "depends": "keepass",
+  "url": "https://downloads.sourceforge.net/project/kpsfupdatechecker/v0.4/SourceForgeUpdateChecker-v0.4.zip",
+  "hash": "sha1:27da47407642def0af9b087e741fb7543aff49b6",
+  "installer": {
+    "script": "Copy-Item \"$dir\\SourceForgeUpdateChecker.plgx\" \"$(appdir keepass $global)\\current\\Plugins\""
+  },
+  "uninstaller": {
+    "script": "Remove-Item \"$(appdir keepass $global)\\current\\Plugins\\SourceForgeUpdateChecker.plgx\""
+  },
+  "checkver": {
+    "url": "https://sourceforge.net/projects/kpsfupdatechecker/rss?path=/",
+    "regex": "SourceForgeUpdateChecker-v([\\d.]+)\\.zip"
+  },
+  "autoupdate": {
+    "url": "https://downloads.sourceforge.net/project/kpsfupdatechecker/v$version/SourceForgeUpdateChecker-v$version.zip"
+  }
+}

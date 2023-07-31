@@ -1,0 +1,15 @@
+{
+  "version": "1.2021.11.30",
+  "description": "Disable automatic restart after installing Windows updates.",
+  "homepage": "https://ghproxy.net/https://raw.githubusercontent.com/issaclin32/scoop-systemtweaks/master/scripts/dummy.txt",
+  "license": "Unlicense",
+  "url": "https://ghproxy.net/https://raw.githubusercontent.com/issaclin32/scoop-bucket/master/scripts/windows-update-no-restart.reg",
+  "hash": "bc0673edda5d66922aed21f9b332dd20fd6422d76120fe12f71133c85523121a",
+  "pre_install": [
+    "if (!(is_admin)) {",
+    "    error 'This package requires Admin rights to install'",
+    "    break",
+    "}",
+    "Invoke-ExternalCommand reg -ArgumentList('import', \"$dir\\windows-update-no-restart.reg\") | Out-Null"
+  ]
+}

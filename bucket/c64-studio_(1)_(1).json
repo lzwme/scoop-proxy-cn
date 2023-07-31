@@ -1,0 +1,23 @@
+{
+  "description": "C64 Studio - .NET based IDE for C64 development",
+  "version": "6.6",
+  "homepage": "http://www.georg-rottensteiner.de",
+  "url": "http://www.georg-rottensteiner.de/files/C64StudioRelease.zip",
+  "hash": "7D07D6E7BD298C43970F1E86FE1C6EBD53B54C3DEC5E82E46D315911C08D377E",
+  "extract_dir": "C64StudioRelease",
+  "bin": "C64Studio.exe",
+  "persist": [
+    "settings.dat"
+  ],
+  "shortcuts": [
+    [
+      "C64Studio.exe",
+      "C64 Studio"
+    ]
+  ],
+  "pre_install": [
+    "if (!(Test-Path \"$dir\\settings.dat\")) {",
+    "    (Set-Content -Value \"\" -Path \"$dir\\settings.dat\") | Out-Null",
+    "}"
+  ]
+}

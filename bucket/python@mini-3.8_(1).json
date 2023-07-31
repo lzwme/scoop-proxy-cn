@@ -1,0 +1,38 @@
+{
+  "homepage": "https://conda.io/miniconda.html",
+  "homepage:core": "https://python.org",
+  "license": "BSD 3-Clause",
+  "version": "3.8.3",
+  "architecture": {
+    "64bit": {
+      "url": "https://repo.anaconda.com/miniconda/Miniconda3-py38_4.8.3-Windows-x86_64.exe",
+      "hash": "sha256:1f4ff67f051c815b6008f144fdc4c3092af2805301d248b56281c36c1f4333e5"
+    },
+    "32bit": {
+      "url": "https://repo.anaconda.com/miniconda/Miniconda3-py38_4.8.3-Windows-x86.exe",
+      "hash": "sha256:415920293ae005a17afaef4c275bd910b06c07d8adf5e0cbc9c69f0f890df976"
+    }
+  },
+  "installer": {
+    "args": [
+      "/S",
+      "/InstallationType=$(@{$true='AllUsers';$false='JustMe'}[$global])",
+      "/AddToPath=0",
+      "/RegisterPython=0",
+      "/D=$dir"
+    ]
+  },
+  "bin": [
+    "python.exe",
+    "pythonw.exe",
+    "Lib\\idlelib\\idle.bat",
+    [
+      "Lib\\idlelib\\idle.bat",
+      "idle3"
+    ]
+  ],
+  "env_add_path": [
+    "library/bin",
+    "scripts"
+  ]
+}

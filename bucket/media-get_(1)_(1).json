@@ -1,0 +1,19 @@
+{
+  "homepage": "https://github.com/foamzou/media-get",
+  "description": "在给定的 url 里解析出媒体文件，例如音频视频",
+  "version": "0.2.10",
+  "license": "Apache-2.0",
+  "url": "https://ghproxy.net/https://github.com/foamzou/media-get/releases/download/v0.2.10/media-get-0.2.10-win.exe",
+  "hash": "802b351b0ea3933fd3cc65c50117d1eb43e029e67ff1bae3c779618676900fa3",
+  "pre_install": "Rename-Item \"$dir\\media-get-$version-win.exe\" media-get.exe",
+  "bin": [
+    [
+      "media-get.exe",
+      "media-get"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/foamzou/media-get/releases/download/v$version/media-get-$version-win.exe"
+  }
+}

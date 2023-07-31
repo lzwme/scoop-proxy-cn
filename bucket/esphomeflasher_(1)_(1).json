@@ -1,0 +1,26 @@
+{
+  "homepage": "https://github.com/esphome/esphome-flasher",
+  "license": "MIT",
+  "version": "1.4.0",
+  "url": "https://ghproxy.net/https://github.com/esphome/esphome-flasher/releases/download/1.4.0/ESPHome-Flasher-1.4.0-windows-x64.exe",
+  "hash": "1fde3b0d854fa4767aa453be90d428ddbf5a8a049a459188e721b26ac08751ed",
+  "pre_install": "Move-Item $dir/ESPHome-Flasher-*-windows-x64.exe $dir/esphomeflasher.exe",
+  "bin": [
+    [
+      "esphomeflasher.exe",
+      "esphomeflasher"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "esphomeflasher.exe",
+      "ESPHomeFlasher"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/esphome/esphome-flasher"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/esphome/esphome-flasher/releases/download/$version/ESPHome-Flasher-$version-windows-x64.exe"
+  }
+}

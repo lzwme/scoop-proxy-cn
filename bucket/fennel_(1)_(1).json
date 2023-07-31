@@ -1,0 +1,27 @@
+{
+  "homepage": "https://fennel-lang.org/",
+  "version": "1.3.0",
+  "description": "Fennel is a programming language that brings together the speed, simplicity, and reach of Lua with the flexibility of a lisp syntax and macro system.",
+  "license": "MIT License",
+  "url": "https://fennel-lang.org/downloads/fennel-1.3.0-windows32.exe",
+  "hash": "1fe68fc43b0b547250401ea9c056106320e927a9c4700d67afba447823dc4e11",
+  "bin": [
+    [
+      "fennel-1.3.0-windows32.exe",
+      "fennel"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/bakpakin/Fennel/tags",
+    "regex": "/bakpakin/Fennel/releases/tag/([^\"]*)"
+  },
+  "autoupdate": {
+    "url": "https://fennel-lang.org/downloads/fennel-$version-windows32.exe",
+    "bin": [
+      [
+        "fennel-$version-windows32.exe",
+        "fennel"
+      ]
+    ]
+  }
+}

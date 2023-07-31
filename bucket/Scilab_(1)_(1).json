@@ -1,0 +1,37 @@
+{
+  "homepage": "https://www.scilab.org",
+  "description": "Open source software for numerical computation",
+  "version": "2023.1.0",
+  "license": "GPL-2.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://www.scilab.org/download/2023.1.0/scilab-2023.1.0.bin.x64.exe",
+      "hash": "0e1b2ac60dcf0b9dcce52fa33b9511432528fcbd543bdf13a057723288bb19a4"
+    }
+  },
+  "installer": {
+    "args": [
+      "/VERYSILENT",
+      "/DIR=$dir"
+    ]
+  },
+  "uninstaller": {
+    "file": "unins000.exe",
+    "args": [
+      "/VERYSILENT",
+      "/CLOSEAPPLICATIONS",
+      "/FORCECLOSEAPPLICATIONS"
+    ]
+  },
+  "checkver": {
+    "url": "https://www.scilab.org/",
+    "regex": "Scilab ([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://www.scilab.org/download/$version/scilab-$version.bin.x64.exe"
+      }
+    }
+  }
+}

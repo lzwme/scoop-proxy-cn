@@ -1,0 +1,52 @@
+{
+  "architecture": {
+    "32bit": {
+      "bin": "IDE\\bin\\idea.exe",
+      "shortcuts": [
+        [
+          "IDE\\bin\\idea.exe",
+          "JetBrains\\IntelliJ IDEA Community"
+        ]
+      ]
+    },
+    "64bit": {
+      "bin": [
+        "IDE\\bin\\idea64.exe",
+        [
+          "IDE\\bin\\idea64.exe",
+          "idea"
+        ]
+      ],
+      "shortcuts": [
+        [
+          "IDE\\bin\\idea64.exe",
+          "JetBrains\\IntelliJ IDEA Community"
+        ]
+      ]
+    }
+  },
+  "autoupdate": {
+    "hash": {
+      "url": "$url.sha256"
+    },
+    "url": "https://download.jetbrains.com/idea/ideaIC-$matchHead.win.zip"
+  },
+  "changelog": "https://www.jetbrains.com/idea/whatsnew/",
+  "checkver": {
+    "regex": "version\":\"(?<ver>[\\d.]+)\".*\"build\":\"(?<build>[\\d.]+)\"",
+    "replace": "${ver}-${build}",
+    "url": "https://data.services.jetbrains.com/products/releases?code=IIC&latest=true&platform=zip&type=release"
+  },
+  "description": "IntelliJ IDEA Community. Cross-Platform Java IDE for professional developers by JetBrains.",
+  "extract_to": "IDE",
+  "hash": "6068a132b5685f35c27d22543909480976d60ab52a777bd4f9a5e297caae1f8d",
+  "homepage": "https://www.jetbrains.com/idea/",
+  "license": {
+    "identifier": "Apache-2.0",
+    "url": "https://sales.jetbrains.com/hc/en-gb/articles/115001015290-Where-can-I-find-the-EULA-End-User-License-Agreement-"
+  },
+  "persist": "IDE\\bin\\idea.properties",
+  "pre_install": "Remove-Item \"$dir\\IDE\\`$*\" -Force -Recurse",
+  "url": "https://download.jetbrains.com/idea/ideaIC-2023.1.1.win.zip",
+  "version": "2023.1.1-231.8770.65"
+}

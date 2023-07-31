@@ -1,0 +1,24 @@
+{
+  "homepage": "https://github.com/cross-rs/cross",
+  "version": "0.2.5",
+  "license": "Apache-2.0",
+  "description": "Zero setup cross compilation and cross testing of Rust crates",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/cross-rs/cross/releases/download/v0.2.5/cross-x86_64-pc-windows-msvc.tar.gz",
+      "hash": "3d4d6dbebf448b1f6856c662b2b342db0a7f6827e91ed88e2bf0e5ca00a30a81"
+    }
+  },
+  "bin": [
+    "cross.exe",
+    "cross-util.exe"
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/cross-rs/cross/releases/download/v$version/cross-x86_64-pc-windows-msvc.tar.gz"
+      }
+    }
+  }
+}

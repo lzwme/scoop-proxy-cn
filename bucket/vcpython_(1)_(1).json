@@ -1,0 +1,51 @@
+{
+  "version": "9.0",
+  "description": "Microsoft Visual C++ Compiler Package for Python 2.7",
+  "homepage": "https://www.microsoft.com/en-us/download/details.aspx?id=44266",
+  "suggest": {
+    "vcredist": "extras/vcredist2008"
+  },
+  "extract_dir": "Microsoft/Visual C++ for Python/9.0",
+  "url": "https://download.microsoft.com/download/7/9/6/796EF2E4-801B-4FC4-AB28-B59FBF6D907B/VCForPython27.msi",
+  "hash": "070474DB76A2E625513A5835DF4595DF9324D820F9CC97EAB2A596DCBC2F5CBF",
+  "architecture": {
+    "64bit": {
+      "shortcuts": [
+        [
+          "C:\\Windows\\System32\\cmd.exe",
+          "Visual C++ 2008 32-bit Command Prompt",
+          "/k \"\"$dir\\vcvarsall.bat\" x86\""
+        ],
+        [
+          "C:\\Windows\\System32\\cmd.exe",
+          "Visual C++ 2008 64-bit Cross Tools Command Prompt",
+          "/k \"\"$dir\\vcvarsall.bat\" x86_amd64\""
+        ],
+        [
+          "C:\\Windows\\System32\\cmd.exe",
+          "Visual C++ 2008 64-bit Command Prompt",
+          "/k \"\"$dir\\vcvarsall.bat\" amd64\""
+        ]
+      ]
+    },
+    "32bit": {
+      "shortcuts": [
+        [
+          "C:\\Windows\\SysWOW64\\cmd.exe",
+          "Visual C++ 2008 32-bit Command Prompt",
+          "/k \"\"$dir\\vcvarsall.bat\" x86\""
+        ],
+        [
+          "C:\\Windows\\SysWOW64\\cmd.exe",
+          "Visual C++ 2008 64-bit Cross Tools Command Prompt",
+          "/k \"\"$dir\\vcvarsall.bat\" x86_amd64\""
+        ],
+        [
+          "C:\\Windows\\SysWOW64\\cmd.exe",
+          "Visual C++ 2008 64-bit Command Prompt",
+          "/k \"\"$dir\\vcvarsall.bat\" amd64\""
+        ]
+      ]
+    }
+  }
+}

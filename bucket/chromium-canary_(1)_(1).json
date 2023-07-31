@@ -1,0 +1,46 @@
+{
+  "##": [
+    "https://chromium.googlesource.com/chromium/src/+/refs/heads/main/docs/useful_urls.md",
+    "https://chromium.woolyss.com/"
+  ],
+  "version": "1140473",
+  "description": "An open-source browser project that aims to build a safer, faster, and more stable way for all users to experience the web.",
+  "homepage": "https://www.chromium.org",
+  "license": "BSD-3-Clause",
+  "architecture": {
+    "64bit": {
+      "url": "https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Win_x64%2F1140473%2Fchrome-win.zip?alt=media",
+      "hash": "b60cd9530244272808cfac8a4139056f40b285e345021d9cbe87c48233017a6c"
+    }
+  },
+  "extract_dir": "chrome-win",
+  "bin": [
+    [
+      "chrome.exe",
+      "chrome",
+      "--no-sandbox"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "chrome.exe",
+      "Chromium",
+      "--no-sandbox"
+    ]
+  ],
+  "checkver": {
+    "url": "https://chromium.woolyss.com/api/v3/?os=windows&bit=64&out=json",
+    "jsonpath": "$.chromium.windows.revision"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Win_x64%2F$version%2Fchrome-win.zip?alt=media"
+      }
+    }
+  },
+  "notes": [
+    "The browser uses the --no-sandbox command-line switch to bypass a crash on launch",
+    "This is due to chrome.exe being on a symlinked path (see: https://bugs.chromium.org/p/chromium/issues/detail?id=1278166)"
+  ]
+}

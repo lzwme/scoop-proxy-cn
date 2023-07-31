@@ -1,0 +1,36 @@
+{
+  "version": "9.4.363.0",
+  "description": "Third-party modifications of PDF-XChange Editor, maintained by 423down.com.",
+  "homepage": "https://www.tracker-software.com/product/pdf-xchange-editor",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://www.tracker-software.com/PDF_VE.pdf"
+  },
+  "notes": "Features: <https://www.423down.com/8466.html>",
+  "url": "https://pan.jiemi.workers.dev/?file=/zd423/PDF-XChange_Editor_Plus_9.4.363.0_Green.7z",
+  "hash": "303a1d2b8c9d741565741015720da7f0d8455bc19f1e1f6654d58100759b197b",
+  "extract_dir": "PDFEditor",
+  "pre_install": [
+    "if(!(Test-Path \"$persist_dir\\History.dat\")) { New-Item \"$dir\\History.dat\" | Out-Null }",
+    "if(!(Test-Path \"$persist_dir\\Settings.dat\")) { New-Item \"$dir\\Settings.dat\" | Out-Null }"
+  ],
+  "bin": "PDFXEdit.exe",
+  "shortcuts": [
+    [
+      "PDFXEdit.exe",
+      "PDF-XChange Editor"
+    ]
+  ],
+  "persist": [
+    "History.dat",
+    "Settings.dat"
+  ],
+  "checkver": {
+    "url": "https://github.com/ryanjiena/metaversion/raw/main/oneindex.txt",
+    "regex": "(?s)(?<filename>PDF-XChange_Editor_Plus_([\\d.]+)_Green\\.(?:exe|zip|7z))",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/zd423/$matchFilename"
+  }
+}

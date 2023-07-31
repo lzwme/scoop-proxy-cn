@@ -1,0 +1,36 @@
+{
+  "version": "23.04.1",
+  "description": "Kdenlive. Video editing software based on the MLT Framework, KDE and Qt",
+  "homepage": "https://kdenlive.org",
+  "license": "GPL-2.0-only",
+  "changelog": "https://kdenlive.org/en/category/news/releases/",
+  "architecture": {
+    "64bit": {
+      "url": "https://download.kde.org/stable/kdenlive/23.04/windows/kdenlive-23.04.1_standalone.exe#/dl.7z",
+      "hash": "05ed115934548670fd02856526a55c8ecfebed1e22b9d364782566ad810e7637"
+    }
+  },
+  "extract_dir": "kdenlive-23.04.1_standalone",
+  "bin": "bin\\kdenlive.exe",
+  "shortcuts": [
+    [
+      "bin\\kdenlive.exe",
+      "Kdenlive"
+    ]
+  ],
+  "checkver": {
+    "url": "https://kdenlive.org/en/download/",
+    "regex": "kdenlive-([\\d.\\-]+)_standalone\\.exe"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://download.kde.org/stable/kdenlive/$majorVersion.$minorVersion/windows/kdenlive-$version_standalone.exe#/dl.7z"
+      }
+    },
+    "hash": {
+      "url": "$url.sha256"
+    },
+    "extract_dir": "kdenlive-$version_standalone"
+  }
+}

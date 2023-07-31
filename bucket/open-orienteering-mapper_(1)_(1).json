@@ -1,0 +1,41 @@
+{
+  "version": "0.9.5",
+  "description": "OpenOrienteering Mapper is a software for creating maps for the orienteering sport.",
+  "homepage": "https://www.openorienteering.org/apps/mapper/",
+  "license": "GPL-3.0-only",
+  "architecture": {
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/OpenOrienteering/mapper/releases/download/v0.9.5/OpenOrienteering-Mapper-0.9.5-Windows-x86.zip",
+      "hash": "c3ffb8a5c1cb3613e0728354fd0aa7df52b7741f9de46ebff37f867103469a11",
+      "extract_dir": "OpenOrienteering-Mapper-0.9.5-Windows-x86"
+    },
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/OpenOrienteering/mapper/releases/download/v0.9.5/OpenOrienteering-Mapper-0.9.5-Windows-x64.zip",
+      "hash": "288a98e079c8b6e41b08f4e34c9a5d6fb133ee663131bcc0c9d052d8b53538d5",
+      "extract_dir": "OpenOrienteering-Mapper-0.9.5-Windows-x64"
+    }
+  },
+  "bin": "Mapper.exe",
+  "shortcuts": [
+    [
+      "Mapper.exe",
+      "OpenOrienteeringMmapper"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/OpenOrienteering/mapper",
+    "regex": "tag/v([\\w.-]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/OpenOrienteering/mapper/releases/download/v$version/OpenOrienteering-Mapper-$version-Windows-x86.zip",
+        "extract_dir": "OpenOrienteering-Mapper-$version-Windows-x86"
+      },
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/OpenOrienteering/mapper/releases/download/v$version/OpenOrienteering-Mapper-$version-Windows-x64.zip",
+        "extract_dir": "OpenOrienteering-Mapper-$version-Windows-x64"
+      }
+    }
+  }
+}

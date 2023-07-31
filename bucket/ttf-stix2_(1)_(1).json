@@ -1,0 +1,75 @@
+{
+  "version": "v2.13b171",
+  "description": "OpenType Unicode fonts for Scientific, Technical, and Mathematical texts",
+  "homepage": "https://github.com/stipub/stixfonts",
+  "url": "https://github.com/stipub/stixfonts/raw/v2.13b171/zipfiles/static_ttf.zip",
+  "hash": "c9fd038ffc6cc179f402fffe1b745a9fb6b4470b5f0a8a7e5cf1d5c50d67b837",
+  "installer": {
+    "script": [
+      "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
+      "$windows11Version22H2BuildNumber = 22621",
+      "$doesPerUserFontInstallationHaveIssue = $currentBuildNumber -ge $windows11Version22H2BuildNumber",
+      "if ($doesPerUserFontInstallationHaveIssue -and !$global) {",
+      "    scoop uninstall $app",
+      "    Write-Host \"\"",
+      "    Write-Host \"Currently, on Windows 11 Version 22H2 (OS Build 22621) or later,\" -Foreground DarkRed",
+      "    Write-Host \"Font installation only works when installing font for all users.\" -Foreground DarkRed",
+      "    Write-Host \"\"",
+      "    Write-Host \"Please use following commands to install '$app' Font for all users.\" -Foreground DarkRed",
+      "    Write-Host \"\"",
+      "    Write-Host \"        scoop install sudo\"",
+      "    Write-Host \"        sudo scoop install -g $app\"",
+      "    Write-Host \"\"",
+      "    Write-Host \"See https://github.com/matthewjberger/scoop-nerd-fonts/issues/198 for more details.\" -Foreground Magenta",
+      "    exit 1",
+      "}",
+      "$windows10Version1809BuildNumber = 17763",
+      "$isPerUserFontInstallationSupported = $currentBuildNumber -ge $windows10Version1809BuildNumber",
+      "if (!$isPerUserFontInstallationSupported -and !$global) {",
+      "    scoop uninstall $app",
+      "    Write-Host \"\"",
+      "    Write-Host \"For Windows version before Windows 10 Version 1809 (OS Build 17763),\" -Foreground DarkRed",
+      "    Write-Host \"Font can only be installed for all users.\" -Foreground DarkRed",
+      "    Write-Host \"\"",
+      "    Write-Host \"Please use following commands to install '$app' Font for all users.\" -Foreground DarkRed",
+      "    Write-Host \"\"",
+      "    Write-Host \"        scoop install sudo\"",
+      "    Write-Host \"        sudo scoop install -g $app\"",
+      "    Write-Host \"\"",
+      "    exit 1",
+      "}",
+      "$fontInstallDir = if ($global) { \"$env:windir\\Fonts\" } else { \"$env:LOCALAPPDATA\\Microsoft\\Windows\\Fonts\" }",
+      "$registryRoot = if ($global) { \"HKLM\" } else { \"HKCU\" }",
+      "$registryKey = \"${registryRoot}:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts\"",
+      "New-Item $fontInstallDir -ItemType Directory -ErrorAction SilentlyContinue | Out-Null",
+      "Get-ChildItem \"$dir\\static_ttf\\*.ttf\"  | ForEach-Object {",
+      "    $value = if ($global) { $_.Name } else { \"$fontInstallDir\\$($_.Name)\" }",
+      "    New-ItemProperty -Path $registryKey -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $value -Force | Out-Null",
+      "    Copy-Item $_.FullName -Destination $fontInstallDir",
+      "    Write-Host \"$($_.Name) has been added to $fontInstallDir\"",
+      "}"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$fontInstallDir = if ($global) { \"$env:windir\\Fonts\" } else { \"$env:LOCALAPPDATA\\Microsoft\\Windows\\Fonts\" }",
+      "$registryRoot = if ($global) { \"HKLM\" } else { \"HKCU\" }",
+      "$registryKey = \"${registryRoot}:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts\"",
+      "Get-ChildItem \"$dir\\static_ttf\\*.ttf\" | ForEach-Object {",
+      "    Remove-ItemProperty -Path $registryKey -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
+      "    Remove-Item \"$fontInstallDir\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
+      "    Write-Host \"$($_.Name) has been remove from $fontInstallDir\"",
+      "}",
+      "if ($cmd -eq \"uninstall\") {",
+      "    Write-Host \"The '$app' Font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta",
+      "}"
+    ]
+  },
+  "checkver": {
+    "url": "https://api.github.com/repos/stipub/stixfonts/releases/latest",
+    "jsonpath": "$.tag_name"
+  },
+  "autoupdate": {
+    "url": "https://github.com/stipub/stixfonts/raw/$version/zipfiles/static_ttf.zip"
+  }
+}

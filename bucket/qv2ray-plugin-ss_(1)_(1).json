@@ -1,0 +1,43 @@
+{
+  "version": "3.0.0",
+  "description": "ShadowSocks SIP003 plugin for Qv2ray",
+  "homepage": "https://github.com/Qv2ray/QvPlugin-SS",
+  "license": "GPL-3.0-or-later",
+  "depends": "mochi/qv2ray",
+  "architecture": {
+    "64bit": {
+      "url": "https://download.fastgit.org/Qv2ray/QvPlugin-SS/releases/download/v3.0.0/QvPlugin-SS.v3.0.0.Windows-x64.dll",
+      "hash": "92c46cf8cde9125cac4978d32147a3341c2e64729e7a33bdc575bbfb8058c5f1"
+    },
+    "32bit": {
+      "url": "https://download.fastgit.org/Qv2ray/QvPlugin-SS/releases/download/v3.0.0/QvPlugin-SS.v3.0.0.Windows-x86.dll",
+      "hash": "a1b0a57c292465301f0921bf0bc3fe35155e05b1ef3d2fb4cfb5710b013699de"
+    }
+  },
+  "installer": {
+    "script": [
+      "function LinkFile([String] $file, [String] $source = $file) {",
+      "    Write-Host \"Creating hardlink for $file\"",
+      "    New-Item -Force -ItemType HardLink -Path \"$(appdir qv2ray $global)\\current\\config\\plugins\" -Name $file -Target \"$dir\\$source\" | Out-Null",
+      "}",
+      "LinkFile 'ss.dll' '*.dll'"
+    ]
+  },
+  "uninstaller": {
+    "script": "Remove-Item \"$(appdir qv2ray $global)\\current\\config\\plugins\\ss.dll\" -Force"
+  },
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://download.fastgit.org/Qv2ray/QvPlugin-SS/releases/download/v$version/QvPlugin-SS.v$version.Windows-x64.dll"
+      },
+      "32bit": {
+        "url": "https://download.fastgit.org/Qv2ray/QvPlugin-SS/releases/download/v$version/QvPlugin-SS.v$version.Windows-x86.dll"
+      }
+    },
+    "hash": {
+      "url": "https://ghproxy.net/https://github.com/Qv2ray/QvPlugin-SS/releases/download/v$version/sha256.list"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "description": "Ping pong delay effect",
+  "version": "1.2",
+  "license": {
+    "identifier": "Freeware"
+  },
+  "url": "https://vst.saschart.com/members/download.php?file=pongDelay%202.zip#/dl.7z",
+  "hash": "4d5d8deedbe2f8c2a7c8d6dda417fccd2ad8c13d07ba71445b69ccaa8f17e497",
+  "post_install": [
+    "New-Item -ErrorAction Ignore $env:USERPROFILE\\.vst -ItemType Directory",
+    "New-Item -Type Junction -Path $env:USERPROFILE\\.vst\\pong-delay2 -Value $dir"
+  ],
+  "uninstaller": {
+    "script": [
+      "(Get-Item $env:USERPROFILE\\.vst\\pong-delay2).Delete()"
+    ]
+  },
+  "##": "NOTE: バージョンをチェックする手段がない"
+}

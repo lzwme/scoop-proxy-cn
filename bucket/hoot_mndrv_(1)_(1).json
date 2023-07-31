@@ -1,0 +1,24 @@
+{
+  "version": "20120513",
+  "homepage": "http://dmpsoft.s17.xrea.com/hoot/",
+  "description": "mndrv for hoot.",
+  "url": "http://dmpsoft.s17.xrea.com/data/mndrv20120513.7z",
+  "hash": "2dd2d3cd288e4f76a318010bac008a2469930b02af7909ce03e846f464efed67",
+  "pre_install": [
+    "if ( -not ( Test-Path $dir\\..\\..\\hoot\\current ) ) {",
+    "   scoop install hoot",
+    "}"
+  ],
+  "installer": {
+    "script": [
+      "Copy-Item $dir\\mndrv.bin $dir\\..\\..\\hoot\\current"
+    ]
+  },
+  "checkver": {
+    "url": "http://dmpsoft.s17.xrea.com/hoot/",
+    "re": "/data/mndrv([\\d.]+).7z"
+  },
+  "autoupdate": {
+    "url": "http://dmpsoft.s17.xrea.com/data/mndrv$version.7z"
+  }
+}

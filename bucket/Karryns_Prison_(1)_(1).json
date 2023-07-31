@@ -1,0 +1,24 @@
+{
+  "homepage": "https://www.patreon.com/posts/36519090",
+  "description": "Karryn's Prison by Remtairy",
+  "license": "Freeware",
+  "version": ".5a",
+  "url": "https://mega.nz",
+  "hash": "",
+  "shortcuts": [
+    [
+      "Karryns_Prison\\nw.exe",
+      "Karryn's Prison"
+    ]
+  ],
+  "pre_install": [
+    "Start-Process -NoNewWindow \"$(appdir MEGAcmd)\\current\\MEGAcmdServer.exe\"",
+    "mega-get https://mega.nz/file/UOx3RbJJ#Fipf83dQmgsoJhS-ovlyN66vQEXPfgrupU4C6HdxWgk $cachedir\\$app#$version#https_mega.nz_file_UOx3RbJJ_Fipf83dQmgsoJhS-ovlyN66vQEXPfgrupU4C6HdxWgk"
+  ],
+  "installer": {
+    "script": "7z x $cachedir\\$app#$version#https_mega.nz_file_UOx3RbJJ_Fipf83dQmgsoJhS-ovlyN66vQEXPfgrupU4C6HdxWgk * -o\"$original_dir\\$app\""
+  },
+  "post_install": "mega-quit",
+  "depends": "MEGAcmd",
+  "persist": "Karryns_Prison\\www\\save"
+}

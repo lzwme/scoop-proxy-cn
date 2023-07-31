@@ -1,0 +1,26 @@
+{
+  "version": "2.2.1",
+  "description": "Mouse without Borders (http://aka.ms/mm) is a product that makes you the captain of your computer fleet by allowing you to control up to four computers from a single mouse and keyboard. This means that with Mouse without Borders you can copy text or drag and drop files across computers.",
+  "homepage": "http://aka.ms/mm",
+  "license": "Public Domain",
+  "url": "https://ghproxy.net/https://github.com/truong2d/mm/releases/download/2.2.1/MouseWithoutBordersSetup.msi",
+  "##": "Error :( Mouse without Borders is not installed yet, please run Setup.exe first!",
+  "hash": "6698dc23f33fea1330e383b9ca5b1699fae6418a8d89e48dc119cb76654f53b1",
+  "extract_dir": "Microsoft Garage\\Mouse without Borders",
+  "bin": "MouseWithoutBorders.exe",
+  "shortcuts": [
+    [
+      "MouseWithoutBorders.exe",
+      "Mouse without Borders"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/truong2d/mm"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/truong2d/mm/releases/download/$version/MouseWithoutBordersSetup.msi"
+  },
+  "depends": "gsudo",
+  "post_install": "gsudo sc create MouseWithoutBordersSvc binPath=$dir\\MouseWithoutBordersSvc.exe",
+  "post_uninstall": "gsudo sc delete MouseWithoutBordersSvc"
+}

@@ -1,0 +1,43 @@
+{
+  "version": "11.2.1",
+  "description": "PDF Reader",
+  "homepage": "https://www.foxitsoftware.com/",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://www.foxitsoftware.com/pdf-reader/eula.html"
+  },
+  "url": "https://download3.portableapps.com/portableapps/FoxitReaderPortable/FoxitReaderPortable_11.2.1.paf.exe?20190321#/dl.7z",
+  "hash": "8112a4d85012ab7aed1bde6657331b300fc11ec23ae843294f3b2d41f0c681a1",
+  "bin": [
+    [
+      "FoxitReaderPortable.exe",
+      "FoxitReader"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "FoxitReaderPortable.exe",
+      "FoxitReaderPortable"
+    ]
+  ],
+  "pre_install": [
+    "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
+    "function DisableSplash([String] $portableappname) {",
+    "   $portableini = \"$dir\\$portableappname.ini\"",
+    "   if(!(test-path \"$portableini\")) {",
+    "#       Copy-Item \"$dir\\Other\\Source\\AppNamePortable.ini\" \"$portableini\"",
+    "       Copy-Item \"$dir\\Other\\Source\\$portableappname.ini\" \"$portableini\"",
+    "       (Get-Content \"$portableini\").replace('DisableSplashScreen=false', 'DisableSplashScreen=true') | Set-Content \"$portableini\"",
+    "   }",
+    "}",
+    "DisableSplash 'FoxitReaderPortable'"
+  ],
+  "persist": "Data",
+  "checkver": {
+    "url": "https://portableapps.com/apps/office/foxit_reader_portable",
+    "re": "Version ([\\d.]+) for Windows"
+  },
+  "autoupdate": {
+    "url": "https://download3.portableapps.com/portableapps/FoxitReaderPortable/FoxitReaderPortable_$version.paf.exe?20190321#/dl.7z"
+  }
+}

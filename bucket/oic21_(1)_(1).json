@@ -1,0 +1,22 @@
+{
+  "homepage": "https://www.oracle.com/database/technologies/instant-client.html",
+  "description": "Enables development and deployment of applications that connect to Oracle Database, either on-premise or in the Cloud",
+  "version": "21.3.0.0.0",
+  "license": "https://www.oracle.com/downloads/licenses/instant-client-lic.html",
+  "architecture": {
+    "64bit": {
+      "url": "https://download.oracle.com/otn_software/nt/instantclient/213000/instantclient-basic-windows.x64-21.3.0.0.0.zip",
+      "hash": "78A1B680E03AE550D4E1C3BF9C4F9FC091D671BAF933DCF645B19DE508C4373B"
+    }
+  },
+  "suggest": {
+    "Microsoft Visual Studio 2017 Redistributable": "vcredist2017"
+  },
+  "pre_install": "mkdir $dir\\network\\admin",
+  "extract_dir": "instantclient_21_3",
+  "env_add_path": ".",
+  "env_set": {
+    "TNS_ADMIN": "$persist_dir\\network\\admin"
+  },
+  "persist": "network\\admin"
+}

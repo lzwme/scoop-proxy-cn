@@ -1,0 +1,36 @@
+{
+  "version": "3.6.1.5687",
+  "description": "Uninstall Tool 3rd party modified version, maintained by qiquan.cc.",
+  "homepage": "https://crystalidea.com/uninstall-tool",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://crystalidea.com/eula"
+  },
+  "notes": "Features: <http://www.qiuquan.cc/systemtool/uninstall.html>",
+  "url": "https://pan.jiemi.workers.dev/?file=/qiuquan/Uninstall_Tool_3.6.1.5687_QiuQuan_20220717.exe#/Setup.exe",
+  "hash": "0e2c2dd90d45fa95085eac6c1dea5ee61efbba122625af1bfd73918ba153d57a",
+  "installer": {
+    "args": [
+      "/DIR=\"$dir\"",
+      "/SILENT"
+    ]
+  },
+  "uninstaller": {
+    "file": "UninsFile\\unins000.exe",
+    "args": "/VERYSILENT"
+  },
+  "shortcuts": [
+    [
+      "UninstallTool.exe",
+      "Uninstaller Tool"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/oneindex.txt",
+    "regex": "(?<filename>Uninstall_Tool_([\\d.]+)_QiuQuan_(?<date>\\d{8})\\.exe)",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/qiuquan/$matchFilename#/Setup.exe"
+  }
+}

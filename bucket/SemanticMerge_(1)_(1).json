@@ -1,0 +1,19 @@
+{
+  "homepage": "https://www.semanticmerge.com/",
+  "description": "Language-aware diff and merge tool",
+  "license": "Commercial",
+  "version": "2.0.149.0",
+  "url": "https://users.semanticmerge.com/Download/DownloadInstaller?platform=Windows",
+  "hash": "e20faa6319bcacfa154a29fa2f0e6aa599be772f77c7def0ce5ddbdb4a5cda5f",
+  "installer": {},
+  "uninstaller": {
+    "script": "Start-Process -Wait $env:LOCALAPPDATA\\semanticmerge\\uninstall.exe"
+  },
+  "checkver": {
+    "url": "https://users.semanticmerge.com/ReleaseNotes",
+    "regex": "/ReleaseNotes/OlderNotes\\?release=(\\d+\\.\\d+\\.\\d+\\.\\d+)"
+  },
+  "autoupdate": {
+    "url": "https://users.semanticmerge.com/Download/DownloadInstaller?platform=Windows"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "version": "2.4.0",
+  "description": "command-line software for the isolation, routing and drilling of PCBs",
+  "homepage": "https://github.com/pcb2gcode/pcb2gcode",
+  "license": "GPL-3.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/pcb2gcode/pcb2gcode/releases/download/v2.4.0/pcb2gcode-windows-2.4.0.zip",
+      "hash": "1EA54F8F3B12A890F609FB83C540F8CAE473EC919FA0F6345CFA20AE5FB8333E",
+      "extract_dir": "pcb2gcode-2.4.0"
+    }
+  },
+  "bin": [
+    "pcb2gcode.exe"
+  ],
+  "shortcuts": [
+    [
+      "pcb2gcode.exe",
+      "pcb2gcode"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/pcb2gcode/pcb2gcode/releases",
+    "re": "(?sm)pcb2gcode-windows-(?<version>[\\d.]+)\\.zip"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/pcb2gcode/pcb2gcode/releases/download/$version/pcb2gcode-windows-$version.zip",
+        "extract_dir": "pcb2gcode-version"
+      }
+    }
+  }
+}

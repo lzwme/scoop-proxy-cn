@@ -1,0 +1,28 @@
+{
+  "version": "1.2.1",
+  "description": "NCM 软件插件管理器",
+  "homepage": "https://github.com/MicroCBer/BetterNCM",
+  "license": {
+    "identifier": "GPL-3.0 license",
+    "url": "https://github.com/MicroCBer/BetterNCM/blob/v2/LICENSE"
+  },
+  "depends": "neteasemusic",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/MicroCBer/BetterNCM/releases/download/1.2.1/BetterNCMII.dll",
+      "hash": "50ffc79ca5c62cb1cae11955cf47dd0b7ff0af5920792ee805ea9c672cecce3d"
+    }
+  },
+  "pre_install": "Get-ChildItem \"$dir\\Better*.dll\" | Rename-Item -NewName 'msimg32.dll'",
+  "post_install": "Copy-Item \"$dir\\msimg32.dll\" \"$(scoop prefix neteasemusic)\"",
+  "uninstaller": {
+    "script": "Remove-Item \"$(scoop prefix neteasemusic)\\msimg32.dll\""
+  },
+  "checkver": {
+    "url": "https://api.github.com/repos/MicroCBer/BetterNCM/releases/latest",
+    "regex": "(?sm)browser_download_url.*?releases/download/([\\d.]+)/(?<file>BetterNCM(?:II)?\\.dll)"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/MicroCBer/BetterNCM/releases/download/$version/$matchFile"
+  }
+}

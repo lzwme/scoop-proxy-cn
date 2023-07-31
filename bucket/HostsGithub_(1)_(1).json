@@ -1,0 +1,50 @@
+{
+  "architecture": {
+    "64bit": {
+      "hash": "c6debcc8df47df2ef14a8e50c828bbf1e855c7eb4c96074659acc135c5fbd8a8",
+      "url": "https://ghproxy.net/https://github.com/ineo6/hosts/releases/download/v1.0.1/hosts-server-pkg-win-x64.zip"
+    },
+    "arm64": {
+      "hash": "4a6e8e71e5eb3550263681f3685015f616c88082204fcf4980ed98ae28aa0877",
+      "url": "https://ghproxy.net/https://github.com/ineo6/hosts/releases/download/v1.0.1/hosts-server-pkg-win-arm64.zip"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "hash": {
+          "find": "[\\S\\s]+ hosts-server-pkg-win-x64.zip",
+          "url": "https://ghproxy.net/https://github.com/ineo6/hosts/releases/download/v$version/sha256sums.txt"
+        },
+        "url": "https://ghproxy.net/https://github.com/ineo6/hosts/releases/download/v$version/hosts-server-pkg-win-x64.zip"
+      },
+      "arm64": {
+        "hash": {
+          "find": "[\\S\\s]+ hosts-server-pkg-win-arm64.zip",
+          "url": "https://ghproxy.net/https://github.com/ineo6/hosts/releases/download/v$version/sha256sums.txt"
+        },
+        "url": "https://ghproxy.net/https://github.com/ineo6/hosts/releases/download/v$version/hosts-server-pkg-win-arm64.zip"
+      }
+    }
+  },
+  "checkver": {
+    "github": "https://github.com/ineo6/hosts"
+  },
+  "depends": [
+    "sudo",
+    "silentcmd",
+    "hostctl"
+  ],
+  "description": "hosts-github",
+  "homepage": "https://github.com/ineo6/hosts",
+  "license": "MIT",
+  "post_install": [
+    "$null, $bucket = find_manifest($appName)",
+    "$bucketdir = Find-BucketDirectory($bucket)",
+    "$hostfile = \"$dir\\hosts\"",
+    "sudo hostctl replace github --from $hostfile",
+    "Write-Host 'DONE' -ForegroundColor Yellow",
+    "cmd /c ipconfig /flushdns"
+  ],
+  "version": "1.0.1"
+}

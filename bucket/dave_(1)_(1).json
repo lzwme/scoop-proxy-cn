@@ -1,0 +1,38 @@
+{
+  "version": "0.4.0",
+  "description": "A totally simple and very easy to configure stand alone webdav server",
+  "homepage": "https://github.com/micromata/dave",
+  "license": {
+    "identifier": "Apache-2.0",
+    "url": "https://github.com/micromata/dave/blob/main/LICENSE"
+  },
+  "changelog": "https://github.com/micromata/dave/releases/tag/v$version",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/micromata/dave/releases/download/v0.4.0/dave-0.4.0-windows-amd64.zip",
+      "bin": [
+        "dave.exe",
+        "davecli.exe"
+      ]
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/micromata/dave/releases/download/v0.4.0/dave-0.4.0-windows-386.zip",
+      "bin": [
+        "dave.exe",
+        "davecli.exe"
+      ]
+    }
+  },
+  "checkver": "github",
+  "autoupdate": {
+    "changelog": "https://github.com/micromata/dave/releases/tag/v$version",
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/micromata/dave/releases/download/v$version/dave-$version-windows-amd64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/micromata/dave/releases/download/v$version/dave-$version-windows-386.zip"
+      }
+    }
+  }
+}

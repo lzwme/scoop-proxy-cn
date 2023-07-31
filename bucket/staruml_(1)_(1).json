@@ -1,0 +1,31 @@
+{
+  "version": "5.1.0",
+  "homepage": "http://staruml.io",
+  "url": "http://staruml.io/download/releases-v5/StarUML Setup 5.1.0.exe#/StarUML.7z",
+  "hash": "eef05ce960fc292f4fa34536cae4a03eeb18ce11dfc091e764ad1c32e30d3243",
+  "checkver": "<span class=\"text-primary\">v([\\d\\.]+)</span>",
+  "autoupdate": {
+    "url": "http://staruml.io/download/releases-v5/StarUML Setup $version.exe#/StarUML.7z"
+  },
+  "architecture": {
+    "64bit": {
+      "installer": {
+        "script": "7z x $original_dir/PLUGINSDIR/app-64.7z -o\"$original_dir\""
+      }
+    },
+    "32bit": {
+      "installer": {
+        "script": "7z x $original_dir/PLUGINSDIR/app-32.7z -o\"$original_dir\""
+      }
+    }
+  },
+  "extract_dir": "$PLUGINSDIR",
+  "extract_to": "PLUGINSDIR",
+  "post_install": "rm $original_dir/PLUGINSDIR -recurse",
+  "shortcuts": [
+    [
+      "StarUML.exe",
+      "StarUML"
+    ]
+  ]
+}

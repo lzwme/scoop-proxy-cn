@@ -1,0 +1,44 @@
+{
+  "version": "4.04",
+  "license": "",
+  "url": "https://dl.xpdfreader.com/xpdf-tools-win-4.04.zip",
+  "homepage": "http://www.xpdfreader.com",
+  "hash": "60ae13d4f5988005e537d99a7e5b865e9dcfab90bcf4b9a89f920da4fe2e77d6",
+  "extract_dir": "xpdf-tools-win-4.04",
+  "architecture": {
+    "64bit": {
+      "bin": [
+        "bin64\\pdfdetach.exe",
+        "bin64\\pdffonts.exe",
+        "bin64\\pdfimages.exe",
+        "bin64\\pdfinfo.exe",
+        "bin64\\pdftohtml.exe",
+        "bin64\\pdftopng.exe",
+        "bin64\\pdftoppm.exe",
+        "bin64\\pdftops.exe",
+        "bin64\\pdftotext.exe"
+      ]
+    },
+    "32bit": {
+      "bin": [
+        "bin32\\pdfdetach.exe",
+        "bin32\\pdffonts.exe",
+        "bin32\\pdfimages.exe",
+        "bin32\\pdfinfo.exe",
+        "bin32\\pdftohtml.exe",
+        "bin32\\pdftopng.exe",
+        "bin32\\pdftoppm.exe",
+        "bin32\\pdftops.exe",
+        "bin32\\pdftotext.exe"
+      ]
+    }
+  },
+  "checkver": {
+    "url": "http://www.xpdfreader.com/download.html",
+    "re": "Current version: ([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://dl.xpdfreader.com/xpdf-tools-win-$version.zip",
+    "extract_dir": "xpdf-tools-win-$version"
+  }
+}

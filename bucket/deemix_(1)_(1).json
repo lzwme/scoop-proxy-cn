@@ -1,0 +1,33 @@
+{
+  "version": "2022.8.19",
+  "homepage": "https://deemix.app/",
+  "description": "A GUI for Deemix. The barebone deezer downloader library built from the ashes of Deezloader Remix.",
+  "license": "GPL-3.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://download.deemix.app/gui/win-x64_setup-latest.exe#dl.7z",
+      "hash": "88e0b4c4aa4ce5a42ed2f2e67a8df1646d0237ee3ec8ad2ae4cd6db94332f357"
+    }
+  },
+  "extract_dir": "$PLUGINSDIR",
+  "pre_install": "Expand-7zipArchive \"$dir\\app-64.7z\" \"$dir\" -Removal",
+  "shortcuts": [
+    [
+      "deemix-gui.exe",
+      "Deemix GUI"
+    ]
+  ],
+  "checkver": {
+    "url": "https://download.deemix.app/gui/",
+    "jsonpath": "$.data.files..modifiedTime",
+    "regex": "([\\d]+)-([\\d]+)-([\\d]+)\\w+.|:",
+    "replace": "$1.$2.$3"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://download.deemix.app/gui/win-x64_setup-latest.exe#dl.7z"
+      }
+    }
+  }
+}

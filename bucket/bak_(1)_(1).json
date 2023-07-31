@@ -1,0 +1,16 @@
+{
+  "$schema": "https://github.com/lukesampson/scoop/raw/master/schema.json",
+  "bin": [
+    "scripts/bak.ps1",
+    "scripts/rbak.ps1"
+  ],
+  "extract_to": "tmp",
+  "pre_install": [
+    "Get-Childitem –Path $dir/tmp -Recurse | ForEach-Object {",
+    "   Move-Item –Path $dir/tmp/$_ $dir/scripts",
+    "}",
+    "Remove-Item -Recurse –Path $dir/tmp"
+  ],
+  "url": "https://gist.github.com/Cologler/835e2f385d62d367e8732cced06d76fa/archive/master.zip",
+  "version": "2"
+}

@@ -1,0 +1,53 @@
+{
+  "version": "3.6.5",
+  "description": "A network protocol analyzer that lets you see what’s happening on your network at a microscopic level.",
+  "homepage": "https://www.wireshark.org/",
+  "license": "GPL-2.0-or-later",
+  "notes": [
+    "Wireshark requires the installation of Npcap. Do it manually from the 'wireshark' directory.",
+    "$dir\\npcap-installer.exe",
+    "",
+    "You can also install USBPcap from the 'wireshark' directory if you need the USB packets capture funcionality.",
+    "$dir\\USBPcapSetup-installer.exe"
+  ],
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/zzhaq/Toolbox/releases/download/v4.0/Wireshark-win64-3.6.5.exe#/dl.7z",
+      "hash": "042b59e0d28ec9147dd3f94c3f3c82e6e5c3303de50a8fbc06878de9bd3b5e68"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/zzhaq/Toolbox/releases/download/v4.0/Wireshark-win32-3.6.5.exe#/dl.7z",
+      "hash": "be617a51a4c6075c57b8335d198cb91712547e06ab599f2e8a8cfc89bab2d20f"
+    }
+  },
+  "installer": {
+    "script": [
+      "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\vcredist_x*\", \"$dir\\uninstall.exe\" -Recurse",
+      "Get-ChildItem \"$dir\\npcap-*.exe\" | Rename-Item -NewName 'npcap-installer.exe'",
+      "Get-ChildItem \"$dir\\USBPcapSetup-*.exe\" | Rename-Item -NewName 'USBPcapSetup-installer.exe'"
+    ]
+  },
+  "bin": [
+    "capinfos.exe",
+    "dumpcap.exe",
+    "editcap.exe",
+    "mergecap.exe",
+    "randpkt.exe",
+    "rawshark.exe",
+    "reordercap.exe",
+    "text2pcap.exe",
+    "tshark.exe",
+    "Wireshark.exe"
+  ],
+  "shortcuts": [
+    [
+      "Wireshark.exe",
+      "Wireshark"
+    ]
+  ],
+  "env_set": {
+    "WIRESHARK_CONFIG_DIR": "$dir\\Data",
+    "WIRESHARK_DATA_DIR": "$dir\\Data"
+  },
+  "persist": "Data"
+}

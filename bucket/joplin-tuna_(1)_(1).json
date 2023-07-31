@@ -1,0 +1,35 @@
+{
+  "architecture": {
+    "32bit": {
+      "pre_install": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-32.7z\" \"$dir\""
+    },
+    "64bit": {
+      "pre_install": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\""
+    }
+  },
+  "autoupdate": {
+    "hash": {
+      "regex": "sha512:\\s+$base64",
+      "url": "$baseurl/latest.yml"
+    },
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/github-release/laurent22/joplin/LatestRelease/Joplin-Setup-$version.exe#/dl.7z"
+  },
+  "bin": "Joplin.exe",
+  "checkver": {
+    "regex": "version:\\s+([\\d.]+)",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/github-release/laurent22/joplin/LatestRelease/latest.yml"
+  },
+  "description": "A note taking and to-do application with synchronization capabilities(Download from TUNA mirror).",
+  "hash": "sha512:c239604e14cad0e13a57e02d5b0d003cf32105f29b88a7b2796a92c4c5b5906447c0bdeb2c3ee4f567b4419fa9610412d88b8b37c1005a92d23b0583d6b9adc4",
+  "homepage": "https://joplinapp.org",
+  "license": "MIT",
+  "post_install": "Remove-Item \"$dir\\`$*\", \"$dir\\Uninstall*\" -Recurse",
+  "shortcuts": [
+    [
+      "Joplin.exe",
+      "Joplin"
+    ]
+  ],
+  "url": "https://mirrors.tuna.tsinghua.edu.cn/github-release/laurent22/joplin/LatestRelease/Joplin-Setup-2.9.17.exe#/dl.7z",
+  "version": "2.9.17"
+}

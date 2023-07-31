@@ -1,0 +1,41 @@
+{
+  "homepage": "https://shokoanime.com/downloads/shoko-server/",
+  "description": "A program designed to automate the cataloging of your anime collection with AniDB support",
+  "version": "4.2.2",
+  "license": {
+    "identifier": "MIT",
+    "url": "https://github.com/ShokoAnime/ShokoServer/blob/master/LICENSE"
+  },
+  "url": "https://shokoanime.com/files/shoko-server/Shoko_Server_Setup_4.2.2.zip",
+  "hash": "363172d7c1690b72e3b789fb625d7a4ce83ed3c9768b72e9784bcd77a6babcec",
+  "installer": {
+    "script": [
+      "$setup = Get-ChildItem -Path $dir -Include *.exe -Name",
+      "Expand-InnoArchive $dir\\$setup -Removal"
+    ]
+  },
+  "shortcuts": [
+    [
+      "ShokoServer.exe",
+      "Shoko Server"
+    ]
+  ],
+  "bin": [
+    [
+      "ShokoServer.exe",
+      "shoko-server"
+    ],
+    [
+      "Shoko.CLI.exe",
+      "shoko-cli"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/ShokoAnime/ShokoServer/releases/latest",
+    "regex": "Shoko Server ([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://shokoanime.com/files/shoko-server/Shoko_Server_Setup_$version.zip"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

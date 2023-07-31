@@ -1,0 +1,31 @@
+{
+  "version": "1.5.1",
+  "description": "The best outlining app for your best work",
+  "homepage": "https://dynalist.io",
+  "url": "https://dynalist.io/standalone/download?file=Dynalist%20Setup.exe",
+  "hash": "86855cd198c488d6c020f4852dc0447f7aac098ec173ff2b403067d1c08c109a",
+  "architecture": {
+    "64bit": {
+      "pre_install": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\""
+    },
+    "32bit": {
+      "pre_install": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-32.7z\" \"$dir\""
+    }
+  },
+  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall*.exe\" -Recurse",
+  "bin": "Dynalist.exe",
+  "shortcuts": [
+    [
+      "Dynalist.exe",
+      "Dynalist"
+    ]
+  ],
+  "checkver": {
+    "url": "https://dynalist.io/standalone/check?platform=win",
+    "regex": "dynalist-([0-9]*.[0-9].[0-9]*)"
+  },
+  "autoupdate": {
+    "url": "https://dynalist.io/standalone/download?file=Dynalist%20Setup.exe"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

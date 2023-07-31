@@ -1,0 +1,42 @@
+{
+  "architecture": {
+    "64bit": {
+      "hash": "3ca1b0fc2759c7d4ed10eff75011ef619ebbef7ec8fb4f41fac1e48b9f30c4ca",
+      "url": "https://down.360safe.com/cse/360csex_21.0.1206.0.exe#/dl.7z"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://down.360safe.com/cse/360csex_$version.exe#/dl.7z"
+      }
+    }
+  },
+  "bin": [
+    [
+      "360chromex.exe",
+      "360chromex",
+      "--user-data-dir=\"$dir\\User Data\" --disk-cache-dir=\"$dir\\Cache\" --no-first-run --enable-ftp --enable-gpu-rasterization --enable-leak-detection --enable-potentially-annoying-security-features --disable-component-update --disable-crash-reporter --disable-breakpad --disable-background-networking --disable-logging --disable-notifications --no-report-upload --print-to-pdf-no-header --save-page-as-mhtml --site-per-process --crash-server-url=\"0.0.0.0\" --force-update-remote-url=\"0.0.0.0\" --google-url=\"0.0.0.0\" --trace-upload-url=\"0.0.0.0\""
+    ]
+  ],
+  "checkver": {
+    "regex": "360csex_([\\d.]+).exe",
+    "url": "https://browser.360.cn/eex/"
+  },
+  "description": "360 极速浏览器 X, 全新 Chromium95 内核, 64 位双核浏览器, 性能更高, 体验更佳",
+  "homepage": "https://browser.360.cn/eex/",
+  "license": "Freeware",
+  "persist": [
+    "User Data",
+    "Cache"
+  ],
+  "pre_install": "Expand-7zipArchive \"$dir\\chrome.7z\" -ExtractDir 'Chrome-bin' -Removal",
+  "shortcuts": [
+    [
+      "360chromex.exe",
+      "360 极速浏览器 X",
+      "--user-data-dir=\"$dir\\User Data\" --disk-cache-dir=\"$dir\\Cache\" --no-first-run --enable-ftp --enable-gpu-rasterization --enable-leak-detection --enable-potentially-annoying-security-features --disable-component-update --disable-crash-reporter --disable-breakpad --disable-background-networking --disable-logging --disable-notifications --no-report-upload --print-to-pdf-no-header --save-page-as-mhtml --site-per-process --crash-server-url=\"0.0.0.0\" --force-update-remote-url=\"0.0.0.0\" --google-url=\"0.0.0.0\" --trace-upload-url=\"0.0.0.0\""
+    ]
+  ],
+  "version": "21.0.1206.0"
+}

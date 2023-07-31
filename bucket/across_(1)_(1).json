@@ -1,0 +1,53 @@
+{
+  "version": "0.1.3",
+  "description": "A GUI Client for V2Ray",
+  "homepage": "https://github.com/ArkToria/ACross",
+  "license": "GPL-3.0-only",
+  "suggest": {
+    "v2ray": "v2ray",
+    "vcredist": "extras/vcredist2019"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/ArkToria/ACross/releases/download/v0.1.3/msvc-x86_64-across-0.1.3.zip",
+      "hash": "sha512:85dd0c9ba78ef4f472a46ea897a17b66890618e39686f2003c69085ec1a98a612f6fc5659f065f3f8ebbcbd4b51c32cd6b2f64e8e448f4e78141ef70f1329837"
+    }
+  },
+  "pre_install": [
+    "if (-not (Test-Path \"$persist_dir\\config\\across.json\")) {",
+    "    ensure \"$dir\\config\" | Out-Null",
+    "    $config = @{",
+    "        'data_dir' = \"$persist_dir\\config\"",
+    "        'interface' = @{",
+    "             'theme' = @{",
+    "                  'include_dir' = \"$persist_dir\\config\\themes\"",
+    "             }",
+    "        }",
+    "        'database' = @{",
+    "            'db_path' = \"$persist_dir\\config\\across.db\"",
+    "        }",
+    "    }",
+    "    $v2ray_dir = appdir 'v2ray' $global",
+    "    if (Test-Path $v2ray_dir) {",
+    "        $current = $v2ray_dir | Join-Path -ChildPath 'current'",
+    "        $config.Add('core', @{",
+    "                 'core_path' = \"$current\\v2ray.exe\"",
+    "                 'assets_path' = \"$current\"",
+    "        })",
+    "    }",
+    "    $config | ConvertTo-Json -Depth 20 | Out-File \"$dir\\config\\across.json\"",
+    "}"
+  ],
+  "env_set": {
+    "ACROSS_CONFIG_PATH": "$persist_dir\\config\\across.json",
+    "ACROSS_DATA_DIR": "$persist_dir\\config"
+  },
+  "bin": "across.exe",
+  "shortcuts": [
+    [
+      "across.exe",
+      "ACross"
+    ]
+  ],
+  "persist": "config"
+}

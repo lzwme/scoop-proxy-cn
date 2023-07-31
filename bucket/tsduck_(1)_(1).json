@@ -1,0 +1,29 @@
+{
+  "homepage": "https://tsduck.io",
+  "description": "MPEG Transport Stream Toolkit",
+  "version": "3.34-3197",
+  "license": "BSD-2-Clause",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/tsduck/tsduck/releases/download/v3.34-3197/TSDuck-Win64-3.34-3197-Portable.zip",
+      "hash": "658540bfdd8349bba5690bd8c25d1f621ba44903aa8c3ee8d1bddf1484adcca8"
+    }
+  },
+  "extract_dir": "TSDuck",
+  "env_add_path": "bin",
+  "env_set": {
+    "CLASSPATH": "$dir\\java\\tsduck.jar;$CLASSPATH",
+    "PYTHONPATH": "$dir\\python;$PYTHONPATH"
+  },
+  "checkver": {
+    "github": "https://github.com/tsduck/tsduck",
+    "regex": "\\/releases\\/tag\\/(?:v|V)?([\\d.]+-[\\d]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/tsduck/tsduck/releases/download/v$version/TSDuck-Win64-$version-Portable.zip"
+      }
+    }
+  }
+}

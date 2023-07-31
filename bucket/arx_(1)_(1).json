@@ -1,0 +1,39 @@
+{
+  "version": "3.9.1",
+  "license": "Apache-2.0",
+  "homepage": "https://arx.deidentifier.org/",
+  "description": "Data Anonymization Tool",
+  "url": [
+    "https://ghproxy.net/https://github.com/arx-deidentifier/arx/releases/download/v3.9.1/arx-3.9.1-win-64.jar",
+    "https://ghproxy.net/https://raw.githubusercontent.com/arx-deidentifier/arx/master/logo/logo.ico"
+  ],
+  "hash": [
+    "fa863a5704722809c8d9a4149605d3282d9a5183e1ada5c0d32080cf43444fe7",
+    "bf5fff5ef2f7dd368c639a0e79792d19bbd06564ab979c12e19215ecffce5a09"
+  ],
+  "pre_install": "Set-Content \"$dir\\arx.bat\" (@('@echo off', 'start javaw.exe -jar %~dp0\\arx-3.9.1-win-64.jar %*') -join \"`r`n\") -Encoding Ascii",
+  "suggest": {
+    "JRE": "java/temurin11-jre"
+  },
+  "bin": [
+    "arx.bat"
+  ],
+  "shortcuts": [
+    [
+      "arx.bat",
+      "ARX",
+      "",
+      "logo.ico"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/arx-deidentifier/arx"
+  },
+  "autoupdate": {
+    "url": [
+      "https://ghproxy.net/https://github.com/arx-deidentifier/arx/releases/download/v$version/arx-$version-win-64.jar",
+      "https://ghproxy.net/https://raw.githubusercontent.com/arx-deidentifier/arx/master/logo/logo.ico"
+    ],
+    "pre_install": "Set-Content \"$dir\\arx.bat\" (@('@echo off', 'java.exe -jar %~dp0\\arx-$version-win-64.jar %*') -join \"`r`n\") -Encoding Ascii"
+  }
+}

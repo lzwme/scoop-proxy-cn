@@ -1,0 +1,34 @@
+{
+  "homepage": "https://j10n.net/entry/20100917/resourcehacker",
+  "description": "Japanease Lang File",
+  "version": "5.1.7.343",
+  "suggest": {
+    "Resource Hacker": "resource-hacker"
+  },
+  "url": "https://d2nodiziunvnkv.cloudfront.net/patches/resourcehacker517343_ja.zip",
+  "hash": "47588e48ee728979969907fdb4e35222b09ae2acee5533f0c05da0b510d77948",
+  "pre_install": [
+    "function UpdateRelatedapp([String] $dest, [String] $file) {",
+    "   $destdir = \"$(appdir $dest $global)\\current\"",
+    "   if (Test-Path \"$destdir\") {",
+    "       Copy-Item \"$dir\\$file\" \"$destdir\" -Recurse -Force",
+    "       Write-Host \"  [pre-install] Overwriting $file to $destdir\"",
+    "   }",
+    "}",
+    "UpdateRelatedapp 'resource-hacker' 'ResourceHacker.JP'"
+  ],
+  "uninstaller": {
+    "script": [
+      "if (Test-Path \"$(appdir resource-hacker $global)\") {",
+      "   Remove-Item \"$(appdir resource-hacker $global)\\current\\ResourceHacker.JP\"",
+      "}"
+    ]
+  },
+  "checkver": {
+    "url": "https://j10n.net/entry/20100917/resourcehacker",
+    "re": "Resource Hacker ([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://d2nodiziunvnkv.cloudfront.net/patches/resourcehacker$cleanVersion_ja.zip"
+  }
+}

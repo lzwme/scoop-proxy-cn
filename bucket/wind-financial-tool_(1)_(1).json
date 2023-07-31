@@ -1,0 +1,25 @@
+{
+  "architecture": {
+    "64bit": {
+      "installer": {
+        "script": "Expand-MsiArchive \"$dir\\WFT_Setup_CHS.msi\" \"$dir\""
+      }
+    }
+  },
+  "bin": "Wind\\Wind.NET.Client\\WindNET\\bin\\windnet.exe",
+  "description": "Wind Financial tool",
+  "homepage": "https://www.wind.com.cn",
+  "license": "Free",
+  "notes": [
+    "Wind Financial tool, packed by Andrew Pozenel\n"
+  ],
+  "post_install": "Remove-Item \"$dir\\WFT_Setup_CHS.msi\"",
+  "shortcuts": [
+    [
+      "Wind\\Wind.NET.Client\\WindNET\\bin\\windnet.exe",
+      "Wind Financial Tool"
+    ]
+  ],
+  "url": "https://d-cdn.wind.com.cn/windnet/WFT_Setup_CHS.zip",
+  "version": "22.8.1"
+}

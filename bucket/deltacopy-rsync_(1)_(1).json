@@ -1,0 +1,11 @@
+{
+  "##": "installs DeltaCopy (which bundles rsync), but only exposes rsync and deletes all other, DeltaCopy-specific files in post_install",
+  "homepage": "http://www.aboutmyip.com/AboutMyXApp/DeltaCopy.jsp",
+  "description": "DeltaCopy is an open source, fast incremental backup program.",
+  "license": "GPL-3.0-only",
+  "version": "3.0.4",
+  "url": "http://www.aboutmyx.com/files/DeltaCopyRaw.zip",
+  "hash": "c7101e56a409d8138f0bcfabcb97c850977a29b7ad2e649d016d4cebf06a10c7",
+  "bin": "rsync.exe",
+  "post_install": "Remove-Item $dir\\D*"
+}

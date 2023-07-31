@@ -1,0 +1,16 @@
+{
+  "##": "This package is for private use only. Requires password for installation to proceed.",
+  "version": "6.1.7601.17514",
+  "description": "Windows 7 Professional x64 ISO image file (language: Chinese Traditional)",
+  "license": "Proprietary",
+  "url": "https://www.googleapis.com/drive/v3/files/1DLYlp0e968GxS3ZVOXaxMdlDvnE8QPTs?alt=media&key=AIzaSyDiKRYtqQ7paseQyMiD_k8ZjYsYgoORuHc#/dl.7z_",
+  "hash": "B1D46D37F6E271A292E17F3844FE5CBCEC08393AE7E66AF493E3D9351DDDCC95",
+  "installer": {
+    "script": [
+      "$scriptdir = (Find-BucketDirectory $bucket)+'\\..\\scripts'",
+      "Import-Module $scriptdir\\pw\\pw_check.psm1",
+      "Expand-EncryptedArchive -aPath \"$dir\\dl.7z_\" -oDir \"$dir\" -ExitIfError -Removal",
+      "Write-Host \"ISO image file has been saved in $dir\" -ForegroundColor Green"
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "version": "2.0.2",
+  "description": "Exposes your localhost to the world for easy testing and sharing",
+  "homepage": "https://localtunnel.me",
+  "license": "MIT",
+  "url": "https://ghproxy.net/https://github.com/localtunnel/localtunnel/archive/refs/tags/v2.0.2.tar.gz",
+  "hash": "387b31b6b8b00b8085f54dea34baf17ef9d921dfd1464566a4a8536a94269e74",
+  "extract_dir": "localtunnel-2.0.2",
+  "depends": [
+    "main/nodejs"
+  ],
+  "pre_install": [
+    "Set-Content \"$dir\\bin\\lt.cmd\" (@('@echo off', 'node \"%~dp0\\lt.js\" %*') -join \"`r`n\") -Encoding Ascii",
+    "Start-Process -WorkingDirectory \"$dir\" -NoNewWindow -Wait npm install"
+  ],
+  "##": "npm install",
+  "bin": "bin\\lt.cmd"
+}

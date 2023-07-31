@@ -1,0 +1,24 @@
+{
+  "version": "1.5.1",
+  "description": "DockStation is developer-centric application to managing projects based on Docker. Instead of lots of CLI commands you can monitor, configure, and manage services and containers using just a GUI.",
+  "homepage": "https://dockstation.io/",
+  "license": "Proprietary",
+  "url": "https://ghproxy.net/https://github.com/DockStation/dockstation/releases/download/v1.5.1/dockstation-1.5.1-x64.nsis.7z",
+  "hash": "E5027A6ADBF6F222066EA9FF2909D7446BE33E3F16F580BA27E4499E9DD018B0",
+  "bin": "DockStation.exe",
+  "shortcuts": [
+    [
+      "DockStation.exe",
+      "DockStation"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/DockStation/dockstation"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/DockStation/dockstation/releases/download/v$version/dockstation-$version-x64.nsis.7z",
+    "hash": {
+      "url": "$baseurl/RELEASES"
+    }
+  }
+}

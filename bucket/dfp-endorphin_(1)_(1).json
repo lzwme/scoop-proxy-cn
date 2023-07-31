@@ -1,0 +1,29 @@
+{
+  "description": "digitalfishphones.com endorphin dual-band stereo compressor",
+  "homepage": "http://digitalfishphones.com/main.php?item=2&subItem=3",
+  "version": "1.1",
+  "license": [
+    {
+      "identifier": "Freeware",
+      "url": "http://digitalfishphones.com/main.php?item=2&subItem=1"
+    }
+  ],
+  "url": "http://digitalfishphones.com/binaries/endorphin.zip",
+  "hash": "d829766d9c46fc81079f7dea952f2fe051dbf12dbc72a528235280c79731407a",
+  "extract_to": "dfp-endorphin",
+  "installer": {
+    "script": [
+      "$vst2dir = $env:LOCALAPPDATA + \"\\programs\\common\\vst2\"",
+      "Write-Host VST2 folder $vst2dir",
+      "New-Item -Force -ItemType Directory -Path $vst2dir | Out-Null",
+      "Copy-Item -Force -Recurse -Path \"${dir}\\dfp-endorphin\" -Destination $vst2dir",
+      "Remove-Item -Force -Recurse -Path \"${dir}\\dfp-endorphin\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$vst2dir = $env:LOCALAPPDATA + \"\\programs\\common\\vst2\"",
+      "Remove-Item -Force -Recurse -Path \"${vst2dir}\\dfp-endorphin\""
+    ]
+  }
+}

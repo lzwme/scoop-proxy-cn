@@ -1,0 +1,42 @@
+{
+  "homepage": "https://builds.shipilev.net/openjdk-shenandoah-jdk8/",
+  "version": "2022_01_09_11_20-b00",
+  "license": "GPL-2.0-only WITH Classpath-exception-2.0",
+  "extract_dir": "j2sdk-image",
+  "env_add_path": "bin",
+  "env_set": {
+    "JAVA_HOME": "$dir"
+  },
+  "architecture": {
+    "32bit": {
+      "url": "https://builds.shipilev.net/openjdk-shenandoah-jdk8/openjdk-shenandoah-jdk8-windows-x86_32-server-release-msvc2017.zip",
+      "hash": "sha1:5033bd126125142a8ce4350caabf7fbaaf6aca01"
+    },
+    "64bit": {
+      "url": "https://builds.shipilev.net/openjdk-shenandoah-jdk8/openjdk-shenandoah-jdk8-windows-x86_64-server-release-msvc2017.zip",
+      "hash": "sha1:511ae92e2e25b3113836e96fb2af2854c107c37a"
+    }
+  },
+  "checkver": {
+    "url": "https://builds.shipilev.net/openjdk-shenandoah-jdk8/build-logs/build-openjdk-shenandoah-jdk8-windows-x86_64-server-release-msvc2017.log",
+    "re": "JRE_RELEASE_VERSION=\\\\\"1.8.0-internal-_([\\w-]+)\\\\\""
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://builds.shipilev.net/openjdk-shenandoah-jdk8/openjdk-shenandoah-jdk8-windows-x86_32-server-release-msvc2017.zip",
+        "hash": {
+          "mode": "extract",
+          "url": "https://builds.shipilev.net/openjdk-shenandoah-jdk8/SHA1SUMS"
+        }
+      },
+      "64bit": {
+        "url": "https://builds.shipilev.net/openjdk-shenandoah-jdk8/openjdk-shenandoah-jdk8-windows-x86_64-server-release-msvc2017.zip",
+        "hash": {
+          "mode": "extract",
+          "url": "https://builds.shipilev.net/openjdk-shenandoah-jdk8/SHA1SUMS"
+        }
+      }
+    }
+  }
+}

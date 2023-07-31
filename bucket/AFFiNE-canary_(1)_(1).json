@@ -1,0 +1,28 @@
+{
+  "hash": "980e8017d5ea5c08b060d81255e2535ffffa3d9b2441f6aaf948e5f30e531b86",
+  "homepage": "https://github.com/toeverything/AFFiNE",
+  "license": "Freeware",
+  "url": "https://ghproxy.net/https://github.com/toeverything/AFFiNE/releases/download/v0.7.0-canary.9/affine-canary-windows-x64.zip",
+  "version": "v0.7.0-canary.9",
+  "checkver": {
+    "url": "https://api.github.com/repos/toeverything/AFFiNE/releases?per_page=1",
+    "jsonpath": "$[0].tag_name"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/toeverything/AFFiNE/releases/download/$version/affine-canary-windows-x64.zip"
+  },
+  "pre_install": "New-Item \"$dir/launch.exe\"",
+  "post_install": [
+    "Remove-Item \"$dir/launch.exe\"",
+    "if (Test-Path \"$dir/AFFiNE-canary.exe\"){ Move-Item \"$dir/AFFiNE-canary.exe\" \"$dir/launch.exe\" }",
+    "if (Test-Path \"$dir/AFFiNE-beta.exe\"){ Move-Item \"$dir/AFFiNE-beta.exe\" \"$dir/launch.exe\" }",
+    "if (Test-Path \"$dir/AFFiNE-stable.exe\"){ Move-Item \"$dir/AFFiNE-stable.exe\" \"$dir/launch.exe\" }",
+    "if (Test-Path \"$dir/AFFiNE.exe\"){ Move-Item \"$dir/AFFiNE.exe\" \"$dir/launch.exe\" }"
+  ],
+  "shortcuts": [
+    [
+      "launch.exe",
+      "AFFiNE"
+    ]
+  ]
+}

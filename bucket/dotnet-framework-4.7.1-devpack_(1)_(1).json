@@ -1,0 +1,21 @@
+{
+  "##": "https://github.com/Microsoft/dotnet/blob/master/releases/net471/README.md",
+  "description": "The Microsoft .NET Framework 4.7.1 Developer Pack is a single package that bundles the .NET Framework 4.7.1, the .NET 4.7.1 Targeting Pack and the .NET 4.7.1 SDK. Developers can use this package to install all the different components for .NET 4.7.1 and build applications targeting the .NET Framework 4.7.1 using either Visual Studio 2017, Visual Studio 2015 or other IDEs.",
+  "hash": "a70b790dcf7ee4a0cae65fb82a16fb67fe970eb21b9424c9da35e1acafbc4348",
+  "homepage": "https://dotnet.microsoft.com/download/dotnet-framework",
+  "installer": {
+    "script": [
+      "$ec = @{",
+      "    0 = 'This product has been installed successfully, a reboot is not required.';",
+      "    3010 = 'This product has been installed, but a reboot is required to finalize the installation. Until the computer is rebooted, dependent packages may fail to install or function properly.';",
+      "}",
+      "Invoke-ExternalCommand \"$dir\\$fname\" -ArgumentList '/install', '/quiet', '/norestart' -ContinueExitCodes $ec -RunAs | Out-Null"
+    ]
+  },
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://www.microsoft.com/en-us/legal/intellectualproperty/copyright/default.aspx"
+  },
+  "url": "https://download.visualstudio.microsoft.com/download/pr/e5eb8d37-5bbd-4fb7-a71d-b749e010ef9f/601437d729667ecd29020a829fbc4881/ndp471-devpack-enu.exe",
+  "version": "4.7.1"
+}

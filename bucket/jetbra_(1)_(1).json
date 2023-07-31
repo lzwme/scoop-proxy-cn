@@ -1,0 +1,26 @@
+{
+  "version": "0.1.0",
+  "description": "jetbra.",
+  "homepage": "https://jetbra.in",
+  "license": "GPL-3.0-only",
+  "url": "https://files.lesscode.dev/scoop/jetbra-202208.zip",
+  "hash": "sha256:d705555d2032ef817414a2e53ea1555baacb51f28ede14eb55839a30a76e4bd6",
+  "extract_dir": "jetbra",
+  "depends": [
+    "lesscode/ja-netfilter"
+  ],
+  "persist": [
+    "config-jetbrains",
+    "plugins-jetbrains"
+  ],
+  "post_install": [
+    "Remove-Item \"$dir\\config-jetbrains.original\" -Recurse -Force -ErrorAction SilentlyContinue",
+    "Remove-Item \"$dir\\plugins-jetbrains.original\" -Recurse -Force -ErrorAction SilentlyContinue",
+    "if (Test-Path \"$(appdir ja-netfilter)\\current\\ja-netfilter.jar\") { ",
+    "  Remove-Item \"$(appdir ja-netfilter)\\current\\config-jetbrains\" -Recurse -Force -ErrorAction SilentlyContinue",
+    "  Remove-Item \"$(appdir ja-netfilter)\\current\\plugins-jetbrains\" -Recurse -Force -ErrorAction SilentlyContinue",
+    "  New-Item -Path \"$(appdir ja-netfilter)\\current\\config-jetbrains\" -ItemType Junction -Value \"$persist_dir/config-jetbrains\" | Out-Null",
+    "  New-Item -Path \"$(appdir ja-netfilter)\\current\\plugins-jetbrains\" -ItemType Junction -Value \"$persist_dir/plugins-jetbrains\" | Out-Null",
+    "}"
+  ]
+}

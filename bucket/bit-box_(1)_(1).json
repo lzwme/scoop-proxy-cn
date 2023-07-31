@@ -1,0 +1,19 @@
+{
+  "description": "Virtual drum synthesizer for chiptune",
+  "version": "none",
+  "license": {
+    "identifier": "Freeware"
+  },
+  "url": "https://woolyss.com/chipmusic/chipmusic-plugins/BiT_BOX.zip",
+  "hash": "de6c9f1c25b9dbe0735439916627aa53987a478f20d31b782438bbd9ea78d4b2",
+  "post_install": [
+    "New-Item -ErrorAction Ignore $env:USERPROFILE\\.vst -ItemType Directory",
+    "New-Item -Type Junction -Path $env:USERPROFILE\\.vst\\bit-box -Value $dir"
+  ],
+  "uninstaller": {
+    "script": [
+      "(Get-Item $env:USERPROFILE\\.vst\\bit-box).Delete()"
+    ]
+  },
+  "##": "NOTE: バージョンをチェックする手段がない"
+}

@@ -1,0 +1,77 @@
+{
+  "version": "1.3.1",
+  "description": "Gendloop's app",
+  "homepage": "https://github.com/gendloop/EdgeGo",
+  "license": "LGPL-2.1-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/gendloop/EdgeGo/archive/refs/tags/v1.3.1.zip",
+      "hash": "5bff549c2c96362e3982ab42f4c0379a2be3d9ab212e56395b85ab19eea6da13"
+    }
+  },
+  "installer": {
+    "script": [
+      "Push-Location \"$dir\"",
+      "7z x EdgeGo-$version\\dist\\EdgeGo.7z",
+      "Remove-Item EdgeGo-$version -Recurse",
+      "Pop-Location"
+    ]
+  },
+  "bin": [
+    "0.v2go翻墙.cmd",
+    "1.clash.meta翻墙.cmd",
+    "1.clashB翻墙.cmd",
+    "2.Xray翻墙.cmd",
+    "3.hysteria翻墙.cmd",
+    "4.singbox翻墙.cmd",
+    "4.v2rayB翻墙.cmd",
+    "5.naiveproxy翻墙.cmd",
+    "6.psiphon翻墙.cmd"
+  ],
+  "shortcuts": [
+    [
+      "0.v2go翻墙.cmd",
+      "EdgeGo"
+    ],
+    [
+      "1.clash.meta翻墙.cmd",
+      "EdgeGo0"
+    ],
+    [
+      "1.clashB翻墙.cmd",
+      "EdgeGo1"
+    ],
+    [
+      "2.Xray翻墙.cmd",
+      "EdgeGo2"
+    ],
+    [
+      "3.hysteria翻墙.cmd",
+      "EdgeGo3"
+    ],
+    [
+      "4.singbox翻墙.cmd",
+      "EdgeGo4"
+    ],
+    [
+      "4.v2rayB翻墙.cmd",
+      "EdgeGo5"
+    ],
+    [
+      "5.naiveproxy翻墙.cmd",
+      "EdgeGo6"
+    ],
+    [
+      "6.psiphon翻墙.cmd",
+      "EdgeGo7"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/gendloop/EdgeGo/archive/refs/tags/v$version.zip"
+      }
+    }
+  }
+}

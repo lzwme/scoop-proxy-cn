@@ -1,0 +1,32 @@
+{
+  "description": "Edit tag of directories with attributes in desktop.ini",
+  "homepage": "https://youtu.be/vyFhSdm4gD8",
+  "license": "Unknown",
+  "version": "1.1",
+  "url": "https://drive.google.com/uc?export=download&id=1ielPA2kVfVDe4GAjprqtuO5dcX3qJyz3&confirm=t#/tagfolder.bat",
+  "installer": {
+    "script": [
+      "$batFile = Join-Path -Path $dir -ChildPath \"tagfolder.bat\"",
+      "@\"",
+      "Windows Registry Editor Version 5.00",
+      "",
+      "[HKEY_CLASSES_ROOT\\Directory\\Background\\shell\\Tag Folder]",
+      "@=\"Tag Folder\"",
+      "",
+      "[HKEY_CLASSES_ROOT\\Directory\\Background\\shell\\Tag Folder\\command]",
+      "@=\"cmd /c \\\"start /min $($batFile -replace '\\\\', '\\\\')\\\"\"",
+      "\"@ | Out-File -FilePath (Join-Path -Path $dir -ChildPath \"install_contextmenu.reg\")",
+      "@\"",
+      "Windows Registry Editor Version 5.00",
+      "",
+      "[-HKEY_CLASSES_ROOT\\Directory\\Background\\shell\\Tag Folder]",
+      "\"@ | Out-File -FilePath (Join-Path -Path $dir -ChildPath \"uninstall_contextmenu.reg\")"
+    ],
+    "keep": false
+  },
+  "hash": "71ad080ad08303d50130b045e15d7045dec461be91a3668b0fec21d8cda36c4c",
+  "notes": [
+    "Run install_contextmenu.reg to add tagfolder to the context menu. A rerun is required after updating tagfolder.",
+    "Run uninstall_contextmenu.reg to remove tagfolder from the context menu. Remember to run this before uninstalling."
+  ]
+}

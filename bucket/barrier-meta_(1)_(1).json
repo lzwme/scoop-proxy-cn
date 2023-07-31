@@ -1,0 +1,43 @@
+{
+  "architecture": {
+    "64bit": {
+      "hash": "7e66b7b4d13312e607edd06f8ea38f3c9b09b3e8aea2b55250c00b25f9892885",
+      "url": "https://ghproxy.net/https://github.com/debauchee/barrier/releases/download/v2.4.0/BarrierSetup-2.4.0-release.exe"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/debauchee/barrier/releases/download/v$version/BarrierSetup-$version-release.exe"
+      }
+    }
+  },
+  "bin": [
+    "barrierc.exe",
+    "barriers.exe"
+  ],
+  "checkver": {
+    "jsonpath": "$[0].tag_name",
+    "regex": "v([\\d.]+)",
+    "url": "https://api.github.com/repos/debauchee/barrier/releases?per_page=1"
+  },
+  "description": "Barrier is KVM software that lets you easily share your mouse and keyboard between multiple computers on your desk, and it's Free and Open Source. Just move your mouse off the edge of one computer's screen on to another. You can even share all of your clipboards. All you need is a network connection. Barrier is cross-platform (works on Windows, MacOS and Linux). Barrier is forked from Symless's Synergy 1.9 codebase. Synergy is a commercialized reimplementation of the original CosmoSynergy written by Chris Schoeneman.",
+  "homepage": "https://github.com/debauchee/barrier",
+  "innosetup": true,
+  "license": {
+    "identifier": "GPL-2.0-only"
+  },
+  "shortcuts": [
+    [
+      "barrier.exe",
+      "Barrier"
+    ]
+  ],
+  "suggest": {
+    "vcredist": [
+      "vcredist-aio",
+      "vcredist-dreamcast"
+    ]
+  },
+  "version": "2.4.0"
+}

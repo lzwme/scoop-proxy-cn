@@ -1,0 +1,27 @@
+{
+  "version": "0.20.2767",
+  "description": "Jackett 中文版 by Nriver",
+  "homepage": "https://github.com/Nriver/jackett-translation",
+  "license": "AGPL-3.0-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/Nriver/jackett-translation/releases/download/v0.20.2767/Jackett-cn.Binaries.Windows.zip",
+      "hash": "6a573844a4c76bf8c05c6bd07bd2ec526c17c2df6f88138eff064ae600b6b41b"
+    }
+  },
+  "pre_uninstall": [
+    "'JacketTray', 'JacketConsole', 'JacketService' | ForEach-Object {",
+    "    Stop-Process -Name $_ -ErrorAction SilentlyContinue",
+    "}"
+  ],
+  "shortcuts": [
+    [
+      "JackettTray.exe",
+      "Jackett 中文版"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/Nriver/jackett-translation/releases/download/v$version/Jackett-cn.Binaries.Windows.zip"
+  }
+}

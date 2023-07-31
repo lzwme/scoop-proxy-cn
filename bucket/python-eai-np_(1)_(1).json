@@ -1,0 +1,34 @@
+{
+  "version": "3.7.7-eai2.2.0",
+  "description": "Python with packages required for e-AI translator (install in default location)",
+  "homepage": "https://www.python.org/",
+  "license": "Python-2.0",
+  "depends": "refreshenv",
+  "architecture": {
+    "64bit": {
+      "url": [
+        "https://www.python.org/ftp/python/3.7.7/python-3.7.7-amd64.exe#/setup.exe",
+        "https://ghproxy.net/https://raw.githubusercontent.com/issaclin32/scoop-bucket/master/scripts/python-eai/commands.bat",
+        "https://ghproxy.net/https://raw.githubusercontent.com/issaclin32/scoop-bucket/master/scripts/python-eai/eai-requirements.txt"
+      ],
+      "hash": [
+        "1a0368663ceff999d865de955992b6ea3cb0c8cb15a1a296a8eb7df19cc59e69",
+        "c895d69bad6d2f8b123091760ff33bb927476eee6750ebabfcf0d018c8148e6f",
+        "8f63c540074de7be47c17a777c0b6490236f66c5f0b0b0e079fb5d71088060a2"
+      ]
+    }
+  },
+  "installer": {
+    "script": [
+      "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+      "Start-Process -Wait \"$dir\\setup.exe\" -ArgumentList @('/quiet', 'InstallAllUsers=1', 'PrependPath=1') -Verb RunAs",
+      "& \"$dir\\commands.bat\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+      "Start-Process -Wait \"$dir\\setup.exe\" -ArgumentList @('/uninstall', '/quiet') -Verb RunAs"
+    ]
+  }
+}

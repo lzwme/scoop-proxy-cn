@@ -1,0 +1,45 @@
+{
+  "version": "1.0.0",
+  "description": "BakkesMod Rocket League trainer: A mod aimed at making you better at Rocket League!",
+  "homepage": "https://bakkesplugins.com/",
+  "license": {
+    "identifier": ""
+  },
+  "notes": [
+    "Due to not being able to extract the needed data from the installer, the installer must be ran but can immediately be uninstalled",
+    "It will also self update without the need for it to be installed, so no need to keep the installer."
+  ],
+  "url": "https://bakkesmod.com/static/BakkesModSetup.zip",
+  "hash": "535a5cb73ffb2ccbcaf415f7a58e84be3405c0183abb782d233622866c5931bc",
+  "bin": "BakkesMod.exe",
+  "shortcuts": [
+    [
+      "BakkesMod.exe",
+      "BakkesMod"
+    ]
+  ],
+  "persist": [
+    "cfg",
+    "loadouts",
+    [
+      "data/themes",
+      "themes"
+    ]
+  ],
+  "pre_install": [
+    "$install_path = 'C:/Program Files (x86)/Steam/steamapps/common/rocketleague/Binaries/Win64/bakkesmod'",
+    "if ((Test-Path $install_path) -and (Get-Item $install_path).Target -notlike $dir) { Rename-Item $install_path -NewName 'bakkesmodBAK' }",
+    "New-Item $install_path -Type Junction -Value $dir"
+  ],
+  "installer": {
+    "file": "BakkesModSetup.exe"
+  },
+  "post_install": [
+    "$dir/uninstall.exe"
+  ],
+  "uninstaller": {
+    "script": [
+      "if ((Test-Path $install_path) -and (Get-Item $install_path).Target -like $dir) { Remove-Item $install_path }"
+    ]
+  }
+}

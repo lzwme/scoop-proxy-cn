@@ -1,0 +1,37 @@
+{
+  "autoupdate": {
+    "hash": {
+      "regex": "$sha256",
+      "url": "$url.sha256"
+    },
+    "url": "https://scoop-zapps.ziiyc.com/d/BandicamPortable/BandicamPortable-$version.7z"
+  },
+  "bin": "BandicamPortable.exe",
+  "installer": {
+    "script": [
+      "",
+      "$bucketdir = Find-BucketDirectory -Name $bucket",
+      "$subdir = (Get-Item \"$dir\\Bandicam*\").FullName",
+      "Copy-Item \"$subdir\\*\" \"$dir\" -Force -Recurse | Out-Null",
+      "Remove-Item \"$subdir\\*\" -Recurse -Force",
+      "",
+      ""
+    ]
+  },
+  "checkver": {
+    "regex": "([\\d.]+)",
+    "url": "https://ghproxy.net/https://raw.githubusercontent.com/kkzzhizhou/scoop-zapps/master/versions/Bandicam-portable.latest"
+  },
+  "description": "Bandicam（班迪录屏）一款简单好用的录屏大师，录屏幕，录游戏，录视频的功能强大的屏幕录像软件",
+  "hash": "7ea157fd6d22dcf77dcd97001c36e1ff3fe009b34afff1c741c183bc86c9ea4a",
+  "homepage": "https://www.bandicam.cn/",
+  "persist": "Data",
+  "shortcuts": [
+    [
+      "BandicamPortable.exe",
+      "Bandicam Portable"
+    ]
+  ],
+  "url": "https://scoop-zapps.ziiyc.com/d/BandicamPortable/BandicamPortable-4.5.3.1608.7z",
+  "version": "4.5.3.1608"
+}

@@ -1,0 +1,47 @@
+{
+  "version": "4.8.0.4",
+  "description": "Computer monitoring and classroom management software.",
+  "homepage": "https://veyon.io/",
+  "license": "GPL-2.0-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/veyon/veyon/releases/download/v4.8.0/veyon-4.8.0.4-win64-setup.exe#/setup.exe",
+      "hash": "2bd4a6a36cf73095ef6f88ae7f1861606efc66e1f688ce7939eecf3aef924845"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/veyon/veyon/releases/download/v4.8.0/veyon-4.8.0.4-win32-setup.exe#/setup.exe",
+      "hash": "f6ee1370f47be99a24428ad2d7c3e2a42e96f78f6753d8a70a679cb80c238b40"
+    }
+  },
+  "pre_download": "Assert-Administrator",
+  "installer": {
+    "script": [
+      "$programname = \"Veyon*\"",
+      "$ProgramFiles = [Environment]::GetFolderPath(\"ProgramFiles\")",
+      "$filepath = \"$ProgramFiles\\Veyon\\veyon-configurator.exe\"",
+      "if(((Test-Path -Path $filepath -PathType Leaf) -eq $false) -or ([System.Diagnostics.FileVersionInfo]::GetVersionInfo($filepath).FileVersionRaw -lt [System.Version]\"$version\"))",
+      "{",
+      "   &\"$dir\\setup.exe\" /S /NoMaster | Out-Null",
+      "   if(((Test-Path -Path $filepath -PathType Leaf) -eq $false) -or ([System.Diagnostics.FileVersionInfo]::GetVersionInfo($filepath).FileVersionRaw -lt [System.Version]\"$version\"))",
+      "   {",
+      "       exit 1",
+      "   }",
+      "}",
+      "if (Test-Path -Path \"$dir\\setup.exe\") { Remove-Item \"$dir\\setup.exe\" -Force }"
+    ]
+  },
+  "checkver": {
+    "url": "https://veyon.io/download/",
+    "regex": "veyon-([\\d.]+)-win64-setup.exe"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/veyon/veyon/releases/download/v$majorVersion.$minorVersion.$patchVersion/veyon-$version-win64-setup.exe#/setup.exe"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/veyon/veyon/releases/download/v$majorVersion.$minorVersion.$patchVersion/veyon-$version-win32-setup.exe#/setup.exe"
+      }
+    }
+  }
+}

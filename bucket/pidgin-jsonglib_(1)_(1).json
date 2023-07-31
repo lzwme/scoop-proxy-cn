@@ -1,0 +1,25 @@
+{
+  "homepage": "https://download.gnome.org/sources/json-glib/0.14/",
+  "description": "JSON-GLib install for Pidgin",
+  "version": "0.14.2",
+  "license": "LGPL-2.1-only",
+  "notes": [
+    "This installation- given its methods- will be wiped out when Pidgin updates.",
+    "If only Pidgin supported putting pixmaps, locale and other extraneous dependencies in the \".purple\" folder...",
+    "Please force reinstall this manifest after an update of Pidgin to fix."
+  ],
+  "url": "https://github.com/EionRobb/skype4pidgin/raw/master/skypeweb/libjson-glib-1.0.dll",
+  "hash": "f3a6d5a52c7e85c34e3a6764928dc8c61fd28a82a358805983b9fd61726ce739",
+  "post_install": [
+    "$pidgin = \"$(appdir pidgin)\\current\"",
+    "Copy-Item \"$dir\\libjson-glib-1.0.dll\" \"$pidgin\\libjson-glib-1.0.dll\" -Recurse -Force",
+    "Remove-Item \"$dir\\libjson-glib-1.0.dll\" -Recurse"
+  ],
+  "uninstaller": {
+    "script": [
+      "$pidgin = \"$(appdir pidgin)\\current\"",
+      "Remove-Item \"$pidgin\\libjson-glib-1.0.dll\" -Force"
+    ]
+  },
+  "depends": "pidgin"
+}

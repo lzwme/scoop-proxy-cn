@@ -1,0 +1,27 @@
+{
+  "version": "6.0.8",
+  "description": "A JSON Query Language CLI tool",
+  "homepage": "https://github.com/yamafaktory/jql",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/yamafaktory/jql/releases/download/jql-v6.0.8/jql-v6.0.8-x86_64-pc-windows-msvc.zip",
+      "hash": "7b5d743281f98db43b34f637dceacc489f69f5ed1c1a8a4cc3c7df7639becc41"
+    }
+  },
+  "bin": "jql.exe",
+  "checkver": {
+    "github": "https://github.com/yamafaktory/jql",
+    "regex": "jql-v([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/yamafaktory/jql/releases/download/jql-v$version/jql-v$version-x86_64-pc-windows-msvc.zip"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/jql-v$version-x86_64-pc-windows-msvc.zip.sha256"
+    }
+  }
+}

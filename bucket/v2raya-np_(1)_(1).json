@@ -1,0 +1,61 @@
+{
+  "version": "2.0.5",
+  "description": "v2rayA(stable version, inno installer). A web GUI client of Project V which supports V2Ray, Xray, SS, SSR, Trojan and Pingtunnel.",
+  "homepage": "https://github.com/v2rayA/v2raya",
+  "license": {
+    "identifier": "AGPL-3.0-only",
+    "url": "https://github.com/v2rayA/v2rayA/raw/master/LICENSE"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/v2rayA/v2rayA/releases/download/v2.0.5/installer_windows_inno_x64_2.0.5.exe#/v2rayA.exe",
+      "hash": "f588d1ce935882becd153932a745f64b6ee86e0d6ebeca943b8145e6b7cbd645"
+    },
+    "arm64": {
+      "url": "https://ghproxy.net/https://github.com/v2rayA/v2rayA/releases/download/v2.0.5/installer_windows_inno_arm64_2.0.5.exe#/v2rayA.exe",
+      "hash": "88afe96748754f5e674a9397a5f94aa51e2b0f10aa25f8548c6c4ec945875ec7"
+    }
+  },
+  "installer": {
+    "script": [
+      "$args = @('/VERYSILENT', '/NORESTART', \"/DIR=`\"$dir`\"\")",
+      "Start-Process \"$dir\\v2rayA.exe\" -ArgumentList $args -Wait -Verb RunAs",
+      "@('reset-passwd-v2raya-np') | ForEach-Object {",
+      "    Copy-Item \"$bucketsdir\\v2raya\\scripts\\v2raya\\$_.ps1\" \"$dir\\$_.ps1\"",
+      "}",
+      "#Remove-Item \"$([Environment]::GetFolderPath('commonstartmenu'))\\Programs\\v2rayA\" -Force -Recurse -ErrorAction 'SilentlyContinue'",
+      "Remove-Item \"$dir\\v2rayA.exe\" -Force -ErrorAction 'SilentlyContinue'",
+      "$v2raya_startmenu_folder = [System.IO.Path]::Combine([Environment]::GetFolderPath('CommonStartMenu'), 'Programs', 'v2rayA')",
+      "if ($global) { $startmenu = 'CommonStartMenu' } else { $startmenu = 'StartMenu' }",
+      "$scoop_startmenu_folder = [System.IO.Path]::Combine([Environment]::GetFolderPath($startmenu), 'Programs', 'Scoop Apps')",
+      "Move-Item \"$v2raya_startmenu_folder\" \"$scoop_startmenu_folder\\\" -ErrorAction 'SilentlyContinue' -Force"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Start-Process \"$dir\\unins000.exe\" -ArgumentList @('/VERYSILENT', '/NORESTART') -Wait -Verb RunAs",
+      "if ($global) { $startmenu = 'CommonStartMenu' } else { $startmenu = 'StartMenu' }",
+      "$scoop_startmenu_folder = [System.IO.Path]::Combine([Environment]::GetFolderPath($startmenu), 'Programs', 'Scoop Apps')",
+      "Remove-Item \"$scoop_startmenu_folder\\v2rayA\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
+    ]
+  },
+  "bin": [
+    "v2rayA-service.exe",
+    "reset-passwd-v2raya-np.ps1"
+  ],
+  "persist": "config",
+  "checkver": {
+    "url": "https://api.github.com/repos/v2rayA/v2raya/releases/latest",
+    "regex": "installer_windows_inno_x64_([\\d.]+)\\.exe"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/v2rayA/v2rayA/releases/download/v$version/installer_windows_inno_x64_$version.exe#/v2rayA.exe"
+      },
+      "arm64": {
+        "url": "https://ghproxy.net/https://github.com/v2rayA/v2rayA/releases/download/v$version/installer_windows_inno_arm64_$version.exe#/v2rayA.exe"
+      }
+    }
+  }
+}

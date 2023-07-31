@@ -1,0 +1,29 @@
+{
+  "version": "23.02",
+  "description": "Scripted uploads to youtube.",
+  "homepage": "https://github.com/porjo/youtubeuploader",
+  "license": "Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/porjo/youtubeuploader/releases/download/23.02/youtubeuploader_23.02_Windows_x86_64.zip",
+      "hash": "0159566c8133506eae346a6c5507476079bf3a783d5f1e93af6991d2d1a34449"
+    }
+  },
+  "bin": [
+    [
+      "youtubeuploader_windows_amd64.exe",
+      "youtubeuploader"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/porjo/youtubeuploader/releases/download/$version/youtubeuploader_$version_Windows_x86_64.zip"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/youtubeuploader_$version_checksums.txt"
+    }
+  }
+}

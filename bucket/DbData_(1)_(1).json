@@ -1,0 +1,27 @@
+{
+  "url": "https://www.powershellgallery.com/api/v2/Package/DbData/2.2.2#/mod.nupkg",
+  "description": "Improves SQL Server SMO and querying/updating with PowerShell",
+  "autoupdate": {
+    "hash": {
+      "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id eq 'DbData' and Version eq '$version'",
+      "regex": "<d:PackageHash>$base64<.d:PackageHash>"
+    },
+    "url": "https://www.powershellgallery.com/api/v2/Package/DbData/$version#/mod.nupkg"
+  },
+  "version": "2.2.2",
+  "depends": [
+    "Disposable",
+    "SqlServer"
+  ],
+  "psmodule": {
+    "name": "DbData"
+  },
+  "license": "Unknown",
+  "homepage": "https://www.powershellgallery.com/packages/DbData",
+  "checkver": {
+    "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id%20eq%20'DbData'%20and%20IsLatestVersion%20eq%20true",
+    "replace": "${ver}",
+    "regex": "(?i)<d:Version>(?<ver>[^<]+)<.d:Version>"
+  },
+  "hash": "sha512:3f053533e2c3b2344a8dbcb0e96cab857c3cad1e5b0288670287c26c7435d89de2ca484057c4b53695213b7f061714461a38650822773c2e5c8c251cd88cf3f2"
+}

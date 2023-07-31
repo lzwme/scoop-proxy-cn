@@ -1,0 +1,29 @@
+{
+  "homepage": "https://github.com/saisandeepvaddi/ten-hands",
+  "version": "2.10.3",
+  "license": "MIT",
+  "url": "https://ghproxy.net/https://github.com/saisandeepvaddi/ten-hands/releases/download/v2.10.3/Ten.Hands.Setup.2.10.3.exe#/dl.7z",
+  "hash": "sha256:bca8e7ac20a005af426bfae281ffc7df2d6590f49946af34a4ce66a5302a1fc4",
+  "shortcuts": [
+    [
+      "Ten Hands.exe",
+      "Ten Hands"
+    ]
+  ],
+  "architecture": {
+    "64bit": {
+      "installer": {
+        "script": [
+          "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+          "Remove-Item \"$dir\\`$PLUGINSDIR\" -Recurse"
+        ]
+      }
+    }
+  },
+  "checkver": {
+    "github": "https://github.com/saisandeepvaddi/ten-hands"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/saisandeepvaddi/ten-hands/releases/download/$version/Ten.Hands.Setup.$version.exe#/dl.7z"
+  }
+}

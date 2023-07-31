@@ -1,0 +1,41 @@
+{
+  "version": "16227-20258",
+  "description": "Family of client software, server software and services developed by Microsoft. This package includes custom config file.",
+  "homepage": "https://www.office.com/",
+  "license": "Proprietary",
+  "url": "https://download.microsoft.com/download/2/7/A/27AF1BE6-DD20-4CB4-B154-EBAB8A7D4A7E/officedeploymenttool_16227-20258.exe#/dl.7z",
+  "hash": "a39d49e09e0dd81d7fdab8e22a6d28894615b948e9596a211eaaf094a59b4f9b",
+  "pre_install": [
+    "$null, $bucket = find_manifest($app)",
+    "$bucketdir = Find-BucketDirectory($bucket)",
+    "Copy-Item \"$bucketdir\\..\\scripts\\office-365-config.xml\" -Destination \"$dir\\office-365-config.xml\""
+  ],
+  "installer": {
+    "file": "setup.exe",
+    "args": [
+      "/configure",
+      "$dir\\office-365-config.xml"
+    ],
+    "keep": true
+  },
+  "post_install": [
+    "$null, $bucket = find_manifest($app)",
+    "$bucketdir = Find-BucketDirectory($bucket)",
+    "Copy-Item \"$bucketdir\\..\\scripts\\uninstall-office-365-apps.xml\" -Destination \"$dir\\uninstall-office-365-apps.xml\""
+  ],
+  "uninstaller": {
+    "file": "setup.exe",
+    "args": [
+      "/configure",
+      "$dir\\uninstall-office-365-apps.xml"
+    ]
+  },
+  "checkver": {
+    "url": "https://www.microsoft.com/en-au/download/confirmation.aspx?id=49117",
+    "regex": "https://download\\.microsoft\\.com/download/(?<path>[\\w-/]+)/officedeploymenttool_(?<version>[\\d-]+)\\.exe"
+  },
+  "autoupdate": {
+    "url": "https://download.microsoft.com/download/$matchPath/officedeploymenttool_$version.exe#/dl.7z"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

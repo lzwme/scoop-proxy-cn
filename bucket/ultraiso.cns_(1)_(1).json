@@ -1,0 +1,34 @@
+{
+  "version": "9.7.6.3829",
+  "description": "CD/DVD image file editing tool",
+  "homepage": "https://www.ezbsystems.com/ultraiso/",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://www.ezbsystems.com/pad/ultraiso.xml"
+  },
+  "url": "https://cn.ezbsystems.com/dl.php?dir=3339c892&file=uiso97cns.exe",
+  "hash": "7fbd6b91e57b25af41855ce30d71b9e68352b183a8b85e2d5072396076224819",
+  "innosetup": true,
+  "bin": "UltraISO.exe",
+  "shortcuts": [
+    [
+      "UltraISO.exe",
+      "UltraISO"
+    ]
+  ],
+  "persist": [
+    "uikey.ini"
+  ],
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\uikey.ini\")) {",
+    "    New-Item -Path \"$dir\\uikey.ini\" -ItemType File | Out-Null",
+    "}"
+  ],
+  "checkver": {
+    "url": "https://www.ezbsystems.com/ultraiso/download.htm",
+    "regex": "<font size=\"2\">([\\d.]+)</font>"
+  },
+  "autoupdate": {
+    "url": "https://cn.ezbsystems.com/dl.php?dir=3339c892&file=uiso$majorVersion$minorVersioncns.exe"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "homepage": "https://www.elastic.co/products/logstash",
+  "version": "5.5.1",
+  "depends": [
+    "nssm224",
+    "openjdk180_102_2"
+  ],
+  "url": [
+    "https://artifacts.elastic.co/downloads/logstash/logstash-5.5.1.tar.gz",
+    "https://ghproxy.net/https://raw.githubusercontent.com/Utdanningsdirektoratet/PAS-scoop-public/7eea49532b845234d7c8251ca523ba852547f04b/scripts/logstashsrv.ps1"
+  ],
+  "hash": [
+    "sha1:2cd1cdc1c01f7e7af3919221668e9ec2547070be",
+    "35C0BE3751BE46BBCDF9CB5CD0AC06271540A5AA40DE0CD3ADFE62B732DFFD8F"
+  ],
+  "bin": [
+    "bin\\logstash.bat",
+    [
+      "bin\\logstash-plugin.bat",
+      "logstash_plugin"
+    ],
+    [
+      "logstashsrv.ps1",
+      "logstash_service"
+    ]
+  ],
+  "extract_dir": "logstash-5.5.1"
+}

@@ -1,0 +1,38 @@
+{
+  "version": "0.0.0.9.1",
+  "description": "A modern, open-source, XMPP/Jabber chat client for the desktop",
+  "homepage": "https://dino.im/",
+  "license": "GPL-3.0-or-later",
+  "url": "https://ghproxy.net/https://github.com/LAGonauta/dino/releases/download/v0.0.0.9.1/dino-installer-x86_64.exe#dl.7z",
+  "hash": "dcb10d013f785521e81ef305142d3e2f4f4b50bf418fdf2e307ccb782a61fe02",
+  "shortcuts": [
+    [
+      "bin/dino.exe",
+      "Dino"
+    ]
+  ],
+  "post_install": [
+    "$name = 'Dino'",
+    "$app = \"$dir\\bin\\dino.exe\".Replace('\\', '\\\\')",
+    "$scripts = join-path $bucketsdir $($ResolvedObject.Bucket) | join-path -ChildPath scripts/xmpp",
+    "'install-associations', 'uninstall-associations' | ForEach-Object {",
+    "  if (Test-Path \"$scripts\\$_.reg\") {",
+    "    $content = Get-Content \"$scripts\\$_.reg\"",
+    "    $content = $content.Replace('$name', $name)",
+    "    $content = $content.Replace('$app', $app)",
+    "    if ($global) {",
+    "      $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE')",
+    "    }",
+    "    $content | Set-Content -Path \"$dir\\$_.reg\"",
+    "  }",
+    "}",
+    "REG IMPORT \"$dir\\install-associations.reg\" *>&1 | Out-Null"
+  ],
+  "pre_uninstall": "REG IMPORT \"$dir\\uninstall-associations.reg\" *>&1 | Out-Null",
+  "checkver": {
+    "github": "https://github.com/LAGonauta/dino"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/LAGonauta/dino/releases/download/v${version}/dino-installer-x86_64.exe#dl.7z"
+  }
+}

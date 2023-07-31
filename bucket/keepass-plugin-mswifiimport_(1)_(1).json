@@ -1,0 +1,15 @@
+{
+  "version": "0.0",
+  "url": "https://github.com/elgesl/keepass-mswifiimport/raw/master/MSWifiImportPlugin.dll",
+  "description": "KeePass MS Wifi Import Plugin",
+  "license": "https://github.com/elgesl/keepass-mswifiimport/blob/master/LICENSE",
+  "hash": "5092FD43B3EE61B21BC0963BEA324B80B36B85F9C0BDDCC3950D1E64158BA23C",
+  "depends": "extras/keepass",
+  "homepage": "https://elgesl.github.io/keepass-mswifiimport/",
+  "installer": {
+    "script": "Get-Process -Name KeePass -ErrorAction SilentlyContinue | Stop-Process -Force -Verbose; Copy-Item \"$dir\\MSWifiImportPlugin.dll\" \"$(appdir keepass $global)\\current\\Plugins\\MSWifiImportPlugin.dll\"; KeePass"
+  },
+  "uninstaller": {
+    "script": "Get-Process -Name KeePass -ErrorAction SilentlyContinue | Stop-Process -Force -Verbose; Remove-Item \"$(appdir keepass $global)\\current\\Plugins\\MSWifiImportPlugin.dll\" -Force; KeePass"
+  }
+}

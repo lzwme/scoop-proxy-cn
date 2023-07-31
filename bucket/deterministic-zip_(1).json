@@ -1,0 +1,41 @@
+{
+  "version": "2.1.0",
+  "description": "Simple (almost drop-in) replacement for zip that produces deterministic files",
+  "homepage": "https://github.com/timo-reymann/deterministic-zip",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://github.com/timo-reymann/deterministic-zip/blob/main/LICENSE"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/timo-reymann/deterministic-zip/releases/download/2.1.0/deterministic-zip_windows-amd64.exe#deterministic-zip.exe",
+      "hash": "d534c3de7af94c6442f8f1c74004c597dbdf8022c34953c1bef3690b97feea06"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/timo-reymann/deterministic-zip/releases/download/2.1.0/deterministic-zip_windows-i386.exe#deterministic-zip.exe",
+      "hash": "8f6a3e53b946998df686d1c2b6156c4b4364f98fc60ffcf1a9edc87399b18e43"
+    },
+    "arm64": {
+      "url": "https://ghproxy.net/https://github.com/timo-reymann/deterministic-zip/releases/download/2.1.0/deterministic-zip_windows-arm.exe#deterministic-zip.exe",
+      "hash": "50645d5af06f15359e6e6dc5d1ce032221e6cf9ddbaecf3c15ef4d190a1e3cf6"
+    }
+  },
+  "bin": "deterministic-zip.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/timo-reymann/deterministic-zip/releases/download/$version/deterministic-zip_windows-amd64.exe#deterministic-zip.exe"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/timo-reymann/deterministic-zip/releases/download/$version/deterministic-zip_windows-i386.exe#deterministic-zip.exe"
+      },
+      "arm64": {
+        "url": "https://ghproxy.net/https://github.com/timo-reymann/deterministic-zip/releases/download/$version/deterministic-zip_windows-arm.exe#deterministic-zip.exe"
+      }
+    },
+    "hash": {
+      "url": "$url.sha256"
+    }
+  }
+}

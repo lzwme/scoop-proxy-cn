@@ -1,0 +1,36 @@
+{
+  "version": "1.7",
+  "description": "Download episodes from GoPlay",
+  "homepage": "https://goplay.anontpp.com/",
+  "license": "Freeware",
+  "url": "https://assets.anontpp.com/downloader v1.7.zip",
+  "hash": "023d65fceef6a31fe7a4150280cce1b9619c8ccde2c9581f2d858ff47f6e3ca0",
+  "bin": [
+    [
+      "Downloader.bat",
+      "downloader"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "Downloader.bat",
+      "GoPlay Downloader"
+    ]
+  ],
+  "persist": "Downloads",
+  "checkver": {
+    "url": "https://assets.anontpp.com/downloader.zip",
+    "script": [
+      "(New-Object System.Net.WebClient).DownloadFile('https://assets.anontpp.com/downloader.zip', \"$env:TMP\\downloader.zip\")",
+      "Expand-Archive $env:TMP\\downloader.zip $env:TMP\\downloader",
+      "$downloader_bat = Get-Content $env:TMP\\downloader\\downloader.bat",
+      "Remove-Item $env:TMP\\downloader.zip",
+      "Remove-Item $env:TMP\\downloader\\ -Recurse",
+      "$downloader_bat"
+    ],
+    "regex": "GoPlay Downloader for Windows \\(ver ([\\d.]+)\\)"
+  },
+  "autoupdate": {
+    "url": "https://assets.anontpp.com/downloader v$version.zip"
+  }
+}

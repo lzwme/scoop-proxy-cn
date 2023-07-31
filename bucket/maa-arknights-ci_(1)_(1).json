@@ -1,0 +1,35 @@
+{
+  "notes": "CI version, the second last string in version is not stable, if there is a new version which has not been updated in manifest, please contact me via github issues.",
+  "version": "4.19.1-alpha.1.d065.g86a5da4f",
+  "description": "An Arknights game assissant",
+  "homepage": "https://maa.plus/",
+  "license": "AGPL-3.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/MaaAssistantArknights/MaaRelease/releases/download/v4.19.1-alpha.1.d065.g86a5da4f/MAA-v4.19.1-alpha.1.d065.g86a5da4f-win-x64.zip",
+      "hash": "7a48b0dc35360aaf3e316b1ce20394ec1e5300cdcef7246c36a9e3e3e7916570"
+    }
+  },
+  "bin": "MAA.exe",
+  "shortcuts": [
+    [
+      "MAA.exe",
+      "MaaAssistantArknights"
+    ]
+  ],
+  "suggest": {
+    "emulators": [
+      "nonportable/bluestacks-np",
+      "nonportable/bluestacks-hyperv-np"
+    ],
+    "adb": "adb"
+  },
+  "persist": "config",
+  "checkver": {
+    "url": "https://api.github.com/repos/MaaAssistantArknights/MaaRelease/releases",
+    "regex": "/releases/tag/(?:v)?([\\d.]+(-(alpha\\.\\d(.\\w+.\\w+)?|(beta|rc)\\.\\d+))?)"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/MaaAssistantArknights/MaaRelease/releases/download/v$version/MAA-v$version-win-x64.zip"
+  }
+}

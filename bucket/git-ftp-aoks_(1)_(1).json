@@ -1,0 +1,28 @@
+{
+  "autoupdate": {
+    "extract_dir": "git-ftp-$version",
+    "url": "https://ghproxy.net/https://github.com/git-ftp/git-ftp/archive/$version.zip"
+  },
+  "checkver": {
+    "github": "https://github.com/git-ftp/git-ftp"
+  },
+  "depends": "git",
+  "description": "Upload to FTP servers the Git way.",
+  "extract_dir": "git-ftp-1.6.0",
+  "homepage": "https://git-ftp.github.io/",
+  "license": "MIT",
+  "post_install": [
+    "",
+    "pushd $dir",
+    "try {",
+    "New-Item -ItemType HardLink -Value \"${dir}\\git-ftp\" -Path \"${env:GIT_INSTALL_ROOT}\\usr\\bin\\git-ftp\"",
+    "iex \"$(scoop which git-bash) -c 'chmod +x /bin/git-ftp'\"",
+    "}",
+    "finally {",
+    "popd",
+    "}",
+    ""
+  ],
+  "url": "https://ghproxy.net/https://github.com/git-ftp/git-ftp/archive/1.6.0.zip",
+  "version": "1.6.0"
+}

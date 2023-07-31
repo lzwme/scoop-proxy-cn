@@ -1,0 +1,49 @@
+{
+  "architecture": {
+    "32bit": {
+      "extract_dir": "szs-v2.33a-r8773-cygwin32\\bin",
+      "hash": "a0632c01f60e2c54dc24e5bae1d2c5956efd93068c1980c49e2281545e8eab05",
+      "url": "https://szs.wiimm.de/download/szs-v2.33a-r8773-cygwin32.zip"
+    },
+    "64bit": {
+      "extract_dir": "szs-v2.33a-r8773-cygwin64\\bin",
+      "hash": "8d202b835f49c26c6fd9adcad6e0a84f25474a3eb2bc62f8e188e93df3569822",
+      "url": "https://szs.wiimm.de/download/szs-v2.33a-r8773-cygwin64.zip"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "extract_dir": "szs-v$matchShort-$matchRevision-cygwin32\\bin",
+        "url": "https://szs.wiimm.de/download/szs-v$matchShort-$matchRevision-cygwin32.zip"
+      },
+      "64bit": {
+        "extract_dir": "szs-v$matchShort-$matchRevision-cygwin64\\bin",
+        "url": "https://szs.wiimm.de/download/szs-v$matchShort-$matchRevision-cygwin64.zip"
+      }
+    }
+  },
+  "bin": [
+    "wbmgt.exe",
+    "wctct.exe",
+    "wimgt.exe",
+    "wkclt.exe",
+    "wkmpt.exe",
+    "wlect.exe",
+    "wmdlt.exe",
+    "wpatt.exe",
+    "wstrt.exe",
+    "wszst.exe"
+  ],
+  "checkver": {
+    "regex": "szs v(?<short>[\\da-z.]+) (?<revision>r[\\d]+)",
+    "replace": "${short}.${revision}",
+    "url": "https://szs.wiimm.de/changelog.html"
+  },
+  "description": "Wiimms SZS Toolset is a set of command line tools to manipulate files of Mario Kart Wii.",
+  "homepage": "https://szs.wiimm.de/",
+  "license": "GPL-2.0-only",
+  "notes": "Use '$dir\\sendto-install.bat' to install the 'send to' menu entries.",
+  "post_install": "Remove-Item \"$dir\\szs-v*\" -Force -Recurse",
+  "version": "2.33a.r8773"
+}

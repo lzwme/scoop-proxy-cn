@@ -1,0 +1,28 @@
+{
+  "version": "13.1",
+  "description": "High-performance http, https, socks5, ss, websocket, tcp, udp and game proxy and game shield.",
+  "homepage": "https://github.com/snail007/goproxy",
+  "license": "GPL-3.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/snail007/goproxy/releases/download/v13.1/proxy-windows-amd64.tar.gz",
+      "hash": "1b5d41459e5c0fff9ce62bf8d6b70ae00efb5456c7e35dde5d113350d48e2481"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/snail007/goproxy/releases/download/v13.1/proxy-windows-386.tar.gz",
+      "hash": "296ffbd04514ebe37f619622a22175974ee548e1561929c24d275daa8989f6db"
+    }
+  },
+  "bin": "proxy.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/snail007/goproxy/releases/download/v$version/proxy-windows-amd64.tar.gz"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/snail007/goproxy/releases/download/v$version/proxy-windows-386.tar.gz"
+      }
+    }
+  }
+}

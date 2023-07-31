@@ -1,0 +1,31 @@
+{
+  "version": "2.0.22",
+  "description": "QingStor 对象存储提供的用于在不同的存储端点 (Endpoint) 间高效迁移数据的工具",
+  "homepage": "https://docsv3.qingcloud.com/storage/object-storage/manual/tool/qscamel/",
+  "license": "Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/qingstor/qscamel/releases/download/v2.0.22/qscamel_v2.0.22_windows_amd64.tar.gz",
+      "hash": "dae46c10a03d18639d305b23178d58af722f31de878758682d3e7dabc379a088"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/qingstor/qscamel/releases/download/v2.0.22/qscamel_v2.0.22_windows_i386.tar.gz",
+      "hash": "c6aaddf08198c79f11941ba9f15428053c26f6df06d8b34ca28560b888d0d821"
+    }
+  },
+  "pre_install": "Get-ChildItem \"$dir\" 'qscamel_*.exe' | Select-Object -First 1 | Rename-Item -NewName 'qscamel.exe'",
+  "bin": "qscamel.exe",
+  "checkver": {
+    "github": "https://github.com/qingstor/qscamel"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/qingstor/qscamel/releases/download/v$version/qscamel_v$version_windows_amd64.tar.gz"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/qingstor/qscamel/releases/download/v$version/qscamel_v$version_windows_i386.tar.gz"
+      }
+    }
+  }
+}

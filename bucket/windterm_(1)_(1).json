@@ -1,0 +1,42 @@
+{
+  "version": "2.6",
+  "description": "SSH/Sftp/Shell/Telnet/Serial client",
+  "homepage": "https://kingtoolbox.github.io/",
+  "license": "Apache-2.0",
+  "suggest": {
+    "vcredist": "extras/vcredist2022"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/kingToolbox/WindTerm/releases/download/2.6-prerelease/WindTerm_2.6.0_Prerelease_1_Windows_Portable_x86_64.zip",
+      "hash": "c8395f3fdec66e71677ff564bd78b570adfdf50067f05e309c642d8d2766d01f"
+    }
+  },
+  "extract_dir": "WindTerm_2.6.0",
+  "shortcuts": [
+    [
+      "WindTerm.exe",
+      "WindTerm"
+    ]
+  ],
+  "post_install": [
+    "info '[Portable Mode] Configuring profiles directory...'",
+    "'{ \"path\" : \".\" }' | Set-Content -Path \"$dir\\profiles.config\"",
+    "if (!(Test-Path \"$dir\\.wind\\profiles\") -and (Test-Path \"$persist_dir\\profiles\")) {",
+    "    info '[Portable Mode] Copying existing profiles...'",
+    "    Copy-Item \"$persist_dir\\profiles\" \"$dir\\.wind\" -Recurse",
+    "}"
+  ],
+  "persist": ".wind",
+  "checkver": {
+    "github": "https://github.com/kingToolbox/WindTerm"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/kingToolbox/WindTerm/releases/download/$version-prerelease/WindTerm_$version.0_Prerelease_1_Windows_Portable_x86_64.zip"
+      }
+    },
+    "extract_dir": "WindTerm_$version.0"
+  }
+}

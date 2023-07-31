@@ -1,0 +1,42 @@
+{
+  "version": "2.58",
+  "description": "PopSel offers simple pop-up menus to launch programs etc.",
+  "homepage": "https://www.horstmuc.de/wpop.htm",
+  "license": "Freeware",
+  "notes": "Though menus can be kept anywhere, suggest to store it in Menus folder as it is persisted",
+  "architecture": {
+    "64bit": {
+      "url": "https://www.horstmuc.de/win64/popsel64.zip",
+      "hash": "671a85a3f80a36a589876e5913d9711577b9b992de75d0971dacdb2103b9d877"
+    },
+    "32bit": {
+      "url": "https://www.horstmuc.de/win/popsel.zip",
+      "hash": "2ad7fb5897bfdf6321116afb5414b6a4ecb9116cb473d9095222346385cf862f"
+    }
+  },
+  "pre_install": "if (!(Test-Path \"$persist_dir\\popsel.lst\")) { New-Item \"$dir\\popsel.lst\" | Out-Null }",
+  "shortcuts": [
+    [
+      "PopSel.exe",
+      "PopSel"
+    ]
+  ],
+  "persist": [
+    "Menus",
+    "popsel.lst"
+  ],
+  "checkver": {
+    "url": "https://www.horstmuc.de/wpop.htm",
+    "regex": "PopSel ([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://www.horstmuc.de/win64/popsel64.zip"
+      },
+      "32bit": {
+        "url": "https://www.horstmuc.de/win/popsel.zip"
+      }
+    }
+  }
+}

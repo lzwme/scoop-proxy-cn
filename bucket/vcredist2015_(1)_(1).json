@@ -1,0 +1,8 @@
+{
+  "url": [
+    "https://download.microsoft.com/download/6/A/A/6AA4EDFF-645B-48C5-81CC-ED5963AEAD48/vc_redist.x86.exe",
+    "https://download.microsoft.com/download/6/A/A/6AA4EDFF-645B-48C5-81CC-ED5963AEAD48/vc_redist.x64.exe"
+  ],
+  "version": "2015",
+  "post_install": "function RunInstaller($exe, $arguments) {\n    Write-Host \"Executing $exe $arguments\"\n    Start-Process $exe arguments -Wait\n    Remove-Item $exe\n}\n\nfunction InstallVcredist {\n    '86', '64' | % {\n        $a = $_\n        '_', '.' | % {\n            $f = \"$dir\\vcredist$_x$a.exe\"\n            if (Test-Path $f) {\n                RunInstaller $f '/q /norestart'\n            }\n        }\n    }\n}\nInstallVcredist"
+}

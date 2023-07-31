@@ -1,0 +1,56 @@
+{
+  "architecture": {
+    "32bit": {
+      "hash": "e1360e94cb292862fb023018578a1029022a09278b160f7264c6dc444f65c9ca",
+      "url": "https://mirrors.tuna.tsinghua.edu.cn/github-release/git-for-windows/git/LatestRelease/PortableGit-2.40.1-32-bit.7z.exe#/dl.7z"
+    },
+    "64bit": {
+      "hash": "9e1d819aef3284420adf6d923b0d4865254bd403641d915975e49ddea1e7cdf9",
+      "url": "https://mirrors.tuna.tsinghua.edu.cn/github-release/git-for-windows/git/LatestRelease/PortableGit-2.40.1-64-bit.7z.exe#/dl.7z"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://mirrors.tuna.tsinghua.edu.cn/github-release/git-for-windows/git/LatestRelease/PortableGit-$version-32-bit.7z.exe#/dl.7z"
+      },
+      "64bit": {
+        "url": "https://mirrors.tuna.tsinghua.edu.cn/github-release/git-for-windows/git/LatestRelease/PortableGit-$version-64-bit.7z.exe#/dl.7z"
+      }
+    },
+    "hash": {
+      "regex": "<td>$basename</td>\\s*<td>$sha256</td>",
+      "url": "https://github.com/git-for-windows/git/releases"
+    }
+  },
+  "bin": [
+    "cmd\\git.exe",
+    "cmd\\gitk.exe",
+    "cmd\\git-gui.exe",
+    "usr\\bin\\tig.exe",
+    "git-bash.exe"
+  ],
+  "checkver": {
+    "regex": "Git for Windows ([\\d.]+)",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/github-release/git-for-windows/git/"
+  },
+  "description": "Distributed version control system(Download from TUNA mirror).",
+  "env_set": {
+    "GIT_INSTALL_ROOT": "$dir"
+  },
+  "homepage": "https://gitforwindows.org",
+  "license": "GPL-2.0-only",
+  "post_install": "git config --global credential.helper manager-core",
+  "shortcuts": [
+    [
+      "git-bash.exe",
+      "Git Bash",
+      "--cd-to-home"
+    ],
+    [
+      "cmd\\git-gui.exe",
+      "Git GUI"
+    ]
+  ],
+  "version": "2.40.1"
+}

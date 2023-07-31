@@ -1,0 +1,56 @@
+{
+  "version": "9.6.6.28796",
+  "description": "Tencent QQ 3rd party modified version, maintained by 423down.com.",
+  "homepage": "https://im.qq.com/pcqq",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://ti.qq.com/agreement/index.html"
+  },
+  "notes": [
+    "所有的修改版都有被冻结或封号的风险，是否使用自己斟酌，本人不承担任何责任!",
+    "Features: <https://www.ghxi.com/qq9.html>"
+  ],
+  "suggest": {
+    "vcredist": [
+      "vcredist-aio",
+      "vcredist-dreamcast"
+    ],
+    "flash": [
+      "adobe-flash-player-activex-dreamcast",
+      "adobe-flash-player-npapi-dreamcast",
+      "adobe-flash-player-ppapi-dreamcast",
+      "adobe-flash-player-cy",
+      "adobe-flash-player-activex-zd423",
+      "adobe-flash-player-npapi-zd423",
+      "adobe-flash-player-ppapi-zd423"
+    ]
+  },
+  "url": "https://pan.jiemi.workers.dev/?file=/zd423/QQ_9.6.6.28796_Green.7z",
+  "hash": "3f82f12fc046ec14f3aac578404af7ed278e7c87a7847d994359941ee906d47e",
+  "extract_dir": "QQ",
+  "pre_install": [
+    "Copy-Item \"$bucketsdir\\$bucket\\scripts\\qq\\install.bat\" \"$dir\\install.bat\" -ErrorAction 'SilentlyContinue' -Force | Out-Null",
+    "Copy-Item \"$bucketsdir\\$bucket\\scripts\\qq\\uninstall.bat\" \"$dir\\uninstall.bat\" -ErrorAction 'SilentlyContinue' -Force | Out-Null"
+  ],
+  "installer": {
+    "file": "install.bat",
+    "keep": true
+  },
+  "uninstaller": {
+    "file": "uninstall.bat"
+  },
+  "shortcuts": [
+    [
+      "Bin\\QQScLauncher.exe",
+      "Tencent\\QQ"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/oneindex.txt",
+    "regex": "QQ_([\\d.]+)_Green.7z",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/zd423/QQ_$version_Green.7z"
+  }
+}

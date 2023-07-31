@@ -1,0 +1,22 @@
+{
+  "version": "6.8.2",
+  "description": "Adds support to KeePass AutoType for URL matching",
+  "homepage": "https://sourceforge.net/projects/webautotype/",
+  "license": "GPL-3.0",
+  "depends": "extras/keepass",
+  "url": "https://sourceforge.net/projects/webautotype/files/v6.8.2/WebAutoType-v6.8.2.zip",
+  "hash": "sha1:534f0fa6706f067db2fea6706d2f94d0ee64e526",
+  "installer": {
+    "script": "Copy-Item \"$dir\\WebAutoType.plgx\" \"$(appdir keepass $global)\\current\\Plugins\""
+  },
+  "uninstaller": {
+    "script": "Remove-Item \"$(appdir keepass $global)\\current\\Plugins\\WebAutoType.plgx\""
+  },
+  "checkver": {
+    "url": "https://sourceforge.net/projects/webautotype/rss?path=/",
+    "regex": "WebAutoType-v([\\d.]+)\\.zip"
+  },
+  "autoupdate": {
+    "url": "https://sourceforge.net/projects/webautotype/files/v$version/WebAutoType-v$version.zip"
+  }
+}

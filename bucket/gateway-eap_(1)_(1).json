@@ -1,0 +1,39 @@
+{
+  "architecture": {
+    "64bit": {
+      "hash": "5cc701455950ed85ca9b20e9b78cae15278f1b3922545fab7730e927e5d9879d",
+      "shortcuts": [
+        [
+          "IDE\\bin\\gateway64.exe",
+          "JetBrains\\Gateway (Early Access Program)"
+        ]
+      ],
+      "url": "https://download.jetbrains.com/idea/gateway/JetBrainsGateway-231.8770.13.exe#/dl.7z"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://download.jetbrains.com/idea/gateway/JetBrainsGateway-$preReleaseVersion.exe#/dl.7z"
+      }
+    },
+    "hash": {
+      "url": "$url.sha256"
+    }
+  },
+  "checkver": {
+    "regex": "version\":\"(?<ver>[\\d.]+)\".*\"build\":\"(?<build>[\\d.]+)\"",
+    "replace": "${ver}-${build}",
+    "url": "https://data.services.jetbrains.com/products/releases?code=GW&latest=true&platform=zip&type=eap"
+  },
+  "description": "JetBrains Gateway Early Access Program. Launcher that brings a backend server and local environment together.",
+  "extract_to": "IDE",
+  "homepage": "https://www.jetbrains.com/help/idea/2021.3/remote-development-starting-page.html",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://www.jetbrains.com/help/idea/2021.3/remote-development-starting-page.html#licensing"
+  },
+  "persist": "IDE\\bin\\idea.properties",
+  "pre_install": "Remove-Item \"$dir\\IDE\\`$*\" -Force -Recurse",
+  "version": "2023.1.1-231.8770.13"
+}

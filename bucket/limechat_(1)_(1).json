@@ -1,0 +1,28 @@
+{
+  "version": "2.40",
+  "description": "An IRC client for Windows",
+  "homepage": "http://limechat.net/",
+  "license": "Freeware",
+  "architecture": {
+    "64bit": {
+      "url": "http://hp.vector.co.jp/authors/VA022249/files/lime240_x64.exe#/dl.7z",
+      "hash": "20fd26008787153e54436ba2d18976771fda3f30ea95762c2be37e7fce2b00b1"
+    }
+  },
+  "pre_install": [
+    "Remove-Item \"$dir\\`$*\", \"$dir\\Uninst*\" -Recurse"
+  ],
+  "bin": "LimeChat2.exe",
+  "shortcuts": [
+    [
+      "LimeChat2.exe",
+      "LimeChat 2"
+    ]
+  ],
+  "persist": [
+    "users"
+  ],
+  "checkver": {
+    "regex": "_x64\\.exe\">LimeChat ([\\d.]+) 64bit"
+  }
+}

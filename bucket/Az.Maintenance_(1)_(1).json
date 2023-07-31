@@ -1,0 +1,27 @@
+{
+  "checkver": {
+    "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id%20eq%20'Az.Maintenance'%20and%20IsLatestVersion%20eq%20true",
+    "replace": "${ver}",
+    "regex": "(?i)<d:Version>(?<ver>[^<]+)<.d:Version>"
+  },
+  "hash": "sha512:c4b1087a1c3450786c869c7cfce771d761e5bd8150045d54cdf9437b36443b16ec4d851aa40e647271948b4b81a420dc08a867eee1021ef9de993f619680958a",
+  "description": "Microsoft Azure PowerShell - Maintenance cmdlets for Azure Resource Manager in Windows PowerShell and PowerShell Core.  For more information on Maintenance, please visit the following: https://docs.microsoft.com/azure/maintenance/",
+  "psmodule": {
+    "name": "Az.Maintenance"
+  },
+  "homepage": "https://www.powershellgallery.com/packages/Az.Maintenance",
+  "autoupdate": {
+    "url": "https://www.powershellgallery.com/api/v2/Package/Az.Maintenance/$version#/mod.nupkg",
+    "hash": {
+      "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id eq 'Az.Maintenance' and Version eq '$version'",
+      "regex": "<d:PackageHash>$base64<.d:PackageHash>"
+    }
+  },
+  "license": {
+    "identifier": "Refer to Webpage",
+    "url": "https://aka.ms/azps-license"
+  },
+  "url": "https://www.powershellgallery.com/api/v2/Package/Az.Maintenance/1.2.1#/mod.nupkg",
+  "depends": "Az.Accounts",
+  "version": "1.2.1"
+}

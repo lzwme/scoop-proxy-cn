@@ -1,0 +1,51 @@
+{
+  "version": "10.0.22000.194",
+  "description": "Docker Desktop. Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.",
+  "homepage": "https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk/",
+  "license": "Copyright (c) Microsoft Corporation. All rights reserved.",
+  "notes": [
+    "Using /installpath doesn't 100% contain the installation",
+    "OptionId.IpOverUsb default feature has been removed since incompatible with server core",
+    "The feature allows debugging UWP apps on phones...",
+    "",
+    "You'll need to restart your computer once the installation completes"
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/microsoft/winget-pkgs/contents/manifests/m/Microsoft/WindowsSDK?ref=master",
+    "jp": "$.[-1:].name"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://download.microsoft.com/download/d/8/f/d8ff148b-450c-40b3-aeed-2a3944e66bbd/windowssdk/winsdksetup.exe",
+      "hash": "4D73DDC82CAA1CBE82DFFDC24B7CEF368919E077BAD984357D447568FEAB1F5F",
+      "installer": {
+        "args": [
+          "/q",
+          "/norestart",
+          "/features",
+          "OptionId.WindowsPerformanceToolkit",
+          "OptionId.WindowsDesktopDebuggers",
+          "OptionId.AvrfExternal",
+          "OptionId.WindowsSoftwareLogoToolkit",
+          "OptionId.MSIInstallTools",
+          "OptionId.SigningTools",
+          "OptionId.UWPManaged",
+          "OptionId.UWPCPP",
+          "OptionId.UWPLocalized",
+          "OptionId.DesktopCPPx86",
+          "OptionId.DesktopCPPx64",
+          "/installpath",
+          "$dir\\sdk"
+        ],
+        "keep": true
+      },
+      "uninstaller": {
+        "file": "winsdksetup.exe",
+        "args": [
+          "/uninstall",
+          "/q"
+        ]
+      }
+    }
+  }
+}

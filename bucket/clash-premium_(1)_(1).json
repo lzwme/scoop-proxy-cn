@@ -1,0 +1,76 @@
+{
+  "homepage": "https://github.com/Dreamacro/clash/wiki/Premium-Core-Features",
+  "description": "close-sourced pre-built Clash binary with TUN support and more (it's free)",
+  "version": "2023.05.29",
+  "license": "Proprietary",
+  "persist": [
+    "config.yaml",
+    "Country.mmdb"
+  ],
+  "pre_install": [
+    "$config = \"$dir\\config.yaml\"",
+    "$value  = \"# Configuration reference:",
+    "# https: //github.com/Dreamacro/clash/wiki/configuration\"",
+    "if (!(Test-Path $config)) {",
+    "    Add-Content -Path $config -Value $value",
+    "}",
+    "$mmdb     = \"$dir\\Country.mmdb\"",
+    "$mmdb_url = \"https://cdn.jsdelivr.net/gh/Hackl0us/GeoIP2-CN@release/Country.mmdb\"",
+    "if (!(Test-Path $mmdb)) {",
+    "   Invoke-WebRequest -uri $mmdb_url -OutFile $mmdb",
+    "}"
+  ],
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/Dreamacro/clash/releases/download/premium/clash-windows-amd64-2023.05.29.zip",
+      "hash": "230feb32b7a56d755dfb97a37486bcaea2377ff462869440b744a0a982694992",
+      "bin": [
+        [
+          "clash-windows-amd64.exe",
+          "clashd",
+          "-d $dir"
+        ],
+        [
+          "clash-windows-amd64.exe",
+          "clash-premium"
+        ]
+      ]
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/Dreamacro/clash/releases/download/premium/clash-windows-386-2023.05.29.zip",
+      "hash": "2115c808db5ae66147fd4ec42b9d26407bd5e050005d41865f8e54d7cf3d57df",
+      "bin": [
+        [
+          "clash-windows-386.exe",
+          "clashd",
+          "-d $dir"
+        ],
+        [
+          "clash-windows-386.exe",
+          "clash-premium"
+        ]
+      ]
+    }
+  },
+  "suggest": {
+    "Dashboard": [
+      "clash-dashboard",
+      "yacd"
+    ],
+    "Daemon": "nssm"
+  },
+  "checkver": {
+    "url": "https://github.com/Dreamacro/clash/releases/tag/premium",
+    "regex": "Premium\\s+([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/Dreamacro/clash/releases/download/premium/clash-windows-amd64-$version.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/Dreamacro/clash/releases/download/premium/clash-windows-386-$version.zip"
+      }
+    }
+  }
+}

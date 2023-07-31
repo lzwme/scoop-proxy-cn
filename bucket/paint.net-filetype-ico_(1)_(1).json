@@ -1,0 +1,26 @@
+{
+  "version": "1.0",
+  "description": "ICO filetype plugin for paint.net",
+  "homepage": "https://github.com/KyleTTucker/Paint.net-Icon-Creator",
+  "license": "GPL-3.0-only",
+  "depends": "extras/paint.net",
+  "url": "https://ghproxy.net/https://github.com/KyleTTucker/Paint.net-Icon-Creator/releases/download/IconCreator1.0/IconCreator.dll",
+  "hash": "64374cd65efbe89c2690a3f41bd264a8c61162aa11047678fb3f047998253c87",
+  "post_install": [
+    "$paintdotnet = \"$(appdir paint.net)\\current\\FileTypes\"",
+    "Move-Item -Path \"$dir\\IconCreator.dll\" -Destination \"$paintdotnet\" -Force"
+  ],
+  "uninstaller": {
+    "script": [
+      "$paintdotnet = \"$(appdir paint.net)\\current\\FileTypes\"",
+      "Remove-Item \"$paintdotnet\\IconCreator.dll\" -Force"
+    ]
+  },
+  "checkver": {
+    "github": "https://github.com/KyleTTucker/Paint.net-Icon-Creator",
+    "regex": "IconCreator([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/KyleTTucker/Paint.net-Icon-Creator/releases/download/IconCreator$version/IconCreator.dll"
+  }
+}

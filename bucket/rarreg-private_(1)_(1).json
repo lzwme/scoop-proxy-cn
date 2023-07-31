@@ -1,0 +1,58 @@
+{
+  "##": "This package is for private use only. Requires password for installation to proceed.",
+  "version": "1.0",
+  "description": "WinRAR licensing file",
+  "license": "Proprietary",
+  "url": "https://www.googleapis.com/drive/v3/files/1cmIaSoSueHbswNbMXfRvXJvAG167TPQj?alt=media&key=AIzaSyAiaA0bWx34SyfTRvyl4UCCHwsCkvUBECc#/dl.7z_",
+  "hash": "520a976c49babcd9e1cc8f0d1e39fa9060f8baee7e9af811166015a94324b11f",
+  "depends": "sudo",
+  "installer": {
+    "script": [
+      "$scriptdir = (Find-BucketDirectory $bucket)+'\\..\\scripts'",
+      "Import-Module $scriptdir\\pw\\pw_check.psm1",
+      "Expand-EncryptedArchive -aPath \"$dir\\dl.7z_\" -oDir \"$dir\" -ExitIfError -Removal",
+      "$r = Get-Command WinRAR.exe -ErrorAction SilentlyContinue",
+      "if (!($r)) {",
+      "   $r = Get-Command \"$env:ProgramFiles\\WinRAR\\WinRAR.exe\" -ErrorAction SilentlyContinue",
+      "   if(!($r)) {",
+      "       Write-Host 'Error: Cannot locate WinRAR.exe (in either PATH or ProgramFiles).\n Abort installation.' -ForegroundColor Red",
+      "       break;",
+      "   }",
+      "}",
+      "# --- (1) WinRAR installed by Scoop (need to deal with Scoop shims) ---",
+      "if ($r.source.split('\\')[-2] -eq 'shims') {",
+      "   $dest = (Split-Path $r.Source -Resolve)+'\\..\\apps\\winrar*\\current'",
+      "   $dest = Resolve-Path $dest",
+      "   Copy-Item \"$dir\\rarreg.key\" \"$dest\" -Force | Out-Null",
+      "# --- (2) WinRAR not installed by Scoop ---",
+      "} else {",
+      "   $dest = Split-Path $r.Source -Resolve",
+      "   sudo Copy-Item \"$dir\\rarreg.key\" \"$dest\" -Force | Out-Null",
+      "}",
+      "Write-Host \"rarreg.key has been copied to '$dest'.\" -ForegroundColor Green"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$r = Get-Command WinRAR.exe -ErrorAction SilentlyContinue",
+      "if (!($r)) {",
+      "   $r = Get-Command \"$env:ProgramFiles\\WinRAR\\WinRAR.exe\" -ErrorAction SilentlyContinue",
+      "   if(!($r)) {",
+      "       Write-Host 'Error: Cannot locate WinRAR.exe (in either PATH or ProgramFiles).\n Abort installation.' -ForegroundColor Red",
+      "       break;",
+      "   }",
+      "}",
+      "# --- (1) WinRAR installed by Scoop (need to deal with Scoop shims) ---",
+      "if ($r.source.split('\\')[-2] -eq 'shims') {",
+      "   $dest = (Split-Path $r.Source -Resolve)+'\\..\\apps\\winrar*\\current'",
+      "   $dest = Resolve-Path $dest",
+      "   New-Item \"$dest\\rarreg.key\" -Force | Out-Null",
+      "# --- (2) WinRAR not installed by Scoop ---",
+      "} else {",
+      "   $dest = Split-Path $r.Source -Resolve",
+      "   sudo New-Item \"$dest\\rarreg.key\" -Force | Out-Null",
+      "}",
+      "Write-Host \"'$dest\\rarreg.key' has been cleared.\" -ForegroundColor Green"
+    ]
+  }
+}

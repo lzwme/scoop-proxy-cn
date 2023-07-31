@@ -1,0 +1,26 @@
+{
+  "version": "20.0.1.u9-3",
+  "homepage": "https://openjdk.java.net/",
+  "url": "https://mirrors.tuna.tsinghua.edu.cn/archlinux/extra/os/x86_64/openjdk-doc-20.0.1.u9-3-x86_64.pkg.tar.zst",
+  "hash": "157dbc1deeb5eb9fcb992296fef703d04f6e949ee1b3dc9d2286177f05565657",
+  "installer": {
+    "script": [
+      "# Robocopy is too slow!",
+      "Move-Item \"$dir\\usr\\share\\doc\\java-openjdk\\*\" \"$dir\"",
+      "Remove-Item \"$dir\\usr\", \"$dir\\.BUILDINFO\", \"$dir\\.MTREE\", \"$dir\\.PKGINFO\" -Force -Recurse"
+    ]
+  },
+  "shortcuts": [
+    [
+      "index.html",
+      "openjdk-doc"
+    ]
+  ],
+  "checkver": {
+    "url": "https://archlinux.org/packages/extra/x86_64/openjdk-doc/",
+    "regex": "\"version\"\\s+content=\"(.+?)\""
+  },
+  "autoupdate": {
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/archlinux/extra/os/x86_64/openjdk-doc-$version-x86_64.pkg.tar.zst"
+  }
+}

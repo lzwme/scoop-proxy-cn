@@ -1,0 +1,38 @@
+{
+  "version": "2.22",
+  "description": "A light-weight C/C++ IDE based on Qt",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/royqh1979/RedPanda-CPP/releases/download/v2.22/RedPanda.C++.2.22.win32.MinGW-w64.i686.GCC.8.1.Portable.7z",
+      "hash": "cd458f1903bc45e9229187772a557ab8157e12fb0e400fe675be10a978c75733"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/royqh1979/RedPanda-CPP/releases/download/v2.22/RedPanda.C++.2.22.win32.MinGW-w64.i686.GCC.8.1.Portable.7z",
+      "hash": "cd458f1903bc45e9229187772a557ab8157e12fb0e400fe675be10a978c75733"
+    }
+  },
+  "homepage": "https://github.com/royqh1979/RedPanda-CPP",
+  "license": "GPL-3.0-only",
+  "extract_dir": "RedPanda-CPP",
+  "persist": [
+    "config",
+    "templates"
+  ],
+  "shortcuts": [
+    [
+      "RedPandaIDE.exe",
+      "RedPanda CPP"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/royqh1979/RedPanda-CPP/releases/download/v$version/RedPanda.C++.$version.win32.MinGW-w64.i686.GCC.8.1.Portable.7z"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/royqh1979/RedPanda-CPP/releases/download/v$version/RedPanda.C++.$version.win32.MinGW-w64.i686.GCC.8.1.Portable.7z"
+      }
+    }
+  }
+}

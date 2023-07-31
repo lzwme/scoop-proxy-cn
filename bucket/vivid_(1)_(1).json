@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ghproxy.net/https://raw.githubusercontent.com/ScoopInstaller/Scoop/master/schema.json",
+  "version": "0.9.0",
+  "description": "A themeable LS_COLORS generator with a rich filetype datebase.",
+  "homepage": "https://github.com/sharkdp/vivid",
+  "license": "Apache-2.0|MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/sharkdp/vivid/releases/download/v0.9.0/vivid-v0.9.0-x86_64-pc-windows-msvc.zip",
+      "hash": "ff9b44d851f9e27d8fdf820ccff2f31e63a7097badf11edeadf42064b1b9a064",
+      "extract_dir": "vivid-v0.9.0-x86_64-pc-windows-msvc"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/sharkdp/vivid/releases/download/v0.9.0/vivid-v0.9.0-i686-pc-windows-msvc.zip",
+      "hash": "aa29a332dc3e0e34751a43bfd8b1943f3deec6b00e7b4b837a085712cbf46303",
+      "extract_dir": "vivid-v0.9.0-i686-pc-windows-msvc"
+    }
+  },
+  "bin": "vivid.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/sharkdp/vivid/releases/download/v$version/vivid-v$version-x86_64-pc-windows-msvc.zip",
+        "extract_dir": "vivid-v$version-x86_64-pc-windows-msvc"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/sharkdp/vivid/releases/download/v$version/vivid-v$version-i686-pc-windows-msvc.zip",
+        "extract_dir": "vivid-v$version-i686-pc-windows-msvc"
+      }
+    }
+  }
+}

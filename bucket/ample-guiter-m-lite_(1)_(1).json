@@ -1,0 +1,37 @@
+{
+  "homepage": "http://www.amplesound.net/en/download.asp",
+  "description": "Virtual piano modeled on YAMAHA C7",
+  "version": "2_3_1",
+  "license": {
+    "identifier": "Freeware"
+  },
+  "url": "http://d2.amplesound.net/dl/AGML_2_3_1_Complete_Installer_ABCDEF.exe#dl.7z",
+  "hash": "8739e72deb7e93ab50c242c9ad55f8e36107a306da106e9434f11e157a4da096",
+  "extract_dir": "AGML_2_3_1_Complete_Installer",
+  "installer": {
+    "file": "AGML_2_3_1_Complete_Installer.exe",
+    "args": [
+      "/VERYSILENT",
+      "/DIR=$dir"
+    ]
+  },
+  "post_install": [
+    "New-Item -ErrorAction Ignore $env:USERPROFILE\\.vst -ItemType Directory",
+    "New-Item -Type Junction -Path $env:USERPROFILE\\.vst\\ample-guiter-m-lite -Value $dir"
+  ],
+  "uninstaller": {
+    "script": [
+      ". $dir\\unins000.exe /VERYSILENT /SUPPRESSMSGBOXES | Out-Null",
+      "(Get-Item $env:USERPROFILE\\.vst\\ample-guiter-m-lite).Delete()"
+    ]
+  },
+  "checkver": {
+    "url": "http://www.amplesound.net/en/download.asp",
+    "re": "http://d2\\.amplesound\\.net/dl/AGML_(\\d_\\d_\\d)_Complete_Installer_ABCDEF\\.exe"
+  },
+  "autoupdate": {
+    "url": "http://d2.amplesound.net/dl/AGML_$version_Complete_Installer_ABCDEF.exe#dl.7z",
+    "hash": "",
+    "extract_dir": "AGML_$version_Complete_Installer"
+  }
+}

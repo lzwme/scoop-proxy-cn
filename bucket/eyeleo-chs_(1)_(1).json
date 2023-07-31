@@ -1,0 +1,32 @@
+{
+  "autoupdate": {
+    "url": "http://eyeleo.com/files/EyeLeo_Installer_$version.exe#/setup.exe"
+  },
+  "checkver": "New version ([\\d.]+) released",
+  "description": "EyeLeo is a handy PC application that regularly reminds you to take short breaks for your eyes.",
+  "hash": "1cb5f2339dbc3354f0c1b51e6848e8f7948a319719aec101c2632daca24fef21",
+  "homepage": "http://eyeleo.com",
+  "installer": {
+    "args": [
+      "/S",
+      "/D=$dir"
+    ]
+  },
+  "license": {
+    "identifier": "CC-BY-NC-4.0",
+    "url": "https://github.com/Yamatao/eyeleoapp/raw/master/license.txt"
+  },
+  "post_install": "Copy-Item \"$bucketsdir\\$bucket\\scripts\\eyeleo\\langpack.zhcn.xml\" \"$dir\\Langpacks\\langpack.en.xml\" -ErrorAction 'SilentlyContinue' -Force | Out-Null",
+  "shortcuts": [
+    [
+      "EyeLeo.exe",
+      "EyeLeo"
+    ]
+  ],
+  "uninstaller": {
+    "args": "/S",
+    "file": "uninstall.exe"
+  },
+  "url": "http://eyeleo.com/files/EyeLeo_Installer_1.3.6.exe#/setup.exe",
+  "version": "1.3.6"
+}

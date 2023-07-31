@@ -1,0 +1,43 @@
+{
+  "version": "5.0.5",
+  "description": "A Mastodon, Pleroma, and Misskey client for desktop application.",
+  "homepage": "https://whalebird.social/",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/h3poteto/whalebird-desktop/releases/download/v5.0.5/Whalebird-5.0.5-win-x64.exe#/dl.7z",
+      "hash": "sha512:77a0f777a7ecbd8b24ec73fb212246a67daa35119f82f5dc86c2fa716e0d027f99beaac0b6bbb291883600544ec194bf161791381a012d081f742da74d5bc5d3",
+      "pre_install": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\""
+    }
+  },
+  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall*\", \"$dir\\resources\\app-update.yml\"  -Force -Recurse",
+  "bin": [
+    [
+      "Whalebird.exe",
+      "Whalebird",
+      "--user-data-dir=\"$dir\\User Data\""
+    ]
+  ],
+  "shortcuts": [
+    [
+      "Whalebird.exe",
+      "Whalebird",
+      "--user-data-dir=\"$dir\\User Data\""
+    ]
+  ],
+  "persist": "User Data",
+  "checkver": {
+    "github": "https://github.com/h3poteto/whalebird-desktop/"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/h3poteto/whalebird-desktop/releases/download/v$version/Whalebird-$version-win-x64.exe#/dl.7z"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/latest.yml",
+      "regex": "sha512:\\s*$base64"
+    }
+  }
+}

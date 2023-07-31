@@ -1,0 +1,47 @@
+{
+  "homepage": "https://hyper.is",
+  "description": "A terminal built on web technologies",
+  "version": "4.0.0-canary.3",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/vercel/hyper/releases/download/v4.0.0-canary.3/Hyper-Setup-4.0.0-canary.3.exe#/dl.7z",
+      "hash": "2cb651ec5be49a0396ba6dd1988664b24ba545e2ade929af9b1aca9d35c5fb27",
+      "pre_install": [
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+        "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$R0\" -Force -Recurse"
+      ]
+    }
+  },
+  "installer": {
+    "script": [
+      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name apps) scripts/AppsUtils.psm1)",
+      "Mount-ExternalRuntimeData -Source \"$persist_dir\\Hyper\" -Target \"$env:APPDATA\\Hyper\"",
+      "Remove-Module -Name AppsUtils"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name apps) scripts/AppsUtils.psm1)",
+      "Dismount-ExternalRuntimeData -Target \"$env:APPDATA\\Hyper\"",
+      "Remove-Module -Name AppsUtils"
+    ]
+  },
+  "shortcuts": [
+    [
+      "Hyper.exe",
+      "Hyper"
+    ]
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/vercel/hyper/releases",
+    "regex": "/releases/tag/(?:v|V)?([\\d.]+-[\\w.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/vercel/hyper/releases/download/v$version/Hyper-Setup-$version.exe#/dl.7z"
+      }
+    }
+  }
+}

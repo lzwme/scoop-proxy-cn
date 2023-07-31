@@ -1,0 +1,30 @@
+{
+  "description": "Software for configuring some Logitech devices.",
+  "license": "Proprietary",
+  "version": "9.02.65",
+  "architecture": {
+    "64bit": {
+      "url": "https://download01.logi.com/web/ftp/pub/techsupport/gaming/LGS_9.02.65_x64_Logitech.exe#/dl.7z",
+      "hash": "e037727f2e571f41864d93fbcc094e124eda3e1dcd2d56973f1f65c5a577bf55",
+      "extract_dir": "$_32_\\1-LGS-x64"
+    },
+    "32bit": {
+      "url": "https://download01.logi.com/web/ftp/pub/techsupport/gaming/LGS_9.02.65_x86_Logitech.exe#/dl.7z",
+      "hash": "fd70176ddeeee0a24bbaceef67a67004debf53ed437db7d7c06786f8d4fd8eeb",
+      "extract_dir": "$_32_\\1-LGS-x86"
+    }
+  },
+  "installer": {
+    "script": [
+      "Expand-7zipArchive $dir\\Setup.exe $dir",
+      "mv $dir\\`$_5_\\* $dir",
+      "rm -recurse $dir\\`$_59_, $dir\\`$_40_, $dir\\`$_32_, $dir\\`$_5_, $dir\\`$PLUGINSDIR, $dir\\strings, $dir\\compcfg.ini, $dir\\Setup.exe"
+    ]
+  },
+  "shortcuts": [
+    [
+      "LCore.exe",
+      "Logitech Gaming Software"
+    ]
+  ]
+}

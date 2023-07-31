@@ -1,0 +1,38 @@
+{
+  "homepage": "https://github.com/horsicq/XPEViewer/",
+  "version": "0.04",
+  "description": "PE file viewer/editor for Windows, Linux and MacOS.",
+  "license": "MIT License",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/horsicq/XPEViewer/releases/download/0.04/xpeviewer_win64_portable_0.04.zip",
+      "hash": "93db16e7db8c7d9c21cbc05c740e432437a6924e2382c790c04b276439ef6540"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/horsicq/XPEViewer/releases/download/0.04/xpeviewer_win64_portable_0.04.zip",
+      "hash": "9aa1d469d1e03ad0bf96523d57331ce7d4bb7fc1a8163bc232b96cda0d331e8e"
+    }
+  },
+  "pre_install": "if(!(Test-Path \"$persist_dir\\xpeviewer.ini\")) {New-Item \"$dir\\xpeviewer.ini\" | Out-Null}",
+  "shortcuts": [
+    [
+      "xpeviewer.exe",
+      "XPEViewer"
+    ]
+  ],
+  "bin": "xpeviewer.exe",
+  "persist": "xpeviewer.ini",
+  "checkver": {
+    "github": "https://github.com/horsicq/XPEViewer/"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/horsicq/XPEViewer/releases/download/$version/xpeviewer_win64_portable_$version.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/horsicq/XPEViewer/releases/download/$version/xpeviewer_win32_portable_$version.zip"
+      }
+    }
+  }
+}

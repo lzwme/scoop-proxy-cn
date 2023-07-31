@@ -1,0 +1,40 @@
+{
+  "homepage": "https://github.com/Mikubill/transfer",
+  "description": "集合多个API的大文件传输工具  Large file transfer tool with multiple file transfer services support",
+  "license": "MIT",
+  "version": "0.4.17",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/Mikubill/transfer/releases/download/v0.4.17/transfer_0.4.17_windows_amd64.zip#/dl.7z",
+      "hash": "b4cbeb4dcc8e0b583bc5425ee767ded321c46894b154a12a15abf7121e4ac36b"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/Mikubill/transfer/releases/download/v0.4.17/transfer_0.4.17_windows_386.zip#/dl.7z",
+      "hash": "ada3587ca95ebf691d7f0398aba5f5cbb73129dbf16761330a2a8ec870361256"
+    }
+  },
+  "bin": "transfer.exe",
+  "shortcuts": [
+    [
+      "transfer.exe",
+      "transfer"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/Mikubill/transfer/releases/latest",
+    "re": "transfer_(?<version>\\d+\\.\\d+\\.\\d+)_checksums\\.txt"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/Mikubill/transfer/releases/download/v$matchVersion/transfer_$matchVersion_windows_amd64.zip#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/Mikubill/transfer/releases/download/v$matchVersion/transfer_$matchVersion_windows_386.zip#/dl.7z"
+      }
+    },
+    "hash": {
+      "url": "https://ghproxy.net/https://github.com/Mikubill/transfer/releases/download/v$matchVersion/transfer_$matchVersion_checksums.txt"
+    }
+  }
+}

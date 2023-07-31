@@ -1,0 +1,36 @@
+{
+  "$schema": "https://ghproxy.net/https://raw.githubusercontent.com/ScoopInstaller/Scoop/master/schema.json",
+  "version": "3.16.7.405",
+  "description": "An efficient and reliable video conferencing service powered by Tencent that is built for collaboration.",
+  "homepage": "https://meeting.tencent.com/",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://meeting.tencent.com/declare.html"
+  },
+  "url": "https://updatecdn.meeting.qq.com/cos/8bbce2cbe3c709e72fb78db246a53596/TencentMeeting_0300000000_3.16.7.405.publish.officialwebsite.exe#/dl.7z",
+  "hash": "md5:8bbce2cbe3c709e72fb78db246a53596",
+  "post_install": [
+    "Rename-Item \"$dir\\`$_*_\" \"$dir\\$version\"",
+    "Remove-Item \"$dir\\$*\" -Recurse -Force -ErrorAction SilentlyContinue",
+    "Remove-Item \"$dir\\wemeetapp_new.exe\" -Force -ErrorAction SilentlyContinue",
+    "create_startmenu_shortcuts $manifest \"$original_dir\" $global $architecture *>$null"
+  ],
+  "shortcuts": [
+    [
+      "wemeetapp.exe",
+      "WeMeet"
+    ]
+  ],
+  "checkver": {
+    "url": "https://meeting.tencent.com/web-service/query-download-info?q=[{%22package-type%22:%22app%22,%22channel%22:%220300000000%22,%22platform%22:%22windows%22}]&nonce=0000000000000000",
+    "regex": "https://(?<url>.+\\.exe).*?\"version\":.*?\"([\\d.]+)\""
+  },
+  "autoupdate": {
+    "url": "https://$matchUrl#/dl.7z",
+    "hash": {
+      "url": "https://meeting.tencent.com/web-service/query-download-info?q=[{%22package-type%22:%22app%22,%22channel%22:%220300000000%22,%22platform%22:%22windows%22}]&nonce=0000000000000000",
+      "mode": "json",
+      "jsonpath": "$.info-list[0].md5"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "version": "2.000",
+  "description": "MIUI SYSTEM FONTS - VARIABLE FONTS",
+  "homepage": "https://web.vip.miui.com/page/info/mio/mio/detail?postId=33935854",
+  "license": "OFL-1.0",
+  "url": "https://cdn.cnbj1.fds.api.mi-img.com/vipmlmodel/font/MiSans/MiSans.zip",
+  "hash": "38bdec9525024ee9ce1ee56ebc5a32a37efaecf86b385ec3da71898708dad7f6",
+  "installer": {
+    "script": [
+      "if(!(is_admin)) { error \"Administrator rights are required to install $app.\"; exit 1 }",
+      "Get-ChildItem $dir -Filter '*.ttf' -Recurse | ForEach-Object {",
+      "  New-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $_.Name -Force | Out-Null",
+      "  Copy-Item $_.FullName -Destination \"$env:windir\\Fonts\"",
+      "}"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "if(!(is_admin)) { error \"Administrator rights are required to uninstall $app.\"; exit 1 }",
+      "Get-ChildItem $dir -Filter '*.ttf' -Recurse | ForEach-Object {",
+      "  Remove-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
+      "  Remove-Item \"$env:windir\\Fonts\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
+      "}",
+      "Write-Host \"'$app' Font family have been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
+    ]
+  }
+}

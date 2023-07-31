@@ -1,0 +1,37 @@
+{
+  "version": "1.4.0",
+  "description": "Desktop App (Windows / macOS / Linux) for Home Assistant built with Electron",
+  "homepage": "https://github.com/mrvnklm/homeassistant-desktop",
+  "license": "Apache-2.0",
+  "url": "https://ghproxy.net/https://github.com/mrvnklm/homeassistant-desktop/releases/download/v1.4.0/Home-Assistant-Setup-1.4.0.exe#dl.7z",
+  "hash": "sha512:9e01eaf8d4f9d29aceefd5736837355d7772deaadc84cf97c2580c6229eab10203dbfafddcd23ed522f53443f8b943b5281dd82dab99c17eb1d1291be259a044",
+  "architecture": {
+    "64bit": {
+      "installer": {
+        "script": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-32.7z\" \"$dir\""
+      }
+    },
+    "32bit": {
+      "installer": {
+        "script": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-32.7z\" \"$dir\""
+      }
+    }
+  },
+  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\" -Recurse",
+  "shortcuts": [
+    [
+      "Home Assistant.exe",
+      "Home Assistant"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/mrvnklm/homeassistant-desktop"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/mrvnklm/homeassistant-desktop/releases/download/v$version/Home-Assistant-Setup-$version.exe#dl.7z",
+    "hash": {
+      "url": "https://ghproxy.net/https://github.com/mrvnklm/homeassistant-desktop/releases/download/v$version/latest.yml",
+      "regex": "sha512:\\s+$base64"
+    }
+  }
+}

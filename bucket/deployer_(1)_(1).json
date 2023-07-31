@@ -1,0 +1,46 @@
+{
+  "version": "6.7.3",
+  "homepage": "https://deployer.org/",
+  "description": "Deployer Manager for PHP",
+  "license": "MIT",
+  "url": "https://deployer.org/releases/v6.7.3/deployer.phar",
+  "hash": "cd0dc83247d8cc5e65cde437b20f075c12283e80237d7bfd14f8d8d557fbf515",
+  "pre_install": [
+    "@(",
+    "    'if ($args.length -eq 1 -and ($args -eq \"self-update\" -or $args -eq \"self-update\")) { & scoop update deployer }'",
+    "    'else { & php (Join-Path $psscriptroot \"deployer.phar\") @args }'",
+    ") | Add-Content -Path \"$dir\\deployer.ps1\"",
+    "if (!(Test-Path \"$persist_dir\\home\") -and (Test-Path \"$env:Appdata\\Deployer\")) {",
+    "    Write-Host -F yellow \"Moving old 'COMPOSER_HOME' to '$persist_dir\\home'\"",
+    "    Move-Item \"$env:Appdata\\Deployer\" \"$persist_dir\\home\" -Force",
+    "}"
+  ],
+  "bin": [
+    "deployer.ps1",
+    [
+      "deployer.ps1",
+      "dep"
+    ]
+  ],
+  "env_set": {
+    "COMPOSER_HOME": "$persist_dir\\home"
+  },
+  "env_add_path": "home\\vendor\\bin",
+  "persist": "home",
+  "suggest": {
+    "PHP": [
+      "php",
+      "php-nts"
+    ]
+  },
+  "notes": "'composer self-update' is aliased to 'scoop update deployer'",
+  "checkver": {
+    "github": "https://github.com/composer/composer"
+  },
+  "autoupdate": {
+    "url": "https://deployer.org/releases/$version/deployer.phar",
+    "hash": {
+      "url": "$url.sha256sum"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "homepage": "https://github.com/comp500/scoop-comp500",
+  "version": "1.1",
+  "url": "https://github.com/comp500/scoop-comp500/raw/master/cemu-shortcut/cemu-shortcut.ps1",
+  "hash": "5091d1d01c79cde8182d214923b75faf0713f9134238caffe11ea84a2fe9e6c4",
+  "shortcuts": [
+    [
+      "cemu-shortcut.bat",
+      "Cemu Shortcut Tool"
+    ]
+  ],
+  "bin": "cemu-shortcut.ps1",
+  "depends": [
+    "cemu"
+  ],
+  "pre_install": "\"@echo off`r`npowershell cemu-shortcut.ps1`r`npause\" | out-file -Encoding ASCII $dir\\cemu-shortcut.bat",
+  "description": "A tool to make shortcuts with games for Cemu.",
+  "license": "Unlicense"
+}

@@ -1,0 +1,21 @@
+{
+  "version": "4.7.1",
+  "license": "BSD-3-Clause",
+  "description": ".Net SDK 4.7.1 version for the build machines",
+  "homepage": "https://go.microsoft.com/fwlink/?LinkID=2099383",
+  "notes": [
+    "Install .Net 4.7.1"
+  ],
+  "architecture": {
+    "64bit": {
+      "url": "https://go.microsoft.com/fwlink/?linkid=2099382#/ndp471-devpack-enu.exe",
+      "hash": "a70b790dcf7ee4a0cae65fb82a16fb67fe970eb21b9424c9da35e1acafbc4348",
+      "installer": {
+        "script": "& \"$dir\\ndp471-devpack-enu.exe\" \"/q\"  \"/log\" \"$env:TEMP\\dotnetlog.txt\""
+      },
+      "uninstaller": {
+        "script": "& \"$dir\\ndp471-devpack-enu.exe\" \"/uninstall\" \"/q\" "
+      }
+    }
+  }
+}

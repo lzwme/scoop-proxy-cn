@@ -1,0 +1,22 @@
+{
+  "version": "9.0.176",
+  "description": "DLLs for popular open source DBMS packages",
+  "homepage": "https://manifold.net/updates/download_9.shtml#foss_dlls",
+  "license": "LGPL-2.0-or-later",
+  "depends": "scoop-manifold/manifold-xtra",
+  "url": "https://manifold.net/files/open_source_db_64.zip",
+  "hash": "386369183f428c780bb859b7d8ea0e0c0493044cb6fb4826d0306f5aa1550d42",
+  "installer": {
+    "script": [
+      "$mfdDir = \"$(appdir 'manifold-xtra' $global)\\current\"",
+      "Copy-Item -Recurse \"$dir\\*\" \"$mfdDir\\\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$mfdDir = \"$(appdir 'manifold-xtra' $global)\\current\"",
+      "$xtraDir = \"$mfdDir\\opt\"",
+      "if (Test-Path $xtraDir) { Remove-Item -Recurse $xtraDir }"
+    ]
+  }
+}

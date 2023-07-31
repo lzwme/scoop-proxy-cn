@@ -1,0 +1,41 @@
+{
+  "version": "0.5.6",
+  "description": "Cross-platform graphical WebM converter",
+  "homepage": "https://github.com/Kagami/boram",
+  "license": {
+    "identifier": "CC0-1.0",
+    "url": "https://github.com/Kagami/boram/blob/master/licenses/LICENSE.BORAM"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/Kagami/boram/releases/download/v0.5.6/boram-v0.5.6-win-x64.7z#/dl.7z",
+      "hash": "91d19b491e9de56b537f9d0996dc8aa996665aba4cbb8fb8269433b74bc32577",
+      "extract_dir": "boram-v0.5.6-win-x64"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/Kagami/boram/releases/download/v0.5.6/boram-v0.5.6-win-x86.7z#/dl.7z",
+      "hash": "f7ef5d37738161d23bce3ea2ee2d59f32427358d882d848eb6222f4d91d2a037",
+      "extract_dir": "boram-v0.5.6-win-x86"
+    }
+  },
+  "bin": "boram.exe",
+  "shortcuts": [
+    [
+      "boram.exe",
+      "boram"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/Kagami/boram/releases/download/v$version/boram-v$version-win-x64.7z#/dl.7z",
+        "extract_dir": "boram-v$version-win-x64"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/Kagami/boram/releases/download/v$version/boram-v$version-win-x86.7z#/dl.7z",
+        "extract_dir": "boram-v$version-win-x86"
+      }
+    }
+  }
+}

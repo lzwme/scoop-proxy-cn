@@ -1,0 +1,33 @@
+{
+  "version": "0.23.93.0708",
+  "description": "BioInsights Codex Companion: companion app to the Observatory BioInsights plugings, tracking seen/sought biological species.",
+  "homepage": "https://edjp.colacube.net/observatory",
+  "license": "Proprietary",
+  "suggest": {
+    "Base application": "observatory-core",
+    "BioInsights plugin": "observatory-plugin-bioinsights"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://edjp.colacube.net/download/codexcompanion#/CodexCompanion.7z",
+      "hash": "76353293d50b76898b31a8d82e2d6f806b841064575fd7014ccf628723edfe8f"
+    }
+  },
+  "shortcuts": [
+    [
+      "CodexCompanion.exe",
+      "..\\Elite Dangerous Tools\\Observatory BioInsights Codex Companion"
+    ]
+  ],
+  "checkver": {
+    "url": "https://edjp.colacube.net/observatory",
+    "regex": "BioInsights Codex Companion</th>[\\n\\r\\t ]*<td>?([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://edjp.colacube.net/download/codexcompanion#/CodexCompanion.7z"
+      }
+    }
+  }
+}

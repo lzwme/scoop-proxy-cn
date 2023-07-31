@@ -1,0 +1,36 @@
+{
+  "version": "0.22.0",
+  "description": "An open source toolkit for medical image conversion.",
+  "homepage": "https://xmedcon.sourceforge.io/",
+  "license": "GPL-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://prdownloads.sourceforge.net/xmedcon/xmedcon-0.22.0-win64.zip",
+      "hash": "e1bc3b48aa1b9f9df60ad582538dff8611e97297091debbb2e819dad5ce0aaf7"
+    },
+    "32bit": {
+      "url": "https://prdownloads.sourceforge.net/xmedcon/xmedcon-0.22.0-win32.zip",
+      "hash": "4241c9eee40d87cd50f2d969cf6e31386471b45338ef22167a23956d10b5839c"
+    }
+  },
+  "bin": "bin\\medcon.exe",
+  "shortcuts": [
+    [
+      "bin\\xmedcon.exe",
+      "XMedCon",
+      "",
+      "etc\\xmedcon.ico"
+    ]
+  ],
+  "installer": {
+    "script": [
+      "pushd \"$dir\"",
+      "try {",
+      "    Expand-InnoArchive -Path \"$dir\\mysetup.exe\" -DestinationPath \"$dir\\$extract_to\" -ExtractDir $extract_dir -Removal",
+      "}",
+      "finally {",
+      "    popd",
+      "}"
+    ]
+  }
+}

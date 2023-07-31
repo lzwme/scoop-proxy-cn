@@ -1,0 +1,34 @@
+{
+  "version": "17.0.5",
+  "url": "https://aka.ms/vs/17/release/vs_enterprise.exe",
+  "homepage": "https://www.visualstudio.com/",
+  "checkver": {
+    "url": "https://docs.microsoft.com/en-us/visualstudio/releases/2022/release-notes#17.0.5",
+    "re": "Visual Studio 2022 version (\\d+\\.\\d+\\.\\d+)"
+  },
+  "autoupdate": {
+    "url": "https://aka.ms/vs/17/release/vs_enterprise.exe"
+  },
+  "hash": "3c47dcce1964284cf47958c84c08086a52be2716ad13159d21d0ad8c984dc744",
+  "installer": {
+    "file": "vs_enterprise.exe",
+    "args": [
+      "--passive",
+      "--wait",
+      "--norestart",
+      "--addProductLang En-us",
+      "--add Microsoft.VisualStudio.Workload.Azure",
+      "--add Microsoft.VisualStudio.Workload.ManagedDesktop",
+      "--add Microsoft.VisualStudio.Workload.NetCoreTools",
+      "--add Microsoft.VisualStudio.Workload.NetWeb"
+    ],
+    "keep": "true"
+  },
+  "uninstaller": {
+    "file": "vs_enterprise.exe",
+    "args": [
+      "uninstall",
+      "--passive"
+    ]
+  }
+}

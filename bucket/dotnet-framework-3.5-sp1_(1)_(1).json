@@ -1,0 +1,20 @@
+{
+  "description": "Microsoft .NET Framework 3.5 SP1, only works on Windows Server 2012.",
+  "hash": "3887bb41eda48915268a9431041eb9f6dde06e52e411b49074b6ac60411b9ebe",
+  "homepage": "https://dotnet.microsoft.com/download/dotnet-framework",
+  "installer": {
+    "script": [
+      "$ec = @{",
+      "    0 = 'This product has been installed successfully, a reboot is not required.';",
+      "    3010 = 'This product has been installed, but a reboot is required to finalize the installation. Until the computer is rebooted, dependent packages may fail to install or function properly.';",
+      "}",
+      "Invoke-ExternalCommand \"$dir\\$fname\" -ArgumentList '/install', '/quiet', '/norestart' -ContinueExitCodes $ec -RunAs | Out-Null"
+    ]
+  },
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://www.microsoft.com/en-us/legal/intellectualproperty/copyright/default.aspx"
+  },
+  "url": "https://download.visualstudio.microsoft.com/download/pr/b635098a-2d1d-4142-bef6-d237545123cb/2651b87007440a15209cac29634a4e45/dotnetfx35.exe",
+  "version": "3.5sp1"
+}

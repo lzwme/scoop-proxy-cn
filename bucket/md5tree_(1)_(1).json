@@ -1,0 +1,30 @@
+{
+  "version": "0.1.1",
+  "description": "Output md5sum of the files under the specified directory.",
+  "homepage": "https://github.com/zat-kaoru-hayama/md5tree",
+  "license": "MIT License",
+  "architecture": {
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/zat-kaoru-hayama/md5tree/releases/download/v0.1.1/md5tree-v0.1.1-windows-386.zip",
+      "hash": "636748b34a0d240e1afbdbaf31e75163e96205318003874c20336a249b96b65f"
+    },
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/zat-kaoru-hayama/md5tree/releases/download/v0.1.1/md5tree-v0.1.1-windows-amd64.zip",
+      "hash": "f03270eb9b36e12c1a8fbdaa0b4b4f5d92ab9b5c84157de382822beb482acaa2"
+    }
+  },
+  "bin": [
+    "md5tree.exe"
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/zat-kaoru-hayama/md5tree/releases/download/v$version/md5tree-v$version-windows-386.zip"
+      },
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/zat-kaoru-hayama/md5tree/releases/download/v$version/md5tree-v$version-windows-amd64.zip"
+      }
+    }
+  }
+}

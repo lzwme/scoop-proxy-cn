@@ -1,0 +1,46 @@
+{
+  "version": "3.7.6.44",
+  "description": "WeChat third-party modified version, maintained by 423down.com.",
+  "homepage": "https://weixin.qq.com/",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://www.wechat.com/en/service_terms.html"
+  },
+  "notes": "Feature: <https://www.423down.com/12027.html>",
+  "url": "https://pan.jiemi.workers.dev/?file=/zd423/Wechat_3.7.6.44_Green.7z",
+  "hash": "d062ccf2a46c0f89902aba6879ef5e13ed562c31c121adda59cf030d83aac436",
+  "extract_dir": "WeChat",
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\appdata\") -and (Test-Path \"$env:APPDATA\\Tencent\\WeChat\")) {",
+    "    Copy-Item \"$env:APPDATA\\Tencent\\WeChat\" \"$persist_dir\\appdata\" -ErrorAction SilentlyContinue -Recurse -Force",
+    "    Remove-Item \"$env:APPDATA\\Tencent\\WeChat\" -ErrorAction 'SilentlyContinue' -Recurse -Force",
+    "}"
+  ],
+  "installer": {
+    "script": [
+      "ensure \"$persist_dir\\appdata\" | Out-Null",
+      "New-Item \"$env:APPDATA\\Tencent\\WeChat\" -ItemType Junction -Target \"$persist_dir\\appdata\" | Out-Null",
+      "Copy-Item \"$bucketsdir\\$bucket\\scripts\\wechat\\uninstall.bat\" \"$dir\\uninstall.bat\" -ErrorAction 'SilentlyContinue' -Force | Out-Null"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Remove-Item \"$env:APPDATA\\Tencent\\WeChat\" -ErrorAction 'SilentlyContinue' -Force -Recurse",
+      "Start-Process \"$dir\\uninstall.bat\" -WorkingDirectory \"$dir\" -Wait"
+    ]
+  },
+  "shortcuts": [
+    [
+      "WeChat.exe",
+      "Tencent\\WeChat Mod"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/oneindex.txt",
+    "regex": "(?<filename>Wechat_([\\d.]+)_Green.7z)",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/zd423/Wechat_$version_Green.7z"
+  }
+}

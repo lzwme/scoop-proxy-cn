@@ -1,0 +1,30 @@
+{
+  "homepage": "https://github.com/ShuguangSun/emacs-build-aot",
+  "version": "0",
+  "description": "Scripts to build a distribution of Emacs from sources, using MSYS2 and Mingw64(32).",
+  "license": "GPL (Emacs) + MIT (build script)",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/ShuguangSun/emacs-build-aot/releases/download/v0/emacs-master-x86_64-full.zip",
+      "hash": "fcf03ab722631da9230feab31d46a3f4443c600388dd32148c447fe2dec6a269"
+    }
+  },
+  "shortcuts": [
+    [
+      "bin\\runemacs.exe",
+      "Emacs (AOT)"
+    ]
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/ShuguangSun/emacs-build-aot/releases",
+    "jsonpath": "$[0].tag_name",
+    "regex": "v([\\d.a-z]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/ShuguangSun/emacs-build-aot/releases/download/v$version/emacs-master-x86_64-full.zip"
+      }
+    }
+  }
+}

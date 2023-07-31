@@ -1,0 +1,33 @@
+{
+  "version": "1.3-beta12",
+  "description": "The universal proxy platform",
+  "homepage": "https://sing-box.sagernet.org",
+  "license": "GPL-3.0-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/SagerNet/sing-box/releases/download/v1.3-beta12/sing-box-1.3-beta12-windows-amd64v3.zip",
+      "hash": "ac50828c9ae925445f86df7a3eaf651f5aa1c97afd1a35a1ff5c9928c8ddb480",
+      "extract_dir": "sing-box-1.3-beta12-windows-amd64v3"
+    }
+  },
+  "bin": [
+    [
+      "sing-box.exe",
+      "sing-box-beta"
+    ]
+  ],
+  "persist": "config.json",
+  "checkver": {
+    "url": "https://api.github.com/repos/SagerNet/sing-box/releases",
+    "jsonpath": "$.[?(@.prerelease==true)].tag_name",
+    "regex": "v([-\\d.\\w]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/SagerNet/sing-box/releases/download/v$version/sing-box-$version-windows-amd64v3.zip",
+        "extract_dir": "sing-box-$version-windows-amd64v3"
+      }
+    }
+  }
+}

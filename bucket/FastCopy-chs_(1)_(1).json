@@ -1,0 +1,43 @@
+{
+  "version": "5.1.0",
+  "description": "FastCopy中文版是一款文件快速复制工具.号称Windows平台上最快的文件复制,删除软件",
+  "homepage": "https://www.423down.com/5904.html",
+  "license": "Proprietary",
+  "notes": "它是出自日本的高效文件复制加速软件,支持拖拽操作,三种不同HDD模式;支持通配符,任务管理/命令行.",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://raw.githubusercontent.com/meihanai/jikoapp/main/app/FastCopy/5.1.0/FastCopy64.7z",
+      "hash": "8c14cc86de113f005664846d50dde7c02b334a8338d15b92730d0a8f3148b4b8"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://raw.githubusercontent.com/meihanai/jikoapp/main/app/FastCopy/5.1.0/FastCopy.7z",
+      "hash": "921ea2cc836fec6da4b9a915937a2573f19d36a495f03608ed1b5025a5ac7e13"
+    }
+  },
+  "extract_dir": "FastCopy",
+  "bin": [
+    "FastCopy.exe",
+    "FcHash.exe",
+    "fcp.exe"
+  ],
+  "shortcuts": [
+    [
+      "FastCopy.exe",
+      "FastCopy"
+    ]
+  ],
+  "checkver": {
+    "url": "https://ghproxy.net/https://raw.githubusercontent.com/meihanai/jikoapp/main/versions/FastCopy.latest",
+    "regex": "([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://raw.githubusercontent.com/meihanai/jikoapp/main/app/FastCopy/$version/FastCopy64.7z"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://raw.githubusercontent.com/meihanai/jikoapp/main/app/FastCopy/$version/FastCopy.7z"
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "homepage": "https://github.com/katboi01/UmaViewer",
+  "description": "Asset Viewer for Uma Musume",
+  "version": "2.1.8",
+  "license": "Unknown",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/katboi01/UmaViewer/releases/download/2.1.8/UmaViewer.zip",
+      "hash": "564ce13a49b625d9a477b3c89b63aa91a71397b22b224ae30995895fb46d5c19",
+      "extract_dir": "UmaViewer",
+      "bin": "UmaViewer.exe",
+      "shortcuts": [
+        [
+          "UmaViewer.exe",
+          "Uma Viewer"
+        ]
+      ]
+    }
+  },
+  "checkver": {
+    "url": "https://api.github.com/repos/katboi01/UmaViewer/releases/latest",
+    "jsonpath": "$.assets[*].browser_download_url",
+    "regex": "([\\d.]+)\\/(?<file>UmaViewer([\\d_]+)?\\.zip)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/katboi01/UmaViewer/releases/download/$version/$matchFile"
+      }
+    }
+  }
+}

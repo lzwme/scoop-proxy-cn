@@ -1,0 +1,30 @@
+{
+  "version": "0.3.0",
+  "description": "Import constants from C++ headers for Go without 'cgo'",
+  "homepage": "https://github.com/nyaosorg/go-importconst",
+  "license": "MIT License",
+  "architecture": {
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/nyaosorg/go-importconst/releases/download/v0.3.0/go-importconst-v0.3.0-windows-386.zip",
+      "hash": "501c8b7231f94c47e859d70e8affbec420d0f8fc8c82a3c738e5e061966cf7b9"
+    },
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/nyaosorg/go-importconst/releases/download/v0.3.0/go-importconst-v0.3.0-windows-amd64.zip",
+      "hash": "d0e512bd54db6de771483acbabed7d6d2836c6ba4d4751210143a8e5a7ff7d02"
+    }
+  },
+  "bin": [
+    "go-importconst.exe"
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/nyaosorg/go-importconst/releases/download/v$version/go-importconst-v$version-windows-386.zip"
+      },
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/nyaosorg/go-importconst/releases/download/v$version/go-importconst-v$version-windows-amd64.zip"
+      }
+    }
+  }
+}

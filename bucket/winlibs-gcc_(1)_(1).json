@@ -1,0 +1,23 @@
+{
+  "homepage": "http://winlibs.com/",
+  "description": "GNU Compiler Collection includes front ends for C, C++, Objective-C, Fortran, Ada, Go, and D, as well as libraries for these languages (libstdc++,...). (MingW port)",
+  "version": "12.2.0-10.0.0-msvcrt-r2",
+  "license": "GPL-3.0-or-later,ZPL-2.1,...",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/brechtsanders/winlibs_mingw/releases/download/12.2.0-14.0.6-10.0.0-msvcrt-r2/winlibs-x86_64-posix-seh-gcc-12.2.0-mingw-w64msvcrt-10.0.0-r2.7z",
+      "extract_dir": "mingw64"
+    }
+  },
+  "bin": [
+    [
+      "bin\\mingw32-make.exe",
+      "make"
+    ]
+  ],
+  "env_add_path": "bin",
+  "notes": [
+    "The 64-bit version is built with Structured Exception Handling (SEH), whereas the 32-bit version is built with DWARF.",
+    "Both 64-bit and 32-bit versions use the POSIX threading model."
+  ]
+}

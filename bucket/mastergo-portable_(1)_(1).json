@@ -1,0 +1,25 @@
+{
+  "architecture": {
+    "64bit": {
+      "hash": "81DB94E69185A928B46B1A0337374956CEAFBDD420B05E9D0C4037EAAFA382F4",
+      "pre_install": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\" -Removal",
+      "url": "https://static.mastergo.com/plugins/desktop/windows/MasterGo-0.2.21.exe#/dl.7z"
+    }
+  },
+  "description": "MasterGo is a one-stop online product design tool for team collaboration, which supports multi-user real-time collaboration and features online product design, prototype building and design, web development design, interaction design, etc. It helps build a design system quickly and provides product designers, interaction designers, engineers and product managers with a simpler and more flexible working mode.",
+  "homepage": "https://mastergo.com/",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://mastergo.com/serviceAgreement"
+  },
+  "persist": "User Data",
+  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\" -ErrorAction 'SilentlyContinue' -Force -Recurse",
+  "shortcuts": [
+    [
+      "MasterGo.exe",
+      "MasterGo",
+      "--user-data-dir=\"$dir\\User Data\""
+    ]
+  ],
+  "version": "1.0.0"
+}

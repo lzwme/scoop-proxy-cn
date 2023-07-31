@@ -1,0 +1,38 @@
+{
+  "homepage": "https://tomcat.apache.org",
+  "version": "3.3.2",
+  "checkver": {
+    "url": "https://archive.apache.org/dist/tomcat/tomcat-3/?C=M;O=D",
+    "re": "v(?<version>[\\d.]+)"
+  },
+  "autoupdate": {
+    "extract_dir": "jakarta-tomcat-$version",
+    "architecture": {
+      "32bit": {
+        "url": "https://archive.apache.org/dist/tomcat/tomcat-3/v$version/bin/jakarta-tomcat-$version.zip"
+      },
+      "64bit": {
+        "url": "https://archive.apache.org/dist/tomcat/tomcat-3/v$version/bin/jakarta-tomcat-$version.zip"
+      }
+    }
+  },
+  "extract_dir": "jakarta-tomcat-3.3.2",
+  "bin": "bin\\catalina.bat",
+  "env_set": {
+    "CATALINA_HOME": "$dir",
+    "CATALINA_BASE": "$dir"
+  },
+  "suggest": {
+    "JRE": "java/openjdk"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://archive.apache.org/dist/tomcat/tomcat-3/v3.3.2/bin/jakarta-tomcat-3.3.2.zip",
+      "hash": "4030af8e5eca2a1f3b48001cb7c8eb73fa04bc52cfe6fc31d7f64d46df0f0b47"
+    },
+    "32bit": {
+      "url": "https://archive.apache.org/dist/tomcat/tomcat-3/v3.3.2/bin/jakarta-tomcat-3.3.2.zip",
+      "hash": "4030af8e5eca2a1f3b48001cb7c8eb73fa04bc52cfe6fc31d7f64d46df0f0b47"
+    }
+  }
+}

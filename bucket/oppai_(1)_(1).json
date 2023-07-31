@@ -1,0 +1,37 @@
+{
+  "version": "1.1.46",
+  "homepage": "https://github.com/Francesco149/oppai-ng",
+  "license": "https://github.com/Francesco149/oppai-ng/blob/master/UNLICENSE",
+  "bin": "oppai.exe",
+  "architecture": {
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/Francesco149/oppai-ng/releases/download/1.1.46/oppai-1.1.46-windows-x86.zip",
+      "extract_dir": "oppai-1.1.46-windows-x86",
+      "hash": "77c5c2474df4fe294ab6568e594596ba6ad6005e3cb7e5e5e210960bebddd84a"
+    },
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/Francesco149/oppai-ng/releases/download/1.1.46/oppai-1.1.46-windows-x64.zip",
+      "extract_dir": "oppai-1.1.46-windows-x64",
+      "hash": "bc97db17a1f65d536163b6810338805dbc069fbbf8172018fc75344c41655928"
+    }
+  },
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/Francesco149/oppai-ng/releases/download/$version/oppai-$version-windows-x86.zip",
+        "extract_dir": "oppai-$version-windows-x86",
+        "hash": {
+          "url": "$url.sha256"
+        }
+      },
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/Francesco149/oppai-ng/releases/download/$version/oppai-$version-windows-x64.zip",
+        "extract_dir": "oppai-$version-windows-x64",
+        "hash": {
+          "url": "$url.sha256"
+        }
+      }
+    }
+  }
+}

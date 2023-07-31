@@ -1,0 +1,37 @@
+{
+  "version": "10.1.10.1",
+  "description": "Image uploader/manager",
+  "homepage": "https://github.com/YerongAI/Office-Tool",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/YerongAI/Office-Tool/releases/download/v10.1.10.1/Office_Tool_v10.1.10.1_x64.zip",
+      "hash": "286d3d5b6349e946455515fdb988750e0e759b6137a7495628142d5faa3bea09",
+      "extract_dir": "Office Tool"
+    }
+  },
+  "bin": [
+    [
+      "Office Tool Plus.exe",
+      "OTP"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "Office Tool Plus.exe",
+      "Office Tool Plus"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/YerongAI/Office-Tool/releases/download/v$version/Office_Tool_v$version_x64.zip",
+        "hash": {
+          "url": "https://github.com/YerongAI/Office-Tool/releases/tag/v$version/",
+          "regex": "$basename</td>\\n<td align=\"left\">$sha256"
+        }
+      }
+    }
+  }
+}

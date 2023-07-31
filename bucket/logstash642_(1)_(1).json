@@ -1,0 +1,28 @@
+{
+  "homepage": "https://www.elastic.co/products/logstash",
+  "version": "6.4.2",
+  "depends": [
+    "nssm224",
+    "openjdk180_102_2"
+  ],
+  "url": [
+    "https://artifacts.elastic.co/downloads/logstash/logstash-6.4.2.tar.gz",
+    "https://ghproxy.net/https://raw.githubusercontent.com/Utdanningsdirektoratet/PAS-scoop-public/7eea49532b845234d7c8251ca523ba852547f04b/scripts/logstashsrv.ps1"
+  ],
+  "hash": [
+    "sha512:c2fcb5900a69e2242bb28b1989518420aefdd64fc46d9ca88501ac839d780bc25d4887f2c0b289d7d4018de20e2e5d602be4246290ce2124f025d586910fe723",
+    "35C0BE3751BE46BBCDF9CB5CD0AC06271540A5AA40DE0CD3ADFE62B732DFFD8F"
+  ],
+  "bin": [
+    "bin\\logstash.bat",
+    [
+      "bin\\logstash-plugin.bat",
+      "logstash_plugin"
+    ],
+    [
+      "logstashsrv.ps1",
+      "logstash_service"
+    ]
+  ],
+  "extract_dir": "logstash-6.4.2"
+}

@@ -1,0 +1,39 @@
+{
+  "version": "0.1.1",
+  "description": "look up records for one or more IPs/networks in one or more .mmdb databases",
+  "homepage": "https://www.binaryfortress.com/HashTools/",
+  "license": "Freeware",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/maxmind/mmdbinspect/releases/download/v0.1.1/mmdbinspect_0.1.1_windows_amd64.zip",
+      "hash": "56cda25200b08c39bbf61d5573d1a8e161eb3ad37dc76825150587c1df269ee9",
+      "extract_dir": "mmdbinspect_0.1.1_windows_amd64"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/maxmind/mmdbinspect/releases/download/v0.1.1/mmdbinspect_0.1.1_windows_386.zip",
+      "hash": "adf2cf19e2dca56bf8d15a3f4b7f30f266443d5cee0d987cd1290f3134ecf122",
+      "extract_dir": "mmdbinspect_0.1.1_windows_386"
+    }
+  },
+  "bin": [
+    [
+      "mmdbinspect.exe",
+      "mmdbinspect"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/maxmind/mmdbinspect"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/maxmind/mmdbinspect/releases/download/v$version/mmdbinspect_$version_windows_amd64.zip",
+        "extract_dir": "mmdbinspect_$version_windows_amd64"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/maxmind/mmdbinspect/releases/download/v$version/mmdbinspect_$version_windows_386.zip",
+        "extract_dir": "mmdbinspect_$version_windows_386"
+      }
+    }
+  }
+}

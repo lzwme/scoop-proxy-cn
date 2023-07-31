@@ -1,0 +1,23 @@
+{
+  "homepage": "https://github.com/be5invis/Iosevka",
+  "version": "17.0.4",
+  "description": "Slender typeface for code, from code.",
+  "checkver": {
+    "url": "https://github.com/be5invis/Iosevka/releases/latest",
+    "re": ">Iosevka version (.*?)<"
+  },
+  "url": "https://ghproxy.net/https://github.com/be5invis/Iosevka/releases/download/v17.0.4/ttc-iosevka-17.0.4.zip",
+  "hash": "d40101358fd7af48c5d7c10c860e1c97698e0d5bd7d56e2b5da10a500ab4c59c",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/be5invis/Iosevka/releases/download/v$version/ttc-iosevka-$version.zip"
+  },
+  "installer": {
+    "keep": "false",
+    "script": [
+      "Write-Output \"https://ghproxy.net/https://github.com/be5invis/Iosevka/releases/download/v$version/ttc-iosevka-aile-$version.zip\" \"https://github.com/be5invis/Iosevka/releases/download/v$version/ttc-iosevka-curly-$version.zip\" \"https://github.com/be5invis/Iosevka/releases/download/v$version/ttc-iosevka-curly-slab-$version.zip\" \"https://github.com/be5invis/Iosevka/releases/download/v$version/ttc-iosevka-etoile-$version.zip\" \"https://github.com/be5invis/Iosevka/releases/download/v$version/ttc-iosevka-slab-$version.zip\" \"https://github.com/be5invis/Iosevka/releases/download/v$version/ttc-iosevka-ss01-$version.zip\" \"https://github.com/be5invis/Iosevka/releases/download/v$version/ttc-iosevka-ss02-$version.zip\" \"https://github.com/be5invis/Iosevka/releases/download/v$version/ttc-iosevka-ss03-$version.zip\" \"https://github.com/be5invis/Iosevka/releases/download/v$version/ttc-iosevka-ss04-$version.zip\" \"https://github.com/be5invis/Iosevka/releases/download/v$version/ttc-iosevka-ss05-$version.zip\" \"https://github.com/be5invis/Iosevka/releases/download/v$version/ttc-iosevka-ss06-$version.zip\" \"https://github.com/be5invis/Iosevka/releases/download/v$version/ttc-iosevka-ss07-$version.zip\" \"https://github.com/be5invis/Iosevka/releases/download/v$version/ttc-iosevka-ss08-$version.zip\" \"https://github.com/be5invis/Iosevka/releases/download/v$version/ttc-iosevka-ss09-$version.zip\" \"https://github.com/be5invis/Iosevka/releases/download/v$version/ttc-iosevka-ss10-$version.zip\" \"https://github.com/be5invis/Iosevka/releases/download/v$version/ttc-iosevka-ss11-$version.zip\" \"https://github.com/be5invis/Iosevka/releases/download/v$version/ttc-iosevka-ss12-$version.zip\" \"https://github.com/be5invis/Iosevka/releases/download/v$version/ttc-iosevka-ss13-$version.zip\" \"https://github.com/be5invis/Iosevka/releases/download/v$version/ttc-iosevka-ss14-$version.zip\" \"https://github.com/be5invis/Iosevka/releases/download/v$version/ttc-iosevka-ss15-$version.zip\" \"https://github.com/be5invis/Iosevka/releases/download/v$version/ttc-iosevka-ss16-$version.zip\" \"https://github.com/be5invis/Iosevka/releases/download/v$version/ttc-iosevka-ss17-$version.zip\" \"https://github.com/be5invis/Iosevka/releases/download/v$version/ttc-iosevka-ss18-$version.zip\" | %{wget.exe -nv --directory-prefix \"$dir\" \"$_\"}",
+      "Get-ChildItem \"$dir\" -Recurse -Include \"*.zip\" | %{7z e -o\"$dir\" -aoa \"$_\"}",
+      "Remove-Item \"$dir\" -Recurse -Include \"*.zip\""
+    ]
+  },
+  "_from": "okibcn/ScoopMaster"
+}

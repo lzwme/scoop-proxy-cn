@@ -1,0 +1,31 @@
+{
+  "version": "9.0.176.6",
+  "description": "Manifold Release 9 UI translation for Estonian language",
+  "homepage": "https://github.com/rkolka/ui.et.txt",
+  "license": "MIT",
+  "depends": "scoop-manifold/manifold-xtra",
+  "url": "https://ghproxy.net/https://github.com/rkolka/ui.et.txt/releases/download/v9.0.176.6/ui.et.zip",
+  "hash": "2cedc5a66612cac5f738d2f545815c336a877f98ecef026718a25282801e882f",
+  "installer": {
+    "script": [
+      "$mfdDir = \"$(appdir 'manifold-xtra' $global)\\current\"",
+      "Copy-Item \"$dir\\ui.et*.txt\" \"$mfdDir\\\"",
+      "Copy-Item \"$dir\\ui.en_alt.txt\" \"$mfdDir\\\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$mfdDir = \"$(appdir 'manifold-xtra' $global)\\current\"",
+      "Remove-Item \"$mfdDir\\ui.et*.txt\"",
+      "Remove-Item \"$mfdDir\\ui.en_alt.txt\""
+    ]
+  },
+  "checkver": {
+    "github": "https://github.com/rkolka/ui.et.txt",
+    "regex": "releases/tag/v([\\d.]+)(-[\\w\\d]+)?",
+    "replace": "${1}${2}"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/rkolka/ui.et.txt/releases/download/v$version/ui.et.zip"
+  }
+}

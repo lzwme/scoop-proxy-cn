@@ -1,0 +1,48 @@
+{
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/Bioruebe/UniExtract2/releases/download/v$version/UniExtractRC3.zip"
+  },
+  "bin": "UniExtract.exe",
+  "checkver": {
+    "regex": "v([\\d.]+-[\\w.]+)",
+    "url": "https://github.com/Bioruebe/UniExtract2/tags"
+  },
+  "description": "Decompress and extract files from any type of archive or installer.",
+  "extract_dir": "UniExtract",
+  "hash": "03170680b80f2afdf824f4d700c11b8e2dac805a4d9bd3d24f53e43bd7131c3a",
+  "homepage": "https://github.com/Bioruebe/UniExtract2",
+  "license": "GPL-2.0-or-later",
+  "notes": [
+    "To disable the warning pop-up run:",
+    "powershell -f \"$dir\\disable-warning.ps1\" -WindowStyle Minimized"
+  ],
+  "persist": [
+    "log",
+    "UniExtract.ini"
+  ],
+  "post_install": [
+    "$cont = Get-Content \"$dir\\UniExtract.ini\"",
+    "# Set 'ID' as a random 25-digit hex if 'ID' is empty",
+    "# This will prevent setup window from popping up upon first run. Useful when we are using UniExtract to extract files for other packages.",
+    "if (!($cont -match 'ID=[0-9A-F]+')) {",
+    "    $new_id = ''",
+    "    1..25 | ForEach-Object { $new_id += '{0:X}' -f (Get-Random -Max 15) }",
+    "    $cont = $cont.Replace('ID=', \"ID=$new_id\")",
+    "    $cont | Set-Content \"$dir\\UniExtract.ini\" -Encoding Ascii",
+    "}"
+  ],
+  "pre_install": [
+    "Copy-Item \"$bucketsdir\\$bucket\\scripts\\uniextract2-fixed\\disable-warning.ps1\" \"$dir\\disable-warning.ps1\" | Out-Null",
+    "$content = (Get-Content \"$dir\\disable-warning.ps1\")",
+    "$content = $content.Replace('$dir', \"$dir\")",
+    "$content | Set-Content -Path \"$dir\\disable-warning.ps1\" "
+  ],
+  "shortcuts": [
+    [
+      "UniExtract.exe",
+      "Universal Extractor"
+    ]
+  ],
+  "url": "https://ghproxy.net/https://github.com/Bioruebe/UniExtract2/releases/download/v2.0.0-rc.3/UniExtractRC3.zip",
+  "version": "2.0.0-rc.3"
+}

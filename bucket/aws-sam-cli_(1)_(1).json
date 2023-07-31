@@ -1,0 +1,37 @@
+{
+  "version": "1.86.1",
+  "description": "Build, test, debug, and deploy Serverless applications from CLI",
+  "homepage": "https://aws.amazon.com/serverless/sam/",
+  "license": "Apache-2.0",
+  "suggest": {
+    "AWS CLI": "aws"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/aws/aws-sam-cli/releases/download/v1.86.1/AWS_SAM_CLI_64_PY3.msi",
+      "hash": "a12acbbc5e6b5f377b5e9276f8a80246f0be66dd931eb096313bd1aea836fcec"
+    }
+  },
+  "extract_dir": "Amazon\\AWSSAMCLI",
+  "bin": [
+    "bin\\sam.cmd",
+    [
+      "bin\\sam.cmd",
+      "aws-sam-cli"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/aws/aws-sam-cli"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/aws/aws-sam-cli/releases/download/v$version/AWS_SAM_CLI_64_PY3.msi"
+      }
+    },
+    "hash": {
+      "url": "https://github.com/aws/aws-sam-cli/releases/tag/v$version",
+      "regex": "(?sm)>$basename</.*?>\\s*$sha256</"
+    }
+  }
+}

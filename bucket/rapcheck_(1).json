@@ -1,0 +1,33 @@
+{
+  "version": "1.2.0",
+  "description": "Robot Axis Check for ptp points. Validates if axes of specific joints are in the given limits for the selected operation and returns the a list of ptp-locations with problematic robot axis values.",
+  "homepage": "https://icarus-consult.de",
+  "license": "non-free",
+  "url": "//promptly-apps.icarus-consult.local/Software/TMXTOOLS/rapcheck/1.2.0/RapCheck_1.2.0.zip",
+  "autoupdate": {
+    "url": "//promptly-apps.icarus-consult.local/Software/TMXTOOLS/rapcheck/$version/RapCheck_$version.zip"
+  },
+  "pre_install": [
+    "if(Get-Process -Name \"tune\" -ErrorAction SilentlyContinue) {",
+    "    Write-Error \"Process Simulate is running. Please close it to continue.\"",
+    "    exit 1",
+    " }"
+  ],
+  "post_install": [
+    "# run install.ps1",
+    "Set-Variable -Name \"PSScriptRoot\" -Value $dir -Scope Script",
+    "#.\\install.ps1",
+    "$command = \"$dir\\install.ps1\"",
+    "Invoke-Expression \"& $command\""
+  ],
+  "pre_uninstall": [
+    "if(Get-Process -Name \"tune\" -ErrorAction SilentlyContinue) {",
+    "    Write-Error \"Process Simulate is running. Please close it to continue.\"",
+    "    exit 1",
+    " }",
+    "# run uninstall.ps1",
+    "$command = \"$dir\\uninstall.ps1\"",
+    "Invoke-Expression \"& $command\""
+  ],
+  "post_uninstall": []
+}

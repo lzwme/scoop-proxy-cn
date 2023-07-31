@@ -1,0 +1,95 @@
+{
+  "homepage": "https://gitlab.com/devill.tamachan/binaryeditorbz",
+  "description": "Simple binary editor",
+  "version": "1.9.8.7",
+  "license": "Freeware",
+  "url": [
+    "https://gitlab.com/devill.tamachan/binaryeditorbz/uploads/da22779e33bcec39cbe8b6bddfacef4f/Bz1987Portable.zip",
+    "https://gitlab.com/devill.tamachan/binaryeditorbz/uploads/82127d29e942bc72d1c8a9d974c629bb/BzEditor-1.9.8.7.exe#/exe.7z"
+  ],
+  "hash": [
+    "558e7af597b8d56321a351bfd3561c945edd917783a1ab2cae34e0fb3ec3892b",
+    "937427945004c426a42fc4f28324c48c614d5263d708b535351c1a2b5868cec0"
+  ],
+  "extract_dir": [
+    "Bz1987Portable",
+    ""
+  ],
+  "extract_to": [
+    "",
+    "exe"
+  ],
+  "architecture": {
+    "32bit": {
+      "bin": [
+        "Bz.exe",
+        "BzAdmin.exe"
+      ],
+      "shortcuts": [
+        [
+          "Bz.exe",
+          "Bz"
+        ],
+        [
+          "BzAdmin.exe",
+          "Bz (Admin)"
+        ]
+      ]
+    },
+    "64bit": {
+      "bin": [
+        "Bz64.exe",
+        "Bz64Admin.exe"
+      ],
+      "shortcuts": [
+        [
+          "Bz64.exe",
+          "Bz"
+        ],
+        [
+          "Bz64Admin.exe",
+          "Bz (Admin)"
+        ]
+      ]
+    }
+  },
+  "pre_install": [
+    "$arch=@{'64bit'='64';'32bit'=''}[$architecture]",
+    "# Create Admin exe",
+    "New-Item -Type HardLink -Target \"$dir\\Bz${arch}.exe\" -Path \"$dir\\Bz${arch}Admin.exe\" | Out-Null",
+    "Copy-Item -Path \"$dir\\exe\\Bz${arch}Admin.exe.manifest\"-Destination $dir | Out-Null",
+    "Remove-Item -Path \"$dir\\exe\" -Recurse | Out-Null",
+    "# Create SendTo shortcuts",
+    "$sendto=\"$env:USERPROFILE\\AppData\\Roaming\\Microsoft\\Windows\\SendTo\"",
+    "$wsh_shell = New-Object -comObject WScript.Shell",
+    "@{'Name'='Bz (Admin)';'Admin'='Admin'}, @{'Name'='Bz';'Admin'=''} | ForEach-Object {",
+    "    $link = \"$sendto\\$($_.Name).lnk\"",
+    "    $target = \"$dir\\Bz${arch}$($_.Admin).exe\"",
+    "    $shortcut = $wsh_shell.CreateShortcut($link)",
+    "    $shortcut.TargetPath = $target",
+    "    $shortcut.WorkingDirectory = $dir",
+    "    $shortcut.Save()",
+    "}"
+  ],
+  "post_uninstall": [
+    "$sendto=\"$env:USERPROFILE\\AppData\\Roaming\\Microsoft\\Windows\\SendTo\"",
+    "'Bz (Admin)', 'Bz' | ForEach-Object {",
+    "    Remove-Item -Path \"$sendto\\$_.lnk\"",
+    "}"
+  ],
+  "checkver": {
+    "url": "https://gitlab.com/api/v4/projects/devill.tamachan%2Fbinaryeditorbz/releases/permalink/latest",
+    "jsonpath": "$.description",
+    "regex": "BzEditor-([\\d.]+).exe[\\S\\s]+\\/uploads\\/(?<fileExe>[\\da-f]{32}\\/BzEditor-[\\d.]+.exe)[\\S\\s]+\\/uploads\\/(?<file>[\\da-f]{32}\\/Bz\\d+Portable.zip)"
+  },
+  "autoupdate": {
+    "url": [
+      "https://gitlab.com/devill.tamachan/binaryeditorbz/uploads/$matchFile",
+      "https://gitlab.com/devill.tamachan/binaryeditorbz/uploads/$matchFileexe#/exe.7z"
+    ],
+    "extract_dir": [
+      "Bz$cleanVersionPortable",
+      ""
+    ]
+  }
+}

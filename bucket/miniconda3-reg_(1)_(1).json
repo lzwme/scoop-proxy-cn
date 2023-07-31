@@ -1,0 +1,89 @@
+{
+  "##": [
+    "This manifest derives from extras",
+    "no env_add_path",
+    "non portable set registry",
+    "HKEY_CURRENT_USER/Software/Python",
+    "no python.shim"
+  ],
+  "version": "4.7.12.1",
+  "homepage": "https://conda.io/miniconda.html",
+  "license": "BSD-3-Clause",
+  "checkver": {
+    "url": "https://repo.continuum.io/miniconda",
+    "re": "Miniconda3-([\\d.]+)-Windows"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Windows-x86_64.exe",
+      "hash": "f18060cc0bb50ae75e4d602b7ce35197c8e31e81288d069b758594f1bb46ab45"
+    },
+    "32bit": {
+      "url": "https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Windows-x86.exe",
+      "hash": "7c30778941d2bba03531ba269a78a108b01fa366530290376e7c3b467f3c66ba"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://repo.continuum.io/miniconda/Miniconda3-$version-Windows-x86_64.exe"
+      },
+      "32bit": {
+        "url": "https://repo.continuum.io/miniconda/Miniconda3-$version-Windows-x86.exe"
+      }
+    },
+    "hash": {
+      "url": "$baseurl",
+      "find": "$basename<.*\\s+<.*\\s+<.*\\s+<td>([a-fA-F0-9]{32})</td>"
+    }
+  },
+  "installer": {
+    "args": [
+      "/S",
+      "/InstallationType=JustMe",
+      "/RegisterPython=1",
+      "/AddToPath=0",
+      "/D=$dir"
+    ]
+  },
+  "post_install": [
+    "Set-Location \"$dir\\Library\\bin\"",
+    "Start-Process -FilePath \"$dir\\Library\\bin\\conda.bat\" -ArgumentList \"update conda\""
+  ],
+  "uninstaller": {
+    "file": "Uninstall-Miniconda3.exe",
+    "args": "/S"
+  },
+  "bin": [
+    "Library\\bin\\conda.bat",
+    [
+      "Library\\bin\\conda.bat",
+      "activate",
+      "activate"
+    ],
+    [
+      "Library\\bin\\conda.bat",
+      "deactivate",
+      "deactivate"
+    ]
+  ],
+  "persist": "envs",
+  "notes": [
+    "v4.5.12 bug :: Library/binにPATHを通さないとconda Errorになるが",
+    "Anaconda/Minicondaはパスを通さないで使うことが推奨されているためどうにかする",
+    "方針:: PATHにminicondaのフォルダは通さない",
+    "       python.exeへのshimも作らず、Conda / Activate / Deactivateのみ有効にする",
+    "",
+    "上記のバグは'conda update conda' でアップデートすることで回避が可能",
+    "/condabinフォルダに.batを集約しconda.exeのcall前にローカルパスを指定してる模様",
+    "ただ、4.5.12の時点では存在しないファイルなためshimが作れない",
+    "遠回りになるが Library/bin/conda.bat経由で condabin/conda.batにアクセスできるので",
+    "そちらを経由でsimを作る",
+    "(なおインストール.exeでのアプデ配布は2019.03.15時点ではまだない)",
+    "",
+    "あたらしいインストール.exeが来たときはbinはこちらを有効にすること",
+    "condabin//activate.bat",
+    "condabin//deactivate.bat",
+    "condabin//conda.bat"
+  ]
+}

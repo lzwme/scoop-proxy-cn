@@ -1,0 +1,50 @@
+{
+  "version": "0.6.3.0",
+  "homepage": "https://revolutionarygamesstudio.com/",
+  "description": "Thrive is a free, open-source game about the evolution of life.",
+  "license": "GPL-3.0-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/Revolutionary-Games/Thrive/releases/download/v0.6.3/Thrive_0.6.3.0_windows_desktop.7z",
+      "hash": "b21069861819389c0e893d273a72e0da1e37f440c4e3320ac629e05f7c0a73ce",
+      "extract_dir": "Thrive_0.6.3.0_windows_desktop"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/Revolutionary-Games/Thrive/releases/download/v0.6.3/Thrive_0.6.3.0_windows_desktop_.32-bit.7z",
+      "hash": "535a8e71434c794c54297497ed306a60cee66f1d4f5293007f9fc41c0b1a434a",
+      "extract_dir": "Thrive_0.6.3.0_windows_desktop_(32-bit)"
+    }
+  },
+  "shortcuts": [
+    [
+      "Thrive.exe",
+      "Thrive"
+    ]
+  ],
+  "notes": "Thrive stores saves at %APPDATA%\\Thrive\\saves",
+  "checkver": {
+    "url": "https://github.com/Revolutionary-Games/Thrive/",
+    "script": [
+      "$url = 'https://api.github.com/repos/Revolutionary-Games/Thrive/releases/latest'",
+      "$thrive_latest = ((Invoke-WebRequest -Uri $url).Content | ConvertFrom-Json)[0]",
+      "$thrive_asset_url = $thrive_latest.assets_url",
+      "$short_version = $thrive_latest.tag_name.substring(1)",
+      "if (((Invoke-WebRequest -Uri $thrive_asset_url).Content | ConvertFrom-Json | Where-Object name -match '(.*windows_desktop)(?!32-bit)(\\.7z)').name -match '(?<version>[\\d.]+)') { $full_version = $Matches.version}",
+      "Write-Output $full_version $short_version"
+    ],
+    "regex": "(?<version>.+)\\s(?<short>.+)",
+    "replace": "${version}"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/Revolutionary-Games/Thrive/releases/download/v$matchShort/Thrive_$version_windows_desktop.7z",
+        "extract_dir": "Thrive_$version_windows_desktop"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/Revolutionary-Games/Thrive/releases/download/v$matchShort/Thrive_$version_windows_desktop_.32-bit.7z",
+        "extract_dir": "Thrive_$version_windows_desktop_(32-bit)"
+      }
+    }
+  }
+}

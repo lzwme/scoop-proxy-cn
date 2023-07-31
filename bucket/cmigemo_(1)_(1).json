@@ -1,0 +1,46 @@
+{
+  "##": "This file is a template. Fill the blanks and add or remove fields as necessary.",
+  "version": "20110227",
+  "description": "A C libarary for incremental Japanese search by Romaji input",
+  "homepage": "https://www.kaoriya.net/software/cmigemo/",
+  "license": "MIT|https://github.com/koron/cmigemo/blob/master/doc/LICENSE_j.txt",
+  "architecture": {
+    "64bit": {
+      "url": "http://files.kaoriya.net/goto/cmigemo_w64#/dl.7z",
+      "hash": "80adcf55848b46f8eb006ff4f73c5b840e7e322529d5d4e534be235ff0bb4ad0",
+      "extract_dir": "cmigemo-default-win64"
+    },
+    "32bit": {
+      "url": "http://files.kaoriya.net/goto/cmigemo_w32#/dl.7z",
+      "hash": "98e7f28e69f86bf8e44861121bd0472885e9e8162bf16ba1a92740412d86ea89",
+      "extract_dir": "cmigemo-default-win32"
+    }
+  },
+  "post_install": [
+    "Write-Host \"Adjust dict folder to use cp932.\"",
+    "Rename-Item -Path \"$dir\\dict\"-NewName \"$dir\\dict.dist\" | Out-Null",
+    "New-Item -Type Junction -Target \"$dir\\dict.dist\\cp932\" -Path \"$dir\\dict\" | Out-Null"
+  ],
+  "checkver": {
+    "script": [
+      "if ($page -match \"<a href=`\"([^`\"]*)`\">.*?64bit</a>\") {",
+      "    $wr = [System.Net.WebRequest]::Create($Matches[1])",
+      "    $wr.AllowAutoRedirect = $false",
+      "    $res = $wr.GetResponse()",
+      "    $page = $res.Headers['Location']",
+      "}",
+      "return $page"
+    ],
+    "regex": "(\\d+)\\.zip"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "http://files.kaoriya.net/goto/cmigemo_w64#/dl.7z"
+      },
+      "32bit": {
+        "url": "http://files.kaoriya.net/goto/cmigemo_w32#/dl.7z"
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "version": "2.30",
+  "description": "Qsel is a launcher for frequently used programs, documents and web links.",
+  "homepage": "https://www.horstmuc.de/wqsel.htm",
+  "license": "Freeware",
+  "architecture": {
+    "64bit": {
+      "url": "https://www.horstmuc.de/win64/qsel64.zip",
+      "hash": "db802c2edd329e04ca659f7dd4a88d0198f04078c7b411c33f95f8c628b72750"
+    },
+    "32bit": {
+      "url": "https://www.horstmuc.de/win/qsel.zip",
+      "hash": "2767f8737e48ff934e80c21709be73e396c92869a65bd58c942a3f2886e08d87"
+    }
+  },
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\QselRedir.ini\")) { New-Item \"$dir\\QselRedir.ini\" -Value \"DataPath = Menus\" }",
+    "if (!(Test-Path \"$persist_dir\\Qsel.ini\")) { New-Item \"$dir\\Qsel.ini\" | Out-Null }"
+  ],
+  "shortcuts": [
+    [
+      "Qsel.exe",
+      "Qsel"
+    ]
+  ],
+  "persist": [
+    "Menus",
+    "QselRedir.ini",
+    "Qsel.ini"
+  ],
+  "checkver": {
+    "url": "https://www.horstmuc.de/wqsel.htm",
+    "regex": "Qsel ([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://www.horstmuc.de/win64/qsel64.zip"
+      },
+      "32bit": {
+        "url": "https://www.horstmuc.de/win/qsel.zip"
+      }
+    }
+  }
+}

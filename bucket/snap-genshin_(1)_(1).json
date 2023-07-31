@@ -1,0 +1,94 @@
+{
+  "version": "2022.10.25.10000",
+  "description": "A Genshin Impact game launcher, with a lot of features.",
+  "notes": "This software has been deprecated, please use Snap.Hutao instead. It can be found at Microsoft Store. The manifest will be removed in 2023/06/01",
+  "homepage": "https://www.snapgenshin.com/home/",
+  "license": "MIT",
+  "url": "https://ghproxy.net/https://github.com/DGP-Studio/Snap.Genshin/releases/download/2022.10.25.10000/Publish.zip#/Snap_Genshin_2022.10.25.10000.zip",
+  "hash": "8dabb08198b9b9749256b178d4a44b29a924514c5c6d8cebd1f9b58282a9168a",
+  "bin": "DGP.Genshin.exe",
+  "shortcuts": [
+    [
+      "DGP.Genshin.exe",
+      "Snap Genshin"
+    ]
+  ],
+  "pre_install": [
+    "if (Test-Path \"$persist_dir\\accounts.json\") {",
+    "    Copy-Item \"$persist_dir\\accounts.json\" \"$dir\"",
+    "}",
+    "if (Test-Path \"$persist_dir\\achievements.json\") {",
+    "    Copy-Item \"$persist_dir\\achievements.json\" \"$dir\"",
+    "} else {",
+    "    ensure \"$persist_dir\" | Out-Null",
+    "    Set-Content \"$dir\\achievements.json\" '[BatchResize]', 'update=0' -Encoding Ascii",
+    "}",
+    "if (Test-Path \"$persist_dir\\achievementssteps.json\") {",
+    "    Copy-Item \"$persist_dir\\achievementssteps.json\" \"$dir\"",
+    "} else {",
+    "    ensure \"$persist_dir\" | Out-Null",
+    "    Set-Content \"$dir\\achievementssteps.json\" '[BatchResize]', 'update=0' -Encoding Ascii",
+    "}",
+    "if (Test-Path \"$persist_dir\\cookie.dat\") {",
+    "    Copy-Item \"$persist_dir\\cookie.dat\" \"$dir\"",
+    "} else {",
+    "    ensure \"$persist_dir\" | Out-Null",
+    "    Set-Content \"$dir\\cookie.dat\" '[BatchResize]', 'update=0' -Encoding Ascii",
+    "}",
+    "if (Test-Path \"$persist_dir\\cookielist.dat\") {",
+    "    Copy-Item \"$persist_dir\\cookielist.dat\" \"$dir\"",
+    "} else {",
+    "    ensure \"$persist_dir\" | Out-Null",
+    "    Set-Content \"$dir\\cookielist.dat\" '[BatchResize]', 'update=0' -Encoding Ascii",
+    "}",
+    "if (Test-Path \"$persist_dir\\settings.json\") {",
+    "    Copy-Item \"$persist_dir\\settings.json\" \"$dir\"",
+    "} else {",
+    "    ensure \"$persist_dir\" | Out-Null",
+    "    Set-Content \"$dir\\settings.json\" '[BatchResize]', 'update=0' -Encoding Ascii",
+    "}",
+    "if (Test-Path \"$persist_dir\\WebviewEntries.json\") {",
+    "    Copy-Item \"$persist_dir\\WebviewEntries.json\" \"$dir\"",
+    "} else {",
+    "    ensure \"$persist_dir\" | Out-Null",
+    "    Set-Content \"$dir\\WebviewEntries.json\" '[BatchResize]', 'update=0' -Encoding Ascii",
+    "}",
+    "if (Test-Path \"$persist_dir\\MaterialList.json\") {",
+    "    Copy-Item \"$persist_dir\\MaterialList.json\" \"$dir\"",
+    "} else {",
+    "    ensure \"$persist_dir\" | Out-Null",
+    "    Set-Content \"$dir\\MaterialList.json\" '[BatchResize]', 'update=0' -Encoding Ascii",
+    "}",
+    "if (Test-Path \"$persist_dir\\implementations.json\") {",
+    "    Copy-Item \"$persist_dir\\implementations.json\" \"$dir\"",
+    "} else {",
+    "    ensure \"$persist_dir\" | Out-Null",
+    "    Set-Content \"$dir\\implementations.json\" '[BatchResize]', 'update=0' -Encoding Ascii",
+    "}"
+  ],
+  "uninstaller": {
+    "script": [
+      "ensure \"$persist_dir\" | Out-Null",
+      "Copy-Item \"$dir\\accounts.json\" \"$persist_dir\" -ErrorAction SilentlyContinue -Force",
+      "Copy-Item \"$dir\\achievements.json\" \"$persist_dir\" -ErrorAction SilentlyContinue -Force",
+      "Copy-Item \"$dir\\achievementssteps.json\" \"$persist_dir\" -ErrorAction SilentlyContinue -Force",
+      "Copy-Item \"$dir\\cookie.dat\" \"$persist_dir\" -ErrorAction SilentlyContinue -Force",
+      "Copy-Item \"$dir\\cookielist.dat\" \"$persist_dir\" -ErrorAction SilentlyContinue -Force",
+      "Copy-Item \"$dir\\settings.json\" \"$persist_dir\" -ErrorAction SilentlyContinue -Force",
+      "Copy-Item \"$dir\\WebviewEntries.json\" \"$persist_dir\" -ErrorAction SilentlyContinue -Force",
+      "Copy-Item \"$dir\\MaterialList.json\" \"$persist_dir\" -ErrorAction SilentlyContinue -Force",
+      "Copy-Item \"$dir\\implementations.json\" \"$persist_dir\" -ErrorAction SilentlyContinue -Force"
+    ]
+  },
+  "persist": [
+    "Plugins",
+    "GachaStatistic",
+    "Metadata"
+  ],
+  "checkver": {
+    "github": "https://github.com/DGP-Studio/Snap.Genshin"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/DGP-Studio/Snap.Genshin/releases/download/$version/Publish.zip#/Snap_Genshin_$version.zip"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "autoupdate": {
+    "hash": {
+      "regex": "$sha256",
+      "url": "$url.sha256"
+    },
+    "url": "https://scoop-zapps.ziiyc.com/d/NpcGUI/NpcGUI-$version.7z"
+  },
+  "bin": "NpcGUI.exe",
+  "checkver": {
+    "regex": "([\\d.]+)",
+    "url": "https://ghproxy.net/https://raw.githubusercontent.com/kkzzhizhou/scoop-zapps/master/versions/NpcGUI.latest"
+  },
+  "hash": "7b2f1d5eaa6dae28e3b5b975edb79e7216b033a59f3088f4dd0e065d492e8c94",
+  "homepage": "https://scoop-zapps.ziiyc.com/d",
+  "persist": "npc.conf",
+  "pre_install": "if (-not (Test-Path \"$persist_dir\\npc.conf\")) { New-Item \"$dir\\npc.conf\" | Out-Null }",
+  "shortcuts": [
+    [
+      "NpcGUI.exe",
+      "Npc GUI"
+    ]
+  ],
+  "url": "https://scoop-zapps.ziiyc.com/d/NpcGUI/NpcGUI-2020.8.19.0.7z",
+  "version": "2020.8.19.0"
+}

@@ -1,0 +1,33 @@
+{
+  "version": "2.32.1",
+  "description": "Official GitHub CLI",
+  "homepage": "https://cli.github.com",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/cli/cli/releases/download/v2.32.1/gh_2.32.1_windows_amd64.zip",
+      "hash": "1cfea730ef7f7c0325fc59e929c165a4e2ef517a7d742faa7b8c2bdb075264bf"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/cli/cli/releases/download/v2.32.1/gh_2.32.1_windows_386.zip",
+      "hash": "f0f2aa2b07e6203d9cfe8629f3475b651d54f1965d12728ca699240620651205"
+    }
+  },
+  "bin": "bin\\gh.exe",
+  "checkver": {
+    "github": "https://github.com/cli/cli"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/cli/cli/releases/download/v$version/gh_$version_windows_amd64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/cli/cli/releases/download/v$version/gh_$version_windows_386.zip"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/gh_$version_checksums.txt"
+    }
+  }
+}

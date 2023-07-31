@@ -1,0 +1,32 @@
+{
+  "version": "3.1-beta",
+  "description": "A mouse and keyboard logging for presentations, screencasts",
+  "homepage": "https://github.com/bfritscher/carnac",
+  "license": {
+    "identifier": "MS-PL",
+    "url": "https://github.com/bfritscher/carnac/blob/beta/LICENSE.md"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/bfritscher/carnac/releases/download/v3.1-beta/Release.v3.1-beta.zip",
+      "hash": "9920cbd127b8e2e51038646242cd410f78e21303ad79b6da4a7909266e2769b4"
+    }
+  },
+  "shortcuts": [
+    [
+      "Release/Carnac.exe",
+      "Carnac"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/bfritscher/carnac/",
+    "regex": "/releases/tag/(?:v|V)?([\\d.]+[\\-a-z]*)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/bfritscher/carnac/releases/download/v$version/Release.v$version.zip"
+      }
+    }
+  }
+}

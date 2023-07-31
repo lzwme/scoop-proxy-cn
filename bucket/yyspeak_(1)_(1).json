@@ -1,0 +1,43 @@
+{
+  "architecture": {
+    "64bit": {
+      "hash": "30a0e35fd27efdb3dcc2fd023a1b5dbfbdf0bf83755176b471a52ef0e4a05ccf",
+      "url": "https://yydl.yy.com/4/setup/YYSetup-9.15.0.0-zh-CN.exe#/dl.7z"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://yydl.yy.com/4/setup/YYSetup-$version-zh-CN.exe#/dl.7z"
+      }
+    }
+  },
+  "checkver": {
+    "regex": "(?sm)版本.*?([\\d.]+)",
+    "script": "Write-Output $(Invoke-WebRequest -Uri 'https://baoku.360.cn/soft/show/appid/105192').Content"
+  },
+  "description": "Entertainment live streaming platform and high-quality voice chat service.",
+  "extract_dir": "InstallDir",
+  "homepage": "https://www.yy.com",
+  "installer": {
+    "script": [
+      "ensure \"$persist_dir\" | Out-Null",
+      "New-Item \"$env:AppData\\duowan\\yy\" -ItemType Junction -Target \"$persist_dir\" | Out-Null"
+    ]
+  },
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://zc.yy.com/license.html"
+  },
+  "post_install": "@('Uninstall.exe', 'yylauncher.exe') | ForEach-Object { Remove-Item \"$dir\\$_\" -Force -ErrorAction SilentlyContinue }",
+  "shortcuts": [
+    [
+      "YY.exe",
+      "YY"
+    ]
+  ],
+  "uninstaller": {
+    "script": "Remove-Item \"$env:AppData\\duowan\\yy\" -ErrorAction 'SilentlyContinue' -Force -Recurse"
+  },
+  "version": "9.15.0.0"
+}

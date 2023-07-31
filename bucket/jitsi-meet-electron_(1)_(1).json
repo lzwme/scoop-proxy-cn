@@ -1,0 +1,33 @@
+{
+  "version": "2022.2.1",
+  "license": "Apache License 2.0",
+  "url": "https://ghproxy.net/https://github.com/jitsi/jitsi-meet-electron/releases/download/v2022.2.1/jitsi-meet.exe#download.7z",
+  "homepage": "https://github.com/jitsi/jitsi-meet-electron",
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/jitsi/jitsi-meet-electron/releases/download/v$version/jitsi-meet.exe#download.7z"
+  },
+  "hash": "25a32bee7001b1901267c6f593cf01b12b6b81d90161c7c2ce0ac0111f81947c",
+  "extract_dir": "\\$PLUGINSDIR",
+  "pre_install": "Get-ChildItem \"$dir\" -Exclude 'app-64.7z', 'app-32.7z' | Remove-Item -Force -Recurse",
+  "architecture": {
+    "64bit": {
+      "installer": {
+        "script": "Expand-7zipArchive \"$dir\\app-64.7z\" \"$dir\""
+      }
+    },
+    "32bit": {
+      "installer": {
+        "script": "Expand-7zipArchive \"$dir\\app-32.7z\" \"$dir\""
+      }
+    }
+  },
+  "post_install": "Remove-Item \"$dir\\app-64.7z\", \"$dir\\app-32.7z\"",
+  "bin": "Jitsi Meet.exe",
+  "shortcuts": [
+    [
+      "Jitsi Meet.exe",
+      "Jitsi Meet"
+    ]
+  ]
+}

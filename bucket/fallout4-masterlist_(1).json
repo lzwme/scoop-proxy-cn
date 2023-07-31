@@ -1,0 +1,20 @@
+{
+  "version": "0.2023.06.18",
+  "description": "LOOT masterlist for Fallout 4",
+  "homepage": "https://github.com/loot/fallout4",
+  "license": "CC0-1.0",
+  "url": "https://ghproxy.net/https://raw.githubusercontent.com/loot/fallout4/65e79b028662a2e77b3a1288a65d33d926727ee6/masterlist.yaml",
+  "hash": "c48259cc6e21920c534f9cc1a86a533499718c7182510353b19542801eac36ec",
+  "checkver": {
+    "url": "https://github.com/loot/fallout4/commits/v0.18/masterlist.yaml.atom",
+    "regex": "(?s)>(\\d+)-(\\d+)-(\\d+)T.*?/(?<sha>[0-9a-f]{40})",
+    "replace": "0.${1}.${2}.${3}"
+  },
+  "post_install": [
+    "$path = join-path $env:appdata 'Vortex\\fallout4\\masterlist\\masterlist.yaml'",
+    "New-Item -ItemType Hardlink -Path $path -Target $dir\\masterlist.yaml -force"
+  ],
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://raw.githubusercontent.com/loot/fallout4/$matchSha/masterlist.yaml"
+  }
+}

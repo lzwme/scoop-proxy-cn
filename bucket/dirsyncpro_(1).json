@@ -1,0 +1,38 @@
+{
+  "version": "1.53",
+  "description": "DirSync Pro is a small, but powerful utility for file and folder synchronization.",
+  "homepage": "https://www.dirsyncpro.org/",
+  "license": "GPL-3.0-only",
+  "suggest": {
+    "JDK": [
+      "java/oraclejdk",
+      "java/openjdk"
+    ]
+  },
+  "url": "https://sourceforge.net/projects/directorysync/files/DirSync%20Pro%20%28stable%29/1.53/DirSyncPro-1.53-Windows.zip/download#/dl.zip",
+  "hash": "8fdbb903dce5dee9af9156799bc91f31a66e25b8289ca6673aa42747a8701a8b",
+  "bin": [
+    [
+      ".\\dirsyncpro.jar",
+      "DirSync Pro jar"
+    ]
+  ],
+  "extract_dir": "DirSyncPro-1.53-Windows",
+  "shortcuts": [
+    [
+      ".\\DirSyncPro.exe",
+      "DirSync Pro"
+    ]
+  ],
+  "persist": [
+    "current"
+  ],
+  "checkver": {
+    "url": "https://sourceforge.net/projects/directorysync/files/DirSync%20Pro%20%28stable%29/",
+    "regex": "DirSyncPro-([\\d.]+)-Windows"
+  },
+  "autoupdate": {
+    "url": "https://sourceforge.net/projects/directorysync/files/DirSync%20Pro%20%28stable%29/$version/DirSyncPro-$version-Windows.zip/download#/dl.zip",
+    "extract_dir": "DirSyncPro-$version-Windows"
+  }
+}

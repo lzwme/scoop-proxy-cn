@@ -1,0 +1,30 @@
+{
+  "homepage": "https://git.ameliorated.info/Styris/ameck",
+  "description": "Tool for checking the integrity of an AME installation",
+  "license": "Unlicense",
+  "version": "1.0",
+  "url": "https://git.ameliorated.info/attachments/1a2ea398-c30f-4a65-af68-140ee652cf14#/ameck.exe",
+  "hash": "f38a6b366b84abc18868d109c06631b76b85b84d9d1f6db60ea0ed0a6e8384a5",
+  "bin": "ameck.exe",
+  "installer": {
+    "script": "Move-Item -Path $dir\\$fname -Destination $dir\\ameck.exe"
+  },
+  "checkver": {
+    "script": [
+      "$ameck_release_page = Invoke-WebRequest -Uri 'https://git.ameliorated.info/Styris/ameck/releases'",
+      "$ameck_version_url = $ameck_release_page.Links | Where-Object href -match '/releases/tag/(?:v|V)?([\\d.]+)' | Select-Object -first 1 -expand href",
+      "$ameck_version_str = $matches[1]",
+      "$ameck_download_url = $ameck_release_page.Links | Where-Object href -match '/attachments/([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})' | Select-Object -first 1 -expand href",
+      "$ameck_download_path_uuid = $matches[1]",
+      "Write-Output $ameck_version_str $ameck_download_path_uuid"
+    ],
+    "regex": "(?<version>(?:v|V)?[\\d.]+)\\s(?<pathuuid>.+)"
+  },
+  "autoupdate": {
+    "url": "https://git.ameliorated.info/attachments/$matchPathuuid#/ameck.exe",
+    "hash": {
+      "url": "https://git.ameliorated.info/Styris/ameck/releases",
+      "find": "SHA256:\\s*$sha256"
+    }
+  }
+}

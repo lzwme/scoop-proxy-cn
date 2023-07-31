@@ -1,0 +1,32 @@
+{
+  "homepage": "https://shopify.github.io/themekit",
+  "description": "Theme Kit is a command line tool for shopify themes. Download the application and with a tiny bit of setup you’re off to the theme creation races.\n\nUsing Theme Kit will enable you to\n\nUpload Themes to Multiple Environments\nFast Uploads and Downloads\nWatch for local changes and upload automatically to Shopify\nWorks on Windows, Linux and macOS",
+  "version": "1.0.2",
+  "bin": "theme.exe",
+  "architecture": {
+    "32bit": {
+      "url": "https://shopify-themekit.s3.amazonaws.com/v1.0.2/windows-386/theme.exe"
+    },
+    "64bit": {
+      "url": "https://shopify-themekit.s3.amazonaws.com/v1.0.2/windows-amd64/theme.exe"
+    }
+  },
+  "checkver": {
+    "32bit": {
+      "url": "https://shopify.github.io/themekit/",
+      "regex": "https\\://shopify-themekit\\.s3\\.amazonaws\\.com/v(.*?)/windows-386/theme\\.exe"
+    },
+    "64bit": {
+      "url": "https://shopify.github.io/themekit/",
+      "regex": "https\\://shopify-themekit\\.s3\\.amazonaws\\.com/v(.*?)/windows-amd64/theme\\.exe"
+    }
+  },
+  "autoupdate": {
+    "32bit": {
+      "url": "https://shopify-themekit.s3.amazonaws.com/v${version}/windows-386/theme.exe"
+    },
+    "64bit": {
+      "url": "https://shopify-themekit.s3.amazonaws.com/v${version}/windows-amd64/theme.exe"
+    }
+  }
+}

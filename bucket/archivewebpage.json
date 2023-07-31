@@ -1,0 +1,41 @@
+{
+  "version": "0.11.0",
+  "description": "ArchiveWeb.page is a JavaScript based system for high-fidelity web archiving directly in the browser.",
+  "homepage": "https://github.com/webrecorder/archiveweb.page",
+  "license": "AGPL-3.0",
+  "architecture": {
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/webrecorder/archiveweb.page/releases/download/v0.11.0/ArchiveWeb.page-0.11.0.exe#/dl.7z",
+      "hash": "5dea20f259a772080243e2ae09efa730787c6b2b43aa9cb52b9ed5aa996c6b6a",
+      "pre_install": [
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-32.7z\" \"$dir\"",
+        "Remove-Item \"$dir\\`$R0\", \"$dir\\`$PLUGINSDIR\" -Force -Recurse"
+      ]
+    },
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/webrecorder/archiveweb.page/releases/download/v0.11.0/ArchiveWeb.page-0.11.0.exe#/dl.7z",
+      "hash": "5dea20f259a772080243e2ae09efa730787c6b2b43aa9cb52b9ed5aa996c6b6a",
+      "pre_install": [
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+        "Remove-Item \"$dir\\`$R0\", \"$dir\\`$PLUGINSDIR\" -Force -Recurse"
+      ]
+    }
+  },
+  "shortcuts": [
+    [
+      "ArchiveWeb.page.exe",
+      "ArchiveWeb.page"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/webrecorder/archiveweb.page/releases/download/v$version/ArchiveWeb.page-$version.exe"
+      },
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/webrecorder/archiveweb.page/releases/download/v$version/ArchiveWeb.page-$version.exe"
+      }
+    }
+  }
+}

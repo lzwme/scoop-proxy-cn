@@ -1,0 +1,38 @@
+{
+  "architecture": {
+    "64bit": {
+      "hash": "fe7dcfb53ac8ecebf390e29d087424c8d40aa42ea225ec4fef121cbf7b557d99",
+      "url": "https://ghproxy.net/https://github.com/kimlimjustin/xplorer/releases/download/v0.3.1/Xplorer_0.3.1_x64.msi#/setup.msi_"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/kimlimjustin/xplorer/releases/download/v$version/Xplorer_$version_x64.msi#/setup.msi_"
+      }
+    }
+  },
+  "checkver": {
+    "jsonpath": "$[0].tag_name",
+    "regex": "v([\\d.]+)",
+    "url": "https://api.github.com/repos/kimlimjustin/xplorer/releases?per_page=1"
+  },
+  "description": "Xplorer is a modern file explorer built from ground-up to be fully customizable to fit 2022's need. Besides, Xplorer is a cross-platform application powered by the web that is being wrapped using Tauri framework in which you can run Xplorer on Windows, MacOS, or Linux without having much trouble.",
+  "homepage": "https://xplorer.space",
+  "license": {
+    "identifier": "Apache-2.0",
+    "url": "https://github.com/kimlimjustin/xplorer/raw/master/LICENSE"
+  },
+  "pre_install": [
+    "Expand-MSIArchive \"$dir\\$fname\" -Removal",
+    "Move-Item \"$dir\\PFiles\\Xplorer\\*\", \"$dir\\System64\\*\" \"$dir\\\" -ErrorAction SilentlyContinue -Force",
+    "Remove-Item \"$dir\\PFiles\", \"$dir\\System64\" -ErrorAction SilentlyContinue -Force -Recurse"
+  ],
+  "shortcuts": [
+    [
+      "Xplorer.exe",
+      "Xplorer"
+    ]
+  ],
+  "version": "0.3.1"
+}

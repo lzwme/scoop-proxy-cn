@@ -1,0 +1,30 @@
+{
+  "version": "1.12.1.1",
+  "homepage": "https://minecraft.net",
+  "license": "EULA",
+  "url": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.12.1.1.zip",
+  "hash": "0b5bfe90ea81f5f3b670fc3dd27ad4a28ebc102057b4ce9d75a5e4e326bd2135",
+  "shortcuts": [
+    [
+      "bedrock_server.exe",
+      "Minecraft Server"
+    ]
+  ],
+  "persist": [
+    "development_behavior_packs",
+    "development_resource_packs",
+    "internalStorage",
+    "world_templates",
+    "worlds",
+    "permissions.json",
+    "server.properties",
+    "whitelist.json"
+  ],
+  "checkver": {
+    "url": "https://www.minecraft.net/zh-hans/download/server/bedrock",
+    "regex": "bedrock-server-([0-9\\d.]+).zip"
+  },
+  "autoupdate": {
+    "url": "https://minecraft.azureedge.net/bin-win/bedrock-server-$version.zip"
+  }
+}

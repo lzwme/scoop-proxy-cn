@@ -1,0 +1,25 @@
+{
+  "description": "Oracle JDK 7",
+  "homepage": "https://www.oracle.com/technetwork/java/javase/overview/index.html",
+  "version": "7u80",
+  "license": "https://www.oracle.com/downloads/licenses/javase-license1.html",
+  "url": "https://ghproxy.net/https://github.com/frekele/oracle-java/releases/download/7u80-b15/jdk-7u80-windows-x64.exe#/dl.7z",
+  "hash": "4a0f77910f1373f526d6732896b870bc96f2a83e32d8390549331b602482f4ee",
+  "extract_to": "tmp",
+  "installer": {
+    "script": [
+      "# JDK (tools.zip)",
+      "Expand-7zipArchive \"$dir\\tmp\\tools.zip\" \"$dir\"",
+      "# Convert .pack to .jar, and remove .pack",
+      "pushd \"$dir\"",
+      "ls \"$dir\" -recurse | ? name -match '^[^_].*?\\.(?i)pack$' | % {",
+      "    $name = $_.fullname -replace '\\.(?i)pack$', ''",
+      "    $pack = \"$name.pack\"",
+      "    $jar = \"$name.jar\"",
+      "    & \"bin\\unpack200.exe\" \"-r\" \"$pack\" \"$jar\"",
+      "}",
+      "rm -r tmp | out-null",
+      "popd"
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "version": "5.3.7",
+  "description": "This extension provides an API for communicating with Redis servers.",
+  "homepage": "https://pecl.php.net/package/redis",
+  "license": {
+    "identifier": "PHP-3.01",
+    "url": "https://php.net/license/3_01.txt"
+  },
+  "notes": [
+    "Otherwise add '$dir\\php_redis.dll' to your php.ini"
+  ],
+  "architecture": {
+    "64bit": {
+      "url": "https://windows.php.net/downloads/pecl/releases/redis/5.3.7/php_redis-5.3.7-8.1-ts-vs16-x64.zip",
+      "hash": "1A99360CEF60C08F47E5746D65DF695CFF48121B06ADA37BD7AB65DBD9617CD6"
+    },
+    "32bit": {
+      "url": "https://windows.php.net/downloads/pecl/releases/redis/5.3.7/php_redis-5.3.7-8.1-ts-vs16-x86.zip",
+      "hash": "97B68BDA5917C49A65CE964DB63377C908ADF1A9B2D7CE367294AAD3F6D0414A"
+    }
+  },
+  "post_install": [
+    "$phpconfd = \"$persist_dir\\..\\php\\cli\\conf.d\"",
+    "$ini = \"extension=$dir\\php_redis.dll\"",
+    "if (!(Test-Path \"$phpconfd\\redis.ini\")) {",
+    "    ensure $phpconfd | Out-Null",
+    "    Write-Output \"Enabling extension '$phpconfd\\redis.ini'\"",
+    "    Add-Content -Value $ini -Path \"$phpconfd\\redis.ini\"",
+    "} else {",
+    "    Write-Host -f Yellow \"PHP was not installed through scoop, you have to activate php_redis.dll manually! Add the following:`n\"",
+    "    Write-Host -f Cyan \"$ini`n`n\"",
+    "}"
+  ],
+  "checkver": {
+    "url": "https://pecl.php.net/package/redis",
+    "regex": "/package/redis/([\\d.]+)/windows"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://windows.php.net/downloads/pecl/releases/redis/$version/php_redis-$version-8.1-ts-vs16-x64.zip"
+      },
+      "32bit": {
+        "url": "https://windows.php.net/downloads/pecl/releases/redis/$version/php_redis-$version-8.1-ts-vs16-x86.zip"
+      }
+    }
+  }
+}

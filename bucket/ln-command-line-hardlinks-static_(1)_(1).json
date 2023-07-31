@@ -1,0 +1,40 @@
+{
+  "##": "Based on https://github.com/AntonOks/scoop-aoks/blob/master/bucket/ntfs-ln-aoks.json",
+  "homepage": "https://schinagl.priv.at/nt/ln/ln.html",
+  "version": "2.9.3.3",
+  "description": "This tool is kind of a NTFS Swiss Army Knife and can do lots of things, like create SmartCopies, which preserve the inner and outer Hardlink/Junction/SymbolicLink structure, does hardlink based incremental Backups and a lot of other things which can not be found anywhere.",
+  "notes": [
+    "- If aria2 fails to download this app, you may try the following command in PowerShell (not Command Prompt):",
+    "  scoop config aria2-options @('--user-agent=\"aria2\"')",
+    "- This static version does not require runtime dlls, thus can run under WinPE."
+  ],
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://schinagl.priv.at/nt/ln/license.txt"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://schinagl.priv.at/nt/ln/ln64static.zip",
+      "hash": "7C62BD3F2656C3723C1A9C7BB772EE9AE67E30680E51CDC50BDEED3C7B3BCE33"
+    },
+    "32bit": {
+      "url": "https://schinagl.priv.at/nt/ln/lnstatic.zip",
+      "hash": "B804EFD9CE20AA23B9FCA72D1669E54D09FBD5A723B5B33BBF88F57C3DBB453D"
+    }
+  },
+  "bin": "ln.exe",
+  "checkver": {
+    "url": "https://schinagl.priv.at/nt/ln/ln.html",
+    "regex": ">Last Updated .+ Version ([\\d.]+)<"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://schinagl.priv.at/nt/ln/ln64static.zip"
+      },
+      "32bit": {
+        "url": "https://schinagl.priv.at/nt/ln/lnstatic.zip"
+      }
+    }
+  }
+}

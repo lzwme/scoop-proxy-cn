@@ -1,0 +1,33 @@
+{
+  "homepage": "https://www.uwe-sieber.de/filetools_e.html",
+  "description": "searches for identical files in one or two pathes. Found duplicates are listed and can be deleted, replaced by hardlinks or renamed.",
+  "version": "1.1.4",
+  "license": "Freeware",
+  "architecture": {
+    "64bit": {
+      "url": "https://www.uwe-sieber.de/files/fsf.zip",
+      "hash": "66ed04763390febc96fd350b5c40536413dd445055b41f188b5db9095d4c54b4",
+      "extract_dir": "x64"
+    },
+    "32bit": {
+      "url": "https://www.uwe-sieber.de/files/fsf.zip",
+      "hash": "66ed04763390febc96fd350b5c40536413dd445055b41f188b5db9095d4c54b4",
+      "extract_dir": "Win32"
+    }
+  },
+  "bin": "FSF.exe",
+  "checkver": {
+    "url": "https://www.uwe-sieber.de/filetools_e.html",
+    "regex": "FSF V([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://www.uwe-sieber.de/files/fsf.zip"
+      },
+      "32bit": {
+        "url": "https://www.uwe-sieber.de/files/fsf.zip"
+      }
+    }
+  }
+}

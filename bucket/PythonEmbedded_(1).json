@@ -1,0 +1,38 @@
+{
+  "homepage": "https://www.python.org/",
+  "description": "A programming language that lets you work quickly and integrate systems more effectively.",
+  "license": "Python-2.0",
+  "version": "3.11.4",
+  "architecture": {
+    "64bit": {
+      "url": "https://www.python.org/ftp/python/3.11.4/python-3.11.4-embed-amd64.zip#/python311.zip_",
+      "hash": "md5:d0e85bf50d2adea597c40ee28e774081"
+    },
+    "32bit": {
+      "url": "https://www.python.org/ftp/python/3.11.4/python-3.11.4-embed-win32.zip#/python311.zip_",
+      "hash": "md5:81b0acfcdd31a73d1577d6e977acbdc6"
+    }
+  },
+  "checkver": {
+    "url": "https://www.python.org/downloads/windows/",
+    "re": "Latest Python 3 Release - Python ([\\d\\.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://www.python.org/ftp/python/$version/python-$version-embed-amd64.zip#/python$majorVersion$minorVersion.zip_"
+      },
+      "32bit": {
+        "url": "https://www.python.org/ftp/python/$version/python-$version-embed-win32.zip#/python$majorVersion$minorVersion.zip_"
+      }
+    },
+    "hash": {
+      "url": "https://www.python.org/downloads/release/python-$cleanVersion/",
+      "find": "(?sm)$basename.*?$md5"
+    }
+  },
+  "post_install": [
+    "$versionshort = ($version -replace '\\.','').SubString(0,2)",
+    "if (Test-Path \"$dir\\..\\..\\python\") { cmd /c mklink  \"$dir\\..\\..\\python\\current\\python$versionshort.zip\" \"$dir\\python$versionshort.zip_\"}"
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "version": "8.0.4",
+  "description": "Open source graph visualization software.",
+  "homepage": "https://www.graphviz.org/",
+  "license": "EPL-1.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://gitlab.com/api/v4/projects/4207231/packages/generic/graphviz-releases/8.0.4/windows_10_cmake_Release_graphviz-install-8.0.4-win64.exe#/dl.7z",
+      "hash": "ffa77d55159357ab3ca6abbf35438d85adaac82d653d9bf70ae47d4e215ebe10"
+    },
+    "32bit": {
+      "url": "https://gitlab.com/api/v4/projects/4207231/packages/generic/graphviz-releases/8.0.4/windows_10_cmake_Release_graphviz-install-8.0.4-win32.exe#/dl.7z",
+      "hash": "32d9a5fe74ef67a63409da5683d6fbc277402d392a1f1231a20e9468abc60915"
+    }
+  },
+  "bin": [
+    "bin\\acyclic.exe",
+    "bin\\bcomps.exe",
+    "bin\\ccomps.exe",
+    "bin\\dijkstra.exe",
+    "bin\\dot.exe",
+    "bin\\gc.exe",
+    "bin\\gml2gv.exe",
+    "bin\\graphml2gv.exe",
+    "bin\\gvcolor.exe",
+    "bin\\gvgen.exe",
+    "bin\\gvpack.exe",
+    "bin\\gvpr.exe",
+    "bin\\gxl2gv.exe",
+    "bin\\mm2gv.exe",
+    "bin\\nop.exe",
+    "bin\\sccmap.exe",
+    "bin\\tred.exe",
+    "bin\\unflatten.exe"
+  ],
+  "checkver": {
+    "url": "https://gitlab.com/graphviz/graphviz/-/tags?format=atom",
+    "regex": "/tags/([\\d.]+)<"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://gitlab.com/api/v4/projects/4207231/packages/generic/graphviz-releases/$version/windows_10_cmake_Release_graphviz-install-$version-win64.exe#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://gitlab.com/api/v4/projects/4207231/packages/generic/graphviz-releases/$version/windows_10_cmake_Release_graphviz-install-$version-win32.exe#/dl.7z"
+      }
+    },
+    "hash": {
+      "url": "$url.sha256",
+      "regex": "$sha256\\s*"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "version": "0.2.5",
+  "description": "Download video streams served over HTTP from websites, HLS (.m3u8) and DASH (.mpd) playlists",
+  "homepage": "https://github.com/clitic/vsd",
+  "license": "Apache-2.0|MIT",
+  "suggest": {
+    "vcredist": [
+      "extras/vcredist2022",
+      "extras/vcredist-aio"
+    ],
+    "ffmpeg": [
+      "scoop-alts/ffmpeg-shared-nightly",
+      "ffmpeg-yt-dlp",
+      "ffmpeg"
+    ]
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/clitic/vsd/releases/download/v0.2.5/vsd-v0.2.5-x86_64-pc-windows-msvc.zip",
+      "hash": "068fa82fee27a41db527aefe46cca81f92333a6d511ea593abcd46667162cc32"
+    }
+  },
+  "bin": "vsd.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/clitic/vsd/releases/download/v$version/vsd-v$version-x86_64-pc-windows-msvc.zip"
+      }
+    }
+  }
+}

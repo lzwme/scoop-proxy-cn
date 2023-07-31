@@ -1,0 +1,40 @@
+{
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/m64p/m64p/releases/download/v$version/m64p-win64-$matchCommit.zip"
+  },
+  "bin": [
+    [
+      "mupen64plus-gui.exe",
+      "m64p"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/m64p/m64p",
+    "regex": "v([\\d\\.]+)\\/m64p-win64-(?<commit>[\\da-f]{7})\\."
+  },
+  "description": "Nintendo 64 emulator",
+  "extract_dir": "mupen64plus",
+  "hash": "6320e8f1520a5b0c6b70a0b85d700214bc124d4cf900b3690e164d9e28fe3b2e",
+  "homepage": "https://m64p.github.io/",
+  "license": {
+    "identifier": "GPL-3.0",
+    "url": "https://github.com/m64p/m64p/blob/main/LICENSE"
+  },
+  "persist": "config",
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\mupen64plus-gui.ini\")) {",
+    "   New-Item    \"$dir\\mupen64plus-gui.ini\" -Type File | Out-Null",
+    "   Set-Content \"$dir\\mupen64plus-gui.ini\" '[General]'",
+    "   Add-Content \"$dir\\mupen64plus-gui.ini\" 'version=2'",
+    "   Add-Content \"$dir\\mupen64plus-gui.ini\" 'configDirPath=$APP_PATH$/config'",
+    "}"
+  ],
+  "shortcuts": [
+    [
+      "mupen64plus-gui.exe",
+      "m64p"
+    ]
+  ],
+  "url": "https://ghproxy.net/https://github.com/m64p/m64p/releases/download/v2022.08.9/m64p-win64-fbf2c91.zip",
+  "version": "2022.08.9"
+}

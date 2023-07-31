@@ -1,0 +1,27 @@
+{
+  "homepage": "http://www.studiolinked.com/drum-pro/",
+  "description": "A virtual Drum",
+  "version": "none",
+  "url": "https://s3-us-west-2.amazonaws.com/studiolinked/Plugins/Drum+Pro+Setup+PC.exe",
+  "hash": "7d9ec8c66e30002162fa7cac7f9f30cafbb57bf4e51960e20f52bb06aebd4274",
+  "installer": {
+    "file": "Drum+Pro+Setup+PC.exe"
+  },
+  "post_install": [
+    "New-Item -ErrorAction Ignore $env:USERPROFILE\\.vst -ItemType Directory",
+    "New-Item -Type Junction -Path $env:USERPROFILE\\.vst\\drum-pro -Value $dir"
+  ],
+  "uninstaller": {
+    "script": [
+      "(Get-Item $env:USERPROFILE\\.vst\\drum-pro).Delete()"
+    ]
+  },
+  "notes": [
+    "コマンドからのアンインストールができません。",
+    "自分でアンインストールしてください。"
+  ],
+  "##": [
+    "バージョンが存在しない",
+    "指定された場所にインストールできなさそう"
+  ]
+}

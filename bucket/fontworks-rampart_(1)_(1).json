@@ -1,0 +1,27 @@
+{
+  "homepage": "https://github.com/fontworks-fonts/Rampart",
+  "description": "Rampart is a unique outline shadow font made in the image of 3-D blocks.",
+  "license": "https://github.com/fontworks-fonts/Rampart/blob/master/OFL.txt",
+  "version": "0.0.1",
+  "url": "https://ghproxy.net/https://github.com/fontworks-fonts/Rampart/archive/master.zip",
+  "hash": "611caf1ed122f7adb2d5c46daf44b24e707c362bd1a66fc2702951485bdd7de3",
+  "extract_dir": "Rampart-master/fonts/ttf",
+  "installer": {
+    "script": [
+      "Get-ChildItem $dir -filter '*.ttf' | ForEach-Object {",
+      "   $fontdir = \"$env:LocalAppData\\Microsoft\\Windows\\Fonts\"",
+      "   New-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value \"$fontdir\\$($_.Name)\" -Force | Out-Null",
+      "   Copy-Item $_.Fullname -destination \"$fontdir\"",
+      "}"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Get-ChildItem $dir -filter '*.ttf' | ForEach-Object {",
+      "   $fontdir = \"$env:LocalAppData\\Microsoft\\Windows\\Fonts\"",
+      "   Remove-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
+      "   Remove-Item \"$fontdir\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
+      "}"
+    ]
+  }
+}

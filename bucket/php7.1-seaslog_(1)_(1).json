@@ -1,0 +1,30 @@
+{
+  "homepage": "https://pecl.php.net/package/seaslog",
+  "version": "1.7.6",
+  "license": "http://www.php.net/license/3_01.txt",
+  "architecture": {
+    "64bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/seaslog/1.7.6/php_seaslog-1.7.6-7.1-ts-vc14-x64.zip",
+      "hash": "ad34119475dcf7d7745549d17c65eb2748644c57e4af2f23c9139c2c1fe08e74"
+    },
+    "32bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/seaslog/1.7.6/php_seaslog-1.7.6-7.1-ts-vc14-x86.zip",
+      "hash": "febb70139b41f7c046d486c4b1605e47eb0f56bedadab6e04995f01bb509db52"
+    }
+  },
+  "checkver": "(?i)seaslog/([\\d.]+)/windows",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/seaslog/$version/php_seaslog-$version-7.1-ts-vc14-x64.zip"
+      },
+      "32bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/seaslog/$version/php_seaslog-$version-7.1-ts-vc14-x86.zip"
+      }
+    }
+  },
+  "post_install": "iex(gc $bucketsdir\\$bucket\\bin\\postinstall.ps1 -Raw)",
+  "uninstaller": {
+    "file": "uninstall.ps1"
+  }
+}

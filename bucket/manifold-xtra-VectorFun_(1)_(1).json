@@ -1,0 +1,31 @@
+{
+  "version": "1.0-alpha2",
+  "description": "Fun vector functions for Manifold 9",
+  "homepage": "https://github.com/rkolka/VectorFun",
+  "license": "MIT",
+  "depends": "scoop-manifold/manifold-xtra",
+  "url": "https://ghproxy.net/https://github.com/rkolka/VectorFun/releases/download/v1.0-alpha2/VectorFun.zip",
+  "hash": "c83a6279172b72f8b93d47e074fd9d9323caa319f4261684e1af35666a186f0f",
+  "installer": {
+    "script": [
+      "$sharedDir = \"$(appdir 'manifold-xtra' $global)\\current\\shared\"",
+      "$addinDir = New-Item -ItemType Directory \"$sharedDir\\Addins\\VectorFun\"",
+      "Copy-Item \"$dir\\*\" \"$addinDir\\\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$sharedDir = \"$(appdir 'manifold-xtra' $global)\\current\\shared\"",
+      "$addinDir = \"$sharedDir\\Addins\\VectorFun\"",
+      "if (Test-Path $addinDir) { Remove-Item -Recurse $addinDir }"
+    ]
+  },
+  "checkver": {
+    "github": "https://github.com/rkolka/VectorFun",
+    "regex": "releases/tag/v([\\d.]+)-([\\w\\d]+)",
+    "replace": "${1}-${2}"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/rkolka/VectorFun/releases/download/v$version/VectorFun.zip"
+  }
+}

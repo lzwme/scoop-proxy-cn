@@ -1,0 +1,20 @@
+{
+  "version": "4.11.1",
+  "homepage": "https://github.com/obs-ndi/obs-ndi",
+  "url": "https://ghproxy.net/https://github.com/obs-ndi/obs-ndi/releases/download/4.11.1/obs-ndi-4.11.1-windows-x64.zip",
+  "hash": "3e68fece3909cbdc8e4a076fb7629a4f4b5c46478516f857adab4b04f7c0d611",
+  "depands": {
+    "OBS Studio": "obs-studio",
+    "##": "別途NDI Toolsが必要"
+  },
+  "post_install": [
+    "New-Item -Value \"$dir\\data\\obs-plugins\\obs-ndi\" -Path \"$scoopdir\\apps\\obs-studio\\current\\data\\obs-plugins\\obs-ndi\" -ItemType Junction",
+    "Get-ChildItem -Directory -Path \"$dir\\obs-plugins\\$architecture\" | ForEach-Object{New-Item -Value $_.FullName -Path \"$scoopdir\\apps\\obs-studio\\current\\obs-plugins\\$architecture\\$_\" -ItemType Junction}",
+    "Get-ChildItem -File -Path \"$dir\\obs-plugins\\$architecture\" | ForEach-Object{New-Item -Value $_.FullName -Path \"$scoopdir\\apps\\obs-studio\\current\\obs-plugins\\$architecture\\$_\" -ItemType hardlink}"
+  ],
+  "pre_uninstall": [
+    "Remove-Item \"$scoopdir\\apps\\obs-studio\\current\\data\\obs-plugins\\obs-ndi\" -recurse",
+    "Get-ChildItem -Directory -Path \"$dir\\obs-plugins\\$architecture\" | ForEach-Object{Remove-Item \"$scoopdir\\apps\\obs-studio\\current\\obs-plugins\\$architecture\\$_\" -recurse}",
+    "Get-ChildItem -File -Path \"$dir\\obs-plugins\\$architecture\" | ForEach-Object{Remove-Item \"$scoopdir\\apps\\obs-studio\\current\\obs-plugins\\$architecture\\$_\"}"
+  ]
+}

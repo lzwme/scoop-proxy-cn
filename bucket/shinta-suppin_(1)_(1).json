@@ -1,0 +1,33 @@
+{
+  "version": "2.01",
+  "homepage": "https://shinta.coresv.com/software/SuppinPlugin_jpn/",
+  "description": "SHINTA すっぴんプラグイン",
+  "license": [
+    {
+      "identifier": "CC-BY-NC-ND-2.1",
+      "url": "https://creativecommons.org/licenses/by-nc-nd/2.1/jp/"
+    }
+  ],
+  "url": "https://www.dropbox.com/s/93dloof8ej30vab/SuppinPlugin201.zip?dl=1",
+  "hash": "891ef48957a96a8b9fbdd49e6e8c0d05f89e620acf32c74faee3ac69bc3cfc6e",
+  "suggest": {
+    "UTAU": [
+      "utau",
+      "dtm/utau"
+    ]
+  },
+  "installer": {
+    "script": [
+      "$plugin=\"すっぴんプラグイン\"",
+      "Copy-Item -Force -Recurse -Path \"${dir}\\${plugin}\" -Destination \"${persist_dir}\\..\\utau\\utau\\plugins\"",
+      "Remove-Item -Force -Recurse -Path \"${dir}\\${plugin}\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$plugin=\"すっぴんプラグイン\"",
+      "Remove-Item -Force -Recurse -Path \"${persist_dir}\\..\\utau\\utau\\plugins\\${plugin}\""
+    ]
+  },
+  "checkver": "<td>Ver ([\\d\\.]+)</td>"
+}

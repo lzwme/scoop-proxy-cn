@@ -1,0 +1,36 @@
+{
+  "version": "4.5.1",
+  "description": "Compute and Check Hashes with One Click.",
+  "homepage": "https://www.binaryfortress.com/HashTools",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://www.binaryfortress.com/HashTools/License"
+  },
+  "url": "https://binaryfortressdownloads.com/Download/BFSFiles/109/HashTools-4.5.1-x64.zip#/dl.7z",
+  "hash": "sha1:bbf7ddf879b9446b4e77fde2a9c4e798b072425f",
+  "extract_dir": "HashTools64",
+  "extract_to": "HashTools64",
+  "bin": [
+    [
+      "HashTools64\\HashTools.exe",
+      "HashTools"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "HashTools64\\HashTools.exe",
+      "HashTools"
+    ]
+  ],
+  "checkver": {
+    "url": "https://www.binaryfortress.com/HashTools/Download",
+    "regex": "Latest Version:[\\s\\S]*v(?<version>[\\d.]+) \\((?<size>[\\d.]+) MB\\)"
+  },
+  "autoupdate": {
+    "url": "https://binaryfortressdownloads.com/Download/BFSFiles/109/HashTools-$version-x64.zip#/dl.7z",
+    "hash": {
+      "url": "https://www.binaryfortress.com/HashTools/Download",
+      "find": "Without Installer \\(ZIP\\):[\\s\\S]+$sha1 \\(SHA1\\)"
+    }
+  }
+}

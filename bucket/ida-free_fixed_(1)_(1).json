@@ -1,0 +1,52 @@
+{
+  "version": "8.2",
+  "description": "A multi-processor disassembler and debugger that offers so many features it is hard to describe them all",
+  "homepage": "https://hex-rays.com/ida-free/",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://hex-rays.com/terms_of_use/"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://out7.hex-rays.com/files/idafree82_windows.exe#/installer.exe",
+      "hash": "sha1:3139302108a32abf3b98d27267b2c9bfa48056cf"
+    }
+  },
+  "installer": {
+    "script": [
+      "if (!(is_admin)) { throw 'Administrator privileges are required' }",
+      "Start-Process \"$dir\\installer.exe\" -Wait -Verb 'RunAs' -WindowStyle 'Hidden' -ArgumentList @('--mode', 'unattended',",
+      "'--unattendedmodeui', 'minimal', '--prefix', \"$dir\")",
+      "Remove-Item \"$env:ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\IDA Freeware *\" -Force -Recurse",
+      "Remove-Item \"$Env:Public\\Desktop\\IDA Freeware *.lnk\" -Force",
+      "Start-Sleep -Seconds 2; Remove-Item \"$dir\\installer.exe\""
+    ]
+  },
+  "uninstaller": {
+    "file": "uninstall.exe",
+    "args": "--mode unattended",
+    "script": "Start-Sleep -Seconds 3"
+  },
+  "bin": "ida64.exe",
+  "shortcuts": [
+    [
+      "ida64.exe",
+      "IDA Freeware"
+    ]
+  ],
+  "checkver": {
+    "url": "https://hex-rays.com/ida-free/#download",
+    "regex": "IDA\\sv([\\d.]+)\\s+"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://out7.hex-rays.com/files/idafree$cleanVersion_windows.exe#/installer.exe",
+        "hash": {
+          "url": "https://hex-rays.com/ida-free/#download",
+          "regex": "$sha1\\s+$basename"
+        }
+      }
+    }
+  }
+}

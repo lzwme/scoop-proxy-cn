@@ -1,0 +1,28 @@
+{
+  "version": "1_07_001",
+  "description": "GNU Backgammon",
+  "homepage": "https://www.gnu.org/software/gnubg/",
+  "license": "Proprietary",
+  "url": "https://ftp.gnu.org/gnu/gnubg/gnubg-1_07_001-20221114-setup.exe",
+  "hash": "1a2926629a42ac2ecc2767157c6053d13f3e41abb3ff61b18456864c49727e3c",
+  "installer": {
+    "args": [
+      "/SP-",
+      "/verysilent",
+      "/suppressmsgboxes",
+      "/nocancel",
+      "/norestart",
+      "/norun"
+    ]
+  },
+  "uninstaller": {
+    "script": "Start-Process \"$env:LocalAppData\\gnubg\\unins000.exe\" -ArgumentList '/verysilent /suppressmsgboxes /norestart' -Wait"
+  },
+  "checkver": {
+    "url": "https://www.gnu.org/software/gnubg/#TOCdownloading",
+    "regex": "gnubg-(\\d{1,}_\\d{2}_\\d{3})-\\d{8}-setup.exe"
+  },
+  "autoupdate": {
+    "url": "https://ftp.gnu.org/gnu/gnubg/gnubg-$underscoreVersion-20221114-setup.exe"
+  }
+}

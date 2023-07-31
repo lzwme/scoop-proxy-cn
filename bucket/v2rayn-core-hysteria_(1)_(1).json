@@ -1,0 +1,69 @@
+{
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/2dust/v2rayN/releases/download/$version/v2rayN-Core.zip"
+  },
+  "bin": "v2rayN.exe",
+  "checkver": {
+    "jsonpath": "$[0].tag_name",
+    "url": "https://api.github.com/repos/2dust/v2rayN/releases?per_page=1"
+  },
+  "depends": [
+    "hysteria",
+    "geoip-country-mmdb",
+    "v2ray-rules-dat-git"
+  ],
+  "description": "A V2Ray client for Windows, support Xray core, v2fly core and hysteria core.",
+  "extract_dir": "v2rayN-Core",
+  "hash": "108fa28cb87a9beadc53d014c86ca4a7b3ddded4996ab1442837e8e0d4f0a8f7",
+  "homepage": "https://github.com/2dust/v2rayN",
+  "license": {
+    "identifier": "GPL-3.0-only",
+    "url": "https://github.com/2dust/v2rayN/raw/master/LICENSE"
+  },
+  "persist": [
+    "config.json",
+    "user-wininet.json",
+    "guiConfigs"
+  ],
+  "pre_install": [
+    "Copy-Item \"$(scoop prefix hysteria)\\hysteria.exe\" \"$dir\" -ErrorAction 'SilentlyContinue' -Force | Out-Null",
+    "Copy-Item \"$(scoop prefix geoip-country-mmdb)\\Country.mmdb\" \"$dir\" -ErrorAction 'SilentlyContinue' -Force | Out-Null",
+    "Copy-Item \"$(scoop prefix v2ray-rules-dat-git)\\reject-list.txt\" \"$dir\" -ErrorAction 'SilentlyContinue' -Force | Out-Null",
+    "Copy-Item \"$(scoop prefix v2ray-rules-dat-git)\\direct-list.txt\" \"$dir\" -ErrorAction 'SilentlyContinue' -Force | Out-Null",
+    "Copy-Item \"$(scoop prefix v2ray-rules-dat-git)\\proxy-list.txt\" \"$dir\" -ErrorAction 'SilentlyContinue' -Force | Out-Null",
+    "if (!(Test-Path \"$persist_dir\\user-wininet.json\")) {",
+    "    New-Item -Path \"$dir\\user-wininet.json\" | Out-Null",
+    "}",
+    "if (Test-Path \"$persist_dir\\guiNConfig.json\") {",
+    "    Copy-Item \"$persist_dir\\guiNConfig.json\" \"$dir\\\" | Out-Null",
+    "}",
+    "Get-Content \"$dir\\reject-list.txt\" | Select-String -Pattern '^full', '^regexp' -NotMatch | Set-Content \"$dir\\reject-list1.txt\" -Encoding UTF8",
+    "Get-Content \"$dir\\direct-list.txt\" | Select-String -Pattern '^full', '^regexp' -NotMatch | Set-Content \"$dir\\direct-list1.txt\" -Encoding UTF8",
+    "Get-Content \"$dir\\proxy-list.txt\" | Select-String -Pattern '^full', '^regexp' -NotMatch | Set-Content \"$dir\\proxy-list1.txt\" -Encoding UTF8",
+    "Get-Content \"$dir\\reject-list1.txt\" | ForEach-Object { 'block domain-suffix ' + $_ } | Set-Content \"$dir\\hysteria_acl0.txt\" -Encoding UTF8",
+    "Get-Content \"$dir\\direct-list1.txt\" | ForEach-Object { 'direct domain-suffix  ' + $_ } | Set-Content \"$dir\\hysteria_acl1.txt\" -Encoding UTF8",
+    "Get-Content \"$dir\\proxy-list1.txt\" | ForEach-Object { 'proxy domain-suffix ' + $_ } | Set-Content \"$dir\\hysteria_acl2.txt\" -Encoding UTF8",
+    "Get-Content \"$dir\\hysteria_acl*.txt\" | Set-Content \"$dir\\routes.acl\" -Encoding UTF8",
+    "Add-Content \"$dir\\routes.acl\" -Value 'direct country cn' -Encoding UTF8",
+    "Add-Content \"$dir\\routes.acl\" -Value 'proxy all' -Encoding UTF8",
+    "New-Item -Path \"$dir\" -Name \"acl\" -ItemType \"directory\" | Out-Null",
+    "Move-Item \"$dir\\routes.acl\", \"$dir\\Country.mmdb\" \"$dir\\acl\\\" -ErrorAction 'SilentlyContinue' -Force",
+    "Remove-Item \"$dir\\reject-list*.txt\", \"$dir\\direct-list*.txt\", \"$dir\\proxy-list*.txt\", \"$dir\\hysteria_acl*.txt\" -ErrorAction 'SilentlyContinue' -Force"
+  ],
+  "shortcuts": [
+    [
+      "v2rayN.exe",
+      "v2rayN"
+    ]
+  ],
+  "uninstaller": {
+    "script": [
+      "if (Test-Path \"$dir\\guiNConfig.json\") {",
+      "    ensure \"$persist_dir\" | Out-Null",
+      "    Copy-Item \"$dir\\guiNConfig.json\" \"$persist_dir\\\" | Out-Null",
+      "}"
+    ]
+  },
+  "url": "https://ghproxy.net/https://github.com/2dust/v2rayN/releases/download/6.5/v2rayN-Core.zip",
+  "version": "6.5"
+}

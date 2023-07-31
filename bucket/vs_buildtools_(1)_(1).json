@@ -1,0 +1,116 @@
+{
+  "version": "16.11.9",
+  "description": "Visual Studio Build Tools enable a streamlined build-lab experience for getting the required Visual C++ tools without the additional overhead of installing the Visual Studio IDE",
+  "homepage": "https://visualstudio.microsoft.com/",
+  "license": {
+    "identifier": "Copyright (c) Microsoft Corporation. All rights reserved.",
+    "url": "https://visualstudio.microsoft.com/license-terms/"
+  },
+  "notes": [
+    "Using --path install <path> doesn't 100% contain the installation",
+    "This might be solved in future versions of the visual studio installer",
+    "",
+    "It is recommended to restart your computer once the installation completes"
+  ],
+  "depends": "winsdk",
+  "checkver": {
+    "url": "https://api.github.com/repos/microsoft/winget-pkgs/contents/manifests/m/Microsoft/VisualStudio/2019/BuildTools?ref=master",
+    "jp": "$.[-1:].name"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://download.visualstudio.microsoft.com/download/pr/9a26f37e-6001-429b-a5db-c5455b93953c/f1c4f7b32e6da59b0a80c3a800d702211551738bcec68331aee1ab06d859be3d/vs_BuildTools.exe",
+      "hash": "F1C4F7B32E6DA59B0A80C3A800D702211551738BCEC68331AEE1AB06D859BE3D",
+      "installer": {
+        "args": [
+          "--wait",
+          "--quiet",
+          "--norestart",
+          "--downloadThenInstall",
+          "--productId",
+          "Microsoft.VisualStudio.Product.BuildTools",
+          "--channelId",
+          "VisualStudio.16.Release",
+          "--channelUri",
+          "https://aka.ms/vs/16/release/channel",
+          "--add",
+          "Microsoft.VisualStudio.Component.Roslyn.Compiler",
+          "--add",
+          "Microsoft.Component.MSBuild",
+          "--add",
+          "Microsoft.VisualStudio.Component.CoreBuildTools",
+          "--add",
+          "Microsoft.VisualStudio.Workload.MSBuildTools",
+          "--add",
+          "Microsoft.VisualStudio.Component.Windows10SDK",
+          "--add",
+          "Microsoft.VisualStudio.Component.VC.CoreBuildTools",
+          "--add",
+          "Microsoft.VisualStudio.Component.VC.Tools.x86.x64",
+          "--add",
+          "Microsoft.VisualStudio.Component.VC.Redist.14.Latest",
+          "--add",
+          "Microsoft.VisualStudio.Component.TextTemplating",
+          "--add",
+          "Microsoft.VisualStudio.Component.VC.CoreIde",
+          "--add",
+          "Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Core",
+          "--add",
+          "Microsoft.VisualStudio.Workload.VCTools",
+          "--path install=$dir\\VS",
+          "--path shared=$persist_dir\\VS",
+          "--path cache=$cachedir\\VS"
+        ],
+        "keep": true
+      },
+      "pre_install": [
+        "$outpuFileName=\"$dir\\vcvarsall.ps1\"",
+        "'param(' | Out-File -FilePath $outpuFileName",
+        "'  [ValidateSet(\"x86\",\"x64\",\"x64_x86\",\"x86_x64\")]' | Out-File -FilePath $outpuFileName -Append",
+        "'  [String] $ArchSpec = \"x64\"' | Out-File -FilePath $outpuFileName -Append",
+        "')' | Out-File -FilePath $outpuFileName -Append",
+        "'Write-Host \"# Setting Visual Studio build tools environment varibales for $ArchSpec\"' | Out-File -FilePath $outpuFileName -Append",
+        "\"`$script = `\"$dir\\VS\\VC\\Auxiliary\\Build\\vcvarsall.bat`\"\" | Out-File -FilePath $outpuFileName -Append",
+        "'$cmdLine = \"\"\"$script\"\" $ArchSpec & set\"' | Out-File -FilePath $outpuFileName -Append",
+        "'cmd.exe /c $cmdLine |' | Out-File -FilePath $outpuFileName -Append",
+        "\"Select-String '^([^=]*)=(.*)$' | Foreach-Object {\" | Out-File -FilePath $outpuFileName -Append",
+        "'  $varName = $_.Matches[0].Groups[1].Value' | Out-File -FilePath $outpuFileName -Append",
+        "'  $varValue = $_.Matches[0].Groups[2].Value' | Out-File -FilePath $outpuFileName -Append",
+        "'  if (-not (Test-Path Env:$varName)) {' | Out-File -FilePath $outpuFileName -Append",
+        "'    Write-Host \"$varName=$varValue\" -f Green' | Out-File -FilePath $outpuFileName -Append",
+        "'    Set-Item Env:$varName \"$varValue\"' | Out-File -FilePath $outpuFileName -Append",
+        "'  } elseif ($varName -eq \"PATH\") {' | Out-File -FilePath $outpuFileName -Append",
+        "'    $extraPath = ($varValue.Split(\";\") | Where-Object {$_ -notin $env:Path.Split(\";\")}) -join \";\"' | Out-File -FilePath $outpuFileName -Append",
+        "'    Write-Host \"Changing Path, original path backed up in `$env:__VSCMD_PREINIT_PATH\" -f Yellow' | Out-File -FilePath $outpuFileName -Append",
+        "'    Write-Host \"PATH=$extraPath;$env:Path\" -f Yellow' | Out-File -FilePath $outpuFileName -Append",
+        "'    Set-Item Env:$varName \"$extraPath;$env:Path\"' | Out-File -FilePath $outpuFileName -Append",
+        "'  } else {' | Out-File -FilePath $outpuFileName -Append",
+        "'    $psValue = (Get-Item Env:$varName).Value' | Out-File -FilePath $outpuFileName -Append",
+        "'    if ($varValue -ne $psValue) {' | Out-File -FilePath $outpuFileName -Append",
+        "'      Write-Host \"Unexpected inconsistency found for `\"$varName`\"\" -f Red' | Out-File -FilePath $outpuFileName -Append",
+        "'      Write-Host \"$varName=$varValue\" -f Red' | Out-File -FilePath $outpuFileName -Append",
+        "'      Write-Host \"$varName=$psValue\" -f Red' | Out-File -FilePath $outpuFileName -Append",
+        "'    }' | Out-File -FilePath $outpuFileName -Append",
+        "'  }' | Out-File -FilePath $outpuFileName -Append",
+        "'}' | Out-File -FilePath $outpuFileName -Append"
+      ],
+      "bin": [
+        "vcvarsall.ps1"
+      ],
+      "uninstaller": {
+        "file": "vs_BuildTools.exe",
+        "args": [
+          "uninstall",
+          "--wait",
+          "--quiet",
+          "--productId",
+          "Microsoft.VisualStudio.Product.BuildTools",
+          "--channelId",
+          "VisualStudio.16.Release",
+          "--channelUri",
+          "https://aka.ms/vs/16/release/channel"
+        ]
+      }
+    }
+  }
+}

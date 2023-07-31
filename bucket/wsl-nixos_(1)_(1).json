@@ -1,0 +1,34 @@
+{
+  "version": "21.11-d89f18a1",
+  "description": "A minimal root filesystem for running NixOS on WSL",
+  "homepage": "https://github.com/nix-community/NixOS-WSL",
+  "license": "Apache-2.0",
+  "persist": "NixOS",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/nix-community/NixOS-WSL/releases/download/21.11-d89f18a1/nixos-wsl-installer-fixed.tar.gz#/nixos-wsl-installer",
+      "hash": "3f54707e5c9b8f020dfd56b8c612ad9a13c8f79df2ea7948110f9a5bcb23f9b6"
+    }
+  },
+  "checkver": {
+    "url": "https://github.com/nix-community/NixOS-WSL/releases",
+    "regex": "\\[((\\d)*.(\\d)*-([a-f0-9])*)\\]"
+  },
+  "post_install": [
+    "wsl --import NixOS \"$dir\\NixOS\\\" \"$dir\\nixos-wsl-installer\" --version 2",
+    "Remove-Item \"$dir\\nixos-wsl-installer\""
+  ],
+  "uninstaller": {
+    "script": "wsl --unregister NixOS"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/nix-community/NixOS-WSL/releases/download/$version/nixos-wsl-installer-fixed.tar.gz#/nixos-wsl-installer",
+        "hash": {
+          "url": "$baseurl/nixos-wsl-installer-fixed.tar.gz.sha256"
+        }
+      }
+    }
+  }
+}

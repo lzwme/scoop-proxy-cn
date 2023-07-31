@@ -1,0 +1,75 @@
+{
+  "architecture": {
+    "32bit": {
+      "hash": [
+        "5636df4d0a9595f90598e80353e0db5186354a4dfd54e411cdf39988be459681",
+        "28dd141a7d1e40304c44b376fe076b58dc4f57937c8846ff83a72eb22f3a3801",
+        "aeb2cff91aefeb50d0136e3f0aaa00a131ca90e3ee4aee701544e97983442c2e"
+      ],
+      "url": [
+        "https://mirrors.sdu.edu.cn/github-release/rizonesoft_Notepad3/RELEASE_5.21.1129.1/Notepad3_5.21.1129.1_x86.zip",
+        "https://ghproxy.net/https://raw.githubusercontent.com/ScoopInstaller/Extras/master/scripts/notepad3/replace-windows-notepad.reg",
+        "https://ghproxy.net/https://raw.githubusercontent.com/ScoopInstaller/Extras/master/scripts/notepad3/restore-windows-notepad.reg"
+      ]
+    },
+    "64bit": {
+      "hash": [
+        "c5311c69fc376f94fa14f79cdccc6b2f3557a59ae93ba38a332650b7c2dd41cf",
+        "28dd141a7d1e40304c44b376fe076b58dc4f57937c8846ff83a72eb22f3a3801",
+        "aeb2cff91aefeb50d0136e3f0aaa00a131ca90e3ee4aee701544e97983442c2e"
+      ],
+      "url": [
+        "https://mirrors.sdu.edu.cn/github-release/rizonesoft_Notepad3/RELEASE_5.21.1129.1/Notepad3_5.21.1129.1_x64.zip",
+        "https://ghproxy.net/https://raw.githubusercontent.com/ScoopInstaller/Extras/master/scripts/notepad3/replace-windows-notepad.reg",
+        "https://ghproxy.net/https://raw.githubusercontent.com/ScoopInstaller/Extras/master/scripts/notepad3/restore-windows-notepad.reg"
+      ]
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://mirrors.sdu.edu.cn/github-release/rizonesoft_Notepad3/RELEASE_$version/Notepad3_$version_x86.zip"
+      },
+      "64bit": {
+        "url": "https://mirrors.sdu.edu.cn/github-release/rizonesoft_Notepad3/RELEASE_$version/Notepad3_$version_x64.zip"
+      }
+    }
+  },
+  "bin": [
+    "Notepad3.exe",
+    "minipath.exe"
+  ],
+  "checkver": {
+    "regex": "RELEASE_([\\d.]+)",
+    "reverse": true,
+    "url": "https://mirrors.sdu.edu.cn/github-release/rizonesoft_Notepad3/"
+  },
+  "description": "Notepad like text editor based on the Scintilla source code",
+  "homepage": "https://www.rizonesoft.com/downloads/notepad3/",
+  "license": {
+    "identifier": "BSD-3-Clause"
+  },
+  "persist": [
+    "Favorites",
+    "minipath.ini",
+    "Notepad3.ini"
+  ],
+  "post_install": [
+    "if (Test-Path \"$dir\\replace-windows-notepad.reg\") {",
+    "    $notepad3 = \"$dir\\Notepad3.exe\".Replace('\\', '\\\\')",
+    "    $content = (Get-Content \"$dir\\replace-windows-notepad.reg\").Replace('$notepad3', $notepad3)",
+    "    Set-Content \"$dir\\replace-windows-notepad.reg\" $content -Encoding ASCII",
+    "}"
+  ],
+  "shortcuts": [
+    [
+      "Notepad3.exe",
+      "Notepad3"
+    ],
+    [
+      "minipath.exe",
+      "minipath"
+    ]
+  ],
+  "version": "5.21.1129.1"
+}

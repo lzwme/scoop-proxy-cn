@@ -1,0 +1,60 @@
+{
+  "version": "1.13.0",
+  "description": "The Magicsplat Tcl/Tk for Windows distribution. A binary Windows Installer based distribution of Tcl/Tk for Windows systems. It includes commonly used libraries, extensions and development tools.",
+  "homepage": "https://www.magicsplat.com/tcl-installer/",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://www.magicsplat.com/tcl-installer/index.html#license"
+  },
+  "architecture": {
+    "32bit": {
+      "url": "https://sourceforge.net/projects/magicsplat/files/magicsplat-tcl/tcl-8.6.13-installer-1.13.0-x86.msi",
+      "hash": "50d012ed345420b8d7906c5337994478c2a4e31fb3c27227f1dd4ef96b8fbdcd"
+    },
+    "64bit": {
+      "url": "https://sourceforge.net/projects/magicsplat/files/magicsplat-tcl/tcl-8.6.13-installer-1.13.0-x64.msi",
+      "hash": "ad4f1725899c6f42b85e366bb354bd183d806bf6773904835b6d558b24d7b016"
+    }
+  },
+  "extract_dir": "Tcl8.6",
+  "env_add_path": "bin",
+  "bin": [
+    "bin\\tclsh.exe",
+    "bin\\tclprodebug.tkapp",
+    "bin\\wish.exe",
+    "bin\\tkcon.tkapp"
+  ],
+  "shortcuts": [
+    [
+      "bin\\tclsh.exe",
+      "Tcl command shell"
+    ],
+    [
+      "bin\\tclprodebug.tkapp",
+      "TclPro Debugger"
+    ],
+    [
+      "bin\\wish.exe",
+      "Tk graphical console"
+    ],
+    [
+      "bin\\tkcon.tkapp",
+      "Tkcon enhanced console"
+    ]
+  ],
+  "checkver": {
+    "url": "https://sourceforge.net/projects/magicsplat/files/magicsplat-tcl/",
+    "regex": "tcl-(?<tclver>[\\d.-]+)-installer-([\\d.-]+)-x64\\.msi"
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://sourceforge.net/projects/magicsplat/files/magicsplat-tcl/tcl-$matchTclver-installer-$version-x86.msi"
+      },
+      "64bit": {
+        "url": "https://sourceforge.net/projects/magicsplat/files/magicsplat-tcl/tcl-$matchTclver-installer-$version-x64.msi"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

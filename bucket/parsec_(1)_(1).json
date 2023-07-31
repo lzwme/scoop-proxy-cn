@@ -1,0 +1,61 @@
+{
+  "##": "It has to be installed to the default folder using the installer, otherwise it does not run.",
+  "version": "150-87c",
+  "description": "Parsec is a proprietary freeware desktop capturing application primarily used for playing games through video streaming.",
+  "homepage": "https://parsec.app",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://parsec.app/terms#2-use-of-the-services"
+  },
+  "architecture": {
+    "32bit": {
+      "url": "https://builds.parsecgaming.com/package/parsec-windows32.exe",
+      "hash": "56729f814139fbc29d1d0e5ae50c3dc3816beb3ae8931ae567dece46c01e3baa"
+    },
+    "64bit": {
+      "url": "https://builds.parsecgaming.com/package/parsec-windows.exe",
+      "hash": "ae654731f8e85ec41a77edbfad7ec0064497421803fbc5105ca8a935af57fd6e"
+    }
+  },
+  "pre_install": "if (!(is_admin)) {error 'This package requires admin rights to install'; break}",
+  "installer": {
+    "args": [
+      "/silent",
+      "/norun",
+      "/nocleanuser",
+      "/shared",
+      "/vdd"
+    ]
+  },
+  "post_install": [
+    "$scoop_startmenu_folder = Join-Path $([Environment]::GetFolderPath($(if ($global) {'commonstartmenu'} else {'startmenu'}))) 'Programs\\Scoop Apps'",
+    "Move-Item \"$([Environment]::GetFolderPath('CommonStartMenu'))\\Programs\\Parsec\\*\" $scoop_startmenu_folder -Force",
+    "Remove-Item \"$([Environment]::GetFolderPath('CommonStartMenu'))\\Programs\\Parsec\" -Recurse",
+    "Remove-Item HKLM:\\Software\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Parsec -Recurse"
+  ],
+  "uninstaller": {
+    "script": [
+      "if (!(is_admin)) {error 'This package requires admin rights to uninstall'; break}",
+      "Invoke-ExternalCommand \"$([Environment]::GetFolderPath('ProgramFiles'))\\Parsec\\uninstall.exe\" -ArgumentList '/S' -RunAs | Out-Null",
+      "# wait for Un_A.exe to finish",
+      "while (Get-Process 'Un_A' -ErrorAction SilentlyContinue) { Start-Sleep -Second 5 }",
+      "$scoop_startmenu_folder = Join-Path $([Environment]::GetFolderPath($(if ($global) {'commonstartmenu'} else {'startmenu'}))) 'Programs\\Scoop Apps'",
+      "Remove-Item $scoop_startmenu_folder\\Parsec.lnk -Force"
+    ]
+  },
+  "checkver": {
+    "url": "https://parsec.app/changelog.xml",
+    "regex": "<parsec:build>(?<version>[\\d\\w-]+)</parsec:build>"
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://builds.parsecgaming.com/package/parsec-windows32.exe"
+      },
+      "64bit": {
+        "url": "https://builds.parsecgaming.com/package/parsec-windows.exe"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

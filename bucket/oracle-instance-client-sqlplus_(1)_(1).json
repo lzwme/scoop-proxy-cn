@@ -1,0 +1,38 @@
+{
+  "homepage": "https://www.oracle.com/database/technologies/instant-client.html",
+  "version": "19.6.0.0.0dbru",
+  "license": "GPL",
+  "description": "Oracle instance client",
+  "architecture": {
+    "32bit": {
+      "url": "https://download.oracle.com/otn_software/nt/instantclient/19600/instantclient-sqlplus-nt-19.6.0.0.0dbru.zip",
+      "extract_dir": "instantclient_19_6",
+      "hash": "4f75323febd690fc67a29c607608b6dbc569d682b812df1af227b6d555477be5"
+    },
+    "64bit": {
+      "url": "https://download.oracle.com/otn_software/nt/instantclient/19600/instantclient-sqlplus-windows.x64-19.6.0.0.0dbru.zip",
+      "extract_dir": "instantclient_19_6",
+      "hash": "9ce25370f51a18002a190133d10b5a8bc821e9486a27206b384e17b060e4a449"
+    }
+  },
+  "bin": "sqlplus.exe",
+  "shortcuts": [],
+  "checkver": {
+    "url": "https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html",
+    "regex": "<h4>Version *(\\d+.\\d+.\\d+.\\d+)(?<last>.+)</h4>"
+  },
+  "env_add_path": ".",
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://download.oracle.com/otn_software/nt/instantclient/$majorVersion$minorVersion$patchVersion$buildVersion/instantclient-sqlplus-nt-$version.zip",
+        "extract_dir": "instantclient_$majorVersion_$minorVersion"
+      },
+      "64bit": {
+        "url": "https://download.oracle.com/otn_software/nt/instantclient/$majorVersion$minorVersion$patchVersion$buildVersion/instantclient-sqlplus-windows.x64-$version.zip",
+        "extract_dir": "instantclient_$majorVersion_$minorVersion"
+      }
+    }
+  },
+  "depends": "oracle-instance-client"
+}

@@ -1,0 +1,15 @@
+{
+  "version": "1.2.0",
+  "homepage": "http://www.vst4free.com/free_vst.php?id=1426",
+  "url": "http://alt2.vst4free.com/get_lpn1/T-ForceAlpha-Plus-1.2.0.zip",
+  "post_install": [
+    "New-Item -ErrorAction Ignore $env:USERPROFILE\\.vst -ItemType Directory",
+    "New-Item -Type Junction -Path $env:USERPROFILE\\.vst\\T-ForceAlpha-Plus -Value $dir"
+  ],
+  "##": "T-ForceAlpha-Plus-1.2.0",
+  "uninstaller": {
+    "script": [
+      "(Get-Item $env:USERPROFILE\\.vst\\T-ForceAlpha-Plus).Delete()"
+    ]
+  }
+}

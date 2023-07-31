@@ -1,0 +1,24 @@
+{
+  "version": "0.25.0",
+  "description": "LeMMinX is a language server for XML and XSD files",
+  "homepage": "https://github.com/eclipse/lemminx",
+  "license": "EPL-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/redhat-developer/vscode-xml/releases/download/0.25.0/lemminx-win32.zip",
+      "hash": "b3496e9c2b725ea666de1cb4e054f1f3ef45b8f1e9be970a8839f6c9dcdc405a"
+    }
+  },
+  "pre_install": "Rename-Item  \"$dir\\lemminx-win32.exe\" \"$dir\\lemminx.exe\"",
+  "bin": "lemminx.exe",
+  "checkver": {
+    "github": "https://github.com/redhat-developer/vscode-xml"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/redhat-developer/vscode-xml/releases/download/$version/lemminx-win32.zip"
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "architecture": {
+    "32bit": {
+      "installer": {
+        "script": "Expand-7zipArchive -Path \"$dir\\`$PLUGINSDIR\\app-32.7z\" \"$dir\""
+      }
+    },
+    "64bit": {
+      "installer": {
+        "script": "Expand-7zipArchive -Path \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\""
+      }
+    }
+  },
+  "autoupdate": {
+    "hash": {
+      "regex": "sha512:\\s+$base64",
+      "url": "$baseurl/latest.yml"
+    },
+    "url": "https://ghproxy.net/https://github.com/ferdium/ferdium-app/releases/download/v$version/Ferdium-win-AutoSetup-$version.exe#/dl.7z"
+  },
+  "checkver": {
+    "regex": "/ferdium-app/tree/(?:v|V)?([\\d\\.]+)",
+    "url": "https://github.com/ferdium/ferdium-app/releases/latest"
+  },
+  "description": "All-in-one messaging apps for various services",
+  "hash": "sha512:dc934b9bf7466b5a2024c85f3ee96f15e83619792a16bb0776b66bb81767ba0bd095f8919403c085d79c5db2767b4644ccb2d911a9244a0e9920dee97b677b95",
+  "homepage": "https://github.com/ferdium/ferdium-app",
+  "license": "Apache-2.0",
+  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall*.exe\" -Recurse -Force",
+  "shortcuts": [
+    [
+      "Ferdium.exe",
+      "Ferdium"
+    ]
+  ],
+  "url": "https://ghproxy.net/https://github.com/ferdium/ferdium-app/releases/download/v6.2.6/Ferdium-win-AutoSetup-6.2.6.exe#/dl.7z",
+  "version": "6.2.6"
+}

@@ -1,0 +1,42 @@
+{
+  "homepage": "https://sourceforge.net/projects/redpanda-cpp",
+  "description": "A light-weight C/C++ IDE based on Qt.",
+  "license": {
+    "identifier": "GPL-3.0",
+    "url": "https://github.com/royqh1979/RedPanda-CPP/blob/master/LICENSE"
+  },
+  "version": "2.21",
+  "architecture": {
+    "64bit": {
+      "url": "https://sourceforge.net/projects/redpanda-cpp/files/2.21/RedPanda.C%2B%2B.2.21.win64.No.Compiler.Portable.7z",
+      "hash": "04adac437c5379f7fa4096247053a7dd9611751470918bfc8194901045aa5783"
+    },
+    "32bit": {
+      "url": "https://sourceforge.net/projects/redpanda-cpp/files/2.21/RedPanda.C%2B%2B.2.21.win32.No.Compiler.Portable.7z",
+      "hash": "ddf6d27357bba53b216bed2063d85bc9a87502154653c3860d3986328a3d1737"
+    }
+  },
+  "extract_dir": "RedPanda-Cpp",
+  "persist": "config",
+  "shortcuts": [
+    [
+      "RedPandaIDE.exe",
+      "RedPanda C++"
+    ]
+  ],
+  "checkver": {
+    "url": "https://sourceforge.net/projects/redpanda-cpp/rss?path=/",
+    "regex": "RedPanda.C%2B%2B.(?<version>[\\d.]+).win64.No.Compiler.Portable.7z"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://sourceforge.net/projects/redpanda-cpp/files/$version/RedPanda.C%2B%2B.$version.win64.No.Compiler.Portable.7z"
+      },
+      "32bit": {
+        "url": "https://sourceforge.net/projects/redpanda-cpp/files/$version/RedPanda.C%2B%2B.$version.win32.No.Compiler.Portable.7z"
+      }
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

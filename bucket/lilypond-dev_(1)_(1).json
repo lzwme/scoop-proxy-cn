@@ -1,0 +1,18 @@
+{
+  "version": "2.25.4",
+  "homepage": "http://lilypond.org",
+  "url": "https://gitlab.com/lilypond/lilypond/-/releases/v2.25.4/downloads/lilypond-2.25.4-mingw-x86_64.zip",
+  "hash": "e99168fec1d5c6f86453334067491896d6819977a37bb2d1a18453e53ffcca7a",
+  "bin": "bin/lilypond.exe",
+  "extract_dir": "lilypond-2.23.13",
+  "checkver": {
+    "url": "http://lilypond.org/development.html",
+    "regex": "Development for LilyPond ([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://gitlab.com/lilypond/lilypond/-/releases/v$version/downloads/lilypond-$version-mingw-x86_64.zip",
+    "hash": {
+      "url": "$url.sha256"
+    }
+  }
+}

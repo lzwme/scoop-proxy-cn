@@ -1,0 +1,28 @@
+{
+  "version": "1.19.7",
+  "description": "unity asset checke",
+  "homepage": "https://upr.unity.cn/instructions/assetchecker",
+  "url": "https://unitycloud.oss-cn-beijing.aliyuncs.com/asset_check/unity-asset-checker-win-latest.zip?v=1.19.7",
+  "hash": "f5bfe2e1f7587c9cc3f5fdc923fcb42feb7e27c9c368f432ad5b550fa94f1804",
+  "installer": {
+    "script": [
+      "Copy-Item -Path \"$dir\\unity-asset-checker-win-*\\*\" -Destination \"$dir\" -Recurse",
+      "Remove-Item \"$dir\\unity-asset-checker-win-*\" -Recurse"
+    ]
+  },
+  "bin": "assetcheck.exe",
+  "shortcuts": [
+    [
+      "assetcheck.exe",
+      "assetcheck"
+    ]
+  ],
+  "checkver": {
+    "url": "https://upr.unity.cn/backend/documents?type=USER_MANUAL_zh",
+    "regex": "Asset Checker V(?<version>[\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://unitycloud.oss-cn-beijing.aliyuncs.com/asset_check/unity-asset-checker-win-latest.zip?v=$version"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

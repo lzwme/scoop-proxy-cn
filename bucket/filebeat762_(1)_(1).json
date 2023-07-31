@@ -1,0 +1,23 @@
+{
+  "homepage": "https://www.elastic.co/beats/filebeat",
+  "version": "7.6.2",
+  "depends": [
+    "nssm224"
+  ],
+  "url": [
+    "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.6.2-windows-x86_64.zip",
+    "https://ghproxy.net/https://raw.githubusercontent.com/Utdanningsdirektoratet/PAS-scoop-public/8e4ffe4609b87aef490190a3645c2a4462e69c72/scripts/filebeatsrv.ps1"
+  ],
+  "hash": [
+    "sha512:80b82fd132121f744fb3717617604e588be1e58ff9971a5b1e4958616d3e5e04a97c00079e0fbe36564d436bb63568ec18a5b64de2aeeb858ed4c5247a8828e9",
+    "sha256:1aa8ae80cd28c8bdf8e91fccfd80c45bf9026e56dd4b544accb3a804cf3bc8db"
+  ],
+  "bin": [
+    "filebeat.exe",
+    [
+      "filebeatsrv.ps1",
+      "filebeat_service"
+    ]
+  ],
+  "extract_dir": "filebeat-7.6.2-windows-x86_64"
+}

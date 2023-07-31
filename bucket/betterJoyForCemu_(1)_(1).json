@@ -1,0 +1,40 @@
+{
+  "version": "5",
+  "description": "Allows the Nintendo Switch Pro Controller, Joycons and SNES controller to be used with the Cemu Emulator and System-Wide",
+  "homepage": "https://github.com/Davidobot/BetterJoyForCemu",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/Davidobot/BetterJoyForCemu/releases/download/v5/BetterJoyForCemu_v5_x64.zip",
+      "hash": "3319301df52ea3cd6c3ef168a4204015a609f522664568a523557a2249f37f5e"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/Davidobot/BetterJoyForCemu/releases/download/v5/BetterJoyForCemu_v5_x86.zip",
+      "hash": "7734ab547ba66139a9a64fc1ff599afcbd4798f8508070be789815d5407b81d0"
+    }
+  },
+  "bin": "BetterJoyForCemu.exe",
+  "shortcuts": [
+    [
+      "BetterJoyForCemu.exe",
+      "BetterJoyForCemu"
+    ]
+  ],
+  "persist": [
+    "BetterJoyForCemu.exe.config"
+  ],
+  "checkver": {
+    "github": "https://github.com/Davidobot/BetterJoyForCemu/releases",
+    "regex": "Version \\d+"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/Davidobot/BetterJoyForCemu/releases/download/v$version/BetterJoyForCemu_v5_x64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/Davidobot/BetterJoyForCemu/releases/download/v$version/BetterJoyForCemu_v5_x86.zip"
+      }
+    }
+  }
+}

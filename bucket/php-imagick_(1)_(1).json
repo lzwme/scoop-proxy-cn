@@ -1,0 +1,48 @@
+{
+  "version": "3.7.0",
+  "description": "Imagick is a native php extension to create and modify images using the ImageMagick API.",
+  "homepage": "https://pecl.php.net/package/imagick",
+  "license": {
+    "identifier": "PHP-3.01",
+    "url": "https://php.net/license/3_01.txt"
+  },
+  "notes": [
+    "Otherwise add '$dir\\php_imagick.dll' to your php.ini"
+  ],
+  "architecture": {
+    "64bit": {
+      "url": "https://windows.php.net/downloads/pecl/releases/imagick/3.7.0/php_imagick-3.7.0-8.1-ts-vs16-x64.zip",
+      "hash": "F9683E9BB64B805FABCA3D8208CAC089D071C36AB3D7592A488F6478A1CE27BB"
+    },
+    "32bit": {
+      "url": "https://windows.php.net/downloads/pecl/releases/imagick/3.7.0/php_imagick-3.7.0-8.1-ts-vs16-x86.zip",
+      "hash": "3BC74D721AC9F74CE53341F493FF1EC0AEE9CB797F85F740B942DC6F81514714"
+    }
+  },
+  "post_install": [
+    "$phpconfd = \"$persist_dir\\..\\php\\cli\\conf.d\"",
+    "$ini = \"extension=$dir\\php_imagick.dll\"",
+    "if (!(Test-Path \"$phpconfd\\imagick.ini\")) {",
+    "    ensure $phpconfd | Out-Null",
+    "    Write-Output \"Enabling extension '$phpconfd\\imagick.ini'\"",
+    "    Add-Content -Value $ini -Path \"$phpconfd\\imagick.ini\"",
+    "} else {",
+    "    Write-Host -f Yellow \"PHP was not installed through scoop, you have to activate php_imagick.dll manually! Add the following:`n\"",
+    "    Write-Host -f Cyan \"$ini`n`n\"",
+    "}"
+  ],
+  "checkver": {
+    "url": "https://pecl.php.net/package/imagick",
+    "regex": "/package/imagick/([\\d.]+)/windows"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://windows.php.net/downloads/pecl/releases/imagick/$version/php_imagick-$version-8.1-ts-vs16-x64.zip"
+      },
+      "32bit": {
+        "url": "https://windows.php.net/downloads/pecl/releases/imagick/$version/php_imagick-$version-8.1-ts-vs16-x86.zip"
+      }
+    }
+  }
+}

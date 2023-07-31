@@ -1,0 +1,28 @@
+{
+  "autoupdate": {
+    "url": "https://pineapple.edgeless.top/disk/Socket/Hub/Edgeless%20Hub_Beta_$version.7z"
+  },
+  "bin": "edgeless-hub.exe",
+  "checkver": {
+    "jsonpath": "$.version",
+    "url": "https://pineapple.edgeless.top/api/v2/info/hub"
+  },
+  "description": "使用 Edgeless 聚合客户端制作启动盘和个性化您的 Edgeless",
+  "extract_dir": "Edgeless Hub",
+  "hash": "95cf44054167d51fc5a11e7714ea3f42ba967489291d1b4d4d8971db9a7944b8",
+  "homepage": "https://home.edgeless.top/",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://wiki.edgeless.top/v2/global/contract.html"
+  },
+  "persist": "hub_config.json",
+  "pre_install": "if (-not (Test-Path \"$persist_dir\\hub_config.json\")) { New-Item \"$dir\\hub_config.json\" -ItemType File | Out-Null }",
+  "shortcuts": [
+    [
+      "edgeless-hub.exe",
+      "Edgeless Hub"
+    ]
+  ],
+  "url": "https://pineapple.edgeless.top/disk/Socket/Hub/Edgeless%20Hub_Beta_2.27.7z",
+  "version": "2.27"
+}

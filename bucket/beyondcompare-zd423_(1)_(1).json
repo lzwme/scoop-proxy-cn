@@ -1,0 +1,40 @@
+{
+  "version": "4.4.3.26655",
+  "description": "A third-party revision of Beyond Compare, maintained by 423down.com.",
+  "homepage": "https://www.scootersoftware.com",
+  "license": {
+    "identifier": "Shareware",
+    "url": "https://www.scootersoftware.com/index.php?zz=kb_licensev4"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://pan.jiemi.workers.dev/?file=/zd423/Beyond_Compare_4.4.3.26655_64bit_Green.7z",
+      "hash": "ec1a29958aa29fd8c007d3329eada433cdffd5a914ccfa83a0727ce52d6dafff"
+    }
+  },
+  "extract_dir": "BCompare",
+  "bin": [
+    [
+      "BComp.exe",
+      "bcomp"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "BCompare.exe",
+      "Beyond Compare 4"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/ryanjiena/metaversion/raw/main/oneindex.txt",
+    "regex": "(?s)(?<file>Beyond_Compare_([\\d.]+)_64bit_Green.7z)",
+    "reverse": true
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://pan.jiemi.workers.dev/?file=/zd423/$matchFile"
+      }
+    }
+  }
+}

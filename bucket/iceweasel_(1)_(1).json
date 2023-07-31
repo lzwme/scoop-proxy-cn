@@ -1,0 +1,61 @@
+{
+  "version": "112.0",
+  "description": "Iceweasel web browser.",
+  "homepage": "https://sourceforge.net/projects/libportable/",
+  "license": "MPL 2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://sourceforge.net/projects/libportable/files/Iceweasel/Stable/112.x/x86_64/Iceweasel-v112.0.zh_CN_win64_clang_pgo.7z",
+      "hash": "md5:04b21d2deb38af630dddc2c7fce56c8a",
+      "extract_dir": "Iceweasel_x64"
+    },
+    "32bit": {
+      "url": "https://sourceforge.net/projects/libportable/files/Iceweasel/Stable/112.x/i686/Iceweasel-v112.0.zh_CN_win32_clang_pgo.7z",
+      "hash": "md5:b3dc1d38c54cb57faf3100b0a2c49542",
+      "extract_dir": "Iceweasel_x86"
+    }
+  },
+  "pre_install": [
+    "if (!(test-path \"$persist_dir\")) { mkdir \"$persist_dir\" | Out-Null }",
+    "if (!(test-path \"$persist_dir\\App\")) { mkdir \"$persist_dir\\App\" | Out-Null }",
+    "if (!(test-path \"$persist_dir\\App\\portable.ini\")) { [IO.File]::WriteAllLines(\"$persist_dir\\App\\portable.ini\" ,((get-content \"$original_dir\\App\\portable(example).ini\" -Encoding utf8) -replace 'Update=1', 'Update=0')) }"
+  ],
+  "bin": [
+    [
+      "App\\iceweasel.exe",
+      "iceweasel"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "App\\iceweasel.exe",
+      "IceWeasel"
+    ]
+  ],
+  "persist": [
+    "Profiles",
+    "App\\portable.ini"
+  ],
+  "checkver": {
+    "url": "https://master.dl.sourceforge.net/project/libportable/Iceweasel/README?viasf=1",
+    "regex": "Iceweasel ([\\d\\.]+)\\(x86,x64\\)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://sourceforge.net/projects/libportable/files/Iceweasel/Stable/$majorVersion.x/x86_64/Iceweasel-v$version.zh_CN_win64_clang_pgo.7z",
+        "hash": {
+          "url": "https://master.dl.sourceforge.net/project/libportable/Iceweasel/update_info.txt?viasf=1",
+          "regex": "\\[win64\\.zh-CN\\]\\r?\\nmd5=(.+)\\r?\\n"
+        }
+      },
+      "32bit": {
+        "url": "https://sourceforge.net/projects/libportable/files/Iceweasel/Stable/$majorVersion.x/i686/Iceweasel-v$version.zh_CN_win32_clang_pgo.7z",
+        "hash": {
+          "url": "https://master.dl.sourceforge.net/project/libportable/Iceweasel/update_info.txt?viasf=1",
+          "regex": "\\[win32\\.zh-CN\\]\\r?\\nmd5=(.+)\\r?\\n"
+        }
+      }
+    }
+  }
+}

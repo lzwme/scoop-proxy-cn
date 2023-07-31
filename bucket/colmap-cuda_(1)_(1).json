@@ -1,0 +1,32 @@
+{
+  "version": "3.8",
+  "description": "COLMAP - Structure-from-Motion and Multi-View Stereo",
+  "homepage": "https://colmap.github.io/",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://github.com/colmap/colmap/blob/dev/COPYING.txt"
+  },
+  "url": "https://ghproxy.net/https://github.com/colmap/colmap/releases/download/3.8/COLMAP-3.8-windows-cuda.zip",
+  "hash": "60910e2d79539ba8825628bd147f900a5cd61646b5a9ad5f62dbec0e9b78e8d0",
+  "bin": [
+    [
+      "COLMAP.bat",
+      "colmap"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "COLMAP.bat",
+      "COLMAP"
+    ]
+  ],
+  "extract_dir": "COLMAP-3.8-windows-cuda",
+  "checkver": {
+    "github": "https://github.com/colmap/colmap",
+    "re": "(\\d+\\.\\d+(\\.\\d+)?)"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/colmap/colmap/releases/download/$version/COLMAP-$version-windows-cuda.zip",
+    "extract_dir": "COLMAP-$version-windows-cuda"
+  }
+}

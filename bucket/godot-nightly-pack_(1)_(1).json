@@ -1,0 +1,30 @@
+{
+  "autoupdate": {
+    "url": [
+      "https://archive.hugo.pro/builds/godot/master/editor/godot-windows-nightly-x86_64.zip",
+      "https://archive.hugo.pro/builds/godot/master/templates/godot-templates-android-html5-linux-windows-nightly.tpz#/dl.tpz_"
+    ]
+  },
+  "bin": [
+    "GNP\\godot.exe"
+  ],
+  "checkver": "github",
+  "description": "This nightly package includes 2 different packages: Godot Engine nigtly binary and the nightly export templates in TPZ format, which is essentially just a renamed ZIP extension.\nIf you want to use the TPZ export templates, you should install them from Godot Editor menu bar option... for every nightly build separately and of course, uninstall the previous nightly version from the same Godot menu...\n",
+  "extract_to": "GNP",
+  "nightly": true,
+  "notes": [
+    "This nightly package includes 2 different packages: Godot Engine nigtly binary and the nightly export templates in TPZ format, which is essentially just a renamed ZIP extension.\nIf you want to use the TPZ export templates, you should install them from Godot Editor menu bar option... for every nightly build separately and of course, uninstall the previous nightly version from the same Godot menu...\n"
+  ],
+  "post_install": "Rename-Item \"$dir\\dl.tpz_\" \"$dir\\export_templates.tpz\"",
+  "shortcuts": [
+    [
+      "GNP\\godot.exe",
+      "Godot Nightly"
+    ]
+  ],
+  "url": [
+    "https://archive.hugo.pro/builds/godot/master/editor/godot-windows-nightly-x86_64.zip",
+    "https://archive.hugo.pro/builds/godot/master/templates/godot-templates-android-html5-linux-windows-nightly.tpz#/dl.tpz_"
+  ],
+  "version": "nightly"
+}

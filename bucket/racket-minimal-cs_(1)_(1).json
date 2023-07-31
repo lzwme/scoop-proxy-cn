@@ -1,0 +1,31 @@
+{
+  "version": "8.9",
+  "homepage": "https://racket-lang.org",
+  "license": "LGPL-3.0-or-later",
+  "description": "Racket minimal on Chez Scheme.",
+  "architecture": {
+    "64bit": {
+      "url": "https://mirror.racket-lang.org/releases/8.9/installers/racket-minimal-8.9-x86_64-win32-cs.exe#/dl.7z",
+      "hash": "d582e6f6e79f0ae3e16d4274c19f49d836823a2f2772b625949fac085cf310fb"
+    }
+  },
+  "bin": [
+    "racket.exe",
+    "raco.exe"
+  ],
+  "checkver": {
+    "url": "https://download.racket-lang.org/",
+    "re": "Version ([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://mirror.racket-lang.org/releases/$version/installers/racket-minimal-$version-x86_64-win32-cs.exe#/dl.7z"
+      }
+    },
+    "hash": {
+      "url": "https://download.racket-lang.org/releases/$version/",
+      "regex": "$basename[\\s\\S]*?\"checksum\">$sha1</span>"
+    }
+  }
+}

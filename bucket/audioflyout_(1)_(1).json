@@ -1,0 +1,65 @@
+{
+  "version": "0.9.2.0",
+  "description": "Replace the Volume/SMTC UI with a custom one.",
+  "homepage": "https://github.com/ADeltaX/AudioFlyout",
+  "license": "GPL-3.0-or-later",
+  "notes": "Run \"audioflyout-add-startup\" (with admin rights) to add AudioFlyout to startup programs",
+  "url": "https://ghproxy.net/https://github.com/ADeltaX/AudioFlyout/releases/download/0.9.2.0/AudioFlyout.zip",
+  "hash": "31f5c5c584f3254079363db81163047a116cc39b8dbb00254e9571fbac6ddc64",
+  "depends": "sudo",
+  "extract_dir": "ADeltaX\\AudioFlyout",
+  "pre_install": [
+    "If([int][System.Environment]::OSVersion.Version.Build -le 17763) {",
+    "    Write-Host 'AudioFlyout only supports Windows 10 version 1809 (build 17763) or later.'",
+    "    exit 1",
+    "}"
+  ],
+  "installer": {
+    "script": [
+      "$current = current_dir $dir",
+      "$cont_add = @(",
+      "    'if (Get-ScheduledTask -Taskname \"AudioFlyoutStartup\" -ErrorAction SilentlyContinue) {'",
+      "        'Write-Host \"AudioFlyout has already been added startup programs. No need to add again.\"'",
+      "        'exit 1'",
+      "    '}'",
+      "    '$taskname = \"AudioFlyoutStartup\"'",
+      "    '$description = \"Start AudioFlyout on Windows startup\"'",
+      "    \"`$action = New-ScheduledTaskAction -Execute '$current\\AudioFlyout.exe'\"",
+      "    '$settings = New-ScheduledTaskSettingsSet'",
+      "    '$principal = New-ScheduledTaskPrincipal -UserId SYSTEM -LogonType ServiceAccount -RunLevel Highest'",
+      "    '$trigger = New-ScheduledTaskTrigger -AtStartup'",
+      "    'Register-ScheduledTask -Action $action -Settings $settings -Principal $principal -Trigger $trigger -TaskName $taskname -Description $description | Out-Null'",
+      "    'Write-Host -f Yellow \"AudioFlyout has been added to startup programs (as a scheduled task)\"'",
+      "    'Write-Host \"Run `\"audioflyout-remove-startup`\" to remove it from startup programs\"'",
+      ")",
+      "$cont_remove = @(",
+      "    'if (Get-ScheduledTask -Taskname \"AudioFlyoutStartup\" -ErrorAction SilentlyContinue) {'",
+      "        'Unregister-ScheduledTask -TaskName \"AudioFlyoutStartup\" -Confirm:0'",
+      "        'Write-Host -f Yellow \"AudioFlyout has been removed from startup programs\"'",
+      "    '} else {'",
+      "        'Write-Host \"AudioFlyout has not been added to startup programs. No action needed.\"'",
+      "    '}'",
+      ")",
+      "Set-Content \"$dir\\audioflyout-add-startup-script.ps1\" -Value ($cont_add -join \"`r`n\") -Encoding Ascii",
+      "Set-Content \"$dir\\audioflyout-remove-startup.ps1\" -Value ($cont_remove -join \"`r`n\") -Encoding Ascii"
+    ]
+  },
+  "uninstaller": {
+    "script": "sudo sudo \"$dir\\audioflyout-remove-startup.ps1\""
+  },
+  "bin": [
+    "AudioFlyout.exe",
+    "audioflyout-add-startup.ps1",
+    "audioflyout-remove-startup.ps1"
+  ],
+  "shortcuts": [
+    [
+      "AudioFlyout.exe",
+      "AudioFlyout"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/ADeltaX/AudioFlyout/releases/download/$version/AudioFlyout.zip"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "version": "1.2.0",
+  "homepage": "https://github.com/icellmobilsoft/etcdmanager",
+  "url": "https://ghproxy.net/https://github.com/i-Cell-Mobilsoft-Open-Source/etcdmanager/releases/download/1.2.0/etcd-manager-1.2.0-win64.exe#/etcdManager.7z",
+  "hash": "030b4219fadfc89a0325924e2932a5a5c05e7116f828dfac679a0ff4ae4bd8f6",
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/i-Cell-Mobilsoft-Open-Source/etcdmanager/releases/download/$version/etcd-manager-$version-win64.exe#/etcdManager.7z"
+  },
+  "architecture": {
+    "64bit": {
+      "installer": {
+        "script": "7z x $original_dir/PLUGINSDIR/app-64.7z -o\"$original_dir\""
+      }
+    },
+    "32bit": {
+      "installer": {
+        "script": "7z x $original_dir/PLUGINSDIR/app-32.7z -o\"$original_dir\""
+      }
+    }
+  },
+  "extract_dir": "$PLUGINSDIR",
+  "extract_to": "PLUGINSDIR",
+  "post_install": "rm $original_dir/PLUGINSDIR -recurse",
+  "shortcuts": [
+    [
+      "etcd-manager.exe",
+      "EtcdManager"
+    ]
+  ]
+}

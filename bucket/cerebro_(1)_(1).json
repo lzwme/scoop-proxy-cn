@@ -1,0 +1,47 @@
+{
+  "version": "0.11.0",
+  "license": "MIT",
+  "description": "Cerebro is an open-source launcher to improve your productivity and efficiency",
+  "homepage": "https://github.com/cerebroapp/cerebro",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/cerebroapp/cerebro/releases/download/v0.11.0/Cerebro-0.11.0.exe#/Cerebro.exe",
+      "hash": "e51696d00df7f0bcb444be3ebb898ac25bdd274a3df35ddcc3c05dbb52841873",
+      "uninstaller": {
+        "script": [
+          "Remove-Item \"$dir\\Cerebro.exe\"",
+          "Remove-ItemProperty -Path \"HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\" -Name \"electron.app.Cerebro\" -ErrorAction SilentlyContinue"
+        ]
+      }
+    }
+  },
+  "post_install": [
+    "$null, $null2, $bucket = Get-Manifest($app)",
+    "$bucketdir = Find-BucketDirectory($bucket)",
+    "$bucketdir = $bucketdir.Trim()",
+    "& \"$bucketdir\\scripts\\track.ps1\" install $app $version"
+  ],
+  "post_uninstall": [
+    "$null, $null2, $bucket = Get-Manifest($app)",
+    "$bucketdir = Find-BucketDirectory($bucket)",
+    "$bucketdir = $bucketdir.Trim()",
+    "& \"$bucketdir\\scripts\\track.ps1\" uninstall $app $version"
+  ],
+  "shortcuts": [
+    [
+      "Cerebro.exe",
+      "Cerebro"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/cerebroapp/cerebro",
+    "regex": "v([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/cerebroapp/cerebro/releases/download/v$version/Cerebro-$version.exe#/Cerebro.exe"
+      }
+    }
+  }
+}

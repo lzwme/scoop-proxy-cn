@@ -1,0 +1,30 @@
+{
+  "version": "10.5.2.835",
+  "description": "EdrawMax is a design software that integrates office diagramming, engineering diagramming, image-text editing and flyer design, with which you can create all kinds of diagrams easily without any drawing skills.",
+  "homepage": "https://www.edrawsoft.cn/edrawmax",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://www.edrawsoft.cn/edrawmax-term-services"
+  },
+  "notes": "Features: <https://www.423down.com/8077.html>",
+  "depends": "sudo",
+  "url": "https://pan.jiemi.workers.dev/?file=/zd423/EdrawMax_10.5.2.835_Green.7z",
+  "hash": "b8fe6d4283300f0c243b232092275bcd13cbd5c5e8ccddb988b810b999c246fd",
+  "extract_dir": "EdrawMax",
+  "pre_install": "sudo Start-Process \"$dir\\!)关联格式.bat\" -WorkingDirectory \"$dir\" -Wait",
+  "pre_uninstall": "sudo Start-Process \"$dir\\!)清除残留.bat\" -WorkingDirectory \"$dir\" -Wait",
+  "shortcuts": [
+    [
+      "EdrawMax-1.exe",
+      "EdrawMax Mod"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/oneindex.txt",
+    "regex": "EdrawMax_([\\d.]+)_Green.7z",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/zd423/EdrawMax_$version_Green.7z"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "version": "1.2.0-beta2",
+  "description": "A free astronomical image processing software",
+  "homepage": "https://siril.org/",
+  "license": {
+    "identifier": "GPL-3.0-only",
+    "url": "https://gitlab.com/free-astro/siril/-/blob/master/LICENSE.md"
+  },
+  "url": "https://free-astro.org/download/siril-1.2.0-beta2-setup.exe",
+  "hash": "f9bc581e3fefd648603e3e1e49b0d9692a3cc7b8c1a363bad286b6be857088f2",
+  "pre_install": "Get-ChildItem \"$dir\" | Rename-Item -NewName \"$dir\\siril-installer.exe\"",
+  "installer": {
+    "script": [
+      "innounp -x -d\"$dir\" $dir\\siril-installer.exe > $dir\\unpack.log",
+      "Get-ChildItem \"$dir\\{app}\" -Recurse |  Move-Item -Destination \"$dir\"",
+      "Remove-Item \"$dir\\{app}\"",
+      "Remove-Item $dir\\siril-installer.exe",
+      "Remove-Item $dir\\install_script.iss",
+      "Remove-Item $dir\\unpack.log"
+    ]
+  },
+  "bin": "bin\\siril.exe",
+  "shortcuts": [
+    [
+      "bin\\siril.exe",
+      "Siril"
+    ]
+  ],
+  "checkver": {
+    "url": "https://siril.org/",
+    "regex": "Siril ([\\d+\\.\\d+\\.\\d+]+-*[a-z]*\\d*)"
+  },
+  "autoupdate": {
+    "url": "https://free-astro.org/download/siril-$version-setup.exe"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

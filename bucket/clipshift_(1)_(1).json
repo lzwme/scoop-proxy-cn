@@ -1,0 +1,34 @@
+{
+  "version": "0.1.14-beta.5",
+  "description": "Command line syncing application",
+  "homepage": "https://github.com/getclipshift/clipshift",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/getclipshift/clipshift/releases/download/v0.1.14-beta.5/clipshift_windows_amd64.zip",
+      "hash": "26a8420c4fdad9e08c012f4741581f77d286fe486cb797059fb21b1c5bd4dffa"
+    },
+    "arm64": {
+      "url": "https://ghproxy.net/https://github.com/getclipshift/clipshift/releases/download/v0.1.14-beta.5/clipshift_windows_arm64.zip",
+      "hash": "611f0ca593df212e420c57e957409b30df78862f2d81ca6a30b99e437f86684b"
+    }
+  },
+  "bin": [
+    "clipshift.exe",
+    "clipshift-tray.exe"
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/getclipshift/clipshift/releases",
+    "regex": "clipshift/releases/tag/v([\\w.-]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/getclipshift/clipshift/releases/download/v0.1.14-beta.5/clipshift_windows_amd64.zip"
+      },
+      "arm64": {
+        "url": "https://ghproxy.net/https://github.com/getclipshift/clipshift/releases/download/v0.1.14-beta.5/clipshift_windows_arm64.zip"
+      }
+    }
+  }
+}

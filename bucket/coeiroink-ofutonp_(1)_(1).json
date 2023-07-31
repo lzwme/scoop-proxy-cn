@@ -1,0 +1,58 @@
+{
+  "version": "1.1.0",
+  "description": "COEIROINK おふとんP",
+  "homepage": "https://coeiroink.com/",
+  "license": [
+    {
+      "identifier": "Proprietary",
+      "url": "https://coeiroink.com/terms"
+    }
+  ],
+  "notes": "ダウンロード・インストールに長時間かかります。",
+  "url": "https://www.dropbox.com/s/cmpq23myizw1dmv/a60ebf6c-626a-7ce6-5d69-c92bf2a1a1d0.zip?dl=1",
+  "hash": "5c0801ab1a30b3c0fb32c7934179afb9480b6fbef78560d9b354a9e7e1775144",
+  "suggest": {
+    "COEIROINK": [
+      "coeiroink",
+      "dtm/coeiroink",
+      "coeiroink-cpu",
+      "dtm/coeiroink-cpu"
+    ]
+  },
+  "installer": {
+    "script": [
+      "$speakerId    = \"\\a60ebf6c-626a-7ce6-5d69-c92bf2a1a1d0\\\"",
+      "$coeiroinkDir = \"$(appdir coeiroink)\\current\\speaker_info\"",
+      "if(Test-Path -Path $coeiroinkDir){",
+      " if(Test-Path -Path ($coeiroinkDir + $speakerId)){",
+      "   Remove-Item -Path ($coeiroinkDir + $speakerId) -Recurse -Force",
+      " }",
+      " Copy-Item -Path ($dir + $speakerId) -Destination $coeiroinkDir -Recurse -Force",
+      "}",
+      "$coeiroinkDir = \"$(appdir coeiroink-cpu)\\current\\speaker_info\"",
+      "if(Test-Path -Path $coeiroinkDir){",
+      " if(Test-Path -Path ($coeiroinkDir + $speakerId)){",
+      "   Remove-Item -Path ($coeiroinkDir + $speakerId) -Recurse -Force",
+      " }",
+      " Copy-Item -Path ($dir + $speakerId) -Destination $coeiroinkDir -Recurse -Force",
+      "}"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$speakerId    = \"\\a60ebf6c-626a-7ce6-5d69-c92bf2a1a1d0\\\"",
+      "$coeiroinkDir = \"$(appdir coeiroink)\\current\\speaker_info\"",
+      "if(Test-Path -Path ($coeiroinkDir + $speakerId)){",
+      " Remove-Item -Path ($coeiroinkDir + $speakerId) -Recurse -Force",
+      "}",
+      "$coeiroinkDir = \"$(appdir coeiroink-cpu)\\current\\speaker_info\"",
+      "if(Test-Path -Path ($coeiroinkDir + $speakerId)){",
+      " Remove-Item -Path ($coeiroinkDir + $speakerId) -Recurse -Force",
+      "}"
+    ]
+  },
+  "checkver": {
+    "url": "https://coeiroink.com/download",
+    "regex": "<p class=\"download-link\">おふとんP-v.([\\d\\.]+)</p>"
+  }
+}

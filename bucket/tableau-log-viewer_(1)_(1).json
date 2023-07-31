@@ -1,0 +1,25 @@
+{
+  "version": "1.3",
+  "description": "A cross-platform tool for quickly glancing over Tableau log files",
+  "license": "MIT",
+  "homepage": "https://github.com/tableau/tableau-log-viewer",
+  "checkver": {
+    "github": "https://github.com/tableau/tableau-log-viewer"
+  },
+  "bin": "tlv.cmd",
+  "shortcuts": [
+    [
+      "tlv.cmd",
+      "tlv",
+      "tlv.exe"
+    ]
+  ],
+  "pre_install": "\"@start \"\"Tableau Log Viewer\"\" /D \"\"%~dp0\"\" \"\"%~dp0tlv.exe\"\" %*\" | out-file \"$dir\\tlv.cmd\" -encoding oem",
+  "extract_dir": "tlv-win-1.3",
+  "url": "https://ghproxy.net/https://github.com/tableau/tableau-log-viewer/releases/download/v1.3/tlv-win-1.3.zip",
+  "hash": "aea8414b021a86c31a48b8c5cdfe84835b9ca73b6aafcf2167810b6df56da0c4",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/tableau/tableau-log-viewer/releases/download/v$version/tlv-win-$version.zip",
+    "extract_dir": "tlv-win-$version"
+  }
+}

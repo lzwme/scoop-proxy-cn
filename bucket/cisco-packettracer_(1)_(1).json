@@ -1,0 +1,45 @@
+{
+  "version": "8.2.1",
+  "homepage": "https://www.netacad.com/courses/packet-tracer",
+  "description": "A free network simulator tool for certification exam preparation, particularly for CCNA students.",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://www.netacad.com/sites/default/files/terms/cisco_networking_academy_terms_and_conditions_oct_2021_english.pdf"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://archive.org/download/cisco-packet-tracer-821-ubuntu-64bit/CiscoPacketTracer_821_Windows_64bit.exe",
+      "hash": "sha1:b13af13de273d9ae41a6113aed93b965f6d14908"
+    },
+    "32bit": {
+      "url": "https://archive.org/download/cisco-packet-tracer-821-ubuntu-64bit/CiscoPacketTracer_821_Windows_32bit.exe",
+      "hash": "sha1:b13af13de273d9ae41a6113aed93b965f6d14908"
+    }
+  },
+  "innosetup": true,
+  "bin": "bin\\PacketTracer.exe",
+  "shortcuts": [
+    [
+      "bin\\PacketTracer.exe",
+      "Cisco PacketTracer"
+    ]
+  ],
+  "checkver": {
+    "url": "https://www.computernetworkingnotes.com/ccna-study-guide/download-packet-tracer-for-windows-and-linux.html",
+    "regex": "Tracer\\s([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://archive.org/download/cisco-packet-tracer-$cleanVersion-ubuntu-64bit/CiscoPacketTracer_$cleanVersion_Windows_64bit.exe"
+      },
+      "32bit": {
+        "url": "https://archive.org/download/cisco-packet-tracer-$cleanVersion-ubuntu-64bit/CiscoPacketTracer_$cleanVersion_Windows_32bit.exe"
+      }
+    },
+    "hash": {
+      "url": "https://www.packettracernetwork.com/download/download-packet-tracer.html",
+      "regex": "SHA-1</strong>\\s:\\s$sha1"
+    }
+  }
+}

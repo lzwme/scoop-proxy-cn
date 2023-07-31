@@ -1,0 +1,38 @@
+{
+  "version": "2011.07.03",
+  "description": "波音リツ強音源 追加語尾音源（強音源版）",
+  "homepage": "http://www.canon-voice.com/strong.html",
+  "license": [
+    {
+      "identifier": "Proprietary",
+      "url": "http://www.canon-voice.com/kiyaku.html"
+    }
+  ],
+  "url": "http://www.canon-voice.com/voice/r73_strong_gobi.zip",
+  "hash": "c44eb91333e3cc73f3b99cb6202a9fd730ca794fb90719e71ab7cfc846a8d4b7",
+  "extract_dir": "r73_strong_gobi\\リツ語尾強",
+  "extract_to": "voice\\波音リツ強\\リツ語尾強",
+  "suggest": {
+    "UTAU": [
+      "utau",
+      "dtm/utau",
+      "namine-ritsu-strong-utau-cv",
+      "dtm/namine-ritsu-strong-utau-cv",
+      "namine-ritsu-strong-utau-vcv",
+      "dtm/namine-ritsu-strong-utau-vcv"
+    ]
+  },
+  "installer": {
+    "script": [
+      "$voice=\"波音リツ強\"",
+      "Copy-Item -Force -Recurse -Path \"${dir}\\voice\\${voice}\" -Destination \"${persist_dir}\\..\\utau\\utau\\voice\"",
+      "Remove-Item -Force -Recurse -Path \"${dir}\\voice\\${voice}\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$voice=\"波音リツ強\\リツ語尾強\"",
+      "Remove-Item -Force -Recurse -Path \"${persist_dir}\\..\\utau\\utau\\voice\\${voice}\""
+    ]
+  }
+}

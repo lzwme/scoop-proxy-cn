@@ -1,0 +1,35 @@
+{
+  "version": "1.94",
+  "description": "Manipulate GIF images",
+  "homepage": "https://eternallybored.org/misc/gifsicle/",
+  "license": "GPL-2.0-only",
+  "architecture": {
+    "32bit": {
+      "extract_dir": "gifsicle-1.94",
+      "url": "https://eternallybored.org/misc/gifsicle/releases/gifsicle-1.94-win32.zip",
+      "hash": "79b0d71d4bf9038a456060d4fc9ade176db234c22bbd6c5c46a9cf6bc41377c4"
+    },
+    "64bit": {
+      "extract_dir": "gifsicle-1.94",
+      "url": "https://eternallybored.org/misc/gifsicle/releases/gifsicle-1.94-win64.zip",
+      "hash": "b3e3a9e0c8ade061b5b2ef13cad3d4ad57466400552a78ed285ed0c3f97a5141"
+    }
+  },
+  "bin": [
+    "gifdiff.exe",
+    "gifsicle.exe"
+  ],
+  "checkver": "href=\"releases/gifsicle-([\\d.]+)",
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "extract_dir": "gifsicle-$version",
+        "url": "https://eternallybored.org/misc/gifsicle/releases/gifsicle-$version-win32.zip"
+      },
+      "64bit": {
+        "extract_dir": "gifsicle-$version",
+        "url": "https://eternallybored.org/misc/gifsicle/releases/gifsicle-$version-win64.zip"
+      }
+    }
+  }
+}

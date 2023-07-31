@@ -1,0 +1,38 @@
+{
+  "version": "2.86",
+  "description": "2D & 3D TeX-aware vector graphics language",
+  "homepage": "https://asymptote.sourceforge.io/",
+  "license": "GPL-3.0,LGPL-3.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://sourceforge.net/projects/asymptote/files/2.86/asymptote-2.86-setup.exe#/dl.7z",
+      "hash": "sha1:82941b304522a9cdeafdba4232f29f09a34a6fdc"
+    },
+    "32bit": {
+      "url": "https://sourceforge.net/projects/asymptote/files/2.86/asymptote-2.86-setup-32.exe#/dl.7z",
+      "hash": "sha1:3a19bca7a3ef39727af9ace4946d23afab4be445"
+    }
+  },
+  "bin": "asy.exe",
+  "env_set": {
+    "ASYMPTOTE_DIR": "$dir;$dir\\examples"
+  },
+  "suggest": {
+    "Ghostscript": "main/ghostscript"
+  },
+  "checkver": {
+    "url": "https://sourceforge.net/projects/asymptote/best_release.json",
+    "jsonpath": "$.release.filename",
+    "regex": "\\/([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://sourceforge.net/projects/asymptote/files/$version/asymptote-$version-setup.exe#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://sourceforge.net/projects/asymptote/files/$version/asymptote-$version-setup-32.exe#/dl.7z"
+      }
+    }
+  }
+}

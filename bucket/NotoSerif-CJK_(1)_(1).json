@@ -1,0 +1,42 @@
+{
+  "version": "2.001",
+  "license": "OFL-1.1",
+  "homepage": "https://github.com/googlefonts/noto-cjk",
+  "url": "https://mirrors.tuna.tsinghua.edu.cn/github-release/googlefonts/noto-cjk/Noto%20Serif%20CJK%20Version%20Serif2.001%20%28OTF%2C%20OTC%2C%20Super%20OTC%2C%20Subset%20OTF%2C%20Variable%20OTF_TTF%29/04_NotoSerifCJKOTC.zip",
+  "hash": "2f0630f88752d50b11a427bdd71f20f7178219e647c56cbaf36c032dbe1ed9d0",
+  "depends": "sudo",
+  "installer": {
+    "script": [
+      "if(!(is_admin)) { error \"Admin rights are required, please run 'sudo scoop install $app'\"; exit 1 }",
+      "Get-ChildItem \"$env:windir\\Fonts\" -Filter 'NotoSerifCJK-*.ttc' | ForEach-Object {",
+      "  try {",
+      "    Remove-Item \"$env:windir\\Fonts\\$($_.Name)\" -Force -ErrorAction Stop",
+      "  } catch {",
+      "    Write-Warning \"Something failed, please try again later or after a reboot!`n$($error[0])\"",
+      "    exit 1",
+      "  }",
+      "}",
+      "Get-ChildItem \"$dir\" -Filter 'NotoSerifCJK-*.ttc' -Recurse | ForEach-Object {",
+      "    New-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $_.Name -Force | Out-Null",
+      "    Copy-Item $_.FullName -destination \"$env:windir\\Fonts\"",
+      "}"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "if(!(is_admin)) { error \"Admin rights are required, please run 'sudo scoop uninstall $app'\"; exit 1 }",
+      "Get-ChildItem \"$dir\" -Filter 'NotoSerifCJK-*.ttc' | ForEach-Object {",
+      "    Remove-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
+      "    Remove-Item \"$env:windir\\Fonts\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
+      "}",
+      "Write-Host \"The '$($app.Replace('-NF', ''))' Font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
+    ]
+  },
+  "checkver": {
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/github-release/googlefonts/noto-cjk/",
+    "regex": "Noto Serif CJK Version Serif([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/github-release/googlefonts/noto-cjk/Noto%20Serif%20CJK%20Version%20Serif$version%20%28OTF%2C%20OTC%2C%20Super%20OTC%2C%20Subset%20OTF%2C%20Variable%20OTF_TTF%29/04_NotoSerifCJKOTC.zip"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "homepage": "https://cpl.thalesgroup.com/access-management/authenticators/mobilepass-otp-download",
+  "description": "SafeNet MobilePASS",
+  "version": "8.4.6",
+  "url": "https://fdsext.gemalto.com/filesSN/Index/79cca6a24fcc41c48a6dc31162a9ee7e#/MobilePASS.exe",
+  "hash": "5F1CA6076DFE163A220AFE53EC425AF7F4ACB4523D0C9C30F9B62BF1FCD85118",
+  "bin": [
+    "MobilePASS.exe",
+    [
+      "MobilePASS.exe",
+      "SafeNet"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "MobilePASS.exe",
+      "MobilePASS"
+    ]
+  ],
+  "post_install": [
+    "$ApplicationData = [Environment]::GetFolderPath(\"ApplicationData\")",
+    "$linkPath = \"$ApplicationData\\SafeNet\"",
+    "$targetPath = \"$persist_dir\\AppData\"",
+    "If(Test-path $targetPath) {",
+    "    If(Test-path $linkPath) {",
+    "        Remove-Item -LiteralPath \"$linkPath\" -Force -Recurse -ErrorAction SilentlyContinue",
+    "    }",
+    "} else {",
+    "    If(Test-path $linkPath) {",
+    "        md \"$persist_dir\" | out-null",
+    "        Copy-Item -Path \"$linkPath\" -Destination \"$targetPath\" -Recurse",
+    "        Remove-Item -LiteralPath \"$linkPath\" -Force -Recurse -ErrorAction SilentlyContinue",
+    "    } else {",
+    "        md \"$targetPath\" | out-null",
+    "    }",
+    "}",
+    "& \"$env:COMSPEC\" /c \"mklink /j `\"$linkPath`\" `\"$targetPath`\"\" | out-null",
+    "attrib \"$linkPath\" +R /L"
+  ],
+  "uninstaller": {
+    "script": [
+      "$ApplicationData = [Environment]::GetFolderPath(\"ApplicationData\")",
+      "$linkPath = \"$ApplicationData\\SafeNet\"",
+      "If(Test-path $linkPath) {",
+      "    attrib $linkPath -R /L",
+      "    & \"$env:COMSPEC\" /c \"rmdir `\"$linkPath`\"\"",
+      "}"
+    ]
+  }
+}

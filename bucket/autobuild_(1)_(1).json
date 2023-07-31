@@ -1,0 +1,29 @@
+{
+  "version": "0.20200909172940",
+  "description": "A simple cross-platform build script for C++.",
+  "homepage": "https://github.com/YangHanlin/autobuild",
+  "license": {
+    "identifier": "GPL-3.0-or-later"
+  },
+  "notes": [
+    "This is actually the same as 'autobuild-insider' in this bucket as no stable version is available",
+    "as of now; stick with this application if you like to receive updates to stable versions once",
+    "they are available."
+  ],
+  "url": "https://ghproxy.net/https://github.com/YangHanlin/autobuild/archive/df3528abea921e875f4d05dbc9a93ddef2892041.zip",
+  "hash": "2765beccced4bc2e4147d75b09f00b3977eff302a4024e3307504d1824570698",
+  "extract_dir": "autobuild-df3528abea921e875f4d05dbc9a93ddef2892041",
+  "bin": "autobuild.py",
+  "suggest": {
+    "Python": "python"
+  },
+  "checkver": {
+    "url": "https://github.com/YangHanlin/autobuild/commits/master.atom",
+    "regex": "(?s)>(?<year>\\d+)-(?<month>\\d+)-(?<day>\\d+)T(?<hour>\\d+):(?<minute>\\d+):(?<second>\\d+).*?/(?<sha>[0-9a-f]{40})",
+    "replace": "0.${year}${month}${day}${hour}${minute}${second}"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/YangHanlin/autobuild/archive/$matchSha.zip",
+    "extract_dir": "autobuild-$matchSha"
+  }
+}

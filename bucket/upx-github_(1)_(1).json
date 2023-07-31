@@ -1,0 +1,28 @@
+{
+  "version": "0.4.1",
+  "description": "UPYUN Storage Command Tool",
+  "homepage": "https://github.com/upyun/upx",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/upyun/upx/releases/download/v0.4.1/upx_0.4.1_Windows_x86_64.zip",
+      "hash": "32e09b9c73ad191a1a850f8dc41c6ae180d430f6b8e0f803b4515ddcccd5cfea"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/upyun/upx/releases/download/v0.4.1/upx_0.4.1_Windows_i386.zip",
+      "hash": "1d359d72dd37a670756e43463c0b4fbd41b9fc1c64aa0b67218b41750885c18c"
+    }
+  },
+  "bin": "upx.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/upyun/upx/releases/download/v$version/upx_$version_Windows_x86_64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/upyun/upx/releases/download/v$version/upx_$version_Windows_i386.zip"
+      }
+    }
+  }
+}

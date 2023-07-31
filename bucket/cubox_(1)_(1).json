@@ -1,0 +1,23 @@
+{
+  "homepage": "https://cubox.cc/",
+  "description": "A cozy nook for your daily reading and research",
+  "version": "nightly",
+  "license": "MIT",
+  "url": "https://cubox.pro/download/latesthelper/Cubox-Windows.zip",
+  "hash": "eb8f76bcf34c23849a369c89de25559a011ce5eb5a93ae58b2a0adf7206a14ec",
+  "shortcuts": [
+    [
+      "Cubox.exe",
+      "Cubox"
+    ]
+  ],
+  "installer": {
+    "script": [
+      "$msi_name = (Get-ChildItem \"$dir\" -Filter \"Cubox_*.msi\").name",
+      "Expand-MsiArchive \"$dir\\$msi_name\"",
+      "Move-Item \"$dir\\PFiles\\Cubox\\*\" \"$dir\\\"",
+      "Remove-Item \"$dir\\$msi_name\"",
+      "Remove-Item -Recurse \"$dir\\PFiles\""
+    ]
+  }
+}

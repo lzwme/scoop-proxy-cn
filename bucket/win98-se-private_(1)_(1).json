@@ -1,0 +1,16 @@
+{
+  "##": "This package is for private use only. Requires password for installation to proceed.",
+  "version": "4.10.2222",
+  "description": "Windows 98 SE (second edition) ISO image (language: Chinese Traditional)",
+  "license": "Proprietary",
+  "url": "https://www.googleapis.com/drive/v3/files/1WMlN1ukf3rk_b4svVlP-pPfbFrLU0oEz?alt=media&key=AIzaSyDiKRYtqQ7paseQyMiD_k8ZjYsYgoORuHc#/dl.7z_",
+  "hash": "933DF3A43E04AEB35B261CAAFD8AD5E5B77E9730DFC84F06161B807517FBD7C4",
+  "installer": {
+    "script": [
+      "$scriptdir = (Find-BucketDirectory $bucket)+'\\..\\scripts'",
+      "Import-Module $scriptdir\\pw\\pw_check.psm1",
+      "Expand-EncryptedArchive -aPath \"$dir\\dl.7z_\" -oDir \"$dir\" -ExitIfError -Removal",
+      "Write-Host \"ISO image file has been saved in $dir\" -ForegroundColor Green"
+    ]
+  }
+}

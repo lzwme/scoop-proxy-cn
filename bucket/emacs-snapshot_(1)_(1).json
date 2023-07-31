@@ -1,0 +1,41 @@
+{
+  "homepage": "https://www.gnu.org/software/emacs/",
+  "description": "Welcome to the church of Emacs!",
+  "license": "GPL-3.0-only",
+  "version": "28.3-rc1",
+  "url": "https://alpha.gnu.org/gnu/emacs/pretest/windows/emacs-28/emacs-28.3-rc1.zip",
+  "hash": "8ac60687edc049f8dde98036b79e376698b41b2487bc62a17dde86a771daf530",
+  "bin": [
+    "bin\\runemacs.exe",
+    "bin\\emacs.exe",
+    "bin\\emacsclient.exe",
+    "bin\\emacsclientw.exe",
+    "bin\\etags.exe",
+    "bin\\ctags.exe",
+    [
+      "bin\\emacsclientw.exe",
+      "emw",
+      "-c -n -a \"\""
+    ]
+  ],
+  "checkver": {
+    "url": "https://alpha.gnu.org/gnu/emacs/pretest/windows/emacs-$majorVersion/",
+    "regex": "emacs-([\\d\\w.-]+).zip",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://alpha.gnu.org/gnu/emacs/pretest/windows/emacs-$majorVersion/emacs-$version.zip"
+  },
+  "shortcuts": [
+    [
+      "bin\\runemacs.exe",
+      "Emacs"
+    ],
+    [
+      "bin\\emacsclientw.exe",
+      "Emacs Client",
+      "-c -n -a \"\""
+    ]
+  ],
+  "_from": "okibcn/ScoopMaster"
+}

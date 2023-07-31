@@ -1,0 +1,42 @@
+{
+  "$schema": "https://ghproxy.net/https://raw.githubusercontent.com/lukesampson/scoop/master/schema.json",
+  "version": "4.19.0.106363",
+  "description": "Accelerate how you build, share, and run modern applications.",
+  "homepage": "https://docker.com",
+  "license": {
+    "identifier": "Apache-2.0",
+    "url": "https://github.com/docker/cli/blob/master/LICENSE"
+  },
+  "url": "https://desktop.docker.com/win/main/amd64/106363/Docker%20Desktop%20Installer.exe#/dl.exe",
+  "hash": "2b4bf2bd517fec7f5c36ea91c5c4d3a9c201e5c886774a54de17f78f0f4a72ee",
+  "installer": {
+    "script": [
+      "Expand-7zipArchive -Path \"$dir\\dl.exe\" -ExtractDir 'resources' -DestinationPath \"$dir\\_tmp\" -Removal",
+      "Move-Item -Path \"$dir\\_tmp\\bin\", \"$dir\\_tmp\\cli-plugins\" -Destination \"$dir\"",
+      "New-item -Force -ItemType Directory -Path \"$env:UserProfile\\.docker\\cli-plugins\" > $null",
+      "Get-ChildItem -Path \"$dir\\cli-plugins\" | ForEach-Object {",
+      "   Copy-Item -Path $_.FullName -Destination \"$env:UserProfile\\.docker\\cli-plugins\" -Force",
+      "}",
+      "Remove-Item \"$dir\\_tmp\" -Force -Recurse"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Get-ChildItem -Path \"$dir\\cli-plugins\" | ForEach-Object {",
+      "   Remove-Item \"$env:UserProfile\\.docker\\cli-plugins\\$($_.Name)\" -Force -Recurse",
+      "}"
+    ]
+  },
+  "bin": [
+    "bin/docker.exe"
+  ],
+  "checkver": {
+    "url": "https://desktop.docker.com/win/main/amd64/appcast.xml",
+    "xpath": "/rss/channel/item/title",
+    "regex": "(?<version>[\\d.]+) \\((?<build>\\d+)\\)",
+    "replace": "${version}.${build}"
+  },
+  "autoupdate": {
+    "url": "https://desktop.docker.com/win/main/amd64/$buildVersion/Docker%20Desktop%20Installer.exe#/dl.exe"
+  }
+}

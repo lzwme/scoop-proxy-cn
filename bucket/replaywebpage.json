@@ -1,0 +1,41 @@
+{
+  "version": "1.8.6",
+  "description": "ReplayWeb.page provides a full web archive replay system running directly in the browser.",
+  "homepage": "https://github.com/webrecorder/replayweb.page",
+  "license": "AGPL-3.0",
+  "architecture": {
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/webrecorder/replayweb.page/releases/download/v1.8.6/ReplayWeb.page-1.8.6.exe#/dl.7z",
+      "hash": "b7abc9f757db89bd96854e2d98ec4674b8644c93fb748bd72c062bf0f87d6d90",
+      "pre_install": [
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-32.7z\" \"$dir\"",
+        "Remove-Item \"$dir\\`$R0\", \"$dir\\`$PLUGINSDIR\" -Force -Recurse"
+      ]
+    },
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/webrecorder/replayweb.page/releases/download/v1.8.6/ReplayWeb.page-1.8.6.exe#/dl.7z",
+      "hash": "b7abc9f757db89bd96854e2d98ec4674b8644c93fb748bd72c062bf0f87d6d90",
+      "pre_install": [
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+        "Remove-Item \"$dir\\`$R0\", \"$dir\\`$PLUGINSDIR\" -Force -Recurse"
+      ]
+    }
+  },
+  "shortcuts": [
+    [
+      "ReplayWeb.page.exe",
+      "ReplayWeb.page"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/webrecorder/replayweb.page/releases/download/v$version/ReplayWeb.page-$version.exe"
+      },
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/webrecorder/replayweb.page/releases/download/v$version/ReplayWeb.page-$version.exe"
+      }
+    }
+  }
+}

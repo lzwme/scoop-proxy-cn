@@ -1,0 +1,51 @@
+{
+  "version": "1.4",
+  "description": "UniCoe",
+  "homepage": "https://sites.google.com/view/unicoe/%E3%83%9B%E3%83%BC%E3%83%A0",
+  "license": [
+    {
+      "identifier": "Proprietary",
+      "url": "https://sites.google.com/view/unicoe/%E5%88%A9%E7%94%A8%E8%A6%8F%E7%B4%84?authuser=0"
+    }
+  ],
+  "url": "https://lh5.googleusercontent.com/2HWjoQbMl_qTCjoRe-TkQcI4NEE_EutA2gZlhbvPCARg_hcu74Ek5JoEC8IhZg-by5KQZvpowctFZOR2dRg8OgIUcIYT2ZRR39EKvvF4lKc4yCi2rCsTashEVUBVcdNE=w1280#/unikoe-logo_bgw.png",
+  "hash": "95cf8f2a65144d209b11ad57b94d32ec5f8c2217f82253b5e8754b9d2df880ff",
+  "pre_install": [
+    "$id = \"1nz8E211Rt26w9sg4YlCjg5D65UOtszmz\"",
+    "$filename = \"\\unicoe#1.4#UniCoe_v1.4.zip\"",
+    "$hash =\"5ee5dca23b1c969e87a2db8ae4714d483334dc6e934570c39c7621ab28bf781a\"",
+    "$file = $cachedir + \"\\\" + $filename",
+    "if(Test-Path -Path $file -PathType Leaf){",
+    "   Write-Host \"Checking hash of $file ... \" -NoNewline",
+    "   $filehash = (Get-FileHash -Path $file -Algorithm SHA256 | Select-Object -ExpandProperty Hash).ToLower()",
+    "   if([string]::IsNullOrEmpty($hash)){",
+    "     Write-Host \"skip\" -ForegroundColor Yellow",
+    "     Write-Warning \"Warning: No hash in manifest. SHA256 for '${filename}' is:\"",
+    "     Write-Host \"    $filehash\" -ForegroundColor Yellow",
+    "   }else{",
+    "     if($hash -eq $filehash){",
+    "         Write-Host \"ok\" -ForegroundColor Green",
+    "     }else{",
+    "         Write-Host \"error\" -ForegroundColor Red",
+    "         Write-Warning \"Warning: Cache file corrupted for '${filename}'\"",
+    "         Remove-Item -Path $file -Force",
+    "     }",
+    "   }",
+    "}",
+    "if(-not(Test-Path -Path $file -PathType Leaf)){",
+    "   Write-Host Download file $id from Google Drive",
+    "   $response = Invoke-WebRequest -Uri \"https://drive.google.com/uc?export=download&id=${id}\"",
+    "   if($response -match 'id=\"downloadForm\" action=\"([^\"]+)\" method=\"post\"'){",
+    "       $url = $matches[1].Replace(\"&amp;\",\"&\")",
+    "       Invoke-WebRequest -Uri $url -OutFile $file",
+    "   }",
+    "}",
+    "Expand-Archive -Path $file -DestinationPath $dir"
+  ],
+  "shortcuts": [
+    [
+      "UniCoe\\UniCoe.exe",
+      "UniCoe"
+    ]
+  ]
+}

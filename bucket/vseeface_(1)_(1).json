@@ -1,0 +1,19 @@
+{
+  "version": "1.13.38c",
+  "description": "VSeeFace is a free, highly configurable face and hand tracking VRM and VSFAvatar avatar puppeteering program for virtual youtubers with a focus on robust tracking and high image quality.",
+  "homepage": "https://www.vseeface.icu/",
+  "license": "BSD-2-Clause",
+  "url": "https://ghproxy.net/https://github.com/emilianavt/VSeeFaceReleases/releases/download/v1.13.38c/VSeeFace-v1.13.38c2.zip",
+  "hash": "262FAC5A082726B317E738F86688AA64E1C84C402F444E061487DC6F54FA069F",
+  "extract_dir": "VSeeFace-1.13.38",
+  "bin": "VSeeFace.exe",
+  "checkver": {
+    "url": "https://github.com/emilianavt/VSeeFaceReleases/releases",
+    "regex": "VSeeFace v(?<version>[\\d.]+)",
+    "replace": "${version}"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/emilianavt/VSeeFaceReleases/releases/download/$version/VSeeFace-v$version(.*?).zip",
+    "extract_dir": "ghidra_$version_PUBLIC"
+  }
+}

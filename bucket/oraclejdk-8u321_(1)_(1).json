@@ -1,0 +1,46 @@
+{
+  "version": "8u321",
+  "description": "Oracle JDK 8.",
+  "homepage": "https://www.oracle.com/java/technologies/downloads/#java8",
+  "license": {
+    "identifier": "Oracle Technology Network License Agreement for Oracle Java SE",
+    "url": "https://www.oracle.com/downloads/licenses/javase-license1.html"
+  },
+  "notes": "Java SE subscribers will receive JDK 8 updates until at least December of 2030.",
+  "architecture": {
+    "64bit": {
+      "url": "https://pan.jiemi.workers.dev/?file=/jdk/jdk-8u321/jdk-8u321-windows-x64.exe",
+      "hash": "fb2edfe76e32052285de4a5114989e8eca9f8829b1df197da66cfa53658e1b72"
+    },
+    "32bit": {
+      "url": "https://pan.jiemi.workers.dev/?file=/jdk/jdk-8u321/jdk-8u321-windows-i586.exe",
+      "hash": "76d5a020ad0db372ede1ea9fee0770bc436aec44f3a5956e72d17fd485d1de38"
+    }
+  },
+  "extract_to": "tmp",
+  "installer": {
+    "script": [
+      "# Java Source (src.zip)",
+      "Expand-7zipArchive \"$dir\\tmp\\.rsrc\\1033\\JAVA_CAB9\\110\" \"$dir\"",
+      "# JDK (tools.zip)",
+      "Expand-7zipArchive \"$dir\\tmp\\.rsrc\\1033\\JAVA_CAB10\\111\" \"$dir\\tmp\"",
+      "Expand-7zipArchive \"$dir\\tmp\\tools.zip\" \"$dir\"",
+      "# Copyright (COPYRIGHT)",
+      "Expand-7zipArchive \"$dir\\tmp\\.rsrc\\1033\\JAVA_CAB11\\112\" \"$dir\"",
+      "# Convert .pack to .jar, and remove .pack",
+      "pushd \"$dir\"",
+      "ls \"$dir\" -recurse | ? name -match '^[^_].*?\\.(?i)pack$' | % {",
+      "    $name = $_.fullname -replace '\\.(?i)pack$', ''",
+      "    $pack = \"$name.pack\"",
+      "    $jar = \"$name.jar\"",
+      "    & \"bin\\unpack200.exe\" \"-r\" \"$pack\" \"$jar\"",
+      "}",
+      "rm -r tmp | out-null",
+      "popd"
+    ]
+  },
+  "env_add_path": "bin",
+  "env_set": {
+    "JAVA_HOME": "$dir"
+  }
+}

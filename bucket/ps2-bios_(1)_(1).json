@@ -1,0 +1,20 @@
+{
+  "version": "latest",
+  "homepage": "https://archive.org/details/sony-playstation2-biosimages1072019-11-25",
+  "description": "Sony - PlayStation 2 - BIOS",
+  "license": "Unlicense",
+  "url": "https://ia903402.us.archive.org/11/items/bios_20210423/BIOS.zip",
+  "post_install": [
+    "        $emus=\"pcsx2\",\"pcsx2-dev\"",
+    "        function makeLink ($source, $target) {",
+    "            New-Item -Path $source -ItemType Junction -Value $target",
+    "        }",
+    "        foreach ($emu in $emus) {",
+    "            if (Test-Path $env:SCOOP\\persist\\$emu\\bios) {",
+    "                Write-Output $emu found",
+    "                Remove-Item $env:SCOOP\\persist\\$emu\\bios",
+    "                makeLink $env:SCOOP\\persist\\$emu\\bios $dir\\BIOS",
+    "            }",
+    "        }"
+  ]
+}

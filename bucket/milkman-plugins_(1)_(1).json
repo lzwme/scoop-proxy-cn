@@ -1,0 +1,37 @@
+{
+  "autoupdate": {
+    "extract_dir": "milkman-$version",
+    "url": "https://ghproxy.net/https://github.com/warmuuh/milkman/releases/download/$version/milkman-dist-plugins-bin.zip"
+  },
+  "checkver": "github",
+  "depends": "milkman",
+  "description": "Milkman - An Extensible Request/Response Workbench",
+  "extract_dir": "milkman-5.6.0",
+  "hash": "7e5515d89f7792e73c90067662942ebbed19188662e1c0d4f33b3c9df731402e",
+  "homepage": "https://github.com/warmuuh/milkman",
+  "installer": {
+    "script": [
+      "function LinkFile([String] $file, [String] $source = $file) {",
+      "    Write-Host \"Creating hardlink for $file\"",
+      "    New-Item -Force -ItemType HardLink -Path \"$(appdir milkman $global)\\current\\plugins\" -Name $file -Target \"$dir\\plugins\\$source\" | Out-Null",
+      "}",
+      "foreach ($file in Get-ChildItem -Path \"$dir\\plugins\") {",
+      "    LinkFile $file.Name",
+      "}"
+    ]
+  },
+  "license": "MIT",
+  "uninstaller": {
+    "script": [
+      "foreach ($file in Get-ChildItem -Path \"$dir\\plugins\" -Name) {",
+      "    if ($file -eq \"milkman-rest.jar\") {",
+      "        continue",
+      "    }",
+      "    Write-Host \"Removing hardlink for $file\"",
+      "    Remove-Item \"$(appdir milkman $global)\\current\\plugins\\$file\" -Force",
+      "}"
+    ]
+  },
+  "url": "https://ghproxy.net/https://github.com/warmuuh/milkman/releases/download/5.6.0/milkman-dist-plugins-bin.zip",
+  "version": "5.6.0"
+}

@@ -1,0 +1,31 @@
+{
+  "version": "0.14.2",
+  "description": "Command line MIDI player.",
+  "homepage": "https://github.com/insomnimus/plmidi",
+  "license": "MIT",
+  "suggest": {
+    "midnote": "midnote"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/insomnimus/plmidi/releases/download/v0.14.2/plmidi-x86_64-windows.zip",
+      "hash": "5b0fa4968a616831b6e8d2b8798db59feb629a37ba6b3fee359f311b7784bdeb"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/insomnimus/plmidi/releases/download/v0.14.2/plmidi-i686-windows.zip",
+      "hash": "44a00cd26ac77b5b6334e9f5411a4c65d0f397c36a1de5d95bd1e727cc0772c0"
+    }
+  },
+  "bin": "plmidi.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/insomnimus/plmidi/releases/download/v$version/plmidi-x86_64-windows.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/insomnimus/plmidi/releases/download/v$version/plmidi-i686-windows.zip"
+      }
+    }
+  }
+}

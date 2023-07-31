@@ -1,0 +1,28 @@
+{
+  "autoupdate": {
+    "hash": {
+      "regex": "MD5 Hash: +[\\w]{32}",
+      "url": "https://portableapps.com/apps/office/gnucash_portable"
+    },
+    "url": "https://ayera.dl.sourceforge.net/project/portableapps/GnuCash%20Portable/GnuCashPortable_$version.paf.exe"
+  },
+  "bin": "GnuCashPortable.exe",
+  "checkver": {
+    "re": "Version \\s+([\\w\\.]* for Win",
+    "url": "https://portableapps.com/apps/office/gnucash_portable"
+  },
+  "description": "Financial planner",
+  "hash": "01c54bee0a27993661dbd7de2d3f1b66d35d590c5ddfd8a7f32dbd1f8372c5ea",
+  "homepage": "https://portableapps.com/apps/office/gnucash_portable",
+  "license": "",
+  "persist": "Data",
+  "post_install": "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
+  "shortcuts": [
+    [
+      "GnuCashPortable.exe",
+      "GnuCashPortable"
+    ]
+  ],
+  "url": "https://ayera.dl.sourceforge.net/project/portableapps/GnuCash%20Portable/GnuCashPortable_4.13.paf.exe",
+  "version": "4.13"
+}

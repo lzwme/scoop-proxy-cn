@@ -1,0 +1,25 @@
+{
+  "version": "1.0.5",
+  "description": "Wen Xun Network Assistant can judge the problems of a network node through each node of ping, quickly locate the router, and quickly find problems with a certain server through each server of ping, and so on.",
+  "homepage": "https://www.baidu.com",
+  "license": {
+    "identifier": "Freeware"
+  },
+  "url": "https://pan.jiemi.workers.dev/?file=/else/文迅网络助手_v1.0.5.exe",
+  "hash": "b8020305b3cf47230bbd8bcefdefef9f0ca5feabc317769babba55e11121d8a0",
+  "pre_install": "Rename-Item \"$dir\\文迅网络助手_v$version.exe\" \"$dir\\文迅网络助手.exe\" -Force",
+  "shortcuts": [
+    [
+      "文迅网络助手.exe",
+      "文迅网络助手"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/oneindex.txt",
+    "regex": "文迅网络助手_v([\\d.]+)\\.exe",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/else/文迅网络助手_v$version.exe"
+  }
+}

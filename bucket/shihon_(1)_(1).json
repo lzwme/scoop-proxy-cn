@@ -1,0 +1,51 @@
+{
+  "##": "",
+  "homepage": "http://ekakin.la.coocan.jp/cgi-bin/plugin/slink.cgi",
+  "description": "個人用蔵書管理ソフト",
+  "version": "9.0.3",
+  "url": "http://ekakin.la.coocan.jp/download/shihonpv903.zip",
+  "hash": "4b55b509087dfb645ab29d175eb39dc7ec25cc2473745694c9929b00ced30256",
+  "license": "Freeware",
+  "pre_install": [
+    "function CreateFile([String] $file, [String] $content = $null) {",
+    "    if(!(Test-Path \"$persist_dir\\$file\")) {",
+    "        Write-Host \"Create for : $file\"",
+    "        New-Item -Force -Path \"$persist_dir\\$file\" -ItemType file -Value $content | Out-Null",
+    "    }",
+    "}",
+    "CreateFile 'DirList.dat'",
+    "CreateFile 'inportformat.csv'",
+    "function CreateFolder([String] $folder) {",
+    "    if(!(Test-Path \"$persist_dir\\$folder\")) {",
+    "        Write-Host \"Create folders for : $folder\"",
+    "        New-Item -Force -Path \"$persist_dir\\$folder\" -ItemType Directory | Out-Null",
+    "    }",
+    "}",
+    "CreateFolder 'Data'",
+    "CreateFolder 'temp'",
+    "CreateFolder 'ImageFlow'"
+  ],
+  "bin": "shihon.exe",
+  "shortcuts": [
+    [
+      "shihon.exe",
+      "私本管理"
+    ]
+  ],
+  "persist": [
+    "Data",
+    "dll",
+    "temp",
+    "ImageFlow",
+    "DirList.dat",
+    "inportformat.csv"
+  ],
+  "checkver": {
+    "url": "http://ekakin.la.coocan.jp/shihonp.htm",
+    "re": "Ver([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "http://ekakin.la.coocan.jp/download/shihonpv$cleanVersion.zip"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

@@ -1,0 +1,27 @@
+{
+  "checkver": {
+    "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id%20eq%20'Az.StorageMover'%20and%20IsLatestVersion%20eq%20true",
+    "replace": "${ver}",
+    "regex": "(?i)<d:Version>(?<ver>[^<]+)<.d:Version>"
+  },
+  "hash": "sha512:a40cd7dcfb312dad1304038a205101eb33f08395b33d95c14a3ca9e5744b9fcd597aeb3eac3943bf095a1b776aadaed90beb02cbc3070125f60caf44d3d4b4ce",
+  "description": "Microsoft Azure PowerShell: StorageMover cmdlets",
+  "psmodule": {
+    "name": "Az.StorageMover"
+  },
+  "homepage": "https://www.powershellgallery.com/packages/Az.StorageMover",
+  "autoupdate": {
+    "url": "https://www.powershellgallery.com/api/v2/Package/Az.StorageMover/$version#/mod.nupkg",
+    "hash": {
+      "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id eq 'Az.StorageMover' and Version eq '$version'",
+      "regex": "<d:PackageHash>$base64<.d:PackageHash>"
+    }
+  },
+  "license": {
+    "identifier": "Refer to Webpage",
+    "url": "https://aka.ms/azps-license"
+  },
+  "url": "https://www.powershellgallery.com/api/v2/Package/Az.StorageMover/1.0.0#/mod.nupkg",
+  "depends": "Az.Accounts",
+  "version": "1.0.0"
+}

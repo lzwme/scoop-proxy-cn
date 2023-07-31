@@ -1,0 +1,26 @@
+{
+  "version": "1.0",
+  "description": "SpleeterMsvcExe is a Windows command line program for Spleeter, which can be used directly.",
+  "homepage": "https://github.com/wudicgi/SpleeterMsvcExe",
+  "license": {
+    "identifier": "MIT",
+    "url": "https://github.com/wudicgi/SpleeterMsvcExe/blob/master/LICENSE"
+  },
+  "url": [
+    "https://ghproxy.net/https://github.com/wudicgi/SpleeterMsvcExe/releases/download/v1.0/SpleeterMsvcExe-v1.0.zip",
+    "https://ghproxy.net/https://github.com/wudicgi/SpleeterMsvcExe/releases/download/models-v1.0/models-all.zip#/dl.zip_"
+  ],
+  "hash": [
+    "9151d1dcb1b7e61626e6228e98fbe733ea187b475715d1c68f4a84cabc063396",
+    "F77EE415DE2D55EE13A46654C4361EDDFF30D39EB8F1F972B49F3E412A1FDB48"
+  ],
+  "installer": {
+    "script": "Expand-7zipArchive \"$dir\\dl.zip_\" \"$dir\\models\" -Removal"
+  },
+  "bin": "spleeter.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/wudicgi/SpleeterMsvcExe/releases/download/v$version/SpleeterMsvcExe-v$version.zip"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

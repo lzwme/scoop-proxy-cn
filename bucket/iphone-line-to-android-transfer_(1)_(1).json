@@ -1,0 +1,38 @@
+{
+  "version": "3.1.93",
+  "description": "Transfer Line Chat History from iPhone to Android",
+  "homepage": "https://www.backuptrans.com/iphone-line-to-android-transfer.html",
+  "license": "Unknown",
+  "architecture": {
+    "64bit": {
+      "url": "https://www.backuptrans.com/download/exe/iphone-line-to-android-transfer_x64.exe#/dl.7z",
+      "hash": "1009c707112a4b746c0d577564718f73029a1fcfbe3aafb26d9784bbe46aff70"
+    },
+    "32bit": {
+      "url": "https://www.backuptrans.com/download/exe/iphone-line-to-android-transfer.exe#/dl.7z",
+      "hash": "3875ed6e7f36298a758976b31ec6ffb41e17f380baa657571c9609a6ef3ef57d"
+    }
+  },
+  "pre_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\uninst*nsis\" -Recurse",
+  "notes": "Without iTunes application (https://support.apple.com/downloads/itunes) installed there is not possible to detect iPhone devices.",
+  "shortcuts": [
+    [
+      "iPhoneLineToAndroidTransfer.exe",
+      "Backuptrans iPhone Line to Android Transfer"
+    ]
+  ],
+  "checkver": {
+    "url": "https://www.backuptrans.com/download.html",
+    "regex": "(?sm)Backuptrans iPhone Line to Android Transfer.*?V([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://www.backuptrans.com/download/exe/iphone-line-to-android-transfer_x64.exe#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://www.backuptrans.com/download/exe/iphone-line-to-android-transfer.exe#/dl.7z"
+      }
+    }
+  }
+}

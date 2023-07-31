@@ -1,0 +1,16 @@
+{
+  "homepage": "https://github.com/k-takata/lv-mod",
+  "version": "4.51.d",
+  "license": "GPL-2.0",
+  "description": "Modified version of lv v.4.51",
+  "url": "https://ghproxy.net/https://github.com/k-takata/lv-mod/releases/download/lv-4.51.d/lv-451d-win32.zip",
+  "hash": "27345a9cfb56df2e96b0814f6022aa98477f806b8165f293f798b5c8ce69db37",
+  "bin": "lv.exe",
+  "checkver": {
+    "url": "https://github.com/k-takata/lv-mod/releases",
+    "re": "releases/download/lv-(?<version>[0-9a-zA-Z\\.\\-]*)/lv-(?<short>[0-9a-zA-Z\\-]*)-win32.zip"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/k-takata/lv-mod/releases/download/lv-$version/lv-$matchShort-win32.zip"
+  }
+}

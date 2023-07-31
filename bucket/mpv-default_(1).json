@@ -1,0 +1,29 @@
+{
+  "version": "20230625",
+  "description": "Preconfigured MPV for anime",
+  "homepage": "https://mpv.io",
+  "license": "LGPL-2.1-or-later,GPL-2.0-or-later",
+  "notes": [
+    "To set and unset file type associations and AutoPlay handlers, run '$dir\\installer\\mpv-install.bat' and '$dir\\installer\\mpv-uninstall.bat' as administrator, respectively.",
+    "Based on https://thewiki.moe/tutorials/mpv",
+    "Uses default OSC"
+  ],
+  "suggest": {
+    "yt-dlp": "yt-dlp"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/cannibalChipper/mpv/releases/download/v20230625/mpv-default.7z",
+      "hash": "b6777575b2a4ca1a6b5ae332f7ad659f99e55114c2d3374f18fc7894cf6fd64f"
+    }
+  },
+  "extract_dir": "mpv-default",
+  "pre_install": "Remove-Item \"$dir\\updater.bat\"",
+  "env_add_path": ".",
+  "shortcuts": [
+    [
+      "mpv.exe",
+      "mpv"
+    ]
+  ]
+}

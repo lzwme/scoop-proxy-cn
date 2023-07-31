@@ -1,0 +1,54 @@
+{
+  "version": "2021.10.03",
+  "description": "波音リツ AmadeuSY 音源",
+  "homepage": "https://airesearcher113.wixsite.com/amadeusy",
+  "license": [
+    {
+      "identifier": "Proprietary",
+      "url": "http://www.canon-voice.com/kiyaku.html"
+    }
+  ],
+  "url": "https://airesearcher113.wixsite.com/amadeusy",
+  "hash": "39890d7f3e78b8acbf5803f325f30d8d5785a7ab9e5be62bee2219073c3c3067",
+  "installer": {
+    "script": [
+      "$id = \"1kHv5wI5ssiBDC6dVU-IGr7q6DdFbHJ93\"",
+      "$filename = \"ritsu.amad\"",
+      "$hash =\"c60945b98b158e9726c0a14925e5b3255a96484b0ccabf39195b60fa8f183520\"",
+      "$file = $cachedir + \"\\\" + $filename",
+      "if(Test-Path -Path $file -PathType Leaf){",
+      "   Write-Host \"Checking hash of $file ... \" -NoNewline",
+      "   $filehash = (Get-FileHash -Path $file -Algorithm SHA256 | Select-Object -ExpandProperty Hash).ToLower()",
+      "   if([string]::IsNullOrEmpty($hash)){",
+      "     Write-Host \"skip\" -ForegroundColor Yellow",
+      "     Write-Warning \"No hash in manifest. SHA256 for '${filename}' is:\"",
+      "     Write-Host \"    $filehash\" -ForegroundColor Yellow",
+      "   }else{",
+      "     if($hash -eq $filehash){",
+      "         Write-Host \"ok\" -ForegroundColor Green",
+      "     }else{",
+      "         Write-Host \"error\" -ForegroundColor Red",
+      "         Write-Warning \"Cache file corrupted for '${filename}'\"",
+      "         Remove-Item -Path $file -Force",
+      "     }",
+      "   }",
+      "}",
+      "if(-not(Test-Path -Path $file -PathType Leaf)){",
+      "   Write-Host Download file $id from Google Drive",
+      "   $response = Invoke-WebRequest -Uri \"https://drive.google.com/uc?export=download&id=${id}\"",
+      "   if($response -match 'id=\"downloadForm\" action=\"([^\"]+)\" method=\"post\"'){",
+      "       $url = $matches[1].Replace(\"&amp;\",\"&\")",
+      "       $web = New-Object net.webclient",
+      "       $web.Downloadfile($url, \"${file}.tmp\")",
+      "       Rename-Item -Path \"${file}.tmp\" -NewName $filename",
+      "       if([string]::IsNullOrEmpty($hash)){",
+      "         $filehash = (Get-FileHash -Path $file -Algorithm SHA256 | Select-Object -ExpandProperty Hash).ToLower()",
+      "         Write-Warning \"No hash in manifest. SHA256 for '${filename}' is:\"",
+      "         Write-Host \"    $filehash\" -ForegroundColor Yellow",
+      "       }",
+      "   }",
+      "}",
+      "Copy-Item -Force -Recurse -Path $file -Destination $dir"
+    ]
+  }
+}

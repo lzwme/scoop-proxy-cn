@@ -1,0 +1,47 @@
+{
+  "description": "A concatenative, stack-based programming language with high-level features including dynamic types, extensible syntax, macros, and garbage collection.",
+  "homepage": "https://factorcode.org/",
+  "version": "0.98",
+  "license": "BSD2-Clause",
+  "architecture": {
+    "64bit": {
+      "url": "http://downloads.factorcode.org/releases/0.98/factor-windows-x86-64-0.98.zip",
+      "hash": "5f8d89089fea72d701da65b7bac1c818e4e01d5c0b9cc3d2ba750b8ff64d82c7",
+      "extract_dir": "factor"
+    },
+    "32bit": {
+      "url": "http://downloads.factorcode.org/releases/0.98/factor-windows-x86-32-0.98.zip",
+      "hash": "683572f2f0a54e0d4e90f27eab062e5361149432ef6311a4700db2671eba628b",
+      "extract_dir": "factor"
+    }
+  },
+  "bin": [
+    "factor.exe",
+    "factor.com"
+  ],
+  "shortcuts": [
+    [
+      "factor.exe",
+      "Factor GUI"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/factor/factor/"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "http://downloads.factorcode.org/releases/$version/factor-windows-x86-64-$version.zip",
+        "hash": {
+          "url": "$url.sha256"
+        }
+      },
+      "32bit": {
+        "url": "http://downloads.factorcode.org/releases/$version/factor-windows-x86-32-$version.zip",
+        "hash": {
+          "url": "$url.sha256"
+        }
+      }
+    }
+  }
+}

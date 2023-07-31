@@ -1,0 +1,47 @@
+{
+  "architecture": {
+    "32bit": {
+      "hash": "0e501353a7fceb696277336c3d161d272ae204f2ccde412c4a3b28ac63302799",
+      "url": "https://download.coolhub.top/Office_ISO/en-US/Current/Office_Tool_Plus_16.0.14701.20262_x86_en-us.iso#/Office_Tool_Plus_en-us.iso"
+    },
+    "64bit": {
+      "hash": "20ef61c29492d7dfc64efa7bf9a1459239817a2b33265a0ab656810e4bc5847f",
+      "url": "https://download.coolhub.top/Office_ISO/en-US/Current/Office_Tool_Plus_16.0.14701.20262_x64_en-us.iso#/Office_Tool_Plus_en-us.iso"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "hash": {
+          "mode": "extract",
+          "regex": "(?s)$basename.*?$sha256",
+          "url": "https://download.coolhub.top/Office_ISO/Hash.txt"
+        },
+        "url": "https://download.coolhub.top/Office_ISO/en-US/Current/Office_Tool_Plus_$version_x86_en-us.iso#/Office_Tool_Plus_en-us.iso"
+      },
+      "64bit": {
+        "hash": {
+          "mode": "extract",
+          "regex": "(?s)$basename.*?$sha256",
+          "url": "https://download.coolhub.top/Office_ISO/Hash.txt"
+        },
+        "url": "https://download.coolhub.top/Office_ISO/en-US/Current/Office_Tool_Plus_$version_x64_en-us.iso#/Office_Tool_Plus_en-us.iso"
+      }
+    }
+  },
+  "checkver": {
+    "regex": "en_US version = ([\\d.]+)",
+    "url": "https://ghproxy.net/https://raw.githubusercontent.com/JaimeZeng/scoop-apps-version/main/Office_ISO"
+  },
+  "description": "Offline installation package contains Office Tool Plus.",
+  "homepage": "https://download.coolhub.top",
+  "license": "Unknown",
+  "persist": "Office",
+  "shortcuts": [
+    [
+      "Office Tool Plus.exe",
+      "Office Tool Plus"
+    ]
+  ],
+  "version": "16.0.14701.20262"
+}

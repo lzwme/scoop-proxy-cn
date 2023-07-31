@@ -1,0 +1,39 @@
+{
+  "homepage": "https://github.com/rigaya/QSVEnc",
+  "description": "Transcoding software using Intel Quick Sync Video.",
+  "version": "7.44",
+  "license": "MIT",
+  "architecture": {
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/rigaya/QSVEnc/releases/download/7.44/QSVEncC_7.44_Win32.7z",
+      "hash": "0ac78f3b89782c3cbf4475843cfbadfa0c9a61458a291c85a4429d87fc14c7f8",
+      "bin": [
+        [
+          "QSVEncC.exe",
+          "qsvencc"
+        ]
+      ]
+    },
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/rigaya/QSVEnc/releases/download/7.44/QSVEncC_7.44_x64.7z",
+      "hash": "5328a66411a04284d75b22998071913de317346461b33bdb93bdfc37a0fb16f4",
+      "bin": [
+        [
+          "QSVEncC64.exe",
+          "qsvencc"
+        ]
+      ]
+    }
+  },
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/rigaya/QSVEnc/releases/download/$version/QSVEncC_$version_Win32.7z"
+      },
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/rigaya/QSVEnc/releases/download/$version/QSVEncC_$version_x64.7z"
+      }
+    }
+  }
+}

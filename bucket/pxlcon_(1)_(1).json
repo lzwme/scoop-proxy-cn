@@ -1,0 +1,19 @@
+{
+  "homepage": "https://github.com/lptstr/pxlcon",
+  "license": "MIT",
+  "version": "0.2019.04.06",
+  "url": "https://ghproxy.net/https://github.com/lptstr/pxlcon/archive/73b72f8df4f0c5f1232d69920e8718fcd5942797.zip",
+  "extract_dir": "pxlcon-73b72f8df4f0c5f1232d69920e8718fcd5942797",
+  "hash": "1c6ac7e0acae47494c2fe603bc6a3a290f980c6ba6224c93c6674eecc9f32273",
+  "bin": "pxlcon.ps1",
+  "checkver": {
+    "url": "https://github.com/lptstr/pxlcon",
+    "re": "datetime=\"(\\d+)-(\\d+)-(\\d+)[\\S\\s]*?(?<sha>[0-9a-f]{40})\"",
+    "replace": "0.${1}.${2}.${3}"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/lptstr/pxlcon/archive/$matchSha.zip",
+    "extract_dir": "pxlcon-$matchSha"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

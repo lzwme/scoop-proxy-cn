@@ -1,0 +1,57 @@
+{
+  "architecture": {
+    "32bit": {
+      "hash": "41bbbdacc424e77162e2813d751068fc051ff13f4be4515764be448779996f06",
+      "url": "https://nightly.link/HMBSbige/ShadowsocksR-Windows/actions/runs/4739621162/ShadowsocksR-Win32.zip"
+    },
+    "64bit": {
+      "hash": "136459a68bef7f62f28a6d2e570841960b8cc43b023ab0c9a50fa95f8a035389",
+      "url": "https://nightly.link/HMBSbige/ShadowsocksR-Windows/actions/runs/4739621162/ShadowsocksR-Win64.zip"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://nightly.link/HMBSbige/ShadowsocksR-Windows/actions/runs/$matchRunid/ShadowsocksR-Win32.zip"
+      },
+      "64bit": {
+        "url": "https://nightly.link/HMBSbige/ShadowsocksR-Windows/actions/runs/$matchRunid/ShadowsocksR-Win64.zip"
+      }
+    }
+  },
+  "bin": "ShadowsocksR.exe",
+  "checkver": {
+    "regex": "(?sm)HMBSbige/ShadowsocksR-Windows/actions/runs/(?<runid>\\d+).+datetime=\"(?<year>\\d+).(?<month>\\d+).(?<day>\\d+).*?commit/(?<sha>[0-9a-f]{7})",
+    "replace": "${year}${month}${day}.${sha}",
+    "url": "https://scoop-apps.vercel.app/HMBSbige/ShadowsocksR-Windows"
+  },
+  "description": "ShadowsocksR for Windows(with dotnet runtime), maintained by @HMBSbige.",
+  "homepage": "https://github.com/HMBSbige/ShadowsocksR-Windows",
+  "license": {
+    "identifier": "AGPL-3.0-only",
+    "url": "https://github.com/HMBSbige/ShadowsocksR-Windows/raw/master/LICENSE"
+  },
+  "persist": "temp",
+  "pre_install": [
+    "@('gui-config.json', 'pac.txt', 'transfer_log.json', 'user-rule.txt') | ForEach-Object {",
+    "    if (Test-Path \"$persist_dir\\$_\") { Copy-Item \"$persist_dir\\$_\" \"$dir\\\" | Out-Null }",
+    "}"
+  ],
+  "shortcuts": [
+    [
+      "ShadowsocksR.exe",
+      "ShadowsocksR"
+    ]
+  ],
+  "uninstaller": {
+    "script": [
+      "@('gui-config.json', 'pac.txt', 'transfer_log.json', 'user-rule.txt') | ForEach-Object {",
+      "    if (Test-Path \"$dir\\$_\") {",
+      "        ensure \"$persist_dir\" | Out-Null",
+      "        Copy-Item \"$dir\\$_\" \"$persist_dir\\\" | Out-Null",
+      "    }",
+      "}"
+    ]
+  },
+  "version": "20230419.b300b3a"
+}

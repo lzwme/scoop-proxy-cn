@@ -1,0 +1,35 @@
+{
+  "version": "3.8.0",
+  "description": "A tag editor utility supporting MP4/M4A/AAC (iTunes), ID3, Vorbis, Opus, FLAC and Matroska.",
+  "homepage": "https://github.com/Martchus/tageditor",
+  "license": "GPL-2.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/Martchus/tageditor/releases/download/v3.8.0/tageditor-3.8.0-x86_64-w64-mingw32.exe.zip",
+      "hash": "e930c67e481dd6351752b85068a96891ccd7a262427f286776f967be71ace804"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/Martchus/tageditor/releases/download/v3.8.0/tageditor-3.8.0-i686-w64-mingw32.exe.zip",
+      "hash": "9d5ae082bc6ddb3b5223be1e8ef00f68131589009f0234a9f363840c1ddb1faf"
+    }
+  },
+  "pre_install": "Rename-Item \"$dir\\$($fname -replace '\\.zip')\" 'tageditor.exe'",
+  "bin": "tageditor.exe",
+  "shortcuts": [
+    [
+      "tageditor.exe",
+      "Tag Editor"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/Martchus/tageditor/releases/download/v$version/tageditor-$version-x86_64-w64-mingw32.exe.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/Martchus/tageditor/releases/download/v$version/tageditor-$version-i686-w64-mingw32.exe.zip"
+      }
+    }
+  }
+}

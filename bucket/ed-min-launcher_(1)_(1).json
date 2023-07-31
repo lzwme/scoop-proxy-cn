@@ -1,0 +1,38 @@
+{
+  "version": "0.8.2",
+  "description": "Elite: Dangerous Minimal Launcher. Alternate game launcher bypassing the initial game launch UI, with accessory tools autolaunch.",
+  "homepage": "https://github.com/rfvgyhn/min-ed-launcher",
+  "license": {
+    "identifier": "MIT"
+  },
+  "notes": [
+    "A settings file will be created on first launch in '%LOCALAPPDATA%\\min-ed-launcher\\'.",
+    "Typical Steam launch command:",
+    "cmd /c \"Min-Ed-Launcher.exe %command% /autorun /autoquit /edo\""
+  ],
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/rfvgyhn/min-ed-launcher/releases/download/v0.8.2/min-ed-launcher_v0.8.2_win10-x64.zip",
+      "hash": "cece74cb37d87ee236f54eccc82f19ca3384e2b03bfe7edbe7a154cd0f3f9378",
+      "extract_dir": "min-ed-launcher_v0.8.2_win10-x64"
+    }
+  },
+  "bin": [
+    [
+      "minedlauncher.exe",
+      "min-ed-launcher"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/rfvgyhn/min-ed-launcher",
+    "regex": "/releases/tag/v?([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/rfvgyhn/min-ed-launcher/releases/download/v$version/min-ed-launcher_v$version_win10-x64.zip",
+        "extract_dir": "min-ed-launcher_v$version_win10-x64"
+      }
+    }
+  }
+}

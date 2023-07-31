@@ -1,0 +1,33 @@
+{
+  "homepage": "https://pecl.php.net/package/stem",
+  "version": "1.5.1",
+  "license": "http://www.php.net/license/3_01.txt",
+  "architecture": {
+    "64bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/stem/1.5.1/php_stem-1.5.1-7.1-ts-vc14-x64.zip",
+      "hash": "04c9f7f90e4d3e4ff09a6e4dd1424771a64db9ab3859749ebccf07325fb9e74b"
+    },
+    "32bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/stem/1.5.1/php_stem-1.5.1-7.1-ts-vc14-x86.zip",
+      "hash": "06254363c3f08d4f66b1c55add0acc782249f43fdfe853d21185dd8bf78c6169"
+    }
+  },
+  "depends": [
+    "php"
+  ],
+  "post_install": "$phpconfd = \"$persist_dir\\..\\php\\cli\\conf.d\"; if((test-path $phpconfd)) { echo \"Enabling extension $(Convert-Path $phpconfd)\\stem.ini\"; echo \"extension=$dir\\php_stem.dll\" | sc \"$phpconfd\\stem.ini\"; echo \"Remove-Item '$(Convert-Path $phpconfd)\\stem.ini'\" | sc \"$dir\\uninstall.ps1\" } else { write-host -f yellow \"PHP was not installed through scoop, you have to activate php_stem.dll manually!\" }",
+  "checkver": "stem/([\\d.]+)/windows",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/stem/$version/php_stem-$version-7.1-ts-vc14-x64.zip"
+      },
+      "32bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/stem/$version/php_stem-$version-7.1-ts-vc14-x86.zip"
+      }
+    }
+  },
+  "uninstaller": {
+    "file": "uninstall.ps1"
+  }
+}

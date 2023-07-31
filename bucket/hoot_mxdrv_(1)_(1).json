@@ -1,0 +1,24 @@
+{
+  "version": "20111231",
+  "homepage": "http://dmpsoft.s17.xrea.com/hoot/",
+  "description": "mxdrv for hoot.",
+  "url": "http://dmpsoft.s17.xrea.com/data/mxdrv20111231.7z",
+  "hash": "139675e76161ae89dd13496d26473ffe75383d5fa40ebb97b7301dcb5bb08714",
+  "pre_install": [
+    "if ( -not ( Test-Path $dir\\..\\..\\hoot\\current ) ) {",
+    "   scoop install hoot",
+    "}"
+  ],
+  "installer": {
+    "script": [
+      "Copy-Item $dir\\mxdrv.bin $dir\\..\\..\\hoot\\current"
+    ]
+  },
+  "checkver": {
+    "url": "http://dmpsoft.s17.xrea.com/hoot/",
+    "re": "/data/mxdrv([\\d.]+).7z"
+  },
+  "autoupdate": {
+    "url": "http://dmpsoft.s17.xrea.com/data/mxdrv$version.7z"
+  }
+}

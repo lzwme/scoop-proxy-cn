@@ -1,0 +1,23 @@
+{
+  "homepage": "https://github.com/zzzgydi/clash-verge",
+  "license": "GPL-3.0",
+  "version": "1.9.2",
+  "description": "A Clash GUI based on tauri. Supports Windows, macOS and Linux. ",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/vadimcn/vscode-lldb/releases/download/v1.9.2/codelldb-x86_64-windows.vsix",
+      "hash": "1c23239941165d051b904a95c0bbf0853d3ff9b9149cdf36c6763fd4937c95f1"
+    }
+  },
+  "checkver": {
+    "github": "https://github.com/vadimcn/vscode-lldb"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/vadimcn/vscode-lldb/releases/download/v$version/codelldb-x86_64-windows.vsix"
+      }
+    }
+  },
+  "bin": "extension/adapter/codelldb.exe"
+}

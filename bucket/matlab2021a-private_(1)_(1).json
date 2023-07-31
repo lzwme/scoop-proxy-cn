@@ -1,0 +1,54 @@
+{
+  "##": "This package is for private use only. Requires password for installation to proceed.",
+  "version": "21.0.0.0",
+  "description": "Matlab. A numeric computing environment.",
+  "license": "Proprietary",
+  "url": [
+    "https://www.googleapis.com/drive/v3/files/1i_Sifr9CcZ-UMZaIVUuA9_VPMvuKWRBR?alt=media&key=AIzaSyBSeem0L7eQi8eUftYrP6n4-oZ3HWKfuPc#/dl.7z_",
+    "https://www.googleapis.com/drive/v3/files/1DtWLkqhxdBvjMDR6OIXaI5WRhYjTPm66?alt=media&key=AIzaSyDC-m3BUIo1tpvifuiOyB3SwP9E2co4ZFo#/dl2.7z_",
+    "https://www.googleapis.com/drive/v3/files/1EGNp4h_aTzCuqOHEhY5IUjyDzwbuCRVw?alt=media&key=AIzaSyDC-m3BUIo1tpvifuiOyB3SwP9E2co4ZFo#/dl3.7z_"
+  ],
+  "hash": [
+    "2d3073401aec3c250e264b56971d165ad216271081c96411192d8458b405c3ec",
+    "5b7c7aad7ab38532a5cff4d892ad8bec2b7e7d6ea6a40cca029f94ef2cc5d2bd",
+    "3680dc94b06784e925eb2f4a7f2e990ca68d97d14f0a12e364e7d9a1a598413c"
+  ],
+  "installer": {
+    "script": [
+      "if (!(is_admin)) { error 'This package requires admin privileges to install'; break }",
+      "#--- check password and extract files ---",
+      "$scriptdir = (Find-BucketDirectory $bucket)+'\\..\\scripts'",
+      "Import-Module $scriptdir\\pw\\pw_check.psm1",
+      "New-Item \"$dir\\setup\" -ItemType Directory | Out-Null",
+      "('dl.7z_', 'dl2.7z_', 'dl3.7z_') | ForEach-Object {",
+      "    Expand-EncryptedArchive -aPath \"$dir\\$_\" -oDir \"$dir\\setup\" -ExitIfError -Removal | Out-Null",
+      "}",
+      "#--- create installer_input.txt for unattended install ---",
+      "$(Get-Content \"$dir\\setup\\installer_input.txt\").replace('APPDIR', \"$dir\") | Set-Content \"$dir\\setup\\installer_input.txt\" -Encoding ascii | Out-Null",
+      "Invoke-ExternalCommand \"$dir\\setup\\setup.exe\" -ArgumentList @('-inputFile', \"`\"$dir\\setup\\installer_input.txt`\"\") -RunAs | Out-Null",
+      "Write-Host 'Installing MATLAB...'",
+      "# wait for setup.exe to finish",
+      "while (Get-Process 'setup' -ErrorAction SilentlyContinue) {Start-Sleep -Seconds 5}",
+      "Copy-Item \"$dir\\setup\\cr\\libmwlmgrimpl.dll\" \"$dir\\bin\\win64\\matlab_startup_plugins\\lmgrimpl\\\" -Force | Out-Null",
+      "New-Item \"$dir\\licenses\" -ItemType Directory | Out-Null",
+      "Copy-Item \"$dir\\setup\\cr\\license.lic\" \"$dir\\licenses\\\" | Out-Null",
+      "Remove-Item \"$dir\\setup\" -Force -Recurse"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "if (!(is_admin)) { error 'This package requires admin privileges to uninstall'; break }",
+      "Set-Content \"$dir\\uninstall_input.txt\" \"mode=silent`nprefs=false\" -Encoding ascii | Out-Null",
+      "Invoke-ExternalCommand \"$dir\\uninstall\\bin\\win64\\uninstall.exe\" -ArgumentList('-inputFile', \"`\"$dir\\uninstall_input.txt`\"\") | Out-Null",
+      "Write-Host 'Uninstalling MATLAB...'",
+      "# wait for uninstall.exe to finish",
+      "while (Get-Process 'uninstall' -ErrorAction SilentlyContinue) {Start-Sleep -Seconds 5}"
+    ]
+  },
+  "shortcuts": [
+    [
+      "bin\\matlab.exe",
+      "MATLAB R2021a"
+    ]
+  ]
+}

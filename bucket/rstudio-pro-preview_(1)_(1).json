@@ -1,0 +1,42 @@
+{
+  "version": "2023.03.1+446.pro1",
+  "homepage": "https://www.rstudio.com/",
+  "description": "An IDE for R, which includes a console, syntax-highlighting editor that supports direct code execution, as well as tools for plotting, history, debugging and workspace management.",
+  "license": "https://rstudio.com/about/eula/",
+  "architecture": {
+    "64bit": {
+      "url": "https://s3.amazonaws.com/rstudio-ide-build/desktop/windows/RStudio-pro-2023.03.1-446.pro1.exe",
+      "hash": "04cbba045ef759678bacef1d3b2af2a072414d6bada77f48a6747eeafcb7825e"
+    }
+  },
+  "bin": [
+    [
+      "bin\\rstudio.exe",
+      "rstudio-pro-preview"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "bin\\rstudio.exe",
+      "RStudio Pro Preview"
+    ]
+  ],
+  "checkver": {
+    "url": "https://www.rstudio.com/wp-content/downloads.json",
+    "jsonpath": ".rstudio.pro.preview.desktop.installer.windows.version",
+    "regex": "(?<date>[\\d.]+)(?<type>-preview)?\\+(?<build>\\d+)(?<pro>\\.pro\\d+)",
+    "replace": "${date}+${build}${pro}${type}"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://s3.amazonaws.com/rstudio-ide-build/desktop/windows/RStudio-pro-$matchDate$matchType-$matchBuild$matchPro.exe",
+        "hash": {
+          "mode": "json",
+          "jsonpath": ".rstudio.pro.preview.desktop.installer.windows.sha256",
+          "url": "https://www.rstudio.com/wp-content/downloads.json"
+        }
+      }
+    }
+  }
+}

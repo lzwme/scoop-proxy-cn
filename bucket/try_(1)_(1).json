@@ -1,0 +1,37 @@
+{
+  "version": "0.0.16",
+  "description": "a cli tool to retry command",
+  "homepage": "https://github.com/trim21/try",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/trim21/try/releases/download/v0.0.16/try_windows_amd64.tar.gz",
+      "hash": "e7fe2f4ac39dd39de188c3897bdf6e25bc895b0773f49c33bd4c33ca6283a222"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/trim21/try/releases/download/v0.0.16/try_windows_386.tar.gz",
+      "hash": "8794224af11d1dd1f17e386eab4c50a15f71e72faedb6f7e9c2193bb360b5a8b"
+    }
+  },
+  "license": "MIT",
+  "bin": [
+    [
+      "try.exe",
+      "try"
+    ],
+    [
+      "try.exe",
+      "retry"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/trim21/try/releases/download/v$version/try_windows_amd64.tar.gz"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/trim21/try/releases/download/v$version/try_windows_386.tar.gz"
+      }
+    }
+  }
+}

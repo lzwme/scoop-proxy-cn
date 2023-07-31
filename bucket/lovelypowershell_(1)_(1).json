@@ -1,0 +1,18 @@
+{
+  "version": "1.8",
+  "url": "https://ghproxy.net/https://github.com/krokofant/lovely-powershell/releases/download/1.8/lovely-powershell.zip",
+  "hash": "69b5660824739510fcaf4d8b652dbee8078b40d9486c5c53715cc302ef3ce92c",
+  "psmodule": {
+    "name": "LovelyPowershell"
+  },
+  "depends": [
+    "concfg",
+    "ps-install-if-missing"
+  ],
+  "post_install": "PowerShell -NoProfile -ExecutionPolicy Bypass -Command \"& $dir\\post-install.ps1\"",
+  "homepage": "https://github.com/krokofant/lovely-powershell",
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/krokofant/lovely-powershell/releases/download/$version/lovely-powershell.zip"
+  }
+}

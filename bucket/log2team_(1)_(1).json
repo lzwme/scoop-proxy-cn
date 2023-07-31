@@ -1,0 +1,30 @@
+{
+  "version": "20191119",
+  "description": "Transfer log from STDIN to Microsoft Teams",
+  "homepage": "https://github.com/zat-kaoru-hayama/log2team",
+  "license": "MIT License",
+  "architecture": {
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/zat-kaoru-hayama/log2team/releases/download/20191119/log2team-20191119-windows-386.zip",
+      "hash": "dae147f58c63eb9e2075b202c1bbd4bb965e09f7f996c56f60d5944675dc2db1"
+    },
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/zat-kaoru-hayama/log2team/releases/download/20191119/log2team-20191119-windows-amd64.zip",
+      "hash": "c6914464444142de4020b00aa249cdcd635af7c6f3e40203be208a43b3bfbcc5"
+    }
+  },
+  "bin": [
+    "log2team.exe"
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/zat-kaoru-hayama/log2team/releases/download/$version/log2team-$version-windows-386.zip"
+      },
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/zat-kaoru-hayama/log2team/releases/download/$version/log2team-$version-windows-amd64.zip"
+      }
+    }
+  }
+}

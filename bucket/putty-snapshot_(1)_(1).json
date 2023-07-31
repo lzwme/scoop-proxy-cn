@@ -1,0 +1,57 @@
+{
+  "description": "SSH client for Windows (Snapshot version)",
+  "homepage": "https://www.chiark.greenend.org.uk/~sgtatham/putty/",
+  "license": "MIT",
+  "version": "2023-04-29",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://tartarus.org/~simon/putty-snapshots/w64/putty.zip"
+      },
+      "32bit": {
+        "url": "https://tartarus.org/~simon/putty-snapshots/w64/putty.zip"
+      }
+    }
+  },
+  "checkver": {
+    "url": "https://tartarus.org/~simon/putty-snapshots/w64/",
+    "re": "putty-64bit-([\\d\\-]+)-installer\\.msi"
+  },
+  "architecture": {
+    "32bit": {
+      "url": "https://tartarus.org/~simon/putty-snapshots/w64/putty.zip",
+      "hash": "bbc81e8875f04d14e172bf2031f618595e2cedce5c6ee9524c571edbebb2ce6c"
+    },
+    "64bit": {
+      "url": "https://tartarus.org/~simon/putty-snapshots/w64/putty.zip",
+      "hash": "bbc81e8875f04d14e172bf2031f618595e2cedce5c6ee9524c571edbebb2ce6c"
+    }
+  },
+  "bin": [
+    "putty.exe",
+    "puttygen.exe",
+    "pscp.exe",
+    "pageant.exe",
+    "psftp.exe",
+    "plink.exe"
+  ],
+  "shortcuts": [
+    [
+      "putty.exe",
+      "PuTTY"
+    ],
+    [
+      "pageant.exe",
+      "Pageant"
+    ],
+    [
+      "psftp.exe",
+      "PSFTP"
+    ],
+    [
+      "puttygen.exe",
+      "PuTTYgen"
+    ]
+  ],
+  "_from": "okibcn/ScoopMaster"
+}

@@ -1,0 +1,59 @@
+{
+  "description": "EmEditor Pro cracked version by Dayanzai.me",
+  "homepage": "http://www.dayanzai.me/emeditor-pro.html",
+  "license": "Unknown",
+  "version": "22.4.2",
+  "depends": [
+    "baidupcs-go",
+    "7zip"
+  ],
+  "url": "https://support.emeditor.com/en/downloads/latest/portable/64#/unmodified.zip_",
+  "hash": "86dd4a62cf420231f910f22defd11236476f6622a7b1ee3e6716689e1bcfbeab",
+  "installer": {
+    "script": [
+      "Write-Host \"The native scoop hashcheck is only performed for the unmodified version. Use the cracked version at your own risk.\"",
+      "$webResponse = Invoke-WebRequest \"http://www.dayanzai.me/emeditor-pro.html\"",
+      "$downloadURL = ($webResponse.Links | Where-Object {($_.outerHTML -like \"*>点击下载<*\") -and ($_.href -like \"*pan.baidu.com*\")} | Select-Object -first 1).href",
+      "$passcode = $downloadURL.Split(\"?pwd=\")[-1]",
+      "$downloadURL = $downloadURL.Split(\"?pwd=\")[0]",
+      "$webResponse.Content -match \"资源：\\s*(?<filename>\\d+\\.rar)\" | Out-Null",
+      "$filename = $matches[\"filename\"]",
+      "$baiduLogedin = (BaiduPCS-Go loglist | Measure-Object -l).Lines -gt 1",
+      "while (!$baiduLogedin) {",
+      "    Write-Host \"Please login to Baidu to download the software.\"",
+      "    BaiduPCS-Go login",
+      "    $baiduLogedin = (BaiduPCS-Go loglist | Measure-Object -l).Lines -gt 1",
+      "}",
+      "BaiduPCS-Go cd / | Out-Null",
+      "BaiduPCS-Go mkdir Scoop | Out-Null",
+      "BaiduPCS-Go cd Scoop | Out-Null",
+      "BaiduPCS-Go rm $filename | Out-Null",
+      "BaiduPCS-Go transfer $downloadURL $passcode",
+      "BaiduPCS-Go download $filename --saveto $dir",
+      "BaiduPCS-Go cd / | Out-Null",
+      "Push-Location $dir && (7z e $filename emed64_${version}_portable.zip | Out-Null) && Remove-Item $filename && Expand-Archive emed64_${version}_portable.zip -DestinationPath . -Force && Remove-Item emed64_${version}_portable.zip &&  Pop-Location"
+    ]
+  },
+  "checkver": {
+    "url": "http://www.dayanzai.me/emeditor-pro.html",
+    "regex": "<title>.* ([\\d\\.]+) .*</title>"
+  },
+  "autoupdate": {
+    "url": "https://support.emeditor.com/en/downloads/latest/portable/64#/unmodified.zip_",
+    "hash": {
+      "mode": "download"
+    }
+  },
+  "shortcuts": [
+    [
+      "EmEditor.exe",
+      "EmEditor"
+    ]
+  ],
+  "persist": [
+    "PlugIns",
+    "Macros",
+    "Dictionaries"
+  ],
+  "bin": "EmEditor.exe"
+}

@@ -1,0 +1,39 @@
+{
+  "##": "name:MARK5 Emulator",
+  "version": "192",
+  "description": [
+    "MARK5 is an emulator for the japanese MB 6892 / Basic Master Level-3 Mark-5 computer from Hitachi.",
+    "",
+    "Download: MARK5 Emulator v1.9.2 x86"
+  ],
+  "homepage": "http://s-sasaji.ddo.jp/bml3mk5/",
+  "license": "",
+  "architecture": {
+    "32bit": {
+      "url": "http://s-sasaji.ddo.jp/bml3mk5/bml3mk5_win32_192.zip",
+      "hash": "79d63b9dfa7534fb89a84e22dd4ea055abd4c636c0eca5063305d053bea3b53b"
+    },
+    "64bit": {
+      "url": "http://s-sasaji.ddo.jp/bml3mk5/bml3mk5_win64_192.zip",
+      "hash": "e3c47670b3dabd82dc550e3bbf5dcdb99b47041e04e7aa1c59b567a99fbed230"
+    }
+  },
+  "bin": [
+    "bml3mk5/bml3mk5.exe",
+    "bml3mk5"
+  ],
+  "checkver": {
+    "url": "http://s-sasaji.ddo.jp/bml3mk5/download.htm",
+    "regex": "bml3mk5_win32_(\\d+).zip"
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "http://s-sasaji.ddo.jp/bml3mk5/bml3mk5_win32_$version.zip"
+      },
+      "64bit": {
+        "url": "http://s-sasaji.ddo.jp/bml3mk5/bml3mk5_win64_$version.zip"
+      }
+    }
+  }
+}

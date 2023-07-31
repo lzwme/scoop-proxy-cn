@@ -1,0 +1,27 @@
+{
+  "homepage": "https://github.com/pinterf/xy-VSFilter/",
+  "description": "High Quality Subtitle Rendering",
+  "version": "3.2.0.808",
+  "license": "GPL-2.0",
+  "depends": "sudo",
+  "url": "https://ghproxy.net/https://github.com/pinterf/xy-VSFilter/releases/download/3.2.0.808/xyVSFilterSubFilter-pfmod-3.2.0.808.7z",
+  "hash": "e37c62373dd9e5d4f1b56991501902b3520dc08ec7e83da9592c4c713fe64603",
+  "architecture": {
+    "64bit": {
+      "extract_dir": "x64"
+    }
+  },
+  "post_install": "Start-Process \"$dir\\Install_XySubFilter.bat\"",
+  "uninstaller": {
+    "script": "Start-Process \"$dir\\Uninstall_XySubFilter.bat\""
+  },
+  "checkver": {
+    "github": "https://github.com/pinterf/xy-VSFilter/"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/pinterf/xy-VSFilter/releases/download/$version/xyVSFilterSubFilter-pfmod-$version.7z",
+    "hash": {
+      "url": "$baseurl/SHA2-256SUMS"
+    }
+  }
+}

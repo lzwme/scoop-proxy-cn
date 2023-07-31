@@ -1,0 +1,44 @@
+{
+  "version": "9.0.180",
+  "description": "Cutting Edge build of Manifold Release 9 (+custom experiments)",
+  "homepage": "http://manifold.net/",
+  "license": "Proprietary",
+  "post_install": [
+    "if (!(Test-Path \"$persist_dir\\extras\\logfiles\")) { New-Item -ItemType Directory \"$dir\\extras\\logfiles\" | Out-Null }",
+    "if (!(Test-Path \"$persist_dir\\extras\\logfiles\\manifold.loghere\")) { New-Item \"$dir\\extras\\logfiles\\manifold.loghere\" | Out-Null }"
+  ],
+  "url": "https://manifold.net/updates/working/manifold-9.0.180.zip",
+  "hash": "6a7a6e94e8b9710a2034e227d41eefd5f15c7417327ffebe4f39b6544db157b2",
+  "extract_dir": "manifold-9.0.180",
+  "bin": "manifold.exe",
+  "shortcuts": [
+    [
+      "manifold.exe",
+      "Manifold XTRA"
+    ]
+  ],
+  "persist": [
+    "extras\\logfiles",
+    "extras\\Addins",
+    "opt",
+    "gdal",
+    "gdalplugins",
+    "persist_in_extras",
+    "persist_in_installdir"
+  ],
+  "checkver": {
+    "url": "https://manifold.net/updates/download_9.shtml",
+    "regex": "https://manifold.net/updates/working/manifold-([\\d.\\-r]+).zip",
+    "replace": "$1"
+  },
+  "autoupdate": {
+    "url": "https://manifold.net/updates/working/manifold-$version.zip",
+    "extract_dir": "manifold-$version",
+    "hash": {
+      "url": "https://manifold.net/updates/download_9.shtml",
+      "regex": "manifold-$version.zip.+ $sha256"
+    },
+    "note": "Note after autoupdate"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

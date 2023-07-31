@@ -1,0 +1,44 @@
+{
+  "homepage": "https://sourceforge.net/projects/orwelldevcpp/files/",
+  "description": "A free, portable, fast and simple C/C++ IDE",
+  "license": "GPL",
+  "version": "5.11",
+  "architecture": {
+    "64bit": {
+      "url": "https://downloads.sourceforge.net/project/orwelldevcpp/Portable%20Releases/Dev-Cpp%205.11%20TDM-GCC%20x64%204.9.2%20Portable.7z",
+      "extract_dir": "Dev-Cpp",
+      "bin": [
+        [
+          "devcpp.exe",
+          "devcpp"
+        ]
+      ]
+    }
+  },
+  "persist": [
+    "Templates"
+  ],
+  "checkver": {
+    "url": "https://sourceforge.net/projects/orwelldevcpp/files/",
+    "regex": "Dev-Cpp ([\\d]+.[\\d]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://downloads.sourceforge.net/project/orwelldevcpp/Portable%20Releases/Dev-Cpp%205.11%20TDM-GCC%20x64%204.9.2%20Portable.7z",
+        "extract_dir": "Dev-Cpp",
+        "bin": [
+          [
+            "devcpp.exe",
+            "devcpp"
+          ]
+        ]
+      }
+    }
+  },
+  "notes": [
+    "This is the whole version of devcpp, if don't want compiler, use",
+    "",
+    "scoop install devcpp"
+  ]
+}

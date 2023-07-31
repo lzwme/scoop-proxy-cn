@@ -1,0 +1,19 @@
+{
+  "version": "20221114",
+  "description": "LG 49WL9 HDR DQHD Monitor Driver for Windows10",
+  "homepage": "https://www.lg.com/de/support/software-firmware?csSalesCode=49WL95C-W.AEU",
+  "license": "Proprietary",
+  "url": "https://gscs-b2c.lge.com/downloadFile?fileId=TAEqrSmLB8YNmpToxNiRrg#/dl.zip",
+  "hash": "70a76c0f64906ab3ad330c99a72fe7d51fd0b61b45e117447a2b44922e628d31",
+  "pre_install": "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+  "post_install": [
+    "Get-ChildItem \"$dir\\*.inf\" | ForEach-Object { PNPUtil.exe /add-driver $_.FullName /install }"
+  ],
+  "checkver": {
+    "url": "https://www.lg.com/de/support/software-firmware?csSalesCode=49WL95C-W.AEU",
+    "regex": "LG HDR DQHD Monitor Driver for Windows10.*(\\d{2})/(\\d{2})/(\\d{4})"
+  },
+  "autoupdate": {
+    "url": "https://gscs-b2c.lge.com/downloadFile?fileId=TAEqrSmLB8YNmpToxNiRrg#/dl.zip"
+  }
+}

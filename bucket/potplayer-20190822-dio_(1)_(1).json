@@ -1,0 +1,55 @@
+{
+  "version": "20190822",
+  "description": "Potplayer Stable, NoAD, Portable Edition, maintained by DIO.",
+  "homepage": "https://potplayer.daum.net",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://potplayer.daum.net/publicRelation"
+  },
+  "notes": "Features: <http://qxys.3vfree.cn/ShowPost.asp?ThreadID=205>",
+  "suggest": {
+    "potplayer-skins": "potplayer-skins"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://pan.jiemi.workers.dev/?file=/else/PotPlayer64_1.7.19955_20190822_DIO.7z",
+      "hash": "1731a26fd858b42557c177513c6e8707c1e158cc94d7fb8bc1e2d21c05f3fd52",
+      "installer": {
+        "script": "sudo regedit /s \"$dir\\内置解码器HEVC软解_关闭TV窗口_优化设置-PotPlayer64.reg\""
+      },
+      "shortcuts": [
+        [
+          "PotPlayerMini64.exe",
+          "PotPlayer"
+        ]
+      ]
+    },
+    "32bit": {
+      "url": "https://pan.jiemi.workers.dev/?file=/else/PotPlayer_1.7.19955_20190822_DIO.7z",
+      "hash": "930c4a3b581522ea8e7ab470ab9fc9988a79c9e1eb3c6d3d345fb3c49217ef94",
+      "installer": {
+        "script": "sudo regedit /s \"$dir\\内置解码器HEVC软解_关闭TV窗口_优化设置-PotPlayer.reg\""
+      },
+      "shortcuts": [
+        [
+          "PotPlayerMini.exe",
+          "PotPlayer"
+        ],
+        [
+          "PotPlayerMiniXP.exe",
+          "PotPlayerMini XP"
+        ]
+      ]
+    }
+  },
+  "persist": [
+    "Capture",
+    "Extension",
+    "Extention",
+    "IconPack",
+    "Logos",
+    "Playlist",
+    "Skins",
+    "UrlList"
+  ]
+}

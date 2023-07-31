@@ -1,0 +1,28 @@
+{
+  "homepage": "https://github.com/vim-volt/volt",
+  "description": "Volt: A meta-level vim package manager",
+  "license": "MIT",
+  "version": "0.3.7",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/vim-volt/volt/releases/download/v0.3.7/volt-v0.3.7-windows-amd64.exe#/volt.exe",
+      "hash": "6a2bb7dc0c71a1ff1f0f18126a8898c82ffab6002c2e19e0ccd194d74dc54641"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/vim-volt/volt/releases/download/v0.3.7/volt-v0.3.7-windows-386.exe#/volt.exe",
+      "hash": "9525f0662c2aa86ced446dba8274f79e3d34bf74a52bb845eac5b596ac2c52d5"
+    }
+  },
+  "bin": "volt.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/vim-volt/volt/releases/download/v$version/volt-v$version-windows-amd64.exe#/volt.exe"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/vim-volt/volt/releases/download/v$version/volt-v$version-windows-386.exe#/volt.exe"
+      }
+    }
+  }
+}

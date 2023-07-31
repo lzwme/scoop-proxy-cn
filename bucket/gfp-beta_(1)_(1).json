@@ -1,0 +1,15 @@
+{
+  "version": "0.1",
+  "homepage": "http://sound.jp/naska/software.html",
+  "url": "http://sound.jp/naska/data/VSTi/GFPBETA0_1.rar",
+  "post_install": [
+    "New-Item -ErrorAction Ignore $env:USERPROFILE\\.vst -ItemType Directory",
+    "New-Item -Type Junction -Path $env:USERPROFILE\\.vst\\GFPBETA -Value $dir"
+  ],
+  "extract_dir": "GFPBETA0_1",
+  "uninstaller": {
+    "script": [
+      "(Get-Item $env:USERPROFILE\\.vst\\GFPBETA).Delete()"
+    ]
+  }
+}

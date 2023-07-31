@@ -1,0 +1,43 @@
+{
+  "version": "4.7.1",
+  "description": "A beautiful cross platform Desktop Player for Google Play Music",
+  "homepage": "https://www.googleplaymusicdesktopplayer.com/",
+  "license": {
+    "identifier": "MIT",
+    "url": "https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/blob/master/LICENSE"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/releases/download/v4.7.1/GPMDP_3-4.7.1-full.nupkg#/dl.7z",
+      "hash": "d865dfd7c4c4cd62ebea40230e79eea0d957e333733047a10053fb1d44a12fd9"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/releases/download/v4.7.1/GPMDP_3-4.7.1-full.nupkg#/dl.7z",
+      "hash": "d865dfd7c4c4cd62ebea40230e79eea0d957e333733047a10053fb1d44a12fd9"
+    }
+  },
+  "pre_install": [
+    "Get-ChildItem -Path \"$dir\\lib\\net45\\*\" -Recurse | Move-Item -Destination \"$dir\"",
+    "Remove-Item \"$dir\\lib\\\" -Recurse"
+  ],
+  "bin": "Google%20Play%20Music%20Desktop%20Player.exe",
+  "shortcuts": [
+    [
+      "Google%20Play%20Music%20Desktop%20Player.exe",
+      "Google Play Music Desktop Player"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/releases/download/v$version/GPMDP_3-$version-full.nupkg#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/releases/download/v$version/GPMDP_3-$version-full.nupkg#/dl.7z"
+      }
+    }
+  }
+}

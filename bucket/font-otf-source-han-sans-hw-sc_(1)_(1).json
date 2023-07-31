@@ -1,0 +1,15 @@
+{
+  "url": "https://ghproxy.net/https://github.com/adobe-fonts/source-han-sans/releases/download/2.004R/SourceHanSansHWSC.zip",
+  "version": "2.004R",
+  "license": "Unlicense",
+  "homepage": "https://github.com/adobe-fonts/source-han-sans",
+  "hash": "12db26fa9a810b93c735d56ddf4993e583ce85ef8b16b493759625a97036ca4b",
+  "extract_dir": "OTF/SimplifiedChineseHW",
+  "post_install": [
+    "$shell = New-Object -ComObject shell.application",
+    "$namespace_dir = $shell.NameSpace($dir)",
+    "$namespace_dir.ParseName(\"SourceHanSansHWSC-Bold.otf\").InvokeVerb(\"Install\")",
+    "$namespace_dir.ParseName(\"SourceHanSansHWSC-Regular.otf\").InvokeVerb(\"Install\")",
+    "Write-Host Installation finish, now you can uninstall it by `scoop uninstall`"
+  ]
+}

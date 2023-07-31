@@ -1,0 +1,37 @@
+{
+  "version": "3.2.0",
+  "license": "MIT",
+  "description": "Gomerge is a tool to quickly enable you to bulk merge and/or approve Github pull requests from your terminal.",
+  "homepage": "https://github.com/Cian911/gomerge",
+  "url": "https://ghproxy.net/https://github.com/Cian911/gomerge/archive/refs/tags/3.2.0.zip",
+  "hash": "08ca34fbbe9b208de92858291d21b4f04503ada57fce99d6c2f2b62d5a7147a7",
+  "pre_install": "scoop install go # TODO: Warning if already installed",
+  "installer": {
+    "script": [
+      "$source = \"$dir\\gomerge-$version\"",
+      "pushd $source\\cmd\\gomerge",
+      "go build -o $dir\\gomerge.exe",
+      "popd",
+      "rm -r $source"
+    ]
+  },
+  "bin": "gomerge.exe",
+  "post_install": [
+    "$null, $null2, $bucket = Get-Manifest($app)",
+    "$bucketdir = Find-BucketDirectory($bucket)",
+    "$bucketdir = $bucketdir.Trim()",
+    "& \"$bucketdir\\scripts\\track.ps1\" install $app $version"
+  ],
+  "post_uninstall": [
+    "$null, $null2, $bucket = Get-Manifest($app)",
+    "$bucketdir = Find-BucketDirectory($bucket)",
+    "$bucketdir = $bucketdir.Trim()",
+    "& \"$bucketdir\\scripts\\track.ps1\" uninstall $app $version"
+  ],
+  "checkver": {
+    "github": "https://github.com/Cian911/gomerge"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/Cian911/gomerge/archive/refs/tags/$version.zip"
+  }
+}

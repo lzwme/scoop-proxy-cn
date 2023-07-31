@@ -1,0 +1,93 @@
+{
+  "##": [
+    "This manifest derives from extras",
+    "Add : pre_install / uninstaller :: Appdata/Roaming -> persist  Junction"
+  ],
+  "version": "0.11.18",
+  "description": "A decent markdown editor finally available on Windows",
+  "homepage": "https://typora.io",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://support.typora.io/License-Agreement/"
+  },
+  "notes": "Free during beta.",
+  "architecture": {
+    "64bit": {
+      "url": "https://typora.io/windows/typora-setup-x64.exe",
+      "hash": "2c2c80c32d813744b6d48851687c752e819c0cd4246440842effd3d10473dd22"
+    },
+    "32bit": {
+      "url": "https://typora.io/windows/typora-setup-ia32.exe",
+      "hash": "e1e9aec7a251472c25afffcde292ea67fb913e8984c816b8e516244a3160effc"
+    }
+  },
+  "innosetup": true,
+  "bin": "Typora.exe",
+  "shortcuts": [
+    [
+      "Typora.exe",
+      "Typora"
+    ]
+  ],
+  "pre_install": [
+    "function CreateRoamingLink([String] $folder) {",
+    "   $roamingdir = \"$env:APPDATA\\$folder\"",
+    "   if(!(Test-Path \"$persist_dir\\$folder\")) {",
+    "       New-Item -Force -Path \"$persist_dir\\$folder\" -ItemType Directory | Out-Null",
+    "   }",
+    "   if (Test-Path \"$roamingdir\") {",
+    "       if (Get-ChildItem \"$env:APPDATA\" -Attributes ReparsePoint -include \"$folder\" -Name) {",
+    "           Write-Host \"  UnLinking $roamingdir\"",
+    "           Remove-Item -Path \"$roamingdir\" -force -Recurse",
+    "       }",
+    "       # Try to move to 'persist' when you already have data in 'roaming'",
+    "       elseif (!(Test-Path \"$persist_dir\\$folder\\*.*\")){",
+    "           Write-Host \"Moving $roamingdir -> $persist_dir\\$folder\"",
+    "           Move-Item  -Force -Path \"$roamingdir\" \"$persist_dir\"",
+    "           for($i=10; $i -ge 0; $i--) {",
+    "               if (!(Test-Path \"$roamingdir\")) { break }",
+    "               Write-Host \"Wait...\"",
+    "               Start-Sleep -s 3",
+    "           }",
+    "           if ($i -le 0) { Write-Host \"  Move-Item Error $roamingdir\" -BackgroundColor Red }",
+    "       }",
+    "   }",
+    "   if (Test-Path \"$roamingdir\") {",
+    "       Write-Host \"  Please check manually link to the $roamingdir - $persist_dir$folder.\" -ForegroundColor Magenta",
+    "   } else { ",
+    "       Write-Host \"  Linking $roamingdir -> $persist_dir\\$folder\"",
+    "       # Start-Process -FilePath \"$env:COMSPEC\" -ArgumentList '/c','mklink',\"/J $q$roamingdir$q $q$persist_dir\\$folder$q\" | out-null",
+    "       New-Item -ItemType Junction -Path \"$roamingdir\" -Target \"$persist_dir\\$folder\" | out-null",
+    "   }",
+    "}",
+    "CreateRoamingLink 'Typora'"
+  ],
+  "uninstaller": {
+    "script": [
+      "function RemoveRoamingLink([String] $folder) {",
+      "   $roamingdir = \"$env:APPDATA\\$folder\"",
+      "   if ((Test-Path \"$roamingdir\")) {",
+      "       if (Get-ChildItem \"$env:APPDATA\" -Attributes ReparsePoint -include \"$folder\" -Name) {",
+      "           Write-Host \"  UnLinking $roamingdir\"",
+      "           Remove-Item -Path \"$roamingdir\" -force -Recurse",
+      "       }",
+      "   }",
+      "}",
+      "RemoveRoamingLink 'Typora'"
+    ]
+  },
+  "checkver": {
+    "url": "https://typora.io/windows/dev_release.html",
+    "regex": "<h4>([\\d\\.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://typora.io/windows/typora-setup-x64.exe"
+      },
+      "32bit": {
+        "url": "https://typora.io/windows/typora-setup-ia32.exe"
+      }
+    }
+  }
+}

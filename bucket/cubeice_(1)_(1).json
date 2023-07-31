@@ -1,0 +1,81 @@
+{
+  "version": "3.0.1",
+  "description": "CubeICE is a file archiver that prevents problems with garbled characters when decompressing files.",
+  "homepage": "https://www.cube-soft.jp/cubeice/",
+  "license": "Apache-2.0",
+  "pre_install": [
+    "$items = @{",
+    "    \"dll\" = @(",
+    "        \"AlphaFS\",",
+    "        \"Cube.Core\",",
+    "        \"Cube.FileSystem.AlphaFS\",",
+    "        \"Cube.FileSystem.SevenZip\",",
+    "        \"Cube.FileSystem.SevenZip.Ice\",",
+    "        \"Cube.Forms\",",
+    "        \"Cube.Net\",",
+    "        \"Cube.Services\",",
+    "        \"NLog\"",
+    "    )",
+    "    \"exe\" = @(",
+    "        \"CubeChecker\",",
+    "        \"cubeice\",",
+    "        \"cubeice-associate\",",
+    "        \"cubeice-setting\"",
+    "    )",
+    "    \"config\" = @(",
+    "        \"CubeChecker.exe\",",
+    "        \"cubeice.exe\",",
+    "        \"cubeice-associate.exe\",",
+    "        \"cubeice-setting.exe\"",
+    "    )",
+    "}",
+    "$append = \",1\"",
+    "foreach ($item in $items.GetEnumerator()) {",
+    "    $ext = $item.Name",
+    "    foreach ($i in $item.Value) {",
+    "        Copy-Item \"$dir\\$i$append.$ext\" \"$dir\\$i.$ext\"",
+    "    }",
+    "}"
+  ],
+  "bin": [
+    "CubeChecker.exe",
+    "cubeice.exe",
+    "cubeice-associate.exe",
+    "cubeice-setting.exe"
+  ],
+  "shortcuts": [
+    [
+      "cubeice.exe",
+      "CubeICE"
+    ],
+    [
+      "cubeice-setting.exe",
+      "CubeICE Setting"
+    ]
+  ],
+  "architecture": {
+    "64bit": {
+      "url": "https://dl.cube-soft.jp/archive/cubeice-3.0.1-x64.exe",
+      "hash": "de2041aaa2f583127045e8f7d17533b0b7f55b036ff396f47192cc15e0aa55d9"
+    },
+    "32bit": {
+      "url": "https://dl.cube-soft.jp/archive/cubeice-3.0.1-x86.exe",
+      "hash": "cfc5703867f7d92a5d0e1679326a2c2f87e4ee26224ca7bfd4c1057c01c10e31"
+    }
+  },
+  "innosetup": true,
+  "checkver": {
+    "url": "https://www.cube-soft.jp/cubeice/releases.php",
+    "regex": "cubeice-([\\d.]+).exe"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://dl.cube-soft.jp/archive/cubeice-$version-x64.exe"
+      },
+      "32bit": {
+        "url": "https://dl.cube-soft.jp/archive/cubeice-$version-x86.exe"
+      }
+    }
+  }
+}

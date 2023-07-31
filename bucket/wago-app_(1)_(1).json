@@ -1,0 +1,35 @@
+{
+  "version": "1.3.2",
+  "description": "Search, download and update your WeakAuras and addons directly on the platform.",
+  "homepage": "https://addons.wago.io/app",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://addons.wago.io/agreements/terms-of-service"
+  },
+  "url": "https://wago-addons.ams3.digitaloceanspaces.com/wagoapp/WagoApp%20Setup%201.3.2.exe#/dl.7z",
+  "hash": "sha512:99b8d6c2c416022482a0b9f3cc60e62cd29b27580d3eb4fb74daed2013072c1941ec666b8498d55261ae4c32319bc79a611055d977272c084a7fef376b814b36",
+  "extract_dir": "$PLUGINSDIR",
+  "installer": {
+    "script": [
+      "Remove-Item \"$dir\\*\" -Exclude 'app-64.7z'",
+      "Expand-7zipArchive \"$dir\\app-64.7z\" \"$dir\" -Removal"
+    ]
+  },
+  "shortcuts": [
+    [
+      "WagoApp.exe",
+      "WagoApp"
+    ]
+  ],
+  "checkver": {
+    "url": "https://wago-addons.ams3.digitaloceanspaces.com/wagoapp/latest.yml",
+    "regex": "version:\\s*([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://wago-addons.ams3.digitaloceanspaces.com/wagoapp/WagoApp%20Setup%20$version.exe#/dl.7z",
+    "hash": {
+      "url": "https://wago-addons.ams3.digitaloceanspaces.com/wagoapp/latest.yml",
+      "regex": "sha512:\\s*(.+)"
+    }
+  }
+}

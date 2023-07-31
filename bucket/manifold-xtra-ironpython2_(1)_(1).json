@@ -1,0 +1,25 @@
+{
+  "version": "2.7.9",
+  "description": "Ironpython2 for Manifold 9",
+  "homepage": "https://manifold.net/updates/download_9.shtml#python",
+  "license": "MIT",
+  "depends": "scoop-manifold/manifold-xtra",
+  "url": "https://manifold.net/files/ironpython-2.7.9-net45.zip",
+  "hash": "b03d37c3e3e14bb6692634c6d805d2c5222441a38a9655d99c207778fd7c74da",
+  "notes": [
+    "Ironpython has been copied to: $(appdir 'manifold-xtra' $global)\\current\\shared"
+  ],
+  "installer": {
+    "script": [
+      "$sharedDir = \"$(appdir 'manifold-xtra' $global)\\current\\shared\"",
+      "Copy-Item -Recurse \"$dir\\*\" \"$sharedDir\\\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$sharedDir = \"$(appdir 'manifold-xtra' $global)\\current\\shared\"",
+      "$xtraDir = \"$sharedDir\\ironpython-2.7.9-net45\"",
+      "if (Test-Path $xtraDir) { Remove-Item -Recurse $xtraDir }"
+    ]
+  }
+}

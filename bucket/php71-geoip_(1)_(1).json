@@ -1,0 +1,33 @@
+{
+  "homepage": "https://pecl.php.net/package/geoip",
+  "version": "1.1.1",
+  "license": "http://www.php.net/license/3_01.txt",
+  "architecture": {
+    "64bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/geoip/1.1.1/php_geoip-1.1.1-7.1-ts-vc14-x64.zip",
+      "hash": "8f630af800170310a46663cd0c5441841e1b2d866912e3b4354cbb42114d39e8"
+    },
+    "32bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/geoip/1.1.1/php_geoip-1.1.1-7.1-ts-vc14-x86.zip",
+      "hash": "adf4daace14c4a097bcd72536db5df35a3d4136b6fa38dab2404ee9d8b1bddd9"
+    }
+  },
+  "depends": [
+    "php"
+  ],
+  "post_install": "$phpconfd = \"$persist_dir\\..\\php\\cli\\conf.d\"; if((test-path $phpconfd)) { echo \"Enabling extension $(Convert-Path $phpconfd)\\geoip.ini\"; echo \"extension=$dir\\php_geoip.dll\" | sc \"$phpconfd\\geoip.ini\"; echo \"Remove-Item '$(Convert-Path $phpconfd)\\geoip.ini'\" | sc \"$dir\\uninstall.ps1\" } else { write-host -f yellow \"PHP was not installed through scoop, you have to activate php_geoip.dll manually!\" }",
+  "checkver": "geoip/([\\d.]+)/windows",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/geoip/$version/php_geoip-$version-7.1-ts-vc14-x64.zip"
+      },
+      "32bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/geoip/$version/php_geoip-$version-7.1-ts-vc14-x86.zip"
+      }
+    }
+  },
+  "uninstaller": {
+    "file": "uninstall.ps1"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "version": "87.0.4280.141",
+  "description": "Chrome + Chrome Plus Plus(1.4.2) + Flash(34.0.0.267), maintained by wenlei.",
+  "homepage": "https://www.google.com/chrome/",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://www.google.com/chrome/privacy/eula_text.html"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://pan.jiemi.workers.dev/?file=/wenlei/Chrome_87.0.4280.141_Portable_x64.7z",
+      "hash": "68c8af6408c99baaf883898841254c39c22b8d1daa05ab9d30e3237e42865762",
+      "extract_dir": "Chrome87"
+    }
+  },
+  "bin": [
+    [
+      "App\\chrome.exe",
+      "chrome87"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "App\\chrome.exe",
+      "chrome87"
+    ]
+  ],
+  "persist": "Data",
+  "checkver": {
+    "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/oneindex.txt",
+    "regex": "Chrome_([\\d.]+)_Portable_x64.7z"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://pan.jiemi.workers.dev/?file=/wenlei/Chrome_$version_Portable_x64.7z",
+        "extract_dir": "Chrome$majorVersion"
+      }
+    }
+  }
+}

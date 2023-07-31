@@ -1,0 +1,35 @@
+{
+  "version": "7.6.5",
+  "description": "A GPU-accelerated library of primitives for deep neural networks.",
+  "homepage": "https://developer.nvidia.com/cudnn",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://docs.nvidia.com/deeplearning/sdk/cudnn-sla/index.html"
+  },
+  "notes": [
+    "This package is only for CUDA 9.2 and Windows 10.\nIf you have not installed CUDA, please install CUDA by scoop first and then reinstall this package.\nEverytime you install a new CUDA version, you need to reinstall this package."
+  ],
+  "architecture": {
+    "64bit": {
+      "url": "https://developer.download.nvidia.cn/compute/redist/cudnn/v7.6.5/cudnn-9.2-windows10-x64-v7.6.5.32.zip",
+      "hash": "md5:1a238b6d4f2d6710e72f1bc5f438bd19"
+    }
+  },
+  "extract_dir": "cuda",
+  "installer": {
+    "script": [
+      "foreach ($cuda in $manifest.suggest.cuDNN) {",
+      "    $cudaDir = \"$(appdir $cuda)\\current\"",
+      "    if (!(Test-Path \"$cudaDir\\include\\cudnn.h\") -and (Test-Path \"$cudaDir\")) {",
+      "        Copy-Item \"$dir\\*\" \"$cudaDir\" -Recurse -Force",
+      "        Write-Host \"Installed to $cudaDir\"",
+      "    }",
+      "}"
+    ]
+  },
+  "suggest": {
+    "cuDNN": [
+      "cuda9.2"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "checkver": {
+    "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id%20eq%20'Az.MySql'%20and%20IsLatestVersion%20eq%20true",
+    "replace": "${ver}",
+    "regex": "(?i)<d:Version>(?<ver>[^<]+)<.d:Version>"
+  },
+  "hash": "sha512:8ef861b1e9bc024e6647b6bc7cc562e48f136a9f3b7e23517163e868a394edb130cf3529ac636914004599ff7410aa0d820d32ba56b4a67f2b6ea2cbf3740d86",
+  "description": "Microsoft Azure PowerShell: MySql cmdlets",
+  "psmodule": {
+    "name": "Az.MySql"
+  },
+  "homepage": "https://www.powershellgallery.com/packages/Az.MySql",
+  "autoupdate": {
+    "url": "https://www.powershellgallery.com/api/v2/Package/Az.MySql/$version#/mod.nupkg",
+    "hash": {
+      "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id eq 'Az.MySql' and Version eq '$version'",
+      "regex": "<d:PackageHash>$base64<.d:PackageHash>"
+    }
+  },
+  "license": {
+    "identifier": "Refer to Webpage",
+    "url": "https://aka.ms/azps-license"
+  },
+  "url": "https://www.powershellgallery.com/api/v2/Package/Az.MySql/1.1.0#/mod.nupkg",
+  "depends": "Az.Accounts",
+  "version": "1.1.0"
+}

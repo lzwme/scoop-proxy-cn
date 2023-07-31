@@ -1,0 +1,17 @@
+{
+  "homepage": "http://www.51nwt.com/index.htm",
+  "description": "Free messaging and calling app.",
+  "version": "3.4.3045",
+  "url": "http://imo.51babybuy.com/nwt_setup_3.4.3045.exe#/dl.7z",
+  "shortcuts": [
+    [
+      "ShiYeLine.exe",
+      "nwt"
+    ]
+  ],
+  "post_install": [
+    "Remove-Item \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
+    "Remove-Item \"$dir\\`$EXEDIR\" -Force -Recurse"
+  ],
+  "notes": "We don't persist your WeChat data, they are still storaged in '%APPDATA%\\Tencent\\WeChat'."
+}

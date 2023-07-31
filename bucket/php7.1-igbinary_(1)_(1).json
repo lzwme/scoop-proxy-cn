@@ -1,0 +1,30 @@
+{
+  "homepage": "https://pecl.php.net/package/igbinary",
+  "version": "2.0.5",
+  "license": "http://www.php.net/license/3_01.txt",
+  "architecture": {
+    "64bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/igbinary/2.0.5/php_igbinary-2.0.5-7.1-ts-vc14-x64.zip",
+      "hash": "f036a13c1dda349c3ce751fc07f59b68b9f9fc853328c90c80527bd5c6d642c8"
+    },
+    "32bit": {
+      "url": "http://windows.php.net/downloads/pecl/releases/igbinary/2.0.5/php_igbinary-2.0.5-7.1-ts-vc14-x86.zip",
+      "hash": "74cab95d793499d485c18b91264727692e86a51e1910d35abe47a57ce308d694"
+    }
+  },
+  "checkver": "igbinary/([\\d.]+)/windows",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/igbinary/$version/php_igbinary-$version-7.1-ts-vc14-x64.zip"
+      },
+      "32bit": {
+        "url": "http://windows.php.net/downloads/pecl/releases/igbinary/$version/php_igbinary-$version-7.1-ts-vc14-x86.zip"
+      }
+    }
+  },
+  "post_install": "iex(gc $bucketsdir\\$bucket\\bin\\postinstall.ps1 -Raw)",
+  "uninstaller": {
+    "file": "uninstall.ps1"
+  }
+}

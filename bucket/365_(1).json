@@ -1,0 +1,25 @@
+{
+  "version": "v1.0.0",
+  "description": "Unofficial Microsoft 365 Web Desktop Wrapper made with Electron",
+  "homepage": "https://github.com/agam778/MS-365-Electron",
+  "license": "MIT license",
+  "url": "https://ghproxy.net/https://github.com/agam778/MS-365-Electron/releases/download/v1.0.0/MS-365-Electron-v1.0.0-win-x64.exe#/dl.7z",
+  "hash": "c2db8ecbc4eebace16372eb87307c413fd2fefbbce455f423bb31b6c434536e0",
+  "architecture": {
+    "64bit": {
+      "installer": {
+        "script": [
+          "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+          "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$R0\" -Force -Recurse"
+        ]
+      }
+    }
+  },
+  "bin": "MS-365-Electron.exe",
+  "shortcuts": [
+    [
+      "MS-365-Electron.exe",
+      "MS-365-Electron"
+    ]
+  ]
+}

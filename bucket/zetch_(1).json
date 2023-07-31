@@ -1,0 +1,24 @@
+{
+  "version": "1.0",
+  "description": "system fetch written in C for windows",
+  "homepage": "https://github.com/ZephyrY7/zetch",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/ZephyrY7/zetch/releases/download/v1.0/zetch.exe",
+      "hash": "5da3d3ef51e0e7ecb246d40eca1453cd257b47d68198fd1d208f1adf8520eb4f"
+    }
+  },
+  "bin": "zetch.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/ZephyrY7/zetch/releases/download/v$version/zetch.exe"
+      }
+    },
+    "hash": {
+      "url": "$url.SHA256"
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "architecture": {
+    "32bit": {
+      "shortcuts": [
+        [
+          "IDE\\bin\\idea.exe",
+          "JetBrains\\IntelliJ IDEA Education (Early Access Program)"
+        ]
+      ]
+    },
+    "64bit": {
+      "shortcuts": [
+        [
+          "IDE\\bin\\idea64.exe",
+          "JetBrains\\IntelliJ IDEA Education (Early Access Program)"
+        ]
+      ]
+    }
+  },
+  "autoupdate": {
+    "hash": {
+      "url": "$url.sha256"
+    },
+    "url": "https://download.jetbrains.com/idea/ideaIE-$preReleaseVersion.exe#/cosi.7z"
+  },
+  "checkver": {
+    "regex": "version\":\"(?<ver>[\\d.]+)\".*\"build\":\"(?<build>[\\d.]+)\"",
+    "replace": "${ver}-${build}",
+    "url": "https://data.services.jetbrains.com/products/releases?code=IIE&latest=true&platform=zip&type=eap"
+  },
+  "description": "IntelliJ IDEA Education Early Access Program. Cross-Platform Java IDE for professional developers by JetBrains.",
+  "extract_to": "IDE",
+  "hash": "175a8682531f026a446b0b88ffb92eb33085bcf2bc498fde19fb34d19e8ae369",
+  "homepage": "https://www.jetbrains.com/education/learning/",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://www.jetbrains.com/legal/agreements/user_eap.html"
+  },
+  "persist": "IDE\\bin\\idea.properties",
+  "pre_install": "Remove-Item \"$dir\\IDE\\`$*\" -Force -Recurse",
+  "url": "https://download.jetbrains.com/idea/ideaIE-193.4697.23.exe#/cosi.7z",
+  "version": "2019.3-193.4697.23"
+}

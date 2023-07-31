@@ -1,0 +1,42 @@
+{
+  "version": "20.2.0",
+  "description": "JavaScript runtime environment.",
+  "homepage": "https://nodejs.org",
+  "license": "MIT",
+  "notes": "npm global prefix set to: $env:APPDATA\\npm",
+  "architecture": {
+    "64bit": {
+      "url": "https://registry.npmmirror.com/-/binary/node/v20.2.0/node-v20.2.0-win-x64.7z",
+      "hash": "d71be022ef9037075fb026cc674f731d42408facb0c74ecd9169ed77d56c6816",
+      "extract_dir": "node-v20.2.0-win-x64"
+    }
+  },
+  "installer": {
+    "script": [
+      "add_first_in_path \"$env:APPDATA\\npm\" $global",
+      "& \"$dir\\npm.cmd\" config set prefix \"$env:APPDATA\\npm\""
+    ]
+  },
+  "uninstaller": {
+    "script": "remove_from_path \"$env:APPDATA\\npm\" $global"
+  },
+  "bin": [
+    "node.exe",
+    "npm.cmd"
+  ],
+  "checkver": {
+    "url": "https://registry.npmmirror.com/-/binary/node/latest/",
+    "regex": "node-v([\\d.]+)-win-x64\\.7z"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://registry.npmmirror.com/-/binary/node/v$version/node-v$version-win-x64.7z",
+        "extract_dir": "node-v$version-win-x64"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/SHASUMS256.txt.asc"
+    }
+  }
+}

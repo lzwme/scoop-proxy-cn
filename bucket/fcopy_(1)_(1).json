@@ -1,0 +1,28 @@
+{
+  "version": "0.2.0",
+  "description": "Force to copy files even if they are using by other processes and/or the destination directories are protected",
+  "homepage": "https://github.com/hymkor/fcopy",
+  "license": "MIT License",
+  "architecture": {
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/hymkor/fcopy/releases/download/0.2.0/fcopy-windows-386-0.2.0.zip",
+      "hash": "c4a5cb39a008e3cb2ef7de20aff1dbfc9153c1cbfe98d2b9f4b80047a66edd7e"
+    },
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/hymkor/fcopy/releases/download/0.2.0/fcopy-windows-amd64-0.2.0.zip",
+      "hash": "3dc7ed13fe355a119aacbb33876875bd11f064d4f967fb8817c6738fe5a864b3"
+    }
+  },
+  "bin": "fcopy.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/hymkor/fcopy/releases/download/$version/fcopy-windows-386-$version.zip"
+      },
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/hymkor/fcopy/releases/download/$version/fcopy-windows-amd64-$version.zip"
+      }
+    }
+  }
+}

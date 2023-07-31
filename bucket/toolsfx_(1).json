@@ -1,0 +1,41 @@
+{
+  "homepage": "https://github.com/Leon406/ToolsFx",
+  "version": "1.14.0",
+  "description": "基于 kotlin + tornadoFx 的跨平台密码学工具箱.包含编解码,编码转换,加解密, 哈希,MAC,签名,大数运算,压缩,二维码功能,ctf等实用功能,支持插件",
+  "license": "ISC License",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/Leon406/ToolsFx/releases/download/v1.14.0/ToolsFx-1.14.0-withjre-win-x64.zip",
+      "extract_dir": "ToolsFx-1.14.0-withjre-win-x64",
+      "hash": "a5745aa35615395c5b607c773e1cf4fe812ce0a83b320f81f0e3ace49f29a906"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/Leon406/ToolsFx/releases/download/v1.14.0/ToolsFx-1.14.0-jdk8-withjre-windows-x86.zip",
+      "extract_dir": "ToolsFx-1.14.0-jdk8-withjre-windows-x86",
+      "hash": "md5:f65481d79ad570715af3b3ea84d2bd1a409aa29533d5ac9f0fe73d4c9b870b11"
+    }
+  },
+  "shortcuts": [
+    [
+      "ToolsFx.bat",
+      "ToolsFx"
+    ]
+  ],
+  "bin": "ToolsFx.bat",
+  "checkver": {
+    "github": "https://github.com/Leon406/ToolsFx/releases",
+    "regex": "download/v([\\d.]+)/"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/Leon406/ToolsFx/releases/download/v$version/ToolsFx-$version-withjre-win-x64.zip",
+        "extract_dir": "ToolsFx-$version-withjre-win-x64"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/Leon406/ToolsFx/releases/download/v$version/ToolsFx-$version-jdk8-withjre-windows-x86.zip",
+        "extract_dir": "ToolsFx-$version-jdk8-withjre-windows-x86"
+      }
+    }
+  }
+}

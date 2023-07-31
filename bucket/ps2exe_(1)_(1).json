@@ -1,0 +1,60 @@
+{
+  "version": "1.0.12",
+  "description": "PowerShell module that compiles Powershell scripts to executables",
+  "homepage": "https://github.com/MScholtes/PS2EXE",
+  "license": "MS-LPL",
+  "url": "https://psg-prod-eastus.azureedge.net/packages/ps2exe.1.0.12.nupkg",
+  "hash": "4c18c961a0015c1d8561740b5e02ba895f1f48dd310496f60b62bc7b612ba59b",
+  "psmodule": {
+    "name": "ps2exe"
+  },
+  "checkver": {
+    "url": "https://www.powershellgallery.com/packages/ps2exe",
+    "regex": "Downloads of ([\\d.]+)",
+    "hash": "download"
+  },
+  "autoupdate": {
+    "url": "https://psg-prod-eastus.azureedge.net/packages/ps2exe.$version.nupkg"
+  },
+  "pre_install": [
+    "if ($PSVersionTable.PSVersion.Major -gt 5) { # When in Powershell Core",
+    "   # Check for Admin rights",
+    "   $isAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)",
+    "   if (!$isAdmin) {",
+    "       $exception = New-Object \"System.ArgumentException\" \"Administrator right is required to install the package for Powershell Core\"",
+    "       throw $exception",
+    "   }",
+    "}"
+  ],
+  "post_install": [
+    "if ($PSVersionTable.PSVersion.Major -gt 5) { # When in Powershell Core",
+    "   # Always install to Windows Powershell instead of Powershell Core as per https://github.com/MScholtes/PS2EXE#use-of-powershell-core",
+    "   $curInstallationPath = \"$scoopdir\\modules\\$($manifest.psmodule.name)\"",
+    "   $trueInstallationPath = Join-Path -Path $env:ProgramFiles -ChildPath \"WindowsPowerShell\\Modules\\$($manifest.psmodule.name)\"",
+    "\tif ((Test-Path -Path $trueInstallationPath) -and ((Get-Item $trueInstallationPath).LinkType -eq \"Junction\")) {",
+    "\t    Remove-Item $trueInstallationPath",
+    "\t}",
+    "   Move-Item -Path $curInstallationPath -Destination $trueInstallationPath -Force",
+    "   Import-Module ps2exe -UseWindowsPowerShell -WarningAction:SilentlyContinue",
+    "}"
+  ],
+  "pre_uninstall": [
+    "$globalInstallationPath = Join-Path -Path $env:ProgramFiles -ChildPath \"WindowsPowerShell\\Modules\\$($manifest.psmodule.name)\"",
+    "$defaultInstallationPath = \"$scoopdir\\modules\\$($manifest.psmodule.name  )\"",
+    "if ((Test-Path -Path $globalInstallationPath) -and ((Get-Item $globalInstallationPath).LinkType -eq \"Junction\")) {",
+    "   $isAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)",
+    "   if (!$isAdmin) {",
+    "       $exception = New-Object \"System.ArgumentException\" \"Administrator right is required to install the package for Powershell Core\"",
+    "       throw $exception",
+    "   }",
+    "   Remove-Item -Path $globalInstallationPath -ErrorAction Stop",
+    "}",
+    "else {",
+    "   Remove-Item -Path $defaultInstallationPath -ErrorAction Stop",
+    "}"
+  ],
+  "notes": [
+    "If installation is performed in Windows Powershell. The package would not be available in Powershell Core.",
+    "Reinstall the package with Powershell Core to make it available in both environments."
+  ]
+}

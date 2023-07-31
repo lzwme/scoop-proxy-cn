@@ -1,0 +1,16 @@
+{
+  "##": "This package is for private use only. Requires password for installation to proceed.",
+  "version": "4.90.0.3000",
+  "description": "Windows Me ISO image (language: Chinese Traditional)",
+  "license": "Proprietary",
+  "url": "https://www.googleapis.com/drive/v3/files/1PL4jduY1CBknYxyuRmSFToIho6dGQVdt?alt=media&key=AIzaSyDiKRYtqQ7paseQyMiD_k8ZjYsYgoORuHc#/dl.7z_",
+  "hash": "B9CB849C4949A2046824F42E51267E5ED2D56147D4F40827E43EE15319788717",
+  "installer": {
+    "script": [
+      "$scriptdir = (Find-BucketDirectory $bucket)+'\\..\\scripts'",
+      "Import-Module $scriptdir\\pw\\pw_check.psm1",
+      "Expand-EncryptedArchive -aPath \"$dir\\dl.7z_\" -oDir \"$dir\" -ExitIfError -Removal",
+      "Write-Host \"ISO image file has been saved in $dir\" -ForegroundColor Green"
+    ]
+  }
+}

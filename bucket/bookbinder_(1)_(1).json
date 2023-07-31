@@ -1,0 +1,12 @@
+{
+  "homepage": "http://quantumelephant.co.uk/bookbinder/bookbinder.html",
+  "version": "3.0",
+  "license": [
+    "MPL-2.0",
+    "LGPL-3.0"
+  ],
+  "url": "http://www.quantumelephant.co.uk/bookbinder/bookbinder-3.0.zip",
+  "hash": "b85386873aa9c3005e4bf7aa432f2c9ed3fbeb6879d75e4af7b19c6c6f522ac5",
+  "bin": "bookbinder.ps1",
+  "pre_install": "write-output ('javaw -jar {0}\\bookbinder-{1}\\bookbinder{1}.jar $args' -f \"$dir\", \"$version\") | out-file -filepath $dir\\bookbinder.ps1"
+}

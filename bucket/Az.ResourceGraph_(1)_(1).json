@@ -1,0 +1,27 @@
+{
+  "url": "https://www.powershellgallery.com/api/v2/Package/Az.ResourceGraph/0.13.0#/mod.nupkg",
+  "description": "Microsoft Azure PowerShell - Azure Resource Graph cmdlets in Windows PowerShell and PowerShell Core. Allows querying resources with a powerful query language.  For more information on Resource Graph, please visit the following: https://docs.microsoft.com/azure/governance/resource-graph/",
+  "autoupdate": {
+    "hash": {
+      "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id eq 'Az.ResourceGraph' and Version eq '$version'",
+      "regex": "<d:PackageHash>$base64<.d:PackageHash>"
+    },
+    "url": "https://www.powershellgallery.com/api/v2/Package/Az.ResourceGraph/$version#/mod.nupkg"
+  },
+  "version": "0.13.0",
+  "depends": "Az.Accounts",
+  "psmodule": {
+    "name": "Az.ResourceGraph"
+  },
+  "license": {
+    "identifier": "Refer to Webpage",
+    "url": "https://aka.ms/azps-license"
+  },
+  "homepage": "https://www.powershellgallery.com/packages/Az.ResourceGraph",
+  "checkver": {
+    "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id%20eq%20'Az.ResourceGraph'%20and%20IsLatestVersion%20eq%20true",
+    "replace": "${ver}",
+    "regex": "(?i)<d:Version>(?<ver>[^<]+)<.d:Version>"
+  },
+  "hash": "sha512:b2b47085f332aaaa0643f5591ef72a79c0d8bdd99a7579e559b314794c8342514ae38df4243a65137ba1f4875cdb6d35306d3da9d125ff8013ccd026c1e958ca"
+}

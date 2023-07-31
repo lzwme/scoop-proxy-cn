@@ -1,0 +1,51 @@
+{
+  "architecture": {
+    "32bit": {
+      "hash": "sha512:b1dd073c0aed82e2b9a6b775ea66f04e4e309ec69c7846aaecb7018f4695e3f70c93d62d8df1300c159d71aad869aa763be634ca88af7945338c229293024169",
+      "pre_install": [
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-32.7z\" \"$dir\"",
+        "Remove-Item \"$dir\\`$*\", \"$dir\\Uninstall*\" -Recurse"
+      ],
+      "url": "https://mirrors.sdu.edu.cn/github-release/Molunerfinn_PicGo/v2.3.1/PicGo-Setup-2.3.1-ia32.exe#/dl.7z"
+    },
+    "64bit": {
+      "hash": "sha512:5ecf27fc740587b6ccdcace89ef3372f2b82760e2b40d60257ba1ae417e6db8ee3e18e4d474cb237138d6cebc9743ac53be61baa8d1748502acd890e71d9e20d",
+      "pre_install": [
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+        "Remove-Item \"$dir\\`$*\", \"$dir\\Uninstall*\" -Recurse"
+      ],
+      "url": "https://mirrors.sdu.edu.cn/github-release/Molunerfinn_PicGo/v2.3.1/PicGo-Setup-2.3.1-x64.exe#/dl.7z"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://mirrors.sdu.edu.cn/github-release/Molunerfinn_PicGo/v$version/PicGo-Setup-$version-ia32.exe#/dl.7z"
+      },
+      "64bit": {
+        "url": "https://mirrors.sdu.edu.cn/github-release/Molunerfinn_PicGo/v$version/PicGo-Setup-$version-x64.exe#/dl.7z"
+      }
+    },
+    "hash": {
+      "regex": "(?s)$basename.*?$base64",
+      "url": "$baseurl/latest.yml"
+    }
+  },
+  "bin": "PicGo.exe",
+  "checkver": {
+    "regex": "v(\\d[\\d.]+)",
+    "url": "https://mirrors.sdu.edu.cn/github-release/Molunerfinn_PicGo/"
+  },
+  "description": "Image uploader/manager(Download from SDU mirror).",
+  "homepage": "https://picgo.github.io/PicGo-Doc/en/",
+  "license": {
+    "identifier": "MIT"
+  },
+  "shortcuts": [
+    [
+      "PicGo.exe",
+      "PicGo"
+    ]
+  ],
+  "version": "2.3.1"
+}

@@ -1,0 +1,31 @@
+{
+  "version": "0.2.28",
+  "description": "基于p2p的tcp内网加密穿透隧道工具",
+  "homepage": "https://github.com/chenjia404/go-p2ptunnel",
+  "license": "Unknown",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/chenjia404/go-p2ptunnel/releases/download/v0.2.28/go-p2ptunnel_0.2.28_windows_amd64.zip",
+      "hash": "sha512:7083457ae7b78b3422f41ad74d66d6d2774b482a84f9174d4f6100927f4bfe22189249d4b4ea1a86cc72547dceca6d2b9958bb5e48e15e7e65d159f5029ec2e3"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/chenjia404/go-p2ptunnel/releases/download/v0.2.28/go-p2ptunnel_0.2.28_windows_386.zip",
+      "hash": "sha512:8d6ab8801fc55f256b6a4f2c6da5535f2bc80799143de27e8f103c7a8ac4f767ff3171ce37b08a40341c199c00737b86180bf4d911084c928eca43f876d57298"
+    }
+  },
+  "bin": "go-p2ptunnel.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/chenjia404/go-p2ptunnel/releases/download/v$version/go-p2ptunnel_$version_windows_amd64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/chenjia404/go-p2ptunnel/releases/download/v$version/go-p2ptunnel_$version_windows_386.zip"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/checksums.txt"
+    }
+  }
+}

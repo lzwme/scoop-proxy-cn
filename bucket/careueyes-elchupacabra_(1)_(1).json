@@ -1,0 +1,33 @@
+{
+  "version": "2.2.3.0",
+  "description": "CareUEyes 3rd party modified version, maintained by elchupacabra.",
+  "homepage": "https://lrepacks.net/repaki-raznyh-programm/446-careueyes-repack-amp-portable.html",
+  "license": {
+    "identifier": "Freeware"
+  },
+  "url": "https://pan.jiemi.workers.dev/?file=/lrepacks/careueyes_2.2.3.0.zip",
+  "hash": "40c457160a212f2e65e713ce7b8ade7878b7ecb30b9dbc40bee90adcef4f2401",
+  "pre_install": [
+    "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+    "Get-ChildItem \"$dir\\CareUEyes*.exe\" | Rename-Item -NewName 'setup.exe'",
+    "Get-ChildItem \"$dir\" -Exclude setup.exe, *install.json, *manifest.json | ForEach-Object { Remove-Item \"$dir\\$($_.Name)\" -Force -ErrorAction SilentlyContinue }",
+    "Invoke-ExternalCommand \"$dir\\setup.exe\" -ArgumentList @(\"/DIR=$dir\", '/NoIcons=1', '/SILENT', '/NORESTART') | Out-Null"
+  ],
+  "post_install": "Remove-Item \"$dir\\setup.exe\" -Force",
+  "uninstaller": {
+    "script": [
+      "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+      "Stop-Process -Name CareUEyes* -Force -ErrorAction Ignore | Out-Null",
+      "Invoke-ExternalCommand  \"$dir\\unins000.exe\" -ArgumentList @(\"/SILENT\", '/NORESTART') | Out-Null",
+      "Write-Host \"The '$app' has been uninstalled.\" -Foreground Magenta"
+    ]
+  },
+  "checkver": {
+    "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/oneindex.txt",
+    "regex": "(?<filename>careueyes_([\\d.]+)\\.zip)",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/lrepacks/$matchFilename"
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "version": "8.5.2",
+  "description": "A free source code editor and Notepad replacement that supports several languages.",
+  "homepage": "https://notepad-plus-plus.org",
+  "license": "GPL-2.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.5.2/npp.8.5.2.portable.x64.zip",
+      "hash": "5cd628de3bb5d6468f8bf8fb664312b2f82acb62271bc84419728075aafd883b"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.5.2/npp.8.5.2.portable.zip",
+      "hash": "9092255c1fc60b997497043d1c4f69f64ee25830e32677cddba314d45f2e390c"
+    },
+    "arm64": {
+      "url": "https://ghproxy.net/https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.5.2/npp.8.5.2.portable.arm64.zip",
+      "hash": "3925128ddf7b306a333d4bd484966bee5f6e0c0e8615533c8a5f970e25779a0b"
+    }
+  },
+  "pre_install": [
+    "try { Get-Command 'Test-Persistence' -ErrorAction 'Stop' | Out-Null } catch { error 'Shovel flavour of scoop is required'; exit 258 }",
+    "Test-Persistence 'session.xml', 'userDefineLang.xml'"
+  ],
+  "post_install": [
+    "$null, $bucket = find_manifest($appName)",
+    "$bucketdir = Find-BucketDirectory($bucket)",
+    "",
+    "$EVAL_INST_PATH = \"$(current_dir $dir)\".Replace('/', '\\\\')",
+    "$escdir = $EVAL_INST_PATH -replace \"\\\\\",\"\\\\\"",
+    "$escdir = $(current_dir $dir)",
+    "",
+    "$EVAL_INST_PATH = \"$(current_dir $dir)\".Replace('/', '\\\\')",
+    "$escdir = $EVAL_INST_PATH -replace \"\\\\\",\"\\\\\"",
+    "(gc \"$bucketdir\\..\\scripts\\npp\\install-context.reg.templ\") | % {$_ -replace \"%EVAL_INST_PATH%\",\"$escdir\"} | out-file -enc oem \"$dir\\install-context.reg\"",
+    "cp \"$bucketdir\\..\\scripts\\npp\\uninstall-context.reg\" \"$dir\"",
+    "",
+    "#sudo regedit.exe /s \"$dir\\install-context.reg\"",
+    "",
+    ""
+  ],
+  "bin": [
+    "notepad++.exe",
+    [
+      "notepad++.exe",
+      "npp"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "notepad++.exe",
+      "Notepad++"
+    ]
+  ],
+  "persist": [
+    "backup",
+    "cloud",
+    "plugins",
+    "themes",
+    "userDefineLangs",
+    "config.xml",
+    "session.xml",
+    "userDefineLang.xml"
+  ],
+  "checkver": {
+    "github": "https://github.com/notepad-plus-plus/notepad-plus-plus"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v$version/npp.$version.portable.x64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v$version/npp.$version.portable.zip"
+      },
+      "arm64": {
+        "url": "https://ghproxy.net/https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v$version/npp.$version.portable.arm64.zip"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/npp.$version.checksums.sha256"
+    }
+  },
+  "_from": "okibcn/ScoopMaster"
+}

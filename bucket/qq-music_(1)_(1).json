@@ -1,0 +1,29 @@
+{
+  "homepage": "https://y.qq.com",
+  "description": "QQ音乐，听我想听的歌",
+  "version": "19.24.0",
+  "license": "Copyright © 1998 - 2021 Tencent. All Rights Reserved.",
+  "url": "https://dldir1.qq.com/music/clntupate/QQMusic_YQQWinPCDL.exe#/QQMusic-install.exe",
+  "hash": "fe4ad392c6b74d2ce8f960d2a092c3c6f35d3ab165f4dd80c5e206cc775c427f",
+  "installer": {
+    "script": [
+      "Start-Process -Wait $dir\\QQMusic-install.exe /i",
+      "Remove-Item \"$dir\\QQMusic-install.exe\" -Recurse -Force"
+    ],
+    "keep": true
+  },
+  "shortcuts": [
+    [
+      "QQMusic\\QQMusic.exe",
+      "QQ Music"
+    ]
+  ],
+  "checkver": {
+    "url": "https://y.qq.com/download/download.html",
+    "regex": "Windows PC <span class=\"product_list__version\">最新版:([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://dldir1.qq.com/music/clntupate/QQMusic_YQQWinPCDL.exe#/QQMusic-install.exe"
+  },
+  "_from": "okibcn/ScoopMaster"
+}

@@ -1,0 +1,25 @@
+{
+  "homepage": "https://www.amd.com/en/support",
+  "description": "",
+  "version": "18.12.2-dec12",
+  "license": {
+    "identifier": "proprietary",
+    "url": "https://support.amd.com/en-us/download/eula"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://drivers.amd.com/drivers/win10-64bit-radeon-software-adrenalin-2019-edition-18.12.2-dec12.exe#/dl.7z"
+    }
+  },
+  "checkver": {
+    "url": "https://www.amd.com/en/support/graphics/radeon-rx-vega-series/radeon-rx-vega-series/radeon-rx-vega-64",
+    "re": "/drivers/Win10-64Bit-Radeon-Software-Adrenalin-2019-Edition-(\\d\\d\\.q[1-4]-\\w+\\d+).exe"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://drivers.amd.com/drivers/Win10-64Bit-Radeon-Software-Adrenalin-2019-Edition-$version.exe#/dl.7z"
+      }
+    }
+  }
+}

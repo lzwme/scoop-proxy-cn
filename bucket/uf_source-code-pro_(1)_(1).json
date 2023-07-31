@@ -1,0 +1,49 @@
+{
+  "version": "2.038",
+  "description": "Source code pro font",
+  "homepage": "https://github.com/adobe-fonts/source-code-pro",
+  "license": "SIL Open Font License 1.1",
+  "url": "https://ghproxy.net/https://github.com/adobe-fonts/source-code-pro/releases/download/2.038R-ro%2F1.058R-it%2F1.018R-VAR/OTF-source-code-pro-2.038R-ro-1.058R-it.zip",
+  "hash": "478028EC70ADC1FF73848A546C3AD266716A0096CD1F1A1EF18AEFF0199D5996",
+  "extract_dir": "",
+  "installer": {
+    "script": [
+      "$scoopdir = \"${dir}\"",
+      "$FontExtension = '*.otf'",
+      "$FontType = ' (OpenType)'",
+      "$windows10version1809buildnumber = 17763",
+      "$SystemCurrentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
+      "Write-Host \"Windows Buildnumber: $SystemCurrentBuildNumber\"",
+      "if ( $SystemCurrentBuildNumber -ge $windows10version1809buildnumber ) {",
+      "   $FontDirectory = \"$env:LocalAppData\\Microsoft\\Windows\\Fonts\"",
+      "   $registryrootkey = 'HKCU'",
+      "   $registrykey = \"${registryrootkey}:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts\"",
+      "   New-Item -Path $FontDirectory -ItemType Directory -ErrorAction SilentlyContinue | Out-Null",
+      "   Get-ChildItem $scoopdir -filter $FontExtension | ForEach-Object {",
+      "       $FontPath = \"$FontDirectory\\$($_.Name)\"",
+      "       New-ItemProperty -Path $registrykey -Name $_.Name.Replace($_.Extension, $FontType) -Value $FontPath -Force | Out-Null",
+      "       Copy-Item $_.Fullname -destination $FontDirectory",
+      "   }",
+      "}"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$scoopdir = \"${dir}\"",
+      "$FontExtension = '*.otf'",
+      "$FontType = ' (OpenType)'",
+      "$FontDirectory = \"$env:LocalAppData\\Microsoft\\Windows\\Fonts\"",
+      "$registryrootkey = 'HKCU'",
+      "$registrykey = \"${registryrootkey}:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts\"",
+      "Get-ChildItem $scoopdir -filter $FontExtension | ForEach-Object {",
+      "   $FontPath = \"$FontDirectory\\$($_.Name)\"",
+      "   Remove-ItemProperty -Path $registrykey -Name $_.Name.Replace($_.Extension, $FontType) -ErrorAction SilentlyContinue -Force",
+      "   while ( Test-Path $FontPath ) {",
+      "       Write-Host \"Remove ${FontPath}\"",
+      "       Remove-Item $FontPath -ErrorAction SilentlyContinue -Force",
+      "       Start-Sleep -Milliseconds 20",
+      "   }",
+      "}"
+    ]
+  }
+}

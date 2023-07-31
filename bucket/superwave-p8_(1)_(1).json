@@ -1,0 +1,39 @@
+{
+  "version": "2.4",
+  "homepage": "http://www.superwavesynths.com/p8",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "http://www.superwavesynths.co.uk/products/superwave_p8_x64.msi"
+      },
+      "32bit": {
+        "url": "http://www.superwavesynths.co.uk/products/superwave_p8_x86.msi"
+      }
+    }
+  },
+  "architecture": {
+    "64bit": {
+      "url": "http://www.superwavesynths.co.uk/products/superwave_p8_x64.msi",
+      "extract_dir": "SuperWave/P8"
+    },
+    "32bit": {
+      "url": "http://www.superwavesynths.co.uk/products/superwave_p8_x86.msi",
+      "extract_dir": "SuperWave/P8"
+    }
+  },
+  "checkver": {
+    "url": "http://www.superwavesynths.com/p8",
+    "re": "P8 v([\\d.]+)"
+  },
+  "post_install": [
+    "New-Item -ErrorAction Ignore $env:USERPROFILE\\.vst -ItemType Directory",
+    "New-Item -ErrorAction Ignore $env:USERPROFILE\\.vst\\SuperWave -ItemType Directory",
+    "New-Item -Type Junction -Path $env:USERPROFILE\\.vst\\SuperWave\\P8 -Value $dir"
+  ],
+  "uninstaller": {
+    "script": [
+      "(Get-Item $env:USERPROFILE\\.vst\\SuperWave\\P8).Delete()",
+      "(Get-ChildItem $env:USERPROFILE\\.vst\\SuperWave) -eq $null -And (Remove-Item $env:USERPROFILE\\.vst\\SuperWave)"
+    ]
+  }
+}

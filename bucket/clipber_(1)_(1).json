@@ -1,0 +1,25 @@
+{
+  "homepage": "https://home.clipber.com/",
+  "description": "Clipboard tool",
+  "license": "Shareware",
+  "version": "3.2.2",
+  "url": "https://dl.clipber.com/windows/copies_3_2_2.zip",
+  "hash": "sha1:45f94252ebfde88fbc7194f496fa9c8a4dd4a632",
+  "shortcuts": [
+    [
+      "clipManager.exe",
+      "快贴"
+    ]
+  ],
+  "checkver": {
+    "url": "https://home.clipber.com/windows/",
+    "regex": "([\\d.]+)\\s*绿色版"
+  },
+  "autoupdate": {
+    "url": "https://dl.clipber.com/windows/copies_$underscoreVersion.zip",
+    "hash": {
+      "url": "https://home.clipber.com/windows/",
+      "regex": "(?sm)绿色版.*sha1:\\s*$sha1</p>"
+    }
+  }
+}

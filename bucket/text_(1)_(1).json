@@ -1,0 +1,36 @@
+{
+  "homepage": "https://github.com/spiegel-im-spiegel/text",
+  "version": "0.5.2",
+  "license": {
+    "identifier": "MIT",
+    "url": "https://github.com/spiegel-im-spiegel/text/blob/master/LICENSE"
+  },
+  "description": "Encoding/Decoding Text Package by Golang",
+  "architecture": {
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/spiegel-im-spiegel/text/releases/download/v0.5.2/gonkf_0.5.2_Windows_32bit.zip",
+      "hash": "aa5d98b878b6befd97b3b333030aa4f4ac14c0249b9185d2f94fb6d32a4be98f"
+    },
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/spiegel-im-spiegel/text/releases/download/v0.5.2/gonkf_0.5.2_Windows_64bit.zip",
+      "hash": "62bee75fbf18fe92d1fc6c01ffc62819d4536d69bff1aa56330de61f6bf7596d"
+    }
+  },
+  "bin": "gonkf.exe",
+  "checkver": {
+    "github": "https://github.com/spiegel-im-spiegel/text"
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/spiegel-im-spiegel/text/releases/download/v$version/gonkf_$version_Windows_32bit.zip"
+      },
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/spiegel-im-spiegel/text/releases/download/v$version/gonkf_$version_Windows_64bit.zip"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/gonkf_$version_checksums.txt"
+    }
+  }
+}

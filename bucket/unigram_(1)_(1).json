@@ -1,0 +1,30 @@
+{
+  "version": "9.0.7840",
+  "description": "Telegram for Windows",
+  "homepage": "https://github.com/UnigramDev/Unigram",
+  "license": {
+    "identifier": "GPL-3.0-openssl-exception",
+    "url": "https://github.com/UnigramDev/Unigram/blob/develop/LICENSE"
+  },
+  "url": "https://ghproxy.net/https://github.com/UnigramDev/Unigram/releases/download/v9.0/Unigram_9.0.7840.0_x64.msixbundle",
+  "hash": "",
+  "pre_install": "if (Test-Path \"$persist_dir\\log.txt\") { Copy-Item \"$persist_dir\\log.txt\" \"$dir\\\" }",
+  "pre_uninstall": "if (Test-Path \"$dir\\log.txt\") { Copy-Item \"$dir\\log.txt\" \"$persist_dir\\\" }",
+  "bin": [
+    "Telegram.exe",
+    [
+      "Telegram.exe",
+      "Unigram"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "Telegram.exe",
+      "Unigram"
+    ]
+  ],
+  "persist": "tdata",
+  "checkver": {
+    "github": "https://github.com/UnigramDev/Unigram"
+  }
+}

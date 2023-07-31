@@ -1,0 +1,51 @@
+{
+  "version": "18",
+  "description": "Quickly and easily develop desktop, mobile, and web applications with Java, JavaScript, HTML5, PHP, C/C++ and more.",
+  "homepage": "https://netbeans.org",
+  "license": "Apache-2.0",
+  "suggest": {
+    "JDK": "java/microsoft-jdk"
+  },
+  "url": "https://www.apache.org/dist/netbeans/netbeans/18/netbeans-18-bin.zip",
+  "hash": "sha512:f45ed089874b681d912d9650a7d42a674cd15dd4e1a5929d64899fa1383b576b83f050855f749983ecbef216f4d2a9125e30ddc273e282d11f12ce80a4760411",
+  "extract_dir": "netbeans",
+  "installer": {
+    "script": [
+      "$conf = Get-Content \"$dir\\etc\\netbeans.conf\"",
+      "$jdk = $Env:JAVA_HOME",
+      "Set-Content \"$dir\\etc\\netbeans.conf\" (",
+      "  $conf -replace '#netbeans_jdkhome=.*',\"netbeans_jdkhome=`\"$jdk`\"\")",
+      "if (-not $?) { exit 1 }"
+    ]
+  },
+  "architecture": {
+    "64bit": {
+      "shortcuts": [
+        [
+          "bin/netbeans64.exe",
+          "NetBeans",
+          "--userdir \"\\apps\\.config\\NetBeans\\config\" --cachedir \"\\apps\\.config\\NetBeans\\cache\" --console suppress"
+        ]
+      ]
+    },
+    "32bit": {
+      "shortcuts": [
+        [
+          "bin/netbeans.exe",
+          "NetBeans",
+          "--userdir \"\\apps\\.config\\NetBeans\\config\" --cachedir \"\\apps\\.config\\NetBeans\\cache\" --console suppress"
+        ]
+      ]
+    }
+  },
+  "checkver": {
+    "url": "https://netbeans.apache.org/download/index.html",
+    "regex": "<h1>Apache NetBeans ([\\d.]+)</h1>"
+  },
+  "autoupdate": {
+    "url": "https://www.apache.org/dist/netbeans/netbeans/$version/netbeans-$version-bin.zip",
+    "hash": {
+      "url": "$url.sha512"
+    }
+  }
+}

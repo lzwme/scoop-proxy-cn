@@ -1,0 +1,35 @@
+{
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/microsoft/terminal/releases/download/v$matchTag/Microsoft.WindowsTerminal_Win10_$version_8wekyb3d8bbwe.msixbundle"
+  },
+  "checkver": {
+    "regex": "releases/download/v(?<tag>[\\d.]+)/Microsoft.WindowsTerminal_Win10_([\\d.]+)_8wekyb3d8bbwe.msixbundle",
+    "url": "https://api.github.com/repos/microsoft/terminal/releases"
+  },
+  "description": "Windows Terminal is a new, modern, feature-rich, productive terminal application for command-line users. It includes many of the features most frequently requested by the Windows command-line community including support for tabs, rich text, globalization, configurability, theming & styling, and more.",
+  "hash": "ba6fc6854e713094b4009cf2021e8b4887cff737ab4b9c4f9390462dd2708298",
+  "homepage": "https://github.com/microsoft/terminal",
+  "installer": {
+    "script": [
+      "$winVer = [Environment]::OSVersion.Version",
+      "if (($winver.Major -lt '10') -or ($winVer.Build -lt 18362)) { error 'This package requires at least Windows 10 version 1903/OS build 18362.x.'; break }",
+      "if($PSVersionTable.PSVersion.Major -ge 6) { Import-Module Appx -UseWindowsPowershell | Out-Null }",
+      "Add-AppxPackage -Path \"$dir\\$fname\""
+    ]
+  },
+  "license": {
+    "identifier": "MIT",
+    "url": "https://github.com/microsoft/terminal/raw/main/LICENSE"
+  },
+  "suggest": {
+    "vcredist": "extras/vcredist2022"
+  },
+  "uninstaller": {
+    "script": [
+      "if($PSVersionTable.PSVersion.Major -ge 6) { Import-Module Appx -UseWindowsPowershell | Out-Null }",
+      "Get-AppxPackage -Name Microsoft.WindowsTerminal | Remove-AppxPackage"
+    ]
+  },
+  "url": "https://ghproxy.net/https://github.com/microsoft/terminal/releases/download/v1.16.10261.0/Microsoft.WindowsTerminal_Win10_1.16.10261.0_8wekyb3d8bbwe.msixbundle",
+  "version": "1.16.10261.0"
+}

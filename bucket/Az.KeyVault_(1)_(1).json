@@ -1,0 +1,27 @@
+{
+  "url": "https://www.powershellgallery.com/api/v2/Package/Az.KeyVault/4.10.0#/mod.nupkg",
+  "description": "Microsoft Azure PowerShell - Key Vault service cmdlets for Azure Resource Manager in Windows PowerShell and PowerShell Core.  For more information on Key Vault, please visit the following: https://docs.microsoft.com/azure/key-vault/",
+  "autoupdate": {
+    "hash": {
+      "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id eq 'Az.KeyVault' and Version eq '$version'",
+      "regex": "<d:PackageHash>$base64<.d:PackageHash>"
+    },
+    "url": "https://www.powershellgallery.com/api/v2/Package/Az.KeyVault/$version#/mod.nupkg"
+  },
+  "version": "4.10.0",
+  "depends": "Az.Accounts",
+  "psmodule": {
+    "name": "Az.KeyVault"
+  },
+  "license": {
+    "identifier": "Refer to Webpage",
+    "url": "https://aka.ms/azps-license"
+  },
+  "homepage": "https://www.powershellgallery.com/packages/Az.KeyVault",
+  "checkver": {
+    "url": "https://www.powershellgallery.com/api/v2/Packages()?$filter=Id%20eq%20'Az.KeyVault'%20and%20IsLatestVersion%20eq%20true",
+    "replace": "${ver}",
+    "regex": "(?i)<d:Version>(?<ver>[^<]+)<.d:Version>"
+  },
+  "hash": "sha512:a55f1ddaa85b7bf0d9a92bcbc2d3338acd7b05b4c2f926381ec3f9a50cb1ea937dc4510456ff23ef8a84f50771a2601ad0c9053fe003656950d8c9b39dd032c9"
+}

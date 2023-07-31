@@ -1,0 +1,25 @@
+{
+  "description": "BandLab Assistant",
+  "homepage": "https://www.bandlab.com/products/desktop/assistant",
+  "version": "10.2.0",
+  "license": [
+    {
+      "identifier": "Proprietary",
+      "url": "https://blog.bandlab.com/terms-of-use/"
+    }
+  ],
+  "url": "https://static.bandlab.com/assistant/BandLab%20Assistant%20Setup%2010.2.0.exe#/BandLab-Assistant-Setup.exe",
+  "hash": "4729bdd35d3913200578152a8d4d47f6eef2f71af0b0fc26d19ff79c56e1c26d",
+  "installer": {
+    "script": [
+      "Start-Process -Wait -NoNewWindow -FilePath \"${dir}\\BandLab-Assistant-Setup.exe\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$regkey=\"9b08bea4-021c-5f9d-a74e-ac0ceb51fb28\"",
+      "$uninstaller=(Get-ItemProperty -Path \"Registry::HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\${regkey}\" | Select-Object -ExpandProperty QuietUninstallString)",
+      "cmd /c \"${uninstaller}\""
+    ]
+  }
+}

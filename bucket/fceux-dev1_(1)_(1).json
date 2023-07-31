@@ -1,0 +1,71 @@
+{
+  "architecture": {
+    "32bit": {
+      "bin": [
+        [
+          "fceux64.exe",
+          "fceux-dev"
+        ]
+      ],
+      "hash": "d35657c0812b1399cfd0169baf0691375c2a2bafe4925bf9760d15598fccef44",
+      "shortcuts": [
+        [
+          "fceux64.exe",
+          "FCEUX (dev)"
+        ]
+      ],
+      "url": "https://github.com/detain/scoop-emulators-cache/raw/master/fceux-dev/fceux64.zip"
+    },
+    "64bit": {
+      "bin": [
+        [
+          "fceux64.exe",
+          "fceux-dev"
+        ]
+      ],
+      "hash": "d35657c0812b1399cfd0169baf0691375c2a2bafe4925bf9760d15598fccef44",
+      "shortcuts": [
+        [
+          "fceux64.exe",
+          "FCEUX (dev)"
+        ]
+      ],
+      "url": "https://github.com/detain/scoop-emulators-cache/raw/master/fceux-dev/fceux64.zip"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ci.appveyor.com/api/buildjobs/$matchWin32/artifacts/fceux.zip"
+      },
+      "64bit": {
+        "url": "https://ci.appveyor.com/api/buildjobs/$matchX64/artifacts/fceux64.zip"
+      }
+    }
+  },
+  "checkver": {
+    "regex": "\"jobId\":\"(?<win32>.*?)\".*?arch=win32,.*?\"jobId\":\"(?<x64>.*?)\".*?arch=win32-x64,.*\"version\":\"(?<version>.*?)\".*\"commitId\":\"(?<commit>.{7}).*\"",
+    "url": "https://ci.appveyor.com/api/projects/detain/fceux"
+  },
+  "depends": "scoop-validator",
+  "description": "Nintendo NES and Famicom emulator",
+  "homepage": "http://www.fceux.com",
+  "license": {
+    "identifier": "GPL-2.0",
+    "url": "https://github.com/detain/fceux/blob/master/COPYING"
+  },
+  "persist": [
+    "cheats",
+    "fcs",
+    "movies",
+    "sav",
+    "snaps",
+    "fceux.cfg"
+  ],
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\fceux.cfg\")) {",
+    "    New-Item \"$dir\\fceux.cfg\" -Type File | Out-Null",
+    "}"
+  ],
+  "version": "1360-bef4e80e"
+}

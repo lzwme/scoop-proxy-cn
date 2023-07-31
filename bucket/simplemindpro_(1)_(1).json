@@ -1,0 +1,24 @@
+{
+  "version": "2.0.0",
+  "description": "Cross-platform mind mapping tool",
+  "homepage": "https://simplemind.eu",
+  "license": {
+    "identifier": "Proprietary"
+  },
+  "url": "https://simpleapps.eu/simplemind/SM2Win_x9D8KSPXxPSdP2xws2V/SimpleMindPro200b6278Setup.exe",
+  "hash": "3f71c18eafa90b4059057d500448f1d86cef26e31d6a4834385c3b9a3d368b1f",
+  "innosetup": true,
+  "shortcuts": [
+    [
+      "SimpleMindPro.exe",
+      "SimpleMind"
+    ]
+  ],
+  "checkver": {
+    "url": "https://simpleapps.eu/download/full-edition/simplemind-pro-windows/",
+    "regex": "(?<uRL>https://simpleapps\\.eu/simplemind/[a-zA-Z0-9_]*/[a-zA-Z0-9_]*\\.exe)\">(?:[\\x00-\\x7F]+)Version: ([0-9.]+) b(?<build>[0-9]+)</b>"
+  },
+  "autoupdate": {
+    "url": "$matchUrl"
+  }
+}

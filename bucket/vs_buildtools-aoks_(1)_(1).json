@@ -1,0 +1,31 @@
+{
+  "version": "17.6",
+  "description": "Microsoft Visual Studio Build Tools 2019",
+  "homepage": "https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022",
+  "license": "https://visualstudio.microsoft.com/license-terms/mlt031519/",
+  "url": "https://aka.ms/vs/17/release/vs_BuildTools.exe",
+  "hash": "3b1fed4ef547c60dc4ffeb46b6571af794a5fdc9ee438619c3ce79a2d834f9b0",
+  "installer": {
+    "script": "Invoke-ExternalCommand -FilePath \"$dir\\vs_buildtools.exe\" -Args @('install', '--installPath', \"$dir\\vs\\\", '--add', 'Microsoft.VisualStudio.Workload.MSBuildTools', '--add', 'Microsoft.VisualStudio.Workload.VCTools', '--add', 'Microsoft.VisualStudio.Component.VC.Tools.x86.x64', '--quiet', '--norestart', '--wait') -RunAs | Out-Null"
+  },
+  "uninstaller": {
+    "script": "Invoke-ExternalCommand -FilePath \"$dir\\vs_buildtools.exe\" -Args @('uninstall', '--installPath', \"$dir\\vs\\\", '--quiet', '--norestart', '--wait') -RunAs | Out-Null"
+  },
+  "env_add_path": [
+    "vs\\Common7\\Tools",
+    "vs\\Common7\\IDE",
+    "vs\\MSBuild\\Current\\bin"
+  ],
+  "bin": [
+    "vs\\Common7\\Tools\\LaunchDevCmd.bat",
+    "vs\\Common7\\Tools\\VsDevCmd.bat",
+    "vs\\Common7\\Tools\\VsMSBuildCmd.bat"
+  ],
+  "checkver": {
+    "url": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
+    "regex": ">Visual Studio 2022 version ([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://aka.ms/vs/17/release/vs_BuildTools.exe"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "description": "digitalfishphones.com normalizer denormals eleminator",
+  "homepage": "http://digitalfishphones.com/main.php?item=2&subItem=6",
+  "version": "1.0",
+  "license": [
+    {
+      "identifier": "Freeware",
+      "url": "http://digitalfishphones.com/main.php?item=2&subItem=1"
+    }
+  ],
+  "url": "http://digitalfishphones.com/binaries/normalizer_PC_Win.zip",
+  "hash": "cf0b94e28654aea9057d98ac03c8a49e8cc82845a72bf1b7d53dd35bd1809ecb",
+  "extract_to": "dfp-normalizer",
+  "installer": {
+    "script": [
+      "$vst2dir = $env:LOCALAPPDATA + \"\\programs\\common\\vst2\"",
+      "Write-Host VST2 folder $vst2dir",
+      "New-Item -Force -ItemType Directory -Path $vst2dir | Out-Null",
+      "Copy-Item -Force -Recurse -Path \"${dir}\\dfp-normalizer\" -Destination $vst2dir",
+      "Remove-Item -Force -Recurse -Path \"${dir}\\dfp-normalizer\""
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$vst2dir = $env:LOCALAPPDATA + \"\\programs\\common\\vst2\"",
+      "Remove-Item -Force -Recurse -Path \"${vst2dir}\\dfp-normalizer\""
+    ]
+  }
+}

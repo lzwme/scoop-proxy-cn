@@ -1,0 +1,43 @@
+{
+  "version": "4.0-dev.20220118",
+  "description": "A feature-packed, cross-platform game engine to create 2D and 3D games from a unified interface.",
+  "homepage": "https://godotengine.org/",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://downloads.tuxfamily.org/godotengine/testing/4.0/4.0-dev.20220118/Godot_v4.0-dev.20220118_win64.exe.zip",
+      "hash": "4bcdbc64bfc3fe720458fcd9b96b3825afbb0dac0e980ceb7445c250244c6c19"
+    },
+    "32bit": {
+      "url": "https://downloads.tuxfamily.org/godotengine/testing/4.0/4.0-dev.20220118/Godot_v4.0-dev.20220118_win32.exe.zip",
+      "hash": "b6eef179ad0261f59513b90b438ef50e87b674c6507270c3099940091edd0f92"
+    }
+  },
+  "pre_install": [
+    "Get-ChildItem \"$dir\\Godot_*.exe\" | Rename-Item -NewName \"$dir\\godot.exe\"",
+    "New-Item -Force -Path \"$dir\" -Name '_sc_' -Value '{}' | Out-Null"
+  ],
+  "persist": "editor_data",
+  "bin": "godot.exe",
+  "shortcuts": [
+    [
+      "godot.exe",
+      "Godot4"
+    ]
+  ],
+  "checkver": {
+    "url": "https://downloads.tuxfamily.org/godotengine/testing/4.0/",
+    "regex": "(4.0-dev.[\\d.]+)",
+    "reverse": true
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://downloads.tuxfamily.org/godotengine/testing/4.0/$version/Godot_v$version_win64.exe.zip"
+      },
+      "32bit": {
+        "url": "https://downloads.tuxfamily.org/godotengine/testing/4.0/$version/Godot_v$version_win32.exe.zip"
+      }
+    }
+  }
+}

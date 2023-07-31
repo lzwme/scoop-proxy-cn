@@ -1,0 +1,43 @@
+{
+  "version": "0.2.0+r6.4cec4e5.2177112839",
+  "description": "Render golang template with command line. Build with my own repo.",
+  "homepage": "https://github.com/NateScarlet/gotmpl/",
+  "license": {
+    "identifier": "MIT",
+    "url": "https://github.com/NateScarlet/gotmpl/blob/master/LICENSE"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://nightly.link/Small-Ku/gotmpl/actions/runs/2177112839/Windows%2064-bit.zip",
+      "hash": "a68e8824f25c531130fd4d925e2591a267f26f71e7b45811ce59934752f56881"
+    },
+    "32bit": {
+      "url": "https://nightly.link/Small-Ku/gotmpl/actions/runs/2177112839/Windows%2032-bit.zip",
+      "hash": "e4863d9f8cac5a0ed1b23605e883a443624f1e0b30524dac6ac032d6b3742ffd"
+    },
+    "arm64": {
+      "url": "https://nightly.link/Small-Ku/gotmpl/actions/runs/2177112839/Windows%2064-bit%20ARM.zip",
+      "hash": "e5e2be1a9edb0050eeb2d938c9261d3d641b5912f3fa5d299d142fa5ef2d7fff"
+    }
+  },
+  "checkver": {
+    "url": "https://api.github.com/repos/Small-Ku/gotmpl/actions/workflows/build.yml/runs",
+    "jsonpath": "$.workflow_runs",
+    "regex": "\"id\": ?(?<id>\\d+),\\s+(\"[\\w_]+\": ?[\"\\w\\d_\\/\\.-]+,\\s+)*\"head_branch\": ?\"master\",\\s+\"head_sha\": ?\"(?<commit>[\\w\\d]{7})[\\w\\d]+\",\\s+(\"[\\w_]+\": ?[\"\\w\\d_\\/\\.-]+,\\s+)*\"run_number\": ?(?<run>\\d+),\\s+(\"[\\w_]+\": ?[\"\\w\\d_\\/\\.-]+,\\s+)*\"conclusion\": ?\"success\"",
+    "replace": "0.2.0+r${run}.${commit}.${id}"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://nightly.link/Small-Ku/gotmpl/actions/runs/$matchId/Windows%2064-bit.zip"
+      },
+      "32bit": {
+        "url": "https://nightly.link/Small-Ku/gotmpl/actions/runs/$matchId/Windows%2032-bit.zip"
+      },
+      "arm64": {
+        "url": "https://nightly.link/Small-Ku/gotmpl/actions/runs/$matchId/Windows%2064-bit%20ARM.zip"
+      }
+    }
+  },
+  "bin": "gotmpl.exe"
+}

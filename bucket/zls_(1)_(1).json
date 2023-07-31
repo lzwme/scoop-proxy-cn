@@ -1,0 +1,32 @@
+{
+  "version": "0.10.0",
+  "description": "The Zig language server (LSP) binary.",
+  "homepage": "https://github.com/zigtools/zls",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/zigtools/zls/releases/download/0.10.0/x86_64-windows.tar.zst",
+      "hash": "d7b21059eb5bf15197fbb9b74791921393f778fc180b13f1d1f502136da53598"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/zigtools/zls/releases/download/0.10.0/i386-windows.tar.zst",
+      "hash": "899be7b5300b59c1078620a4508665527009bd86b791ffc05f6cad903ab15580"
+    }
+  },
+  "bin": [
+    "bin\\zls.exe"
+  ],
+  "checkver": {
+    "github": "https://github.com/zigtools/zls"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/zigtools/zls/releases/download/$version/x86_64-windows.tar.zst"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/zigtools/zls/releases/download/$version/i386-windows.tar.zst"
+      }
+    }
+  }
+}

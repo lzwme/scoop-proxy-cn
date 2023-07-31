@@ -1,0 +1,39 @@
+{
+  "version": "0.3.2",
+  "description": "A downloader of Baidu Netdisk.",
+  "homepage": "https://pan.baidu.com",
+  "license": {
+    "identifier": "Freeware"
+  },
+  "url": "https://pan.jiemi.workers.dev/?file=/else/数码小站_V0.3.2.zip#dl.zip_",
+  "hash": "34907d49e9dbb46454527541a61afd9efc4c81dce974cc3bad24c3e5345db5fb",
+  "pre_install": [
+    "Expand-7zipArchive \"$dir\\$fname\" -Switches '-p2022' -Removal",
+    "if (Test-Path \"$persist_dir\\数码小站.ini\") {",
+    "    Copy-Item \"$persist_dir\\数码小站.ini\" \"$dir\\\" | Out-Null",
+    "}"
+  ],
+  "uninstaller": {
+    "script": [
+      "if (Test-Path \"$dir\\数码小站.ini\") {",
+      "    ensure \"$persist_dir\" | Out-Null",
+      "    Copy-Item \"$dir\\数码小站.ini\" \"$persist_dir\\\" | Out-Null",
+      "}"
+    ]
+  },
+  "shortcuts": [
+    [
+      "数码小站.exe",
+      "数码小站"
+    ]
+  ],
+  "persist": "下载",
+  "checkver": {
+    "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/oneindex.txt",
+    "regex": "数码小站_V([\\d.]+).zip",
+    "reverse": true
+  },
+  "autoupdate": {
+    "url": "https://pan.jiemi.workers.dev/?file=/else/数码小站_V$version.zip#dl.zip_"
+  }
+}
