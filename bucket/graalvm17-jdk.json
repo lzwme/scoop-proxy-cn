@@ -1,0 +1,43 @@
+{
+  "description": "High-performance, embeddable, polyglot Virtual Machine for JVM-langs (Java, Scala, Kotlin), JavaScript/NodeJS, Python, Ruby, R, and LLVM-langs (C, C++, Rust)",
+  "version": "17.0.8",
+  "homepage": "https://www.graalvm.org/",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://www.oracle.com/downloads/licenses/graal-free-license.html"
+  },
+  "url": "https://download.oracle.com/graalvm/17/archive/graalvm-jdk-17.0.8_windows-x64_bin.zip",
+  "hash": "ea90259f08c7e358bed62c2b48d68d295aa7be38ab3cb922d74bab284e717f64",
+  "extract_dir": "graalvm-jdk-17.0.8+9.1",
+  "env_add_path": "bin",
+  "env_set": {
+    "JAVA_HOME": "$dir",
+    "GRAALVM_HOME": "$dir"
+  },
+  "checkver": {
+    "script": [
+      "$graalvm_latest = (Invoke-RestMethod -Uri 'https://api.foojay.io/disco/v3.0/packages?package_type=jdk&latest=available&operating_system=windows&architecture=x64&distro=graalvm&version=17').result | Select-Object -first 1",
+      "$graalvm_version = $graalvm_latest.java_version",
+      "$graalvm_url_info = (Invoke-RestMethod -Uri $graalvm_latest.links.pkg_info_uri).result",
+      "$graalvm_url_download = $graalvm_url_info.direct_download_uri",
+      "$graalvm_url_checksum = $graalvm_url_info.checksum_uri",
+      "$checksum = (Invoke-WebRequest $graalvm_url_checksum).Content",
+      "$cache_file = \"$cachedir\\$app#$graalvm_version#${$graalvm_url_download -replace \"[\\\\/:*?\"<>|]+\", '_'}\"",
+      "if (!((Test-Path $cache_file) -and ((Get-FileHash $cache_file).Hash -eq $checksum))) {",
+      "Invoke-WebRequest $graalvm_url_download -o $cache_file -UseBasicParsing",
+      "}",
+      "[void][Reflection.Assembly]::LoadWithPartialName('System.IO.Compression.FileSystem')",
+      "$files = [IO.Compression.ZipFile]::OpenRead($cache_file).Entries",
+      "$extract_dir = (($files | Where FullName -match '/' | Select -First 1).Fullname -Split '/')[0]",
+      "Write-Output $graalvm_version $extract_dir $graalvm_url_download $graalvm_url_checksum"
+    ],
+    "regex": "(?<version>[^\\s]+)\\s(?<extract>[^\\s]+)\\s(?<url>[^\\s]+)\\s(?<hash>[^\\s]+)"
+  },
+  "autoupdate": {
+    "url": "$matchUrl",
+    "extract_dir": "$matchExtract",
+    "hash": {
+      "url": "$matchHash"
+    }
+  }
+}
