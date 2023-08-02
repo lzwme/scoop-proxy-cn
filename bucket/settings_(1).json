@@ -1,9 +1,11 @@
 {
-  "editor.formatOnSave": true,
+  "[powershell]": {
+    "editor.formatOnSave": true
+  },
+  "powershell.scriptAnalysis.settingsPath": "PSScriptAnalyzerSettings.psd1",
   "powershell.codeFormatting.preset": "OTBS",
-  "powershell.codeFormatting.useCorrectCasing": true,
-  "prettier.useEditorConfig": true,
-  "files.insertFinalNewline": true,
+  "powershell.codeFormatting.alignPropertyValuePairs": true,
+  "powershell.codeFormatting.ignoreOneLineBlock": true,
   "json.schemas": [
     {
       "url": "https://ghproxy.net/https://raw.githubusercontent.com/ScoopInstaller/Scoop/master/schema.json",
@@ -14,6 +16,10 @@
   ],
   "files.exclude": {
     "**/.git": true,
-    "**/.DS_Store": true
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/tmp": true
   }
 }

@@ -1,0 +1,63 @@
+{
+  "##": "Based on https://github.com/lzwme/scoop-proxy-cn/blob/main/bucket/Capture2TextZhCn.json",
+  "homepage": "http://capture2text.sourceforge.net/",
+  "description": "OCR capture utility.",
+  "version": "4.6.3",
+  "license": "GPL-3.0-or-later",
+  "architecture": {
+    "64bit": {
+      "url": [
+        "https://downloads.sourceforge.net/project/capture2text/Capture2Text/Capture2Text_v4.6.3/Capture2Text_v4.6.3_64bit.zip",
+        "https://downloads.sourceforge.net/project/capture2text/Dictionaries/Chinese%20-%20Simplified.zip",
+        "https://downloads.sourceforge.net/project/capture2text/Dictionaries/Chinese%20-%20Traditional.zip",
+        "https://downloads.sourceforge.net/project/capture2text/Dictionaries/Vietnamese.zip"
+      ],
+      "hash": [
+        "sha1:c9db601ca9399fca0a053985b03b8f59ce64798a",
+        "sha1:0ccb5751f3d1dc5c39e7b490701f1946e1ac0a9d",
+        "sha1:F6C30192D0C528CDCB044E1CA5AB40628474582E",
+        "sha1:20A8EEFB7BA5569E6109C50C78C7F2730E6E4063"
+      ]
+    },
+    "32bit": {
+      "url": [
+        "https://downloads.sourceforge.net/project/capture2text/Capture2Text/Capture2Text_v4.6.3/Capture2Text_v4.6.3_32bit.zip",
+        "https://downloads.sourceforge.net/project/capture2text/Dictionaries/Chinese%20-%20Simplified.zip"
+      ],
+      "hash": [
+        "sha1:486bcc44d10c476b1a3381d553b2e17cc3d1a23c",
+        "sha1:0ccb5751f3d1dc5c39e7b490701f1946e1ac0a9d"
+      ]
+    }
+  },
+  "extract_dir": "Capture2Text",
+  "post_install": "Move-Item \"$dir\\*.traineddata\" \"$dir\\tessdata\"",
+  "bin": [
+    [
+      "Capture2Text_CLI.exe",
+      "Capture2Text"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "Capture2Text.exe",
+      "Capture2Text",
+      "--portable"
+    ]
+  ],
+  "persist": "Capture2Text",
+  "checkver": {
+    "url": "https://sourceforge.net/projects/capture2text/rss?path=/Capture2Text",
+    "regex": "Capture2Text_v([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://downloads.sourceforge.net/project/capture2text/Capture2Text/Capture2Text_v$version/Capture2Text_v$version_64bit.zip"
+      },
+      "32bit": {
+        "url": "https://downloads.sourceforge.net/project/capture2text/Capture2Text/Capture2Text_v$version/Capture2Text_v$version_32bit.zip"
+      }
+    }
+  }
+}

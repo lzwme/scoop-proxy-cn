@@ -1,0 +1,65 @@
+{
+  "##": "Based on https://github.com/kkzzhizhou/scoop-apps/blob/master/bucket/obs-plugin-auto-subtitle.json and https://github.com/ScoopInstaller/Extras/blob/master/bucket/obs-plugin-droidcam.json",
+  "version": "5.0.4",
+  "homepage": "https://github.com/univrsal/input-overlay",
+  "description": "An OBS plugin that shows keyboard, gamepad and mouse input on stream",
+  "license": "GPL-2.0",
+  "notes": "If you don't have any obs-studio version installed in your computer, please install one of the following below. Then uninstall this app and install it again.",
+  "suggest": {
+    "OBS": [
+      "3rd/OBSStudio-Portable",
+      "extras/obs-studio",
+      "extras/obs-studio-small",
+      "versions/obs-studio-pre",
+      "versions/obs-studio27"
+    ]
+  },
+  "architecture": {
+    "64bit": {
+      "url": [
+        "https://ghproxy.net/https://github.com/univrsal/input-overlay/releases/download/v5.0.4/input-overlay-5.0.4-windows-x64.zip",
+        "https://ghproxy.net/https://github.com/univrsal/input-overlay/releases/download/v5.0.4/input-overlay-5.0.4-presets.zip"
+      ],
+      "hash": [
+        "0fcbc340f14a354f1acf225d650c4f762f062630c0440ac3487e6094bcdffab5",
+        "efdc9d65dd9ed8c0670159b5697284b55c8057aea5a508afde634a23c799d698"
+      ]
+    }
+  },
+  "extract_to": [
+    "",
+    "input-overlay-presets"
+  ],
+  "pre_install": [
+    "'OBSStudio-Portable', 'obs-studio', 'obs-studio-small', 'obs-studio27', 'obs-studio-pre' | ForEach-Object {",
+    "   $obs = \"$(appdir $_ $global)\"",
+    "   if (Test-Path $obs) {",
+    "       info \"Install for $_\"",
+    "       Copy-Item \"$dir\\data\" \"$obs\\current\" -Recurse -ErrorAction SilentlyContinue",
+    "       Copy-Item \"$dir\\io_client\" \"$obs\\current\" -Recurse -ErrorAction SilentlyContinue",
+    "       Copy-Item \"$dir\\obs-plugins\" \"$obs\\current\" -Recurse -ErrorAction SilentlyContinue",
+    "   }",
+    "}"
+  ],
+  "pre_uninstall": [
+    "'OBSStudio-Portable', 'obs-studio', 'obs-studio-small', 'obs-studio27', 'obs-studio-pre' | ForEach-Object {",
+    "    $obs = \"$(appdir $_ $global)\"",
+    "    if (Test-Path $obs) {",
+    "        info \"Uninstall for $_\"",
+    "        Remove-Item \"$obs\\current\\data\\obs-plugins\\input-overlay\" -Force -Recurse -ErrorAction SilentlyContinue",
+    "        Remove-Item \"$obs\\current\\io_client\" -Force -Recurse -ErrorAction SilentlyContinue",
+    "        Remove-Item \"$obs\\current\\obs-plugins\\64bit\\input-overlay.*\" -Force -ErrorAction SilentlyContinue",
+    "        Remove-Item \"$obs\\current\\obs-plugins\\64bit\\SDL2.dll\" -Force -ErrorAction SilentlyContinue",
+    "    }",
+    "}"
+  ],
+  "checkver": {
+    "github": "https://github.com/univrsal/input-overlay"
+  },
+  "autoupdate": {
+    "url": [
+      "https://ghproxy.net/https://github.com/univrsal/input-overlay/releases/download/v$version/input-overlay-$version-windows-x64.zip",
+      "https://ghproxy.net/https://github.com/univrsal/input-overlay/releases/download/v$version/input-overlay-$version-presets.zip"
+    ]
+  }
+}

@@ -1,23 +1,25 @@
 {
   "version": "0.3.4",
-  "description": "Custom Caddy Builder",
+  "description": "Build Caddy with plugins",
   "homepage": "https://github.com/caddyserver/xcaddy",
   "license": "Apache-2.0",
   "architecture": {
     "64bit": {
       "url": "https://ghproxy.net/https://github.com/caddyserver/xcaddy/releases/download/v0.3.4/xcaddy_0.3.4_windows_amd64.zip",
-      "hash": "86c6d09a2ef6b727c05e54f3832c3b8d22d274bdaa6b9fddf81393c72033f1d3"
+      "hash": "sha512:542b4c083852d41081186c79757b66ff3c26248f72ed461dbc038b51687d0a8a8ce8eee69e3b5a1d43360c48b3405b611b940fa378debe98aaa0b3c5aebfa218"
     }
   },
   "bin": "xcaddy.exe",
+  "depends": "main/go",
   "checkver": "github",
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.net/https://github.com/caddyserver/xcaddy/releases/download/v$version/xcaddy_$version_windows_amd64.zip"
-      },
-      "hash": {
-        "url": "$baseurl/xcaddy_$version_checksums.txt"
+        "url": "https://ghproxy.net/https://github.com/caddyserver/xcaddy/releases/download/v$version/xcaddy_$version_windows_amd64.zip",
+        "hash": {
+          "url": "$baseurl/xcaddy_$version_checksums.txt",
+          "regex": "$sha512\\s+$basename"
+        }
       }
     }
   }
