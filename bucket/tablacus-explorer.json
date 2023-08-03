@@ -1,17 +1,23 @@
 {
   "version": "23.7.12",
-  "description": "Tablacus Explorer is a tabbed file manager with add-on support.",
-  "homepage": "https://tablacus.github.io/explorer.html",
-  "license": "MIT",
+  "description": "A tabbed file manager with Add-on support.",
+  "homepage": "https://tablacus.github.io/explorer_en.html",
+  "license": {
+    "identifier": "MIT",
+    "url": "https://github.com/tablacus/TablacusExplorer/blob/master/LICENSE"
+  },
   "url": "https://ghproxy.net/https://github.com/tablacus/TablacusExplorer/releases/download/23.7.12/te230712.zip",
   "hash": "8a733578e02051909bb703622996dee7ce0ee2a70fc862f48d920319511a4146",
   "architecture": {
     "64bit": {
       "bin": [
-        "TE64.exe",
         [
           "TE64.exe",
-          "TE"
+          "te"
+        ],
+        [
+          "TE64.exe",
+          "tablacus"
         ]
       ],
       "shortcuts": [
@@ -20,17 +26,35 @@
           "Tablacus Explorer"
         ]
       ]
+    },
+    "32bit": {
+      "bin": [
+        [
+          "TE32.exe",
+          "te"
+        ],
+        [
+          "TE32.exe",
+          "tablacus"
+        ]
+      ],
+      "shortcuts": [
+        [
+          "TE32.exe",
+          "Tablacus Explorer"
+        ]
+      ]
     }
   },
   "persist": [
+    "config",
     "addons",
-    "config"
+    "icons"
   ],
   "checkver": {
-    "github": "https://github.com/tablacus/TablacusExplorer",
-    "regex": "/(?<version>[\\d.]+)/(?<file>te(?<date>[\\d]+)\\.zip)"
+    "regex": "Version <span id=\"ver\">([\\d.]+)</span>[\\w\\W]*?te(?<cleanpadding>\\d+)\\.zip"
   },
   "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/tablacus/TablacusExplorer/releases/download/$version/$matchFile"
+    "url": "https://ghproxy.net/https://github.com/tablacus/TablacusExplorer/releases/download/$version/te$matchCleanpadding.zip"
   }
 }

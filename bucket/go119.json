@@ -1,40 +1,27 @@
 {
-  "version": "1.19.11",
+  "$schema": "https://ghproxy.net/https://raw.githubusercontent.com/ScoopInstaller/Scoop/master/schema.json",
+  "version": "1.19.12",
   "description": "An open source programming language that makes it easy to build simple, reliable, and efficient software.",
-  "homepage": "https://golang.org",
-  "license": "BSD-3-Clause",
-  "notes": [
-    "Your GOROOT has been set to: $dir",
-    "You can run 'go env GOROOT' to view this at any time.",
-    "\"$env:USERPROFILE\\go\\bin\" has been added to your PATH."
-  ],
+  "homepage": "https://go.dev/",
+  "license": {
+    "identifier": "BSD-3-Clause",
+    "url": "https://go.dev/LICENSE"
+  },
   "architecture": {
     "64bit": {
-      "url": "https://dl.google.com/go/go1.19.11.windows-amd64.zip",
-      "hash": "25f04babf4ebb51cebca329d3479771b29721433c924c5707f3b0689878d5232"
+      "url": "https://dl.google.com/go/go1.19.12.windows-amd64.zip",
+      "hash": "ab1d1d0eede9919395c2b170f42ce502f580bdbfe75d9253a47e372729fc5eee"
     },
     "32bit": {
-      "url": "https://dl.google.com/go/go1.19.11.windows-386.zip",
-      "hash": "4253f700e99ac83f241f9111673bd65c59d05b49b1b055a700b816af8e5819d1"
+      "url": "https://dl.google.com/go/go1.19.12.windows-386.zip",
+      "hash": "db72f67738ee87f3e0871156cdeac8882d6f1afb8ca83579eed4c54b364e9c90"
     }
   },
   "extract_dir": "go",
-  "installer": {
-    "script": "add_first_in_path \"$env:USERPROFILE\\go\\bin\" $global"
-  },
-  "uninstaller": {
-    "script": "remove_from_path \"$env:USERPROFILE\\go\\bin\" $global"
-  },
-  "bin": [
-    "bin\\go.exe",
-    "bin\\gofmt.exe"
-  ],
-  "env_set": {
-    "GOROOT": "$dir"
-  },
+  "env_add_path": "bin",
   "checkver": {
     "url": "https://golang.org/dl/",
-    "regex": "go(1\\.19\\.\\d+)\\.windows-"
+    "regex": "go(1\\.19\\.[\\d.]+)\\.windows-"
   },
   "autoupdate": {
     "architecture": {

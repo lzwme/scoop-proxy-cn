@@ -1,0 +1,43 @@
+{
+  "homepage": "https://conda.io/miniconda.html",
+  "homepage:core": "https://python.org",
+  "description": "Python (via `conda` package and environment management)",
+  "license": "BSD 3-Clause",
+  "version": "3.10.5",
+  "architecture": {
+    "64bit": {
+      "url": "https://repo.anaconda.com/miniconda/Miniconda3-py310_23.5.2-0-Windows-x86_64.exe",
+      "hash": "sha256:e15638645b34921098a3f760fd8af07e53a427f59b99a0f049420a7751cbbc05"
+    }
+  },
+  "installer": {
+    "args": [
+      "/S",
+      "/InstallationType=$(@{$true='AllUsers';$false='JustMe'}[$global])",
+      "/AddToPath=0",
+      "/RegisterPython=0",
+      "/D=$dir"
+    ]
+  },
+  "bin": [
+    "python.exe",
+    "pythonw.exe",
+    [
+      "python.exe",
+      "py"
+    ],
+    [
+      "pythonw.exe",
+      "pyw"
+    ],
+    "Lib\\idlelib\\idle.bat",
+    [
+      "Lib\\idlelib\\idle.bat",
+      "idle3"
+    ]
+  ],
+  "env_add_path": [
+    "library/bin",
+    "scripts"
+  ]
+}
