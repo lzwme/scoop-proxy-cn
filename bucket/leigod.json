@@ -1,0 +1,40 @@
+{
+  "homepage": "https://www.leigod.com/",
+  "description": "Leigod Online Game Accelerator",
+  "version": "10.0.10.1",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://www.leigod.com/help/privacyAgreement.html"
+  },
+  "url": "https://update.leigod.com/soft/win/10.0.0.0/LeiGodSetup.10.0.10.1.exe#/dl.7z",
+  "hash": "d14d5fba0b0d5093174ee75a929bba8ef40e7ec8989154655ec6ccc31a0313aa",
+  "innosetup": true,
+  "post_install": [
+    "Remove-Item \"$dir\\Uninstaller\" -Force -Recurse",
+    "Remove-Item \"$dir\\Uninstall.exe\" -Force",
+    "Remove-Item \"$dir\\resources\\leishenSdk\\updater.exe\" -Force"
+  ],
+  "uninstaller": {
+    "script": [
+      "$runtimeCache = \"$env:APPDATA\\leigod\"",
+      "if (Test-Path $runtimeCache)",
+      "    {Remove-Item $runtimeCache -Force -Recurse}"
+    ]
+  },
+  "shortcuts": [
+    [
+      "leigod.exe",
+      "雷神加速器"
+    ]
+  ],
+  "checkver": {
+    "url": "https://www.leigod.com/configs.json",
+    "jsonpath": "$.windows.download_url",
+    "regex": "\\/\\/update.leigod.com\\/soft\\/win\\/(?<build>[\\d.]+)\\/LeiGodSetup.(?<ver>[\\d.]+).exe",
+    "replace": "${ver}"
+  },
+  "autoupdate": {
+    "url": "https://update.leigod.com/soft/win/$matchBuild/LeiGodSetup.$matchVer.exe#/dl.7z"
+  },
+  "notes": "Config Directory: $env:APPDATA\\leigod\\, will be removed with \"scoop uninstall leigod -p\""
+}

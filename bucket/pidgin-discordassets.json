@@ -1,7 +1,7 @@
 {
   "homepage": "https://github.com/EionRobb/purple-discord",
   "description": "Assets for purple-discord (Pidgin)",
-  "version": "0.9.2022.10.03.git.df93a22-1",
+  "version": "0.9.2023.02.15.git.4a09188-2",
   "license": "GPL-3.0-or-later",
   "notes": [
     "This manifest is only for downloading Discord pixmaps and locale files.",
@@ -11,9 +11,9 @@
     "If only Pidgin supported putting pixmaps, locale and other extraneous dependencies in the \".purple\" folder...",
     "Please force reinstall this manifest after an update of Pidgin to fix."
   ],
-  "url": "http://ftp.us.debian.org/debian/pool/main/p/purple-discord/purple-discord_0.9.2022.10.03.git.df93a22-1_amd64.deb#/data.tar.gz",
+  "url": "http://ftp.us.debian.org/debian/pool/main/p/purple-discord/purple-discord_0.9.2023.02.15.git.4a09188-2_amd64.deb#/data.tar.gz",
   "extract_dir": ".\\usr\\share",
-  "hash": "1f7effb136012137607cec85356ce15064283ae8e454dd281e688707879c601b",
+  "hash": "80aa033e46a585fe9467e254e7454703cc76e97a474e9f8f885e977f38811584",
   "post_install": [
     "$pidgin = \"$(appdir pidgin)\\current\"",
     "Copy-Item \"$dir\\locale\\*\" \"$pidgin\\locale\" -Recurse -Force",
@@ -25,8 +25,8 @@
   "uninstaller": {
     "script": [
       "$pidgin = \"$(appdir pidgin)\\current\"",
-      "Remove-Item \"$pidgin\\locale\\*\" -Include purple-discord.mo -Recurse -Force",
-      "Remove-Item \"$pidgin\\pixmaps\\*\" -Include discord.png -Recurse -Force"
+      "   Remove-Item \"$pidgin\\locale\\*\" -include purple-discord.mo -Recurse -Force",
+      "   Remove-Item \"$pidgin\\pixmaps\\*\" -include discord.png -Recurse -Force"
     ]
   },
   "depends": [

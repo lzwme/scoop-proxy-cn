@@ -1,5 +1,5 @@
 {
-  "version": "2022.3.5f1",
+  "version": "2022.3.6f1",
   "description": "Unity 3D 2022 (Long Term Support) editor and build tools",
   "homepage": "https://unity3d.com/unity/qa/lts-releases",
   "license": "https://unity.com/legal/terms-of-service",
@@ -7,11 +7,15 @@
     "To register:",
     " PS> unity -quit -batchmode -nographics -serial SE-R-I-A-L -username \"username\" -password \"password\""
   ],
-  "url": "https://download.unity3d.com/download_unity/9674261d40ee/Windows64EditorInstaller/UnitySetup64-2022.3.5f1.exe",
-  "hash": "e8ae787963d8251211641ab64f779d6ba7a4e42cad7cb8c3f3437e97363d1353",
+  "url": "https://download.unity3d.com/download_unity/b9e6e7e9fa2d/Windows64EditorInstaller/UnitySetup64-2022.3.6f1.exe",
+  "hash": "a4c93833a397c7c48e77f0a275fcb0af72db0049435f49bd8721301032297eff",
   "installer": {
     "script": "Start-Process -FilePath \"$dir\\UnitySetup64-${version}.exe\" -ArgumentList \"/S /D=$dir\" -Wait"
   },
+  "post_install": [
+    "Remove-Item \"$Env:Public\\Desktop\\Unity ${version}.lnk\"",
+    "Remove-Item \"$dir\\UnitySetup64-${version}.exe\""
+  ],
   "uninstaller": {
     "script": "Start-Process -FilePath \"$dir\\Editor\\Uninstall.exe\" -ArgumentList \"/S\" -Wait"
   },
