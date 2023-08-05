@@ -1,0 +1,45 @@
+{
+  "homepage": "https://github.com/EionRobb/skype4pidgin",
+  "description": "Skype plugin for Pidgin",
+  "version": "1.7",
+  "license": "GPL-3.0-only",
+  "notes": [
+    "This installation- given its methods- will be wiped out when Pidgin updates.",
+    "If only Pidgin supported putting pixmaps, locale and other extraneous dependencies in the \".purple\" folder...",
+    "Please force reinstall this manifest after an update of Pidgin to fix."
+  ],
+  "url": [
+    "https://ghproxy.net/https://github.com/EionRobb/skype4pidgin/releases/download/1.7/libskypeweb.dll",
+    "https://eion.robbmob.com/pidgin-skypeweb-installer.exe#/dl.7z"
+  ],
+  "hash": [
+    "d83c01462e3ea1b8c158a2e1720b81873981cddb7d6ce1c4a0e60d1cfc349c83",
+    "f27784eb0eaf236e6a183e74a4c4afe1bde3f4105b2bfb90f15dba3785d67db2"
+  ],
+  "post_install": [
+    "$pidgin = \"$(appdir pidgin)\\current\"",
+    "Copy-Item \"$dir\\`$_3_\\pixmaps\" \"$pidgin\" -Recurse -Force",
+    "Copy-Item \"$dir\\libskypeweb.dll\" \"$pidgin\\plugins\" -Force",
+    "Remove-Item \"$dir\\`$_3_\" -Recurse",
+    "Remove-Item \"$dir\\`$PLUGINSDIR\" -Recurse",
+    "Remove-Item \"$dir\\libskypeweb.dll\""
+  ],
+  "uninstaller": {
+    "script": [
+      "$pidgin = \"$(appdir pidgin)\\current\"",
+      "Remove-Item \"$pidgin\\pixmaps\\*\" -Include skype.png -Recurse -Force",
+      "Remove-Item \"$pidgin\\plugins\\libskypeweb.dll\" -Force"
+    ]
+  },
+  "checkver": "github",
+  "autoupdate": {
+    "url": [
+      "https://ghproxy.net/https://github.com/EionRobb/skype4pidgin/releases/download/$version/libskypeweb.dll",
+      "https://eion.robbmob.com/pidgin-skypeweb-installer.exe#/dl.7z"
+    ]
+  },
+  "depends": [
+    "pidgin",
+    "pidgin-jsonglib"
+  ]
+}

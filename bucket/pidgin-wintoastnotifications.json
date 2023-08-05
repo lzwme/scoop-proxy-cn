@@ -1,0 +1,42 @@
+{
+  "homepage": "https://github.com/ChristianGalla/PidginWinToastNotifications",
+  "description": "Windows 10 toast notification plugin for Pidgin",
+  "version": "1.6.1",
+  "license": "GPL-2.0-only",
+  "notes": [
+    "Ensure you have the Visual C++ 2015-2019 Redistributable (x86) installed or download and install it from Microsoft.",
+    "This installation- given its methods- will be wiped out when Pidgin updates.",
+    "If only Pidgin supported putting pixmaps, locale and other extraneous dependencies in the \".purple\" folder...",
+    "Please force reinstall this manifest after an update of Pidgin to fix."
+  ],
+  "url": [
+    "https://ghproxy.net/https://github.com/ChristianGalla/PidginWinToastNotifications/releases/download/v1.6.1/PidginWinToastLib.dll",
+    "https://ghproxy.net/https://github.com/ChristianGalla/PidginWinToastNotifications/releases/download/v1.6.1/PidginWinToastNotifications.dll"
+  ],
+  "hash": [
+    "68c9db74ede0d13270ac945f684a150b089b4621f9649cbbb4a78be4cfabf021",
+    "0db1efb06f141d8edab39583457e8ea588aed3e196ee38638121cd8bf0f352bd"
+  ],
+  "post_install": [
+    "$pidgin = \"$(appdir pidgin)\\current\"",
+    "Copy-Item \"$dir\\PidginWinToastLib.dll\" \"$pidgin\" -Force",
+    "Copy-Item \"$dir\\PidginWinToastNotifications.dll\" \"$pidgin\\plugins\" -Force",
+    "Remove-Item \"$dir\\PidginWinToastLib.dll\"",
+    "Remove-Item \"$dir\\PidginWinToastNotifications.dll\""
+  ],
+  "uninstaller": {
+    "script": [
+      "$pidgin = \"$(appdir pidgin)\\current\"",
+      "Remove-Item \"$pidgin\\PidginWinToastLib.dll\" -Force",
+      "Remove-Item \"$pidgin\\plugins\\PidginWinToastNotifications.dll\" -Force"
+    ]
+  },
+  "checkver": "github",
+  "autoupdate": {
+    "url": [
+      "https://ghproxy.net/https://github.com/ChristianGalla/PidginWinToastNotifications/releases/download/v$version/PidginWinToastLib.dll",
+      "https://ghproxy.net/https://github.com/ChristianGalla/PidginWinToastNotifications/releases/download/v$version/PidginWinToastNotifications.dll"
+    ]
+  },
+  "depends": "pidgin"
+}

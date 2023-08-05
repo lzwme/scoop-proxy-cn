@@ -1,0 +1,42 @@
+{
+  "homepage": "https://github.com/EionRobb/purple-discord",
+  "description": "A Pidgin plugin for Discord",
+  "version": "0.9.2022.02.17.git.r859+.bcc4222490b5+",
+  "license": "GPL-3.0-only",
+  "notes": [
+    "This installation- given its methods- will be wiped out when Pidgin updates.",
+    "If only Pidgin supported putting pixmaps, locale and other extraneous dependencies in the \".purple\" folder...",
+    "Please force reinstall this manifest after an update of Pidgin to fix."
+  ],
+  "url": [
+    "https://eion.robbmob.com/libdiscord.dll",
+    "https://github.com/EionRobb/purple-discord/raw/5f2af64501850a60b9b4ef3673e8b12e751353c0/discord16.png",
+    "https://github.com/EionRobb/purple-discord/raw/5f2af64501850a60b9b4ef3673e8b12e751353c0/discord22.png",
+    "https://github.com/EionRobb/purple-discord/raw/5f2af64501850a60b9b4ef3673e8b12e751353c0/discord48.png"
+  ],
+  "hash": [
+    "5c3530c7a30de2c641542d47248e6c10687ddb13de06953cf8e64679f4eb8175",
+    "e968e6ad21808e2fdc867206ecc0aaaa26015f4dec4a4c2da4f751b39fd1d189",
+    "3f74c92909075ffde125acba27d8393a7797cf292357e7ec9e1da0ccd8813ef5",
+    "866e8bb04dc4528eaa1ec756368ce248391e6b628ca9fae3b8ddaa595e7347e6"
+  ],
+  "post_install": [
+    "$pidgin = \"$(appdir pidgin)\\current\"",
+    "Copy-Item \"$dir\\discord16.png\" \"$pidgin\\pixmaps\\pidgin\\protocols\\16\\discord.png\" -Force",
+    "Copy-Item \"$dir\\discord22.png\" \"$pidgin\\pixmaps\\pidgin\\protocols\\22\\discord.png\" -Force",
+    "Copy-Item \"$dir\\discord48.png\" \"$pidgin\\pixmaps\\pidgin\\protocols\\48\\discord.png\" -Force",
+    "Copy-Item \"$dir\\libdiscord.dll\" \"$pidgin\\plugins\" -Force",
+    "Remove-Item \"$dir\\*discord*\""
+  ],
+  "uninstaller": {
+    "script": [
+      "$pidgin = \"$(appdir pidgin)\\current\"",
+      "Remove-Item \"$pidgin\\pixmaps\\*\" -include discord.png -Recurse -Force",
+      "Remove-Item \"$pidgin\\plugins\\libdiscord.dll\" -Force"
+    ]
+  },
+  "depends": [
+    "pidgin",
+    "pidgin-jsonglib"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "version": "1.0.0",
+  "description": "Delicately-TUICed high-performance proxy built on top of the QUIC protocol",
+  "homepage": "https://github.com/EAimTY/tuic",
+  "license": "GPLv3",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/EAimTY/tuic/releases/download/tuic-client-1.0.0/tuic-client-1.0.0-x86_64-pc-windows-msvc.exe",
+      "hash": "28abb1bab9c06450b2bb4292f4cdd725daec56181a71f098dfcb2e8b3ab12ba3"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/EAimTY/tuic/releases/download/tuic-client-1.0.0/tuic-client-1.0.0-i686-pc-windows-msvc.exe",
+      "hash": "1c6b27aa1925b74899297b367143f5f35330e9cbb1e2428509ea6c5277669bb4"
+    }
+  },
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\config.json\")) {",
+    "    Set-Content \"$dir\\config.json\" '{}' -Encoding 'Ascii'",
+    "}",
+    "Rename-Item \"$dir\\tuic-client-*.exe\" \"$dir\\tuic-client.exe\""
+  ],
+  "persist": "config.json",
+  "bin": "tuic-client.exe",
+  "checkver": {
+    "url": "https://api.github.com/repos/EAimTY/tuic/releases/latest",
+    "jsonpath": "$..tag_name",
+    "regex": "tuic-.*-(\\d+\\.\\d+\\.\\d+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/EAimTY/tuic/releases/download/tuic-client-$version/tuic-client-$version-x86_64-pc-windows-msvc.exe"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/EAimTY/tuic/releases/download/tuic-client-$version/tuic-client-$version-i686-pc-windows-msvc.exe"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/$basename.sha256sum"
+    }
+  }
+}

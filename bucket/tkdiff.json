@@ -1,24 +1,27 @@
 {
   "homepage": "https://tkdiff.sourceforge.io/",
-  "description": "A Tcl/Tk front-end to diff program.",
-  "license": "GPL-2.0-only",
   "version": "5.6",
-  "suggest": {
-    "git": "git"
-  },
+  "license": "GPL-3.0-or-later",
   "url": "https://downloads.sourceforge.net/project/tkdiff/tkdiff/5.6/tkdiff-5-6.zip",
   "hash": "628c7541d486996b6f984f4f702cec7cb3a7fd959d3e87104192bc3e946620bc",
   "extract_dir": "tkdiff-5-6",
-  "installer": {
-    "script": "Set-Content \"$dir\\tkdiff.bat\" \"@for /f %%i in ('scoop prefix git') do @%%i\\bin\\bash.exe %~dp0\\tkdiff %*\" -Encoding ASCII"
-  },
+  "pre_install": "Set-Content -Value '@wish.exe %~dp0tkdiff %*' -Path \"$dir\\tkdiff.bat\"",
   "bin": "tkdiff.bat",
+  "shortcuts": [
+    [
+      "tkdiff.bat",
+      "TkDiff"
+    ]
+  ],
   "checkver": {
-    "url": "https://sourceforge.net/projects/tkdiff/files/tkdiff/",
-    "re": "title=\"/tkdiff/([\\d.]+)/tkdiff-[\\d-]+.zip"
+    "url": "https://sourceforge.net/projects/tkdiff/rss?path=/tkdiff",
+    "regex": "/tkdiff/([\\d.]+)/tkdiff[\\d-]+.zip"
   },
   "autoupdate": {
     "url": "https://downloads.sourceforge.net/project/tkdiff/tkdiff/$version/tkdiff-$dashVersion.zip",
-    "extract_dir": "tkdiff-$dashVersion"
+    "extract_dir": "tkdiff-$dashVersion",
+    "hash": {
+      "mode": "sourceforge"
+    }
   }
 }

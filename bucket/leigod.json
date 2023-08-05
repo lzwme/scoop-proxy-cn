@@ -12,15 +12,9 @@
   "post_install": [
     "Remove-Item \"$dir\\Uninstaller\" -Force -Recurse",
     "Remove-Item \"$dir\\Uninstall.exe\" -Force",
-    "Remove-Item \"$dir\\resources\\leishenSdk\\updater.exe\" -Force"
+    "Remove-Item \"$dir\\resources\\leishenSdk\\updater.exe\" -Force",
+    "Write-Host -ForegroundColor Magenta \"Config Directory: $env:APPDATA\\leigod\\\""
   ],
-  "uninstaller": {
-    "script": [
-      "$runtimeCache = \"$env:APPDATA\\leigod\"",
-      "if (Test-Path $runtimeCache)",
-      "    {Remove-Item $runtimeCache -Force -Recurse}"
-    ]
-  },
   "shortcuts": [
     [
       "leigod.exe",
@@ -35,6 +29,5 @@
   },
   "autoupdate": {
     "url": "https://update.leigod.com/soft/win/$matchBuild/LeiGodSetup.$matchVer.exe#/dl.7z"
-  },
-  "notes": "Config Directory: $env:APPDATA\\leigod\\, will be removed with \"scoop uninstall leigod -p\""
+  }
 }

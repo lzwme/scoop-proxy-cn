@@ -14,6 +14,9 @@
       "UU加速器"
     ]
   ],
+  "post_install": [
+    "Remove-Item \"$Env:Public\\Desktop\\UU加速器.lnk\""
+  ],
   "checkver": {
     "url": "https://uu.163.com/baike/js/dl.js",
     "regex": "'dlUrl': 'https://.*?.gdl.netease.com/(?<build>\\d+)/UU-(?<ver>[\\d.]+).exe'",
