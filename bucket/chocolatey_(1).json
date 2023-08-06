@@ -1,36 +1,28 @@
 {
   "homepage": "https://chocolatey.org/",
-  "description": "The package manager for Windows",
-  "version": "2.1.0",
-  "url": "https://chocolatey.org/install.ps1",
-  "hash": "45014ac94baaa135449d73da9f4760acdae4c8943fa9998a47b74d0bba8a5295",
+  "description": "Chocolatey is a CLI-based package manager for Windows that is sort of like apt-get",
+  "license": "Apache-2.0",
+  "version": "0.10.15",
+  "url": "https://packages.chocolatey.org/chocolatey.0.10.15.nupkg",
+  "hash": "225d900e75687ec64ee65bf6cbbdebb7f19d43ccf947413d3d3c362ffa515ca1",
+  "extract_dir": "tools\\chocolateyInstall",
   "installer": {
     "script": [
-      "$env:ChocolateyInstall=\"$dir\" ",
-      "Set-ExecutionPolicy Bypass -Scope Process -Force;",
-      "[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072;",
-      "iex(\"$dir\\install.ps1\")",
-      " . $profile"
+      "Rename-Item \"$dir\\redirects\" \"$dir\\bin\" | Out-Null",
+      "Remove-Item \"$dir\\bin\\*.ignore\" | Out-Null",
+      "New-Item -ItemType Directory -Force -Path \"$dir\\lib\\chocolatey\" | Out-Null"
     ]
   },
-  "bin": [
-    "bin/choco.exe",
-    "bin/chocolatey.exe",
-    "bin/cinst.exe",
-    "bin/clist.exe",
-    "bin/cpack.exe",
-    "bin/cpush.exe",
-    "bin/cuninst.exe",
-    "bin/cup.exe",
-    "bin/cver.exe",
-    "bin/RefreshEnv.cmd"
-  ],
+  "env_add_path": "bin",
   "checkver": {
-    "url": "https://github.com/chocolatey/choco/releases",
-    "re": "/chocolatey/choco/releases/tag/([\\d.]+)"
+    "url": "https://ghproxy.net/https://raw.githubusercontent.com/chocolatey/choco/master/CHANGELOG.md",
+    "re": "## \\[([\\d.]+)\\].*\\)"
   },
   "autoupdate": {
-    "url": "https://chocolatey.org/install.ps1"
+    "url": "https://packages.chocolatey.org/chocolatey.$version.nupkg"
   },
-  "notes": "It might be better to run choco with sudo."
+  "notes": [
+    "There are limitations to use Chocolatey within Scoop, please be careful.",
+    "You may not to upgrade Chocolatey through choco itself, use Scoop to do it instead."
+  ]
 }

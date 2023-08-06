@@ -1,30 +1,37 @@
 {
+  "version": "114.0",
   "description": "Popular open source web browser. Cross-platform and available in many languages.",
   "homepage": "https://www.mozilla.org/zh-CN/firefox/new/",
-  "version": "115.0.3",
   "license": "MPL-2.0",
   "architecture": {
     "64bit": {
-      "url": "https://download-installer.cdn.mozilla.net/pub/firefox/releases/115.0.3/win64/zh-CN/Firefox%20Setup%20115.0.3.exe#/firefox.7z",
-      "hash": "sha512:e091315569bfb2bbfc9f7820a04309d47d157b64213dab238ed3a17556c40e744ede1af65cc485e1bd70d896bb7c9822326edde9cfa3a52fcd22a795d54dcb67"
+      "url": "https://download-installer.cdn.mozilla.net/pub/firefox/releases/114.0/win64/zh-CN/Firefox%20Setup%20114.0.exe#/firefox.7z",
+      "hash": "sha512:1b5e9874395725856e578842aa9627c32e91cd0ad50ad78cb11532305f62d0acdc32870cb23dcdd2b990ca1c2100acc193892f2701ba4901e2b4fede4d52b6bc"
     },
     "32bit": {
-      "url": "https://download-installer.cdn.mozilla.net/pub/firefox/releases/115.0.3/win32/zh-CN/Firefox%20Setup%20115.0.3.exe#/firefox.7z",
-      "hash": "sha512:ec5cbd9a3c4c85fed7dcae13d349002d45c454a9d1923aafad4a185f3c9a04b874674035760998d1a923610c9df2bad2db013cea8e41fbecd77c605823fd9e3c"
+      "url": "https://download-installer.cdn.mozilla.net/pub/firefox/releases/114.0/win32/zh-CN/Firefox%20Setup%20114.0.exe#/firefox.7z",
+      "hash": "sha512:dfabd684708687a1d3144cb3ad050941feb8429132e328f37e07cfdca6ec9e4da039b057d57ad3f9de90a193f92019b54eb9d0be7d995d5d6f6c4a3cc6f3225c"
     }
   },
   "extract_dir": "core",
-  "bin": "firefox.exe",
+  "bin": [
+    [
+      "firefox.exe",
+      "firefox",
+      "-profile \"$dir\\profile\""
+    ]
+  ],
   "shortcuts": [
     [
       "firefox.exe",
-      "Mozilla Firefox"
+      "Mozilla Firefox",
+      "-profile \"$dir\\profile\""
     ]
   ],
-  "persist": "profile-portable",
+  "persist": "profile",
   "checkver": {
     "url": "https://www.mozilla.org/zh-CN/firefox/all/",
-    "re": "data-latest-firefox=\"([\\d.]+)\""
+    "regex": "data-latest-firefox=\"([\\d.]+)\""
   },
   "autoupdate": {
     "architecture": {
@@ -43,6 +50,5 @@
         }
       }
     }
-  },
-  "notes": "To recover persisted profile, you need to open the Profile Manager with `firefox -P` and create by selecting the portable profile directory."
+  }
 }

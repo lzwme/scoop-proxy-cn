@@ -1,56 +1,49 @@
 {
-  "version": "1.9.8",
+  "version": "0.7.4",
   "description": "Sandboxie community maintained version",
-  "homepage": "https://github.com/sandboxie-plus/Sandboxie",
-  "license": "GNU General Public License v3.0",
-  "notes": "The shortcuts are located in \"C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\Sandboxie-Plus\\\"",
+  "homepage": "https://sandboxie-plus.com/",
+  "license": "GPL-3.0-only",
+  "innosetup": true,
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.net/https://github.com/sandboxie-plus/Sandboxie/releases/download/v1.9.8/Sandboxie-Plus-x64-v1.9.8.exe",
-      "hash": "765b322c908e04c9266f0b75e457eca2bd5fabdb2de4ff8b427c837079f32321"
+      "url": "https://ghproxy.net/https://github.com/sandboxie-plus/Sandboxie/releases/download/0.7.4/Sandboxie-Plus-x64-v0.7.4.exe",
+      "hash": "c48e23d3db8ad3023e3fa477a9b9fc3994a69ca52c667717559bfbd3e9d403c8"
     },
     "32bit": {
-      "url": "https://ghproxy.net/https://github.com/sandboxie-plus/Sandboxie/releases/download/v1.9.8/Sandboxie-Plus-x86-v1.9.8.exe",
-      "hash": "bc04edc73197040c227e7012b348fddcc6120e1257bc5622e3ccbff112ed3bb3"
+      "url": "https://ghproxy.net/https://github.com/sandboxie-plus/Sandboxie/releases/download/0.7.4/Sandboxie-Plus-x86-v0.7.4.exe",
+      "hash": "8c7aa7b96fcb5c133d0c3ccad9c77f3b6b82bd55fd45ac15fed4f0dfe92aa1ad"
     }
   },
-  "pre_install": [
-    "# Copy or create files for persisting",
-    "if (!(Test-Path \"$persist_dir\\config.json\")) {",
-    "    if (Test-Path \"C:\\Windows\\Sandboxie.ini\") {",
-    "        Move-Item \"C:\\Windows\\Sandboxie.ini\" \"$dir\\Sandboxie.ini\"",
-    "    }",
-    "    else {",
-    "        New-Item \"$dir\\Sandboxie.ini\" -Type File | Out-Null",
-    "    }",
-    "}"
-  ],
   "installer": {
-    "args": [
-      "/verysilent",
-      "/nocancel",
-      "/norestart",
-      "/noicons",
-      "/dir=$dir"
+    "script": [
+      "function CreateFile([String] $file, [String] $content = $null) {",
+      "    if (!(Test-Path \"$persist_dir\\$file\")) {",
+      "        New-Item -Force -Path \"$persist_dir\\$file\" -ItemType file -Value $content | Out-Null",
+      "    }",
+      "}",
+      "CreateFile 'config.ini' \"[GlobalSettings]`nFileRootPath=$dir\\Sandbox\\%SANDBOX%\""
     ]
   },
-  "uninstaller": {
-    "file": "unins000.exe",
-    "args": [
-      "/verysilent",
-      "/nocancel",
-      "/norestart"
+  "shortcuts": [
+    [
+      "SandMan.exe",
+      "Sandboxie Manager"
     ]
+  ],
+  "persist": [
+    "Sandboxie.ini",
+    "Sandboxie-Plus.ini"
+  ],
+  "checkver": {
+    "github": "https://github.com/sandboxie-plus/Sandboxie"
   },
-  "persist": "Sandboxie.ini",
-  "checkver": "github",
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.net/https://github.com/sandboxie-plus/Sandboxie/releases/download/v$version/Sandboxie-Plus-x64-v$matchHead.exe"
+        "url": "https://ghproxy.net/https://github.com/sandboxie-plus/Sandboxie/releases/download/$version/Sandboxie-Plus-x64-v$version.exe"
       },
       "32bit": {
-        "url": "https://ghproxy.net/https://github.com/sandboxie-plus/Sandboxie/releases/download/v$version/Sandboxie-Plus-x86-v$matchHead.exe"
+        "url": "https://ghproxy.net/https://github.com/sandboxie-plus/Sandboxie/releases/download/$version/Sandboxie-Plus-x86-v$version.exe"
       }
     }
   }

@@ -1,0 +1,39 @@
+{
+  "homepage": "https://github.com/gkdr/lurch",
+  "description": "OMEMO encryption for Pidgin/libpurple",
+  "version": "0.7.0",
+  "license": "GPL-3.0-only",
+  "notes": [
+    "This installation- given its methods- will be wiped out when Pidgin updates.",
+    "If only Pidgin supported putting pixmaps, locale and other extraneous dependencies in the \".purple\" folder...",
+    "Please force reinstall this manifest after an update of Pidgin to fix."
+  ],
+  "url": [
+    "https://eion.robbmob.com/lurch/lurch.dll",
+    "https://eion.robbmob.com/lurch/libgcrypt-20.dll",
+    "https://eion.robbmob.com/lurch/libgpg-error-0.dll"
+  ],
+  "hash": [
+    "e6de96dfe3399faa5f1c9c39caba704a1882a76610e791c984d8d2736696f001",
+    "2529a70e090b13eae74b6ab96b16e30e8f2a7624b3793c5ff78b358f7071513f",
+    "4be922e1c3c5d782e303782654483133cb7cb9fddaa471b9cac4123f11c0b5cc"
+  ],
+  "post_install": [
+    "$pidgin = \"$(appdir pidgin)\\current\"",
+    "Copy-Item \"$dir\\libgcrypt-20.dll\" \"$pidgin\" -Force",
+    "Copy-Item \"$dir\\libgpg-error-0.dll\" \"$pidgin\" -Force",
+    "Copy-Item \"$dir\\lurch.dll\" \"$pidgin\\plugins\" -Force",
+    "Remove-Item \"$dir\\libgcrypt-20.dll\"",
+    "Remove-Item \"$dir\\libgpg-error-0.dll\"",
+    "Remove-Item \"$dir\\lurch.dll\""
+  ],
+  "uninstaller": {
+    "script": [
+      "$pidgin = \"$(appdir pidgin)\\current\"",
+      "Remove-Item \"$pidgin\\libgcrypt-20.dll\" -Force",
+      "Remove-Item \"$pidgin\\libgpg-error-0.dll\" -Force",
+      "Remove-Item \"$pidgin\\plugins\\lurch.dll\" -Force"
+    ]
+  },
+  "depends": "pidgin"
+}

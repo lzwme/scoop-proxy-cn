@@ -1,50 +1,44 @@
 {
-  "homepage": "https://www.mozilla.org/ja/firefox/new/",
   "version": "116.0.1",
+  "description": "Popular open source web browser.",
+  "homepage": "https://www.mozilla.org/firefox/",
+  "license": "MPL-2.0",
   "architecture": {
     "64bit": {
-      "url": "https://download.mozilla.org/?product=firefox-116.0.1-SSL&os=win64&lang=ja#/firefox-setup.exe",
-      "hash": "4136bc409a3dce75dc9335936fce058bc8678b278629ed957e6232cde3217546"
+      "url": "https://archive.mozilla.org/pub/firefox/releases/116.0.1/win64/ja/Firefox%20Setup%20116.0.1.exe#/dl.7z",
+      "hash": "sha512:a6fba9c685e1d029f2f9a3e97593f9a74e21b5bdf18439f905571fcc36e2ccea1c84f28489f529610e9bd19e805cbf66926e19f9211cc1476e4ef4190e63f73f"
     },
     "32bit": {
-      "url": "https://download.mozilla.org/?product=firefox-116.0.1-SSL&os=win&lang=ja#/firefox-setup.exe",
-      "hash": "710ae2d34b44ed2d10e2ba044cc5c7c35d5e9a8065c6be3f77311542314b6d3d"
+      "url": "https://archive.mozilla.org/pub/firefox/releases/116.0.1/win32/ja/Firefox%20Setup%20116.0.1.exe#/dl.7z",
+      "hash": "sha512:ca985a8938222497bead36592bd0ad4842fe9974f10412684670c9e0232976dc41c0278685a74baac6617aa0d26f5037d0f86a6ea00a36701c2cf39a3456071b"
     }
   },
+  "extract_dir": "core",
   "bin": "firefox.exe",
   "shortcuts": [
     [
       "firefox.exe",
-      "Mozilla Firefox"
+      "Firefox"
     ]
   ],
-  "pre_install": "echo \"[Install]`nInstallDirectoryPath=$dir`nQuickLaunchShortcut=false`nDesktopShortcut=false`nStartMenuShortcuts=false\" | sc \"$dir\\install.ini\"",
-  "installer": {
-    "file": "firefox-setup.exe",
-    "args": "/INI=$dir\\install.ini"
-  },
-  "uninstaller": {
-    "file": "uninstall\\helper.exe",
-    "args": "/S"
-  },
   "checkver": {
     "url": "https://www.mozilla.org/ja/firefox/notes/",
-    "re": "data-latest-firefox=\"([\\d.]+)\""
+    "regex": "<div class=\"c-release-version\">([\\d.]+)</div>"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://download.mozilla.org/?product=firefox-$version-SSL&os=win64&lang=ja#/firefox-setup.exe",
+        "url": "https://archive.mozilla.org/pub/firefox/releases/$version/win64/ja/Firefox%20Setup%20$version.exe#/dl.7z",
         "hash": {
-          "find": "([a-fA-F0-9]{64})\\s+(?:win64/ja/Firefox Setup ([\\d.]+).exe)",
-          "url": "https://download-installer.cdn.mozilla.net/pub/firefox/releases/$version/SHA256SUMS"
+          "url": "https://archive.mozilla.org/pub/firefox/releases/$version/SHA512SUMS",
+          "regex": "$sha512\\s+win64/ja/$basename"
         }
       },
       "32bit": {
-        "url": "https://download.mozilla.org/?product=firefox-$version-SSL&os=win&lang=ja#/firefox-setup.exe",
+        "url": "https://archive.mozilla.org/pub/firefox/releases/$version/win32/ja/Firefox%20Setup%20$version.exe#/dl.7z",
         "hash": {
-          "find": "([a-fA-F0-9]{64})\\s+(?:win32/ja/Firefox Setup ([\\d.]+).exe)",
-          "url": "https://download-installer.cdn.mozilla.net/pub/firefox/releases/$version/SHA256SUMS"
+          "url": "https://archive.mozilla.org/pub/firefox/releases/$version/SHA512SUMS",
+          "regex": "$sha512\\s+win32/ja/$basename"
         }
       }
     }

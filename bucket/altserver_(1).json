@@ -1,14 +1,14 @@
 {
-  "version": "1.6",
   "homepage": "https://altstore.io/",
   "description": "A home for apps that push the boundaries of iOS. No jailbreak required.",
   "license": "AGPL-3.0",
-  "url": "https://cdn.altstore.io/file/altstore/altinstaller.zip",
-  "hash": "12c2f14f920e8378f5e4479df718dddd6da35041f4c65d5ca4472d4814a148b7",
+  "version": "1.4.3",
+  "url": "https://f000.backblazeb2.com/file/altstore/altinstaller.zip",
+  "hash": "a0a98cdc61bbac11e176bcd07aa0e94b05600ca540ca653f7e4efc3eb352cad6",
   "installer": {
     "script": [
       "if ([Environment]::OSVersion.Version.Major -ne \"10\") {",
-      "    throw \"AltServer requires Windows 10 or later to work.\"",
+      "    throw \"AltServer requires Windows 10 to work.\"",
       "}",
       "Remove-Item \"$dir\\setup.exe\"",
       "Expand-MsiArchive \"$dir\\AltInstaller.msi\" \"$dir\" -Removal"
@@ -21,17 +21,13 @@
     ]
   ],
   "checkver": {
-    "url": "https://faq.altstore.io/release-notes/altserver",
-    "regex": "AltServer\\s(\\d+(\\.\\d+)?)"
+    "github": "https://github.com/rileytestut/AltStore"
   },
   "autoupdate": {
-    "url": "https://cdn.altstore.io/file/altstore/altinstaller.zip",
-    "hash": {
-      "mode": "download"
-    }
+    "url": "https://f000.backblazeb2.com/file/altstore/altinstaller.zip"
   },
   "notes": [
-    "AltServer requires both iTunes and iCloud installed to work, you must download and install them from Apple's webstie.",
-    "Refer to https://faq.altstore.io/ for more inforamtion."
+    "AltServer requires a 'Native' iTunes installed to work, you must download and install iTunes from Apple's webstie.",
+    "Refer to https://altstore.io/faq/ for more inforamtion."
   ]
 }
