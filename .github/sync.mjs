@@ -27,6 +27,7 @@ async function syncDir(src, dest, repo = '') {
   src = path.resolve(rootDir, src);
   dest = path.resolve(rootDir, dest);
 
+  if (src.includes(`_(1).`)) return total;
   if (!fs.existsSync(src) || CONFIG.filter.test(basename)) return total;
   if (ignoredSet.has(basename) || ignoredSet.has(src)) return total;
 
