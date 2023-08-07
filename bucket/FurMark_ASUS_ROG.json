@@ -1,0 +1,26 @@
+{
+  "version": "0.9.0.0",
+  "homepage": "https://geeks3d.com/furmark/rog/",
+  "license": "Freeware",
+  "url": "https://gpuscore.top/asus/ASUS_FurMark_ROG_Edition_x64_Setup_v0.9.0.0.exe",
+  "hash": "82bd020c1560819204dd12d9de2907bc0333e102433a8f06e756a598e3c77b46",
+  "innosetup": true,
+  "bin": "FurMark_ROG_Edition_x64.exe",
+  "shortcuts": [
+    [
+      "FurMark_ROG_Edition_x64.exe",
+      "FurMark ROG Edition"
+    ]
+  ],
+  "checkver": {
+    "url": "https://geeks3d.com/furmark/rog/downloads/",
+    "re": "<b>Version ([\\d.]+) - (?<year>\\d{4})"
+  },
+  "autoupdate": {
+    "url": "https://gpuscore.top/asus/ASUS_FurMark_ROG_Edition_x64_Setup_v$version.exe",
+    "hash": {
+      "url": "https://geeks3d.com/furmark/rog/downloads/",
+      "find": "SHA256: ([a-fA-F0-9]{64})"
+    }
+  }
+}
