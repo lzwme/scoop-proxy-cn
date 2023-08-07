@@ -1,23 +1,23 @@
 {
+  "homepage": "https://github.com/vtereshkov/umka-lang",
+  "description": "Statically typed embeddable scripting language",
+  "license": "BSD-2-Clause",
+  "version": "1.1",
   "architecture": {
     "64bit": {
-      "extract_dir": "umka_1.1_x86-64_windows_mingw",
+      "url": "https://ghproxy.net/https://github.com/vtereshkov/umka-lang/releases/download/v1.1/umka_1.1_x86-64_windows_mingw.zip",
       "hash": "cf863051c85c164eca84f7c10a332b3d4588b95b66ad4e49b0393d8a51e54adf",
-      "url": "https://ghproxy.net/https://github.com/vtereshkov/umka-lang/releases/download/v1.1/umka_1.1_x86-64_windows_mingw.zip"
-    }
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "extract_dir": "umka_$version_x86-64_windows_mingw",
-        "url": "https://ghproxy.net/https://github.com/vtereshkov/umka-lang/releases/download/v$version/umka_$version_x86-64_windows_mingw.zip"
-      }
+      "extract_dir": "umka_1.1_x86-64_windows_mingw"
     }
   },
   "bin": "umka.exe",
   "checkver": "github",
-  "description": "Statically typed embeddable scripting language",
-  "homepage": "https://github.com/vtereshkov/umka-lang",
-  "license": "BSD-2-Clause",
-  "version": "1.1"
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/vtereshkov/umka-lang/releases/download/v$version/umka_$version_x86-64_windows_mingw.zip",
+        "extract_dir": "umka_$version_x86-64_windows_mingw"
+      }
+    }
+  }
 }
