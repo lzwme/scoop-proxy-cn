@@ -1,45 +1,50 @@
 {
-  "version": "6.11",
-  "description": "BunBackup is an easy and fast way to back up your files.",
   "homepage": "http://nagatsuki.la.coocan.jp/bunbackup/",
+  "description": "Easy and fast backup utility",
   "license": "Freeware",
+  "version": "6.11",
   "architecture": {
-    "64bit": {
-      "url": "http://nagatsuki.la.coocan.jp/bunbackup/64bit/BunBackupS611.zip",
-      "hash": "0c1ca3f584de62d7118c13eb05009a10950ab7ddc68503139f8d8ea5d2811b5a"
-    },
     "32bit": {
       "url": "http://nagatsuki.la.coocan.jp/bunbackup/download/BunBackup611.zip",
       "hash": "73cc545ac336625f7f06aa58706980b4530490902489ae2ead1f52cea5daf4af"
+    },
+    "64bit": {
+      "url": "http://nagatsuki.la.coocan.jp/bunbackup/64bit/BunBackupS611.zip",
+      "hash": "0c1ca3f584de62d7118c13eb05009a10950ab7ddc68503139f8d8ea5d2811b5a"
     }
   },
-  "pre_install": [
-    "if(!(Test-Path(\"$persist_dir\"))) { New-Item \"$persist_dir\" -type directory | Out-Null }",
-    "if(!(Test-Path(\"$persist_dir\\BunBackup.ini\"))) { New-Item \"$persist_dir\\BunBackup.ini\" -type file | Out-Null }",
-    "if(!(Test-Path(\"$persist_dir\\バックアップ.lbk\"))) { New-Item \"$persist_dir\\バックアップ.lbk\" -type file | Out-Null }"
-  ],
   "bin": "BunBackup.exe",
-  "persist": [
-    "BunBackup.ini",
-    "バックアップ.lbk"
-  ],
   "shortcuts": [
     [
       "BunBackup.exe",
       "BunBackup"
     ]
   ],
+  "persist": [
+    "BunBackup.ini",
+    "BunBackup.env"
+  ],
+  "pre_install": [
+    "function CreateEmptyFile($name) {",
+    "    if (!(Test-Path \"$persist_dir\\$name\")) {",
+    "        New-Item -Path \"$dir\\$name\" -ItemType File | Out-Null",
+    "    }",
+    "}",
+    "CreateEmptyFile BunBackup.ini",
+    "CreateEmptyFile BunBackup.env"
+  ],
   "checkver": {
     "url": "http://nagatsuki.la.coocan.jp/bunbackup/download.htm",
-    "regex": "<B>BunBackup Ver.([\\d.]+)</B>([\\s\\S]*?)<TD><A href=\"download/BunBackup(?<file>[\\d]+).zip"
+    "re": "download/BunBackup(\\d)(\\d{2}).zip",
+    "replace": "$1.$2"
   },
   "autoupdate": {
     "architecture": {
-      "64bit": {
-        "url": "http://nagatsuki.la.coocan.jp/bunbackup/64bit/BunBackupS$matchFile.zip"
-      },
       "32bit": {
-        "url": "http://nagatsuki.la.coocan.jp/bunbackup/download/BunBackup$matchFile.zip"
+        "url": "http://nagatsuki.la.coocan.jp/bunbackup/download/BunBackup$match1$match2.zip"
+      },
+      "64bit": {
+        "url": "http://nagatsuki.la.coocan.jp/bunbackup/64bit/BunBackupS$match1$match2.zip"
       }
     }
   }

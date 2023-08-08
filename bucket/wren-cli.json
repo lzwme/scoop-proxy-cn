@@ -1,23 +1,15 @@
 {
   "homepage": "https://github.com/wren-lang/wren-cli",
-  "description": "A small, fast, class-based concurrent scripting language",
+  "description": "A command line tool for the Wren programming language",
+  "license": "MIT",
   "version": "0.4.0",
   "url": "https://ghproxy.net/https://github.com/wren-lang/wren-cli/releases/download/0.4.0/wren-cli-windows-0.4.0.zip",
   "hash": "4ad884d0b319aea9ed663c6c10d562d348ebfedd03c90384aa19cab24d61934d",
-  "bin": [
-    [
-      "wren_cli-0.4.0.exe",
-      "wren"
-    ]
-  ],
+  "extract_dir": "wren-cli-windows-0.4.0",
+  "bin": "wren_cli.exe",
   "checkver": "github",
   "autoupdate": {
     "url": "https://ghproxy.net/https://github.com/wren-lang/wren-cli/releases/download/$version/wren-cli-windows-$version.zip",
-    "bin": [
-      [
-        "wren_cli-$version.exe",
-        "wren"
-      ]
-    ]
+    "extract_dir": "wren-cli-windows-$version"
   }
 }

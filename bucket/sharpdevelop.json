@@ -3,7 +3,9 @@
   "description": "#develop (short for SharpDevelop) is a free IDE for .NET programming languages.",
   "homepage": "https://github.com/icsharpcode/SharpDevelop",
   "license": "Freeware",
-  "depends": "",
+  "#depends": [
+    ""
+  ],
   "notes": [
     "sharpdevelop",
     "#develop is a free Integrated Development Environment (IDE) for C#, VB.NET, Boo, IronPython, IronRuby and F# projects on Microsoft's .NET platform. "
@@ -13,8 +15,7 @@
   "extract_dir": "",
   "extract_to": "Programs",
   "post_install": [
-    "$null, $bucket = find_manifest($appName)",
-    "$bucketdir = Find-BucketDirectory($bucket)",
+    "$bucketdir = Find-BucketDirectory -Name $bucket",
     "",
     "",
     ""
