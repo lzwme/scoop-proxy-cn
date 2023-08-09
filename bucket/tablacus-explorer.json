@@ -1,55 +1,33 @@
 {
-  "version": "23.7.12",
-  "description": "A tabbed file manager with Add-on support.",
   "homepage": "https://tablacus.github.io/explorer_en.html",
-  "license": {
-    "identifier": "MIT",
-    "url": "https://github.com/tablacus/TablacusExplorer/blob/master/LICENSE"
-  },
+  "license": "MIT",
+  "version": "23.7.12",
   "url": "https://ghproxy.net/https://github.com/tablacus/TablacusExplorer/releases/download/23.7.12/te230712.zip",
   "hash": "8a733578e02051909bb703622996dee7ce0ee2a70fc862f48d920319511a4146",
   "architecture": {
     "64bit": {
-      "bin": [
-        [
-          "TE64.exe",
-          "te"
-        ],
-        [
-          "TE64.exe",
-          "tablacus"
-        ]
-      ],
-      "shortcuts": [
-        [
-          "TE64.exe",
-          "Tablacus Explorer"
-        ]
+      "pre_install": [
+        "Rename-Item \"$dir\\TE64.exe\" \"$dir\\TE.exe\"",
+        "Remove-Item \"$dir\\TE32.exe\" -Force"
       ]
     },
     "32bit": {
-      "bin": [
-        [
-          "TE32.exe",
-          "te"
-        ],
-        [
-          "TE32.exe",
-          "tablacus"
-        ]
-      ],
-      "shortcuts": [
-        [
-          "TE32.exe",
-          "Tablacus Explorer"
-        ]
+      "pre_install": [
+        "Rename-Item \"$dir\\TE32.exe\" \"$dir\\TE.exe\"",
+        "Remove-Item \"$dir\\TE64.exe\" -Force"
       ]
     }
   },
+  "bin": "TE.exe",
+  "shortcuts": [
+    [
+      "TE.exe",
+      "Tablacus Explorer"
+    ]
+  ],
   "persist": [
     "config",
-    "addons",
-    "icons"
+    "addons"
   ],
   "checkver": {
     "regex": "Version <span id=\"ver\">([\\d.]+)</span>[\\w\\W]*?te(?<cleanpadding>\\d+)\\.zip"
