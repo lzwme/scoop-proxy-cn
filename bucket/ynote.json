@@ -1,26 +1,30 @@
 {
-  "homepage": "https://note.youdao.com/",
-  "description": "有道云笔记",
   "version": "6.10.1",
-  "license": "unknown",
-  "architecture": {
-    "64bit": {
-      "url": "http://download.ydstatic.com/notewebsite/downloads/YNote.exe#/dl.7z",
-      "hash": "5BD9AB33DB9F48AEEA2A171652C4918455D002BED1847D8ECB64C29E4E16C22E"
-    }
-  },
+  "description": "Note app with cloud service, a production of Netease Inc.",
+  "license": "",
   "extract_dir": "",
+  "url": "http://download.ydstatic.com/notewebsite/downloads/YNote.exe#/dl.7z",
+  "hash": "5bd9ab33db9f48aeea2a171652c4918455d002bed1847d8ecb64c29e4e16c22e",
+  "depends": "",
+  "homepage": "http://note.youdao.com/index.html ",
   "bin": "YoudaoNote.exe",
-  "notes": "备注",
   "shortcuts": [
     [
       "YoudaoNote.exe",
-      "YNote",
       "有道云笔记"
     ]
   ],
-  "checkver": "<span class=\"ynote-version\">V([\\d.]+)</span>",
+  "notes": "We don't persist your YoudaoNote data, they are still storaged in '%LOCALAPPDATA%\\YNote'.",
+  "checkver": {
+    "url": "http://note.youdao.com/update/updateConfig.json",
+    "jp": "$.PC.version"
+  },
   "autoupdate": {
-    "url": "http://download.ydstatic.com/notewebsite/downloads/YNote.exe#/dl.7z"
+    "note": "Thanks for using autoupdate, please test your updates!",
+    "architecture": {
+      "64bit": {
+        "url": "http://download.ydstatic.com/notewebsite/downloads/YNote.exe#/dl.7z"
+      }
+    }
   }
 }

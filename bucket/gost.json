@@ -19,12 +19,7 @@
       "gost"
     ]
   ],
-  "persist": "gost.yml",
-  "post_install": [
-    {
-      "powershell": "Invoke-WebRequest -Uri 'https://ghproxy.net/https://raw.githubusercontent.com/go-gost/gost/master/gost.yml' -OutFile \"$dir\\gost.yml\""
-    }
-  ],
+  "post_install": "Invoke-WebRequest -URI \"https://ghproxy.net/https://raw.githubusercontent.com/go-gost/gost/master/gost.yml\" -OutFile \"$dir\\gost.yml\"",
   "checkver": "github",
   "autoupdate": {
     "architecture": {
