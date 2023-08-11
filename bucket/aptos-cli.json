@@ -1,9 +1,19 @@
 {
+  "version": "2.0.3",
+  "homepage": "https://aptos.dev/",
+  "description": "Developing on the Aptos blockchain, debugging, and for node operations",
+  "license": "Apache-2.0",
   "architecture": {
     "64bit": {
-      "hash": "162ff46600d4882a60cf29d1765c918040660dbdc6ad600420aa2ad8676b9da8",
-      "url": "https://ghproxy.net/https://github.com/aptos-labs/aptos-core/releases/download/aptos-cli-v2.0.3/aptos-cli-2.0.3-Windows-x86_64.zip"
+      "url": "https://ghproxy.net/https://github.com/aptos-labs/aptos-core/releases/download/aptos-cli-v2.0.3/aptos-cli-2.0.3-Windows-x86_64.zip",
+      "hash": "0a74a4e2ad3599961c48f573117eb4f0212fcfb79b7cb94d757a3d48fb8d65a7"
     }
+  },
+  "bin": "aptos.exe",
+  "checkver": {
+    "url": "https://api.github.com/repos/aptos-labs/aptos-core/releases/latest",
+    "jsonpath": "$.tag_name",
+    "regex": "aptos-cli-v([\\d.]+)"
   },
   "autoupdate": {
     "architecture": {
@@ -11,14 +21,5 @@
         "url": "https://ghproxy.net/https://github.com/aptos-labs/aptos-core/releases/download/aptos-cli-v$version/aptos-cli-$version-Windows-x86_64.zip"
       }
     }
-  },
-  "bin": "aptos.exe",
-  "checkver": {
-    "url": "https://github.com/aptos-labs/aptos-core/releases",
-    "regex": "aptos-cli-v([\\d.]+)"
-  },
-  "description": "Developing on the Aptos blockchain, debugging, and for node operations.",
-  "homepage": "https://aptos.dev/",
-  "license": "Apache-2.0",
-  "version": "2.0.3"
+  }
 }

@@ -1,0 +1,42 @@
+{
+  "architecture": {
+    "32bit": {
+      "hash": "md5:02ae9a3d585d7c93e03933bfdb5d1bd5",
+      "url": "http://ftp.jaist.ac.jp/pub/mergedoc/pleiades/4.8/pleiades-4.8.0-ultimate-win-32bit-jre_20180923.zip#/dl.7z"
+    },
+    "64bit": {
+      "hash": "md5:82fadf14da5e71519a7bc88f83042bb8",
+      "url": "http://ftp.jaist.ac.jp/pub/mergedoc/pleiades/4.8/pleiades-4.8.0-ultimate-win-64bit-jre_20180923.zip#/dl.7z"
+    }
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "http://ftp.jaist.ac.jp/pub/mergedoc/pleiades/$majorVersion.$minorVersion/pleiades-$fileVersion-java-win-32bit-jre_$date.zip#/dl.7z"
+      },
+      "64bit": {
+        "url": "http://ftp.jaist.ac.jp/pub/mergedoc/pleiades/$majorVersion.$minorVersion/pleiades-$fileVersion-java-win-64bit-jre_$date.zip#/dl.7z"
+      }
+    }
+  },
+  "checkver": {
+    "re": "Pleiades All in One ((?<fileVersion>[\\w\\d\\.]+) \\(Windows (?<date>[\\w\\d\\.]+).+\\))",
+    "replace": "${fileVersion}.v${date}",
+    "url": "http://mergedoc.osdn.jp/pleiades_distros4.8.html"
+  },
+  "extract_dir": "pleiades",
+  "homepage": "http://mergedoc.osdn.jp/",
+  "license": "https://www.eclipse.org/legal/epl-v10.html",
+  "persist": [
+    "eclipse\\configuration",
+    "workspace"
+  ],
+  "post_install": "        $shortcuts = @(arch_specific 'shortcuts' $manifest $arch)        $shortcutName = $shortcuts[0].item(1)        $scoop_startmenu_folder = shortcut_folder $global        $wsShell = New-Object -ComObject WScript.Shell        $shortcut = $wsShell.CreateShortcut(\"$scoop_startmenu_folder\\$shortcutName.lnk\")        $shortcut.WorkingDirectory = \"$dir\\eclipse\"        $shortcut.Save()    ",
+  "shortcuts": [
+    [
+      "eclipse/eclipse.exe",
+      "Pleiades All in One Ultimate 4.8.0.v20180923"
+    ]
+  ],
+  "version": "4.8.0.v20180923"
+}

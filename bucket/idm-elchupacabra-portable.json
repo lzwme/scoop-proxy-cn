@@ -8,29 +8,33 @@
   },
   "depends": "sudo",
   "notes": "Feature: <https://lrepacks.net/repaki-programm-dlya-interneta/56-internet-download-manager-repack.html>",
-  "url": "https://pan.jiemi.workers.dev/?file=/wenlei/IDM_v6.41.2_Repack_Elchupacabra.7z",
-  "hash": "d6f2334831719e357e3799ab0350efcf9c6d79b1af7da88461795790ece566d2",
-  "extract_dir": "Internet Download Manager",
+  "url": "https://pan.jiemi.workers.dev/?file=/wenlei/internet_download_manager_6.41.2.zip",
+  "hash": "0e8640db4fbdb5049f85e69d64a96b39b154a1b85bdfaafbf83c15ca14616340",
   "pre_install": [
-    "Copy-Item \"$bucketsdir\\$bucket\\scripts\\idm\\idm-custom-settings.reg\" \"$dir\\idm-custom-settings.reg\" -ErrorAction 'SilentlyContinue' -Force | Out-Null",
-    "Copy-Item \"$bucketsdir\\$bucket\\scripts\\idm\\install.bat\" \"$dir\\install.bat\" -ErrorAction 'SilentlyContinue' -Force | Out-Null",
-    "Copy-Item \"$bucketsdir\\$bucket\\scripts\\idm\\uninstall.bat\" \"$dir\\uninstall.bat\" -ErrorAction 'SilentlyContinue' -Force | Out-Null"
+    "Get-Process IDM*,IEMon* | Stop-Process -Force -ErrorAction Ignore | Out-Null",
+    "Rename-Item \"$dir\\Internet Download Manager*.exe\" 'Installer.exe'",
+    "Get-ChildItem $dir -Exclude Installer.exe, *install.json, *manifest.json | ForEach-Object { Remove-Item \"$dir\\$($_.Name)\" -Force -ErrorAction SilentlyContinue }",
+    "Copy-Item \"$bucketsdir\\$bucket\\scripts\\idm\\idm-custom-settings.reg\" \"$dir\\idm-custom-settings.reg\" -ErrorAction 'SilentlyContinue' -Force | Out-Null"
   ],
   "installer": {
     "script": [
-      "Start-Process \"$dir\\install.bat\" -WorkingDirectory \"$dir\" -Wait",
+      "Start-Process \"$dir\\Installer.exe\" -ArgumentList \"/DIR=$dir /NoIcons=1 /SILENT /NORESTART\"",
+      "Start-Sleep -s 60",
       "sudo regedit /s \"$dir\\idm-custom-settings.reg\""
     ]
   },
+  "post_install": "Remove-Item \"$dir\\Installer.exe\" -Force",
   "uninstaller": {
     "script": [
-      "Start-Process \"$dir\\uninstall.bat\" -WorkingDirectory \"$dir\" -Wait",
-      "Write-Host \"You may need to restart the system to delete the directory.\" -Foreground Magenta"
+      "Stop-Process -Name explorer, IDM*, IEMonitor*, IDMMsgHost*, MediumILStart*, IDMIntegrator64* -Force -ErrorAction Ignore | Out-Null",
+      "Remove-Item IDMShellExt*.dll -Force -ErrorAction SilentlyContinue",
+      "Start-Process \"$dir\\unins000.exe\" -ArgumentList \"/SILENT /NORESTART\" -WorkingDirectory \"$dir\" -Wait | Out-Null",
+      "Write-Host \"The '$app' has been uninstalled.\" -Foreground Magenta"
     ]
   },
   "checkver": {
     "url": "https://github.com/Ryanjiena/MetaVersion/raw/main/oneindex.txt",
-    "regex": "(?<filename>IDM_v(?<version>[\\d.]+)_Repack_Elchupacabra\\.7z)",
+    "regex": "(?<filename>internet_download_manager_(?<version>[\\d.]+)\\.zip)",
     "reverse": true
   },
   "autoupdate": {

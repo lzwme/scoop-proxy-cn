@@ -1,0 +1,80 @@
+{
+  "version": "3.2.0",
+  "homepage": "https://www.cube-soft.jp/en/cubepdf/",
+  "description": "A Windows virtual printer that allows you to convert to PDF when you need it from any application",
+  "license": "AGPL-3.0",
+  "architecture": {
+    "32bit": {
+      "url": "https://dl.cube-soft.jp/archive/cubepdf-3.2.0.exe",
+      "hash": "06582528d8e684fc82016ee83d7f911243903eb1732f46bc3a1faf08db3bdfbd",
+      "installer": {
+        "script": [
+          "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+          "Start-Process \"$dir\\$fname\" -Wait -Verb 'RunAs' -Args @('/verysilent', '/allusers', '/suppressmsgboxes', '/sp-', '/restartapplications', '/norestart')",
+          "Remove-Item \"$dir\\$fname\"; Set-Content \"$dir\\cubevpc.cmd\" '@\"%ProgramFiles(x86)%\\CubePDF\\CubeVpc.exe\"  %*' -Encoding 'utf8'"
+        ]
+      },
+      "uninstaller": {
+        "script": [
+          "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+          "Start-Process \"${env:ProgramFiles(x86)}\\CubePDF\\unins000.exe\" -Wait -Verb 'RunAs' -Args @('/verysilent', '/forcecloseapplications', '/suppressmsgboxes')",
+          "Start-Sleep -Seconds 2"
+        ]
+      }
+    },
+    "64bit": {
+      "url": "https://dl.cube-soft.jp/archive/cubepdf-3.2.0-x64.exe",
+      "hash": "0ddd87322d0465740a797542a835c759d37ba90a10fe067b8d7fbc0c04a513be",
+      "installer": {
+        "script": [
+          "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+          "Start-Process \"$dir\\$fname\" -Wait -Verb 'RunAs' -Args @('/verysilent', '/allusers', '/suppressmsgboxes', '/sp-', '/restartapplications', '/norestart')",
+          "Remove-Item \"$dir\\$fname\"; Set-Content \"$dir\\cubevpc.cmd\" '@\"%ProgramFiles%\\CubePDF\\CubeVpc.exe\"  %*' -Encoding 'utf8'"
+        ]
+      },
+      "uninstaller": {
+        "script": [
+          "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+          "Start-Process \"$env:ProgramFiles\\CubePDF\\unins000.exe\" -Wait -Verb 'RunAs' -Args @('/verysilent', '/forcecloseapplications', '/suppressmsgboxes')",
+          "Start-Sleep -Seconds 2"
+        ]
+      }
+    },
+    "arm64": {
+      "url": "https://dl.cube-soft.jp/archive/cubepdf-3.2.0-arm64.exe",
+      "hash": "4576044fb0405e95d0d7580f9a26cf9b5b156bc893fe15458a7d8e065ad778b2",
+      "installer": {
+        "script": [
+          "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+          "Start-Process \"$dir\\$fname\" -Wait -Verb 'RunAs' -Args @('/verysilent', '/allusers', '/suppressmsgboxes', '/sp-', '/restartapplications', '/norestart')",
+          "Remove-Item \"$dir\\$fname\"; Set-Content \"$dir\\cubevpc.cmd\" '@\"%ProgramFiles%\\CubePDF\\CubeVpc.exe\"  %*' -Encoding 'utf8'"
+        ]
+      },
+      "uninstaller": {
+        "script": [
+          "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+          "Start-Process \"$env:ProgramFiles\\CubePDF\\unins000.exe\" -Wait -Verb 'RunAs' -Args @('/verysilent', '/forcecloseapplications', '/suppressmsgboxes')",
+          "Start-Sleep -Seconds 2"
+        ]
+      }
+    }
+  },
+  "bin": "cubevpc.cmd",
+  "checkver": {
+    "url": "https://www.cube-soft.jp/en/cubepdf/releases.php",
+    "regex": "cubepdf-([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://dl.cube-soft.jp/archive/cubepdf-$version.exe"
+      },
+      "64bit": {
+        "url": "https://dl.cube-soft.jp/archive/cubepdf-$version-x64.exe"
+      },
+      "arm64": {
+        "url": "https://dl.cube-soft.jp/archive/cubepdf-$version-arm64.exe"
+      }
+    }
+  }
+}
