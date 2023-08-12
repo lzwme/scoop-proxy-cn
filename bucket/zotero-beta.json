@@ -1,10 +1,18 @@
 {
-  "version": "6.0.27-beta.3",
+  "version": "7.0.0-beta.33",
   "description": "Open-source reference management software to manage bibliographic data and related research materials.",
   "homepage": "https://www.zotero.org/",
   "license": "AGPL-3.0-only",
-  "url": "https://download.zotero.org/client/beta/6.0.27-beta.3%2B3e12f3f20/Zotero-6.0.27-beta.3%2B3e12f3f20_setup.exe#/dl.7z",
-  "hash": "75369dd13f840b7ef1f19e7c04a65b37f436a192f0782538fb6f92aade7ffeb0",
+  "architecture": {
+    "64bit": {
+      "url": "https://download.zotero.org/client/beta/7.0.0-beta.33%2B437e2bd92/Zotero-7.0.0-beta.33%2B437e2bd92_x64_setup.exe#/dl.7z",
+      "hash": "8daea9b89551c70cb9cf4fa7e49b46d410f8632d30c8ecd9d06c53e1da73d822"
+    },
+    "32bit": {
+      "url": "https://download.zotero.org/client/beta/7.0.0-beta.33%2B437e2bd92/Zotero-7.0.0-beta.33%2B437e2bd92_win32_setup.exe#/dl.7z",
+      "hash": "904e86f34fd19007329f4ed8d433761198d1110ac5c5dbcc6682475a80d8bd70"
+    }
+  },
   "extract_dir": "core",
   "bin": "zotero.exe",
   "shortcuts": [
@@ -14,10 +22,20 @@
     ]
   ],
   "checkver": {
-    "url": "https://www.zotero.org/download/client/update/5.0.0/_/WINNT_x86-msvc/en-US/beta/_/update.xml",
+    "script": [
+      "try { $detail = Invoke-WebRequest 'https://www.zotero.org/download/client/dl?platform=win-x64-zip&channel=beta' -MaximumRedirection 0 -ErrorAction Ignore } catch { $_.Exception.Response }",
+      "return $detail.Headers.Location"
+    ],
     "regex": "Zotero-([\\d.]+-beta[\\d.]+)%2B(?<commit>[\\da-f]+)"
   },
   "autoupdate": {
-    "url": "https://download.zotero.org/client/beta/$version%2B$matchCommit/Zotero-$version%2B$matchCommit_setup.exe#/dl.7z"
+    "architecture": {
+      "64bit": {
+        "url": "https://download.zotero.org/client/beta/$version%2B$matchCommit/Zotero-$version%2B$matchCommit_x64_setup.exe#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://download.zotero.org/client/beta/$version%2B$matchCommit/Zotero-$version%2B$matchCommit_win32_setup.exe#/dl.7z"
+      }
+    }
   }
 }

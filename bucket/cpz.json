@@ -1,0 +1,31 @@
+{
+  "version": "1.1.7",
+  "description": "Modern, performance focused unix commands.",
+  "homepage": "https://github.com/SUPERCILEX/fuc/",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/SUPERCILEX/fuc/releases/download/1.1.7/cpz-x86_64-pc-windows-msvc.exe",
+      "hash": "68309f64f61d07de4a2ce9b7b01e5508abe2cc306ede00eb33b382d5ec4ee86c"
+    },
+    "arm64": {
+      "url": "https://ghproxy.net/https://github.com/SUPERCILEX/fuc/releases/download/1.1.7/cpz-aarch64-pc-windows-msvc.exe",
+      "hash": "f9a625b5dffef9ef498e2f917314fc8399c64a5e856ccc2bbbfee5db2badd51d"
+    }
+  },
+  "pre_install": [
+    "Rename-Item \"$dir\\cpz-*.exe\" \"$dir\\cpz.exe\""
+  ],
+  "bin": "cpz.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/SUPERCILEX/fuc/releases/download/$version/cpz-x86_64-pc-windows-msvc.exe"
+      },
+      "arm64": {
+        "url": "https://ghproxy.net/https://github.com/SUPERCILEX/fuc/releases/download/$version/cpz-aarch64-pc-windows-msvc.exe"
+      }
+    }
+  }
+}

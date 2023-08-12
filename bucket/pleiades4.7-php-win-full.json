@@ -1,8 +1,12 @@
 {
   "architecture": {
+    "32bit": {
+      "hash": "md5:7c0970d30959d9bc8f5e9a47a95761d9",
+      "url": "http://ftp.jaist.ac.jp/pub/mergedoc/pleiades/4.7/pleiades-4.7.3-php-win-32bit-jre_20180411.zip#/dl.7z"
+    },
     "64bit": {
-      "hash": "md5:b32229b3727eea03a29f678805290213",
-      "url": "http://ftp.jaist.ac.jp/pub/mergedoc/pleiades/2020/pleiades-2020-12-ultimate-win-64bit_20201222.zip#/dl.7z"
+      "hash": "md5:f270ad93d24db0f47559326e18580496",
+      "url": "http://ftp.jaist.ac.jp/pub/mergedoc/pleiades/4.7/pleiades-4.7.3-php-win-64bit-jre_20180411.zip#/dl.7z"
     }
   },
   "autoupdate": {
@@ -16,8 +20,9 @@
     }
   },
   "checkver": {
-    "re": "((?<fileVersion>[\\d]{4}-[\\d]{2})\\.(?<date>[\\d]{8}))",
-    "url": "http://mergedoc.osdn.jp/pleiades_distros2020.html"
+    "re": "Pleiades All in One ((?<fileVersion>[\\w\\d\\.]+) \\(Windows (?<date>[\\w\\d\\.]+).+\\))",
+    "replace": "${fileVersion}.v${date}",
+    "url": "http://mergedoc.osdn.jp/pleiades_distros4.7.html"
   },
   "extract_dir": "pleiades",
   "homepage": "http://mergedoc.osdn.jp/",
@@ -30,8 +35,8 @@
   "shortcuts": [
     [
       "eclipse/eclipse.exe",
-      "Pleiades All in One Ultimate 2020-12.20201222"
+      "Pleiades All in One PHP 4.7.3a.v20180411"
     ]
   ],
-  "version": "2020-12.20201222"
+  "version": "4.7.3a.v20180411"
 }
