@@ -1,10 +1,10 @@
 {
-  "version": "4.39.20018",
+  "version": "5.21.31741",
   "homepage": "https://aws.amazon.com/chime/",
   "description": "A communications service that lets you meet, chat, and place business calls inside and outside your organization, all using a single application.",
   "license": {
     "identifier": "Freeware",
-    "url": "https://aws.amazon.com/terms/?nc1=f_pr"
+    "url": "https://aws.amazon.com/terms/"
   },
   "notes": [
     "To add 'Amazon Chime' to the context menu run:",
@@ -12,16 +12,13 @@
     "To remove 'Amazon Chime' from the context menu run:",
     "chime-context-menu.ps1 uninstall"
   ],
-  "url": "https://clients.chime.aws/win/releases/Chime.4.39.20018.exe",
-  "hash": "ac380e8994263630d1f9ebfacc92321640ff15d8687db7de9b851ada0732002e",
-  "innosetup": true,
-  "extract_dir": "{userappdata}\\Chime",
-  "pre_install": [
-    "if ($architecture -eq '32bit') { Remove-Item \"$dir\\MediaClient,1.dll\"; Rename-Item \"$dir\\MediaClient,2.dll\" 'MediaClient.dll' }",
-    "elseif ($architecture -eq '64bit') { Remove-Item \"$dir\\MediaClient,2.dll\"; Rename-Item \"$dir\\MediaClient,1.dll\" 'MediaClient.dll' }",
-    "Remove-Item \"$dir\\unins000.*\""
-  ],
-  "bin": "Chime.exe",
+  "architecture": {
+    "64bit": {
+      "url": "https://clients.chime.aws/win-nme/AmazonChime-5.21.31741-full.nupkg",
+      "hash": "sha1:8f8a944503d3567c5ff5802a78b3a2702776b800"
+    }
+  },
+  "extract_dir": "lib\\net45",
   "shortcuts": [
     [
       "Chime.exe",
@@ -37,19 +34,20 @@
     "New-ItemProperty 'HKCU:\\SOFTWARE\\Classes\\Chime' -Name 'UseOriginalUrlEncoding' -PropertyType 'Dword' -Value '1' -Force | Out-Null",
     "Write-Host 'Done!'"
   ],
-  "pre_uninstall": [
-    "Write-Host \"Unregistering 'URL:chime' protocol handler\"; Remove-Item 'HKCU:\\SOFTWARE\\Classes\\Chime' -Recurse -Force",
-    "Remove-Item \"$env:APPDATA\" -Include 'AWS Mobile Services', 'Amazon' -Recurse -Force",
-    "Write-Host 'Done!'"
-  ],
+  "pre_uninstall": "Write-Host \"Unregistering 'URL:chime' protocol handler\"; Remove-Item 'HKCU:\\SOFTWARE\\Classes\\Chime' -Recurse -Force; Write-Host 'Done!'",
   "checkver": {
-    "script": [
-      "$redirUrl = [System.Net.HttpWebRequest]::Create('https://clients.chime.aws/win/latest').GetResponse().ResponseUri.AbsoluteUri",
-      "Return \"$redirUrl\""
-    ],
-    "regex": "Chime\\.([\\d.]+)\\.exe"
+    "url": "https://clients.chime.aws/win-nme/RELEASES",
+    "regex": "AmazonChime-([\\d.]+)-full\\.nupkg"
   },
   "autoupdate": {
-    "url": "https://clients.chime.aws/win/releases/Chime.$version.exe"
+    "architecture": {
+      "64bit": {
+        "url": "https://clients.chime.aws/win-nme/AmazonChime-$version-full.nupkg",
+        "hash": {
+          "url": "$baseurl/RELEASES",
+          "regex": "(?:ï»¿)$md5\\s$basename"
+        }
+      }
+    }
   }
 }

@@ -1,12 +1,16 @@
 {
-  "version": "12.12.6.1",
+  "version": "12.12.9.4",
   "description": "Media player, mobile device management utility, iTunes Store client",
   "license": "Proprietary",
   "homepage": "https://www.apple.com/itunes/",
   "architecture": {
     "64bit": {
-      "url": "https://beerpsi-scoop.deno.dev/itunes?os=windows&type=x64&dl=12.12.6.1#/dl.7z",
-      "hash": "sha1:3883de0be7f68918daf36855faa30786883f54f9"
+      "url": "https://www.apple.com/itunes/download/win64#/dl.7z",
+      "hash": "825724b11840baa477f5284e1487a62a6856b373221b0bcfe511f16ef882da93"
+    },
+    "32bit": {
+      "url": "https://www.apple.com/itunes/download/win32#/dl.7z",
+      "hash": "a9643218a6e9384548e8d449d4686252cb9f21d260ea6e73a1468d97d89c1de9"
     }
   },
   "pre_install": [
@@ -72,17 +76,16 @@
     ]
   ],
   "checkver": {
-    "url": "https://beerpsi-scoop.deno.dev/itunes?os=windows&type=x64",
-    "jsonpath": "$[-1:].version"
+    "url": "https://en.wikipedia.org/wiki/History_of_iTunes",
+    "regex": "background:#3d4;\">([\\d\\.]+)"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://beerpsi-scoop.deno.dev/itunes?os=windows&type=x64&dl=$version#/dl.7z",
-        "hash": {
-          "url": "https://beerpsi-scoop.deno.dev/itunes?os=windows&type=x64",
-          "jsonpath": "$[?(@.version=='$version')].sha1sum"
-        }
+        "url": "https://www.apple.com/itunes/download/win64#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://www.apple.com/itunes/download/win32#/dl.7z"
       }
     }
   }

@@ -1,0 +1,47 @@
+{
+  "version": "21.0a2",
+  "description": "Open source home theater/media center software and entertainment hub for digital media",
+  "homepage": "https://kodi.tv/",
+  "license": "GPL-2.0-or-later",
+  "suggest": {
+    "Visual C++ Redistributable": "extras/vcredist2022"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://mirrors.kodi.tv/snapshots/windows/win64/kodi-21.0-Omega_alpha2-x64.exe#/dl.7z",
+      "hash": "522c725db4f51495eaa104bded65d05660dbe3fc50c07364fcd0dc9f8d7834e6"
+    },
+    "32bit": {
+      "url": "https://mirrors.kodi.tv/snapshots/windows/win32/kodi-21.0-Omega_alpha2-x86.exe#/dl.7z",
+      "hash": "028d8c8356bf75fe5fe6dd3d014ef905a2ee972f164ddddc1f36f1ae42d4077d"
+    }
+  },
+  "post_install": "'$PLUGINSDIR', '$TEMP', 'AppxManifest.xml', 'Uninstall.exe' | ForEach-Object { Remove-Item \"$dir\\$_\" -Recurse -Force }",
+  "shortcuts": [
+    [
+      "kodi.exe",
+      "Kodi-Omega-Pre",
+      "-p"
+    ]
+  ],
+  "persist": "portable_data",
+  "checkver": {
+    "url": "https://api.github.com/repos/xbmc/xbmc/releases",
+    "jsonpath": "$..tag_name",
+    "regex": "(?<version>(?<prerelease>21\\.\\d)a(?<alpha>\\d))-Omega"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://mirrors.kodi.tv/snapshots/windows/win64/kodi-$matchPrerelease-Omega_alpha$matchAlpha-x64.exe#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://mirrors.kodi.tv/snapshots/windows/win32/kodi-$matchPrerelease-Omega_alpha$matchAlpha-x86.exe#/dl.7z"
+      }
+    },
+    "hash": {
+      "url": "$url?mirrorlist",
+      "regex": "$sha256"
+    }
+  }
+}
