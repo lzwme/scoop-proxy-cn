@@ -1,15 +1,12 @@
 {
   "homepage": "http://ipe.otfried.org/",
-  "version": "7.2.27",
+  "version": "7.2.28",
   "license": "GPL-3.0-only",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.net/https://github.com/otfried/ipe/releases/download/v7.2.27/ipepresenter-7.2.27-win64.zip",
-      "hash": "d0c7427c48b5c4bb9edde21768c4ca0875ce4d37d76af1a4714ba7981d47e455"
-    },
-    "32bit": {
-      "url": "https://ghproxy.net/https://github.com/otfried/ipe/releases/download/v7.2.26/ipe-7.2.26-win32.zip",
-      "hash": ""
+      "url": "https://ghproxy.net/https://github.com/otfried/ipe/releases/download/v7.2.28/ipe-7.2.28-win64.zip",
+      "hash": "cb5522955200d32ad15c511cfa93f581048a38170e2552f9b961b6b6e24e2356",
+      "extract_dir": "ipe-7.2.28"
     }
   },
   "bin": "bin\\ipe.exe",
@@ -23,7 +20,8 @@
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.net/https://github.com/otfried/ipe/releases/download/v$version/ipepresenter-$version-win64.zip"
+        "url": "https://ghproxy.net/https://github.com/otfried/ipe/releases/download/v$version/ipe-$version-win64.zip",
+        "extract_dir": "ipe-$version"
       }
     }
   }

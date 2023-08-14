@@ -1,17 +1,17 @@
 {
-  "version": "2.23.7_3",
+  "version": "2.23.7",
   "description": "BrickLink Studio. Studio is a desktop application that allows users to build LEGO models using virtual parts.",
-  "homepage": "https://www.bricklink.com/v3/studio/download.page",
+  "homepage": "https://www.bricklink.com/v2/build/studio.page",
   "license": "Unknown",
-  "changelog": "https://www.bricklink.com/v3/studio/download.page",
+  "changelog": "https://www.bricklink.com/v2/build/studio.page",
   "innosetup": true,
   "architecture": {
     "64bit": {
-      "url": "https://s3.amazonaws.com/blstudio/Studio2.0/Archive/2.23.7_3/Studio+2.0.exe#/dl.7z",
+      "url": "https://s3.amazonaws.com/blstudio/Studio2.0/Studio+2.0.exe#/dl.7z",
       "hash": "b2fb49108c9a82ce975df4c40cb4e21c10cfd8b29ea676c602704e6b429c13d1"
     },
     "32bit": {
-      "url": "https://s3.amazonaws.com/blstudio/Studio2.0/Archive/2.23.7_3/Studio+2.0_32.exe#/dl.7z",
+      "url": "https://s3.amazonaws.com/blstudio/Studio2.0/Studio+2.0_32.exe#/dl.7z",
       "hash": "374d6a193ffb3c28922cfba97ca2e97c86379e357c31be23f0e2f78110a330e3"
     }
   },
@@ -23,17 +23,17 @@
     ]
   ],
   "checkver": {
-    "url": "https://www.bricklink.com/v3/studio/download.page",
-    "regex": "\"strVersion\":\"([\\d._]+)",
+    "url": "https://www.bricklink.com/v2/build/studio.page",
+    "regex": "\"strVersion\":\"([\\d.]+)",
     "reverse": true
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://s3.amazonaws.com/blstudio/Studio$majorVersion.0/Archive/$version/Studio+$majorVersion.0.exe#/dl.7z"
+        "url": "https://s3.amazonaws.com/blstudio/Studio$majorVersion.0/Studio+$majorVersion.0.exe#/dl.7z"
       },
       "32bit": {
-        "url": "https://s3.amazonaws.com/blstudio/Studio$majorVersion.0/Archive/$version/Studio+$majorVersion.0_32.exe#/dl.7z"
+        "url": "https://s3.amazonaws.com/blstudio/Studio$majorVersion.0/Studio+$majorVersion.0_32.exe#/dl.7z"
       }
     }
   }
