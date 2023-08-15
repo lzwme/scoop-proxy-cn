@@ -1,13 +1,29 @@
 {
+  "architecture": {
+    "32bit": {
+      "hash": "md5:b122928f1d6d31bd76bf2632e5607860",
+      "url": "http://ftp.jaist.ac.jp/pub/mergedoc/pleiades/4.6/pleiades-4.6.3-ultimate-win-32bit_20170422.zip#/dl.7z"
+    },
+    "64bit": {
+      "hash": "md5:4a0b91c00ca14d7674327478bfbc4401",
+      "url": "http://ftp.jaist.ac.jp/pub/mergedoc/pleiades/4.6/pleiades-4.6.3-ultimate-win-64bit_20170422.zip#/dl.7z"
+    }
+  },
   "autoupdate": {
-    "url": "http://ftp.jaist.ac.jp/pub/mergedoc/pleiades/$majorVersion.$minorVersion/pleiades-$fileVersion-java-win-64bit-jre_$date.zip#/dl.7z"
+    "architecture": {
+      "32bit": {
+        "url": "http://ftp.jaist.ac.jp/pub/mergedoc/pleiades/$majorVersion.$minorVersion/pleiades-$fileVersion-java-win-32bit-jre_$date.zip#/dl.7z"
+      },
+      "64bit": {
+        "url": "http://ftp.jaist.ac.jp/pub/mergedoc/pleiades/$majorVersion.$minorVersion/pleiades-$fileVersion-java-win-64bit-jre_$date.zip#/dl.7z"
+      }
+    }
   },
   "checkver": {
     "re": "Pleiades All in One ((?<fileVersion>[\\d.]+).*\\.v(?<date>[\\d]+))",
     "url": "http://mergedoc.osdn.jp/pleiades_distros4.6.html"
   },
   "extract_dir": "pleiades",
-  "hash": "md5:956dae7c8df9ba5bcf0198b07b6b3fa2",
   "homepage": "http://mergedoc.osdn.jp/",
   "license": "https://www.eclipse.org/legal/epl-v10.html",
   "persist": [
@@ -18,9 +34,8 @@
   "shortcuts": [
     [
       "eclipse/eclipse.exe",
-      "Pleiades All in One CDT 4.6.3.v20170422"
+      "Pleiades All in One Ultimate 4.6.3.v20170422"
     ]
   ],
-  "url": "http://ftp.jaist.ac.jp/pub/mergedoc/pleiades/4.6/pleiades-4.6.3-cpp-mac-jre_20170421.dmg#/dl.7z",
   "version": "4.6.3.v20170422"
 }
