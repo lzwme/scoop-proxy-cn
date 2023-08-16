@@ -1,15 +1,22 @@
 {
-  "version": "1.7-20230813-3e9837",
+  "version": "1.7-20230815-e6d3f6",
   "description": "Modified spotify client. Blocks ads and updates, and more.",
   "homepage": "https://github.com/amd64fox/SpotX",
   "license": "MIT",
   "url": "https://ghproxy.net/https://raw.githubusercontent.com/amd64fox/SpotX/main/Install.ps1",
-  "hash": "2d23f286051ff2b424f828fe53a76a4e6c006ba8710ab136f4f7a49b64a9d8cb",
+  "hash": "fa34f82644126b2821c35943317fef3a21e5ad037961a98ecdebcd03d472b520",
   "installer": {
-    "script": "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; iex \"& { $((iwr -useb 'https://ghproxy.net/https://raw.githubusercontent.com/amd64fox/SpotX/main/Install.ps1').Content) } -v 1.2.13.661.ga588f749-4064 -confirm_uninstall_ms_spoti -confirm_spoti_recomended_over -podcasts_off -block_update_on -start_spoti\""
+    "script": [
+      "# older versions of Powershell 5 requires BOM to recognize UTF8 scripts",
+      "$cont = Get-Content \"$dir\\Install.ps1\" -Encoding utf8",
+      "Set-Content \"$dir\\Install.ps1\" $cont -Encoding utf8",
+      "& \"$dir\\Install.ps1\" -confirm_uninstall_ms_spoti -confirm_spoti_recomended_over -podcasts_off -block_update_on -adsections_off -rightsidebar_off -new_theme"
+    ]
+  },
+  "uninstaller": {
+    "script": "Invoke-ExternalCommand \"$Env:Appdata\\Spotify\\Spotify.exe\" -ArgumentList @('/uninstall', '/silent') | Out-Null"
   },
   "checkver": {
-    "regex": "([\\w.-]+)",
     "script": [
       "try {",
       "    $auth = Get-GitHubToken",
@@ -29,7 +36,8 @@
       "    Write-Output \"$app_ver-$update_date-$commit_sha\"",
       "}",
       "catch { error $_.Exception.Message; throw }"
-    ]
+    ],
+    "regex": "([\\w.-]+)"
   },
   "autoupdate": {
     "url": "https://ghproxy.net/https://raw.githubusercontent.com/amd64fox/SpotX/main/Install.ps1"

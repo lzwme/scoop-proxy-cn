@@ -1,6 +1,7 @@
 {
-  "homepage": "https://github.com/libgenapps/LibgenDesktop/",
+  "homepage": "https://github.com/libgenapps/LibgenDesktop",
   "description": "Libgen Desktop",
+  "license": "unknown",
   "version": "1.4.1",
   "architecture": {
     "64bit": {
@@ -12,7 +13,6 @@
       "hash": "2142efa5924cc0d47dc5751cd88892ca4e7dc1beb919c11739f562e94fe05c59"
     }
   },
-  "extract_dir": "",
   "pre_install": [
     "function CreateFile ($name, $value = $null) {",
     "    if (!(Test-Path \"$persist_dir\\$name\")) {",
@@ -22,11 +22,11 @@
     "CreateFile 'libgen.config' '{}' "
   ],
   "persist": "libgen.config",
-  "bin": "",
+  "bin": "LibgenDesktop.exe",
   "shortcuts": [
     [
       "LibgenDesktop.exe",
-      "LibgenDesktop"
+      "Libgen Desktop"
     ]
   ],
   "checkver": "github",

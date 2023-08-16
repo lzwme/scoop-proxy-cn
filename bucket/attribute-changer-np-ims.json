@@ -1,10 +1,10 @@
 {
-  "version": "11.20a",
+  "version": "11.20b",
   "homepage": "https://www.petges.lu",
   "description": "A Windows Explorer shell extension that allows users to easily change file and folder properties with a right-click.",
   "license": "Freeware",
-  "url": "https://www.petges.lu/pubfiles/ac-11_20a.exe",
-  "hash": "md5:3c85013c4cf3c3bb411ce392d821d7c2",
+  "url": "https://www.petges.lu/pubfiles/ac-11_20b.exe",
+  "hash": "md5:71df2f283f64caaed919e40ef6b9f772",
   "pre_install": [
     "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
     "Get-ChildItem \"$dir\\*,1*\" -Include '*.exe', '*.dll' | Remove-Item; Get-ChildItem \"$dir\\*,2*\" -Include '*.exe', '*.dll' | Rename-Item -NewName { $_ -replace '\\,2', '' }",

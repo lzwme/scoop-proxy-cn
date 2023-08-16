@@ -1,5 +1,5 @@
 {
-  "version": "1.11.1.1347",
+  "version": "1.11.1.1403",
   "description": "Modern, dynamic a functional dialect of the LISP programming language for JVM",
   "homepage": "https://clojure.org",
   "license": "EPL-1.0",
@@ -11,15 +11,16 @@
       "java/oraclejdk"
     ]
   },
+  "depends": "extras/vcredist2022",
   "architecture": {
     "64bit": {
       "url": [
-        "https://ghproxy.net/https://github.com/borkdude/deps.clj/releases/download/v1.11.1.1347/deps.clj-1.11.1.1347-windows-amd64.zip",
-        "https://download.clojure.org/install/clojure-tools-1.11.1.1347.zip"
+        "https://ghproxy.net/https://github.com/borkdude/deps.clj/releases/download/v1.11.1.1403/deps.clj-1.11.1.1403-windows-amd64.zip",
+        "https://ghproxy.net/https://github.com/clojure/brew-install/releases/download/1.11.1.1403/clojure-tools.zip"
       ],
       "hash": [
-        "2571af6f9fca6f98e78722b0ff584b9caa2745bbd4e8509d38f6a94e06ef2ee0",
-        "1d2045b268863159b5483af22708d1316e644dd51972b22aa46997454ba113f1"
+        "278f3020884155b92e255ee41cb2930445719d1ef1fa0457e7868d26610d4735",
+        "e40a5a330b7ed7ab9874ed4f6cd3062a97e20b7973e24f9c4772b2945b1ca68d"
       ]
     }
   },
@@ -45,14 +46,16 @@
     ]
   ],
   "checkver": {
-    "github": "https://github.com/borkdude/deps.clj"
+    "url": "https://github.com/borkdude/deps.clj/releases",
+    "regex": "tag/v([\\d.]+)(-[\\d]+)?",
+    "replace": "${1}${2}"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
         "url": [
           "https://ghproxy.net/https://github.com/borkdude/deps.clj/releases/download/v$version/deps.clj-$version-windows-amd64.zip",
-          "https://download.clojure.org/install/clojure-tools-$version.zip"
+          "https://ghproxy.net/https://github.com/clojure/brew-install/releases/download/$matchHead$matchTail/clojure-tools.zip"
         ]
       }
     }
