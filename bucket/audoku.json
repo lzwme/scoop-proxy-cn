@@ -1,0 +1,33 @@
+{
+  "version": "0.1.0",
+  "description": "Automated Documentation for Continues Processes in Process Simulate",
+  "homepage": "https://icarus-consult.de",
+  "license": "non-free",
+  "url": "//promptly-apps.icarus-consult.local/Software/TMXTOOLS/audoku/0.1.0/Audoku_v0.1.0.zip",
+  "autoupdate": {
+    "url": "//promptly-apps.icarus-consult.local/Software/TMXTOOLS/audoku/$version/Audoku_v$version.zip"
+  },
+  "pre_install": [
+    "if(Get-Process -Name \"tune\" -ErrorAction SilentlyContinue) {",
+    "    Write-Error \"Process Simulate is running. Please close it to continue.\"",
+    "    exit 1",
+    " }"
+  ],
+  "post_install": [
+    "# run install.ps1",
+    "Set-Variable -Name \"PSScriptRoot\" -Value $dir -Scope Script",
+    "#.\\install.ps1",
+    "$command = \"$dir\\install.ps1\"",
+    "Invoke-Expression \"& $command\""
+  ],
+  "pre_uninstall": [
+    "if(Get-Process -Name \"tune\" -ErrorAction SilentlyContinue) {",
+    "    Write-Error \"Process Simulate is running. Please close it to continue.\"",
+    "    exit 1",
+    " }",
+    "# run uninstall.ps1",
+    "$command = \"$dir\\uninstall.ps1\"",
+    "Invoke-Expression \"& $command\""
+  ],
+  "post_uninstall": []
+}

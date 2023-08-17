@@ -1,22 +1,20 @@
 {
   "homepage": "https://uu.163.com/",
   "description": "Netease Online Game accelerator",
-  "version": "4.60.0",
+  "version": "4.61.0",
   "license": {
     "identifier": "Proprietary",
     "url": "https://uu.163.com/agreement.html"
   },
-  "url": "https://uu.gdl.netease.com/4098/UU-4.60.0.exe#/dl.7z",
-  "hash": "67fafa9a977ceb49338de72cbe0cd905b08c166f2722094cc63ba59d589605ed",
+  "url": "https://uu.gdl.netease.com/4099/UU-4.61.0.exe#/dl.7z",
+  "hash": "dcd0e7c55be567368e69586fe788e3e48388c3dfeffc78bbc370f8d7c3399c93",
   "shortcuts": [
     [
       "uu.exe",
       "UU加速器"
     ]
   ],
-  "post_install": [
-    "Remove-Item \"$Env:Public\\Desktop\\UU加速器.lnk\""
-  ],
+  "post_install": "Remove-Item \"$Env:Public\\Desktop\\UU加速器.lnk\"",
   "checkver": {
     "url": "https://uu.163.com/baike/js/dl.js",
     "regex": "'dlUrl': 'https://.*?.gdl.netease.com/(?<build>\\d+)/UU-(?<ver>[\\d.]+).exe'",

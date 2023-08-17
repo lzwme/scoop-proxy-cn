@@ -1,26 +1,34 @@
 {
   "version": "0.13.0",
-  "bin": [
+  "homepage": "https://splode.github.io/pomotroid/",
+  "description": "A simple, configurable and visually pleasing Pomodoro timer.",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/Splode/pomotroid/releases/download/v0.13.0/pomotroid-0.13.0-setup.exe#/dl.7z",
+      "hash": "sha512:7535fa0969f95ef0244291b4764c1f75699445fb5ff21c1b6e16205305feff85f2f6ae8e1c5eb430065e81f5b6029bb277e2a73b4afc01c8e82f5be6e34ed0a2"
+    }
+  },
+  "extract_dir": "$PLUGINSDIR",
+  "pre_install": "Expand-7zipArchive \"$dir\\app-64.7z\" $dir -Removal",
+  "shortcuts": [
     [
-      "pomotroid-0.13.0-portable.exe",
-      "pomotroid"
+      "Pomotroid.exe",
+      "Pomotroid"
     ]
   ],
-  "url": "https://ghproxy.net/https://github.com/Splode/pomotroid/releases/download/v0.13.0/pomotroid-0.13.0-portable.exe",
-  "hash": "3c8bdd88eed99c1a5bf3eb279acc0176e3ba409a8470186aefcdc1409eaf5e6a",
-  "description": "A simple and configurable Pomodoro timer. It provides a visually-pleasing and reliable way to track productivity using the Pomodoro Technique.",
-  "homepage": "https://github.com/splode/pomotroid",
-  "license": "MIT",
   "checkver": {
     "github": "https://github.com/Splode/pomotroid"
   },
   "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/Splode/pomotroid/releases/download/v$version/pomotroid-$version-portable.exe"
-  },
-  "shortcuts": [
-    [
-      "pomotroid-0.13.0-portable.exe",
-      "Pomotroid"
-    ]
-  ]
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/Splode/pomotroid/releases/download/v$version/pomotroid-$version-setup.exe#/dl.7z",
+        "hash": {
+          "url": "$baseurl/latest.yml",
+          "regex": "sha512:\\s$base64"
+        }
+      }
+    }
+  }
 }
