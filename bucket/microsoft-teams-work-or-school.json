@@ -1,0 +1,52 @@
+{
+  "$schema": "https://ghproxy.net/https://raw.githubusercontent.com/lukesampson/scoop/master/schema.json",
+  "version": "1.6.00.20074",
+  "description": "Proprietary business communication platform developed by Microsoft",
+  "homepage": "https://teams.com/",
+  "license": {
+    "identifier": "Proprietary"
+  },
+  "notes": "Apps in `current` won't work, use version folder instead.",
+  "architecture": {
+    "32bit": {
+      "url": "https://statics.teams.cdn.office.net/production-windows/1.6.00.20074/Teams_windows.exe#/dl.exe",
+      "hash": "28efa15046fbbee9112d84473de9bd5d5095e75500b25bb3b95cc33602b242cb"
+    },
+    "64bit": {
+      "url": "https://statics.teams.cdn.office.net/production-windows-x64/1.6.00.20074/Teams_windows_x64.exe#/dl.exe",
+      "hash": "c6f0cb12b85377b15d27b3796127fe346292dc117f49ba24334b351a7f8830fb"
+    },
+    "arm64": {
+      "url": "https://statics.teams.cdn.office.net/production-windows-arm64/1.6.00.20074/Teams_windows_arm64.exe#/dl.exe",
+      "hash": "d1f90174df2a6d83a979917cc731e964cd64c7d637c1c3af43d28fa4672b2570"
+    }
+  },
+  "installer": {
+    "script": [
+      "Expand-7zipArchive -Path \"$dir\\dl.exe\" -DestinationPath \"$dir\\_tmp\" -Removal",
+      "Expand-7zipArchive -Path \"$dir\\_tmp\\Teams-$version-full.nupkg\" -ExtractDir 'lib/net45' -DestinationPath \"$dir\"",
+      "Remove-Item -Path \"$dir\\_tmp\" -Recurse -Force",
+      "startmenu_shortcut \"$dir\\Teams.exe\" 'Microsoft Teams (work or school)' '' $null $global"
+    ]
+  },
+  "uninstaller": {
+    "script": "Remove-Item \"$(shortcut_folder $global)\\Microsoft Teams (work or school).lnk\" -Force"
+  },
+  "checkver": {
+    "url": "https://config.teams.microsoft.com/config/v1/MicrosoftTeams/1415_1.0.0.0?environment=prod&audienceGroup=general&teamsRing=general&agent=TeamsBuilds",
+    "jsonpath": "$.BuildSettings.Desktop.windows64.latestVersion"
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://statics.teams.cdn.office.net/production-windows/$version/Teams_windows.exe#/dl.exe"
+      },
+      "64bit": {
+        "url": "https://statics.teams.cdn.office.net/production-windows-x64/$version/Teams_windows_x64.exe#/dl.exe"
+      },
+      "arm64": {
+        "url": "https://statics.teams.cdn.office.net/production-windows-arm64/$version/Teams_windows_arm64.exe#/dl.exe"
+      }
+    }
+  }
+}

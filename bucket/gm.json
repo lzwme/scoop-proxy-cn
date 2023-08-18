@@ -1,0 +1,30 @@
+{
+  "version": "0.0.1",
+  "description": "Golang Minimal text editor (凸)/",
+  "homepage": "https://github.com/hymkor/gm",
+  "license": "MIT License",
+  "architecture": {
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/hymkor/gm/releases/download/v0.0.1/gm-v0.0.1-windows-386.zip",
+      "hash": "92746af471de802740b8ac57d7d6862b280bd445ae0e8cd418f1ea60f37e268c"
+    },
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/hymkor/gm/releases/download/v0.0.1/gm-v0.0.1-windows-amd64.zip",
+      "hash": "f988b7d9316b192601a58843cb0d23c385c2f6192ff2e955bbe1b189617128d4"
+    }
+  },
+  "bin": [
+    "gm.exe"
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/hymkor/gm/releases/download/v$version/gm-v$version-windows-386.zip"
+      },
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/hymkor/gm/releases/download/v$version/gm-v$version-windows-amd64.zip"
+      }
+    }
+  }
+}

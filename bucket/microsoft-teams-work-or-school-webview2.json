@@ -1,0 +1,47 @@
+{
+  "$schema": "https://ghproxy.net/https://raw.githubusercontent.com/lukesampson/scoop/master/schema.json",
+  "version": "23202.1509.2295.2283",
+  "description": "Proprietary business communication platform developed by Microsoft",
+  "homepage": "https://adoption.microsoft.com/new-microsoft-teams/",
+  "license": {
+    "identifier": "Proprietary"
+  },
+  "notes": "Apps in `current` won't work, use version folder instead.",
+  "architecture": {
+    "32bit": {
+      "url": "https://statics.teams.cdn.office.net/production-windows-x86/23202.1509.2295.2283/MSTeams-x86.msix#/dl.zip",
+      "hash": "f9599997425bac987afa45504603bcf02336fb750b67d367152d683bdb46a2f8"
+    },
+    "64bit": {
+      "url": "https://statics.teams.cdn.office.net/production-windows-x64/23202.1509.2295.2283/MSTeams-x64.msix#/dl.zip",
+      "hash": "dfaf919e9c2b9cc5a7aeee528660dd962b039abd7e9c54c031c265a2a7aa0027"
+    },
+    "arm64": {
+      "url": "https://statics.teams.cdn.office.net/production-windows-arm64/23202.1509.2295.2283/MSTeams-arm64.msix#/dl.zip",
+      "hash": "5b489815b161fdb6ea154008e5f1178f0ce585dfc16954350af3587fd102f4b7"
+    }
+  },
+  "shortcuts": [
+    [
+      "ms-teams.exe",
+      "Microsoft Teams (work or school)"
+    ]
+  ],
+  "checkver": {
+    "url": "https://config.teams.microsoft.com/config/v1/MicrosoftTeams/1415_1.0.0.0?environment=prod&audienceGroup=general&teamsRing=general&agent=TeamsBuilds",
+    "jsonpath": "$.BuildSettings.WebView2Canary.x64.latestVersion"
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://statics.teams.cdn.office.net/production-windows-x86/$version/MSTeams-x86.msix#/dl.zip"
+      },
+      "64bit": {
+        "url": "https://statics.teams.cdn.office.net/production-windows-x64/$version/MSTeams-x64.msix#/dl.zip"
+      },
+      "arm64": {
+        "url": "https://statics.teams.cdn.office.net/production-windows-arm64/$version/MSTeams-arm64.msix#/dl.zip"
+      }
+    }
+  }
+}

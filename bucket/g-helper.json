@@ -1,23 +1,23 @@
 {
   "version": "0.112",
-  "description": "Lightweight Armoury Crate alternative for Asus laptops.",
-  "homepage": "https://seerge.github.io/g-helper",
-  "license": {
-    "identifier": "MIT",
-    "url": "https://github.com/seerge/g-helper/blob/main/LICENSE"
-  },
-  "checkver": {
-    "github": "https://github.com/seerge/g-helper"
-  },
-  "hash": "26465d831ffc02339f97f50e62b3cc07e48eea4d91fac2d5774a7469d2ce57aa",
+  "description": "为ASUS笔记本打造的、Armoury Crate(奥创控制中心)的轻量化替代品",
+  "homepage": "https://github.com/seerge/g-helper",
+  "license": "MIT",
   "url": "https://ghproxy.net/https://github.com/seerge/g-helper/releases/download/v0.112/GHelper.zip",
-  "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/seerge/g-helper/releases/download/v$version/GHelper.zip"
-  },
+  "hash": "26465d831ffc02339f97f50e62b3cc07e48eea4d91fac2d5774a7469d2ce57aa",
   "shortcuts": [
     [
       "GHelper.exe",
-      "G-Helper"
+      "GHelper"
     ]
-  ]
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/seerge/g-helper/releases",
+    "jsonpath": "$[0].tag_name",
+    "regex": "(?<tag>v([\\w.-]+))"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/seerge/g-helper/releases/download/v$version/GHelper.zip"
+  },
+  "notes": "需要Microsoft .NET7。"
 }
