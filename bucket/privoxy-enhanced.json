@@ -21,6 +21,19 @@
     "            Write-Host -ForegroundColor DarkYellow \"Distributed '$_', stored as '$_.original', is not matched with the persisted file, you may need to merge with '$_'.\"",
     "        }",
     "    }",
+    "}",
+    "# Create shortcuts",
+    "$wsh_shell = New-Object -comObject WScript.Shell",
+    "$startup_dir=\"$env:USERPROFILE\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\"",
+    "$shortcut = $wsh_shell.CreateShortcut(\"$startup_dir\\privoxy.lnk\")",
+    "$shortcut.TargetPath = \"$dir\\privoxy.exe\"",
+    "$shortcut.WorkingDirectory = $dir",
+    "$shortcut.Save()"
+  ],
+  "post_uninstall": [
+    "$startup_dir=\"$env:USERPROFILE\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\"",
+    "if (Test-Path \"$startup_dir\\privoxy.lnk\") {",
+    "    Remove-Item -Path \"$startup_dir\\privoxy.lnk\"",
     "}"
   ],
   "bin": "privoxy.exe",

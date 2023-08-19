@@ -1,0 +1,109 @@
+{
+  "##": "In order to stick calibre-portable, we avoid invoking an installer exe here",
+  "version": "6.25.0",
+  "description": "Powerful and easy to use e-book manager",
+  "homepage": "https://calibre-ebook.com",
+  "license": "GPL-3.0-only",
+  "notes": "Calibre drops support for 32-bit after v6.0.0, if you are running a 32-bit system, please install 'versions/calibre5' from Versions bucket.",
+  "architecture": {
+    "64bit": {
+      "url": "https://download.calibre-ebook.com/6.25.0/calibre-portable-installer-6.25.0.exe",
+      "hash": "sha512:a1a15bc54dcc841f3e1797baff1d4358d63109141af55f8eafe3d7487d09ab656f4bfb925dbbbff184af3f1bd0e6d9d5a508434314b5d64a388aef13e3563460"
+    }
+  },
+  "installer": {
+    "script": [
+      "# Extract a lzip archive in resouce",
+      "$lzmaFile=\"calibre-portable.zip.lzma\"",
+      "Clear-Content \"$dir\\$lzmaFile\" -ErrorAction SilentlyContinue",
+      "Set-Content \"$dir\\$lzmaFile\" -Value ([byte]0x5d,((,[byte]0)*6)) -Encoding Byte",
+      "# PS redierct may too slow, so cmd redirect is used",
+      "cmd /c \"7z e -so \"\"$dir\\calibre-portable-installer-$version.exe\"\" .rsrc/EXTRA/EXTRA >> $dir\\${lzmaFile}\"",
+      "# Read meta info",
+      "$length=(Get-Item \"$dir\\$lzmaFile\").Length",
+      "$fs=[System.IO.FileStream]::new(\"$dir\\$lzmaFile\", [System.IO.FileMode]::Open, [System.IO.FileAccess]::ReadWrite)",
+      "$br=[System.IO.BinaryReader]::new($fs, [System.Text.Encoding]::UTF8, $true)",
+      "$fs.Seek(7 + 4, [System.IO.SeekOrigin]::Begin) | Out-Null",
+      "$lzipVersion=$br.ReadByte(); if($lzipVersion -ne 0) { throw \"lzip version is not expected\" }",
+      "$dictSize = [Math]::pow(2, $br.ReadByte())",
+      "$fs.Seek(-8, [System.IO.SeekOrigin]::End) | Out-Null; $rawSize=$br.ReadUInt64()",
+      "$br.Dispose()",
+      "# Fix meta info and length as a lzma archive",
+      "$bw=[System.IO.BinaryWriter]::new($fs, [System.Text.Encoding]::UTF8, $true)",
+      "$bw.Seek(1, [System.IO.SeekOrigin]::Begin) | Out-Null; $bw.Write([UInt32]$dictSize)",
+      "$bw.Write([UInt64]$rawSize)",
+      "$bw.Flush(); $bw.Dispose()",
+      "$fs.SetLength($length - 12)",
+      "$fs.Close(); $fs.Dispose()",
+      "# Expand lzma to zip",
+      "Expand-7zipArchive -Path \"$dir\\$lzmaFile\" -Removal",
+      "# Expand zip",
+      "Expand-7zipArchive -Path \"$dir\\calibre-portable.zip\" -Removal",
+      "# Adjust contents",
+      "Move-Item \"$dir\\Calibre Portable\\*\" \"$dir\"",
+      "Remove-Item \"$dir\\Calibre Portable\"",
+      "Remove-Item \"$dir\\calibre-portable-installer-$version.exe\""
+    ]
+  },
+  "bin": [
+    [
+      "calibre-portable.exe",
+      "calibre"
+    ],
+    "calibre-portable.exe",
+    "Calibre\\calibre-complete.exe",
+    "Calibre\\calibre-customize.exe",
+    "Calibre\\calibredb.exe",
+    "Calibre\\calibre-debug.exe",
+    "Calibre\\calibre-parallel.exe",
+    "Calibre\\calibre-server.exe",
+    "Calibre\\calibre-smtp.exe",
+    "Calibre\\ebook-convert.exe",
+    "Calibre\\ebook-device.exe",
+    "Calibre\\ebook-edit.exe",
+    "Calibre\\ebook-meta.exe",
+    "Calibre\\ebook-polish.exe",
+    "Calibre\\ebook-viewer.exe",
+    "Calibre\\fetch-ebook-metadata.exe",
+    "Calibre\\lrf2lrs.exe",
+    "Calibre\\lrs2lrf.exe",
+    "Calibre\\lrfviewer.exe",
+    "Calibre\\markdown-calibre.exe",
+    "Calibre\\web2disk.exe"
+  ],
+  "shortcuts": [
+    [
+      "calibre-portable.exe",
+      "Calibre"
+    ],
+    [
+      "Calibre\\ebook-edit.exe",
+      "Calibre E-Book Editor"
+    ],
+    [
+      "Calibre\\ebook-viewer.exe",
+      "Calibre E-Book Viewer"
+    ],
+    [
+      "Calibre\\lrfviewer.exe",
+      "Calibre LRF Viewer"
+    ]
+  ],
+  "persist": [
+    "Calibre Library",
+    "Calibre Settings"
+  ],
+  "checkver": {
+    "github": "https://github.com/kovidgoyal/calibre"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://download.calibre-ebook.com/$version/calibre-portable-installer-$version.exe",
+        "hash": {
+          "url": "https://calibre-ebook.com/signatures/calibre-portable-installer-$version.exe.sha512"
+        }
+      }
+    }
+  }
+}

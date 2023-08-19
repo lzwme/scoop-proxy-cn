@@ -6,7 +6,10 @@
   "license": {
     "identifier": "Proprietary"
   },
-  "notes": "Apps in `current` won't work, use version folder instead.",
+  "notes": [
+    "Start Microsoft Teams (work or school) (WebView2) with Windows by running:",
+    ".\"$dir\\add-startup.ps1\""
+  ],
   "architecture": {
     "32bit": {
       "url": "https://statics.teams.cdn.office.net/production-windows-x86/23202.1509.2295.2283/MSTeams-x86.msix#/dl.zip",
@@ -21,10 +24,32 @@
       "hash": "5b489815b161fdb6ea154008e5f1178f0ce585dfc16954350af3587fd102f4b7"
     }
   },
+  "post_install": [
+    "$exepath = \"$dir\\ms-teams.exe\"",
+    "$registryPath = 'Registry::HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run'",
+    "if ($global) {",
+    "   $registryPath = $registryPath.Replace('HKCU', 'HKLM')",
+    "}",
+    "@(",
+    "   \"New-Item -Path '$registryPath' > `$null 2>&1\"",
+    "   \"New-ItemProperty -Force -Path '$registryPath' -Name 'Microsoft Teams (work or school) (WebView2)' -PropertyType String -Value '$exepath' > `$null\"",
+    ") | Set-Content -Path \"$dir\\add-startup.ps1\"",
+    "@(",
+    "   \"Remove-ItemProperty -Force -Path '$registryPath' -Name 'Microsoft Teams (work or school) (WebView2)' > `$null\"",
+    ") | Set-Content -Path \"$dir\\remove-startup.ps1\""
+  ],
+  "uninstaller": {
+    "script": [
+      "if ($cmd -eq 'uninstall') { ",
+      "   Remove-Item \"$(shortcut_folder $global)\\..\\Microsoft Teams (work or school).lnk\" -Force",
+      "   .\"$dir\\remove-startup.ps1\"",
+      "}"
+    ]
+  },
   "shortcuts": [
     [
       "ms-teams.exe",
-      "Microsoft Teams (work or school)"
+      "Microsoft Teams (work or school) (WebView2)"
     ]
   ],
   "checkver": {

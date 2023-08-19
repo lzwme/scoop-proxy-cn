@@ -6,7 +6,11 @@
   "license": {
     "identifier": "Proprietary"
   },
-  "notes": "Apps in `current` won't work, use version folder instead.",
+  "notes": [
+    "Apps in `current` won't work, use the version folder instead.",
+    "Start Microsoft Teams (work or school) with Windows by running:",
+    ".\"$dir\\add-startup.ps1\""
+  ],
   "architecture": {
     "32bit": {
       "url": "https://statics.teams.cdn.office.net/production-windows/1.6.00.20074/Teams_windows.exe#/dl.exe",
@@ -26,11 +30,26 @@
       "Expand-7zipArchive -Path \"$dir\\dl.exe\" -DestinationPath \"$dir\\_tmp\" -Removal",
       "Expand-7zipArchive -Path \"$dir\\_tmp\\Teams-$version-full.nupkg\" -ExtractDir 'lib/net45' -DestinationPath \"$dir\"",
       "Remove-Item -Path \"$dir\\_tmp\" -Recurse -Force",
-      "startmenu_shortcut \"$dir\\Teams.exe\" 'Microsoft Teams (work or school)' '' $null $global"
+      "$exepath = \"$dir\\Teams.exe\"",
+      "startmenu_shortcut $exepath 'Microsoft Teams (work or school)' '' $null $global",
+      "$registryPath = 'Registry::HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run'",
+      "if ($global) {",
+      "   $registryPath = $registryPath.Replace('HKCU', 'HKLM')",
+      "}",
+      "@(",
+      "   \"New-Item -Path '$registryPath' > `$null 2>&1\"",
+      "   \"New-ItemProperty -Force -Path '$registryPath' -Name 'Microsoft Teams (work or school)' -PropertyType String -Value '$exepath' > `$null\"",
+      ") | Set-Content -Path \"$dir\\add-startup.ps1\"",
+      "@(",
+      "   \"Remove-ItemProperty -Force -Path '$registryPath' -Name 'Microsoft Teams (work or school)' > `$null\"",
+      ") | Set-Content -Path \"$dir\\remove-startup.ps1\""
     ]
   },
   "uninstaller": {
-    "script": "Remove-Item \"$(shortcut_folder $global)\\Microsoft Teams (work or school).lnk\" -Force"
+    "script": [
+      "Remove-Item \"$(shortcut_folder $global)\\Microsoft Teams (work or school).lnk\" -Force",
+      ".\"$dir\\remove-startup.ps1\""
+    ]
   },
   "checkver": {
     "url": "https://config.teams.microsoft.com/config/v1/MicrosoftTeams/1415_1.0.0.0?environment=prod&audienceGroup=general&teamsRing=general&agent=TeamsBuilds",
