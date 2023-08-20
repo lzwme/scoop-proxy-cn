@@ -1,33 +1,24 @@
 {
+  "homepage": "https://pan.baidu.com",
+  "description": "让美好永远陪伴",
   "version": "7.31.1.3",
-  "description": "[百度网盘（原百度云）] - 百度网盘是百度推出的一项云存储服务，用户将可以轻松将自己的文件上传到网盘上，并可跨终端随时随地查看和分享。",
-  "license": {
-    "identifier": "Proprietary",
-    "url": "https://pan.baidu.com/disk/main#/protocol/duty_mobi"
-  },
-  "url": "http://issuecdn.baidupcs.com/issue/netdisk/yunguanjia/BaiduNetdisk_7.31.1.3.exe#/dl.7z",
-  "homepage": "http://pan.baidu.com",
-  "bin": "BaiduNetdisk.exe",
+  "license": "© 2021 Baidu",
+  "url": "https://issuecdn.baidupcs.com/issue/netdisk/yunguanjia/BaiduNetdisk_7.31.1.3.exe#/dl.7z",
   "hash": "3831ed8e65e220afc2da768cb5270dfb8317f8b10b17b79c1ba9f87aaff8138c",
+  "installer": {
+    "script": "Remove-Item \"$dir\\`$PLUGINSDIR\" -Recurse -Force"
+  },
   "shortcuts": [
     [
       "BaiduNetdisk.exe",
-      "百度网盘"
+      "Baidu Netdisk"
     ]
   ],
-  "persist": "users",
   "checkver": {
-    "url": "http://pan.baidu.com/disk/cmsdata?do=client",
-    "regex": "BaiduNetdisk_([\\d.]+)\\.exe"
+    "url": "https://pan.baidu.com/disk/cmsdata?do=client",
+    "regex": "BaiduNetdisk_([\\d.]+).exe"
   },
   "autoupdate": {
-    "url": "http://issuecdn.baidupcs.com/issue/netdisk/yunguanjia/BaiduNetdisk_$version.exe#/dl.7z",
-    "hash": {
-      "mode": "download"
-    }
-  },
-  "post_install": [
-    "Remove-Item \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
-    "Remove-Item \"$dir\\`$TEMP\" -Force -Recurse"
-  ]
+    "url": "https://issuecdn.baidupcs.com/issue/netdisk/yunguanjia/BaiduNetdisk_$version.exe#/dl.7z"
+  }
 }
