@@ -11,6 +11,21 @@
     "5bbab96d60704854efd8246a7d9371688b9102261544827fc8884126d70bcb3b",
     "md5:dfbfdb1c5bab3a6782937078878554ad"
   ],
+  "pre_install": [
+    "$path = \"$persist_dir\\Config\"",
+    "if (!(Test-Path $path) -or !(Get-Item $path).Length) {",
+    "  New-Item $path -ItemType Directory -Force | Out-Null",
+    "}",
+    "function New-PersistFile([String] $path) {",
+    "  if (!(Test-Path $path) -or !(Get-Item $path).Length) {",
+    "    New-Item $path -ItemType File -Force | Out-Null",
+    "  }",
+    "}",
+    "New-PersistFile \"$persist_dir\\Config\\Config.ini\""
+  ],
+  "post_install": [
+    "Move-Item $dir/wsusscn3.cab $dir/Config/wsusscn3.cab"
+  ],
   "architecture": {
     "32bit": {
       "bin": [
@@ -36,21 +51,6 @@
   ],
   "persist": [
     "Config/Config.ini"
-  ],
-  "pre_install": [
-    "$path = \"$persist_dir\\Config\"",
-    "if (!(Test-Path $path) -or !(Get-Item $path).Length) {",
-    "  New-Item $path -ItemType Directory -Force | Out-Null",
-    "}",
-    "function New-PersistFile([String] $path) {",
-    "  if (!(Test-Path $path) -or !(Get-Item $path).Length) {",
-    "    New-Item $path -ItemType File -Force | Out-Null",
-    "  }",
-    "}",
-    "New-PersistFile \"$persist_dir\\Config\\Config.ini\""
-  ],
-  "post_install": [
-    "Move-Item $dir/wsusscn3.cab $dir/Config/wsusscn3.cab"
   ],
   "checkver": "github",
   "autoupdate": {
