@@ -1,53 +1,41 @@
 {
-  "homepage": "http://www.softwareok.com/?seite=Freeware/ProcessKO",
   "version": "6.31",
-  "license": "freeware",
+  "description": "Close / Terminate hanging programs, apps, processes on MS Windows",
+  "homepage": "https://www.softwareok.de/?seite=Freeware/ProcessKO",
+  "license": "Proprietary",
   "architecture": {
     "64bit": {
-      "url": "http://www.softwareok.com/Download/ProcessKO_x64.zip",
-      "hash": "7fa75540cf505d102e54f11521baa02041becc523710a40c02073c89e6b11fca",
-      "bin": [
-        [
-          "ProcessKO_x64.exe",
-          "ProcessKO"
-        ]
-      ],
-      "shortcuts": [
-        [
-          "ProcessKO_x64.exe",
-          "ProcessKO"
-        ]
-      ]
+      "url": "https://www.softwareok.de/Download/ProcessKO_x64.zip",
+      "hash": "7fa75540cf505d102e54f11521baa02041becc523710a40c02073c89e6b11fca"
     },
     "32bit": {
-      "url": "http://www.softwareok.com/Download/ProcessKO_Unicode.zip",
-      "hash": "828114a201c51030ae29756be2e02fb5d7027757a6268d4eb3073adee7edff40",
-      "bin": [
-        [
-          "ProcessKO_Unicode.exe",
-          "ProcessKO"
-        ]
-      ],
-      "shortcuts": [
-        [
-          "ProcessKO_Unicode.exe",
-          "ProcessKO"
-        ]
-      ]
+      "url": "https://www.softwareok.de/Download/ProcessKO.zip",
+      "hash": "e854331dddcb17de8b3a9098fa585b5c259b8850b4188e993aec806d5098ea5f"
     }
   },
-  "persist": [
-    "ProcessKO.ini",
-    "Settings.cfi"
+  "pre_install": [
+    "Get-ChildItem \"$dir\\ProcessKO*.exe\" | Rename-Item -NewName 'ProcessKO.exe'",
+    "if(!(Test-Path \"$persist_dir\\ProcessKO.ini\")) { New-Item \"$dir\\ProcessKO.ini\" | Out-Null }"
   ],
-  "checkver": "ProcessKO ([\\d.]+) Fast close and terminate programs",
+  "bin": "ProcessKO.exe",
+  "shortcuts": [
+    [
+      "ProcessKO.exe",
+      "ProcessKO"
+    ]
+  ],
+  "persist": "ProcessKO.ini",
+  "checkver": {
+    "url": "https://www.softwareok.de/?Download=ProcessKO",
+    "regex": "Download ProcessKO ([\\d\\.]+)"
+  },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "http://www.softwareok.com/Download/ProcessKO_x64.zip"
+        "url": "https://www.softwareok.de/Download/ProcessKO_x64.zip"
       },
       "32bit": {
-        "url": "http://www.softwareok.com/Download/ProcessKO_Unicode.zip"
+        "url": "https://www.softwareok.de/Download/ProcessKO.zip"
       }
     }
   }

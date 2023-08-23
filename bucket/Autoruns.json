@@ -26,8 +26,13 @@
   "architecture": {
     "64bit": {
       "bin": [
+        "autorunsc64.exe",
         [
-          "Autoruns64.exe",
+          "autorunsc64.exe",
+          "autoruns64"
+        ],
+        [
+          "autorunsc64.exe",
           "autoruns"
         ]
       ],
@@ -40,9 +45,9 @@
     },
     "32bit": {
       "bin": [
-        "Autoruns.exe",
+        "autorunsc.exe",
         [
-          "Autoruns.exe",
+          "autorunsc.exe",
           "autoruns"
         ]
       ],
@@ -52,12 +57,28 @@
           "SysInternals\\Autoruns"
         ]
       ]
+    },
+    "arm64": {
+      "bin": [
+        "autorunsc64a.exe",
+        [
+          "autorunsc64a.exe",
+          "autoruns64"
+        ],
+        [
+          "autorunsc64a.exe",
+          "autoruns"
+        ]
+      ],
+      "shortcuts": [
+        [
+          "Autoruns64a.exe",
+          "SysInternals\\Autoruns"
+        ]
+      ]
     }
   },
-  "checkver": {
-    "url": "https://docs.microsoft.com/en-us/sysinternals/downloads/autoruns",
-    "regex": "Autoruns for Windows v([\\d.]+)</h1>"
-  },
+  "checkver": "Autoruns for Windows\\s+v([\\d.]+)</h1",
   "autoupdate": {
     "url": "https://download.sysinternals.com/files/Autoruns.zip"
   }

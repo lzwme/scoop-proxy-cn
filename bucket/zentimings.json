@@ -1,24 +1,19 @@
 {
   "version": "1.2.9",
-  "description": "A free, simple and lightweight app for monitoring memory timings on Ryzen platform.",
-  "homepage": "https://zentimings.protonrom.com",
+  "description": "A tool to read RAM timings on AMD Zen CPUs",
+  "homepage": "https://github.com/irusanov/ZenTimings",
   "license": "GPL-3.0-only",
   "url": "https://ghproxy.net/https://github.com/irusanov/ZenTimings/releases/download/v1.2.9/ZenTimings_v1.2.9.zip",
-  "hash": "md5:cc0c5a7cd15a4fe43c0a503aec8fdf93",
-  "pre_install": "if (!(Test-Path \"$persist_dir\\settings.xml\")) { New-Item \"$dir\\settings.xml\" | Out-Null }",
+  "hash": "d99031dd85a259127d9519c3fa4b2dd942f23d8a22fbe0bdde27af4a9783093d",
+  "bin": "ZenTimings.exe",
   "shortcuts": [
     [
       "ZenTimings.exe",
       "ZenTimings"
     ]
   ],
-  "persist": "settings.xml",
   "checkver": "github",
   "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/irusanov/ZenTimings/releases/download/v$version/ZenTimings_v$version.zip",
-    "hash": {
-      "url": "https://zentimings.protonrom.com",
-      "regex": "MD5: $md5"
-    }
+    "url": "https://ghproxy.net/https://github.com/irusanov/ZenTimings/releases/download/v$version/ZenTimings_v$version.zip"
   }
 }

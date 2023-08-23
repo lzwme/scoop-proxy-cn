@@ -1,34 +1,35 @@
 {
+  "homepage": "https://a5m2.mmatsubara.com/",
+  "checkver": {
+    "url": "https://a5m2.mmatsubara.com/beta/",
+    "re": "urchinTracker\\('/beta/a5m2_(.*)_x86.zip'\\);"
+  },
   "version": "2.18.4_beta5",
-  "description": "A5:SQL Mk-2 is a free SQL development tool(Beta Edition)",
-  "homepage": "https://a5m2.mmatsubara.com/beta/",
-  "license": "Freeware",
+  "bin": "A5M2.exe",
+  "persist": "Portable",
+  "shortcuts": [
+    [
+      "A5M2.exe",
+      "A5M2"
+    ]
+  ],
   "architecture": {
     "64bit": {
       "url": "https://a5m2.mmatsubara.com/beta/a5m2_2.18.4_beta5_x64.zip",
       "hash": "d4cf5b1ee135e94b72d3c70e8fa37e92f005a940fba5b4bb49afbb4fb05b5e1e"
+    },
+    "32bit": {
+      "url": "https://a5m2.mmatsubara.com/beta/a5m2_2.18.4_beta5_x86.zip",
+      "hash": "1071ea07178859b340414651a5fdd3e8e64cb9a00ab37ff677e98fcca637e79d"
     }
-  },
-  "bin": [
-    [
-      "A5M2.exe",
-      "A5M2beta.exe"
-    ]
-  ],
-  "shortcuts": [
-    [
-      "A5M2.exe",
-      "A5M2 beta"
-    ]
-  ],
-  "persist": "Portable",
-  "checkver": {
-    "regex": "<a href=\"a5m2_([\\d.]+_beta[\\d]+)_x64.zip\""
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
         "url": "https://a5m2.mmatsubara.com/beta/a5m2_$version_x64.zip"
+      },
+      "32bit": {
+        "url": "https://a5m2.mmatsubara.com/beta/a5m2_$version_x86.zip"
       }
     }
   }

@@ -17,7 +17,7 @@
     "script": [
       "if (-not (is_admin)) { error 'This package requires admin privileges to install'; break }",
       "Expand-DarkArchive -Path \"$dir\\dl.exe\" -DestinationPath \"$dir\\_tmp\" -Removal",
-      "@('Bonjour.msi') | ForEach-Object {",
+      "@('Bonjour.msi', 'Bonjour64.msi') | ForEach-Object {",
       "    Remove-Item \"$dir\\_tmp\\AttachedContainer\\$_\"",
       "}",
       "New-Item -Type Directory -Path \"$dir\\msi\" > $null",
