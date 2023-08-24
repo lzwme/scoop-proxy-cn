@@ -1,0 +1,24 @@
+{
+  "version": "2.7.0-rc.7",
+  "description": "Java based open source static site/blog generator for developers & designers.",
+  "homepage": "http://jbake.org/",
+  "license": "MIT",
+  "suggest": {
+    "JDK": "temurin-jdk"
+  },
+  "url": "https://ghproxy.net/https://github.com/jbake-org/jbake/releases/download/v2.7.0-rc.7/jbake-2.7.0-rc.7-bin.zip",
+  "hash": "d61ecc4530a637d45315bff845d2b1b463eae3e682155aa739e295b52f330a8b",
+  "extract_dir": "jbake-2.7.0-rc.7-bin",
+  "env_add_path": "bin",
+  "checkver": {
+    "github": "https://github.com/jbake-org/jbake/",
+    "regex": "v([\\d.]+[rc.\\d-]*)"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/jbake-org/jbake/releases/download/v$version/jbake-$version-bin.zip",
+    "hash": {
+      "url": "https://ghproxy.net/https://github.com/jbake-org/jbake/releases/download/v$version/checksums_sha256.txt"
+    },
+    "extract_dir": "jbake-$version-bin"
+  }
+}

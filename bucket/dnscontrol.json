@@ -7,6 +7,10 @@
     "64bit": {
       "url": "https://ghproxy.net/https://github.com/StackExchange/dnscontrol/releases/download/v4.2.0/dnscontrol_4.2.0_windows_amd64.zip",
       "hash": "ea555f2d500950654de7f67f54039936d1d7e18f32c83d21389c5b18f059ed5c"
+    },
+    "arm64": {
+      "url": "https://ghproxy.net/https://github.com/StackExchange/dnscontrol/releases/download/v4.2.0/dnscontrol_4.2.0_windows_arm64.zip",
+      "hash": "59bc50087af719f5671457e75546923640f83d141e6d0adaf311d5313bf200ac"
     }
   },
   "bin": "dnscontrol.exe",
@@ -16,11 +20,14 @@
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.net/https://github.com/StackExchange/dnscontrol/releases/download/v$version/dnscontrol_$version_windows_amd64.zip",
-        "hash": {
-          "url": "$baseurl/checksums.txt"
-        }
+        "url": "https://ghproxy.net/https://github.com/StackExchange/dnscontrol/releases/download/v$version/dnscontrol_$version_windows_amd64.zip"
+      },
+      "arm64": {
+        "url": "https://ghproxy.net/https://github.com/StackExchange/dnscontrol/releases/download/v$version/dnscontrol_$version_windows_arm64.zip"
       }
+    },
+    "hash": {
+      "url": "$baseurl/checksums.txt"
     }
   }
 }
