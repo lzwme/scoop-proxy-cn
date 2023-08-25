@@ -1,0 +1,30 @@
+{
+  "version": "1.2.0",
+  "description": "GuiBuilderPlus is a small, easy to use GUI designer for AutoIt",
+  "homepage": "https://github.com/KurtisLiggett/GuiBuilderPlus",
+  "license": "GPL-3.0",
+  "url": "https://ghproxy.net/https://github.com/KurtisLiggett/GuiBuilderPlus/releases/download/1.2.0/GuiBuilderPlus.v1.2.0.-.2023-06-28.zip",
+  "hash": "e27ece415f9af64711c18a8e587fdd5527f77558f01a147874c1ea620e5cbe18",
+  "shortcuts": [
+    [
+      "compiled\\GUIBuilderPlus v1.2.0.exe",
+      "AutoIt-GUIBuilderPlus"
+    ]
+  ],
+  "post_install": "Rename-Item \"$dir\\compiled\\GUIBuilderPlus v$version.exe\" \"GUIBuilderPlus.exe\"",
+  "checkver": {
+    "url": "https://api.github.com/repos/KurtisLiggett/GuiBuilderPlus/releases/latest",
+    "jsonpath": "$..browser_download_url",
+    "regex": "download/([\\d\\.]+)/GuiBuilderPlus\\.v[\\d\\.]+\\.-\\.([\\d]+)-([\\d]+)-([\\d]+)\\.zip",
+    "replace": "${1}"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/KurtisLiggett/GuiBuilderPlus/releases/download/$version/GuiBuilderPlus.v$version.-.$match2-$match3-$match4.zip",
+    "shortcuts": [
+      [
+        "compiled\\GUIBuilderPlus v$version.exe",
+        "AutoIt-GUIBuilderPlus"
+      ]
+    ]
+  }
+}

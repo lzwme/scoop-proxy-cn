@@ -1,32 +1,58 @@
 {
   "version": "2.9.0",
-  "description": "Japanese font based on Hack and GenJyuu-Gothic",
+  "license": {
+    "identifier": "OFL-1.1",
+    "url": "https://github.com/yuru7/HackGen/blob/master/LICENSE"
+  },
+  "description": "HackGen is a composite font of Hack and GenJyuu-Gothic.",
   "homepage": "https://github.com/yuru7/HackGen",
-  "license": "OFL-1.1-RFN",
   "url": "https://ghproxy.net/https://github.com/yuru7/HackGen/releases/download/v2.9.0/HackGen_v2.9.0.zip",
   "hash": "123b2179866f5a291c15cf34a83fdce6ac202e2fe6ad27fbd9ddd4f5bff23c65",
-  "depends": [
-    "sudo",
-    "unoun/scoop-helper"
-  ],
+  "extract_dir": "HackGen_v2.9.0",
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/yuru7/HackGen/releases/download/v$version/HackGen_v$version.zip",
+    "extract_dir": "HackGen_v$version"
+  },
   "installer": {
     "script": [
-      "$helper = \"$(appdir scoop-helper)\\current\\scoop-font-helper.ps1\"",
-      "if (!(Test-Path $helper)) { error 'File not found'; exit 1 }",
-      ". $helper",
-      "Install-Font($dir)"
+      "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
+      "$windows1809BuildNumber = 17763",
+      "$isPerUserFontInstallationSupported = $currentBuildNumber -ge $windows1809BuildNumber",
+      "$isFontInstallationForAllUsers = $global -or !$isPerUserFontInstallationSupported",
+      "if ($isFontInstallationForAllUsers -and !(is_admin)) {",
+      "    error \"Administrator rights are required to install $app.\"",
+      "    exit 1",
+      "}",
+      "$fontInstallDir = if ($isFontInstallationForAllUsers) { \"$env:windir\\Fonts\" } else { \"$env:LOCALAPPDATA\\Microsoft\\Windows\\Fonts\" }",
+      "$registryRoot = if ($isFontInstallationForAllUsers) { \"HKLM\" } else { \"HKCU\" }",
+      "$registryKey = \"${registryRoot}:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts\"",
+      "New-Item $fontInstallDir -ItemType Directory -ErrorAction SilentlyContinue | Out-Null",
+      "Get-ChildItem $dir -Filter '*.ttf' | ForEach-Object {",
+      "    $value = if ($isFontInstallationForAllUsers) { $_.Name } else { \"$fontInstallDir\\$($_.Name)\" }",
+      "    New-ItemProperty -Path $registryKey -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $value -Force | Out-Null",
+      "    Copy-Item $_.FullName -Destination $fontInstallDir",
+      "}"
     ]
   },
   "uninstaller": {
     "script": [
-      "$helper = \"$(appdir scoop-helper)\\current\\scoop-font-helper.ps1\"",
-      "if (!(Test-Path $helper)) { error 'File not found'; exit 1 }",
-      ". $helper",
-      "Uninstall-Font($dir)"
+      "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
+      "$windows1809BuildNumber = 17763",
+      "$isPerUserFontInstallationSupported = $currentBuildNumber -ge $windows1809BuildNumber",
+      "$isFontInstallationForAllUsers = $global -or !$isPerUserFontInstallationSupported",
+      "if ($isFontInstallationForAllUsers -and !(is_admin)) {",
+      "    error \"Administrator rights are required to uninstall $app.\"",
+      "    exit 1",
+      "}",
+      "$fontInstallDir = if ($isFontInstallationForAllUsers) { \"$env:windir\\Fonts\" } else { \"$env:LOCALAPPDATA\\Microsoft\\Windows\\Fonts\" }",
+      "$registryRoot = if ($isFontInstallationForAllUsers) { \"HKLM\" } else { \"HKCU\" }",
+      "$registryKey = \"${registryRoot}:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts\"",
+      "Get-ChildItem $dir -Filter '*.ttf' | ForEach-Object {",
+      "    Remove-ItemProperty -Path $registryKey -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
+      "    Remove-Item \"$fontInstallDir\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
+      "}",
+      "Write-Host \"The 'HackGen' Font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
     ]
-  },
-  "checkver": "github",
-  "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/yuru7/HackGen/releases/download/v$version/HackGen_v$version.zip"
   }
 }

@@ -1,17 +1,18 @@
 {
-  "homepage": "https://www.python.org/",
-  "license": "Python-2.0",
-  "version": "3.11.4",
+  "homepage": "https://www.python.org",
+  "description": "Python embeddable.",
+  "version": "3.11.5",
   "architecture": {
     "64bit": {
-      "url": "https://www.python.org/ftp/python/3.11.4/python-3.11.4-embed-amd64.zip",
-      "hash": "md5:d0e85bf50d2adea597c40ee28e774081"
+      "url": "https://www.python.org/ftp/python/3.11.5/python-3.11.5-embed-amd64.zip",
+      "hash": "d82391a2e51c3684987c61f6b7cedbff3ce9fbe2e39cd948d32b0da866544b17"
     },
     "32bit": {
-      "url": "https://www.python.org/ftp/python/3.11.4/python-3.11.4-embed-win32.zip",
-      "hash": "md5:81b0acfcdd31a73d1577d6e977acbdc6"
+      "url": "https://www.python.org/ftp/python/3.11.5/python-3.11.5-embed-win32.zip",
+      "hash": "19705f2e0bc2306f9dc9ca0a9d4c97e16e2c4d3994970a6ed09fe8e7d8ea042d"
     }
   },
+  "bin": "python.exe",
   "checkver": {
     "url": "https://www.python.org/downloads/windows/",
     "re": "Latest Python 3 Release - Python ([\\d\\.]+)"
@@ -24,10 +25,6 @@
       "32bit": {
         "url": "https://www.python.org/ftp/python/$version/python-$version-embed-win32.zip"
       }
-    },
-    "hash": {
-      "url": "https://www.python.org/downloads/release/python-$cleanVersion/",
-      "find": "(?sm)$basename.*?$md5"
     }
   }
 }

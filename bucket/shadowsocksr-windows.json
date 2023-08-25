@@ -1,50 +1,56 @@
 {
-  "homepage": "https://github.com/HMBSbige/ShadowsocksR-Windows",
-  "description": "ShadowsocksR for Windows",
-  "license": "GPL-3.0",
   "version": "6.1.0",
+  "description": "An Internet censorship circumventing tunnel tool, forked by Breakwa11 from shadowsocks, maintained now by HMBSbige.",
+  "homepage": "https://github.com/HMBSbige/ShadowsocksR-Windows",
+  "license": {
+    "identifier": "GPL-3.0-or-later",
+    "url": "https://github.com/HMBSbige/ShadowsocksR-Windows/blob/master/LICENSE"
+  },
   "architecture": {
-    "64bit": {
-      "url": "https://ghproxy.net/https://github.com/HMBSbige/ShadowsocksR-Windows/releases/download/6.1.0/ShadowsocksR-6.1.0.7z#/dl.7z",
-      "hash": "adbe1e1bd5d71896fd70000551798b77173abd50de56395b11b4bb05e7f8e937"
-    },
     "32bit": {
-      "url": "https://ghproxy.net/https://github.com/HMBSbige/ShadowsocksR-Windows/releases/download/6.1.0/ShadowsocksR-6.1.0.7z#/dl.7z",
-      "hash": "adbe1e1bd5d71896fd70000551798b77173abd50de56395b11b4bb05e7f8e937"
+      "url": "https://ghproxy.net/https://github.com/HMBSbige/ShadowsocksR-Windows/releases/download/6.1.0/ShadowsocksR-Win32-6.1.0.7z",
+      "hash": "52b3ecadd8f4063ebb7121b7a84caee490cc0e630977f226e933d62b2784dde5"
+    },
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/HMBSbige/ShadowsocksR-Windows/releases/download/6.1.0/ShadowsocksR-Win64-6.1.0.7z",
+      "hash": "d62593da0aa39970213997694cb811a19a68341b4b10c42e9040064f4fdf1e48"
     }
   },
-  "bin": "ShadowsocksR\\shadowsocksr.exe",
-  "pre_install": [
-    "if (!(Test-Path \"$persist_dir\\ShadowsocksR\\pac.txt\")) { New-Item \"$dir\\ShadowsocksR\\pac.txt\" | Out-Null }",
-    "if (!(Test-Path \"$persist_dir\\ShadowsocksR\\gui-config.json\")) { New-Item \"$dir\\ShadowsocksR\\gui-config.json\" | Out-Null }",
-    "if (!(Test-Path \"$persist_dir\\ShadowsocksR\\user-rule.txt\")) { New-Item \"$dir\\ShadowsocksR\\user-rule.txt\" | Out-Null }"
-  ],
+  "extract_dir": "ShadowsocksR",
   "shortcuts": [
     [
-      "ShadowsocksR\\shadowsocksr.exe",
-      "shadowsocksr"
+      "ShadowsocksR.exe",
+      "ShadowsocksR Windows"
     ]
   ],
-  "persist": [
-    "ShadowsocksR\\gui-config.json",
-    "ShadowsocksR\\pac.txt",
-    "ShadowsocksR\\user-rule.txt"
+  "pre_install": [
+    "function CreateFile([String] $file, [String] $content = $null) {",
+    "    if(!(Test-Path \"$persist_dir\\$file\")) {",
+    "        Write-Host \"Create placeholder for shadowsocksr-windows: $file\"",
+    "        New-Item -Force -Path \"$persist_dir\\$file\" -ItemType file -Value $content | Out-Null",
+    "    }",
+    "}",
+    "CreateFile 'gui-config.json' '{}'",
+    "CreateFile 'pac.txt'",
+    "CreateFile 'transfer_log.json' '{}'",
+    "CreateFile 'user-rule.txt'"
   ],
-  "checkver": {
-    "url": "https://github.com/HMBSbige/ShadowsocksR-Windows/releases/latest",
-    "re": "ShadowsocksR\\-(?<version>\\d+\\.\\d+\\.\\d+)\\.7z"
-  },
+  "persist": [
+    "gui-config.json",
+    "pac.txt",
+    "transfer_log.json",
+    "user-rule.txt",
+    "temp"
+  ],
+  "checkver": "github",
   "autoupdate": {
     "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.net/https://github.com/HMBSbige/ShadowsocksR-Windows/releases/download/$matchVersion/ShadowsocksR-$matchVersion.7z#/dl.7z"
-      },
       "32bit": {
-        "url": "https://ghproxy.net/https://github.com/HMBSbige/ShadowsocksR-Windows/releases/download/$matchVersion/ShadowsocksR-$matchVersion.7z#/dl.7z"
+        "url": "https://ghproxy.net/https://github.com/HMBSbige/ShadowsocksR-Windows/releases/download/$version/ShadowsocksR-Win32-$version.7z"
+      },
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/HMBSbige/ShadowsocksR-Windows/releases/download/$version/ShadowsocksR-Win64-$version.7z"
       }
-    },
-    "hash": {
-      "url": "https://github.com/HMBSbige/ShadowsocksR-Windows/releases/latest"
     }
   }
 }

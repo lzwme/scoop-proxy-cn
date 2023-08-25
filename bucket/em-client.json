@@ -1,5 +1,5 @@
 {
-  "version": "9.2.2093.0",
+  "version": "9.2.2093",
   "homepage": "https://www.emclient.com/",
   "description": "A full featured email client with a modern and easy to use interface.",
   "license": {
@@ -17,9 +17,9 @@
   ],
   "checkver": {
     "url": "https://www.emclient.com/release-history?os=win",
-    "regex": "\\s+\\<strong\\>\\s+\\n\\s+([\\d.]+)"
+    "regex": "\\<strong\\>\\s+.*?([\\d.]+)\\.0"
   },
   "autoupdate": {
-    "url": "https://www.emclient.com/dist/v$majorVersion.$minorVersion.$patchVersion/setup.msi"
+    "url": "https://www.emclient.com/dist/v$version/setup.msi"
   }
 }

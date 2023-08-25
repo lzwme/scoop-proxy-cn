@@ -1,10 +1,7 @@
 {
   "homepage": "https://github.com/PowerShell/PowerShell",
+  "description": "PowerShell for every system",
   "version": "7.3.6",
-  "description": "PowerShell is a task-based command-line shell and scripting language built on .NET. PowerShell helps system administrators and power-users rapidly automate tasks that manage operating systems (Linux, macOS, and Windows) and processes.",
-  "license": {
-    "identifier": "Freeware"
-  },
   "architecture": {
     "64bit": {
       "url": "https://ghproxy.net/https://github.com/PowerShell/PowerShell/releases/download/v7.3.6/PowerShell-7.3.6-win-x64.zip",
@@ -15,11 +12,15 @@
       "hash": "1ddaa161d1a590211e2a8e31442f03643d27a2a5bfbb03711669cf047276d13d"
     }
   },
-  "env_add_path": "",
-  "notes": "exe file is pwsh.exe",
+  "bin": "pwsh.exe",
+  "shortcuts": [
+    [
+      "pwsh.exe",
+      "PowerShell Core"
+    ]
+  ],
   "checkver": "github",
   "autoupdate": {
-    "note": "Thanks for using autoupdate, please test your updates!",
     "architecture": {
       "64bit": {
         "url": "https://ghproxy.net/https://github.com/PowerShell/PowerShell/releases/download/v$version/PowerShell-$version-win-x64.zip"
@@ -29,8 +30,8 @@
       }
     },
     "hash": {
-      "url": "https://github.com/PowerShell/PowerShell/releases/latest",
-      "find": "(?:$basename)[\\s\\S]{1,64}([a-fA-F0-9]{64})"
+      "find": "\"body\":\\s*\".*-\\s*$basename\\\\r\\\\n\\s*-\\s*([^\\\\]*)\\\\r\\\\n",
+      "url": "https://api.github.com/repos/PowerShell/PowerShell/releases/latest"
     }
   }
 }
