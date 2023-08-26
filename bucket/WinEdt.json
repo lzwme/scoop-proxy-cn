@@ -1,32 +1,23 @@
 {
-  "homepage": "http://www.winedt.com/",
-  "license": "shareware",
-  "version": "11",
-  "architecture": {
-    "64bit": {
-      "url": "http://www.winedt.com/download/winedt11.exe#/dl.7z",
-      "hash": "8c84bcd9a21272d62b7059cfc811403ffd45e6af2ac0c64b83b3f73161ffec1c"
+  "autoupdate": {
+    "hash": {
+      "mode": "metalink"
     },
-    "32bit": {
-      "url": "http://www.winedt.com/download/winedt103-32.exe#/dl.7z",
-      "hash": ""
-    }
+    "url": "http://www.winedt.com/download/winedt$majorVersion.exe#/dl.7z"
   },
   "bin": "WinEdt.exe",
+  "checkver": {
+    "regex": "<H2><span class=\"new\">New:</span> WinEdt ([\\d.]+)</H2>"
+  },
+  "hash": "73e3968f3a72ebcea44ebd79c02e0a16be744468ab4bbbd60fa90a70527e4a01",
+  "homepage": "http://www.winedt.com/",
+  "license": "shareware",
   "shortcuts": [
     [
       "WinEdt.exe",
       "WinEdt"
     ]
   ],
-  "checkver": {
-    "regex": "<H2><span class=\"new\">New:</span> WinEdt ([\\d.]+)</H2>"
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "http://www.winedt.com/download/winedt$majorVersion.exe#/dl.7z"
-      }
-    }
-  }
+  "url": "http://www.winedt.com/download/winedt11.exe#/dl.7z",
+  "version": "11"
 }

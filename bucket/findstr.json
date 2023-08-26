@@ -1,14 +1,28 @@
 {
-  "description": "findstr",
-  "version": "1.0",
-  "hash": "822A6E15F32E95399044B5C5601033DFF9BCA92C638AEBE8C6897BE06D7893ED",
-  "url": "https://ghproxy.net/https://raw.githubusercontent.com/zouyq/scoop-data/main/findstr.7z",
-  "extract_dir": "findstr",
-  "bin": "Findstr.exe",
+  "version": "7.03",
+  "description": "FindStr是一款多文件、多条件组合查找、替换工具，支持普通或加密的ZIP/RAR文件",
+  "homepage": "https://www.cnblogs.com/stronghorse/",
+  "license": "Friendware",
+  "architecture": {
+    "64bit": {
+      "url": "https://scoop-lemon.4everland.store/findstr/FindStr_chn_7.03.zip",
+      "hash": "46b5578d3c3986b1feac8b0be928ef50009f1326344f8f86d29ce172b773d649"
+    }
+  },
   "shortcuts": [
     [
-      "Findstr.exe",
-      "Findstr"
+      "FindStr.exe",
+      "FindStr"
     ]
+  ],
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\Findstr.ini\")) { Set-Content -Encoding ASCII -Path \"$dir\\Findstr.ini\" -Value $null }",
+    "if (!(Test-Path \"$persist_dir\\Findstr.rst\")) { Set-Content -Encoding ASCII -Path \"$dir\\Findstr.rst\" -Value $null }",
+    "if (!(Test-Path \"$persist_dir\\Findstr.pwd\")) { Set-Content -Encoding ASCII -Path \"$dir\\Findstr.pwd\" -Value $null }"
+  ],
+  "persist": [
+    "Findstr.ini",
+    "Findstr.rst",
+    "Findstr.pwd"
   ]
 }

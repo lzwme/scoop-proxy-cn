@@ -1,13 +1,18 @@
 {
   "version": "1.0",
-  "description": "command-line application that saves and loads DirectShow webcam settings to/from the file",
+  "description": "Command-line application that saves and loads DirectShow webcam settings to/from the file",
   "homepage": "https://github.com/SuslikV/cfg-cam",
-  "license": "Unknown",
-  "pre_install": "",
+  "license": "GPL-2.0-only",
+  "notes": [
+    "All enabled DirectShow video input devices settings were saved to cam_sett.cfg file.",
+    "You can edit \"$dir\\cam_sett.cfg\" according to your needs.",
+    "Run WebCameraConfig.exe on startup to load settings from cam_sett.cfg file"
+  ],
+  "pre_install": "if (!(Test-Path \"$persist_dir\\cam_sett.cfg\")) { New-Item \"$dir\\cam_sett.cfg\" | Out-Null }",
+  "post_install": "Start-Process -FilePath \"$dir\\WebCameraConfig.exe\" -ArgumentList \"--savedev\" -NoNewWindow -Wait -RedirectStandardOutput \"$dir\\cam_sett.cfg\"",
   "url": "https://ghproxy.net/https://github.com/SuslikV/cfg-cam/releases/download/1.0/WebCameraConfig.exe",
-  "hash": "9b86576136912e33db99e57cb5f392f7995c0397d869d400faa58a67d2359cd4",
+  "hash": "9B86576136912E33DB99E57CB5F392F7995C0397D869D400FAA58A67D2359CD4",
   "persist": "cam_sett.cfg",
-  "bin": "WebCameraConfig.exe",
   "checkver": "github",
   "autoupdate": {
     "url": "https://ghproxy.net/https://github.com/SuslikV/cfg-cam/releases/download/$version/WebCameraConfig.exe"

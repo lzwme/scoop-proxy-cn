@@ -1,25 +1,44 @@
 {
   "version": "0.8.2",
-  "description": "🚀 一款简洁高效的输入、截图、划词翻译软件",
-  "homepage": "https://github.com/InkTimeRecord/TTime",
-  "license": "MIT",
-  "url": "https://ghproxy.net/https://github.com/InkTimeRecord/TTime/releases/download/v0.8.2/TTime.0.8.2.exe",
-  "hash": "8e2aa0e20dc0751501ba6289ee3d55a87d4986113c3dd3f17dd85e151229a5a8",
-  "installer": {
-    "script": "Rename-Item \"$dir\\TTime.$version.exe\" \"TTime.exe\""
+  "description": "🚀 A concise, efficient, good-looking input, screenshot, and word translation software",
+  "homepage": "https://ttime.timerecord.cn/",
+  "license": {
+    "identifier": "AGPL-3.0 license",
+    "url": "https://github.com/InkTimeRecord/TTime/blob/main/LICENSE.txt"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/InkTimeRecord/TTime/releases/download/v0.8.2/TTime-0.8.2-setup.exe#/dl.7z",
+      "hash": "3c1e337287b3660be02cd989974d50b0d86f9fb42b8ea396b19e81a3efe4ca1a",
+      "pre_install": [
+        "if (Test-Path \"$env:AppData\\time-translate\") {",
+        "    info '[Persistent data]: Copying user data...'",
+        "    ensure \"$dir\\User Data\" | Out-Null",
+        "    Copy-Item \"$env:AppData\\time-translate\\*\" \"$dir\\User Data\\\" -Recurse -Force -ErrorAction 'SilentlyContinue'",
+        "    Remove-Item \"$env:AppData\\time-translate\" -Recurse -Force -ErrorAction 'SilentlyContinue'",
+        "}",
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\" -Removal"
+      ],
+      "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\$R0\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
+    }
   },
   "shortcuts": [
     [
       "TTime.exe",
-      "TTime"
+      "TTime",
+      "--user-data-dir=\"$dir\\User Data\""
     ]
   ],
+  "persist": "User Data",
   "checkver": {
     "url": "https://api.github.com/repos/InkTimeRecord/TTime/releases",
-    "jsonpath": "$[0].tag_name",
-    "regex": "(?<tag>v([\\w.-]+))"
+    "regex": "(?sm)browser_download_url.*?releases/download/v([\\d.]+)/TTime-([\\d.]+)-setup\\.exe"
   },
   "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/InkTimeRecord/TTime/releases/download/v$version/TTime.$version.exe"
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/InkTimeRecord/TTime/releases/download/v$version/TTime-$version-setup.exe#/dl.7z"
+      }
+    }
   }
 }

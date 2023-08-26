@@ -1,30 +1,23 @@
 {
-  "version": "0.115",
-  "description": "Lightweight Armoury Crate alternative for Asus laptops. Control tool for ROG Zephyrus G14, G15, Flow X13, Flow X16, TUF, Strix, Scar and other models",
+  "version": "0.116",
+  "description": "为ASUS笔记本打造的、Armoury Crate(奥创控制中心)的轻量化替代品",
   "homepage": "https://github.com/seerge/g-helper",
-  "license": {
-    "identifier": "MIT",
-    "url": "https://github.com/seerge/g-helper/blob/main/LICENSE"
-  },
-  "architecture": {
-    "64bit": {
-      "url": "https://ghproxy.net/https://github.com/seerge/g-helper/releases/download/v0.115/GHelper.zip",
-      "hash": "3fc749c64a574cf11e437a0d527107ccdf4337fe76e32208aa85407088c08e90"
-    }
-  },
-  "bin": "GHelper.exe",
+  "license": "MIT",
+  "url": "https://ghproxy.net/https://github.com/seerge/g-helper/releases/download/v0.116/GHelper.zip",
+  "hash": "a7602793a3c3179f23788fd4f653d0d8e71bfd470de04171aa0cf3b34367f724",
   "shortcuts": [
     [
       "GHelper.exe",
       "GHelper"
     ]
   ],
-  "checkver": "github",
+  "checkver": {
+    "url": "https://api.github.com/repos/seerge/g-helper/releases",
+    "jsonpath": "$[0].tag_name",
+    "regex": "(?<tag>v([\\w.-]+))"
+  },
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.net/https://github.com/seerge/g-helper/releases/download/v$version/GHelper.zip"
-      }
-    }
-  }
+    "url": "https://ghproxy.net/https://github.com/seerge/g-helper/releases/download/v$version/GHelper.zip"
+  },
+  "notes": "需要Microsoft .NET7。"
 }
