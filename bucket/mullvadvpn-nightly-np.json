@@ -12,7 +12,7 @@
   "pre_install": [
     "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
     "Start-Process \"$dir\\setup.exe\" -Verb 'RunAs' -Args @('/allusers', '/S')",
-    "while (!(Get-Process -Name 'mullvad-daemon' -ErrorAction 'SilentlyContinue')) { Start-Sleep -Seconds 10 }",
+    "while (!(Get-Process -Name 'mullvad-daemon' -ErrorAction 'SilentlyContinue')) { Start-Sleep -Seconds 5 }",
     "Remove-Item \"$dir\\setup.exe\""
   ],
   "post_install": "Remove-Item \"$Env:Public\\Desktop\\Mullvad VPN.lnk\"",

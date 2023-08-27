@@ -12,9 +12,11 @@
   "hash": "60f3d90f2eac915b7ab7726e3dc47c6be0f41e79a4c65fbe92e5650cb7417ab6",
   "installer": {
     "script": [
+      "python -m venv \"$dir\"",
+      ".\"$dir\\Scripts\\pip.exe\" install --requirement \"$dir\\awscurl-$version\\requirements.txt\"",
       "Move-Item -Path \"$dir\\awscurl-$version\\awscurl\" -Destination \"$dir\" -Force",
       "Remove-Item -Path \"$dir\\awscurl-$version\" -Recurse -Force",
-      "Set-Content -Value 'python3 -m awscurl $args' -Path \"$dir\\awscurl.ps1\""
+      "Set-Content -Value \".'$dir\\Scripts\\python.exe' -m awscurl `$args\" -Path \"$dir\\awscurl.ps1\""
     ]
   },
   "bin": "awscurl.ps1",

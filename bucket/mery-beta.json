@@ -1,45 +1,45 @@
 {
   "version": "3.5.9",
+  "description": "Text editor",
+  "homepage": "https://www.haijin-boys.com/software/mery",
+  "license": "Freeware",
   "architecture": {
     "64bit": {
-      "url": "http://www.haijin-boys.com/download/MeryPortable-x64-3.5.9.zip",
+      "url": "https://www.haijin-boys.com/download/MeryPortable-x64-3.5.9.zip",
       "hash": "440952b825fabedab79f3daa2098820b7c252723db6cb324db788e50e71005e6"
     },
     "32bit": {
-      "url": "http://www.haijin-boys.com/download/MeryPortable-3.5.9.zip",
+      "url": "https://www.haijin-boys.com/download/MeryPortable-3.5.9.zip",
       "hash": "1fd595084e88aea2fafa4ed480d1121b2eadc56b8f3cdd942db8796a859ff3b4"
     }
   },
-  "homepage": "https://www.haijin-boys.com/wiki/",
   "extract_dir": "Mery",
   "bin": "Mery.exe",
-  "pre_install": [
-    "if((Test-Path(\"$env:TEMP\\__scoop__preserved\"))) { Write-Output \"[pre_install] Removing temporary preserved folder\"; Remove-Item \"$env:TEMP\\__scoop__preserved\" -Recurse -Force }",
-    "Write-Output \"[pre_install] Creating temporary preserved folder\"; New-Item \"$env:TEMP\\__scoop__preserved\" -type directory | Out-Null",
-    "Write-Output \"[pre_install] Preserving original files\"; Copy-Item \"$dir\\*\" \"$env:TEMP\\__scoop__preserved\" -Recurse -Force"
-  ],
-  "persist": "Plugins",
-  "post_install": [
-    "Write-Output \"[post_install] Overwriting from original files\"; Copy-Item \"$env:TEMP\\__scoop__preserved\\*\" \"$dir\" -Recurse -Force",
-    "Write-Output \"[post_install] Removing temporary preserved folder\"; Remove-Item \"$env:TEMP\\__scoop__preserved\" -Recurse -Force"
-  ],
   "shortcuts": [
     [
       "Mery.exe",
-      "Mery (ベータ版)"
+      "Mery (beta)"
     ]
   ],
+  "pre_install": [
+    "if (Test-Path (Join-Path $persist_dir 'Mery.ini')) {",
+    "    Remove-Item (Join-Path $dir 'MeryPortable.ini')",
+    "} else {",
+    "    Move-Item (Join-Path $dir 'MeryPortable.ini') (Join-Path $dir 'Mery.ini') | Out-Null",
+    "}"
+  ],
+  "persist": "Mery.ini",
   "checkver": {
     "url": "https://www.haijin-boys.com/software/mery",
-    "re": "Ver ([\\d.]+)"
+    "regex": "ベータ版 Ver ([\\d.]+)"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "http://www.haijin-boys.com/download/MeryPortable-x64-$version.zip"
+        "url": "https://www.haijin-boys.com/download/MeryPortable-x64-$version.zip"
       },
       "32bit": {
-        "url": "http://www.haijin-boys.com/download/MeryPortable-$version.zip"
+        "url": "https://www.haijin-boys.com/download/MeryPortable-$version.zip"
       }
     }
   }

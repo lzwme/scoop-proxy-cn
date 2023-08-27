@@ -24,8 +24,15 @@
     "start \"$dir\\Snipaste.exe\""
   ],
   "pre_uninstall": [
-    "sudo taskKill /f /im Snipaste.exe",
-    "Start-Sleep -Seconds 1"
+    "$App_name=\"Snipaste\"",
+    "$existProcess=Get-Process -Name \"$App_name*\" -ErrorAction SilentlyContinue",
+    "foreach($_ in $existProcess.ProcessName){ Write-Host \"Stop-Process  $_\" -f red }",
+    "while($true){",
+    "   if(Get-Process -Name \"$App_name*\" -ErrorAction SilentlyContinue){",
+    "       Stop-Process -Name \"$App_name*\" -Force",
+    "   }else { break }",
+    "   Start-Sleep -Milliseconds 500",
+    "}"
   ],
   "bin": "Snipaste.exe",
   "shortcuts": [
