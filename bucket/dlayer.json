@@ -1,0 +1,28 @@
+{
+  "version": "0.3.1",
+  "description": "An analyzation tool for docker layers.",
+  "homepage": "https://github.com/orisano/dlayer",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/orisano/dlayer/releases/download/v0.3.1/dlayer_0.3.1_Windows_x86_64.tar.gz",
+      "hash": "739b053bdec017176452a3098c46ecf0d7ca4eb6c601bec7ee42757a4482e9ba"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/orisano/dlayer/releases/download/v0.3.1/dlayer_0.3.1_Windows_i386.tar.gz",
+      "hash": "c747e4a862e1d016236fae4c0748d1b1a9413582b538ce35c80a9f1719f349e6"
+    }
+  },
+  "bin": "dlayer.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/orisano/dlayer/releases/download/v$version/dlayer_$version_Windows_x86_64.tar.gz"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/orisano/dlayer/releases/download/v$version/dlayer_$version_Windows_i386.tar.gz"
+      }
+    }
+  }
+}

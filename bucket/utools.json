@@ -1,40 +1,42 @@
 {
   "version": "4.0.0",
-  "description": "新一代效率工具平台，自由组合插件应用，打造专属你的趁手工具集",
   "homepage": "https://u.tools/",
-  "license": "Freeware",
-  "architecture": {
-    "64bit": {
-      "url": "https://res.u-tools.cn/version2/uTools-4.0.0.exe#/dl.7z",
-      "hash": "1a4c5d3269961c140ed7ca546a4cd6aac6709cbd5041bffbf92b72dbb900c204",
-      "installer": {
-        "script": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR/app-64.7z\" \"$dir\""
-      }
-    },
-    "32bit": {
-      "url": "https://res.u-tools.cn/version2/uTools-4.0.0-ia32.exe#/dl.7z",
-      "hash": "9096471dbfdb20dc1db1957dbc170652360a1261192cd3970b89c38978915ff5",
-      "installer": {
-        "script": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR/app-32.7z\" \"$dir\""
+  "checkver": {
+    "regex": "uTools-([\\d|\\.]+)\\.exe"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://res.u-tools.cn/version2/uTools-$version.exe#/uTools.7z"
+      },
+      "32bit": {
+        "url": "https://res.u-tools.cn/version2/uTools-$version-ia32.exe#/uTools.7z"
       }
     }
   },
-  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$R0\" -Force -Recurse",
+  "architecture": {
+    "64bit": {
+      "url": "https://res.u-tools.cn/version2/uTools-4.0.0.exe#/uTools.7z",
+      "hash": "1a4c5d3269961c140ed7ca546a4cd6aac6709cbd5041bffbf92b72dbb900c204",
+      "installer": {
+        "script": "7z x $original_dir/PLUGINSDIR/app-64.7z -o\"$original_dir\""
+      }
+    },
+    "32bit": {
+      "url": "https://res.u-tools.cn/version2/uTools-4.0.0-ia32.exe#/uTools.7z",
+      "hash": "9096471dbfdb20dc1db1957dbc170652360a1261192cd3970b89c38978915ff5",
+      "installer": {
+        "script": "7z x $original_dir/PLUGINSDIR/app-32.7z -o\"$original_dir\""
+      }
+    }
+  },
+  "extract_dir": "$PLUGINSDIR",
+  "extract_to": "PLUGINSDIR",
+  "post_install": "rm $original_dir/PLUGINSDIR -recurse",
   "shortcuts": [
     [
       "uTools.exe",
       "uTools"
     ]
-  ],
-  "checkver": "version: 'V([\\d.]+)'",
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://res.u-tools.cn/version2/uTools-$version.exe#/dl.7z"
-      },
-      "32bit": {
-        "url": "https://res.u-tools.cn/version2/uTools-$version-ia32.exe#/dl.7z"
-      }
-    }
-  }
+  ]
 }

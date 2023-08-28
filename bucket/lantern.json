@@ -8,7 +8,8 @@
   "hash": "0bb7603e7fec81aaa157189b2ade1ae4c662af684b00245028aed49debe9ce1d",
   "pre_install": [
     "",
-    "$bucketdir = Find-BucketDirectory -Name $bucket",
+    "$null, $bucket = find_manifest($appName)",
+    "$bucketdir = Find-BucketDirectory($bucket)",
     "",
     "Invoke-ExternalCommand \"$dir\\setup.exe\" -ArgumentList @('/S', \"/D=$dir\") | Out-Null",
     "Remove-Item \"$dir\\setup.exe\"",
@@ -26,7 +27,7 @@
     "",
     "#ensure \"$env:AppData\\$companyname\" | Out-Null",
     "if (-not (Test-Path \"$env:AppData\\$companyname\")) {",
-    "    cmd.exe /c mklink /j \"$env:AppData\\$companyname\" \"$dir\\data\\AppData\"",
+    "    cmd /c mklink /j \"$env:AppData\\$companyname\" \"$dir\\data\\AppData\"",
     "}",
     "",
     ""
