@@ -1,29 +1,17 @@
 {
-  "version": "1.4.0",
+  "version": "1.6.2",
   "description": "Terminal file manager",
   "homepage": "https://github.com/antonmedv/walk",
   "license": "MIT",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.net/https://github.com/antonmedv/walk/releases/download/v1.4.0/llama_windows_amd64.exe",
-      "hash": "1f554f7ee4ec7a2115cba5a6dc6d89e32975931881cee9f1eec308d7dd4ab969"
-    },
-    "arm64": {
-      "url": "https://ghproxy.net/https://github.com/antonmedv/walk/releases/download/v1.4.0/llama_windows_arm64.exe",
-      "hash": "f456189324fe34b01d571419ebefa4585b99130e210e83666bf67602087bb627"
+      "url": "https://ghproxy.net/https://github.com/antonmedv/walk/releases/download/v1.6.2/walk_windows_amd64.exe#/walk.exe",
+      "hash": "23572ba4066d5e5f5796c8c4e995c5fdd047d146bc004401d418ae00678f5536"
     }
   },
-  "pre_install": "Rename-Item \"$dir\\llama_windows_amd64.exe\" \"$dir\\walk.exe\"",
   "bin": "walk.exe",
   "checkver": "github",
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.net/https://github.com/antonmedv/walk/releases/download/v$version/llama_windows_amd64.exe"
-      },
-      "arm64": {
-        "url": "https://ghproxy.net/https://github.com/antonmedv/walk/releases/download/v$version/llama_windows_arm64.exe"
-      }
-    }
+    "url": "https://ghproxy.net/https://github.com/antonmedv/walk/releases/download/v$version/walk_windows_amd64.exe#/walk.exe"
   }
 }

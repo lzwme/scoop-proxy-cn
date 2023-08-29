@@ -6,6 +6,21 @@
   "homepage": "https://www.mgtv.com",
   "url": "https://download.imgo.tv/app/pc/6.7.7_1.1.39/mgtv-client-6.7.7.0-mango.exe#/dl.7z",
   "hash": "8ea45b5f23abd6016048d54e06416f02c8b8063b2bfa41a5c0ccdd6c41d21199",
+  "installer": {
+    "script": [
+      "# handle runtime cache",
+      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name apps) scripts/AppsUtils.psm1)",
+      "Mount-ExternalRuntimeData -Source \"$persist_dir\\appdata\" -Target \"$env:APPDATA\\芒果TV\\MGTVPCC\"",
+      "Remove-Module -Name AppsUtils"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name apps) scripts/AppsUtils.psm1)",
+      "Dismount-ExternalRuntimeData -Target \"$env:APPDATA\\芒果TV\\MGTVPCC\"",
+      "Remove-Module -Name AppsUtils"
+    ]
+  },
   "bin": [
     [
       "player\\芒果TV.exe",

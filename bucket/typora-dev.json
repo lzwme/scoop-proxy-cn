@@ -7,12 +7,8 @@
     "url": "https://support.typora.io/License-Agreement/"
   },
   "notes": "For old beta version, install: versions/typora0.11.18",
-  "architecture": {
-    "64bit": {
-      "url": "https://download.typora.io/windows/typora-setup-x64-1.7.2-dev.exe",
-      "hash": "ef7b5b5efbe30af167066fcc5cd9cb08c0d3463fb3e539e75d6d858d4b68310d"
-    }
-  },
+  "url": "https://download.typora.io/windows/typora-setup-x64-1.7.2-dev.exe",
+  "hash": "ef7b5b5efbe30af167066fcc5cd9cb08c0d3463fb3e539e75d6d858d4b68310d",
   "innosetup": true,
   "bin": "Typora.exe",
   "shortcuts": [
@@ -23,13 +19,9 @@
   ],
   "checkver": {
     "url": "https://typora.io/releases/dev",
-    "regex": "typora-setup-x64-([\\d.]+)-dev\\.exe"
+    "regex": "<h2>([\\d.]+)"
   },
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://download.typora.io/windows/typora-setup-x64-$version-dev.exe"
-      }
-    }
+    "url": "https://download.typora.io/windows/typora-setup-x64-$version-dev.exe"
   }
 }
