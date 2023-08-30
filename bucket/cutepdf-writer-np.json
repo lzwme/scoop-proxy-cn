@@ -9,7 +9,7 @@
   "pre_install": [
     "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
     "Start-Process \"$dir\\CuteWriter.exe\" -Verb 'RunAs' -Args @('/verysilent', '/allusers', '/suppressmsgboxes', '/sp-', '/restartapplications', '/norestart')",
-    "while (!(Test-Path \"${env:ProgramFiles(x86)}\\CutePDF Writer\") -and (Get-Process -Name 'CuteWriter.exe' -ErrorAction 'SilentlyContinue')) { Start-Sleep -Milliseconds 8000 }",
+    "while (!(Test-Path \"${env:ProgramFiles(x86)}\\CutePDF Writer\") -and (Get-Process -Name 'CuteWriter.exe' -ErrorAction 'SilentlyContinue')) { Start-Sleep -Seconds 5 }",
     "Start-Sleep -Seconds 2; Remove-Item \"$dir\\CuteWriter.exe\""
   ],
   "architecture": {

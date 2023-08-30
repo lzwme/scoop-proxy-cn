@@ -1,22 +1,35 @@
 {
-  "##": "Based on https://github.com/anderlli0053/DEV-tools/blob/master/bucket/NTLite-Portable.json",
-  "depends": "innounp",
-  "version": "2023.7.9371",
+  "version": "2023.8.9402",
   "description": "Local control for updating and editing Windows images and deployments.",
   "homepage": "https://www.ntlite.com",
   "license": {
-    "identifier": "Shareware",
+    "identifier": "Proprietary",
     "url": "https://www.ntlite.com/shop/"
   },
-  "url": "https://downloads.ntlite.com/files/NTLite_setup_x64.exe",
-  "hash": "3831060a7049645ef85b13bc17c63b086c7c002b4b57f1fd4f66c8b035547d86",
-  "pre_install": "If (!(Test-Path \"$persist_dir\\settings.xml\")) { New-Item \"$dir\\settings.xml\" -ItemType File | Out-Null }",
-  "installer": {
-    "script": [
-      "Expand-InnoArchive -Path \"$dir\\$fname\"",
-      "Expand-InnoArchive -Path \"$dir\\$fname\" -ExtractDir '{code_CefInstallDir}' -Removal"
-    ]
+  "architecture": {
+    "64bit": {
+      "url": "https://downloads.ntlite.com/files/NTLite_setup_x64.exe",
+      "hash": "efcf231b033962e7593e6caf26ae9f6ee07cbca1e79a11ce2005cb784a43cae3"
+    },
+    "32bit": {
+      "url": "https://downloads.ntlite.com/files/NTLite_setup_x86.exe",
+      "hash": "ddfbbe569e1e24a884935419e5eb0ea59b7eee0f7398768d4c44d1c4ef75be4c"
+    }
   },
+  "innosetup": true,
+  "pre_install": [
+    "$value = @'",
+    "<?xml version=\"1.0\" encoding=\"utf-8\"?>",
+    "<GeneralOptions xmlns=\"urn:schemas-nliteos-com:pn.v1\">",
+    "    <CheckUpdate>false</CheckUpdate>",
+    "    <AutoUpdate>false</AutoUpdate>",
+    "</GeneralOptions>",
+    "'@",
+    "if (!(Test-Path \"$persist_dir\\settings.xml\")) {",
+    "    Set-Content \"$dir\\settings.xml\" $value -Encoding $(if ($PSEdition -eq 'Core') { Write-Output 'utf8bom' } else { Write-Output 'utf8' })",
+    "}"
+  ],
+  "bin": "NTLite.exe",
   "shortcuts": [
     [
       "NTLite.exe",
@@ -24,15 +37,27 @@
     ]
   ],
   "persist": [
+    "Cache",
     "Presets",
     "Updates",
     "settings.xml"
   ],
   "checkver": {
     "url": "https://www.ntlite.com/download/",
-    "regex": "<span.+>v([\\d.]+)<\\/span>"
+    "regex": "\\>v([\\d.]+)\\<"
   },
   "autoupdate": {
-    "url": "https://downloads.ntlite.com/files/NTLite_setup_x64.exe"
+    "architecture": {
+      "64bit": {
+        "url": "https://downloads.ntlite.com/files/NTLite_setup_x64.exe"
+      },
+      "32bit": {
+        "url": "https://downloads.ntlite.com/files/NTLite_setup_x86.exe"
+      }
+    },
+    "hash": {
+      "url": "https://www.ntlite.com/download/",
+      "regex": "$basename.*?\\>SHA-256\\:\\s$sha256\\<"
+    }
   }
 }

@@ -5,13 +5,15 @@
   "license": "LGPL-2.1-or-later",
   "architecture": {
     "64bit": {
-      "url": "https://github.com/gendloop/TencentMeeting/raw/v3.18.6/dist/TencentMeeting.7z",
-      "hash": ""
+      "url": "https://ghproxy.net/https://github.com/gendloop/TencentMeeting/archive/refs/tags/v3.18.6.zip",
+      "hash": "a42d9ed6609ac91d25c7644aa04fac3e96077dbd9fcd4cbeefed3d09ba27542c"
     }
   },
   "installer": {
     "script": [
       "Push-Location \"$dir\"",
+      "7z x TencentMeeting-$version\\dist\\TencentMeeting.7z.001",
+      "Remove-Item TencentMeeting-$version -Recurse",
       "Start-Process TencentMeeting.exe",
       "Pop-Location"
     ]
@@ -20,7 +22,7 @@
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://github.com/gendloop/TencentMeeting/raw/v$version/dist/TencentMeeting.7z"
+        "url": "https://ghproxy.net/https://github.com/gendloop/TencentMeeting/archive/refs/tags/v$version.zip"
       }
     }
   }
