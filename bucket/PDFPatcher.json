@@ -1,25 +1,30 @@
 {
-  "homepage": "https://www.cnblogs.com/pdfpatcher/",
-  "description": "PDFPatcher is a PDF processing tool.",
-  "license": "",
-  "version": "1.0.0.4187",
-  "url": "https://drfs.ctcontents.com/file/12751606/841158564/78439b/PDFPatcher/PDFPatcher.1.0.0.4187.7z",
-  "hash": "85F0F44FAE9761ADF4B6A3C668BFE626FC1B18037638E979ED7371F996C55943",
-  "bin": "PDFPatcher.exe",
+  "version": "1.0.0.3730",
+  "description": "PDF 补丁丁是一个 PDF 处理工具。",
+  "homepage": "https://github.com/wmjordan/PDFPatcher",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://github.com/wmjordan/PDFPatcher#%E6%8E%88%E6%9D%83%E5%8D%8F%E8%AE%AE"
+  },
+  "url": "https://github.com/wmjordan/PDFPatcher/files/7791732/PDFPatcher.1.0.0.3730.7z.zip",
+  "hash": "33298e13a437c7d4b8dfa07bc8128ca444f720a32db4f40462e2aa6375f3e54c",
+  "pre_install": [
+    "    # Create files for persisting",
+    "function PersistsFile([String] $file) {",
+    "    if (!(Test-Path \"$persist_dir\\$file\")) {",
+    "        New-Item \"$dir\\$file\" -Type File | Out-Null",
+    "    }",
+    "}",
+    "@('AppConfig.json') | ForEach-Object { PersistsFile $_ }"
+  ],
   "shortcuts": [
     [
       "PDFPatcher.exe",
       "PDFPatcher"
+    ],
+    [
+      "PDFPatcher.exe",
+      "PDF 补丁丁"
     ]
-  ],
-  "persist": [
-    "PDFPatcher.exe.config"
-  ],
-  "checkver": {
-    "url": "https://www.cnblogs.com/pdfpatcher/",
-    "regex": "([\\w.-]+)</a>"
-  },
-  "autoupdate": {
-    "url": "https://drfs.ctcontents.com/file/12751606/841158564/78439b/PDFPatcher/PDFPatcher.$version.7z"
-  }
+  ]
 }

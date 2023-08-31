@@ -1,0 +1,28 @@
+{
+  "homepage": "https://qywx.bchd.com.cn/",
+  "description": "WeChat Work for BCHD.",
+  "version": "2.5.40002.154",
+  "license": {
+    "identifier": "EULA",
+    "url": "https://work.weixin.qq.com/nl/eula"
+  },
+  "url": "file://\\scoop\\local_installers\\WXWorkLocal_2.5.40002.154.exe#/setup.zip",
+  "hash": "6e54a4e7443ec0a2c1fd2453cf8c6cd1eb3eab85e5fec10df9212a0566ac9cf4",
+  "bin": [
+    [
+      "WXWorkLocal.exe",
+      "bchdwechat"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "WXWorkLocal.exe",
+      "WeChatWork for BCHD"
+    ]
+  ],
+  "post_install": [
+    "Remove-Item \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
+    "Remove-Item \"$dir\\Uninstall.exe\" -Force -Recurse"
+  ],
+  "notes": "The WeChatWork for BCHD is not easy to download.\nSo we put the installer in local path.\nThe URL defined in bucket file must be absolute except the drive letter and include installer file name.\nThe default path is '\\Scoop\\local_installer', assume running scoop in the same drive.\nEnsure it is correct before calling scoop.\n\nUsage: scoop install {path_to_bucket\\}lc_bchdwechatwork.json\n\nUse your worker ID and password to login. The group name is bchdorg."
+}

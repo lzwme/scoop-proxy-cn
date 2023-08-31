@@ -1,0 +1,27 @@
+{
+  "version": "1.11.5",
+  "description": "A user-friendly and efficient tool for the effortless deployment and configuration of resources on remote machines.",
+  "homepage": "https://simplotask.com",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/umputun/spot/releases/download/v1.11.5/spot_v1.11.5_win_x86_64.zip",
+      "hash": "b1a209eda2b9b1746126a7a7eb5bf9b915c6ea234acb7bc4a0bec6c79338b6fb"
+    }
+  },
+  "bin": "spot.exe",
+  "checkver": {
+    "github": "https://github.com/umputun/spot"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/umputun/spot/releases/download/v$version/spot_v$version_win_x86_64.zip"
+      }
+    },
+    "hash": {
+      "url": "https://ghproxy.net/https://github.com/umputun/spot/releases/download/v$version/spot_$version_checksums.txt",
+      "find": "$sha256 $basename"
+    }
+  }
+}

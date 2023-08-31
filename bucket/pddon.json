@@ -1,0 +1,27 @@
+{
+  "version": "1.0.8",
+  "description": "Free professional low code online drawing tool.",
+  "homepage": "https://github.com/pddon/pddon-win",
+  "license": "Freeware",
+  "url": "https://ghproxy.net/https://github.com/pddon/pddon-win/releases/download/v1.0.8/pddon.com-Setup-1.0.8.exe",
+  "hash": "2837030ad9abb6228c45b2efdec7d1f1b2a90512679f6892032735015d7bc2a9",
+  "installer": {
+    "script": [
+      "Expand-7zipArchive -Path \"$dir\\$fname\" -Removal",
+      "Expand-7zipArchive -Path \"$dir\\`$PLUGINSDIR\\app-64.7z\" -DestinationPath $dir"
+    ]
+  },
+  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
+  "bin": "pddon.com.exe",
+  "shortcuts": [
+    [
+      "pddon.com.exe",
+      "PDDON"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/pddon/pddon-win/releases/download/v$version/pddon.com-Setup-$version.exe"
+  },
+  "notes": "It's not opensource. It can not be used offline only after you have logged in."
+}
