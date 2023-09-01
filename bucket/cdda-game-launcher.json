@@ -1,28 +1,23 @@
 {
-  "version": "1.5.6",
-  "description": "A Cataclysm: Dark Days Ahead launcher with additional features",
-  "license": "MIT",
   "homepage": "https://github.com/remyroy/CDDA-Game-Launcher",
-  "architecture": {
-    "64bit": {
-      "url": "https://ghproxy.net/https://github.com/remyroy/CDDA-Game-Launcher/releases/download/v1.5.6/cddagl_installer_v1.5.6.exe",
-      "hash": "6c3633d2880c0b9351ca91d7a33b40ae2a6402cb682f81113850d23763dbe6ba"
-    }
-  },
-  "innosetup": true,
+  "description": "A Cataclysm: Dark Days Ahead launcher with additional features",
+  "version": "1.5.6",
+  "license": "MIT",
+  "url": "https://ghproxy.net/https://github.com/remyroy/CDDA-Game-Launcher/releases/download/v1.5.6/cddagl_portable_v1.5.6.zip",
+  "hash": "3f34c94ac21382e0c3ab3d724c2dad466f56efcc01d2373d2ccc569b01c76f9a",
+  "extract_dir": "cddagl_portable_v1.5.6",
   "shortcuts": [
     [
-      "launcher.exe",
-      "CDDA Game Launcher"
+      "Launcher.bat",
+      "Cataclysm DDA\\CDDA Game Launcher",
+      "",
+      "cddagl\\resources\\launcher.ico"
     ]
   ],
-  "persist": "cdda",
   "checkver": "github",
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.net/https://github.com/printfn/fend/releases/download/v$version/fend-$version-windows-x64-exe.zip"
-      }
-    }
-  }
+    "url": "https://ghproxy.net/https://github.com/remyroy/CDDA-Game-Launcher/releases/download/v$version/cddagl_portable_v$version.zip",
+    "extract_dir": "cddagl_portable_v$version"
+  },
+  "notes": "Configs file is C:\\Users\\[USERNAME]\\AppData\\Local\\CDDA Game Launcher\\configs.db"
 }

@@ -6,24 +6,18 @@
     "identifier": "GPL-3.0-or-later",
     "url": "https://ghproxy.net/https://raw.githubusercontent.com/Nexus-Mods/Vortex/master/LICENSE.md"
   },
-  "url": "https://ghproxy.net/https://github.com/Nexus-Mods/Vortex/releases/download/v1.9.3/vortex-setup-1.9.3.exe#/dl.7z",
+  "url": "https://ghproxy.net/https://github.com/Nexus-Mods/Vortex/releases/download/v1.9.3/vortex-setup-1.9.3.exe#/setup.exe",
   "hash": "83c2ca4170ba1a2a4c2e451eb2317f64f0aacc494fad245734674e70582c7d30",
   "installer": {
     "script": [
-      "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
-      "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall*\" -Force -Recurse"
+      "Start-Process \"$dir\\setup.exe\" -ArgumentList '/S' -Wait -Verb RunAs | Out-Null",
+      "Remove-Item \"$dir\\setup.exe\""
     ]
   },
-  "shortcuts": [
-    [
-      "Vortex.exe",
-      "Vortex"
-    ]
-  ],
   "checkver": {
     "github": "https://github.com/Nexus-Mods/Vortex"
   },
   "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/Nexus-Mods/Vortex/releases/download/v$version/vortex-setup-$version.exe#/dl.7z"
+    "url": "https://ghproxy.net/https://github.com/Nexus-Mods/Vortex/releases/download/v$version/vortex-setup-$version.exe#/setup.exe"
   }
 }

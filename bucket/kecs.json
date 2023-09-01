@@ -1,0 +1,31 @@
+{
+  "version": "0.1.0",
+  "description": "KeCS is a tool to generate checksum sets and use those to validate or compare the contents of a directory.",
+  "homepage": "https://github.com/forbjok/kecs",
+  "license": "MIT|Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/forbjok/kecs/releases/download/v0.1.0/kecs-0.1.0-windows-x86_64.zip",
+      "hash": "3d9002444b74b38a8ae90a63f7a0e2d217ed9c397943c6318cba9cdbdf788eb8"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/forbjok/kecs/releases/download/v0.1.0/kecs-0.1.0-windows-i686.zip",
+      "hash": "093b325eaf111d4ececf3aa48a3e23332682a1cd52d92195c560ecb661f96ebe"
+    }
+  },
+  "bin": "kecs.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/forbjok/kecs/releases/download/v$version/kecs-$version-windows-x86_64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/forbjok/kecs/releases/download/v$version/kecs-$version-windows-i686.zip"
+      }
+    },
+    "hash": {
+      "url": "$url.sha256.txt"
+    }
+  }
+}

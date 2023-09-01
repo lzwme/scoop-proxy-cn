@@ -1,24 +1,23 @@
 {
-  "homepage": "http://www.jedit.org/",
+  "homepage": "http://www.jedit.org",
   "version": "5.6.0",
-  "url": "https://sourceforge.net/projects/jedit/files/jedit/5.6.0/jedit5.6.0install.exe",
-  "hash": "sha1:fa03f6c94f7a8539afdc5c2983ad2993f3f062b6",
+  "license": "GPL-2.0-only",
+  "description": "Programmer's Text Editor",
+  "url": "https://downloads.sourceforge.net/project/jedit/jedit/5.6.0/jedit5.6.0install.exe",
+  "hash": "e493b4b0ab0c090cbc367d6fa64176fb80874575c98e578612d1a5fef49dd14e",
   "innosetup": true,
-  "bin": "jedit.jar",
+  "bin": "jedit.exe",
   "shortcuts": [
     [
-      "jedit.jar",
-      "jEdit"
+      "jedit.exe",
+      "JEdit"
     ]
   ],
   "checkver": {
-    "url": "https://sourceforge.net/projects/jedit/rss?path=/jedit",
-    "regex": "/jedit/([\\d.]+)/jedit[\\d.]+install\\.exe"
+    "url": "http://www.jedit.org/index.php?page=download",
+    "regex": "Stable version: jEdit ([\\d.]+)"
   },
   "autoupdate": {
-    "url": "https://sourceforge.net/projects/jedit/files/jedit/$version/jedit$versioninstall.exe",
-    "hash": {
-      "mode": "sourceforge"
-    }
+    "url": "https://downloads.sourceforge.net/project/jedit/jedit/$version/jedit$versioninstall.exe"
   }
 }
