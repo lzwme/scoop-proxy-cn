@@ -11,7 +11,8 @@
         "script": [
           "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
           "Start-Process \"$dir\\$fname\" -Wait -Verb 'RunAs' -Args @('/verysilent', '/allusers', '/suppressmsgboxes', '/sp-', '/restartapplications', '/norestart')",
-          "Remove-Item \"$dir\\$fname\"; Set-Content \"$dir\\cubevpc.cmd\" '@\"%ProgramFiles(x86)%\\CubePDF\\CubeVpc.exe\"  %*' -Encoding 'utf8'"
+          "Remove-Item \"$dir\\$fname\"",
+          "[System.IO.File]::WriteAllLines(\"$dir\\cubevpc.cmd\", '@\"%ProgramFiles(x86)%\\CubePDF\\CubeVpc.exe\"  %*', [System.text.UTF8Encoding]($false))"
         ]
       },
       "uninstaller": {
@@ -29,7 +30,8 @@
         "script": [
           "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
           "Start-Process \"$dir\\$fname\" -Wait -Verb 'RunAs' -Args @('/verysilent', '/allusers', '/suppressmsgboxes', '/sp-', '/restartapplications', '/norestart')",
-          "Remove-Item \"$dir\\$fname\"; Set-Content \"$dir\\cubevpc.cmd\" '@\"%ProgramFiles%\\CubePDF\\CubeVpc.exe\"  %*' -Encoding 'utf8'"
+          "Remove-Item \"$dir\\$fname\"",
+          "[System.IO.File]::WriteAllLines(\"$dir\\cubevpc.cmd\", '@\"%ProgramFiles%\\CubePDF\\CubeVpc.exe\"  %*', [System.text.UTF8Encoding]($false))"
         ]
       },
       "uninstaller": {
@@ -47,7 +49,8 @@
         "script": [
           "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
           "Start-Process \"$dir\\$fname\" -Wait -Verb 'RunAs' -Args @('/verysilent', '/allusers', '/suppressmsgboxes', '/sp-', '/restartapplications', '/norestart')",
-          "Remove-Item \"$dir\\$fname\"; Set-Content \"$dir\\cubevpc.cmd\" '@\"%ProgramFiles%\\CubePDF\\CubeVpc.exe\"  %*' -Encoding 'utf8'"
+          "Remove-Item \"$dir\\$fname\"",
+          "[System.IO.File]::WriteAllLines(\"$dir\\cubevpc.cmd\", '@\"%ProgramFiles%\\CubePDF\\CubeVpc.exe\"  %*', [System.text.UTF8Encoding]($false))"
         ]
       },
       "uninstaller": {

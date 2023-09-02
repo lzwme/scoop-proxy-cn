@@ -24,37 +24,37 @@
   "architecture": {
     "64bit": {
       "url": "https://ghproxy.net/https://github.com/arch1t3cht/Aegisub/releases/download/feature_10/Windows.MSVC.Release.-.portable.zip",
-      "hash": "6dde45c221ba109ee3756169ccdf06d70f052f5adc489d26da16f4413ab50ae6"
+      "hash": "a95ceeedbab7b7ac71dd161fcf14cd46b5c9f7b141dfc887a36fe4bfa86ecf26"
     }
   },
   "pre_install": [
-    "Expand-7zipArchive \"$dir\\aegisub-portable-64.zip\" $dir -ExtractDir 'aegisub-portable' -Removal; Remove-Item \"$dir\\Microsoft.CRT\" -Recurse",
-    "Set-Content \"$dir\\hotkey.json\" '' -Encoding 'utf8' -Force",
-    "Copy-Item \"$persist_dir\\config.json\" \"$dir\\config.json\" -ErrorAction 'SilentlyContinue'"
+    "if (!(Test-Path \"$persist_dir\\Aegisub\")) { ensure \"$persist_dir\\Aegisub\" | Out-Null }",
+    "Expand-7zipArchive \"$dir\\aegisub-portable-64.zip\" \"$persist_dir\\Aegisub\" -ExtractDir 'aegisub-portable' -Removal",
+    "[System.IO.File]::WriteAllLines(\"$dir\\aegisub.cmd\", \"@`\"$persist_dir\\Aegisub\\aegisub.exe`\"\", [System.text.UTF8Encoding]($false))",
+    "# This is just to extract the the icon from the `.exe` file.",
+    "[System.Drawing.Icon]::ExtractAssociatedIcon(\"$persist_dir\\Aegisub\\aegisub.exe\").ToBitmap().Save(\"$dir\\aegisub.ico\")",
+    "if (!(Test-Path \"$persist_dir\\Aegisub\\hotkey.json\")) {",
+    "    [System.IO.File]::WriteAllLines(\"$persist_dir\\Aegisub\\hotkey.json\", '', [System.text.UTF8Encoding]($false))",
+    "}"
   ],
   "shortcuts": [
     [
-      "aegisub.exe",
-      "Aegisub"
+      "aegisub.cmd",
+      "Aegisub",
+      "",
+      "aegisub.ico"
     ]
-  ],
-  "persist": [
-    "hotkey.json",
-    "config",
-    "feedDump",
-    "log"
   ],
   "post_install": [
     "$scriptsDir = \"$bucketsdir\\$bucket\\scripts\"",
     "Get-ChildItem \"$scriptsDir\\aegisub\\*.reg\" | ForEach-Object {",
     "   $content = Get-Content $_",
-    "   $content = $content.Replace('REPLACE_HERE', $dir)",
+    "   $content = $content.Replace('REPLACE_HERE', \"$persist_dir\\Aegisub\")",
     "   if ($global) { $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE') }",
     "   Set-Content \"$dir\\$($_.Name)\" $content -Encoding 'unicode' -Force",
     "}"
   ],
   "pre_uninstall": [
-    "Copy-Item \"$dir\\config.json\" \"$persist_dir\\config.json\" -ErrorAction 'SilentlyContinue'",
     "if ($cmd -eq 'uninstall') {",
     "   foreach ($regFile in 'uninstall-associations', 'uninstall-context') { reg import \"$dir\\$regFile.reg\" | Out-Null }",
     "}"

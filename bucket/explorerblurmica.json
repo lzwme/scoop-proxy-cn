@@ -46,9 +46,9 @@
     "exit /b",
     "'@",
     "",
-    "Set-Content \"$dir\\register-explorerblurmica.cmd\" $content1 -Encoding 'utf8'",
-    "Set-Content \"$dir\\unregister-explorerblurmica.cmd\" $content2 -Encoding 'utf8'",
-    "Set-Content \"$dir\\Open-ExplorerBlurMica-Folder.cmd\" '@start explorer \"%~dp0\"' -Encoding 'utf8'"
+    "[System.IO.File]::WriteAllLines(\"$dir\\register-explorerblurmica.cmd\", $content1, [System.text.UTF8Encoding]($false))",
+    "[System.IO.File]::WriteAllLines(\"$dir\\unregister-explorerblurmica.cmd\", $content2, [System.text.UTF8Encoding]($false))",
+    "[System.IO.File]::WriteAllLines(\"$dir\\Open-ExplorerBlurMica-Folder.cmd\", '@start explorer \"%~dp0\"', [System.text.UTF8Encoding]($false))"
   ],
   "bin": [
     "register-explorerblurmica.cmd",

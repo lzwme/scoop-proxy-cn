@@ -11,9 +11,9 @@
       "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
       "$dateName = (Get-Date).ToString('yyyy.MM.dd_HH.mm.ss.ffffff')",
       "Start-Process 'msiexec' -Wait -Verb 'RunAs' -Args @('/i', \"$dir\\setup.msi_\", '/qn', '/norestart', '/log', \"$dir\\clawPDF_install_$dateName.log\")",
-      "Set-Content \"$dir\\clawpdf.cmd\" '@\"%ProgramFiles(x86)%\\clawPDF\\clawPDF.exe\"  %*' -Encoding 'utf8'",
-      "Set-Content \"$dir\\setuphelper.cmd\" '@\"%ProgramFiles(x86)%\\clawPDF\\SetupHelper.exe\"  %*' -Encoding 'utf8'",
-      "Set-Content \"$dir\\clawpdf.bridge.cmd\" '@\"%ProgramFiles(x86)%\\clawPDF\\clawPDF.Bridge.exe\"  %*' -Encoding 'utf8'"
+      "[System.IO.File]::WriteAllLines(\"$dir\\clawpdf.cmd\", '@\"%ProgramFiles(x86)%\\clawPDF\\clawPDF.exe\"  %*', [System.text.UTF8Encoding]($false))",
+      "[System.IO.File]::WriteAllLines(\"$dir\\setuphelper.cmd\", '@\"%ProgramFiles(x86)%\\clawPDF\\SetupHelper.exe\"  %*', [System.text.UTF8Encoding]($false))",
+      "[System.IO.File]::WriteAllLines(\"$dir\\clawpdf.bridge.cmd\", '@\"%ProgramFiles(x86)%\\clawPDF\\clawPDF.Bridge.exe\"  %*', [System.text.UTF8Encoding]($false))"
     ]
   },
   "uninstaller": {

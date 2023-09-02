@@ -10,17 +10,29 @@
     "64bit": {
       "url": "https://downloadarchive.documentfoundation.org/libreoffice/old/7.6.1.1/win/x86_64/LibreOffice_7.6.1.1_Win_x86-64.msi#/setup.msi_",
       "hash": "fb28a77ad294ff0674e69b0da719f954f2263212e8ed7883cef916dea5b2f900",
-      "pre_install": "foreach ($z in @('soffice', 'unopkg')) { Set-Content \"$dir\\$z.cmd\" \"@`\"$env:ProgramFiles\\LibreOffice\\program\\$z.com`\"  %*\" -Encoding 'utf8' -Force }"
+      "pre_install": [
+        "foreach ($z in @('soffice', 'unopkg')) {",
+        "    [System.IO.File]::WriteAllLines(\"$dir\\$z.cmd\", '@\"%ProgramFiles%\\LibreOffice\\program\\$z.com\"  %*', [System.text.UTF8Encoding]($false))",
+        "}"
+      ]
     },
     "32bit": {
       "url": "https://downloadarchive.documentfoundation.org/libreoffice/old/7.6.1.1/win/x86/LibreOffice_7.6.1.1_Win_x86.msi#/setup.msi_",
       "hash": "727c3224a1460e8b57da6c1eb53edca93bbe2218de59f8379e3304706e8ae23a",
-      "pre_install": "foreach ($z in @('soffice', 'unopkg')) { Set-Content \"$dir\\$z.cmd\" \"@`\"${env:ProgramFiles(x86)}\\LibreOffice\\program\\$z.com`\"  %*\" -Encoding 'utf8' -Force }"
+      "pre_install": [
+        "foreach ($z in @('soffice', 'unopkg')) {",
+        "    [System.IO.File]::WriteAllLines(\"$dir\\$z.cmd\", '@\"%ProgramFiles(x86)%\\LibreOffice\\program\\$z.com\"  %*', [System.text.UTF8Encoding]($false))",
+        "}"
+      ]
     },
     "arm64": {
       "url": "https://downloadarchive.documentfoundation.org/libreoffice/old/7.6.1.1/win/aarch64/LibreOffice_7.6.1.1_Win_aarch64.msi#/setup.msi_",
       "hash": "6052fb29d5f61087b8ecdff4b8147d2ff5b37b8b1033a6c7d28497a78e61eace",
-      "pre_install": "foreach ($z in @('soffice', 'unopkg')) { Set-Content \"$dir\\$z.cmd\" \"@`\"$env:ProgramFiles\\LibreOffice\\program\\$z.com`\"  %*\" -Encoding 'utf8' -Force }"
+      "pre_install": [
+        "foreach ($z in @('soffice', 'unopkg')) {",
+        "    [System.IO.File]::WriteAllLines(\"$dir\\$z.cmd\", '@\"%ProgramFiles%\\LibreOffice\\program\\$z.com\"  %*', [System.text.UTF8Encoding]($false))",
+        "}"
+      ]
     }
   },
   "installer": {

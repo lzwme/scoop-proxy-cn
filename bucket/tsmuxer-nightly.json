@@ -1,18 +1,26 @@
 {
   "version": "2023-08-31-01-52-09",
-  "description": "tsMuxer",
+  "description": "A transport stream muxer for remuxing/muxing elementary streams.",
   "homepage": "https://github.com/justdan96/tsMuxer",
-  "license": "Apache-2.0",
-  "url": "https://ghproxy.net/https://github.com/justdan96/tsMuxer/releases/download/nightly-2023-08-31-01-52-09/w64.zip",
-  "hash": "69ba9d639d6f40eb5f6fa9ed8fc344d9c99e4708e71cd669fc6d5a457843ea9f",
-  "bin": [
-    "tsMuxeR.exe",
-    "tsMuxerGUI.exe"
-  ],
+  "license": {
+    "identifier": "Apache-2.0",
+    "url": "https://github.com/justdan96/tsMuxer/blob/master/LICENSE"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/justdan96/tsMuxer/releases/download/nightly-2023-08-31-01-52-09/w64.zip",
+      "hash": "69ba9d639d6f40eb5f6fa9ed8fc344d9c99e4708e71cd669fc6d5a457843ea9f"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/justdan96/tsMuxer/releases/download/nightly-2023-08-31-01-52-09/w32.zip",
+      "hash": "9f4fc2223dae6b1bf4f8ffd134f2a408675b30b731d352b2e8be4ef9f7efc40c"
+    }
+  },
+  "bin": "tsMuxeR.exe",
   "shortcuts": [
     [
       "tsMuxerGUI.exe",
-      "tsMuxerGUI"
+      "tsMuxeR GUI"
     ]
   ],
   "checkver": {
@@ -20,6 +28,13 @@
     "regex": "nightly-([\\d-]+)"
   },
   "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/justdan96/tsMuxer/releases/download/nightly-$version/w64.zip"
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/justdan96/tsMuxer/releases/download/nightly-$version/w64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/justdan96/tsMuxer/releases/download/nightly-$version/w32.zip"
+      }
+    }
   }
 }
