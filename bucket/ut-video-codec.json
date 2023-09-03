@@ -20,10 +20,10 @@
     "$value = $value -replace ('start \"\" readme.*', '')",
     "$value = $value -replace ('start \"\" http://umezawa.*', '')",
     "$value = $value -replace ('start \"\" http://seiga.*', '')",
-    "Set-Content \"$dir\\install.bat\" $value -Encoding 'utf8'",
+    "[System.IO.File]::WriteAllLines(\"$dir\\install.bat\", $value, [System.text.UTF8Encoding]($false))",
     "$value = (Get-Content \"$dir\\uninstall.bat\").Replace('%windir%\\regedit.exe /s utvideo-x64-unreg.reg', 'reg import \"%~dp0utvideo-x64-unreg.reg\"')",
-    "Set-Content \"$dir\\uninstall.bat\" $value -Encoding 'utf8'",
-    "Start-Process 'cmd' -Wait -NoNewWindow -Args @('/C', \"$dir\\install.bat\")"
+    "[System.IO.File]::WriteAllLines(\"$dir\\uninstall.bat\", $value, [System.text.UTF8Encoding]($false))",
+    "Start-Process 'cmd' -Wait -NoNewWindow -Args @('/c', \"$dir\\install.bat\")"
   ],
   "uninstaller": {
     "script": [

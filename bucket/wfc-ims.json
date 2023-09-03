@@ -4,18 +4,19 @@
   "description": "Powerful tool which extends the functionality of Windows Firewall and provides new extra features which makes Windows Firewall better",
   "homepage": "https://www.binisoft.org/wfc.php",
   "license": "Freeware",
-  "depends": "sudo",
   "url": "https://www.binisoft.org/download/wfc6setup.exe",
   "hash": "548214adb293b8e42fa26bd3ca91d558d21435eeb39fa4b3576a0d053c3ac757",
+  "pre_install": "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
   "installer": {
-    "script": "sudo cmd.exe /c start /WAIT \"$dir\\wfc6setup.exe\" -install -close \"$dir\""
+    "script": "cmd.exe /c start /WAIT \"$dir\\wfc6setup.exe\" -install -close \"$dir\""
   },
+  "pre_uninstall": "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
   "uninstaller": {
     "script": [
-      "sudo taskkill.exe /f /im wfc.exe",
-      "sudo sc.exe stop wfcs",
-      "sudo sc.exe delete wfcs",
-      "sudo reg.exe delete \"HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Windows Firewall Control\" /f"
+      "taskkill.exe /f /im wfc.exe",
+      "sc.exe stop wfcs",
+      "sc.exe delete wfcs",
+      "reg.exe delete \"HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Windows Firewall Control\" /f"
     ]
   },
   "checkver": {
@@ -23,6 +24,5 @@
   },
   "autoupdate": {
     "url": "https://www.binisoft.org/download/wfc$majorVersionsetup.exe"
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

@@ -1,47 +1,37 @@
 {
-  "version": "1.5.0-beta.1",
+  "version": "1.4.1",
   "description": "The universal proxy platform.",
-  "homepage": "https://sing-box.sagernet.org",
-  "license": {
-    "identifier": "GPLv3 or later",
-    "url": "https://github.com/SagerNet/sing-box/blob/main/LICENSE"
-  },
+  "homepage": "https://sing-box.sagernet.org/",
+  "license": "GPL-3.0-or-later",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.net/https://github.com/SagerNet/sing-box/releases/download/v1.5.0-beta.1/sing-box-1.5.0-beta.1-windows-amd64.zip",
-      "extract_dir": "sing-box-1.5.0-beta.1-windows-amd64",
-      "hash": "d1dc9fe170ce84c1adc6ec52d60133603cfb43aa6b4ca73c839700137b7a53bb"
+      "url": "https://ghproxy.net/https://github.com/SagerNet/sing-box/releases/download/v1.4.1/sing-box-1.4.1-windows-amd64.zip",
+      "hash": "c8cf706081ab79786e4938dce1ae923dcfea7c8e4cf5a360c17b133b5205b411"
     },
     "32bit": {
-      "url": "https://ghproxy.net/https://github.com/SagerNet/sing-box/releases/download/v1.5.0-beta.1/sing-box-1.5.0-beta.1-windows-386.zip",
-      "extract_dir": "sing-box-1.5.0-beta.1-windows-386",
-      "hash": "f69aa7ac85d960c11daff4d51d6a2540d9ea8c07549dd881bac9b7d7521b53e3"
+      "url": "https://ghproxy.net/https://github.com/SagerNet/sing-box/releases/download/v1.4.1/sing-box-1.4.1-windows-386.zip",
+      "hash": "8692b3df0ec71fc8ffe1e823047799a94774dc19ee57b285144521c51ca833aa"
     },
     "arm64": {
-      "url": "https://ghproxy.net/https://github.com/SagerNet/sing-box/releases/download/v1.5.0-beta.1/sing-box-1.5.0-beta.1-windows-arm64.zip",
-      "extract_dir": "sing-box-1.5.0-beta.1-windows-arm64",
-      "hash": "da3e9899dccade6bdba8cdf0ae33016bf7366eb9d5815b448f4964d5b4e3035e"
+      "url": "https://ghproxy.net/https://github.com/SagerNet/sing-box/releases/download/v1.4.1/sing-box-1.4.1-windows-arm64.zip",
+      "hash": "235f5f2f49986bf181d20bf8ad3a9722335f2928c8fbd7d8f68ae53c5d6aba7d"
     }
   },
   "bin": "sing-box.exe",
-  "persist": "config",
   "checkver": {
-    "url": "https://api.github.com/repos/SagerNet/sing-box/releases",
-    "regex": "/releases/tag/v([\\w.-]+)"
+    "github": "https://github.com/SagerNet/sing-box/",
+    "regex": "(?<tag>v([\\d.]+))"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.net/https://github.com/SagerNet/sing-box/releases/download/v$version/sing-box-$version-windows-amd64.zip",
-        "extract_dir": "sing-box-$version-windows-amd64"
+        "url": "https://ghproxy.net/https://github.com/SagerNet/sing-box/releases/download/$matchTag/sing-box-$version-windows-amd64.zip"
       },
       "32bit": {
-        "url": "https://ghproxy.net/https://github.com/SagerNet/sing-box/releases/download/v$version/sing-box-$version-windows-386.zip",
-        "extract_dir": "sing-box-$version-windows-386"
+        "url": "https://ghproxy.net/https://github.com/SagerNet/sing-box/releases/download/$matchTag/sing-box-$version-windows-386.zip"
       },
       "arm64": {
-        "url": "https://ghproxy.net/https://github.com/SagerNet/sing-box/releases/download/v$version/sing-box-$version-windows-arm64.zip",
-        "extract_dir": "sing-box-$version-windows-arm64"
+        "url": "https://ghproxy.net/https://github.com/SagerNet/sing-box/releases/download/$matchTag/sing-box-$version-windows-arm64.zip"
       }
     }
   }
