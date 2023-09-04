@@ -1,9 +1,9 @@
 {
-  "version": "23.1",
+  "version": "23.2",
   "description": "Enhanced terminal for Windows with X11 server, tabbed SSH client, network tools and much more.",
   "homepage": "https://mobaxterm.mobatek.net/",
-  "url": "https://download.mobatek.net/2312023031823706/MobaXterm_Portable_v23.1.zip",
-  "hash": "e3f3c5f4c5398423bd4ac06a9b6f82b2a945551f9e1a666e6fbe8856799f5bd8",
+  "url": "https://download.mobatek.net/2322023060714555/MobaXterm_Portable_v23.2.zip",
+  "hash": "b74f6055eeb0f57632adeb5ae0371cb007d4baf60dd69e14461af19ac6293f6b",
   "pre_install": [
     "    # Rename executable",
     "Get-ChildItem \"$dir\" 'mobaxterm*.exe' | Select-Object -First 1 | Rename-Item -NewName 'MobaXterm.exe'",
@@ -23,7 +23,9 @@
     "python $licgen $(whoami) $version",
     "Copy-Item $lic -Destination $dir"
   ],
-  "depends": "python",
+  "depends": [
+    "python"
+  ],
   "bin": "MobaXterm.exe",
   "shortcuts": [
     [
@@ -41,6 +43,5 @@
   },
   "autoupdate": {
     "url": "https://download.mobatek.net/$matchRandom/MobaXterm_Portable_v$version.zip"
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

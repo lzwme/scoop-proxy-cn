@@ -24,18 +24,6 @@
       }
     }
   },
-  "post_install": [
-    "$null, $null2, $bucket = Get-Manifest($app)",
-    "$bucketdir = Find-BucketDirectory($bucket)",
-    "$bucketdir = $bucketdir.Trim()",
-    "& \"$bucketdir\\scripts\\track.ps1\" install $app $version"
-  ],
-  "post_uninstall": [
-    "$null, $null2, $bucket = Get-Manifest($app)",
-    "$bucketdir = Find-BucketDirectory($bucket)",
-    "$bucketdir = $bucketdir.Trim()",
-    "& \"$bucketdir\\scripts\\track.ps1\" uninstall $app $version"
-  ],
   "checkver": {
     "url": "https://downloads.sparkmailapp.com/Spark3/win/dist/appcast.xml",
     "regex": "Version ([\\d.]+)"

@@ -1,0 +1,32 @@
+{
+  "version": "1.0.0",
+  "description": "A simple CLI binary file hex replacer",
+  "homepage": "https://github.com/me1ting/hexreplace",
+  "license": "Unknown",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/me1ting/hexreplace/releases/download/v1.0.0/hexreplace.zip",
+      "hash": "5db682b774a0eaf89ba91011bebd0b8c99a6568425291220578d99feb72e20af",
+      "extract_dir": "amd64"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/me1ting/hexreplace/releases/download/v1.0.0/hexreplace.zip",
+      "hash": "5db682b774a0eaf89ba91011bebd0b8c99a6568425291220578d99feb72e20af",
+      "extract_dir": "i386"
+    }
+  },
+  "bin": "hexreplace.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/me1ting/hexreplace/releases/download/v$version/hexreplace.zip",
+        "extract_dir": "amd64"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/me1ting/hexreplace/releases/download/v$version/hexreplace.zip",
+        "extract_dir": "i386"
+      }
+    }
+  }
+}

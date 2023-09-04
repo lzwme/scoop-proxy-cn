@@ -1,10 +1,11 @@
 {
-  "version": "3.2.1",
-  "description": "No!! MeiryoUI is a Windows system font setting tool on Windows 8.1/10.",
-  "homepage": "http://tatsu.life.coocan.jp/MySoft/WinCust/index.html",
+  "version": "3.2.1.1",
+  "description": "Windows system font setting tool on Windows 8.1/10.",
+  "homepage": "https://github.com/Tatsu-syo/noMeiryoUI",
   "license": "MIT",
-  "url": "https://ghproxy.net/https://github.com/Tatsu-syo/noMeiryoUI/releases/download/TAG-3.2.1/noMeiryoUI3.2.1.zip",
-  "hash": "9d704cf2c66681e18b3738ff1d00e5b002a2b284ac57f3e1f54f3f489674d426",
+  "url": "https://ghproxy.net/https://github.com/Tatsu-syo/noMeiryoUI/releases/download/TAG-3.2.1.1/noMeiryoUI3.2.1.1.zip",
+  "hash": "588e56e3fd5a08ea827829217a2b019e0106a612a6707a4881cc215a5d1eb80e",
+  "bin": "noMeiryoUI.exe",
   "shortcuts": [
     [
       "noMeiryoUI.exe",
@@ -13,9 +14,9 @@
   ],
   "checkver": {
     "url": "https://api.github.com/repos/Tatsu-syo/noMeiryoUI/releases/latest",
-    "regex": "/releases/download/TAG-([\\d.]+)/noMeiryoUI(?<fileversion>[\\d\\w.]+).zip"
+    "regex": "/TAG-([\\d.]+)/"
   },
   "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/Tatsu-syo/noMeiryoUI/releases/download/TAG-$version/noMeiryoUI$matchFileversion.zip"
+    "url": "https://ghproxy.net/https://github.com/Tatsu-syo/noMeiryoUI/releases/download/TAG-$version/noMeiryoUI$version.zip"
   }
 }
