@@ -1,14 +1,22 @@
 {
   "version": "2.6",
-  "url": "https://keepass.info/extensions/v2/keeautoexec/KeeAutoExec-2.6.zip",
-  "description": "KeeAutoExec This plugin allows to automatically open additional databases when opening a database.",
-  "hash": "65b998deadeb954233f9a4f195906840bd7620a02e559a6dfb7ffb6732c5d87b",
-  "depends": "extras/keepass",
+  "description": "This plugin allows to automatically open additional databases when opening a database.",
   "homepage": "https://keepass.info/plugins.html#keeautoexec",
+  "license": "Unknown",
+  "depends": "keepass",
+  "url": "https://keepass.info/extensions/v2/keeautoexec/KeeAutoExec-2.6.zip",
+  "hash": "65b998deadeb954233f9a4f195906840bd7620a02e559a6dfb7ffb6732c5d87b",
   "installer": {
-    "script": "Get-Process -Name KeePass -ErrorAction SilentlyContinue | Stop-Process -Force -Verbose; Copy-Item \"$dir\\KeeAutoExec*\" \"$(appdir keepass $global)\\current\\Plugins\\\"; KeePass"
+    "script": "Copy-Item \"$dir\\KeeAutoExec*\" \"$(appdir keepass $global)\\current\\Plugins\""
   },
   "uninstaller": {
-    "script": "Get-Process -Name KeePass -ErrorAction SilentlyContinue | Stop-Process -Force -Verbose; Get-Item \"$(appdir keepass $global)\\current\\Plugins\\KeeAutoExec*\" | Remove-Item -Force; KeePass"
+    "script": "Remove-Item \"$(appdir keepass $global)\\current\\Plugins\\KeeAutoExec*\""
+  },
+  "checkver": {
+    "url": "https://keepass.info/plugins.html#keeautoexec",
+    "regex": "KeeAutoExec-([\\d.]+)\\.zip"
+  },
+  "autoupdate": {
+    "url": "https://keepass.info/extensions/v$majorVersion/keeautoexec/KeeAutoExec-$version.zip"
   }
 }

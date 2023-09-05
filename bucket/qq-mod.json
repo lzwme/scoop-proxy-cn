@@ -1,7 +1,35 @@
 {
-  "version": "9.5.9.28625",
+  "autoupdate": {
+    "hash": {
+      "mode": "extract",
+      "regex": "^$sha256([\\s]+)$basename",
+      "url": "https://scoop-apps.vercel.app/qq"
+    },
+    "url": "https://pan.jiemi.workers.dev/?file=/scoop/QQ/$matchFilename"
+  },
+  "bin": [
+    [
+      "Bin\\QQScLauncher.exe",
+      "QQ"
+    ]
+  ],
+  "checkver": {
+    "regex": "(?s)(?<filename>QQ_(?<ver>([\\d.]+))_[(](?<build>([\\d]+))[)]_Installer\\.rar)",
+    "replace": "${ver}.${build}",
+    "reverse": true,
+    "url": "https://scoop-apps.vercel.app/qq"
+  },
+  "depends": "sudo",
   "description": "腾讯 QQ PC 版去广告特别版，由 @Dreamcast 组装打包而成（安装版）",
+  "hash": "157a02cfbf8c3fc73abb616b857057574cb19e0859b714c65ad489010cb775fc",
   "homepage": "https://im.qq.com/pcqq",
+  "installer": {
+    "script": [
+      "Stop-Process -Name TXP*,tad*,QQP*,QQC*,QQ -Force -ErrorAction Ignore | Out-Null",
+      "Rename-Item \"$dir\\*.exe\" 'installer.exe'",
+      "sudo Start-Process -filepath \"$dir\\installer.exe\" -ArgumentList /DIR=\"$dir\",/SILENT -WorkingDirectory \"$dir\" -Wait"
+    ]
+  },
   "license": {
     "identifier": "Proprietary",
     "url": "https://ti.qq.com/agreement/index.html"
@@ -19,23 +47,19 @@
     "",
     "使用 'scoop install vcredist-aio' 或 'scoop install vcredist-mix' 安装运行库"
   ],
-  "depends": "sudo",
+  "post_install": "@('installer.exe') | ForEach-Object { Remove-Item \"$dir\\$_\" -Force -ErrorAction SilentlyContinue }",
+  "shortcuts": [
+    [
+      "Bin\\QQScLauncher.exe",
+      "QQ"
+    ]
+  ],
   "suggest": {
     "vcredist": [
       "meta/vcredist-aio",
       "meta/vcredist-mix"
     ]
   },
-  "url": "https://pan.jiemi.workers.dev/?file=/scoop/QQ/QQ_9.5.9_(28625)_Installer.rar",
-  "hash": "157a02cfbf8c3fc73abb616b857057574cb19e0859b714c65ad489010cb775fc",
-  "installer": {
-    "script": [
-      "Stop-Process -Name TXP*,tad*,QQP*,QQC*,QQ -Force -ErrorAction Ignore | Out-Null",
-      "Rename-Item \"$dir\\*.exe\" 'installer.exe'",
-      "sudo Start-Process -filepath \"$dir\\installer.exe\" -ArgumentList /DIR=\"$dir\",/SILENT -WorkingDirectory \"$dir\" -Wait"
-    ]
-  },
-  "post_install": "@('installer.exe') | ForEach-Object { Remove-Item \"$dir\\$_\" -Force -ErrorAction SilentlyContinue }",
   "uninstaller": {
     "script": [
       "Stop-Process -Name TXP*,tad*,QQP*,QQC*,QQ -Force -ErrorAction Ignore | Out-Null",
@@ -43,30 +67,6 @@
       "Write-Host \"The '$app' has been uninstalled.\" -Foreground Magenta"
     ]
   },
-  "bin": [
-    [
-      "Bin\\QQScLauncher.exe",
-      "QQ"
-    ]
-  ],
-  "shortcuts": [
-    [
-      "Bin\\QQScLauncher.exe",
-      "QQ"
-    ]
-  ],
-  "checkver": {
-    "url": "https://scoop-apps.vercel.app/qq",
-    "regex": "(?s)(?<filename>QQ_(?<ver>([\\d.]+))_[(](?<build>([\\d]+))[)]_Installer\\.rar)",
-    "replace": "${ver}.${build}",
-    "reverse": true
-  },
-  "autoupdate": {
-    "url": "https://pan.jiemi.workers.dev/?file=/scoop/QQ/$matchFilename",
-    "hash": {
-      "url": "https://scoop-apps.vercel.app/qq",
-      "mode": "extract",
-      "regex": "^$sha256([\\s]+)$basename"
-    }
-  }
+  "url": "https://pan.jiemi.workers.dev/?file=/scoop/QQ/QQ_9.5.9_(28625)_Installer.rar",
+  "version": "9.5.9.28625"
 }

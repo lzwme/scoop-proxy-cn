@@ -1,58 +1,32 @@
 {
   "version": "2.9.0",
-  "license": {
-    "identifier": "OFL-1.1",
-    "url": "https://github.com/yuru7/HackGen/blob/master/LICENSE"
-  },
-  "description": "HackGenNerd is a composite font of Hack, GenJyuu-Gothic and Nerd Fonts.",
+  "description": "Japanese font based on Hack and GenJyuu-Gothic with Nerd Fonts",
   "homepage": "https://github.com/yuru7/HackGen",
+  "license": "OFL-1.1-RFN",
   "url": "https://ghproxy.net/https://github.com/yuru7/HackGen/releases/download/v2.9.0/HackGen_NF_v2.9.0.zip",
   "hash": "277cb874bbcf8a884e512bb2a01d62341d57286d8947057d652fab6488fc941c",
-  "extract_dir": "HackGen_NF_v2.9.0",
-  "checkver": "github",
-  "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/yuru7/HackGen/releases/download/v$version/HackGen_NF_v$version.zip",
-    "extract_dir": "HackGen_NF_v$version"
-  },
+  "depends": [
+    "sudo",
+    "unoun/scoop-helper"
+  ],
   "installer": {
     "script": [
-      "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
-      "$windows1809BuildNumber = 17763",
-      "$isPerUserFontInstallationSupported = $currentBuildNumber -ge $windows1809BuildNumber",
-      "$isFontInstallationForAllUsers = $global -or !$isPerUserFontInstallationSupported",
-      "if ($isFontInstallationForAllUsers -and !(is_admin)) {",
-      "    error \"Administrator rights are required to install $app.\"",
-      "    exit 1",
-      "}",
-      "$fontInstallDir = if ($isFontInstallationForAllUsers) { \"$env:windir\\Fonts\" } else { \"$env:LOCALAPPDATA\\Microsoft\\Windows\\Fonts\" }",
-      "$registryRoot = if ($isFontInstallationForAllUsers) { \"HKLM\" } else { \"HKCU\" }",
-      "$registryKey = \"${registryRoot}:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts\"",
-      "New-Item $fontInstallDir -ItemType Directory -ErrorAction SilentlyContinue | Out-Null",
-      "Get-ChildItem $dir -Filter '*.ttf' | ForEach-Object {",
-      "    $value = if ($isFontInstallationForAllUsers) { $_.Name } else { \"$fontInstallDir\\$($_.Name)\" }",
-      "    New-ItemProperty -Path $registryKey -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $value -Force | Out-Null",
-      "    Copy-Item $_.FullName -Destination $fontInstallDir",
-      "}"
+      "$helper = \"$(appdir scoop-helper)\\current\\scoop-font-helper.ps1\"",
+      "if (!(Test-Path $helper)) { error 'File not found'; exit 1 }",
+      ". $helper",
+      "Install-Font($dir)"
     ]
   },
   "uninstaller": {
     "script": [
-      "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
-      "$windows1809BuildNumber = 17763",
-      "$isPerUserFontInstallationSupported = $currentBuildNumber -ge $windows1809BuildNumber",
-      "$isFontInstallationForAllUsers = $global -or !$isPerUserFontInstallationSupported",
-      "if ($isFontInstallationForAllUsers -and !(is_admin)) {",
-      "    error \"Administrator rights are required to uninstall $app.\"",
-      "    exit 1",
-      "}",
-      "$fontInstallDir = if ($isFontInstallationForAllUsers) { \"$env:windir\\Fonts\" } else { \"$env:LOCALAPPDATA\\Microsoft\\Windows\\Fonts\" }",
-      "$registryRoot = if ($isFontInstallationForAllUsers) { \"HKLM\" } else { \"HKCU\" }",
-      "$registryKey = \"${registryRoot}:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts\"",
-      "Get-ChildItem $dir -Filter '*.ttf' | ForEach-Object {",
-      "    Remove-ItemProperty -Path $registryKey -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
-      "    Remove-Item \"$fontInstallDir\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
-      "}",
-      "Write-Host \"The 'HackGenNerd' Font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
+      "$helper = \"$(appdir scoop-helper)\\current\\scoop-font-helper.ps1\"",
+      "if (!(Test-Path $helper)) { error 'File not found'; exit 1 }",
+      ". $helper",
+      "Uninstall-Font($dir)"
     ]
+  },
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/yuru7/HackGen/releases/download/v$version/HackGen_NF_v$version.zip"
   }
 }

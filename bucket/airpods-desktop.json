@@ -1,0 +1,25 @@
+{
+  "version": "0.4.0",
+  "description": "AirPods desktop user experience enhancement program",
+  "homepage": "https://github.com/SpriteOvO/AirPodsDesktop",
+  "license": "GNU General Public License v3.0",
+  "url": "https://ghproxy.net/https://github.com/SpriteOvO/AirPodsDesktop/releases/download/0.4.0/AirPodsDesktop-0.4.0-win32.exe",
+  "hash": "c94a70e6b53de02424baf813b90c25396b168873eb9100349152d0f1a38e4e6a",
+  "bin": "AirPodsDesktop.exe",
+  "shortcuts": [
+    [
+      "AirPodsDesktop.exe",
+      "AirPodsDesktop"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/SpriteOvO/AirPodsDesktop"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/SpriteOvO/AirPodsDesktop/releases/download/$version/AirPodsDesktop-$version-win32.exe",
+    "hash": {
+      "url": "https://github.com/SpriteOvO/AirPodsDesktop/releases/latest",
+      "regex": "(?s)$basename.*?$sha256"
+    }
+  }
+}

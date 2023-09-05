@@ -2,8 +2,8 @@
   "license": "Unlicense",
   "homepage": "https://fanyi.youdao.com/download-Windows/",
   "url": "https://download.ydstatic.com/cidian/YoudaoDict_baidu_pc.exe#/installer.exe",
-  "version": "10.0.10.0",
-  "hash": "a8f0428f93fd69565653baecbad447774fe17b7a96e354c82eb6d087df3991dc",
+  "version": "10.0.12.0",
+  "hash": "45978ad039d02f64a3c5e44b11e23da1eb81ab15ee18b014bc156c00433aaf60",
   "installer": {
     "script": [
       "Start-Process \"$dir\\installer.exe\" -Wait -ArgumentList \"/S\",\"/D=$dir\"",
@@ -11,9 +11,7 @@
     ]
   },
   "uninstaller": {
-    "script": [
-      "Start-Process \"$dir\\uninst.exe\" -Wait -ArgumentList \"/S\""
-    ]
+    "script": "Start-Process \"$dir\\uninst.exe\" -Wait -ArgumentList \"/S\""
   },
   "checkver": {
     "script": [
