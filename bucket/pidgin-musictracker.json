@@ -12,7 +12,7 @@
   "hash": "2568ecb8e19367118c2207d2fe9044c5200443ab6ca147a3d21091186f2044f5",
   "post_install": [
     "$pidgin = \"$(appdir pidgin)\\current\"",
-    "Copy-Item \"$dir\\wmpuice.dll\" \"$pidgin\" -Force",
+    "Copy-Item \"$dir\\wmpuice.dll\" \"$pidgin\\wmpuice.dll\" -Recurse -Force",
     "Copy-Item \"$dir\\locale\\*\" \"$pidgin\\locale\" -Recurse -Force",
     "Copy-Item \"$dir\\plugins\\*\" \"$pidgin\\plugins\" -Recurse -Force",
     "Remove-Item \"$dir\\pidgin-musictracker-uninst.exe\"",

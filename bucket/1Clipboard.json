@@ -1,9 +1,11 @@
 {
-  "homepage": "http://1clipboard.io/",
-  "license": "unknown",
-  "version": "0.1.8",
-  "url": "http://1clipboard.io/download/windows/1ClipboardSetup.exe#/dl.7z",
+  "autoupdate": {
+    "extract_dir": "copyq-v$version",
+    "url": "http://1clipboard.io/download/windows/1ClipboardSetup.exe#/dl.7z"
+  },
+  "bin": "1Clipboard.exe",
   "hash": "a3425082f63ffb0f7aabfe5c01bbd6346d90acb88366cf293fb55ad2c85d9196",
+  "homepage": "http://1clipboard.io/",
   "installer": {
     "script": [
       "$pkgfile = (Get-ChildItem \"$dir\" '*.nupkg' | Select-Object -First 1).FullName",
@@ -11,17 +13,14 @@
       "Move-Item \"$dir\\lib\\net45\\*\" \"$dir\""
     ]
   },
-  "bin": "1Clipboard.exe",
+  "license": "unknown",
+  "post_install": "Remove-Item \"$dir\\package\",\"$dir\\_rels\",\"$dir\\1Clipboard.nuspec\",\"$dir\\[Content_Types].xml\",\"$dir\\*.nupkg\",\"$dir\\background.gif\" -Recurse",
   "shortcuts": [
     [
       "1Clipboard.exe",
       "1Clipboard"
     ]
   ],
-  "post_install": "Remove-Item \"$dir\\package\",\"$dir\\_rels\",\"$dir\\1Clipboard.nuspec\",\"$dir\\[Content_Types].xml\",\"$dir\\*.nupkg\",\"$dir\\background.gif\" -Recurse",
-  "checkver": "Version ([\\d.]+) - <a href=\"update\" target=\"_blank\">\\[Changelog\\]</a>",
-  "autoupdate": {
-    "url": "http://1clipboard.io/download/windows/1ClipboardSetup.exe#/dl.7z",
-    "extract_dir": "copyq-v$version"
-  }
+  "url": "https://1clipboard.io/download/windows/1ClipboardSetup.exe#/dl.7z",
+  "version": "0.1.8"
 }

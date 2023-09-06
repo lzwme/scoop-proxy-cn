@@ -12,7 +12,7 @@
     ]
   ],
   "pre_uninstall": [
-    "if ($cmd -eq 'uninstall') {",
+    "if (($cmd -eq 'uninstall') -and $purge) {",
     "    Start-Process \"$dir\\WinPaletter.exe\" -Wait -Args '/uninstall-quiet'; Start-Sleep -Seconds 2",
     "}"
   ],
