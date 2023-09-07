@@ -7,7 +7,7 @@
   "installer": {
     "script": [
       "$pkgfile = (Get-ChildItem \"$dir\" '*.nupkg' | Select-Object -First 1).FullName",
-      "Expand-7ZipArchive \"$pkgfile\" \"$dir\" -Removal",
+      "Expand-7ZipArchive \"$pkgfile\" \"$dir\"",
       "Move-Item \"$dir\\lib\\net45\\*\" \"$dir\""
     ]
   },
@@ -18,7 +18,7 @@
       "Soda Player"
     ]
   ],
-  "post_install": "Remove-Item \"$dir\\lib\" \"$dir\\_rels\" \"$dir\\package\" \"$dir\\[Content_Types].xml\" \"$dir\\background.gif\" -Force -Recurses",
+  "post_install": "Remove-Item \"$dir\\lib\" \"$dir\\_rels\" \"$dir\\package\" \"$dir\\[Content_Types].xml\" \"$dir\\background.gif\" \"$pkgfile\" -Force -Recurses",
   "checkver": "Download ([\\d.]+) for Windows",
   "autoupdate": {
     "url": "https://releases.sodaplayer.com/win/SodaPlayerSetup%20$version.exe#/dl.7z"

@@ -1,15 +1,22 @@
 {
   "version": "6.1",
+  "description": "A simple yet configurable alternative to Microsoft's \"Sticky Notes\"",
   "homepage": "https://www.simplestickynotes.com/",
-  "description": "A simple, easy-to-use, absolutely free, fast and efficient note taking software.",
-  "license": {
-    "identifier": "Freeware",
-    "url": "https://www.simplestickynotes.com/eula/"
-  },
+  "license": "Freeware",
+  "notes": [
+    "File association(s) were not registered. It may not be possible to install add-ons normally.",
+    "It stores its settings at \"HKCU\\SOFTWARE\\Simnet\\Simple Sticky Notes\".",
+    "It also stores add-on content at \"C:\\Users\\<username>\\AppData\\Roaming\\Simnet\\Simple Sticky Notes\"."
+  ],
   "url": "https://www.simplestickynotes.com/setup/Setup_SimpleStickyNotes.exe",
   "hash": "4f2920217dfeedded970bebc3b6cd7d014261f414818325095f13e962e671ca1",
   "innosetup": true,
-  "bin": "ssn.exe",
+  "pre_install": [
+    "if(!(Test-Path \"HKCU:\\SOFTWARE\\Simnet\\Simple Sticky Notes\")) { New-Item -Path \"HKCU:\\SOFTWARE\\Simnet\\Simple Sticky Notes\" -Force | Out-Null }",
+    "if(Test-Path \"HKCU:\\SOFTWARE\\Simnet\\Simple Sticky Notes\") { New-ItemProperty -Path \"HKCU:\\SOFTWARE\\Simnet\\Simple Sticky Notes\" -Name CheckUpdates -Value 0 -PropertyType DWord -Force | Out-Null }",
+    "if(Test-Path \"HKCU:\\SOFTWARE\\Simnet\\Simple Sticky Notes\") { New-ItemProperty -Path \"HKCU:\\SOFTWARE\\Simnet\\Simple Sticky Notes\" -Name DBLocation -Value \"$persist_dir\\\" -PropertyType String -Force | Out-Null }",
+    "if(!(Test-Path \"$persist_dir\")) { New-Item -Path \"$persist_dir\" -ItemType Directory -Force | Out-Null }"
+  ],
   "shortcuts": [
     [
       "ssn.exe",
@@ -17,9 +24,8 @@
     ]
   ],
   "checkver": {
-    "useragent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36",
-    "url": "https://www.simplestickynotes.com/download/",
-    "regex": "\\</a\\>\\:\\s([\\d.]+)\\<br\\>"
+    "url": "https://www.simplestickynotes.com/simple-sticky-notes-version-history/",
+    "regex": "Sticky Notes release is ([\\d.]+)"
   },
   "autoupdate": {
     "url": "https://www.simplestickynotes.com/setup/Setup_SimpleStickyNotes.exe"

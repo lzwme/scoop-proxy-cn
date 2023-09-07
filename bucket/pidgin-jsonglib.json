@@ -12,8 +12,8 @@
   "hash": "f3a6d5a52c7e85c34e3a6764928dc8c61fd28a82a358805983b9fd61726ce739",
   "post_install": [
     "$pidgin = \"$(appdir pidgin)\\current\"",
-    "Copy-Item \"$dir\\libjson-glib-1.0.dll\" \"$pidgin\" -Force",
-    "Remove-Item \"$dir\\libjson-glib-1.0.dll\""
+    "Copy-Item \"$dir\\libjson-glib-1.0.dll\" \"$pidgin\\libjson-glib-1.0.dll\" -Recurse -Force",
+    "Remove-Item \"$dir\\libjson-glib-1.0.dll\" -Recurse"
   ],
   "uninstaller": {
     "script": [

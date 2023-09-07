@@ -7,7 +7,7 @@
   "hash": "md5:b578fb09334704a6617d5f3d75ffa256",
   "pre_install": [
     "'iCopy.settings', 'iCopy.log' | ForEach-Object {",
-    "   if (!(Test-Path \"$persist_dir\\$_\")) { New-Item \"$dir\\$_\" | Out-Null }",
+    "    if (!(Test-Path \"$persist_dir\\$_\")) { New-Item \"$dir\\$_\" | Out-Null }",
     "}"
   ],
   "bin": "iCopy.exe",
@@ -29,7 +29,7 @@
     "url": "https://sourceforge.net/projects/icopy/files/iCopy/$version/iCopy$version.zip",
     "hash": {
       "url": "https://sourceforge.net/projects/icopy/rss?path=/iCopy",
-      "regex": "files/iCopy/$version/$basename/download\"\\sfilesize=\"[\\d]+\"><media:hash\\salgo=\"md5\">$md5"
+      "regex": "$basename/download\".*?md5\"\\>$md5"
     }
   }
 }

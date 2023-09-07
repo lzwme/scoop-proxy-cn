@@ -1,0 +1,43 @@
+{
+  "version": "0.1.0",
+  "description": "Generate Moodle questions from sentence in Japanese.",
+  "homepage": "https://github.com/topstone/sen2que-proto",
+  "url": [
+    "https://ghproxy.net/https://github.com/topstone/sen2que-proto/releases/download/v0.1.0/sen2que-proto-0.1.0.gem",
+    "https://gist.github.com/topstone/2d4f64429a1c3059cc36011a04d40434/raw/f11b9ac809829fb6b65a141dd7ce47235ca9576f/s2q-proto.bat"
+  ],
+  "hash": [
+    "f8834931e5f7bb02f1b78644e8e599a0edfac61ec5b0f091e9ff471b85a47ac6",
+    "ebd0a0051e40ee90c06075a846e8a05225e2a5fd0a1f9c252c8b14bfba58664a"
+  ],
+  "shortcuts": [
+    [
+      "s2q-proto.bat",
+      "sen2que_問題生成(和文)"
+    ]
+  ],
+  "depends": [
+    "ruby",
+    "msys2",
+    "mecab",
+    "quickocr",
+    "sakura-editor",
+    "simg",
+    "xnviewmp",
+    "typict",
+    "vlc",
+    "pdf_as"
+  ],
+  "post_install": [
+    "echo ********",
+    "echo ****select",
+    "echo ****'3'",
+    "echo ****on",
+    "echo ****ridk",
+    "echo ********",
+    "ridk install",
+    "$sen2que_proto = scoop prefix sen2que-proto",
+    "gem install ${sen2que_proto}/sen2que-proto-0.1.0.gem --local",
+    "echo \"こ_の_文_を_消_し_て_和_文_を_入_力_す_る\" > $Env:HOMEPATH\\Documents\\s2q_origin.txt"
+  ]
+}

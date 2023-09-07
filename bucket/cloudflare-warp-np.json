@@ -1,6 +1,6 @@
 {
-  "version": "2022.12.582.0",
-  "homepage": "https://one.one.one.one/",
+  "version": "2023.7.160.0",
+  "homepage": "https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/",
   "description": "An app that allows you to replace the connection between your device and the Internet with a modern, optimized, protocol.",
   "license": {
     "identifier": "Freeware",
@@ -9,7 +9,7 @@
   "architecture": {
     "64bit": {
       "url": "https://1111-releases.cloudflareclient.com/windows/Cloudflare_WARP_Release-x64.msi#/setup.msi_",
-      "hash": "md5:2f3cf808a7ee1c871c461d60ffa67cb2"
+      "hash": "md5:518448cbcd28347ca9190dd59ea31dad"
     }
   },
   "post_install": [
@@ -25,16 +25,16 @@
     ]
   },
   "checkver": {
-    "url": "https://install.appcenter.ms/api/v0.1/apps/cloudflare/1.1.1.1-windows-1/distribution_groups/release/releases/50?is_install_page=true",
-    "jsonpath": "$.version"
+    "url": "https://install.appcenter.ms/api/v0.1/apps/cloudflare/1.1.1.1-windows-1/distribution_groups/release/public_releases?scope=tester&top=10000",
+    "regex": "id\"\\:(?<ID>[\\d]+).*?version\"\\:\"([\\d.]+)"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
         "url": "https://1111-releases.cloudflareclient.com/windows/Cloudflare_WARP_Release-x64.msi#/setup.msi_",
         "hash": {
-          "url": "https://install.appcenter.ms/api/v0.1/apps/cloudflare/1.1.1.1-windows-1/distribution_groups/release/releases/50?is_install_page=true",
-          "jsonpath": "$.fingerprint"
+          "url": "https://install.appcenter.ms/api/v0.1/apps/cloudflare/1.1.1.1-windows-1/distribution_groups/release/releases/$matchId?is_install_page=true",
+          "jsonpath": "$[?(@.version == '$version')].fingerprint"
         }
       }
     }
