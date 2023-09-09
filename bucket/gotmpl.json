@@ -1,41 +1,38 @@
 {
-  "version": "0.2.0+r6.4cec4e5.2177112839",
+  "version": "0.2.1",
   "description": "Render golang template with command line. Build with my own repo.",
-  "homepage": "https://github.com/NateScarlet/gotmpl/",
+  "homepage": "https://github.com/NateScarlet/gotmpl",
   "license": {
     "identifier": "MIT",
     "url": "https://github.com/NateScarlet/gotmpl/blob/master/LICENSE"
   },
   "architecture": {
     "64bit": {
-      "url": "https://nightly.link/Small-Ku/gotmpl/actions/runs/2177112839/Windows%2064-bit.zip",
-      "hash": "a68e8824f25c531130fd4d925e2591a267f26f71e7b45811ce59934752f56881"
+      "url": "https://ghproxy.net/https://github.com/Small-Ku/gotmpl/releases/download/v0.2.1/gotmpl_0.2.1_windows_amd64.tar.gz",
+      "hash": "b5d70c7f982a14dcaf3652d1390b501608565f84d3108ee6642b894d40016e28"
     },
     "32bit": {
-      "url": "https://nightly.link/Small-Ku/gotmpl/actions/runs/2177112839/Windows%2032-bit.zip",
-      "hash": "e4863d9f8cac5a0ed1b23605e883a443624f1e0b30524dac6ac032d6b3742ffd"
+      "url": "https://ghproxy.net/https://github.com/Small-Ku/gotmpl/releases/download/v0.2.1/gotmpl_0.2.1_windows_386.tar.gz",
+      "hash": "ef39237d1e1e08d51f4a782a2d73f585b9902d63aad0c0cc8bd025e0d6f68a93"
     },
     "arm64": {
-      "url": "https://nightly.link/Small-Ku/gotmpl/actions/runs/2177112839/Windows%2064-bit%20ARM.zip",
-      "hash": "e5e2be1a9edb0050eeb2d938c9261d3d641b5912f3fa5d299d142fa5ef2d7fff"
+      "url": "https://ghproxy.net/https://github.com/Small-Ku/gotmpl/releases/download/v0.2.1/gotmpl_0.2.1_windows_arm64.tar.gz",
+      "hash": "8c27c7949b41873cb9be9fa1975aea583ff5c93ceb723eb96a4e99bed38e4c9a"
     }
   },
   "checkver": {
-    "url": "https://api.github.com/repos/Small-Ku/gotmpl/actions/workflows/build.yml/runs",
-    "jsonpath": "$.workflow_runs",
-    "regex": "\"id\": ?(?<id>\\d+),\\s+(\"[\\w_]+\": ?[\"\\w\\d_\\/\\.-]+,\\s+)*\"head_branch\": ?\"master\",\\s+\"head_sha\": ?\"(?<commit>[\\w\\d]{7})[\\w\\d]+\",\\s+(\"[\\w_]+\": ?[\"\\w\\d_\\/\\.-]+,\\s+)*\"run_number\": ?(?<run>\\d+),\\s+(\"[\\w_]+\": ?[\"\\w\\d_\\/\\.-]+,\\s+)*\"conclusion\": ?\"success\"",
-    "replace": "0.2.0+r${run}.${commit}.${id}"
+    "github": "https://github.com/Small-Ku/gotmpl"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://nightly.link/Small-Ku/gotmpl/actions/runs/$matchId/Windows%2064-bit.zip"
+        "url": "https://ghproxy.net/https://github.com/Small-Ku/gotmpl/releases/download/v$version/gotmpl_$version_windows_amd64.tar.gz"
       },
       "32bit": {
-        "url": "https://nightly.link/Small-Ku/gotmpl/actions/runs/$matchId/Windows%2032-bit.zip"
+        "url": "https://ghproxy.net/https://github.com/Small-Ku/gotmpl/releases/download/v$version/gotmpl_$version_windows_386.tar.gz"
       },
       "arm64": {
-        "url": "https://nightly.link/Small-Ku/gotmpl/actions/runs/$matchId/Windows%2064-bit%20ARM.zip"
+        "url": "https://ghproxy.net/https://github.com/Small-Ku/gotmpl/releases/download/v$version/gotmpl_$version_windows_arm64.tar.gz"
       }
     }
   },

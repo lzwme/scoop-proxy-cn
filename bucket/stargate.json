@@ -1,0 +1,23 @@
+{
+  "version": "23.08.1",
+  "description": "Innovation-first digital audio workstation (DAW), instrument and effect plugins, wave editor",
+  "homepage": "https://github.com/stargatedaw/stargate",
+  "license": "GPL-3.0",
+  "url": "https://ghproxy.net/https://github.com/stargatedaw/stargate/releases/download/release-23.08.1/StargateDAW-23.08.1-win64-installer.exe#/dl.7z",
+  "hash": "f72f00a38fc6cd603c3e76f300453f9e7e45ce518293c5a663b95428419768bc",
+  "extract_dir": "program",
+  "bin": "stargate.exe",
+  "shortcuts": [
+    [
+      "stargate.exe",
+      "Stargate"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/stargatedaw/stargate/releases/latest",
+    "regex": "StargateDAW-([\\d.]+)-win64-installer.exe"
+  },
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/stargatedaw/stargate/releases/download/release-$version/StargateDAW-$version-win64-installer.exe"
+  }
+}

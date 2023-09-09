@@ -1,5 +1,5 @@
 {
-  "version": "4.23.3",
+  "version": "4.24.0-beta.1",
   "description": "An Arknights game assissant",
   "homepage": "https://maa.plus/",
   "license": "AGPL-3.0-only",
@@ -11,12 +11,12 @@
   ],
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.net/https://github.com/MaaAssistantArknights/MaaAssistantArknights/releases/download/v4.23.3/MAA-v4.23.3-win-x64.zip",
-      "hash": "161b4c10c48ef7580539131c5ebe8edea0eaceb8da54950668b3082d9fecd896"
+      "url": "https://ghproxy.net/https://github.com/MaaAssistantArknights/MaaAssistantArknights/releases/download/v4.24.0-beta.1/MAA-v4.24.0-beta.1-win-x64.zip",
+      "hash": "d35c1a3365378ffe4ea15bdcd6d470e73fac8b410864dd2a9b0a858b82be5c2a"
     },
     "arm64": {
-      "url": "https://ghproxy.net/https://github.com/MaaAssistantArknights/MaaAssistantArknights/releases/download/v4.23.3/MAA-v4.23.3-win-arm64.zip",
-      "hash": "0f13476aea4d183d89fe2dd9fd8b5ae1d34275507fff8facc5d461b312eb6749"
+      "url": "https://ghproxy.net/https://github.com/MaaAssistantArknights/MaaAssistantArknights/releases/download/v4.24.0-beta.1/MAA-v4.24.0-beta.1-win-arm64.zip",
+      "hash": "b6797c41ad46c2ac34ff459e00d398165f07833bd96b2eb9ffe07167a2ff41cd"
     }
   },
   "shortcuts": [
@@ -32,7 +32,10 @@
     ],
     "adb": "adb"
   },
-  "persist": "config",
+  "persist": [
+    "config",
+    "resources"
+  ],
   "checkver": {
     "url": "https://api.github.com/repos/MaaAssistantArknights/MaaAssistantArknights/releases",
     "regex": "/releases/tag/(?:v)?([\\d.]+(-(alpha|beta|rc)\\.\\d+)?)"

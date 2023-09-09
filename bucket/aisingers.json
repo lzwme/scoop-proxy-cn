@@ -1,0 +1,34 @@
+{
+  "version": "1.35",
+  "description": "AI singing synthesizer",
+  "homepage": "https://aisingers.com/ai/aiseditor/",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://aisingers.com/login/agreement"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ccomai.oss-cn-beijing.aliyuncs.com/aisinger/editor/AISingersStudio_v1.35.beta_feat-yanxi_20230204.zip",
+      "hash": "b60a93c4eab0ba5b9317f3e26aa44cfaec82e95a3a7e0c777fd166b6c122b9cd"
+    }
+  },
+  "extract_dir": "AISingers-Studio",
+  "post_install": [
+    "$directoryInfo = Get-ChildItem \"$dir\\singer\" | Measure-Object",
+    "if ($directoryInfo.Count -eq 0) {",
+    "    copy \"$dir\\singer.original\\*\" \"$dir\\singer\\\" -Recurse",
+    "}"
+  ],
+  "bin": "AISingers.exe",
+  "shortcuts": [
+    [
+      "AISingers.exe",
+      "AISingers"
+    ]
+  ],
+  "persist": [
+    "out",
+    "project",
+    "singer"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "version": "0.9.5",
+  "description": "Fully cross platform dotfile manager and dev environment bootstrapper written in Rust",
+  "homepage": "https://volllly.github.io/rotz",
+  "license": "MIT",
+  "notes": "",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/volllly/rotz/releases/download/v0.9.5/rotz-x86_64-pc-windows-msvc.zip",
+      "hash": "c029189534d7dfbb4797c80db35f23e288d58afc03a2e4ad14a9d39ee6fa6725"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/volllly/rotz/releases/download/v0.9.5/rotz-i686-pc-windows-msvc.zip",
+      "hash": "dad29dfac9f46b52a1761a4a45d19a9e22498021d4df432542cf30d6b30c05a1"
+    },
+    "arm64": {
+      "url": "https://ghproxy.net/https://github.com/volllly/rotz/releases/download/v0.9.5/rotz-aarch64-pc-windows-msvc.zip",
+      "hash": "c415e1bc212328def8c86844933fbc45931e3878c0399facdad2817fe73f1475"
+    }
+  },
+  "bin": "rotz.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/volllly/rotz/releases/download/v$version/rotz-x86_64-pc-windows-msvc.zip",
+        "hash": {
+          "url": "https://ghproxy.net/https://github.com/volllly/rotz/releases/download/v$version/rotz-x86_64-pc-windows-msvc.zip.sha256"
+        }
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/volllly/rotz/releases/download/v$version/rotz-i686-pc-windows-msvc.zip",
+        "hash": {
+          "url": "https://ghproxy.net/https://github.com/volllly/rotz/releases/download/v$version/rotz-i686-pc-windows-msvc.zip.sha256"
+        }
+      },
+      "arm64": {
+        "url": "https://ghproxy.net/https://github.com/volllly/rotz/releases/download/v$version/rotz-aarch64-pc-windows-msvc.zip",
+        "hash": {
+          "url": "https://ghproxy.net/https://github.com/volllly/rotz/releases/download/v$version/rotz-aarch64-pc-windows-msvc.zip.sha256"
+        }
+      }
+    }
+  }
+}

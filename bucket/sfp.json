@@ -1,8 +1,11 @@
 {
   "version": "0.0.51",
-  "description": "This utility is designed to allow you to apply themes to the modern Steam friends and library interfaces",
+  "description": "This utility is designed to allow you to apply themes to the modern Steam client interface (Steam Beta)",
   "homepage": "https://github.com/PhantomGamers/SFP",
   "license": "MIT",
+  "suggest": {
+    ".NET Desktop Runtime": "extras/windowsdesktop-runtime"
+  },
   "architecture": {
     "64bit": {
       "url": "https://ghproxy.net/https://github.com/PhantomGamers/SFP/releases/download/0.0.51/SFP_UI-win10-x64-net7.zip",
@@ -22,19 +25,10 @@
   ],
   "persist": "SFP.config",
   "checkver": {
-    "url": "https://api.github.com/repos/PhantomGamers/SFP/releases",
-    "jsonpath": "$[0].tag_name"
+    "url": "https://api.github.com/repos/PhantomGamers/SFP/releases?per_page=1",
+    "jsonpath": "$[0].tag_name",
+    "regex": "([\\w.-]+)"
   },
-  "suggest": {
-    ".Net 7": [
-      "extras/windowsdesktop-runtime",
-      "main/dotnet-sdk"
-    ]
-  },
-  "notes": [
-    ".Net 7 runtime is required.",
-    "If you are first updating to this version after the major Steam update, run \"Reset Steam\" on the old version of SFP before updating, or delete your steamui and clientui folders and restart Steam."
-  ],
   "autoupdate": {
     "architecture": {
       "64bit": {

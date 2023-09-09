@@ -1,13 +1,13 @@
 {
   "notes": "CI version, the second last string in version is not stable, if there is a new version which has not been updated in manifest, please contact me via github issues.",
-  "version": "4.23.4-alpha.1.d151.ga44dc1205",
+  "version": "4.24.0-beta.1",
   "description": "An Arknights game assissant",
   "homepage": "https://maa.plus/",
   "license": "AGPL-3.0-only",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.net/https://github.com/MaaAssistantArknights/MaaRelease/releases/download/v4.23.4-alpha.1.d151.ga44dc1205/MAA-v4.23.4-alpha.1.d151.ga44dc1205-win-x64.zip",
-      "hash": "5bb6b682dad0040d81421e8c61e2c73c1cc6a3efdde90358d0e14098c8023b8f"
+      "url": "https://ghproxy.net/https://github.com/MaaAssistantArknights/MaaRelease/releases/download/v4.24.0-beta.1/MAA-v4.24.0-beta.1-win-x64.zip",
+      "hash": "d35c1a3365378ffe4ea15bdcd6d470e73fac8b410864dd2a9b0a858b82be5c2a"
     }
   },
   "bin": [
@@ -29,7 +29,10 @@
     ],
     "adb": "adb"
   },
-  "persist": "config",
+  "persist": [
+    "config",
+    "resources"
+  ],
   "checkver": {
     "url": "https://api.github.com/repos/MaaAssistantArknights/MaaRelease/releases",
     "regex": "/releases/tag/(?:v)?([\\d.]+(-((alpha|beta|rc)\\.\\d(.\\w+.\\w+)?)?)?)"

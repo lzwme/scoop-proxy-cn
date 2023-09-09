@@ -1,31 +1,47 @@
 {
-  "version": "0.0.893",
-  "description": "OpenUtau",
-  "homepage": "http://www.openutau.com/",
-  "license": [
-    {
-      "identifier": "MIT",
-      "url": "https://github.com/stakira/OpenUtau/blob/master/LICENSE.txt"
-    }
-  ],
+  "version": "0.1.158",
+  "description": "Open source singing synthesis platform",
+  "homepage": "https://github.com/stakira/OpenUtau/",
+  "license": "MIT",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.net/https://github.com/stakira/OpenUtau/releases/download/OpenUtau-Latest/OpenUtau-win-x64.zip",
-      "hash": "5f4948c98f293a39bc2d16e7becff658af32899060f614a505eceb3d42202c2a"
+      "url": "https://ghproxy.net/https://github.com/stakira/OpenUtau/releases/download/build%2F0.1.158/OpenUtau-win-x64.zip",
+      "hash": "5d386a76fe01ccb07bc66553f01bccf7be55562e8523d5540c6854318adcecae"
     },
     "32bit": {
-      "url": "https://ghproxy.net/https://github.com/stakira/OpenUtau/releases/download/OpenUtau-Latest/OpenUtau-win-x86.zip",
-      "hash": "6b21279cb78af336938ba89fe272269978e882e0777869f29ae161e0951fa4da"
+      "url": "https://ghproxy.net/https://github.com/stakira/OpenUtau/releases/download/build%2F0.1.158/OpenUtau-win-x86.zip",
+      "hash": "20dd4e2ada96ca8c4d3b73b73d2c6c02ce6925777e6f720ba21daf602adfae52"
     }
   },
+  "bin": "OpenUtau.exe",
   "shortcuts": [
     [
       "OpenUtau.exe",
-      "OpenUtau"
+      "OpenUtau Beta"
     ]
   ],
+  "persist": [
+    "Backups",
+    "Cache",
+    "Dictionaries",
+    "Plugins",
+    "Resamplers",
+    "Singers",
+    "Templates",
+    "Wavtools"
+  ],
   "checkver": {
-    "url": "https://github.com/stakira/OpenUtau/releases/tag/OpenUtau-Latest",
-    "regex": " class=\"markdown-body my-3\"><p>v([\\d\\.]+)"
+    "url": "https://github.com/stakira/OpenUtau/releases/latest",
+    "regex": "build\\/(?:v|V)?([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/stakira/OpenUtau/releases/download/build%2F$version/OpenUtau-win-x64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/stakira/OpenUtau/releases/download/build%2F$version/OpenUtau-win-x86.zip"
+      }
+    }
   }
 }

@@ -9,7 +9,7 @@
       "hash": "62d676c94988376aa803b73d330eeea16d670ddf46ee7c8857e5e1b7dee5c65d"
     }
   },
-  "extract_dir": "Thorium_116.0.5845.169\\BIN",
+  "extract_dir": "BIN",
   "bin": [
     [
       "thorium.exe",
@@ -25,7 +25,6 @@
     ]
   ],
   "post_install": [
-    "Remove-Item \"$dir\\`Thorium_$version\" -Recurse",
     "if (!(Test-Path \"$dir\\UserData\\*\") -and (Test-Path \"$env:LocalAppData\\Thorium\\User Data\")) {",
     "    info '[Portable Mode]: Copying user data...'",
     "    Copy-Item \"$env:LocalAppData\\Thorium\\User Data\\*\" \"$dir\\User Data\" -Recurse",
@@ -43,6 +42,6 @@
         "url": "https://ghproxy.net/https://github.com/Alex313031/Thorium-Win/releases/download/M$version/Thorium_$version.zip"
       }
     },
-    "extract_dir": "Thorium_$version\\BIN"
+    "extract_dir": "BIN"
   }
 }

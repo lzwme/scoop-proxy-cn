@@ -1,0 +1,78 @@
+{
+  "version": "115.2.0",
+  "description": "Extended Support Release of Firefox: the popular open source web browser. This variant makes sure the Scoop-ESR profile is used. Dutch version.",
+  "homepage": "https://www.mozilla.org/nl/firefox/organizations/",
+  "license": "MPL-2.0",
+  "notes": [
+    "After installation, Firefox will be run to automatically set up the right default profile."
+  ],
+  "architecture": {
+    "64bit": {
+      "url": "https://archive.mozilla.org/pub/firefox/releases/115.2.0esr/win64/nl/Firefox%20Setup%20115.2.0esr.exe#/dl.7z",
+      "hash": "4f9ec03336afdb874bf246580534b7ccca9bf6714fc5352bde678330763262d0"
+    },
+    "32bit": {
+      "url": "https://archive.mozilla.org/pub/firefox/releases/115.2.0esr/win32/nl/Firefox%20Setup%20115.2.0esr.exe#/dl.7z",
+      "hash": "c3c5931681a87ec2891bd4832306344ca257da796136c97fec31614c5c6ab24d"
+    },
+    "arm64": {
+      "url": "https://archive.mozilla.org/pub/firefox/releases/115.2.0esr/win64-aarch64/nl/Firefox%20Setup%20115.2.0esr.exe#/dl.7z",
+      "hash": "ef087d36426a417f2ecee7628154f293e0c0c3864eaa1628c626f9f84c67008a"
+    }
+  },
+  "extract_dir": "core",
+  "post_install": [
+    "firefox-esr -CreateProfile \"Scoop-ESR $persist_dir\\profile\"",
+    "$Addition = \"$persist_dir\\addition\"",
+    "if (Test-Path $Addition) {",
+    "  info 'Copying additional items...'",
+    "  Copy-Item -Path $Addition\\* -Destination $dir -Force -Recurse -ErrorAction SilentlyContinue",
+    "}",
+    "firefox-esr -P Scoop-ESR"
+  ],
+  "bin": [
+    [
+      "firefox.exe",
+      "firefox-esr"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "firefox.exe",
+      "Firefox ESR"
+    ]
+  ],
+  "persist": [
+    "distribution",
+    "profile"
+  ],
+  "checkver": {
+    "url": "https://aus5.mozilla.org/update/6/Firefox/115.0/_/WINNT_x86_64-msvc-x64/nl/esr/_/_/_/_/update.xml",
+    "xpath": "/updates/update/@appVersion"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://archive.mozilla.org/pub/firefox/releases/$versionesr/win64/nl/Firefox%20Setup%20$versionesr.exe#/dl.7z",
+        "hash": {
+          "url": "https://archive.mozilla.org/pub/firefox/releases/$versionesr/SHA512SUMS",
+          "regex": "$sha512\\s+win64/nl/$basename"
+        }
+      },
+      "32bit": {
+        "url": "https://archive.mozilla.org/pub/firefox/releases/$versionesr/win32/nl/Firefox%20Setup%20$versionesr.exe#/dl.7z",
+        "hash": {
+          "url": "https://archive.mozilla.org/pub/firefox/releases/$versionesr/SHA512SUMS",
+          "regex": "$sha512\\s+win32/nl/$basename"
+        }
+      },
+      "arm64": {
+        "url": "https://archive.mozilla.org/pub/firefox/releases/$versionesr/win64-aarch64/nl/Firefox%20Setup%20$versionesr.exe#/dl.7z",
+        "hash": {
+          "url": "https://archive.mozilla.org/pub/firefox/releases/$versionesr/SHA512SUMS",
+          "regex": "$sha512\\s+win64-aarch64/nl/$basename"
+        }
+      }
+    }
+  }
+}

@@ -12,7 +12,6 @@
     "if (!(Test-Path \"$persist_dir\\config.toml\") -or !(Get-Item \"$persist_dir\\config.toml\").Length) {",
     "   New-Item \"$persist_dir\\config.toml\" -ItemType File -Force | Out-Null}"
   ],
-  "bin": "seam.exe",
   "shortcuts": [
     [
       "seam.exe",
@@ -21,8 +20,8 @@
   ],
   "persist": "config.toml",
   "checkver": {
-    "url": "https://api.github.com/repos/Borber/seam/releases/latest",
-    "regex": "/releases/tag/v_gui.([\\d.]+)"
+    "url": "https://github.com/Borber/seam/tags",
+    "regex": "v_gui.([\\d.]+)"
   },
   "autoupdate": {
     "url": "https://ghproxy.net/https://github.com/Borber/seam/releases/download/v_gui.$version/seam_$version_x64-setup.exe#/dl.7z"

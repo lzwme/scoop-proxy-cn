@@ -1,0 +1,29 @@
+{
+  "version": "1.5.1",
+  "description": "The automated installer tool for the Rockbox audio player firmware",
+  "homepage": "https://www.rockbox.org/wiki/RockboxUtility",
+  "license": "Unknown",
+  "url": "https://download.rockbox.org/rbutil/win32/RockboxUtility-v1.5.1.zip",
+  "hash": "3226b5ede00bd7d7a0458af4f5428b8080c7983650e14087b6b4050d6a23c46d",
+  "bin": [
+    [
+      "RockboxUtility.exe",
+      "rockboxutility"
+    ],
+    "ipodpatcher.exe",
+    "sansapatcher.exe"
+  ],
+  "shortcuts": [
+    [
+      "RockboxUtility.exe",
+      "Rockbox Utility"
+    ]
+  ],
+  "checkver": {
+    "url": "https://download.rockbox.org/rbutil/win32/",
+    "regex": "RockboxUtility-v([\\d.]+)\\.zip"
+  },
+  "autoupdate": {
+    "url": "https://download.rockbox.org/rbutil/win32/RockboxUtility-v$version.zip"
+  }
+}

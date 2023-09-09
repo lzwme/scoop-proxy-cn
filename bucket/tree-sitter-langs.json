@@ -1,13 +1,13 @@
 {
-  "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/emacs-tree-sitter/tree-sitter-langs/releases/download/$version/tree-sitter-grammars.x86_64-pc-windows-msvc.v$version.tar.gz"
-  },
-  "checkver": "github",
+  "version": "0.12.47",
   "description": "Tree-sitter Language Bundle for Emacs",
-  "hash": "1f8fd798b6245e8144f0cc0e4e9b659eb1d218b8f98781984a769661bf273eb7",
   "homepage": "https://github.com/emacs-tree-sitter/tree-sitter-langs",
   "license": "MIT",
+  "url": "https://ghproxy.net/https://github.com/emacs-tree-sitter/tree-sitter-langs/releases/download/0.12.47/tree-sitter-grammars.x86_64-pc-windows-msvc.v0.12.47.tar.gz",
+  "hash": "7570656ecced6344d45650637c3ff573a28e9c29f9b3d8edb4809f8106dde88c",
   "post_install": "Get-ChildItem $dir\\*.dll | Rename-Item -NewName { 'libtree-sitter-' + $_.Name }",
-  "url": "https://ghproxy.net/https://github.com/emacs-tree-sitter/tree-sitter-langs/releases/download/0.12.44/tree-sitter-grammars.x86_64-pc-windows-msvc.v0.12.44.tar.gz",
-  "version": "0.12.44"
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/emacs-tree-sitter/tree-sitter-langs/releases/download/$version/tree-sitter-grammars.x86_64-pc-windows-msvc.v$version.tar.gz"
+  }
 }
