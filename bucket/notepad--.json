@@ -1,51 +1,30 @@
 {
   "version": "2.8.0",
-  "description": "Notepad-- is a text editor written in C++ that works seamlessly on Windows, Linux and Mac platforms.",
+  "description": "一个支持windows/linux/mac的文本编辑器，目标是要替换notepad++，来自中国。",
   "homepage": "https://gitee.com/cxasm/notepad--",
   "license": "GPL-3.0-or-later",
-  "notes": "Add Notepad-- as a context menu option by running: reg import \"$dir\\install-context.reg\"",
+  "notes": "config location: $env:AppData/notepad",
   "architecture": {
     "64bit": {
-      "url": "https://gitee.com/cxasm/notepad--/releases/download/v2.8/Notepad--v2.8.0-win10-portable.zip",
-      "hash": "b1de5dc6a72b6df20fceaf9a1a001222f727d621129515cd834c6bec6d72b773",
-      "pre_install": [
-        "Move-Item \"$dir\\Notepad--v$version-win10-portable\\*\" \"$dir\"",
-        "Remove-Item \"$dir\\Notepad--v$version-win10-portable\" -Force -Recurse"
-      ]
+      "url": "https://gitee.com/cxasm/notepad--/releases/download/v2.8/Notepad--v2.8.0-plugin-Installer.exe",
+      "hash": "97113d458e3929f9d9357e44af1818045f3bcb1fb16110d381fb61d9194e54db"
     }
   },
-  "bin": "Notepad--.exe",
+  "innosetup": true,
   "shortcuts": [
     [
       "Notepad--.exe",
       "Notepad--"
     ]
   ],
-  "post_install": [
-    "'install-context', 'uninstall-context' | ForEach-Object {",
-    "    if (Test-Path \"$bucketsdir\\$bucket\\scripts\\notepad--\\$_.reg\") {",
-    "        $nddPath = \"$dir\\notepad--.exe\".Replace('\\', '\\\\')",
-    "        $content = (Get-Content \"$bucketsdir\\$bucket\\scripts\\notepad--\\$_.reg\").Replace('$ndd', $nddPath)",
-    "        if ($global) { $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE') }",
-    "        Set-Content \"$dir\\$_.reg\" $content -Encoding Ascii -Force",
-    "    }",
-    "}"
-  ],
-  "uninstaller": {
-    "script": [
-      "if ($cmd -eq 'uninstall') {",
-      "    reg import \"$dir\\uninstall-context.reg\"",
-      "}"
-    ]
-  },
   "checkver": {
     "url": "https://gitee.com/cxasm/notepad--/releases",
-    "regex": "/download/v(?<major>[\\d.]+)/Notepad--v([\\d.]+)-win10-portable.zip"
+    "regex": "/download/v(?<major>[\\d.]+)/Notepad--v([\\d.]+)-plugin-\\w+\\.exe"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://gitee.com/cxasm/notepad--/releases/download/v$matchMajor/Notepad--v$version-win10-portable.zip"
+        "url": "https://gitee.com/cxasm/notepad--/releases/download/v$matchMajor/Notepad--v$version-plugin-Installer.exe"
       }
     }
   }

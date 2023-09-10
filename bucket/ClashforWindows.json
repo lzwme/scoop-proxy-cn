@@ -1,28 +1,124 @@
 {
   "version": "0.20.34",
-  "description": "A Windows/macOS GUI based on Clash",
+  "description": "A cross-platform GUI based on Clash and Electron.",
   "homepage": "https://github.com/Fndroid/clash_for_windows_pkg",
-  "license": "No License",
+  "license": "MIT",
+  "notes": [
+    "This manifest uses a script, which needs admin privilege, to modify Windows firewall rules for system stack in TUN mode.",
+    "If it failed in installation, you can manually run:",
+    "sudo \"$dir\\update-firewall-rules.ps1\""
+  ],
+  "depends": "main/gsudo",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.net/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/0.20.34/Clash.for.Windows-0.20.34-win.7z",
-      "hash": "d180c00f98e1a8a75d6384653ba98d59b916720b8c111a52b1abaf107a62edbb"
+      "url": "https://ghproxy.net/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/0.20.34/Clash.for.Windows.Setup.0.20.34.exe#/dl.7z",
+      "hash": "ccbb2f58de96418f0af1d80b832bb5810e2fe5a6ac7560af66b69a136d21cc36",
+      "pre_install": [
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+        "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$R0\" -Force -Recurse"
+      ]
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/0.20.34/Clash.for.Windows.Setup.0.20.34.ia32.exe#/dl.7z",
+      "hash": "93fb1fc27cc30311436b64dd4ad7292195f89ffa3c26758178ea30375b663fc4",
+      "pre_install": [
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-32.7z\" \"$dir\"",
+        "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$R0\" -Force -Recurse"
+      ]
+    },
+    "arm64": {
+      "url": "https://ghproxy.net/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/0.20.34/Clash.for.Windows.Setup.0.20.34.arm64.exe#/dl.7z",
+      "hash": "e110ccb1addf4b07af8f48c000ab5c635a9462e0a7676385be48282924d43fb7",
+      "pre_install": [
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-arm64.7z\" \"$dir\"",
+        "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$R0\" -Force -Recurse"
+      ]
     }
   },
+  "installer": {
+    "script": [
+      "if (!(Test-Path \"$persist_dir\\data\")) {",
+      "    New-Item \"$persist_dir\\data\" -Type Directory -Force | Out-Null",
+      "    if (Test-Path \"$env:USERPROFILE\\.config\\clash\") {",
+      "        Copy-Item -Path \"$env:USERPROFILE\\.config\\clash\\*\" -Destination \"$persist_dir\\data\" -Recurse -Container",
+      "    }",
+      "}",
+      "$S4UtilsPath = Find-BucketDirectory -Root -Name $bucket | Join-Path -ChildPath \"scripts\\S4Utils.psm1\"",
+      "if (Test-Path $S4UtilsPath) {",
+      "    Unblock-File $S4UtilsPath",
+      "    Import-Module $S4UtilsPath",
+      "    Mount-ExternalRuntimeData -Source \"$persist_dir\\clash_win\" -AppData",
+      "    Remove-Module -Name S4Utils -ErrorAction SilentlyContinue",
+      "} else {",
+      "    Write-Host \"Missing files, please re-add Scoop4kariiin bucket and re-install this app.\" -ForegroundColor Red",
+      "}"
+    ]
+  },
+  "post_install": [
+    "$ScriptsDir = Find-BucketDirectory -Root -Name $bucket | Join-Path -ChildPath \"scripts\\ClashforWindows\"",
+    "$CFWPath = Get-ChildItem -Path \"$dir\" -Filter \"Clash for Windows.exe\" | Select-Object -ExpandProperty Target",
+    "$CorePath = Get-ChildItem -Path \"$dir\" -Filter \"clash-win*.exe\" -Recurse | Select-Object -ExpandProperty Target",
+    "if (Test-Path \"$ScriptsDir\\update-firewall-rules.ps1\") {",
+    "    $Content = Get-Content \"$ScriptsDir\\update-firewall-rules.ps1\"",
+    "    $Content = $Content.Replace('$CFWPath', \"$CFWPath\")",
+    "    $Content = $Content.Replace('$CorePath', \"$CorePath\")",
+    "    $Content | Set-Content -Path \"$dir\\update-firewall-rules.ps1\"",
+    "    Write-Host \"Updating Windows firewall rules ...\" -ForegroundColor Yellow",
+    "    Write-Host \"Please approve permission request if UAC prompt pops up.\" -ForegroundColor Yellow",
+    "    Start-Sleep -Seconds 1",
+    "    sudo \"$dir\\update-firewall-rules.ps1\"",
+    "    if ($?) {",
+    "        Write-Host \"Successfully updated Windows firewall rules!\" -ForegroundColor Green",
+    "    } else {",
+    "        Write-Host \"[ERROR] Failed updating Windows firewall rules!\" -ForegroundColor Red",
+    "    }",
+    "} else {",
+    "    Write-Host \"Missing files, please re-add Scoop4kariiin bucket and re-install this app.\" -ForegroundColor Red",
+    "}"
+  ],
   "shortcuts": [
     [
       "Clash for Windows.exe",
       "Clash for Windows"
     ]
   ],
+  "persist": "data",
+  "uninstaller": {
+    "script": [
+      "$S4UtilsPath = Find-BucketDirectory -Root -Name $install.bucket | Join-Path -ChildPath \"scripts\\S4Utils.psm1\"",
+      "if (Test-Path $S4UtilsPath) {",
+      "    Unblock-File $S4UtilsPath",
+      "    Import-Module $S4UtilsPath",
+      "    Dismount-ExternalRuntimeData -Target \"clash_win\" -AppData",
+      "    Remove-Module -Name S4Utils -ErrorAction SilentlyContinue",
+      "}"
+    ]
+  },
   "checkver": "github",
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.net/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/$version/Clash.for.Windows-$version-win.7z",
+        "url": "https://ghproxy.net/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/$version/Clash.for.Windows.Setup.$version.exe#/dl.7z",
         "hash": {
-          "url": "$baseurl/sha256sum",
-          "find": "[^-]7z: $sha256"
+          "url": "https://ghproxy.net/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/$version/sha256sum",
+          "mode": "extract",
+          "regex": "(?m)^exe: $sha256"
+        }
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/$version/Clash.for.Windows.Setup.$version.ia32.exe#/dl.7z",
+        "hash": {
+          "url": "https://ghproxy.net/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/$version/sha256sum",
+          "mode": "extract",
+          "regex": "(?m)^ia32-exe: $sha256"
+        }
+      },
+      "arm64": {
+        "url": "https://ghproxy.net/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/$version/Clash.for.Windows.Setup.$version.arm64.exe#/dl.7z",
+        "hash": {
+          "url": "https://ghproxy.net/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/$version/sha256sum",
+          "mode": "extract",
+          "regex": "(?m)^arm64-exe: $sha256"
         }
       }
     }

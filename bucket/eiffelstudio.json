@@ -68,7 +68,7 @@
     },
     "hash": {
       "url": "https://account.eiffel.com/downloads",
-      "regex": "$basename\\</a\\>\\n.*?\\>(?:win64|windows)\\</td\\>\\n.*?\\n.*?\\<samp\\>$sha256\\<"
+      "regex": "$basename</a>\\n\\s+</td>\\n\\s+<td class=\"platform\">(?:win64|windows)</td>\\n\\s+<td class=\"size\">(?<size>[\\d]+)</td>\\n\\s+<td class=\"hash\"><samp>$sha256</samp></td>"
     },
     "extract_dir": "Eiffel_$matchFirst"
   }

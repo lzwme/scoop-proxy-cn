@@ -16,7 +16,7 @@
     "'@",
     "'logs', 'jobs', 'allprofiles', 'settings.xml' | ForEach-Object {",
     "    if (!(Test-Path \"$persist_dir\\$_\")) {",
-    "        Set-Content \"$dir\\settings.xml\" -Encoding 'utf8' -Value $xmlValue -Force",
+    "        [System.IO.File]::WriteAllLines(\"$dir\\settings.xml\", $xmlValue, [System.text.UTF8Encoding]($false))",
     "        Start-Process \"$dir\\MeGUI.exe\" -WindowStyle 'Hidden' -Verb 'Open'",
     "        while (!(Test-Path \"$dir\\AviSynth.dll\")) { Start-Sleep -Seconds 3 }",
     "        Start-Sleep -Seconds 1",
@@ -46,7 +46,7 @@
     "url": "https://sourceforge.net/projects/megui/files/megui-stable/$version/MeGUI-$version-32.7z",
     "hash": {
       "url": "https://sourceforge.net/projects/megui/rss?path=/megui-stable",
-      "regex": "files/megui-stable/$version/$basename/download\"\\sfilesize=\"[\\d]+\"><media:hash\\salgo=\"md5\">$md5"
+      "regex": "$basename/download\".*?md5\"\\>$md5"
     }
   }
 }
