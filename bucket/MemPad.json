@@ -1,7 +1,8 @@
 {
-  "homepage": "https://www.horstmuc.de/wmem.htm",
   "version": "3.69",
-  "license": "unknown",
+  "description": "PopSel offers simple pop-up menus to launch programs etc.",
+  "homepage": "https://www.horstmuc.de/wmem.htm",
+  "license": "Freeware",
   "architecture": {
     "64bit": {
       "url": "https://www.horstmuc.de/win64/mempad64.zip",
@@ -9,21 +10,22 @@
     },
     "32bit": {
       "url": "https://www.horstmuc.de/win/mempad.zip",
-      "hash": "62972377f3761c1610cebe0c7a7ddeac41d3da60b217151bb7b434f4549867e7"
+      "hash": "b128dd73097ecbf50b6337d44b82827217db97f579e0310d7e283298d4347748"
     }
   },
-  "pre_install": [
-    "if (!(Test-Path \"$persist_dir\\Memlst.ini\")) { New-Item \"$dir\\Memlst.ini\" -ItemType File | Out-Null }",
-    "if (!(Test-Path \"$persist_dir\\Language.ini\")) { New-Item \"$dir\\Language.ini\" -ItemType File | Out-Null }"
-  ],
-  "bin": "Mempad.exe",
+  "pre_install": "if (!(Test-Path \"$persist_dir\\Memlst.ini\")) { New-Item \"$dir\\Memlst.ini\" | Out-Null }",
+  "bin": "mempad.exe",
   "shortcuts": [
     [
-      "Mempad.exe",
+      "MemPad.exe",
       "MemPad"
     ]
   ],
-  "checkver": "<b>MemPad ([\\d.]+)</b>",
+  "persist": "Memlst.ini",
+  "checkver": {
+    "url": "https://www.horstmuc.de/wmem.htm",
+    "regex": "MemPad ([\\d.]+)"
+  },
   "autoupdate": {
     "architecture": {
       "64bit": {

@@ -1,33 +1,50 @@
 {
   "version": "2.52.33",
-  "homepage": "https://support.logi.com/hc/en-ca/articles/360025297913",
-  "description": "Lets you add and remove devices that use a Logitech Unifying receiver.",
-  "license": {
-    "identifier": "Freeware",
-    "url": "https://www.logitech.com/en-us/tos/software-license-agreement.html"
-  },
-  "architecture": {
-    "64bit": {
-      "url": "https://download01.logi.com/web/ftp/pub/techsupport/unifying/unifying252.exe#/dl.7z",
-      "hash": "bea2ca4c9d9abd1ff214166d638792be974ffad7907a8a8ed0370acba800e815"
-    }
-  },
+  "description": "Logitech Unifying Software. Lets you add and remove devices that use a Unifying receiver",
+  "homepage": "https://support.logi.com/hc/en-us/articles/360025297913",
+  "license": "Proprietary",
+  "changelog": "",
+  "url": "https://download01.logi.com/web/ftp/pub/techsupport/unifying/unifying252.exe#/setup.exe",
+  "hash": "bea2ca4c9d9abd1ff214166d638792be974ffad7907a8a8ed0370acba800e815",
+  "pre_download": "Assert-Administrator",
   "pre_install": [
-    "Remove-Item \"$dir\" -Include '$*', 'Unifying*' -Exclude '$_32_' -Recurse; Rename-Item \"$dir\\`$_32_\" 'LU'",
-    "Remove-Item \"$dir\\LU\" -Include 'Logi*', 'Lu*n*' -Recurse"
+    "$processname = \"processname\"",
+    "$process = Get-Process $processname -ErrorAction SilentlyContinue",
+    "if ($process) {",
+    "   $process.CloseMainWindow()",
+    "   Start-Sleep -Seconds 5",
+    "   if (!$process.HasExited) {",
+    "       Start-Sleep -Seconds 25",
+    "       $process | Stop-Process -Force",
+    "   }",
+    "}"
   ],
-  "shortcuts": [
-    [
-      "DJCUHost.exe",
-      "Logitech Unifying Software"
+  "installer": {
+    "script": [
+      "$programname = \"DJCUHost*\"",
+      "$ProgramFiles = [Environment]::GetFolderPath(\"ProgramFiles\")",
+      "$filepath = \"$ProgramFiles\\Common Files\\LogiShrd\\Unifying\\DJCUHost.exe\"",
+      "if(((Test-Path -Path $filepath -PathType Leaf) -eq $false) -or ((Get-Command $filepath).Version -lt [System.Version]\"$version\"))",
+      "{",
+      "   &\"$dir\\setup.exe\" /S | Out-Null",
+      "   if(((Test-Path -Path $filepath -PathType Leaf) -eq $false) -or ((Get-Command $filepath).Version -lt [System.Version]\"$version\"))",
+      "   {",
+      "       exit 1",
+      "   }",
+      "}",
+      "if (Test-Path -Path \"$dir\\setup.exe\") { Remove-Item \"$dir\\setup.exe\" -Force }"
     ]
+  },
+  "post_install": [
+    "$programname = \"programname\"",
+    "$CommonDesktopPath = [Environment]::GetFolderPath(\"CommonDesktopDirectory\")",
+    "if (Test-Path \"$CommonDesktopPath\\$programname.lnk\") {Remove-Item \"$CommonDesktopPath\\$programname.lnk\" -Force}"
   ],
   "checkver": {
-    "url": "https://support.logi.com/api/v2/help_center/en-ca/articles.json?label_names=webcontent=productdownload,websoftware=ec9eb8f1-8e0b-11e9-a62b-5b664cf4d3da&per_page=100",
-    "jsonpath": "$.articles..body",
-    "regex": "</b>([\\d.]+)</li>"
+    "url": "https://winget.run/pkg/Logitech/UnifyingSoftware",
+    "regex": "Logitech Unifying Software<span>v<!-- -->([\\d.]+)"
   },
   "autoupdate": {
-    "url": "https://download01.logi.com/web/ftp/pub/techsupport/unifying/unifying$majorVersion$minorVersion.exe#/dl.7z"
+    "url": "https://download01.logi.com/web/ftp/pub/techsupport/unifying/unifying$majorVersion$minorVersion.exe#/setup.exe"
   }
 }

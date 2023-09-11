@@ -1,6 +1,6 @@
 {
   "version": "5.1",
-  "description": "Unlock your roblox fps",
+  "description": "A small tool that removes Roblox's default 60 FPS cap.",
   "homepage": "https://github.com/axstin/rbxfpsunlocker",
   "license": "MIT",
   "architecture": {
@@ -9,28 +9,25 @@
       "hash": "1c21334738e47b17d6d81a600ca37e99402d78db56ce1f9a911732e3ac966cb9"
     }
   },
-  "bin": "rbxfpsunlocker.exe",
+  "bin": [
+    "rbxfpsunlocker.exe",
+    [
+      "rbxfpsunlocker.exe",
+      "fpsunlocker"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "rbxfpsunlocker.exe",
+      "Roblox FPS Unlocker"
+    ]
+  ],
   "checkver": "github",
   "autoupdate": {
     "architecture": {
       "64bit": {
         "url": "https://ghproxy.net/https://github.com/axstin/rbxfpsunlocker/releases/download/v$version/rbxfpsunlocker-x64.zip"
       }
-    },
-    "hash": {
-      "url": "$url.sha256"
     }
-  },
-  "pre_install": [
-    "# Kill all instances of rbxfpsunlocker",
-    "ps rbxfpsunlocker -ErrorAction SilentlyContinue | kill -PassThru",
-    "# Create settings file if it does not exist",
-    "if (!(Test-Path \"$persist_dir\\settings\" -PathType Leaf)) {",
-    "    (New-Item -Type File \"$persist_dir\\settings\" -Force) | Out-Null",
-    "}"
-  ],
-  "post_install": "rbxfpsunlocker",
-  "uninstaller": {
-    "script": "ps rbxfpsunlocker -ErrorAction SilentlyContinue | kill -PassThru"
   }
 }

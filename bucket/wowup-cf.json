@@ -1,30 +1,25 @@
 {
-  "version": "2.10.0",
-  "description": "World of Warcraft addon updater with CurseForge support.",
-  "homepage": "https://wowup.io",
+  "version": "2.11.0-beta.1",
+  "description": "World of Warcraft addon updater. (CurseForge version)",
+  "homepage": "https://wowup.io/",
   "license": {
     "identifier": "GPL-3.0-or-later",
-    "url": "https://github.com/WowUp/WowUp.CF/blob/main/LICENSE"
+    "url": "https://ghproxy.net/https://raw.githubusercontent.com/WowUp/WowUp.CF/main/LICENSE"
   },
-  "url": "https://ghproxy.net/https://github.com/WowUp/WowUp.CF/releases/download/v2.10.0/WowUp-CF-Setup-2.10.0.exe#/dl.7z",
-  "hash": "c235c32c4741f12fea58bff31ce2077387d03bc04f92d76dc7b870d9951caeb6",
-  "extract_dir": "$PLUGINSDIR",
+  "url": "https://ghproxy.net/https://github.com/WowUp/WowUp.CF/releases/download/v2.11.0-beta.1/WowUp-CF-Setup-2.11.0-beta.1.exe#/setup.exe",
+  "hash": "cabc149230efef2d54446bf6f9191362fe1a16a232def7812181230be2a4b7a1",
   "installer": {
     "script": [
-      "Remove-Item \"$dir\\*\" -Exclude 'app-64.7z'",
-      "Expand-7zipArchive \"$dir\\app-64.7z\" \"$dir\" -Removal"
+      "Start-Process \"$dir\\setup.exe\" -ArgumentList '/S' -Wait -Verb RunAs | Out-Null",
+      "Remove-Item \"$dir\\setup.exe\""
     ]
   },
-  "shortcuts": [
-    [
-      "WowUp-CF.exe",
-      "WowUp-CF"
-    ]
-  ],
   "checkver": {
-    "github": "https://github.com/WowUp/WowUp.CF"
+    "url": "https://api.github.com/repos/WowUp/WowUp.CF/releases",
+    "jsonpath": "$[0].tag_name",
+    "regex": "(?!v)(.+)"
   },
   "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/WowUp/WowUp.CF/releases/download/v$version/WowUp-CF-Setup-$version.exe#/dl.7z"
+    "url": "https://ghproxy.net/https://github.com/WowUp/WowUp.CF/releases/download/v$version/WowUp-CF-Setup-$version.exe#/setup.exe"
   }
 }
