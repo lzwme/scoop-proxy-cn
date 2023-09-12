@@ -1,19 +1,16 @@
 {
-  "homepage": "https://www.haijin-boys.com/",
-  "description": "Simple text editor",
-  "license": "Freeware",
   "version": "3.6.0",
-  "architecture": {
-    "32bit": {
-      "url": "https://www.haijin-boys.com/download/Mery-3.6.0.zip",
-      "hash": "203ebae964138c7770e4b52d21f8c536e4e06f9eb35023102af872e7365ab9e3"
-    },
-    "64bit": {
-      "url": "https://www.haijin-boys.com/download/Mery-x64-3.6.0.zip",
-      "hash": "8d372be4fb30c29ea4b39748c9efa163c1fed36a419a5c7abac2556ee5411275"
-    }
-  },
+  "description": "A free Japanese text editor for Windows.",
+  "homepage": "https://www.haijin-boys.com/wiki/",
+  "license": "zlib",
+  "url": "http://www.haijin-boys.com/download/MeryPortable-x64-3.6.0.zip",
+  "hash": "4312f1ac687690ee476d089950c50ff3daa7d553d4f3d9b0c7f37df1ee9c4400",
   "extract_dir": "Mery",
+  "pre_install": [
+    "$manifest.persist | ForEach-Object {",
+    "    if (-not (Test-Path \"$persist_dir\\$_\")) { New-Item \"$dir\\$_\" -ItemType file | Out-Null }",
+    "}"
+  ],
   "bin": "Mery.exe",
   "shortcuts": [
     [
@@ -23,36 +20,13 @@
   ],
   "persist": [
     "Mery.ini",
-    "Mery.his",
-    "Dicts",
-    "Ext",
-    "Macros",
-    "Plugins",
-    "migemo.dll",
-    "dict"
-  ],
-  "pre_install": [
-    "function CreateEmptyFile($name) {",
-    "    if (!(Test-Path \"$persist_dir\\$name\")) {",
-    "        New-Item -Path \"$dir\\$name\" -ItemType File | Out-Null",
-    "    }",
-    "}",
-    "CreateEmptyFile Mery.ini",
-    "CreateEmptyFile Mery.his",
-    "CreateEmptyFile migemo.dll"
+    "Mery.his"
   ],
   "checkver": {
     "url": "https://www.haijin-boys.com/software/mery",
-    "re": "Ver (?<version>[\\d.]+)"
+    "re": "Ver ([\\d.]+)"
   },
   "autoupdate": {
-    "architecture": {
-      "32bit": {
-        "url": "https://www.haijin-boys.com/download/Mery-$version.zip"
-      },
-      "64bit": {
-        "url": "https://www.haijin-boys.com/download/Mery-x64-$version.zip"
-      }
-    }
+    "url": "http://www.haijin-boys.com/download/MeryPortable-x64-$version.zip"
   }
 }

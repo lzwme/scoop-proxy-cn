@@ -1,17 +1,31 @@
 {
-  "checkver": {
-    "github": "https://github.com/Zagrios/bs-manager"
-  },
-  "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/Zagrios/bs-manager/releases/download/v$version/bs-manager-$version-x64.nsis.7z"
-  },
+  "homepage": "https://github.com/Zagrios/bs-manager",
   "version": "1.3.0",
-  "url": "https://ghproxy.net/https://github.com/Zagrios/bs-manager/releases/download/v1.3.0/bs-manager-1.3.0-x64.nsis.7z",
-  "hash": "252cde060f62d5355ffc1a063e701c032833b0c82a6cf1fca732efd20172ed84",
+  "description": "An all-in-one tool that lets you easly manage BeatSaber versions, maps, mods, and even more.",
+  "license": {
+    "identifier": "LGPL-3.0-or-later",
+    "url": "https://github.com/Zagrios/bs-manager/blob/master/LICENSE"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/Zagrios/bs-manager/releases/download/v1.3.0/bs-manager-1.3.0-x64.nsis.7z",
+      "hash": "252cde060f62d5355ffc1a063e701c032833b0c82a6cf1fca732efd20172ed84"
+    }
+  },
+  "bin": "BSManager.exe",
   "shortcuts": [
     [
       "BSManager.exe",
-      "Beat Saber Manager"
+      "BeatSaber Manager"
     ]
-  ]
+  ],
+  "persist": "data",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/Zagrios/bs-manager/releases/download/v$version/bs-manager-$version-x64.nsis.7z"
+      }
+    }
+  }
 }

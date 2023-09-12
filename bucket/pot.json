@@ -1,29 +1,37 @@
 {
-  "version": "2.2.0",
-  "description": "一个跨平台的划词翻译软件 | A cross-platform translation software",
-  "homepage": "https://pot.pylogmon.com",
-  "license": "GPL-3.0-or-later",
-  "notes": "config location: $env:LocalAppData/cn.pylogmon.pot - https://github.com/ViCrack/scoop-bucket/blob/master/bucket/pot.json",
+  "version": "2.2.1",
+  "description": "A cross-platform software for text translation.",
+  "homepage": "https://pot-app.com/",
+  "license": "GPL-3.0-only",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.net/https://github.com/pot-app/pot-desktop/releases/download/2.2.0/pot_2.2.0_x64-setup.nsis.zip",
-      "hash": "546dcd1f8d0327149aef0062447f159a15fd29603b47f7c2dfb4c2a1d163b797"
+      "url": "https://ghproxy.net/https://github.com/pot-app/pot-desktop/releases/download/2.2.1/pot_2.2.1_x86-setup.exe#/dl.7z",
+      "hash": "09d019caf90147d31a3f039e1f23c52c19937765a5d4614dd25edf2159bc34b0"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/pot-app/pot-desktop/releases/download/2.2.1/pot_2.2.1_x64-setup.exe#/dl.7z",
+      "hash": "b2fa3065c16851724e761ac8a7eb5f4bb9fc2164de89519b2c08ea277c9add46"
     }
   },
+  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\uninstall*\" -Force -Recurse",
+  "bin": "pot.exe",
   "shortcuts": [
     [
       "pot.exe",
       "Pot"
     ]
   ],
-  "persist": "config.toml",
   "checkver": {
     "github": "https://github.com/pot-app/pot-desktop"
   },
+  "notes": "Pot is NOT portable.",
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.net/https://github.com/pot-app/pot-desktop/releases/download/$version/pot_$version_x64-setup.nsis.zip"
+        "url": "https://ghproxy.net/https://github.com/pot-app/pot-desktop/releases/download/$version/pot_$version_x86-setup.exe#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/pot-app/pot-desktop/releases/download/$version/pot_$version_x64-setup.exe#/dl.7z"
       }
     }
   }

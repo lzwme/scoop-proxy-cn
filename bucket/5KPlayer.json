@@ -1,17 +1,30 @@
 {
-  "homepage": "https://www.5kplayer.com/",
-  "version": "6.9",
-  "license": "freeware",
   "architecture": {
-    "64bit": {
-      "url": "https://www.5kplayer.com/download/5kplayer-64bit.exe#/dl.7z",
-      "hash": "4853fd6abdd4f10b492112e3d40560684beed56cf90e4863e749ec20d779757d"
-    },
     "32bit": {
-      "url": "https://www.5kplayer.com/download/5kplayer-32bit.exe#/dl.7z",
-      "hash": "3f3a6be97009d858b62c46876d42499c85b83e37e6bb05399d150fa0ba3aecaa"
+      "hash": "3f3a6be97009d858b62c46876d42499c85b83e37e6bb05399d150fa0ba3aecaa",
+      "url": "https://www.5kplayer.com/download/5kplayer-32bit.exe"
+    },
+    "64bit": {
+      "hash": "8c3dd952e77977a3d41474af223b43c92eb12b074160a041f35c3869fec64dfc",
+      "url": "https://www.5kplayer.com/download/5kplayer-64bit.exe"
     }
   },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://www.5kplayer.com/download/5kplayer-32bit.exe"
+      },
+      "64bit": {
+        "url": "https://www.5kplayer.com/download/5kplayer-64bit.exe"
+      }
+    }
+  },
+  "bin": "5KPlayer.exe",
+  "checkver": {
+    "regex": "Stable version: ([\\d.]+)",
+    "url": "https://www.5kplayer.com/5kplayer-download-windows.htm"
+  },
+  "homepage": "https://www.5kplayer.com/",
   "installer": {
     "script": [
       "Remove-Item \"$dir\\5KPlayer.exe\" -Force",
@@ -19,7 +32,7 @@
       "Remove-Item \"$dir\\uninstaller.exe\",\"$dir\\`$PLUGINSDIR\",\"$dir\\logo\"  -Force -Recurse"
     ]
   },
-  "bin": "5KPlayer.exe",
+  "license": "freeware",
   "shortcuts": [
     [
       "5KPlayer.exe",
@@ -30,18 +43,5 @@
       "5KPlayer Autorun"
     ]
   ],
-  "checkver": {
-    "url": "https://www.5kplayer.com/5kplayer-download-windows.htm",
-    "regex": "Stable version: ([\\d.]+)"
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://www.5kplayer.com/download/5kplayer-64bit.exe#/dl.7z"
-      },
-      "32bit": {
-        "url": "https://www.5kplayer.com/download/5kplayer-32bit.exe#/dl.7z"
-      }
-    }
-  }
+  "version": "6.9"
 }

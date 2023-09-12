@@ -1,8 +1,6 @@
 {
-  "version": "20180217041714",
-  "description": "Manage Procfile-based applications via Foreman.",
   "homepage": "https://github.com/ddollar/forego",
-  "license": "Apache-2.0",
+  "version": "20180217041714",
   "architecture": {
     "64bit": {
       "url": "https://bin.equinox.io/a/cNQswJNYTQe/forego-20180217041714-windows-amd64.zip",
@@ -12,17 +10,14 @@
   "bin": "forego.exe",
   "checkver": {
     "url": "https://dl.equinox.io/ddollar/forego/stable/archive",
-    "regex": "https://bin.equinox.io/a/(?<dir>\\w+)/forego-(\\d+)-windows-amd64.zip"
+    "re": "https://bin.equinox.io/a/(?<dir>.+)/forego-(?<version>\\d+)-windows-amd64.zip"
   },
   "autoupdate": {
+    "note": "Thanks for using autoupdate, please test your updates!",
     "architecture": {
       "64bit": {
-        "url": "https://bin.equinox.io/a/$matchDir/forego-$version-windows-amd64.zip"
+        "url": "https://bin.equinox.io/a/$matchDir/forego-$matchVersion-windows-amd64.zip"
       }
-    },
-    "hash": {
-      "url": "https://dl.equinox.io/ddollar/forego/stable/archive",
-      "regex": "(?sm)$basename.*?$sha256"
     }
   }
 }

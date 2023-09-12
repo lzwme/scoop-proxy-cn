@@ -1,45 +1,43 @@
 {
   "homepage": "https://u.tools/",
-  "description": "新一代效率工具平台，自由组合丰富插件，打造随手可取的终极神器",
-  "license": "Unknown",
+  "description": "Your productive tools set and launcher.",
+  "license": "Freeware",
   "version": "4.1.0",
-  "checkver": {
-    "url": "https://u.tools/",
-    "regex": "uTools-([\\d.]+)\\.exe"
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://res.u-tools.cn/version2/uTools-$version.exe#/uTools.7z"
-      },
-      "32bit": {
-        "url": "https://res.u-tools.cn/version2/uTools-$version-ia32.exe#/uTools.7z"
-      }
-    }
-  },
   "architecture": {
     "64bit": {
-      "url": "https://res.u-tools.cn/version2/uTools-4.1.0.exe#/uTools.7z",
+      "url": "https://publish.u-tools.cn/version2/uTools-4.1.0.exe#/dl.7z",
       "hash": "39a6c3d52c35b4288858ea8ca43342b74bf6ffb735f71d059364c72c5859e672",
       "installer": {
-        "script": "7z x $original_dir/PLUGINSDIR/app-64.7z -o\"$original_dir\""
+        "script": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR/app-64.7z\" \"$dir\""
       }
     },
     "32bit": {
-      "url": "https://res.u-tools.cn/version2/uTools-4.1.0-ia32.exe#/uTools.7z",
+      "url": "https://publish.u-tools.cn/version2/uTools-4.1.0-ia32.exe#/dl.7z",
       "hash": "6f56ce1fb31c409cb4b626dd67fd360f4591ed50c38decd830fa64aa5e5b177c",
       "installer": {
-        "script": "7z x $original_dir/PLUGINSDIR/app-32.7z -o\"$original_dir\""
+        "script": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR/app-32.7z\" \"$dir\""
       }
     }
   },
-  "extract_dir": "$PLUGINSDIR",
-  "extract_to": "PLUGINSDIR",
-  "post_install": "rm $original_dir/PLUGINSDIR -recurse",
+  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall uTools.exe\" -Force -Recurse",
   "shortcuts": [
     [
       "uTools.exe",
       "uTools"
     ]
-  ]
+  ],
+  "checkver": {
+    "url": "https://u.tools/",
+    "regex": "uTools-([\\d.]+).exe"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://publish.u-tools.cn/version2/uTools-$version.exe#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://publish.u-tools.cn/version2/uTools-$version-ia32.exe#/dl.7z"
+      }
+    }
+  }
 }
