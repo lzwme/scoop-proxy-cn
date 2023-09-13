@@ -5,15 +5,12 @@
   "license": {
     "identifier": "Shareware"
   },
-  "url": [
-    "https://cdn.steamchina.pinyuncloud.com/client/installer/SteamChinaSetup.exe#/dl.7z"
-  ],
-  "hash": [
-    ""
-  ],
+  "url": "https://cdn.steamchina.pinyuncloud.com/client/installer/SteamChinaSetup.exe#/dl.7z",
+  "hash": "",
   "post_install": [
     "",
-    "$bucketdir = Find-BucketDirectory -Name $bucket",
+    "$null, $bucket = find_manifest($appName)",
+    "$bucketdir = Find-BucketDirectory($bucket)",
     "",
     "Remove-Item \"$dir\\`$PLUGINSDIR\" -Recurse",
     "",

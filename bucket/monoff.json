@@ -1,0 +1,31 @@
+{
+  "version": "0.2.0",
+  "description": "Turns off monitors on Windows ",
+  "homepage": "https://github.com/t-mart/monoff",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/t-mart/monoff/releases/download/0.2.0/monoff.exe",
+      "hash": "b242fc1014eaf158a8976e87299e30a115850b282cfd0edac3fff44ad643564d"
+    }
+  },
+  "bin": "monoff.exe",
+  "shortcuts": [
+    [
+      "monoff.exe",
+      "monoff - Turn Off Monitors"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/t-mart/monoff/releases/download/$version/monoff.exe",
+        "hash": {
+          "url": "$baseurl/monoff.exe-checksum.sha256.txt",
+          "regex": "$sha256 \\*$basename"
+        }
+      }
+    }
+  }
+}

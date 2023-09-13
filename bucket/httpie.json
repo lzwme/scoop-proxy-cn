@@ -1,30 +1,31 @@
 {
+  "##": ":HTTPie",
   "version": "3.2.2",
-  "homepage": "https://httpie.org/",
-  "description": "Command-line HTTP client.",
+  "description": "Modern, user-friendly command-line HTTP client",
+  "homepage": "https://github.com/httpie/httpie",
   "license": "BSD-3-Clause",
-  "depends": "python-bucket-utils",
-  "url": "https://ghproxy.net/https://github.com/httpie/httpie/archive/3.2.2.zip",
-  "hash": "da88f481544e70ff420f78ddf7158e2bc2bbd63c0bad28f2fe274a1ca1840eea",
+  "url": "https://files.pythonhosted.org/packages/09/e0/11680a5c0d94742122835330b3250f91a3a5066970872e111cb3ac5ce204/httpie-3.2.2.tar.gz",
+  "hash": "8bfb671f0b39505c197fdef3367f7f99af5d0e81a4e22289bb4c1f0e72251c90",
   "extract_dir": "httpie-3.2.2",
-  "installer": {
-    "script": [
-      "if ($global) { install-python-package --global --quiet --dir $dir }",
-      "else { install-python-package --quiet --dir $dir }",
-      "if ($LASTEXITCODE) { exit 1 }"
-    ]
-  },
-  "uninstaller": {
-    "script": [
-      "if ($global) { uninstall-python-package $app --global --dir $dir --match '.*http.*' }",
-      "else { uninstall-python-package $app --dir $dir --match '.*http.*' }"
-    ]
-  },
+  "bin": [
+    "venv\\scripts\\http.exe",
+    "venv\\scripts\\https.exe",
+    "venv\\scripts\\httpie.exe"
+  ],
+  "pre_install": [
+    "$bpath = if ($app.LocalPath) { $app.LocalPath.Directory.Parent.FullName } else { \"$bucketsdir\\$bucket\" }",
+    "& (Join-Path \"$bpath\" \"scripts\\Install-WithVirtualEnv.ps1\")"
+  ],
   "checkver": {
-    "github": "https://github.com/httpie/httpie"
+    "url": "https://pypi.org/project/httpie/",
+    "regex": "(?sm)https:\\/\\/files\\.pythonhosted\\.org\\/(?<path>[\\w\\-\\/\\.]+\\.tar\\.gz).+?(?<version>[\\d\\.]+[b\\d]*)\\.tar\\.gz"
   },
   "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/httpie/httpie/archive/$version.zip",
+    "url": "https://files.pythonhosted.org/$matchPath",
+    "hash": {
+      "url": "https://pypi.org/project/httpie/",
+      "regex": "(?sm)Hashes for $basename.*?$sha256"
+    },
     "extract_dir": "httpie-$version"
   }
 }

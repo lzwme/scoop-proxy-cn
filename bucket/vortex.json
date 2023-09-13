@@ -2,37 +2,22 @@
   "version": "1.9.3",
   "description": "Open-source mod manager from Nexus Mods",
   "homepage": "https://www.nexusmods.com/about/vortex/",
-  "license": "GPL-3.0-or-later",
-  "architecture": {
-    "64bit": {
-      "url": "https://ghproxy.net/https://github.com/Nexus-Mods/Vortex/releases/download/v1.9.3/vortex-setup-1.9.3.exe#/dl.7z",
-      "hash": "83c2ca4170ba1a2a4c2e451eb2317f64f0aacc494fad245734674e70582c7d30",
-      "installer": {
-        "script": [
-          "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
-          "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall*\" -Force -Recurse"
-        ]
-      }
-    }
+  "license": {
+    "identifier": "GPL-3.0-or-later",
+    "url": "https://ghproxy.net/https://raw.githubusercontent.com/Nexus-Mods/Vortex/master/LICENSE.md"
   },
-  "shortcuts": [
-    [
-      "Vortex.exe",
-      "Vortex"
+  "url": "https://ghproxy.net/https://github.com/Nexus-Mods/Vortex/releases/download/v1.9.3/vortex-setup-1.9.3.exe#/setup.exe",
+  "hash": "83c2ca4170ba1a2a4c2e451eb2317f64f0aacc494fad245734674e70582c7d30",
+  "installer": {
+    "script": [
+      "Start-Process \"$dir\\setup.exe\" -ArgumentList '/S' -Wait -Verb RunAs | Out-Null",
+      "Remove-Item \"$dir\\setup.exe\""
     ]
-  ],
+  },
   "checkver": {
     "github": "https://github.com/Nexus-Mods/Vortex"
   },
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.net/https://github.com/Nexus-Mods/Vortex/releases/download/v$version/vortex-setup-$version.exe#/dl.7z",
-        "hash": {
-          "url": "https://ghproxy.net/https://github.com/Nexus-Mods/Vortex/releases/download/v$version/latest.yml",
-          "find": "sha2: $sha256"
-        }
-      }
-    }
+    "url": "https://ghproxy.net/https://github.com/Nexus-Mods/Vortex/releases/download/v$version/vortex-setup-$version.exe#/setup.exe"
   }
 }
