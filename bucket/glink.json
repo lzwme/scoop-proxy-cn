@@ -1,0 +1,27 @@
+{
+  "version": "1.1.0",
+  "description": "Gendloop's app",
+  "homepage": "https://github.com/gendloop/glink",
+  "license": "LGPL-2.1-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/gendloop/glink/releases/download/v1.1.0/glink-1.1.0-win64.7z",
+      "hash": "3f57c40969ae4000e0e1bc0b33d4217ba6c272459f3eed315e509e648734fefa"
+    }
+  },
+  "bin": "gInk.exe",
+  "shortcuts": [
+    [
+      "gInk.exe",
+      "gInk"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/gendloop/glink/releases/download/v$version/glink-$version-win64.7z"
+      }
+    }
+  }
+}

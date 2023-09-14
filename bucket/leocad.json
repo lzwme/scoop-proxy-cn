@@ -16,10 +16,11 @@
     ]
   ],
   "checkver": {
-    "url": "https://github.com/leozide/leocad/releases/tag/v$version",
-    "regex": "/releases/tag/v([\\d.]+)"
+    "url": "https://api.github.com/repos/leozide/leocad/releases",
+    "jsonpath": "$.[1].tag_name",
+    "regex": "v([\\d.]+)"
   },
   "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/sqlitebrowser/sqlitebrowser/releases/download/v$version/LeoCAD-Windows-$version-win64.exe#/dl.7z"
+    "url": "https://ghproxy.net/https://github.com/leozide/leocad/releases/download/v$version/LeoCAD-Windows-$version-win64.exe#/dl.7z"
   }
 }

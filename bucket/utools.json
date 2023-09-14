@@ -1,9 +1,8 @@
 {
-  "description": "",
-  "homepage": "https://u.tools",
-  "license": "",
+  "homepage": "https://u.tools/",
+  "description": "Your productive tools set and launcher.",
+  "license": "Proprietary",
   "version": "4.1.0",
-  "notes": "",
   "architecture": {
     "64bit": {
       "url": "https://res.u-tools.cn/version2/uTools-4.1.0.exe#/dl.7z",
@@ -16,60 +15,38 @@
       "url": "https://res.u-tools.cn/version2/uTools-4.1.0-ia32.exe#/dl.7z",
       "hash": "6f56ce1fb31c409cb4b626dd67fd360f4591ed50c38decd830fa64aa5e5b177c",
       "installer": {
-        "script": [
-          "Expand-7zipArchive \"$dir\\`$PLUGINSDIR/app-32.7z\" \"$dir\"",
-          "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$R0\" -Recurse -Force"
-        ]
+        "script": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR/app-32.7z\" \"$dir\""
       }
     }
   },
-  "pre_install": "",
-  "post_install": [
-    "Remove-Item -Recurse -Force \"$dir\\`$PLUGINSDIR\"",
-    "$runtimeCache = \"$env:APPDATA\\uTools\"",
-    "$runtimeCachePersist = \"$persist_dir\\data\"",
-    "if (Test-Path $runtimeCachePersist) {",
-    "    Remove-Item $runtimeCache -Force -Recurse -ErrorAction SilentlyContinue",
-    "    New-Item -Type SymbolicLink -Path $runtimeCache -Target $runtimeCachePersist | Out-Null",
-    "} else {",
-    "    if (Test-Path $runtimeCache) {",
-    "        Move-Item $runtimeCache $runtimeCachePersist -Force",
-    "        New-Item -Type SymbolicLink -Path $runtimeCache -Target $runtimeCachePersist | Out-Null",
-    "    }",
-    "}"
-  ],
-  "uninstaller": {
-    "script": [
-      "$runtimeCache = \"$env:APPDATA\\uTools\"",
-      "$runtimeCachePersist = \"$persist_dir\\data\"",
-      "$tmp = \"$dir\\tmp\"",
-      "New-Item -Type SymbolicLink -Path $runtimeCache -Target $tmp -Force | Out-Null",
-      "Remove-Item $runtimeCache -Recurse -Force | Out-Null",
-      "Remove-Item $tmp -Recurse -Force | Out-Null"
-    ]
-  },
+  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$R0\" -Force -Recurse",
   "shortcuts": [
     [
-      "utools.exe",
+      "uTools.exe",
       "uTools"
     ]
   ],
-  "env_add_path": [
-    "",
-    ""
-  ],
-  "persist": "data",
   "checkver": {
-    "url": "https://u.tools",
-    "regex": "version: 'V(\\d\\.\\d\\.\\d)'"
+    "url": "https://publish.u-tools.cn/version2/newest-version.json",
+    "jsonpath": "$.win32.x64"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://res.u-tools.cn/version2/uTools-$version.exe#/dl.7z"
+        "url": "https://res.u-tools.cn/version2/uTools-$version.exe#/dl.7z",
+        "hash": {
+          "url": "https://publish.u-tools.cn/version2/latest.yml?",
+          "mode": "extract",
+          "regex": "(?sm)$version.exe.*?sha512: $base64"
+        }
       },
       "32bit": {
-        "url": "https://res.u-tools.cn/version2/uTools-$version-ia32.exe#/dl.7z"
+        "url": "https://res.u-tools.cn/version2/uTools-$version-ia32.exe#/dl.7z",
+        "hash": {
+          "url": "https://publish.u-tools.cn/version2/latest.yml?",
+          "mode": "extract",
+          "regex": "(?sm)$version-ia32.exe.*?sha512: $base64"
+        }
       }
     }
   }

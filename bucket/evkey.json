@@ -28,14 +28,8 @@
   },
   "persist": "setting.ini",
   "checkver": {
-    "script": [
-      "$clean_version = Invoke-WebRequest -Uri https://ghproxy.net/https://raw.githubusercontent.com/lamquangminh/EVKey/master/release/cversion.txt | Select-Object -Expand Content",
-      "$major = [int]($clean_version / 100)",
-      "$minor = [int]($clean_version / 10) % 10",
-      "$patch = $clean_version % 10",
-      "Write-Output \"${major}.${minor}.${patch}\""
-    ],
-    "regex": "([\\d\\.]+)"
+    "url": "https://evkeyvn.com/",
+    "regex": ".+Windows.+\\n.+v([\\d.]+)"
   },
   "autoupdate": {
     "url": "https://ghproxy.net/https://github.com/lamquangminh/EVKey/releases/download/Release/EVKey.zip"
