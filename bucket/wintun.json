@@ -1,33 +1,17 @@
 {
+  "homepage": "https://www.wintun.net",
+  "description": "A very simple and minimal TUN driver for the Windows kernel",
+  "license": "GPL-2.0-only",
   "version": "0.14.1",
-  "description": "Wintun is a very simple and minimal TUN driver for the Windows kernel, which provides userspace programs with a simple network adapter for reading and writing packets.",
-  "license": "GPL 2.0",
-  "homepage": "https://www.wintun.net/",
-  "extract_dir": "wintun",
-  "architecture": {
-    "64bit": {
-      "url": "https://www.wintun.net/builds/wintun-0.14.1.zip",
-      "hash": "07c256185d6ee3652e09fa55c0b673e2624b565e02c4b9091c79ca7d2f24ef51"
-    }
-  },
-  "installer": {
-    "script": [
-      "if (-Not (Test-Path \"$env:USERPROFILE\\.config\\clash\")) { New-Item -path \"$env:USERPROFILE\\.config\\clash\" -type Directory | Out-Null }",
-      "Copy-Item \"$dir\\bin\\amd64\\wintun.dll\" -destination \"$env:USERPROFILE\\.config\\clash\""
-    ]
-  },
-  "uninstaller": {
-    "script": "Remove-Item \"$env:USERPROFILE\\.config\\clash\\wintun.dll\" -Force -ErrorAction SilentlyContinue"
-  },
+  "url": "https://www.wintun.net/builds/wintun-0.14.1.zip",
+  "hash": "07c256185d6ee3652e09fa55c0b673e2624b565e02c4b9091c79ca7d2f24ef51",
+  "extract_dir": "wintun/bin/amd64",
+  "env_add_path": "wintun",
   "checkver": {
-    "url": "https://www.wintun.net/",
-    "regex": "wintun-([\\d\\.]+)\\.zip"
+    "url": "https://www.wintun.net",
+    "regex": "Download Wintun ([\\d.]+)"
   },
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://www.wintun.net/builds/wintun-$version.zip"
-      }
-    }
+    "url": "https://www.wintun.net/builds/wintun-$version.zip"
   }
 }
