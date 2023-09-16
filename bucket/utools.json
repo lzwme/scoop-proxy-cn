@@ -1,52 +1,39 @@
 {
   "version": "4.1.0",
-  "description": "Your productive tools set and launcher.",
+  "description": "新一代效率工具平台，自由组合插件应用，打造专属你的趁手工具集",
   "homepage": "https://u.tools/",
-  "license": {
-    "identifier": "Proprietary",
-    "url": "http://u.tools/agreement.html"
-  },
+  "license": "Freeware",
   "architecture": {
     "64bit": {
-      "url": "https://publish.u-tools.cn/version2/uTools-4.1.0.exe#/dl.7z",
+      "url": "https://res.u-tools.cn/version2/uTools-4.1.0.exe#/dl.7z",
       "hash": "39a6c3d52c35b4288858ea8ca43342b74bf6ffb735f71d059364c72c5859e672",
       "installer": {
         "script": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR/app-64.7z\" \"$dir\""
       }
     },
     "32bit": {
-      "url": "https://publish.u-tools.cn/version2/uTools-4.1.0-ia32.exe#/dl.7z",
+      "url": "https://res.u-tools.cn/version2/uTools-4.1.0-ia32.exe#/dl.7z",
       "hash": "6f56ce1fb31c409cb4b626dd67fd360f4591ed50c38decd830fa64aa5e5b177c",
       "installer": {
         "script": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR/app-32.7z\" \"$dir\""
       }
     }
   },
-  "post_install": [
-    "@('$PLUGINSDIR', '[NSIS].nsi', 'Uninstall uTools.exe') | ForEach-Object { Remove-Item \"$dir\\$_\" -Recurse -Force -ErrorAction SilentlyContinue }",
-    "if (!(Test-Path \"$dir\\User Data\\*\") -and (Test-Path \"$env:AppData\\uTools\")) {",
-    "    info '[Portable Mode]: Copying user data...'",
-    "    Copy-Item \"$env:AppData\\uTools\\*\" \"$dir\\User Data\" -Recurse",
-    "}"
-  ],
+  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$R0\" -Force -Recurse",
   "shortcuts": [
     [
       "uTools.exe",
       "uTools"
     ]
   ],
-  "persist": "User Data",
-  "checkver": {
-    "url": "https://u.tools/",
-    "regex": "uTools-([\\d.]+).exe"
-  },
+  "checkver": "version: 'V([\\d.]+)'",
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://publish.u-tools.cn/version2/uTools-$version.exe#/dl.7z"
+        "url": "https://res.u-tools.cn/version2/uTools-$version.exe#/dl.7z"
       },
       "32bit": {
-        "url": "https://publish.u-tools.cn/version2/uTools-$version-ia32.exe#/dl.7z"
+        "url": "https://res.u-tools.cn/version2/uTools-$version-ia32.exe#/dl.7z"
       }
     }
   }

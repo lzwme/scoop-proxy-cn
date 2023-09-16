@@ -8,18 +8,7 @@
   },
   "url": "https://www.foxit.com/downloads/latest.html?product=Foxit-Reader&platform=Windows&version=&package_type=&language=zh-CN&distID=#/latest-setup.exe",
   "hash": "80b2cbec4b085f960cea9a88fee7b6d2905f6f870cc550ac677706eedd496877",
-  "pre_install": [
-    "$setupfile = (Get-ChildItem \"$dir\" 'latest-setup.exe' | Select-Object -First 1).FullName",
-    "$argument=\"/quiet /lang zh-CN /extract \"\"$dir\"\"\"",
-    "Start-Process -WindowStyle Hidden -Wait -Verb RunAs -FilePath \"$setupfile\" -ArgumentList $argument | Out-Null",
-    "$msifile = (Get-ChildItem \"$dir\" 'Setup.msi' | Select-Object -First 1).FullName",
-    "Expand-MsiArchive \"$msifile\" \"$dir\" -Removal",
-    "Copy-Item \"$dir\\Foxit Software\\Foxit PDF Reader\\*\" \"$dir\" -Force -Recurse | Out-Null",
-    "Remove-Item \"$dir\\Foxit Software\" -Force -Recurse | Out-Null",
-    "Remove-Item \"$dir\\Foxit\" -Force -Recurse | Out-Null",
-    "Remove-Item \"$dir\\Transforms\" -Force -Recurse | Out-Null",
-    "Remove-Item \"$setupfile\" -Force -Recurse | Out-Null"
-  ],
+  "innosetup": true,
   "bin": "FoxitPDFReader.exe",
   "shortcuts": [
     [

@@ -1,5 +1,5 @@
 {
-  "version": "1.83.0-7b0ae6cf9d5a0c891ad1adc4da9c36c4dc453d4d",
+  "version": "1.81.0-ad791ef3d26b99963da31636af697afd86575435",
   "description": "Visual Studio Code is a lightweight but powerful source code editor (Insiders Edition).",
   "homepage": "https://code.visualstudio.com/",
   "license": {
@@ -7,23 +7,17 @@
     "url": "https://code.visualstudio.com/License/"
   },
   "notes": [
-    "Add Visual Studio Code as a context menu option by running:",
-    "'reg import \"$dir\\install-context.reg\"'",
-    "For file associations, run:",
-    "'reg import \"$dir\\install-associations.reg\"'"
+    "Add Visual Studio Code as a context menu option by running: '$dir\\install-context.reg'",
+    "For file associations, run '$dir\\install-associations.reg'"
   ],
   "architecture": {
     "64bit": {
       "url": "https://update.code.visualstudio.com/latest/win32-x64-archive/insider#/dl.7z",
-      "hash": "f3ae8c9131d06fa46db58396373063975d7099f820b07dbc42468007ee964923"
+      "hash": "58c0ef414ad398f5dd93112cd65ee2f645397b01f0f0c6f134428cc4fe2b1024"
     },
     "32bit": {
       "url": "https://update.code.visualstudio.com/latest/win32-archive/insider#/dl.7z",
-      "hash": "eb189063fb11adcac046c1788cd80a19cee51094cad83eab6fc9733f1a4ca8a7"
-    },
-    "arm64": {
-      "url": "https://update.code.visualstudio.com/latest/win32-arm64-archive/insider#/dl.7z",
-      "hash": "1d88f31683e0ec66633e2d7620a697c86c4f2465d32251e1c5f5e53cf88c5b24"
+      "hash": "0a41d71966a97a5ad474f2ec7e6a5a94411963b5fc933d601b87731199cfa991"
     }
   },
   "post_install": [
@@ -42,19 +36,13 @@
     "  }",
     "}"
   ],
-  "bin": [
-    "bin\\code-insiders.cmd",
-    "bin\\code-tunnel-insiders.exe"
-  ],
+  "env_add_path": "bin",
   "shortcuts": [
     [
       "Code - Insiders.exe",
       "Visual Studio Code - Insiders"
     ]
   ],
-  "uninstaller": {
-    "script": "if ($cmd -eq 'uninstall') { reg import \"$dir\\uninstall-context.reg\" }"
-  },
   "checkver": {
     "url": "https://update.code.visualstudio.com/api/update/win32-x64-archive/insider/latest",
     "jsonpath": "$.url",
@@ -74,13 +62,6 @@
         "url": "https://update.code.visualstudio.com/latest/win32-archive/insider#/dl.7z",
         "hash": {
           "url": "https://update.code.visualstudio.com/api/update/win32-archive/insider/latest",
-          "jsonpath": "$.sha256hash"
-        }
-      },
-      "arm64": {
-        "url": "https://update.code.visualstudio.com/latest/win32-arm64-archive/insider#/dl.7z",
-        "hash": {
-          "url": "https://update.code.visualstudio.com/api/update/win32-arm64-archive/insider/latest",
           "jsonpath": "$.sha256hash"
         }
       }

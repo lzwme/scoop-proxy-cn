@@ -1,14 +1,17 @@
 {
   "version": "2.28.5",
-  "description": "RLogin is a terminal software that runs on Windows",
+  "description": "RLogin",
+  "homepage": "http://nanno.dip.jp/softlib/man/rlogin/",
   "license": "MIT",
-  "##": "RLogin は GitHub でリリースバイナリを Assets にしていないので、ウェブサイト側から DL するようにしている",
-  "homepage": "https://github.com/kmiya-culti/RLogin/releases",
-  "url": "http://nanno.dip.jp/softlib/program/rlogin_x64.zip",
-  "hash": "",
-  "checkver": "RLogin-([\\d.]+)",
-  "autoupdate": {
-    "url": "http://nanno.dip.jp/softlib/program/rlogin_x64.zip"
+  "architecture": {
+    "32bit": {
+      "url": "https://github.com/kmiya-culti/RLogin/files/12553779/rlogin_x32.zip",
+      "hash": "e8a3517aceb1428c340253571daff79f1c5af6084be93a837057ea0ce2baf120"
+    },
+    "64bit": {
+      "url": "https://github.com/kmiya-culti/RLogin/files/12553783/rlogin_x64.zip",
+      "hash": "cda33bf4b77679977c14718e5329734a7b3a3133f3b6da52f46890d89b8bda84"
+    }
   },
   "bin": "RLogin.exe",
   "shortcuts": [
@@ -16,5 +19,19 @@
       "RLogin.exe",
       "RLogin"
     ]
-  ]
+  ],
+  "checkver": {
+    "github": "https://github.com/kmiya-culti/RLogin",
+    "re": "RLogin-(?<version>\\d+.\\d+.\\d+)[\\s\\S]+files\\/(?<x86url>\\d+)\\/rlogin_x32.zip[\\s\\S]+files\\/(?<x64url>\\d+)\\/rlogin_x64.zip"
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://github.com/kmiya-culti/RLogin/files/$matchX86url/rlogin_x32.zip"
+      },
+      "64bit": {
+        "url": "https://github.com/kmiya-culti/RLogin/files/$matchX64url/rlogin_x64.zip"
+      }
+    }
+  }
 }

@@ -1,19 +1,10 @@
 {
-  "version": "3.1.1001",
-  "description": "OSFMount allows you to mount local disk image files (bit-for-bit copies of an entire disk or disk partition) in Windows as a physical disk or a logical drive letter.",
   "homepage": "https://www.osforensics.com/tools/mount-disk-images.html",
-  "license": "Freeware",
-  "depends": "innounp",
+  "version": "3.1.1002",
+  "license": "freeware",
   "url": "https://www.osforensics.com/downloads/osfmount.exe",
-  "hash": "fd4012a9df1e1fcd93e473e4498e51d19a2afd9379cd657db1cc023e3c0dc7d6",
-  "installer": {
-    "script": [
-      "Invoke-Expression \"innounp.exe -x -d$dir $dir\\osfmount.exe\"",
-      "Copy-Item -Path \"$dir\\{app}\\*\" -Destination \"$dir\" -Recurse",
-      "Remove-Item -Path \"$dir\\{app}\" -Recurse -Force",
-      "Remove-Item -Path \"$dir\\install_script.iss\" -Recurse -Force"
-    ]
-  },
+  "hash": "a67e2d31ce96488ede8d9cdd896d368821aad4cbbd9a78d394ed29ac17a13914",
+  "innosetup": true,
   "bin": "OSFMount.exe",
   "shortcuts": [
     [
@@ -21,9 +12,7 @@
       "OSFMount"
     ]
   ],
-  "checkver": {
-    "regex": "OSFMount\\sV([\\.\\d]+)"
-  },
+  "checkver": "<h3 id=\"Whats-new\" class=\"tools_title\">What's new</h3>[\\w\\W]+?<h3 class=\"faq-block_title whats-new_title-block\">v([\\d.]+)",
   "autoupdate": {
     "url": "https://www.osforensics.com/downloads/osfmount.exe"
   }

@@ -1,24 +1,29 @@
 {
-  "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/codeleventh/typeandrun/releases/download/$version/TypeAndRun$version.zip"
-  },
-  "bin": "TypeAndRun.exe",
-  "checkver": "github",
-  "hash": "6cb918fdee3cbf292fead73f475b15c40fbf53daf83903f4285d7620323dc28f",
   "homepage": "https://github.com/codeleventh/typeandrun",
   "license": "unknown",
-  "persist": [
-    "TypeAndRun.ini",
-    "Config.ini",
-    "Plugins.ini",
-    "History.ini"
-  ],
+  "version": "4b7",
+  "url": "https://ghproxy.net/https://github.com/codeleventh/typeandrun/releases/download/4b7/TypeAndRun4b7.zip",
+  "hash": "6cb918fdee3cbf292fead73f475b15c40fbf53daf83903f4285d7620323dc28f",
+  "bin": "TypeAndRun.exe",
   "shortcuts": [
     [
       "TypeAndRun.exe",
       "TypeAndRun"
     ]
   ],
-  "url": "https://ghproxy.net/https://github.com/codeleventh/typeandrun/releases/download/4b7/TypeAndRun4b7.zip",
-  "version": "4b7"
+  "pre_install": [
+    "'TypeAndRun.ini', 'Config.ini', 'Plugins.ini', 'History.ini',  | ForEach-Object {",
+    "   if(!(Test-Path \"$persist_dir\\$_\")) { New-Item \"$dir\\$_\" | Out-Null }",
+    "}"
+  ],
+  "persist": [
+    "TypeAndRun.ini",
+    "Config.ini",
+    "Plugins.ini",
+    "History.ini"
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/codeleventh/typeandrun/releases/download/$version/TypeAndRun$version.zip"
+  }
 }
