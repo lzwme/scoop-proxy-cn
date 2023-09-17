@@ -1,11 +1,11 @@
 {
-  "version": "0.14.0",
+  "version": "0.15.0",
   "homepage": "https://github.com/hypnoglow/helm-s3",
   "description": "Helm plugin that allows to set up a chart repository using AWS S3",
   "license": "MIT",
   "depends": "helm",
-  "url": "https://ghproxy.net/https://github.com/hypnoglow/helm-s3/releases/download/v0.14.0/helm-s3_0.14.0_windows_amd64.tar.gz",
-  "hash": "de85dcda3077f121ead7940d679e24491217d4b0a1588714f6b90f45ed7059cb",
+  "url": "https://ghproxy.net/https://github.com/hypnoglow/helm-s3/releases/download/v0.15.0/helm-s3_0.15.0_windows_amd64.tar.gz",
+  "hash": "a2fdc9cad935b8eff6f7f8877d72a56ba2504bc9db59e12c39a315bc5bf0a64f",
   "post_install": "New-Item -ItemType Junction -Path (Join-Path (helm env HELM_PLUGINS) 'helm-s3') -Target $dir -Force | Out-Null",
   "uninstaller": {
     "script": "Remove-Item -Path (Join-Path (helm env HELM_PLUGINS) 'helm-s3') -Recurse -Force | Out-Null"
