@@ -1,18 +1,23 @@
 {
-  "homepage": "https://github.com/hellzerg/optimizer",
-  "description": "A Windows Optimizer",
-  "license": "GPL-3.0-or-later",
   "version": "15.8",
-  "url": "https://ghproxy.net/https://github.com/hellzerg/optimizer/releases/download/15.8/Optimizer-15.8.exe#Optimizer.exe",
+  "homepage": "https://github.com/hellzerg/optimizer",
+  "description": "An advanced configuration utility that helps you restore your privacy and increase your security.",
+  "license": "GPL-3.0",
+  "url": "https://ghproxy.net/https://github.com/hellzerg/optimizer/releases/download/15.8/Optimizer-15.8.exe#/optimizer.exe",
   "hash": "2839b3e6f7bd5b3f530c2c4283ca5b16f6231358660a3ac05066fd432eab9bc9",
+  "bin": "optimizer.exe",
   "shortcuts": [
     [
-      "Optimizer.exe",
+      "optimizer.exe",
       "Optimizer"
     ]
   ],
   "checkver": "github",
   "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/hellzerg/optimizer/releases/download/$version/Optimizer-$version.exe#Optimizer.exe"
+    "url": "https://ghproxy.net/https://github.com/hellzerg/optimizer/releases/download/$version/Optimizer-$version.exe#/optimizer.exe",
+    "hash": {
+      "url": "https://github.com/hellzerg/optimizer/releases/$version",
+      "regex": "(?s)SHA256.*?\\>$sha256"
+    }
   }
 }

@@ -1,21 +1,22 @@
 {
-  "homepage": "https://www.wabbajack.org/",
-  "description": "An automated Modlist installer for various games",
-  "license": "GPL-3.0-only",
   "version": "3.2.0.1",
-  "url": "https://ghproxy.net/https://github.com/wabbajack-tools/wabbajack/releases/download/3.2.0.1/3.2.0.1.zip",
-  "hash": "7a23a1e08c0cb13cb656f65908f5ba211b4210a7f878e78e761a668b23cab37c",
-  "bin": "wabbajack-cli.exe",
-  "shortcuts": [
-    [
-      "Wabbajack.exe",
-      "Wabbajack"
-    ]
-  ],
-  "checkver": {
-    "github": "https://github.com/wabbajack-tools/wabbajack"
+  "description": "An automated Modlist installer for various games.",
+  "homepage": "https://github.com/wabbajack-tools/wabbajack",
+  "license": "GPL-3.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.net/https://github.com/wabbajack-tools/wabbajack/releases/download/3.2.0.1/3.2.0.1.zip",
+      "hash": "7a23a1e08c0cb13cb656f65908f5ba211b4210a7f878e78e761a668b23cab37c"
+    }
   },
+  "shortcut": "Wabbajack.exe",
+  "bin": "wabbajack-cli.exe",
+  "checkver": "github",
   "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/wabbajack-tools/wabbajack/releases/download/$version/$version.zip"
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.net/https://github.com/wabbajack-tools/wabbajack/releases/download/$version/$version.zip"
+      }
+    }
   }
 }

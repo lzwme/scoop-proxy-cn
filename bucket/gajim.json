@@ -1,52 +1,31 @@
 {
-  "version": "1.8.1",
-  "description": "An instant messaging client for the XMPP protocol which uses the GTK toolkit.",
   "homepage": "https://gajim.org/",
-  "license": "GPL-3.0-only",
+  "version": "1.8.1",
+  "description": "A fully-featured XMPP client",
   "architecture": {
     "64bit": {
-      "url": "https://gajim.org/downloads/1.8/Gajim-Portable-1.8.1-64bit.exe#/dl.7z",
+      "url": "https://gajim.org/downloads/1.8/Gajim-Portable-1.8.1-64bit.exe#/Gajim-Portable-1.8.1-64bit.7z",
       "hash": "5e24b7d5d90967e3c2f4a4924d356f965a7b2519b435aaf95a04f2e9f21842c4"
     }
   },
-  "bin": [
-    [
-      "bin\\Gajim.exe",
-      "gajim",
-      "-c $dir\\UserData"
-    ]
-  ],
+  "persist": "UserData",
+  "bin": "bin/Gajim.exe",
   "shortcuts": [
     [
-      "bin\\Gajim.exe",
-      "Gajim",
-      "-c $dir\\UserData"
-    ],
-    [
-      "bin\\Gajim-Debug.exe",
-      "Gajim (Debug)",
-      "-c $dir\\UserData"
+      "bin/Gajim.exe",
+      "Gajim"
     ]
   ],
-  "post_install": [
-    "Remove-Item \"$dir\\`$PLUGINSDIR\" -Recurse",
-    "if (!(Test-Path \"$dir\\UserData\\*\") -and (Test-Path \"$env:APPDATA\\Gajim\")) {",
-    "    info '[Portable Mode]: Copying user data...'",
-    "    Copy-Item \"$env:APPDATA\\Gajim\\*\" \"$dir\\UserData\" -Recurse",
-    "}"
-  ],
   "checkver": {
-    "url": "https://gajim.org/download/",
-    "regex": "<span class=\"label label-primary\">([\\d.]+)</span>"
+    "url": "https://dev.gajim.org/api/v4/projects/30/releases",
+    "jsonpath": {
+      "version": "$.[0].name"
+    }
   },
-  "persist": [
-    "UserData",
-    "var\\cache"
-  ],
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://gajim.org/downloads/$majorVersion.$minorVersion/Gajim-Portable-$version-64bit.exe#/dl.7z"
+        "url": "https://gajim.org/downloads/$majorVersion.$minorVersion/Gajim-Portable-$version-64bit.exe#/Gajim-Portable-$version-64bit.7z"
       }
     }
   }

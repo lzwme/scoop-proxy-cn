@@ -1,26 +1,30 @@
 {
-  "homepage": "https://www.osforensics.com/tools/mount-disk-images.html",
-  "description": "allows you to mount local disk image files (bit-for-bit copies of an entire disk or disk partition) in Windows as a physical disk or a logical drive letter.",
   "version": "3.1.1002",
+  "description": "OSFMount allows you to mount local disk image files (bit-for-bit copies of an entire disk or disk partition) in Windows as a physical disk or a logical drive letter.",
+  "homepage": "https://www.osforensics.com/tools/mount-disk-images.html",
   "license": "Freeware",
-  "url": "https://www.osforensics.com/downloads/osfmount.exe#/dl.exe",
+  "depends": "innounp",
+  "url": "https://www.osforensics.com/downloads/osfmount.exe",
   "hash": "a67e2d31ce96488ede8d9cdd896d368821aad4cbbd9a78d394ed29ac17a13914",
-  "bin": "OSFMount.com",
+  "installer": {
+    "script": [
+      "Invoke-Expression \"innounp.exe -x -d$dir $dir\\osfmount.exe\"",
+      "Copy-Item -Path \"$dir\\{app}\\*\" -Destination \"$dir\" -Recurse",
+      "Remove-Item -Path \"$dir\\{app}\" -Recurse -Force",
+      "Remove-Item -Path \"$dir\\install_script.iss\" -Recurse -Force"
+    ]
+  },
+  "bin": "OSFMount.exe",
   "shortcuts": [
     [
       "OSFMount.exe",
       "OSFMount"
-    ],
-    [
-      "osfmount_Help.exe",
-      "osfmount_Help"
     ]
   ],
-  "innosetup": true,
   "checkver": {
-    "regex": "<p>Please click below to download the OSFMount V([\\d.]+) installation package</p>"
+    "regex": "OSFMount\\sV([\\.\\d]+)"
   },
   "autoupdate": {
-    "url": "https://www.osforensics.com/downloads/osfmount.exe#/dl.exe"
+    "url": "https://www.osforensics.com/downloads/osfmount.exe"
   }
 }

@@ -1,58 +1,31 @@
 {
-  "version": "0.107.38",
-  "description": "Free and open source, powerful network-wide ads & trackers blocking DNS server.",
-  "homepage": "https://github.com/AdguardTeam/AdGuardHome",
-  "license": "GPL-3.0-only",
+  "homepage": "https://adguard.com/adguard-home.html",
+  "license": "GPL-3.0-or-later",
+  "version": "0.107.29",
   "architecture": {
-    "32bit": {
-      "url": "https://ghproxy.net/https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.107.38/AdGuardHome_windows_386.zip",
-      "hash": "1806b7b9898bd36991bd615e30bcfe53e2a84950f19b3f21af3adfb429645d4e"
-    },
     "64bit": {
-      "url": "https://ghproxy.net/https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.107.38/AdGuardHome_windows_amd64.zip",
-      "hash": "01df05d3c2d1001ac65af23793e37d193e694b1b983aac9f4f6026187bf2e0d7"
+      "url": "https://ghproxy.net/https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.107.29/AdGuardHome_windows_amd64.zip",
+      "hash": "c85e842ac6ebb4f738c325c1359d3a03015897d7ec50fe30772f6036c9a824c2"
     },
-    "arm64": {
-      "url": "https://ghproxy.net/https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.107.38/AdGuardHome_windows_arm64.zip",
-      "hash": "8fc3cfbef89e2fa2e9926c87651f52350f11c37a912e81109fe155716c8213c7"
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.107.29/AdGuardHome_windows_386.zip",
+      "hash": "7558f1e3e253fc6bf8ac2341a3106140708d2854d4a0409495f3f5d3388eba6c"
     }
   },
   "extract_dir": "AdGuardHome",
   "bin": "AdGuardHome.exe",
-  "shortcuts": [
-    [
-      "AdGuardHome.exe",
-      "AdGuardHome"
-    ]
-  ],
-  "##": "We can't create a default config because that would skip the first-run wizard. Instead, we hack around it by copying back to the persist_dir on uninstall and hardlink-ing on install",
-  "pre_install": [
-    "if ((Test-Path \"$persist_dir\\AdGuardHome.yaml\")) {",
-    "    New-Item -Path \"$dir\\AdGuardHome.yaml\" -Target \"$persist_dir\\AdGuardHome.yaml\" -ItemType HardLink | Out-Null",
-    "}"
-  ],
-  "pre_uninstall": [
-    "if (!(Test-Path \"$persist_dir\\AdGuardHome.yaml\") -and (Test-Path \"$dir\\AdGuardHome.yaml\")) {",
-    "    Copy-Item \"$dir\\AdGuardHome.yaml\" \"$persist_dir\"",
-    "}"
-  ],
   "persist": "data",
-  "checkver": "github",
+  "checkver": {
+    "github": "https://github.com/AdguardTeam/AdGuardHome"
+  },
   "autoupdate": {
     "architecture": {
-      "32bit": {
-        "url": "https://ghproxy.net/https://github.com/AdguardTeam/AdGuardHome/releases/download/v$version/AdGuardHome_windows_386.zip"
-      },
       "64bit": {
         "url": "https://ghproxy.net/https://github.com/AdguardTeam/AdGuardHome/releases/download/v$version/AdGuardHome_windows_amd64.zip"
       },
-      "arm64": {
-        "url": "https://ghproxy.net/https://github.com/AdguardTeam/AdGuardHome/releases/download/v$version/AdGuardHome_windows_arm64.zip"
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/AdguardTeam/AdGuardHome/releases/download/v$version/AdGuardHome_windows_386.zip"
       }
-    },
-    "hash": {
-      "url": "$baseurl/checksums.txt",
-      "regex": "$sha256\\s+\\.\\/$basename"
     }
   }
 }
