@@ -1,10 +1,19 @@
 {
-  "url": "https://dldir1.qq.com/qqfile/qq/QQNT/090eea4a/QQ9.9.2.16736_x64.exe#/dl.7z",
-  "hash": "dbc327ada2db182a7f2595652205e1c219e018c144d969f2792d0e52f3df34bb",
-  "version": "9.9.2.16736",
-  "extract_dir": "Files",
   "homepage": "https://im.qq.com/pcqq/index.shtml",
-  "license": "Unlicense",
+  "description": "An instant messaging software service developed by Tencent",
+  "license": "Freeware",
+  "version": "9.9.2.16736",
+  "architecture": {
+    "64bit": {
+      "url": "https://dldir1.qq.com/qqfile/qq/QQNT/090eea4a/QQ9.9.2.16736_x64.exe#/dl.7z",
+      "hash": "dbc327ada2db182a7f2595652205e1c219e018c144d969f2792d0e52f3df34bb"
+    },
+    "32bit": {
+      "url": "https://dldir1.qq.com/qqfile/qq/QQNT/0b4fa9c0/QQ9.9.2.16736_x86.exe#/dl.7z",
+      "hash": "be521c45b80be309bfc2117564275e1eb322fca871caee2ab79ef6c9e41bd757"
+    }
+  },
+  "extract_dir": "Files",
   "shortcuts": [
     [
       "QQ.exe",
@@ -13,15 +22,16 @@
   ],
   "checkver": {
     "url": "https://cdn-go.cn/qq-web/im.qq.com_new/latest/rainbow/windowsDownloadUrl.js",
-    "regex": "https://dldir1.qq.com/qqfile/qq/QQNT/(?<sha>[0-9a-f]+)/QQ([\\d.]+)_x64.exe",
-    "replace": "${1}"
+    "regex": "ntDownload.*?/(?<commit86>\\w+)/QQ([\\d.]+)_x86.*?NT/(?<commit64>\\w+)/QQ(?<version64>[\\d.]+)_x64"
   },
   "autoupdate": {
-    "url": "https://dldir1.qq.com/qqfile/qq/QQNT/$matchSha/QQ$version_x64.exe#/dl.7z"
-  },
-  "notes": [
-    "Scoop doesn't persist your QQNT data, by default they are stored in: ",
-    "'%UserProfile%\\Documents\\Tencent Files\\qq_nt'.",
-    "Files produced at runtime leaves in '%AppData%\\QQ'."
-  ]
+    "architecture": {
+      "64bit": {
+        "url": "https://dldir1.qq.com/qqfile/qq/QQNT/$matchCommit64/QQ$version_x64.exe#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://dldir1.qq.com/qqfile/qq/QQNT/$matchCommit86/QQ$version_x86.exe#/dl.7z"
+      }
+    }
+  }
 }

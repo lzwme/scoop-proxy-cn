@@ -2,10 +2,7 @@
   "version": "1.0.15",
   "description": "A tool for crafting fixes and patches to get games functioning correctly in UltraWide/Surround/Eyefinity gaming resolutions",
   "homepage": "https://www.flawlesswidescreen.org",
-  "license": {
-    "identifier": "Freeware",
-    "url": "https://www.flawlesswidescreen.org/fws/core/licences/Summary.txt"
-  },
+  "license": "Freeware",
   "architecture": {
     "64bit": {
       "url": "https://www.flawlesswidescreen.org/fws/flawlesswidescreen_x64.zip",
@@ -16,13 +13,9 @@
       "hash": "md5:691765466b6b6f8b16c33c68721679cd"
     }
   },
-  "pre_install": [
-    "if (!(Test-Path \"$dir\\Plugins\")) { New-Item \"$dir\\Plugins\" -Type directory | Out-Null }",
-    "if (!(Test-Path \"$dir\\settings.xml\")) { New-Item \"$dir\\settings.xml\" -Type file | Out-Null }"
-  ],
   "persist": [
-    "Plugins",
-    "settings.xml"
+    "settings.xml",
+    "Plugins"
   ],
   "bin": "FlawlessWidescreen.exe",
   "shortcuts": [
@@ -31,6 +24,7 @@
       "Flawless Widescreeen"
     ]
   ],
+  "pre_install": "if(!(Test-Path \"$persist_dir\\res\\settings.xml\")) { New-Item \"$dir\\settings.xml\" | Out-Null }",
   "checkver": "Current Version is ([\\d.]+)",
   "autoupdate": {
     "architecture": {
@@ -38,14 +32,14 @@
         "url": "https://www.flawlesswidescreen.org/fws/flawlesswidescreen_x64.zip",
         "hash": {
           "url": "https://www.flawlesswidescreen.org/",
-          "regex": "x64 ZIP Package.*.+\\s+.+MD5:.* $md5"
+          "regex": "x64 ZIP Package \\(Portable\\)</h4>[\\s\\S]+?<div><span class=\"bold\">MD5:</span> $md5"
         }
       },
       "32bit": {
         "url": "https://www.flawlesswidescreen.org/fws/flawlesswidescreen.zip",
         "hash": {
           "url": "https://www.flawlesswidescreen.org/",
-          "regex": "x86 ZIP Package.*.+\\s+.+MD5:.* $md5"
+          "regex": "x86 ZIP Package \\(Portable\\)</h4>[\\s\\S]+?<div><span class=\"bold\">MD5:</span> $md5"
         }
       }
     }
