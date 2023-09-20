@@ -1,0 +1,41 @@
+{
+  "##": "Necessary features must be installed manually",
+  "version": "17.7.4",
+  "description": "Microsoft Visual Studio Community (minimum version in German and English)",
+  "homepage": "https://www.visualstudio.com/downloads/",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://visualstudio.microsoft.com/license-terms"
+  },
+  "url": "https://download.visualstudio.microsoft.com/download/pr/e514a25b-a89d-4051-a63c-05ccd9be41e9/0897652a598199659fdb1988ae95f5c666b13ce894cd90e972df4687068162c6/vs_Community.exe",
+  "hash": "0897652a598199659fdb1988ae95f5c666b13ce894cd90e972df4687068162c6",
+  "installer": {
+    "script": "Start-Process \"$dir\\vs_community.exe\" -ArgumentList @('--quiet', '--norestart', '--addProductLang De-de', '--addProductLang En-us') -Wait | Out-Null"
+  },
+  "uninstaller": {
+    "script": [
+      "Write-Output \"Deinstallation must be done manually.\""
+    ]
+  },
+  "checkver": {
+    "script": [
+      "$cont = Invoke-RestMethod 'https://visualstudio.microsoft.com/downloads/'",
+      "$cont -match '/releases/(?<Year>[\\d]+)' | Out-Null",
+      "$year = $Matches.Year",
+      "$uri = \"https://learn.microsoft.com/visualstudio/releases/$year/release-history\"",
+      "(Invoke-RestMethod $uri) -match 'tr\\>\\n\\<tr\\>\\n.*?Current\\</td\\>\\n.*?\\>(?<Version>[\\d.]+)\\<' | Out-Null",
+      "$version = $Matches.Version",
+      "$majorVersion = $version.Split('.')[0]",
+      "$uri = \"https://aka.ms/vs/$majorVersion/release/vs_community.exe\"",
+      "$response = (Invoke-WebRequest \"https://aka.ms/vs/$majorVersion/release/vs_community.exe\").BaseResponse.RequestMessage.RequestUri.AbsolutePath",
+      "Write-Output \"$version $response\""
+    ],
+    "regex": "([\\d.]+)\\s/download/pr/(?<Uuid>[\\w-]+)/(?<Hash>[\\w]+)/"
+  },
+  "autoupdate": {
+    "url": "https://download.visualstudio.microsoft.com/download/pr/$matchUuid/$matchHash/vs_Community.exe",
+    "hash": {
+      "regex": "$matchHash"
+    }
+  }
+}

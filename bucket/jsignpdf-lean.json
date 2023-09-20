@@ -12,8 +12,8 @@
   "extract_dir": "jsignpdf-2.2.0",
   "pre_install": [
     "$currentDir = $dir.Replace(\"$version\", 'current')",
-    "[System.IO.File]::WriteAllLines(\"$dir\\InstallCert.cmd\", '@start javaw -jar \"%~dp0InstallCert.jar\"', [System.text.UTF8Encoding]($false))",
-    "[System.IO.File]::WriteAllLines(\"$dir\\JSignPdf.cmd\", '@start javaw -jar \"%~dp0JSignPdf.jar\"', [System.text.UTF8Encoding]($false))",
+    "Set-Content \"$dir\\InstallCert.cmd\" -Value '@start javaw -jar \"%~dp0InstallCert.jar\"' -Encoding 'utf8' -Force",
+    "Set-Content \"$dir\\JSignPdf.cmd\" -Value '@start javaw -jar \"%~dp0JSignPdf.jar\"' -Encoding 'utf8' -Force",
     "ensure \"$persist_dir\" | Out-Null",
     "Copy-Item \"$persist_dir\\conf\" \"$dir\\conf\" -Recurse -ErrorAction 'SilentlyContinue'"
   ],
@@ -45,7 +45,7 @@
     "extract_dir": "jsignpdf-$version",
     "hash": {
       "url": "https://sourceforge.net/projects/jsignpdf/rss?path=/stable",
-      "regex": "$basename/download\".*?md5\"\\>$md5"
+      "regex": "files/stable/JSignPdf%20$version/$basename/download\"\\sfilesize=\"[\\d]+\"><media:hash\\salgo=\"md5\">$md5"
     }
   }
 }

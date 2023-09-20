@@ -1,18 +1,30 @@
 {
-  "version": "1.3.2",
-  "description": "A multi-platform GUI for pass, the standard unix password manager.",
-  "homepage": "https://github.com/IJHack/QtPass",
+  "version": "1.4.0",
   "license": "GPL-3.0-only",
-  "url": "https://ghproxy.net/https://github.com/IJHack/QtPass/releases/download/v1.3.2/qtpass-1.3.2.exe",
-  "hash": "0FB9E68CE7E52E614EBB29DD9FC0B06B24F4262E9509090853E2C2991C171E72",
+  "homepage": "https://qtpass.org/",
+  "url": "https://ghproxy.net/https://github.com/IJHack/QtPass/releases/download/v1.4.0/qtpass-1.4.0.exe",
+  "hash": "51c04a043007e791b0660b654e741dab4207e7f59eda6dc521cd581ebe99d5eb",
   "innosetup": true,
+  "bin": "qtpass.exe",
+  "depends": "main/gpg",
+  "suggest": {
+    "git": "main/git"
+  },
+  "pre_install": "if (!(Test-Path \"$persist_dir\\qtpass.ini\")) { New-Item \"$dir\\qtpass.ini\" -Force | Out-Null }",
+  "persist": "qtpass.ini",
+  "uninstaller": {
+    "script": "Get-ChildItem \"$dir\\*\" -Include 'qtpass.ini' | Where-Object LinkType -eq $null | Copy-Item -Destination \"$persist_dir\" -ErrorAction SilentlyContinue -Force"
+  },
   "shortcuts": [
     [
       "qtpass.exe",
       "QtPass"
     ]
   ],
-  "checkver": "github",
+  "checkver": {
+    "github": "https://github.com/IJHack/QtPass/",
+    "regex": "tag/v([\\w.-]+)"
+  },
   "autoupdate": {
     "url": "https://ghproxy.net/https://github.com/IJHack/QtPass/releases/download/v$version/qtpass-$version.exe"
   }
