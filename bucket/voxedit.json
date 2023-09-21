@@ -1,5 +1,5 @@
 {
-  "version": "55b2e188",
+  "version": "319df3af",
   "homepage": "https://www.voxedit.io",
   "description": "An application that allows you to create your own voxel models, rig them and animate them in no time.",
   "license": {
@@ -10,7 +10,7 @@
     "sudo": "main/sudo"
   },
   "notes": [
-    "Warning: These batch files require admin privellages to run.",
+    "Warning: These batch files require admin privileges to run.",
     "To register the file associations, run:",
     "install.cmd",
     "To register the 'voxedit://' URL associations, run:",
@@ -19,10 +19,12 @@
     "uninstall.cmd"
   ],
   "url": "https://sandbox-voxedit-installers.s3-us-west-2.amazonaws.com/VoxEdit_WIN_latest.zip",
-  "hash": "146267a086796321e8349810733b9221ac43718785b0859ec4520f2b125fbaf1",
+  "hash": "0a6aeec1e98435139c28872b588a0705635898409108dd46b3be69f95d060600",
   "pre_install": [
     "Remove-Item \"$dir\\VoxEdit.bat\"",
-    "Get-ChildItem \"$dir\\*.bat\" | ForEach-Object { $content = ($_ | Get-Content).Replace('pause >nul', ''); $content | Set-Content $_ -Force }"
+    "Get-ChildItem \"$dir\\*.bat\" | ForEach-Object {",
+    "    $content = ($_ | Get-Content).Replace('pause >nul', ''); [System.IO.File]::WriteAllLines($_, $content, [System.text.UTF8Encoding]($false))",
+    "}"
   ],
   "bin": [
     "install.bat",
