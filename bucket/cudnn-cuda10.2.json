@@ -16,17 +16,7 @@
     }
   },
   "extract_dir": "cudnn-windows-x86_64-8.7.0.84_cuda10-archive",
-  "installer": {
-    "script": [
-      "foreach ($cuda in $manifest.suggest.cuDNN) {",
-      "    $cudaDir = \"$(appdir $cuda)\\current\"",
-      "    if (!(Test-Path \"$cudaDir\\include\\cudnn.h\") -and (Test-Path \"$cudaDir\")) {",
-      "        Copy-Item \"$dir\\*\" \"$cudaDir\" -Recurse -Force",
-      "        Write-Host \"Installed to $cudaDir\"",
-      "    }",
-      "}"
-    ]
-  },
+  "env_add_path": "bin",
   "suggest": {
     "cuDNN": [
       "cuda10.2"

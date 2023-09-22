@@ -14,7 +14,7 @@
   "hash": "2af3c641b9f97035e5698964b43984e01d067f5a75ba02a279945adcfc4b9290",
   "pre_install": [
     "$currentDir = $dir.Replace(\"$version\", 'current')",
-    "Set-Content \"$dir\\burpsuite-pro.cmd\" -Value '@start javaw -jar \"%~dp0burpsuite-pro.jar\"' -Encoding 'utf8' -Force"
+    "[System.IO.File]::WriteAllLines(\"$dir\\burpsuite-pro.cmd\", '@start javaw -jar \"%~dp0burpsuite-pro.jar\"', [System.text.UTF8Encoding]($false))"
   ],
   "bin": "burpsuite-pro.jar",
   "shortcuts": [

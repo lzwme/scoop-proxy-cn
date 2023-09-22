@@ -1,37 +1,28 @@
 {
-  "version": "1.6.375",
-  "description": "Free viewer for multiple file formats.",
   "homepage": "http://www.stdutility.com/stduviewer.html",
-  "license": "Freeware",
-  "url": "http://www.stdutility.com/download/stduviewer.zip#/dl.7z",
+  "version": "1.6.375",
+  "license": "freeware",
+  "url": "http://www.stdutility.com/download/stduviewer.zip",
   "hash": "09257ef97669847cd5a2f793ffdd931aee9fc4930bc5e0780ed592d754a121ae",
-  "bin": [
-    "STDUViewerApp.exe",
-    [
-      "STDUViewerApp.exe",
-      "stduviewer"
-    ]
+  "bin": "STDUViewerApp.exe",
+  "persist": [
+    "STDUViewerSetting.xml",
+    "STDUSessions.xml",
+    "Highlight.xml",
+    "Bookmark.xml",
+    "FilesViewerState.xml"
   ],
   "shortcuts": [
     [
       "STDUViewerApp.exe",
-      "STDUViewer"
+      "STDU Viewer"
     ]
   ],
-  "checkver": "ver. ([\\d\\.]+)",
-  "autoupdate": {
-    "url": "http://www.stdutility.com/download/stduviewer.zip#/dl.7z"
+  "checkver": {
+    "url": "http://www.stdutility.com/stduviewer.html",
+    "regex": "ver\\. ([\\d.]+)"
   },
-  "pre_install": [
-    "@('Bookmark.xml','FilesViewerState.xml','Highlight.xml','STDUSessions.xml','STDUViewerSetting.xml') | ForEach-Object {",
-    "    if (!(Test-Path \"$persist_dir\\$_\")) { New-Item \"$dir\\$_\" -ItemType File | Out-Null }",
-    "}"
-  ],
-  "persist": [
-    "Bookmark.xml",
-    "FilesViewerState.xml",
-    "Highlight.xml",
-    "STDUSessions.xml",
-    "STDUViewerSetting.xml"
-  ]
+  "autoupdate": {
+    "url": "http://www.stdutility.com/download/stduviewer.zip"
+  }
 }

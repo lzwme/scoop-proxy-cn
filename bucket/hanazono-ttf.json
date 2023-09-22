@@ -1,16 +1,20 @@
 {
   "version": "20170904",
   "description": "A free kanji font.",
-  "homepage": "http://fonts.jp/hanazono/",
+  "homepage": "https://glyphwiki.org/hanazono/",
   "license": "OFL-1.1",
-  "url": "https://osdn.net/frs/redir.php?m=rwthaachen&f=hanazono-font%2F68253%2Fhanazono-20170904.zip#/dl.zip",
+  "url": "https://glyphwiki.org/hanazono/hanazono-20170904.zip",
   "hash": "571cd4a09ae7da0c642d640fc2442c050aa450ebb0587a95cdd097d41a9c9572",
   "checkver": {
-    "url": "https://osdn.net/projects/hanazono-font/releases/rss",
-    "regex": "/(?<release>\\d+)/hanazono-(\\d+)\\.zip"
+    "url": "https://glyphwiki.org/hanazono/",
+    "regex": "hanazono-(\\d+)\\.zip"
   },
   "autoupdate": {
-    "url": "https://osdn.net/frs/redir.php?m=rwthaachen&f=hanazono-font%2F$matchRelease%2Fhanazono-$version.zip#/dl.zip"
+    "url": "https://glyphwiki.org/hanazono/hanazono-$version.zip",
+    "hash": {
+      "url": "https://glyphwiki.org/hanazono/",
+      "find": "([0-9a-zA-Z]{32,128})"
+    }
   },
   "installer": {
     "script": [
