@@ -16,9 +16,9 @@
       "installer": {
         "script": [
           "$setup_x64 = Get-Item \"$dir\\PDFCreator-Setup\\PDFCreator-*_x64.msi\"; $setup_x86_delta = Get-Item \"$dir\\PDFCreator-Setup\\PDFCreator-*_x86.msi.delta\"",
-          "Start-Process \"$dir\\PDFCreator-Setup\\PDFCreator-Setup\\Octodiff.exe\" -Wait -WindowStyle 'Hidden' -Args @('patch', \"$setup_x64\", \"$setup_x86_delta\", 'PDFCreator_Setup_x86.msi')",
-          "[System.IO.File]::WriteAllLines(\"$dir\\pdfcreator.cmd\",  \"@`\"${env:ProgramFiles(x86)}\\PDFCreator\\PDFCreator.exe`\"  %*\", [System.text.UTF8Encoding]($false))",
-          "[System.IO.File]::WriteAllLines(\"$dir\\pdfcreator-cli.cmd\", \"@`\"${env:ProgramFiles(x86)}\\PDFCreator\\PDFCreator-cli.exe`\"  %*\", [System.text.UTF8Encoding]($false))"
+          "Start-Process \"$dir\\PDFCreator-Setup\\PDFCreator-Setup\\Octodiff.exe\" -Wait -WindowStyle 'Hidden' -Args @('patch', \"$setup_x64\", \"$setup_x86_delta\", 'PDFCreator_Setup_x64.msi')",
+          "Set-Content \"$dir\\pdfcreator.cmd\" \"@`\"${env:ProgramFiles(x86)}\\PDFCreator\\PDFCreator.exe`\"  %*\" -Encoding 'utf8'",
+          "Set-Content \"$dir\\pdfcreator-cli.cmd\" \"@`\"${env:ProgramFiles(x86)}\\PDFCreator\\PDFCreator-cli.exe`\"  %*\" -Encoding 'utf8'"
         ]
       },
       "pre_uninstall": [
@@ -31,8 +31,8 @@
       "installer": {
         "script": [
           "Get-Item \"$dir\\PDFCreator-Setup\\PDFCreator-*_x64.msi\" | Rename-Item -NewName 'PDFCreator_Setup_x64.msi'",
-          "[System.IO.File]::WriteAllLines(\"$dir\\pdfcreator.cmd\", \"@`\"$env:ProgramFiles\\PDFCreator\\PDFCreator.exe`\"  %*\", [System.text.UTF8Encoding]($false))",
-          "[System.IO.File]::WriteAllLines(\"$dir\\pdfcreator-cli.cmd\", \"@`\"$env:ProgramFiles\\PDFCreator\\PDFCreator-cli.exe`\"  %*\", [System.text.UTF8Encoding]($false))"
+          "Set-Content \"$dir\\pdfcreator.cmd\" \"@`\"$env:ProgramFiles\\PDFCreator\\PDFCreator.exe`\"  %*\" -Encoding 'utf8'",
+          "Set-Content \"$dir\\pdfcreator-cli.cmd\" \"@`\"$env:ProgramFiles\\PDFCreator\\PDFCreator-cli.exe`\"  %*\" -Encoding 'utf8'"
         ]
       },
       "pre_uninstall": [

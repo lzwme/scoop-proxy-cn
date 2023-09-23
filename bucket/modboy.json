@@ -30,10 +30,11 @@
     "regex": "(?<File>[\\w_]+\\.exe),\\s([\\d.]+)"
   },
   "autoupdate": {
-    "url": "https://files.gamebanana.com/tools/$matchFile.exe",
+    "url": "https://files.gamebanana.com/tools/$matchFile",
     "hash": {
       "url": "https://gamebanana.com/apiv10/Tool/6321/Updates",
-      "jsonpath": "$._aRecords[?(@._sName == 'v$version*')]._aFiles[?(@._sFile == '$matchFile')]._sMd5Checksum",
+      "mode": "json",
+      "jsonpath": "$._aRecords[0]._aFiles[0]._sMd5Checksum",
       "find": "$md5"
     }
   }
