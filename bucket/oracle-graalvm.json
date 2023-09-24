@@ -1,5 +1,5 @@
 {
-  "version": "20.0.2",
+  "version": "21",
   "description": "High-performance, embeddable, polyglot Virtual Machine for JVM-langs (Java, Scala, Kotlin), JavaScript/NodeJS, Python, Ruby, R, and LLVM-langs (C, C++, Rust)",
   "homepage": "https://www.graalvm.org/",
   "license": {
@@ -8,29 +8,39 @@
   },
   "architecture": {
     "64bit": {
-      "url": "https://download.oracle.com/graalvm/20/archive/graalvm-jdk-20.0.2_windows-x64_bin.zip",
-      "hash": "3ec83085b54a8de7d0c0ca893d225718cf6ff514f406af6d31a615da63ae9019"
+      "url": "https://download.oracle.com/graalvm/21/archive/graalvm-jdk-21_windows-x64_bin.zip",
+      "hash": "392acacbdae30487050968892b22ef05d2dc29b7e25816e16c5080795a813c82"
     }
   },
-  "extract_dir": "graalvm-jdk-20.0.2+9.1",
+  "pre_install": "Move-Item -Path \"$dir\\graalvm-jdk*\\*\" \"$dir\" | Remove-Item \"$dir\\graalvm-jdk*\" -Force",
   "env_add_path": "bin",
   "env_set": {
     "JAVA_HOME": "$dir",
     "GRAALVM_HOME": "$dir"
   },
   "checkver": {
-    "url": "https://docs.oracle.com/en/graalvm/jdk/20/docs/release-notes/",
-    "regex": "(?s)Oracle GraalVM for JDK ([\\d.]+)</h1>.*?(?<jdk>[\\d.]+\\+[\\d.]+)"
+    "script": [
+      "$releases = 'https://docs.oracle.com/en/graalvm/'",
+      "$verRegex = 'Oracle GraalVM for JDK ([\\d-]+)'",
+      "$relRes = $(Invoke-WebRequest $releases).Content",
+      "$relRes -match $verRegex",
+      "$major = $matches[1]",
+      "$verRes = $(Invoke-WebRequest \"https://docs.oracle.com/en/graalvm/jdk/$major/docs/release-notes/\").Content",
+      "$verRes -match $verRegex",
+      "$version = $matches[1]",
+      "$latest = \"${version}-${major}\"",
+      "Write-Output $latest"
+    ],
+    "regex": "([\\d.-]+)-(?<jdk>[\\d.]+)"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://download.oracle.com/graalvm/20/archive/graalvm-jdk-$version_windows-x64_bin.zip"
+        "url": "https://download.oracle.com/graalvm/$matchJdk/archive/graalvm-jdk-$version_windows-x64_bin.zip"
       }
     },
     "hash": {
       "url": "$url.sha256"
-    },
-    "extract_dir": "graalvm-jdk-$matchJdk.1"
+    }
   }
 }

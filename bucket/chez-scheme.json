@@ -1,59 +1,32 @@
 {
-  "homepage": "https://cisco.github.io/ChezScheme",
   "version": "9.6.2",
   "license": "Apache-2.0",
-  "url": "https://ghproxy.net/https://github.com/cisco/ChezScheme/releases/download/v9.6.2/ChezScheme9.6.2.exe",
+  "homepage": "https://scheme.com/",
+  "url": "https://ghproxy.net/https://github.com/cisco/ChezScheme/releases/download/v9.6.2/ChezScheme9.6.2.exe#/setup.exe",
   "hash": "86a9811776786c3ea594c0fc3a124482558aa3de441598a748099162d2a7a2a0",
-  "architecture": {
-    "64bit": {
-      "installer": {
-        "script": [
-          "Expand-DarkArchive \"$dir\\$fname\" \"$dir\" -Removal",
-          "Get-ChildItem $dir -Exclude 'AttachedContainer' | Remove-Item -Force -Recurse",
-          "Expand-MsiArchive \"$dir\\AttachedContainer\\ChezScheme64.msi\" -DestinationPath $dir -Removal",
-          "$folder = (Get-ChildItem \"$dir\" 'Chez Scheme *' | Select-Object -First 1).FullName",
-          "Move-Item \"$folder\\*\" \"$dir\"",
-          "Remove-Item \"$dir\\AttachedContainer\",\"$dir\\System64\",\"$folder\" -Recurse -Force"
-        ]
-      },
-      "bin": [
-        "bin\\a6nt\\scheme.exe",
-        "bin\\a6nt\\petite.exe"
-      ],
-      "shortcuts": [
-        [
-          "bin\\a6nt\\petite.exe",
-          "Petite Chez Scheme"
-        ]
-      ]
-    },
-    "32bit": {
-      "installer": {
-        "script": [
-          "Expand-DarkArchive \"$dir\\$fname\" \"$dir\" -Removal",
-          "Get-ChildItem $dir -Exclude 'AttachedContainer' | Remove-Item -Force -Recurse",
-          "Expand-MsiArchive \"$dir\\AttachedContainer\\ChezScheme32.msi\" -DestinationPath $dir -Removal",
-          "$folder = (Get-ChildItem \"$dir\" 'Chez Scheme *' | Select-Object -First 1).FullName",
-          "Move-Item \"$folder\\*\" \"$dir\"",
-          "Remove-Item \"$dir\\AttachedContainer\",\"$dir\\System\",\"$folder\" -Recurse -Force"
-        ]
-      },
-      "bin": [
-        "bin\\i3nt\\scheme.exe",
-        "bin\\i3nt\\petite.exe"
-      ],
-      "shortcuts": [
-        [
-          "bin\\i3nt\\petite.exe",
-          "Petite Chez Scheme"
-        ]
-      ]
-    }
+  "installer": {
+    "file": "setup.exe",
+    "args": [
+      "/quiet",
+      "/verysilent",
+      "/dir=\"$dir\"",
+      "/norestart"
+    ]
   },
+  "bin": [
+    "bin\\ta6nt\\scheme.exe",
+    "bin\\ta6nt\\petite.exe"
+  ],
+  "shortcuts": [
+    [
+      "bin\\ta6nt\\scheme.exe",
+      "Scheme"
+    ]
+  ],
   "checkver": {
     "github": "https://github.com/cisco/ChezScheme"
   },
   "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/cisco/ChezScheme/releases/download/v$version/ChezScheme$version.exe"
+    "url": "https://ghproxy.net/https://github.com/cisco/ChezScheme/releases/download/v$version/ChezScheme$version.exe#/setup.exe"
   }
 }

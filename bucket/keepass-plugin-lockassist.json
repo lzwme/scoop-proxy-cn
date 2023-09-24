@@ -1,0 +1,19 @@
+{
+  "homepage": "https://github.com/Rookiestyle/LockAssist",
+  "description": "LockAssist extends KeePass' lock/unlock mechanism in multiple ways.",
+  "version": "3.3",
+  "license": "GPL-3.0",
+  "url": "https://ghproxy.net/https://github.com/Rookiestyle/LockAssist/releases/download/v3.3/LockAssist.plgx",
+  "hash": "947f7e05628769b0e32ce12cdddd23b593a6aaa8496fab9ca0268e65b049e2d0",
+  "depends": "extras/keepass",
+  "installer": {
+    "script": "Copy-Item \"$dir\\LockAssist.plgx\" \"$(appdir keepass $global)\\current\\Plugins\" -Recurse"
+  },
+  "uninstaller": {
+    "script": "Remove-Item \"$(appdir keepass $global)\\current\\Plugins\\LockAssist.plgx\" -Recurse"
+  },
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.net/https://github.com/Rookiestyle/LockAssist/releases/download/v$version/LockAssist.plgx"
+  }
+}

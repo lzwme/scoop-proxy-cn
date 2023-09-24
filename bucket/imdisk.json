@@ -8,7 +8,7 @@
   "pre_install": [
     "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
     "$value = (Get-Content \"$dir\\install.cmd\").Replace('.\\msgboxw.exe', 'echo')",
-    "[System.IO.File]::WriteAllLines(\"$dir\\install.cmd\", $value, [System.text.UTF8Encoding]($false))",
+    "Set-Content \"$dir\\install.cmd\" $value -Encoding 'utf8'",
     "Start-Process 'cmd' -Wait -NoNewWindow -Args @('/C', \"$dir\\install.cmd\")"
   ],
   "bin": [
@@ -22,7 +22,7 @@
     "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
     "Start-Process 'cmd' -Wait -NoNewWindow -Args @('/C', \"$dir\\uninstall_imdisk.cmd\")"
   ],
-  "checkver": "ImDisk\\sVirtual\\sDisk\\sDriver\\</h2\\>\\s\\n\\s+\\<h3\\>Current\\sversion\\s([\\d.]+)",
+  "checkver": "ImDisk\\sVirtual\\sDisk\\sDriver</h2>\\s\\n\\s+<h3>Current\\sversion\\s([\\d.]+)",
   "autoupdate": {
     "url": "https://static.ltr-data.se/files/imdisk.zip"
   }

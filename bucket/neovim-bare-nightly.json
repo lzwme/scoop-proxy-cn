@@ -1,5 +1,5 @@
 {
-  "version": "0.10.0-dev-fcfc87c",
+  "version": "0.10.0-dev-20230923-c88bb65",
   "description": "Vim fork focused on extensibility and usability",
   "homepage": "https://neovim.io",
   "license": {
@@ -12,14 +12,26 @@
   "architecture": {
     "64bit": {
       "url": "https://ghproxy.net/https://github.com/neovim/neovim/releases/download/nightly/nvim-win64.zip",
-      "hash": "77d7ce7640d6d13b60731447a7f2582362b04c3bd9e77991369cc007f700e469"
+      "hash": "0287838d78c52c46ae81d2ddd9e4df2ef6a4c2d70d53b099b8de731e267ecf34"
     }
   },
   "extract_dir": "nvim-win64",
   "bin": "bin\\nvim.exe",
   "checkver": {
-    "url": "https://api.github.com/repos/neovim/neovim/releases",
-    "regex": "NVIM v([\\w.-]+)"
+    "url": "https://api.github.com/repos/neovim/neovim/releases/tags/nightly",
+    "script": [
+      "$body = json_path $page $.body",
+      "$regexp = 'NVIM v(?<version>[\\w.-]+)'",
+      "if ($body -match $regexp) {",
+      "    $version = $Matches.version",
+      "} else {",
+      "    abort \"couldn't match $regexp\"",
+      "}",
+      "$date = json_path $page $.created_at",
+      "Write-Output $version $date"
+    ],
+    "regex": "^(?<version>[\\w.-]+-dev)-(?<hash>\\w+) (?<year>\\d{4})-(?<month>\\d{2})-(?<day>\\d{2})[^ ]+$",
+    "replace": "${version}-${year}${month}${day}-${hash}"
   },
   "autoupdate": {
     "architecture": {
