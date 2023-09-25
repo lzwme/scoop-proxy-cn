@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url';
 import { getLogger } from '@lzwme/fe-utils';
 
 const debug = process.argv.slice(2).includes('--debug');
-export const isCI = process.env.SYNC != null;
+export const isCI = +process.env.SYNC === 1;
 export const logger = getLogger('SYNC', debug ? 'debug' : 'log');
 export const rootDir = path.resolve(fileURLToPath(import.meta.url), '../../..');
 export const CONFIG = {
@@ -27,7 +27,7 @@ export const CONFIG = {
     `xfqwdsj/BucketDev`, // Android SDK DEV...
     `scoopcn/scoopcn`, // 大多是国内应用程序
     `rasa/scoops`,
-    `amorphobia/siku`, // #6
+    `amorphobia/siku`,
     `ACooper81/scoop-apps`,
     `kkzzhizhou/scoop-zapps`,
     `Calinou/scoop-games`,
@@ -70,24 +70,44 @@ export const CONFIG = {
     `yuusakuri/scoop-bucket`,
     `hu3rror/scoop-muggle`,
     `starise/Scoop-Confetti`,
-    // `dodorz/scoop`, // 0
-    // `Qv2ray/mochi`, // 0
-    // `wangzq/scoop-bucket`, // 0
-    // `NyaMisty/scoop_bucket_misty`, // 0
-    // `TheLastZombie/scoop-bucket`, // 0
-    // `Velgus/Scoop-Portapps`, // 0
-    // `amorphobia/siku`, // 0
-    // `jonz94/scoop-sarasa-nerd-fonts`, // 0
-    // `rivy/scoop-bucket`, // 0
-    // `starise/Scoop-Gaming`, // 0
-    // `Darkatse/Scoop-KanColle`, // 0
-    // `hulucc/bucket`, // 0
-    // `Deide/deide-bucket`, // 0
+    `dodorz/scoop`,
+    `SayCV/scoop-cvp`,
+    `Qv2ray/mochi`,
+    `Homeland-Community/scoop`,
     `jingyu9575/scoop-jingyu9575`,
-    // `tetradice/scoop-iyokan-jp`,
+    `Sliots/scoop-bucket`,
+    `echoiron/echo-scoop`,
+    `couleur-tweak-tips/utils`,
+    `wangzq/scoop-bucket`,
+    `jonz94/scoop-sarasa-nerd-fonts`,
+    `NyaMisty/scoop_bucket_misty`,
+    `jfut/scoop-jfut`,
+    `mogeko/scoop-sysinternals`,
+    `ChungZH/peach`,
+    `DoveBoy/Apps`,
+    `Velgus/Scoop-Portapps`,
+    `starise/Scoop-Gaming`,
+    `rivy/scoop-bucket`,
+    `mo-san/scoop-bucket`,
+    `brian6932/dank-scoop`,
+    `AkariiinMKII/Scoop4kariiin`,
+    `littleli/Scoop-littleli`,
+    `ChinLong/scoop-customize`,
+    `Darkatse/Scoop-KanColle`,
+    `aliesbelik/poldi`,
+    `MCOfficer/scoop-bucket`,
+    `KnotUntied/scoop-fonts`,
+    `beerpiss/scoop-bucket`,
+    `HUMORCE/nuke`,
+    `AkinoKaede/maple`,
+    `hulucc/bucket`,
+    `TheLastZombie/scoop-bucket`,
+    `Deide/deide-bucket`,
+    `tetradice/scoop-iyokan-jp`,
+
     // `kkzzhizhou/scoop-apps`, // 抓其他仓库自动同步【会将 todo、deprecated 的都抓进来】
     // `anderlli0053/DEV-tools`, // low quality
-    `okibcn/ScoopMaster`, // 抓取其他仓库(https://rasa.github.io/scoop-directory/by-apps.html)自动同步(879+)
+    // `okibcn/ScoopMaster`, // 抓取其他仓库(https://rasa.github.io/scoop-directory/by-apps.html)自动同步(879+)
   ]),
   filter: /audacity_installer|\.gitkeep|__/,
   sourcesStatFile: path.resolve(rootDir, `sync-sources.txt`),
