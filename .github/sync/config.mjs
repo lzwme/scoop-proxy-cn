@@ -13,7 +13,7 @@ export const CONFIG = {
   /** 是否忽略 manifest JSON 解析失败的应用 */
   ignoreParseFailed: true,
   tmpDir: path.resolve(rootDir, 'tmp'),
-  ghproxy: 'https://ghproxy.net',
+  ghproxy: 'https://ghproxy.com', // 'https://ghproxy.net',
   /** 同步仓库列表，按仓库质量排序 */
   repo: new Set([
     // `duzyn/scoop-cn`, // 仅同步官方仓库，并修改为国内镜像地址

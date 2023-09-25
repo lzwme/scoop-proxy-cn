@@ -5,7 +5,7 @@
 ## Usage
 
 ```powershell
-scoop bucket add spc https://ghproxy.com/https://github.com/lzwme/scoop-proxy-cn
+scoop bucket add spc https://ghproxy.com/github.com/lzwme/scoop-proxy-cn
 
 # install apps
 scoop install spc/<app_name>
@@ -26,7 +26,7 @@ irm https://ghproxy.com/raw.githubusercontent.com/lzwme/scoop-proxy-cn/master/in
 scoop config SCOOP_REPO https://ghproxy.com/github.com/ScoopInstaller/Scoop
 scoop bucket rm main
 scoop bucket add main https://ghproxy.com/github.com/ScoopInstaller/Main
-scoop bucket add spc https://ghproxy.com/https://github.com/lzwme/scoop-proxy-cn
+scoop bucket add spc https://ghproxy.com/github.com/lzwme/scoop-proxy-cn
 
 # show help
 scoop help
