@@ -24,6 +24,7 @@ export const CONFIG = {
     `ScoopInstaller/Versions`,
     `ScoopInstaller/Nirsoft`,
     `ScoopInstaller/Nonportable`,
+    `renxia/scoop-bucket`,
     `xfqwdsj/BucketDev`, // Android SDK DEV...
     `scoopcn/scoopcn`, // 大多是国内应用程序
     `rasa/scoops`,
@@ -75,8 +76,6 @@ export const CONFIG = {
     `Qv2ray/mochi`,
     `Homeland-Community/scoop`,
     `jingyu9575/scoop-jingyu9575`,
-    `Sliots/scoop-bucket`,
-    `echoiron/echo-scoop`,
     `couleur-tweak-tips/utils`,
     `wangzq/scoop-bucket`,
     `jonz94/scoop-sarasa-nerd-fonts`,
@@ -87,7 +86,7 @@ export const CONFIG = {
     `DoveBoy/Apps`,
     `Velgus/Scoop-Portapps`,
     `starise/Scoop-Gaming`,
-    `rivy/scoop-bucket`,
+    // `rivy/scoop-bucket`,
     `mo-san/scoop-bucket`,
     `brian6932/dank-scoop`,
     `AkariiinMKII/Scoop4kariiin`,
@@ -103,6 +102,7 @@ export const CONFIG = {
     `hulucc/bucket`,
     `TheLastZombie/scoop-bucket`,
     `Deide/deide-bucket`,
+    `echoiron/echo-scoop`,
     `tetradice/scoop-iyokan-jp`,
 
     // `kkzzhizhou/scoop-apps`, // 抓其他仓库自动同步【会将 todo、deprecated 的都抓进来】

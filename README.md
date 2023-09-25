@@ -45,6 +45,14 @@ scoop install scoop-search
 scoop-search act
 ```
 
+### 关于 `Hash Check Failed` 的问题
+
+由于部分 app 配置的下载地址为最新发布地址，但同时又配置了 hash 值，当其有新版本变更时则会出现 `Hash Check Failed` 的问题。此时可以添加参数 `-s` 以忽略。示例：
+
+```bash
+scoop install scoop-search -s
+```
+
 ## Sync Buckets From
 
 - [ScoopInstaller/PHP](https://github.com/ScoopInstaller/PHP)
@@ -105,7 +113,6 @@ scoop-search act
 - [Qv2ray/mochi](https://github.com/Qv2ray/mochi)
 - [Homeland-Community/scoop](https://github.com/Homeland-Community/scoop)
 - [jingyu9575/scoop-jingyu9575](https://github.com/jingyu9575/scoop-jingyu9575)
-- [Sliots/scoop-bucket](https://github.com/Sliots/scoop-bucket)
 - [echoiron/echo-scoop](https://github.com/echoiron/echo-scoop)
 - [couleur-tweak-tips/utils](https://github.com/couleur-tweak-tips/utils)
 - [wangzq/scoop-bucket](https://github.com/wangzq/scoop-bucket)

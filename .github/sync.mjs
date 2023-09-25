@@ -132,7 +132,7 @@ async function gitCommit() {
 
   logger.info('Changes:\n', changes);
   const cmds = [
-    `git config user.name "github-actions[bot]"`,
+    `git config user.name "github-actions[lzw.me]"`,
     `git config user.email "41898282+github-actions[bot]@users.noreply.github.com"`,
     `git add --all`,
     `git commit -m "Updated at ${new Date().toISOString()}"`,
