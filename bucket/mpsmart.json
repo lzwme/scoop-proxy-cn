@@ -3,7 +3,9 @@
   "description": "mpsmart: Evaluate the performance of MPS products with a typical application circuit to accelerate your design.",
   "homepage": "https://www.monolithicpower.com/en/mpsmart-v8.html",
   "license": "Freeware",
-  "notes": "MPSmart is a powerful SIMetrix/SIMPLIS simulation tool allowing full schematic capture, waveform viewing, and analysis capability for application development.",
+  "notes": [
+    "MPSmart is a powerful SIMetrix/SIMPLIS simulation tool allowing full schematic capture, waveform viewing, and analysis capability for application development."
+  ],
   "url": "https://www.monolithicpower.com/en/themechanges/downloadlink/downloadlink/?url=L20vcC9tcHNtYXJ0X3Y4LjQwaS5leGU=#/setup.exe",
   "hash": "",
   "pre_install": [
@@ -11,7 +13,7 @@
     "ensure \"$dir\\Programs\" | Out-Null",
     "",
     "if (-not (Test-Path \"$env:PROGRAMFILES\\MPSmart-840\")) {",
-    "    sudo cmd /c mklink /j \"$env:PROGRAMFILES\\MPSmart-840\" \"$dir\\Programs\"",
+    "    sudo cmd.exe /c mklink /j \"$env:PROGRAMFILES\\MPSmart-840\" \"$dir\\Programs\"",
     "}",
     "",
     ""
@@ -29,8 +31,7 @@
   },
   "post_install": [
     "'data', 'scripts', 'crack' | ForEach-Object { ensure \"$dir\\$_\" | Out-Null }",
-    "$null, $bucket = find_manifest($appName)",
-    "$bucketdir = Find-BucketDirectory($bucket)",
+    "$bucketdir = Find-BucketDirectory -Name $bucket",
     "",
     "ensure \"$dir\\data\\ProgramData\" | Out-Null",
     "ensure \"$dir\\data\\AppData\" | Out-Null",
@@ -42,27 +43,27 @@
     "",
     "#ensure \"$env:ProgramData\\$companyname\" | Out-Null",
     "#if (-not (Test-Path \"$env:ProgramData\\$companyname\")) {",
-    "#    cmd /c mklink /j \"$env:ProgramData\\$companyname\" \"$dir\\data\\ProgramData\"",
+    "#    cmd.exe /c mklink /j \"$env:ProgramData\\$companyname\" \"$dir\\data\\ProgramData\"",
     "#}",
     "",
     "ensure \"$env:AppData\\$companyname\" | Out-Null",
     "if (-not (Test-Path \"$env:AppData\\$companyname\\MPSmart\")) {",
-    "    cmd /c mklink /j \"$env:AppData\\$companyname\\MPSmart\" \"$dir\\data\\AppData\"",
+    "    cmd.exe /c mklink /j \"$env:AppData\\$companyname\\MPSmart\" \"$dir\\data\\AppData\"",
     "}",
     "",
     "#ensure \"$env:LocalAppData\\$companyname\" | Out-Null",
     "#if (-not (Test-Path \"$env:LocalAppData\\$companyname\")) {",
-    "#    cmd /c mklink /j \"$env:LocalAppData\\$companyname\" \"$dir\\data\\LocalAppData\"",
+    "#    cmd.exe /c mklink /j \"$env:LocalAppData\\$companyname\" \"$dir\\data\\LocalAppData\"",
     "#}",
     "",
     "#ensure \"$env:UserProfile\\Documents\\$companyname\" | Out-Null",
     "if (-not (Test-Path \"$env:UserProfile\\Documents\\MPSmart\")) {",
-    "    cmd /c mklink /j \"$env:UserProfile\\Documents\\MPSmart\" \"$dir\\data\\UserProfile\"",
+    "    cmd.exe /c mklink /j \"$env:UserProfile\\Documents\\MPSmart\" \"$dir\\data\\UserProfile\"",
     "}",
     "",
     "#ensure \"$env:Public\\$companyname\" | Out-Null",
     "#if (-not (Test-Path \"$env:Public\\$companyname\")) {",
-    "#    cmd /c mklink /j \"$env:Public\\$companyname\" \"$dir\\data\\PublicProfile\"",
+    "#    cmd.exe /c mklink /j \"$env:Public\\$companyname\" \"$dir\\data\\PublicProfile\"",
     "#}",
     "",
     ""
@@ -86,5 +87,7 @@
       "MPSmart"
     ]
   ],
-  "persist": "data"
+  "persist": [
+    "data"
+  ]
 }

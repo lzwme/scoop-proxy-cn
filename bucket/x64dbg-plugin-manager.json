@@ -1,34 +1,52 @@
 {
-  "version": "0.06",
+  "version": "0.04",
   "description": "Plugin manager for x64dbg",
   "homepage": "https://github.com/horsicq/x64dbg-Plugin-Manager",
-  "license": "MIT",
-  "url": "https://ghproxy.net/https://github.com/horsicq/x64dbg-Plugin-Manager/releases/download/0.06/x64plgmnr_win32_portable_0.06.zip",
-  "hash": "bf71d051b267bd9152a2de6affdcc5dbdfc52ac8def78d945fe454a92ac447bc",
+  "license": "Freeware",
+  "depends": [
+    "x64dbg"
+  ],
+  "notes": [
+    "x64dbg-plugin-manager"
+  ],
+  "url": "https://ghproxy.com/https://github.com/horsicq/x64dbg-Plugin-Manager/releases/download/0.04/x64plgmnr_win32_portable_0.04.zip",
+  "hash": "30ab29f0fbae8494518e6e7a328dea0740c14620bcf486b4d895078a22a36c7f",
+  "extract_dir": "x64plgmnr_win32_portable",
+  "extract_to": "Programs",
+  "pre_install": [
+    "",
+    "$bucketdir = Find-BucketDirectory -Name $bucket",
+    "",
+    "",
+    ""
+  ],
+  "post_install": [
+    "",
+    "$bucketdir = Find-BucketDirectory -Name $bucket",
+    "",
+    "",
+    ""
+  ],
   "bin": [
     [
-      "x64plgmnrc.exe",
+      "Programs\\x64plgmnrc.exe",
       "x64plgmnrc"
     ]
   ],
   "shortcuts": [
     [
-      "x64plgmnr.exe",
-      "x64dbg Plugin Manager"
+      "Programs\\x64plgmnr.exe",
+      "Hack/Disassemblers/x64dbg Plugin Manager"
     ]
   ],
-  "pre_install": [
-    "if (!(Test-Path \"$persist_dir\\x64plgmnr.ini\")) { New-Item \"$dir\\x64plgmnr.ini\" | Out-Null }"
-  ],
   "persist": [
-    "x64plgmnr.ini"
+    "Programs\\data"
   ],
-  "extract_dir": "x64plgmnr_win32_portable",
   "checkver": {
-    "github": "https://github.com/horsicq/x64dbg-Plugin-Manager",
-    "re": "(\\d+\\.\\d+(\\.\\d+)?)"
+    "url": "https://github.com/horsicq/x64dbg-Plugin-Manager/releases",
+    "regex": "x64plgmnr_win32_portable_([\\d.]+).zip"
   },
   "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/horsicq/x64dbg-Plugin-Manager/releases/download/$version/x64plgmnr_win32_portable_$version.zip"
+    "url": "https://ghproxy.com/https://github.com/horsicq/x64dbg-Plugin-Manager/releases/download/$version/x64plgmnr_win32_portable_$version.zip"
   }
 }

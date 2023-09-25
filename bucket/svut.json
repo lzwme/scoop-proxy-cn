@@ -1,18 +1,21 @@
 {
-  "version": "1.8.0",
+  "version": "1.6.1",
   "description": "SVUT is a simple framework to create Verilog/SystemVerilog unit tests. Just focus on your tests!",
   "homepage": "https://github.com/dpretet/svut",
   "license": "Freeware",
-  "depends": "",
-  "notes": "svut",
-  "url": "https://ghproxy.net/https://github.com/dpretet/svut/archive/refs/tags/v1.8.0.tar.gz",
+  "#depends": [
+    ""
+  ],
+  "notes": [
+    "svut"
+  ],
+  "url": "https://ghproxy.com/https://github.com/dpretet/svut/archive/refs/tags/v1.6.1.tar.gz",
   "hash": "",
   "extract_dir": "svut-1.6.1",
   "extract_to": "",
   "pre_install": [
     "",
-    "$null, $bucket = find_manifest($appName)",
-    "$bucketdir = Find-BucketDirectory($bucket)",
+    "$bucketdir = Find-BucketDirectory -Name $bucket",
     "",
     "Write-Host \"  :: Making portable...\" -ForegroundColor DarkCyan",
     "$ifile = \"$bucketdir\\..\\scripts\\svut\\svutrun.cmd\"",
@@ -43,6 +46,6 @@
   ],
   "checkver": "github",
   "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/dpretet/svut/archive/refs/tags/v$version.tar.gz"
+    "url": "https://ghproxy.com/https://github.com/dpretet/svut/archive/refs/tags/v$version.tar.gz"
   }
 }

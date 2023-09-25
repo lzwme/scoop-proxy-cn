@@ -1,27 +1,29 @@
 {
-  "version": "7.1.0",
-  "description": "Gendloop's app",
-  "homepage": "https://github.com/gendloop/DingTalk",
-  "license": "LGPL-2.1-or-later",
-  "architecture": {
-    "64bit": {
-      "url": "https://ghproxy.net/https://github.com/gendloop/DingTalk/releases/download/v7.1.0/DingTalk-7.1.0-win64.exe",
-      "hash": "ae6d9adc1badcb30a360ca0e47c1eed0c32d4bf4b2d2bc25cf4c07f3c22a1f74"
-    }
+  "version": "7.0.50.8149101",
+  "description": "An all-in-one free communication and collaboration platform",
+  "homepage": "https://www.dingtalk.com/",
+  "license": {
+    "identifier": "EULA",
+    "url": "https://tms.dingtalk.com/markets/dingtalk/service-terms-zh"
   },
-  "installer": {
-    "script": [
-      "Push-Location \"$dir\"",
-      "Start-Process DingTalk-$version-win64.exe",
-      "Pop-Location"
+  "url": "https://dtapp-pub.dingtalk.com/dingtalk-desktop/win_installer/Release/DingTalk_v7.0.50.8149101.exe#/dl.7z",
+  "hash": "md5:373e75e32c1166be2f428331358c51fe",
+  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\" -Recurse",
+  "shortcuts": [
+    [
+      "DingtalkLauncher.exe",
+      "DingTalk"
     ]
+  ],
+  "checkver": {
+    "url": "https://im.dingtalk.com/manifest/x64/release_windows_vista_later_gray4.json",
+    "regex": "DingTalk_v([\\d.]+).exe"
   },
-  "checkver": "github",
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.net/https://github.com/gendloop/DingTalk/releases/download/v$version/DingTalk-$version-win64.exe"
-      }
+    "url": "https://dtapp-pub.dingtalk.com/dingtalk-desktop/win_installer/Release/DingTalk_v$version.exe#/dl.7z",
+    "hash": {
+      "url": "https://im.dingtalk.com/manifest/x64/release_windows_vista_later_gray4.json",
+      "jsonpath": "$.win.install.md5"
     }
   }
 }

@@ -1,10 +1,15 @@
 {
-  "version": "4.33.138",
+  "version": "4.29.203",
   "description": "Tool for the customization of functions on Corsair peripherals and components.",
   "homepage": "https://www.corsair.com/us/en/icue",
   "license": "Freeware",
-  "url": "http://downloads.corsair.com/Files/CUE/iCUESetup_4.33.138_release.msi#/setup.msi_",
-  "hash": "67331160822554f20342c693f27b7e998bdf9bfb74df1b0f5acb8510e05fe206",
+  "url": "http://downloads.corsair.com/Files/CUE/iCUESetup_4.29.203_release.msi#/setup.msi_",
+  "hash": "e96a2085f327dbb7b9518df69eea60deb9cecb046db23309fe75a74dcfa37f8f",
+  "notes": [
+    "Run the following PowerShell commands as administrator to disable the Corsair Service and Corsair LLA Service from starting automatically:",
+    "Set-Service -Name CorsairService -StartupType Manual",
+    "Set-Service -Name CorsairLLAService -StartupType Manual"
+  ],
   "installer": {
     "script": [
       "# if (!(is_admin)) {",
@@ -12,20 +17,34 @@
       "#     exit 1",
       "# }",
       "",
-      "Start-Process -Wait msiexec \"/i `\"$dir\\setup.msi_`\" /qn\" -Verb RunAs | Out-Null",
-      "Remove-Item \"$dir\\setup.msi_\""
+      "Start-Process -Wait msiexec \"/i `\"$dir\\setup.msi_`\" /qn INSTALLFOLDER=`\"$dir`\"\" -Verb RunAs",
+      "Remove-Item \"$([Environment]::GetFolderPath('commonstartmenu'))\\Corsair\\iCUE.lnk\"",
+      "# If the Corsair directory is empty, delete it",
+      "Remove-Item -ErrorAction Ignore \"$([Environment]::GetFolderPath('commonstartmenu'))\\Corsair\""
     ]
   },
-  "post_install": [
-    "Rename-Item -PATH \"$([Environment]::GetFolderPath('ProgramFiles'))\\Corsair\\CORSAIR iCUE 4 Software\\cpuidsdk.dll\" -NewName \"cpuidsdk.dll.bak\"",
-    "Rename-Item -PATH \"$([Environment]::GetFolderPath('ProgramFiles'))\\Corsair\\CORSAIR iCUE 4 Software\\cpuidsdk64.dll\" -NewName \"cpuidsdk64.dll.bak\""
+  "uninstaller": {
+    "script": [
+      "# if (!(is_admin)) {",
+      "#     error \"Administrator rights are required to uninstall $app.\"",
+      "#     exit 1",
+      "# }",
+      "",
+      "Start-Process -Wait msiexec \"/x `\"$dir\\setup.msi_`\" /qn\" -Verb RunAs"
+    ]
+  },
+  "bin": "iCUE.exe",
+  "shortcuts": [
+    [
+      "iCUE.exe",
+      "iCUE"
+    ]
   ],
   "checkver": {
-    "url": "https://www.guru3d.com/files-details/corsair-utility-engine-download-icue-download.html",
-    "regex": "Corsair[\\s]+Utility[\\s]+Engine[\\s]+Download[\\s]+\\(iCUE\\)[\\s]+Download[\\s]+v(?<version>[\\d\\.]+)"
+    "url": "https://www.corsair.com/us/en/downloads",
+    "regex": "\"CORSAIR iCUE ([\\w.]+)"
   },
   "autoupdate": {
     "url": "http://downloads.corsair.com/Files/CUE/iCUESetup_$version_release.msi#/setup.msi_"
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

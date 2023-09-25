@@ -1,21 +1,39 @@
 {
   "homepage": "https://github.com/mamba-org/mamba",
-  "version": "2023.09.05",
+  "description": "Micromamba is a tiny version of mamba, the fast conda package installer.",
+  "version": "1.5.1-0",
   "license": "BSD-3-Clause",
-  "description": "The Fast Cross-Platform Package Manager",
-  "url": "https://micro.mamba.pm/api/micromamba/win-64/latest#/dl.tar.bz2",
-  "hash": "def594573ed93b677b4f7bc9c72a1f34e1ee9b6747d66f044c4767ec204c78a0",
-  "bin": "Library\\bin\\micromamba.exe",
-  "persist": [
-    "envs",
-    "condabin",
-    "pkgs",
-    "Scripts"
-  ],
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/mamba-org/micromamba-releases/releases/download/1.5.1-0/micromamba-win-64#/micromamba.exe",
+      "hash": "d4acb2dafd856a6677bcd629bdcdbc2d372f6c3405288e1831d5be53ce4c557f"
+    }
+  },
+  "env_set": {
+    "MAMBA_ROOT_PREFIX": "$dir\\mamba",
+    "MAMBA_EXE": "$dir\\micromamba.exe"
+  },
   "checkver": {
-    "github": "https://github.com/mamba-org/mamba"
+    "url": "https://api.anaconda.org/release/conda-forge/micromamba/latest",
+    "regex": "win-64/micromamba-([\\d.-]+).tar.bz2"
   },
   "autoupdate": {
-    "url": "https://micro.mamba.pm/api/micromamba/win-64/latest#/dl.tar.bz2"
-  }
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/mamba-org/micromamba-releases/releases/download/$version/micromamba-win-64#/micromamba.exe",
+        "hash": {
+          "url": "$url.sha256"
+        }
+      }
+    }
+  },
+  "notes": [
+    "No shim is now exposed for micromamba, you have to add following hook to your PowerShell $PROFILE to use it:",
+    "",
+    "(& $env:MAMBA_EXE 'shell' 'hook' -s 'powershell' -p $env:MAMBA_ROOT_PREFIX) | Out-String | Invoke-Expression",
+    "",
+    "Also note that the mamba base environment located in $env:MAMBA_ROOT_PREFIX is now NOT persisted,",
+    "we advice to setup 'envs_dirs' to use a seperated path like '~/.conda/envs' and avoid using the base env.",
+    "https://conda.io/projects/conda/en/latest/user-guide/configuration/use-condarc.html#specify-environment-directories-envs-dirs"
+  ]
 }

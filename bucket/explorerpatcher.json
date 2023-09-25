@@ -1,32 +1,27 @@
 {
-  "version": "22621.2283.57.2",
-  "description": "Explorer Patcher. This project aims to bring back a productive working environment on Windows 11",
+  "version": "22621.2283.57.2_cdead1b",
+  "description": "This project aims to enhance the working environment on Windows.",
   "homepage": "https://github.com/valinet/ExplorerPatcher",
-  "license": "GPL 2.0",
-  "changelog": "https://github.com/valinet/ExplorerPatcher/releases",
-  "url": "https://github.com/valinet/ExplorerPatcher/releases/latest/download/ep_setup.exe#/setup.exe",
-  "hash": "05c15c6bfb56b3b18063a829f66b25f037857292666e54d40e006a9095f9fece",
-  "pre_download": "Assert-Administrator",
+  "license": {
+    "identifier": "GPL-2.0-only",
+    "url": "https://github.com/valinet/ExplorerPatcher/raw/master/LICENSE"
+  },
+  "notes": "Wiki: <https://github.com/valinet/ExplorerPatcher/wiki>",
+  "depends": "sudo",
+  "url": "https://ghproxy.com/https://github.com/valinet/ExplorerPatcher/releases/download/22621.2283.57.2_cdead1b/ep_setup.exe",
+  "hash": "dea86e9bc70da55fd117b39dc3db3fcf634a46d7388993ae1783b769cf389915",
   "installer": {
-    "script": [
-      "$programname = \"programname*\"",
-      "$ProgramFiles = [Environment]::GetFolderPath(\"ProgramFiles\")",
-      "$filepath = \"$ProgramFiles\\ExplorerPatcher\\ep_setup.exe\"",
-      "if(((Test-Path -Path $filepath -PathType Leaf) -eq $false) -or ((Get-Command $filepath).Version -lt [System.Version]\"$version\"))",
-      "{",
-      "   &\"$dir\\setup.exe\" /S | Out-Null",
-      "   if(((Test-Path -Path $filepath -PathType Leaf) -eq $false) -or ((Get-Command $filepath).Version -lt [System.Version]\"$version\"))",
-      "   {",
-      "       exit 1",
-      "   }",
-      "}",
-      "if (Test-Path -Path \"$dir\\setup.exe\") { Remove-Item \"$dir\\setup.exe\" -Force }"
-    ]
+    "script": "Start-Process \"$dir\\ep_setup.exe\" -WorkingDirectory \"$dir\" -Wait"
+  },
+  "uninstaller": {
+    "file": "ep_setup.exe",
+    "args": "/uninstall"
   },
   "checkver": {
-    "github": "https://github.com/valinet/ExplorerPatcher"
+    "url": "https://api.github.com/repos/valinet/ExplorerPatcher/releases",
+    "regex": "/releases/tag/([\\w.-]+)"
   },
   "autoupdate": {
-    "url": "https://github.com/valinet/ExplorerPatcher/releases/latest/download/ep_setup.exe#/setup.exe"
+    "url": "https://ghproxy.com/https://github.com/valinet/ExplorerPatcher/releases/download/$version/ep_setup.exe"
   }
 }

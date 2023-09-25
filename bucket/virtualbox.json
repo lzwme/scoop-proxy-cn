@@ -1,5 +1,5 @@
 {
-  "version": "7.0.10",
+  "version": "6.1.22",
   "description": "Powerful x86 and AMD64/Intel64 virtualization product for enterprise as well as home use.",
   "homepage": "https://www.virtualbox.org/",
   "license": {
@@ -9,8 +9,8 @@
   "changelog": "https://www.virtualbox.org/wiki/Changelog",
   "architecture": {
     "64bit": {
-      "url": "https://download.virtualbox.org/virtualbox/7.0.10/VirtualBox-7.0.10-158379-Win.exe#/VBoxSetup.exe",
-      "hash": "62545b8eb17ddf27d5954ac5f8904814e12c5790d73daf545ef60bd97f4f2e12"
+      "url": "https://download.virtualbox.org/virtualbox/6.1.22/VirtualBox-6.1.22-144080-Win.exe#/VBoxSetup.exe",
+      "hash": "ed5796aeb5d143bb4bb59a70bd976411dee79d583deb7a95f621992dd3c6864f"
     }
   },
   "#pre_download": "Assert-Administrator",
@@ -27,13 +27,13 @@
     "}"
   ],
   "installer": {
-    "script": "Start-Process cmd -Verb Runas \"/c $dir\\VBoxSetup.exe --msiparams INSTALLDIR=$dir VBOX_START=0 REBOOT=ReallySuppress --silent\" -Wait -WindowStyle hidden"
+    "script": "Start-Process cmd.exe -Verb Runas \"/c $dir\\VBoxSetup.exe --msiparams INSTALLDIR=$dir VBOX_START=0 REBOOT=ReallySuppress --silent\" -Wait -WindowStyle hidden"
   },
   "post_install": "remove-item \"$dir\\VBoxSetup.exe\"",
   "uninstaller": {
     "script": [
       "$id = wmic product where \"\"\"name like 'Oracle VM VirtualBox%'\"\"\" get IdentifyingNumber | find /i \"\"\"-\"\"\"",
-      "Start-Process cmd -Verb Runas \"/c msiexec /x $id /qn\" -Wait -WindowStyle hidden"
+      "Start-Process cmd.exe -Verb Runas \"/c msiexec /x $id /qn\" -Wait -WindowStyle hidden"
     ]
   },
   "checkver": {

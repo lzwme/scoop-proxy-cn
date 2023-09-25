@@ -1,17 +1,18 @@
 {
-  "version": "0.2023.07.18",
+  "version": "0.2021.03.13",
   "description": "rime 输入法配置",
   "homepage": "https://github.com/iorest/rime-setting",
   "license": {
     "identifier": "Freeware"
   },
-  "depends": "rime-weasel",
-  "url": "https://ghproxy.net/https://github.com/iorest/rime-setting/archive/4b5e5c6748b15231e9e6ad4840d719e249405588.zip",
-  "hash": "db6dfa477b10c4aec4cce31afb8bb47d283b8a9e4c1a2a761677dfc4a761448f",
-  "extract_dir": "rime-setting-4b5e5c6748b15231e9e6ad4840d719e249405588",
+  "depends": [
+    "rime-weasel"
+  ],
+  "url": "https://ghproxy.com/https://github.com/iorest/rime-setting/archive/3b731d0bedc7a1e440fb089029ad8b97aa39096f.zip",
+  "hash": "4b53ff0375db5c78c30778db03e212cdababfe776e9a5611f0c12528feb3bf51",
+  "extract_dir": "rime-setting-3b731d0bedc7a1e440fb089029ad8b97aa39096f",
   "post_install": [
-    "$null, $bucket = find_manifest($appName)",
-    "$bucketdir = Find-BucketDirectory($bucket)",
+    "$bucketdir = Find-BucketDirectory -Name $bucket",
     "$evalDir = \"$(appdir rime-weasel $global)\\current\".Replace('/', '\\')",
     "",
     "Write-Host \"S1. Copy to your rime install directory...\" -ForegroundColor DarkCyan",
@@ -24,7 +25,7 @@
     "replace": "0.${1}.${2}.${3}"
   },
   "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/iorest/rime-setting/archive/$matchSha.zip",
+    "url": "https://ghproxy.com/https://github.com/iorest/rime-setting/archive/$matchSha.zip",
     "extract_dir": "rime-setting-$matchSha"
   }
 }

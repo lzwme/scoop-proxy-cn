@@ -1,5 +1,5 @@
 {
-  "version": "7.0.8",
+  "version": "6.1.22",
   "description": "Adds support for USB 2.0 and USB 3.0 devices, VirtualBox RDP, disk encryption, NVMe and PXE boot for Intel cards in Virtualbox.",
   "homepage": "https://www.virtualbox.org/",
   "depends": "virtualbox",
@@ -14,8 +14,8 @@
   ],
   "architecture": {
     "64bit": {
-      "url": "https://download.virtualbox.org/virtualbox/7.0.8/Oracle_VM_VirtualBox_Extension_Pack-7.0.8.vbox-extpack#/Oracle_VM_VirtualBox_Extension_Pack-7.0.8.vbox-extpack",
-      "hash": "452320f3b1da42b30c32ea5ab5887983b575638ceb4e3beacfefbbb3b0510a48"
+      "url": "https://download.virtualbox.org/virtualbox/6.1.22/Oracle_VM_VirtualBox_Extension_Pack-6.1.22.vbox-extpack#/Oracle_VM_VirtualBox_Extension_Pack-6.1.22.vbox-extpack",
+      "hash": "6d33d9cc1c5a8f8a2a70e5aaaa778a341322d2ba7eb34f7de420fb5f312b9e87"
     }
   },
   "installer": {
@@ -24,8 +24,8 @@
       "",
       "$evalDir = \"$(appdir virtualbox $global)\\current\".Replace('/', '\\')",
       "",
-      "#Start-Process -Wait -WindowStyle Hidden cmd \"/c call echo y | `\"$ProgramFilesPath\\Oracle\\VirtualBox\\VBoxManage.exe`\" extpack install --replace `\"$dir\\Oracle_VM_VirtualBox_Extension_Pack-$version.vbox-extpack`\"\" -Verb RunAs",
-      "Start-Process -Wait -WindowStyle Hidden cmd \"/c call echo y | `\"$evalDir\\VBoxManage.exe`\" extpack install --replace `\"$dir\\Oracle_VM_VirtualBox_Extension_Pack-$version.vbox-extpack`\"\" -Verb RunAs",
+      "#Start-Process -Wait -WindowStyle Hidden cmd.exe \"/c call echo y | `\"$ProgramFilesPath\\Oracle\\VirtualBox\\VBoxManage.exe`\" extpack install --replace `\"$dir\\Oracle_VM_VirtualBox_Extension_Pack-$version.vbox-extpack`\"\" -Verb RunAs",
+      "Start-Process -Wait -WindowStyle Hidden cmd.exe \"/c call echo y | `\"$evalDir\\VBoxManage.exe`\" extpack install --replace `\"$dir\\Oracle_VM_VirtualBox_Extension_Pack-$version.vbox-extpack`\"\" -Verb RunAs",
       "Remove-Item \"$dir\\Oracle_VM_VirtualBox_Extension_Pack-$version.vbox-extpack\""
     ]
   },
@@ -42,6 +42,5 @@
     "hash": {
       "url": "https://www.virtualbox.org/download/hashes/$version/SHA256SUMS"
     }
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

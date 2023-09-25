@@ -1,18 +1,21 @@
 {
-  "version": "0.2021.12.28",
+  "version": "0.2019.06.01",
   "description": "My Tool Collection @ Windows",
   "homepage": "https://github.com/dearfuture/WinTools",
   "license": "Freeware",
-  "depends": "",
-  "notes": "My Tool Collection @ Windows",
-  "url": "https://ghproxy.net/https://github.com/dearfuture/WinTools/archive/579f38addac1f6e9590a7664d6a82f76909d1bde.zip",
-  "hash": "3f0c2631af6ef735682001f2fd5304a7b53adc462ddf6d89c86571f56cda9ff4",
-  "extract_dir": "WinTools-579f38addac1f6e9590a7664d6a82f76909d1bde",
+  "#depends": [
+    ""
+  ],
+  "notes": [
+    "My Tool Collection @ Windows"
+  ],
+  "url": "https://ghproxy.com/https://github.com/dearfuture/WinTools/archive/8314f51ad1815dc6c393e126d70ebf1b3d80324c.zip",
+  "hash": "23916a3e4a47f3d1b7a68df28db35f1672e3317c3407276fdd1ef361f1c19b23",
+  "extract_dir": "WinTools-8314f51ad1815dc6c393e126d70ebf1b3d80324c",
   "extract_to": "installer",
   "pre_install": [
     "",
-    "$null, $bucket = find_manifest($appName)",
-    "$bucketdir = Find-BucketDirectory($bucket)",
+    "$bucketdir = Find-BucketDirectory -Name $bucket",
     "",
     "",
     "Expand-7zipArchive \"$dir\\installer\\PETools\\detect-it-easy\\die_win32_portable_2.02.zip\" -DestinationPath \"$dir\\Programs\\detect-it-easy\" -ExtractDir 'die_win32_portable'",
@@ -21,8 +24,7 @@
   ],
   "post_install": [
     "",
-    "$null, $bucket = find_manifest($appName)",
-    "$bucketdir = Find-BucketDirectory($bucket)",
+    "$bucketdir = Find-BucketDirectory -Name $bucket",
     "",
     "",
     "    # Shortcut creation",
@@ -41,7 +43,7 @@
     "replace": "0.${1}.${2}.${3}"
   },
   "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/dearfuture/WinTools/archive/$matchSha.zip",
+    "url": "https://ghproxy.com/https://github.com/dearfuture/WinTools/archive/$matchSha.zip",
     "extract_dir": "WinTools-$matchSha",
     "extract_to": "installer"
   }

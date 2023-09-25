@@ -1,39 +1,20 @@
 {
-  "homepage": "https://github.com/dragonyee/MyHash",
-  "license": "freeware",
   "version": "1.4.7",
-  "url": "https://ghproxy.net/https://raw.githubusercontent.com/meihanai/jikoapp/main/app/MyHash/1.4.7/MyHash_1.4.7.7z",
-  "hash": "6f763beadbefb4903deca05edd32bddda3130b5b4e5ecbf1664948d96c65bb27",
-  "architecture": {
-    "64bit": {
-      "installer": {
-        "script": [
-          "Remove-Item \"$dir\\MyHash.exe\",\"$dir\\MyHash.ini\",\"$dir\\MyHashExt.dll\"",
-          "Rename-Item \"$dir\\MyHash64.exe\" \"MyHash.exe\"",
-          "Rename-Item \"$dir\\MyHash64.ini\" \"MyHash.ini\"",
-          "Rename-Item \"$dir\\MyHashExt64.dll\" \"MyHashExt.dll\""
-        ]
-      }
-    },
-    "32bit": {
-      "installer": {
-        "script": "Remove-Item \"$dir\\MyHash64.exe\",\"$dir\\MyHash64.ini\",\"$dir\\MyHashExt64.dll\""
-      }
-    }
-  },
-  "bin": "MyHash.exe",
-  "persist": "MyHash.ini",
-  "shortcuts": [
+  "description": "一款采用并行计算，充分利用多核CPU性能，快速计算文件哈希值的工具。",
+  "homepage": "https://github.com/dragonyee/MyHash",
+  "license": "BSD-3-Clause",
+  "url": "https://github.com/drag0n-app/MyHash/raw/master/MyHash_1.4.7_Final_drag0n.7z",
+  "persist": "MyHash64.ini",
+  "bin": [
     [
-      "MyHash.exe",
+      "MyHash64.exe",
       "MyHash"
     ]
   ],
-  "checkver": {
-    "url": "https://ghproxy.net/https://raw.githubusercontent.com/meihanai/jikoapp/main/versions/MyHash.latest",
-    "regex": "([\\d.]+)"
-  },
-  "autoupdate": {
-    "url": "https://ghproxy.net/https://raw.githubusercontent.com/meihanai/jikoapp/main/app/MyHash/$version/MyHash_$version.7z"
-  }
+  "shortcuts": [
+    [
+      "MyHash64.exe",
+      "MyHash"
+    ]
+  ]
 }

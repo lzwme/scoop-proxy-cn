@@ -1,34 +1,33 @@
 {
-  "notes": "UKMM is currently in beta",
-  "version": "0.10.1",
-  "license": "GPL-3.0-or-later",
-  "url": "https://ghproxy.net/https://github.com/NiceneNerd/ukmm/releases/download/v0.10.1/ukmm-v0.10.1-windows.zip",
-  "hash": "4b9544477fd2e05119bc84abf76a0499db559595457bcecc1435cfbc245a683e",
-  "description": "A tool for managing and merging mods for The Legend of Zelda: Breath of the Wild",
   "homepage": "https://nicenenerd.github.io/ukmm/",
-  "persist": [
-    "config",
-    "data"
-  ],
-  "bin": [
-    [
-      "ukmm.exe",
-      "ukmm",
-      "--portable"
-    ]
-  ],
-  "shortcuts": [
-    [
-      "ukmm.exe",
-      "UKMM",
-      "--portable"
-    ]
-  ],
-  "checkver": {
-    "url": "https://github.com/NiceneNerd/ukmm/releases",
-    "regex": "Beta v?(?<version>[\\d\\w.]+)"
+  "version": "0.7.1",
+  "description": "A mod manager for The Legend of Zelda: Breath of the Wild. Successor to BCML. ",
+  "license": {
+    "identifier": "GPL-3.0-only",
+    "url": "https://github.com/NiceneNerd/ukmm/blob/master/LICENSE"
   },
-  "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/NiceneNerd/ukmm/releases/download/v$version/ukmm-v$version-windows.zip"
-  }
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/NiceneNerd/ukmm/releases/download/v0.7.1/ukmm-v0.7.1-windows.zip",
+      "hash": "56cbe547f066fc9d18f0c9a8a2423f2f3832c0842bad6fc522720e9c9a914754",
+      "bin": [
+        [
+          "ukmm.exe",
+          "ukmm",
+          "--portable"
+        ]
+      ],
+      "shortcuts": [
+        [
+          "ukmm.exe",
+          "Zelda BOTW Mod Manager",
+          "--portable"
+        ]
+      ]
+    }
+  },
+  "persist": [
+    "data",
+    "config"
+  ]
 }

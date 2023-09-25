@@ -1,29 +1,51 @@
 {
-  "autoupdate": {
-    "url": "https://download.cnki.net/CAJViewer%20$version.self.exe#/dl.7z"
-  },
-  "checkver": {
-    "regex": "download.cnki.net/CAJViewer%20([\\d.]+).self.exe",
-    "url": "https://cajviewer.cnki.net/download.html"
-  },
-  "description": "CAJViewer is a dedicated full-text format file viewer for China Journal Network that supports TEB, CAJ, NH, KDH and PDF. It can help you read not only the original text on the Internet, but also the full-text files downloaded from China Journal Network. Besides, the documents it printed look the same as the original.",
-  "hash": "5988a050fb0867b01deff84bd91260cb6e6c95fc999b688c1c1215d6098257ed",
-  "homepage": "https://cnki.net",
+  "version": "7.3.150",
+  "homepage": "https://cajviewer.cnki.net/index.html",
+  "license": "Freeware",
+  "description": "CAJViewer",
+  "url": "https://download.cnki.net/CAJViewer%207.3.150.Simple.self.exe#dl.7z",
+  "hash": "c687871564478183e91f01ca69beb4192772291d259b4224527d9e873bb72dd1",
+  "notes": "We don't persist your cnki express data, they are still storaged in \"%APPDATA%\\cnkiexpress\".",
+  "bin": [
+    [
+      "CAJVieweru.exe",
+      "CAJViewer"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "CAJVieweru.exe",
+      "CAJViewer"
+    ]
+  ],
   "installer": {
     "script": [
-      "$installer = (Get-ChildItem \"$dir\\CAJViewer*.msi\").FullName",
-      "Start-Process msiexec -ArgumentList @('/i', \"$dir\\$installer\", '/passive', '/norestart') -Wait"
+      "7z x \"$dir\\CAJViewer 7.31.cab\" -o\"$dir\\unzip\"| FIND \"ing  \"",
+      "Remove-Item $dir\\*.* -Force",
+      "New-Item -Path $dir\\sp, $dir\\help -itemtype directory | Out-Null",
+      "Move-Item $dir\\unzip\\_.xml $dir\\sp\\工具书.xml",
+      "Move-Item $dir\\unzip\\*.chm $dir\\help",
+      "Move-Item $dir\\unzip\\associateFile.exe1 $dir\\associateFile.exe",
+      "Move-Item $dir\\unzip\\CAJVieweru.exe1 $dir\\CAJVieweru.exe",
+      "Move-Item $dir\\unzip\\mailu.dll1 $dir\\mailu.dll",
+      "Move-Item $dir\\unzip\\Association.dll $dir",
+      "Move-Item $dir\\unzip\\client_shared.dll $dir",
+      "Move-Item $dir\\unzip\\crashpad_handler.com $dir",
+      "Move-Item $dir\\unzip\\mail.dll $dir",
+      "Move-Item $dir\\unzip\\PDL.bin $dir",
+      "Move-Item $dir\\unzip\\PDL.exe $dir",
+      "Move-Item $dir\\unzip\\ui.dll $dir",
+      "Move-Item $dir\\unzip\\ui.eng $dir",
+      "Move-Item $dir\\unzip\\WHelper.dll $dir",
+      "Move-Item $dir\\unzip\\WHelperu.dll $dir",
+      "Remove-Item $dir\\unzip -Recurse -Force"
     ]
   },
-  "license": {
-    "identifier": "Freeware"
+  "checkver": {
+    "url": "https://cajviewer.cnki.net/download.html",
+    "regex": "https://download.cnki.net/CAJViewer%20(\\d+.\\d+.\\d).Simple.self.exe"
   },
-  "uninstaller": {
-    "script": [
-      "$uninstaller = (Get-ChildItem \"$dir\\CAJViewer*.msi\").FullName",
-      "Start-Process msiexec -ArgumentList @('/x', \"$dir\\$unistaller\", '/passive', '/norestart') -Wait"
-    ]
-  },
-  "url": "https://download.cnki.net/CAJViewer%207.3.151.self.exe#/dl.7z",
-  "version": "7.3.151"
+  "autoupdate": {
+    "url": "https://download.cnki.net/CAJViewer%20$version.Simple.self.exe#dl.7z"
+  }
 }

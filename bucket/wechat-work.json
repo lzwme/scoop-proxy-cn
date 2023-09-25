@@ -1,28 +1,13 @@
 {
-  "version": "4.1.9.6042",
-  "description": "WeCom is a professional office management tool created by Tencent WeChat team for companies.",
-  "homepage": "https://work.weixin.qq.com",
-  "license": {
-    "identifier": "Freeware",
-    "url": "https://work.weixin.qq.com/nl/eula"
-  },
-  "url": "https://dldir1.qq.com/wework/work_weixin/WeCom_4.1.9.6042.exe#/dl.7z",
-  "hash": "db820eac8f9633a74d2546e3bfe86b5cd73cdbf5a698a43f09c579cb1dcc77da",
+  "homepage": "https://work.weixin.qq.com/",
+  "description": "企业微信",
+  "version": "nightly",
+  "license": "Freeware",
+  "url": "https://work.weixin.qq.com/wework_admin/commdownload?platform=win&from=wwindex#/wechat-work.7z",
   "shortcuts": [
     [
       "WXWork.exe",
-      "WeChat Work"
+      "企业微信"
     ]
-  ],
-  "post_install": [
-    "Remove-Item (Join-Path $dir '$PLUGINSDIR') -Force -Recurse",
-    "Remove-Item (Join-Path $dir Uninstall.exe) -Force"
-  ],
-  "checkver": {
-    "script": "(Invoke-WebRequest -Uri 'https://work.weixin.qq.com/wework_admin/commdownload?platform=win&from=wwindex' -MaximumRedirection 0 -SkipHttpErrorCheck -ErrorAction:SilentlyContinue).Headers.Location",
-    "regex": "([\\d.]+)\\.exe"
-  },
-  "autoupdate": {
-    "url": "https://dldir1.qq.com/wework/work_weixin/WeCom_$version.exe#/dl.7z"
-  }
+  ]
 }

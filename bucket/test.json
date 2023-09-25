@@ -1,42 +1,45 @@
 {
-  "version": "22.01",
-  "description": "A multi-format file archiver with high compression ratios",
-  "homepage": "https://www.7-zip.org/",
-  "license": {
-    "identifier": "Freeware,LGPL-2.0-only,BSD-3-Clause",
-    "url": "https://www.7-zip.org/license.txt"
-  },
+  "version": "1.0.0",
+  "homepage": "https://github.com/Weidows-projects/scoop-3rd",
+  "license": "MIT",
+  "description": "test - for improve scoop-using experience",
+  "notes": [
+    "以下是一些笔记, 用来魔改scoop软件库",
+    "Get-Variable",
+    "   Name                           Value",
+    "   ----                           -----",
+    "   _                              3rd/test",
+    "   ?                              True",
+    "   ^                              scoop",
+    "   $                              test",
+    "   app                            test",
+    "   apps                           {3rd/test}",
+    "   bucket                         3rd",
+    "   bucketsdir                     D:\\Scoop\\buckets",
+    "   cachedir                       D:\\Scoop\\cache",
+    "   dir                            D:\\Scoop\\apps\\test\\1.0.0",
+    "   global                         False",
+    "   globaldir                      C:\\ProgramData\\scoop",
+    "   HOME                           C:\\Users\\Administrator",
+    "   HookType                       pre_install",
+    "   independent                    False",
+    "   InformationPreference          SilentlyContinue",
+    "   modulesdir                     D:\\Scoop\\modules",
+    "   original_dir                   D:\\Scoop\\apps\\test\\1.0.0",
+    "   persist_dir                    D:\\Scoop\\persist\\test",
+    "   PSHOME                         D:\\Scoop\\apps\\pwsh\\current",
+    "   PSItem                         3rd/test",
+    "   PWD                            D:\\Scoop\\buckets\\3rd",
+    "   scoopdir                       D:\\Scoop",
+    "   version                        1.0.0"
+  ],
   "architecture": {
     "64bit": {
-      "url": "https://7-zip.org/a/7z2201-x64.msi",
-      "hash": "f4afba646166999d6090b5beddde546450262dc595dddeb62132da70f70d14ca"
-    },
-    "32bit": {
-      "url": "https://7-zip.org/a/7z2201.msi",
-      "hash": "a4913f98821e0da0c58cd3a7f2a59f1834b85b6ca6b3fdefa5454d6c3bbef54c"
+      "url": "https://ghproxy.com/https://github.com/Weidows-projects/scoop-3rd/releases/download/1.0.0/test.7z",
+      "hash": "BDB2B93905F214E3DE4DEAC78BBA1E928A92B521EA3341AFA672601FE642D828"
     }
   },
-  "extract_dir": "Files\\7-Zip",
-  "bin": "7z.exe",
-  "shortcuts": [
-    [
-      "7zFM.exe",
-      "7-Zip"
-    ]
-  ],
-  "checkver": {
-    "url": "https://www.7-zip.org/download.html",
-    "regex": "Download 7-Zip ([\\d.]+)"
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://7-zip.org/a/7z$cleanVersion-x64.msi"
-      },
-      "32bit": {
-        "url": "https://7-zip.org/a/7z$cleanVersion.msi"
-      }
-    }
-  },
-  "_from": "okibcn/ScoopMaster"
+  "pre_install": [
+    "echo testing..."
+  ]
 }

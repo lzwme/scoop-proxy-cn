@@ -1,31 +1,23 @@
 {
-  "version": "8.2.2",
-  "description": "Customize the context menu of Windows File Explorer",
-  "homepage": "https://lopesoft.com/index.php/en/filemenutools",
-  "license": "Proprietary",
-  "url": "https://lopesoft.com/fmtools/FileMenuTools-portable.exe#/dl.7z",
-  "hash": "dafec38c5b35e03312e78da0ba95113db6778c80b23db44585390c64b0ab099f",
-  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\" -Recurse",
-  "architecture": {
-    "32bit": {
-      "bin": "App\\FileMenu Tools\\cmdfmt.exe"
-    },
-    "64bit": {
-      "bin": "App\\FileMenu Tools\\cmdfmt64.exe"
-    }
-  },
-  "shortcuts": [
-    [
-      "FileMenuTools.exe",
-      "FileMenuTools"
-    ]
-  ],
-  "persist": "Data",
+  "version": "7.7.0.0",
+  "url": "https://scoop-zapps.ziiyc.com/d/FileMenuTools/FileMenuTools-7.7.0.0.7z",
+  "hash": "67d5da7d9cf469ab77126c10773919fb8cdceacf4a1acf06f3d2c3892c39fa65",
   "checkver": {
-    "url": "https://www.lopesoft.com/fmtools/version.txt/",
+    "url": "https://ghproxy.com/https://raw.githubusercontent.com/kkzzhizhou/scoop-zapps/master/versions/FileMenuTools.latest",
     "regex": "([\\d.]+)"
   },
   "autoupdate": {
-    "url": "https://lopesoft.com/fmtools/FileMenuTools-portable.exe#/dl.7z"
-  }
+    "url": "https://scoop-zapps.ziiyc.com/d/FileMenuTools/FileMenuTools-$version.7z",
+    "hash": {
+      "url": "$url.sha256",
+      "regex": "$sha256"
+    }
+  },
+  "pesiset": "Data",
+  "shortcuts": [
+    [
+      "FileMenuTools.exe",
+      "FileMenuTools Portable"
+    ]
+  ]
 }

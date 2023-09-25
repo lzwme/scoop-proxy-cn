@@ -1,11 +1,11 @@
 {
   "homepage": "https://sunlogin.oray.com/",
   "description": "向日葵远程控制软件",
-  "version": "13.1.1.54688",
+  "version": "12.5.1.44969",
   "architecture": {
     "64bit": {
-      "url": "https://dl-cdn.oray.com/sunlogin/windows/SunloginClient_13.1.1.54688_x64.exe#/SunloginClient.exe",
-      "hash": "96342f73c844f5d0d217497b3f3a003fba74b3c0c63e06d1331509bf55b9eaa3",
+      "url": "https://dl-cdn.oray.com/sunlogin/windows/SunloginClient_12.5.1.44969_x64.exe#/SunloginClient.exe",
+      "hash": "c2474c983b153fb9fd1bf39de03c24232b46dadfb24af39e9ab4e113f3c1b8d7",
       "shortcuts": [
         [
           "SunloginClient.exe",
@@ -14,8 +14,8 @@
       ]
     },
     "32bit": {
-      "url": "https://dl-cdn.oray.com/sunlogin/windows/SunloginClient_13.1.1.54688.exe#/SunloginClient.exe",
-      "hash": "5a9102c05ea56fe46e9c82d7e0ee375ac08a7dddaa0ccf35d1ce8756922ff174",
+      "url": "https://dl-cdn.oray.com/sunlogin/windows/SunloginClient_12.5.1.44969.exe#/SunloginClient.exe",
+      "hash": "",
       "shortcuts": [
         [
           "SunloginClient.exe",
@@ -25,11 +25,10 @@
     }
   },
   "pre_install": [
-    "$null, $bucket = find_manifest($appName)",
-    "$bucketdir = Find-BucketDirectory($bucket)",
+    "$bucketdir = Find-BucketDirectory -Name $bucket",
     "",
     "",
-    "$EVAL_INST_PATH = \"$(current_dir $dir)\".Replace('/', '\\\\')",
+    "$EVAL_INST_PATH = if (get_config NO_JUNCTIONS) { $dir } else { \"$(appdir $app $global)\\current\".Replace('/', '\\') }",
     "$EVAL_INST_PATH = \"$dir\".Replace('/', '\\\\')",
     "$escdir = $EVAL_INST_PATH -replace \"\\\\\",\"\\\\\"",
     "(gc \"$bucketdir\\..\\scripts\\sunloginclient\\install-eval.reg.templ\") | % {$_ -replace \"%EVAL_INST_PATH%\",\"$escdir\"} | out-file -enc oem \"$dir\\install-eval.reg\"",
@@ -78,6 +77,5 @@
         "url": "https://dl-cdn.oray.com/sunlogin/windows/SunloginClient_$version.exe#/SunloginClient.exe"
       }
     }
-  },
-  "_from": "okibcn/ScoopMaster"
+  }
 }

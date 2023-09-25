@@ -1,5 +1,5 @@
 {
-  "version": "7.6.1",
+  "version": "7.5.0",
   "description": "Powerful and free office suite, a successor to OpenOffice(.org).",
   "homepage": "https://libreoffice.org/",
   "license": "MPL-2.0",
@@ -9,16 +9,16 @@
   "notes": "If you are upgrading from portable version, you can migrate settings by copying \"$persist_dir\\Data\" to \"%AppData%\\LibreOffice\"",
   "architecture": {
     "64bit": {
-      "url": "https://mirrors.bfsu.edu.cn/libreoffice/libreoffice/stable/7.6.1/win/x86_64/LibreOffice_7.6.1_Win_x86-64.msi#/dl.msi_",
-      "hash": "0f254e6a0a6bb5747ae0c0820a400ab39028d3f39a0807d0857f7715ee9c8c7d"
+      "url": "https://mirrors.bfsu.edu.cn/libreoffice/libreoffice/stable/7.5.0/win/x86_64/LibreOffice_7.5.0_Win_x86-64.msi#/dl.msi_",
+      "hash": "55f03c6be88287a787f58c7cc772bf4386839f95edf28828aabf5f12052c718c"
     },
     "32bit": {
-      "url": "https://mirrors.bfsu.edu.cn/libreoffice/libreoffice/stable/7.6.1/win/x86/LibreOffice_7.6.1_Win_x86.msi#/dl.msi_",
-      "hash": "5381a028471b2bd8f9df496ce2531b18388be338767af47e7d7be15be32a7258"
+      "url": "https://mirrors.bfsu.edu.cn/libreoffice/libreoffice/stable/7.5.0/win/x86/LibreOffice_7.5.0_Win_x86.msi#/dl.msi_",
+      "hash": "a4df606eb053c027d76a98f6935af6a5843a0814d8352f5b5e89f9f308308a09"
     },
     "arm64": {
-      "url": "https://mirrors.bfsu.edu.cn/libreoffice/libreoffice/stable/7.6.1/win/aarch64/LibreOffice_7.6.1_Win_aarch64.msi#/dl.msi_",
-      "hash": "679018bf5eaec1b1868c5fb3e5b6d4d798c276ce48a621dd476474a9190d9c80"
+      "url": "https://mirrors.bfsu.edu.cn/libreoffice/libreoffice/stable/7.5.0/win/aarch64/LibreOffice_7.5.0_Win_aarch64.msi#/dl.msi_",
+      "hash": "d72a5de4d6548a7f862e35b8cc5f07dde6632ce3a536387a469c4b90317b666e"
     }
   },
   "pre_install": [
@@ -69,8 +69,8 @@
     ]
   ],
   "checkver": {
-    "url": "https://zh-cn.libreoffice.org/download/libreoffice/",
-    "regex": "LibreOffice ([\\d.]+)"
+    "url": "https://mirrors.bfsu.edu.cn/libreoffice/libreoffice/stable/",
+    "regex": "([\\d.]+)/"
   },
   "autoupdate": {
     "architecture": {
@@ -83,6 +83,9 @@
       "arm64": {
         "url": "https://mirrors.bfsu.edu.cn/libreoffice/libreoffice/stable/$version/win/aarch64/LibreOffice_$version_Win_aarch64.msi#/dl.msi_"
       }
+    },
+    "hash": {
+      "url": "$url.sha256"
     }
   }
 }

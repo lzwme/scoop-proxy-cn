@@ -1,28 +1,35 @@
 {
-  "version": "2.9.24",
-  "description": "阿里云盘小白羊版 阿里云盘PC版 aliyundriver",
-  "homepage": "https://github.com/liupan1890/aliyunpan",
-  "license": "Unlicense",
-  "architecture": {
-    "64bit": {
-      "extract_dir": "阿里云盘小白羊版v2",
-      "url": "https://ghproxy.net/https://github.com/liupan1890/aliyunpan/releases/download/v2.9.24/Win.v2.9.24.7z",
-      "hash": "673cb559bc60f3d1e45b4cca22b3092f49649875ae983f2a58e38da4e6f3dfce"
-    }
+  "version": "2.1.7.650",
+  "description": "阿里云盘 绿色版",
+  "homepage": "https://www.jb51.net/softs/771868.html",
+  "depends": "sudo",
+  "url": "https://ghproxy.com/https://github.com/SayCV/gh-cdn-cvp/releases/download/v1.0.0/aliyunpan-v2.1.7.650-cvp.7z",
+  "hash": "d4377ff565253e354c6a1a492218f42e59d72a3f51680d2872faa19e06fb63b3",
+  "extract_dir": "",
+  "extract_to": "",
+  "installer": {
+    "script": "sudo cmd.exe /c \"$dir\\!)绿化处理.bat\""
   },
-  "bin": "阿里云盘小白羊版v2.exe",
-  "shortcuts": [
+  "uninstaller": {
+    "script": "sudo cmd.exe /c \"$dir\\!)卸载清除.bat\""
+  },
+  "#bin": [
     [
-      "阿里云盘小白羊版v2.exe",
-      "阿里云盘小白羊版"
+      "aDrive.exe",
+      "阿里云盘"
     ]
   ],
-  "checkver": "github",
+  "shortcuts": [
+    [
+      "aDrive.exe",
+      "阿里云盘"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/SayCV/gh-cdn-cvp/releases",
+    "regex": "aliyunpan-v([\\d.-]+)-cvp.7z"
+  },
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.net/https://github.com/liupan1890/aliyunpan/releases/download/v$version/Win.v$version.7z"
-      }
-    }
+    "url": "https://ghproxy.com/https://github.com/SayCV/gh-cdn-cvp/releases/download/v1.0.0/aliyunpan-v$version-cvp.7z"
   }
 }

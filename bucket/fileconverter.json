@@ -1,26 +1,36 @@
 {
+  "homepage": "https://file-converter.org/",
   "version": "1.2.3",
-  "description": "Gendloop's app",
-  "homepage": "https://github.com/gendloop/FileConverter",
-  "license": "LGPL-2.1-or-later",
+  "description": "Various file converter and compressor",
+  "license": "GPL-3.0-only",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.net/https://github.com/gendloop/FileConverter/releases/download/v1.2.3/FileConverter-1.2.3-win64.7z",
-      "hash": "320dc41a57712931956c705935776b14eaa11671175e1d8d7e95ada83120c3ce"
+      "url": "https://ghproxy.com/https://github.com/Tichau/FileConverter/releases/download/v1.2.3/FileConverter-1.2.3-x64-setup.msi",
+      "hash": "2410944075ed4f0bfd4740e9ee2fd17eae4922980937d738c42bed07ac130c32"
+    },
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/Tichau/FileConverter/releases/download/v1.2.3/FileConverter-1.2.3-x86-setup.msi",
+      "hash": "00bc76929bc173491f2107b97836c7cb18e0bd52917442cdc743a9c4fd00bf3f"
     }
   },
-  "installer": {
-    "script": [
-      "Push-Location \"$dir\"",
-      "Start-Process FileConverter-$version-win64.msi",
-      "Pop-Location"
+  "extract_dir": "File Converter",
+  "bin": "FileConverter.exe",
+  "shortcuts": [
+    [
+      "FileConverter.exe",
+      "File Converter"
     ]
+  ],
+  "checkver": {
+    "github": "https://github.com/Tichau/FileConverter"
   },
-  "checkver": "github",
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.net/https://github.com/gendloop/FileConverter/releases/download/v$version/FileConverter-$version-win64.7z"
+        "url": "https://ghproxy.com/https://github.com/Tichau/FileConverter/releases/download/v$version/FileConverter-$version-x64-setup.msi"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/Tichau/FileConverter/releases/download/v$version/FileConverter-$version-x86-setup.msi"
       }
     }
   }

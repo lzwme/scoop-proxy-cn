@@ -1,16 +1,19 @@
 {
-  "version": "3.6.0",
-  "description": "A free Japanese text editor for Windows.",
-  "homepage": "https://www.haijin-boys.com/wiki/",
-  "license": "zlib",
-  "url": "http://www.haijin-boys.com/download/MeryPortable-x64-3.6.0.zip",
-  "hash": "4312f1ac687690ee476d089950c50ff3daa7d553d4f3d9b0c7f37df1ee9c4400",
+  "homepage": "https://www.haijin-boys.com/",
+  "description": "Simple text editor",
+  "license": "Freeware",
+  "version": "3.3.2",
+  "architecture": {
+    "32bit": {
+      "url": "https://www.haijin-boys.com/download/Mery-3.3.2.zip",
+      "hash": "9bc856628051d1b25f94f3acc84c4d6633a368260b325f321476bfb3a2067857"
+    },
+    "64bit": {
+      "url": "https://www.haijin-boys.com/download/Mery-x64-3.3.2.zip",
+      "hash": "4c3b6ad8f4d71c12b72378e56a0dccc9df9045414011db621f84fce62e3d8302"
+    }
+  },
   "extract_dir": "Mery",
-  "pre_install": [
-    "$manifest.persist | ForEach-Object {",
-    "    if (-not (Test-Path \"$persist_dir\\$_\")) { New-Item \"$dir\\$_\" -ItemType file | Out-Null }",
-    "}"
-  ],
   "bin": "Mery.exe",
   "shortcuts": [
     [
@@ -20,13 +23,36 @@
   ],
   "persist": [
     "Mery.ini",
-    "Mery.his"
+    "Mery.his",
+    "Dicts",
+    "Ext",
+    "Macros",
+    "Plugins",
+    "migemo.dll",
+    "dict"
+  ],
+  "pre_install": [
+    "function CreateEmptyFile($name) {",
+    "    if (!(Test-Path \"$persist_dir\\$name\")) {",
+    "        New-Item -Path \"$dir\\$name\" -ItemType File | Out-Null",
+    "    }",
+    "}",
+    "CreateEmptyFile Mery.ini",
+    "CreateEmptyFile Mery.his",
+    "CreateEmptyFile migemo.dll"
   ],
   "checkver": {
     "url": "https://www.haijin-boys.com/software/mery",
-    "re": "Ver ([\\d.]+)"
+    "re": "Ver (?<version>[\\d.]+)"
   },
   "autoupdate": {
-    "url": "http://www.haijin-boys.com/download/MeryPortable-x64-$version.zip"
+    "architecture": {
+      "32bit": {
+        "url": "https://www.haijin-boys.com/download/Mery-$version.zip"
+      },
+      "64bit": {
+        "url": "https://www.haijin-boys.com/download/Mery-x64-$version.zip"
+      }
+    }
   }
 }

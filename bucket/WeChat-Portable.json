@@ -1,44 +1,29 @@
 {
-  "version": "3.6.0.18",
-  "description": "WeChat is more than a messaging and social media app - it is a lifestyle for over one billion users across the world.",
-  "homepage": "https://weixin.qq.com/",
-  "license": {
-    "identifier": "Proprietary",
-    "url": "https://weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=default"
-  },
-  "url": "https://dldir1.qq.com/weixin/Windows/WeChatSetup.exe#/dl.7z",
-  "hash": "039a9dea901301d057db147a9971a2c2a2dc45084049c62b9104a8e76d47d68f",
+  "version": "2.9.0.112",
+  "description": "Available for all kinds of platforms; enjoy group chat; support voice/photo/video and text messages.",
+  "homepage": "https://www.wechat.com/en",
+  "url": "https://list.nb.gl/OD_scoop/apt-cdn/WeChat/2.9.0.112/WeChat.7z",
+  "hash": "2ff6131d0a0ce702c719ea0e35d51ac65d02f4804371fcf3862acab6c9a20697",
+  "persist": "WeChatData",
   "pre_install": [
-    "info '[Portable Mode]: Copying user data...'",
-    "if (Test-Path \"$persist_dir\\User Data\\*\") {",
-    "    Copy-Item \"$persist_dir\\User Data\\*\" \"$env:AppData\\Tencent\\WeChat\\\" -Recurse -Force | Out-Null",
+    "$file = 'WeChatData'",
+    "if (!(Test-Path \"$persist_dir\\$file\")) {",
+    "   Write-Host 'File' $file 'does not exists. Creating.' -f Yellow",
+    "   New-Item -Path $dir\\WeChatData -ItemType Directory",
     "}"
   ],
-  "post_install": [
-    "Remove-Item \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
-    "Remove-Item \"$dir\\`$_15_\" -Force -Recurse",
-    "Remove-Item \"$dir\\`$R5\" -Force -Recurse"
-  ],
+  "post_install": "New-Item -Path $env:APPDATA\\Tencent\\WeChat -ItemType Junction -Value $dir\\WeChatData",
   "uninstaller": {
-    "script": [
-      "info '[Portable Mode]: Backing up user data...'",
-      "if (Test-Path \"$env:AppData\\Tencent\\WeChat\\*\") {",
-      "    Copy-Item \"$env:AppData\\Tencent\\WeChat\\*\" \"$persist_dir\\User Data\\\" -Recurse -Force | Out-Null",
-      "}"
-    ]
+    "script": "Remove-Item $env:APPDATA\\Tencent\\WeChat -Force -Recurse"
   },
-  "bin": "WeChat.exe",
   "shortcuts": [
     [
       "WeChat.exe",
-      "Tencent\\WeChat"
+      "WeChat"
     ]
   ],
   "checkver": {
-    "url": "https://baoku.360.cn/soft/show/appid/103595847",
-    "regex": "<dd>([\\d.]+)</dd>"
-  },
-  "autoupdate": {
-    "url": "https://dldir1.qq.com/weixin/Windows/WeChatSetup.exe#/dl.7z"
+    "url": "https://www.nocmd.com/477.html",
+    "regex": "v([\\d.]+)"
   }
 }

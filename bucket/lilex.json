@@ -1,11 +1,15 @@
 {
-  "version": "2.200",
-  "description": "Open source programming font",
-  "homepage": "https://github.com/mishamyrt/Lilex/",
+  "version": "1.100",
+  "description": "🤘Open source programming font",
   "license": "OFL-1.1",
-  "url": "https://ghproxy.net/https://github.com/mishamyrt/Lilex/releases/download/2.200/Lilex.zip",
-  "hash": "c4029f22577077f0e82c39af6f3513df5d621e4668f49e7cea9c514aba93a59a",
+  "homepage": "https://github.com/mishamyrt/Lilex",
+  "url": "https://ghproxy.com/https://github.com/mishamyrt/Lilex/releases/download/1.100/Lilex-1.100.zip",
+  "hash": "1570385aa6fd596d11971a3ab800a220f10a6e8fd1f3b164177561244495bb7d",
   "extract_dir": "ttf",
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://ghproxy.com/https://github.com/mishamyrt/Lilex/releases/download/$version/Lilex-$version.zip"
+  },
   "installer": {
     "script": [
       "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
@@ -82,12 +86,8 @@
       "    Remove-Item \"$fontInstallDir\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
       "}",
       "if ($cmd -eq \"uninstall\") {",
-      "    Write-Host \"The '$app' font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta",
+      "    Write-Host \"The '$app' Font family has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta",
       "}"
     ]
-  },
-  "checkver": "github",
-  "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/mishamyrt/Lilex/releases/download/$version/Lilex.zip"
   }
 }

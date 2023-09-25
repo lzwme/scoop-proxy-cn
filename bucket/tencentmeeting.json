@@ -1,29 +1,23 @@
 {
-  "version": "3.18.6",
-  "description": "Gendloop's app",
-  "homepage": "https://github.com/gendloop/TencentMeeting",
-  "license": "LGPL-2.1-or-later",
-  "architecture": {
-    "64bit": {
-      "url": "https://ghproxy.net/https://github.com/gendloop/TencentMeeting/archive/refs/tags/v3.18.6.zip",
-      "hash": "a42d9ed6609ac91d25c7644aa04fac3e96077dbd9fcd4cbeefed3d09ba27542c"
-    }
-  },
+  "version": "3.19.22.426",
+  "description": "腾讯会议是腾讯云旗下的一款音视频会议软件",
+  "homepage": "https://meeting.tencent.com",
+  "license": "BSD-3-Clause",
+  "url": "https://updatecdn.meeting.qq.com/cos/62d9d2eac2064aba3f9c53ebffadc2e3/TencentMeeting_0300000000_3.19.22.426.publish.officialwebsite.exe#/dl.7z",
   "installer": {
     "script": [
-      "Push-Location \"$dir\"",
-      "7z x TencentMeeting-$version\\dist\\TencentMeeting.7z.001",
-      "Remove-Item TencentMeeting-$version -Recurse",
-      "Start-Process TencentMeeting.exe",
-      "Pop-Location"
+      "Rename-Item \"$dir\\`$_10_\" \"$dir\\$version\"",
+      "Remove-Item \"$dir\\wemeetapp_new.exe\" -Force",
+      "Remove-Item \"$dir\\`$TEMP\", \"$dir\\`$WINDIR\", \"$dir\\`$PLUGINSDIR\" -Force -Recurse"
     ]
   },
-  "checkver": "github",
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.net/https://github.com/gendloop/TencentMeeting/archive/refs/tags/v$version.zip"
-      }
-    }
+  "shortcuts": [
+    [
+      "wemeetapp.exe",
+      "腾讯会议"
+    ]
+  ],
+  "ext": {
+    "url": "https://meeting.tencent.com/download/"
   }
 }

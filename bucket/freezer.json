@@ -1,22 +1,22 @@
 {
-  "version": "1.1.24",
-  "description": "Free HQ music streaming app",
-  "homepage": "https://freezer.life/",
-  "license": "Freeware",
-  "url": "https://files.freezer.life/0:/PC/1.1.24/Freezer 1.1.24.exe#/Freezer.exe",
-  "hash": "133a9736e3a55e2a390eea1e905c64c0ca8953055cd9203bbc011072179a8085",
-  "bin": "Freezer.exe",
+  "version": "1.1.23",
+  "description": "Free deezer client, music streaming app",
+  "homepage": "https://freezer.life",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://files.freezer.life/0:/PC/1.1.23/Freezer%201.1.23.exe#/dl.7z",
+      "hash": "f21b581387ed5727519ae3920cf2dcf96652796a777cee4680fc977b1a0d689c",
+      "pre_install": [
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+        "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall*\" -Force -Recurse"
+      ]
+    }
+  },
   "shortcuts": [
     [
       "Freezer.exe",
       "Freezer"
     ]
-  ],
-  "checkver": {
-    "url": "https://git.freezer.life/exttex/freezerpc/raw/branch/master/package.json",
-    "jp": "$.version"
-  },
-  "autoupdate": {
-    "url": "https://files.freezer.life/0:/PC/$version/Freezer $version.exe#/Freezer.exe"
-  }
+  ]
 }

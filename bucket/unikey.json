@@ -1,40 +1,42 @@
 {
-  "##": "This package is not in the official buckets because manual/reference written in English is not available.",
-  "version": "43RC4-180714",
-  "description": "Vietnamese keyboard / input method",
-  "homepage": "https://www.unikey.org/en",
-  "license": {
-    "identifier": "Freeware",
-    "url": "https://www.unikey.org/about.html"
-  },
+  "version": "4.6rc1",
+  "description": "Vietnamese keyboard",
+  "homepage": "https://unikey.org",
+  "license": "GPL-2.0-only",
   "architecture": {
     "64bit": {
-      "url": "https://www.unikey.org/assets/release/unikey43RC4-180714-win64.zip",
-      "hash": "4a6a06ea7c3d9ca9603a54050f010a63be48ea90c7a5299f6d18ec1789c40c23"
+      "url": "https://www.unikey.org/assets/release/unikey46RC1-230912-win64.zip",
+      "hash": "650de729708ab993f860cd83bf7498b6ca76d74151c8380a2c46a1df41a8ae2c"
     },
     "32bit": {
-      "url": "https://www.unikey.org/assets/release/unikey43RC4-180714-win32.zip",
-      "hash": "930d8792166ad216db22701f5b5f407076817784c5d8ba1e3ff5383f77efadb4"
+      "url": "https://www.unikey.org/assets/release/unikey46RC1-230912-win32.zip",
+      "hash": "c69033f005fa5b985570ddca7ced0748196e5a68ae1e226de7ca029319080272"
     }
   },
-  "shortcuts": [
-    [
-      "unikeyNT.exe",
-      "UniKey"
-    ]
-  ],
-  "persist": "keymap.txt",
   "checkver": {
-    "url": "https://www.unikey.org/assets/release",
-    "regex": "unikey([\\dA-Z-]+)-win64\\.zip"
+    "script": [
+      "$wc = New-Object Net.Webclient",
+      "$wc.Headers.Add('User-Agent', (Get-UserAgent))",
+      "$unikey_xml = [xml]([regex]::replace($wc.DownloadString('https://www.unikey.org/download.html'), '<(meta|link).*?>|<!--.*?-->', '', [Text.RegularExpressions.RegexOptions]::Singleline) -replace 'doctype', 'DOCTYPE' -replace '(async|itemscope|&copy;)', '')",
+      "$unikey_nsList = $unikey_xml.SelectNodes('//namespace::*[not(. = ../../namespace::*)]')",
+      "$unikey_nsmgr = New-Object System.Xml.XmlNamespaceManager($unikey_xml.NameTable)",
+      "$unikey_nsList | ForEach-Object { $unikey_nsmgr.AddNamespace($_.LocalName, $_.Value) }",
+      "$unikey_version = ($unikey_xml.SelectSingleNode('//section/h3[1]', $unikey_nsmgr).'#text' -replace '(UniKey| )', '').ToLower()",
+      "if (-not ($unikey_xml.SelectSingleNode('//section[1]/ul[1]/li[2]/a[@title=\"UniKey 64 bit\"]/@href', $nsmgr).'#text' -match '\\d+RC\\d+-\\d+')) {",
+      "   break",
+      "}",
+      "$unikey_dlVersion = $Matches[0]",
+      "Write-Output \"$unikey_version, $unikey_dlVersion\""
+    ],
+    "regex": "([\\drc.]+), (?<dl>[\\dRC\\-]+)"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://www.unikey.org/assets/release/unikey$version-win64.zip"
+        "url": "https://www.unikey.org/assets/release/unikey$matchDl-win64.zip"
       },
       "32bit": {
-        "url": "https://www.unikey.org/assets/release/unikey$version-win32.zip"
+        "url": "https://www.unikey.org/assets/release/unikey$matchDl-win32.zip"
       }
     }
   }

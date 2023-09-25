@@ -1,0 +1,32 @@
+{
+  "version": "0.107.38",
+  "description": "Network-wide ads & trackers blocking DNS server",
+  "homepage": "https://github.com/AdguardTeam/AdGuardHome",
+  "license": "GPL-3.0-or-later",
+  "extract_dir": "AdGuardHome",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.107.38/AdGuardHome_windows_amd64.zip",
+      "hash": "01df05d3c2d1001ac65af23793e37d193e694b1b983aac9f4f6026187bf2e0d7"
+    },
+    "32bit": {
+      "url": "https://ghproxy.com/https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.107.38/AdGuardHome_windows_386.zip",
+      "hash": "1806b7b9898bd36991bd615e30bcfe53e2a84950f19b3f21af3adfb429645d4e"
+    }
+  },
+  "bin": "AdGuardHome.exe",
+  "checkver": {
+    "github": "https://github.com/AdguardTeam/AdGuardHome"
+  },
+  "persist": "data",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/AdguardTeam/AdGuardHome/releases/download/v$version/AdGuardHome_windows_amd64.zip"
+      },
+      "32bit": {
+        "url": "https://ghproxy.com/https://github.com/AdguardTeam/AdGuardHome/releases/download/v$version/AdGuardHome_windows_386.zip"
+      }
+    }
+  }
+}

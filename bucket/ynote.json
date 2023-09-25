@@ -1,26 +1,19 @@
 {
+  "version": "nightly",
+  "description": "有道云笔记，专业强大的编辑器，支持5种文稿类型，随心所欲开启顺滑的创作编辑体验",
   "homepage": "https://note.youdao.com/",
-  "description": "有道云笔记",
-  "version": "6.10.1",
-  "license": "unknown",
-  "architecture": {
-    "64bit": {
-      "url": "http://download.ydstatic.com/notewebsite/downloads/YNote.exe#/dl.7z",
-      "hash": "5BD9AB33DB9F48AEEA2A171652C4918455D002BED1847D8ECB64C29E4E16C22E"
-    }
+  "license": {
+    "identifier": "https://note.youdao.com/license.html"
   },
-  "extract_dir": "",
-  "bin": "YoudaoNote.exe",
-  "notes": "备注",
+  "url": "https://artifact.lx.netease.com/download/ynote-electron/%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0.exe#/dl.7z",
+  "pre_install": [
+    "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+    "Remove-Item \"$dir\\`$*\", \"$dir\\Uninstall*\" -Recurse"
+  ],
   "shortcuts": [
     [
-      "YoudaoNote.exe",
-      "YNote",
+      "有道云笔记.exe",
       "有道云笔记"
     ]
-  ],
-  "checkver": "<span class=\"ynote-version\">V([\\d.]+)</span>",
-  "autoupdate": {
-    "url": "http://download.ydstatic.com/notewebsite/downloads/YNote.exe#/dl.7z"
-  }
+  ]
 }

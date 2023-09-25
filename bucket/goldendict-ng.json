@@ -1,44 +1,35 @@
 {
-  "version": "v23.09.10-WhiteDew.54c8bd56",
-  "description": "A feature-rich dictionary lookup program, supporting multiple dictionary formats (StarDict/Babylon/Lingvo/Dictd/AARD/MDict/SDict) and online dictionaries, featuring perfect article rendering with the complete markup, illustrations and other content retained, and allowing you to type in words without any accents or correct case.",
-  "license": "GPL-3.0-or-later",
-  "homepage": "https://github.com/xiaoyifang/goldendict",
-  "architecture": {
-    "64bit": {
-      "url": "https://ghproxy.net/https://github.com/xiaoyifang/goldendict-ng/releases/download/v23.09.10-WhiteDew.54c8bd56/6.5.2-GoldenDict.exe_windows-2019_20230910.zip",
-      "hash": "138f543cfb47953a4133f3e2d731f019736b222873e5250e3b4cf3de7b651e85",
-      "shortcuts": [
-        [
-          "GoldenDict.exe",
-          "GoldenDict"
-        ]
-      ]
-    }
-  },
-  "persist": [
-    "content",
-    "portable"
+  "version": "23.09.10",
+  "description": "A feature-rich dictionary lookup program",
+  "homepage": "https://github.com/xiaoyifang/goldendict-ng",
+  "license": "GPL-3.0-only",
+  "url": "https://ghproxy.com/https://github.com/xiaoyifang/goldendict-ng/releases/download/v23.09.10-WhiteDew.54c8bd56/6.5.2-GoldenDict-ng-Installer.exe##/dl.7z",
+  "hash": "d08f602510b2ea3a423a4b99e317b2f268dbd4e081c12149c3b282f6f571dc96",
+  "pre_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\[LICENSE].txt\", \"$dir\\*.nsi\", \"$dir\\uninstall.exe\" -Recurse",
+  "bin": [
+    [
+      "GoldenDict.exe",
+      "goldendict-ng.exe"
+    ]
   ],
-  "pre_install": [
-    "$unzip_dir = (Get-ChildItem -Path $original_dir -Directory)[0].FullName",
-    "Move-Item -Path \"${unzip_dir}\\*\" -Destination \"$original_dir\" -Force",
-    "Remove-Item –Path $unzip_dir -Recurse -Force"
+  "shortcuts": [
+    [
+      "GoldenDict.exe",
+      "GoldenDict-ng"
+    ]
+  ],
+  "persist": [
+    "portable",
+    "content"
   ],
   "checkver": {
-    "script": [
-      "$resp = Invoke-WebRequest -Uri 'https://api.github.com/repos/xiaoyifang/goldendict/releases/latest'",
-      "$json = $resp.Content | ConvertFrom-Json",
-      "$download_url = ($json.assets | Where-Object name -Match '^6.*_windows.*.zip$')[-1].browser_download_url",
-      "$version = $json.tag_name",
-      "Write-Output \"$version $download_url\""
-    ],
-    "regex": "(?<version>.+)\\s(?<url>.+)"
+    "url": "https://api.github.com/repos/xiaoyifang/goldendict-ng/releases/latest",
+    "jsonpath": "$...browser_download_url",
+    "regex": "download/v([\\d.]+)(-[\\w.]+)?/([\\d.]+)-GoldenDict-ng-Installer\\.exe",
+    "reverse": true,
+    "replace": "$1"
   },
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "$matchUrl"
-      }
-    }
+    "url": "https://ghproxy.com/https://github.com/xiaoyifang/goldendict-ng/releases/download/v$match1$match2/$match3-GoldenDict-ng-Installer.exe##/dl.7z"
   }
 }

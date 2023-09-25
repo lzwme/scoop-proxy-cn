@@ -1,24 +1,26 @@
 {
+  "description": "The fastest and most interactive terminal based UI application for tracking cryptocurrencies.",
+  "homepage": "https://cointop.sh/",
   "version": "1.4.6",
-  "homepage": "https://github.com/miguelmota/cointop/",
+  "license": "Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/miguelmota/cointop/releases/download/1.4.6/cointop_1.4.6_windows_amd64.tar.gz",
+      "hash": "4229c1516721af5447f3b42f7e0968ef535b259c28dcb1d042ce7b75ae900635"
+    }
+  },
+  "bin": "cointop.exe",
   "checkver": {
-    "github": "https://github.com/miguelmota/cointop/"
+    "github": "https://github.com/miguelmota/cointop"
   },
-  "url": "https://ghproxy.net/https://github.com/miguelmota/cointop/releases/download/1.4.6/cointop_1.4.6_windows_amd64.tar.gz",
-  "hash": "4229c1516721af5447f3b42f7e0968ef535b259c28dcb1d042ce7b75ae900635",
   "autoupdate": {
-    "note": "Thanks for using autoupdate, please test your updates!",
-    "url": "https://ghproxy.net/https://github.com/miguelmota/cointop/releases/download/$version/cointop_$version_windows_amd64.tar.gz"
-  },
-  "installer": {
-    "script": "New-Item -ItemType Directory -Force -Path $dir\\data\\"
-  },
-  "persist": "data",
-  "bin": [
-    [
-      "cointop.exe",
-      "cointop",
-      "--config=\"$dir/data/config\""
-    ]
-  ]
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/miguelmota/cointop/releases/download/$version/cointop_$version_windows_amd64.tar.gz",
+        "hash": {
+          "url": "$baseurl/cointop_$version_checksums.txt"
+        }
+      }
+    }
+  }
 }

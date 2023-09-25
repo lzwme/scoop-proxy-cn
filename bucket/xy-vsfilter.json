@@ -1,25 +1,34 @@
 {
   "homepage": "https://github.com/pinterf/xy-VSFilter/",
   "description": "High Quality Subtitle Rendering",
-  "version": "3.2.0.808",
+  "version": "3.2.0.802",
   "license": "GPL-2.0",
   "depends": "sudo",
-  "url": "https://ghproxy.net/https://github.com/pinterf/xy-VSFilter/releases/download/3.2.0.808/xyVSFilterSubFilter-pfmod-3.2.0.808.7z",
-  "hash": "e37c62373dd9e5d4f1b56991501902b3520dc08ec7e83da9592c4c713fe64603",
+  "url": "https://ghproxy.com/https://github.com/pinterf/xy-VSFilter/releases/download/3.2.0.802/xyVSFilterSubFilter-pfmod-3.2.0.802.7z",
+  "hash": "4c598b050d3cefdd8f7ebed1b6ff96ddaaa3af8d4dba29a2dc414277a30ef5de",
   "architecture": {
     "64bit": {
       "extract_dir": "x64"
+    },
+    "32bit": {
+      "extract_dir": "x86"
     }
   },
-  "post_install": "Start-Process \"$dir\\Install_XySubFilter.bat\"",
+  "pre_install": [
+    "ForEach($file in Get-ChildItem $dir\\ -Filter Install_*.bat) {(Get-Content $dir\\$file) | ForEach-Object {$_ -replace \"regsvr32.exe Xy\",\"regsvr32.exe /s Xy\"} | Out-File -Encoding oem $dir\\$file}",
+    "ForEach($file in Get-ChildItem $dir\\ -Filter Uninstall_*.bat) {(Get-Content $dir\\$file) | ForEach-Object {$_ -replace \"regsvr32.exe /u Xy\",\"regsvr32.exe /u /s Xy\"} | Out-File -Encoding oem $dir\\$file}"
+  ],
+  "installer": {
+    "script": "sudo \"$dir\\Install_XySubFilter.bat\""
+  },
   "uninstaller": {
-    "script": "Start-Process \"$dir\\Uninstall_XySubFilter.bat\""
+    "script": "sudo \"$dir\\Uninstall_XySubFilter.bat\""
   },
   "checkver": {
     "github": "https://github.com/pinterf/xy-VSFilter/"
   },
   "autoupdate": {
-    "url": "https://ghproxy.net/https://github.com/pinterf/xy-VSFilter/releases/download/$version/xyVSFilterSubFilter-pfmod-$version.7z",
+    "url": "https://ghproxy.com/https://github.com/pinterf/xy-VSFilter/releases/download/$version/xyVSFilterSubFilter-pfmod-$version.7z",
     "hash": {
       "url": "$baseurl/SHA2-256SUMS"
     }

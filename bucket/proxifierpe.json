@@ -1,28 +1,40 @@
 {
-  "version": "4.11",
-  "description": "Allows network applications that do not support working through proxy servers to operate through a SOCKS or HTTPS proxy and chains.",
-  "homepage": "https://www.proxifier.com/",
+  "version": "4.05",
+  "description": "Proxifier allows network applications that do not support working through proxy servers to operate through a SOCKS or HTTPS proxy and chains.",
+  "homepage": "https://www.proxifier.com",
   "license": {
     "identifier": "Shareware",
-    "url": "https://www.proxifier.com/docs/win-v4/eula.html"
+    "url": "https://www.proxifier.com/docs/win-v3/eula.htm"
   },
   "url": "https://www.proxifier.com/download/ProxifierPE.zip",
-  "hash": "6bade77f0157d5f3d80711ba4e4c031ffb66bc5fded3ad27b522a9dc88aaa7a0",
+  "hash": "68e1b13bbe2a1de32c41a2db53999b9207ee7dbdc042e19cabd83cab5ef785a6",
   "extract_dir": "Proxifier PE",
-  "pre_install": "if (!(Test-Path \"$persist_dir\\Settings.ini\")) { Set-Content \"$dir\\Settings.ini\" '[Settings]', 'UpdateCheck=0' -Encoding Ascii }",
+  "bin": "Proxifier.exe",
+  "pre_install": [
+    "Remove-Item \"$dir\\`$*\" -Force -Recurse",
+    "$CONT = @(",
+    "    '[License]'",
+    "    'Owner=zzz'",
+    "    'Key=L6Z8A-XY2J4-BTZ3P-ZZ7DF-A2Q9C'",
+    ")",
+    "    # Set Configs for all executables",
+    "foreach ($f in @('Settings.ini')) {",
+    "    if (-not (Test-Path \"$persist_dir\\$f\")) {",
+    "        Write-Host 'File' $f 'does not exists. Creating' -f Yellow",
+    "        Set-Content \"$dir\\$f\" $CONT -Encoding Ascii",
+    "    }",
+    "}"
+  ],
   "shortcuts": [
     [
       "Proxifier.exe",
-      "Proxifier"
+      "Proxifier PE"
     ]
   ],
-  "persist": [
-    "Profiles",
-    "Settings.ini"
-  ],
+  "persist": "Profiles",
   "checkver": {
     "url": "https://www.proxifier.com/changelog/",
-    "regex": "changelog-version\">Version ([\\d].+)<\\/div>"
+    "re": "Version (\\d+.\\d+)"
   },
   "autoupdate": {
     "url": "https://www.proxifier.com/download/ProxifierPE.zip"

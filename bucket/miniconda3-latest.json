@@ -1,21 +1,13 @@
 {
-  "version": "4.9.2",
-  "description": "A cross-platform, Python-agnostic binary package manager.",
+  "version": "latest",
   "homepage": "https://conda.io/miniconda.html",
   "license": "BSD-3-Clause",
-  "notes": [
-    "Currently conda envs activate and deactivate doesn't work on PowerShell,",
-    "for more information, see: https://github.com/conda/conda/issues/626,",
-    "or just execute: 'conda install -n root -c pscondaenvs pscondaenvs'"
-  ],
   "architecture": {
     "64bit": {
-      "url": "https://repo.anaconda.com/miniconda/Miniconda3-py38_4.9.2-Windows-x86_64.exe",
-      "hash": "md5:6f7e4c725a07b128da25df68ffd32003"
+      "url": "https://repo.continuum.io/miniconda/Miniconda3-latest-Windows-x86_64.exe"
     },
     "32bit": {
-      "url": "https://repo.anaconda.com/miniconda/Miniconda3-py38_4.9.2-Windows-x86.exe",
-      "hash": "md5:4027035b04f66b2cab30d26683e333ed"
+      "url": "https://repo.continuum.io/miniconda/Miniconda3-latest-Windows-x86.exe"
     }
   },
   "installer": {
@@ -40,27 +32,15 @@
       "python3"
     ]
   ],
+  "persist": "envs",
   "env_add_path": [
     "scripts",
-    "Library\\bin"
+    "Library/bin"
   ],
-  "persist": "envs",
-  "checkver": {
-    "url": "https://repo.continuum.io/miniconda",
-    "regex": "Miniconda3-([\\d.]+)-Windows"
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://repo.continuum.io/miniconda/Miniconda3-$version-Windows-x86_64.exe"
-      },
-      "32bit": {
-        "url": "https://repo.continuum.io/miniconda/Miniconda3-$version-Windows-x86.exe"
-      }
-    },
-    "hash": {
-      "url": "$baseurl",
-      "regex": "(?sm)$basename.*?<td>$md5</td>"
-    }
-  }
+  "notes": [
+    "The version of this package is \"latest\" to prevent updates.",
+    "Currently conda envs activate and deactivate doesn't work on PowerShell,",
+    "for more information, see: https://github.com/conda/conda/issues/626,",
+    "or just execute: 'conda install -n root -c pscondaenvs pscondaenvs'"
+  ]
 }
