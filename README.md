@@ -62,6 +62,7 @@ scoop install scoop-search -s
 - [ScoopInstaller/Versions](https://github.com/ScoopInstaller/Versions)
 - [ScoopInstaller/Nirsoft](https://github.com/ScoopInstaller/Nirsoft)
 - [ScoopInstaller/Nonportable](https://github.com/ScoopInstaller/Nonportable)
+- [renxia/scoop-bucket](https://github.com/renxia/scoop-bucket)
 - [xfqwdsj/BucketDev](https://github.com/xfqwdsj/BucketDev)
 - [scoopcn/scoopcn](https://github.com/scoopcn/scoopcn)
 - [rasa/scoops](https://github.com/rasa/scoops)
@@ -113,7 +114,6 @@ scoop install scoop-search -s
 - [Qv2ray/mochi](https://github.com/Qv2ray/mochi)
 - [Homeland-Community/scoop](https://github.com/Homeland-Community/scoop)
 - [jingyu9575/scoop-jingyu9575](https://github.com/jingyu9575/scoop-jingyu9575)
-- [echoiron/echo-scoop](https://github.com/echoiron/echo-scoop)
 - [couleur-tweak-tips/utils](https://github.com/couleur-tweak-tips/utils)
 - [wangzq/scoop-bucket](https://github.com/wangzq/scoop-bucket)
 - [jonz94/scoop-sarasa-nerd-fonts](https://github.com/jonz94/scoop-sarasa-nerd-fonts)
@@ -124,7 +124,6 @@ scoop install scoop-search -s
 - [DoveBoy/Apps](https://github.com/DoveBoy/Apps)
 - [Velgus/Scoop-Portapps](https://github.com/Velgus/Scoop-Portapps)
 - [starise/Scoop-Gaming](https://github.com/starise/Scoop-Gaming)
-- [rivy/scoop-bucket](https://github.com/rivy/scoop-bucket)
 - [mo-san/scoop-bucket](https://github.com/mo-san/scoop-bucket)
 - [brian6932/dank-scoop](https://github.com/brian6932/dank-scoop)
 - [AkariiinMKII/Scoop4kariiin](https://github.com/AkariiinMKII/Scoop4kariiin)
@@ -140,6 +139,7 @@ scoop install scoop-search -s
 - [hulucc/bucket](https://github.com/hulucc/bucket)
 - [TheLastZombie/scoop-bucket](https://github.com/TheLastZombie/scoop-bucket)
 - [Deide/deide-bucket](https://github.com/Deide/deide-bucket)
+- [echoiron/echo-scoop](https://github.com/echoiron/echo-scoop)
 - [tetradice/scoop-iyokan-jp](https://github.com/tetradice/scoop-iyokan-jp)
 
 ## 声明
