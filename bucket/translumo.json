@@ -1,0 +1,41 @@
+{
+  "version": "2023-08-14",
+  "description": "Advanced real-time screen translator for games, hardcoded subtitles in videos, static text and etc.",
+  "homepage": "https://github.com/Danily07/Translumo",
+  "license": {
+    "identifier": "Apache-2.0 license",
+    "url": "https://github.com/Danily07/Translumo/blob/master/LICENSE"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/Tohrusky/Final2x/releases/download/2023-08-14/Final2x-windows-x64-setup.exe#/dl.7z",
+      "hash": "3937df95aaea9ba54f3afd881122a9c7f14e7aac7ac6e19a441c49bf25a192f2"
+    }
+  },
+  "installer": {
+    "script": [
+      "ensure \"$persist_dir\" | Out-Null",
+      "New-Item \"$env:APPDATA\\Translumo\" -ItemType Junction -Target \"$persist_dir\" | Out-Null"
+    ]
+  },
+  "uninstaller": {
+    "script": "Remove-Item \"$env:APPDATA\\Translumo\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
+  },
+  "shortcuts": [
+    [
+      "Translumo.exe",
+      "Translumo"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/Danily07/Translumo/releases.atom",
+    "regex": "/releases/tag/v.([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/Danily07/Translumo/releases/download/v.$version/Translumo-v.$version.zip"
+      }
+    }
+  }
+}
