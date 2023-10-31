@@ -1,11 +1,11 @@
 {
-  "version": "4.003",
-  "description": "Mi Sans 字体笔型平直有力，设计更加简约，减少视觉负担，更有利于屏幕显示，供全社会免费商用",
-  "homepage": "https://hyperos.mi.com/font",
+  "version": "1.000",
+  "description": "(L3 扩展字体，以支持GB 18030-2022 所收录的生僻字) Mi Sans 字体笔型平直有力，设计更加简约，减少视觉负担，更有利于屏幕显示，供全社会免费商用",
+  "homepage": "https://hyperos.mi.com/font/rare-word",
   "license": "Freeware",
-  "url": "https://hyperos.mi.com/font-download/MiSans.zip",
-  "extract_dir": "MiSans\\ttf",
-  "hash": "8fb800d83691e152e48ed0eb255c91e15ebbdb93104bbff02a75cad26fbce9cb",
+  "url": "https://hyperos.mi.com/font-download/MiSans_L3.zip",
+  "extract_dir": "MiSans L3",
+  "hash": "467fe0171ec9ea21d925aba9c032b1a775a3e756c458f075e7a2ee57568b0c79",
   "installer": {
     "script": [
       "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
@@ -44,7 +44,7 @@
       "    Remove-ItemProperty -Path $registryKey -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Force -ErrorAction SilentlyContinue",
       "    Remove-Item \"$fontInstallDir\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
       "}",
-      "Write-Host \"Font family 'MiSans' has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
+      "Write-Host \"Font family 'MiSans L3' has been uninstalled and will not be present after restarting your computer.\" -Foreground Magenta"
     ]
   }
 }
