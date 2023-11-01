@@ -7,7 +7,7 @@
   "architecture": {
     "64bit": {
       "url": "https://ghproxy.com/https://github.com/XTLS/Xray-core/releases/download/v1.8.4/Xray-windows-64.zip",
-      "hash": "9F6225E2B818C12660001D550FB323ACC25F4CE146489582ACED40C206785D87"
+      "hash": "9f6225e2b818c12660001d550fb323acc25f4ce146489582aced40c206785d87"
     }
   },
   "checkver": {
@@ -22,5 +22,7 @@
       }
     }
   },
+  "pre_install": "if (!(Test-Path \"$persist_dir\\$config.json\")) { New-Item \"$dir\\config.json\" }",
+  "persist": "config.json",
   "bin": "xray.exe"
 }
