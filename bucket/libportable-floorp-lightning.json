@@ -1,12 +1,12 @@
 {
   "version": "11.5.1",
-  "description": "(libportable patched) A new privacy-preserving Firefox-based browser developedby a community of students in Japan.",
+  "description": "(libportable patched Lightning version) A new privacy-preserving Firefox-based browser developedby a community of students in Japan.",
   "homepage": "https://floorp.app/en/",
   "license": "MPL-2.0",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.com/https://github.com/Floorp-Projects/Floorp/releases/download/v11.5.1/floorp-win64.installer.exe#/dl.7z",
-      "hash": "0742a9a7dd84715308f3527eab30f4fbea08652c817a99b801e5403413611cbe"
+      "url": "https://ghproxy.com/https://github.com/Floorp-Projects/Floorp/releases/download/v11.5.1-lightning/floorp-win64.installer.exe#/dl.7z",
+      "hash": "59fd4696d2c848c2b568dc9ad34e54b0f4f77b61e1423decf80f24ca983de155"
     }
   },
   "depends": "lemon/libportable",
@@ -21,11 +21,14 @@
     "  ((Get-Content -path \"$dir\\core\\portable.ini\" -Raw) -replace 'Update=1','Update=0') | Set-Content -Path \"$dir\\core\\portable.ini\"",
     "}"
   ],
-  "bin": "core\\floorp.exe",
+  "bin": [
+    "core\\floorp.exe",
+    "floorp-lightning"
+  ],
   "shortcuts": [
     [
       "core\\floorp.exe",
-      "Floorp"
+      "Floorp Lightning"
     ]
   ],
   "persist": [
@@ -39,7 +42,7 @@
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.com/https://github.com/Floorp-Projects/Floorp/releases/download/v$version/floorp-win64.installer.exe#/dl.7z"
+        "url": "https://ghproxy.com/https://github.com/Floorp-Projects/Floorp/releases/download/v$version-lightning/floorp-win64.installer.exe#/dl.7z"
       }
     }
   }
