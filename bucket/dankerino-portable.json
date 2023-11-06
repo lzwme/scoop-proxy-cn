@@ -9,8 +9,8 @@
       "hash": "1e6ddd08574b06718032ba1b1f8f67bfeb06c3683eb3059e28a1ed8f6d1af980",
       "extract_dir": "Chatterino2",
       "pre_install": [
-        "Get-ChildItem \"$dir\\chatterino.exe\" | Rename-Item -NewName { $_.name.Replace('chatterino', 'dankerino-portable') }",
-        "$modes = \"$dir\\modes\"",
+        "Get-ChildItem \"$dir/chatterino.exe\" | Rename-Item -NewName { $_.name.Replace('chatterino', 'dankerino-portable') }",
+        "$modes = \"$dir/modes\"",
         "$PSDefaultParameterValues['Out-File:Encoding'] = 'utf8'",
         "Invoke-Expression \"'portable' >$(if (Test-Path $modes) { '>' }) `$modes\""
       ]
