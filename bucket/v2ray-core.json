@@ -22,5 +22,7 @@
       }
     }
   },
+  "pre_install": "if (!(Test-Path \"$persist_dir\\$config.json\")) { New-Item \"$dir\\config.json\" }",
+  "persist": "config.json",
   "bin": "v2ray.exe"
 }

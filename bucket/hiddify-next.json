@@ -6,19 +6,24 @@
   "notes": "",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.com/https://github.com/hiddify/hiddify-next/releases/download/v0.10.0/hiddify-windows-x64-setup.zip",
-      "hash": "90d068f26b9798634230f8aa24e40b1589eff69c10c291298da71480ad962adb"
+      "url": "https://ghproxy.com/https://github.com/hiddify/hiddify-next/releases/download/v0.10.0/hiddify-windows-x64-portable.zip",
+      "hash": "1EC409CB8377D20F67DC5721EBF4EF4F6901B0B1525AAB1F782B78686A767A7A"
     }
   },
   "checkver": "github",
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.com/https://github.com/hiddify/hiddify-next/releases/download/v$version/hiddify-windows-x64-setup.zip"
+        "url": "https://ghproxy.com/https://github.com/hiddify/hiddify-next/releases/download/v$version/hiddify-windows-x64-portable.zip"
       }
     }
   },
-  "installer": {
-    "file": "setup.exe"
-  }
+  "extract_dir": "HiddifyNext-portable",
+  "bin": "HiddifyNext.exe",
+  "shortcuts": [
+    [
+      "HiddifyNext.exe",
+      "HiddifyNext"
+    ]
+  ]
 }
