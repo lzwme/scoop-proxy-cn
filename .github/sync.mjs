@@ -96,7 +96,7 @@ async function syncDir(src, dest, repo = '') {
         content = content.replace(/(https:\/\/nodejs\.org\/dist\/)/gim, 'https://registry.npmmirror.com/-/binary/node/');
       } else if (content.includes('github.com') || content.includes('githubusercontent.com')) {
         if (!CONFIG.ghproxy.startsWith('https://ghproxy.com')) {
-          content = content.replaceAll('https://ghproxy.com', 'https://ghproxy.net');
+          content = content.replaceAll('https://ghproxy.com', 'https://gh-proxy.com');
         }
 
         content = content

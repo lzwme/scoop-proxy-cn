@@ -1,11 +1,11 @@
 # 🍡 Scoop-proxy-cn
 
-适合中国大陆用户使用的 [Scoop](https://scoop.sh) buckets 代理镜像库。从多个开源 `bucket` 仓库同步更新，并将从 `github release` 下载的应用地址修改为基于 `ghporxy.com` 的代理下载地址。
+适合中国大陆用户使用的 [Scoop](https://scoop.sh) buckets 代理镜像库。从多个开源 `bucket` 仓库同步更新，并将从 `github release` 下载的应用地址修改为基于 `ghproxy.com` 的代理下载地址。
 
 ## Usage
 
 ```powershell
-scoop bucket add spc https://ghproxy.com/github.com/lzwme/scoop-proxy-cn
+scoop bucket add spc https://gh-proxy.com/github.com/lzwme/scoop-proxy-cn
 
 # install apps
 scoop install spc/<app_name>
@@ -20,13 +20,13 @@ scoop install spc/<app_name>
 # install
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 # irm -useb get.scoop.sh | iex
-irm https://ghproxy.com/raw.githubusercontent.com/lzwme/scoop-proxy-cn/master/install.ps1 | iex
+irm https://gh-proxy.com/raw.githubusercontent.com/lzwme/scoop-proxy-cn/master/install.ps1 | iex
 
 # config
-scoop config SCOOP_REPO https://ghproxy.com/github.com/ScoopInstaller/Scoop
+scoop config SCOOP_REPO https://gh-proxy.com/github.com/ScoopInstaller/Scoop
 scoop bucket rm main
-scoop bucket add main https://ghproxy.com/github.com/ScoopInstaller/Main
-scoop bucket add spc https://ghproxy.com/github.com/lzwme/scoop-proxy-cn
+scoop bucket add main https://gh-proxy.com/github.com/ScoopInstaller/Main
+scoop bucket add spc https://gh-proxy.com/github.com/lzwme/scoop-proxy-cn
 
 # show help
 scoop help
@@ -51,6 +51,15 @@ scoop-search act
 
 ```bash
 scoop install scoop-search -s
+```
+
+### 关于代理站 `ghproxy.com` 失效的问题
+
+此情况下站点无法继续更新。请执行如下命令以重新添加：
+
+```bash
+scoop bucket rm spc
+scoop bucket add spc https://gh-proxy.com/github.com/lzwme/scoop-proxy-cn
 ```
 
 ## Sync Buckets From
