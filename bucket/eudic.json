@@ -1,18 +1,9 @@
 {
-  "description": "权威的英语词典软件，英语学习者必备的工具",
   "homepage": "https://www.eudic.net/",
-  "version": "2023-10-24",
-  "license": "Freeware",
-  "architecture": {
-    "64bit": {
-      "url": "https://static.frdic.com/pkg/eudic_win.zip",
-      "hash": "80660cea0b3bf77ad108f6545aa4e080c8ff3e41e2b710188ac48593d8743990"
-    },
-    "32bit": {
-      "url": "https://static.frdic.com/pkg/eudic_win32.zip",
-      "hash": "9168b5776c66e8e84664c5c61cd922bb22f2a30051b32a25c999b19289b80113"
-    }
-  },
+  "version": "2023-11-07",
+  "license": "freeware",
+  "url": "http://static.frdic.com/pkg/eudic_win.zip",
+  "hash": "87624fae0dd66863733a9770e56875e9ee6f8f99918c43f4a7d596454ce6ce4d",
   "installer": {
     "script": [
       "Expand-7ZipArchive \"$dir\\eudic_win.exe\" \"$dir\\\" -Removal",
@@ -20,7 +11,6 @@
       "Remove-Item \"$dir\\uninst.exe.nsis\",\"$dir\\`$PLUGINSDIR\"  -Force -Recurse"
     ]
   },
-  "bin": "eudic.exe",
   "shortcuts": [
     [
       "eudic.exe",
@@ -32,13 +22,6 @@
     "regex": "<a href=\"https://www.eudic.net/download/eudic_win.zip\\?v=([\\d-]+)\""
   },
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://static.frdic.com/pkg/eudic_win.zip"
-      },
-      "32bit": {
-        "url": "https://static.frdic.com/pkg/eudic_win32.zip"
-      }
-    }
+    "url": "http://static.frdic.com/pkg/eudic_win.zip"
   }
 }

@@ -1,26 +1,38 @@
 {
-  "homepage": "https://github.com/2dust/clashN",
-  "description": "A clash client for Windows, support clash core and Clash.Meta core",
   "version": "2.17",
+  "description": "A clash client for Windows, support clash core and Clash.Meta core.",
+  "homepage": "https://github.com/2dust/clashN",
   "license": "GPL-3.0-only",
-  "url": "https://ghproxy.com/https://github.com/2dust/clashN/releases/download/2.17/clashN.zip",
-  "hash": "c02933d1967383e3951e73c25360af084ea85da5803dc33cfed90d198db02d18",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghproxy.com/https://github.com/2dust/clashN/releases/download/2.17/clashN.zip",
+      "hash": "c02933d1967383e3951e73c25360af084ea85da5803dc33cfed90d198db02d18"
+    }
+  },
   "suggest": {
-    "Microsoft .NET Desktop Runtime": "extras/windowsdesktop-runtime-lts"
+    "dotnet-runtime": "windowsdesktop-runtime"
   },
   "extract_dir": "clashN",
+  "persist": [
+    "guiConfigs",
+    "guiBackups",
+    "guiLogs"
+  ],
   "shortcuts": [
     [
       "clashN.exe",
       "clashN"
     ]
   ],
-  "persist": [
-    "data",
-    "guiConfigs"
-  ],
-  "checkver": "github",
+  "checkver": {
+    "url": "https://github.com/2dust/clashN/releases/latest",
+    "regex": "/releases/tag/([\\d.]+)"
+  },
   "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/2dust/clashN/releases/download/$version/clashN.zip"
+    "architecture": {
+      "64bit": {
+        "url": "https://ghproxy.com/https://github.com/2dust/clashN/releases/download/$version/clashN.zip"
+      }
+    }
   }
 }
