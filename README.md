@@ -58,6 +58,10 @@ scoop install scoop-search -s
 此情况下站点无法继续更新。请执行如下命令以重新添加：
 
 ```bash
+# 更新 scoop repo
+scoop config scoop_repo  https://gh-proxy.com/github.com/ScoopInstaller/Scoop.git
+
+# 移除并重新添加 spc bucket
 scoop bucket rm spc
 scoop bucket add spc https://gh-proxy.com/github.com/lzwme/scoop-proxy-cn
 ```
