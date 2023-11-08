@@ -1,9 +1,9 @@
 {
-  "version": "3.2.10",
+  "homepage": "http://zyplayer.fun/",
   "description": "跨平台视频资源播放器, 简洁免费无广告",
-  "homepage": "https://github.com/Hiram-Wong/ZyPlayer",
-  "url": "https://ghproxy.com/https://github.com/Hiram-Wong/ZyPlayer/releases/download/v3.2.10/ZYPlayer-win-3.2.10-x64.exe#/dl.7z",
-  "hash": "a161e3962c7ab2fb146c87a51cc7f3b5f1bf73ed1d57af51265ec5118fc55d4e",
+  "version": "2.8.8",
+  "url": "https://gh-proxy.com/https://github.com/Hunlongyu/ZY-Player/releases/download/v2.8.8/ZY-Player-Setup-2.8.8.exe#/dl.7z",
+  "hash": "sha512:9d8427c82e448a2c1f2e98a2a460bcbeaee4ef6343f8a3e81024854d18f4cd23f51bb994ff5ae1dec3d8b4dea7d84ee4fa75f71dc85e675e3e7a361e8b5c265c",
   "installer": {
     "script": [
       "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
@@ -11,15 +11,19 @@
     ]
   },
   "checkver": {
-    "github": "https://github.com/Hiram-Wong/ZyPlayer"
+    "github": "https://github.com/Hunlongyu/ZY-Player"
   },
   "autoupdate": {
-    "url": "https://ghproxy.com/https://github.com/Hiram-Wong/ZyPlayer/releases/download/v$version/ZYPlayer-win-$version-x64.exe#/dl.7z"
+    "url": "https://gh-proxy.com/https://github.com/Hunlongyu/ZY-Player/releases/download/v$version/ZY-Player-Setup-$version.exe#/dl.7z",
+    "hash": {
+      "url": "https://gh-proxy.com/https://github.com/Hunlongyu/ZY-Player/releases/download/v$version/latest.yml",
+      "regex": "sha512: $base64"
+    }
   },
   "shortcuts": [
     [
-      "ZYPlayer.exe",
-      "ZyPlayer"
+      "ZY Player.exe",
+      "ZY Player"
     ]
   ]
 }
