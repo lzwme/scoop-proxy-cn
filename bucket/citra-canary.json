@@ -1,18 +1,14 @@
 {
-  "version": "2696",
+  "version": "2696-20231125",
   "description": "Nintendo 3DS emulator",
   "homepage": "https://citra-emu.org/",
   "license": {
-    "url": "https://github.com/citra-emu/citra-canary/blob/master/license.txt",
-    "identifier": "GPL-2.0-only"
+    "identifier": "GPL-2.0",
+    "url": "https://github.com/citra-emu/citra-canary/blob/master/license.txt"
   },
-  "architecture": {
-    "64bit": {
-      "url": "https://gh-proxy.com/https://github.com/citra-emu/citra-canary/releases/download/canary-2696/citra-windows-msvc-20231125-6b34ac0.7z",
-      "hash": "c408a05aa943b485dd7b3c66edc9a660d05c8713aac4dd6482a238fc6c78e8fc"
-    }
-  },
-  "extract_dir": "canary-msvc",
+  "url": "https://mirror.ghproxy.com/https://github.com/citra-emu/citra-canary/releases/download/canary-2696/citra-windows-msvc-20231125-6b34ac0.7z",
+  "hash": "c408a05aa943b485dd7b3c66edc9a660d05c8713aac4dd6482a238fc6c78e8fc",
+  "extract_dir": "canary",
   "pre_install": [
     "if (!(Test-Path \"$persist_dir\\user\")) {",
     "   New-Item -Path \"$persist_dir\" -Name \"user\" -ItemType \"directory\" | Out-Null",
@@ -24,27 +20,32 @@
     "}"
   ],
   "bin": [
-    "citra.exe",
-    "citra-qt.exe",
-    "citra-room.exe"
+    [
+      "citra.exe",
+      "citra-canary"
+    ],
+    [
+      "citra-qt.exe",
+      "citra-qt-canary"
+    ],
+    [
+      "citra-room.exe",
+      "citra-room-canary"
+    ]
   ],
   "shortcuts": [
     [
       "citra-qt.exe",
-      "Citra (canary)"
+      "Nintendo 3DS [3ds][citra] (canary)"
     ]
   ],
   "persist": "user",
   "checkver": {
     "github": "https://github.com/citra-emu/citra-canary",
-    "regex": "releases/download/canary-([\\d]+)/citra-windows-(?<env>[\\w]+)-(?<commit>[\\d]{8}-[\\da-f]{7})\\.(?<zip>7z|zip)"
+    "regex": "download/canary-(?<build>[\\d]+)/citra-windows-(?<env>[\\w]+)-(?<date>[\\d]{8})-(?<commit>[\\da-f]{7})\\.(?<zip>7z|zip)",
+    "replace": "${build}-${date}"
   },
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://gh-proxy.com/https://github.com/citra-emu/citra-canary/releases/download/canary-$version/citra-windows-$matchEnv-$matchCommit.$matchZip"
-      }
-    },
-    "extract_dir": "canary-$matchEnv"
+    "url": "https://mirror.ghproxy.com/https://github.com/citra-emu/citra-canary/releases/download/canary-$matchBuild/citra-windows-$matchEnv-$matchDate-$matchCommit.$matchZip"
   }
 }
