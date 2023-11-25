@@ -98,6 +98,9 @@ async function syncDir(src, dest, repo = '') {
         if (!CONFIG.ghproxy.startsWith('https://ghproxy.com')) {
           content = content.replaceAll('https://ghproxy.com', 'https://gh-proxy.com');
         }
+        CONFIG.ghproxyInvalid.forEach(url => {
+          if (content.includes(url)) content = content.replaceAll(url, CONFIG.ghproxy);
+        });
 
         content = content
           .replace(/(https:\/\/github\.com.+\/releases\/download\/)/gim, `${CONFIG.ghproxy}/$1`)
