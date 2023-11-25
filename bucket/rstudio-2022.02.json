@@ -1,12 +1,12 @@
 {
-  "version": "2022.02.5+503",
+  "version": "2022.02.4+500",
   "homepage": "https://www.rstudio.com/",
   "description": "An IDE for R, which includes a console, syntax-highlighting editor that supports direct code execution, as well as tools for plotting, history, debugging and workspace management.",
   "license": "AGPL-3.0-only",
   "architecture": {
     "64bit": {
-      "url": "https://s3.amazonaws.com/rstudio-ide-build/desktop/windows/RStudio-2022.02.5-503.zip",
-      "hash": "8616b5299a5aae7d4b35892dbdc08e47489820dcb50ad2b2c9fd4587c38422dc"
+      "url": "https://s3.amazonaws.com/rstudio-ide-build/desktop/windows/RStudio-2022.02.4-500.zip",
+      "hash": "0a09a6b53ff0165f1c5b6f14f2bafae564bcd929d2c979135931fe5e98d7ef3e"
     }
   },
   "bin": [
@@ -26,5 +26,17 @@
     "jsonpath": ".desktop.platforms['windows-xcopy'].version",
     "regex": "(?<date>[\\d.]+)(?<type>-(daily|preview))?\\+(?<build>\\d+)",
     "replace": "${date}${type}+${build}"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://s3.amazonaws.com/rstudio-ide-build/desktop/windows/RStudio-$matchDate$matchType-$matchBuild.zip",
+        "hash": {
+          "mode": "json",
+          "jsonpath": ".desktop.platforms['windows-xcopy'].sha256",
+          "url": "https://dailies.rstudio.com/rstudio/prairie-trillium/index.json"
+        }
+      }
+    }
   }
 }
