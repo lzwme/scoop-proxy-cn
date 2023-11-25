@@ -5,7 +5,7 @@
 ## Usage
 
 ```powershell
-scoop bucket add spc https://gh-proxy.com/github.com/lzwme/scoop-proxy-cn
+scoop bucket add spc https://miroor.ghproxy.com/github.com/lzwme/scoop-proxy-cn
 
 # install apps
 scoop install spc/<app_name>
@@ -20,13 +20,13 @@ scoop install spc/<app_name>
 # install
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 # irm -useb get.scoop.sh | iex
-irm https://gh-proxy.com/raw.githubusercontent.com/lzwme/scoop-proxy-cn/master/install.ps1 | iex
+irm https://miroor.ghproxy.com/raw.githubusercontent.com/lzwme/scoop-proxy-cn/master/install.ps1 | iex
 
 # config
-scoop config SCOOP_REPO https://gh-proxy.com/github.com/ScoopInstaller/Scoop
+scoop config SCOOP_REPO https://miroor.ghproxy.com/github.com/ScoopInstaller/Scoop
 scoop bucket rm main
-scoop bucket add main https://gh-proxy.com/github.com/ScoopInstaller/Main
-scoop bucket add spc https://gh-proxy.com/github.com/lzwme/scoop-proxy-cn
+scoop bucket add main https://miroor.ghproxy.com/github.com/ScoopInstaller/Main
+scoop bucket add spc https://miroor.ghproxy.com/github.com/lzwme/scoop-proxy-cn
 
 # show help
 scoop help
@@ -59,11 +59,11 @@ scoop install scoop-search -s
 
 ```bash
 # 更新 scoop repo
-scoop config scoop_repo  https://gh-proxy.com/github.com/ScoopInstaller/Scoop.git
+scoop config scoop_repo  https://mirror.ghproxy.com/github.com/ScoopInstaller/Scoop.git
 
 # 移除并重新添加 spc bucket
 scoop bucket rm spc
-scoop bucket add spc https://gh-proxy.com/github.com/lzwme/scoop-proxy-cn
+scoop bucket add spc https://mirror.ghproxy.com/github.com/lzwme/scoop-proxy-cn
 ```
 
 ## Sync Buckets From
