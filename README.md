@@ -5,7 +5,7 @@
 ## Usage
 
 ```powershell
-scoop bucket add spc https://miroor.ghproxy.com/github.com/lzwme/scoop-proxy-cn
+scoop bucket add spc https://mirror.ghproxy.com/github.com/lzwme/scoop-proxy-cn
 
 # install apps
 scoop install spc/<app_name>
@@ -20,13 +20,13 @@ scoop install spc/<app_name>
 # install
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 # irm -useb get.scoop.sh | iex
-irm https://miroor.ghproxy.com/raw.githubusercontent.com/lzwme/scoop-proxy-cn/master/install.ps1 | iex
+irm https://mirror.ghproxy.com/raw.githubusercontent.com/lzwme/scoop-proxy-cn/master/install.ps1 | iex
 
 # config
-scoop config SCOOP_REPO https://miroor.ghproxy.com/github.com/ScoopInstaller/Scoop
+scoop config SCOOP_REPO https://mirror.ghproxy.com/github.com/ScoopInstaller/Scoop
 scoop bucket rm main
-scoop bucket add main https://miroor.ghproxy.com/github.com/ScoopInstaller/Main
-scoop bucket add spc https://miroor.ghproxy.com/github.com/lzwme/scoop-proxy-cn
+scoop bucket add main https://mirror.ghproxy.com/github.com/ScoopInstaller/Main
+scoop bucket add spc https://mirror.ghproxy.com/github.com/lzwme/scoop-proxy-cn
 
 # show help
 scoop help
