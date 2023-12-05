@@ -13,8 +13,18 @@
       "hash": "1ee6099109ff5b1bf165233a47f1f19029953da67fdd5ed613828d3b6e24e158"
     }
   },
-  "pre_install": "'README.md', 'LICENSE' | ForEach-Object { Remove-Item \"$dir/$_\" }",
-  "bin": "twitch-hls-client.exe",
+  "pre_install": [
+    "'README.md', 'LICENSE' | ForEach-Object { Remove-Item \"$dir/$_\" }",
+    "$null = if (!(Test-Path \"$persist_dir$($cfg = '/config')\")) { New-Item \"$dir$cfg\" }"
+  ],
+  "bin": [
+    [
+      "twitch-hls-client.exe",
+      "twitch-hls-client",
+      "-c \"$dir\\config\""
+    ]
+  ],
+  "persist": "config",
   "checkver": "github",
   "autoupdate": {
     "architecture": {

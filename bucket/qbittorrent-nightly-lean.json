@@ -1,5 +1,5 @@
 {
-  "version": "7042627907",
+  "version": "7091631525",
   "description": "Free and reliable P2P Bittorent client.",
   "homepage": "https://github.com/qbittorrent/qBittorrent",
   "license": {
@@ -9,7 +9,7 @@
   "architecture": {
     "64bit": {
       "url": "https://nightly.link/qbittorrent/qBittorrent/workflows/ci_windows.yaml/master/qBittorrent-CI_Windows-x64_libtorrent-2.0.9.zip",
-      "hash": "f8a794c9ae112df0c0f7cd0850b9d83643d0621893a6b3c30eaa0da86307be3c",
+      "hash": "cbb3bd874adf01a4d285b6b32be4c476808866c92ce490a7ed610fe35a36bed6",
       "extract_dir": "qBittorrent"
     }
   },
@@ -22,17 +22,17 @@
     "        Write-Host 'Both portable and non-portable qBittorrent profile exist.' -ForegroundColor Yellow",
     "        Write-Host 'Scoop will prioritize and import the non-portable one.' -ForegroundColor Yellow",
     "    }",
-    "    New-Item \"$persist_dir/profile\" -ItemType Directory | Out-Null",
+    "    $null = New-Item \"$persist_dir/profile\" -ItemType Directory",
     "    if (Test-Path \"$env:APPDATA/qBittorrent\") {",
     "        Write-Host 'Copying non-portable profile''s config and data to Scoop persist directory...' -ForegroundColor Yellow",
-    "        Copy-Item \"$env:APPDATA/qBittorrent\" \"$persist_dir/profile/qBittorrent/config\" -Recurse | Out-Null",
-    "        Copy-Item \"$env:LOCALAPPDATA/qBittorrent\" \"$persist_dir/profile/qBittorrent/data\" -Recurse | Out-Null",
+    "        $null = Copy-Item \"$env:APPDATA/qBittorrent\" \"$persist_dir/profile/qBittorrent/config\" -Recurse",
+    "        $null = Copy-Item \"$env:LOCALAPPDATA/qBittorrent\" \"$persist_dir/profile/qBittorrent/data\" -Recurse",
     "    } else {",
     "        Write-Host 'Copying portable profile's config and data to Scoop persist directory...' -ForegroundColor Yellow",
     "        Write-Host 'If you haven't setup an absolute download path before torrenting, please manually migrate affected torrents, as they use relative path by default for storaging.' -ForegroundColor Yellow",
     "        Write-Host 'Or you can move them to an absolute download path in qbittorrent-portable and cleanly (re)install qbittorrent to let migration script to take care of them.' -ForegroundColor Yellow",
-    "        Copy-Item \"$persist_dir/../qbittorrent-portable/profile/qBittorrent/config\" \"$persist_dir/profile/qBittorrent/config\" -Recurse | Out-Null",
-    "        Copy-Item \"$persist_dir/../qbittorrent-portable/profile/qBittorrent/data\" \"$persist_dir/profile/qBittorrent/data\" -Recurse | Out-Null",
+    "        $null = Copy-Item \"$persist_dir/../qbittorrent-portable/profile/qBittorrent/config\" \"$persist_dir/profile/qBittorrent/config\" -Recurse",
+    "        $null = Copy-Item \"$persist_dir/../qbittorrent-portable/profile/qBittorrent/data\" \"$persist_dir/profile/qBittorrent/data\" -Recurse",
     "    }",
     "}"
   ],
