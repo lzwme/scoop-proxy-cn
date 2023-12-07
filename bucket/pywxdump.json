@@ -1,5 +1,5 @@
 {
-  "version": "2.2.17",
+  "version": "2.3.2",
   "description": "获取微信账号信息(昵称/账号/手机/邮箱/数据库密钥/wxid)；PC微信数据库读取、解密脚本；聊天记录查看工具；聊天记录导出为html(包含语音图片)。支持多账户信息获取，支持所有微信版本。",
   "homepage": "https://github.com/xaoyaoo/PyWxDump",
   "license": {
@@ -8,19 +8,19 @@
   },
   "architecture": {
     "64bit": {
-      "url": "https://mirror.ghproxy.com/https://github.com/xaoyaoo/PyWxDump/releases/download/v2.2.17/pywxdump.exe",
-      "hash": "0c5cc1524e9e9aaf5e3a65a09fdad4617f47fa1eecba7b11a6eb4866ec224e9d"
+      "url": "https://mirror.ghproxy.com/https://github.com/xaoyaoo/PyWxDump/releases/download/v2.3.2/wxdump.exe",
+      "hash": "a294e899254c5b82e7b0c559d310b08a75d88d174459c8ead8b4905a4f933af0"
     }
   },
   "bin": "pywxdump.exe",
   "checkver": {
     "url": "https://api.github.com/repos/xaoyaoo/PyWxDump/releases",
-    "regex": "/releases/tag/v([\\d.]+)"
+    "regex": "(?sm)browser_download_url.*?/releases/download/v([\\d.]+)/(?<file>(?:py)?wxdump\\.exe)"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://mirror.ghproxy.com/https://github.com/xaoyaoo/PyWxDump/releases/download/v$version/pywxdump.exe"
+        "url": "https://mirror.ghproxy.com/https://github.com/xaoyaoo/PyWxDump/releases/download/v$version/$matchFile"
       }
     }
   }
