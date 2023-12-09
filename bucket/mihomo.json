@@ -1,11 +1,8 @@
 {
   "version": "1.17.0",
   "description": "A simple Python Pydantic model for Honkai: Star Rail parsed data from the Mihomo API.",
-  "homepage": "https://wiki.metacubex.one/",
-  "license": {
-    "identifier": "MIT license",
-    "url": "https://github.com/MetaCubeX/mihomo/blob/main/LICENSE"
-  },
+  "homepage": "https://github.com/MetaCubeX/mihomo",
+  "license": "GPL-3.0-or-later",
   "architecture": {
     "64bit": {
       "url": "https://mirror.ghproxy.com/https://github.com/MetaCubeX/mihomo/releases/download/v1.17.0/mihomo-windows-amd64-v1.17.0.zip",
@@ -14,10 +11,6 @@
     "32bit": {
       "url": "https://mirror.ghproxy.com/https://github.com/MetaCubeX/mihomo/releases/download/v1.17.0/mihomo-windows-386-v1.17.0.zip",
       "hash": "5c6b584c252106838e38e5aef9ba256b290b60fbe71828966c3f3129c48b4162"
-    },
-    "arm32": {
-      "url": "https://mirror.ghproxy.com/https://github.com/MetaCubeX/mihomo/releases/download/v1.17.0/mihomo-windows-arm32v7-v1.17.0.zip",
-      "hash": "4e2a689708a38ecb5c224d39d220a813b2c4fa74a7d563d48742d8fa56fbce8e"
     },
     "arm64": {
       "url": "https://mirror.ghproxy.com/https://github.com/MetaCubeX/mihomo/releases/download/v1.17.0/mihomo-windows-arm64-v1.17.0.zip",
@@ -29,13 +22,10 @@
     "mihomo.exe",
     [
       "mihomo.exe",
-      "mihomo"
+      "clash"
     ]
   ],
-  "checkver": {
-    "url": "https://api.github.com/repos/MetaCubeX/mihomo/releases/latest",
-    "regex": "/releases/tag/v([\\d.]+)"
-  },
+  "checkver": "github",
   "autoupdate": {
     "architecture": {
       "64bit": {
@@ -43,9 +33,6 @@
       },
       "32bit": {
         "url": "https://mirror.ghproxy.com/https://github.com/MetaCubeX/mihomo/releases/download/v$version/mihomo-windows-386-v$version.zip"
-      },
-      "arm32": {
-        "url": "https://mirror.ghproxy.com/https://github.com/MetaCubeX/mihomo/releases/download/v$version/mihomo-windows-arm32v7-v$version.zip"
       },
       "arm64": {
         "url": "https://mirror.ghproxy.com/https://github.com/MetaCubeX/mihomo/releases/download/v$version/mihomo-windows-arm64-v$version.zip"
