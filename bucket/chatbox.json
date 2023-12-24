@@ -1,47 +1,34 @@
 {
-  "version": "1.2.1",
-  "description": "A desktop app for ChatGPT API (OpenAI API) that supports Windows, Mac & Linux. 开源的 ChatGPT 桌面应用，prompt 开发神器，全平台支持",
+  "version": "1.2.2",
+  "description": "A desktop app for GPT/LLM that supports Windows, Mac, Linux & Web Online",
   "homepage": "https://github.com/Bin-Huang/chatbox",
-  "license": {
-    "identifier": "GPL-3.0 license",
-    "url": "https://github.com/Bin-Huang/chatbox/blob/main/LICENSE"
-  },
-  "url": "https://mirror.ghproxy.com/https://github.com/Bin-Huang/chatbox/releases/download/v1.2.1/Chatbox-1.2.1-Setup.exe#/dl.7z",
-  "hash": "5188f7ca1db1b0d699ced7090b55aa468386b3a576d21261ff00557d1665c5f2",
+  "license": "GPL-3.0-only",
   "architecture": {
     "64bit": {
-      "pre_install": [
-        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
-        "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$R0\" -Force -Recurse"
-      ]
-    },
-    "arm64": {
-      "pre_install": [
-        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-arm64.7z\" \"$dir\"",
-        "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$R0\" -Force -Recurse"
-      ]
+      "url": "https://mirror.ghproxy.com/https://github.com/Bin-Huang/chatbox/releases/download/v1.2.2/Chatbox-1.2.2-Setup.exe#/dl.7z",
+      "hash": "sha512:4e65e4be9ee880d6341326ebc37d15cc92fbaaadaea6d3d326a6ae45fbdb6d9a93080c8ff493d36164234b307bd4d5ed12bf00ad991bf49a582e74ad16281791"
     }
   },
-  "installer": {
-    "script": [
-      "ensure \"$persist_dir\" | Out-Null",
-      "New-Item \"$env:APPDATA\\xyz.chatboxapp.app\" -ItemType Junction -Target \"$persist_dir\" | Out-Null"
-    ]
-  },
-  "uninstaller": {
-    "script": "Remove-Item \"$env:APPDATA\\xyz.chatboxapp.app\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
-  },
+  "pre_install": [
+    "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\" -Removal",
+    "Remove-Item \"$dir\\`$*\" -Recurse"
+  ],
   "shortcuts": [
     [
-      "Chatbox.exe",
-      "Chatbox"
+      "chatbox.exe",
+      "ChatBox"
     ]
   ],
-  "checkver": {
-    "url": "https://api.github.com/repos/Bin-Huang/chatbox/releases",
-    "regex": "/releases/tag/v([\\d.]+)"
-  },
+  "checkver": "github",
   "autoupdate": {
-    "url": "https://mirror.ghproxy.com/https://github.com/Bin-Huang/chatbox/releases/download/v$version/Chatbox-$version-Setup.exe#/dl.7z"
+    "architecture": {
+      "64bit": {
+        "url": "https://mirror.ghproxy.com/https://github.com/Bin-Huang/chatbox/releases/download/v$version/Chatbox-$version-Setup.exe#/dl.7z"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/latest.yml",
+      "regex": "$basename\\s+sha512:\\s+$base64"
+    }
   }
 }
