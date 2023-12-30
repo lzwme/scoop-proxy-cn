@@ -1,22 +1,30 @@
 {
-  "version": "6.31",
-  "description": "GUI client based for v2ray-core and xray-core.",
+  "version": "6.32",
+  "description": "A V2Ray client for Windows, support Xray core and v2fly core.",
   "homepage": "https://github.com/2dust/v2rayN",
-  "license": "GPL-3.0-only",
-  "architecture": {
-    "64bit": {
-      "url": "https://mirror.ghproxy.com/https://github.com/2dust/v2rayN/releases/download/6.31/v2rayN-With-Core.zip",
-      "hash": "376cca17560e6f655da25917320f56fa307f4749d4ac4ad7946819bff6b79e9c"
-    }
+  "license": {
+    "identifier": "GPL-3.0-only",
+    "url": "https://github.com/2dust/v2rayN/raw/master/LICENSE"
   },
+  "url": "https://mirror.ghproxy.com/https://github.com/2dust/v2rayN/releases/download/6.32/v2rayN-With-Core.zip",
+  "hash": "2b508cc3289bd842726b9df271461e23b0e63f84d2b4c9e54ab6ee323fa82c92",
   "extract_dir": "v2rayN-With-Core",
   "pre_install": [
-    "foreach ($name in @('guiNConfig.json', 'user-wininet.json')) {",
-    "    if (!(Test-Path \"$persist_dir\\$name\")) {",
-    "        New-Item -Force -Path \"$dir\" -Name $name | Out-Null",
-    "    }",
+    "if (!(Test-Path \"$persist_dir\\user-wininet.json\")) {",
+    "    New-Item -Path \"$dir\\user-wininet.json\" | Out-Null",
+    "}",
+    "if (Test-Path \"$persist_dir\\guiNConfig.json\") {",
+    "    Copy-Item \"$persist_dir\\guiNConfig.json\" \"$dir\\\" | Out-Null",
     "}"
   ],
+  "uninstaller": {
+    "script": [
+      "if (Test-Path \"$dir\\guiNConfig.json\") {",
+      "    ensure \"$persist_dir\" | Out-Null",
+      "    Copy-Item \"$dir\\guiNConfig.json\" \"$persist_dir\\\" | Out-Null",
+      "}"
+    ]
+  },
   "bin": "v2rayN.exe",
   "shortcuts": [
     [
@@ -25,16 +33,15 @@
     ]
   ],
   "persist": [
-    "user-wininet.json",
     "config.json",
-    "guiNConfig.json"
+    "user-wininet.json",
+    "guiConfigs"
   ],
-  "checkver": "github",
+  "checkver": {
+    "url": "https://api.github.com/repos/2dust/v2rayN/releases?per_page=1",
+    "jsonpath": "$[0].tag_name"
+  },
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://mirror.ghproxy.com/https://github.com/2dust/v2rayN/releases/download/$version/v2rayN-With-Core.zip"
-      }
-    }
+    "url": "https://mirror.ghproxy.com/https://github.com/2dust/v2rayN/releases/download/$version/v2rayN-With-Core.zip"
   }
 }
