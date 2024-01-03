@@ -1,44 +1,41 @@
 {
-  "homepage": "https://pot.pylogmon.com/",
+  "homepage": "https://pot-app.com/",
   "description": "A cross-platform translation software",
-  "version": "2.7.3",
   "license": "GPL-3.0-only",
+  "version": "2.7.3",
   "architecture": {
     "64bit": {
-      "url": "https://mirror.ghproxy.com/https://github.com/pot-app/pot-desktop/releases/download/2.7.3/pot_2.7.3_x64-setup.exe#dl.7z",
+      "url": "https://mirror.ghproxy.com/https://github.com/pot-app/pot-desktop/releases/download/2.7.3/pot_2.7.3_x64-setup.exe#/dl.7z",
       "hash": "4a851d076efa401235e9f8742756c63059c570e43d9a27324dd1e60fb9583063"
     },
     "32bit": {
-      "url": "https://mirror.ghproxy.com/https://github.com/pot-app/pot-desktop/releases/download/2.7.3/pot_2.7.3_x86-setup.exe#dl.7z",
+      "url": "https://mirror.ghproxy.com/https://github.com/pot-app/pot-desktop/releases/download/2.7.3/pot_2.7.3_x86-setup.exe#/dl.7z",
       "hash": "78e3a4e580bceee892196899544b2ed370ff56bf289694eb3ee6aabfc06c7a85"
-    },
-    "arm64": {
-      "url": "https://mirror.ghproxy.com/https://github.com/pot-app/pot-desktop/releases/download/2.7.3/pot_2.7.3_arm64-setup.exe#dl.7z",
-      "hash": "faf21ef98ec1f5d2c2d348091165c2ead46971c845c3fc7b8cd4dec68472a95f"
     }
   },
-  "pre_install": "Remove-Item \"$dir\\`$*\", \"$dir\\uninst*\", \"$dir\\redist*\" -Recurse",
-  "pre_uninstall": "Stop-Process -Name 'pot' -ErrorAction SilentlyContinue | Out-Null",
+  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
   "shortcuts": [
     [
       "pot.exe",
-      "pot"
+      "Pot"
     ]
   ],
+  "persist": "config.toml",
   "checkver": {
     "github": "https://github.com/pot-app/pot-desktop"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://mirror.ghproxy.com/https://github.com/pot-app/pot-desktop/releases/download/$version/pot_$version_x64-setup.exe#dl.7z"
+        "url": "https://mirror.ghproxy.com/https://github.com/pot-app/pot-desktop/releases/download/$version/pot_$version_x64-setup.exe#/dl.7z"
       },
       "32bit": {
-        "url": "https://mirror.ghproxy.com/https://github.com/pot-app/pot-desktop/releases/download/$version/pot_$version_x86-setup.exe#dl.7z"
-      },
-      "arm64": {
-        "url": "https://mirror.ghproxy.com/https://github.com/pot-app/pot-desktop/releases/download/$version/pot_$version_arm64-setup.exe#dl.7z"
+        "url": "https://mirror.ghproxy.com/https://github.com/pot-app/pot-desktop/releases/download/$version/pot_$version_x86-setup.exe#/dl.7z"
       }
     }
-  }
+  },
+  "notes": [
+    "You may need to install Edge WebView2 Runtime to use Pot.",
+    "A installer of Edge WebView2 Runtime is available under the 'redist' folder of the Pot installation directory."
+  ]
 }
