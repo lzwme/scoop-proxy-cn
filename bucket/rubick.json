@@ -1,21 +1,22 @@
 {
-  "version": "3.2.1",
-  "description": "Electron based open source toolbox, free integration of rich plug-ins.",
-  "homepage": "https://rubick.vip/",
+  "version": "4.2.1",
+  "description": "Electron based open source toolbox, free integration of rich plug-ins. 基于 electron 的开源工具箱，自由集成丰富插件。",
+  "homepage": "https://rubickcenter.github.io",
   "license": "MIT",
+  "notes": "https://github.com/ViCrack/scoop-bucket/blob/master/bucket/rubick.json",
   "architecture": {
     "64bit": {
-      "url": "https://mirror.ghproxy.com/https://github.com/rubickCenter/rubick/releases/download/v3.2.1/rubick2-Setup-3.2.1.exe#/dl.7z",
-      "hash": "1f60afe34809af26fce738df0486681abed70eb548edd06dae3993c2cd092a68",
+      "url": "https://mirror.ghproxy.com/https://github.com/rubickCenter/rubick/releases/download/v4.2.1/rubick-Setup-4.2.1-x64.exe#/dl.7z",
+      "hash": "0abf70b7efd8c855c270bcecc237809ba48b08c22f582f17bf33fb5c7f55d1b1",
       "pre_install": [
         "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
-        "Remove-Item \"$dir\\`$*\" -Force -Recurse"
+        "Remove-Item \"$dir\\`$*\", \"$dir\\Uninstall*\" -Force -Recurse"
       ]
     }
   },
   "shortcuts": [
     [
-      "rubick2.exe",
+      "rubick.exe",
       "Rubick"
     ]
   ],
@@ -25,7 +26,7 @@
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://mirror.ghproxy.com/https://github.com/rubickCenter/rubick/releases/download/v$version/rubick2-Setup-$version.exe#/dl.7z"
+        "url": "https://mirror.ghproxy.com/https://github.com/rubickCenter/rubick/releases/download/v$version/rubick-Setup-$version-x64.exe#/dl.7z"
       }
     }
   }
