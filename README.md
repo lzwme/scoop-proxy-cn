@@ -24,9 +24,11 @@ irm https://mirror.ghproxy.com/raw.githubusercontent.com/lzwme/scoop-proxy-cn/ma
 
 # config
 scoop config SCOOP_REPO https://mirror.ghproxy.com/github.com/ScoopInstaller/Scoop
-scoop bucket rm main
-scoop bucket add main https://mirror.ghproxy.com/github.com/ScoopInstaller/Main
 scoop bucket add spc https://mirror.ghproxy.com/github.com/lzwme/scoop-proxy-cn
+
+# 可选
+scoop bucket rm main
+# scoop bucket add main https://mirror.ghproxy.com/github.com/ScoopInstaller/Main
 
 # show help
 scoop help
