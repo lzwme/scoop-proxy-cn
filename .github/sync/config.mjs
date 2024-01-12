@@ -27,7 +27,7 @@ export const CONFIG = {
     `ScoopInstaller/Nirsoft`,
     `ScoopInstaller/Nonportable`,
     `renxia/scoop-bucket`,
-    `xfqwdsj/BucketDev`, // Android SDK DEV...
+    // `xfqwdsj/BucketDev`, // Android SDK DEV...
     `scoopcn/scoopcn`, // 大多是国内应用程序
     `rasa/scoops`,
     `amorphobia/siku`,
