@@ -78,7 +78,6 @@ scoop bucket add spc https://mirror.ghproxy.com/github.com/lzwme/scoop-proxy-cn
 - [ScoopInstaller/Nirsoft](https://github.com/ScoopInstaller/Nirsoft)
 - [ScoopInstaller/Nonportable](https://github.com/ScoopInstaller/Nonportable)
 - [renxia/scoop-bucket](https://github.com/renxia/scoop-bucket)
-- [xfqwdsj/BucketDev](https://github.com/xfqwdsj/BucketDev)
 - [scoopcn/scoopcn](https://github.com/scoopcn/scoopcn)
 - [rasa/scoops](https://github.com/rasa/scoops)
 - [amorphobia/siku](https://github.com/amorphobia/siku)

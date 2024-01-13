@@ -1,22 +1,21 @@
 {
-  "version": "1.6.0-rc1",
-  "description": "An open-source infrastructure as code tool.",
-  "homepage": "https://opentofu.org",
-  "license": "MIT",
+  "version": "1.6.0",
+  "description": "An OSS tool for building, changing, and versioning infrastructure safely and efficiently. OpenTofu can manage existing and popular service providers as well as custom in-house solutions.",
+  "homepage": "https://opentofu.org/",
+  "license": "MPL-2.0",
   "architecture": {
     "64bit": {
-      "url": "https://mirror.ghproxy.com/https://github.com/opentofu/opentofu/releases/download/v1.6.0-rc1/tofu_1.6.0-rc1_windows_amd64.zip",
-      "hash": "af3f7c7ef93ff8123ac2da13c816d18c490ea069e91d2af0fcc23cc5a10ee293"
+      "url": "https://mirror.ghproxy.com/https://github.com/opentofu/opentofu/releases/download/v1.6.0/tofu_1.6.0_windows_amd64.zip",
+      "hash": "9fcd60bdecd6b335392a4dddd850dd1872a3ba1091f77079eee3730fe43d3650"
     },
     "32bit": {
-      "url": "https://mirror.ghproxy.com/https://github.com/opentofu/opentofu/releases/download/v1.6.0-rc1/tofu_1.6.0-rc1_windows_386.zip",
-      "hash": "372822981dac85f4506cf26ec59f880e0c169508c11a6a25bf9632314d98bd60"
+      "url": "https://mirror.ghproxy.com/https://github.com/opentofu/opentofu/releases/download/v1.6.0/tofu_1.6.0_windows_386.zip",
+      "hash": "aad5a2de06a0af4f5348f975e9326994123663283a7f6ff7a0615044fed44bd3"
     }
   },
   "bin": "tofu.exe",
   "checkver": {
-    "url": "https://github.com/opentofu/opentofu/releases/latest",
-    "regex": "/opentofu/tree/v([^/]+?)\""
+    "github": "https://github.com/opentofu/opentofu"
   },
   "autoupdate": {
     "architecture": {
@@ -28,7 +27,7 @@
       }
     },
     "hash": {
-      "url": "$baseurl/tofu_$version_SHA256SUMS"
+      "url": "$baseurl/tofu_1.6.0_SHA256SUMS"
     }
   }
 }
