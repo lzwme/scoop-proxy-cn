@@ -1,13 +1,25 @@
 {
-  "version": "v0.0.2-alpha",
+  "version": "0.0.5-alpha",
   "description": "Patched for Warp to work in iran.",
   "homepage": "https://github.com/uoosef/wireguard-go",
   "license": "MIT",
   "notes": "",
   "architecture": {
     "64bit": {
-      "url": "https://mirror.ghproxy.com/https://github.com/uoosef/wireguard-go/releases/download/v0.0.2-alpha/warp-windows-amd64.02bb9b.zip",
-      "hash": "5D36015E2C013FA516F8E4F53C5834AE8D210867BA0215CC7AF63C29DAAD27EE"
+      "url": "https://mirror.ghproxy.com/https://github.com/uoosef/wireguard-go/releases/download/v0.0.5-alpha/warp-windows-amd64.1f4818.zip",
+      "hash": "2894b68178552f37298c29c14d0100469d2d900f9f2b49ec9a434b3d103117d6"
+    }
+  },
+  "checkver": {
+    "url": "https://api.github.com/repos/uoosef/wireguard-go/releases",
+    "jsonpath": "$.[0].assets[0].browser_download_url",
+    "regex": "v(?<version>[\\d.]+-alpha)/[^/]+\\.(?<commit>[\\w]+)\\.zip$"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://mirror.ghproxy.com/https://github.com/uoosef/wireguard-go/releases/download/v$version/warp-windows-amd64.$matchCommit.zip"
+      }
     }
   },
   "pre_install": [
