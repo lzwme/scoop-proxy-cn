@@ -1,16 +1,16 @@
 {
-  "version": "121.0.1",
+  "version": "122.0.1",
   "description": "Popular open source web browser.",
   "homepage": "https://www.mozilla.org/firefox/",
   "license": "MPL-2.0",
   "architecture": {
     "64bit": {
-      "url": "https://archive.mozilla.org/pub/firefox/releases/121.0.1/win64/de-DE/Firefox%20Setup%20121.0.1.exe#/dl.7z",
-      "hash": "sha512:5b8ec9f3f0f2f597324383dd57cbf51d0a6ea57e1413f48d79b77dcefd2f51f8423853dd3dd81f8d84fbea7ab0a6f8756ed513b91da80fdb4a0a4d8d84ba8072"
+      "url": "https://archive.mozilla.org/pub/firefox/releases/122.0.1/win64/de-DE/Firefox%20Setup%20122.0.1.exe#/dl.7z",
+      "hash": "sha512:b6e38771bcecc0234b469495e8e24eecf007f5f239e9af7eb4dae54f46d24731aeea4d94dc92117b5225349d747a2240d52b8da403def2da2d6d32fb2095afcf"
     },
     "32bit": {
-      "url": "https://archive.mozilla.org/pub/firefox/releases/121.0.1/win32/de-DE/Firefox%20Setup%20121.0.1.exe#/dl.7z",
-      "hash": "sha512:5b8ec9f3f0f2f597324383dd57cbf51d0a6ea57e1413f48d79b77dcefd2f51f8423853dd3dd81f8d84fbea7ab0a6f8756ed513b91da80fdb4a0a4d8d84ba8072"
+      "url": "https://archive.mozilla.org/pub/firefox/releases/122.0.1/win32/de-DE/Firefox%20Setup%20122.0.1.exe#/dl.7z",
+      "hash": "sha512:86e927b4a8b795e03ac9386af25db70f4da523c982981123d9874ee3882fc358df1af44c55ab10f933905b83bb977a070c1c065eaefc414105211afcf12ce624"
     }
   },
   "extract_dir": "core",
@@ -30,8 +30,8 @@
   ],
   "persist": "Profile",
   "checkver": {
-    "url": "https://www.mozilla.org/de-DE/firefox/notes/",
-    "regex": "<div class=\"c-release-version\">([\\d.]+)</div>"
+    "url": "https://product-details.mozilla.org/1.0/firefox_versions.json",
+    "jsonpath": "$.LATEST_FIREFOX_VERSION"
   },
   "autoupdate": {
     "architecture": {
@@ -39,14 +39,14 @@
         "url": "https://archive.mozilla.org/pub/firefox/releases/$version/win64/de-DE/Firefox%20Setup%20$version.exe#/dl.7z",
         "hash": {
           "url": "https://archive.mozilla.org/pub/firefox/releases/$version/SHA512SUMS",
-          "regex": "$sha512\\s+win64/de-DE/$basename"
+          "regex": "$sha512\\s+win64/de/$basename"
         }
       },
       "32bit": {
         "url": "https://archive.mozilla.org/pub/firefox/releases/$version/win32/de-DE/Firefox%20Setup%20$version.exe#/dl.7z",
         "hash": {
           "url": "https://archive.mozilla.org/pub/firefox/releases/$version/SHA512SUMS",
-          "regex": "$sha512\\s+win32/de-DE/$basename"
+          "regex": "$sha512\\s+win32/de/$basename"
         }
       }
     }
