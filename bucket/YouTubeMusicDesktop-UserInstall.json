@@ -1,10 +1,10 @@
 {
-  "version": "1.13.0",
+  "version": "2.0.0",
   "description": "Free cross platform Desktop Player for YouTube Music",
   "homepage": "https://ytmdesktop.app/",
   "license": "",
-  "url": "https://mirror.ghproxy.com/https://github.com/ytmdesktop/ytmdesktop/releases/download/v1.13.0/YouTube-Music-Desktop-App-Setup-1.13.0.exe#/setup.exe",
-  "hash": "1e76442d40b273e42b5068972ccf0129c81b75a64bb26a0ef086ca7f6850285d",
+  "url": "https://mirror.ghproxy.com/https://github.com/ytmdesktop/ytmdesktop/releases/download/v2.0.0/YouTube-Music-Desktop-App-2.0.0-Setup.exe#/setup.exe",
+  "hash": "f4c4aea0b46caeb517cab34bbc5ef1c5b8bbe7699cc747cfddba16f5b7b5ff2a",
   "pre_install": [
     "$processname = \"YouTube Music Desktop App\"",
     "$process = Get-Process $processname -ErrorAction SilentlyContinue",
@@ -20,12 +20,13 @@
   "installer": {
     "script": [
       "$programname = \"YouTube Music Desktop App*\"",
-      "$regPath = \"HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\afca255d-79c9-539f-84c6-b3a7619889d5\"",
-      "if((Get-ItemProperty -LiteralPath \"$regPath\").DisplayVersion -lt [Version]\"$version\")",
+      "$AppData = [Environment]::GetFolderPath(\"LocalApplicationData\")",
+      "$filepath = \"$AppData\\youtube-music-desktop-app\\youtube-music-desktop-app.exe\"",
+      "if(((Test-Path -Path $filepath -PathType Leaf) -eq $false) -or ((Get-Command $filepath).Version -lt [System.Version]\"$version\"))",
       "{",
       "   &\"$dir\\setup.exe\" /S | Out-Null",
       "   Start-Sleep -Seconds 10",
-      "   if((Get-ItemProperty -LiteralPath \"$regPath\").DisplayVersion -lt [Version]\"$version\")",
+      "   if(((Test-Path -Path $filepath -PathType Leaf) -eq $false) -or ((Get-Command $filepath).Version -lt [System.Version]\"$version\"))",
       "   {",
       "       exit 1",
       "   }",
@@ -42,6 +43,6 @@
     "github": "https://github.com/ytmdesktop/ytmdesktop"
   },
   "autoupdate": {
-    "url": "https://mirror.ghproxy.com/https://github.com/ytmdesktop/ytmdesktop/releases/download/v$version/YouTube-Music-Desktop-App-Setup-$version.exe#/setup.exe"
+    "url": "https://mirror.ghproxy.com/https://github.com/ytmdesktop/ytmdesktop/releases/download/v$version/YouTube-Music-Desktop-App-$version-Setup.exe#/setup.exe"
   }
 }
