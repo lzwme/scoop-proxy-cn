@@ -1,0 +1,24 @@
+{
+  "version": "0.4.1",
+  "description": "Simple CLI app for checking SSL certificates",
+  "homepage": "https://github.com/vvrnv/gossl",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://mirror.ghproxy.com/https://github.com/vvrnv/gossl/releases/download/v0.4.1/gossl_0.4.1_Windows_x86_64.tar.gz",
+      "hash": "37df2da42d5ae5377ca6feb7a91bec4087fe996c0f0113cb1a9c39e8b815efd7"
+    }
+  },
+  "bin": "gossl.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://mirror.ghproxy.com/https://github.com/vvrnv/gossl/releases/download/v$version/gossl_$version_Windows_x86_64.tar.gz"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/checksums.txt"
+    }
+  }
+}
