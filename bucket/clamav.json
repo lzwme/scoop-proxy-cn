@@ -1,46 +1,53 @@
 {
-  "homepage": "https://www.clamav.net/",
-  "version": "1.2.0",
-  "license": "GPL-2.0-or-later",
+  "version": "1.3.0",
+  "description": " Open source (GPLv2) anti-virus toolkit",
+  "homepage": "https://www.clamav.net",
+  "license": "GPL-2.0-only",
+  "notes": [
+    "To run first time setup ",
+    "Edit Configuration files clamd.conf, freshclam.conf @ $dir",
+    "Run freshclam.exe before running first scan",
+    "visit https://docs.clamav.net/manual/Usage/Configuration.html"
+  ],
   "architecture": {
     "64bit": {
-      "url": "https://www.clamav.net/downloads/production/clamav-1.2.0.win.x64.zip",
-      "hash": "78602e54439e9b20f2dd0754ec02ef0ec7e84f8c334dac4d0de31ca8c35dfe0d",
-      "extract_dir": "clamav-1.2.0.win.x64"
+      "url": "https://mirror.ghproxy.com/https://github.com/Cisco-Talos/clamav/releases/download/clamav-1.3.0/clamav-1.3.0.win.x64.zip",
+      "hash": "8feea090e66add7314ccca5d889c5c58b493bdd44916c74566cd0101523ad1a7",
+      "extract_dir": "clamav-1.3.0.win.x64"
     },
     "32bit": {
-      "url": "https://www.clamav.net/downloads/production/clamav-1.2.0.win.win32.zip",
-      "hash": "aad3b68a1f87f8eb082cc71f7091c5f6ff73d130089676591273a2a1cd4b20ce",
-      "extract_dir": "clamav-1.2.0.win.win32"
+      "url": "https://mirror.ghproxy.com/https://github.com/Cisco-Talos/clamav/releases/download/clamav-1.3.0/clamav-1.3.0.win.win32.zip",
+      "hash": "ecd38e6f0dc2490732ae28e03cef1313e08536c3510e5c75acbada97bb620740",
+      "extract_dir": "clamav-1.3.0.win.win32"
     }
   },
-  "pre_install": "'clamd', 'freshclam' | % { (Get-Content \"$dir\\conf_examples\\$_.conf.sample\") -replace '^\\s*Example\\b', '#$0' -replace '$', \"`n\" -join '' | Set-Content -NoNewline -Encoding Ascii \"$dir\\$_.conf\" }",
-  "persist": [
-    "database",
-    "clamd.conf",
-    "freshclam.conf"
+  "post_install": [
+    "Copy-Item \"$dir\\conf_examples\\freshclam.conf.sample\" \"$dir\\freshclam.conf\"",
+    "Copy-Item \"$dir\\conf_examples\\clamd.conf.sample\" \"$dir\\clamd.conf\""
   ],
   "bin": [
     "clambc.exe",
     "clamconf.exe",
     "clamd.exe",
     "clamdscan.exe",
+    "clamdtop.exe",
     "clamscan.exe",
+    "clamsubmit.exe",
     "freshclam.exe",
     "sigtool.exe"
   ],
   "checkver": {
-    "url": "https://www.clamav.net/downloads",
-    "re": "\\b/clamav-([\\d.]+).win.x64.zip\\b"
+    "github": "https://github.com/Cisco-Talos/clamav",
+    "regex": "/releases/tag/clamav-(?:v|V)?([\\d\\.]+)"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://www.clamav.net/downloads/production/clamav-$version.win.x64.zip",
+        "url": "https://mirror.ghproxy.com/https://github.com/Cisco-Talos/clamav/releases/download/clamav-$version/clamav-$version.win.x64.zip",
         "extract_dir": "clamav-$version.win.x64"
       },
       "32bit": {
-        "url": "https://www.clamav.net/downloads/production/clamav-$version.win.win32.zip",
+        "url": "https://mirror.ghproxy.com/https://github.com/Cisco-Talos/clamav/releases/download/clamav-$version/clamav-$version.win.win32.zip",
         "extract_dir": "clamav-$version.win.win32"
       }
     }
