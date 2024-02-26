@@ -1,0 +1,30 @@
+{
+  "version": "2.9.2",
+  "description": "A GUI for DNSLookup, DNSProxy, DNSCrypt and GoodbyeDPI.",
+  "homepage": "https://github.com/msasanmh/SecureDNSClient",
+  "license": "GPL-3",
+  "notes": "",
+  "architecture": {
+    "64bit": {
+      "url": "https://mirror.ghproxy.com/https://github.com/msasanmh/SecureDNSClient/releases/download/v2.9.2/SecureDNSClientPortable_v2.9.2_x64.7z",
+      "hash": "8536D6F492DFD03535AF6B760245628BD75A67544D0A8D2C7F02C4E0D4FC9F94"
+    }
+  },
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://mirror.ghproxy.com/https://github.com/msasanmh/SecureDNSClient/releases/download/v$version/SecureDNSClientPortable_v$version_x64.7z"
+      }
+    }
+  },
+  "extract_dir": "SecureDNSClientPortable",
+  "bin": "SecureDNSClientPortable.exe",
+  "persist": "UserData",
+  "shortcuts": [
+    [
+      "SecureDNSClientPortable.exe",
+      "SecureDNSClient"
+    ]
+  ]
+}
