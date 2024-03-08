@@ -1,30 +1,31 @@
 {
   "version": "1.6.0",
-  "description": "httpx is a fast and multi-purpose HTTP toolkit that allows running multiple probes using the retryablehttp library. It is designed to maintain result reliability with an increased number of threads",
-  "homepage": "https://projectdiscovery.io",
+  "description": "A fast and multi-purpose HTTP toolkit that allows running multiple probes using the retryablehttp library.",
+  "homepage": "https://github.com/projectdiscovery/httpx",
   "license": "MIT",
   "architecture": {
-    "32bit": {
-      "url": "https://mirror.ghproxy.com/https://github.com/projectdiscovery/httpx/releases/download/v1.6.0/httpx_1.6.0_windows_386.zip",
-      "hash": "3c8ced48405946e0f97d07a0976396cd535bf5afc5ca4da27dc2a2abc83a0821"
-    },
     "64bit": {
       "url": "https://mirror.ghproxy.com/https://github.com/projectdiscovery/httpx/releases/download/v1.6.0/httpx_1.6.0_windows_amd64.zip",
       "hash": "52c3721a905f04d88efd0c66321fe1b03c64182e55da0d7c0ddcb2f92f479bb6"
+    },
+    "32bit": {
+      "url": "https://mirror.ghproxy.com/https://github.com/projectdiscovery/httpx/releases/download/v1.6.0/httpx_1.6.0_windows_386.zip",
+      "hash": "3c8ced48405946e0f97d07a0976396cd535bf5afc5ca4da27dc2a2abc83a0821"
     }
   },
   "bin": "httpx.exe",
-  "checkver": {
-    "github": "https://github.com/projectdiscovery/httpx"
-  },
+  "checkver": "github",
   "autoupdate": {
     "architecture": {
-      "32bit": {
-        "url": "https://mirror.ghproxy.com/https://github.com/projectdiscovery/httpx/releases/download/v$version/httpx_$version_windows_386.zip"
-      },
       "64bit": {
         "url": "https://mirror.ghproxy.com/https://github.com/projectdiscovery/httpx/releases/download/v$version/httpx_$version_windows_amd64.zip"
+      },
+      "32bit": {
+        "url": "https://mirror.ghproxy.com/https://github.com/projectdiscovery/httpx/releases/download/v$version/httpx_$version_windows_386.zip"
       }
+    },
+    "hash": {
+      "url": "$baseurl/httpx_$version_checksums.txt"
     }
   }
 }

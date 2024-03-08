@@ -32,16 +32,16 @@
     }
   },
   "pre_install": [
-    "'DiskMark32S.ini', 'DiskMark64S.ini', 'DiskMarkA64S.ini' | ForEach-Object {",
+    "'DiskMark32A.ini', 'DiskMark64A.ini', 'DiskMarkA64A.ini' | ForEach-Object {",
     "    if (!(Test-Path \"$persist_dir\\$_\")) {",
     "        New-Item \"$dir\\$_\" -ItemType File | Out-Null",
     "    }",
     "}"
   ],
   "persist": [
-    "DiskMark32S.ini",
-    "DiskMark64S.ini",
-    "DiskMarkA64S.ini"
+    "DiskMark32A.ini",
+    "DiskMark64A.ini",
+    "DiskMarkA64A.ini"
   ],
   "checkver": {
     "url": "https://crystalmark.info/en/download/",
