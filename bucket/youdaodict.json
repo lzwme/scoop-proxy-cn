@@ -1,5 +1,5 @@
 {
-  "version": "3.1.17.9555",
+  "version": "10.2.0.0",
   "description": "Youdao Dictionary has typical acoustic translation, smart screen word identification, real-time synchronization with network up-to-date vocabulary, and other word look-up features.",
   "homepage": "https://cidian.youdao.com",
   "license": {
@@ -18,8 +18,9 @@
   ],
   "bin": "YoudaoDict.exe",
   "checkver": {
-    "url": "http://cidian.youdao.com/apps/update5/fdictupdate.xml?ver=1680",
-    "regex": " ([\\d.]+):"
+    "url": "https://api-overmind.youdao.com/openapi/get/luna/dict/luna-front/prod/cidianConfig",
+    "jsonpath": ".data.value.logList[0].version",
+    "regex": "([\\d.]+)"
   },
   "autoupdate": {
     "url": "http://cidian.youdao.com/download/YoudaoDict.exe#/dl.7z"
