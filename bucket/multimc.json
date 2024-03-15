@@ -1,36 +1,11 @@
 {
-  "homepage": "https://multimc.org/",
-  "description": "A custom launcher for Minecraft that allows you to easily manage multiple installations of Minecraft at once",
-  "license": "Apache-2.0",
+  "homepage": "https://github.com/MultiMC/MultiMC5",
   "version": "0.6.14",
+  "description": "MultiMC is a Qt Minecraft launcher",
   "url": "https://files.multimc.org/downloads/mmc-stable-win32.zip",
-  "hash": "144c8725a4d2a27d8afec4dafc535d57d98276531a7aa238c2d5a129f9206850",
+  "hash": "d82f57db7c6816151835dcb24a41018bf91565747ec0ab986f69328d1a0724e0",
   "extract_dir": "MultiMC",
-  "installer": {
-    "script": [
-      "function CreateFile([String] $file, [String] $content = $null) {",
-      "    if (!(Test-Path \"$persist_dir\\$file\")) {",
-      "        New-Item -Force -Path \"$persist_dir\\$file\" -ItemType file -Value $content | Out-Null",
-      "    }",
-      "}",
-      "CreateFile 'accounts.json'",
-      "CreateFile 'multimc.cfg' 'UpdateChannel=stable'",
-      "CreateFile 'notifications.json'"
-    ]
-  },
-  "uninstaller": {
-    "script": [
-      "function BackupFile([String] $file) {",
-      "    if (!(Test-Path \"$persist_dir\\$file\")) {",
-      "        Remove-Item \"$persist_dir\\$file\" -Force",
-      "    }",
-      "    Move-Item \"$dir\\$file\" \"$persist_dir\" -Force",
-      "}",
-      "BackupFile 'accounts.json'",
-      "BackupFile 'multimc.cfg'",
-      "BackupFile 'notifications.json'"
-    ]
-  },
+  "bin": "MultiMC.exe",
   "shortcuts": [
     [
       "MultiMC.exe",
@@ -38,24 +13,28 @@
     ]
   ],
   "persist": [
-    "accounts",
-    "assets",
-    "instances",
-    "libraries",
-    "meta",
-    "themes",
-    "translations",
-    "accounts.json",
     "multimc.cfg",
-    "notifications.json"
+    "accounts.json",
+    "accounts",
+    "instances",
+    "mods",
+    "icons",
+    "versions"
   ],
-  "suggest": {
-    "MCEdit": "dorado/mcedit"
-  },
-  "checkver": {
-    "github": "https://github.com/MultiMC/Launcher"
-  },
+  "pre_install": [
+    "if (-not (Test-Path \"$persist_dir\\multimc.cfg\")) {",
+    "   Write-Host 'Generating multimc.cfg...'",
+    "   New-Item \"$dir\\multimc.cfg\" -Value 'AutoUpdate=false' | Out-Null",
+    "}",
+    "if (-not (Test-Path \"$persist_dir\\accounts.json\")) {",
+    "   Write-Host 'Generating accounts.json...'",
+    "   New-Item \"$dir\\accounts.json\" -Value '{}' | Out-Null",
+    "}"
+  ],
+  "notes": "Increase minimum and maximum memory allocation to avoid stuttering.",
+  "checkver": "github",
   "autoupdate": {
-    "url": "https://files.multimc.org/downloads/mmc-stable-win32.zip"
+    "url": "https://files.multimc.org/downloads/mmc-stable-win32.zip",
+    "extract_dir": "MultiMC"
   }
 }
