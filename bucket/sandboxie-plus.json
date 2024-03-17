@@ -1,64 +1,56 @@
 {
-  "version": "1.13.2",
-  "description": "Sandboxie is a sandbox-based isolation software for 32-bit and 64-bit Windows NT-based operating systems.",
-  "homepage": "https://sandboxie-plus.com/",
-  "license": {
-    "identifier": "GPL-3.0-or-later",
-    "url": "https://github.com/sandboxie-plus/Sandboxie/raw/master/LICENSE"
-  },
-  "notes": "Get Sandboxie Classic if you have used Sandboxie for a long time and prefer a familiar environment over new features.",
+  "version": "1.13.3",
+  "description": "Sandboxie community maintained version",
+  "homepage": "https://github.com/sandboxie-plus/Sandboxie",
+  "license": "GNU General Public License v3.0",
+  "notes": "The shortcuts are located in \"C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\Sandboxie-Plus\\\"",
   "architecture": {
     "64bit": {
-      "url": "https://mirror.ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/v1.13.2/Sandboxie-Plus-x64-v1.13.2.exe",
-      "hash": "842596d56d83f72e5aa89c955f13e5dc8625bb6d43003632ba828ebaf739bb0d"
+      "url": "https://mirror.ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/v1.13.3/Sandboxie-Plus-x64-v1.13.3.exe",
+      "hash": "2d0aff981a96ca6c523154494f2d1f7da45babfab3dfb93ec5d7e8176a5fc581"
     },
     "32bit": {
-      "url": "https://mirror.ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/v1.13.2/Sandboxie-Plus-x86-v1.13.2.exe",
-      "hash": "3790acbabb0ef28e50e6be37a3648c0bc8c9fa455bfaba5a8e7ea7023a820e82"
+      "url": "https://mirror.ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/v1.13.3/Sandboxie-Plus-x86-v1.13.3.exe",
+      "hash": "fd0643bdfa0a236453fa1e215ec5934f080795404b2b1064987fe2f914cc7f4a"
     }
   },
-  "innosetup": true,
+  "pre_install": [
+    "# Copy or create files for persisting",
+    "if (!(Test-Path \"$persist_dir\\config.json\")) {",
+    "    if (Test-Path \"C:\\Windows\\Sandboxie.ini\") {",
+    "        Move-Item \"C:\\Windows\\Sandboxie.ini\" \"$dir\\Sandboxie.ini\"",
+    "    }",
+    "    else {",
+    "        New-Item \"$dir\\Sandboxie.ini\" -Type File | Out-Null",
+    "    }",
+    "}"
+  ],
   "installer": {
-    "script": [
-      "ensure \"$persist_dir\" | Out-Null",
-      "New-Item \"$env:LOCALAPPDATA\\Sandboxie-Plus\" -ItemType Junction -Target \"$persist_dir\" | Out-Null"
+    "args": [
+      "/verysilent",
+      "/nocancel",
+      "/norestart",
+      "/noicons",
+      "/dir=$dir"
     ]
   },
   "uninstaller": {
-    "script": "Remove-Item \"$env:LOCALAPPDATA\\Sandboxie-Plus\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
-  },
-  "shortcuts": [
-    [
-      "SandMan.exe",
-      "Sandboxie-Plus//Sandboxie-Plus"
-    ],
-    [
-      "Start.exe",
-      "Sandboxie-Plus//Run any program sandboxed",
-      "/box:__ask__ run_dialog"
-    ],
-    [
-      "Start.exe",
-      "Sandboxie-Plus//Run Web browser sandboxed",
-      "default_browser"
-    ],
-    [
-      "Start.exe",
-      "Sandboxie-Plus//Sandboxie Start Menu",
-      "/box:__ask__ start_menu"
+    "file": "unins000.exe",
+    "args": [
+      "/verysilent",
+      "/nocancel",
+      "/norestart"
     ]
-  ],
-  "checkver": {
-    "url": "https://api.github.com/repos/sandboxie-plus/Sandboxie/releases",
-    "regex": "releases/download/(?<tag>[vV]?[\\d.]+)/Sandboxie-Plus-x64-v([\\d.]+).exe"
   },
+  "persist": "Sandboxie.ini",
+  "checkver": "github",
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://mirror.ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/$matchTag/Sandboxie-Plus-x64-v$version.exe"
+        "url": "https://mirror.ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/v$version/Sandboxie-Plus-x64-v$matchHead.exe"
       },
       "32bit": {
-        "url": "https://mirror.ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/$matchTag/Sandboxie-Plus-x86-v$version.exe"
+        "url": "https://mirror.ghproxy.com/https://github.com/sandboxie-plus/Sandboxie/releases/download/v$version/Sandboxie-Plus-x86-v$matchHead.exe"
       }
     }
   }
