@@ -1,39 +1,41 @@
 {
-  "version": "0.1.10",
+  "version": "0.1.12",
   "description": "A CLI utility for exporting data from Ente Photos",
-  "homepage": "https://github.com/ente-io/cli",
-  "license": "GPL-3.0",
+  "homepage": "https://github.com/ente-io/ente",
+  "license": "AGPL-3.0",
   "architecture": {
     "64bit": {
-      "url": "https://mirror.ghproxy.com/https://github.com/ente-io/cli/releases/download/v0.1.10/ente_Windows_x86_64.zip",
-      "hash": "c7454ef8104cc8de2f9c27502dfa950db7a32b89ccfb4ffdc7a655ae5463d638"
+      "url": "https://mirror.ghproxy.com/https://github.com/ente-io/ente/releases/download/cli-v0.1.12/ente-cli-v0.1.12-windows-amd64.zip",
+      "hash": "93721b4472fff604beebd5baa7f49527b0fbd19391bdb4d98d575db67f1745fe"
     },
     "32bit": {
-      "url": "https://mirror.ghproxy.com/https://github.com/ente-io/cli/releases/download/v0.1.10/ente_Windows_i386.zip",
-      "hash": "036ebfc8ece41849a27f7a8ac3e08f7bd3a4eb1460b4bf968a09753df19b3c34"
+      "url": "https://mirror.ghproxy.com/https://github.com/ente-io/ente/releases/download/cli-v0.1.12/ente-cli-v0.1.12-windows-386.zip",
+      "hash": "af171da40e2ebb9541c1a397673b29b197906af0f8942eb60087d3ea3498de7f"
     },
     "arm64": {
-      "url": "https://mirror.ghproxy.com/https://github.com/ente-io/cli/releases/download/v0.1.10/ente_Windows_arm64.zip",
-      "hash": "123048f8526282b52be0ea167634b0715872a33305b9858f77b39a4ea6dbce6b"
+      "url": "https://mirror.ghproxy.com/https://github.com/ente-io/ente/releases/download/cli-v0.1.12/ente-cli-v0.1.12-windows-arm64.zip",
+      "hash": "77c2b498ceda5cda13dab60b8e390efd6c7633b6571491119d0b09f4c2272df2"
     }
   },
   "bin": "ente.exe",
-  "checkver": "github",
+  "checkver": {
+    "url": "https://github.com/ente-io/ente/releases",
+    "regex": "releases/tag/cli-v([\\d.]+)"
+  },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://mirror.ghproxy.com/https://github.com/ente-io/cli/releases/download/v$version/ente_Windows_x86_64.zip"
+        "url": "https://mirror.ghproxy.com/https://github.com/ente-io/ente/releases/download/cli-v$version/ente-cli-v$version-windows-amd64.zip"
       },
       "32bit": {
-        "url": "https://mirror.ghproxy.com/https://github.com/ente-io/cli/releases/download/v$version/ente_Windows_i386.zip"
+        "url": "https://mirror.ghproxy.com/https://github.com/ente-io/ente/releases/download/cli-v$version/ente-cli-v$version-windows-386.zip"
       },
       "arm64": {
-        "url": "https://mirror.ghproxy.com/https://github.com/ente-io/cli/releases/download/v$version/ente_Windows_arm64.zip"
+        "url": "https://mirror.ghproxy.com/https://github.com/ente-io/ente/releases/download/cli-v$version/ente-cli-v$version-windows-arm64.zip"
       }
     },
     "hash": {
-      "url": "$baseurl/ente_$version_checksums.txt",
-      "regex": "$sha256  $basename\\n"
+      "url": "$url.sha256"
     }
   }
 }
