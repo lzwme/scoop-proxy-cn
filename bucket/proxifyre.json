@@ -1,0 +1,30 @@
+{
+  "version": "1.0.18",
+  "description": " ProxiFyre: SOCKS5 Proxifier for Windows.",
+  "homepage": "https://github.com/wiresock/proxifyre",
+  "license": "AGPL-3",
+  "notes": "",
+  "architecture": {
+    "64bit": {
+      "url": "https://mirror.ghproxy.com/https://github.com/wiresock/proxifyre/releases/download/v1.0.18/ProxiFyre-v1.0.18-x64-signed.zip",
+      "hash": "B304BEE9E376CA13B3A1267AC810B0371B0B44F32E89CD00364B70DF4D64E6A6"
+    }
+  },
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://mirror.ghproxy.com/https://github.com/wiresock/proxifyre/releases/download/v$version/ProxiFyre-v$version-x64-signed.zip"
+      }
+    }
+  },
+  "pre_install": "if (!(Test-Path \"$persist_dir\\$app-config.json\")) { New-Item \"$dir\\app-config.json\" }",
+  "persist": "app-config.json",
+  "bin": "ProxiFyre.exe",
+  "shortcuts": [
+    [
+      "ProxiFyre.exe",
+      "proxifyre"
+    ]
+  ]
+}
