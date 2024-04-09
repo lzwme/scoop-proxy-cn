@@ -5,31 +5,37 @@
   "license": "Freeware",
   "architecture": {
     "64bit": {
-      "url": "https://download.pixpinapp.com/PixPin_1.7.6.0.exe",
-      "hash": "62d8c076c5dca8cbbce37b883defb19852a7a727d733c1705d054ae671bb5aef"
+      "url": "https://download.pixpinapp.com/PixPin_1.7.6.0.zip",
+      "hash": "1e5962682c55616e6dd955ee015f315ffc77f94c3921ad3511fd487b154236bf"
     }
   },
-  "innosetup": true,
-  "bin": "PixPin.exe",
+  "extract_dir": "PixPin",
+  "pre_install": [
+    "ensure \"$persist_dir\\Config\" | Out-Null",
+    "ensure \"$persist_dir\\Coredump\" | Out-Null",
+    "ensure \"$persist_dir\\Data\" | Out-Null",
+    "ensure \"$persist_dir\\History\" | Out-Null"
+  ],
+  "persist": [
+    "Config",
+    "Coredump",
+    "Data",
+    "History"
+  ],
   "shortcuts": [
     [
       "PixPin.exe",
       "PixPin"
     ]
   ],
-  "post_install": "if (!(Test-Path \"$dir\\Config\\config.json\")) { Set-Content -Encoding ASCII -Path \"$dir\\Config\\config.json\" -Value '{\"System.Update.AutoCheckUpdate\":{\"subConf\":{\"checkBeta\":false},\"value\":false}}' }",
-  "persist": [
-    "History",
-    "Data",
-    "Config"
-  ],
   "checkver": {
+    "url": "https://pixpinapp.com/",
     "regex": "PixPin_([\\d.]+).exe"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://download.pixpinapp.com/PixPin_$version.exe"
+        "url": "https://download.pixpinapp.com/PixPin_$version.zip"
       }
     }
   }
