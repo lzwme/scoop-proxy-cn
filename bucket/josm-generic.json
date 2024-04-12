@@ -4,7 +4,7 @@
   "homepage": "https://josm.openstreetmap.de/",
   "license": "GPL-2.0-or-later",
   "suggest": {
-    "JRE with JFX": "java/zulufx11-jre"
+    "JRE with JFX": "java/zulufx21-jre"
   },
   "url": [
     "https://josm.openstreetmap.de/download/josm-snapshot-19039.jar",
@@ -17,7 +17,7 @@
   "pre_install": [
     "Push-Location",
     "Set-Location $dir",
-    "Set-Content -Value (\"@echo off`nif `\"%1`\" == `\"h`\" goto begin`nmshta vbscript:createobject(`\"wscript.shell`\").run(`\"%~nx0 h`\",0)(window.close)&&exit`n:begin`njavaw -D64 -jar \" + (Get-ChildItem josm*.jar)[0].Name) -Path josm.cmd",
+    "Set-Content -Value \"@echo off`nif `\"%1`\" == `\"h`\" goto begin`nmshta vbscript:createobject(`\"wscript.shell`\").run(`\"%~nx0 h`\",0)(window.close)&&exit`n:begin`njavaw -D64 --add-exports=java.base/sun.security.action=ALL-UNNAMED --add-exports=java.desktop/com.sun.imageio.plugins.jpeg=ALL-UNNAMED --add-exports=java.desktop/com.sun.imageio.spi=ALL-UNNAMED -jar $((Get-ChildItem josm*.jar)[0].Name)\" -Path josm.cmd",
     "Pop-Location"
   ],
   "shortcuts": [
