@@ -11,7 +11,7 @@
       "installer": {
         "script": [
           "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
-          "Remove-Item \"$dir\\`$*\", \"$dir\\Uninstall*\" -Force -Recurse"
+          "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall*\" -Force -Recurse"
         ]
       }
     }
@@ -19,11 +19,9 @@
   "shortcuts": [
     [
       "Beeper.exe",
-      "Beeper",
-      "--user-data-dir=\"$dir\\User Data\""
+      "Beeper"
     ]
   ],
-  "persist": "User Data",
   "checkver": {
     "script": "curl.exe -sIXGET https://download.beeper.com/windows/nsis/x64",
     "regex": "Beeper Setup ([\\d\\.]+) - x64.exe"
