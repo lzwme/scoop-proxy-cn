@@ -1,31 +1,16 @@
 {
   "version": "0.49.6",
-  "description": "Metabase is the easy, open source way for everyone in your company to ask questions and learn from data.",
-  "homepage": "https://github.com/metabase/metabase",
-  "license": "AGPL-3.0-only",
+  "description": "The simplest, fastest way to get business intelligence and analytics to everyone in your company",
+  "homepage": "https://www.metabase.com",
+  "license": "AGPL-3.0-or-later",
+  "suggest": {
+    "JDK": "java/openjdk"
+  },
   "url": "https://downloads.metabase.com/v0.49.6/metabase.jar",
   "hash": "a7f588a3b512c18871bc5933e5c9ce899a81bcddf4f9e7d54329b4503dbcebc9",
   "bin": "metabase.jar",
-  "suggest": {
-    "JDK": [
-      "java/oraclejdk",
-      "java/openjdk",
-      "java/adoptopenjdk-hotspot",
-      "java/zulu"
-    ]
-  },
-  "env_set": {
-    "MB_PLUGINS_DIR": "$dir\\plugins",
-    "MB_DB_FILE": "$dir\\data\\metabase.db"
-  },
-  "persist": [
-    "data",
-    "plugins"
-  ],
   "checkver": {
-    "url": "http://static.metabase.com/version-info.json",
-    "jsonpath": "$.latest.version",
-    "regex": "v([\\d.]+)"
+    "github": "https://github.com/metabase/metabase"
   },
   "autoupdate": {
     "url": "https://downloads.metabase.com/v$version/metabase.jar",
