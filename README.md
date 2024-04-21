@@ -1,6 +1,6 @@
-# 🍡 Scoop-proxy-cn
+# 🍡 scoop-proxy-cn
 
-适合中国大陆用户使用的 [Scoop](https://scoop.sh) buckets 代理镜像库。从多个开源 `bucket` 仓库同步更新，并将从 `github release` 下载的应用地址修改为基于 `ghproxy.com` 的代理下载地址。
+适合中国大陆用户使用的 [Scoop](https://scoop.sh) buckets 代理镜像库。从多个开源 `bucket` 仓库同步更新，并将从 `github release` 下载的应用地址修改为基于 `mirror.ghproxy.com` 的代理下载地址。
 
 ## Usage
 
@@ -12,7 +12,6 @@ scoop install spc/<app_name>
 ```
 
 ## Scoop 安装与配置参考
-
 
 打开 `PowerShell` 并执行如下命令进行安装：
 
@@ -26,9 +25,9 @@ irm https://mirror.ghproxy.com/raw.githubusercontent.com/lzwme/scoop-proxy-cn/ma
 scoop config SCOOP_REPO https://mirror.ghproxy.com/github.com/ScoopInstaller/Scoop
 scoop bucket add spc https://mirror.ghproxy.com/github.com/lzwme/scoop-proxy-cn
 
-# 可选
+# 从 0.4.0 开始，必须存在 main bucket，否则执行 scoop update 会报错：ERROR 'main' bucket not found. Failed to remove local 'main' bucket.
 scoop bucket rm main
-# scoop bucket add main https://mirror.ghproxy.com/github.com/ScoopInstaller/Main
+scoop bucket add main https://mirror.ghproxy.com/github.com/ScoopInstaller/Main
 
 # show help
 scoop help
@@ -39,7 +38,7 @@ scoop install spc/7zip spc/aria2 spc/scoop-search
 
 ### 关于 `scoop-search`
 
-由于 `scoop-proxy-cn` 仓库同步了 `1.4w+` 应用，官方的基于 `PowerShell` 编写的 `scoop search` 命令效率差到无法实用，推荐安装并使用基于 `go` 语言开发的 `scoop-search` 工具替代。示例：
+由于 `scoop-proxy-cn` 仓库同步了 `1.4w+` 应用，官方的基于 `PowerShell` 编写的 `scoop search` 命令效率差到无法使用，推荐安装并使用基于 `go` 语言开发的 `scoop-search` 工具替代。示例：
 
 ```bash
 scoop install scoop-search
@@ -61,7 +60,7 @@ scoop install scoop-search -s
 
 ```bash
 # 更新 scoop repo
-scoop config scoop_repo  https://mirror.ghproxy.com/github.com/ScoopInstaller/Scoop.git
+scoop config scoop_repo https://mirror.ghproxy.com/github.com/ScoopInstaller/Scoop.git
 
 # 移除并重新添加 spc bucket
 scoop bucket rm spc
@@ -158,4 +157,5 @@ scoop bucket add spc https://mirror.ghproxy.com/github.com/lzwme/scoop-proxy-cn
 
 ## 声明
 
-本仓库包含的应用信息仅从第三方仓库同步，未逐一作可用性、安全性验证，请在安装选择时自行验证识别。若有侵权请提 issues 处理。
+> [!WARNING]
+> 本仓库包含的应用信息仅从第三方仓库同步，未逐一作可用性、安全性验证，请在安装选择时自行验证识别。若有侵权请提 issues 处理。
