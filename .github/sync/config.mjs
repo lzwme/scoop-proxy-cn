@@ -37,7 +37,7 @@ export const CONFIG = {
     `cderv/r-bucket`,
     `chawyehsu/dorado`,
     `borger/scoop-galaxy-integrations`,
-    `hoilc/scoop-lemon`,
+    // `hoilc/scoop-lemon`,
     `ivaquero/scoopet`,
     `KNOXDEV/wsl`,
     `kodybrown/scoop-nirsoft`,
