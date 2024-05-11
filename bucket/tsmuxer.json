@@ -1,38 +1,24 @@
 {
-  "version": "2024-05-04",
-  "description": "A transport stream muxer for remuxing/muxing elementary streams, EVO/VOB/MPG, MKV/MKA, MP4/MOV, TS, M2TS to TS to M2TS.",
-  "homepage": "https://github.com/justdan96/tsMuxer",
-  "license": "Apache-2.0",
-  "architecture": {
-    "64bit": {
-      "url": "https://mirror.ghproxy.com/https://github.com/justdan96/tsMuxer/releases/download/nightly-2024-05-04-01-53-56/w64.zip",
-      "hash": "9db795ada250e8f15635de51450383c4f98c7f0c737873046439af5d7601acfd"
-    },
-    "32bit": {
-      "url": "https://mirror.ghproxy.com/https://github.com/justdan96/tsMuxer/releases/download/nightly-2024-05-04-01-53-56/w32.zip",
-      "hash": "066cad43f65ddb0e7e9bd3f86f69375278ab3286ffc720e2a0d635fc566ec10b"
-    }
-  },
-  "bin": "tsMuxeR.exe",
+  "version": "2.6.12",
+  "description": "tsMuxer is a Transport Stream muxer.",
+  "homepage": "http://forum.doom9.org/showthread.php?t=168539",
+  "url": "https://www.videohelp.com/download/tsMuxeR_2.6.12.zip",
+  "hash": "",
+  "bin": [
+    "tsMuxeR.exe",
+    "tsMuxerGUI.exe"
+  ],
   "shortcuts": [
     [
       "tsMuxerGUI.exe",
-      "tsMuxeR GUI"
+      "tsMuxerGUI"
     ]
   ],
   "checkver": {
-    "url": "https://api.github.com/repos/justdan96/tsMuxer/releases",
-    "regex": "/releases/download/nightly-(?<date>\\d{4}-\\d{2}-\\d{2})-(?<time>\\d{2}-\\d{2}-\\d{2})/w64.zip",
-    "replace": "${date}"
+    "url": "https://www.videohelp.com/software/tsMuxeR",
+    "regex": "NEW\\sVERSION\\s([\\d.]+\\d+)"
   },
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://mirror.ghproxy.com/https://github.com/justdan96/tsMuxer/releases/download/nightly-$matchDate-$matchTime/w64.zip"
-      },
-      "32bit": {
-        "url": "https://mirror.ghproxy.com/https://github.com/justdan96/tsMuxer/releases/download/nightly-$matchDate-$matchTime/w32.zip"
-      }
-    }
+    "url": "https://www.videohelp.com/download/tsMuxeR_$version.zip"
   }
 }

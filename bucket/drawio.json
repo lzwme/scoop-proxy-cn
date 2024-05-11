@@ -1,52 +1,22 @@
 {
-  "version": "24.2.5",
-  "description": "A diagramming app for making flowcharts, process diagrams, org charts, UML, ER and network diagrams.",
-  "homepage": "https://www.diagrams.net/",
+  "version": "19.0.3",
+  "homepage": "https://github.com/jgraph/drawio-desktop",
   "license": "Apache-2.0",
-  "architecture": {
-    "64bit": {
-      "url": "https://mirror.ghproxy.com/https://github.com/jgraph/drawio-desktop/releases/download/v24.2.5/draw.io-24.2.5-windows-installer.exe#/dl.7z",
-      "hash": "1c1ed533da7dea5600d48e42487a98881aa9c204a28ac01388200ccbf696d940",
-      "pre_install": [
-        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
-        "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall*\" -Force -Recurse"
-      ]
-    },
-    "32bit": {
-      "url": "https://mirror.ghproxy.com/https://github.com/jgraph/drawio-desktop/releases/download/v24.2.5/draw.io-ia32-24.2.5-windows-32bit-installer.exe#/dl.7z",
-      "hash": "88bc843f48c7503f62011b79e178e06181e6d0e9dc7195989cc31c9d1d79d9c7",
-      "pre_install": [
-        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-32.7z\" \"$dir\"",
-        "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall*\" -Force -Recurse"
-      ]
-    }
-  },
-  "bin": [
-    [
-      "draw.io.exe",
-      "draw.io",
-      "--user-data-dir=\"$dir\\User Data\""
-    ]
-  ],
+  "url": "https://mirror.ghproxy.com/https://github.com/jgraph/drawio-desktop/releases/download/v19.0.3/draw.io-19.0.3-windows-no-installer.exe",
+  "hash": "11f0f9961d2c352f1238a53e2b4d0a319406018cf5b67da150adc6bc2f8c7f03",
+  "pre_install": "Rename-Item -Path \"$dir\\draw.io-*.exe\" -NewName \"draw.io.exe\"",
+  "bin": "draw.io.exe",
   "shortcuts": [
     [
       "draw.io.exe",
-      "Draw.io",
-      "--user-data-dir=\"$dir\\User Data\""
+      "draw.io"
     ]
   ],
-  "persist": "User Data",
   "checkver": {
-    "github": "https://github.com/jgraph/drawio-desktop"
+    "github": "https://github.com/jgraph/drawio-desktop",
+    "regex": "tag/v([\\w.-]+)"
   },
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://mirror.ghproxy.com/https://github.com/jgraph/drawio-desktop/releases/download/v$version/draw.io-$version-windows-installer.exe#/dl.7z"
-      },
-      "32bit": {
-        "url": "https://mirror.ghproxy.com/https://github.com/jgraph/drawio-desktop/releases/download/v$version/draw.io-ia32-$version-windows-32bit-installer.exe#/dl.7z"
-      }
-    }
+    "url": "https://mirror.ghproxy.com/https://github.com/jgraph/drawio-desktop/releases/download/v$version/draw.io-$version-windows-no-installer.exe"
   }
 }

@@ -1,32 +1,30 @@
 {
-  "version": "8.0.2",
-  "description": "NatTypeTester is a tool that tests out what your NAT type is.",
+  "version": "8.0.1",
+  "description": "A tool for testing the NAT type of the network (STUN)",
   "homepage": "https://github.com/HMBSbige/NatTypeTester",
   "license": "MIT",
-  "url": "https://mirror.ghproxy.com/https://github.com/HMBSbige/NatTypeTester/releases/download/8.0.2/NatTypeTester-8.0.2.7z",
-  "hash": "2393d4742c653848e9e9c231ca3c3345fd36f86f5c3b736be188fa8af6917256",
+  "url": "https://mirror.ghproxy.com/https://github.com/HMBSbige/NatTypeTester/releases/download/8.0.1/NatTypeTester-8.0.1.7z",
+  "hash": "4ed7e4b1164cbe21ced2cc5466a46c71c746011b0393c8846160e04cb861df38",
   "architecture": {
     "64bit": {
       "installer": {
         "script": [
-          "Rename-Item -Path \"$dir\\NatTypeTester-x64.exe\" -NewName 'NatTypeTester.exe'",
-          "Remove-Item -Force \"$dir\\NatTypeTester-*.exe\""
+          "Move-Item \"$dir\\NatTypeTester-x64.exe\" -Destination \"$dir\\NatTypeTester.exe\"",
+          "Remove-Item \"$dir\\NatTypeTester-*\""
         ]
       }
     },
     "32bit": {
       "installer": {
         "script": [
-          "Rename-Item -Path \"$dir\\NatTypeTester-x86.exe\" -NewName 'NatTypeTester.exe'",
-          "Remove-Item -Force \"$dir\\NatTypeTester-*.exe\""
+          "Move-Item \"$dir\\NatTypeTester-x86.exe\" -Destination \"$dir\\NatTypeTester.exe\"",
+          "Remove-Item \"$dir\\NatTypeTester-*\""
         ]
       }
     }
   },
-  "suggest": {
-    "dotnet-runtime": "windowsdesktop-runtime"
-  },
   "extract_dir": "NatTypeTester",
+  "bin": "NatTypeTester.exe",
   "shortcuts": [
     [
       "NatTypeTester.exe",

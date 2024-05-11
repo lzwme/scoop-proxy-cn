@@ -1,8 +1,8 @@
 {
-  "version": "v0.7.25",
-  "description": "一个支持多种直播平台的直播录制工具",
+  "version": "0.7.25",
+  "description": "一个直播录制工具",
   "homepage": "https://github.com/hr3lxphr6j/bililive-go",
-  "license": "GPL-3.0-only",
+  "license": "GNU General Public License v3.0",
   "architecture": {
     "64bit": {
       "url": "https://mirror.ghproxy.com/https://github.com/hr3lxphr6j/bililive-go/releases/download/v0.7.25/bililive-windows-amd64.zip",
@@ -27,16 +27,17 @@
   },
   "persist": "config.yml",
   "checkver": {
-    "url": "https://github.com/hr3lxphr6j/bililive-go/releases/latest",
-    "regex": "/releases/tag/([\\w-.]+)\""
+    "url": "https://api.github.com/repos/hr3lxphr6j/bililive-go/releases/latest",
+    "jsonpath": "$.tag_name",
+    "regex": "v(.*)"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://mirror.ghproxy.com/https://github.com/hr3lxphr6j/bililive-go/releases/download/$version/bililive-windows-amd64.zip"
+        "url": "https://mirror.ghproxy.com/https://github.com/hr3lxphr6j/bililive-go/releases/download/v$version/bililive-windows-amd64.zip"
       },
       "32bit": {
-        "url": "https://mirror.ghproxy.com/https://github.com/hr3lxphr6j/bililive-go/releases/download/$version/bililive-windows-386.zip"
+        "url": "https://mirror.ghproxy.com/https://github.com/hr3lxphr6j/bililive-go/releases/download/v$version/bililive-windows-386.zip"
       }
     }
   }

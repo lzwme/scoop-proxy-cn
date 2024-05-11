@@ -86,7 +86,6 @@ scoop bucket add spc https://mirror.ghproxy.com/github.com/lzwme/scoop-proxy-cn
 - [cderv/r-bucket](https://github.com/cderv/r-bucket)
 - [chawyehsu/dorado](https://github.com/chawyehsu/dorado)
 - [borger/scoop-galaxy-integrations](https://github.com/borger/scoop-galaxy-integrations)
-- [hoilc/scoop-lemon](https://github.com/hoilc/scoop-lemon)
 - [ivaquero/scoopet](https://github.com/ivaquero/scoopet)
 - [KNOXDEV/wsl](https://github.com/KNOXDEV/wsl)
 - [kodybrown/scoop-nirsoft](https://github.com/kodybrown/scoop-nirsoft)
