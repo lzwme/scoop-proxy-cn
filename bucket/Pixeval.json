@@ -1,13 +1,20 @@
 {
-  "version": "4.0.0",
+  "version": "4.2.1",
   "description": "Wow. Yet another Pixiv client!",
   "homepage": "https://github.com/Pixeval/Pixeval",
   "license": "GPL-3.0",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.net/https://github.com/Pixeval/Pixeval/releases/download/4.0.0/Pixeval_4.0.0.0_x64.zip",
-      "hash": "13cd39bea1e2b95584480c249588c7f0b23842686c0986897569d12a183b9269",
-      "extract_dir": "Pixeval-x64"
+      "url": "https://ghproxy.net/https://github.com/Pixeval/Pixeval/releases/download/4.2.1/Pixeval_4.2.1.0_x64.msix#/dl.7z",
+      "hash": "0b65e72ff91aeebb6d2c0c971d3e8e0bda202077588a8e26b29e6c423ed6a56a"
+    },
+    "32bit": {
+      "url": "https://ghproxy.net/https://github.com/Pixeval/Pixeval/releases/download/4.2.1/Pixeval_4.2.1.0_x86.msix#/dl.7z",
+      "hash": "73e97156d50380443e1a572cf0022996c9bd319e5a6059ffe3941304eadfec34"
+    },
+    "arm64": {
+      "url": "https://ghproxy.net/https://github.com/Pixeval/Pixeval/releases/download/4.2.1/Pixeval_4.2.1.0_arm64.msix#/dl.7z",
+      "hash": "4e353880803e799599ace479244557b75b3b13bc8412cbc163c2562d6e52eb0f"
     }
   },
   "bin": "Pixeval.exe",
@@ -19,12 +26,18 @@
   ],
   "checkver": {
     "url": "https://api.github.com/repos/Pixeval/Pixeval/releases/latest",
-    "regex": "(?sm)browser_download_url.*?releases/download/([\\d.]+)/(?<file>Pixeval_(?:([\\d.]+))_x64.zip)"
+    "regex": "(?sm)browser_download_url.*?releases/download/([\\d.]+)/Pixeval_([\\d.]+).0_x64.msix"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.net/https://github.com/Pixeval/Pixeval/releases/download/$version/$matchFile"
+        "url": "https://ghproxy.net/https://github.com/Pixeval/Pixeval/releases/download/$version/Pixeval_$version.0_x64.msix#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://ghproxy.net/https://github.com/Pixeval/Pixeval/releases/download/$version/Pixeval_$version.0_x86.msix#/dl.7z"
+      },
+      "arm64": {
+        "url": "https://ghproxy.net/https://github.com/Pixeval/Pixeval/releases/download/$version/Pixeval_$version.0_arm64.msix#/dl.7z"
       }
     }
   }
