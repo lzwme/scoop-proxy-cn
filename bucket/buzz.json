@@ -1,39 +1,39 @@
 {
-  "version": "0.9.0",
-  "description": "Buzz transcribes and translates audio offline on your personal computer. Powered by OpenAI's Whisper.",
-  "homepage": "https://buzzcaptions.com/",
-  "license": "MIT license",
-  "architecture": {
-    "64bit": {
-      "url": "https://ghproxy.net/https://github.com/chidiwilliams/buzz/releases/download/v0.9.0/Buzz-0.9.0-windows.exe",
-      "hash": "f52451bdd2542329c889725528a7bb6705f6d5614e318df610ce68a77ef645fd"
-    }
-  },
-  "innosetup": true,
-  "installer": {
-    "script": [
-      "ensure \"$persist_dir\" | Out-Null",
-      "New-Item \"$env:LOCALAPPDATA\\Buzz\" -ItemType Junction -Target \"$persist_dir\" | Out-Null"
-    ]
-  },
-  "uninstaller": {
-    "script": "Remove-Item \"$env:LOCALAPPDATA\\Buzz\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
-  },
-  "shortcuts": [
-    [
-      "Buzz.exe",
-      "Buzz"
-    ]
-  ],
-  "checkver": {
-    "url": "https://api.github.com/repos/chidiwilliams/buzz/releases",
-    "regex": "(?sm)browser_download_url.*?releases/download/v([\\d.]+)/Buzz-([\\d.]+)-windows\\.exe"
-  },
-  "autoupdate": {
+    "version": "0.9.0",
+    "description": "Buzz transcribes and translates audio offline on your personal computer. Powered by OpenAI's Whisper.",
+    "homepage": "https://buzzcaptions.com/",
+    "license": "MIT license",
     "architecture": {
-      "64bit": {
-        "url": "https://ghproxy.net/https://github.com/chidiwilliams/buzz/releases/download/v$version/Buzz-$version-windows.exe"
-      }
+        "64bit": {
+            "url": "https://ghproxy.net/https://github.com/chidiwilliams/buzz/releases/download/v0.9.0/Buzz-0.9.0-windows.exe",
+            "hash": "3ed005b19ae5719cfd371fe1d5a5267e4c1424527d9707d895e39618b5ce4eb3"
+        }
+    },
+    "innosetup": true,
+    "installer": {
+        "script": [
+            "ensure \"$persist_dir\" | Out-Null",
+            "New-Item \"$env:LOCALAPPDATA\\Buzz\" -ItemType Junction -Target \"$persist_dir\" | Out-Null"
+        ]
+    },
+    "uninstaller": {
+        "script": "Remove-Item \"$env:LOCALAPPDATA\\Buzz\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
+    },
+    "shortcuts": [
+        [
+            "Buzz.exe",
+            "Buzz"
+        ]
+    ],
+    "checkver": {
+        "url": "https://api.github.com/repos/chidiwilliams/buzz/releases",
+        "regex": "(?sm)browser_download_url.*?releases/download/v([\\d.]+)/Buzz-([\\d.]+)-windows\\.exe"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://ghproxy.net/https://github.com/chidiwilliams/buzz/releases/download/v$version/Buzz-$version-windows.exe"
+            }
+        }
     }
-  }
 }
