@@ -1,64 +1,56 @@
 {
-  "version": "1.14.2",
-  "description": "Sandboxie is a sandbox-based isolation software for 32-bit and 64-bit Windows NT-based operating systems.",
-  "homepage": "https://sandboxie-plus.com/",
-  "license": {
-    "identifier": "GPL-3.0-or-later",
-    "url": "https://github.com/sandboxie-plus/Sandboxie/raw/master/LICENSE"
-  },
-  "notes": "Get Sandboxie Classic if you have used Sandboxie for a long time and prefer a familiar environment over new features.",
+  "version": "1.14.3",
+  "description": "Sandboxie community maintained version",
+  "homepage": "https://github.com/sandboxie-plus/Sandboxie",
+  "license": "GNU General Public License v3.0",
+  "notes": "The shortcuts are located in \"C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\Sandboxie-Plus\\\"",
   "architecture": {
     "64bit": {
-      "url": "https://ghproxy.net/https://github.com/sandboxie-plus/Sandboxie/releases/download/v1.14.2/Sandboxie-Plus-x64-v1.14.2.exe",
-      "hash": "7c0732aebe0cc74b37e158c57e2fbaf7737e87a514eb5bf64c4f60f810521eb7"
+      "url": "https://ghproxy.net/https://github.com/sandboxie-plus/Sandboxie/releases/download/v1.14.3/Sandboxie-Plus-x64-v1.14.3.exe",
+      "hash": "6de50fecf2024d58528a4d0bc1764fda83d92061debb6a679463ff02b5ce5947"
     },
     "32bit": {
-      "url": "https://ghproxy.net/https://github.com/sandboxie-plus/Sandboxie/releases/download/v1.14.2/Sandboxie-Plus-x86-v1.14.2.exe",
-      "hash": "13f1d70045b28a2b9817f59027559cf16daec9875f6f1539e1e7fa890209daa8"
+      "url": "https://ghproxy.net/https://github.com/sandboxie-plus/Sandboxie/releases/download/v1.14.3/Sandboxie-Plus-x86-v1.14.3.exe",
+      "hash": "0cf559e0cbf5dbbc04f408781c8d145857c9c47fab51b7a8dd35e054b58abd03"
     }
   },
-  "innosetup": true,
+  "pre_install": [
+    "# Copy or create files for persisting",
+    "if (!(Test-Path \"$persist_dir\\config.json\")) {",
+    "    if (Test-Path \"C:\\Windows\\Sandboxie.ini\") {",
+    "        Move-Item \"C:\\Windows\\Sandboxie.ini\" \"$dir\\Sandboxie.ini\"",
+    "    }",
+    "    else {",
+    "        New-Item \"$dir\\Sandboxie.ini\" -Type File | Out-Null",
+    "    }",
+    "}"
+  ],
   "installer": {
-    "script": [
-      "ensure \"$persist_dir\" | Out-Null",
-      "New-Item \"$env:LOCALAPPDATA\\Sandboxie-Plus\" -ItemType Junction -Target \"$persist_dir\" | Out-Null"
+    "args": [
+      "/verysilent",
+      "/nocancel",
+      "/norestart",
+      "/noicons",
+      "/dir=$dir"
     ]
   },
   "uninstaller": {
-    "script": "Remove-Item \"$env:LOCALAPPDATA\\Sandboxie-Plus\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
-  },
-  "shortcuts": [
-    [
-      "SandMan.exe",
-      "Sandboxie-Plus//Sandboxie-Plus"
-    ],
-    [
-      "Start.exe",
-      "Sandboxie-Plus//Run any program sandboxed",
-      "/box:__ask__ run_dialog"
-    ],
-    [
-      "Start.exe",
-      "Sandboxie-Plus//Run Web browser sandboxed",
-      "default_browser"
-    ],
-    [
-      "Start.exe",
-      "Sandboxie-Plus//Sandboxie Start Menu",
-      "/box:__ask__ start_menu"
+    "file": "unins000.exe",
+    "args": [
+      "/verysilent",
+      "/nocancel",
+      "/norestart"
     ]
-  ],
-  "checkver": {
-    "url": "https://api.github.com/repos/sandboxie-plus/Sandboxie/releases",
-    "regex": "releases/download/(?<tag>[vV]?[\\d.]+)/Sandboxie-Plus-x64-v([\\d.]+).exe"
   },
+  "persist": "Sandboxie.ini",
+  "checkver": "github",
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghproxy.net/https://github.com/sandboxie-plus/Sandboxie/releases/download/$matchTag/Sandboxie-Plus-x64-v$version.exe"
+        "url": "https://ghproxy.net/https://github.com/sandboxie-plus/Sandboxie/releases/download/v$version/Sandboxie-Plus-x64-v$matchHead.exe"
       },
       "32bit": {
-        "url": "https://ghproxy.net/https://github.com/sandboxie-plus/Sandboxie/releases/download/$matchTag/Sandboxie-Plus-x86-v$version.exe"
+        "url": "https://ghproxy.net/https://github.com/sandboxie-plus/Sandboxie/releases/download/v$version/Sandboxie-Plus-x86-v$matchHead.exe"
       }
     }
   }
