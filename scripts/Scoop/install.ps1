@@ -1,5 +1,5 @@
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-Invoke-WebRequest -useb 'https://ghproxy.net/https://raw.githubusercontent.com/scoopinstaller/install/master/install.ps1' | Invoke-Expression
+Invoke-WebRequest -useb 'https://mirror.ghproxy.com/https://raw.githubusercontent.com/scoopinstaller/install/master/install.ps1' | Invoke-Expression
 scoop install gsudo git scoop-search
 # scoop config SCOOP_REPO 'https://github.com/Ash258/Scoop-Core'
 # scoop bucket add 'Base'
