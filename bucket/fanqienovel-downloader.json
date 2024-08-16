@@ -1,0 +1,26 @@
+{
+  "version": "1.0.6",
+  "description": "下载番茄小说",
+  "homepage": "https://github.com/ying-ck/fanqienovel-downloader",
+  "license": {
+    "identifier": "GPL-3.0 license",
+    "url": "https://github.com/ying-ck/fanqienovel-downloader#GPL-3.0-1-ov-file"
+  },
+  "url": "https://mirror.ghproxy.com/https://github.com/ying-ck/fanqienovel-downloader/releases/download/v1.0.6/fanqienovel-downloader-v1.0.6.exe",
+  "hash": "9970f7b04ccec17a6c7fd6d290e16dd41b7e7ae14719693fd44f3f694e356701",
+  "pre_install": "Get-ChildItem \"$dir\\fanqienovel*.exe\" | Rename-Item -NewName 'fanqienovel.exe'",
+  "shortcuts": [
+    [
+      "fanqienovel.exe",
+      "fanqienovel"
+    ]
+  ],
+  "persist": "data",
+  "checkver": {
+    "url": "https://api.github.com/repos/ying-ck/fanqienovel-downloader/releases",
+    "regex": "/releases/tag/v([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://mirror.ghproxy.com/https://github.com/ying-ck/fanqienovel-downloader/releases/download/v$version/fanqienovel-downloader-v$version.exe"
+  }
+}
