@@ -2,38 +2,24 @@
   "$schema": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/ScoopInstaller/Scoop/master/schema.json",
   "homepage": "https://github.com/kiennq/emacs-build",
   "license": "GPLv3",
-  "version": "31.297.20240815.0ed7ad4",
-  "url": "https://mirror.ghproxy.com/https://github.com/kiennq/emacs-build/releases/download/v31.297.20240815.0ed7ad4/emacs-0ed7ad4-ucrt-x86_64-full.zip",
-  "hash": "b9ebf2f5fac916add0a9f4bdc8a79554faa2f4975008eaabf2557a2cdced9741",
-  "bin": [
-    "bin\\runemacs.exe",
-    "bin\\emacs.exe",
-    "bin\\emacsclient.exe",
-    "bin\\emacsclientw.exe",
-    "bin\\etags.exe",
-    "bin\\ctags.exe",
-    [
-      "bin\\emacsclientw.exe",
-      "emw",
-      "-c -n -a \"\""
+  "version": "31.300.20240817.166cc8e",
+  "url": "https://mirror.ghproxy.com/https://github.com/kiennq/emacs-build/releases/download/v31.300.20240817.166cc8e/emacs-166cc8e-ucrt-x86_64.msix",
+  "hash": "a71cd079e290394b4a5fc308746a7b87c3ffa0210735d07b771db03c5092ecf2",
+  "installer": {
+    "script": [
+      "Get-ChildItem \"$dir\\*.msix\" | Add-AppxPackage -AllowUnsigned -ForceApplicationShutdown",
+      "Remove-Item -Force \"$dir\\*.msix\""
     ]
-  ],
+  },
+  "uninstaller": {
+    "script": "Get-AppxPackage -Name \"Emacs\" | Remove-AppxPackage"
+  },
+  "notes": "Please install as administrator",
   "checkver": {
     "github": "https://github.com/kiennq/emacs-build",
     "regex": "/tag/v([\\d\\w.-]+)"
   },
   "autoupdate": {
-    "url": "https://mirror.ghproxy.com/https://github.com/kiennq/emacs-build/releases/download/v$version/emacs-$buildVersion-ucrt-x86_64-full.zip"
-  },
-  "shortcuts": [
-    [
-      "bin\\runemacs.exe",
-      "Emacs"
-    ],
-    [
-      "bin\\emacsclientw.exe",
-      "Emacs Client",
-      "-c -n -a \"\""
-    ]
-  ]
+    "url": "https://mirror.ghproxy.com/https://github.com/kiennq/emacs-build/releases/download/v$version/emacs-$buildVersion-ucrt-x86_64.msix"
+  }
 }
