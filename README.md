@@ -1,11 +1,11 @@
 # 🍡 scoop-proxy-cn
 
-适合中国大陆用户使用的 [Scoop](https://scoop.sh) buckets 代理镜像库。从多个开源 `bucket` 仓库同步更新，并将从 `github release` 下载的应用地址修改为基于 `mirror.ghproxy.com` 的代理下载地址。
+适合中国大陆用户使用的 [Scoop](https://scoop.sh) buckets 代理镜像库。从多个开源 `bucket` 仓库同步更新，并将从 `github release` 下载的应用地址修改为基于 `ghp.ci` 的代理下载地址。
 
 ## Usage
 
 ```powershell
-scoop bucket add spc https://mirror.ghproxy.com/github.com/lzwme/scoop-proxy-cn
+scoop bucket add spc https://ghp.ci/github.com/lzwme/scoop-proxy-cn
 
 # install apps
 scoop install spc/<app_name>
@@ -19,15 +19,15 @@ scoop install spc/<app_name>
 # install
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 # irm -useb get.scoop.sh | iex
-irm https://mirror.ghproxy.com/raw.githubusercontent.com/lzwme/scoop-proxy-cn/master/install.ps1 | iex
+irm https://ghp.ci/raw.githubusercontent.com/lzwme/scoop-proxy-cn/master/install.ps1 | iex
 
 # config
-scoop config SCOOP_REPO https://mirror.ghproxy.com/github.com/ScoopInstaller/Scoop
-scoop bucket add spc https://mirror.ghproxy.com/github.com/lzwme/scoop-proxy-cn
+scoop config SCOOP_REPO https://ghp.ci/github.com/ScoopInstaller/Scoop
+scoop bucket add spc https://ghp.ci/github.com/lzwme/scoop-proxy-cn
 
 # 从 0.4.0 开始，必须存在 main bucket，否则执行 scoop update 会报错：ERROR 'main' bucket not found. Failed to remove local 'main' bucket.
 scoop bucket rm main
-scoop bucket add main https://mirror.ghproxy.com/github.com/ScoopInstaller/Main
+scoop bucket add main https://ghp.ci/github.com/ScoopInstaller/Main
 
 # show help
 scoop help
@@ -60,11 +60,11 @@ scoop install scoop-search -s
 
 ```bash
 # 更新 scoop repo
-scoop config scoop_repo https://mirror.ghproxy.com/github.com/ScoopInstaller/Scoop.git
+scoop config scoop_repo https://ghp.ci/github.com/ScoopInstaller/Scoop.git
 
 # 移除并重新添加 spc bucket
 scoop bucket rm spc
-scoop bucket add spc https://mirror.ghproxy.com/github.com/lzwme/scoop-proxy-cn
+scoop bucket add spc https://ghp.ci/github.com/lzwme/scoop-proxy-cn
 ```
 
 ## Sync Buckets From
