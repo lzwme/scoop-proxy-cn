@@ -5,7 +5,7 @@
   "license": "MIT",
   "architecture": {
     "64bit": {
-      "url": "https://mirror.ghproxy.com/https://github.com/SevenTV/chatterino7/releases/download/nightly-build/chatterino-windows-x86-64-Qt-6.7.1.zip",
+      "url": "https://ghp.ci/https://github.com/SevenTV/chatterino7/releases/download/nightly-build/chatterino-windows-x86-64-Qt-6.7.1.zip",
       "hash": "1f30b050649a553fb26aa5248ad17c670e1edd315c441519f111f5fe24c20991",
       "extract_dir": "Chatterino2",
       "pre_install": [
@@ -31,14 +31,14 @@
   "checkver": {
     "script": [
       "(Invoke-RestMethod 'https://api.github.com/repositories/342454835/actions/workflows/build.yml/runs?branch=chatterino7&status=success').workflow_runs[0].id,",
-      "(Invoke-RestMethod https://mirror.ghproxy.com/https://raw.githubusercontent.com/SevenTV/chatterino7/chatterino7/.github/workflows/build.yml | Select-String 'os: windows-latest\\s+qt-version: ([\\d.]+)').Matches.Groups[1].Value -join ' '"
+      "(Invoke-RestMethod https://ghp.ci/https://raw.githubusercontent.com/SevenTV/chatterino7/chatterino7/.github/workflows/build.yml | Select-String 'os: windows-latest\\s+qt-version: ([\\d.]+)').Matches.Groups[1].Value -join ' '"
     ],
     "regex": "(\\d+) (?<qt>[\\d.]+)"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://mirror.ghproxy.com/https://github.com/SevenTV/chatterino7/releases/download/nightly-build/chatterino-windows-x86-64-Qt-$matchQt.zip"
+        "url": "https://ghp.ci/https://github.com/SevenTV/chatterino7/releases/download/nightly-build/chatterino-windows-x86-64-Qt-$matchQt.zip"
       }
     }
   }
