@@ -1,33 +1,43 @@
 {
-  "version": "2.5.5",
-  "description": "Multi-platform proxy client made with Flutter.",
-  "homepage": "https://github.com/hiddify/hiddify-next",
-  "license": "",
-  "notes": "",
+  "version": "2.5.6",
+  "description": "Multi-platform auto-proxy client, supporting Sing-box, X-ray, TUIC, Hysteria, Reality, Trojan, SSH etc. It’s an open-source, secure and ad-free.",
+  "homepage": "https://hiddify.com/",
+  "license": {
+    "identifier": "CC-BY-NC-SA-4.0",
+    "url": "https://github.com/hiddify/hiddify-next/blob/main/LICENSE.md"
+  },
   "architecture": {
     "64bit": {
-      "url": "https://ghp.ci/https://github.com/hiddify/hiddify-next/releases/download/v2.5.5/Hiddify-Windows-Portable-x64.zip",
-      "hash": "e75670d14da26f9820988344d73075f059096a968d5093fe253b7aea5592667d"
+      "url": "https://ghp.ci/https://github.com/hiddify/hiddify-next/releases/download/v2.5.6/Hiddify-Windows-Portable-x64.zip",
+      "hash": "6033849af2e022f5b40e3fedae218ad6ee1918554210a5098143d23e925bc88f"
     }
   },
+  "extract_dir": "HiddifyNext-portable",
+  "installer": {
+    "script": [
+      "ensure \"$persist_dir\" | Out-Null",
+      "New-Item \"$env:APPDATA\\Hiddify\" -ItemType Junction -Target \"$persist_dir\" | Out-Null"
+    ]
+  },
+  "uninstaller": {
+    "script": "Remove-Item \"$env:APPDATA\\Hiddify\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
+  },
+  "shortcuts": [
+    [
+      "HiddifyNext.exe",
+      "HiddifyNext"
+    ]
+  ],
   "checkver": {
     "url": "https://api.github.com/repos/hiddify/hiddify-next/releases",
-    "jsonpath": "$.[0].tag_name",
-    "regex": "([\\d.]+)"
+    "jsonpath": "$[0].assets[*].browser_download_url",
+    "regex": "/releases/download/v([\\w.]+)/(?<file>(?:hiddify|Hiddify)-(?:windows|Windows)-(?:portable|Portable)-x64\\.zip)"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghp.ci/https://github.com/hiddify/hiddify-next/releases/download/v$version/Hiddify-Windows-Portable-x64.zip"
+        "url": "https://ghp.ci/https://github.com/hiddify/hiddify-next/releases/download/v$version/$matchFile"
       }
     }
-  },
-  "extract_dir": "hiddify-next",
-  "bin": "Hiddify.exe",
-  "shortcuts": [
-    [
-      "Hiddify.exe",
-      "Hiddify"
-    ]
-  ]
+  }
 }
