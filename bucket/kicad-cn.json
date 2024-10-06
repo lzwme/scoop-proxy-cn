@@ -10,6 +10,25 @@
     }
   },
   "pre_install": "Remove-Item \"$dir\\`$*\" -Recurse",
+  "bin": "bin\\kicad-cli.exe",
+  "shortcuts": [
+    [
+      "bin\\kicad.exe",
+      "KiCad"
+    ],
+    [
+      "bin\\eeschema.exe",
+      "Eeschema"
+    ],
+    [
+      "bin\\pcbnew.exe",
+      "PCBNew"
+    ],
+    [
+      "bin\\gerbview.exe",
+      "Gerber Viewer"
+    ]
+  ],
   "post_install": [
     "'install-file-associations', 'uninstall-file-associations' | ForEach-Object {",
     "    $reg_file_in  = \"$bucketsdir\\$bucket\\scripts\\kicad\\$_.reg\"",
@@ -32,25 +51,6 @@
     "        regedit /s $reg_file",
     "    }",
     "}"
-  ],
-  "bin": "bin\\kicad-cli.exe",
-  "shortcuts": [
-    [
-      "bin\\kicad.exe",
-      "KiCad"
-    ],
-    [
-      "bin\\eeschema.exe",
-      "Eeschema"
-    ],
-    [
-      "bin\\pcbnew.exe",
-      "PCBNew"
-    ],
-    [
-      "bin\\gerbview.exe",
-      "Gerber Viewer"
-    ]
   ],
   "checkver": {
     "url": "https://mirrors.bfsu.edu.cn/kicad/windows/stable/",

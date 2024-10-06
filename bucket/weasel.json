@@ -1,6 +1,7 @@
 {
   "homepage": "https://rime.im/",
   "license": "GPL-3.0-or-later",
+  "description": "【小狼毫】Rime for Windows",
   "version": "0.16.2",
   "architecture": {
     "64bit": {
@@ -8,13 +9,12 @@
       "hash": "3d10b56cd9825ad0b69ffcaabe4dd7119e2b23fb698ef723001789172ef1447a"
     }
   },
-  "installer": {
-    "script": [
-      "& \"$dir\\WeaselSetup.exe\" /i",
-      "& \"$dir\\WeaselDeployer.exe\" /install",
-      "& \"$dir\\WeaselServer.exe\""
-    ]
-  },
+  "pre_install": [
+    "if(!(Test-Path \"$dir\\Rime\")) {New-Item \"$dir\\Rime\" -ItemType Directory | Out-Null} ",
+    "& \"$dir\\WeaselSetup.exe\" /i",
+    "& \"$dir\\WeaselDeployer.exe\" /install",
+    "& \"$dir\\WeaselServer.exe\""
+  ],
   "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\" -Recurse",
   "uninstaller": {
     "script": "Invoke-ExternalCommand \"$dir/uninstall.exe\" -ArgumentList '/S' -RunAs | Out-Null"
