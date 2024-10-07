@@ -3,12 +3,8 @@
   "license": "GPL-3.0-or-later",
   "description": "【小狼毫】Rime for Windows",
   "version": "0.16.2",
-  "architecture": {
-    "64bit": {
-      "url": "https://ghp.ci/https://github.com/rime/weasel/releases/download/0.16.2/weasel-0.16.2.0-installer.exe#/dl.7z",
-      "hash": "3d10b56cd9825ad0b69ffcaabe4dd7119e2b23fb698ef723001789172ef1447a"
-    }
-  },
+  "url": "https://ghp.ci/https://github.com/rime/weasel/releases/download/0.16.2/weasel-0.16.2.0-installer.exe#/dl.7z",
+  "hash": "3d10b56cd9825ad0b69ffcaabe4dd7119e2b23fb698ef723001789172ef1447a",
   "pre_install": [
     "if(!(Test-Path \"$dir\\Rime\")) {New-Item \"$dir\\Rime\" -ItemType Directory | Out-Null} ",
     "& \"$dir\\WeaselSetup.exe\" /i",
@@ -21,10 +17,6 @@
   },
   "checkver": "github",
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghp.ci/https://github.com/rime/weasel/releases/download/$version/weasel-$version.0-installer.exe#/dl.7z"
-      }
-    }
+    "url": "https://ghp.ci/https://github.com/rime/weasel/releases/download/$version/weasel-$version.0-installer.exe#/dl.7z"
   }
 }
