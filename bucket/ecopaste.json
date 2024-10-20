@@ -1,13 +1,22 @@
 {
-  "version": "0.1.0",
-  "description": "Cross-platform clipboard management tool",
-  "homepage": "https://github.com/ayangweb/EcoPaste/",
-  "license": "Apache-2.0",
-  "architecture": {
-    "64bit": {
-      "url": "https://ghp.ci/https://github.com/EcoPasteHub/EcoPaste/releases/download/v0.1.0/EcoPaste_0.1.0_x64-setup.exe#/dl.7z",
-      "hash": "d85aaeadde3ed4dcbd2753733ef03e1c4bf0a8650048e58bd390e5a4f585e2a0"
-    }
+  "version": "0.2.0",
+  "description": "🎉跨平台的剪贴板管理工具 | Cross-platform clipboard management tool",
+  "homepage": "https://github.com/EcoPasteHub/EcoPaste",
+  "license": {
+    "identifier": "Apache-2.0 license",
+    "url": "https://github.com/EcoPasteHub/EcoPaste#Apache-2.0-1-ov-file"
+  },
+  "url": "https://ghp.ci/https://github.com/EcoPasteHub/EcoPaste/releases/download/v0.2.0/EcoPaste_0.2.0_x64-setup.exe",
+  "hash": "f879beaff3e263519c99313ebfe6ba9ac899bb547d4ce296835e6db77008306d",
+  "pre_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\uninst*\" -Force -Recurse",
+  "installer": {
+    "script": [
+      "ensure \"$persist_dir\" | Out-Null",
+      "New-Item \"$env:APPDATA\\com.ayangweb.EcoPaste\" -ItemType Junction -Target \"$persist_dir\" | Out-Null"
+    ]
+  },
+  "uninstaller": {
+    "script": "Remove-Item \"$env:APPDATA\\com.ayangweb.EcoPaste\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
   },
   "shortcuts": [
     [
@@ -15,16 +24,11 @@
       "EcoPaste"
     ]
   ],
-  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\uninst*\"  -Force -Recurse",
-  "checkver": "github",
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://ghp.ci/https://github.com/EcoPasteHub/EcoPaste/releases/download/v$version/EcoPaste_$version_x64-setup.exe#/dl.7z"
-      }
-    }
+  "checkver": {
+    "url": "https://api.github.com/repos/EcoPasteHub/EcoPaste/releases/latest",
+    "regex": "/releases/tag/v([\\d.]+)"
   },
-  "notes": [
-    "You may need to install Edge WebView2 Runtime to use EcoPaste."
-  ]
+  "autoupdate": {
+    "url": "https://ghp.ci/https://github.com/EcoPasteHub/EcoPaste/releases/download/v$version/EcoPaste_$version_x64-setup.exe"
+  }
 }
