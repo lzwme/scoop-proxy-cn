@@ -22,7 +22,7 @@
   },
   "pre_install": [
     "Expand-7zipArchive \"$dir/streamlink-$version-py312-x86*.zip\" \"$dir\" -Removal",
-    "$python = try { (py.exe -0p | Select-Object -First 1 | Select-String \\S+\\Z).Matches.Value } catch {}",
+    "$python = try { $null = (py.exe -0p | Select-Object -First 1) -cmatch '\\S+\\Z'; $Matches[1] } catch {}",
     "$paths = 'bin', 'pkgs'",
     "if ($python -and ($ver = try { [System.Version]((py.exe -V) -Replace '[^\\d.]') } catch {}) -lt [System.Version]'3.13.0' -and $ver -ge [System.Version]'3.12.0') {",
     "    $null = New-Item -ItemType SymbolicLink -Path \"$dir/Python\" -Target ($python | Split-Path)",
