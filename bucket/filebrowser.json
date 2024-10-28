@@ -1,7 +1,7 @@
 {
-  "homepage": "https://filebrowser.org/",
-  "description": "Web File Browser",
   "version": "2.31.2",
+  "description": "Web File Browser",
+  "homepage": "https://filebrowser.org/",
   "license": "Apache-2.0",
   "architecture": {
     "64bit": {
@@ -11,6 +11,10 @@
     "32bit": {
       "url": "https://ghp.ci/https://github.com/filebrowser/filebrowser/releases/download/v2.31.2/windows-386-filebrowser.zip",
       "hash": "8e2ca1a5851a29a0faca49cb6feb0cd04fe732a1818887fbf2296be84a02e3c3"
+    },
+    "arm64": {
+      "url": "https://ghp.ci/https://github.com/filebrowser/filebrowser/releases/download/v2.31.2/windows-arm64-filebrowser.zip",
+      "hash": "fff6f037e73ed59738e24a771d8e8e6b92a08668ecd3edbd4fa32e231a39ee4a"
     }
   },
   "bin": "filebrowser.exe",
@@ -20,14 +24,26 @@
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghp.ci/https://github.com/filebrowser/filebrowser/releases/download/v$version/windows-amd64-filebrowser.zip"
+        "url": "https://ghp.ci/https://github.com/filebrowser/filebrowser/releases/download/v$version/windows-amd64-filebrowser.zip",
+        "hash": {
+          "url": "$baseurl/filebrowser_$version_checksums.txt",
+          "regex": "$sha256\\s+$basename"
+        }
       },
       "32bit": {
-        "url": "https://ghp.ci/https://github.com/filebrowser/filebrowser/releases/download/v$version/windows-386-filebrowser.zip"
+        "url": "https://ghp.ci/https://github.com/filebrowser/filebrowser/releases/download/v$version/windows-386-filebrowser.zip",
+        "hash": {
+          "url": "$baseurl/filebrowser_$version_checksums.txt",
+          "regex": "$sha256\\s+$basename"
+        }
+      },
+      "arm64": {
+        "url": "https://ghp.ci/https://github.com/filebrowser/filebrowser/releases/download/v$version/windows-arm64-filebrowser.zip",
+        "hash": {
+          "url": "$baseurl/filebrowser_$version_checksums.txt",
+          "regex": "$sha256\\s+$basename"
+        }
       }
-    },
-    "hash": {
-      "url": "https://ghp.ci/https://github.com/filebrowser/filebrowser/releases/download/v$version/filebrowser_$version_checksums.txt"
     }
   }
 }
