@@ -87,6 +87,9 @@ async function syncDir(src, dest, repo = '') {
         // fix for https://github.com/lzwme/scoop-proxy-cn/issues/2
         content = content.replace(/\$bucketsdir\\\\[a-zA-Z\-]+\\\\/gim, '$bucketsdir\\\\$bucket\\\\');
 
+        // fix for #66 #68
+        content = content.replaceAll(/Find-BucketDirectory -Root -Name [a-zA-Z]+\)/g, 'Find-BucketDirectory -Root -Name spc)');
+
         if (basename.startsWith('php')) {
           content = content.replace('bin\\postinstall.ps1', 'bin\\php-postinstall.ps1');
         }
