@@ -20,14 +20,14 @@
   "installer": {
     "script": [
       "# handle runtime cache",
-      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name apps) scripts/AppsUtils.psm1)",
+      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/AppsUtils.psm1)",
       "Mount-ExternalRuntimeData -Source \"$persist_dir\\appdata\" -Target \"$env:APPDATA\\dev.xmarmalade.alisthelper\"",
       "Remove-Module -Name AppsUtils"
     ]
   },
   "uninstaller": {
     "script": [
-      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name apps) scripts/AppsUtils.psm1)",
+      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/AppsUtils.psm1)",
       "Dismount-ExternalRuntimeData -Target \"$env:APPDATA\\dev.xmarmalade.alisthelper\"",
       "Remove-Module -Name AppsUtils"
     ]

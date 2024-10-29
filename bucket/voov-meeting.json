@@ -10,7 +10,7 @@
   "hash": "md5:f0a0b582ed322bcef97f94c9ff149500",
   "installer": {
     "script": [
-      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name ox) scripts/DoradoUtils.psm1)",
+      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/DoradoUtils.psm1)",
       "Mount-ExternalRuntimeData -Source \"$persist_dir\" -Target \"$env:APPDATA\\Tencent\\VooVMeeting\"",
       "Remove-Module -Name DoradoUtils",
       "Rename-Item -Path \"$dir\\`$_*\" -NewName \"$version\" -Force",
@@ -28,7 +28,7 @@
   ],
   "uninstaller": {
     "script": [
-      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name ox) scripts/DoradoUtils.psm1)",
+      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/DoradoUtils.psm1)",
       "Dismount-ExternalRuntimeData -Target \"$env:APPDATA\\Tencent\\VooVMeeting\"",
       "Remove-Module -Name DoradoUtils"
     ]

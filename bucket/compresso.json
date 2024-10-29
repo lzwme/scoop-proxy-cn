@@ -20,7 +20,7 @@
   "installer": {
     "script": [
       "# handle runtime cache",
-      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name apps) scripts/AppsUtils.psm1)",
+      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/AppsUtils.psm1)",
       "Mount-ExternalRuntimeData -Source \"$persist_dir\\appdata\" -Target \"$env:LOCALAPPDATA\\com.compresso.app\"",
       "Mount-ExternalRuntimeData -Source \"$persist_dir\\userdata\" -Target \"$env:APPDATA\\com.compresso.app\"",
       "Remove-Module -Name AppsUtils"
@@ -28,7 +28,7 @@
   },
   "uninstaller": {
     "script": [
-      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name apps) scripts/AppsUtils.psm1)",
+      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/AppsUtils.psm1)",
       "Dismount-ExternalRuntimeData -Target \"$env:LOCALAPPDATA\\com.compresso.app\"",
       "Dismount-ExternalRuntimeData -Target \"$env:APPDATA\\com.compresso.app\"",
       "Remove-Module -Name AppsUtils"
