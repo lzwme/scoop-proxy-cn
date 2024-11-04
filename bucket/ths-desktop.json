@@ -7,19 +7,10 @@
   "hash": "",
   "#innosetup": true,
   "#extract_to": "Programs",
-  "pre_install": [
-    "$bucketdir = Find-BucketDirectory -Name $bucket",
-    "",
-    ""
-  ],
-  "post_install": [
-    ""
-  ],
   "installer": {
     "script": [
       "$file = (Get-Item \"$dir\\THS*.exe\").FullName",
-      "Expand-InnoArchive -UseInnoextract $file -DestinationPath $dir\\Programs",
-      "#Expand-InnoArchive $file -Removal"
+      "Expand-InnoArchive -UseInnoextract $file -DestinationPath $dir\\Programs"
     ]
   },
   "shortcuts": [
