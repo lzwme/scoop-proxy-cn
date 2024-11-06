@@ -1,25 +1,25 @@
 {
-  "version": "1730680792",
+  "version": "1730766949",
   "description": "An open-source remote desktop software, written in Rust.",
   "homepage": "https://github.com/rustdesk/rustdesk",
   "license": "AGPL-3.0-only",
   "architecture": {
     "64bit": {
       "url": "https://ghp.ci/https://github.com/rustdesk/rustdesk/releases/download/nightly/rustdesk-1.3.2-x86_64.exe",
-      "hash": "d5990c6a9e7fa6938dd9333cc5d82066727e865310860f3b9a3d5c5a35c27bd6"
+      "hash": "d400cf5b24daea90e2250552bf49a48b57b5ae57393bd92f06f87fa8e51b0ecc"
     },
     "32bit": {
       "url": "https://ghp.ci/https://github.com/rustdesk/rustdesk/releases/download/nightly/rustdesk-1.3.2-x86-sciter.exe",
-      "hash": "b2bbdb07da8bf37cfef33ea968e8e2391a531e6b970e28a85cf5ca66f5a88c02"
+      "hash": "32679dede9430cefa522079289343e376dfe7a3263aea670395485f7f7206858"
     }
   },
+  "pre_install": "Get-ChildItem \"$dir\" 'rustdesk-*.exe' | Select-Object -First 1 | Rename-Item -NewName 'RustDesk.exe'",
   "shortcuts": [
     [
       "RustDesk.exe",
       "RustDesk"
     ]
   ],
-  "pre_install": "Get-ChildItem \"$dir\" 'rustdesk-*.exe' | Select-Object -First 1 | Rename-Item -NewName 'RustDesk.exe'",
   "checkver": {
     "script": [
       "try {",
