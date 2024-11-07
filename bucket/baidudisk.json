@@ -1,29 +1,50 @@
 {
-  "version": "7.33.0.7",
-  "description": "baidu net disk client",
-  "homepage": "http://pan.baidu.com/",
-  "license": {
-    "identifier": "Unknown",
-    "url": "http://pan.baidu.com/disk/duty/"
+  "version": "7.44.6.1",
+  "description": "百度网盘PC版 ",
+  "homepage": "https://pan.baidu.com/download",
+  "license": "Proprietary",
+  "url": "http://issuecdn.baidupcs.com/issue/netdisk/yunguanjia/BaiduNetdisk_7.44.6.1.exe#dl.7z",
+  "hash": "ba1ae83c098a80484e6f550bf4ba55787cbf62e1de9cc748464cb432a6de12fc",
+  "bin": "BaiduNetdisk.exe",
+  "persist": "users",
+  "post_install": [
+    "Remove-Item \"$dir\\`$PLUGINSDIR\" -Recurse",
+    "Remove-Item \"$dir\\`$TEMP\" -Recurse"
+  ],
+  "pre_uninstall": [
+    "$processName = \"YunDetectService\"",
+    "if((Get-Process -Name $processName -ErrorAction SilentlyContinue) -eq $null) {",
+    "Write-Host \"YunDetectService is not running.\" -ForegroundColor blue",
+    "} else {",
+    "Stop-Process -ProcessName $processName",
+    "Write-Host \"YunDetectService is exist.\" -ForegroundColor green",
+    "}"
+  ],
+  "post_uninstall": [
+    "$baiduCache = \"$env:APPDATA\\Baidu\"",
+    "$baiduLog = \"$env:APPDATA\\BaiduYunGuanjia\"",
+    "$runtimeCache = \"$env:APPDATA\\BaiduYunKernel\"",
+    "if (Test-Path \"$baiduCache\") {",
+    "Remove-Item $baiduCache -Force -Recurse -ErrorAction SilentlyContinue",
+    "}",
+    "if (Test-Path \"$baiduLog\") {",
+    "Remove-Item $baiduLog -Force -Recurse -ErrorAction SilentlyContinue",
+    "}",
+    "if (Test-Path \"$runtimeCache\") {",
+    "Remove-Item $runtimeCache -Force -Recurse -ErrorAction SilentlyContinue",
+    "}"
+  ],
+  "checkver": {
+    "url": "https://pan.baidu.com/disk/cmsdata?do=client",
+    "regex": "BaiduNetdisk_(\\d+.\\d+.\\d+.\\d+).exe"
   },
-  "url": "http://wppkg.baidupcs.com/issue/netdisk/yunguanjia/BaiduNetdisk_7.33.0.7.exe#/dl.7z",
-  "hash": "278ebbde872e0801cb8375933cccc6fcded79c7194cb6d6dd0ea7619e24fe37b",
-  "pre_install": "Remove-Item -R -Path \"$dir\\`$TEMP\",\"$dir\\`$PLUGINSDIR\"",
+  "autoupdate": {
+    "url": "http://issuecdn.baidupcs.com/issue/netdisk/yunguanjia/BaiduNetdisk_$version.exe#dl.7z"
+  },
   "shortcuts": [
     [
       "BaiduNetdisk.exe",
-      "Baidu Netdisk"
+      "百度网盘"
     ]
-  ],
-  "persist": "users",
-  "checkver": {
-    "url": "http://pan.baidu.com/disk/cmsdata?do=client",
-    "regex": "\\\\/yunguanjia\\\\/(?<name>Baidu[\\w]+_)(\\d+\\.\\d+\\.\\d+\\.\\d+)\\.exe"
-  },
-  "autoupdate": {
-    "url": "http://wppkg.baidupcs.com/issue/netdisk/yunguanjia/$matchName$version.exe#/dl.7z",
-    "hash": {
-      "mode": "download"
-    }
-  }
+  ]
 }
