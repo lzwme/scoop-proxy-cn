@@ -1,7 +1,7 @@
 {
   "version": "6.1.1",
-  "description": "A machine learning-based lossless video super resolution framework. Est. Hack the Valley II, 2018.",
-  "homepage": "https://github.com/K4YT3X/video2x",
+  "description": "Upscaling video with waifu2x and Anime4K.",
+  "homepage": "https://video2x.org",
   "license": "AGPL-3.0-only",
   "architecture": {
     "64bit": {
@@ -12,18 +12,18 @@
   "bin": "video2x.exe",
   "shortcuts": [
     [
-      "video2x-qt6.exe",
-      "video2x"
+      "video2x_qt6.exe",
+      "Video2X"
     ]
   ],
   "checkver": {
-    "url": "https://api.github.com/repositories/122758193/releases",
-    "jsonpath": "$[0].tag_name"
+    "github": "https://github.com/k4yt3x/video2x"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghp.ci/https://github.com/k4yt3x/video2x/releases/download/$version/video2x-qt6-windows-amd64.zip"
+        "url": "https://ghp.ci/https://github.com/k4yt3x/video2x/releases/download/$version/video2x-qt6-windows-amd64.zip",
+        "extract_dir": "video2x-$version-win32-light"
       }
     }
   }
