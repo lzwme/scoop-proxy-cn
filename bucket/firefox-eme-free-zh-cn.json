@@ -1,22 +1,22 @@
 {
   "version": "133.0",
-  "description": "EME-free version of the Firefox browser, with DRM-support disabled by default.",
-  "homepage": "https://www.mozilla.org/firefox/",
+  "description": "Firefox 浏览器的无 EME 版本，默认禁用 DRM 支持",
+  "homepage": "https://www.mozilla.org/zh-CN/firefox/",
   "license": "MPL-2.0",
   "notes": [
     "To set profile 'Scoop' as *DEFAULT*, or profiles/settings was lost after update:",
     "  - Run 'Firefox Profile Manager', choose 'Scoop' then click 'Start Firefox'.",
     "  - Visit 'about:profiles' page in Firefox to check *DEFAULT* profile.",
-    "For details: https://support.mozilla.org/en-US/kb/profile-manager-create-remove-switch-firefox-profiles"
+    "For details: https://support.mozilla.org/zh-CN/kb/profile-manager-create-remove-switch-firefox-profiles"
   ],
   "architecture": {
     "64bit": {
-      "url": "https://archive.mozilla.org/pub/firefox/releases/133.0/win64-EME-free/en-US/Firefox%20Setup%20133.0.exe#/dl.7z",
-      "hash": "sha512:736e77917f76bca75a53e240adc3078e797a34a28c767967ebc2594a622633b35b4dbc73ab160e4d31354482537b6f8b1cafe81ec8e4c42c4892cb54b46852e1"
+      "url": "https://archive.mozilla.org/pub/firefox/releases/133.0/win64-EME-free/zh-CN/Firefox%20Setup%20133.0.exe#/dl.7z",
+      "hash": "sha512:424a5a208aeb42f9bd6ead3b088a38b4edf568d18bfa79c2c9ec6443866f515ee3809255b6d2b155f3d34948fadd30a1d93e5b626f467ce8aebd8e99144777a3"
     },
     "32bit": {
-      "url": "https://archive.mozilla.org/pub/firefox/releases/133.0/win32-EME-free/en-US/Firefox%20Setup%20133.0.exe#/dl.7z",
-      "hash": "sha512:bb528b1f8db364d2fd03f190bb03452ff7910b11f9ee5917185281caf8154904e34c5b05b9fe9c667b0c06fae9b48ab96a23c4137e30943e9d0a3d7b362e50d6"
+      "url": "https://archive.mozilla.org/pub/firefox/releases/133.0/win32-EME-free/zh-CN/Firefox%20Setup%20133.0.exe#/dl.7z",
+      "hash": "sha512:703208317f227ea91d3268308de825a24c164bc10eb5c7bf29a140e8a5dba8d32bdddb520d031fcf28670530a4cf0532c3510b5ea54afd64fe32fd3cb3cb06c6"
     }
   },
   "extract_dir": "core",
@@ -45,23 +45,23 @@
     "profile"
   ],
   "checkver": {
-    "url": "https://aus5.mozilla.org/update/6/Firefox/99.0/_/WINNT_x86_64-msvc-x64/en-US/release/_/_/_/_/update.xml",
+    "url": "https://aus5.mozilla.org/update/6/Firefox/99.0/_/WINNT_x86_64-msvc-x64/zh-CN/release/_/_/_/_/update.xml",
     "xpath": "/updates/update/@appVersion"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://archive.mozilla.org/pub/firefox/releases/$version/win64-EME-free/en-US/Firefox%20Setup%20$version.exe#/dl.7z",
+        "url": "https://archive.mozilla.org/pub/firefox/releases/$version/win64-EME-free/zh-CN/Firefox%20Setup%20$version.exe#/dl.7z",
         "hash": {
           "url": "https://archive.mozilla.org/pub/firefox/releases/$version/SHA512SUMS",
-          "regex": "$sha512\\s+win64-EME-free/en-US/$basename"
+          "regex": "$sha512\\s+win64-EME-free/zh-CN/$basename"
         }
       },
       "32bit": {
-        "url": "https://archive.mozilla.org/pub/firefox/releases/$version/win32-EME-free/en-US/Firefox%20Setup%20$version.exe#/dl.7z",
+        "url": "https://archive.mozilla.org/pub/firefox/releases/$version/win32-EME-free/zh-CN/Firefox%20Setup%20$version.exe#/dl.7z",
         "hash": {
           "url": "https://archive.mozilla.org/pub/firefox/releases/$version/SHA512SUMS",
-          "regex": "$sha512\\s+win32-EME-free/en-US/$basename"
+          "regex": "$sha512\\s+win32-EME-free/zh-CN/$basename"
         }
       }
     }
