@@ -1,12 +1,10 @@
 {
-  "version": "4.29.2024093009",
-  "description": "HBuilderX，H是HTML的首字母，Builder是构造者，X是HBuilder的下一代版本。我们也简称HX。 HX是轻如编辑器、强如IDE的合体版本。",
   "homepage": "https://www.dcloud.io/hbuilderx.html",
-  "license": {
-    "identifier": "DCloud",
-    "url": "https://dcloud.io/license/hbuilder.html"
-  },
+  "version": "4.36.2024112817",
+  "license": "Freeware",
   "extract_dir": "HBuilderX",
+  "url": "https://download1.dcloud.net.cn/download/HBuilderX.4.36.2024112817.zip",
+  "hash": "9efc18e2e76695671cba4dde1af6f01f336d781d5ad0d27de843c48261742fc3",
   "bin": "HBuilderX.exe",
   "shortcuts": [
     [
@@ -14,19 +12,11 @@
       "HBuilderX"
     ]
   ],
-  "notes": [
-    "如果使用cli请使用 \"$dir\\cli\""
-  ],
-  "architecture": {
-    "64bit": {
-      "url": "https://qiniu-ecdn.dcloud.net.cn/download/HBuilderX.4.29.2024093009.zip"
-    }
+  "checkver": {
+    "url": "https://download1.dcloud.net.cn/hbuilderx/release.json",
+    "jsonpath": "$.win[1].version"
   },
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://qiniu-ecdn.dcloud.net.cn/download/HBuilderX.$version.zip"
-      }
-    }
+    "url": "https://download1.dcloud.net.cn/download/HBuilderX.$version.zip"
   }
 }
