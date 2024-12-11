@@ -1,13 +1,18 @@
 {
-  "version": "0.40.4",
-  "description": "AI Code Editor",
-  "homepage": "https://www.cursor.so",
-  "license": {
-    "identifier": "Proprietary",
-    "url": "https://www.cursor.so/"
+  "version": "0.43",
+  "description": "人工智能优先的代码编辑器。The AI-first Code Editor.",
+  "homepage": "https://cursor.sh/",
+  "license": "Unknown",
+  "architecture": {
+    "64bit": {
+      "url": "https://downloader.cursor.sh/windows/nsis/x64#/abgo_bucket_installer.exe#dl.7z",
+      "hash": "71C746465D4CAAE39B7A878EED3C80AAB2271DC3569B140EEE6DC2679E16BBCE"
+    }
   },
-  "url": "https://downloader.cursor.sh/windows/nsis/x64#/dl.7z",
-  "hash": "081d0d28fb3904e85a2c324940c2f4110b60a32cc9dc4f0b03aecc089a169a26",
+  "pre_install": [
+    "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+    "Remove-Item -Recurse -Force \"$dir\\`$PLUGINSDIR\""
+  ],
   "bin": "Cursor.exe",
   "shortcuts": [
     [
@@ -15,26 +20,11 @@
       "Cursor"
     ]
   ],
-  "pre_install": [
-    "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
-    "Remove-Item \"$dir\\`$*\", \"$dir\\Uninstall*\" -Recurse"
-  ],
-  "persist": "resources/lsp",
   "checkver": {
-    "script": [
-      "$downloadUrl = 'https://downloader.cursor.sh/windows/nsis/x64'",
-      "$res = Invoke-WebRequest -Uri $downloadUrl -MaximumRedirection 0 -UseBasicParsing",
-      "$filePath = Join-Path $cachedir $res.Headers['Content-Disposition'].Split('=')[1].TrimStart(\"`\"\").TrimEnd(\"`\"\")",
-      "write-host $filePath",
-      "$version = [regex]::Match($filePath, '([\\d.]+)').Groups[1].Value",
-      "Write-Output $version"
-    ],
-    "regex": "^([\\d.]+)$"
+    "url": "https://changelog.cursor.sh/?",
+    "regex": "h2.+?>([\\d\\.]+) -"
   },
   "autoupdate": {
-    "url": "https://downloader.cursor.sh/windows/nsis/x64#/dl.7z",
-    "hash": {
-      "mode": "download"
-    }
+    "url": "https://downloader.cursor.sh/windows/nsis/x64#/abgo_bucket_installer.exe#dl.7z"
   }
 }
