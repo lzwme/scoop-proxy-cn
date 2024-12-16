@@ -1,26 +1,40 @@
 {
-  "version": "0.6.6",
-  "description": "Rosalie's Mupen GUI is a free and open source mupen64plus GUI",
+  "version": "0.6.7",
+  "description": "Nintendo 64 emulator",
   "homepage": "https://github.com/Rosalie241/RMG",
-  "license": "GPL-3.0-only",
-  "url": "https://ghp.ci/https://github.com/Rosalie241/RMG/releases/download/v0.6.6/RMG-Portable-Windows64-v0.6.6.zip",
-  "hash": "de95cb9f749f191e902ff0c18fc8e267567569bdaa2cf2546e81e6ed8a70ddb8",
-  "bin": "RMG.exe",
+  "license": {
+    "identifier": "GPL-3.0-or-later",
+    "url": "https://github.com/Rosalie241/RMG/blob/master/LICENSE"
+  },
+  "suggest": {
+    "Microsoft Visual C++ Runtime 2019": "extras/vcredist2019",
+    "Rosalie's Mupen GUI": "rmg"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghp.ci/https://github.com/Rosalie241/RMG/releases/download/v0.6.7/RMG-Portable-Windows64-v0.6.7.zip",
+      "hash": "27bd47250a3763b3717d267e8385c2e814840a6d43799ae9e45755f4a423791f"
+    }
+  },
   "shortcuts": [
     [
       "RMG.exe",
-      "Rosalie's Mupen GUI"
+      "Nintendo 64 [n64][rmg]"
     ]
   ],
   "persist": [
-    "Cache",
-    "Config",
     "Data",
-    "Save",
-    "Screenshots"
+    "Plugin"
   ],
-  "checkver": "github",
+  "checkver": {
+    "github": "https://github.com/Rosalie241/RMG",
+    "regex": "v([\\d\\.]+)"
+  },
   "autoupdate": {
-    "url": "https://ghp.ci/https://github.com/Rosalie241/RMG/releases/download/v$version/RMG-Portable-Windows64-v$version.zip"
+    "architecture": {
+      "64bit": {
+        "url": "https://ghp.ci/https://github.com/Rosalie241/RMG/releases/download/v$version/RMG-Portable-Windows64-v$version.zip"
+      }
+    }
   }
 }
