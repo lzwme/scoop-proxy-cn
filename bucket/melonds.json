@@ -1,33 +1,49 @@
 {
-  "version": "0.9.5",
-  "description": "A Nintendo DS emulator aiming for fast and accurate emulation",
-  "homepage": "http://melonds.kuribo64.net/",
-  "license": {
-    "identifier": "GPL-3.0",
-    "url": "https://github.com/melonDS-emu/melonDS/blob/master/LICENSE"
-  },
-  "url": "https://ghp.ci/https://github.com/melonDS-emu/melonDS/releases/download/0.9.5/melonDS_0.9.5_win_x64.zip",
-  "hash": "289b1644004d8762987dc1daf3a61eedfafb0a5f442801bfb9d2a18299fd39a9",
-  "installer": {
-    "script": [
-      "$FILE = 'melonDS.ini'",
-      "if (!(Test-Path \"$persist_dir\\$FILE\")) {",
-      "    New-Item \"$dir\\$FILE\" -Type File | Out-Null",
-      "}"
-    ]
-  },
-  "bin": "melonDS.exe",
-  "shortcuts": [
-    [
-      "melonDS.exe",
-      "melonDS"
-    ]
+  "homepage": "https://melonds.kuribo64.net",
+  "version": "1.0",
+  "description": "Nintendo DS Emulator",
+  "pre_install": [
+    "function create($path, $type, $content) {",
+    "   if (-not (Test-Path \"$path\")) {",
+    "       New-Item \"$path\" -ItemType $type -Value $content | Out-Null",
+    "   }",
+    "}",
+    "$ini = \"$dir\\melonds.ini\"",
+    "$saves = \"$dir\\Saves\"",
+    "$savestates = \"$dir\\SaveStates\"",
+    "$cheats = \"$dir\\Cheats\"",
+    "create $ini File \"SaveFilePath=$dir/Saves/`nSavestatePath=$dir/SaveStates/`nCheatFilePath=$dir/Cheats/`n\"",
+    "create $saves Directory",
+    "create $savestates Directory",
+    "create $cheats Directory"
   ],
-  "persist": "melonDS.ini",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghp.ci/https://github.com/melonDS-emu/melonDS/releases/download/1.0rc/melonDS-windows-x86_64.zip",
+      "hash": "eda68ed9295bfce4504d9356d3614fbd77648dc3ab1e4ad415f78778f745b33e",
+      "bin": "melonDS.exe",
+      "shortcuts": [
+        [
+          "melonDS.exe",
+          "NDS"
+        ]
+      ]
+    }
+  },
+  "persist": [
+    "Saves",
+    "SaveStates",
+    "Cheats",
+    "melonds.ini"
+  ],
   "checkver": {
     "github": "https://github.com/melonDS-emu/melonDS"
   },
   "autoupdate": {
-    "url": "https://ghp.ci/https://github.com/melonDS-emu/melonDS/releases/download/$version/melonDS_$version_win_x64.zip"
+    "architecture": {
+      "64bit": {
+        "url": "https://ghp.ci/https://github.com/melonDS-emu/melonDS/releases/download/$version/melonDS-windows-x86_64.zip"
+      }
+    }
   }
 }
