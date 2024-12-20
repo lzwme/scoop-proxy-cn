@@ -46,6 +46,16 @@ scoop install scoop-search
 scoop-search act
 ```
 
+## 常见问题
+
+### 关于 `aria2` 导致的下载失败的问题
+
+当安装了 `aria2` 时，scoop 会采用 `aria2` 实现分片加速下载。但部分代理地址不支持或屏蔽了来自 `aria2` 的分片下载请求，此时可以执行如下命令禁用 `aria2`：
+
+```bash
+scoop config aria2-enabled false
+```
+
 ### 关于 `Hash Check Failed` 的问题
 
 由于部分 app 配置的下载地址为最新发布地址，但同时又配置了 hash 值，当其有新版本变更时则会出现 `Hash Check Failed` 的问题。此时可以添加参数 `-s` 以忽略。示例：
