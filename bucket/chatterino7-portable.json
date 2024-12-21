@@ -5,7 +5,7 @@
   "license": "MIT",
   "architecture": {
     "64bit": {
-      "url": "https://ghp.ci/https://github.com/SevenTV/chatterino7/releases/download/nightly-build/chatterino-windows-x86-64-Qt-6.7.3.zip",
+      "url": "https://ghgo.xyz/https://github.com/SevenTV/chatterino7/releases/download/nightly-build/chatterino-windows-x86-64-Qt-6.7.3.zip",
       "hash": "4c71ffa54ea53f19f894a37a705e4032fe70cf4295f9dcdb2b945995f76ecfda",
       "extract_dir": "Chatterino2",
       "pre_install": [
@@ -31,7 +31,7 @@
   "checkver": {
     "script": [
       "try {",
-      "    $null = (Invoke-WebRequest https://ghp.ci/https://raw.githubusercontent.com/SevenTV/chatterino7/master/.github/workflows/build.yml).Content -cmatch 'os: windows-latest\\s+qt-version: ([\\d.]+)'",
+      "    $null = (Invoke-WebRequest https://ghgo.xyz/https://raw.githubusercontent.com/SevenTV/chatterino7/master/.github/workflows/build.yml).Content -cmatch 'os: windows-latest\\s+qt-version: ([\\d.]+)'",
       "    $Matches[1],",
       "    (Invoke-RestMethod 'https://api.github.com/repositories/342454835/actions/workflows/build.yml/runs?branch=master&status=success').workflow_runs[0].id -join ' '",
       "}",
@@ -42,7 +42,7 @@
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghp.ci/https://github.com/SevenTV/chatterino7/releases/download/nightly-build/chatterino-windows-x86-64-Qt-$matchQt.zip"
+        "url": "https://ghgo.xyz/https://github.com/SevenTV/chatterino7/releases/download/nightly-build/chatterino-windows-x86-64-Qt-$matchQt.zip"
       }
     }
   }
