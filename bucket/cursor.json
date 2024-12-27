@@ -1,40 +1,42 @@
 {
-  "version": "0.40.4",
-  "description": "AI Code Editor",
-  "homepage": "https://www.cursor.so",
-  "license": {
-    "identifier": "Proprietary",
-    "url": "https://www.cursor.so/"
+  "version": "0.44.8",
+  "description": "An AI code editor",
+  "homepage": "https://www.cursor.com/",
+  "license": "Proprietary",
+  "architecture": {
+    "64bit": {
+      "url": "https://download.todesktop.com/230313mzl4w4u92/Cursor%20Setup%200.44.8%20-%20Build%20241222ooktny8mh-x64.exe#/dl.7z",
+      "hash": "489adf2ccb38aa89a88da8262113bb2572e50ee63df3cf0135d182770a24acaf"
+    }
   },
-  "url": "https://downloader.cursor.sh/windows/nsis/x64#/dl.7z",
-  "hash": "081d0d28fb3904e85a2c324940c2f4110b60a32cc9dc4f0b03aecc089a169a26",
-  "bin": "Cursor.exe",
+  "installer": {
+    "script": [
+      "Expand-7ZipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\" -Removal",
+      "Remove-Item \"$dir\\`$PLUGINSDIR\",\"$dir\\`$R0\",\"$dir\\`$LOCALAPPDATA\"  -Force -Recurse"
+    ]
+  },
   "shortcuts": [
     [
       "Cursor.exe",
       "Cursor"
     ]
   ],
-  "pre_install": [
-    "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
-    "Remove-Item \"$dir\\`$*\", \"$dir\\Uninstall*\" -Recurse"
-  ],
-  "persist": "resources/lsp",
   "checkver": {
     "script": [
-      "$downloadUrl = 'https://downloader.cursor.sh/windows/nsis/x64'",
-      "$res = Invoke-WebRequest -Uri $downloadUrl -MaximumRedirection 0 -UseBasicParsing",
-      "$filePath = Join-Path $cachedir $res.Headers['Content-Disposition'].Split('=')[1].TrimStart(\"`\"\").TrimEnd(\"`\"\")",
-      "write-host $filePath",
-      "$version = [regex]::Match($filePath, '([\\d.]+)').Groups[1].Value",
-      "Write-Output $version"
+      ". \"$pwd\\bin\\utils.ps1\"",
+      "$dl_info = get_installer_info 'Anysphere/Cursor'",
+      "\"ver:$($dl_info.PackageVersion);\"",
+      "\"x64:$($dl_info.x64_exe.InstallerUrl);\"",
+      "\"hash:$($dl_info.x64_exe.InstallerSha256);\""
     ],
-    "regex": "^([\\d.]+)$"
+    "regex": "ver:(?<version>.+?); x64:(?<x64>.+?); hash:(?<hash>.+?);"
   },
   "autoupdate": {
-    "url": "https://downloader.cursor.sh/windows/nsis/x64#/dl.7z",
-    "hash": {
-      "mode": "download"
+    "architecture": {
+      "64bit": {
+        "url": "$matchX64#/dl.7z",
+        "hash": "$matchHash"
+      }
     }
   }
 }
