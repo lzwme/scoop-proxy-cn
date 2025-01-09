@@ -13,7 +13,7 @@ export const CONFIG = {
   /** 是否忽略 manifest JSON 解析失败的应用 */
   ignoreParseFailed: true,
   tmpDir: path.resolve(rootDir, 'tmp'),
-  ghproxy: 'https://ghgo.xyz',
+  ghproxy: 'https://github.moeyy.xyz',
   // ghproxy: 'https://mirror.ghproxy.com',
   // ghproxy: 'https://www.ghproxy.cc',
   // ghproxy: 'https://ghps.cc',
@@ -21,7 +21,7 @@ export const CONFIG = {
   // ghproxy: 'https://gh.ddlc.top',
   // --- https://github-mirror.us.kg --- 大量个人部署的服务列表
   /** 已失效的历史地址；用于兼容其他仓库的，避免套娃问题 */
-  ghproxyInvalid: ['https://ghp.ci', 'https://ghproxy.com', 'https://mirror.ghproxy.com'],
+  ghproxyInvalid: ['https://gh-proxy.com', 'https://ghproxy.com', 'https://mirror.ghproxy.com', 'https://ghp.ci', 'https://ghgo.xyz'],
   /** 同步仓库列表，按仓库质量排序 */
   repo: new Set([
     // `duzyn/scoop-cn`, // 仅同步官方仓库，并修改为国内镜像地址
