@@ -2,7 +2,7 @@
   "homepage": "https://github.com/alibaba/Sentinel",
   "license": "Apache-2.0",
   "version": "1.8.8",
-  "url": "https://ghgo.xyz/https://github.com/alibaba/Sentinel/releases/download/1.8.8/sentinel-dashboard-1.8.8.jar",
+  "url": "https://github.moeyy.xyz/https://github.com/alibaba/Sentinel/releases/download/1.8.8/sentinel-dashboard-1.8.8.jar",
   "hash": "7f3e39534ceccb5b38e3787c3b177f75443e31f57e28f7ab3525640c9925b458",
   "notes": "Default server port is 8718. Custom args: sentinel-dashboard.ps1 `-Dserver.port=9999",
   "suggest": {
@@ -15,13 +15,13 @@
   },
   "bin": "sentinel-dashboard.ps1",
   "pre_install": [
-    "$script = (new-object net.webclient).downloadstring('https://ghgo.xyz/https://raw.githubusercontent.com/zhoujin7/tomato/master/scripts/sentinel-dashboard.ps1')",
+    "$script = (new-object net.webclient).downloadstring('https://github.moeyy.xyz/https://raw.githubusercontent.com/zhoujin7/tomato/master/scripts/sentinel-dashboard.ps1')",
     "$script | Out-File -Encoding utf8 -FilePath $dir/sentinel-dashboard.ps1"
   ],
   "checkver": {
     "github": "https://github.com/alibaba/Sentinel"
   },
   "autoupdate": {
-    "url": "https://ghgo.xyz/https://github.com/alibaba/Sentinel/releases/download/$version/sentinel-dashboard-$version.jar"
+    "url": "https://github.moeyy.xyz/https://github.com/alibaba/Sentinel/releases/download/$version/sentinel-dashboard-$version.jar"
   }
 }
