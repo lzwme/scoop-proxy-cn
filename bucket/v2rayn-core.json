@@ -1,22 +1,30 @@
 {
-  "version": "7.5.6",
-  "description": "GUI client based for v2ray-core and xray-core.",
+  "version": "7.6.0",
+  "description": "A V2Ray client for Windows, support Xray core and v2fly core.",
   "homepage": "https://github.com/2dust/v2rayN",
-  "license": "GPL-3.0-only",
-  "architecture": {
-    "64bit": {
-      "url": "https://github.moeyy.xyz/https://github.com/2dust/v2rayN/releases/download/7.5.6/v2rayN-windows-64-With-Core.zip",
-      "hash": "6785aa51bd18613674e209269e27b14aa9f5285e9aebaf931346c839a3d1d1ab"
-    }
+  "license": {
+    "identifier": "GPL-3.0-only",
+    "url": "https://github.com/2dust/v2rayN/raw/master/LICENSE"
   },
-  "extract_dir": "v2rayN-With-Core",
+  "url": "https://github.moeyy.xyz/https://github.com/2dust/v2rayN/releases/download/7.6.0/v2rayN-windows-64-With-Core.zip",
+  "hash": "36edc01fc73d4efbbf1049bc696e0136b1b3082492b2c0645c015de52f30ad2e",
+  "extract_dir": "v2rayN-windows-64-With-Core",
   "pre_install": [
-    "foreach ($name in @('guiNConfig.json', 'user-wininet.json')) {",
-    "    if (!(Test-Path \"$persist_dir\\$name\")) {",
-    "        New-Item -Force -Path \"$dir\" -Name $name | Out-Null",
-    "    }",
+    "if (!(Test-Path \"$persist_dir\\user-wininet.json\")) {",
+    "    New-Item -Path \"$dir\\user-wininet.json\" | Out-Null",
+    "}",
+    "if (Test-Path \"$persist_dir\\guiNConfig.json\") {",
+    "    Copy-Item \"$persist_dir\\guiNConfig.json\" \"$dir\\\" | Out-Null",
     "}"
   ],
+  "uninstaller": {
+    "script": [
+      "if (Test-Path \"$dir\\guiNConfig.json\") {",
+      "    ensure \"$persist_dir\" | Out-Null",
+      "    Copy-Item \"$dir\\guiNConfig.json\" \"$persist_dir\\\" | Out-Null",
+      "}"
+    ]
+  },
   "bin": "v2rayN.exe",
   "shortcuts": [
     [
@@ -25,16 +33,15 @@
     ]
   ],
   "persist": [
-    "user-wininet.json",
     "config.json",
-    "guiNConfig.json"
+    "user-wininet.json",
+    "guiConfigs"
   ],
-  "checkver": "github",
+  "checkver": {
+    "url": "https://api.github.com/repos/2dust/v2rayN/releases?per_page=1",
+    "jsonpath": "$[0].tag_name"
+  },
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://github.moeyy.xyz/https://github.com/2dust/v2rayN/releases/download/$version/v2rayN-windows-64-With-Core.zip"
-      }
-    }
+    "url": "https://github.moeyy.xyz/https://github.com/2dust/v2rayN/releases/download/$version/v2rayN-windows-64-With-Core.zip"
   }
 }
