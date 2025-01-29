@@ -13,7 +13,7 @@ export const CONFIG = {
   /** 是否忽略 manifest JSON 解析失败的应用 */
   ignoreParseFailed: true,
   tmpDir: path.resolve(rootDir, 'tmp'),
-  ghproxy: 'https://github.moeyy.xyz',
+  ghproxy: 'https://ghfast.top', // 'https://github.moeyy.xyz',
   // ghproxy: 'https://mirror.ghproxy.com',
   // ghproxy: 'https://www.ghproxy.cc',
   // ghproxy: 'https://ghps.cc',
