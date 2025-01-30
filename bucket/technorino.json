@@ -5,7 +5,7 @@
   "license": "MIT",
   "architecture": {
     "64bit": {
-      "url": "https://github.moeyy.xyz/https://github.com/2547techno/technorino/releases/download/nightly-build/chatterino-windows-x86-64-Qt-6.7.3.zip",
+      "url": "https://ghfast.top/https://github.com/2547techno/technorino/releases/download/nightly-build/chatterino-windows-x86-64-Qt-6.7.3.zip",
       "hash": "4787e125eabe4a7a85cf7eb1584fc13d1381be358be1fa417e182f04bcd28686",
       "extract_dir": "Chatterino2",
       "pre_install": "Get-ChildItem \"$dir/chatterino.exe\" | Rename-Item -NewName { $_.name.Replace('chatte', 'techno') }"
@@ -21,7 +21,7 @@
   "checkver": {
     "script": [
       "try {",
-      "    $null = (Invoke-WebRequest https://github.moeyy.xyz/https://raw.githubusercontent.com/2547techno/technorino/technorino/.github/workflows/build.yml).Content -cmatch 'os: windows-latest\\s+qt-version: ([\\d.]+)'",
+      "    $null = (Invoke-WebRequest https://ghfast.top/https://raw.githubusercontent.com/2547techno/technorino/technorino/.github/workflows/build.yml).Content -cmatch 'os: windows-latest\\s+qt-version: ([\\d.]+)'",
       "    $Matches[1],",
       "    (Invoke-RestMethod 'https://api.github.com/repositories/604452497/actions/workflows/build.yml/runs?branch=technorino&status=success').workflow_runs[0].id -join ' '",
       "}",
@@ -32,7 +32,7 @@
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://github.moeyy.xyz/https://github.com/2547techno/technorino/releases/download/nightly-build/chatterino-windows-x86-64-Qt-$matchQt.zip"
+        "url": "https://ghfast.top/https://github.com/2547techno/technorino/releases/download/nightly-build/chatterino-windows-x86-64-Qt-$matchQt.zip"
       }
     }
   }
