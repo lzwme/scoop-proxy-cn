@@ -1,44 +1,19 @@
 {
-  "homepage": "https://prefix.dev/",
-  "description": "Package management made easy",
-  "version": "0.41.1",
+  "version": "0.41.2",
+  "description": "A cross-platform, multi-language package manager and workflow tool built on the foundation of the conda ecosystem.",
+  "homepage": "https://pixi.sh",
   "license": "BSD-3-Clause",
   "architecture": {
     "64bit": {
-      "url": "https://ghfast.top/https://github.com/prefix-dev/pixi/releases/download/v0.41.1/pixi-x86_64-pc-windows-msvc.zip",
-      "hash": "3475322ce7a2ab1d0fd5738117ef798af35b1c0ba3f9f689fcaffb9e231a6b04"
+      "url": "https://ghfast.top/https://github.com/prefix-dev/pixi/releases/download/v0.41.2/pixi-x86_64-pc-windows-msvc.zip",
+      "hash": "36839b62cb73f8c5c719c32a916fc7219f471c7d1211169b272a56a99cb326ca"
     },
     "arm64": {
-      "url": "https://ghfast.top/https://github.com/prefix-dev/pixi/releases/download/v0.41.1/pixi-aarch64-pc-windows-msvc.zip",
-      "hash": "1ce2ee3602ce2c24cc70cbc6b77e9c59bf4b71f261955d42b7c30b525ef2bbba"
+      "url": "https://ghfast.top/https://github.com/prefix-dev/pixi/releases/download/v0.41.2/pixi-aarch64-pc-windows-msvc.zip",
+      "hash": "9765f37362a7ef34f17d9c4926679a6fb0585ee6875bc9667e2a2c9e866f83be"
     }
   },
-  "installer": {
-    "script": [
-      "if (Test-Path \"$persist_dir\\bin\\pixi.exe\") {",
-      "    Remove-Item \"$persist_dir\\bin\\pixi.exe\" -Force",
-      "    Move-Item \"$dir\\pixi.exe\" \"$persist_dir\\bin\\pixi.exe\"",
-      "} else {",
-      "    if (!(Test-Path \"$persist_dir\\bin\")) {",
-      "        New-Item -Path \"$persist_dir\\bin\" -ItemType Directory | Out-Null",
-      "    }",
-      "    Move-Item \"$dir\\pixi.exe\" \"$persist_dir\\bin\\pixi.exe\"",
-      "}",
-      "if (!(Test-Path \"$persist_dir\\config.toml\") -and !(Test-Path \"$dir\\config.toml\")) {",
-      "    New-Item -Path \"$dir\\config.toml\" -ItemType File | Out-Null",
-      "}"
-    ]
-  },
-  "env_set": {
-    "PIXI_HOME": "$dir"
-  },
-  "env_add_path": "bin",
-  "persist": [
-    "bin",
-    "envs",
-    "config.toml",
-    "manifests"
-  ],
+  "bin": "pixi.exe",
   "checkver": {
     "github": "https://github.com/prefix-dev/pixi"
   },
