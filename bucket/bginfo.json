@@ -1,60 +1,40 @@
 {
-  "version": "4.32",
-  "description": "Automatically generates desktop backgrounds that include important information about the system.",
-  "homepage": "https://learn.microsoft.com/sysinternals/downloads/bginfo",
+  "homepage": "https://docs.microsoft.com/en-us/sysinternals/",
+  "description": "This fully-configurable program automatically generates desktop backgrounds that include important information about the system including IP addresses, computer name, network adapters, and more.",
   "license": {
     "identifier": "Freeware",
-    "url": "https://learn.microsoft.com/sysinternals/license-terms"
+    "url": "https://docs.microsoft.com/en-us/sysinternals/license-terms"
   },
+  "version": "4.33",
   "url": "https://download.sysinternals.com/files/BGInfo.zip",
-  "hash": "c15b4c6cb8bd33f941a727316776aa068fc0c3d95159b6989ec6c520ae259fcc",
+  "hash": "9d77550fcaa92691872c218bd196c1f84534419058bcbf0e837fcccf1d97b78d",
+  "checkver": {
+    "url": "https://docs.microsoft.com/en-us/sysinternals/downloads/bginfo",
+    "re": "BgInfo\\s(?:v|V)?([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://download.sysinternals.com/files/BGInfo.zip"
+  },
   "architecture": {
-    "64bit": {
-      "bin": [
-        [
-          "Bginfo64.exe",
-          "Bginfo"
-        ]
-      ],
-      "shortcuts": [
-        [
-          "Bginfo64.exe",
-          "SysInternals/BGInfo",
-          "/accepteula"
-        ]
-      ]
-    },
     "32bit": {
       "bin": "Bginfo.exe",
       "shortcuts": [
         [
           "Bginfo.exe",
-          "SysInternals/BGInfo",
+          "SysInternals/BgInfo",
           "/accepteula"
         ]
       ]
     },
-    "arm64": {
-      "bin": [
-        [
-          "Bginfo64a.exe",
-          "Bginfo"
-        ]
-      ],
+    "64bit": {
+      "bin": "Bginfo64.exe",
       "shortcuts": [
         [
-          "Bginfo64a.exe",
-          "SysInternals/BGInfo",
+          "Bginfo64.exe",
+          "SysInternals/BgInfo",
           "/accepteula"
         ]
       ]
     }
-  },
-  "checkver": {
-    "url": "https://ghfast.top/https://raw.githubusercontent.com/MicrosoftDocs/sysinternals/main/sysinternals/downloads/bginfo.md",
-    "regex": "#.*?v([\\d.]+)"
-  },
-  "autoupdate": {
-    "url": "https://download.sysinternals.com/files/BGInfo.zip"
   }
 }
