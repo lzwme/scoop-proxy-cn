@@ -5,7 +5,7 @@
 ## Usage
 
 ```powershell
-scoop bucket add spc https://gh.idayer.com/github.com/lzwme/scoop-proxy-cn
+scoop bucket add spc https://ghfast.top/github.com/lzwme/scoop-proxy-cn
 
 # install apps
 scoop install spc/<app_name>
@@ -13,21 +13,57 @@ scoop install spc/<app_name>
 
 ## Scoop 安装与配置参考
 
+### 基于国内定制镜像安装
+
+由于 scoop 的源码和 buckets 应用基本都是以 git 形式维护在 github，github 的访问难题使得其安装、更新和应用下载都会变得体验极差。
+
+下面介绍为 [scoop 国内镜像优化库](https://gitee.com/scoop-installer/scoop)的安装方法。
+
+```bash
+# 脚本执行策略更改，默认自动同意
+Set-ExecutionPolicy RemoteSigned -scope CurrentUser -Force
+
+# 方法一：执行安装命令（默认安装在用户目录下，如需更改请执行下面的“自定义安装目录”命令）
+iwr -useb scoop.201704.xyz | iex
+
+
+## 方法二：自定义安装目录（注意将目录修改为合适位置)
+irm scoop.201704.xyz -outfile 'install.ps1'
+.\install.ps1 -ScoopDir 'D:\Scoop' -ScoopGlobalDir 'D:\GlobalScoopApps'
+
+# 若已安装官方源，可执行如下命令进行切换
+scoop config SCOOP_REPO "https://gitee.com/scoop-installer/scoop"
+# 拉取新库地址
+scoop update
+```
+
+该方式安装的 scoop 经过定制修改，支持自定义代理加速站，并默认使用 `scoop.201704.xyz` 代理下载应用。
+
+```bash
+# 添加代理
+scoop config URL_PROXY "https://scoop.201704.xyz"
+
+# 删除代理
+scoop config rm URL_PROXY
+```
+
+### 基于官方仓库以代理形式安装
+
 打开 `PowerShell` 并执行如下命令进行安装：
 
 ```powershell
 # install
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 # irm -useb get.scoop.sh | iex
-irm https://gh.idayer.com/raw.githubusercontent.com/lzwme/scoop-proxy-cn/master/install.ps1 | iex
+irm https://ghfast.top/raw.githubusercontent.com/lzwme/scoop-proxy-cn/master/install.ps1 | iex
 
 # config
-scoop config SCOOP_REPO https://gh.idayer.com/github.com/ScoopInstaller/Scoop
-scoop bucket add spc https://gh.idayer.com/github.com/lzwme/scoop-proxy-cn
+scoop config SCOOP_REPO https://ghfast.top/github.com/ScoopInstaller/Scoop
+scoop bucket add spc https://ghfast.top/github.com/lzwme/scoop-proxy-cn
 
 # 从 0.4.0 开始，必须存在 main bucket，否则执行 scoop update 会报错：ERROR 'main' bucket not found. Failed to remove local 'main' bucket.
 scoop bucket rm main
-scoop bucket add main https://gh.idayer.com/github.com/ScoopInstaller/Main
+scoop bucket add main https://ghfast.top/github.com/ScoopInstaller/Main
 
 # show help
 scoop help
@@ -48,6 +84,25 @@ scoop-search act
 
 ## 常见问题
 
+### 关于代理站失效需更新的处理方法
+
+此情况下站点无法继续更新。请执行如下命令以重新添加：
+
+```bash
+# 先更新 scoop repo
+scoop config scoop_repo https://ghfast.top/github.com/ScoopInstaller/Scoop.git
+
+# 方法一：更新 spc bucket repo
+git -C "$env:USERPROFILE\scoop\buckets\spc" remote set-url origin https://ghfast.top/github.com/lzwme/scoop-proxy-cn
+# 如果修改了 buckets 的默认位置，则执行如下命令
+git -C "$env:SCOOP\buckets\spc" remote set-url origin https://ghfast.top/github.com/lzwme/scoop-proxy-cn
+
+# 方法二：移除并重新添加 spc bucket
+scoop bucket rm spc
+scoop bucket add spc https://ghfast.top/github.com/lzwme/scoop-proxy-cn
+```
+
+
 ### 关于 `aria2` 导致的下载失败的问题
 
 当安装了 `aria2` 时，scoop 会采用 `aria2` 实现分片加速下载。但部分代理地址不支持或屏蔽了来自 `aria2` 的分片下载请求，此时可以执行如下命令禁用 `aria2`：
@@ -63,20 +118,6 @@ scoop config aria2-enabled false
 ```bash
 scoop install scoop-search -s
 ```
-
-### 关于代理站 `ghproxy.com` 失效的问题
-
-此情况下站点无法继续更新。请执行如下命令以重新添加：
-
-```bash
-# 更新 scoop repo
-scoop config scoop_repo https://gh.idayer.com/github.com/ScoopInstaller/Scoop.git
-
-# 移除并重新添加 spc bucket
-scoop bucket rm spc
-scoop bucket add spc https://gh.idayer.com/github.com/lzwme/scoop-proxy-cn
-```
-
 ## Sync Buckets From
 
 - [ScoopInstaller/PHP](https://github.com/ScoopInstaller/PHP)
