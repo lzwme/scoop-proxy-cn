@@ -200,7 +200,6 @@ scoop install scoop-search -s
 - [HUMORCE/nuke](https://github.com/HUMORCE/nuke)
 - [AkinoKaede/maple](https://github.com/AkinoKaede/maple)
 - [hulucc/bucket](https://github.com/hulucc/bucket)
-- [TheLastZombie/scoop-bucket](https://github.com/TheLastZombie/scoop-bucket)
 - [Deide/deide-bucket](https://github.com/Deide/deide-bucket)
 - [echoiron/echo-scoop](https://github.com/echoiron/echo-scoop)
 - [tetradice/scoop-iyokan-jp](https://github.com/tetradice/scoop-iyokan-jp)

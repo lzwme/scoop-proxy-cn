@@ -29,10 +29,13 @@ export async function checkoutRepo(repo, baseDir, debug = false) {
   try {
     const dirName = repo.replaceAll('/', '-');
     const dirpath = path.resolve(baseDir, dirName);
+
+    repo = debug ? `${CONFIG.ghproxy}/github.com/${repo}` : `https://github.com/${repo}.git`;
+
     if (fs.existsSync(dirpath)) {
+      execSync(`git remote set-url origin ${repo}`, { cwd: dirpath });
       execSync(`git reset --hard && git pull`, { cwd: dirpath });
     } else {
-      repo = debug ? `${CONFIG.ghproxy}/github.com/${repo}` : `https://github.com/${repo}.git`;
       execSync(`git clone --depth 1 ${repo} ${dirName}`, { cwd: baseDir });
     }
   } catch (error) {

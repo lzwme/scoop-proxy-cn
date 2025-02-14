@@ -2,16 +2,20 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { getLogger } from '@lzwme/fe-utils';
 
-const debug = process.argv.slice(2).includes('--debug');
+const argv = process.argv.slice(2);
+const debug = argv.includes('--debug');
 export const isCI = +process.env.SYNC === 1;
 export const logger = getLogger('SYNC', debug ? 'debug' : 'log');
 export const rootDir = path.resolve(fileURLToPath(import.meta.url), '../../..');
 export const CONFIG = {
+  argv,
   rootDir,
   debug,
   isCI,
   /** 是否忽略 manifest JSON 解析失败的应用 */
   ignoreParseFailed: true,
+  /** 是否仅同步，不处理 URL 镜像代理站替换 */
+  onlySync: argv.includes('--only-sync'),
   tmpDir: path.resolve(rootDir, 'tmp'),
   ghproxy: 'https://ghfast.top', // 'https://github.moeyy.xyz',
   // ghproxy: 'https://mirror.ghproxy.com',
@@ -108,7 +112,6 @@ export const CONFIG = {
     `HUMORCE/nuke`,
     `AkinoKaede/maple`,
     `hulucc/bucket`,
-    `TheLastZombie/scoop-bucket`,
     `Deide/deide-bucket`,
     `echoiron/echo-scoop`,
     `tetradice/scoop-iyokan-jp`,
