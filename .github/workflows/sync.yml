@@ -2,19 +2,19 @@ name: Scoop Buckets Sync
 on:
   workflow_dispatch:
   schedule:
-    - cron: '5 0 * * *'
+    - cron: '1 0 * * *'
 jobs:
   sync:
-    runs-on: ubuntu-latest
-    # runs-on: windows-latest
+    # runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@main
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 22
       - name: Sync buckets
         run: |
-          cp -f .github/package.json .
+          copy -f .github/package.json .
           npm i --no-package-lock --no-audit --no-fund
           node .github/sync.mjs
         env:

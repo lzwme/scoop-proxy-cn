@@ -106,7 +106,8 @@ async function syncDir(src, dest, repo = '') {
           .replace(/(https:\/\/github\.com.+\/releases\/download\/)/gim, `${CONFIG.ghproxy}/$1`)
           .replace(/(https:\/\/github\.com.+\/archive\/)/gim, `${CONFIG.ghproxy}/$1`)
           .replace(/(https\:\/\/(raw|gist)\.githubusercontent\.com)/gim, `${CONFIG.ghproxy}/$1`)
-          .replaceAll(`${CONFIG.ghproxy}/${CONFIG.ghproxy}`, CONFIG.ghproxy);
+          .replaceAll(`${CONFIG.ghproxy}/${CONFIG.ghproxy}`, CONFIG.ghproxy)
+          .replace(new RegExp(`https://[\.0-9a-zA-Z]+/${CONFIG.ghproxy}/https:`, 'igm'), `${CONFIG.ghproxy}/https:`);
       }
       cacheItem.fixed = content !== rawContent;
       fs.writeFileSync(dest, content, 'utf8');
