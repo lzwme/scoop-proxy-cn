@@ -1,0 +1,44 @@
+{
+  "version": "0.0.6",
+  "description": "插件化、定制化、无广告的免费音乐播放器",
+  "homepage": "http://musicfree.upup.fun/",
+  "license": {
+    "identifier": "GPL-3.0 license",
+    "url": "https://github.com/maotoumao/MusicFreeDesktop/blob/master/LICENSE"
+  },
+  "notes": "See usage:<https://github.com/maotoumao/MusicFree#插件>",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/maotoumao/MusicFreeDesktop/releases/download/v0.0.6/MusicFree-0.0.6-win32-x64-setup.exe",
+      "hash": "5c202f85d730dfcaafa5e75930c9cf0ff78ae26c4758eb11c586e4463462ff97"
+    }
+  },
+  "innosetup": true,
+  "installer": {
+    "script": [
+      "ensure \"$persist_dir\" | Out-Null",
+      "New-Item \"$env:APPDATA\\MusicFree\" -ItemType Junction -Target \"$persist_dir\" | Out-Null"
+    ]
+  },
+  "uninstaller": {
+    "script": "Remove-Item \"$env:APPDATA\\MusicFree\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
+  },
+  "shortcuts": [
+    [
+      "MusicFree.exe",
+      "MusicFree"
+    ]
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/maotoumao/MusicFreeDesktop/releases",
+    "jsonpath": "$[0].assets[*].browser_download_url",
+    "regex": "(?<file>MusicFree-([\\d.]+)-win(?:dows|32-x64)-setup.exe)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/maotoumao/MusicFreeDesktop/releases/download/v$version/$matchFile"
+      }
+    }
+  }
+}

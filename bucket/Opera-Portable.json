@@ -1,0 +1,51 @@
+{
+  "version": "117.0.5408.35",
+  "description": "Opera. Fast, secure, easy-to-use browser.",
+  "homepage": "https://www.opera.com/",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://www.opera.com/eula/computers"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://download1.operacdn.com/pub/opera/desktop/117.0.5408.35/win/Opera_117.0.5408.35_Autoupdate_x64.exe#/dl.7z",
+      "hash": "b777c507b249a6d3a67600687d69e806e803b0ab95094c00b299dcd55a7b5664"
+    },
+    "32bit": {
+      "url": "https://download1.operacdn.com/pub/opera/desktop/117.0.5408.35/win/Opera_117.0.5408.35_Autoupdate.exe#/dl.7z",
+      "hash": "911d986bc96e9d7e0302d594985d91386a6d3eeac4fbff796a61ca10a6370a93"
+    }
+  },
+  "installer": {
+    "script": [
+      "Remove-Item -Path \"$dir\\*_list\" -Force",
+      "Move-Item -Path \"$dir\\*\" -Destination \"$dir\\$version\" -Exclude 'Assets', 'launcher*', 'Resources.pri' -ErrorAction Ignore",
+      "if (!(Test-Path \"$dir\\$version\\localization\")) {",
+      "   New-Item -Path \"$dir\\$version\\localization\" -ItemType Directory | Out-Null",
+      "   Move-Item -Path \"$dir\\$version\\*.pak\" -Destination \"$dir\\$version\\localization\" -Exclude 'opera*' -ErrorAction Ignore",
+      "}",
+      "Set-Content -Path \"$dir\\installer_prefs.json\" -Value (@{ 'autoupdate'= $false; 'enable_stats' = $false; 'single_profile' = $true } | ConvertTo-Json) -Encoding ASCII"
+    ]
+  },
+  "shortcuts": [
+    [
+      "launcher.exe",
+      "Opera"
+    ]
+  ],
+  "persist": "profile",
+  "checkver": {
+    "url": "https://community.chocolatey.org/packages/opera",
+    "regex": "Opera ([\\d.]+)<"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://download1.operacdn.com/pub/opera/desktop/$version/win/Opera_$version_Autoupdate_x64.exe#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://download1.operacdn.com/pub/opera/desktop/$version/win/Opera_$version_Autoupdate.exe#/dl.7z"
+      }
+    }
+  }
+}

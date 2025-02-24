@@ -1,0 +1,40 @@
+{
+  "version": "5.11.0",
+  "description": "Team communication client",
+  "homepage": "https://mattermost.com",
+  "license": "Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://releases.mattermost.com/desktop/5.11.0/mattermost-desktop-5.11.0-win-x64.zip",
+      "hash": "9b092bfeb3c1035416dc0ec15c5c55f924faed08030667f06cccc44f1b38058b"
+    },
+    "arm64": {
+      "url": "https://releases.mattermost.com/desktop/5.11.0/mattermost-desktop-5.11.0-win-arm64.zip",
+      "hash": "2f3562c882113d809f0e0949ba9120a0e8edbc471ca6b568a10d5b0ff52a51da"
+    }
+  },
+  "bin": "Mattermost.exe",
+  "shortcuts": [
+    [
+      "Mattermost.exe",
+      "Mattermost"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/mattermost/desktop/"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://releases.mattermost.com/desktop/$version/mattermost-desktop-$version-win-x64.zip"
+      },
+      "arm64": {
+        "url": "https://releases.mattermost.com/desktop/$version/mattermost-desktop-$version-win-arm64.zip"
+      }
+    },
+    "hash": {
+      "url": "https://github.com/mattermost/desktop/releases/tag/v$version",
+      "regex": "(?sm)$basename.*?$sha256"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "version": "1.7.2",
+  "description": "Web UI and orchestrator for restic backup.",
+  "homepage": "https://github.com/garethgeorge/backrest",
+  "license": "GPL-3.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/garethgeorge/backrest/releases/download/v1.7.2/backrest_Windows_x86_64.zip",
+      "hash": "85c7d0df82ea307bf5580328cfeaf6bd399d8da6d6f33a56a980d5888ea61303"
+    },
+    "arm64": {
+      "url": "https://github.com/garethgeorge/backrest/releases/download/v1.7.2/backrest_Windows_arm64.zip",
+      "hash": "9fa73efc970f51392c9ecd32342bb72550097c7b68a00494798fa8609b117ec4"
+    }
+  },
+  "bin": [
+    "backrest.exe",
+    "backrest-windows-tray.exe"
+  ],
+  "shortcuts": [
+    [
+      "backrest.exe",
+      "Backrest"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/garethgeorge/backrest/releases/download/v$version/backrest_Windows_x86_64.zip"
+      },
+      "arm64": {
+        "url": "https://github.com/garethgeorge/backrest/releases/download/v$version/backrest_Windows_arm64.zip"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/backrest_$version_checksums.txt",
+      "regex": "$sha256\\s+$basename"
+    }
+  }
+}

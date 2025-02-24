@@ -1,0 +1,35 @@
+{
+  "version": "8.1.0",
+  "description": "A fast, scalable, multi-language and extensible build system",
+  "homepage": "https://bazel.build",
+  "license": "Apache-2.0",
+  "suggest": {
+    "MSYS2": "msys2",
+    "Python27": "versions/python27",
+    "curl": "curl"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/bazelbuild/bazel/releases/download/8.1.0/bazel-8.1.0-windows-x86_64.zip",
+      "hash": "151a00dcaff76720459249ad02f13e84da63b757888dd10d6115112007f66608"
+    }
+  },
+  "bin": "bazel.exe",
+  "env_set": {
+    "BAZEL_SH": "$(appdir msys2 $global)\\current\\usr\\bin\\bash.exe"
+  },
+  "checkver": {
+    "github": "https://github.com/bazelbuild/bazel"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/bazelbuild/bazel/releases/download/$version/bazel-$version-windows-x86_64.zip"
+      }
+    },
+    "hash": {
+      "mode": "extract",
+      "url": "$url.sha256"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "version": "10.2.0",
+  "description": "An essential part of using Heroku, which can perform nearly any Heroku-related task right from your terminal.",
+  "homepage": "https://devcenter.heroku.com/articles/heroku-cli",
+  "license": "ISC",
+  "architecture": {
+    "64bit": {
+      "url": "https://cli-assets.heroku.com/versions/10.2.0/9d9128b/heroku-v10.2.0-9d9128b-win32-x64.tar.xz#/dl.xz",
+      "hash": "fb0bbc5feede7015961d4e1cf94679ecc0d6da51da557f7f9337b1a975c5a71a"
+    },
+    "32bit": {
+      "url": "https://cli-assets.heroku.com/versions/10.2.0/9d9128b/heroku-v10.2.0-9d9128b-win32-x86.tar.xz#/dl.xz",
+      "hash": "4fa823594b14e8c3b855b44758765d4ed7f88f606de941cfc53db216029f709c"
+    }
+  },
+  "pre_install": [
+    "Invoke-ExternalCommand (Get-HelperPath '7zip') -ArgumentList @(",
+    "    'x'",
+    "    \"$dir\\dl\"",
+    "    \"-o$dir\\dlo\"",
+    "    '-bso0'",
+    "    '-bd'",
+    "    '-bse0'",
+    ") -ContinueExitCodes @{ 2 = 'Can not create symlink while running from un-elevated prompt. Installation is not affected.'} | Out-Null",
+    "Move-Item \"$dir\\dlo\\heroku\\*\" \"$dir\"",
+    "Remove-Item \"$dir\\dl*\" -Recurse"
+  ],
+  "bin": "bin\\heroku.cmd",
+  "checkver": {
+    "url": "https://cli-assets.heroku.com/channels/stable/heroku-win32-x64-buildmanifest",
+    "jsonpath": "$.xz",
+    "regex": "heroku-v([\\d.]+)-(?<commit>\\w+)-win32"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://cli-assets.heroku.com/versions/$version/$matchCommit/heroku-v$version-$matchCommit-win32-x64.tar.xz#/dl.xz",
+        "hash": {
+          "url": "https://cli-assets.heroku.com/channels/stable/heroku-win32-x64-buildmanifest",
+          "regex": "sha256xz.*$sha256"
+        }
+      },
+      "32bit": {
+        "url": "https://cli-assets.heroku.com/versions/$version/$matchCommit/heroku-v$version-$matchCommit-win32-x86.tar.xz#/dl.xz",
+        "hash": {
+          "url": "https://cli-assets.heroku.com/channels/stable/heroku-win32-x86-buildmanifest",
+          "regex": "sha256xz.*$sha256"
+        }
+      }
+    }
+  }
+}

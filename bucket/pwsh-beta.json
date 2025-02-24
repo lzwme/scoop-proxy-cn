@@ -1,0 +1,50 @@
+{
+  "version": "7.6.0-preview.3",
+  "description": "Cross-platform automation and configuration tool/framework, known as Powershell Core, that works well with existing tools and is optimized for dealing with structured data. (beta channel)",
+  "homepage": "https://github.com/PowerShell/PowerShell",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/PowerShell/PowerShell/releases/download/v7.6.0-preview.3/PowerShell-7.6.0-preview.3-win-x64.zip",
+      "hash": "8440060f77f4fea5f2b382cf097332e75f8f8dacf7a5567dcfdf559d1c1a526a"
+    },
+    "32bit": {
+      "url": "https://github.com/PowerShell/PowerShell/releases/download/v7.6.0-preview.3/PowerShell-7.6.0-preview.3-win-x86.zip",
+      "hash": "361de4d94b5c537642b4d039561ff6089b896322c8b00f6dea6c7ec629517247"
+    },
+    "arm64": {
+      "url": "https://github.com/PowerShell/PowerShell/releases/download/v7.6.0-preview.3/PowerShell-7.6.0-preview.3-win-arm64.zip",
+      "hash": "12d7407362974dde45c969ec8820535def4671645e78931d1ba4914aad7f2a44"
+    }
+  },
+  "bin": "pwsh.exe",
+  "shortcuts": [
+    [
+      "pwsh.exe",
+      "PowerShell"
+    ]
+  ],
+  "pre_install": "if(!(Test-Path \"$dir\\profile.ps1\")) { New-Item \"$dir\\profile.ps1\" -ItemType File }",
+  "persist": "profile.ps1",
+  "checkver": {
+    "url": "https://api.github.com/repositories/49609581/releases",
+    "jsonpath": "$[?(@.prerelease == true)].tag_name",
+    "regex": "v([\\w.-]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/PowerShell/PowerShell/releases/download/v$version/PowerShell-$version-win-x64.zip"
+      },
+      "32bit": {
+        "url": "https://github.com/PowerShell/PowerShell/releases/download/v$version/PowerShell-$version-win-x86.zip"
+      },
+      "arm64": {
+        "url": "https://github.com/PowerShell/PowerShell/releases/download/v$version/PowerShell-$version-win-arm64.zip"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/hashes.sha256"
+    }
+  }
+}

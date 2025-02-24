@@ -1,0 +1,54 @@
+{
+  "version": "136.0b9",
+  "description": "Developer builds of Firefox: the popular open source web browser.",
+  "homepage": "https://www.mozilla.org/zh-CN/firefox/developer/",
+  "license": "MPL-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://download-installer.cdn.mozilla.net/pub/devedition/releases/136.0b9/win64/zh-CN/Firefox%20Setup%20136.0b9.exe#/firefox-developer.7z",
+      "hash": "sha512:b5ac2998d7bd0a5cac3a1a9a06795cca865287eba3473481e0bc7398555a5ec16cca24964f9613790f83960fb440467e910a2231332bed97604868f4e82b77a0"
+    },
+    "32bit": {
+      "url": "https://download-installer.cdn.mozilla.net/pub/devedition/releases/136.0b9/win32/zh-CN/Firefox%20Setup%20136.0b9.exe#/firefox-developer.7z",
+      "hash": "sha512:61d1f00eba01430a327fad4c9b7fd2e2629e75e929a760aaa7563be0a6de5ee4e561a80a4cfae5ad012891c6e055b43efd6fb99eb84082c1873f46f1e92994f8"
+    }
+  },
+  "extract_dir": "core",
+  "bin": [
+    [
+      "firefox.exe",
+      "firefox-developer"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "firefox.exe",
+      "Firefox Developer Edition"
+    ]
+  ],
+  "persist": "profile-portable",
+  "checkver": {
+    "url": "https://aus5.mozilla.org/update/6/Firefox/93.0/_/WINNT_x86_64-msvc-x64/zh-CN/aurora/_/_/_/_/update.xml",
+    "xpath": "/updates/update/patch/@URL",
+    "regex": "devedition-([\\db.]+)-"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://download-installer.cdn.mozilla.net/pub/devedition/releases/$version/win64/zh-CN/Firefox%20Setup%20$version.exe#/firefox-developer.7z",
+        "hash": {
+          "url": "https://download-installer.cdn.mozilla.net/pub/devedition/releases/$version/SHA512SUMS",
+          "regex": "$sha512\\s+win64/zh-CN/$basename"
+        }
+      },
+      "32bit": {
+        "url": "https://download-installer.cdn.mozilla.net/pub/devedition/releases/$version/win32/zh-CN/Firefox%20Setup%20$version.exe#/firefox-developer.7z",
+        "hash": {
+          "url": "https://download-installer.cdn.mozilla.net/pub/devedition/releases/$version/SHA512SUMS",
+          "regex": "$sha512\\s+win32/zh-CN/$basename"
+        }
+      }
+    }
+  },
+  "notes": "To recover persisted profile, you need to open the Profile Manager with `firefox-developer -P` and create by selecting the portable profile directory."
+}

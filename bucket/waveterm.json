@@ -1,0 +1,27 @@
+{
+  "version": "0.11.0",
+  "description": "",
+  "homepage": "https://www.waveterm.dev/",
+  "license": "Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/wavetermdev/waveterm/releases/download/v0.11.0/Wave-win32-x64-0.11.0.zip",
+      "hash": "2d0434f490dc0e8afbfc3e923ebbe113306c464e75b17b72cb933a1544554686"
+    }
+  },
+  "shortcuts": [
+    [
+      "Wave.exe",
+      "waveterm"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/wavetermdev/waveterm"
+  },
+  "autoupdate": {
+    "url": "https://github.com/wavetermdev/waveterm/releases/download/v$version/Wave-win32-x64-$version.zip",
+    "hash": {
+      "mode": "download"
+    }
+  }
+}

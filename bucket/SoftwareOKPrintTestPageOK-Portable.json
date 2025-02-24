@@ -1,0 +1,45 @@
+{
+  "version": "3.21",
+  "description": "SoftwareOK PrintTestPageOK. Print.Test.Page.OK. The alternative test page printout for all MS Windows operating systems!",
+  "homepage": "http://www.softwareok.com/?seite=Microsoft/Print.Test.Page.OK",
+  "license": "Freeware",
+  "architecture": {
+    "64bit": {
+      "url": "https://www.softwareok.com/Download/Print.Test.Page.OK_x64_Portable.zip",
+      "hash": "0204f1793abf0d0ab26461eedb33933af34f0782da0249fa7985ecfb2f416a70",
+      "shortcuts": [
+        [
+          "Print.Test.Page.OK_Portable.exe",
+          "SoftwareOK\\Print.Test.Page.OK"
+        ]
+      ]
+    },
+    "32bit": {
+      "url": "https://www.softwareok.com/Download/Print.Test.Page.OK_Portable.zip",
+      "hash": "93cbe38258cbe59914873a8dde75aa986d082d9713df3df9d299f98a0cce3551",
+      "shortcuts": [
+        [
+          "Print.Test.Page.OK_Portable.exe",
+          "SoftwareOK\\Print.Test.Page.OK"
+        ]
+      ]
+    }
+  },
+  "pre_install": "if (-not (Test-Path \"$dir\\Print.Test.Page.OK.ini\")) { Set-Content \"$dir\\Print.Test.Page.OK.ini\" '[Program]' -Encoding Ascii }",
+  "persist": "Print.Test.Page.OK.ini",
+  "checkver": "New in version ([\\d.]+)",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://www.softwareok.com/Download/Print.Test.Page.OK_x64_Portable.zip"
+      },
+      "32bit": {
+        "url": "https://www.softwareok.com/Download/Print.Test.Page.OK_Portable.zip"
+      }
+    },
+    "hash": {
+      "url": "https://www.softwareok.com/?Download=Print.Test.Page.OK",
+      "regex": "$basename.*?$sha256.*?$basename/Print.Test.Page.OK_"
+    }
+  }
+}

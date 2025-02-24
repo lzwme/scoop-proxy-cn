@@ -1,0 +1,24 @@
+{
+  "version": "2.21.3",
+  "description": "Go minifiers for web formats",
+  "homepage": "https://github.com/tdewolff/minify",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/tdewolff/minify/releases/download/v2.21.3/minify_windows_amd64.zip",
+      "hash": "854e068521d3f7101a0baa70fc0af43e5c7c3e1d9b04e25cd8e4c64db840e1e4"
+    }
+  },
+  "bin": "minify.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/tdewolff/minify/releases/download/v$version/minify_windows_amd64.zip",
+        "hash": {
+          "url": "$baseurl/checksums.txt"
+        }
+      }
+    }
+  }
+}

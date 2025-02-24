@@ -1,0 +1,28 @@
+{
+  "version": "2.27.0",
+  "description": "Making Docker and Kubernetes management easy.",
+  "homepage": "https://portainer.io/",
+  "license": "Zlib",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/portainer/portainer/releases/download/2.27.0/portainer-2.27.0-windows1809-amd64.tar.gz",
+      "hash": "aad54f190c5c0877e8138f7b9e774e6300cb6872de8375326f71ec0bba74ed52"
+    }
+  },
+  "extract_dir": "portainer",
+  "bin": "portainer.exe",
+  "checkver": {
+    "github": "https://github.com/portainer/portainer"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/portainer/portainer/releases/download/$version/portainer-$version-windows1809-amd64.tar.gz",
+        "hash": {
+          "url": "$baseurl/portainer-$version-windows1809-amd64-checksum.txt",
+          "regex": "$sha256"
+        }
+      }
+    }
+  }
+}

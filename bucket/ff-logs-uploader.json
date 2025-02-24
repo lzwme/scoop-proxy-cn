@@ -1,0 +1,34 @@
+{
+  "version": "8.15.13",
+  "description": "Uploads FFXIV game logs sourced from Advanced Combat Tracker",
+  "homepage": "https://www.fflogs.com",
+  "license": "Unknown",
+  "url": "https://github.com/RPGLogs/Uploaders-fflogs/releases/download/v8.15.13/fflogs-v8.15.13.exe#/dl.7z",
+  "architecture": {
+    "64bit": {
+      "pre_install": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\""
+    },
+    "32bit": {
+      "pre_install": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-32.7z\" \"$dir\""
+    }
+  },
+  "hash": "sha512:a24ed7b2a6ed62da171812c27f886c6f3d48cab0580719ec657f86405f38b4ca1770b8f4ac4052dcd073b53859b7e615ea672419f9a7f23ba126ccac4cd6d1b6",
+  "post_install": "Remove-Item \"$dir\\`$*\", \"$dir\\Uninstall*\" -Recurse",
+  "bin": "FF Logs Uploader.exe",
+  "shortcuts": [
+    [
+      "FF Logs Uploader.exe",
+      "FF Logs Uploader"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/RPGLogs/Uploaders-fflogs"
+  },
+  "autoupdate": {
+    "url": "https://github.com/RPGLogs/Uploaders-fflogs/releases/download/v$version/fflogs-v$version.exe#/dl.7z",
+    "hash": {
+      "url": "$baseurl/latest.yml",
+      "find": "sha512:\\s+(.*)"
+    }
+  }
+}

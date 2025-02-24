@@ -1,0 +1,49 @@
+{
+  "version": "9.7.23.29400",
+  "description": "An instant messaging tool that gives you the best way to keep in touch with your friends and family.",
+  "homepage": "https://im.qq.com",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://ti.qq.com/agreement/index.html"
+  },
+  "notes": [
+    "Scoop doesn't persist your QQ data, by default they are stored in:",
+    "'%UserProfile%\\Documents\\Tencent Files'.",
+    "Files produced at runtime are left in '%AppData%\\Tencent'."
+  ],
+  "url": "https://dldir1.qq.com/qqfile/qq/PCQQ9.7.23/QQ9.7.23.29400.exe#/dl.7z",
+  "hash": "dc863cbb6be5d2edf76fa75c3fe7b565c9771f24bd37916a515e42436a6b9e0e",
+  "shortcuts": [
+    [
+      "Bin\\QQScLauncher.exe",
+      "QQ"
+    ]
+  ],
+  "installer": {
+    "script": [
+      "Get-Item \"$dir\\*\" -Exclude .rsrc | Remove-Item",
+      "Expand-7zipArchive \"$dir\\.rsrc\\2052\\MSI\\101\" \"$dir\" -ExtractDir 'Files'",
+      "Expand-7zipArchive \"$dir\\.rsrc\\2052\\MSI\\102\" \"$dir\\temp\"",
+      "'vcruntime140.dll', 'msvcp140.dll', 'msvcr100.dll', 'vcomp140.dll', 'msvcp100.dll' | ForEach-Object {",
+      "  Move-Item \"$dir\\temp\\$_\" \"$dir\\Bin\\\"",
+      "}",
+      "Expand-7zipArchive \"$dir\\temp\\TXSSO\\TXSSOSetup.exe\" \"$dir\\Bin\\TXSSO\" -ExtractDir 'TXSSO'",
+      "Remove-Item \"$dir\\.rsrc\", \"$dir\\temp\" -Recurse"
+    ]
+  },
+  "checkver": {
+    "script": [
+      "$url = 'https://im.qq.com/pcqq/index.shtml'",
+      "$resp = Invoke-WebRequest -Uri $url",
+      "$cont = $resp.Content",
+      "$pattern = 'https://qq-web.cdn-go.cn.*windowsDownloadUrl.js'",
+      "$jsUrl = [regex]::Match($cont, $pattern).Value",
+      "Invoke-WebRequest -Uri $jsUrl"
+    ],
+    "regex": "PCQQ([\\d\\.]+)/QQ([\\d\\.]+).exe",
+    "replace": "${2}"
+  },
+  "autoupdate": {
+    "url": "https://dldir1.qq.com/qqfile/qq/PCQQ$matchHead/QQ$version.exe#/dl.7z"
+  }
+}

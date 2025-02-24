@@ -1,0 +1,35 @@
+{
+  "version": "0.9.1",
+  "description": "A free assembler/linker package for the Game Boy and Game Boy Color",
+  "homepage": "https://rednex.github.io/rgbds/",
+  "license": "MIT",
+  "architecture": {
+    "32bit": {
+      "url": "https://github.com/rednex/rgbds/releases/download/v0.9.1/rgbds-0.9.1-win32.zip",
+      "hash": "fe219c1cb73a0fc451815ea11ff850fe3909e730ec47e0bae96560513be9b249"
+    },
+    "64bit": {
+      "url": "https://github.com/rednex/rgbds/releases/download/v0.9.1/rgbds-0.9.1-win64.zip",
+      "hash": "1a96ba4393a03347606856ea74ca4beb4f89fa8d5f2ffcf88192391a9a7b19c3"
+    }
+  },
+  "bin": [
+    "rgbasm.exe",
+    "rgbfix.exe",
+    "rgbgfx.exe",
+    "rgblink.exe"
+  ],
+  "checkver": {
+    "github": "https://github.com/rednex/rgbds"
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://github.com/rednex/rgbds/releases/download/v$version/rgbds-$version-win32.zip"
+      },
+      "64bit": {
+        "url": "https://github.com/rednex/rgbds/releases/download/v$version/rgbds-$version-win64.zip"
+      }
+    }
+  }
+}

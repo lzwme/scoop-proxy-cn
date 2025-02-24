@@ -1,0 +1,24 @@
+{
+  "version": "0.8.3",
+  "description": "trdl. A universal package manager delivering new versions of your application from a trusted TUF repository.",
+  "homepage": "https://trdl.dev/",
+  "license": "Apache-2.0",
+  "changelog": "https://github.com/werf/trdl/releases",
+  "architecture": {
+    "64bit": {
+      "url": "https://tuf.trdl.dev/targets/releases/0.8.3/windows-amd64/bin/trdl.exe",
+      "hash": "f32d863bd7f0178c4048940de1cea7f269abc4190d8d7c774adc62200ba43a0e"
+    }
+  },
+  "bin": "trdl.exe",
+  "checkver": {
+    "github": "https://github.com/werf/trdl"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://tuf.trdl.dev/targets/releases/$version/windows-amd64/bin/trdl.exe"
+      }
+    }
+  }
+}

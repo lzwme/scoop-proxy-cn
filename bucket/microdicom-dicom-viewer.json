@@ -1,0 +1,36 @@
+{
+  "version": "2025.1",
+  "description": "MicroDicom is application for primary processing and preservation of medical images in DICOM format",
+  "homepage": "https://www.microdicom.com/",
+  "license": "Freeware",
+  "architecture": {
+    "64bit": {
+      "url": "https://www.microdicom.com/downloads/Software/microdicom-2025.1-x64.zip",
+      "hash": "8c66ead925651e190a79845bf0f3dad6b176a16598905bebd1efd08b75acf204"
+    },
+    "32bit": {
+      "url": "https://www.microdicom.com/downloads/Software/microdicom-2025.1-win32.zip",
+      "hash": "303ea42806949034647b2d7f86cbc912dac0767b05f671eca35c0f20f807b94b"
+    }
+  },
+  "shortcuts": [
+    [
+      "mDicom.exe",
+      "MicroDicom DICOM Viewer"
+    ]
+  ],
+  "checkver": {
+    "url": "https://www.microdicom.com/downloads.html",
+    "regex": "microdicom-([\\d\\.]+)-win32.zip"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://www.microdicom.com/downloads/Software/microdicom-$version-x64.zip"
+      },
+      "32bit": {
+        "url": "https://www.microdicom.com/downloads/Software/microdicom-$version-win32.zip"
+      }
+    }
+  }
+}

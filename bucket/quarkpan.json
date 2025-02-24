@@ -1,0 +1,36 @@
+{
+  "version": "3.18.0",
+  "description": "夸克网盘",
+  "homepage": "https://pan.quark.cn/",
+  "license": "Proprietary",
+  "url": "https://pdds.quark.cn/download/stfile/oousvprxsopsoqwqn/QuarkCloudDrive_v3.18.0_release_(Build2059246-20250120164028).exe",
+  "hash": "23ac12a5ce2146fc7987d8ecb661c8c4466d382ab798e26947d1062b9b951ef6",
+  "innosetup": true,
+  "shortcuts": [
+    [
+      "QuarkCloudDrive.exe",
+      "QuarkCloudDrive"
+    ]
+  ],
+  "pre_install": [
+    "Move-Item -Force -Path \"$dir\\app-$version\\*\" -Destination \"$dir\"",
+    "Remove-Item -Force -Recurse -Path \"$dir\\app-$version\""
+  ],
+  "uninstaller": {
+    "script": [
+      "$runtimeCache = \"$env:APPDATA\\quark-cloud-drive\"",
+      "$runtimeData = \"$env:APPDATA\\Quark\"",
+      "Remove-Item $runtimeCache -Force -Recurse -ErrorAction SilentlyContinue",
+      "Remove-Item $runtimeData -Force -Recurse -ErrorAction SilentlyContinue"
+    ]
+  },
+  "checkver": {
+    "url": "https://pan.quark.cn/api/client_version",
+    "jsonpath": "$.data.clouddrive_backup_packages[0].winInstallerUrl",
+    "re": "pdds.quark.cn/download/stfile/(?<release>\\w+)/QuarkCloudDrive_v(?<version>[\\d.]+)_release_\\(Build(?<build>\\d+)-(?<timestamp>\\d+)\\).exe",
+    "replace": "${version}"
+  },
+  "autoupdate": {
+    "url": "https://pdds.quark.cn/download/stfile/$matchRelease/QuarkCloudDrive_v$matchVersion_release_(Build$matchBuild-$matchTimestamp).exe"
+  }
+}

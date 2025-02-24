@@ -1,0 +1,22 @@
+{
+  "version": "0.53.3",
+  "description": "The simplest, fastest way to get business intelligence and analytics to everyone in your company",
+  "homepage": "https://www.metabase.com",
+  "license": "AGPL-3.0-or-later",
+  "suggest": {
+    "JDK": "java/openjdk"
+  },
+  "url": "https://downloads.metabase.com/v0.53.3/metabase.jar",
+  "hash": "53a8269222cad6a96fade070a5be261fd07529d260f2dd11aebccf72308f5ba2",
+  "bin": "metabase.jar",
+  "checkver": {
+    "github": "https://github.com/metabase/metabase"
+  },
+  "autoupdate": {
+    "url": "https://downloads.metabase.com/v$version/metabase.jar",
+    "hash": {
+      "url": "https://github.com/metabase/metabase/releases/tag/v$version",
+      "regex": "<code>$sha256"
+    }
+  }
+}

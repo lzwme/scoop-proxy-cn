@@ -1,0 +1,38 @@
+{
+  "version": "1.54.1",
+  "description": "Email-based secure instant messaging",
+  "homepage": "https://delta.chat/en/",
+  "license": "GPL-3.0-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://download.delta.chat/desktop/v1.54.1/DeltaChat-1.54.1-Portable.x64.exe#/dl.7z",
+      "hash": "sha1:fc4eb9cea2a56029fd0a24107b8de2e44bd207d6",
+      "installer": {
+        "script": [
+          "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+          "Remove-Item \"$dir\\`$PLUGINSDIR\" -Recurse"
+        ]
+      }
+    }
+  },
+  "shortcuts": [
+    [
+      "DeltaChat.exe",
+      "DeltaChat"
+    ]
+  ],
+  "checkver": {
+    "url": "https://delta.chat/en/download",
+    "regex": "desktop/v([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://download.delta.chat/desktop/v$version/DeltaChat-$version-Portable.x64.exe#/dl.7z"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/checksums"
+    }
+  }
+}

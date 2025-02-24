@@ -1,0 +1,49 @@
+{
+  "version": "14.4.1",
+  "description": "截屏 离线OCR 搜索翻译 以图搜图 贴图 录屏 滚动截屏 Screenshot OCR search translate search for picture paste the picture on the screen screen recorder",
+  "homepage": "https://esearch-app.netlify.app/",
+  "license": {
+    "identifier": "GPL-3.0 license",
+    "url": "https://github.com/xushengfeng/eSearch#GPL-3.0-1-ov-file"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/xushengfeng/eSearch/releases/download/14.4.1/eSearch-14.4.1-win32-x64.zip",
+      "hash": "57f122362d15aa4f202ae42378c1ead1d39c7a1434a2afd5286828bff07b12cf"
+    },
+    "arm64": {
+      "url": "https://github.com/xushengfeng/eSearch/releases/download/14.4.1/eSearch-14.4.1-win32-arm64.zip",
+      "hash": "af047264f01b9662deebeca24ac46630f084b394200c3f218d8dd8cbb6a43e9a"
+    }
+  },
+  "installer": {
+    "script": [
+      "ensure \"$persist_dir\" | Out-Null",
+      "New-Item \"$env:APPDATA\\eSearch\" -ItemType Junction -Target \"$persist_dir\" | Out-Null"
+    ]
+  },
+  "uninstaller": {
+    "script": "Remove-Item \"$env:APPDATA\\eSearch\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
+  },
+  "shortcuts": [
+    [
+      "eSearch.exe",
+      "eSearch"
+    ]
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/xushengfeng/eSearch/releases/latest",
+    "jsonpath": "$.assets[*].browser_download_url",
+    "regex": "eSearch-([\\d.]+)-win32-x64.zip"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/xushengfeng/eSearch/releases/download/$version/eSearch-$version-win32-x64.zip"
+      },
+      "arm64": {
+        "url": "https://github.com/xushengfeng/eSearch/releases/download/$version/eSearch-$version-win32-arm64.zip"
+      }
+    }
+  }
+}

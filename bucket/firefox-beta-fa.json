@@ -1,0 +1,54 @@
+{
+  "version": "136.0b8",
+  "description": "Beta builds of Firefox: the popular open source web browser.",
+  "homepage": "https://www.mozilla.org/fa-IR/firefox/beta/",
+  "license": "MPL-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://archive.mozilla.org/pub/firefox/releases/136.0b8/win64/fa-IR/Firefox%20Setup%20136.0b8.exe#/dl.7z",
+      "hash": "sha512:1e0dd4d5dbd8c0dfb03e16687d205d63431dbf80c31af0f508a7d43fc9360813b275c87de6f270c0edf361c79fc0a32fc3c5330d2e62507b8f1030934d243f95"
+    },
+    "32bit": {
+      "url": "https://archive.mozilla.org/pub/firefox/releases/136.0b8/win32/fa-IR/Firefox%20Setup%20136.0b8.exe#/dl.7z",
+      "hash": "sha512:1e0dd4d5dbd8c0dfb03e16687d205d63431dbf80c31af0f508a7d43fc9360813b275c87de6f270c0edf361c79fc0a32fc3c5330d2e62507b8f1030934d243f95"
+    }
+  },
+  "extract_dir": "core",
+  "bin": [
+    [
+      "firefox.exe",
+      "firefox-beta-fa",
+      "-profile \"$dir\\profile\""
+    ]
+  ],
+  "shortcuts": [
+    [
+      "firefox.exe",
+      "Firefox Beta (fa)",
+      "-profile \"$dir\\profile\""
+    ]
+  ],
+  "persist": "profile",
+  "checkver": {
+    "url": "https://product-details.mozilla.org/1.0/firefox_versions.json",
+    "jsonpath": "$.LATEST_FIREFOX_DEVEL_VERSION"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://archive.mozilla.org/pub/firefox/releases/$version/win64/fa-IR/Firefox%20Setup%20$version.exe#/dl.7z",
+        "hash": {
+          "url": "https://archive.mozilla.org/pub/firefox/releases/$version/SHA512SUMS",
+          "regex": "$sha512\\s+win64/fa-IR/$basename"
+        }
+      },
+      "32bit": {
+        "url": "https://archive.mozilla.org/pub/firefox/releases/$version/win32/fa-IR/Firefox%20Setup%20$version.exe#/dl.7z",
+        "hash": {
+          "url": "https://archive.mozilla.org/pub/firefox/releases/$version/SHA512SUMS",
+          "regex": "$sha512\\s+win32/fa-IR/$basename"
+        }
+      }
+    }
+  }
+}

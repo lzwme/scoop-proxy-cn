@@ -1,0 +1,30 @@
+{
+  "version": "14.2",
+  "description": "FreeFileSync. Folder comparison and synchronization",
+  "homepage": "https://freefilesync.org",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://freefilesync.org/faq.php#commercial-usage"
+  },
+  "url": "https://freefilesync.org/download/FreeFileSync_14.2_Windows_Setup.exe",
+  "hash": "09535dae7a56ae8d9572ac0a2f21afb5a8add7c1def500c165824b54f71db1ad",
+  "notes": "Need interaction.",
+  "installer": {
+    "keep": false
+  },
+  "uninstaller": {
+    "file": "Uninstall\\unins000.exe",
+    "args": [
+      "/VERYSILENT",
+      "/CLOSEAPPLICATIONS",
+      "/FORCECLOSEAPPLICATIONS"
+    ]
+  },
+  "checkver": {
+    "url": "https://freefilesync.org/download.php",
+    "regex": "FreeFileSync ([\\d.]+) Windows"
+  },
+  "autoupdate": {
+    "url": "https://freefilesync.org/download/FreeFileSync_$version_Windows_Setup.exe"
+  }
+}

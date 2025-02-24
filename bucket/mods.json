@@ -1,0 +1,35 @@
+{
+  "version": "1.7.0",
+  "description": "AI for the command line, built for pipelines.",
+  "homepage": "https://github.com/charmbracelet/mods",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/charmbracelet/mods/releases/download/v1.7.0/mods_1.7.0_Windows_x86_64.zip",
+      "hash": "dc94844d0d82ecc042f277fcac047138cdbbf7e568b41535ad4018e64654543c",
+      "extract_dir": "mods_1.7.0_Windows_x86_64"
+    },
+    "arm64": {
+      "url": "https://github.com/charmbracelet/mods/releases/download/v1.7.0/mods_1.7.0_Windows_arm64.zip",
+      "hash": "fe9c861c4db05515ddf6dfcf9668bd059cbeb6054918b4ba8de7116a4e671422",
+      "extract_dir": "mods_1.7.0_Windows_arm64"
+    }
+  },
+  "bin": "mods.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/charmbracelet/mods/releases/download/v$version/mods_$version_Windows_x86_64.zip",
+        "extract_dir": "mods_$version_Windows_x86_64"
+      },
+      "arm64": {
+        "url": "https://github.com/charmbracelet/mods/releases/download/v$version/mods_$version_Windows_arm64.zip",
+        "extract_dir": "mods_$version_Windows_arm64"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/checksums.txt"
+    }
+  }
+}

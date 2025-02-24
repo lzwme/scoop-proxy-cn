@@ -1,0 +1,38 @@
+{
+  "version": "6.1",
+  "description": "Color picker and color editor",
+  "homepage": "https://annystudio.com/software/colorpicker/",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://annystudio.com/info/#tnc"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://annystudio.com/jcpicker.exe",
+      "hash": "e8602e85bc9350e187e5f5fcf216f91b2678141dd4b80527aadb63e6b8ffa10a"
+    }
+  },
+  "pre_install": [
+    "'ini', 'txt' | ForEach-Object {",
+    "    if (!(Test-Path \"$persist_dir\\jcpicker.$_\")) { New-Item \"$dir\\jcpicker.$_\" | Out-Null }",
+    "}"
+  ],
+  "shortcuts": [
+    [
+      "jcpicker.exe",
+      "Just Color Picker"
+    ]
+  ],
+  "persist": [
+    "jcpicker.ini",
+    "jcpicker.txt"
+  ],
+  "checkver": "Just Color Picker ([\\d.]+)",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://annystudio.com/jcpicker.exe"
+      }
+    }
+  }
+}

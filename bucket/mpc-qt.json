@@ -1,0 +1,30 @@
+{
+  "version": "24.12",
+  "description": "A clone of Media Player Classic reimplemented in Qt.",
+  "homepage": "https://github.com/mpc-qt/mpc-qt",
+  "license": "GPL-2.0-only",
+  "suggest": {
+    "yt-dlp": "yt-dlp"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/mpc-qt/mpc-qt/releases/download/v24.12/mpc-qt-win-x64-2412.zip",
+      "hash": "88f336b53aff8796d81cf13507297d48c0ac2cfc6feae2c1ee520c2271a41890"
+    }
+  },
+  "bin": "mpc-qt.exe",
+  "shortcuts": [
+    [
+      "mpc-qt.exe",
+      "MPC QT"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/mpc-qt/mpc-qt/releases/download/v$version/mpc-qt-win-x64-$cleanVersion.zip"
+      }
+    }
+  }
+}

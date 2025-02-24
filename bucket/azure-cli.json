@@ -1,0 +1,32 @@
+{
+  "version": "2.69.0",
+  "description": "A cross-platform command-line tool to connect to Azure and execute administrative commands on Azure resources",
+  "homepage": "https://aka.ms/cli",
+  "license": "MIT",
+  "notes": [
+    "* Known issue:",
+    "  - Cannot be extracted due to long path: https://github.com/ScoopInstaller/Main/issues/5300"
+  ],
+  "architecture": {
+    "64bit": {
+      "url": "https://azcliprod.blob.core.windows.net/zip/azure-cli-2.69.0-x64.zip",
+      "hash": "4748680e5a3806940b41b30175ddc088c4ec24b1c4b136e2a6b255510242500a"
+    }
+  },
+  "env_set": {
+    "AZURE_CLI_PATH": "$dir\\bin",
+    "AzureCLIPath": "$dir\\bin"
+  },
+  "bin": "bin\\az.cmd",
+  "checkver": {
+    "github": "https://github.com/Azure/azure-cli",
+    "regex": "/releases/tag/azure-cli-([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://azcliprod.blob.core.windows.net/zip/azure-cli-$version-x64.zip"
+      }
+    }
+  }
+}

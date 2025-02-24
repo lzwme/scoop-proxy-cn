@@ -1,0 +1,33 @@
+{
+  "version": "10.35",
+  "description": "Playnite. An open source video game library manager and launcher with support for 3rd party libraries like Steam, GOG, Origin, Battle.net and Uplay. Includes game emulation support, providing one unified interface for your games.",
+  "homepage": "https://playnite.link/",
+  "license": "MIT",
+  "url": "https://github.com/JosefNemec/Playnite/releases/download/10.35/Playnite1035.zip",
+  "hash": "290028fd67549d26592f8d3f83fbcad58f45c5f698de09119363989c0550c48e",
+  "bin": "Playnite.DesktopApp.exe",
+  "persist": [
+    "browsercache",
+    "cache",
+    "ExtensionsData",
+    "library",
+    "config.json"
+  ],
+  "shortcuts": [
+    [
+      "Playnite.DesktopApp.exe",
+      "Playnite"
+    ]
+  ],
+  "pre_install": [
+    "if (!(Test-Path \"$dir\\config.json\")) {",
+    "    New-Item -Force -Path \"$dir\" -Name 'config.json' -Value '{}' | Out-Null",
+    "}"
+  ],
+  "checkver": {
+    "github": "https://github.com/JosefNemec/Playnite"
+  },
+  "autoupdate": {
+    "url": "https://github.com/JosefNemec/Playnite/releases/download/$version/Playnite$cleanVersion.zip"
+  }
+}

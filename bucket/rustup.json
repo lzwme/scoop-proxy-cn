@@ -1,0 +1,65 @@
+{
+  "version": "1.27.1",
+  "description": "Manage multiple rust installations with ease",
+  "homepage": "https://rustup.rs",
+  "license": "MIT|Apache-2.0",
+  "notes": [
+    "This package defaults to using the MSVC toolchain in new installs; use \"rustup set default-host\" to configure it",
+    "(existing installs may be using the GNU toolchain by default)",
+    "According to https://doc.rust-lang.org/book/ch01-01-installation.html#installing-rustup-on-windows",
+    "Microsoft C++ Build Tools is needed and can be downloaded here: https://visualstudio.microsoft.com/visual-cpp-build-tools/",
+    "When installing build tools, these two components should be selected:",
+    "- MSVC - VS C++ x64/x86 build tools",
+    "- Windows SDK"
+  ],
+  "architecture": {
+    "64bit": {
+      "url": "https://static.rust-lang.org/rustup/archive/1.27.1/x86_64-pc-windows-msvc/rustup-init.exe",
+      "hash": "193d6c727e18734edbf7303180657e96e9d5a08432002b4e6c5bbe77c60cb3e8"
+    },
+    "32bit": {
+      "url": "https://static.rust-lang.org/rustup/archive/1.27.1/i686-pc-windows-msvc/rustup-init.exe",
+      "hash": "011185bd2bfce79f5389c19247b6e45242d17c697fe135ec6cdd23948445803a"
+    },
+    "arm64": {
+      "url": "https://static.rust-lang.org/rustup/archive/1.27.1/aarch64-pc-windows-msvc/rustup-init.exe",
+      "hash": "5f4697ee3ea5d4592bffdbe9dc32d6a8865762821b14fdd1cf870e585083a2f0"
+    }
+  },
+  "installer": {
+    "script": [
+      "[Environment]::SetEnvironmentVariable('CARGO_HOME', \"$persist_dir\\.cargo\", 'Process')",
+      "[Environment]::SetEnvironmentVariable('RUSTUP_HOME', \"$persist_dir\\.rustup\", 'Process')",
+      "Invoke-ExternalCommand -Path \"$dir\\rustup-init.exe\" -Args @('-y', '--no-modify-path') | Out-Null"
+    ]
+  },
+  "env_add_path": ".cargo\\bin",
+  "env_set": {
+    "CARGO_HOME": "$persist_dir\\.cargo",
+    "RUSTUP_HOME": "$persist_dir\\.rustup"
+  },
+  "persist": [
+    ".cargo",
+    ".rustup"
+  ],
+  "checkver": {
+    "url": "https://raw.githubusercontent.com/rust-lang-nursery/rustup.rs/master/Cargo.toml",
+    "regex": "version = \"([\\d.]+)\""
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://static.rust-lang.org/rustup/archive/$version/x86_64-pc-windows-msvc/rustup-init.exe"
+      },
+      "32bit": {
+        "url": "https://static.rust-lang.org/rustup/archive/$version/i686-pc-windows-msvc/rustup-init.exe"
+      },
+      "arm64": {
+        "url": "https://static.rust-lang.org/rustup/archive/$version/aarch64-pc-windows-msvc/rustup-init.exe"
+      }
+    },
+    "hash": {
+      "url": "$url.sha256"
+    }
+  }
+}

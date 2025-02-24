@@ -1,0 +1,35 @@
+{
+  "version": "2.0.1",
+  "description": "Fast cross-platform HTTP benchmarking tool written in Go",
+  "homepage": "https://github.com/codesenberg/bombardier",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/codesenberg/bombardier/releases/download/v2.0.1/bombardier-windows-amd64.exe#/bombardier.exe",
+      "hash": "1415a8c5ca61a367da098fa55b0532c5f8cbe6623b3f00f4bbfef7e5c832a509"
+    },
+    "32bit": {
+      "url": "https://github.com/codesenberg/bombardier/releases/download/v2.0.1/bombardier-windows-386.exe#/bombardier.exe",
+      "hash": "d415fb0fec5ca16eb71a9053406dae87236c8829bcb886e2b552d4986b391e36"
+    },
+    "arm64": {
+      "url": "https://github.com/codesenberg/bombardier/releases/download/v2.0.1/bombardier-windows-arm64.exe#/bombardier.exe",
+      "hash": "5be8b37ef0ba1ec5fd279604beeee1c83fb2b6e0c7824901aa4ef978c2e98323"
+    }
+  },
+  "bin": "bombardier.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/codesenberg/bombardier/releases/download/v$version/bombardier-windows-amd64.exe#/bombardier.exe"
+      },
+      "32bit": {
+        "url": "https://github.com/codesenberg/bombardier/releases/download/v$version/bombardier-windows-386.exe#/bombardier.exe"
+      },
+      "arm64": {
+        "url": "https://github.com/codesenberg/bombardier/releases/download/v$version/bombardier-windows-arm64.exe#/bombardier.exe"
+      }
+    }
+  }
+}

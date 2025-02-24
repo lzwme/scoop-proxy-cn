@@ -1,0 +1,43 @@
+{
+  "version": "7.2.3",
+  "homepage": "https://www.zabbix.com/",
+  "license": "GPL-2.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://cdn.zabbix.com/zabbix/binaries/stable/7.2/7.2.3/zabbix_agent2-7.2.3-windows-amd64-openssl-static.zip",
+      "hash": "947065277a9cbb8d033cde996c65eca59a52f1b384cc2448a66f71f00c1405f2"
+    },
+    "32bit": {
+      "url": "https://cdn.zabbix.com/zabbix/binaries/stable/7.2/7.2.3/zabbix_agent2-7.2.3-windows-i386-openssl-static.zip",
+      "hash": "d30a92c09d41137426795a13688be7de7678b3fe24b27d4d4a3f6d28305bf85b"
+    }
+  },
+  "bin": [
+    "bin/zabbix_agent2.exe",
+    "bin/zabbix_get.exe",
+    "bin/zabbix_sender.exe"
+  ],
+  "persist": "conf",
+  "checkver": {
+    "url": "https://api.nicoconi.com/updater/zabbix_agent",
+    "jsonpath": "$.version_2"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://cdn.zabbix.com/zabbix/binaries/stable/$majorVersion.$minorVersion/$version/zabbix_agent2-$version-windows-amd64-openssl-static.zip",
+        "hash": {
+          "url": "https://api.nicoconi.com/updater/zabbix_agent",
+          "jsonpath": "$.sha256_2_amd64"
+        }
+      },
+      "32bit": {
+        "url": "https://cdn.zabbix.com/zabbix/binaries/stable/$majorVersion.$minorVersion/$version/zabbix_agent2-$version-windows-i386-openssl-static.zip",
+        "hash": {
+          "url": "https://api.nicoconi.com/updater/zabbix_agent",
+          "jsonpath": "$.sha256_2_i386"
+        }
+      }
+    }
+  }
+}

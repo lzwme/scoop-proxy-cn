@@ -1,0 +1,56 @@
+{
+  "version": "135.0.7028.0",
+  "description": "Fast, secure, and free web browser, built for the modern web.",
+  "homepage": "https://www.google.com/chrome/canary",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://www.google.com/chrome/privacy/eula_text.html"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://dl.google.com/release2/chrome/adhffsfajcg7jxjaay3wj4v3jkcq_135.0.7028.0/135.0.7028.0_chrome_installer.exe#/dl.7z",
+      "hash": "f40cf6c2a98cb0f1b499381e8c0e596dc7560b53e1cb0442b366d14d0020da94"
+    },
+    "32bit": {
+      "url": "https://dl.google.com/release2/chrome/ecib55jr3xaumkdogkqqfsaxvy_135.0.7028.0/135.0.7028.0_chrome_installer.exe#/dl.7z",
+      "hash": "26329ffb96f912a8b825e4e33eb8d5d0183908b2abe7ce41eb78234891ccd818"
+    }
+  },
+  "installer": {
+    "script": "Expand-7zipArchive \"$dir\\chrome.7z\" -ExtractDir 'Chrome-bin' -Removal"
+  },
+  "bin": [
+    [
+      "chrome.exe",
+      "chrome-canary"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "chrome.exe",
+      "Google Chrome (Canary)"
+    ]
+  ],
+  "checkver": {
+    "url": "https://scoopinstaller.github.io/UpdateTracker/googlechrome/chrome.min.xml",
+    "regex": "(?sm)<canary32><version>(?<version>[\\d.]+)</version>.+release2/chrome/(?<32>[\\w-]+)_.+<canary64>.+release2/chrome/(?<64>[\\w-]+)_.+</canary64>"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://dl.google.com/release2/chrome/$match64_$version/$version_chrome_installer.exe#/dl.7z",
+        "hash": {
+          "url": "https://scoopinstaller.github.io/UpdateTracker/googlechrome/chrome.min.xml",
+          "xpath": "/chromechecker/canary64[version='$version']/sha256"
+        }
+      },
+      "32bit": {
+        "url": "https://dl.google.com/release2/chrome/$match32_$version/$version_chrome_installer.exe#/dl.7z",
+        "hash": {
+          "url": "https://scoopinstaller.github.io/UpdateTracker/googlechrome/chrome.min.xml",
+          "xpath": "/chromechecker/canary32[version='$version']/sha256"
+        }
+      }
+    }
+  }
+}

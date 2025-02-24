@@ -1,0 +1,59 @@
+{
+  "version": "128.7.0",
+  "description": "Extended Support Release of Firefox: the popular open source web browser.",
+  "homepage": "https://www.mozilla.org/en-US/firefox/organizations/",
+  "license": "MPL-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://archive.mozilla.org/pub/firefox/releases/128.7.0esr/win64/en-US/Firefox%20Setup%20128.7.0esr.exe#/dl.7z",
+      "hash": "sha512:42198bee8d43b1e4c2bde6620fe18bbe31af92c9f863aa1340ccdd9b93d9e7ef18e15e4a81cbfe85f3439ac7199ecc5e03cca476f28396ffdd14810811bb4967"
+    },
+    "32bit": {
+      "url": "https://archive.mozilla.org/pub/firefox/releases/128.7.0esr/win32/en-US/Firefox%20Setup%20128.7.0esr.exe#/dl.7z",
+      "hash": "sha512:2b45e8657c25eaf565abf3f3496545ee18d0f3597ba1dae45019d4d2c7a83bf0f087c613ac6eafa51e70c11786896e53a4359f479c35538d66675ce4995dce72"
+    }
+  },
+  "extract_dir": "core",
+  "bin": [
+    [
+      "firefox.exe",
+      "firefox",
+      "-profile \"$dir\\profile\""
+    ],
+    [
+      "firefox.exe",
+      "firefox-esr",
+      "-profile \"$dir\\profile\""
+    ]
+  ],
+  "shortcuts": [
+    [
+      "firefox.exe",
+      "Firefox ESR",
+      "-profile \"$dir\\profile\""
+    ]
+  ],
+  "persist": "profile",
+  "checkver": {
+    "url": "https://aus5.mozilla.org/update/6/Firefox/78.0/_/WINNT_x86_64-msvc-x64/en-US/esr/_/_/_/_/update.xml",
+    "xpath": "/updates/update/@appVersion"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://archive.mozilla.org/pub/firefox/releases/$versionesr/win64/en-US/Firefox%20Setup%20$versionesr.exe#/dl.7z",
+        "hash": {
+          "url": "https://archive.mozilla.org/pub/firefox/releases/$versionesr/SHA512SUMS",
+          "regex": "$sha512\\s+win64/en-US/$basename"
+        }
+      },
+      "32bit": {
+        "url": "https://archive.mozilla.org/pub/firefox/releases/$versionesr/win32/en-US/Firefox%20Setup%20$versionesr.exe#/dl.7z",
+        "hash": {
+          "url": "https://archive.mozilla.org/pub/firefox/releases/$versionesr/SHA512SUMS",
+          "regex": "$sha512\\s+win32/en-US/$basename"
+        }
+      }
+    }
+  }
+}

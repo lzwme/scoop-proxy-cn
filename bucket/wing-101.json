@@ -1,0 +1,31 @@
+{
+  "version": "10.0.8.0",
+  "description": "A very simple free Python IDE designed for teaching beginning programmers.",
+  "homepage": "https://wingware.com/downloads/wing-101",
+  "license": "Freeware",
+  "suggest": {
+    "python": "python"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://wingware.com/pub/wing-101/10.0.8.0/wing-101-10.0.8.0-win.zip",
+      "hash": "sha1:4a7cbd6bd7b6a77d4d60b6dcfafd262b5f52ef30"
+    }
+  },
+  "extract_dir": "Wing 101 10.0.8",
+  "shortcuts": [
+    [
+      "bin/wing-101.exe",
+      "Wing 101"
+    ]
+  ],
+  "checkver": "version ([\\d.]+)",
+  "autoupdate": {
+    "url": "https://wingware.com/pub/wing-101/$version/wing-101-$version-win.zip",
+    "hash": {
+      "url": "https://wingware.com/downloads/wing-101",
+      "regex": "(?s)$basename.*?$sha1"
+    },
+    "extract_dir": "Wing 101 $matchHead"
+  }
+}

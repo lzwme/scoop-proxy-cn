@@ -1,0 +1,26 @@
+{
+  "version": "5.2.2",
+  "homepage": "https://www.phpmyadmin.net/",
+  "license": "GPL-2.0-or-later",
+  "url": "https://files.phpmyadmin.net/phpMyAdmin/5.2.2/phpMyAdmin-5.2.2-all-languages.zip",
+  "hash": "6b99534f72ffb1d7275f50d23ca4141e1495c97d7cadb73a41d6dc580ed5ce29",
+  "extract_dir": "phpMyAdmin-5.2.2-all-languages",
+  "pre_install": "if (!(Test-Path \"$persist_dir/config.inc.php\")) { Copy-Item \"$dir/config.sample.inc.php\" \"$dir/config.inc.php\" }",
+  "persist": "config.inc.php",
+  "suggest": {
+    "PHP": [
+      "php",
+      "php-nts"
+    ]
+  },
+  "checkver": {
+    "regex": "</i> Download ([\\d.]+)</a>"
+  },
+  "autoupdate": {
+    "url": "https://files.phpmyadmin.net/phpMyAdmin/$version/phpMyAdmin-$version-all-languages.zip",
+    "extract_dir": "phpMyAdmin-$version-all-languages",
+    "hash": {
+      "url": "$url.sha256"
+    }
+  }
+}

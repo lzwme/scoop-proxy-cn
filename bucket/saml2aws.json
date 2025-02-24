@@ -1,0 +1,27 @@
+{
+  "version": "2.36.18",
+  "description": "Login and retrieve Amazon Web Services / AWS temporary credentials using a SAML IDP.",
+  "homepage": "https://github.com/Versent/saml2aws",
+  "license": "MIT",
+  "suggest": {
+    "AWS": "aws"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/Versent/saml2aws/releases/download/v2.36.18/saml2aws_2.36.18_windows_amd64.zip",
+      "hash": "600e4fccce1c916400d9a6885e80fd94ea603d0c1311be78d674e084921279fe"
+    }
+  },
+  "bin": "saml2aws.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/Versent/saml2aws/releases/download/v$version/saml2aws_$version_windows_amd64.zip"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/saml2aws_$version_checksums.txt"
+    }
+  }
+}

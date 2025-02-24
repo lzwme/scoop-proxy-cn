@@ -1,0 +1,69 @@
+{
+  "version": "2.48.1.windows.1",
+  "description": "Distributed version control system",
+  "homepage": "https://gitforwindows.org",
+  "license": "GPL-2.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/git-for-windows/git/releases/download/v2.48.1.windows.1/PortableGit-2.48.1-64-bit.7z.exe#/dl.7z",
+      "hash": "a4335111b3363871cac632be93d7466154d8eb08782ff55103866b67d6722257"
+    },
+    "32bit": {
+      "url": "https://github.com/git-for-windows/git/releases/download/v2.48.1.windows.1/PortableGit-2.48.1-32-bit.7z.exe#/dl.7z",
+      "hash": "63ddbc7ea11ea8a1375f39f45d38f928dbec564360ad12dd11d0d649474063a0"
+    }
+  },
+  "bin": [
+    "cmd\\git.exe",
+    "cmd\\gitk.exe",
+    "cmd\\git-gui.exe",
+    "git-bash.exe",
+    "usr\\bin\\gpg.exe",
+    "usr\\bin\\gpgconf.exe",
+    "usr\\bin\\ssh.exe",
+    "usr\\bin\\scp.exe",
+    "usr\\bin\\sftp.exe",
+    "usr\\bin\\ssh-add.exe",
+    "usr\\bin\\ssh-agent.exe",
+    [
+      "bin/sh.exe",
+      "ssh-copy-id",
+      "ssh-copy-id"
+    ],
+    "usr\\bin\\ssh-keygen.exe",
+    "usr\\bin\\ssh-keyscan.exe",
+    "usr\\bin\\tig.exe"
+  ],
+  "shortcuts": [
+    [
+      "git-bash.exe",
+      "Git Bash",
+      "--cd-to-home"
+    ],
+    [
+      "cmd\\git-gui.exe",
+      "Git GUI"
+    ]
+  ],
+  "env_set": {
+    "GIT_INSTALL_ROOT": "$dir"
+  },
+  "checkver": {
+    "github": "https://github.com/git-for-windows/git",
+    "regex": "v([\\w.]+)/PortableGit-(?<full>[\\w.]+)-64-bit"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/git-for-windows/git/releases/download/v$version/PortableGit-$matchFull-64-bit.7z.exe#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://github.com/git-for-windows/git/releases/download/v$version/PortableGit-$matchFull-32-bit.7z.exe#/dl.7z"
+      }
+    },
+    "hash": {
+      "url": "https://github.com/git-for-windows/git/releases/tag/v$version",
+      "regex": "<td>$basename</td>\\s*<td>$sha256</td>"
+    }
+  }
+}

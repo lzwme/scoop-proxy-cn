@@ -1,0 +1,28 @@
+{
+  "version": "6.0.2",
+  "description": "Interactive function plotting utility",
+  "homepage": "http://www.gnuplot.info",
+  "license": "gnuplot",
+  "architecture": {
+    "64bit": {
+      "url": "https://downloads.sourceforge.net/project/gnuplot/gnuplot/6.0.2/gp602-win64-mingw.7z",
+      "hash": "sha1:bab047d6d4bdce3c106ac0b666984d9fe9a3576f"
+    }
+  },
+  "extract_dir": "gnuplot",
+  "bin": "bin\\gnuplot.exe",
+  "shortcuts": [
+    [
+      "bin\\wgnuplot.exe",
+      "GNUPlot"
+    ]
+  ],
+  "checkver": "(?s)\\(current stable\\).*?Release ([\\d.]+)",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://downloads.sourceforge.net/project/gnuplot/gnuplot/$version/gp$cleanVersion-win64-mingw.7z"
+      }
+    }
+  }
+}

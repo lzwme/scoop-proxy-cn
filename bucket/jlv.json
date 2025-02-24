@@ -1,0 +1,38 @@
+{
+  "version": "1.2.2",
+  "description": "An interactive tool for viewing and analyzing complex structured json-log files",
+  "homepage": "https://github.com/hedhyw/json-log-viewer",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/hedhyw/json-log-viewer/releases/download/v1.2.2/jlv_windows_amd64.zip",
+      "hash": "c9c891a3157ba142c3d29bd725c6703f929bdf238a521b57ae534c584b3482b4"
+    },
+    "32bit": {
+      "url": "https://github.com/hedhyw/json-log-viewer/releases/download/v1.2.2/jlv_windows_386.zip",
+      "hash": "189fdce11b166cbcd78c4a4b418fd432558691cb9012075c3223424088fbba52"
+    },
+    "arm64": {
+      "url": "https://github.com/hedhyw/json-log-viewer/releases/download/v1.2.2/jlv_windows_arm64.zip",
+      "hash": "fe2c52e32834f207e27fa12c4a3a12fea6fb3e148005a96d4e5dc5d0d7a77bb4"
+    }
+  },
+  "bin": "jlv.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/hedhyw/json-log-viewer/releases/download/v$version/jlv_windows_amd64.zip"
+      },
+      "32bit": {
+        "url": "https://github.com/hedhyw/json-log-viewer/releases/download/v$version/jlv_windows_386.zip"
+      },
+      "arm64": {
+        "url": "https://github.com/hedhyw/json-log-viewer/releases/download/v$version/jlv_windows_arm64.zip"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/task_checksums.txt"
+    }
+  }
+}

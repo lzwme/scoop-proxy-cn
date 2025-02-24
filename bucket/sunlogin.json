@@ -1,0 +1,72 @@
+{
+  "version": "15.8.2.19742",
+  "description": "Sunlogin by Oray",
+  "homepage": "https://sunlogin.oray.com/",
+  "license": {
+    "identifier": "Freeware"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://down.oray.com/sunlogin/windows/SunloginClient_15.8.2.19742_x64.exe",
+      "hash": "md5:807d4c7f9996c2f915a1a9d51b1ddc62",
+      "shortcuts": [
+        [
+          "SunloginClient_15.8.2.19742_x64.exe",
+          "Sunlogin"
+        ]
+      ]
+    },
+    "32bit": {
+      "url": "https://down.oray.com/sunlogin/windows/SunloginClient_15.8.2.19742.exe",
+      "hash": "md5:45cefd779cc2f5871b5c09d056d4d35b",
+      "shortcuts": [
+        [
+          "SunloginClient_15.8.2.19742.exe",
+          "Sunlogin"
+        ]
+      ]
+    }
+  },
+  "installer": {
+    "script": [
+      "$path = 'HKCU:\\Software\\Oray\\SunLogin\\SunloginClient'",
+      "New-Item $path -ErrorAction SilentlyContinue -Force | Out-Null",
+      "New-ItemProperty -Path $path -Name \"${version}_IsRunSeted\" -Value \"1\" -PropertyType String -ErrorAction SilentlyContinue"
+    ]
+  },
+  "checkver": {
+    "url": "https://client-api.oray.com/softwares/SUNLOGIN_X_WINDOWS?x64=1",
+    "jp": "$.downloadurl",
+    "re": "/SunloginClient_([\\d\\.]+)_(?<arch>[Xx\\d]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://down.oray.com/sunlogin/windows/SunloginClient_$version_$matchArch.exe",
+        "hash": {
+          "url": "https://client-api.oray.com/softwares/SUNLOGIN_X_WINDOWS?x64=1",
+          "jp": "$.md5"
+        },
+        "shortcuts": [
+          [
+            "SunloginClient_$version_$matchArch.exe",
+            "Sunlogin"
+          ]
+        ]
+      },
+      "32bit": {
+        "url": "https://down.oray.com/sunlogin/windows/SunloginClient_$version.exe",
+        "hash": {
+          "url": "https://client-api.oray.com/softwares/SUNLOGIN_X_WINDOWS?x64=0",
+          "jp": "$.md5"
+        },
+        "shortcuts": [
+          [
+            "SunloginClient_$version.exe",
+            "Sunlogin"
+          ]
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "version": "1.1.0",
+  "description": "Cap'n Proto is an insanely fast data interchange format and capability-based RPC system",
+  "homepage": "https://capnproto.org",
+  "license": "MIT",
+  "url": "https://capnproto.org/capnproto-c++-win32-1.1.0.zip",
+  "hash": "623b7525501d410e6479c8029eba265aa57ac8153c6fa09ab21a62f906b3e3f9",
+  "bin": [
+    "capnproto-tools-win32-1.1.0/capnp.exe",
+    "capnproto-tools-win32-1.1.0/capnpc-c++.exe",
+    "capnproto-tools-win32-1.1.0/capnpc-capnp.exe"
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repositories/9090933/tags",
+    "regex": "tags/v([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://capnproto.org/capnproto-c++-win32-$version.zip",
+    "bin": [
+      "capnproto-tools-win32-$version/capnp.exe",
+      "capnproto-tools-win32-$version/capnpc-c++.exe",
+      "capnproto-tools-win32-$version/capnpc-capnp.exe"
+    ]
+  }
+}

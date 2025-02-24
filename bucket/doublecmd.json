@@ -1,0 +1,39 @@
+{
+  "version": "1.1.22",
+  "description": "Two pane file manager inspired by Total Commander",
+  "homepage": "https://doublecmd.sourceforge.io/",
+  "license": "GPL-2.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://downloads.sourceforge.net/project/doublecmd/DC%20for%20Windows%2064%20bit/Double%20Commander%201.1.22/doublecmd-1.1.22.x86_64-win64.zip",
+      "hash": "sha1:f7896713f993a430a470c87ba0cc64a57fe49900"
+    },
+    "32bit": {
+      "url": "https://downloads.sourceforge.net/project/doublecmd/DC%20for%20Windows%2032%20bit/Double%20Commander%201.1.22/doublecmd-1.1.22.i386-win32.zip",
+      "hash": "sha1:188e3afe63b3788be72581c1ae2d3cd164972d47"
+    }
+  },
+  "extract_dir": "doublecmd",
+  "bin": "doublecmd.exe",
+  "shortcuts": [
+    [
+      "doublecmd.exe",
+      "Double Commander"
+    ]
+  ],
+  "persist": "settings",
+  "checkver": {
+    "url": "https://sourceforge.net/p/doublecmd/wiki/Download/",
+    "regex": "doublecmd-([\\d.]+)\\.i386-win32\\.zip"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://downloads.sourceforge.net/project/doublecmd/DC%20for%20Windows%2064%20bit/Double%20Commander%20$version/doublecmd-$version.x86_64-win64.zip"
+      },
+      "32bit": {
+        "url": "https://downloads.sourceforge.net/project/doublecmd/DC%20for%20Windows%2032%20bit/Double%20Commander%20$version/doublecmd-$version.i386-win32.zip"
+      }
+    }
+  }
+}

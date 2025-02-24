@@ -1,0 +1,77 @@
+{
+  "##": [
+    "For command-line usage, see: https://sandboxie-plus.com/sandboxie/startcommandline/",
+    "The installer is made with InnoSetup, but the app will not work without installing the drivers (via the installer)"
+  ],
+  "version": "1.15.7",
+  "description": "Sandbox isolation software (plus variant)",
+  "homepage": "https://sandboxie-plus.com/",
+  "license": "GPL-3.0-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/sandboxie-plus/Sandboxie/releases/download/v1.15.7/Sandboxie-Plus-x64-v1.15.7.exe#/setup.exe",
+      "hash": "981156ff80592dd1f8e18ff3750831fd943acdf937d2237d80975a305657055e"
+    },
+    "32bit": {
+      "url": "https://github.com/sandboxie-plus/Sandboxie/releases/download/v1.15.7/Sandboxie-Plus-x86-v1.15.7.exe#/setup.exe",
+      "hash": "27ce503fbe161525566ea6aeeda2603518663619a7b451254773376885d2b21f"
+    }
+  },
+  "installer": {
+    "script": [
+      "if (!(is_admin)) { error \"$app requires admin rights to install\"; break }",
+      "Start-Process \"$dir\\setup.exe\" -ArgumentList @('/verysilent', \"/dir=`\"$dir`\"\") -Wait -Verb RunAs | Out-Null",
+      "Remove-Item \"$([Environment]::GetFolderPath('commonstartmenu'))\\Programs\\Sandboxie-Plus\" -Recurse",
+      "Remove-Item \"$([Environment]::GetFolderPath('Desktop'))\\Sandboxie-Plus.lnk\"",
+      "Remove-Item \"$dir\\setup.exe\""
+    ]
+  },
+  "pre_uninstall": "Stop-Process -Name 'SbieSvc' -Force -ErrorAction SilentlyContinue",
+  "uninstaller": {
+    "script": [
+      "if (!(is_admin)) { error \"$app requires admin rights to uninstall\"; break }",
+      "Invoke-ExternalCommand \"$dir\\unins000.exe\" -ArgumentList '/verysilent' -RunAs | Out-Null"
+    ]
+  },
+  "bin": [
+    [
+      "start.exe",
+      "sandboxie-start"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "SandMan.exe",
+      "Sandboxie-Plus"
+    ],
+    [
+      "Start.exe",
+      "Sandboxie Start Menu",
+      "/box:__ask__ start_menu"
+    ],
+    [
+      "Start.exe",
+      "Run any program sandboxed",
+      "/box:__ask__ run_dialog"
+    ],
+    [
+      "Start.exe",
+      "Run Web browser sandboxed",
+      "default_browser"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/sandboxie-plus/Sandboxie",
+    "regex": "Release v([\\d.]+) / (?<classicver>[\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/sandboxie-plus/Sandboxie/releases/download/v$version/Sandboxie-Plus-x64-v$version.exe#/setup.exe"
+      },
+      "32bit": {
+        "url": "https://github.com/sandboxie-plus/Sandboxie/releases/download/v$version/Sandboxie-Plus-x86-v$version.exe#/setup.exe"
+      }
+    }
+  }
+}

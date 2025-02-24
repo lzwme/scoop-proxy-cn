@@ -1,0 +1,25 @@
+{
+  "version": "17.2.2",
+  "description": "Epic Games Launcher. Allow players to purchase, install and keep their games up to date",
+  "homepage": "https://www.epicgames.com/",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://www.epicgames.com/site/en-US/tos"
+  },
+  "url": "https://launcher-public-service-prod06.ol.epicgames.com/launcher/api/installer/download/EpicGamesLauncherInstaller.msi",
+  "hash": "bdb77e87b9d666634e182ea42482d9559125ca8e62c2399b8ad2c6b42395aaa8",
+  "extract_dir": "Epic Games\\Launcher",
+  "shortcuts": [
+    [
+      "Portal\\Binaries\\Win32\\EpicGamesLauncher.exe",
+      "Epic Games Launcher"
+    ]
+  ],
+  "checkver": {
+    "url": "https://repology.org/project/epic-games/versions",
+    "regex": "cask/epic-games\">([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://launcher-public-service-prod06.ol.epicgames.com/launcher/api/installer/download/EpicGamesLauncherInstaller.msi"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "version": "8.3.499",
+  "homepage": "https://www.git-tower.com",
+  "description": "An easy to use GUI client for Git with powerful features.",
+  "license": {
+    "identifier": "Shareware",
+    "url": "https://www.git-tower.com/legal/eula/windows"
+  },
+  "suggest": {
+    ".NET Desktop Runtime": "extras/windowsdesktop-runtime"
+  },
+  "url": "https://www.git-tower.com/apps/tower3-win/499-40883531/Tower-8.3.499.exe#/dl.7z",
+  "hash": "sha1:e7ebca2b5efa76f7a98b90657031237a0e976d9f",
+  "extract_dir": "lib\\native",
+  "post_install": "Remove-Item \"$dir\\lib\" -Force -Recurse",
+  "bin": "Tower.exe",
+  "shortcuts": [
+    [
+      "Tower.exe",
+      "Git Tower"
+    ]
+  ],
+  "checkver": {
+    "url": "https://www.git-tower.com/release-notes/windows",
+    "regex": "/(?<release>[\\da-f-]+)/Tower-([\\d.]+)\\.exe"
+  },
+  "autoupdate": {
+    "url": "https://www.git-tower.com/apps/tower3-win/$matchRelease/Tower-$version.exe#/dl.7z",
+    "hash": {
+      "url": "https://www.git-tower.com/release-notes/windows",
+      "regex": "(?sm)$basename.*?$sha1"
+    }
+  }
+}

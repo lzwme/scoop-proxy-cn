@@ -1,0 +1,49 @@
+{
+  "version": "2.1.12",
+  "description": "Full featured gcode platform used for interfacing with advanced CNC controllers.",
+  "homepage": "https://winder.github.io/ugs_website/",
+  "license": "GPL-3.0-only",
+  "extract_dir": "ugsplatform-win",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/winder/Universal-G-Code-Sender/releases/download/v2.1.12/win64-ugs-platform-app-2.1.12.zip",
+      "hash": "4b85d4f8cd6f3afb1edc55167f5aaa39139bf9c3868d30fd1b6ae31357b6d4c5",
+      "bin": [
+        [
+          "bin\\ugsplatform64.exe",
+          "ugsplatform"
+        ]
+      ],
+      "shortcuts": [
+        [
+          "bin\\ugsplatform64.exe",
+          "UGS Platform"
+        ]
+      ]
+    },
+    "32bit": {
+      "url": "https://github.com/winder/Universal-G-Code-Sender/releases/download/v2.1.12/win-ugs-platform-app-2.1.12.zip",
+      "hash": "52ab86eaeb2327007ca5037e851a22cbf206c183863b4cabf2287ee70104666e",
+      "bin": "bin\\ugsplatform.exe",
+      "shortcuts": [
+        [
+          "bin\\ugsplatform.exe",
+          "UGS Platform"
+        ]
+      ]
+    }
+  },
+  "checkver": {
+    "github": "https://github.com/winder/Universal-G-Code-Sender"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/winder/Universal-G-Code-Sender/releases/download/v$version/win64-ugs-platform-app-$version.zip"
+      },
+      "32bit": {
+        "url": "https://github.com/winder/Universal-G-Code-Sender/releases/download/v$version/win-ugs-platform-app-$version.zip"
+      }
+    }
+  }
+}

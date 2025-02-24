@@ -1,0 +1,34 @@
+{
+  "version": "2024-12",
+  "description": "Eclipse Modeling Tools",
+  "homepage": "https://www.eclipse.org",
+  "license": "EPL-1.0",
+  "architecture": {
+    "64bit": {
+      "url": "http://download.eclipse.org/technology/epp/downloads/release/2024-12/R/eclipse-modeling-2024-12-R-win32-x86_64.zip",
+      "hash": "sha512:d3404f91a96bb56e07b3ebfb19e0054097b74ad09b701007d31937bc928d04a3f17ce428703c959a231db4b57ced90ea2cb969abde1dfa7f932d43708a4fe118"
+    }
+  },
+  "extract_dir": "eclipse",
+  "shortcuts": [
+    [
+      "eclipse.exe",
+      "Eclipse Modeling Tools"
+    ]
+  ],
+  "checkver": {
+    "url": "https://download.eclipse.org/technology/epp/downloads/release/release.xml",
+    "xpath": "/packages/present",
+    "regex": "([\\d-]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "http://download.eclipse.org/technology/epp/downloads/release/$version/R/eclipse-modeling-$version-R-win32-x86_64.zip",
+        "hash": {
+          "url": "$url.sha512"
+        }
+      }
+    }
+  }
+}

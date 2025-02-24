@@ -1,0 +1,42 @@
+{
+  "version": "1.76",
+  "homepage": "https://www.nirsoft.net/utils/network_latency_view.html",
+  "bin": "NetworkLatencyView.exe",
+  "shortcuts": [
+    [
+      "NetworkLatencyView.exe",
+      "NirSoft\\NetworkLatencyView"
+    ]
+  ],
+  "persist": [
+    "networklatencyview_lng.ini",
+    "networklatencyview.cfg"
+  ],
+  "architecture": {
+    "64bit": {
+      "url": "https://www.nirsoft.net/utils/networklatencyview-x64.zip",
+      "hash": "7fcd1b49aaab0eb5164f878c8fc7c4e7c6f126f9a6ab615e9bf386a2b26e4f97"
+    },
+    "32bit": {
+      "url": "https://www.nirsoft.net/utils/networklatencyview.zip",
+      "hash": "e9e82c252435f7e6c82e0342934cafed7929e1ad6ca0e6a760550b288433d939"
+    }
+  },
+  "description": "Calculates the network latency (in milliseconds) for every new TCP connection.",
+  "license": "Freeware",
+  "notes": "If this application is useful to you, please consider donating to NirSoft - https://www.nirsoft.net/donate.html",
+  "checkver": {
+    "url": "https://www.nirsoft.net/pad/networklatencyview.xml",
+    "xpath": "/XML_DIZ_INFO/Program_Info/Program_Version"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://www.nirsoft.net/utils/networklatencyview-x64.zip"
+      },
+      "32bit": {
+        "url": "https://www.nirsoft.net/utils/networklatencyview.zip"
+      }
+    }
+  }
+}

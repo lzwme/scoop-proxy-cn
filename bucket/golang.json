@@ -1,0 +1,45 @@
+{
+  "version": "1.24.0",
+  "homepage": "https://golang.org",
+  "description": "An open source programming language that makes it easy to build simple, reliable, and efficient software.",
+  "license": "BSD-3-Clause",
+  "extract_dir": "go",
+  "env_set": {
+    "GOROOT": "$dir"
+  },
+  "bin": [
+    "bin/go.exe",
+    "bin/gofmt.exe"
+  ],
+  "architecture": {
+    "64bit": {
+      "url": "https://dl.google.com/go/go1.24.0.windows-amd64.zip",
+      "hash": "96b7280979205813759ee6947be7e3bb497da85c482711116c00522e3bb41ff1"
+    },
+    "32bit": {
+      "url": "https://dl.google.com/go/go1.24.0.windows-386.zip",
+      "hash": "b53c28a4c2863ec50ab4a1dbebe818ef6177f86773b6f43475d40a5d9aa4ec9e"
+    }
+  },
+  "checkver": {
+    "url": "https://golang.org/dl/",
+    "regex": "go([\\d.]+)\\."
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://dl.google.com/go/go$version.windows-amd64.zip"
+      },
+      "32bit": {
+        "url": "https://dl.google.com/go/go$version.windows-386.zip"
+      }
+    },
+    "hash": {
+      "url": "$url.sha256"
+    }
+  },
+  "notes": [
+    "Your GOROOT has been set to: $dir",
+    "You can run 'go env GOROOT' to view this at any time."
+  ]
+}

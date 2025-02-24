@@ -1,0 +1,61 @@
+{
+  "version": "20250222-g3ea26cc",
+  "description": "A fast PlayStation 1 emulator for PC and Android",
+  "homepage": "https://github.com/stenzek/duckstation/",
+  "license": {
+    "identifier": "GPL-3.0-only",
+    "url": "https://github.com/stenzek/duckstation/blob/master/LICENSE"
+  },
+  "notes": [
+    "ATTENTION: Duckstation requires a PSX BIOS to function.",
+    "Place the BIOS file in $persist_dir\\bios",
+    "Learn more at: https://web.archive.org/web/20210620033009/https://www.duckstation.org/wiki/BIOS"
+  ],
+  "url": "https://github.com/stenzek/duckstation/releases/download/latest/duckstation-windows-x64-release.zip",
+  "hash": "5ddafc34237203db4a2fc5b9bd32e04ffa1f61dc01dd7145c5c6b7eed85d2679",
+  "installer": {
+    "script": [
+      "New-item \"$dir\\portable.txt\" -ItemType File | Out-Null",
+      "if (!(Test-Path \"$persist_dir\")) {",
+      "  '[Main]', 'SettingsVersion = 3', '[AutoUpdater]', 'CheckAtStartup = false' | Set-Content \"$dir\\settings.ini\"",
+      "}"
+    ]
+  },
+  "uninstaller": {
+    "script": "Copy-Item \"$dir\\settings.ini\" \"$persist_dir\" -ErrorAction SilentlyContinue -Force"
+  },
+  "post_install": [
+    "echo \"update bin/shortcuts\"",
+    "$shell = New-Object -COM WScript.Shell",
+    "$shortcut = $shell.CreateShortCut(\"$env:APPDATA\\Microsoft\\Windows\\Start Menu\\Programs\\Scoop Apps\\DuckStation.lnk\")",
+    "$shortcut.TargetPath = \"$original_dir\\duckstation-qt-x64-ReleaseLTCG.exe\"",
+    "$shortcut.Save()"
+  ],
+  "post_uninstall": [
+    "echo \"update bin/shortcuts\"",
+    "Remove-Item \"$env:APPDATA\\Microsoft\\Windows\\Start Menu\\Programs\\Scoop Apps\\DuckStation.lnk\""
+  ],
+  "persist": [
+    "bios",
+    "cache",
+    "cheats",
+    "covers",
+    "dump",
+    "gamesettings",
+    "inputprofiles",
+    "memcards",
+    "savestates",
+    "screenshots",
+    "shaders",
+    "textures",
+    "settings.ini"
+  ],
+  "checkver": {
+    "url": "https://github.com/stenzek/duckstation/releases/tag/latest",
+    "regex": " datetime=\"(?<year>[0-9]{4})-(?<month>[0-9]{2})-(?<day>[0-9]{2})[\\s\\S]*?.*duckstation/commit/(?<commit>[0-9a-f]{7})",
+    "replace": "${year}${month}${day}-g${commit}"
+  },
+  "autoupdate": {
+    "url": "https://github.com/stenzek/duckstation/releases/download/latest/duckstation-windows-x64-release.zip"
+  }
+}

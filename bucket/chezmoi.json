@@ -1,0 +1,41 @@
+{
+  "version": "2.60.0",
+  "description": "Manage your dotfiles across multiple diverse machines, securely.",
+  "homepage": "https://chezmoi.io",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/twpayne/chezmoi/releases/download/v2.60.0/chezmoi_2.60.0_windows_amd64.zip",
+      "hash": "995a6cf4f86901b635ac37c2179510d24093a4ef5c184527c7db17f54273cd80"
+    },
+    "32bit": {
+      "url": "https://github.com/twpayne/chezmoi/releases/download/v2.60.0/chezmoi_2.60.0_windows_i386.zip",
+      "hash": "1d3e48d699b4dc50c1c86bcaa50a126d4780291479453293eb759800284a4ad5"
+    },
+    "arm64": {
+      "url": "https://github.com/twpayne/chezmoi/releases/download/v2.60.0/chezmoi_2.60.0_windows_arm64.zip",
+      "hash": "b10a72770f17f1564550b00606a984fb172ac6054244260eb5848d3d251dccdc"
+    }
+  },
+  "bin": "chezmoi.exe",
+  "checkver": {
+    "github": "https://github.com/twpayne/chezmoi/"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/twpayne/chezmoi/releases/download/v$version/chezmoi_$version_windows_amd64.zip"
+      },
+      "32bit": {
+        "url": "https://github.com/twpayne/chezmoi/releases/download/v$version/chezmoi_$version_windows_i386.zip"
+      },
+      "arm64": {
+        "url": "https://github.com/twpayne/chezmoi/releases/download/v$version/chezmoi_$version_windows_arm64.zip"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/checksums.txt",
+      "regex": "$sha256\\s*$basename"
+    }
+  }
+}

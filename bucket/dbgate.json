@@ -1,0 +1,38 @@
+{
+  "description": "A database manager for MySQL, PostgreSQL, SQL Server, MongoDB, SQLite and others.",
+  "homepage": "https://dbgate.org/",
+  "license": "GPL-3.0",
+  "version": "6.2.0",
+  "architecture": {
+    "64bit": {
+      "hash": "33b6b3f10ba3af4c3a7e3088a331fa61b5661c7affb7dc5c50480a08aeae8ece",
+      "url": "https://github.com/dbgate/dbgate/releases/download/v6.2.0/dbgate-6.2.0-win_x64.zip"
+    }
+  },
+  "pre_install": "Remove-Item \"$dir\\resources\\app-update.yml\" -Force -Recurse",
+  "bin": [
+    [
+      "dbgate.exe",
+      "dbgate",
+      "--user-data-dir=\"$dir\\User Data\""
+    ]
+  ],
+  "shortcuts": [
+    [
+      "dbgate.exe",
+      "DbGate",
+      "--user-data-dir=\"$dir\\User Data\""
+    ]
+  ],
+  "persist": "User Data",
+  "checkver": {
+    "github": "https://github.com/dbgate/dbgate"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/dbgate/dbgate/releases/download/v$version/dbgate-$version-win_x64.zip"
+      }
+    }
+  }
+}

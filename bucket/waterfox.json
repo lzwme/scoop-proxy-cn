@@ -1,0 +1,57 @@
+{
+  "version": "6.5.4",
+  "description": "The 100% fresh, free-range, ethical browser",
+  "homepage": "https://www.waterfox.net",
+  "license": "MPL-2.0",
+  "notes": [
+    "To set profile 'Scoop' as *DEFAULT*, or profiles/settings was lost after update:",
+    "  - Run 'Waterfox Profile Manager', choose 'Scoop' then click 'Start Waterfox'.",
+    "  - Visit 'about:profiles' page in Waterfox to check *DEFAULT* profile.",
+    "For details: https://support.mozilla.org/en-US/kb/profile-manager-create-remove-switch-firefox-profiles",
+    "For Waterfox Classic, please install 'waterfox-classic'."
+  ],
+  "architecture": {
+    "64bit": {
+      "url": "https://cdn1.waterfox.net/waterfox/releases/6.5.4/WINNT_x86_64/Waterfox%20Setup%206.5.4.exe#/dl.7z",
+      "hash": "sha512:b72e5150789fc4d8b11543c1ce31e200d23aa0e4a798b31e36831318b3874151246e0d0081e45b6b54510807fbed9884993856f2b23a45f7930b15a5e18b4156"
+    }
+  },
+  "extract_dir": "core",
+  "post_install": [
+    "waterfox -CreateProfile \"Scoop $persist_dir\\profile\"",
+    "$Addition = \"$persist_dir\\addition\"",
+    "if (Test-Path $Addition) {",
+    "  info 'Copying additional items...'",
+    "  Copy-Item -Path $Addition\\* -Destination $dir -Force -Recurse -ErrorAction SilentlyContinue",
+    "}"
+  ],
+  "bin": "waterfox.exe",
+  "shortcuts": [
+    [
+      "waterfox.exe",
+      "Waterfox"
+    ],
+    [
+      "waterfox.exe",
+      "Waterfox Profile Manager",
+      "-P"
+    ]
+  ],
+  "persist": [
+    "distribution",
+    "profile"
+  ],
+  "checkver": {
+    "github": "https://github.com/BrowserWorks/Waterfox"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://cdn1.waterfox.net/waterfox/releases/$version/WINNT_x86_64/Waterfox%20Setup%20$version.exe#/dl.7z",
+        "hash": {
+          "url": "$url.sha512"
+        }
+      }
+    }
+  }
+}

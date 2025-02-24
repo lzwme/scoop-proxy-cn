@@ -1,0 +1,25 @@
+{
+  "version": "1.22",
+  "description": "FTP文件服务器",
+  "homepage": "https://github.com/jark006/FtpServer",
+  "license": {
+    "identifier": "MIT license",
+    "url": "https://github.com/jark006/FtpServer#MIT-1-ov-file"
+  },
+  "url": "https://github.com/jark006/FtpServer/releases/download/v1.22/ftpServer.exe",
+  "hash": "55c61b46d2640a03121f1e3617aa37edc631daf3e740f3a0c9e597dd2685fbd2",
+  "bin": "ftpServer.exe",
+  "shortcuts": [
+    [
+      "ftpServer.exe",
+      "ftpServer"
+    ]
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/jark006/FtpServer/releases",
+    "regex": "/releases/tag/v([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://github.com/jark006/FtpServer/releases/download/v$version/ftpServer.exe"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "version": "6.3.2600",
+  "description": "Personal Backup. simple backup solution",
+  "homepage": "https://personal-backup.rathlev-home.de/",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://personal-backup.rathlev-home.de/license.html"
+  },
+  "architecture": {
+    "32bit": {
+      "url": "https://personal-backup.rathlev-home.de/download/pb-setup-6.3.2600.exe",
+      "hash": "9a2fe89b0324a8741b9aa6e2259f854c627ed961c24ce8342312ff0a8e15d3e9"
+    },
+    "64bit": {
+      "url": "https://personal-backup.rathlev-home.de/download/pb-setup-x64-6.3.2600.exe",
+      "hash": "3b4c51f9d91e999c8a16088bbb21e0bca60c9404e6af16f8341a7c1da5cb5449"
+    }
+  },
+  "innosetup": true,
+  "pre_install": "if (!(Test-Path \"$persist_dir\\pb.ini\")) { New-Item \"$dir\\pb.ini\" -Force | Out-Null }",
+  "bin": "Persbackup.exe",
+  "shortcuts": [
+    [
+      "Persbackup.exe",
+      "Personal Backup",
+      "/ini:%progpath%\\pb.ini /taskdir:%progpath%\\tasks /logdir:%progpath%\\logs"
+    ]
+  ],
+  "persist": [
+    "pb.ini",
+    "logs",
+    "tasks"
+  ],
+  "checkver": {
+    "url": "https://personal-backup.rathlev-home.de/download.html",
+    "regex": "pb-setup-(?<version>[\\d.]+[\\d])"
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://personal-backup.rathlev-home.de/download/pb-setup-$version.exe"
+      },
+      "64bit": {
+        "url": "https://personal-backup.rathlev-home.de/download/pb-setup-x64-$version.exe"
+      }
+    }
+  }
+}

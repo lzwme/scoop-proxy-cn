@@ -1,0 +1,24 @@
+{
+  "version": "0.3.18",
+  "description": "Generate random passphrases",
+  "homepage": "https://github.com/sts10/phraze",
+  "license": "MPL-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/sts10/phraze/releases/download/v0.3.18/phraze-x86_64-pc-windows-msvc.zip",
+      "hash": "3c717ea4b2847107d3424139695df9fd535ca6056edd99e893d5d147738f640c"
+    }
+  },
+  "bin": "phraze.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/sts10/phraze/releases/download/v$version/phraze-x86_64-pc-windows-msvc.zip"
+      }
+    },
+    "hash": {
+      "url": "$url.sha256"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "version": "6.1.5",
+  "description": "Multi-protocol and Java-based message broker",
+  "homepage": "https://activemq.apache.org",
+  "license": "Apache-2.0",
+  "suggest": {
+    "java": [
+      "java/openjdk9",
+      "java/corretto8-jre"
+    ]
+  },
+  "notes": "Install service manually via '$dir\\bin\\winXX\\InstallService.bat'",
+  "url": "https://downloads.apache.org/activemq/6.1.5/apache-activemq-6.1.5-bin.zip",
+  "hash": "sha512:834880bf1c39239f947a8b04959d1c1dfb85e8422dcbefaebedc8d97a431f3ca6bd4816fe5bbe7f678e4607743ab667e3ab33f0dee813ea6d89d74b0e6454d82",
+  "extract_dir": "apache-activemq-6.1.5",
+  "bin": [
+    "bin\\activemq.bat",
+    "bin\\activemq-admin.bat"
+  ],
+  "persist": [
+    "conf",
+    "data"
+  ],
+  "checkver": {
+    "url": "https://activemq.apache.org/components/classic/download",
+    "regex": "apache-activemq-([\\d.]+)-bin\\.zip"
+  },
+  "autoupdate": {
+    "url": "https://downloads.apache.org/activemq/$version/apache-activemq-$version-bin.zip",
+    "hash": {
+      "url": "$url.sha512"
+    },
+    "extract_dir": "apache-activemq-$version"
+  }
+}

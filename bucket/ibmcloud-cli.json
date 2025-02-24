@@ -1,0 +1,39 @@
+{
+  "version": "2.32.2",
+  "description": "The command line client for IBM Cloud",
+  "homepage": "https://www.ibm.com/cloud/cli",
+  "license": {
+    "identifier": "Apache-2.0",
+    "url": "https://cloud.ibm.com/media/docs/downloads/oss-licensing-info/IBMCloud-CLI-OSS-Licenses.txt"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://download.clis.cloud.ibm.com/ibm-cloud-cli/2.32.2/binaries/IBM_Cloud_CLI_2.32.2_windows_amd64.zip",
+      "hash": "24f974fa800fe88f2003ea07de2e031df191bdeac639bb86ab0f370bf2796350"
+    },
+    "32bit": {
+      "url": "https://download.clis.cloud.ibm.com/ibm-cloud-cli/2.32.2/binaries/IBM_Cloud_CLI_2.32.2_windows_386.zip",
+      "hash": "b14c26ace71255e785a4d02ff991be8f45b8c8473422fc43ca5e030e17df047a"
+    }
+  },
+  "extract_dir": "IBM_Cloud_CLI",
+  "bin": "ibmcloud.exe",
+  "env_set": {
+    "IBMCLOUD_HOME": "$dir\\config"
+  },
+  "persist": "config",
+  "checkver": {
+    "url": "https://download.clis.cloud.ibm.com/ibm-cloud-cli-metadata/info.json",
+    "jsonpath": "$.latest_version"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://download.clis.cloud.ibm.com/ibm-cloud-cli/$version/binaries/IBM_Cloud_CLI_$version_windows_amd64.zip"
+      },
+      "32bit": {
+        "url": "https://download.clis.cloud.ibm.com/ibm-cloud-cli/$version/binaries/IBM_Cloud_CLI_$version_windows_386.zip"
+      }
+    }
+  }
+}

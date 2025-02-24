@@ -1,0 +1,26 @@
+{
+  "version": "16.11.44",
+  "description": "Microsoft Visual Studio Community 2019. ",
+  "homepage": "https://www.visualstudio.com/downloads/",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://visualstudio.microsoft.com/license-terms"
+  },
+  "url": "https://aka.ms/vs/16/release/vs_community.exe",
+  "hash": "fa0fa3c872b7ab7dc8bc48f9141d2c7b362fa8026acf04a868bed0c6b1eb2f76",
+  "installer": {
+    "script": [
+      "Invoke-ExternalCommand -FilePath \"$dir\\vs_community.exe\" -Args @('--quiet', '--wait') -RunAs | Out-Null",
+      "Invoke-ExternalCommand -FilePath \"$dir\\vs_community.exe\" -Args @('--quiet', '--wait', '--channelUri \"https://aka.ms/vs/16/release/channel\"') -RunAs | Out-Null",
+      "Invoke-ExternalCommand -FilePath \"$dir\\vs_community.exe\" -Args @('--update', '--quiet') -RunAs | Out-Null",
+      "Invoke-ExternalCommand -FilePath \"$dir\\vs_community.exe\" -Args @('update', '--wait', '--quiet', '--norestart', '--installPath \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\"') -RunAs | Out-Null"
+    ]
+  },
+  "checkver": {
+    "url": "https://docs.microsoft.com/en-us/visualstudio/releases/2019/release-notes",
+    "regex": ">Visual Studio 2019 version ([\\d.]+)</a> <img"
+  },
+  "autoupdate": {
+    "url": "https://aka.ms/vs/16/release/vs_community.exe"
+  }
+}

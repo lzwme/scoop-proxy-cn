@@ -1,0 +1,43 @@
+{
+  "version": "4.24",
+  "description": "A hard drive disk space analyser that finds the files and folders using the most space.",
+  "homepage": "https://diskanalyzer.com/",
+  "license": "Unknown",
+  "changelog": "https://diskanalyzer.com/whats-new",
+  "url": "https://diskanalyzer.com/files/wiztree_4_24_portable.zip",
+  "hash": "80fb53b2cb650ebe6ddede2e5f01dd6d02ae67c0588ab2d231b018d1c278f91f",
+  "pre_install": "if (-not (Test-Path \"$persist_dir\\WizTree3.ini\")) { New-Item \"$dir\\WizTree3.ini\" -ItemType File | Out-Null }",
+  "architecture": {
+    "64bit": {
+      "bin": [
+        [
+          "WizTree64.exe",
+          "WizTree"
+        ]
+      ],
+      "shortcuts": [
+        [
+          "WizTree64.exe",
+          "WizTree"
+        ]
+      ]
+    },
+    "32bit": {
+      "bin": "WizTree.exe",
+      "shortcuts": [
+        [
+          "WizTree.exe",
+          "WizTree"
+        ]
+      ]
+    }
+  },
+  "persist": "WizTree3.ini",
+  "checkver": {
+    "url": "https://diskanalyzer.com/download",
+    "regex": "<h4>WizTree ([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://diskanalyzer.com/files/wiztree_$majorVersion_$minorVersion_portable.zip"
+  }
+}

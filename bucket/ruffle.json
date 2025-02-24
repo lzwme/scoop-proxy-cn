@@ -1,0 +1,40 @@
+{
+  "version": "2025-02-24",
+  "description": "A Flash Player emulator written in Rust",
+  "homepage": "https://ruffle.rs/",
+  "license": {
+    "identifier": "Apache License & MIT License",
+    "url": "https://github.com/ruffle-rs/ruffle/blob/master/LICENSE.md"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/ruffle-rs/ruffle/releases/download/nightly-2025-02-24/ruffle-nightly-2025_02_24-windows-x86_64.zip",
+      "hash": "4d55acc2d333051c27936c5091b030dcdca9ce5ca95c80f6ca69cc6381338f1a"
+    },
+    "32bit": {
+      "url": "https://github.com/ruffle-rs/ruffle/releases/download/nightly-2025-02-24/ruffle-nightly-2025_02_24-windows-x86_32.zip",
+      "hash": "3f99a8fca359a8990a3c0e096d53b7e0825f110f8e774c2f712f0294c4bc9d2e"
+    }
+  },
+  "shortcuts": [
+    [
+      "ruffle.exe",
+      "ruffle"
+    ]
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/ruffle-rs/ruffle/releases",
+    "jsonpath": "$[0].assets[*].browser_download_url",
+    "regex": "/releases/download/nightly-([\\d-]+)/(?<x86>ruffle-nightly-([\\d_]+)-windows-x86_32\\.zip).*?(?<x64>ruffle-nightly-([\\d_]+)-windows-x86_64\\.zip)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/ruffle-rs/ruffle/releases/download/nightly-$version/$matchX64"
+      },
+      "32bit": {
+        "url": "https://github.com/ruffle-rs/ruffle/releases/download/nightly-$version/$matchX86"
+      }
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "version": "13484970822",
+  "description": "Practical and minimal image viewer",
+  "homepage": "https://github.com/jdpurcell/qView",
+  "license": "GPL-3.0-only",
+  "architecture": {
+    "arm64": {
+      "url": "https://nightly.link/jdpurcell/qView/workflows/build/master/qView-JDP-2025-02-23.fdce44a-Windows_arm64.zip",
+      "hash": "26b7ab927fc9d9c077885a0d88c83c2e8f5e0cc994912550e883f9a6acabca2e"
+    },
+    "64bit": {
+      "url": "https://nightly.link/jdpurcell/qView/workflows/build/master/qView-JDP-2025-02-23.fdce44a-Windows_64.zip",
+      "hash": "8f26c2fac6bd35aca8d22b8ee76e08d5e090fd1cbd45bf68da28a3a5cc97638e"
+    },
+    "32bit": {
+      "url": "https://nightly.link/jdpurcell/qView/workflows/build/master/qView-JDP-2025-02-23.fdce44a-Windows_32.zip",
+      "hash": "6e55a5cd89bd607e2f35ea62c3a72c76089285b5b1390f1e0a2638baaa5202be"
+    }
+  },
+  "pre_install": [
+    "Get-ChildItem \"$dir\\qView-nightly-*.exe\" | Rename-Item -NewName { $_.name -Replace '-nightly.+', '.exe' }",
+    "Remove-Item \"$dir\\qView-*.*-win*.exe\""
+  ],
+  "bin": "qView.exe",
+  "shortcuts": [
+    [
+      "qView.exe",
+      "qView"
+    ]
+  ],
+  "checkver": {
+    "script": [
+      "try {",
+      "    $api = (Invoke-RestMethod 'https://api.github.com/repositories/554598108/actions/workflows/build.yml/runs?branch=master&status=success').workflow_runs[0]",
+      "    ($api.id, (Get-Date $api.updated_at -Format 'yyyy-MM-dd'), $api.head_sha.Substring(0, 7)) -join ' '",
+      "}",
+      "catch { '' }"
+    ],
+    "regex": "\\A(\\d+) (?<date>\\d{4}(?:-\\d{2}){2}) (?<sha>[a-f\\d]{7})\\Z"
+  },
+  "autoupdate": {
+    "architecture": {
+      "arm64": {
+        "url": "https://nightly.link/jdpurcell/qView/workflows/build/master/qView-JDP-$matchDate.$matchSha-Windows_arm64.zip"
+      },
+      "64bit": {
+        "url": "https://nightly.link/jdpurcell/qView/workflows/build/master/qView-JDP-$matchDate.$matchSha-Windows_64.zip"
+      },
+      "32bit": {
+        "url": "https://nightly.link/jdpurcell/qView/workflows/build/master/qView-JDP-$matchDate.$matchSha-Windows_32.zip"
+      }
+    }
+  }
+}

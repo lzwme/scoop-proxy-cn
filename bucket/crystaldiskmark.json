@@ -1,0 +1,54 @@
+{
+  "version": "8.0.6",
+  "description": "A simple disk benchmark software",
+  "homepage": "https://crystalmark.info/en/software/crystaldiskmark/",
+  "license": "BSD-3-Clause",
+  "url": "https://sourceforge.net/projects/crystaldiskmark/files/8.0.6/CrystalDiskMark8_0_6.zip",
+  "hash": "sha1:a70a1526b5dae20f66cede1a4e9abad85e81460a",
+  "pre_install": [
+    "'64', '32' | ForEach-Object {",
+    "    if (!(Test-Path \"$persist_dir\\DiskMark$_.ini\")) { New-Item \"$dir\\DiskMark$_.ini\" | Out-Null }",
+    "}"
+  ],
+  "architecture": {
+    "64bit": {
+      "bin": [
+        [
+          "DiskMark64.exe",
+          "DiskMark"
+        ]
+      ],
+      "shortcuts": [
+        [
+          "DiskMark64.exe",
+          "CrystalDiskMark"
+        ]
+      ]
+    },
+    "32bit": {
+      "bin": [
+        [
+          "DiskMark32.exe",
+          "DiskMark"
+        ]
+      ],
+      "shortcuts": [
+        [
+          "DiskMark32.exe",
+          "CrystalDiskMark"
+        ]
+      ]
+    }
+  },
+  "persist": [
+    "DiskMark32.ini",
+    "DiskMark64.ini"
+  ],
+  "checkver": {
+    "sourceforge": "crystaldiskmark",
+    "regex": "([\\d.a-zA-Z]+)/CrystalDiskMark.*.zip"
+  },
+  "autoupdate": {
+    "url": "https://sourceforge.net/projects/crystaldiskmark/files/$version/CrystalDiskMark$underscoreVersion.zip"
+  }
+}

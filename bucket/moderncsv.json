@@ -1,0 +1,23 @@
+{
+  "version": "2.2",
+  "description": "Modern CSV is a powerful tabular file editor/viewer application for Windows, Mac, and Linux.",
+  "homepage": "https://www.moderncsv.com/",
+  "url": "https://www.moderncsv.com/release/ModernCSV-Win-v2.2.zip",
+  "license": "Freemium",
+  "hash": "32b3f3ab3ba5a9204f00e0c9bc2e23fa4232e2e69961e915506e984e335a0c38",
+  "extract_dir": "Modern CSV",
+  "shortcuts": [
+    [
+      "Modern CSV.exe",
+      "Modern CSV"
+    ]
+  ],
+  "persist": "config",
+  "checkver": {
+    "url": "https://www.moderncsv.com/download/",
+    "regex": ">Version\\s([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://www.moderncsv.com/release/ModernCSV-Win-v$version.zip"
+  }
+}

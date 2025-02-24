@@ -1,0 +1,44 @@
+{
+  "homepage": "https://u.tools/",
+  "description": "新一代效率工具平台",
+  "license": "Freeware",
+  "version": "6.1.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://open.u-tools.cn/download/uTools-6.1.0.exe#/setup.exe",
+      "hash": "b6eea8420f124dda26823c846f846f04bd2ceb6693303a7d7d273d43ceabd892"
+    }
+  },
+  "installer": {
+    "file": "setup.exe"
+  },
+  "post_install": [
+    "function Create-Junction { param ([string]$runtimeCache, [string]$runtimeCachePersist)",
+    "  if (-not (Test-Path $runtimeCache)) { return }",
+    "  if (Test-Path $runtimeCachePersist) {",
+    "    Remove-Item $runtimeCache -Force -Recurse -ErrorAction SilentlyContinue",
+    "    New-Item -Type Junction -Path $runtimeCache -Target $runtimeCachePersist | Out-Null",
+    "  } else {",
+    "    mkdir $runtimeCache -ErrorAction SilentlyContinue",
+    "    Move-Item $runtimeCache $runtimeCachePersist -Force",
+    "    New-Item -Type Junction -Path $runtimeCache -Target $runtimeCachePersist | Out-Null",
+    "  }",
+    "}",
+    "foreach ($folder in @('uTools')) {",
+    "  Create-Junction -runtimeCache \"$env:USERPROFILE\\$folder\" -runtimeCachePersist \"$persist_dir\\USERPROFILE\\$folder\"",
+    "  Create-Junction -runtimeCache \"$env:LOCALAPPDATA\\$folder\" -runtimeCachePersist \"$persist_dir\\LOCALAPPDATA\\$folder\"",
+    "  Create-Junction -runtimeCache \"$env:APPDATA\\$folder\" -runtimeCachePersist \"$persist_dir\\APPDATA\\$folder\"",
+    "}"
+  ],
+  "post_uninstall": "Remove-Item \"$env:APPDATA\\Microsoft\\Windows\\Start Menu\\Programs\\Scoop Apps\\uTools.lnk\" -ErrorAction SilentlyContinue",
+  "checkver": {
+    "url": "https://www.u-tools.cn/docs/guide/changelog.html",
+    "regex": "uTools ([\\d\\.]+)"
+  },
+  "autoupdate": {
+    "url": "https://open.u-tools.cn/download/uTools-$version.exe#/setup.exe",
+    "hash": {
+      "mode": "download"
+    }
+  }
+}

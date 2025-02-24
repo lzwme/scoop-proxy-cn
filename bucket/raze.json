@@ -1,0 +1,35 @@
+{
+  "version": "1.11.0",
+  "description": "Modern source port for Duke Nukem 3D, Blood, Redneck Rampage, Shadow Warrior and Exhumed/Powerslave",
+  "homepage": "https://raze.zdoom.org/about",
+  "license": "Custom",
+  "notes": [
+    "Place GRP and RTS files (game data) in:",
+    "",
+    "    $persist_dir\\data"
+  ],
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/ZDoom/Raze/releases/download/1.11.0/raze-1.11.0-windows.zip",
+      "hash": "91414f368ad20e7b36726bae8319de2d9c8b582770216209945db5a162eea066"
+    }
+  },
+  "bin": "raze.exe",
+  "shortcuts": [
+    [
+      "raze.exe",
+      "Raze"
+    ]
+  ],
+  "persist": "data",
+  "checkver": {
+    "github": "https://github.com/coelckers/raze"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/ZDoom/Raze/releases/download/$version/raze-$version-windows.zip"
+      }
+    }
+  }
+}

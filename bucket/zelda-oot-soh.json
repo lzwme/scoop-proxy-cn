@@ -1,0 +1,40 @@
+{
+  "homepage": "https://www.shipofharkinian.com",
+  "version": "2024",
+  "description": "Zelda Ocarina of Time Decompilation",
+  "license": {
+    "identifier": "MIT"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/HarbourMasters/Shipwright/releases/download/let-it-snow-2024/SoH-Holiday-2024-Win64.zip",
+      "hash": "b5caa26e3952c9582c4cf53529af5ac6888fe7911f420b777ba65624c8dad18d",
+      "shortcuts": [
+        [
+          "soh.exe",
+          "Zelda - Ocarina of Time (SoH)"
+        ]
+      ]
+    }
+  },
+  "persist": [
+    "Save",
+    "mods",
+    "roms"
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/HarbourMasters/Shipwright/releases",
+    "jsonpath": {
+      "version": "$.[0].name",
+      "download": "$.[0].assets[?(@.name =~ /.+Win64\\.zip$/i)].browser_download_url"
+    },
+    "regex": "([\\d\\.]+\\d+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "$matchDownload"
+      }
+    }
+  }
+}

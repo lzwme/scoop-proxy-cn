@@ -1,0 +1,87 @@
+{
+  "version": "3.9.3",
+  "description": "一个基于 electron typescript vue3 的桌面音乐播放器",
+  "homepage": "https://github.com/algerkong/AlgerMusicPlayer",
+  "license": {
+    "identifier": "Apache-2.0 license",
+    "url": "https://github.com/algerkong/AlgerMusicPlayer#Apache-2.0-1-ov-file"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/algerkong/AlgerMusicPlayer/releases/download/v3.9.3/AlgerMusicPlayer-3.9.3-win-x64.exe#/dl.7z",
+      "hash": "262de8096f33c07d041fd013ca976a9cef5ee57db7344625b2a910a728ed7eab",
+      "pre_install": [
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+        "Remove-Item \"$dir\\`$*\" -Force -Recurse"
+      ]
+    },
+    "32bit": {
+      "url": "https://github.com/algerkong/AlgerMusicPlayer/releases/download/v3.9.3/AlgerMusicPlayer-3.9.3-win-ia32.exe#/dl.7z",
+      "hash": "776bde25797a12724e6336f675912c15848e4d83ac2195bca0eefb555f4d8043",
+      "pre_install": [
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-32.7z\" \"$dir\"",
+        "Remove-Item \"$dir\\`$*\" -Force -Recurse"
+      ]
+    },
+    "arm64": {
+      "url": "https://github.com/algerkong/AlgerMusicPlayer/releases/download/v2.5.0/AlgerMusic_2.5.0_Setup_arm64.exe#/dl.7z",
+      "hash": "1004d93fba17d8fc17b2b8628abbd6ebbffa8ff15c646469b547915061ea4a59",
+      "pre_install": [
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-arm64.7z\" \"$dir\"",
+        "Remove-Item \"$dir\\`$*\" -Force -Recurse"
+      ]
+    }
+  },
+  "installer": {
+    "script": [
+      "# handle runtime cache",
+      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/AppsUtils.psm1)",
+      "Mount-ExternalRuntimeData -Source \"$persist_dir\" -Target \"$env:APPDATA\\alger-music\"",
+      "Remove-Module -Name AppsUtils"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/AppsUtils.psm1)",
+      "Dismount-ExternalRuntimeData -Target \"$env:APPDATA\\alger-music\"",
+      "Remove-Module -Name AppsUtils"
+    ]
+  },
+  "bin": "AlgerMusicPlayer.exe",
+  "shortcuts": [
+    [
+      "AlgerMusicPlayer.exe",
+      "AlgerMusicPlayer"
+    ]
+  ],
+  "checkver": {
+    "script": [
+      "$url = 'https://api.github.com/repos/algerkong/AlgerMusicPlayer/releases'",
+      "$cont = (Invoke-WebRequest $url).Content",
+      "$r = 'AlgerMusicPlayer-([\\d.]+)-win-x64\\.' ",
+      "if (!($cont -match $r)) { error \"Could not match $r in $url\"; continue }",
+      "$version = $matches[1]",
+      "$r = 'AlgerMusicPlayer-([\\d.]+)-win-ia32\\.' ",
+      "if (!($cont -match $r)) { error \"Could not match $r in $url\"; continue }",
+      "$ia32 = $matches[1]",
+      "$r = 'AlgerMusic_([\\d.]+)_Setup_arm64\\.' ",
+      "if (!($cont -match $r)) { error \"Could not match $r in $url\"; continue }",
+      "$arm64 = $matches[1]",
+      "Write-Output $version $ia32 $arm64"
+    ],
+    "regex": "([\\d.]+) (?<ia32>[\\d.]+) (?<arm64>[\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/algerkong/AlgerMusicPlayer/releases/download/v$version/AlgerMusicPlayer-$version-win-x64.exe#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://github.com/algerkong/AlgerMusicPlayer/releases/download/v$matchIa32/AlgerMusicPlayer-$matchIa32-win-ia32.exe#/dl.7z"
+      },
+      "arm64": {
+        "url": "https://github.com/algerkong/AlgerMusicPlayer/releases/download/v$matchArm64/AlgerMusic_$matchArm64_Setup_arm64.exe#/dl.7z"
+      }
+    }
+  }
+}

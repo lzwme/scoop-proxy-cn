@@ -1,0 +1,32 @@
+{
+  "version": "2.0.16",
+  "description": "All-in-one privacy-focused todo list, notebook, habit and mood tracker, and pomodoro timer.",
+  "homepage": "https://lunatask.app/",
+  "license": "Proprietary",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/lunatask/lunatask/releases/download/v2.0.16/Lunatask-Setup-2.0.16.exe#/dl.7z",
+      "hash": "0d7bd5b3539ff2ed6f6be34f0362e2762c74bbda9bf7eef8613f9852e15483ce",
+      "pre_install": [
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+        "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall*\" -Force -Recurse"
+      ]
+    }
+  },
+  "shortcuts": [
+    [
+      "Lunatask.exe",
+      "Lunatask"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/lunatask/lunatask"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/lunatask/lunatask/releases/download/v$version/Lunatask-Setup-$version.exe#/dl.7z"
+      }
+    }
+  }
+}

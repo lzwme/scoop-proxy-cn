@@ -1,0 +1,38 @@
+{
+  "version": "0.0.10",
+  "description": "A single binary kubernetes dashboard to manage multiple clusters",
+  "homepage": "https://github.com/kubewall/kubewall",
+  "license": "Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/kubewall/kubewall/releases/download/v0.0.10/kubewall_Windows_x86_64.zip",
+      "hash": "6b29a5a2359aa130fcfa5b23a031c8a2c7d719fbd11c6423fe014611f73901f0"
+    },
+    "32bit": {
+      "url": "https://github.com/kubewall/kubewall/releases/download/v0.0.10/kubewall_Windows_i386.zip",
+      "hash": "3afd543bcfaf5a3600d3bc236800437cfaa6a1f223176d0090dc5f720ebcf45e"
+    },
+    "arm64": {
+      "url": "https://github.com/kubewall/kubewall/releases/download/v0.0.10/kubewall_Windows_arm64.zip",
+      "hash": "2a10665ceb7059270a6041b926b074a227dbaecd42020278bec3dce4db89e4d0"
+    }
+  },
+  "bin": "kubewall.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/kubewall/kubewall/releases/download/v$version/kubewall_Windows_x86_64.zip"
+      },
+      "32bit": {
+        "url": "https://github.com/kubewall/kubewall/releases/download/v$version/kubewall_Windows_i386.zip"
+      },
+      "arm64": {
+        "url": "https://github.com/kubewall/kubewall/releases/download/v$version/kubewall_Windows_arm64.zip"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/kubewall_$version_checksums.txt"
+    }
+  }
+}

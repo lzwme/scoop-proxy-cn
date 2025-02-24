@@ -1,0 +1,34 @@
+{
+  "version": "21.0.6-b895.91",
+  "homepage": "https://github.com/JetBrains/JetBrainsRuntime",
+  "description": "A fork of OpenJDK that includes a number enhancements in font rendering, HiDPI support, ligatures, performance improvements, and bugfixes. These are mainly for running IntelliJ Platform-based products",
+  "license": "GPL-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://cache-redirector.jetbrains.com/intellij-jbr/jbrsdk-21.0.6-windows-x64-b895.91.tar.gz",
+      "hash": "sha512:360af96ba2872e16380f9b088e9360dccafacdffd1362efa98316b7040584ac6ddaebea0f6a7b194535a01c6f4d6c18c664e5f85e0e452b9a180bc9f77f07f62",
+      "extract_dir": "jbrsdk-21.0.6-windows-x64-b895.91"
+    }
+  },
+  "env_set": {
+    "JAVA_HOME": "$dir"
+  },
+  "env_add_path": "bin",
+  "checkver": {
+    "url": "https://github.com/JetBrains/JetBrainsRuntime/raw/main/.github/README.md",
+    "regex": "\\[21\\.(?<Version>[\\d.]+)-(?<Build>[\\w]+)\\.(?<Patch>[\\d]+)]",
+    "replace": "21.${Version}-${Build}.${Patch}"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://cache-redirector.jetbrains.com/intellij-jbr/jbrsdk-21.$matchVersion-windows-x64-$matchBuild.$matchPatch.tar.gz",
+        "hash": {
+          "url": "$url.checksum",
+          "regex": "$sha512\\s"
+        },
+        "extract_dir": "jbrsdk-21.$matchVersion-windows-x64-$matchBuild.$matchPatch"
+      }
+    }
+  }
+}

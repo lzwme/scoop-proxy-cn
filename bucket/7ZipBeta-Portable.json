@@ -1,0 +1,42 @@
+{
+  "version": "24.09",
+  "description": "7-Zip Beta. Multi-format compression/decompression tool (beta version)",
+  "homepage": "https://www.7-zip.org/",
+  "license": "LGPL-2.1-or-later,BSD-3-Clause",
+  "changelog": "https://7zip.dev/en/changelog/",
+  "architecture": {
+    "64bit": {
+      "url": "https://www.7-zip.org/a/7z2409-x64.msi",
+      "hash": "ec6af1ea0367d16dde6639a89a080a524cebc4d4bedfe00ed0cac4b865a918d8"
+    },
+    "32bit": {
+      "url": "https://www.7-zip.org/a/7z2409.msi",
+      "hash": "c7f182dad21eebfce02f141d6a01f847d1e194c4d6aa29998d9305388553cf6a"
+    }
+  },
+  "extract_dir": "Files/7-Zip",
+  "bin": [
+    "7z.exe",
+    "7zG.exe"
+  ],
+  "shortcuts": [
+    [
+      "7zFM.exe",
+      "7-Zip Beta"
+    ]
+  ],
+  "checkver": {
+    "url": "https://www.7-zip.org/history.txt",
+    "regex": "\\n([\\d.]+)( beta)?"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://www.7-zip.org/a/7z$cleanVersion-x64.msi"
+      },
+      "32bit": {
+        "url": "https://www.7-zip.org/a/7z$cleanVersion.msi"
+      }
+    }
+  }
+}

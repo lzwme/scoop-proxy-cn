@@ -1,0 +1,40 @@
+{
+  "version": "1.108.1.307-dd5b87aa",
+  "description": "Plex for Windows. Official Plex client",
+  "homepage": "https://www.plex.tv/apps-devices/#modal-devices-plex-for-windows",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://www.plex.tv/media-server-downloads/?platform=windows#remodal-terms"
+  },
+  "suggest": {
+    "vcredist": "vcredist2019"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://downloads.plex.tv/plex-desktop/1.108.1.307-dd5b87aa/windows/Plex-1.108.1.307-dd5b87aa-x86_64.exe#/dl.7z",
+      "hash": "sha1:6f2951480d33058e9ca79ae9efbe2121d61aee85"
+    }
+  },
+  "pre_install": "Remove-Item \"$dir\\`$*\", \"$dir\\Uninst*\", \"$dir\\vc_red*\" -Recurse",
+  "shortcuts": [
+    [
+      "Plex.exe",
+      "Plex for Windows"
+    ]
+  ],
+  "checkver": {
+    "url": "https://plex.tv/pms/downloads/6.json",
+    "jsonpath": "$.computer.Windows.version"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://downloads.plex.tv/plex-desktop/$version/windows/Plex-$version-x86_64.exe#/dl.7z",
+        "hash": {
+          "url": "https://plex.tv/pms/downloads/6.json",
+          "jsonpath": "$.computer.Windows.releases[?(@.build == 'windows-x86_64')].checksum"
+        }
+      }
+    }
+  }
+}

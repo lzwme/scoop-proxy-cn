@@ -1,0 +1,33 @@
+@chcp 65001
+@echo,
+@echo,=====
+@echo,SPDX-License-Identifier: (GPL-2.0+):
+@echo,
+@echo,!!! THIS IS NOT GUARANTEED TO WORK !!!
+@echo,
+@echo,Copyright (c) 2018-2024, SayCV
+@echo,=====
+@echo,
+
+:: =====
+@set "LDM_TOPDIR=."
+@if not exist "%LDM_TOPDIR%/Programs/bin/nt64/pnmainc.exe" @set "LDM_TOPDIR=.."
+@if not exist "%LDM_TOPDIR%/Programs/bin/nt64/pnmainc.exe" @set "LDM_TOPDIR=%SCOOP%/apps/lattice-diamond311/current"
+@if not exist "%LDM_TOPDIR%/Programs/bin/nt64/pnmainc.exe" @set "LDM_TOPDIR=C:/ProgramData/scoop/apps/lattice-diamond311/current"
+
+:: ---------------------------------------------------------------------------------------------------
+:: ===================================================================================================
+@set "PATH=%LDM_TOPDIR%/Programs/bin/nt64;%PATH%"
+
+@for /f  %%a in  ('hostname') do @set HOSTNAME=%%a
+@set "LM_LICENSE_FILE=%LDM_TOPDIR%/data/LICENSE.dat"
+
+@CALL @SCRIPT_RUNNER@.exe %SCRIPT_RUNNER_ARG% %*
+
+:: =====
+:script-done
+:failure
+
+:: =====
+:: ---------------------------------------------------------------------------------------------------
+:: =====

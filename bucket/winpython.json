@@ -1,0 +1,110 @@
+{
+  "version": "3.12.4.1",
+  "description": "Free, open-source and portable Python distribution for Windows",
+  "homepage": "https://winpython.github.io",
+  "license": "MIT",
+  "notes": "For 32bit, please install 'versions/winpython3741'",
+  "architecture": {
+    "64bit": {
+      "url": "https://downloads.sourceforge.net/project/winpython/WinPython_3.12/3.12.4.1/Winpython64-3.12.4.1.exe#/dl.7z",
+      "hash": "08903f02514f59c891e3d56d3ff0d092a7d8571daf66237a5a2c2698068981ec",
+      "extract_dir": "WPy64-31241"
+    }
+  },
+  "bin": [
+    "scripts\\python.bat",
+    [
+      "scripts\\python.bat",
+      "python3"
+    ],
+    "Spyder.exe",
+    "scripts\\spyder_reset.bat",
+    "scripts\\upgrade_pip.bat",
+    "scripts\\winidle.bat",
+    [
+      "scripts\\winidle.bat",
+      "idle"
+    ],
+    "scripts\\winipython_notebook.bat",
+    [
+      "scripts\\winipython_notebook.bat",
+      "ipython_notebook"
+    ],
+    "scripts\\winjupyter_lab.bat",
+    [
+      "scripts\\winjupyter_lab.bat",
+      "jupyter_lab"
+    ],
+    "scripts\\winpython.bat",
+    "scripts\\winqtconsole.bat",
+    [
+      "scripts\\winqtconsole.bat",
+      "qtconsole"
+    ],
+    "scripts\\winvscode.bat",
+    [
+      "scripts\\winvscode.bat",
+      "vscode"
+    ],
+    "scripts\\wpcp.bat"
+  ],
+  "shortcuts": [
+    [
+      "IDLE (Python GUI).exe",
+      "WinPython\\IDLE (Python GUI)"
+    ],
+    [
+      "Jupyter Lab.exe",
+      "WinPython\\Jupyter Lab"
+    ],
+    [
+      "Jupyter Notebook.exe",
+      "WinPython\\Jupyter Notebook"
+    ],
+    [
+      "Spyder.exe",
+      "WinPython\\Spyder"
+    ],
+    [
+      "Spyder reset.exe",
+      "WinPython\\Reset Spyder Settings"
+    ],
+    [
+      "VS Code.exe",
+      "WinPython\\VS Code"
+    ],
+    [
+      "WinPython Command Prompt.exe",
+      "WinPython\\WinPython Command Prompt"
+    ],
+    [
+      "WinPython Control Panel.exe",
+      "WinPython\\WinPython Control Panel"
+    ],
+    [
+      "WinPython Interpreter.exe",
+      "WinPython\\WinPython Interpreter"
+    ],
+    [
+      "WinPython Terminal.exe",
+      "WinPython\\WinPython Terminal"
+    ]
+  ],
+  "persist": "settings",
+  "checkver": {
+    "url": "https://winpython.github.io/md5_sha1.txt",
+    "regex": "Winpython64-([\\d.]+)\\.exe"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://downloads.sourceforge.net/project/winpython/WinPython_$majorVersion.$minorVersion/$version/Winpython64-$version.exe#/dl.7z",
+        "extract_dir": "WPy64-$cleanVersion"
+      }
+    },
+    "hash": {
+      "url": "https://winpython.github.io/md5_sha1.txt",
+      "regex": "$sha256\\s+\\|\\s+$basename"
+    }
+  }
+}

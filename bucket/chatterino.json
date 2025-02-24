@@ -1,0 +1,42 @@
+{
+  "version": "2.5.2",
+  "description": "Twitch chat client",
+  "homepage": "https://chatterino.com",
+  "license": "MIT",
+  "suggest": {
+    "vcredist": [
+      "extras/vcredist2013",
+      "extras/vcredist2022"
+    ]
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://chatterino.fra1.digitaloceanspaces.com/bin/2.5.2/Chatterino.Portable.zip",
+      "hash": "a574bf8647f948424d6bd6bb3aad334fc3550513b528b766181301fb7193faa4"
+    }
+  },
+  "extract_dir": "chatterino2",
+  "bin": "chatterino.exe",
+  "shortcuts": [
+    [
+      "chatterino.exe",
+      "Chatterino"
+    ]
+  ],
+  "persist": [
+    "Settings",
+    "Cache",
+    "Logs",
+    "Misc",
+    "ProfileAvatars"
+  ],
+  "checkver": "/([\\d.]+)/Chatterino.Portable.zip",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://chatterino.fra1.digitaloceanspaces.com/bin/$version/Chatterino.Portable.zip"
+      }
+    },
+    "extract_dir": "chatterino$majorVersion"
+  }
+}

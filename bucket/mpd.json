@@ -1,0 +1,21 @@
+{
+  "version": "0.23.17",
+  "description": "Music Player Daemon",
+  "homepage": "https://www.musicpd.org/",
+  "license": "GPL-2.0-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://www.musicpd.org/download/win32/0.23.17/mpd.exe",
+      "hash": "218ae6af72ae28973663eef6ad446613f658676f395521b7bb2cbb74db61fe90"
+    }
+  },
+  "bin": "mpd.exe",
+  "checkver": ">MPD ([\\d.]+) released",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://www.musicpd.org/download/win32/$version/mpd.exe"
+      }
+    }
+  }
+}

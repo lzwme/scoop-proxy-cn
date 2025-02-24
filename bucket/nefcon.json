@@ -1,0 +1,29 @@
+{
+  "version": "1.12.0",
+  "description": "Windows device driver installation and management tool",
+  "homepage": "https://github.com/nefarius/nefcon",
+  "license": "MIT",
+  "url": "https://github.com/nefarius/nefcon/releases/download/v1.12.0/nefcon_v1.12.0.zip",
+  "hash": "0a1597acaa54991918016523a598f1d820a098cef633e4a2dc2e49b1cb3df5aa",
+  "architecture": {
+    "64bit": {
+      "extract_dir": "x64"
+    },
+    "32bit": {
+      "extract_dir": "x86"
+    },
+    "arm64": {
+      "extract_dir": "ARM64"
+    }
+  },
+  "bin": [
+    "nefconw.exe",
+    "nefconc.exe"
+  ],
+  "checkver": {
+    "github": "https://github.com/nefarius/nefcon"
+  },
+  "autoupdate": {
+    "url": "https://github.com/nefarius/nefcon/releases/download/v$version/nefcon_v$version.zip"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "homepage": "https://slproweb.com/products/Win32OpenSSL.html",
+  "version": "3.4.1",
+  "license": "Apache-2.0",
+  "description": "TLS/SSL toolkit (Light)",
+  "architecture": {
+    "64bit": {
+      "url": "https://slproweb.com/download/Win64OpenSSL_Light-3_4_1.exe",
+      "hash": "2fc8a8f666953d289c01dd58cfd9b09b72c6cefe2a844b581971701ae0e82307"
+    },
+    "32bit": {
+      "url": "https://slproweb.com/download/Win32OpenSSL_Light-3_4_1.exe",
+      "hash": "59dc9396ba6eb6cf979dcd9470b9a01adf385abbb7a731f967175eae1f0a6332"
+    },
+    "arm64": {
+      "url": "https://slproweb.com/download/Win64ARMOpenSSL_Light-3_4_1.exe",
+      "hash": "e124820c8085331e790094f4320ce63c183d09675aec38bfde2f8161eeb93c20"
+    }
+  },
+  "depends": "innounp",
+  "installer": {
+    "script": [
+      "Expand-InnoArchive -Path \"$dir\\$fname\"",
+      "Expand-InnoArchive -Path \"$dir\\$fname\" -DestinationPath \"$dir\\bin\" -ExtractDir '{cf}' -Removal",
+      "Rename-Item \"$dir\\bin\\SSL\" 'cnf' -Force"
+    ]
+  },
+  "bin": "bin\\openssl.exe",
+  "env_set": {
+    "OPENSSL_CONF": "$dir\\bin\\cnf\\openssl.cnf"
+  },
+  "checkver": {
+    "url": "https://raw.githubusercontent.com/slproweb/opensslhashes/master/win32_openssl_hashes.json",
+    "jsonpath": "$.files..basever",
+    "regex": "([\\d.]+)",
+    "reverse": true
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://slproweb.com/download/Win64OpenSSL_Light-$underscoreVersion.exe"
+      },
+      "32bit": {
+        "url": "https://slproweb.com/download/Win32OpenSSL_Light-$underscoreVersion.exe"
+      },
+      "arm64": {
+        "url": "https://slproweb.com/download/Win64ARMOpenSSL_Light-$underscoreVersion.exe"
+      }
+    },
+    "hash": {
+      "url": "https://raw.githubusercontent.com/slproweb/opensslhashes/master/win32_openssl_hashes.json",
+      "jsonpath": "$.files.['$basename'].sha256"
+    }
+  }
+}

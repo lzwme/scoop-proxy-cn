@@ -1,0 +1,27 @@
+{
+  "version": "1.7.1",
+  "description": "Screenshot, Screen Recording (Video & Gif), Quick Look",
+  "homepage": "https://github.com/ffiirree/Capturer",
+  "license": "GPL-3.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/ffiirree/Capturer/releases/download/v1.7.1/capturer-1.7.1-Windows-AMD64.exe#/_.zip",
+      "hash": "5e05ad25818134f4cdfb69eb30484e9eb479c3a82bdc83ba48d149d0131ca4bc"
+    }
+  },
+  "pre_install": "Remove-Item -Recurse \"$dir/`$PLUGINSDIR\"",
+  "shortcuts": [
+    [
+      "capturer.exe",
+      "Capturer"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/ffiirree/Capturer/releases/download/v$version/capturer-$version-Windows-AMD64.exe#/_.zip"
+      }
+    }
+  }
+}

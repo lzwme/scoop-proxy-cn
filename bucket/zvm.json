@@ -1,0 +1,56 @@
+{
+  "homepage": "https://github.com/tristanisham/zvm",
+  "version": "0.8.5",
+  "description": "Zig Version Manager (zvm) is a tool for managing your Zig installs",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/tristanisham/zvm/releases/download/v0.8.5/zvm-windows-amd64.zip",
+      "hash": "09eca3212baf825ae70b2b11e2f5e826df6556bc9e888887ce1dedb445c28b63",
+      "extract_dir": "zvm-windows-amd64"
+    },
+    "arm64": {
+      "url": "https://github.com/tristanisham/zvm/releases/download/v0.8.5/zvm-windows-arm64.zip",
+      "hash": "baf7d089463e12bd455291e65571a5f48cba8599c2ad6d7b0c9e2b20b778c318",
+      "extract_dir": "zvm-windows-arm64"
+    }
+  },
+  "bin": "zvm.exe",
+  "checkver": {
+    "github": "https://github.com/tristanisham/zvm"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/tristanisham/zvm/releases/download/v$version/zvm-windows-amd64.zip",
+        "extract_dir": "zvm-windows-amd64"
+      },
+      "arm64": {
+        "url": "https://github.com/tristanisham/zvm/releases/download/v$version/zvm-windows-arm64.zip",
+        "extract_dir": "zvm-windows-arm64"
+      }
+    }
+  },
+  "post_install": [
+    "if (Test-Path ~\\.zvm) {",
+    "   if ($null -eq (Get-Item ~\\.zvm).LinkType) {",
+    "       Rename-Item -Path ~\\.zvm -NewName ~\\.zvm.old -Force",
+    "   } else {",
+    "       Remove-Item -Path ~\\.zvm -Force",
+    "   }",
+    "}",
+    "New-Item -Path ~/.zvm -Target \"$dir\\data\" -ItemType Junction | Out-Null"
+  ],
+  "uninstaller": {
+    "script": [
+      "if ((Test-Path ~\\.zvm) -and ($null -ne (Get-Item ~\\.zvm).LinkType)) {",
+      "   Remove-Item -Path ~\\.zvm -Force",
+      "}",
+      "if (Test-Path ~\\.zvm.old) {",
+      "   Rename-Item -Path ~\\.zvm.old -NewName .zvm -Force",
+      "}"
+    ]
+  },
+  "persist": "data",
+  "env_add_path": "data\\bin"
+}

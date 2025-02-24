@@ -1,0 +1,40 @@
+{
+  "version": "2024.3.5.1",
+  "description": "A time tracking software",
+  "homepage": "https://www.manictime.com",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://www.manictime.com/pricing"
+  },
+  "architecture": {
+    "32bit": {
+      "url": "https://cdn.manictime.com/setup/v2024_3_5_1/manictime-portable-2024.3.5.1-win-x86.zip",
+      "hash": "5bd8611ac256f91738404d71be213b13242886c332f70432b71d7ee3c8d1ce6f"
+    },
+    "64bit": {
+      "url": "https://cdn.manictime.com/setup/v2024_3_5_1/manictime-portable-2024.3.5.1-win-x64.zip",
+      "hash": "9bc6d1dc0931a68d196691ff326ac77cf7179233b4907bdb6eb92077eede53d9"
+    }
+  },
+  "shortcuts": [
+    [
+      "ManicTimeClient.exe",
+      "ManicTime"
+    ]
+  ],
+  "persist": "Data",
+  "checkver": {
+    "url": "http://services.manictime.com/Versions/GetLatestVersionNumber",
+    "jsonpath": "$.version"
+  },
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://cdn.manictime.com/setup/v$underscoreVersion/manictime-portable-$version-win-x86.zip"
+      },
+      "64bit": {
+        "url": "https://cdn.manictime.com/setup/v$underscoreVersion/manictime-portable-$version-win-x64.zip"
+      }
+    }
+  }
+}

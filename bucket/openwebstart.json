@@ -1,0 +1,54 @@
+{
+  "version": "1.11.1",
+  "description": "Run JNLP files with the latest Java version",
+  "license": "GNU General Public License, version 2",
+  "homepage": "https://openwebstart.com/",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/karakun/OpenWebStart/releases/download/v1.11.1/OpenWebStart_windows-x64_1_11_1.exe",
+      "hash": "80982807ee55475f1ff4be9f97e86f7de148ceb87191873c6ca0715fd79d6b14"
+    },
+    "32bit": {
+      "url": "https://github.com/karakun/OpenWebStart/releases/download/v1.11.1/OpenWebStart_windows-x32_1_11_1.exe",
+      "hash": "c7601d34249362f0bb541803f7a6db8cb03b216db164caed63773f2823d332ca"
+    }
+  },
+  "installer": {
+    "args": [
+      "-q",
+      "-dir",
+      "\"$dir\"",
+      "-overwrite",
+      "-nofilefailures",
+      "-splash",
+      "\"Installation's progress...\""
+    ],
+    "keep": true
+  },
+  "post_install": "Remove-Item \"$dir\\OpenWebStart_windows-x64*.exe\" -Force",
+  "uninstaller": {
+    "file": "uninstall.exe",
+    "args": "-q"
+  },
+  "bin": "javaws.exe",
+  "shortcuts": [
+    [
+      "itw-settings.exe",
+      "OpenWebStart Settings"
+    ]
+  ],
+  "checkver": {
+    "url": "https://openwebstart.com/download/",
+    "regex": "Latest stable release: ([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/karakun/OpenWebStart/releases/download/v$version/OpenWebStart_windows-x64_$underscoreVersion.exe"
+      },
+      "32bit": {
+        "url": "https://github.com/karakun/OpenWebStart/releases/download/v$version/OpenWebStart_windows-x32_$underscoreVersion.exe"
+      }
+    }
+  }
+}

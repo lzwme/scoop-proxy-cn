@@ -1,0 +1,47 @@
+{
+  "version": "0.19.0",
+  "description": "Cross-platform backup tool for Windows, macOS & Linux with fast, incremental backups, client-side end-to-end encryption, compression and data deduplication. CLI and GUI included.",
+  "homepage": "https://kopia.io/",
+  "license": {
+    "identifier": "Apache-2.0 license",
+    "url": "https://github.com/kopia/kopia#Apache-2.0-1-ov-file"
+  },
+  "url": "https://github.com/kopia/kopia/releases/download/v0.19.0/KopiaUI-0.19.0-win.zip",
+  "hash": "bd8f6b3ff28a7ca9d570ef4dcca98eb28c77bab7f38ef4ac5b50593eb47165af",
+  "installer": {
+    "script": [
+      "# handle runtime cache",
+      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/AppsUtils.psm1)",
+      "Mount-ExternalRuntimeData -Source \"$persist_dir\\appdata\" -Target \"$env:APPDATA\\kopia-ui\"",
+      "Mount-ExternalRuntimeData -Source \"$persist_dir\\userdata\" -Target \"$env:APPDATA\\kopia\"",
+      "Mount-ExternalRuntimeData -Source \"$persist_dir\\userdata\" -Target \"$env:LOCALAPPDATA\\kopia\"",
+      "Remove-Module -Name AppsUtils"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/AppsUtils.psm1)",
+      "Dismount-ExternalRuntimeData -Target \"$env:APPDATA\\kopia-ui\"",
+      "Dismount-ExternalRuntimeData -Target \"$env:APPDATA\\kopia\"",
+      "Dismount-ExternalRuntimeData -Target \"$env:LOCALAPPDATA\\kopia\"",
+      "Remove-Module -Name AppsUtils"
+    ]
+  },
+  "bin": "KopiaUI.exe",
+  "shortcuts": [
+    [
+      "KopiaUI.exe",
+      "KopiaUI"
+    ]
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/kopia/kopia/releases/latest",
+    "regex": "/releases/tag/v([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://github.com/kopia/kopia/releases/download/v$version/KopiaUI-$version-win.zip",
+    "hash": {
+      "url": "$baseurl/checksums.txt"
+    }
+  }
+}

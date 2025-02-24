@@ -1,0 +1,57 @@
+{
+  "version": "1.15.7",
+  "description": "Sandboxie community maintained version",
+  "homepage": "https://github.com/sandboxie-plus/Sandboxie",
+  "license": "GNU General Public License v3.0",
+  "notes": "The shortcuts are located in \"C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\Sandboxie-Plus\\\"",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/sandboxie-plus/Sandboxie/releases/download/v1.15.7/Sandboxie-Plus-x64-v1.15.7.exe",
+      "hash": "981156ff80592dd1f8e18ff3750831fd943acdf937d2237d80975a305657055e"
+    },
+    "32bit": {
+      "url": "https://github.com/sandboxie-plus/Sandboxie/releases/download/v1.15.7/Sandboxie-Plus-x86-v1.15.7.exe",
+      "hash": "27ce503fbe161525566ea6aeeda2603518663619a7b451254773376885d2b21f"
+    }
+  },
+  "pre_install": [
+    "# Copy or create files for persisting",
+    "if (!(Test-Path \"$persist_dir\\config.json\")) {",
+    "    if (Test-Path \"C:\\Windows\\Sandboxie.ini\") {",
+    "        Move-Item \"C:\\Windows\\Sandboxie.ini\" \"$dir\\Sandboxie.ini\"",
+    "    }",
+    "    else {",
+    "        New-Item \"$dir\\Sandboxie.ini\" -Type File | Out-Null",
+    "    }",
+    "}"
+  ],
+  "installer": {
+    "args": [
+      "/verysilent",
+      "/nocancel",
+      "/norestart",
+      "/noicons",
+      "/dir=$dir"
+    ]
+  },
+  "uninstaller": {
+    "file": "unins000.exe",
+    "args": [
+      "/verysilent",
+      "/nocancel",
+      "/norestart"
+    ]
+  },
+  "persist": "Sandboxie.ini",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/sandboxie-plus/Sandboxie/releases/download/v$version/Sandboxie-Plus-x64-v$matchHead.exe"
+      },
+      "32bit": {
+        "url": "https://github.com/sandboxie-plus/Sandboxie/releases/download/v$version/Sandboxie-Plus-x86-v$matchHead.exe"
+      }
+    }
+  }
+}

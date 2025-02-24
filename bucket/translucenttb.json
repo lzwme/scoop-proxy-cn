@@ -1,0 +1,40 @@
+{
+  "version": "2024.4",
+  "description": "Makes the Windows taskbar translucent/transparent.",
+  "homepage": "https://github.com/TranslucentTB/TranslucentTB",
+  "license": "GPL-3.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/TranslucentTB/TranslucentTB/releases/download/2024.4/TranslucentTB-portable-x64.zip",
+      "hash": "0307e98ebb0d527820817b94b748954931c33eb9b3f236c42c6cbcdb3ec59b32"
+    },
+    "arm64": {
+      "url": "https://github.com/TranslucentTB/TranslucentTB/releases/download/2024.4/TranslucentTB-portable-arm64.zip",
+      "hash": "d70724efb99bf8b5ed81ca3cc17be517e88ccf0a95c1784f5db160f03b24c038"
+    }
+  },
+  "pre_install": [
+    "# Create settings.json if it does not exist",
+    "if (!(Test-Path \"$persist_dir\\settings.json\")) {",
+    "    Set-Content -Path \"$dir\\settings.json\" -Value \"{}\"",
+    "}"
+  ],
+  "shortcuts": [
+    [
+      "TranslucentTB.exe",
+      "TranslucentTB"
+    ]
+  ],
+  "persist": "settings.json",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/TranslucentTB/TranslucentTB/releases/download/$version/TranslucentTB-portable-x64.zip"
+      },
+      "arm64": {
+        "url": "https://github.com/TranslucentTB/TranslucentTB/releases/download/$version/TranslucentTB-portable-arm64.zip"
+      }
+    }
+  }
+}

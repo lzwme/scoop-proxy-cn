@@ -1,0 +1,57 @@
+{
+  "homepage": "https://www.mozilla.org/ja/firefox/new/",
+  "version": "135.0.1",
+  "architecture": {
+    "64bit": {
+      "url": "https://download.mozilla.org/?product=firefox-135.0.1-SSL&os=win64&lang=ja#/firefox-setup.exe",
+      "hash": "c000394418388578b01a845d869802090016623abfad32303b7498ea50040f55"
+    },
+    "32bit": {
+      "url": "https://download.mozilla.org/?product=firefox-135.0.1-SSL&os=win&lang=ja#/firefox-setup.exe",
+      "hash": "9add28883beffb6036bed0a96df2db54c00fcfac048a4f318c85bd4b728fb205"
+    }
+  },
+  "bin": "firefox.exe",
+  "shortcuts": [
+    [
+      "firefox.exe",
+      "Firefox"
+    ],
+    [
+      "firefox.exe",
+      "Firefox Profile Manager",
+      "-P"
+    ]
+  ],
+  "pre_install": "echo \"[Install]`nInstallDirectoryPath=$dir`nQuickLaunchShortcut=false`nDesktopShortcut=false`nStartMenuShortcuts=false\" | sc \"$dir\\install.ini\"",
+  "installer": {
+    "file": "firefox-setup.exe",
+    "args": "/INI=$dir\\install.ini"
+  },
+  "uninstaller": {
+    "file": "uninstall\\helper.exe",
+    "args": "/S"
+  },
+  "checkver": {
+    "url": "https://www.mozilla.org/ja/firefox/notes/",
+    "re": "data-latest-firefox=\"([\\d.]+)\""
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://download.mozilla.org/?product=firefox-$version-SSL&os=win64&lang=ja#/firefox-setup.exe",
+        "hash": {
+          "find": "([a-fA-F0-9]{64})\\s+(?:win64/ja/Firefox Setup ([\\d.]+).exe)",
+          "url": "https://download-installer.cdn.mozilla.net/pub/firefox/releases/$version/SHA256SUMS"
+        }
+      },
+      "32bit": {
+        "url": "https://download.mozilla.org/?product=firefox-$version-SSL&os=win&lang=ja#/firefox-setup.exe",
+        "hash": {
+          "find": "([a-fA-F0-9]{64})\\s+(?:win32/ja/Firefox Setup ([\\d.]+).exe)",
+          "url": "https://download-installer.cdn.mozilla.net/pub/firefox/releases/$version/SHA256SUMS"
+        }
+      }
+    }
+  }
+}

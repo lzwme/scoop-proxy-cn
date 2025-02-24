@@ -1,0 +1,43 @@
+{
+  "version": "0.107.57",
+  "description": "AdGuardHome. Network-wide ads & trackers blocking DNS server",
+  "homepage": "https://github.com/AdguardTeam/AdGuardHome",
+  "notes": "Running as a service: AdGuardHome -s install (https://adguard-dns.io/kb/zh-CN/adguard-home/getting-started/#service)",
+  "license": "GPL-3.0-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.107.57/AdGuardHome_windows_amd64.zip",
+      "hash": "b7566ca1eb812dbe84b742ba93c0cf25279a25c4db50b25af73cc2c20d365649"
+    },
+    "32bit": {
+      "url": "https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.107.57/AdGuardHome_windows_386.zip",
+      "hash": "bc5d518e07982751f5d387784beed5554dcfabdfa5742dd41690ea35e3d8446a"
+    }
+  },
+  "pre_install": "if (!(Test-Path \"$persist_dir\\AdGuardHome.yaml\")) { New-Item \"$dir\\AdGuardHome.yaml\" | Out-Null }",
+  "pre_uninstall": [
+    "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+    "if (!(Test-Path \"$persist_dir\\vicrac.test\")) { }",
+    "Start-Process -Wait \"$dir\\AdGuardHome.exe\" -ArgumentList '-s stop' | Out-Null",
+    "Start-Process -Wait \"$dir\\AdGuardHome.exe\" -ArgumentList '-s uninstall' | Out-Null"
+  ],
+  "extract_dir": "AdGuardHome",
+  "bin": "AdGuardHome.exe",
+  "persist": [
+    "data",
+    "AdGuardHome.yaml"
+  ],
+  "checkver": {
+    "github": "https://github.com/AdguardTeam/AdGuardHome"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/AdguardTeam/AdGuardHome/releases/download/v$version/AdGuardHome_windows_amd64.zip"
+      },
+      "32bit": {
+        "url": "https://github.com/AdguardTeam/AdGuardHome/releases/download/v$version/AdGuardHome_windows_386.zip"
+      }
+    }
+  }
+}

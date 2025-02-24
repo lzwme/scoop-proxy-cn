@@ -1,0 +1,40 @@
+{
+  "version": "5.2.1",
+  "description": "Catsxp is a fast browser for more privacy protection and security",
+  "homepage": "https://www.catsxp.com",
+  "license": "Freeware",
+  "architecture": {
+    "64bit": {
+      "url": "https://catsxp.oss-cn-hongkong.aliyuncs.com/win_x64/portable_x64_release_133_5_2_1.zip",
+      "hash": "99985f48ec318259313d08a15649910e65c86ec0942cd51c8b4c0b5fc23d6f20"
+    },
+    "32bit": {
+      "url": "https://catsxp.oss-cn-hongkong.aliyuncs.com/win_x86/portable_x86_release_133_5_2_1.zip",
+      "hash": "8d7fd555b79966c7cc54be54d1d69c2fea9d1f1ea1ae411786aaa723c8c13316"
+    }
+  },
+  "shortcuts": [
+    [
+      "catsxp.exe",
+      "Catsxp"
+    ]
+  ],
+  "checkver": {
+    "regex": "(?sm)<li>(?:版本|Ver)[：:] ?([\\d.]+)</li>\\s*<li>(?:内核|Kernel)[：:] ?(?<kernelmajor>\\d+)[\\d.]+</li>"
+  },
+  "persist": [
+    "User Data",
+    "Cache",
+    "StartupParm.txt"
+  ],
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://catsxp.oss-cn-hongkong.aliyuncs.com/win_x64/portable_x64_release_$matchKernelmajor_$underscoreVersion.zip"
+      },
+      "32bit": {
+        "url": "https://catsxp.oss-cn-hongkong.aliyuncs.com/win_x86/portable_x86_release_$matchKernelmajor_$underscoreVersion.zip"
+      }
+    }
+  }
+}

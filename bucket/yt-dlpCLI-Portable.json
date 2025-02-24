@@ -1,0 +1,40 @@
+{
+  "version": "2025.02.19",
+  "description": "yt-dlp. A youtube-dl fork with additional features and fixes",
+  "homepage": "https://github.com/yt-dlp/yt-dlp",
+  "license": "Unlicense",
+  "changelog": "https://github.com/yt-dlp/yt-dlp/releases",
+  "suggest": {
+    "FFmpeg": [
+      "ffmpeg",
+      "ffmpeg-nightly"
+    ],
+    "vcredist": "extras/vcredist2010"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/yt-dlp/yt-dlp/releases/download/2025.02.19/yt-dlp.exe",
+      "hash": "b9fac42a19e118e1b0a5c98832928a1c25782d805a9905476bb55d479212621a"
+    },
+    "32bit": {
+      "url": "https://github.com/yt-dlp/yt-dlp/releases/download/2025.02.19/yt-dlp_x86.exe#/yt-dlp.exe",
+      "hash": "ae60d40be1c15a8c0f015ddb87b263f5508a616ca99114d6949f643b0746ee8e"
+    }
+  },
+  "bin": "yt-dlp.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/yt-dlp/yt-dlp/releases/download/$version/yt-dlp.exe"
+      },
+      "32bit": {
+        "url": "https://github.com/yt-dlp/yt-dlp/releases/download/$version/yt-dlp_x86.exe#/yt-dlp.exe"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/SHA2-256SUMS",
+      "regex": "$basename:$sha256"
+    }
+  }
+}

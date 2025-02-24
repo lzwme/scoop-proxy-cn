@@ -1,0 +1,54 @@
+{
+  "version": "13300992230",
+  "description": "Practical and minimal image viewer",
+  "homepage": "https://github.com/jurplel/qView",
+  "license": "GPL-3.0-only",
+  "architecture": {
+    "arm64": {
+      "url": "https://nightly.link/jurplel/qView/workflows/build/master/qView-nightly-Windows_arm64-2025-02-13.1.zip",
+      "hash": "3ef2168210c7a11b9819f977b44973ce737e89aad415044fe0247b6e34b21f55"
+    },
+    "64bit": {
+      "url": "https://nightly.link/jurplel/qView/workflows/build/master/qView-nightly-Windows_64-2025-02-13.1.zip",
+      "hash": "0f187a312f4c0240fd68487b2f60fbf44fef3c7c97187340c393f6755b249253"
+    },
+    "32bit": {
+      "url": "https://nightly.link/jurplel/qView/workflows/build/master/qView-nightly-Windows_32-2025-02-13.1.zip",
+      "hash": "bdc4a5a7d9c67a10bdc617ce79c18afbfa17658317d7846d9416e0dd0f205f8e"
+    }
+  },
+  "pre_install": [
+    "Get-ChildItem \"$dir\\qView-nightly-*.exe\" | Rename-Item -NewName { $_.name -Replace '-nightly.+', '.exe' }",
+    "Remove-Item \"$dir\\qView-*.*-win*.exe\""
+  ],
+  "bin": "qView.exe",
+  "shortcuts": [
+    [
+      "qView.exe",
+      "qView"
+    ]
+  ],
+  "checkver": {
+    "script": [
+      "try {",
+      "    $api = (Invoke-RestMethod 'https://api.github.com/repositories/123522764/actions/workflows/build.yml/runs?branch=master&status=success').workflow_runs[0]",
+      "    ($api.id, (Get-Date $api.updated_at -Format 'yyyy-MM-dd'), $api.run_attempt) -join ' '",
+      "}",
+      "catch { '' }"
+    ],
+    "regex": "\\A(\\d+) (?<date>\\d{4}(?:-\\d{2}){2}) (?<attempt>\\d+)\\Z"
+  },
+  "autoupdate": {
+    "architecture": {
+      "arm64": {
+        "url": "https://nightly.link/jurplel/qView/workflows/build/master/qView-nightly-Windows_arm64-$matchDate.$matchAttempt.zip"
+      },
+      "64bit": {
+        "url": "https://nightly.link/jurplel/qView/workflows/build/master/qView-nightly-Windows_64-$matchDate.$matchAttempt.zip"
+      },
+      "32bit": {
+        "url": "https://nightly.link/jurplel/qView/workflows/build/master/qView-nightly-Windows_32-$matchDate.$matchAttempt.zip"
+      }
+    }
+  }
+}

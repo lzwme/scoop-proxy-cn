@@ -1,0 +1,52 @@
+{
+  "version": "1.34.1",
+  "description": "A fast, minimal browser that protects your privacy",
+  "homepage": "https://minbrowser.org/",
+  "license": {
+    "identifier": "Apache-2.0 license",
+    "url": "https://github.com/minbrowser/min/blob/master/LICENSE.txt"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/minbrowser/min/releases/download/v1.34.1/Min-v1.34.1-windows.zip",
+      "hash": "2e58f7ac67ca859ceb011649942b885f01b9d8c96836067492b54e5576d3d262"
+    },
+    "32bit": {
+      "url": "https://github.com/minbrowser/min/releases/download/v1.34.1/Min-v1.34.1-windows-ia32.zip",
+      "hash": "47d8095b119966147d966d6982fb3f3abe28adaee7ced017cdf422ad01b0d418"
+    }
+  },
+  "extract_dir": "Min-v1.34.1",
+  "installer": {
+    "script": [
+      "ensure \"$persist_dir\" | Out-Null",
+      "New-Item \"$env:APPDATA\\Min\" -ItemType Junction -Target \"$persist_dir\" | Out-Null"
+    ]
+  },
+  "uninstaller": {
+    "script": "Remove-Item \"$env:APPDATA\\Min\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
+  },
+  "bin": "Min.exe",
+  "shortcuts": [
+    [
+      "Min.exe",
+      "Min"
+    ]
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/minbrowser/min/releases",
+    "jsonpath": "$[0].assets[*].browser_download_url",
+    "regex": "/releases/download/v([\\w.-]+)/Min-v([\\w.-]+)-windows\\.zip"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/minbrowser/min/releases/download/v$version/Min-v$version-windows.zip"
+      },
+      "32bit": {
+        "url": "https://github.com/minbrowser/min/releases/download/v$version/Min-v$version-windows-ia32.zip"
+      }
+    },
+    "extract_dir": "Min-v$version"
+  }
+}

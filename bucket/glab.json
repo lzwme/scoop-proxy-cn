@@ -1,0 +1,34 @@
+{
+  "version": "1.53.0",
+  "description": "GitLab CLI",
+  "homepage": "https://gitlab.com/gitlab-org/cli",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://gitlab.com/gitlab-org/cli/-/releases/v1.53.0/downloads/glab_1.53.0_windows_amd64.zip",
+      "hash": "68fd28f6cf2ae690dc9527464c1ece2346e432bae2afb2b2df910e62edf0f9c1"
+    },
+    "32bit": {
+      "url": "https://gitlab.com/gitlab-org/cli/-/releases/v1.53.0/downloads/glab_1.53.0_windows_386.zip",
+      "hash": "4d22c2ff62a1efc52fb6477bbb4df1025101235c0f1364817ca5bb9e13a4d3a0"
+    }
+  },
+  "bin": "bin\\glab.exe",
+  "checkver": {
+    "url": "https://gitlab.com/gitlab-org/cli/-/tags?format=atom",
+    "regex": "/tags/v([\\d.]+)<"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://gitlab.com/gitlab-org/cli/-/releases/v$version/downloads/glab_$version_windows_amd64.zip"
+      },
+      "32bit": {
+        "url": "https://gitlab.com/gitlab-org/cli/-/releases/v$version/downloads/glab_$version_windows_386.zip"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/checksums.txt"
+    }
+  }
+}

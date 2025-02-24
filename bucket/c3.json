@@ -1,0 +1,32 @@
+{
+  "version": "0.6.7",
+  "description": "The Ergonomic, Safe and Familiar Evolution of C",
+  "homepage": "https://c3-lang.org",
+  "license": "LGPL-3.0-or-later,MIT",
+  "notes": [
+    "To use c3 compiler, you need to install Microsoft Visual Studio Build Tools 17 or higher.",
+    "Microsoft Visual Studio Build Tools 17 or higher is needed and can be downloaded here: https://visualstudio.microsoft.com/visual-cpp-build-tools/",
+    "When installing build tools, these two components should be selected:",
+    "- MSVC - VS C++ x64/x86 build tools",
+    "- Windows SDK",
+    "If you have already installed Visual Studio, you can skip this step."
+  ],
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/c3lang/c3c/releases/download/v0.6.7/c3-windows.zip",
+      "hash": "f121d2e42e5ef81acdfbe1956e49c2d1c2f8ee38b4c59a35a95b1cb3cbb37c13"
+    }
+  },
+  "extract_dir": "c3-windows-Release",
+  "bin": "c3c.exe",
+  "checkver": {
+    "github": "https://github.com/c3lang/c3c"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/c3lang/c3c/releases/download/v$version/c3-windows.zip"
+      }
+    }
+  }
+}

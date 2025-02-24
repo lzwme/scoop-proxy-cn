@@ -1,0 +1,41 @@
+{
+  "version": "Dev-202502221554",
+  "description": "Windows Terminal Quake. Companion program for the new Windows Terminal that enables Quake-style drop down",
+  "homepage": "https://wtq.flyingpie.nl/",
+  "license": "MIT",
+  "changelog": "https://github.com/flyingpie/windows-terminal-quake/releases",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/flyingpie/windows-terminal-quake/releases/download/vDev/win-x64_self-contained.zip",
+      "hash": "5265cc3ebaf6e3abeb9dbae9adc19ec2b74e6b805421b19249792514cc205901"
+    }
+  },
+  "bin": "wtq.exe",
+  "shortcuts": [
+    [
+      "wtq.exe",
+      "Windows Terminal Quake"
+    ]
+  ],
+  "persist": "wtq.json",
+  "checkver": {
+    "script": [
+      "try { $detail = Invoke-WebRequest 'https://github.com/flyingpie/windows-terminal-quake/releases.atom' -MaximumRedirection 0 -ErrorAction Ignore } catch { $_.Exception.Response }",
+      "$atom = [xml]$detail.Content",
+      "$latest = $atom.feed.entry | Select-Object -First 1",
+      "$result =  $latest.id + '-' + ([DateTime]$latest.updated).ToUniversalTime().ToString('yyyyMMddHHmm')",
+      "return $result"
+    ],
+    "regex": "/v((?<main>.+?)-\\d+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/flyingpie/windows-terminal-quake/releases/download/v$matchMain/win-x64_self-contained.zip"
+      }
+    }
+  },
+  "suggest": {
+    "terminal": "main/windows-terminal"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "version": "0.14.8",
+  "description": "A Git client for simultaneous branches on top of your existing workflow.",
+  "homepage": "https://gitbutler.com/",
+  "license": "FSL-1.1-MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://releases.gitbutler.com/releases/release/0.14.8-1700/windows/x86_64/GitButler_0.14.8_x64_en-US.msi",
+      "hash": "a5983c3df12ad585a4f48eeb950c34f83be476bf44338bd222683eabd4ad1a15",
+      "extract_dir": "PFiles/GitButler"
+    }
+  },
+  "shortcuts": [
+    [
+      "gitbutler-tauri.exe",
+      "GitButler"
+    ]
+  ],
+  "checkver": {
+    "url": "https://app.gitbutler.com/downloads",
+    "regex": "releases/release/([\\d.-]+)-(?<Build>[\\d]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://releases.gitbutler.com/releases/release/$version-$matchBuild/windows/x86_64/GitButler_$version_x64_en-US.msi"
+      }
+    }
+  }
+}

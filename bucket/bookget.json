@@ -1,0 +1,36 @@
+{
+  "version": "25.0213",
+  "description": "bookget 数字古籍图书下载工具",
+  "homepage": "https://github.com/deweizhu/bookget",
+  "license": {
+    "identifier": "GPL-3.0 license",
+    "url": "https://github.com/deweizhu/bookget/blob/master/LICENSE"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/deweizhu/bookget/releases/download/25.0213/bookget-25.0213.windows-amd64.7z",
+      "extract_dir": "bookget-25.0213.windows-amd64",
+      "hash": "e04a005c3e31cc4a4291c87870f3166ed5ff7024fb92b2ca4f6d2597f5c83065"
+    }
+  },
+  "shortcuts": [
+    [
+      "bookget-gui.exe",
+      "bookget"
+    ]
+  ],
+  "persist": "config.ini",
+  "checkver": {
+    "url": "https://api.github.com/repos/deweizhu/bookget/releases",
+    "jsonpath": "$[0].assets[*].browser_download_url",
+    "regex": "/releases/download/(?<tag>[\\d.]+)/bookget-([\\d.]+).windows-amd64\\.7z"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/deweizhu/bookget/releases/download/$matchTag/bookget-$version.windows-amd64.7z",
+        "extract_dir": "bookget-$version.windows-amd64"
+      }
+    }
+  }
+}

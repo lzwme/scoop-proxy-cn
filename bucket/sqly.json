@@ -1,0 +1,31 @@
+{
+  "version": "0.11.0",
+  "description": "Easily execute SQL against CSV/TSV/LTSV/JSON and Microsoft Excel with shell",
+  "homepage": "https://github.com/nao1215/sqly",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/nao1215/sqly/releases/download/v0.11.0/sqly_0.11.0_windows_amd64.zip",
+      "hash": "664fc7108b0276854581397b87b849faa536a244fcf42ad1bf20726888bac78d"
+    },
+    "32bit": {
+      "url": "https://github.com/nao1215/sqly/releases/download/v0.11.0/sqly_0.11.0_windows_arm64.zip",
+      "hash": "38bcebbb2f4aa004c854e359405832163599c7f049ecd29acc7b14f423ae5ab7"
+    }
+  },
+  "bin": "sqly.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/nao1215/sqly/releases/download/v$version/sqly_$version_windows_amd64.zip"
+      },
+      "32bit": {
+        "url": "https://github.com/nao1215/sqly/releases/download/v$version/sqly_$version_windows_arm64.zip"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/checksums.txt"
+    }
+  }
+}

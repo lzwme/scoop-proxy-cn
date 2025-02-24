@@ -1,0 +1,31 @@
+{
+  "version": "0.2.7",
+  "description": "A simple hotkey daemon for Windows",
+  "homepage": "https://github.com/LGUG2Z/whkd",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/LGUG2Z/whkd/releases/download/v0.2.7/whkd-0.2.7-x86_64-pc-windows-msvc.zip",
+      "hash": "842df59679b8cb144815f35f551fea811012c5197566f9f20f331ceb1cb480e9"
+    },
+    "arm64": {
+      "url": "https://github.com/LGUG2Z/whkd/releases/download/v0.2.7/whkd-0.2.7-aarch64-pc-windows-msvc.zip",
+      "hash": "b426742394dec3b1eab86b06f7afbb56b550e21c6a9d8af7036e04cd615df7d3"
+    }
+  },
+  "bin": "whkd.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/LGUG2Z/whkd/releases/download/v$version/whkd-$version-x86_64-pc-windows-msvc.zip"
+      },
+      "arm64": {
+        "url": "https://github.com/LGUG2Z/whkd/releases/download/v$version/whkd-$version-aarch64-pc-windows-msvc.zip"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/checksums.txt"
+    }
+  }
+}

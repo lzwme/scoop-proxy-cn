@@ -1,0 +1,35 @@
+{
+  "version": "5.7.0",
+  "description": "USB Drive Letter Manager",
+  "homepage": "https://www.uwe-sieber.de/usbdlm_e.html",
+  "license": "Freeware",
+  "notes": "You'll need to install the USBDLM service via: _service_register.cmd & _service_start.cmd",
+  "bin": "USBDLM/USBDLM.exe",
+  "shortcuts": [
+    [
+      "UsbDriveInfo.exe",
+      "USB Drive Info"
+    ]
+  ],
+  "architecture": {
+    "32bit": {
+      "hash": "81a20cef156ed6deff2cbdba252ff04f5d9378d59da30ea76fe722c0e859a2b2",
+      "url": "https://www.uwe-sieber.de/files/usbdlm.zip"
+    },
+    "64bit": {
+      "hash": "a5b985f58e3f452efda095f0c3e6059a3f97bff69824ffe99f7a972f984399ec",
+      "url": "https://www.uwe-sieber.de/files/usbdlm_x64.zip"
+    }
+  },
+  "checkver": "USBDLM\\s+V([\\d.]+)\\s+",
+  "autoupdate": {
+    "architecture": {
+      "32bit": {
+        "url": "https://www.uwe-sieber.de/files/usbdlm.zip"
+      },
+      "64bit": {
+        "url": "https://www.uwe-sieber.de/files/usbdlm_x64.zip"
+      }
+    }
+  }
+}

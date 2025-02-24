@@ -1,0 +1,37 @@
+{
+  "version": "0.5.11",
+  "description": "Get up and running with large language models locally.",
+  "homepage": "https://ollama.com/",
+  "license": "MIT",
+  "notes": "Ollama with deamon has been moved to 'extras/ollama-full'.",
+  "suggest": {
+    "Ollama Full": "extras/ollama-full"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/ollama/ollama/releases/download/v0.5.11/ollama-windows-amd64.zip",
+      "hash": "2dceec9154eceafe44ff83413a7c1b0b7e5f4bb26414dade25b13e3daa788f93"
+    },
+    "arm64": {
+      "url": "https://github.com/ollama/ollama/releases/download/v0.5.11/ollama-windows-arm64.zip",
+      "hash": "9d5a74599a33956cc9de3a89600c80a7d1d3023ad3ff94f79248a2534db57d16"
+    }
+  },
+  "bin": "ollama.exe",
+  "checkver": {
+    "github": "https://github.com/ollama/ollama"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/ollama/ollama/releases/download/v$version/ollama-windows-amd64.zip"
+      },
+      "arm64": {
+        "url": "https://github.com/ollama/ollama/releases/download/v$version/ollama-windows-arm64.zip"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/sha256sum.txt"
+    }
+  }
+}

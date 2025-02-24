@@ -1,0 +1,25 @@
+{
+  "version": "3.1.6",
+  "description": "A GUI to manage Winget and Scoop packages",
+  "homepage": "https://github.com/marticliment/UniGetUI",
+  "license": "MIT",
+  "url": "https://github.com/marticliment/UniGetUI/releases/download/3.1.6/UniGetUI.Installer.exe",
+  "hash": "d77959b5268b4850f8b98de02d7b7bf6ce25a7ea7a9a15ec764065f03f10ca97",
+  "innosetup": true,
+  "shortcuts": [
+    [
+      "UniGetUI.exe",
+      "UniGetUI"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/marticliment/UniGetUI"
+  },
+  "autoupdate": {
+    "url": "https://github.com/marticliment/UniGetUI/releases/download/$version/UniGetUI.Installer.exe",
+    "hash": {
+      "url": "https://github.com/marticliment/UniGetUI/releases/tag/$version",
+      "regex": "sha256: <code>$sha256</code>"
+    }
+  }
+}

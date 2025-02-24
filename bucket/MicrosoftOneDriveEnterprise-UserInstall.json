@@ -1,0 +1,47 @@
+{
+  "version": "25.010.0119.0002",
+  "description": "Microsoft OneDrive Enterprise. Save your photos and files to OneDrive and access them from any device, anywhere.",
+  "homepage": "https://www.microsoft.com/en-ww/microsoft-365/onedrive/online-cloud-storage",
+  "license": "Proprietary",
+  "changelog": "https://support.microsoft.com/en-us/office/onedrive-release-notes-845dcf18-f921-435e-bf28-4e24b95e5fc0",
+  "architecture": {
+    "64bit": {
+      "url": "https://oneclient.sfx.ms/Win/Installers/25.010.0119.0002/amd64/OneDriveSetup.exe#/setup.exe",
+      "hash": "1492a086f428afc10e776352bb326086ecb8ff783be3bead09194e60a8023dca"
+    },
+    "32bit": {
+      "url": "https://oneclient.sfx.ms/Win/Installers/25.010.0119.0002/OneDriveSetup.exe#/setup.exe",
+      "hash": "d0fe8b36b274ef9fbcbb6120faa060284f9bbe011703223363edae11ddb4cda6"
+    }
+  },
+  "installer": {
+    "script": [
+      "$programname = \"Microsoft OneDrive Enterprise*\"",
+      "$LocalAppData = [Environment]::GetFolderPath(\"LocalApplicationData\")",
+      "$filepath = \"$LocalAppData\\Microsoft\\OneDrive\\OneDrive.exe\"",
+      "if(((Test-Path -Path $filepath -PathType Leaf) -eq $false) -or ((Get-Command $filepath).Version -lt [System.Version]\"$version\"))",
+      "{",
+      "   &\"$dir\\setup.exe\" /silent /update /restart | Out-Null",
+      "   if(((Test-Path -Path $filepath -PathType Leaf) -eq $false) -or ((Get-Command $filepath).Version -lt [System.Version]\"$version\"))",
+      "   {",
+      "       exit 1",
+      "   }",
+      "}",
+      "if (Test-Path -Path \"$dir\\setup.exe\") { Remove-Item \"$dir\\setup.exe\" -Force }"
+    ]
+  },
+  "checkver": {
+    "url": "https://www.majorgeeks.com/files/details/microsoft_skydrive.html",
+    "regex": ".html\">Microsoft OneDrive ([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://oneclient.sfx.ms/Win/Installers/$version/amd64/OneDriveSetup.exe#/setup.exe"
+      },
+      "32bit": {
+        "url": "https://oneclient.sfx.ms/Win/Installers/$version/OneDriveSetup.exe#/setup.exe"
+      }
+    }
+  }
+}

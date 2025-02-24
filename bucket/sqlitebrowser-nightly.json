@@ -1,0 +1,46 @@
+{
+  "version": "2024-12-23",
+  "description": "DB Browser for SQLite (DB4S) project (nightly build)",
+  "homepage": "https://github.com/sqlitebrowser/sqlitebrowser",
+  "license": "MPL-2.0|GPL-3.0-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://nightlies.sqlitebrowser.org/win64/DB.Browser.for.SQLite-2024-12-23-win64.zip",
+      "hash": "5d943e856b137c699e1f8b8bad923dec50413d9755b37feab1a078fd97396303"
+    },
+    "32bit": {
+      "url": "https://nightlies.sqlitebrowser.org/win32/DB.Browser.for.SQLite-2024-12-23-win32.zip",
+      "hash": "c1848c4dba7d569df6170017cb36a2c75c7508093a0dfcb0315122482bbcf11c"
+    }
+  },
+  "bin": [
+    "DB Browser for SQLite.exe",
+    "DB Browser for SQLCipher.exe"
+  ],
+  "shortcuts": [
+    [
+      "DB Browser for SQLite.exe",
+      "DB Browser for SQLite"
+    ],
+    [
+      "DB Browser for SQLCipher.exe",
+      "DB Browser for SQLCipher"
+    ]
+  ],
+  "persist": "Data",
+  "checkver": {
+    "url": "https://nightlies.sqlitebrowser.org/win64/",
+    "regex": "SQLite-(\\d{4}-\\d{2}-\\d{2})-win64\\.",
+    "reverse": true
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://nightlies.sqlitebrowser.org/win64/DB.Browser.for.SQLite-$version-win64.zip"
+      },
+      "32bit": {
+        "url": "https://nightlies.sqlitebrowser.org/win32/DB.Browser.for.SQLite-$version-win32.zip"
+      }
+    }
+  }
+}

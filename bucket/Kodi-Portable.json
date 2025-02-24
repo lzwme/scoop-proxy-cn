@@ -1,0 +1,40 @@
+{
+  "version": "21.2",
+  "description": "Kodi. Multiplatform media player and entertainment hub.",
+  "homepage": "https://kodi.tv",
+  "license": {
+    "identifier": "GPL-2.0-or-later",
+    "url": "https://github.com/xbmc/xbmc/blob/master/LICENSES/README.md"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://mirrors.kodi.tv/releases/windows/win64/kodi-21.2-Omega-x64.exe#/cosi.7z",
+      "hash": "daac44fad06f4179f658f233bc777c47db24b3e9718b596b223aedc0f89de1b0"
+    },
+    "32bit": {
+      "url": "https://mirrors.kodi.tv/releases/windows/win32/kodi-21.2-Omega-x86.exe#/cosi.7z",
+      "hash": "37516550aefb1e416801cba6c1ea2cf559c72ec336c99ade3507330c75aeb13a"
+    }
+  },
+  "shortcuts": [
+    [
+      "kodi.exe",
+      "Kodi",
+      "-p"
+    ]
+  ],
+  "persist": "portable_data",
+  "checkver": {
+    "github": "https://github.com/xbmc/xbmc"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://mirrors.kodi.tv/releases/windows/win64/kodi-$version-Omega-x64.exe#/cosi.7z"
+      },
+      "32bit": {
+        "url": "https://mirrors.kodi.tv/releases/windows/win32/kodi-$version-Omega-x86.exe#/cosi.7z"
+      }
+    }
+  }
+}

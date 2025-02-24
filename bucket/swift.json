@@ -1,0 +1,60 @@
+{
+  "version": "6.0.3",
+  "homepage": "https://www.swift.org/",
+  "description": "A general-purpose programming language built using a modern approach to safety, performance, and software design patterns.",
+  "license": "Apache-2.0",
+  "suggest": {
+    "python": "main/python",
+    "vcredist": "extras/vcredist2022"
+  },
+  "notes": [
+    "To make Swift toolchain work, you must have Visual Studio and Windows SDK components installed.",
+    "Read https://www.swift.org/getting-started/#support-files for Supporting Files installation guide."
+  ],
+  "architecture": {
+    "64bit": {
+      "url": "https://download.swift.org/swift-6.0.3-release/windows10/swift-6.0.3-RELEASE/swift-6.0.3-RELEASE-windows10.exe#/swiftsetup.exe",
+      "hash": "ab205d83a38047882db80e6a88c7d33b651f3bac96d4515d7cba5335f37999d3"
+    }
+  },
+  "pre_install": [
+    "Expand-DarkArchive \"$dir\\swiftsetup.exe\" \"$dir\\extract_folder\" -Removal",
+    "$xml = [xml](Get-Content -Raw \"$dir\\extract_folder\\UX\\manifest.xml\" -Encoding utf8)",
+    "$xml.BurnManifest.Payload | Where-Object { $_.FilePath.EndsWith(\".msi\") } | ForEach-Object {",
+    "    if ($($_.FilePath) -eq \"rtl.msi\") {",
+    "        Expand-MsiArchive \"$dir\\extract_folder\\AttachedContainer\\$($_.FilePath)\" \"$dir\\extract_folder\\LocalApp\\Programs\\Swift\\Runtimes\\usr\\bin\"",
+    "    } else {",
+    "        Expand-MsiArchive \"$dir\\extract_folder\\AttachedContainer\\$($_.FilePath)\" \"$dir\\extract_folder\"",
+    "    }",
+    "}",
+    "$ver = $xml.BurnManifest.Registration.Version",
+    "Move-Item -Path \"$dir\\extract_folder\\LocalApp\\Programs\\Swift\" -Destination \"$dir\"",
+    "Move-Item -Path \"$dir\\Swift\\Platforms\\$ver\\Windows.platform\" -Destination \"$dir\\Swift\\Platforms\"",
+    "Move-Item -Path \"$dir\\Swift\\Toolchains\\$($ver)+Asserts\\usr\" -Destination \"$dir\\Swift\\Toolchains\"",
+    "Move-Item -Path \"$dir\\Swift\\Tools\\$ver\\*\" -Destination \"$dir\\Swift\\Tools\"",
+    "Remove-Item \"$dir\\Swift\\Platforms\\$ver\" | Out-Null",
+    "Remove-Item \"$dir\\Swift\\Toolchains\\$ver+Asserts\" | Out-Null",
+    "Remove-Item \"$dir\\Swift\\Tools\\$ver\" | Out-Null",
+    "Move-Item -Path \"$dir\\Swift\\*\" -Destination \"$dir\"",
+    "Remove-Item \"$dir\\Swift\", \"$dir\\extract_folder\" -Recurse | Out-Null"
+  ],
+  "env_add_path": [
+    "Runtimes\\usr\\bin",
+    "Toolchains\\usr\\bin",
+    "Tools"
+  ],
+  "env_set": {
+    "SDKROOT": "$dir\\Platforms\\Windows.platform\\Developer\\SDKs\\Windows.sdk"
+  },
+  "checkver": {
+    "url": "https://github.com/apple/swift",
+    "regex": "/swift-([\\d.]+)-RELEASE"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://download.swift.org/swift-$version-release/windows10/swift-$version-RELEASE/swift-$version-RELEASE-windows10.exe#/swiftsetup.exe"
+      }
+    }
+  }
+}

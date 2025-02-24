@@ -1,0 +1,31 @@
+{
+  "version": "4.7.0",
+  "description": "Text Grab. Minimal Windows utility for copying and pasting any visible text, without internet access.",
+  "homepage": "https://github.com/TheJoeFin/Text-Grab",
+  "license": "MIT",
+  "changelog": "https://github.com/TheJoeFin/Text-Grab/releases",
+  "suggest": {
+    "windowsdesktop-runtime": "extras/windowsdesktop-runtime"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/TheJoeFin/Text-Grab/releases/download/v4.7.0/Text-Grab.exe",
+      "hash": "4e2b13d030529530713242ee171d5ab02b83cdb39bfec33f6cb937ea380ba4af"
+    }
+  },
+  "bin": "Text-Grab.exe",
+  "shortcuts": [
+    [
+      "Text-Grab.exe",
+      "Text Grab"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/TheJoeFin/Text-Grab/releases/download/v$version/Text-Grab.exe"
+      }
+    }
+  }
+}

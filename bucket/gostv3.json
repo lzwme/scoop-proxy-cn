@@ -1,0 +1,41 @@
+{
+  "version": "v3.0.0-nightly.20250218",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/go-gost/gost/releases/download/v3.0.0-nightly.20250218/gost_3.0.0-nightly.20250218_windows_amd64.zip",
+      "hash": "cc1ff873dff9e4f90603ce37e3986717bd2bdb261fd6873abc91bf78224b3db6",
+      "pre_install": "Rename-Item \"$dir/gost*.exe\" \"$dir/gostv3.exe\""
+    },
+    "32bit": {
+      "url": "https://github.com/go-gost/gost/releases/download/v3.0.0-nightly.20250218/gost_3.0.0-nightly.20250218_windows_386.zip",
+      "hash": "0bf1c3eb5e9e10a47a1efb2c00c4c530f7cdcfa03667fc88768496bb09e04568",
+      "pre_install": "Rename-Item \"$dir/gost*.exe\" \"$dir/gostv3.exe\""
+    }
+  },
+  "license": {
+    "identifier": "MIT",
+    "url": "https://github.com/go-gost/gost/blob/master/LICENSE"
+  },
+  "homepage": "https://github.com/go-gost/gost",
+  "bin": [
+    [
+      "gostv3.exe",
+      "gostv3"
+    ]
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/go-gost/gost/releases?prerelease=true",
+    "regex": "/download/(?<release>[A-Za-z0-9_\\-.]+?)/gost_(?<ver>[A-Za-z0-9_\\-.]+?)_windows_(?<arch>amd64)\\.zip",
+    "replace": "${release}"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/go-gost/gost/releases/download/$matchRelease/gost_$matchVer_windows_amd64.zip"
+      },
+      "32bit": {
+        "url": "https://github.com/go-gost/gost/releases/download/$matchRelease/gost_$matchVer_windows_386.zip"
+      }
+    }
+  }
+}

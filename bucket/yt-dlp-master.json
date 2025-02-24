@@ -1,0 +1,39 @@
+{
+  "version": "2025.02.23.191621",
+  "description": "yt-dlp (official) master builds",
+  "homepage": "https://github.com/yt-dlp/yt-dlp-master-builds",
+  "license": "Freeware",
+  "suggest": {
+    "ffmpeg": "ffmpeg-nightly"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/yt-dlp/yt-dlp-master-builds/releases/download/2025.02.23.191621/yt-dlp.exe",
+      "hash": "sha512:873ec780de63fac5cef6bcc8dcc2a6cf83d7ef340f248caa2576504053abe1b4a96b6dac94719ca44cadae0ae17704a236aa8c8745024ac4f2d7256392f47866"
+    },
+    "32bit": {
+      "url": "https://github.com/yt-dlp/yt-dlp-master-builds/releases/download/2025.02.23.191621/yt-dlp_x86.exe#/yt-dlp.exe",
+      "hash": "sha512:05731811bdc8c2ef664c377319e210a74e58fa4b82a257e7ed3293842cf694fc4b5353693050747942e5a6c982fa81f8f2f8327870e8a192d6f906a9e23b7555"
+    }
+  },
+  "bin": "yt-dlp.exe",
+  "pre_install": "$null = if (!(Test-Path \"$persist_dir/yt-dlp.conf\")) { New-Item \"$dir/yt-dlp.conf\" }",
+  "persist": [
+    "yt-dlp.conf",
+    "ytdlp_plugins"
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/yt-dlp/yt-dlp-master-builds/releases/download/$version/yt-dlp.exe"
+      },
+      "32bit": {
+        "url": "https://github.com/yt-dlp/yt-dlp-master-builds/releases/download/$version/yt-dlp_x86.exe#/yt-dlp.exe"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/SHA2-512SUMS"
+    }
+  }
+}

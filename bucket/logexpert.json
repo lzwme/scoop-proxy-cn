@@ -1,0 +1,23 @@
+{
+  "version": "1.11.1",
+  "description": "Windows tail program and log file analyzer.",
+  "homepage": "https://github.com/zarunbal/LogExpert",
+  "license": "MIT",
+  "url": "https://github.com/zarunbal/LogExpert/releases/download/v.1.11.1/LogExpert.1.11.1.zip",
+  "hash": "c4b38ff430b816fe33f32295c54c1a94b9a7e5ed0b005bc9e091c1fe9080dbb4",
+  "bin": "LogExpert.exe",
+  "shortcuts": [
+    [
+      "LogExpert.exe",
+      "LogExpert"
+    ]
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repositories/106875909/releases/latest",
+    "jsonpath": "$..browser_download_url",
+    "regex": "download/v(?<tag>[\\d.]+)/LogExpert.([\\d.]+)\\.zip"
+  },
+  "autoupdate": {
+    "url": "https://github.com/zarunbal/LogExpert/releases/download/v$matchTag/LogExpert.$version.zip"
+  }
+}

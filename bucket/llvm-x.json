@@ -1,0 +1,41 @@
+{
+  "version": "19.1.7",
+  "description": "Collection of modular and reusable compiler and toolchain technologies.",
+  "homepage": "https://www.llvm.org/",
+  "license": "NCSA",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-19.1.7/LLVM-19.1.7-win64.exe#/dl.7z",
+      "hash": "f19ae5bc4823ac69ec01dc2ded503ec80a04ad2208dda1595d1f0413c148ef90"
+    },
+    "32bit": {
+      "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-19.1.7/LLVM-19.1.7-win32.exe#/dl.7z",
+      "hash": "3d7044fa307d3183e4ee2a98e12dd0523ced58f1d1c95c5e057694fb75beb51a"
+    },
+    "arm64": {
+      "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-19.1.7/LLVM-19.1.7-woa64.exe#/dl.7z",
+      "hash": "08d871c9a20caf0987ede1a4e44d489e28854c9f2fff3da98b486891f4856e05"
+    }
+  },
+  "pre_install": "Remove-Item \"$dir\\`$*\" -Recurse",
+  "env_set": {
+    "LIBCLANG_PATH": "$dir\\bin\\"
+  },
+  "checkver": {
+    "url": "https://github.com/llvm/llvm-project/releases/latest",
+    "regex": "/releases/tag/(?:llvmorg-)?([\\d.-]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/LLVM-$version-win64.exe#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/LLVM-$version-win32.exe#/dl.7z"
+      },
+      "arm64": {
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/LLVM-$version-woa64.exe#/dl.7z"
+      }
+    }
+  }
+}

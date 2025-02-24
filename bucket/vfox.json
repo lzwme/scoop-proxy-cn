@@ -1,0 +1,50 @@
+{
+  "version": "0.6.1",
+  "description": "Manage multiple SDK versions with a single CLI tool, extendable via plugins",
+  "homepage": "https://vfox.lhan.me/",
+  "license": "Apache-2.0",
+  "notes": [
+    "Important: You also need to add an activation script in your shell profile to make version fox to work!",
+    "Check the documentation for more details: https://vfox.lhan.me/guides/quick-start.html#_2-hook-vfox-to-your-shell"
+  ],
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/version-fox/vfox/releases/download/v0.6.1/vfox_0.6.1_windows_x86_64.zip",
+      "hash": "6643cce3eb4639d190bff3eef73c23cbdfdc9465374d81b027f3631944396274",
+      "extract_dir": "vfox_0.6.1_windows_x86_64"
+    },
+    "32bit": {
+      "url": "https://github.com/version-fox/vfox/releases/download/v0.6.1/vfox_0.6.1_windows_i386.zip",
+      "hash": "71954dd9decc9f5b1bc4a7661360c1fec27c1ebf2ec1ba1f78bf740089728d66",
+      "extract_dir": "vfox_0.6.1_windows_i386"
+    },
+    "arm64": {
+      "url": "https://github.com/version-fox/vfox/releases/download/v0.6.1/vfox_0.6.1_windows_aarch64.zip",
+      "hash": "a7788c4f440795bbdc00c453e4483e241127578e3cf42ba9c340a2df4677542b",
+      "extract_dir": "vfox_0.6.1_windows_aarch64"
+    }
+  },
+  "bin": "vfox.exe",
+  "checkver": {
+    "github": "https://github.com/version-fox/vfox"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/version-fox/vfox/releases/download/v$version/vfox_$version_windows_x86_64.zip",
+        "extract_dir": "vfox_$version_windows_x86_64"
+      },
+      "32bit": {
+        "url": "https://github.com/version-fox/vfox/releases/download/v$version/vfox_$version_windows_i386.zip",
+        "extract_dir": "vfox_$version_windows_i386"
+      },
+      "arm64": {
+        "url": "https://github.com/version-fox/vfox/releases/download/v$version/vfox_$version_windows_aarch64.zip",
+        "extract_dir": "vfox_$version_windows_aarch64"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/checksums.txt"
+    }
+  }
+}

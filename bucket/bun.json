@@ -1,0 +1,58 @@
+{
+  "version": "1.2.3",
+  "description": "Incredibly fast JavaScript runtime, bundler, transpiler and package manager - all in one.",
+  "homepage": "https://bun.sh/",
+  "license": "MIT",
+  "suggest": {
+    "vcredist": "extras/vcredist2022"
+  },
+  "architecture": {
+    "64bit": {
+      "url": [
+        "https://github.com/oven-sh/bun/releases/download/bun-v1.2.3/bun-windows-x64.zip",
+        "https://github.com/oven-sh/bun/releases/download/bun-v1.2.3/bun-windows-x64-baseline.zip"
+      ],
+      "hash": [
+        "afe30cbaad3416e00c8b63e1bd12195010e9d21117b72483befd624290e66e75",
+        "5ae5aa80808c973d22f05e47d8b7b7de6e7287506b7184e78fadf2a22c36d62a"
+      ]
+    }
+  },
+  "pre_install": [
+    "$avx2 = Start-Job -ScriptBlock {",
+    "    Add-Type -MemberDefinition '[DllImport(\"kernel32.dll\")] public static extern bool IsProcessorFeaturePresent(int ProcessorFeature);' -Name Kernel32 -Namespace Win32",
+    "    return [Win32.Kernel32]::IsProcessorFeaturePresent(40)",
+    "} | Receive-Job -Wait -AutoRemoveJob",
+    "$target = 'bun-windows-x64'",
+    "if (-not $avx2) {",
+    "    $target += '-baseline'",
+    "}",
+    "Move-Item \"$dir\\$target\\bun.exe\" \"$dir\\bun.exe\"",
+    "Remove-Item \"$dir\\bun-windows-*\" -Recurse"
+  ],
+  "bin": [
+    "bun.exe",
+    [
+      "bun.exe",
+      "bunx",
+      "x"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/oven-sh/bun",
+    "re": "bun-v([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": [
+          "https://github.com/oven-sh/bun/releases/download/bun-v$version/bun-windows-x64.zip",
+          "https://github.com/oven-sh/bun/releases/download/bun-v$version/bun-windows-x64-baseline.zip"
+        ]
+      }
+    },
+    "hash": {
+      "url": "$baseurl/SHASUMS256.txt"
+    }
+  }
+}

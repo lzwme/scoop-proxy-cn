@@ -1,0 +1,47 @@
+{
+  "version": "4.9.3.0",
+  "description": "Computer monitoring and classroom management software.",
+  "homepage": "https://veyon.io/",
+  "license": "GPL-2.0-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/veyon/veyon/releases/download/v4.9.3/veyon-4.9.3.0-win64-setup.exe#/setup.exe",
+      "hash": "0c704bc8be94609840eb7daa8c9b0a8ac9e4344e7c63d00c5b7e8a6621e29d72"
+    },
+    "32bit": {
+      "url": "https://github.com/veyon/veyon/releases/download/v4.9.3/veyon-4.9.3.0-win32-setup.exe#/setup.exe",
+      "hash": "6419d0769a5b9f3f9d06a974d114dc4c5f6216c79cdeeb6334097e168528390f"
+    }
+  },
+  "pre_download": "Assert-Administrator",
+  "installer": {
+    "script": [
+      "$programname = \"Veyon*\"",
+      "$ProgramFiles = [Environment]::GetFolderPath(\"ProgramFiles\")",
+      "$filepath = \"$ProgramFiles\\Veyon\\veyon-configurator.exe\"",
+      "if(((Test-Path -Path $filepath -PathType Leaf) -eq $false) -or ([System.Diagnostics.FileVersionInfo]::GetVersionInfo($filepath).FileVersionRaw -lt [System.Version]\"$version\"))",
+      "{",
+      "   &\"$dir\\setup.exe\" /S /NoMaster | Out-Null",
+      "   if(((Test-Path -Path $filepath -PathType Leaf) -eq $false) -or ([System.Diagnostics.FileVersionInfo]::GetVersionInfo($filepath).FileVersionRaw -lt [System.Version]\"$version\"))",
+      "   {",
+      "       exit 1",
+      "   }",
+      "}",
+      "if (Test-Path -Path \"$dir\\setup.exe\") { Remove-Item \"$dir\\setup.exe\" -Force }"
+    ]
+  },
+  "checkver": {
+    "url": "https://veyon.io/download/",
+    "regex": "veyon-([\\d.]+)-win64-setup.exe"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/veyon/veyon/releases/download/v$majorVersion.$minorVersion.$patchVersion/veyon-$version-win64-setup.exe#/setup.exe"
+      },
+      "32bit": {
+        "url": "https://github.com/veyon/veyon/releases/download/v$majorVersion.$minorVersion.$patchVersion/veyon-$version-win32-setup.exe#/setup.exe"
+      }
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "version": "18.9.1",
+  "description": "DDraceNetwork, a free cooperative platformer game",
+  "homepage": "https://ddnet.org/",
+  "license": "Zlib",
+  "architecture": {
+    "64bit": {
+      "url": "https://ddnet.org/downloads/DDNet-18.9.1-win64.zip",
+      "hash": "948ae096736a62acce43a3cf10c09fc9a96a18c06c19bbe20ef2eaa672eb1d48",
+      "extract_dir": "DDNet-18.9.1-win64"
+    },
+    "32bit": {
+      "url": "https://ddnet.org/downloads/DDNet-18.9.1-win32.zip",
+      "hash": "884667474521a387d41cc13287c3bb509a9c0c33218a0ca9241e1a12f29dfb5e",
+      "extract_dir": "DDNet-18.9.1-win32"
+    }
+  },
+  "checkver": {
+    "url": "https://ddnet.org/downloads/",
+    "regex": "DDNet-([\\d.]+)-"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ddnet.org/downloads/DDNet-$version-win64.zip",
+        "extract_dir": "DDNet-$version-win64"
+      },
+      "32bit": {
+        "url": "https://ddnet.org/downloads/DDNet-$version-win32.zip",
+        "extract_dir": "DDNet-$version-win32"
+      }
+    },
+    "hash": {
+      "url": "https://ddnet.org/downloads/sha256sums.txt",
+      "regex": ""
+    }
+  },
+  "shortcuts": [
+    [
+      "DDNet.exe",
+      "DDNet"
+    ]
+  ]
+}

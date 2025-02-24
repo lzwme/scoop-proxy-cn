@@ -1,0 +1,33 @@
+{
+  "version": "862",
+  "description": "A simple markdown note-taking app developed by KDE",
+  "homepage": "https://apps.kde.org/marknote/",
+  "license": "GPL-2.0-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://cdn.kde.org/ci-builds/office/marknote/master/windows/marknote-master-862-windows-cl-msvc2022-x86_64.7z",
+      "hash": "834ce7c43ce1d493b4f8293aa420a0c3924787c16535e770e011fbc649addd2c"
+    }
+  },
+  "bin": "bin\\marknote.exe",
+  "shortcuts": [
+    [
+      "bin\\marknote.exe",
+      "Marknote Nightly"
+    ]
+  ],
+  "checkver": {
+    "url": "https://cdn.kde.org/ci-builds/office/marknote/master/windows/",
+    "regex": "marknote-master-(\\d+)-windows-cl-(?<lib>\\w+)-x86_64\\.7z"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://cdn.kde.org/ci-builds/office/marknote/master/windows/marknote-master-$version-windows-cl-$matchLib-x86_64.7z"
+      }
+    },
+    "hash": {
+      "url": "$url.sha256"
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "version": "2024.3.5-243.24978.27",
+  "description": "Cross-Platform IDE for .NET by JetBrains.",
+  "homepage": "https://www.jetbrains.com/rider/",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://www.jetbrains.com/store/license.html"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://download.jetbrains.com/rider/JetBrains.Rider-2024.3.5.win.zip",
+      "hash": "d33016d1075ca7e25f6dc3cd12e4a46a5fc3a8340d541c4d515f0aba0ba2d0ff"
+    },
+    "arm64": {
+      "url": "https://download.jetbrains.com/rider/JetBrains.Rider-2024.3.5-aarch64.win.zip",
+      "hash": "b71e8aeb56ab4036ab1ccc9f734bcf2d454fdba2f87bc572e4851d4cd30bb005"
+    }
+  },
+  "extract_to": "IDE",
+  "pre_install": [
+    "Get-ChildItem \"$persist_dir\\IDE\\bin\\rider64.exe.vmoptions\" -ErrorAction SilentlyContinue | Copy-Item -Destination \"$dir\\IDE\\bin\"",
+    "Get-ChildItem \"$persist_dir\\IDE\\bin\\jetbrains_client64.exe.vmoptions\" -ErrorAction SilentlyContinue | Copy-Item -Destination \"$dir\\IDE\\bin\""
+  ],
+  "installer": {
+    "script": "& \"$bucketsdir\\$bucket\\scripts\\jetbrains\\portable.ps1\" \"$dir\" \"$persist_dir\""
+  },
+  "bin": [
+    [
+      "IDE\\bin\\rider64.exe",
+      "rider"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "IDE\\bin\\rider64.exe",
+      "JetBrains\\Rider"
+    ]
+  ],
+  "persist": [
+    "IDE\\bin\\idea.properties",
+    "profile"
+  ],
+  "pre_uninstall": [
+    "Get-ChildItem \"$dir\\IDE\\bin\\rider64.exe.vmoptions\" -ErrorAction SilentlyContinue | Copy-Item -Destination \"$persist_dir\\IDE\\bin\"",
+    "Get-ChildItem \"$dir\\IDE\\bin\\jetbrains_client64.exe.vmoptions\" -ErrorAction SilentlyContinue | Copy-Item -Destination \"$persist_dir\\IDE\\bin\""
+  ],
+  "checkver": {
+    "url": "https://data.services.jetbrains.com/products/releases?code=RD&latest=true&platform=zip&type=release",
+    "regex": "version\":\"(?<ver>[\\d.]+)\".*\"build\":\"(?<build>[\\d.]+)\"",
+    "replace": "${ver}-${build}"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://download.jetbrains.com/rider/JetBrains.Rider-$matchVer.win.zip"
+      },
+      "arm64": {
+        "url": "https://download.jetbrains.com/rider/JetBrains.Rider-$matchVer-aarch64.win.zip"
+      }
+    },
+    "hash": {
+      "url": "$url.sha256"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "version": "0.9.7",
+  "description": "A faster way to navigate your filesystem",
+  "homepage": "https://github.com/ajeetdsouza/zoxide",
+  "license": "MIT",
+  "notes": "_ZO_DATA_DIR is located at '$env:LOCALAPPDATA\\zoxide' by default",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/ajeetdsouza/zoxide/releases/download/v0.9.7/zoxide-0.9.7-x86_64-pc-windows-msvc.zip",
+      "hash": "d2f7640e977170d58c3f7057a9ecbfe6597de1a3dbbd992fb2fea1255e6098e4"
+    },
+    "arm64": {
+      "url": "https://github.com/ajeetdsouza/zoxide/releases/download/v0.9.7/zoxide-0.9.7-aarch64-pc-windows-msvc.zip",
+      "hash": "a92a268c6dcf5701752e8f300973d5a4793d18fb660deefbdaccc8827c0998b8"
+    }
+  },
+  "bin": "zoxide.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/ajeetdsouza/zoxide/releases/download/v$version/zoxide-$version-x86_64-pc-windows-msvc.zip"
+      },
+      "arm64": {
+        "url": "https://github.com/ajeetdsouza/zoxide/releases/download/v$version/zoxide-$version-aarch64-pc-windows-msvc.zip"
+      }
+    }
+  }
+}

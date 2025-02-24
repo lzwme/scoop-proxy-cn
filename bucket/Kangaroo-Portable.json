@@ -1,0 +1,37 @@
+{
+  "version": "6.3.1.0105",
+  "description": "Kangaroo. A SQL client and admin tool for popular databases (SQLite / MySQL / PostgreSQL / ...) on Windows / MacOS / Linux.",
+  "homepage": "https://www.datatable.online/",
+  "license": {
+    "identifier": "Shareware",
+    "url": "https://www.datatable.online/en/license/service-agreement.html"
+  },
+  "changelog": "https://github.com/dbkangaroo/kangaroo/releases",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/dbkangaroo/kangaroo/releases/download/v6.3.1.0105/kangaroo-multiple-6.3.1.0105-x86_64.exe",
+      "hash": "25a4c3e952f6fda05388f255b6969f16bbb9afccbb2a5440d6292726d795e846"
+    }
+  },
+  "shortcuts": [
+    [
+      "bin\\kangaroo.exe",
+      "Kangaroo"
+    ]
+  ],
+  "persist": ".kangaroo",
+  "checkver": {
+    "url": "https://github.com/dbkangaroo/kangaroo/releases",
+    "regex": "/dbkangaroo/kangaroo/tree/v([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/dbkangaroo/kangaroo/releases/download/v$version/kangaroo-multiple-$version-x86_64.exe"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/kangaroo-$version.sha256sum"
+    }
+  }
+}

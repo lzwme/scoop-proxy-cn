@@ -1,0 +1,34 @@
+{
+  "homepage": "https://github.com/troyeguo/koodo-reader",
+  "description": "Koodo-Reader. A cross-platform ebook reader",
+  "version": "1.8.1",
+  "license": "AGPL-3.0-only",
+  "changelog": "https://github.com/troyeguo/koodo-reader/releases",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/troyeguo/koodo-reader/releases/download/v1.8.1/Koodo-Reader-1.8.1-x64-Win.zip",
+      "hash": "d7810b44f455d91ccb8bec152514236a94bea65a18dcd8707dac7e6a43685106"
+    },
+    "32bit": {
+      "url": "https://github.com/troyeguo/koodo-reader/releases/download/v1.8.1/Koodo-Reader-1.8.1-ia32-Win.zip",
+      "hash": "ee22df5deca8452ebdfeb9825d3ade6d9e323f4490c6408709eaeac7cc4eac44"
+    }
+  },
+  "shortcuts": [
+    [
+      "Koodo Reader.exe",
+      "Koodo Reader"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/troyeguo/koodo-reader/releases/download/v$version/Koodo-Reader-$version-x64-Win.zip"
+      },
+      "32bit": {
+        "url": "https://github.com/troyeguo/koodo-reader/releases/download/v$version/Koodo-Reader-$version-ia32-Win.zip"
+      }
+    }
+  }
+}

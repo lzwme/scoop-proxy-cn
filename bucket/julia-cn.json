@@ -1,0 +1,41 @@
+{
+  "homepage": "https://mirrors.tuna.tsinghua.edu.cn/julia-releases/",
+  "description": "A programming language that is a fresh approach to technical computing.",
+  "version": "1.11.3",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://mirrors.tuna.tsinghua.edu.cn/julia-releases/bin/winnt/x64/1.11/julia-1.11.3-win64.zip",
+      "hash": "dc15c611c6bdca2ffe3ee40c70f29a28cc6de18cd00b26f4a3d0f5dc1997152c",
+      "extract_dir": "julia-1.11.3"
+    },
+    "32bit": {
+      "url": "https://mirrors.tuna.tsinghua.edu.cn/julia-releases/bin/winnt/x86/1.11/julia-1.11.3-win32.zip",
+      "hash": "468fe30cd73b3204f8e81997c9c47685e49b30eabbaaf25f4d1e3d0588c5b5c1",
+      "extract_dir": "julia-1.11.3"
+    }
+  },
+  "bin": "bin\\julia.exe",
+  "checkver": {
+    "url": "https://julialang.org/downloads/",
+    "regex": "Current stable release: v([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://mirrors.tuna.tsinghua.edu.cn/julia-releases/bin/winnt/x64/$majorVersion.$minorVersion/julia-$version-win64.zip",
+        "extract_dir": "julia-$version"
+      },
+      "32bit": {
+        "url": "https://mirrors.tuna.tsinghua.edu.cn/julia-releases/bin/winnt/x86/$majorVersion.$minorVersion/julia-$version-win32.zip",
+        "extract_dir": "julia-$version"
+      }
+    }
+  },
+  "shortcuts": [
+    [
+      "bin\\julia.exe",
+      "Julia"
+    ]
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "version": "7.5.0",
+  "description": "PowerShell Core. The cross-platform task automation and configuration management framework/tool.",
+  "homepage": "https://github.com/PowerShell/PowerShell",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/PowerShell/PowerShell/releases/download/v7.5.0/PowerShell-7.5.0-win-x64.msi#/setup.msi_",
+      "hash": "6b988b7e236a8e1cf1166d3be289d3a20aa344499153bdaadd2f9fedffc6eda9"
+    },
+    "32bit": {
+      "url": "https://github.com/PowerShell/PowerShell/releases/download/v7.5.0/PowerShell-7.5.0-win-x86.msi#/setup.msi_",
+      "hash": "25bdf464e4050b7dd0e6034f2ae34d1111596a4a497eaa89862d0b5928825f58"
+    }
+  },
+  "pre_download": "Assert-Administrator",
+  "##": [
+    "$processname = \"pwsh\"",
+    "$process = Get-Process $processname -ErrorAction SilentlyContinue",
+    "if ($process) {",
+    "   $process.CloseMainWindow()",
+    "   Start-Sleep -Seconds 5",
+    "   if (!$process.HasExited) {",
+    "       Start-Sleep -Seconds 25",
+    "       $process | Stop-Process -Force",
+    "   }",
+    "}"
+  ],
+  "installer": {
+    "script": [
+      "$programname = \"PowerShell*\"",
+      "$installpath = \"$dir\\setup.msi_\"",
+      "$ProgramFiles = [Environment]::GetFolderPath(\"ProgramFiles\")",
+      "$filepath = \"$ProgramFiles\\PowerShell\\7\\pwsh.exe\"",
+      "if(((Test-Path -Path $filepath -PathType Leaf) -eq $false) -or ((Get-Command $filepath).Version -lt [System.Version]\"$version\"))",
+      "{",
+      "   Invoke-ExternalCommand msiexec -ArgumentList @('/i', \"$dir\\setup.msi_\", '/qn') -RunAs | Out-Null",
+      "   if(((Test-Path -Path $filepath -PathType Leaf) -eq $false) -or ((Get-Command $filepath).Version -lt [System.Version]\"$version\"))",
+      "   {",
+      "       exit 1",
+      "   }",
+      "}",
+      "if (Test-Path -Path \"$dir\\setup.msi_\") { Remove-Item \"$dir\\setup.msi_\" -Force }"
+    ]
+  },
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/PowerShell/PowerShell/releases/download/v$version/PowerShell-$version-win-x64.msi#/setup.msi_"
+      },
+      "32bit": {
+        "url": "https://github.com/PowerShell/PowerShell/releases/download/v$version/PowerShell-$version-win-x86.msi#/setup.msi_"
+      }
+    }
+  }
+}

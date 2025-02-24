@@ -1,0 +1,33 @@
+{
+  "version": "3.6.3",
+  "description": "A modern multi-paradigm programming language designed to express common programming patterns in a concise, elegant, and type-safe way.",
+  "homepage": "https://www.scala-lang.org/",
+  "license": "BSD-3-Clause",
+  "notes": [
+    "Scala 3 has been installed. If you haven't migrated yet, install versions/scala2.",
+    "Or follow the migration guide: https://docs.scala-lang.org/scala3/guides/migration/compatibility-intro.html"
+  ],
+  "suggest": {
+    "JDK": "java/openjdk"
+  },
+  "url": "https://github.com/scala/scala3/releases/download/3.6.3/scala3-3.6.3.msi",
+  "hash": "a5f768bb74af3a3215cdfb695cbe4a96b933429ee23e4f640395301f810a9805",
+  "extract_dir": "PFiles\\Scala",
+  "bin": [
+    "bin\\scala.bat",
+    "bin\\scalac.bat",
+    "bin\\scaladoc.bat"
+  ],
+  "env_set": {
+    "SCALA_HOME": "$dir"
+  },
+  "checkver": {
+    "github": "https://github.com/scala/scala3/"
+  },
+  "autoupdate": {
+    "url": "https://github.com/scala/scala3/releases/download/$version/scala3-$version.msi",
+    "hash": {
+      "url": "$url.sha256"
+    }
+  }
+}

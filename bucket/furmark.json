@@ -1,0 +1,41 @@
+{
+  "version": "2.5.0.0",
+  "description": "A GPU Stress Test and OpenGL Benchmark",
+  "homepage": "https://geeks3d.com/furmark/",
+  "license": "Freeware",
+  "architecture": {
+    "64bit": {
+      "url": "https://geeks3d.com/downloads/2024p/furmark2/FurMark_2.5.0.0_win64.zip",
+      "hash": "3aa869071d20fd909edce606d1ae994b3751d1fecabae5457bb918e315853c30",
+      "extract_dir": "FurMark_win64"
+    },
+    "32bit": {
+      "url": "https://gpumagick.com/downloads/files/2024/furmark2/FurMark_2.5.0.0_win32.zip",
+      "hash": "782dda32e30c930f77a4f199ed6d199565496c90200b373d10481a618cb11c4e",
+      "extract_dir": "FurMark_win32"
+    }
+  },
+  "bin": "furmark.exe",
+  "shortcuts": [
+    [
+      "FurMark_GUI.exe",
+      "FurMark"
+    ]
+  ],
+  "checkver": {
+    "url": "https://geeks3d.com/furmark/changelog/",
+    "regex": ">version (2\\.[\\d.]+) - (?<year>\\d+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://geeks3d.com/downloads/$matchYearp/furmark$majorVersion/FurMark_$version_win64.zip",
+        "extract_dir": "FurMark_win64"
+      },
+      "32bit": {
+        "url": "https://gpumagick.com/downloads/files/$matchYear/furmark$majorVersion/FurMark_$version_win32.zip",
+        "extract_dir": "FurMark_win32"
+      }
+    }
+  }
+}
