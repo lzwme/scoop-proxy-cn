@@ -214,12 +214,12 @@ function toSyncBranch() {
     }
   };
 
-  syncToCache(['bucket', 'scripts', 'sync-sources.txt', 'README.md']);
+  const needSync = ['bucket', 'scripts', 'sync-sources.txt', 'README.md', '.github'];
+  syncToCache(needSync);
 
   execSync(`git fetch --all && git checkout -b sync origin/sync || git checkout sync`);
 
-  rmrf('bucket');
-  rmrf('scripts');
+  needSync.forEach(d => rmrf(d));
 
   fs.cpSync(cacheSyncDir, '.', { recursive: true, force: true });
 

@@ -11,7 +11,7 @@
 
 ```bash
 # 添加 bucket，默认拉取 sync 分支
-scoop bucket add spc https://ghfast.top/github.com/lzwme/scoop-proxy-cn
+scoop bucket add spc https://gitee.com/wlzwme/scoop-proxy-cn.git
 
 # install apps
 scoop install spc/<app_name>
@@ -54,7 +54,7 @@ irm scoop.201704.xyz -outfile 'install.ps1'
 scoop config SCOOP_REPO "https://gitee.com/scoop-installer/scoop"
 
 # 添加 spc bucket
-scoop bucket add spc https://ghfast.top/github.com/lzwme/scoop-proxy-cn
+scoop bucket add spc https://gitee.com/wlzwme/scoop-proxy-cn.git
 
 # 拉取新库地址
 scoop update
@@ -84,7 +84,7 @@ irm https://ghfast.top/raw.githubusercontent.com/lzwme/scoop-proxy-cn/master/ins
 scoop config SCOOP_REPO https://ghfast.top/github.com/ScoopInstaller/Scoop
 
 # add spc bucket
-scoop bucket add spc https://ghfast.top/github.com/lzwme/scoop-proxy-cn
+scoop bucket add spc https://gitee.com/wlzwme/scoop-proxy-cn.git
 # 进入到 spc 目录下
 cd "$env:USERPROFILE\scoop\buckets\spc"
 # 切换到 main 分支
@@ -109,24 +109,6 @@ scoop-search act
 
 ## 常见问题
 
-### 关于代理站失效需更新的处理方法
-
-在使用 Scooop 官方版并且订阅为 `main` 分支的情况下，会使用代理站加速 git 仓库及应用下载地址。但旧的代理加速站失效则会导致站点无法继续更新。请执行如下命令以重新添加：
-
-```bash
-# 先更新 scoop repo
-scoop config scoop_repo https://ghfast.top/github.com/ScoopInstaller/Scoop.git
-
-# 方法一：更新 spc bucket repo
-git -C "$env:USERPROFILE\scoop\buckets\spc" remote set-url origin https://ghfast.top/github.com/lzwme/scoop-proxy-cn
-# 如果修改了 buckets 的默认位置，则执行如下命令
-git -C "$env:SCOOP\buckets\spc" remote set-url origin https://ghfast.top/github.com/lzwme/scoop-proxy-cn
-
-# 方法二：移除并重新添加 spc bucket
-scoop bucket rm spc
-scoop bucket add spc https://ghfast.top/github.com/lzwme/scoop-proxy-cn
-```
-
 ### 关于 `aria2` 导致的下载失败的问题
 
 当安装了 `aria2` 时，scoop 会采用 `aria2` 实现分片加速下载。但部分代理地址不支持或屏蔽了来自 `aria2` 的分片下载请求，此时可以执行如下命令禁用 `aria2`：
@@ -142,6 +124,25 @@ scoop config aria2-enabled false
 ```bash
 scoop install scoop-search -s
 ```
+
+### 关于代理站失效需更新的处理方法
+
+在使用 Scooop 官方版并且订阅为 `main` 分支的情况下，会使用代理站加速 git 仓库及应用下载地址。但旧的代理加速站失效则会导致站点无法继续更新。请执行如下命令以重新添加：
+
+```bash
+# 先更新 scoop repo
+scoop config scoop_repo https://ghfast.top/github.com/ScoopInstaller/Scoop.git
+
+# 方法一：更新 spc bucket repo
+git -C "$env:USERPROFILE\scoop\buckets\spc" remote set-url origin https://gitee.com/wlzwme/scoop-proxy-cn.git
+# 如果修改了 buckets 的默认位置，则执行如下命令
+git -C "$env:SCOOP\buckets\spc" remote set-url origin https://gitee.com/wlzwme/scoop-proxy-cn.git
+
+# 方法二：移除并重新添加 spc bucket
+scoop bucket rm spc
+scoop bucket add spc https://gitee.com/wlzwme/scoop-proxy-cn.git
+```
+
 ## Sync Buckets From
 
 - [ScoopInstaller/PHP](https://github.com/ScoopInstaller/PHP)
