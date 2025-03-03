@@ -1,10 +1,10 @@
 {
-  "version": "9.6.1",
-  "description": "A HDD/SSD utility software which supports a part of USB, Intel RAID and NVMe.",
-  "homepage": "https://crystalmark.info/en/software/crystaldiskinfo/",
+  "homepage": "https://crystalmark.info/ja/software/crystaldiskinfo/",
+  "description": "CrystalDiskInfo is a HDD/SSD utility software which supports S.M.A.R.T and a part of USB-HDD.",
   "license": "MIT",
-  "url": "https://zenlayer.dl.sourceforge.net/project/crystaldiskinfo/9.6.1/CrystalDiskInfo9_6_1Aoi.zip",
-  "hash": "sha1:9ba96ecada99b74b486a6a27d72c4fae503e1b84",
+  "version": "9.6.1",
+  "url": "https://downloads.sourceforge.net/project/crystaldiskinfo/9.6.1/CrystalDiskInfo9_6_1Aoi.zip",
+  "hash": "sha1:7d6908dcd831a05c3eb8102884f4b2ce2ebae6dc",
   "architecture": {
     "64bit": {
       "shortcuts": [
@@ -31,20 +31,27 @@
       ]
     }
   },
-  "pre_install": [
-    "if (!(Test-Path \"$persist_dir\\DiskInfo.ini\")) {",
-    "    New-Item \"$dir\\DiskInfo.ini\" -ItemType File | Out-Null",
-    "}"
-  ],
   "persist": [
     "DiskInfo.ini",
-    "Smart"
+    "DiskInfo32A.ini",
+    "DiskInfo64A.ini",
+    "DiskInfoA64A.ini"
+  ],
+  "pre_install": [
+    "$ls = @('DiskInfo.ini', 'DiskInfo32A.ini', 'DiskInfo64A.ini', 'DiskInfoA64A.ini')",
+    "foreach ($name in $ls) {",
+    "  if (!(Test-Path \"$persist_dir/$name\")) { Add-Content \"$persist_dir/$name\" $null }",
+    "}"
   ],
   "checkver": {
     "url": "https://crystalmark.info/en/download/",
-    "regex": "CrystalDiskInfo ([\\w\\.]+) &#8211;"
+    "regex": "CrystalDiskInfo\\s+([\\w.]+)\\s"
   },
   "autoupdate": {
-    "url": "https://zenlayer.dl.sourceforge.net/project/crystaldiskinfo/$version/CrystalDiskInfo$underscoreVersionAoi.zip"
+    "url": "https://downloads.sourceforge.net/project/crystaldiskinfo/$version/CrystalDiskInfo$underscoreVersionAoi.zip",
+    "hash": {
+      "url": "https://sourceforge.net/projects/crystaldiskinfo/files/$version/",
+      "regex": "CrystalDiskInfo$underscoreVersionAoi.zip.+?sha1\":\"$sha1"
+    }
   }
 }
