@@ -46,13 +46,14 @@ function New-ProfileModifier {
         $ImportModuleCommand = ("Add-ProfileContent 'Import-Module ", $PSModuleName, "'") -Join ("")
         $RemoveModuleCommand = ("Remove-ProfileContent 'Import-Module ", $PSModuleName, "'") -Join ("")
 
+        $NewLine = [Environment]::NewLine
         switch ($Behavior) {
             "ImportModule" {
-                $GenerateContent = ($ImportUtilsCommand, $RemoveModuleCommand, $ImportModuleCommand, $RemoveUtilsCommand) -Join ("`r`n")
+                $GenerateContent = ($ImportUtilsCommand, $RemoveModuleCommand, $ImportModuleCommand, $RemoveUtilsCommand) -Join ($NewLine)
                 $GenerateContent | Set-Content -Path "$AppDir\add-profile-content.ps1" -Encoding UTF8
             }
             "RemoveModule" {
-                $GenerateContent = ($ImportUtilsCommand, $RemoveModuleCommand, $RemoveUtilsCommand) -Join ("`r`n")
+                $GenerateContent = ($ImportUtilsCommand, $RemoveModuleCommand, $RemoveUtilsCommand) -Join ($NewLine)
                 $GenerateContent | Set-Content -Path "$AppDir\remove-profile-content.ps1" -Encoding UTF8
             }
         }
@@ -77,10 +78,11 @@ function Add-ProfileContent {
     )
 
     try {
-        if (-not(Test-Path $PROFILE)) {
-            $Content | Out-File -FilePath $PROFILE -Encoding UTF8 -Force
+        if (Test-Path $PROFILE) {
+            $NewLine = [Environment]::NewLine
+            Add-Content -Path $PROFILE -Value "$NewLine$Content" -Encoding UTF8 -NoNewLine
         } else {
-            Add-Content -Path $PROFILE -Value "`r`n$Content" -Encoding UTF8 -NoNewLine
+            $Content | Out-File -FilePath $PROFILE -Encoding UTF8 -Force
         }
     } catch {
         Write-Host "[ERROR] Failed to add PowerShell profile content: $_" -ForegroundColor Red

@@ -1,9 +1,9 @@
 {
-  "version": "9.6.2",
-  "description": "A HDD/SSD utility software which supports a part of USB, Intel RAID and NVMe.",
-  "homepage": "https://crystalmark.info/en/software/crystaldiskinfo/",
+  "homepage": "https://crystalmark.info/ja/software/crystaldiskinfo/",
+  "description": "CrystalDiskInfo is a HDD/SSD utility software which supports S.M.A.R.T and a part of USB-HDD.",
   "license": "MIT",
-  "url": "https://zenlayer.dl.sourceforge.net/project/crystaldiskinfo/9.6.2/CrystalDiskInfo9_6_2Shizuku.zip",
+  "version": "9.6.2",
+  "url": "https://downloads.sourceforge.net/project/crystaldiskinfo/9.6.2/CrystalDiskInfo9_6_2Shizuku.zip",
   "hash": "sha1:8fb3738dd4c76b03161f8277e85b361b46c89e62",
   "architecture": {
     "64bit": {
@@ -31,20 +31,27 @@
       ]
     }
   },
-  "pre_install": [
-    "if (!(Test-Path \"$persist_dir\\DiskInfo.ini\")) {",
-    "    New-Item \"$dir\\DiskInfo.ini\" -ItemType File | Out-Null",
-    "}"
-  ],
   "persist": [
     "DiskInfo.ini",
-    "Smart"
+    "DiskInfo32S.ini",
+    "DiskInfo64S.ini",
+    "DiskInfoA64S.ini"
+  ],
+  "pre_install": [
+    "$ls = @('DiskInfo.ini', 'DiskInfo32S.ini', 'DiskInfo64S.ini', 'DiskInfoA64S.ini')",
+    "foreach ($name in $ls) {",
+    "  if (!(Test-Path \"$persist_dir/$name\")) { Add-Content \"$persist_dir/$name\" $null }",
+    "}"
   ],
   "checkver": {
     "url": "https://crystalmark.info/en/download/",
-    "regex": "CrystalDiskInfo ([\\w\\.]+) &#8211;"
+    "regex": "CrystalDiskInfo\\s+([\\w.]+)\\s"
   },
   "autoupdate": {
-    "url": "https://zenlayer.dl.sourceforge.net/project/crystaldiskinfo/$version/CrystalDiskInfo$underscoreVersionShizuku.zip"
+    "url": "https://downloads.sourceforge.net/project/crystaldiskinfo/$version/CrystalDiskInfo$underscoreVersionShizuku.zip",
+    "hash": {
+      "url": "https://sourceforge.net/projects/crystaldiskinfo/files/$version/",
+      "regex": "CrystalDiskInfo$underscoreVersionShizuku.zip.+?sha1\":\"$sha1"
+    }
   }
 }
