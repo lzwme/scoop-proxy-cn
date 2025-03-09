@@ -138,12 +138,12 @@ function Mount-ExternalRuntimeData {
     .PARAMETER LocalAppData
         Mount in $env:LOCALAPPDATA by the name of source folder. Conflicts with parameter Target and AppData.
     #>
-    [CmdletBinding()]
+    [CmdletBinding(DefaultParameterSetName = "Target")]
     param (
         [Parameter(Mandatory = $true, Position = 0)]
         [Alias("SourcePath", "Persist")]
         [string] $Source,
-        [Parameter(Mandatory = $true, ParameterSetName = "Target")]
+        [Parameter(Mandatory = $true, ParameterSetName = "Target", Position = 1)]
         [Alias("TargetPath", "Runtime")]
         [string] $Target,
         [Parameter(Mandatory = $true, ParameterSetName = "AppData")]
@@ -206,12 +206,14 @@ function Dismount-ExternalRuntimeData {
     .PARAMETER LocalAppData
         Dismount folder in $env:LOCALAPPDATA with folder name in Target parameter. Parent path in $Target will be overwritten. Conflicts with parameter AppData.
     #>
-    [CmdletBinding(DefaultParameterSetName = "AppData")]
+    [CmdletBinding(DefaultParameterSetName = "Target")]
     param (
-        [Parameter(Mandatory = $true, Position = 0)]
+        [Parameter(Mandatory = $true, ParameterSetName = "Target", Position = 0)]
+        [Parameter(Mandatory = $true, ParameterSetName = "AppData", Position = 0)]
+        [Parameter(Mandatory = $true, ParameterSetName = "LocalAppData", Position = 0)]
         [Alias("TargetPath", "Path", "Name")]
         [string] $Target,
-        [Parameter(Mandatory = $false, ParameterSetName = "AppData")]
+        [Parameter(Mandatory = $true, ParameterSetName = "AppData")]
         [switch] $AppData,
         [Parameter(Mandatory = $true, ParameterSetName = "LocalAppData")]
         [switch] $LocalAppData
