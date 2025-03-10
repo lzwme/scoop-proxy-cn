@@ -274,13 +274,13 @@ function Import-PersistItem {
         [string] $PersistDir,
         [Parameter(Mandatory = $true, Position = 1)]
         [string] $SourceApp,
-        [Parameter(Mandatory = $false, Position = 2)]
+        [Parameter(Mandatory = $false)]
         [string] $ConflictAction = "Skip",
-        [Parameter(Mandatory = $false, Position = 3)]
+        [Parameter(Mandatory = $false)]
         [string[]] $Select,
-        [Parameter(Mandatory = $false, Position = 4)]
+        [Parameter(Mandatory = $false)]
         [switch] $Sync,
-        [Parameter(Mandatory = $false, Position = 5)]
+        [Parameter(Mandatory = $false)]
         [switch] $Backup
     )
 
@@ -398,12 +398,12 @@ function New-PersistItem {
         [string] $Name,
         [Parameter(Mandatory = $true, Position = 2)]
         [string] $Type,
-        [Parameter(Mandatory = $false, Position = 3)]
+        [Parameter(Mandatory = $false)]
         [Alias("Value")]
         [string] $Content = $null,
-        [Parameter(Mandatory = $false, Position = 4)]
+        [Parameter(Mandatory = $false)]
         [switch] $Force,
-        [Parameter(Mandatory = $false, Position = 5)]
+        [Parameter(Mandatory = $false)]
         [switch] $Backup
     )
 
@@ -512,9 +512,9 @@ function Import-SelectItem {
         [string] $TargetLocation,
         [Parameter(Mandatory = $true, Position = 2)]
         [string] $Name,
-        [Parameter(Mandatory = $false, Position = 3)]
+        [Parameter(Mandatory = $false)]
         [switch] $Overwrite,
-        [Parameter(Mandatory = $false, Position = 4)]
+        [Parameter(Mandatory = $false)]
         [switch] $Backup
     )
 
