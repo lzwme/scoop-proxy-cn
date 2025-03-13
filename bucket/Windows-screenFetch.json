@@ -7,6 +7,7 @@
     "Run following command to import Windows-screenFetch automatically in Powershell:",
     "$dir\\add-profile-content.ps1"
   ],
+  "depends": "Scoop4kariiin/Scoop4kariiinUtils",
   "url": "https://github.com/AkariiinMKII/Windows-screenFetch/archive/v1.5.9.zip",
   "hash": "2a41eb23d24e42227da4752362fd70be514ce30915bd7cd5275ee08da0c1716c",
   "extract_dir": "Windows-screenFetch-1.5.9",
@@ -15,7 +16,7 @@
   },
   "pre_install": [
     "$CheckAltInstall = $(appdir Windows-screenFetch-alt $global)",
-    "if (Test-Path \"$CheckAltInstall\") {",
+    "if (Test-Path $CheckAltInstall) {",
     "    Write-Host \"Found conflict version, uninstalling ...\" -ForegroundColor Yellow",
     "    scoop uninstall Windows-screenFetch-alt",
     "}"
@@ -23,23 +24,15 @@
   "post_install": [
     "Remove-Item \"$dir\\LICENSE\", \"$dir\\README.md\", \"$dir\\.screenshots\" -Force -Recurse -ErrorAction SilentlyContinue",
     "Import-Module $manifest.psmodule.name",
-    "$BucketDir = Find-BucketDirectory -Root -Name $bucket",
-    "$S4UtilsPath = $BucketDir | Join-Path -ChildPath \"scripts\\S4Utils.psm1\"",
-    "if (Test-Path $S4UtilsPath) {",
-    "    Unblock-File $S4UtilsPath",
-    "    Import-Module $S4UtilsPath",
-    "    New-ProfileModifier -Behavior ImportModule -PSModuleName $manifest.psmodule.name -AppDir $dir -BucketDir $BucketDir",
-    "    New-ProfileModifier -Behavior RemoveModule -PSModuleName $manifest.psmodule.name -AppDir $dir -BucketDir $BucketDir",
-    "    Remove-Module S4Utils -ErrorAction SilentlyContinue",
-    "} else {",
-    "    Write-Host \"Missing files, please re-add Scoop4kariiin bucket and re-install this app.\" -ForegroundColor Red",
-    "}"
+    "Import-Module -Name Scoop4kariiinUtils -ErrorAction Stop",
+    "New-ProfileModifier -Behavior ImportModule -PSModuleName $manifest.psmodule.name -AppDir $dir",
+    "New-ProfileModifier -Behavior RemoveModule -PSModuleName $manifest.psmodule.name -AppDir $dir",
+    "Remove-Module -Name Scoop4kariiinUtils -ErrorAction SilentlyContinue"
   ],
   "pre_uninstall": [
     "Remove-Module $manifest.psmodule.name -ErrorAction SilentlyContinue",
-    "$S4UtilsPath = Find-BucketDirectory -Root -Name $install.bucket | Join-Path -ChildPath \"scripts\\S4Utils.psm1\"",
-    "if (('uninstall' -eq $cmd) -and (Test-Path \"$dir\\remove-profile-content.ps1\") -and (Test-Path $S4UtilsPath)) {",
-    "    Unblock-File $S4UtilsPath",
+    "$Scoop4kariiinUtilsPath = $(appdir Scoop4kariiinUtils $global)",
+    "if (('uninstall' -eq $cmd) -and (Test-Path \"$dir\\remove-profile-content.ps1\") -and (Test-Path $Scoop4kariiinUtilsPath)) {",
     "    & \"$dir\\remove-profile-content.ps1\"",
     "}"
   ],
