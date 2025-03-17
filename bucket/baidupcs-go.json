@@ -1,6 +1,6 @@
 {
   "version": "3.9.7",
-  "description": "The terminal utility for Baidu Network Disk, which supports sharing link generation and file matching upload function .",
+  "description": "iikira/BaiduPCS-Go 原版基础上集成了分享链接/秒传链接转存功能",
   "homepage": "https://github.com/qjfoidnh/BaiduPCS-Go",
   "license": "Apache-2.0",
   "architecture": {
@@ -16,9 +16,12 @@
     }
   },
   "bin": "BaiduPCS-Go.exe",
-  "persist": "appdata",
+  "persist": [
+    "config",
+    "Downloads"
+  ],
   "env_set": {
-    "BAIDUPCS_GO_CONFIG_DIR": "$dir\\appdata"
+    "BAIDUPCS_GO_CONFIG_DIR": "$dir\\config"
   },
   "checkver": "github",
   "autoupdate": {
