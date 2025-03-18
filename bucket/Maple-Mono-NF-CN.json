@@ -1,10 +1,10 @@
 {
   "version": "7.0",
-  "description": "An open source monospace font with round corner and ligatures for IDE and command line. (Minimal version, otf format)",
+  "description": "An open source monospace font with round corner and ligatures for IDE and command line. (Full version, embed with icons, Chinese and Japanese glyphs)",
   "homepage": "https://github.com/subframe7536/Maple-font",
   "license": "OFL-1.1",
-  "url": "https://ghfast.top/https://github.com/subframe7536/Maple-font/releases/download/v7.0/MapleMono-OTF.zip",
-  "hash": "e333ca7a35994b9d9b870d052c95faf6432bf246efe8fe65e5c43ca2b61c4f9a",
+  "url": "https://ghfast.top/https://github.com/subframe7536/Maple-font/releases/download/v7.0/MapleMono-NF-CN.zip",
+  "hash": "214047481216fffbd6c25ba679f156e3c79250b26663d7bc17d62685bb7f294d",
   "installer": {
     "script": [
       "$currentBuildNumber = [int] (Get-ItemProperty \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\").CurrentBuildNumber",
@@ -37,7 +37,7 @@
       "}",
       "$registryRoot = if ($global) { \"HKLM\" } else { \"HKCU\" }",
       "$registryKey = \"${registryRoot}:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts\"",
-      "Get-ChildItem $dir -Filter '*.otf' | ForEach-Object {",
+      "Get-ChildItem $dir -Filter '*.ttf' | ForEach-Object {",
       "    $value = if ($global) { $_.Name } else { \"$fontInstallDir\\$($_.Name)\" }",
       "    New-ItemProperty -Path $registryKey -Name $_.Name.Replace($_.Extension, ' (TrueType)') -Value $value -Force | Out-Null",
       "    Copy-Item -LiteralPath $_.FullName -Destination $fontInstallDir",
@@ -46,7 +46,7 @@
   },
   "pre_uninstall": [
     "$fontInstallDir = if ($global) { \"$env:windir\\Fonts\" } else { \"$env:LOCALAPPDATA\\Microsoft\\Windows\\Fonts\" }",
-    "Get-ChildItem $dir -Filter '*.otf' | ForEach-Object {",
+    "Get-ChildItem $dir -Filter '*.ttf' | ForEach-Object {",
     "    Get-ChildItem $fontInstallDir -Filter $_.Name | ForEach-Object {",
     "        try {",
     "            Rename-Item $_.FullName $_.FullName -ErrorVariable LockError -ErrorAction Stop",
@@ -76,7 +76,7 @@
       "$fontInstallDir = if ($global) { \"$env:windir\\Fonts\" } else { \"$env:LOCALAPPDATA\\Microsoft\\Windows\\Fonts\" }",
       "$registryRoot = if ($global) { \"HKLM\" } else { \"HKCU\" }",
       "$registryKey = \"${registryRoot}:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts\"",
-      "Get-ChildItem $dir -Filter '*.otf' | ForEach-Object {",
+      "Get-ChildItem $dir -Filter '*.ttf' | ForEach-Object {",
       "    Remove-ItemProperty -Path $registryKey -Name $_.Name.Replace($_.Extension, ' (OpenType)') -Force -ErrorAction SilentlyContinue",
       "    Remove-Item \"$fontInstallDir\\$($_.Name)\" -Force -ErrorAction SilentlyContinue",
       "}",
@@ -87,9 +87,9 @@
   },
   "checkver": "github",
   "autoupdate": {
-    "url": "https://ghfast.top/https://github.com/subframe7536/Maple-font/releases/download/v$version/MapleMono-OTF.zip",
+    "url": "https://ghfast.top/https://github.com/subframe7536/Maple-font/releases/download/v$version/MapleMono-NF-CN.zip",
     "hash": {
-      "url": "$baseurl/MapleMono-OTF.sha256"
+      "url": "$baseurl/MapleMono-NF-CN.sha256"
     }
   }
 }
