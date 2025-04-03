@@ -32,7 +32,8 @@
   "uninstaller": {
     "script": [
       "$ProgressPreference = \"SilentlyContinue\"",
-      "if (Get-Process -Name Notepads -ErrorAction SilentlyContinue) {",
+      "$is_running = $null -ne $(Get-Process -Name Notepads -ErrorAction SilentlyContinue)",
+      "if ($is_running) {",
       "    Write-Host \"`nNotepads is running, would you like to continue?\" -ForegroundColor Yellow",
       "    $answer = Read-Host -Prompt \"Enter 'y' to continue, any other key to cancel\"",
       "    if ('y' -eq $answer) {",
@@ -45,13 +46,8 @@
       "    }",
       "}",
       "$package = Get-AppxPackage -Name '*JackieLiu*Notepads*'",
-      "$package_dir = \"$env:LOCALAPPDATA\\Packages\\$($package.PackageFamilyName)\"",
-      "Import-Module -Name Scoop4kariiinUtils -ErrorAction Stop",
-      "Dismount-ExternalRuntimeData -Target \"$package_dir\\Settings\"",
-      "Dismount-ExternalRuntimeData -Target \"$package_dir\\LocalState\"",
-      "Remove-Module -Name Scoop4kariiinUtils -ErrorAction SilentlyContinue",
-      "Get-ChildItem -Path \"$persist_dir\\LocalState\" -Filter \"_WinStoreSDK_Receipt_Cache\" | Remove-Item -Force -Recurse -ErrorAction SilentlyContinue",
-      "Remove-AppxPackage $package"
+      "Remove-AppxPackage $package",
+      "Get-ChildItem -Path \"$persist_dir\\LocalState\" -Filter \"_WinStoreSDK_Receipt_Cache\" | Remove-Item -Force -Recurse -ErrorAction SilentlyContinue"
     ]
   },
   "checkver": {
