@@ -1,0 +1,56 @@
+{
+  "version": "3.17.1",
+  "description": "Fort Firewall for Windows",
+  "homepage": "https://github.com/tnodir/fort",
+  "license": "GPL-3.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/tnodir/fort/releases/download/v3.17.1/FortFirewall-3.17.1-windows10-x86_64.exe",
+      "hash": "7fb6d305b232dba5564b21112711ffdcc4c9d3a6a9b7d0b5d3ad51cac8bfc5be"
+    },
+    "32bit": {
+      "url": "https://github.com/tnodir/fort/releases/download/v3.17.1/FortFirewall-3.17.1-windows-x86.exe",
+      "hash": "dc1a41397080ca9ba2e6e9e54a6e19b82ba7cfdc19c08e3cd625568dfa066418"
+    },
+    "arm64": {
+      "url": "https://github.com/tnodir/fort/releases/download/v3.17.1/FortFirewall-3.17.1-windows10-arm64.exe",
+      "hash": "eb84a8bb456a81b13b1791423fdde0a92a2b0e329e58b76c79f78b9080393051"
+    }
+  },
+  "innosetup": true,
+  "pre_install": [
+    "Copy-Item -ErrorAction Ignore \"$dir/FortFirewall.exe.example.ini\" \"$dir/FortFirewall.exe.ini\"",
+    "$null = New-Item \"$dir/README.portable\"",
+    "if (is_admin) { return & \"$dir/driver/scripts/install.bat\" }",
+    "warn 'Skipping driver installation due to the lack of admin privledges.'"
+  ],
+  "pre_uninstall": [
+    "if (is_admin) { return & \"$dir/driver/scripts/uninstall.bat\" }",
+    "warn 'Skipping driver uninstallation due to the lack of admin privledges.'"
+  ],
+  "bin": "FortFirewall.exe",
+  "shortcuts": [
+    [
+      "FortFirewall.exe",
+      "Fort Firewall"
+    ]
+  ],
+  "persist": [
+    "Data",
+    "FortFirewall.exe.ini"
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/tnodir/fort/releases/download/v$version/FortFirewall-$version-windows10-x86_64.exe"
+      },
+      "32bit": {
+        "url": "https://github.com/tnodir/fort/releases/download/v$version/FortFirewall-$version-windows-x86.exe"
+      },
+      "arm64": {
+        "url": "https://github.com/tnodir/fort/releases/download/v$version/FortFirewall-$version-windows10-arm64.exe"
+      }
+    }
+  }
+}
