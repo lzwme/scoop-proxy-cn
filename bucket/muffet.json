@@ -11,10 +11,6 @@
     "32bit": {
       "url": "https://github.com/raviqqe/muffet/releases/download/v2.10.8/muffet_windows_386.zip",
       "hash": "890d2928e9c4f246cf19802e1df654a1bbf5d5b7b3974defdd04a252099aaf74"
-    },
-    "arm64": {
-      "url": "https://github.com/raviqqe/muffet/releases/download/v2.10.8/muffet_windows_arm64.zip",
-      "hash": "7ac30b5b200c77bd11b66b07310a34828534932e030ca6e0bca534611cc1e9e9"
     }
   },
   "bin": "muffet.exe",
@@ -26,13 +22,11 @@
       },
       "32bit": {
         "url": "https://github.com/raviqqe/muffet/releases/download/v$version/muffet_windows_386.zip"
-      },
-      "arm64": {
-        "url": "https://github.com/raviqqe/muffet/releases/download/v$version/muffet_windows_arm64.zip"
       }
     },
     "hash": {
-      "url": "$baseurl/muffet_$version_checksums.txt"
+      "url": "https://github.com/raviqqe/muffet/releases/download/v$version/muffet_$version_checksums.txt",
+      "mode": "extract"
     }
   }
 }
