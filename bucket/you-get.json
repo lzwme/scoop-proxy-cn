@@ -1,22 +1,21 @@
 {
-  "version": "0.4.1743",
   "homepage": "https://you-get.org/",
-  "description": "A video downloader written in Python",
+  "description": "A tiny command-line utility to download media contents (videos, audios, images) from the Web",
   "license": "MIT",
-  "url": [
-    "https://github.com/soimort/you-get/releases/download/v0.4.1743/you_get-0.4.1743-py3-none-any.whl#/dl.7z",
-    "https://github.com/soimort/you-get/raw/develop/you-get"
-  ],
-  "hash": [
-    "9f8968769772d3b50e0b38f33f119a4c0d5708ecfe0eeacee950661523b2ccf7",
-    "a8fc206e327ad94a3db7a6462404ed91b2afbe8056b44a32ce7ca48c649995fe"
-  ],
-  "pre_install": "Set-Content \"$dir\\you-get.bat\" '@python.exe \"%~dp0\\you-get\" %*' -Encoding ASCII",
-  "bin": "you-get.bat",
+  "version": "0.4.1743",
+  "url": "https://github.com/soimort/you-get/releases/download/v0.4.1743/you_get-0.4.1743.tar.gz",
+  "hash": "cbc1250d577246ec9d422cef113882844c80d8729f32d3183a5fa76648a20741",
+  "extract_dir": "you-get-0.4.1743",
+  "pre_install": "New-Item \"$dir\\you-get.cmd\" -Type File -Value '@python \"%~dp0you-get\" %*' | Out-Null",
+  "bin": "you-get.cmd",
+  "suggest": {
+    "Python3": "python"
+  },
   "checkver": {
     "github": "https://github.com/soimort/you-get"
   },
   "autoupdate": {
-    "url": "https://github.com/soimort/you-get/releases/download/v$version/you_get-$version-py3-none-any.whl#/dl.7z"
+    "url": "https://github.com/soimort/you-get/releases/download/v$version/you_get-$version.tar.gz",
+    "extract_dir": "you-get-$version"
   }
 }
