@@ -13,7 +13,10 @@
       "hash": "32ce4c1428485e21cc70c2bac17db9f4eca3c2a57d9b02269eb660cf5a5a71fe"
     }
   },
-  "pre_install": "ensure \"$persist_dir\\Rime\"",
+  "pre_install": [
+    "rmdir \"$dir\\Rime\"",
+    "ensure \"$persist_dir\\Rime\""
+  ],
   "shortcuts": [
     [
       "Rabbit.exe",
