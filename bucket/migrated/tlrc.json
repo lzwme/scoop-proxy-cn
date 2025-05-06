@@ -1,0 +1,23 @@
+{
+  "version": "1.11.0",
+  "description": "A tldr client written in Rust",
+  "homepage": "http://tldr.sh/tlrc/",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/tldr-pages/tlrc/releases/download/v1.11.0/tlrc-v1.11.0-x86_64-pc-windows-msvc.zip",
+      "hash": "d0808c06946715088550b6899a31c0612a42d3749450fc8444af57514a54852a"
+    }
+  },
+  "bin": "tldr.exe",
+  "checkver": {
+    "github": "https://github.com/tldr-pages/tlrc"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/tldr-pages/tlrc/releases/download/v$version/tlrc-v$version-x86_64-pc-windows-msvc.zip"
+      }
+    }
+  }
+}
