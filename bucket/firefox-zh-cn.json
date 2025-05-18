@@ -1,53 +1,27 @@
 {
-  "version": "138.0.3",
-  "description": "流行的开源网络浏览器",
-  "homepage": "https://www.mozilla.org/zh-CN/firefox/",
+  "description": "Popular open source web browser. Cross-platform and available in many languages.",
+  "homepage": "https://www.mozilla.org/zh-CN/firefox/new/",
+  "version": "138.0.4",
   "license": "MPL-2.0",
-  "notes": [
-    "To set profile 'Scoop' as *DEFAULT*, or profiles/settings was lost after update:",
-    "  - Run 'Firefox Profile Manager', choose 'Scoop' then click 'Start Firefox'.",
-    "  - Visit 'about:profiles' page in Firefox to check *DEFAULT* profile.",
-    "For details: https://support.mozilla.org/zh-CN/kb/profile-manager-create-remove-switch-firefox-profiles"
-  ],
   "architecture": {
     "64bit": {
-      "url": "https://archive.mozilla.org/pub/firefox/releases/138.0.3/win64/zh-CN/Firefox%20Setup%20138.0.3.exe#/dl.7z",
-      "hash": "sha512:d5d90d693b280e802409f840ec07402bd7cdae02d9bb30768015c0e204e4c61acecebef1ae92978159d55df4147149a7bff53dd3c730a08b8ca3aa9ae9b9fbec"
+      "url": "https://download-installer.cdn.mozilla.net/pub/firefox/releases/138.0.4/win64/zh-CN/Firefox%20Setup%20138.0.4.exe#/firefox.7z",
+      "hash": "sha512:5dac04135490a8a68719296bd52aa7c321a95c6c6f4496e5b8e2e9a79062ac6228358d4c7e7a6d2bb2b9b8772ab37c494def082e7a2544815b6bbb8369f2c029"
     },
     "32bit": {
-      "url": "https://archive.mozilla.org/pub/firefox/releases/138.0.3/win32/zh-CN/Firefox%20Setup%20138.0.3.exe#/dl.7z",
-      "hash": "sha512:145cd677f46d7d911df12ed7ec9a9cd966940f1aba3c88fde2e6497cfd97988f00fa34b8eb82361166d3e8d418ce24a4afdc0b2ee7147589d4dc978f9e7aeacc"
-    },
-    "arm64": {
-      "url": "https://archive.mozilla.org/pub/firefox/releases/138.0.3/win64-aarch64/zh-CN/Firefox%20Setup%20138.0.3.exe#/dl.7z",
-      "hash": "sha512:4d4e6f63561f5edadf7daefa8c4f7b1daafc0e486061931c5c6d40008549cd86d01e4be5062e5699188b45aad557ad1975a44fca87bc42f6dc2d3953cb2d5d76"
+      "url": "https://download-installer.cdn.mozilla.net/pub/firefox/releases/138.0.4/win32/zh-CN/Firefox%20Setup%20138.0.4.exe#/firefox.7z",
+      "hash": "sha512:fd30b36719962ab0eebf9f3a5a1f28a54b12f35db817d26ed3804ce98dff24513b8196d36f99bec05ff4136abe3ff440018013ca7595783c09b8ae7b77607580"
     }
   },
   "extract_dir": "core",
-  "post_install": [
-    "firefox -CreateProfile \"Scoop $persist_dir\\profile\"",
-    "$Addition = \"$persist_dir\\addition\"",
-    "if (Test-Path $Addition) {",
-    "  info 'Copying additional items...'",
-    "  Copy-Item -Path $Addition\\* -Destination $dir -Force -Recurse -ErrorAction SilentlyContinue",
-    "}"
-  ],
   "bin": "firefox.exe",
   "shortcuts": [
     [
       "firefox.exe",
-      "Firefox"
-    ],
-    [
-      "firefox.exe",
-      "Firefox Profile Manager",
-      "-P"
+      "Mozilla Firefox"
     ]
   ],
-  "persist": [
-    "distribution",
-    "profile"
-  ],
+  "persist": "profile-portable",
   "checkver": {
     "url": "https://product-details.mozilla.org/1.0/firefox_versions.json",
     "jsonpath": "$.LATEST_FIREFOX_VERSION"
@@ -55,26 +29,20 @@
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://archive.mozilla.org/pub/firefox/releases/$version/win64/zh-CN/Firefox%20Setup%20$version.exe#/dl.7z",
+        "url": "https://download-installer.cdn.mozilla.net/pub/firefox/releases/$version/win64/zh-CN/Firefox%20Setup%20$version.exe#/firefox.7z",
         "hash": {
-          "url": "https://archive.mozilla.org/pub/firefox/releases/$version/SHA512SUMS",
+          "url": "https://download-installer.cdn.mozilla.net/pub/firefox/releases/$version/SHA512SUMS",
           "regex": "$sha512\\s+win64/zh-CN/$basename"
         }
       },
       "32bit": {
-        "url": "https://archive.mozilla.org/pub/firefox/releases/$version/win32/zh-CN/Firefox%20Setup%20$version.exe#/dl.7z",
+        "url": "https://download-installer.cdn.mozilla.net/pub/firefox/releases/$version/win32/zh-CN/Firefox%20Setup%20$version.exe#/firefox.7z",
         "hash": {
-          "url": "https://archive.mozilla.org/pub/firefox/releases/$version/SHA512SUMS",
+          "url": "https://download-installer.cdn.mozilla.net/pub/firefox/releases/$version/SHA512SUMS",
           "regex": "$sha512\\s+win32/zh-CN/$basename"
-        }
-      },
-      "arm64": {
-        "url": "https://archive.mozilla.org/pub/firefox/releases/$version/win64-aarch64/zh-CN/Firefox%20Setup%20$version.exe#/dl.7z",
-        "hash": {
-          "url": "https://archive.mozilla.org/pub/firefox/releases/$version/SHA512SUMS",
-          "regex": "$sha512\\s+win64-aarch64/zh-CN/$basename"
         }
       }
     }
-  }
+  },
+  "notes": "To recover persisted profile, you need to open the Profile Manager with `firefox -P` and create by selecting the portable profile directory."
 }
