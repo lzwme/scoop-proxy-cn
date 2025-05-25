@@ -1,54 +1,47 @@
 {
-  "homepage": "https://lunatranslator.org/",
-  "description": "Galgame translator",
-  "license": "GPL-3.0",
-  "version": "9.4.6.2",
+  "version": "10.0.0.4",
+  "description": "Galgame翻译工具, 支持剪贴板, OCR, HOOK, 支持30余种翻译工具, 支持TTS",
+  "homepage": "https://github.com/HIllya51/LunaTranslator",
+  "license": "GPL-3.0-only",
   "architecture": {
     "64bit": {
-      "url": "https://lunatranslator.org/r2/luna/LunaTranslator_x64_v9.4.6.2.zip",
-      "hash": "74e644a70ef56a50051228e65d198d562a8670a2b6c443984d98607496d052f6",
-      "extract_to": "temp",
+      "url": "https://github.com/HIllya51/LunaTranslator/releases/download/v10.0.0.4/LunaTranslator_x64_win10.zip",
+      "hash": "815b29660cce6a9a540f61f08d95704c3c564f27e2fc989c34e28f125036f250",
       "pre_install": [
-        "Move-Item -Path \"$dir\\temp\\LunaTranslator_x64\\*\" -Destination \"$dir\"",
-        "Remove-Item \"$dir\\temp\" -Force -Recurse"
+        "Rename-Item -Path \"$($dir)\\LunaTranslator*\" -NewName \"dir\" -Force",
+        "Get-ChildItem -Path \"$($dir)\\dir\" -Recurse | ForEach-Object { Move-Item -Path $_.FullName -Destination \"$($dir)\\$($_.Name)\" -Force }",
+        "Remove-Item -Path \"$($dir)\\dir\" -Recurse -Force"
       ]
     },
     "32bit": {
-      "url": "https://lunatranslator.org/r2/luna/LunaTranslator_x86_v9.4.6.2.zip",
-      "hash": "71027727ccbe5f3a9a30220e9536af3edfc6f694457058414a99fb99d761ec80",
-      "extract_to": "temp",
-      "pre_install": [
-        "Move-Item -Path \"$dir\\temp\\LunaTranslator_x86\\*\" -Destination \"$dir\"",
-        "Remove-Item \"$dir\\temp\" -Force -Recurse"
-      ]
+      "url": "https://github.com/HIllya51/LunaTranslator/releases/download/v10.0.0.4/LunaTranslator_x86_win7.zip",
+      "extract_dir": "LunaTranslator*",
+      "hash": "22470f59eae6ed1048cbf37a6e2eab4ad19694c3e48be91b68d4fd4ebd58aff6"
     }
   },
   "shortcuts": [
     [
       "LunaTranslator.exe",
       "LunaTranslator"
+    ],
+    [
+      "LunaTranslator_admin.exe",
+      "LunaTranslator (Admin)"
     ]
   ],
   "persist": [
-    "cache",
+    "userconfig",
     "translation_record",
-    "userconfig"
+    "cache"
   ],
-  "checkver": {
-    "script": [
-      "$req = Invoke-WebRequest -Uri 'https://lunatranslator.org/Resource/DownloadLuna/x64' -MaximumRedirection 0 -ErrorAction SilentlyContinue",
-      "$m = $req.Content | Select-String -pattern 'LunaTranslator_x64_v([\\d.]+)\\.zip'",
-      "Write-Output $m.matches.groups[1].value"
-    ],
-    "regex": "(?<version>[\\d.]+)"
-  },
+  "checkver": "github",
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://lunatranslator.org/r2/luna/LunaTranslator_x64_v$version.zip"
+        "url": "https://github.com/HIllya51/LunaTranslator/releases/download/v$version/LunaTranslator_x64_win10.zip"
       },
       "32bit": {
-        "url": "https://lunatranslator.org/r2/luna/LunaTranslator_x86_v$version.zip"
+        "url": "https://github.com/HIllya51/LunaTranslator/releases/download/v$version/LunaTranslator_x86_win7.zip"
       }
     }
   }
