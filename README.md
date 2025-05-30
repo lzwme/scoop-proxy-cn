@@ -78,7 +78,7 @@ scoop config rm URL_PROXY
 # install
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 # irm -useb get.scoop.sh | iex
-irm https://ghfast.top/raw.githubusercontent.com/lzwme/scoop-proxy-cn/master/install.ps1 | iex
+irm https://ghfast.top/raw.githubusercontent.com/lzwme/scoop-proxy-cn/main/install.ps1 | iex
 
 # config
 scoop config SCOOP_REPO https://ghfast.top/github.com/ScoopInstaller/Scoop
