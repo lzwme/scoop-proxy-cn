@@ -1,0 +1,45 @@
+{
+  "homepage": "https://developers.weixin.qq.com/miniprogram/dev/devtools/devtools.html",
+  "description": "The official devtool to develop and debug WeChat Mini Programs",
+  "version": "1.06.2503300",
+  "license": "Freeware",
+  "architecture": {
+    "64bit": {
+      "url": "https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&from=mpwiki&download_version=1062503300&version_type=1#/installer.exe",
+      "hash": "db5a11a484cebfd4442420caed8978dcaf5b5f4217f96af399dc3dad5a6d2463"
+    },
+    "32bit": {
+      "url": "https://servicewechat.com/wxa-dev-logic/download_redirect?type=ia32&from=mpwiki&download_version=1062503300&version_type=1#/installer.exe",
+      "hash": "273682da66bdf049d71fe733ad9a1a5ce0d795e68c9467bad1a727ded4e85f26"
+    }
+  },
+  "installer": {
+    "script": [
+      "Expand-7zipArchive \"$dir\\installer.exe\" \"$dir\\app\" -Removal",
+      "@('$PLUGINSDIR', '卸载微信开发者工具.exe.nsis') | ForEach-Object {",
+      "    Remove-Item \"$dir\\app\\$_\" -Recurse -Force",
+      "}"
+    ]
+  },
+  "shortcuts": [
+    [
+      "app\\微信开发者工具.exe",
+      "微信开发者工具"
+    ]
+  ],
+  "checkver": {
+    "url": "https://developers.weixin.qq.com/miniprogram/dev/devtools/stable.html",
+    "regex": "#</a> ([\\d.]+) <a href=\"https://.*?Windows"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://servicewechat.com/wxa-dev-logic/download_redirect?type=x64&from=mpwiki&download_version=$majorVersion$minorVersion$patchVersion$buildVersion&version_type=1#/installer.exe"
+      },
+      "32bit": {
+        "url": "https://servicewechat.com/wxa-dev-logic/download_redirect?type=ia32&from=mpwiki&download_version=$majorVersion$minorVersion$patchVersion$buildVersion&version_type=1#/installer.exe"
+      }
+    }
+  },
+  "notes": "We don't persist your WeChat DevTool data, they are still storaged in '%APPDATA%\\微信开发者工具'."
+}
