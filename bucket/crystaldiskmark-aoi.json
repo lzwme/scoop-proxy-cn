@@ -1,10 +1,10 @@
 {
-  "version": "9.0.0",
-  "description": "A simple disk benchmark software.",
   "homepage": "https://crystalmark.info/en/software/crystaldiskmark/",
+  "description": "CrystalDiskMark is a disk benchmark software.",
   "license": "MIT",
-  "url": "https://zenlayer.dl.sourceforge.net/project/crystaldiskmark/9.0.0/CrystalDiskMark9_0_0Aoi.zip",
-  "hash": "sha1:ec5f192be8662816be26234b886168bf6556147d",
+  "version": "9.0.0",
+  "url": "https://sourceforge.net/projects/crystaldiskmark/files/9.0.0/CrystalDiskMark9_0_0Aoi.zip",
+  "hash": "sha1:8c82ecb2a5f7f231970afeed80dd330ca175cb28",
   "architecture": {
     "64bit": {
       "shortcuts": [
@@ -32,22 +32,21 @@
     }
   },
   "pre_install": [
-    "'DiskMark32A.ini', 'DiskMark64A.ini', 'DiskMarkA64A.ini' | ForEach-Object {",
-    "    if (-not (Test-Path \"$persist_dir\\$_\")) {",
-    "        New-Item \"$dir\\$_\" -ItemType File | Out-Null",
-    "    }",
+    "$ls = @('DiskMark64A.ini', 'DiskMark32A.ini', 'DiskMarkA64A.ini')",
+    "foreach ($name in $ls) {",
+    "  if (!(Test-Path \"$persist_dir/$name\")) { Add-Content \"$persist_dir/$name\" $null }",
     "}"
   ],
   "persist": [
-    "DiskMark32A.ini",
     "DiskMark64A.ini",
+    "DiskMark32A.ini",
     "DiskMarkA64A.ini"
   ],
   "checkver": {
     "url": "https://crystalmark.info/en/download/",
-    "regex": "CrystalDiskMark ([\\w\\.]+) &#8211;"
+    "regex": "CrystalDiskMark\\s+([\\w.]+)\\s"
   },
   "autoupdate": {
-    "url": "https://zenlayer.dl.sourceforge.net/project/crystaldiskmark/$version/CrystalDiskMark$underscoreVersionAoi.zip"
+    "url": "https://sourceforge.net/projects/crystaldiskmark/files/$version/CrystalDiskMark$underscoreVersionAoi.zip"
   }
 }
