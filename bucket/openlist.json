@@ -1,0 +1,51 @@
+{
+  "version": "beta",
+  "description": "A new AList Fork to Anti Trust Crisis",
+  "homepage": "https://oplist.org/",
+  "license": {
+    "identifier": "AGPL-3.0 license",
+    "url": "https://github.com/OpenListTeam/OpenList#AGPL-3.0-1-ov-file"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/OpenListTeam/OpenList/releases/download/beta/openlist-windows-amd64.zip",
+      "hash": "d7bd3c00e59e950347f61d34fec7a25a0d3f775e8b4c2cac35f8a5dbd5c8f1a5"
+    },
+    "32bit": {
+      "url": "https://github.com/OpenListTeam/OpenList/releases/download/beta/openlist-windows-386.zip",
+      "hash": "bb7c0e7651702d4b30660fd6c76b72f603d732405f89cb3b708c3c5b0963a0b8"
+    },
+    "arm64": {
+      "url": "https://github.com/OpenListTeam/OpenList/releases/download/beta/openlist-windows-arm64.zip",
+      "hash": "0bb8c213d0800925124e8edda7487e237e3d9a9db50f6f0af7101575cc46ab1d"
+    }
+  },
+  "bin": [
+    [
+      "openlist.exe",
+      "openlist",
+      "--force-bin-dir"
+    ]
+  ],
+  "persist": [
+    "data",
+    "log"
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/OpenListTeam/OpenList/releases",
+    "regex": "/releases/tag/([\\w.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/OpenListTeam/OpenList/releases/download/$version/openlist-windows-amd64.zip"
+      },
+      "32bit": {
+        "url": "https://github.com/OpenListTeam/OpenList/releases/download/$version/openlist-windows-386.zip"
+      },
+      "arm64": {
+        "url": "https://github.com/OpenListTeam/OpenList/releases/download/$version/openlist-windows-arm64.zip"
+      }
+    }
+  }
+}
