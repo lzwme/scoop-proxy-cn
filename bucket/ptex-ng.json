@@ -1,22 +1,23 @@
 {
-  "version": "3.14159265",
-  "license": "GPL-2.0-only",
+  "version": "20250706",
+  "license": "Unlicense",
   "homepage": "https://github.com/clerkma/ptex-ng",
   "description": "Asiatic pTeX",
   "architecture": {
     "64bit": {
-      "url": "https://aptex.oss-cn-beijing.aliyuncs.com/aptex-msvc-x86_64.zip",
-      "hash": "a410c687d3bc70faab7d080c3ff1d9f15a7d702b52c989c5829fea8f220a8db8",
-      "extract_dir": "aptex-msvc-x86_64"
-    },
-    "32bit": {
-      "url": "https://aptex.oss-cn-beijing.aliyuncs.com/aptex-msvc-x86.zip",
-      "hash": "d5b6b314768e92046f49b370f7e2d48c3f38c6405c909a5440bd4cbe6dd49720",
-      "extract_dir": "aptex-msvc-x86"
+      "url": "https://github.com/clerkma/ptex-ng/releases/download/20250706/ptex-ng-20250706-msvc-x64.zip",
+      "hash": "0871468ecfb93f241e61fb6d8aed623d867bbd074e84ca87724f59a9fcd45f73",
+      "extract_dir": "ptex-ng-20250706-msvc-x64"
     }
   },
-  "bin": [
-    "aptex.exe",
-    "lsotfea.exe"
-  ]
+  "bin": "ptex-ng.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/clerkma/ptex-ng/releases/download/$version/ptex-ng-$version-msvc-x64.zip",
+        "extract_dir": "ptex-ng-$version-msvc-x64"
+      }
+    }
+  }
 }
