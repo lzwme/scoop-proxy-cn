@@ -1,72 +1,34 @@
 {
-  "version": "3.0.4",
-  "description": "GIMP. GNU Image Manipulation Program",
-  "homepage": "https://www.gimp.org",
+  "homepage": "https://www.gimp.org/",
   "license": "GPL-3.0-only",
-  "changelog": "https://www.gimp.org/release-notes/",
-  "url": "https://download.gimp.org/mirror/pub/gimp/v3.0/windows/gimp-3.0.4-setup.exe",
-  "hash": "385e36fe577cbdbfc71ba79d6c046d6f4eaabc01effd7f067bf15fd98410b2a1",
-  "innosetup": true,
-  "installer": {
-    "script": [
-      "Push-Location \"$dir\"",
-      "Get-ChildItem -Filter '*.debug' -Recurse | Remove-Item -Recurse",
-      "if ($architecture -eq '64bit') {",
-      "   Rename-Item 'lib\\gimp\\2.0\\plug-ins\\twain\\twain,3.exe' 'twain.exe'",
-      "   Remove-Item 'lib\\gimp\\2.0\\plug-ins\\twain\\twain,1.exe'",
-      "   Get-ChildItem -Filter '*,1*' -Recurse | Rename-Item -NewName { $_.name -Replace ',\\d','' }",
-      "   Get-ChildItem -Filter '*,*' -Recurse | Remove-Item",
-      "} else {",
-      "   Rename-Item 'lib\\gimp\\2.0\\plug-ins\\twain\\twain,1.exe' 'twain.exe'",
-      "   Remove-Item 'lib\\gimp\\2.0\\plug-ins\\twain\\twain,3.exe'",
-      "   Get-ChildItem -Filter '*,1*' -Recurse | Remove-Item",
-      "   Get-ChildItem -Filter '*,*' -Recurse | Rename-Item -NewName { $_.name -Replace ',\\d','' }",
-      "}",
-      "$defpath = \"`nPATH=`${gimp_installation_dir}\\bin`n\"",
-      "$defenv = Get-Content 'lib\\gimp\\2.0\\environ\\default.env' -Raw",
-      "$defenv += $defpath",
-      "$defenv += \"PYTHONPATH=`${gimp_installation_dir}\\lib\\gimp\\2.0\\python;`${gimp_plug_in_dir}\\plug-ins\\python-console\"",
-      "$defenv | Set-Content 'lib\\gimp\\2.0\\environ\\default.env'",
-      "$pyenv = Get-Content 'lib\\gimp\\2.0\\environ\\pygimp.env' -Raw",
-      "$pyenv + '__COMPAT_LAYER=HIGHDPIAWARE' | Set-Content 'lib\\gimp\\2.0\\environ\\pygimp.env'",
-      "$pyint = Get-Content 'lib\\gimp\\2.0\\interpreters\\pygimp.interp' -Raw",
-      "$pyint = $pyint -Replace '(python|python2)=(.*)', \"`$1=$dir\\bin\\pythonw.exe\"",
-      "$pyint = $pyint -Replace 'py::python2', 'py::python'",
-      "$pyint | Set-Content 'lib\\gimp\\2.0\\interpreters\\pygimp.interp'",
-      "Pop-Location"
-    ]
-  },
+  "version": "3.0.4_Rev_2",
+  "url": "https://sourceforge.net/projects/portableapps/files/GIMP%20Portable/GIMPPortable_3.0.4_Rev_2.paf.exe#/dl.7z",
+  "hash": "sha1:5148e784f8aa666c7c12e7bcda7eaee491d6d86a",
   "bin": [
-    "bin\\gimp-console-2.10.exe",
     [
-      "bin\\gimp-console-2.10.exe",
-      "gimp-console"
-    ],
-    [
-      "bin\\gimp-console-2.10.exe",
-      "gimp"
-    ],
-    "bin\\gimptool-2.0.exe",
-    [
-      "bin\\gimptool-2.0.exe",
-      "gimptool"
+      "GIMPPortable.exe",
+      "GIMP"
     ]
   ],
   "shortcuts": [
     [
-      "bin\\gimp-2.10.exe",
+      "GIMPPortable.exe",
       "GIMP"
     ]
   ],
+  "persist": "Data",
+  "post_install": [
+    "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
+    "if(!(test-path \"$dir\\GIMPPortable.ini\")) {",
+    "   Copy-Item \"$dir\\Other\\Source\\AppNamePortable.ini\" \"$dir\\GIMPPortable.ini\"",
+    "   (Get-Content \"$dir\\GIMPPortable.ini\").replace('DisableSplashScreen=false', 'DisableSplashScreen=true') | Set-Content \"$dir\\GIMPPortable.ini\"",
+    "}"
+  ],
   "checkver": {
-    "url": "https://www.gimp.org/downloads/",
-    "regex": "gimp-(?<version>[\\d.]+)-setup(?<build>-\\d)?\\.exe",
-    "replace": "${version}${build}"
+    "url": "https://sourceforge.net/projects/portableapps/rss?path=/GIMP%20Portable",
+    "re": "/GIMP Portable/GIMPPortable_([\\d.]+(?:_Rev_[\\d.])?(?:-[\\d])?).paf.exe]]>"
   },
   "autoupdate": {
-    "url": "https://download.gimp.org/mirror/pub/gimp/v$majorVersion.$minorVersion/windows/gimp-$matchHead-setup$matchTail.exe",
-    "hash": {
-      "url": "$baseurl/SHA256SUMS"
-    }
+    "url": "https://sourceforge.net/projects/portableapps/files/GIMP%20Portable/GIMPPortable_$version.paf.exe#/dl.7z"
   }
 }
