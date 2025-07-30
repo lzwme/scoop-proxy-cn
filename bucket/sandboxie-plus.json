@@ -1,65 +1,42 @@
 {
-  "version": "1.16.1",
-  "description": "Sandboxie is a sandbox-based isolation software for 32-bit and 64-bit Windows NT-based operating systems.",
-  "homepage": "https://sandboxie-plus.com/",
-  "license": {
-    "identifier": "GPL-3.0-or-later",
-    "url": "https://github.com/sandboxie-plus/Sandboxie/raw/master/LICENSE"
-  },
-  "notes": "Get Sandboxie Classic if you have used Sandboxie for a long time and prefer a familiar environment over new features.",
-  "architecture": {
-    "64bit": {
-      "url": "https://github.com/sandboxie-plus/Sandboxie/releases/download/v1.16.1/Sandboxie-Plus-x64-v1.16.1.exe",
-      "hash": "5a53a412961ee6f3b3a80035be1eee3c9ea3cd5aaae8f8d5e2d34cab4840f90d"
-    },
-    "arm64": {
-      "url": "https://github.com/sandboxie-plus/Sandboxie/releases/download/v1.16.1/Sandboxie-Plus-ARM64-v1.16.1.exe",
-      "hash": "422fee57262e35a94e84d4d0c558dc8b4e0ea4cb42c557cce187d0e48f124422"
-    }
-  },
-  "innosetup": true,
+  "version": "1.16.2",
+  "description": "Sandboxie community maintained version",
+  "homepage": "https://github.com/sandboxie-plus/Sandboxie",
+  "license": "GNU General Public License v3.0",
+  "notes": "The shortcuts are located in \"C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\Sandboxie-Plus\\\"",
+  "url": "https://github.com/sandboxie-plus/Sandboxie/releases/download/v1.16.2/Sandboxie-Plus-x64-v1.16.2.exe",
+  "hash": "01a90b0b9cdbbacc6bf505f8e6630dd07dcaf6227860b3126e6fee3bdde387ae",
+  "pre_install": [
+    "# Copy or create files for persisting",
+    "if (!(Test-Path \"$persist_dir\\config.json\")) {",
+    "    if (Test-Path \"C:\\Windows\\Sandboxie.ini\") {",
+    "        Move-Item \"C:\\Windows\\Sandboxie.ini\" \"$dir\\Sandboxie.ini\"",
+    "    }",
+    "    else {",
+    "        New-Item \"$dir\\Sandboxie.ini\" -Type File | Out-Null",
+    "    }",
+    "}"
+  ],
   "installer": {
-    "script": [
-      "ensure \"$persist_dir\" | Out-Null",
-      "New-Item \"$env:LOCALAPPDATA\\Sandboxie-Plus\" -ItemType Junction -Target \"$persist_dir\" | Out-Null"
+    "args": [
+      "/verysilent",
+      "/nocancel",
+      "/norestart",
+      "/noicons",
+      "/dir=$dir"
     ]
   },
   "uninstaller": {
-    "script": "Remove-Item \"$env:LOCALAPPDATA\\Sandboxie-Plus\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
-  },
-  "shortcuts": [
-    [
-      "SandMan.exe",
-      "Sandboxie-Plus//Sandboxie-Plus"
-    ],
-    [
-      "Start.exe",
-      "Sandboxie-Plus//Run any program sandboxed",
-      "/box:__ask__ run_dialog"
-    ],
-    [
-      "Start.exe",
-      "Sandboxie-Plus//Run Web browser sandboxed",
-      "default_browser"
-    ],
-    [
-      "Start.exe",
-      "Sandboxie-Plus//Sandboxie Start Menu",
-      "/box:__ask__ start_menu"
+    "file": "unins000.exe",
+    "args": [
+      "/verysilent",
+      "/nocancel",
+      "/norestart"
     ]
-  ],
-  "checkver": {
-    "url": "https://api.github.com/repos/sandboxie-plus/Sandboxie/releases",
-    "regex": "releases/download/(?<tag>[vV]?[\\d.]+)/Sandboxie-Plus-x64-v([\\d.]+).exe"
   },
+  "persist": "Sandboxie.ini",
+  "checkver": "github",
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://github.com/sandboxie-plus/Sandboxie/releases/download/$matchTag/Sandboxie-Plus-x64-v$version.exe"
-      },
-      "arm64": {
-        "url": "https://github.com/sandboxie-plus/Sandboxie/releases/download/$matchTag/Sandboxie-Plus-ARM64-v$version.exe"
-      }
-    }
+    "url": "https://github.com/sandboxie-plus/Sandboxie/releases/download/v$version/Sandboxie-Plus-x64-v$matchHead.exe"
   }
 }
