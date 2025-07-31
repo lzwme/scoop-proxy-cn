@@ -1,12 +1,12 @@
 {
-  "version": "2.31.1",
+  "version": "2.32.0",
   "description": "腾讯元宝，腾讯的一款 AI 智能助手。An AI assistant by Tencent.",
   "homepage": "https://yuanbao.tencent.com/",
   "license": "Unknown",
   "architecture": {
     "64bit": {
-      "url": "https://cdn-hybrid-prod.hunyuan.tencent.com/Desktop/official/624b36a5d6d094edd0862c3a21d00b13/yuanbao_2.31.1.617_x64.exe#/dl.7z",
-      "hash": "506b6ada94d52df6fbea1d756d5a6b99a42a5e1ad8e70b3c9818e2fb17235b1a"
+      "url": "https://cdn-hybrid-prod.hunyuan.tencent.com/Desktop/official/7f683f82201d4ea78decc1f5de5c465c/yuanbao_2.32.0.612_x64.exe#/dl.7z",
+      "hash": "f44653a772d1830e863e814a2585fe4ca63e7cef7605b860b709955462a5a7d3"
     }
   },
   "pre_install": [
@@ -14,7 +14,6 @@
     "Expand-7zipArchive \"$dir\\app.7z\" \"$dir\"",
     "Remove-Item \"$dir\\`$PLUGINSDIR\",\"$dir\\app.7z\",\"$dir\\plugin_compress.ini\" -Force -Recurse",
     "$contentDir=Get-ChildItem -Name -Path \"$dir\" -Directory | Where-Object { $_ -match \"^\\d+(\\.\\d+)+$\" }",
-    "Write-Host \"\nContent directory: $contentDir\"",
     "7z.exe a -tzip -mx=6 \"$dir\\$contentDir\\content.pkg\" \"$dir\\$contentDir\\content.pkg.nsisbin\\*\" | Out-Null"
   ],
   "shortcuts": [
