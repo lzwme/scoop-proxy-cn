@@ -1,20 +1,34 @@
 {
-  "version": "63.1.0",
-  "description": "HEU KMS Activator",
+  "version": "63.2.0",
+  "description": "HEU KMS Activator, maintained by zbezj(知彼而知己).",
   "homepage": "https://github.com/zbezj/HEU_KMS_Activator",
-  "license": "Proprietary",
-  "url": "https://github.com/zbezj/HEU_KMS_Activator/releases/download/63.1.0/HEU_KMS_Activator_v63.1.0.rar",
-  "hash": "e27a66f172c6bfaef523ed429824393773770f058addcd8fa0af3aca34d68726",
-  "pre_install": "Get-ChildItem \"$dir\\HEU_KMS_Activator*.exe\" | Rename-Item -NewName 'HEU_KMS_Activator.exe' | Out-Null",
+  "license": {
+    "identifier": "Freeware"
+  },
+  "notes": [
+    "Author: zbezj, WeChat Official Accounts: HEU168",
+    "Do not use for commercial purposes, personal users are also limited to research, communication use, must be deleted within 24 hours, the use of genuine Windows and Office should be purchased from the regular channels."
+  ],
+  "url": "https://github.com/zbezj/HEU_KMS_Activator/releases/download/63.2.0/HEU_KMS_Activator_v63.2.0.iso#dl.zip_",
+  "hash": "c062c7ac31c269c8ca13300221259e9e35ef62606b53bdcd7ca40e548f731784",
+  "pre_install": [
+    "$7z=(Get-ChildItem $dir\\HEU_KMS_Activator_$version*).Name",
+    "7z x -pHEU168 $dir\\$7z $('-o' + $dir) | Out-Null",
+    "Rename-Item \"$dir\\HEU_KMS_Activator_*.exe\" \"HEU_KMS_Activator.exe\" -Force",
+    "Remove-Item \"$dir\\*dl.zip_\" -Force -ErrorAction SilentlyContinue"
+  ],
+  "bin": "HEU_KMS_Activator.exe",
   "shortcuts": [
     [
       "HEU_KMS_Activator.exe",
       "HEU KMS Activator"
     ]
   ],
-  "checkver": "github",
-  "autoupdate": {
-    "url": "https://github.com/zbezj/HEU_KMS_Activator/releases/download/$version/HEU_KMS_Activator_v$version.rar"
+  "checkver": {
+    "url": "https://api.github.com/repos/zbezj/HEU_KMS_Activator/releases",
+    "regex": "(?sm)browser_download_url.*?releases/download/([\\d.]+)/(?<file>HEU_KMS_Activator.*?\\.(?:zip|rar|iso))"
   },
-  "notes": "不得用于商业目的，个人用户也仅限于研究、交流使用，24 小时内务必删除，使用正版的 Windows 和 Office 应前往正规渠道购买"
+  "autoupdate": {
+    "url": "https://github.com/zbezj/HEU_KMS_Activator/releases/download/$version/$matchFile#dl.zip_"
+  }
 }
