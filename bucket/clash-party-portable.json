@@ -1,0 +1,62 @@
+{
+  "version": "1.8.6",
+  "description": "Another Mihomo GUI.",
+  "homepage": "https://mihomo.party/",
+  "license": {
+    "identifier": "GPL-3.0 license",
+    "url": "https://github.com/mihomo-party-org/clash-party#GPL-3.0-1-ov-file"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://ghfast.top/https://github.com/mihomo-party-org/clash-party/releases/download/v1.8.6/clash-party-windows-1.8.6-x64-portable.7z",
+      "hash": "27dd929126d8ccec464735c8eaec97ac5318e14a850ae630c4d93ec2756b837b"
+    },
+    "32bit": {
+      "url": "https://ghfast.top/https://github.com/mihomo-party-org/clash-party/releases/download/v1.8.6/clash-party-windows-1.8.6-ia32-portable.7z",
+      "hash": "622d0a5d89b71965f39bdfe5bf9f8e0a3d7f802ed6f1ff7493bb1c866e702795"
+    },
+    "arm64": {
+      "url": "https://ghfast.top/https://github.com/mihomo-party-org/clash-party/releases/download/v1.8.6/clash-party-windows-1.8.6-arm64-portable.7z",
+      "hash": "488a726bcd8b3a9e7318b2604bf100203c0ffd77cdf9d09cb06d83b87fab1a14"
+    }
+  },
+  "installer": {
+    "script": [
+      "# handle runtime cache",
+      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/AppsUtils.psm1)",
+      "Mount-ExternalRuntimeData -Source \"$persist_dir\" -Target \"$env:APPDATA\\mihomo-party\"",
+      "Remove-Module -Name AppsUtils"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/AppsUtils.psm1)",
+      "Dismount-ExternalRuntimeData -Target \"$env:APPDATA\\mihomo-party\"",
+      "Remove-Module -Name AppsUtils"
+    ]
+  },
+  "bin": "Clash Party.exe",
+  "shortcuts": [
+    [
+      "Clash Party.exe",
+      "Clash Party"
+    ]
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/mihomo-party-org/clash-party/releases",
+    "regex": "/releases/tag/v([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghfast.top/https://github.com/mihomo-party-org/clash-party/releases/download/v$version/clash-party-windows-$version-x64-portable.7z"
+      },
+      "32bit": {
+        "url": "https://ghfast.top/https://github.com/mihomo-party-org/clash-party/releases/download/v$version/clash-party-windows-$version-ia32-portable.7z"
+      },
+      "arm64": {
+        "url": "https://ghfast.top/https://github.com/mihomo-party-org/clash-party/releases/download/v$version/clash-party-windows-$version-arm64-portable.7z"
+      }
+    }
+  }
+}
