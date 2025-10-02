@@ -1,37 +1,20 @@
 {
-  "version": "2024-12-14",
-  "description": "a cross-platform image super-resolution tool",
-  "homepage": "https://github.com/TensoRaws/Final2x/releases",
+  "version": "3.0.0",
+  "description": "A cross-platform image super-resolution tool.",
+  "homepage": "https://github.com/EutropicAI/Final2x",
   "license": {
-    "identifier": "BSD-3-Clause license",
-    "url": "https://github.com/TensoRaws/Final2x/blob/main/LICENSE"
+    "identifier": "BSD-3-Clause",
+    "url": "https://github.com/EutropicAI/Final2x/blob/main/LICENSE"
   },
   "architecture": {
     "64bit": {
-      "url": "https://ghfast.top/https://github.com/TensoRaws/Final2x/releases/download/2024-12-14/Final2x-windows-x64-setup.exe#/dl.7z",
-      "hash": "e6ed8c4c154f6643dd6ee4c826cdd75df61551e1e95f03e018a9b1d0758bdf89",
-      "pre_install": [
-        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
-        "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$R0\" -Force -Recurse"
-      ]
+      "url": "https://ghfast.top/https://github.com/EutropicAI/Final2x/releases/download/2025-08-16/Final2x-windows-x64-unpacked.7z",
+      "hash": "0374359223b852a5632740fda11a1838d7c8741e55a622f4919d2dce476ec933"
     },
     "arm64": {
-      "url": "https://ghfast.top/https://github.com/TensoRaws/Final2x/releases/download/2024-12-14/Final2x-windows-arm64-setup.exe#/dl.7z",
-      "hash": "c22b1647afc0a3d4e706213b2f986772720479fc34c2bc0ef7060b268e3ab37f",
-      "pre_install": [
-        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-arm64.7z\" \"$dir\"",
-        "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$R0\" -Force -Recurse"
-      ]
+      "url": "https://ghfast.top/https://github.com/EutropicAI/Final2x/releases/download/2025-08-16/Final2x-windows-arm64-unpacked.7z",
+      "hash": "2798fd680e74cb5d724304181dc7cd2292d4799ba03cfaf40eca38048d95a552"
     }
-  },
-  "installer": {
-    "script": [
-      "ensure \"$persist_dir\" | Out-Null",
-      "New-Item \"$env:APPDATA\\Final2x\" -ItemType Junction -Target \"$persist_dir\" | Out-Null"
-    ]
-  },
-  "uninstaller": {
-    "script": "Remove-Item \"$env:APPDATA\\Final2x\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
   },
   "shortcuts": [
     [
@@ -40,17 +23,20 @@
     ]
   ],
   "checkver": {
-    "url": "https://api.github.com/repos/TensoRaws/Final2x/releases",
-    "jp": "$[*].assets[*].browser_download_url",
-    "regex": "/releases/download/([\\d-]+)/Final2x-windows-x64-setup\\.exe"
+    "url": "https://api.github.com/repositories/655489856/releases/latest",
+    "script": [
+      "$release = ConvertFrom-Json $page -ErrorAction Stop",
+      "$release.tag_name + ' ' + $release.name"
+    ],
+    "regex": "(?<tag>[\\d-]+) v(?<version>[\\d.]+)"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghfast.top/https://github.com/TensoRaws/Final2x/releases/download/$version/Final2x-windows-x64-setup.exe#/dl.7z"
+        "url": "https://ghfast.top/https://github.com/EutropicAI/Final2x/releases/download/$matchTag/Final2x-windows-x64-unpacked.7z"
       },
       "arm64": {
-        "url": "https://ghfast.top/https://github.com/TensoRaws/Final2x/releases/download/$version/Final2x-windows-arm64-setup.exe#/dl.7z"
+        "url": "https://ghfast.top/https://github.com/EutropicAI/Final2x/releases/download/$matchTag/Final2x-windows-arm64-unpacked.7z"
       }
     }
   }
