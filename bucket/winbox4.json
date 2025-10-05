@@ -1,0 +1,21 @@
+{
+  "version": "4.0beta30",
+  "description": "MikroTik RouterOS graphical application.",
+  "homepage": "https://mikrotik.com/",
+  "license": "Unknown",
+  "url": "https://download.mikrotik.com/routeros/winbox/4.0beta30/WinBox_Windows.zip",
+  "hash": "5b885654ac1622ccf98b0d3eef474879d936029e18459a63a4df07b3e16bdc81",
+  "shortcuts": [
+    [
+      "winbox.exe",
+      "Winbox 4.0"
+    ]
+  ],
+  "checkver": {
+    "url": "https://mikrotik.com/download",
+    "regex": "drop-winbox-[^\"]+\">WinBox ([^<]+)<"
+  },
+  "autoupdate": {
+    "url": "https://download.mikrotik.com/routeros/winbox/$version/WinBox_Windows.zip"
+  }
+}
