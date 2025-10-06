@@ -1,19 +1,18 @@
 {
-  "version": "1759539194",
+  "version": "1759625551",
   "description": "An open-source remote desktop software, written in Rust.",
   "homepage": "https://github.com/rustdesk/rustdesk",
   "license": "AGPL-3.0-only",
   "architecture": {
     "64bit": {
-      "url": "https://github.com/rustdesk/rustdesk/releases/download/nightly/rustdesk-1.4.2-x86_64.exe",
-      "hash": "3c935687b8be017183b87d8cf155cd570eded9b0378cf2e64b9c0b1c26dfe856"
+      "url": "https://github.com/rustdesk/rustdesk/releases/download/nightly/rustdesk-1.4.2-x86_64.exe#/RustDesk.exe",
+      "hash": "2dab4f6f1871dc8aaa3f6202f86ef3c8e84289f1492030ef77b29fd4a079e397"
     },
     "32bit": {
-      "url": "https://github.com/rustdesk/rustdesk/releases/download/nightly/rustdesk-1.4.2-x86-sciter.exe",
-      "hash": "d63d621cf6862788742440ba6012693db12c97503f7e03fd08de2cd39982c56b"
+      "url": "https://github.com/rustdesk/rustdesk/releases/download/nightly/rustdesk-1.4.2-x86-sciter.exe#/RustDesk.exe",
+      "hash": "6f170996b3ce2c0c62f337b6ca61ccaffb52107b8fe7318acea2f2e27fc92dcf"
     }
   },
-  "pre_install": "Get-ChildItem \"$dir\" 'rustdesk-*.exe' | Select-Object -First 1 | Rename-Item -NewName 'RustDesk.exe'",
   "shortcuts": [
     [
       "RustDesk.exe",
@@ -36,10 +35,10 @@
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://github.com/rustdesk/rustdesk/releases/download/nightly/rustdesk-$matchRelease-x86_64.exe"
+        "url": "https://github.com/rustdesk/rustdesk/releases/download/nightly/rustdesk-$matchRelease-x86_64.exe#/RustDesk.exe"
       },
       "32bit": {
-        "url": "https://github.com/rustdesk/rustdesk/releases/download/nightly/rustdesk-$matchRelease-x86-sciter.exe"
+        "url": "https://github.com/rustdesk/rustdesk/releases/download/nightly/rustdesk-$matchRelease-x86-sciter.exe#/RustDesk.exe"
       }
     }
   }
