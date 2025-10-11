@@ -1,47 +1,31 @@
 {
-  "version": "7.15.2",
-  "description": "A V2Ray client for Windows, support Xray core and v2fly core.",
+  "version": "7.14.12",
+  "description": "v2rayN (WPF-based, .NET 8 self-contained version) is a GUI client for V2Ray, with support for Xray, sing-box, and other compatible cores.",
   "homepage": "https://github.com/2dust/v2rayN",
-  "license": {
-    "identifier": "GPL-3.0-only",
-    "url": "https://github.com/2dust/v2rayN/raw/master/LICENSE"
+  "license": "GPL-3.0-only",
+  "suggest": {
+    "v2fly-core": "v2ray"
   },
-  "url": "https://ghfast.top/https://github.com/2dust/v2rayN/releases/download/7.15.2/v2rayN-windows-64-SelfContained.zip",
-  "hash": "4bb887001bbe03ebe06d64f06a11e8cbae3563301c2da64b584982b2cd706fac",
-  "extract_dir": "v2rayN-windows-64-SelfContained",
-  "pre_install": [
-    "if (!(Test-Path \"$persist_dir\\user-wininet.json\")) {",
-    "    New-Item -Path \"$dir\\user-wininet.json\" | Out-Null",
-    "}",
-    "if (Test-Path \"$persist_dir\\guiNConfig.json\") {",
-    "    Copy-Item \"$persist_dir\\guiNConfig.json\" \"$dir\\\" | Out-Null",
-    "}"
-  ],
-  "uninstaller": {
-    "script": [
-      "if (Test-Path \"$dir\\guiNConfig.json\") {",
-      "    ensure \"$persist_dir\" | Out-Null",
-      "    Copy-Item \"$dir\\guiNConfig.json\" \"$persist_dir\\\" | Out-Null",
-      "}"
-    ]
+  "architecture": {
+    "64bit": {
+      "url": "https://ghfast.top/https://github.com/2dust/v2rayN/releases/download/7.14.12/v2rayN-windows-64-SelfContained.zip",
+      "hash": "543c5ce62f32f4a73526c7fcec4bbab5766803620a5a9b5131c5c425fd9ab388",
+      "extract_dir": "v2rayN-windows-64-SelfContained"
+    }
   },
-  "bin": "v2rayN.exe",
   "shortcuts": [
     [
       "v2rayN.exe",
       "v2rayN"
     ]
   ],
-  "persist": [
-    "config.json",
-    "user-wininet.json",
-    "guiConfigs"
-  ],
-  "checkver": {
-    "url": "https://api.github.com/repos/2dust/v2rayN/releases?per_page=1",
-    "jsonpath": "$[0].tag_name"
-  },
+  "persist": "guiConfigs",
+  "checkver": "github",
   "autoupdate": {
-    "url": "https://ghfast.top/https://github.com/2dust/v2rayN/releases/download/$version/v2rayN-windows-64-SelfContained.zip"
+    "architecture": {
+      "64bit": {
+        "url": "https://ghfast.top/https://github.com/2dust/v2rayN/releases/download/$version/v2rayN-windows-64-SelfContained.zip"
+      }
+    }
   }
 }
