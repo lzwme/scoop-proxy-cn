@@ -1,18 +1,31 @@
 {
-  "version": "0.95",
-  "description": "Handy is an Atari Lynx Emulator for Windows 95/98/NT/2000.",
-  "homepage": "https://handy.sourceforge.net/",
-  "license": "Proprietary",
-  "url": "https://downloads.sourceforge.net/projects/handy/files/handy/Handy%200.95/Handy-0.95.zip",
-  "hash": "sha1:207192c56ca876754e4358855e6758ee2b3a3d32",
+  "version": "0.5.4",
+  "description": "A free, open source, and extensible speech-to-text application that works completely offline.",
+  "homepage": "https://handy.computer/",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/cjpais/Handy/releases/download/v0.5.4/Handy_0.5.4_x64-setup.exe#/dl.7z",
+      "hash": "f03e056abae530cb290562c0fefb97d0ab9850402493eaa823759ad13fde309f"
+    }
+  },
+  "installer": {
+    "script": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall*.exe\" -Force -Recurse"
+  },
   "shortcuts": [
     [
       "handy.exe",
       "Handy"
     ]
   ],
-  "checkver": "sourceforge",
+  "checkver": {
+    "github": "https://github.com/cjpais/Handy"
+  },
   "autoupdate": {
-    "url": "https://downloads.sourceforge.net/projects/handy/files/handy/Handy%20$version/Handy-$version.zip"
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/cjpais/Handy/releases/download/v$version/Handy_$version_x64-setup.exe#/dl.7z"
+      }
+    }
   }
 }
