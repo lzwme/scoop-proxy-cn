@@ -3,6 +3,11 @@
   "description": "Proof-of-origin token provider plugin for yt-dlp (Rust)",
   "homepage": "https://github.com/jim60105/bgutil-ytdlp-pot-provider-rs",
   "license": "GPL-3.0-only",
+  "suggest": {
+    "yt-dlp": "main/yt-dlp",
+    "yt-dlp-nightly": "versions/yt-dlp-nightly",
+    "yt-dlp-master": "versions/yt-dlp-master"
+  },
   "architecture": {
     "64bit": {
       "url": [
@@ -24,11 +29,7 @@
   },
   "pre_install": "$null = if (!(Test-Path \"$persist_dir$($cfg = '/config.toml')\")) { New-Item \"$dir$cfg\" }",
   "bin": "bgutil-pot.exe",
-  "suggest": {
-    "yt-dlp": "main/yt-dlp",
-    "yt-dlp-nightly": "versions/yt-dlp-nightly",
-    "yt-dlp-master": "versions/yt-dlp-master"
-  },
+  "persist": "config.toml",
   "checkver": "github",
   "autoupdate": {
     "architecture": {
