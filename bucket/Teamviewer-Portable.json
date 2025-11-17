@@ -1,24 +1,33 @@
 {
-  "version": "15.64.3",
-  "description": "TeamViewer. Software for remote control, desktop sharing, online meetings, web conferencing and file transfer between computers.",
+  "version": "15.71.4",
+  "description": "TeamViewer is proprietary computer software for remote control, desktop sharing and file transfer between computers.",
   "homepage": "https://www.teamviewer.com",
   "license": {
     "identifier": "Shareware",
     "url": "https://www.teamviewer.com/en/eula/"
   },
-  "changelog": "https://community.teamviewer.com/English/categories/change-logs-en",
   "url": "https://download.teamviewer.com/download/version_15x/TeamViewerPortable.zip",
-  "hash": "ddc33958a7a654ea9d712e45c5793f2a8b3fe6a09c27a4bb1f3231b35e3ff883",
+  "hash": "65127b306e8e69a650d391a0e0bdf2b2e83164ae9975ca7c6a6b5391a16e7b59",
   "shortcuts": [
     [
       "TeamViewer.exe",
-      "TeamViewer"
+      "TeamViewer Portable"
     ]
   ],
   "persist": "teamviewer.ini",
+  "uninstaller": {
+    "script": [
+      "if (Test-Path \"$dir\\rolloutfile.tv13\") {",
+      "    Write-Host 'Removing rolloutfile.tv13.' -f Yellow",
+      "    icacls \"$dir\\rolloutfile.tv13\" /reset",
+      "    Remove-Item \"$dir\\rolloutfile.tv13\" -Force",
+      "}"
+    ]
+  },
   "checkver": {
-    "url": "https://www.teamviewer.com/en/download/windows/",
-    "regex": "Current version:.*?([\\d.]+)"
+    "url": "https://api.github.com/repositories/197275551/contents/manifests/t/TeamViewer/TeamViewer",
+    "jsonpath": "$.[-2:].name",
+    "regex": "([\\d.]+)"
   },
   "autoupdate": {
     "url": "https://download.teamviewer.com/download/version_$majorVersionx/TeamViewerPortable.zip"
