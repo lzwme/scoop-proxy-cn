@@ -1,33 +1,34 @@
 {
-  "version": "53p",
-  "description": "Smart Activation Script, maintained by abbodi1406.",
+  "version": "0.52.0",
+  "description": "Open-source KMS script",
   "homepage": "https://github.com/abbodi1406/KMS_VL_ALL_AIO",
-  "license": "GPL-3.0-only",
-  "url": "https://github.com/abbodi1406/KMS_VL_ALL_AIO/releases/download/v0.53.0/KMS_VL_ALL_AIO-53p.7z#dl.7z_",
-  "hash": "30f0c5b58de3b96bbb9ac5a6ff052bd671d34e755cd96a267fa7ca989149e656",
-  "pre_install": [
-    "$7z=(Get-ChildItem $dir\\KMS_VL_ALL_AIO*).Name",
-    "7z x -p2023 $dir\\$7z $('-o' + $dir) | Out-Null"
+  "license": "GPL-3.0-or-later",
+  "url": "https://github.com/abbodi1406/KMS_VL_ALL_AIO/releases/download/v0.52.0/KMS_VL_ALL_AIO-52.7z#/dl-pw1234.7z_",
+  "notes": [
+    "Some of the antivirus softwares (e.g. Windows Defender) may detect the app as a malware.",
+    "In this case, close the antivirus protection before using it."
   ],
-  "post_install": "Remove-Item $dir\\*dl.7z_ -Force",
+  "pre_install": [
+    "$pw = $fname.Replace('dl-pw', '').Replace('.7z_', '')",
+    "Expand-7zipArchive \"$dir\\$fname\" \"$dir\" -Switches \"-p$pw\" -Removal | Out-Null"
+  ],
+  "hash": "5a4cd45cb16838dae0f09a54857734945ad3340717fe96a9f411441b70cf0c3a",
   "bin": "KMS_VL_ALL_AIO.cmd",
   "shortcuts": [
     [
       "KMS_VL_ALL_AIO.cmd",
-      "KMS VL ALL AIO"
+      "KMS_VL_ALL_AIO"
     ]
   ],
   "checkver": {
-    "url": "https://github.com/abbodi1406/KMS_VL_ALL_AIO/releases",
-    "regex": "(?sm)(<a href=\"/abbodi1406/KMS_VL_ALL_AIO/tree/v(?<ver>([\\d.]+)).*?File:([\\s]+)KMS_VL_ALL_AIO-(?<version>([\\d]+))(?<build>([a-z]*))\\.7z)",
-    "replace": "${version}${build}"
+    "url": "https://api.github.com/repos/abbodi1406/KMS_VL_ALL_AIO/releases/latest",
+    "regex": "(?sm)tag/v([\\d.]+).*?7z password: (?<pw>\\d+)"
   },
   "autoupdate": {
-    "url": "https://github.com/abbodi1406/KMS_VL_ALL_AIO/releases/download/v$matchVer/KMS_VL_ALL_AIO-$version.7z#dl.7z_",
+    "url": "https://github.com/abbodi1406/KMS_VL_ALL_AIO/releases/download/v$version/KMS_VL_ALL_AIO-$minorVersion.7z#/dl-pw$matchPw.7z_",
     "hash": {
-      "url": "https://github.com/abbodi1406/KMS_VL_ALL_AIO/releases",
-      "mode": "extract",
-      "regex": "SHA-256:([\\s]+$sha256)"
+      "url": "https://api.github.com/repos/abbodi1406/KMS_VL_ALL_AIO/releases/latest",
+      "regex": "SHA-256: $sha256"
     }
   }
 }
