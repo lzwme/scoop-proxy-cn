@@ -1,11 +1,11 @@
 {
-  "version": "1.3.2",
-  "description": "SM64 PC port that supports online multiplayer",
-  "homepage": "https://github.com/coop-deluxe/sm64coopdx",
-  "license": "Unknown",
+  "version": "2",
+  "description": "A PC port and coop mod of Super Mario 64",
+  "homepage": "https://sm64coopdx.com/",
+  "license": "Unlicense",
   "notes": [
-    "Follow the instructions on the screen to install the game contents.",
-    "The contents will be stored in %appdata%\\sm64coopdx"
+    "ATTENTION: sm64coopdx requires specific n64 rom(s) of Super Mario 64 to function.",
+    "Place the rom(s) in $persist_dir."
   ],
   "architecture": {
     "64bit": {
@@ -17,10 +17,19 @@
   "shortcuts": [
     [
       "sm64coopdx.exe",
-      "SM64 Coop Deluxe"
+      "sm64coopdx [win][sm64]"
     ]
   ],
-  "checkver": "github",
+  "persist": [
+    "mods",
+    "dynos",
+    "palettes"
+  ],
+  "checkver": {
+    "github": "https://github.com/coop-deluxe/sm64coopdx/",
+    "regex": "v(?<version>([\\d\\.]+))",
+    "replace": "${version}"
+  },
   "autoupdate": {
     "architecture": {
       "64bit": {
