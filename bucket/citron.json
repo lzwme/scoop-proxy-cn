@@ -1,0 +1,53 @@
+{
+  "version": "3f5587ea9",
+  "description": "Nintendo Switch Emulator",
+  "homepage": "https://github.com/Zephyron-Dev/Citron-CI",
+  "license": "GPL-3.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://ghfast.top/https://github.com/Zephyron-Dev/Citron-CI/releases/download/nightly-windows/Citron-windows-nightly-3f5587ea9-x64.zip",
+      "hash": "DF01E56217542DBDE0BA425F5DE84976405A923FC6C6F726DA95D285D6664B7E"
+    }
+  },
+  "pre_install": [
+    "",
+    "# Ensure user folder exists",
+    "if (-not (Test-Path \"$dir\\user\")) {",
+    "New-Item -ItemType Directory -Path \"$dir\\user\" -Force | Out-Null",
+    "}",
+    "$appDataPath = $env:APPDATA",
+    "$documentsPath = [Environment]::GetFolderPath('MyDocuments')",
+    "",
+    "# Migrate application data from common locations",
+    "$appDataPath, $documentsPath | ForEach-Object {",
+    "$path = if ($_ -eq $appDataPath) { \"$appDataPath\\citron\" } else { \"$documentsPath\\citron\" }",
+    "if (Test-Path $path) {",
+    "$items = Get-ChildItem -Path $path -Force",
+    "if ($items) {",
+    "Write-Host \"Migrating data from $path\"",
+    "$items | Copy-Item -Destination \"$dir\\portable_data\" -Recurse -Force -ErrorAction SilentlyContinue",
+    "}",
+    "}",
+    "}"
+  ],
+  "bin": "citron.exe",
+  "shortcuts": [
+    [
+      "citron.exe",
+      "Nintendo Switch [switch][citron]"
+    ]
+  ],
+  "persist": "user",
+  "checkver": {
+    "jp": "$.name",
+    "re": "Nightly: ([a-f0-9]+)",
+    "url": "https://api.github.com/repos/Zephyron-Dev/Citron-CI/releases/tags/nightly-windows"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://ghfast.top/https://github.com/Zephyron-Dev/Citron-CI/releases/download/nightly-windows/Citron-windows-nightly-$version-x64.zip"
+      }
+    }
+  }
+}
