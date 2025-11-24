@@ -5,8 +5,8 @@
   "license": "GPL-3.0",
   "architecture": {
     "64bit": {
-      "url": "https://github.com/Zephyron-Dev/Citron-CI/releases/download/nightly-windows/Citron-windows-nightly-3f5587ea9-x64.zip",
-      "hash": "DF01E56217542DBDE0BA425F5DE84976405A923FC6C6F726DA95D285D6664B7E"
+      "url": "https://github.com/Zephyron-Dev/Citron-CI/releases/download/nightly-windows/Citron-windows-nightly-c27533949-x64.zip",
+      "hash": "3B5185A4572B42CE986C2847B9C3DC46B460A7861898BB61E85D5C62752D999D"
     }
   },
   "pre_install": [
@@ -39,6 +39,8 @@
   ],
   "persist": "user",
   "checkver": {
+    "regex": "^citron:\\s*(?<date>\\d{4}-\\d{2}-\\d{2})-(?<commit>[a-f0-9]{7,40})",
+    "replace": "${commit}",
     "script": [
       "# Emit version as '<app>: <builddate>-<shortsha>'",
       "$app = 'citron'",
@@ -60,7 +62,7 @@
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://github.com/Zephyron-Dev/Citron-CI/releases/download/nightly-windows/Citron-windows-nightly-$version-x64.zip"
+        "url": "https://github.com/Zephyron-Dev/Citron-CI/releases/download/nightly-windows/Citron-windows-nightly-$matchCommit-x64.zip"
       }
     }
   }
