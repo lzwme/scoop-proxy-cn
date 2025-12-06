@@ -1,12 +1,12 @@
 {
-  "version": "2025-11-22-c27533949",
+  "version": "8701839b1",
   "description": "Nintendo Switch Emulator",
   "homepage": "https://github.com/Zephyron-Dev/Citron-CI",
   "license": "GPL-3.0",
   "architecture": {
     "64bit": {
-      "url": "https://github.com/Zephyron-Dev/Citron-CI/releases/download/nightly-windows/Citron-windows-nightly-c27533949-x64.zip",
-      "hash": "3B5185A4572B42CE986C2847B9C3DC46B460A7861898BB61E85D5C62752D999D"
+      "url": "https://github.com/Zephyron-Dev/Citron-CI/releases/download/nightly-windows/Citron-windows-nightly-8701839b1-x64.zip",
+      "hash": "5943d300a7fe2d2e7542310e236a97be58da6032704fe19d064625ec4ce09836"
     }
   },
   "pre_install": [
@@ -39,24 +39,23 @@
   ],
   "persist": "user",
   "checkver": {
-    "regex": "^citron:\\s*(?<date>\\d{4}-\\d{2}-\\d{2})-(?<commit>[a-f0-9]{7,40})",
+    "regex": "^citron:\\s*(?<commit>[a-f0-9]{7,40})",
     "replace": "${commit}",
     "script": [
-      "# Emit version as '<app>: <builddate>-<shortsha>'",
+      "# Emit version as 'citron: <shortsha>' by extracting the commit from the nightly release title",
       "$app = 'citron'",
       "$api = 'https://api.github.com/repos/Zephyron-Dev/Citron-CI/releases/tags/nightly-windows'",
       "$hdr = @{ 'User-Agent' = 'Mozilla/5.0' }",
       "try { $rel = Invoke-RestMethod -Uri $api -Headers $hdr -UseBasicParsing -ErrorAction Stop } catch { Write-Error 'api-failed'; exit 1 }",
+      "# Expect release name like: 'Windows Nightly: 8701839b1'",
+      "if ($rel.name -and ($rel.name -match 'Windows\\s+Nightly:\\s*([a-f0-9]{7,40})')) { Write-Output ($app + ': ' + $matches[1]); exit 0 }",
+      "# Fallback: try any hex blob in the release name/tag/assets",
       "$sha = $null",
-      "if ($rel.name -and $rel.name -match '([a-f0-9]{7,40})') { $sha = $matches[1] }",
-      "if (-not $sha -and $rel.tag_name -and $rel.tag_name -match '([a-f0-9]{7,40})') { $sha = $matches[1] }",
+      "if ($rel.name -and ($rel.name -match '([a-f0-9]{7,40})')) { $sha = $matches[1] }",
+      "if (-not $sha -and $rel.tag_name -and ($rel.tag_name -match '([a-f0-9]{7,40})')) { $sha = $matches[1] }",
       "if (-not $sha -and $rel.assets -and $rel.assets.Count -gt 0) { foreach ($a in $rel.assets) { if ($a.name -match '([a-f0-9]{7,40})') { $sha = $matches[1]; break } } }",
-      "$date = $null",
-      "if ($rel.published_at) { $date = (Get-Date $rel.published_at -Format 'yyyy-MM-dd') }",
-      "if (-not $date -and $rel.name -and $rel.name -match '(\\d{4}-\\d{2}-\\d{2})') { $date = (Get-Date $matches[1] -Format 'yyyy-MM-dd') }",
-      "if ($date -and $sha) { Write-Output ($app + ': ' + ($date + '-' + $sha)); exit 0 }",
       "if ($sha) { Write-Output ($app + ': ' + $sha); exit 0 }",
-      "Write-Error 'could not parse release metadata'"
+      "Write-Error 'could not parse nightly-windows release for commit'"
     ]
   },
   "autoupdate": {
