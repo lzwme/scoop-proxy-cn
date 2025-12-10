@@ -1,25 +1,30 @@
 {
-  "version": "1.29",
-  "description": "A simple image viewer. 一款简单的看图软件。",
-  "homepage": "https://github.com/jark006/jarkViewer",
+  "version": "1.30",
+  "description": "Simple, fast image viewer supporting static, animated, live, and RAW formats.",
+  "homepage": "https://github.com/jark006/JarkViewer",
   "license": {
-    "identifier": "MIT license",
-    "url": "https://github.com/jark006/jarkViewer#MIT-1-ov-file"
+    "identifier": "MIT",
+    "url": "https://github.com/jark006/JarkViewer/blob/main/LICENSE"
   },
-  "url": "https://github.com/jark006/jarkViewer/releases/download/v1.29/jarkViewer.exe",
-  "hash": "0665d91f671c63a584649dd3e7efefc7c095b24f5e16859bca3019506fe8aae1",
-  "bin": "jarkViewer.exe",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/jark006/JarkViewer/releases/download/v1.30/JarkViewer.exe",
+      "hash": "6555b9238d7d4607dbb54c05027e9617255dd5a8d96325f743e2d6fbfc45f63e"
+    }
+  },
+  "bin": "JarkViewer.exe",
   "shortcuts": [
     [
-      "jarkViewer.exe",
-      "jarkViewer"
+      "JarkViewer.exe",
+      "JarkViewer"
     ]
   ],
-  "checkver": {
-    "url": "https://api.github.com/repos/jark006/jarkViewer/releases",
-    "regex": "/releases/tag/v([\\d.]+)"
-  },
+  "checkver": "github",
   "autoupdate": {
-    "url": "https://github.com/jark006/jarkViewer/releases/download/v$version/jarkViewer.exe"
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/jark006/JarkViewer/releases/download/v$version/JarkViewer.exe"
+      }
+    }
   }
 }
