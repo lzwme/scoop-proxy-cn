@@ -1,41 +1,41 @@
 {
-  "version": "2025.3-253.29346.44",
-  "description": "Cross-Platform IDE for PHP by JetBrains. (Latest)",
-  "homepage": "https://www.jetbrains.com/phpstorm/",
+  "version": "2025.3-253.28294.335",
+  "description": "Cross-Platform IDE for C and C++ by JetBrains. (Latest)",
+  "homepage": "https://www.jetbrains.com/clion/",
   "license": {
     "identifier": "Proprietary",
     "url": "https://www.jetbrains.com/legal/docs/toolbox/license/"
   },
   "architecture": {
     "64bit": {
-      "url": "https://download.jetbrains.com/webide/PhpStorm-253.29346.44.exe#/dl.7z",
-      "hash": "580ef7764bcd5dc812f08b50928a37dcfa38b6f1a95017028d5e3d1bf48b677f",
+      "url": "https://download.jetbrains.com/cpp/CLion-2025.3.exe#/dl.7z",
+      "hash": "e133a267fd485669cff38395dffab273743b318254bb23d9ac2e17950f819e87",
       "bin": [
         [
-          "IDE\\bin\\phpstorm64.exe",
-          "phpstorm"
+          "IDE\\bin\\clion64.exe",
+          "clion"
         ]
       ],
       "shortcuts": [
         [
-          "IDE\\bin\\phpstorm64.exe",
-          "JetBrains\\PhpStorm (Latest)"
+          "IDE\\bin\\clion64.exe",
+          "JetBrains\\CLion (Latest)"
         ]
       ]
     },
     "arm64": {
-      "url": "https://download.jetbrains.com/webide/PhpStorm-253.29346.44-aarch64.exe#/dl.7z",
-      "hash": "d0a75cb2e54b92f7862ae7fe7b8d518fa913b2a48cdcc9fc4f6fc4826491b50f",
+      "url": "https://download.jetbrains.com/cpp/CLion-2025.3-aarch64.exe#/dl.7z",
+      "hash": "0b65c5050dc82a55c920cc5e1aa3001983d627013713a426f386c513d1050c8c",
       "bin": [
         [
-          "IDE\\bin\\phpstorm64.exe",
-          "phpstorm"
+          "IDE\\bin\\clion64.exe",
+          "clion"
         ]
       ],
       "shortcuts": [
         [
-          "IDE\\bin\\phpstorm64.exe",
-          "JetBrains\\PhpStorm (Latest)"
+          "IDE\\bin\\clion64.exe",
+          "JetBrains\\CLion (Latest)"
         ]
       ]
     }
@@ -49,16 +49,16 @@
   },
   "persist": [
     "IDE\\bin\\idea.properties",
-    "IDE\\bin\\phpstorm64.exe.vmoptions",
+    "IDE\\bin\\clion64.exe.vmoptions",
     "profile"
   ],
   "checkver": {
     "script": [
-      "$productCode = 'PS'",
+      "$productCode = 'CL'",
       "$releaseURL = 'https://data.services.jetbrains.com/products/releases?code={0}&latest=true&platform=zip&type={1}'",
       "$latestRelease = @('eap', 'rc', 'release') | ForEach-Object {",
-      "    $type = $_",
-      "    $url = $releaseURL -f $productCode, $type",
+      "    $releaseType = $_",
+      "    $url = $releaseURL -f $productCode, $releaseType",
       "    $response = Invoke-RestMethod -Uri $url -UseBasicParsing",
       "    [PSCustomObject]@{",
       "        version = ($response.$productCode)[0].majorVersion",

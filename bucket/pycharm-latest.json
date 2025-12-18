@@ -1,41 +1,46 @@
 {
-  "version": "2025.3-253.29346.44",
-  "description": "Cross-Platform IDE for PHP by JetBrains. (Latest)",
-  "homepage": "https://www.jetbrains.com/phpstorm/",
+  "version": "2025.3-253.29346.46",
+  "description": "Cross-Platform IDE for Python by JetBrains (Latest).",
+  "homepage": "https://www.jetbrains.com/pycharm/",
   "license": {
     "identifier": "Proprietary",
     "url": "https://www.jetbrains.com/legal/docs/toolbox/license/"
   },
+  "notes": [
+    "PyCharm Community Edition and Professional Edition have now been merged into a unified product.",
+    "PyCharm Community 2025.2 is the last standalone version available to existing users only.",
+    "For more information, see: https://blog.jetbrains.com/pycharm/2025/04/unified-pycharm/"
+  ],
   "architecture": {
     "64bit": {
-      "url": "https://download.jetbrains.com/webide/PhpStorm-253.29346.44.exe#/dl.7z",
-      "hash": "580ef7764bcd5dc812f08b50928a37dcfa38b6f1a95017028d5e3d1bf48b677f",
+      "url": "https://download.jetbrains.com/python/pycharm-253.29346.46.exe#/dl.7z",
+      "hash": "b04ecb9dadba9e67761e146791bcab70be9b2f8574d5da670ef0f86ce5b33883",
       "bin": [
         [
-          "IDE\\bin\\phpstorm64.exe",
-          "phpstorm"
+          "IDE\\bin\\pycharm64.exe",
+          "pycharm"
         ]
       ],
       "shortcuts": [
         [
-          "IDE\\bin\\phpstorm64.exe",
-          "JetBrains\\PhpStorm (Latest)"
+          "IDE\\bin\\pycharm64.exe",
+          "JetBrains\\PyCharm (Latest)"
         ]
       ]
     },
     "arm64": {
-      "url": "https://download.jetbrains.com/webide/PhpStorm-253.29346.44-aarch64.exe#/dl.7z",
-      "hash": "d0a75cb2e54b92f7862ae7fe7b8d518fa913b2a48cdcc9fc4f6fc4826491b50f",
+      "url": "https://download.jetbrains.com/python/pycharm-253.29346.46-aarch64.exe#/dl.7z",
+      "hash": "d04d45d2d50190821649ebce27abeaec9a7e52ca75ac701f3394ffc4cdc67005",
       "bin": [
         [
-          "IDE\\bin\\phpstorm64.exe",
-          "phpstorm"
+          "IDE\\bin\\pycharm64.exe",
+          "pycharm"
         ]
       ],
       "shortcuts": [
         [
-          "IDE\\bin\\phpstorm64.exe",
-          "JetBrains\\PhpStorm (Latest)"
+          "IDE\\bin\\pycharm64.exe",
+          "JetBrains\\PyCharm (Latest)"
         ]
       ]
     }
@@ -49,16 +54,16 @@
   },
   "persist": [
     "IDE\\bin\\idea.properties",
-    "IDE\\bin\\phpstorm64.exe.vmoptions",
+    "IDE\\bin\\pycharm64.exe.vmoptions",
     "profile"
   ],
   "checkver": {
     "script": [
-      "$productCode = 'PS'",
+      "$productCode = 'PCP'",
       "$releaseURL = 'https://data.services.jetbrains.com/products/releases?code={0}&latest=true&platform=zip&type={1}'",
       "$latestRelease = @('eap', 'rc', 'release') | ForEach-Object {",
-      "    $type = $_",
-      "    $url = $releaseURL -f $productCode, $type",
+      "    $releaseType = $_",
+      "    $url = $releaseURL -f $productCode, $releaseType",
       "    $response = Invoke-RestMethod -Uri $url -UseBasicParsing",
       "    [PSCustomObject]@{",
       "        version = ($response.$productCode)[0].majorVersion",

@@ -1,50 +1,46 @@
 {
-  "version": "7.57.6",
-  "description": "飞书",
+  "version": "7.58.8",
+  "description": "Connect with teammates anytime and anywhere",
   "homepage": "https://www.feishu.cn/",
   "license": {
-    "identifier": "Freeware"
+    "identifier": "EULA",
+    "url": "https://www.feishu.cn/en/terms"
   },
-  "shortcuts": [
-    [
-      "Feishu.exe",
-      "飞书"
-    ]
-  ],
   "architecture": {
     "64bit": {
-      "url": "https://sf3-cn.feishucdn.com/obj/ee-appcenter/9bb459b9/Feishu-win32_x64-7.57.6-signed.exe#/dl.7z",
-      "hash": "md5:b049c3847cbcc232c5f7491f9e0788e1"
+      "url": "https://sf3-cn.feishucdn.com/obj/ee-appcenter/ae136cc2/Feishu-win32_x64-7.58.8-signed.exe#/feishu-7.58.8.7z",
+      "hash": "md5:8b87e47d794fda6a0a86af8444788863"
     },
     "32bit": {
-      "url": "https://sf3-cn.feishucdn.com/obj/ee-appcenter/91e591eb/Feishu-win32_ia32-7.57.6-signed.exe#/dl.7z",
-      "hash": "md5:c41565949e722c3f340186541e71479f"
+      "url": "https://sf3-cn.feishucdn.com/obj/ee-appcenter/7a035a78/Feishu-win32_ia32-7.58.8-signed.exe#/feishu-7.58.8.7z",
+      "hash": "md5:fe5fd8aba7d0db3c9b741245352bc5db"
     }
   },
+  "extract_to": "app",
+  "shortcuts": [
+    [
+      "app/Feishu.exe",
+      "Feishu"
+    ]
+  ],
   "checkver": {
-    "script": [
-      "$url = 'https://www.feishu.cn/api/downloads'",
-      "$dl = cache_path 'feishu' 'unknown' $url",
-      "Invoke-WebRequest $url -OutFile $dl",
-      "$it = (parse_json $dl).versions[0]",
-      "$it.Windows_x64.download_link + '|' + $it.Windows.download_link"
-    ],
-    "regex": "/(?<xid>[\\d\\w]+)/Feishu-win32_x64.+\\|.+/(?<id>[\\d\\w]+)/Feishu-win32_ia32-([\\d\\.]+)\\-signed\\.exe"
+    "url": "https://www.feishu.cn/api/downloads",
+    "regex": "(?sm)Windows.*?https://(?<path>[\\w.-/].*?)/Feishu.*?-(?<version>[\\d.]+).*?.exe.*?Windows_x64.*?https://(?<pathx>[\\w.-/].*?)/Feishu"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://sf3-cn.feishucdn.com/obj/ee-appcenter/$matchXid/Feishu-win32_x64-$version-signed.exe#/dl.7z",
+        "url": "https://$matchPathx/Feishu-win32_x64-$version-signed.exe#/feishu-$version.7z",
         "hash": {
           "url": "https://www.feishu.cn/api/downloads",
-          "jp": "$.versions.Windows_x64.hash"
+          "jsonpath": "$.versions.Windows_x64.hash"
         }
       },
       "32bit": {
-        "url": "https://sf3-cn.feishucdn.com/obj/ee-appcenter/$matchId/Feishu-win32_ia32-$version-signed.exe#/dl.7z",
+        "url": "https://$matchPath/Feishu-win32_ia32-$version-signed.exe#/feishu-$version.7z",
         "hash": {
           "url": "https://www.feishu.cn/api/downloads",
-          "jp": "$.versions.Windows.hash"
+          "jsonpath": "$.versions.Windows.hash"
         }
       }
     }
