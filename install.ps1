@@ -88,33 +88,38 @@ function Write-InstallInfo {
     $host.UI.RawUI.ForegroundColor = $backup
 }
 
-function Deny-Install {
+function Exit-Install {
     param(
-        [String] $message,
-        [Int] $errorCode = 1
+        [Int] $ErrorCode = 1
     )
 
-    Write-InstallInfo -String $message -ForegroundColor DarkRed
-    Write-InstallInfo 'Abort.'
-
-    # Don't abort if invoked with iex that would close the PS session
     if ($IS_EXECUTED_FROM_IEX) {
+        # Don't abort with `exit` that would close the PS session if invoked
+        # with iex, yet set `LASTEXITCODE` for the caller to check
+        $Global:LASTEXITCODE = $ErrorCode
         break
     } else {
-        exit $errorCode
+        exit $ErrorCode
     }
+}
+
+function Deny-Install {
+    param(
+        [String] $Message,
+        [Int] $ErrorCode = 1
+    )
+
+    Write-InstallInfo -String $Message -ForegroundColor DarkRed
+    Write-InstallInfo 'Abort.'
+    Exit-Install -ErrorCode $ErrorCode
 }
 
 function Test-LanguageMode {
     if ($ExecutionContext.SessionState.LanguageMode -ne 'FullLanguage') {
+        # `Write-InstallInfo` cannot be used here as it depends on FullLanguage mode
         Write-Output 'Scoop requires PowerShell FullLanguage mode to run, current PowerShell environment is restricted.'
         Write-Output 'Abort.'
-
-        if ($IS_EXECUTED_FROM_IEX) {
-            break
-        } else {
-            exit $errorCode
-        }
+        Exit-Install
     }
 }
 
@@ -167,7 +172,7 @@ function Test-Prerequisite {
 
     # Test if scoop is installed, by checking if scoop command exists.
     if (Test-CommandAvailable('scoop')) {
-        Deny-Install "Scoop is already installed. Run 'scoop update' to get the latest version."
+        Deny-Install "Scoop is already installed. Run 'scoop update' to get the latest version." -ErrorCode 0
     }
 }
 
@@ -192,7 +197,7 @@ function Optimize-SecurityProtocol {
 function Get-Downloader {
     $downloadSession = New-Object System.Net.WebClient
 
-    # Set proxy to null if NoProxy is specificed
+    # Set proxy to null if NoProxy is specified
     if ($NoProxy) {
         $downloadSession.Proxy = $null
     } elseif ($Proxy) {
@@ -457,7 +462,7 @@ function Add-ShimsDirToPath {
         }
 
         if (!($h -eq '\')) {
-            $friendlyPath = "$SCOOP_SHIMS_DIR" -Replace ([Regex]::Escape($h)), '~\'
+            $friendlyPath = "$SCOOP_SHIMS_DIR" -replace ([Regex]::Escape($h)), '~\'
             Write-InstallInfo "Adding $friendlyPath to your path."
         } else {
             Write-InstallInfo "Adding $SCOOP_SHIMS_DIR to your path."
@@ -556,7 +561,7 @@ function Add-DefaultConfig {
         }
     }
 
-    # save current datatime to last_update
+    # save current datetime to last_update
     Add-Config -Name 'last_update' -Value ([System.DateTime]::Now.ToString('o')) | Out-Null
 }
 
@@ -593,18 +598,18 @@ function Install-Scoop {
             }
             Write-Verbose "Cloning $SCOOP_PACKAGE_GIT_REPO to $SCOOP_APP_DIR"
             git clone -q $SCOOP_PACKAGE_GIT_REPO $SCOOP_APP_DIR
-            if (-Not $?) {
+            if (-not $?) {
                 throw 'Cloning failed. Falling back to downloading zip files.'
             }
             Write-Verbose "Cloning $SCOOP_MAIN_BUCKET_GIT_REPO to $SCOOP_MAIN_BUCKET_DIR"
             git clone -q $SCOOP_MAIN_BUCKET_GIT_REPO $SCOOP_MAIN_BUCKET_DIR
-            if (-Not $?) {
+            if (-not $?) {
                 throw 'Cloning failed. Falling back to downloading zip files.'
             }
             $downloadZipsRequired = $False
         } catch {
             Write-Warning "$($_.Exception.Message)"
-            $Global:LastExitCode = 0
+            $Global:LASTEXITCODE = 0
         } finally {
             $env:HTTPS_PROXY = $old_https
             $env:HTTP_PROXY = $old_http
@@ -648,7 +653,7 @@ function Install-Scoop {
     }
     # Create the scoop shim
     Import-ScoopShim
-    # Finially ensure scoop shims is in the PATH
+    # Ensure scoop shims is in the PATH
     Add-ShimsDirToPath
     # Setup initial configuration of Scoop
     Add-DefaultConfig
