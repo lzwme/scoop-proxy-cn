@@ -1,41 +1,31 @@
 {
-  "version": "1.1.1",
-  "description": "1Remote is a modern personal remote session manager and launcher. It is a single place to manage all your remote sessions supporting number of different protocols.",
-  "homepage": "https://github.com/1Remote/1Remote",
-  "license": "GPL-3.0-only",
+  "version": "1.2.1",
+  "description": "One Remote Access Manager to Rule Them All",
+  "homepage": "https://1remote.github.io/",
+  "license": "GPL-3.0-or-later",
+  "notes": [
+    "config location: C:\\Users\\<your username>\\AppData\\Local\\PRemoteM",
+    "config location: C:\\Users\\<your username>\\\\AppData\\\\Roaming\\PRemoteM - https://github.com/ViCrack/scoop-bucket/blob/master/bucket/1remote.json"
+  ],
   "architecture": {
     "64bit": {
-      "url": "https://ghfast.top/https://github.com/1Remote/1Remote/releases/download/1.1.1/1Remote-1.1.1-net6-x64.zip",
-      "hash": "f39886422c034176cc40053aa8ee03a5b61ceb20de8149baf974c89880376770"
+      "url": "https://ghfast.top/https://github.com/1Remote/1Remote/releases/download/1.2.1/1Remote-1.2.1-net9-x64.zip",
+      "hash": "825ae0d6d6ed45dbb155ed809b976c2a7532578b124b3b55c0cfc6bfa3267411"
     }
   },
   "shortcuts": [
     [
-      "1Remote.exe",
-      "1Remote"
+      "PRemoteM.exe",
+      "PRemoteM"
     ]
   ],
-  "pre_install": [
-    "if (!(Test-Path \"$persist_dir\\1Remote.db\")) { Set-Content -Encoding ASCII -Path \"$dir\\1Remote.db\" -Value $null }",
-    "if (!(Test-Path \"$persist_dir\\1Remote.json\")) { Set-Content -Encoding ASCII -Path \"$dir\\1Remote.json\" -Value $null }",
-    "Set-Content -Path \"$dir\\FORCE_INTO_PORTABLE_MODE\" -Value \"rename to 'FORCE_INTO_APPDATA_MODE' can save to AppData\""
-  ],
-  "persist": [
-    "1Remote.db",
-    "1Remote.json",
-    ".locality",
-    ".logs",
-    "Protocols",
-    "kitty"
-  ],
   "checkver": {
-    "url": "https://github.com/1Remote/1Remote/releases.atom",
-    "regex": "Repository/\\d+/(.+?)<"
+    "github": "https://github.com/1Remote/1Remote"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghfast.top/https://github.com/1Remote/1Remote/releases/download/$version/1Remote-$version-net6-x64.zip"
+        "url": "https://ghfast.top/https://github.com/1Remote/1Remote/releases/download/$version/1Remote-$version-net9-x64.zip"
       }
     }
   }
