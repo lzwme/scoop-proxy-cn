@@ -17,7 +17,7 @@ export const CONFIG = {
   /** 是否仅同步，不处理 URL 镜像代理站替换 */
   onlySync: argv.includes('--only-sync'),
   tmpDir: path.resolve(rootDir, 'tmp'),
-  ghproxy: 'https://ghfast.top', // 'https://github.moeyy.xyz',
+  ghproxy: 'https://gh-proxy.org', // 'https://github.moeyy.xyz',
   // ghproxy: 'https://mirror.ghproxy.com',
   // ghproxy: 'https://www.ghproxy.cc',
   // ghproxy: 'https://ghps.cc',
@@ -25,7 +25,7 @@ export const CONFIG = {
   // ghproxy: 'https://gh.ddlc.top',
   // --- https://github-mirror.us.kg --- 大量个人部署的服务列表
   /** 已失效的历史地址；用于兼容其他仓库的，避免套娃问题 */
-  ghproxyInvalid: ['https://gh-proxy.com', 'https://ghproxy.com', 'https://mirror.ghproxy.com', 'https://ghp.ci', 'https://ghgo.xyz'],
+  ghproxyInvalid: ['https://gh-proxy.org', 'https://ghproxy.com', 'https://mirror.ghproxy.com', 'https://ghp.ci', 'https://ghgo.xyz'],
   /** 同步仓库列表，按仓库质量排序 */
   repo: new Set([
     // `duzyn/scoop-cn`, // 仅同步官方仓库，并修改为国内镜像地址
