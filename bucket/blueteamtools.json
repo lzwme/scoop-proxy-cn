@@ -10,7 +10,7 @@
       "java/openjdk"
     ]
   },
-  "url": "https://ghfast.top/https://github.com/abc123info/BlueTeamTools/releases/download/v3.58/BlueTeam_V3.58.zip",
+  "url": "https://gh-proxy.org/https://github.com/abc123info/BlueTeamTools/releases/download/v3.58/BlueTeam_V3.58.zip",
   "hash": "e87200d0017010ef9b3986e9fe14a9a5a1821e0883ece6eed41a89358367f813",
   "pre_install": "\n$batContent = @\"\n@echo off\nsetlocal EnableDelayedExpansion\n\nset \"jdk_path=\"\n\nfor %%J in (ORACLE_JDK_8_HOME JDK_8_HOME) do (\n    if defined %%J (\n        set \"jdk_path=!%%J!\\bin\\\"\n    )\n)\n\nif not defined jdk_path if defined JAVA_HOME (\n    set \"jdk_path=%JAVA_HOME%\\bin\\\"\n)\n\n@pushd %~dp0\n@start /B \"\" \"%jdk_path%javaw.exe\" -jar \"BlueTeam_ABC_123.jar\" %*\n@popd\n\nendlocal\n\"@\n\n$path = \"$dir/blueteamtools.bat\"\nSet-Content -Path $path -Value $batContent -Encoding Ascii\n",
   "bin": "blueteamtools.bat",
@@ -22,6 +22,6 @@
   ],
   "checkver": "github",
   "autoupdate": {
-    "url": "https://ghfast.top/https://github.com/abc123info/BlueTeamTools/releases/download/v$version/BlueTeam_V$version.zip"
+    "url": "https://gh-proxy.org/https://github.com/abc123info/BlueTeamTools/releases/download/v$version/BlueTeam_V$version.zip"
   }
 }
