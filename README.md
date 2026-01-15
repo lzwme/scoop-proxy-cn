@@ -3,7 +3,7 @@
 适合中国大陆用户使用的 [Scoop](https://scoop.sh) buckets 代理镜像库。从多个开源 `bucket` 仓库同步更新。其中：
 
 - `sync`分支(默认)： 同步多个仓库应用，但不作 ghproxy 代理修改处理。**适用于使用 gitee 国内修改版 scoop 的场景**
-- `main`分支：将从 `github release` 下载的应用地址修改为基于 `https://ghfast.top` 的代理下载地址。**由于代理地址经常会因失效而变动，并不稳定**
+- `main`分支：将从 `github release` 下载的应用地址修改为基于 `https://gh-proxy.org` 的代理下载地址。**由于代理地址经常会因失效而变动，并不稳定**
 
 ## Usage
 
@@ -64,7 +64,7 @@ scoop update
 
 ```bash
 # 添加代理
-scoop config URL_PROXY "https://scoop.201704.xyz"
+scoop config URL_PROXY "https://gh-proxy.org"
 
 # 删除代理
 scoop config rm URL_PROXY
@@ -78,10 +78,10 @@ scoop config rm URL_PROXY
 # install
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 # irm -useb get.scoop.sh | iex
-irm https://ghfast.top/raw.githubusercontent.com/lzwme/scoop-proxy-cn/main/install.ps1 | iex
+irm https://gh-proxy.org/raw.githubusercontent.com/lzwme/scoop-proxy-cn/main/install.ps1 | iex
 
 # config
-scoop config SCOOP_REPO https://ghfast.top/github.com/ScoopInstaller/Scoop
+scoop config SCOOP_REPO https://gh-proxy.org/github.com/ScoopInstaller/Scoop
 
 # add spc bucket
 scoop bucket add spc https://gitee.com/wlzwme/scoop-proxy-cn.git
@@ -131,7 +131,7 @@ scoop install scoop-search -s
 
 ```bash
 # 先更新 scoop repo
-scoop config scoop_repo https://ghfast.top/github.com/ScoopInstaller/Scoop.git
+scoop config scoop_repo https://gh-proxy.org/github.com/ScoopInstaller/Scoop.git
 
 # 方法一：更新 spc bucket repo
 git -C "$env:USERPROFILE\scoop\buckets\spc" remote set-url origin https://gitee.com/wlzwme/scoop-proxy-cn.git
