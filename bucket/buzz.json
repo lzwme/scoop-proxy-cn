@@ -1,49 +1,29 @@
 {
   "version": "1.4.3",
-  "description": "Buzz transcribes and translates audio offline on your personal computer. Powered by OpenAI's Whisper.",
-  "homepage": "https://buzzcaptions.com/",
-  "license": "MIT license",
-  "architecture": {
-    "64bit": {
-      "url": "https://gh-proxy.org/https://github.com/chidiwilliams/buzz/releases/download/v1.4.3/Buzz-1.4.3-windows.exe",
-      "hash": "85b5465f4d2cdee0d107e237de11f82d0f566fea63b7ed16c2c518508032fca0"
-    }
-  },
-  "innosetup": true,
+  "description": "Transcribes and translates audio offline on your personal computer.",
+  "homepage": "https://chidiwilliams.github.io/buzz",
+  "license": "MIT",
+  "url": "https://downloads.sourceforge.net/project/buzz-captions/Buzz-1.4.3-Windows-X64.zip",
+  "hash": "sha1:a6ef4f4ba6acbf564b691ec4c154bc1302c51177",
   "installer": {
-    "script": [
-      "# handle runtime cache",
-      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/AppsUtils.psm1)",
-      "Mount-ExternalRuntimeData -Source \"$persist_dir\\appdata\" -Target \"$env:LOCALAPPDATA\\Buzz\"",
-      "Mount-ExternalRuntimeData -Source \"$persist_dir\\model\\huggingface\" -Target \"$env:USERPROFILE\\.cache\\huggingface\"",
-      "Mount-ExternalRuntimeData -Source \"$persist_dir\\model\\whisper\" -Target \"$env:USERPROFILE\\.cache\\whisper\"",
-      "Remove-Module -Name AppsUtils"
+    "file": "Buzz-1.4.3-windows.exe",
+    "args": [
+      "/silent",
+      "/dir=$dir"
     ]
   },
   "uninstaller": {
-    "script": [
-      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/AppsUtils.psm1)",
-      "Dismount-ExternalRuntimeData -Target \"$env:LOCALAPPDATA\\Buzz\"",
-      "Dismount-ExternalRuntimeData -Target \"$env:USERPROFILE\\.cache\\huggingface\"",
-      "Dismount-ExternalRuntimeData -Target \"$env:USERPROFILE\\.cache\\whisper\"",
-      "Remove-Module -Name AppsUtils"
-    ]
+    "file": "unins000.exe",
+    "args": "/silent"
   },
-  "shortcuts": [
-    [
-      "Buzz.exe",
-      "Buzz"
-    ]
-  ],
+  "bin": "Buzz.exe",
   "checkver": {
-    "url": "https://api.github.com/repos/chidiwilliams/buzz/releases",
-    "regex": "(?sm)browser_download_url.*?releases/download/v([\\d.]+)/Buzz-([\\d.]+)-windows\\.exe"
+    "github": "https://github.com/chidiwilliams/buzz"
   },
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://gh-proxy.org/https://github.com/chidiwilliams/buzz/releases/download/v$version/Buzz-$version-windows.exe"
-      }
+    "url": "https://downloads.sourceforge.net/project/buzz-captions/Buzz-$version-Windows-X64.zip",
+    "installer": {
+      "file": "Buzz-$version-windows.exe"
     }
   }
 }
