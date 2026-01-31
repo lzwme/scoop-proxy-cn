@@ -1,28 +1,15 @@
 {
-  "version": "0.5.1",
-  "description": "Get BibTeX from a DOI — fast",
+  "version": "0.5.2",
+  "description": "Get BibTeX from a DOI — fast.",
   "homepage": "https://archisman-panigrahi.github.io/QuickBib/",
   "license": "GPL-3.0-only",
   "architecture": {
     "64bit": {
-      "url": "https://github.com/archisman-panigrahi/QuickBib/releases/download/v0.5.1/QuickBib-Installer-0.5.1.exe",
-      "hash": "a41304a4ab88e786fe69cafe847e532f3f69340a0315421404ba90e1a79323fa"
+      "url": "https://github.com/archisman-panigrahi/QuickBib/releases/download/v0.5.2/QuickBib-Windows-portable-v0.5.2.zip",
+      "hash": "ff7f00537b1cb9260f9991b8ef59249150d46ed45daf8293fa461be89812b4aa"
     }
   },
-  "installer": {
-    "script": [
-      "Expand-7ZipArchive \"$dir\\$fname\" \"$dir\\\" -Removal",
-      "$exeFiles = @(Get-ChildItem -Path \"$dir\" -Recurse -Name \"*.exe\" | Where-Object { $_ -match \"QuickBib\" -and $_ -notmatch \"uninst\" })",
-      "if ($exeFiles.Count -gt 0) {",
-      "    $actualExe = $exeFiles[0]",
-      "    if ($actualExe -ne 'QuickBib.exe') {",
-      "        Copy-Item \"$dir\\$actualExe\" \"$dir\\QuickBib.exe\"",
-      "    }",
-      "} else {",
-      "    throw \"Could not locate QuickBib executable after extraction\"",
-      "}"
-    ]
-  },
+  "bin": "QuickBib.exe",
   "shortcuts": [
     [
       "QuickBib.exe",
@@ -35,7 +22,7 @@
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://github.com/archisman-panigrahi/QuickBib/releases/download/v$version/QuickBib-Installer-$version.exe"
+        "url": "https://github.com/archisman-panigrahi/QuickBib/releases/download/v$version/QuickBib-Windows-portable-v$version.zip"
       }
     }
   }
