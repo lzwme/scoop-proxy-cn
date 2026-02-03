@@ -1,24 +1,16 @@
 {
   "version": "2.4.9.6",
-  "description": "An all-in-one, free screenshot tool with annotation, pinning, OCR and recording features.",
-  "homepage": "https://pixpin.com/",
-  "license": "Unknown",
-  "url": "https://download.pixpinapp.com/PixPin_intl_en-us_2.4.9.6.zip",
-  "hash": "f5d8048c0ca46ceab8e4a7a2bd9bc14c991824df36efddfe08677eee00efd9ec",
+  "homepage": "https://pixpin.cn/",
+  "description": "截图、录屏、OCR - 一款快速灵活的工具",
+  "license": "Freeware",
+  "architecture": {
+    "64bit": {
+      "url": "https://download.pixpin.cn/PixPin_cn_zh-cn_2.4.9.6.zip",
+      "hash": "983a35addfcad40f8e1e74f376e2cdc81979873d840860d4c639f5f177b840b5"
+    }
+  },
   "extract_dir": "PixPin",
-  "post_install": [
-    "$ConfigPath = Join-Path -Path \"$persist_dir\\Config\" -ChildPath \"PixPinConfig.json\"",
-    "if (-not (Test-Path $ConfigPath)) {",
-    "    $CurrentUnixTime = [int][Math]::Floor((Get-Date -Date (Get-Date).ToUniversalTime() -UFormat %s))",
-    "    $ConfigContent = @{",
-    "        'System.Update.UpgradeMode#s.win' = @{",
-    "            v = 0",
-    "            t = $CurrentUnixTime",
-    "        }",
-    "    }",
-    "    $ConfigContent | ConvertTo-Json -Depth 5 -Compress | Out-File -FilePath $ConfigPath -Encoding UTF8 -Force",
-    "}"
-  ],
+  "bin": "PixPin.exe",
   "shortcuts": [
     [
       "PixPin.exe",
@@ -28,14 +20,17 @@
   "persist": [
     "Config",
     "Data",
-    "History",
-    "Temp"
+    "History"
   ],
   "checkver": {
-    "url": "https://pixpin.com/download/",
-    "regex": "PixPin_intl_en-us_([\\d.]+)\\.zip"
+    "url": "https://pixpin.cn/download",
+    "regex": "PixPin_cn_zh-cn_([\\d\\.]+)\\.zip"
   },
   "autoupdate": {
-    "url": "https://download.pixpinapp.com/PixPin_intl_en-us_$version.zip"
+    "architecture": {
+      "64bit": {
+        "url": "https://download.pixpin.cn/PixPin_cn_zh-cn_$version.zip"
+      }
+    }
   }
 }
