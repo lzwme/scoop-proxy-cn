@@ -1,0 +1,38 @@
+{
+  "version": "0.7.4",
+  "description": "Lightweight multi-platform code editor designed for modern hardware with a focus on responsiveness and performance",
+  "homepage": "https://github.com/SpartanJ/ecode",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/SpartanJ/ecode/releases/download/ecode-0.7.4/ecode-windows-0.7.4-x86_64.zip",
+      "hash": "54c72df79e095bac24bf95bf2be2d1c597199c0b3bf7ee88fac1572f456216eb"
+    },
+    "arm64": {
+      "url": "https://github.com/SpartanJ/ecode/releases/download/ecode-0.7.4/ecode-windows-0.7.4-arm64.zip",
+      "hash": "c0c0842b7553c679f0d09177121c5406fc87c3842378d56c70ec3e30a02ef795"
+    }
+  },
+  "extract_dir": "ecode",
+  "bin": "ecode.exe",
+  "shortcuts": [
+    [
+      "ecode.exe",
+      "ecode"
+    ]
+  ],
+  "checkver": {
+    "url": "https://github.com/SpartanJ/ecode/releases/latest",
+    "regex": "/releases/tag/ecode-([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/SpartanJ/ecode/releases/download/ecode-$version/ecode-windows-$version-x86_64.zip"
+      },
+      "arm64": {
+        "url": "https://github.com/SpartanJ/ecode/releases/download/ecode-$version/ecode-windows-$version-arm64.zip"
+      }
+    }
+  }
+}

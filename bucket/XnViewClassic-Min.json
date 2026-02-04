@@ -1,0 +1,36 @@
+{
+  "version": "2.52.2",
+  "description": "Photo viewer, image resizer & batch converter",
+  "homepage": "https://www.xnview.com/en/xnview-classic/",
+  "license": "Freeware|Proprietary",
+  "url": "https://download.xnview.com/XnView-win-small.zip",
+  "hash": "ef2859a38a0b41ac4e227e6729271a23c742e5a431a20924f5a7748c733afd27",
+  "extract_dir": "XnView",
+  "pre_install": [
+    "if (Test-Path \"$persist_dir\\xnview.ini\" -PathType Container) {",
+    "    Remove-Item \"$persist_dir\\xnview.ini\" -Force -Recurse",
+    "}",
+    "if (!(Test-Path \"$persist_dir\\xnview.ini\")) {",
+    "   New-Item \"$dir\\xnview.ini\" -ItemType File | Out-Null",
+    "}"
+  ],
+  "bin": "xnview.exe",
+  "shortcuts": [
+    [
+      "xnview.exe",
+      "XnView"
+    ]
+  ],
+  "persist": [
+    "xnview.ini",
+    "category.db"
+  ],
+  "checkver": "Download <strong>XnView ([\\d.]+)</strong> for Windows",
+  "autoupdate": {
+    "url": "https://download.xnview.com/XnView-win-small.zip",
+    "hash": {
+      "url": "https://www.xnview.com/en/xnview-classic/",
+      "find": "XnView-win-small.zip: ($sha256)"
+    }
+  }
+}

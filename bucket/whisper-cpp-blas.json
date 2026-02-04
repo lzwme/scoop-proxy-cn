@@ -1,43 +1,42 @@
 {
-  "version": "1.6.0",
-  "description": "High-performance inference of OpenAI's Whisper automatic speech recognition (ASR) model",
+  "version": "1.8.3",
+  "description": "High-performance inference of OpenAI's Whisper automatic speech recognition (ASR) model accelerated by OpenBLAS",
   "homepage": "https://github.com/ggerganov/whisper.cpp",
   "license": "MIT",
   "notes": [
     "Whisper Model files are not included. You can download them here:",
     "https://huggingface.co/ggerganov/whisper.cpp/tree/main"
   ],
+  "bin": [
+    "whisper-bench.exe",
+    "whisper-command.exe",
+    "whisper-cli.exe",
+    "whisper-server.exe",
+    "whisper-stream.exe",
+    "whisper-talk-llama.exe",
+    "whisper-quantize.exe"
+  ],
   "architecture": {
     "64bit": {
-      "url": "https://ghfast.top/https://github.com/ggerganov/whisper.cpp/releases/download/v1.6.0/whisper-blas-clblast-bin-x64.zip",
-      "hash": "e4bc46173e33365ca8c281bcd9d81199822a7a9cc90b1b294d112af9420a8a5e"
+      "url": "https://github.com/ggerganov/whisper.cpp/releases/download/v1.8.3/whisper-bin-x64.zip",
+      "hash": "d824b1e37599f882b396e73f1ee0bfd5d0529f700314c48311dcbd00b803321d"
     },
     "32bit": {
-      "url": "https://ghfast.top/https://github.com/ggerganov/whisper.cpp/releases/download/v1.6.0/whisper-blas-bin-Win32.zip",
-      "hash": "9d591aa580e922329ae766562eca6ce0480d27dac5a0711a55e3f7fd46a277fa"
+      "url": "https://github.com/ggerganov/whisper.cpp/releases/download/v1.8.3/whisper-bin-Win32.zip",
+      "hash": "219dd423cd910b72e7794b9a17f578367ba815010afcff26e3d7b527b3c111fa"
     }
   },
-  "bin": [
-    "bench.exe",
-    "command.exe",
-    [
-      "main.exe",
-      "whisper"
-    ],
-    "stream.exe",
-    "talk.exe"
-  ],
+  "extract_dir": "Release",
   "checkver": {
-    "url": "https://api.github.com/repos/ggerganov/whisper.cpp/releases",
-    "regex": "(?sm)browser_download_url.*?releases/download/v([\\d.]+)/whisper-blas.*?\\.zip"
+    "github": "https://github.com/ggerganov/whisper.cpp"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghfast.top/https://github.com/ggerganov/whisper.cpp/releases/download/v$version/whisper-blas-clblast-bin-x64.zip"
+        "url": "https://github.com/ggerganov/whisper.cpp/releases/download/v$version/whisper-bin-x64.zip"
       },
       "32bit": {
-        "url": "https://ghfast.top/https://github.com/ggerganov/whisper.cpp/releases/download/v$version/whisper-blas-bin-Win32.zip"
+        "url": "https://github.com/ggerganov/whisper.cpp/releases/download/v$version/whisper-bin-Win32.zip"
       }
     }
   }

@@ -1,0 +1,27 @@
+{
+  "version": "0.8.2",
+  "homepage": "https://github.com/C5H12O5/TextGO",
+  "license": "A customizable text selection popup tool",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/C5H12O5/TextGO/releases/download/v0.8.2/TextGO_0.8.2_x64-setup.exe#/dl.7z",
+      "hash": "042785c1806acbef0c2c8361460047f5aa115a7b19a4eff5210e9a8753c64a3c"
+    }
+  },
+  "bin": "text-go.exe",
+  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
+  "shortcuts": [
+    [
+      "text-go.exe",
+      "TextGO"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/C5H12O5/TextGO/releases/download/v$version/TextGO_$version_x64-setup.exe#/dl.7z"
+      }
+    }
+  }
+}

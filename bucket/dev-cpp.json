@@ -1,20 +1,22 @@
 {
-  "homepage": "https://sourceforge.net/projects/orwelldevcpp/",
+  "version": "6.4.1",
   "description": "A free, portable, fast and simple C/C++ IDE",
-  "license": "GPL-2.0-only",
-  "version": "5.10",
-  "architecture": {
-    "64bit": {
-      "url": "https://downloads.sourceforge.net/project/orwelldevcpp/Portable%20Releases/Dev-Cpp%205.11%20TDM-GCC%20x64%204.9.2%20Portable.7z#/dl.7z",
-      "hash": "793e3e22f9df69fae4a04601626b9d16e1a89a5019cc486baaca60b4376773dd",
-      "extract_dir": "Dev-Cpp"
-    }
-  },
-  "persist": "config",
+  "homepage": "https://gitee.com/devcpp/devcpp",
+  "license": "GPL-2.0-or-later",
+  "hash": "3913a454a6339b93dad10c33ba7d33b49e78dcb61412cf26f9bcc41dc542af00",
+  "url": "https://gitee.com/devcpp/devcpp/releases/download/v6.4.1/Dev-Cpp-6.4.1-GCC-11.4.exe#/dl.7z",
+  "bin": "DevCppPortable.exe",
   "shortcuts": [
     [
-      "devcppPortable.exe",
+      "DevCppPortable.exe",
       "Dev-Cpp"
     ]
-  ]
+  ],
+  "checkver": {
+    "url": "https://gitee.com/devcpp/devcpp/releases/",
+    "regex": "/devcpp/devcpp/releases/download/v([\\d.]+)/Dev-Cpp-[\\d.]+-GCC-(?<GCC>[\\d.]+).exe"
+  },
+  "autoupdate": {
+    "url": "https://gitee.com/devcpp/devcpp/releases/download/v$version/Dev-Cpp-$version-GCC-$matchGCC.exe#/dl.7z"
+  }
 }

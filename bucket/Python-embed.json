@@ -1,0 +1,33 @@
+{
+  "homepage": "https://www.python.org/",
+  "license": "Python-2.0",
+  "version": "3.14.2",
+  "architecture": {
+    "64bit": {
+      "url": "https://www.python.org/ftp/python/3.14.2/python-3.14.2-embed-amd64.zip",
+      "hash": "md5:85a5dcd0350f7ca4e2876295b0b281e3"
+    },
+    "32bit": {
+      "url": "https://www.python.org/ftp/python/3.14.2/python-3.14.2-embed-win32.zip",
+      "hash": "md5:52ecb8b8c850066409d72b2c4976b415"
+    }
+  },
+  "checkver": {
+    "url": "https://www.python.org/downloads/windows/",
+    "re": "Latest Python 3 Release - Python ([\\d\\.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://www.python.org/ftp/python/$version/python-$version-embed-amd64.zip"
+      },
+      "32bit": {
+        "url": "https://www.python.org/ftp/python/$version/python-$version-embed-win32.zip"
+      }
+    },
+    "hash": {
+      "url": "https://www.python.org/downloads/release/python-$cleanVersion/",
+      "find": "(?sm)$basename.*?$md5"
+    }
+  }
+}

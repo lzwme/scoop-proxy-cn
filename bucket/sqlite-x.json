@@ -1,0 +1,35 @@
+{
+  "version": "1.2.3",
+  "description": "The minimalistic SQLite editor for non-programmers",
+  "homepage": "https://github.com/little-brother/sqlite-x",
+  "license": "GPL-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/little-brother/sqlite-x/releases/download/1.2.3/sqlite-x-x64.zip",
+      "hash": "f26e71aebbf3ecd047577808d905c4a73a6f500ef2a680ef669a158cc170cafa"
+    },
+    "32bit": {
+      "url": "https://github.com/little-brother/sqlite-x/releases/download/1.2.3/sqlite-x-x32.zip",
+      "hash": "ce345bd97b0ad5772078bdaca6575f963217c817aa0448087acc25db40d3d926"
+    }
+  },
+  "bin": "sqlite-x.exe",
+  "persist": "sqlite-x.ini",
+  "shortcuts": [
+    [
+      "sqlite-x.exe",
+      "SQLite-X"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/little-brother/sqlite-x/releases/download/$version/sqlite-x-x64.zip"
+      },
+      "32bit": {
+        "url": "https://github.com/little-brother/sqlite-x/releases/download/$version/sqlite-x-x32.zip"
+      }
+    }
+  }
+}

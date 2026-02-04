@@ -1,0 +1,18 @@
+{
+  "homepage": "https://www.jefftk.com/icdiff",
+  "license": "Python-2.0",
+  "version": "1.9.4",
+  "depends": "main/unzip",
+  "url": "https://github.com/jeffkaufman/icdiff/archive/release-1.9.4.zip",
+  "hash": "4f6ad1f9e1acc9b399651983751a86a1a349a246d611b4609ea17d281f34cf90",
+  "extract_dir": "icdiff-release-1.9.4",
+  "bin": "icdiff.bat",
+  "checkver": {
+    "url": "https://github.com/jeffkaufman/icdiff/tags",
+    "regex": "release-([\\d.]+)\">"
+  },
+  "autoupdate": {
+    "url": "https://github.com/jeffkaufman/icdiff/archive/release-$version.zip",
+    "extract_dir": "icdiff-release-$version"
+  }
+}
