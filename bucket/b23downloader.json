@@ -1,11 +1,8 @@
 {
-  "version": "0.9.5.8",
-  "description": "Download bilibili videos (contributed videos, fanfics, movies, courses), live streams, and comics.",
   "homepage": "https://github.com/vooidzero/B23Downloader",
-  "license": {
-    "identifier": "GPL-3.0-or-later",
-    "url": "https://github.com/vooidzero/B23Downloader/raw/main/LICENSE"
-  },
+  "description": "A GUI Bilibili downloader",
+  "license": "GPL-3.0-or-later",
+  "version": "0.9.5.8",
   "architecture": {
     "64bit": {
       "url": "https://gh-proxy.org/https://github.com/vooidzero/B23Downloader/releases/download/v0.9.5/B23Dld-v0.9.5.8-win10-64.zip",
@@ -13,6 +10,7 @@
       "extract_dir": "B23Dld-v0.9.5.8-win_64"
     }
   },
+  "bin": "B23Downloader.exe",
   "shortcuts": [
     [
       "B23Downloader.exe",
@@ -20,13 +18,13 @@
     ]
   ],
   "checkver": {
-    "url": "https://api.github.com/repos/vooidzero/B23Downloader/releases",
-    "regex": "releases/download/v(?<tag>[\\d.]+)/B23Dld-v([\\d.]+)-win10-64.zip"
+    "url": "https://github.com/vooidzero/B23Downloader/releases/latest",
+    "regex": "B23Dld-v([\\d.]+)-win10-64\\.zip"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://gh-proxy.org/https://github.com/vooidzero/B23Downloader/releases/download/v$matchTag/B23Dld-v$version-win10-64.zip",
+        "url": "https://gh-proxy.org/https://github.com/vooidzero/B23Downloader/releases/download/v$matchHead/B23Dld-v$version-win10-64.zip",
         "extract_dir": "B23Dld-v$version-win_64"
       }
     }

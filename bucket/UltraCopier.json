@@ -1,0 +1,34 @@
+{
+  "homepage": "https://ultracopier.herman-brule.com/",
+  "license": "GPL-3.0-only",
+  "version": "3.0.1.5",
+  "architecture": {
+    "64bit": {
+      "url": "https://cdn.confiared.com/ultracopier.herman-brule.com/files/3.0.1.5/ultracopier-windows-x86_64-3.0.1.5-setup.exe#/dl.7z",
+      "hash": "357a06c9280b481c83a0bd9fb59b75334ec4321f852d60f8cbdefd87147692db"
+    },
+    "32bit": {
+      "url": "https://cdn.confiared.com/ultracopier.herman-brule.com/files/3.0.1.5/ultracopier-windows-x86-3.0.1.5-setup.exe#/dl.7z",
+      "hash": "225fbadc39fd9e44b7bf09fca41f03ffafe7093dc3ec88c1c624c876fcca38de"
+    }
+  },
+  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$R0\" -Force -Recurse",
+  "bin": "ultracopier.exe",
+  "shortcuts": [
+    [
+      "ultracopier.exe",
+      "UltraCopier"
+    ]
+  ],
+  "checkver": "ultracopier-windows-x86_64-([\\d.]+)-setup.exe",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://cdn.confiared.com/ultracopier.herman-brule.com/files/$version/ultracopier-windows-x86_64-$version-setup.exe#/dl.7z"
+      },
+      "32bit": {
+        "url": "https://cdn.confiared.com/ultracopier.herman-brule.com/files/$version/ultracopier-windows-x86-$version-setup.exe#/dl.7z"
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "version": "20.26.0.0",
+  "descrition": "A high performance and powerful image viewing, processing and editing software",
+  "homepage": "http://colorstormgarden.com/en/products/",
+  "license": "freeware",
+  "url": "http://colorstormgarden.com/downloads/ColorStormPro.zip",
+  "hash": "91c1955510a00fbe7374349ed2fb0bff4961790ba67c895ad496f90c392fba35",
+  "extract_dir": "ColorStorm",
+  "pre_install": [
+    "$file = 'ColorStorm.xml'",
+    "if (!(Test-Path \"$persist_dir\\$file\")) {",
+    "    $CONT = @('<?xml version=\"1.0\" encoding=\"UTF-8\"?>', '<key>', '<vals>', '<val id=\"SettingMode\">2</val>', '<vals>', '<key>')",
+    "    Set-Content \"$dir\\$file\" ($CONT -join \"`r`n\") -Encoding Ascii",
+    "}"
+  ],
+  "persist": "ColorStorm.xml",
+  "shortcuts": [
+    [
+      "ColorStorm.exe",
+      "ColorStorm Pro"
+    ]
+  ],
+  "checkver": {
+    "url": "http://colorstormgarden.com/en/downloads/",
+    "regex": "id=version>([\\d.]+)</div>"
+  },
+  "autoupdate": {
+    "url": "http://colorstormgarden.com/downloads/ColorStormPro.zip"
+  }
+}

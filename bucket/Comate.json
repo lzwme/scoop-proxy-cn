@@ -1,0 +1,47 @@
+{
+  "version": "0.12.4",
+  "description": "An AI-powered IDE",
+  "homepage": "https://comate.baidu.com/",
+  "license": "Proprietary",
+  "architecture": {
+    "64bit": {
+      "url": "https://comate-ide.cdn.bcebos.com/download/stable/0352392fed28926f8525884d2d39da0ec984af09-238975241/Comate-win32-x64.zip",
+      "hash": "5b8207fa74642f7b263fb33acba404185d2c18a1aec0065714cf43b648dd39d6",
+      "extract_dir": "VSCode-win32-x64"
+    },
+    "arm64": {
+      "url": "https://comate-ide.cdn.bcebos.com/download/stable/0352392fed28926f8525884d2d39da0ec984af09-238975241/Comate-win32-arm64.zip",
+      "hash": "74eb11de69b89b7bd897d0a1315b46b5f0e241248481c2c8de30e4d5a5249dab",
+      "extract_dir": "VSCode-win32-arm64"
+    }
+  },
+  "post_install": [
+    "if (!(Test-Path \"$dir\\data\\extensions\") -and (Test-Path \"$env:USERPROFILE\\.comate\\extensions\")) {",
+    "    info '[Portable Mode] Copying extensions...'",
+    "    Copy-Item \"$env:USERPROFILE\\.comate\\extensions\" \"$dir\\data\" -Recurse",
+    "}",
+    "if (!(Test-Path \"$dir\\data\\user-data\") -and (Test-Path \"$env:AppData\\Comate\")) {",
+    "    info '[Portable Mode] Copying user data...'",
+    "    Copy-Item \"$env:AppData\\Comate\" \"$dir\\data\\user-data\" -Recurse",
+    "}",
+    "$extensions_file = \"$dir\\data\\extensions\\extensions.json\"",
+    "if ((Test-Path \"$extensions_file\")) {",
+    "    info 'Adjusting path in extensions file...'",
+    "    (Get-Content \"$extensions_file\") -replace '(?<=comate(/|\\\\\\\\)).*?(?=(/|\\\\\\\\)data(/|\\\\\\\\)extensions)', $version | Set-Content \"$extensions_file\"",
+    "}"
+  ],
+  "bin": [
+    [
+      "bin/Comate.cmd",
+      "comate"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "Comate.exe",
+      "Comate",
+      "--user-data-dir=\"$dir\\data\\user-data\" --extensions-dir=\"$dir\\data\\extensions\""
+    ]
+  ],
+  "persist": "data"
+}

@@ -1,51 +1,25 @@
 {
   "version": "0.2.0",
-  "description": "Alist Helper is an application developed using Flutter, designed to simplify the use of the desktop version of alist. It can manage alist, allowing you to easily start and stop the alist program.",
+  "description": "An application to simplify the use of the desktop version of alist",
   "homepage": "https://github.com/Xmarmalade/alisthelper",
-  "license": {
-    "identifier": "GPL-3.0 license",
-    "url": "https://github.com/Xmarmalade/alisthelper/blob/master/LICENSE"
-  },
-  "suggest": {
-    "alist": "alist"
-  },
-  "notes": "Show alist working directory by 'scoop prefix alist'",
+  "license": "GPL-3.0-or-later",
   "architecture": {
     "64bit": {
-      "url": "https://gh-proxy.org/https://github.com/Xmarmalade/alisthelper/releases/download/v0.2.0/AlistHelper_installer_v0.2.0_windows-x86_64.exe",
-      "hash": "fcb203cc7d27276b8daf176e96f9c50ff23381257eb371048732680816aeaa9c"
+      "url": "https://gh-proxy.org/https://github.com/Xmarmalade/alisthelper/releases/download/v0.2.0/AlistHelper_v0.2.0_windows-x86_64.zip",
+      "hash": "84270d6dc82a61d45ec701f8a53354d8a23644797cea1da51a1a8def824d6440"
     }
-  },
-  "innosetup": true,
-  "installer": {
-    "script": [
-      "# handle runtime cache",
-      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/AppsUtils.psm1)",
-      "Mount-ExternalRuntimeData -Source \"$persist_dir\\appdata\" -Target \"$env:APPDATA\\dev.xmarmalade.alisthelper\"",
-      "Remove-Module -Name AppsUtils"
-    ]
-  },
-  "uninstaller": {
-    "script": [
-      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/AppsUtils.psm1)",
-      "Dismount-ExternalRuntimeData -Target \"$env:APPDATA\\dev.xmarmalade.alisthelper\"",
-      "Remove-Module -Name AppsUtils"
-    ]
   },
   "shortcuts": [
     [
-      "alisthelper.exe",
+      "alisthelper.exe.exe",
       "Alist Helper"
     ]
   ],
-  "checkver": {
-    "url": "https://api.github.com/repos/Xmarmalade/alisthelper/releases",
-    "regex": "(?sm)browser_download_url.*?releases/download/v([\\d.]+)/AlistHelper_installer_v([\\d.]+)_windows-x86_64\\.exe"
-  },
+  "checkver": "github",
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://gh-proxy.org/https://github.com/Xmarmalade/alisthelper/releases/download/v$version/AlistHelper_installer_v$version_windows-x86_64.exe"
+        "url": "https://gh-proxy.org/https://github.com/Xmarmalade/alisthelper/releases/download/v$version/AlistHelper_v$version_windows-x86_64.zip"
       }
     }
   }

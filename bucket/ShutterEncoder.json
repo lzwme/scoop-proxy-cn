@@ -1,0 +1,37 @@
+{
+  "version": "19.7",
+  "description": "A video converter",
+  "homepage": "https://www.shutterencoder.com/",
+  "license": "freeware",
+  "architecture": {
+    "64bit": {
+      "url": "https://www.shutterencoder.com/old%20versions/Windows/Shutter%20Encoder%2019.7%20Windows%2064bits.zip",
+      "hash": "a22207c759160a890f59fe30e2c156c34c6e94483cb124176e0a916549233cf9",
+      "extract_dir": "Shutter Encoder 19.7 Windows 64bits"
+    },
+    "32bit": {
+      "url": "https://www.shutterencoder.com/old%20versions/Windows/Shutter%20Encoder%2017.1%20Windows%2032bits.zip",
+      "hash": "",
+      "extract_dir": "Shutter Encoder 17.1 Windows 32bits"
+    }
+  },
+  "bin": "Shutter Encoder.exe",
+  "shortcuts": [
+    [
+      "Shutter Encoder.exe",
+      "Shutter Encoder"
+    ]
+  ],
+  "checkver": {
+    "url": "https://www.shutterencoder.com/old%20versions/Windows/",
+    "regex": "Shutter Encoder ([\\d.]+) Windows 64bits.zip"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://www.shutterencoder.com/old%20versions/Windows/Shutter%20Encoder%20$version%20Windows%2064bits.zip",
+        "extract_dir": "Shutter Encoder $version Windows 64bits"
+      }
+    }
+  }
+}

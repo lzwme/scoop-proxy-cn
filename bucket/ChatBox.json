@@ -1,53 +1,37 @@
 {
-  "version": "0.10.4",
-  "description": "A desktop app for ChatGPT API (OpenAI API) that supports Windows, Mac & Linux. 开源的ChatGPT桌面应用，prompt 开发神器，全平台支持",
-  "homepage": "https://github.com/Bin-Huang/chatbox",
-  "license": {
-    "identifier": "GPL-3.0 license",
-    "url": "https://github.com/Bin-Huang/chatbox/blob/main/LICENSE"
-  },
-  "url": "https://gh-proxy.org/https://github.com/Bin-Huang/chatbox/releases/download/v0.10.4/Chatbox.CE-0.10.4-Setup.exe#/dl.7z",
-  "hash": "ec5d0eefd92562fa7b2c5ab6ee7b4746567258ff58cb0de1f43721e7c1210b8e",
+  "version": "1.18.4",
+  "description": "User-friendly Desktop Client App for AI Models/LLMs",
+  "homepage": "https://chatboxai.app/",
+  "license": "GPL-3.0-or-later",
   "architecture": {
     "64bit": {
-      "pre_install": [
-        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
-        "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$R0\" -Force -Recurse"
-      ]
-    },
-    "arm64": {
-      "pre_install": [
-        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-arm64.7z\" \"$dir\"",
-        "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$R0\" -Force -Recurse"
-      ]
+      "url": "https://download.chatboxai.app/releases/Chatbox-1.18.4-Setup.exe",
+      "hash": "0234cd327365c9c235971f306449254eef4ac15019b58c6fa610c387fe0e6f0c"
     }
   },
   "installer": {
     "script": [
-      "# handle runtime cache",
-      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/AppsUtils.psm1)",
-      "Mount-ExternalRuntimeData -Source \"$persist_dir\" -Target \"$env:APPDATA\\xyz.chatboxapp.ce\"",
-      "Remove-Module -Name AppsUtils"
-    ]
-  },
-  "uninstaller": {
-    "script": [
-      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/AppsUtils.psm1)",
-      "Dismount-ExternalRuntimeData -Target \"$env:APPDATA\\xyz.chatboxapp.ce\"",
-      "Remove-Module -Name AppsUtils"
+      "$file = (Get-ChildItem \"$dir\" 'Chatbox*.exe' | Select-Object -First 1).FullName",
+      "Expand-7ZipArchive \"$file\" \"$dir\\\" -Removal",
+      "Expand-7ZipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\" -Removal",
+      "Remove-Item \"$dir\\`$PLUGINSDIR\",\"$dir\\`$R0\"  -Force -Recurse"
     ]
   },
   "shortcuts": [
     [
-      "Chatbox CE.exe",
-      "Chatbox CE"
+      "Chatbox.exe",
+      "Chatbox"
     ]
   ],
   "checkver": {
-    "url": "https://api.github.com/repos/Bin-Huang/chatbox/releases",
-    "regex": "/releases/download/v([\\d.]+)/(?<file>Chatbox(?:-|.)CE-([\\d.]+)-Setup\\.exe)"
+    "url": "https://chatboxai.app/help-center/changelog",
+    "regex": "<h2>v([\\d.]+) - \\d{4}.\\d{2}.\\d{2}</h2>"
   },
   "autoupdate": {
-    "url": "https://gh-proxy.org/https://github.com/Bin-Huang/chatbox/releases/download/v$version/$matchFile#/dl.7z"
+    "architecture": {
+      "64bit": {
+        "url": "https://download.chatboxai.app/releases/Chatbox-$version-Setup.exe"
+      }
+    }
   }
 }

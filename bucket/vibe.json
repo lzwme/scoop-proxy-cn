@@ -1,35 +1,36 @@
 {
-  "version": "2.6.3",
-  "description": "transcribe almost every language offline",
-  "homepage": "https://github.com/thewh1teagle/vibe",
+  "version": "3.0.5",
+  "description": "Transcribe almost any languages",
+  "homepage": "https://thewh1teagle.github.io/vibe/",
   "license": "MIT",
   "architecture": {
     "64bit": {
-      "url": "https://ghfast.top/https://github.com/thewh1teagle/vibe/releases/download/v2.6.3/vibe_2.6.3_x64-setup.exe#/dl.7z",
-      "hash": "18f16e42b5ff9632659f0bd2dbf550e40db4a14eacc9766827708d3869d566c6",
-      "installer": {
-        "script": [
-          "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Unins*\" -Force -Recurse"
-        ]
-      },
-      "bin": [
-        [
-          "vibe.exe"
-        ]
-      ],
-      "shortcuts": [
-        [
-          "vibe.exe",
-          "vibe"
-        ]
-      ]
+      "url": "https://gh-proxy.org/https://github.com/thewh1teagle/vibe/releases/download/v3.0.5/vibe_3.0.5_x64-setup.exe#/dl.7z",
+      "hash": "d3ce37c6cf7ec791eeca789dd8b9689c29457631c86345bc5d1df28bbb67eaa1"
+    },
+    "arm64": {
+      "url": "https://gh-proxy.org/https://github.com/thewh1teagle/vibe/releases/download/v3.0.5/vibe_3.0.5_arm64-setup.exe#/dl.7z",
+      "hash": "74de3c7fe8655e9de47a3fd39472a44b088b1bac9c37abc7e728905674e1cee0"
     }
   },
-  "checkver": "github",
+  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall.exe\" -Force -Recurse",
+  "bin": "vibe.exe",
+  "shortcuts": [
+    [
+      "vibe.exe",
+      "Vibe Transcribe"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/thewh1teagle/vibe"
+  },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://ghfast.top/https://github.com/thewh1teagle/vibe/releases/download/v$version/vibe_${version}_x64-setup.exe#/dl.7z"
+        "url": "https://gh-proxy.org/https://github.com/thewh1teagle/vibe/releases/download/v$version/vibe_$version_x64-setup.exe#/dl.7z"
+      },
+      "arm64": {
+        "url": "https://gh-proxy.org/https://github.com/thewh1teagle/vibe/releases/download/v$version/vibe_$version_arm64-setup.exe#/dl.7z"
       }
     }
   }

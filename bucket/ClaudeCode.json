@@ -1,0 +1,31 @@
+{
+  "version": "2.1.17",
+  "description": "An agentic coding tool",
+  "homepage": "https://claude.ai/",
+  "license": "",
+  "architecture": {
+    "64bit": {
+      "url": "https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/2.1.17/win32-x64/claude.exe",
+      "hash": "48a340920198d9c8107e4599a371d3289bc63ba37210f3d31fbfca22ebacf6be"
+    }
+  },
+  "installer": {
+    "script": "Set-Content \"$dir\\ClaudeCode.bat\"(@('@echo off', 'for /f \"usebackq delims=\" %%i in (`scoop prefix git 2^>nul`) do set \"CLAUDE_CODE_GIT_BASH_PATH=%%i\\bin\\bash.exe\"', '%~dp0claude.exe') -join \"`r`n\") -Encoding Ascii"
+  },
+  "bin": "ClaudeCode.bat",
+  "checkver": {
+    "url": "https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/stable",
+    "regex": "([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/$version/win32-x64/claude.exe",
+        "hash": {
+          "url": "https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/$version/manifest.json",
+          "jsonpath": "$.platforms.win32-x64.checksum"
+        }
+      }
+    }
+  }
+}
