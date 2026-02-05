@@ -1,6 +1,6 @@
 $result = "# Personal Scoop bucket
 
-[![Build status](https://ci.appveyor.com/api/projects/status/sdwq9tekqddjawo7/branch/master?svg=true)](https://ci.appveyor.com/project/iquiw/scoop-bucket/branch/master)
+[![AppVeyor Build](https://img.shields.io/appveyor/build/iquiw/scoop-bucket?style=flat-square)](https://ci.appveyor.com/project/iquiw/scoop-bucket/branch/master)
 
 ## Applications
 
