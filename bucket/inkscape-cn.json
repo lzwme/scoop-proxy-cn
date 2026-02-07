@@ -1,5 +1,5 @@
 {
-  "version": "1.4.3_2025-12-25_0d15f75",
+  "version": "1.4.3",
   "description": "Professional vector graphics editor",
   "homepage": "https://inkscape.org",
   "license": "GPL-3.0-or-later",
@@ -31,11 +31,9 @@
       "$redirUrl = [System.Net.HttpWebRequest]::Create('https://inkscape.org/release/').GetResponse().ResponseUri.AbsoluteUri",
       "$test_dl = Invoke-WebRequest ($redirUrl + 'windows/64-bit/compressed-7z/dl/') -UseBasicParsing",
       "$filename = ($test_dl.Links | Where-Object href -match '.7z$' | Select-Object -First 1 -ExpandProperty href) -split '/' | Select-Object -Last 1",
-      "$clean_filename = $filename -replace '-x64.7z'",
-      "$ink_version = $clean_filename -replace 'inkscape-'",
-      "Write-Output $ink_version $clean_filename"
+      "Write-Output $filename"
     ],
-    "regex": "(?<version>.+)\\s(?<cleanfilename>.+)"
+    "regex": "(?<cleanfilename>inkscape-(\\d+(?:\\.\\d+)+).*)-x64\\.7z"
   },
   "autoupdate": {
     "architecture": {
