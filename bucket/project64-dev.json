@@ -6,7 +6,7 @@
     "identifier": "GPL-2.0",
     "url": "https://github.com/project64/project64/blob/develop/license.md"
   },
-  "url": "https://www.pj64-emu.com/file/setup-project64-Dev-4-0-0-6642-38986fe/#/setup-project64-Dev-4-0-0-6642-38986fe.exe",
+  "url": "https://www.pj64-emu.com/file/setup-project64-Dev-4-0-0-6642-38986fe/",
   "hash": "a763bf10b21edc059bcc5141bfbb04e4fe70145b8eb1ecb4cc11e1babb55b7ef",
   "bin": [
     [
@@ -17,7 +17,7 @@
   "shortcuts": [
     [
       "Project64.exe",
-      "Project64 (development)"
+      "Nintendo 64 [n64][project64] (dev)"
     ]
   ],
   "persist": [
@@ -31,11 +31,10 @@
   ],
   "checkver": {
     "url": "https://www.pj64-emu.com/nightly-builds",
-    "regex": "href=\"/file/project64-win32-dev-(?<major>[\\d]+)-(?<minor>[\\d]+)-(?<patch>[\\d]+)-(?<build>[\\d]+)-(?<commit>[\\da-f]+).*btn zip",
-    "replace": "${major}.${minor}.${patch}-${build}-${commit}"
+    "regex": "((?<major>[\\d]+)\\.(?<minor>[\\d]+)\\.(?<patch>[\\d]+)-(?<build>[\\d]+)-(?<commit>[\\da-f]+))"
   },
   "autoupdate": {
-    "url": "https://www.pj64-emu.com/file/setup-project64-Dev-$dashVersion/#/setup-project64-Dev-$dashVersion.exe"
+    "url": "https://www.pj64-emu.com/file/setup-project64-Dev-$dashVersion/"
   },
   "innosetup": true
 }
