@@ -1,5 +1,5 @@
 {
-  "version": "22257713578",
+  "version": "22263999630",
   "description": "Chat client for https://twitch.tv",
   "homepage": "https://github.com/SevenTV/chatterino7",
   "license": "MIT",
@@ -9,7 +9,7 @@
   "architecture": {
     "64bit": {
       "url": "https://github.com/SevenTV/chatterino7/releases/download/nightly-build/chatterino-windows-x86-64-Qt-6.9.3.zip",
-      "hash": "4684e8d614d5475397f72ac112ad64fdae04ca1f8fd0125c9caeea155d9a5794"
+      "hash": "f9f59ff5a2f30af534f5ff4437105c3688c9ec25df892431238f58557afada73"
     }
   },
   "extract_dir": "Chatterino2",
@@ -34,7 +34,7 @@
       "try {",
       "    $null = (Invoke-WebRequest https://raw.githubusercontent.com/SevenTV/chatterino7/chatterino7/.github/workflows/build.yml).Content -cmatch 'os: windows-latest\\s+qt-version: ([\\d.]+)'",
       "    $Matches[1],",
-      "    (Invoke-RestMethod 'https://api.github.com/repositories/342454835/actions/workflows/build.yml/runs?branch=chatterino7&status=success').workflow_runs[0].id -join ' '",
+      "    (Invoke-RestMethod 'https://api.github.com/repositories/342454835/actions/workflows/build.yml/runs?branch=chatterino7&status=success&per_page=1').workflow_runs[0].id -join ' '",
       "}",
       "catch { '' }"
     ],
