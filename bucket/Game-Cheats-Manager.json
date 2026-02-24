@@ -1,29 +1,35 @@
 {
-  "version": "2.4.1",
-  "description": "",
+  "version": "2.4.2",
+  "description": "Easily download and manage game cheats for your convenience",
   "homepage": "https://github.com/dyang886/Game-Cheats-Manager",
   "license": "GPL-3.0-only",
-  "architecture": {
-    "64bit": {
-      "url": "https://gh-proxy.org/https://github.com/dyang886/Game-Cheats-Manager/releases/download/v2.4.1/Game.Cheats.Manager.Setup.2.4.1.exe",
-      "hash": "8f19f14b0a9ed65dc5911ad15ba90230f31a7ef46e6730607ec791a8fbc79a52"
-    }
-  },
+  "url": "https://gh-proxy.org/https://github.com/dyang886/Game-Cheats-Manager/releases/download/v2.4.2/Game.Cheats.Manager.Setup.2.4.2.exe",
+  "hash": "09ad156cc3310c9424f15533600671041a9abbc92e866d9ccfff6393cba7bb5c",
   "innosetup": true,
-  "bin": "Game Cheats Manager.exe",
   "shortcuts": [
     [
       "Game Cheats Manager.exe",
       "Game Cheats Manager"
     ]
   ],
-  "checkver": {
-    "github": "https://github.com/dyang886/Game-Cheats-Manager"
+  "installer": {
+    "script": [
+      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/DoradoUtils.psm1)",
+      "Mount-ExternalRuntimeData -Source \"$persist_dir\\GCM Trainers\" -Target \"$env:APPDATA\\GCM Trainers\"",
+      "Mount-ExternalRuntimeData -Source \"$persist_dir\\GCM Settings\" -Target \"$env:APPDATA\\GCM Settings\"",
+      "Remove-Module -Name DoradoUtils"
+    ]
   },
+  "uninstaller": {
+    "script": [
+      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/DoradoUtils.psm1)",
+      "Dismount-ExternalRuntimeData -Target \"$env:APPDATA\\GCM Trainers\"",
+      "Dismount-ExternalRuntimeData -Target \"$env:APPDATA\\GCM Settings\"",
+      "Remove-Module -Name DoradoUtils"
+    ]
+  },
+  "checkver": "github",
   "autoupdate": {
-    "url": "https://gh-proxy.org/https://github.com/dyang886/Game-Cheats-Manager/releases/download/v$version/Game.Cheats.Manager.Setup.$version.exe",
-    "hash": {
-      "mode": "download"
-    }
+    "url": "https://gh-proxy.org/https://github.com/dyang886/Game-Cheats-Manager/releases/download/v$version/Game.Cheats.Manager.Setup.$version.exe"
   }
 }
