@@ -1,35 +1,29 @@
 {
-  "version": "2.4.2",
-  "description": "Easily download and manage game cheats for your convenience",
+  "version": "2.4.3",
+  "description": "",
   "homepage": "https://github.com/dyang886/Game-Cheats-Manager",
   "license": "GPL-3.0-only",
-  "url": "https://gh-proxy.org/https://github.com/dyang886/Game-Cheats-Manager/releases/download/v2.4.2/Game.Cheats.Manager.Setup.2.4.2.exe",
-  "hash": "09ad156cc3310c9424f15533600671041a9abbc92e866d9ccfff6393cba7bb5c",
+  "architecture": {
+    "64bit": {
+      "url": "https://gh-proxy.org/https://github.com/dyang886/Game-Cheats-Manager/releases/download/v2.4.3/Game.Cheats.Manager.Setup.2.4.3.exe",
+      "hash": "0b1b35ad5cdc93fdf4fa73e3a03826f392db2a16eee8a1c527c4c813770d9b5a"
+    }
+  },
   "innosetup": true,
+  "bin": "Game Cheats Manager.exe",
   "shortcuts": [
     [
       "Game Cheats Manager.exe",
       "Game Cheats Manager"
     ]
   ],
-  "installer": {
-    "script": [
-      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/DoradoUtils.psm1)",
-      "Mount-ExternalRuntimeData -Source \"$persist_dir\\GCM Trainers\" -Target \"$env:APPDATA\\GCM Trainers\"",
-      "Mount-ExternalRuntimeData -Source \"$persist_dir\\GCM Settings\" -Target \"$env:APPDATA\\GCM Settings\"",
-      "Remove-Module -Name DoradoUtils"
-    ]
+  "checkver": {
+    "github": "https://github.com/dyang886/Game-Cheats-Manager"
   },
-  "uninstaller": {
-    "script": [
-      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/DoradoUtils.psm1)",
-      "Dismount-ExternalRuntimeData -Target \"$env:APPDATA\\GCM Trainers\"",
-      "Dismount-ExternalRuntimeData -Target \"$env:APPDATA\\GCM Settings\"",
-      "Remove-Module -Name DoradoUtils"
-    ]
-  },
-  "checkver": "github",
   "autoupdate": {
-    "url": "https://gh-proxy.org/https://github.com/dyang886/Game-Cheats-Manager/releases/download/v$version/Game.Cheats.Manager.Setup.$version.exe"
+    "url": "https://gh-proxy.org/https://github.com/dyang886/Game-Cheats-Manager/releases/download/v$version/Game.Cheats.Manager.Setup.$version.exe",
+    "hash": {
+      "mode": "download"
+    }
   }
 }
