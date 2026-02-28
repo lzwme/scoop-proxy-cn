@@ -1,49 +1,31 @@
 {
-  "version": "1.2.15.1802",
-  "description": "Simple & Powerful proxy utility, Support routing rules for clash/sing-box",
-  "homepage": "https://karing.app/",
+  "version": "1.2.14.1701",
+  "description": "A proxy utility with routing rule support for clash/sing-box.",
+  "homepage": "https://karing.app/en/",
   "license": {
-    "identifier": "Copyright (C) 2024 by nebula",
-    "url": "https://github.com/KaringX/karing?tab=License-1-ov-file#License-1-ov-file"
+    "identifier": "GPL-3.0-or-later",
+    "url": "https://github.com/KaringX/karing/blob/main/LICENSE.md"
   },
   "architecture": {
     "64bit": {
-      "url": "https://gh-proxy.org/https://github.com/KaringX/karing/releases/download/v1.2.15.1802/karing_1.2.15.1802_windows_x64.exe",
-      "hash": "2348c790535be98e7bb5bebf3c1443233e6c60448a4754cd09f33f34254e2226"
+      "url": "https://gh-proxy.org/https://github.com/KaringX/karing/releases/download/v1.2.14.1701/karing_1.2.14.1701_windows_x64.zip",
+      "hash": "587773f1e33c96581f83f56fb9fcfc0948bbc1231e85858792d3338ba26f937d"
     }
   },
-  "innosetup": true,
-  "installer": {
-    "script": [
-      "# handle runtime cache",
-      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/AppsUtils.psm1)",
-      "Mount-ExternalRuntimeData -Source \"$persist_dir\\appdata\" -Target \"$env:APPDATA\\karing\"",
-      "Remove-Module -Name AppsUtils"
-    ]
-  },
-  "uninstaller": {
-    "script": [
-      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/AppsUtils.psm1)",
-      "Dismount-ExternalRuntimeData -Target \"$env:APPDATA\\karing\"",
-      "Remove-Module -Name AppsUtils"
-    ]
-  },
-  "bin": "karing.exe",
   "shortcuts": [
     [
       "karing.exe",
       "karing"
     ]
   ],
+  "persist": "profiles",
   "checkver": {
-    "url": "https://api.github.com/repos/KaringX/karing/releases",
-    "jp": "$[0].assets[*].browser_download_url",
-    "regex": "/releases/download/v([\\d.]+)/karing_([\\d.]+)_windows"
+    "github": "https://github.com/KaringX/karing"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://gh-proxy.org/https://github.com/KaringX/karing/releases/download/v$version/karing_$version_windows_x64.exe"
+        "url": "https://gh-proxy.org/https://github.com/KaringX/karing/releases/download/v$version/karing_$version_windows_x64.zip"
       }
     }
   }
