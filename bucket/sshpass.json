@@ -1,6 +1,6 @@
 {
   "version": "1.0.7",
-  "description": "Windows version of http://sourceforge.net/projects/sshpass/",
+  "description": "Windows version of sshpass - noninteractive ssh password provider",
   "homepage": "https://github.com/xhcoding/sshpass-win32",
   "license": "MIT",
   "architecture": {
@@ -10,13 +10,12 @@
     }
   },
   "bin": "sshpass.exe",
-  "checkver": {
-    "github": "https://github.com/xhcoding/sshpass-win32"
-  },
+  "checkver": "github",
   "autoupdate": {
-    "url": "https://github.com/xhcoding/sshpass-win32/releases/download/v$version/sshpass.exe",
-    "hash": {
-      "mode": "download"
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/xhcoding/sshpass-win32/releases/download/v$version/sshpass.exe"
+      }
     }
   }
 }
