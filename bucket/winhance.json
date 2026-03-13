@@ -1,19 +1,17 @@
 {
-  "version": "26.03.11",
-  "description": "Application designed to optimize, customize and enhance your Windows experience.",
-  "homepage": "https://winhance.net/",
+  "version": "26.03.12",
+  "description": "Optimize, customize and enhance your Windows experience.",
+  "homepage": "https://github.com/memstechtips/Winhance",
   "license": {
-    "identifier": "CC BY-NC-SA 4.0",
-    "url": "https://github.com/memstechtips/Winhance#License-1-ov-file"
+    "identifier": "CC-BY-NC-SA-4.0",
+    "url": "https://github.com/memstechtips/Winhance/blob/main/LICENSE.txt"
   },
-  "architecture": {
-    "64bit": {
-      "url": "https://github.com/memstechtips/Winhance/releases/download/v26.03.11/Winhance.Installer.exe",
-      "hash": "7bfcca78c6bd49e38d483e8ae654b36e38a7fdb77428a3c4fa9d5d9b3bffff4b"
-    }
-  },
+  "url": "https://github.com/memstechtips/Winhance/releases/download/v26.03.12/Winhance.Installer.exe",
+  "hash": "bcfb83f17f8658c0b7184f5ba3602ae6499293d03314b84c1262585b5603e6b1",
   "innosetup": true,
-  "bin": "Winhance.exe",
+  "suggest": {
+    "Microsoft .NET 9.0 Desktop Runtime": "windowsdesktop-runtime-9.0"
+  },
   "shortcuts": [
     [
       "Winhance.exe",
@@ -21,15 +19,9 @@
     ]
   ],
   "checkver": {
-    "url": "https://api.github.com/repos/memstechtips/Winhance/releases",
-    "jp": "$[0].assets[*].browser_download_url",
-    "regex": "/releases/download/v([\\d.]+)/Winhance.Installer\\.exe"
+    "github": "https://github.com/memstechtips/Winhance"
   },
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://github.com/memstechtips/Winhance/releases/download/v$version/Winhance.Installer.exe"
-      }
-    }
+    "url": "https://github.com/memstechtips/Winhance/releases/download/v$version/Winhance.Installer.exe"
   }
 }
