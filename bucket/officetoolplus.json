@@ -3,8 +3,20 @@
   "description": "Office Tool Plus is a tool for managing, downloading and installing Office.",
   "homepage": "https://github.com/YerongAI/Office-Tool",
   "license": "GPL-3.0-only",
-  "url": "https://gh-proxy.org/https://github.com/YerongAI/Office-Tool/releases/download/v11.1.16.0/Office_Tool_v11.1.16.0_x64.zip",
-  "hash": "c0c087874aefd0746942a1aae9436c1dafd74f2afa12f4e115b8d51a3fc3709f",
+  "architecture": {
+    "32bit": {
+      "url": "https://gh-proxy.org/https://github.com/YerongAI/Office-Tool/releases/download/v10.30.43.0/Office_Tool_v10.30.43.0_x86.zip",
+      "hash": "eb7cd0684d5067e5901a3df9ebff0de981e995ceac59f419b0039ef33a9c9fb1"
+    },
+    "64bit": {
+      "url": "https://gh-proxy.org/https://github.com/YerongAI/Office-Tool/releases/download/v11.1.16.0/Office_Tool_v11.1.16.0_x64.zip",
+      "hash": "c0c087874aefd0746942a1aae9436c1dafd74f2afa12f4e115b8d51a3fc3709f"
+    },
+    "arm64": {
+      "url": "https://gh-proxy.org/https://github.com/YerongAI/Office-Tool/releases/download/v11.1.16.0/Office_Tool_v11.1.16.0_arm64.zip",
+      "hash": "d913e1fd9b05119909d51c7e50440d424447c9a337279fad010d5be34cd20fd7"
+    }
+  },
   "extract_dir": "Office Tool",
   "shortcuts": [
     [
@@ -13,13 +25,21 @@
     ]
   ],
   "persist": "Office",
-  "checkver": "github",
+  "checkver": {
+    "url": "https://api.github.com/repos/YerongAI/Office-Tool/releases",
+    "regex": "(?sm)browser_download_url.*?releases/download/v([\\d.]+)/Office_Tool_v([\\d.]+).*?\\.zip"
+  },
   "autoupdate": {
-    "url": "https://gh-proxy.org/https://github.com/YerongAI/Office-Tool/releases/download/v$version/Office_Tool_v$version_x64.zip",
-    "hash": {
-      "url": "https://github.com/YerongAI/Office-Tool/releases/tag/v$version",
-      "mode": "extract",
-      "regex": "(?sm)Office_Tool_v$version_x64.zip.*?$sha256"
+    "architecture": {
+      "32bit": {
+        "url": "https://gh-proxy.org/https://github.com/YerongAI/Office-Tool/releases/download/v10.30.43.0/Office_Tool_v10.30.43.0_x86.zip"
+      },
+      "64bit": {
+        "url": "https://gh-proxy.org/https://github.com/YerongAI/Office-Tool/releases/download/v$version/Office_Tool_v$version_x64.zip"
+      },
+      "arm64": {
+        "url": "https://gh-proxy.org/https://github.com/YerongAI/Office-Tool/releases/download/v$version/Office_Tool_v$version_arm64.zip"
+      }
     }
   }
 }
