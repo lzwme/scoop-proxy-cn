@@ -1,8 +1,8 @@
 {
-  "homepage": "https://hmcl.huangyuhui.net",
-  "description": "A powered Minecraft launcher that supports a lot of features.",
-  "license": "GPL-3.0-only",
   "version": "3.11.2",
+  "description": "Unofficial Minecraft Launcher which is multi-functional, cross-platform and popular",
+  "homepage": "https://github.com/HMCL-dev/HMCL",
+  "license": "GPL-3.0-only",
   "url": "https://gh-proxy.org/https://github.com/HMCL-dev/HMCL/releases/download/v3.11.2/HMCL-3.11.2.exe#/hmcl.exe",
   "hash": "ed821311cd97146a40c6ac13b2f749bc7667afd4bbf1200050d85f09db859a67",
   "bin": "hmcl.exe",
@@ -12,27 +12,11 @@
       "HMCL"
     ]
   ],
-  "suggest": {
-    "JDK": [
-      "java/oraclejdk",
-      "java/openjdk"
-    ]
-  },
-  "pre_install": [
-    "function ensureFile([String] $name) {",
-    "    if (!(Test-Path \"$persist_dir\\$name\") -and !(Test-Path \"$dir\\$name\")) {",
-    "        Add-Content -Path \"$dir\\$name\" -Value $null",
-    "    }",
-    "}",
-    "ensureFile 'hmcl.json'"
-  ],
   "persist": [
-    "hmcl.json",
-    ".minecraft"
+    ".minecraft",
+    ".hmcl"
   ],
-  "checkver": {
-    "github": "https://github.com/HMCL-dev/HMCL"
-  },
+  "checkver": "github",
   "autoupdate": {
     "url": "https://gh-proxy.org/https://github.com/HMCL-dev/HMCL/releases/download/v$version/HMCL-$version.exe#/hmcl.exe"
   }
