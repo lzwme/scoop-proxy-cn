@@ -1,9 +1,36 @@
 {
-  "version": "1.1.2",
+  "version": "2.0.0",
   "description": "A full-featured download manager.",
   "homepage": "https://imfile.io/",
-  "url": "https://github.com/imfile-io/imfile-desktop/releases/download/v1.1.2/imFile-1.1.2-win.zip",
-  "hash": "42113389ac9b1da093a0868065768e6d4ad5821dde05c32572d831588d3d9513",
+  "license": {
+    "identifier": "MIT license",
+    "url": "https://github.com/imfile-io/imfile-desktop#MIT-1-ov-file"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/imfile-io/imfile-desktop/releases/download/v2.0.0/imFile-Setup-2.0.0.exe#/dl.7z",
+      "hash": "sha512:b4fd0c4d0bde2060196e7090f64164786de847c550b3c0b0d9849002ca69c74b9659f7fe2485c595433caa3881ee46d9c81c02d683cbdabcf806d3682429700d",
+      "pre_install": [
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+        "Remove-Item \"$dir\\`$*\" -Force -Recurse"
+      ]
+    }
+  },
+  "installer": {
+    "script": [
+      "# handle runtime cache",
+      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/AppsUtils.psm1)",
+      "Mount-ExternalRuntimeData -Source \"$persist_dir\" -Target \"$env:APPDATA\\imFile\"",
+      "Remove-Module -Name AppsUtils"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/AppsUtils.psm1)",
+      "Dismount-ExternalRuntimeData -Target \"$env:APPDATA\\imFile\"",
+      "Remove-Module -Name AppsUtils"
+    ]
+  },
   "shortcuts": [
     [
       "imFile.exe",
@@ -11,9 +38,18 @@
     ]
   ],
   "checkver": {
-    "github": "https://github.com/imfile-io/imfile-desktop"
+    "url": "https://api.github.com/repos/imfile-io/imfile-desktop/releases",
+    "regex": "/releases/tag/v([\\d.]+)"
   },
   "autoupdate": {
-    "url": "https://github.com/imfile-io/imfile-desktop/releases/download/v$version/imFile-$version-win.zip"
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/imfile-io/imfile-desktop/releases/download/v$version/imFile-Setup-$version.exe#/dl.7z",
+        "hash": {
+          "url": "$baseurl/latest.yml",
+          "regex": "sha512:\\s+$base64"
+        }
+      }
+    }
   }
 }

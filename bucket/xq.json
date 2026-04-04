@@ -1,13 +1,12 @@
 {
-  "version": "0.5.0",
-  "homepage": "https://github.com/MiSawa/xq",
-  "description": "Pure rust implementation of jq",
+  "version": "1.4.0",
+  "description": "Command-line XML and HTML beautifier and content extractor.",
+  "homepage": "https://github.com/sibprogrammer/xq",
   "license": "MIT",
   "architecture": {
     "64bit": {
-      "url": "https://github.com/MiSawa/xq/releases/download/v0.5.0/xq-v0.5.0-x86_64-pc-windows-msvc.tar.gz",
-      "hash": "5eac1f5a2b0596c11ba5e4fd802ecc3ae5d105a7790b5cb49ffbb7308247665b",
-      "extract_dir": "xq-v0.5.0-x86_64-pc-windows-msvc"
+      "url": "https://github.com/sibprogrammer/xq/releases/download/v1.4.0/xq_1.4.0_windows_amd64.zip",
+      "hash": "836ef8e356fb9a8a67c0688d4ad287d63f0154e0c9104abf2423e9f5da5d964a"
     }
   },
   "bin": "xq.exe",
@@ -15,9 +14,11 @@
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://github.com/MiSawa/xq/releases/download/v$version/xq-v$version-x86_64-pc-windows-msvc.tar.gz",
-        "extract_dir": "xq-v$version-x86_64-pc-windows-msvc"
+        "url": "https://github.com/sibprogrammer/xq/releases/download/v$version/xq_$version_windows_amd64.zip"
       }
+    },
+    "hash": {
+      "url": "$baseurl/checksums.txt"
     }
   }
 }
