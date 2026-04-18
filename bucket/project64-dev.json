@@ -1,13 +1,13 @@
 {
-  "version": "4.0.0-6678-3556462",
+  "version": "4.0.0-6685-5eeaa9b",
   "description": "Nintendo 64 emulator",
   "homepage": "https://www.pj64-emu.com/",
   "license": {
     "identifier": "GPL-2.0",
     "url": "https://github.com/project64/project64/blob/develop/license.md"
   },
-  "url": "https://www.pj64-emu.com/file/setup-project64-Dev-4-0-0-6678-3556462/",
-  "hash": "5cffa0af78b907314eec2f21711ac6a4e4c37f7277023effab9a005b6ec8abb7",
+  "url": "https://www.pj64-emu.com/file/setup-project64-Dev-4-0-0-6685-5eeaa9b/#/setup-project64-Dev-4-0-0-6685-5eeaa9b.exe",
+  "hash": "d19aa7dc9f0a434742db27c41ac8e4725ffad0e5afbf7b031c99bb91b1463ae6",
   "bin": [
     [
       "Project64.exe",
@@ -17,7 +17,7 @@
   "shortcuts": [
     [
       "Project64.exe",
-      "Nintendo 64 [n64][project64] (dev)"
+      "Project64 (development)"
     ]
   ],
   "persist": [
@@ -31,10 +31,11 @@
   ],
   "checkver": {
     "url": "https://www.pj64-emu.com/nightly-builds",
-    "regex": "((?<major>[\\d]+)\\.(?<minor>[\\d]+)\\.(?<patch>[\\d]+)-(?<build>[\\d]+)-(?<commit>[\\da-f]+))"
+    "regex": "href=\"/file/project64-win32-dev-(?<major>[\\d]+)-(?<minor>[\\d]+)-(?<patch>[\\d]+)-(?<build>[\\d]+)-(?<commit>[\\da-f]+).*btn zip",
+    "replace": "${major}.${minor}.${patch}-${build}-${commit}"
   },
   "autoupdate": {
-    "url": "https://www.pj64-emu.com/file/setup-project64-Dev-$dashVersion/"
+    "url": "https://www.pj64-emu.com/file/setup-project64-Dev-$dashVersion/#/setup-project64-Dev-$dashVersion.exe"
   },
   "innosetup": true
 }
