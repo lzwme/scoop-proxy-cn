@@ -1,0 +1,32 @@
+{
+  "homepage": "https://github.com/emoacht/monitorian",
+  "description": "A Windows desktop tool to adjust the brightness of multiple monitors with ease",
+  "license": "MIT",
+  "version": "4.14.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://gh-proxy.org/https://github.com/emoacht/Monitorian/releases/download/4.14.0-Installer/MonitorianInstaller3140.zip",
+      "hash": "1abb7cc7e0d62960355b461ebc44ca86946ea95fa9a4f31499fe1d19667ef7e1"
+    }
+  },
+  "pre_install": [
+    "Expand-MsiArchive \"$dir\\Monitorian.Installer.msi\"  \"$dir\\temp\"",
+    "Move-Item \"$dir\\temp\\PFiles\\Monitorian\\*\" -Destination \"$dir\"",
+    "Remove-Item \"$dir\\Monitorian.Installer.msi\""
+  ],
+  "shortcuts": [
+    [
+      "Monitorian.exe",
+      "Monitorian"
+    ]
+  ],
+  "notes": ".NET Framework 4.8 is required.",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://gh-proxy.org/https://github.com/emoacht/Monitorian/releases/download/$version-Installer/MonitorianInstaller$cleanVersion.zip"
+      }
+    }
+  }
+}
