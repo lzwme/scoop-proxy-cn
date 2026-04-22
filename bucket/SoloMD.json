@@ -1,16 +1,15 @@
 {
-  "version": "1.1.0",
-  "description": "SoloMD — a lightweight, cross-platform Markdown + plain text editor. One file. One window. Just write.",
-  "homepage": "https://solomd.app/",
+  "version": "1.1.1",
+  "description": "A lightweight Markdown and plain text editor built with Tauri 2.",
+  "homepage": "https://solomd.app",
   "license": "MIT",
   "architecture": {
     "64bit": {
-      "url": "https://gh-proxy.org/https://github.com/zhitongblog/solomd/releases/download/v1.1.0/SoloMD_1.1.0_x64_en-US.msi",
-      "hash": "08d7e7293a8ad17e92cd530bdf769de8d40e097683a138fcba0bd885eb498541"
+      "url": "https://gh-proxy.org/https://github.com/zhitongblog/solomd/releases/download/v1.1.1/SoloMD_1.1.1_x64-setup.exe#/dl.7z",
+      "hash": "266b3350aee8c8d768b120b7f49f714ecd6c2b7cb01430ec4817ec84b7fe65af"
     }
   },
-  "extract_dir": "PFiles\\SoloMD",
-  "bin": "SoloMD.exe",
+  "pre_install": "Remove-Item \"$dir\\`$*\", \"$dir\\Uninst*\" -Force -Recurse -ErrorAction Ignore",
   "shortcuts": [
     [
       "SoloMD.exe",
@@ -23,7 +22,7 @@
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://gh-proxy.org/https://github.com/zhitongblog/solomd/releases/download/v$version/SoloMD_$version_x64_en-US.msi"
+        "url": "https://gh-proxy.org/https://github.com/zhitongblog/solomd/releases/download/v$version/SoloMD_$version_x64-setup.exe#/dl.7z"
       }
     }
   }
