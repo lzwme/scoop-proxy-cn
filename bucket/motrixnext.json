@@ -1,5 +1,5 @@
 {
-  "version": "3.8.4",
+  "version": "3.8.7",
   "description": "A full-featured download manager — rebuilt from the ground up",
   "homepage": "https://motrix-next.pages.dev/",
   "license": {
@@ -8,12 +8,12 @@
   },
   "architecture": {
     "64bit": {
-      "url": "https://gh-proxy.org/https://github.com/AnInsomniacy/motrix-next/releases/download/v3.8.4/MotrixNext_3.8.4_x64-setup.exe#/dl.7z",
-      "hash": "65ffc05a3c9386911d8a8d55f350f4b42c9a5399f6367ea2471b72a0f3c27190"
+      "url": "https://gh-proxy.org/https://github.com/AnInsomniacy/motrix-next/releases/download/v3.8.7/MotrixNext_3.8.7_x64-setup.exe#/dl.7z",
+      "hash": "866a235c4790f84bd3ed911fc7a7a7be2f75cbda2a69961fd7fd9d6af2766ca7"
     },
     "arm64": {
-      "url": "https://gh-proxy.org/https://github.com/AnInsomniacy/motrix-next/releases/download/v3.8.4/MotrixNext_3.8.4_arm64-setup.exe#/dl.7z",
-      "hash": "95a4fe2f0f984e55c7a9f6ea08523f0214bdcae7101e3a4a885d07c237a66461"
+      "url": "https://gh-proxy.org/https://github.com/AnInsomniacy/motrix-next/releases/download/v3.8.7/MotrixNext_3.8.7_arm64-setup.exe#/dl.7z",
+      "hash": "256bf821bc5b255f0217f62e4fcb7d6ba7b8d3ddb6ca435b968913228ddeb840"
     }
   },
   "pre_install": "Remove-Item \"$dir\\`$*\" -Force -Recurse",
@@ -47,7 +47,7 @@
     ]
   ],
   "checkver": {
-    "url": "https://api.github.com/repos/AnInsomniacy/motrix-next/releases/latest",
+    "github": "https://api.github.com/repos/AnInsomniacy/motrix-next/releases/latest",
     "jp": "$.assets[*].browser_download_url",
     "regex": "/releases/download/v([\\d.]+)/MotrixNext_([\\d.]+)_x64-setup"
   },
