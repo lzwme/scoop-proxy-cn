@@ -1,5 +1,5 @@
 {
-  "version": "1.2.18.2101",
+  "version": "4.1.0",
   "description": "Principle of WinRAR key generation.",
   "homepage": "https://github.com/bitcookies/winrar-keygen",
   "license": {
@@ -8,16 +8,16 @@
   },
   "architecture": {
     "64bit": {
-      "url": "https://gh-proxy.org/https://github.com/KaringX/karing/releases/download/v1.2.18.2101/karing_1.2.18.2101_windows_x64.exe",
-      "hash": "32073f64373d7cc93bcdfb493b98cd38d48c19389bd62d23e0e0fc19cbd4c5a7"
+      "url": "https://gh-proxy.org/https://github.com/bitcookies/winrar-keygen/releases/download/v4.1.0/winrar-keygen-x64.exe",
+      "hash": "525398d9867ac3807e95557ad3398cd700932477c529260aeac78fa74da0cc0f"
     },
     "32bit": {
-      "url": "https://gh-proxy.org/https://github.com/KaringX/karing/releases/download/v1.2.18.2101/karing_1.2.18.2101_windows_x64.exe",
-      "hash": "32073f64373d7cc93bcdfb493b98cd38d48c19389bd62d23e0e0fc19cbd4c5a7"
+      "url": "https://gh-proxy.org/https://github.com/bitcookies/winrar-keygen/releases/download/v4.1.0/winrar-keygen-x86.exe",
+      "hash": "e951187cd7dd8f10fe3d3252a4c91370372dd23fd5556bb50859f2ce4856dd4d"
     },
     "arm64": {
-      "url": "https://gh-proxy.org/https://github.com/KaringX/karing/releases/download/v1.2.18.2101/karing_1.2.18.2101_windows_x64.exe",
-      "hash": "32073f64373d7cc93bcdfb493b98cd38d48c19389bd62d23e0e0fc19cbd4c5a7"
+      "url": "https://gh-proxy.org/https://github.com/bitcookies/winrar-keygen/releases/download/v4.1.0/winrar-keygen-arm64.exe",
+      "hash": "599b8cb66cd0b82429d2925f46a24b2346851bc6f713cc41fab86b57fc7d1b07"
     }
   },
   "pre_install": "Get-ChildItem \"$dir\\winrar-keygen*.exe\" | Rename-Item -NewName 'winrar-keygen-cli.exe'",
@@ -29,7 +29,7 @@
     ]
   ],
   "checkver": {
-    "url": "https://api.github.com/repos/bitcookies/winrar-keygen/releases",
+    "github": "https://api.github.com/repos/bitcookies/winrar-keygen/releases",
     "jp": "$[0].assets[*].browser_download_url",
     "regex": "/releases/download/v([\\d.]+)"
   },
