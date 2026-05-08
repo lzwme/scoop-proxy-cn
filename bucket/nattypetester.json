@@ -1,39 +1,26 @@
 {
   "version": "10.0.6",
-  "description": "测试当前网络的 NAT 类型（STUN）",
   "homepage": "https://github.com/HMBSbige/NatTypeTester",
-  "license": {
-    "identifier": "MIT license",
-    "url": "https://github.com/HMBSbige/NatTypeTester#MIT-1-ov-file"
-  },
+  "license": "MIT",
   "architecture": {
     "64bit": {
       "url": "https://github.com/HMBSbige/NatTypeTester/releases/download/10.0.6/NatTypeTester-10.0.6-win-x64.7z",
-      "hash": "6e47697c5f730caedfd9650716b948a4fe309b71190efdba272e4a666fb47e87"
+      "hash": "6e47697c5f730caedfd9650716b948a4fe309b71190efdba272e4a666fb47e87",
+      "extract_dir": "NatTypeTester.Desktop-win-x64"
     }
   },
-  "extract_dir": "NatTypeTester-win-x64",
-  "bin": "NatTypeTester.exe",
   "shortcuts": [
     [
       "NatTypeTester.exe",
       "NatTypeTester"
     ]
   ],
-  "checkver": {
-    "github": "https://api.github.com/repos/HMBSbige/NatTypeTester/releases",
-    "jp": "$[0].assets[*].browser_download_url",
-    "regex": "/releases/download/([\\d.]+)/NatTypeTester-([\\d.]+)"
-  },
+  "checkver": "github",
   "autoupdate": {
     "architecture": {
       "64bit": {
         "url": "https://github.com/HMBSbige/NatTypeTester/releases/download/$version/NatTypeTester-$version-win-x64.7z"
       }
-    },
-    "hash": {
-      "url": "https://github.com/HMBSbige/NatTypeTester/releases",
-      "regex": "(?s)$basename.*?$sha256"
     }
   }
 }
