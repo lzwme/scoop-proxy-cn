@@ -1,5 +1,5 @@
 {
-  "version": "9.9.30.260511.6a035910",
+  "version": "9.9.30.260511",
   "description": "A new version of Tencent QQ based on Electron.",
   "homepage": "https://im.qq.com/pcqq/index.shtml",
   "license": "Unknown",
@@ -44,38 +44,20 @@
     ]
   },
   "checkver": {
-    "script": [
-      "$check_regex = [regex]\"guanwang\\/(\\w+)\\/QQ_([\\d.]+)-([\\d]+)_x86_01\\.exe\"",
-      "$check_url = \"https://im.qq.com/proxy/domain/cdn-go.cn/qq-web/im.qq.com_new/latest/rainbow/pcConfig.json\"",
-      "$check_page = Invoke-WebRequest -Uri $check_url -UseBasicParsing | Select-Object -ExpandProperty Content",
-      "$check_page -match $check_regex | Out-Null",
-      "$fetch_build_hash = $matches[1]",
-      "$fetch_version_head = $matches[2]",
-      "$fetch_version_tail = $matches[3]",
-      "$fetch_version = ($fetch_version_head, $fetch_version_tail, $fetch_build_hash) -Join \".\"",
-      "$current_version = $json.version",
-      "$current_version_tail = $current_version -Split \"\\.\" | Select-Object -Last 1 -Skip 1",
-      "if ([int]$fetch_version_tail -ge [int]$current_version_tail) {",
-      "    return $fetch_version",
-      "} else {",
-      "    Write-Warning \"[TencentQQNT] Fetched latest version: $fetch_version, aborting update...\"",
-      "    Write-Warning \"[TencentQQNT] Using current version: $current_version\"",
-      "    return $current_version",
-      "}"
-    ],
-    "regex": "([\\d.]+)\\.([\\d]+)\\.([\\w]+)",
-    "replace": "${1}.${2}.${3}"
+    "url": "https://im.qq.com/proxy/domain/cdn-go.cn/qq-web/im.qq.com_new/latest/rainbow/pcConfig.json",
+    "regex": "Windows\":{\"version\":\"([\\d.]+)\",\"updateDate\":\"20([\\d]+)-([\\d]+)-([\\d]+)\".*gtimg\\.cn\\/([\\w\\-\\/.]+x86_01.exe)\".*gtimg\\.cn\\/([\\w\\-\\/.]+x64_01.exe)\".*gtimg\\.cn\\/([\\w\\-\\/.]+arm64_01.exe)\"",
+    "replace": "${1}.${2}${3}${4}"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://qqdl.gtimg.cn/qqfile/QQNT/9.9.30/guanwang/$match3/QQ_$match1-$match2_x64_01.exe#/dl.7z"
+        "url": "https://qqdl.gtimg.cn/$match6#/dl.7z"
       },
       "32bit": {
-        "url": "https://qqdl.gtimg.cn/qqfile/QQNT/9.9.30/guanwang/$match3/QQ_$match1-$match2_x86_01.exe#/dl.7z"
+        "url": "https://qqdl.gtimg.cn/$match5#/dl.7z"
       },
       "arm64": {
-        "url": "https://qqdl.gtimg.cn/qqfile/QQNT/9.9.30/guanwang/$match3/QQ_$match1_$match2_arm64_01.exe#/dl.7z"
+        "url": "https://qqdl.gtimg.cn/$match7#/dl.7z"
       }
     }
   }
