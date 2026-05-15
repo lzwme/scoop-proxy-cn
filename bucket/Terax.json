@@ -1,0 +1,29 @@
+{
+  "version": "0.6.4",
+  "description": "Lightweight AI terminal emulator (ADE) built in Rust & Tauri & React",
+  "homepage": "https://terax.app/",
+  "license": "Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://gh-proxy.org/https://github.com/crynta/terax-ai/releases/download/v0.6.4/Terax_0.6.4_x64-setup.exe#/dl.7z",
+      "hash": "081e2635362a763253c7339483eb8c5294ec2f5cd26f3087cb8499811f021289"
+    }
+  },
+  "bin": "terax.exe",
+  "shortcuts": [
+    [
+      "terax.exe",
+      "Terax"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/crynta/terax-ai"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://gh-proxy.org/https://github.com/crynta/terax-ai/releases/download/v$version/Terax_$version_x64-setup.exe#/dl.7z"
+      }
+    }
+  }
+}
