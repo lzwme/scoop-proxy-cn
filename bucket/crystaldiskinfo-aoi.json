@@ -1,10 +1,10 @@
 {
-  "homepage": "https://crystalmark.info/ja/software/crystaldiskinfo/",
-  "description": "CrystalDiskInfo is a HDD/SSD utility software which supports S.M.A.R.T and a part of USB-HDD.",
+  "version": "9.9.1",
+  "description": "A HDD/SSD utility software which supports a part of USB, Intel RAID and NVMe.",
+  "homepage": "https://crystalmark.info/en/software/crystaldiskinfo/",
   "license": "MIT",
-  "version": "9.9.0",
-  "url": "https://downloads.sourceforge.net/project/crystaldiskinfo/9.9.0/CrystalDiskInfo9_9_0Aoi.zip",
-  "hash": "sha1:71c63ccd7b22683a4ef367cd5979b985f192ceec",
+  "url": "https://zenlayer.dl.sourceforge.net/project/crystaldiskinfo/9.9.1/CrystalDiskInfo9_9_1Aoi.zip",
+  "hash": "sha1:3567716d72facf3e2e200f097179c9a22460f7ac",
   "architecture": {
     "64bit": {
       "shortcuts": [
@@ -31,28 +31,20 @@
       ]
     }
   },
-  "persist": [
-    "Smart",
-    "DiskInfo.ini",
-    "DiskInfo32A.ini",
-    "DiskInfo64A.ini",
-    "DiskInfoA64A.ini"
-  ],
   "pre_install": [
-    "$ls = @('DiskInfo.ini', 'DiskInfo32A.ini', 'DiskInfo64A.ini', 'DiskInfoA64A.ini')",
-    "foreach ($name in $ls) {",
-    "  if (!(Test-Path \"$persist_dir/$name\")) { Add-Content \"$persist_dir/$name\" $null }",
+    "if (-not (Test-Path \"$persist_dir\\DiskInfo.ini\")) {",
+    "    New-Item \"$dir\\DiskInfo.ini\" -ItemType File | Out-Null",
     "}"
+  ],
+  "persist": [
+    "DiskInfo.ini",
+    "Smart"
   ],
   "checkver": {
     "url": "https://crystalmark.info/en/download/",
-    "regex": "CrystalDiskInfo\\s+([\\d.]+)\\s"
+    "regex": "CrystalDiskInfo ([\\w\\.]+) &#8211;"
   },
   "autoupdate": {
-    "url": "https://downloads.sourceforge.net/project/crystaldiskinfo/$version/CrystalDiskInfo$underscoreVersionAoi.zip",
-    "hash": {
-      "url": "https://sourceforge.net/projects/crystaldiskinfo/files/$version/",
-      "regex": "CrystalDiskInfo$underscoreVersionAoi.zip.+?sha1\":\"$sha1"
-    }
+    "url": "https://zenlayer.dl.sourceforge.net/project/crystaldiskinfo/$version/CrystalDiskInfo$underscoreVersionAoi.zip"
   }
 }
