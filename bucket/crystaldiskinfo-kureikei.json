@@ -1,12 +1,21 @@
 {
   "version": "9.9.1",
-  "description": "A HDD/SSD utility software which supports a part of USB, Intel RAID and NVMe.",
-  "homepage": "https://crystalmark.info/en/software/crystaldiskinfo/",
-  "license": "MIT",
-  "url": "https://zenlayer.dl.sourceforge.net/project/crystaldiskinfo/9.9.1/CrystalDiskInfo9_9_1KureiKei.zip",
+  "description": "A HDD/SSD utility software which supports a part of USB, Intel RAID and NVMe(Kurei Kei Edition).",
+  "homepage": "https://crystalmark.info/en/",
+  "license": {
+    "identifier": "MIT"
+  },
+  "url": "https://downloads.sourceforge.net/projects/crystaldiskinfo/9.9.1/CrystalDiskInfo9_9_1KureiKei.zip",
   "hash": "sha1:9a01b88e49ba2cf513366fa8d0b450869b1e1d08",
+  "pre_install": "if (!(Test-Path \"$persist_dir\\DiskInfo.ini\")) { New-Item \"$dir\\DiskInfo.ini\" | Out-Null }",
   "architecture": {
     "64bit": {
+      "bin": [
+        [
+          "DiskInfo64K.exe",
+          "DiskInfoK"
+        ]
+      ],
       "shortcuts": [
         [
           "DiskInfo64K.exe",
@@ -15,36 +24,29 @@
       ]
     },
     "32bit": {
+      "bin": [
+        [
+          "DiskInfo32K.exe",
+          "DiskInfoK"
+        ]
+      ],
       "shortcuts": [
         [
           "DiskInfo32K.exe",
           "CrystalDiskInfo Kurei Kei Edition"
         ]
       ]
-    },
-    "arm64": {
-      "shortcuts": [
-        [
-          "DiskInfoA64K.exe",
-          "CrystalDiskInfo Kurei Kei Edition"
-        ]
-      ]
     }
   },
-  "pre_install": [
-    "if (-not (Test-Path \"$persist_dir\\DiskInfo.ini\")) {",
-    "    New-Item \"$dir\\DiskInfo.ini\" -ItemType File | Out-Null",
-    "}"
-  ],
   "persist": [
-    "DiskInfo.ini",
-    "Smart"
+    "Smart",
+    "DiskInfo.ini"
   ],
   "checkver": {
-    "url": "https://crystalmark.info/en/download/",
-    "regex": "CrystalDiskInfo ([\\w\\.]+) &#8211;"
+    "url": "https://sourceforge.net/projects/crystaldiskinfo/files/",
+    "regex": "href=\"/projects/crystaldiskinfo/files/latest/download\" title=\"/([\\w.]+)"
   },
   "autoupdate": {
-    "url": "https://zenlayer.dl.sourceforge.net/project/crystaldiskinfo/$version/CrystalDiskInfo$underscoreVersionKureiKei.zip"
+    "url": "https://downloads.sourceforge.net/projects/crystaldiskinfo/$version/CrystalDiskInfo$underscoreVersionKureiKei.zip"
   }
 }
