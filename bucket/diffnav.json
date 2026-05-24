@@ -1,6 +1,6 @@
 {
   "version": "0.11.0",
-  "description": "A git diff pager based on delta but with a file tree, à la GitHub.",
+  "description": "A git diff pager based on delta but with a file tree.",
   "homepage": "https://github.com/dlvhdr/diffnav",
   "license": "MIT",
   "architecture": {
@@ -17,7 +17,7 @@
       "hash": "24ceb39f6df1032ba8711c367ce124cbe82444d4d6c4b1ea1c6caf1db9964f7e"
     }
   },
-  "bin": "",
+  "bin": "diffnav.exe",
   "checkver": "github",
   "autoupdate": {
     "architecture": {
@@ -32,7 +32,8 @@
       }
     },
     "hash": {
-      "url": "$baseurl/diffnav_$version_checksums.txt"
+      "url": "$baseurl/diffnav_$version_checksums.txt",
+      "regex": "$sha256\\s+$basename"
     }
   }
 }
