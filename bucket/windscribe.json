@@ -10,6 +10,14 @@
       "hash": "b2020c969fb90ba978584f81b75969891b4e8d83783c74bd02a18f6351cdd516"
     }
   },
+  "pre_install": "if (-not (is_admin)) { abort \"`n[ERROR]  $app requires admin rights to $cmd.\" }",
+  "installer": {
+    "script": [
+      "$args_list = @('-silent', '-no-auto-start')",
+      "Start-Process -FilePath \"$dir\\$fname\" -ArgumentList $args_list -WindowStyle 'Hidden' -Wait",
+      "Remove-Item -Path \"$dir\\$fname\" -Force -ErrorAction SilentlyContinue"
+    ]
+  },
   "checkver": "github",
   "autoupdate": {
     "architecture": {
