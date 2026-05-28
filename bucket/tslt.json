@@ -1,0 +1,52 @@
+{
+  "version": "0.0.3",
+  "description": "Minimal native Windows LLM translation tool built with Win32 API and WinHTTP.",
+  "homepage": "https://github.com/dodorz/tslt",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://gh-proxy.org/https://github.com/dodorz/tslt/releases/download/0.0.3/tslt-0.0.3-x86_64.zip",
+      "hash": "6f309d28db7fab5341841a07ef41743d56cbdcdf41517546ccc451c349ff3dda"
+    },
+    "32bit": {
+      "url": "https://gh-proxy.org/https://github.com/dodorz/tslt/releases/download/0.0.3/tslt-0.0.3-x86.zip",
+      "hash": "39c52f427fb3278cc090e89e31b166eb7d8f852a792e63f52e6c423e47378f8d"
+    },
+    "arm64": {
+      "url": "https://gh-proxy.org/https://github.com/dodorz/tslt/releases/download/0.0.3/tslt-0.0.3-arm64.zip",
+      "hash": "42dd5f6c9d2ed89d56a40487befba312831ead1ba417d8a35b2e3b78f3065583"
+    }
+  },
+  "installer": {
+    "script": [
+      "if (!(Test-Path \"$persist_dir\")) {",
+      "    New-Item -ItemType Directory -Path \"$persist_dir\" -Force | Out-Null",
+      "}",
+      "if (!(Test-Path \"$persist_dir\\config.ini\")) {",
+      "    Copy-Item \"$dir\\config.ini.example\" \"$persist_dir\\config.ini\"",
+      "}"
+    ]
+  },
+  "bin": "tslt.exe",
+  "shortcuts": [
+    [
+      "tslt.exe",
+      "LLM Translator"
+    ]
+  ],
+  "persist": "config.ini",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://gh-proxy.org/https://github.com/dodorz/tslt/releases/download/$version/tslt-$version-x86_64.zip"
+      },
+      "32bit": {
+        "url": "https://gh-proxy.org/https://github.com/dodorz/tslt/releases/download/$version/tslt-$version-x86.zip"
+      },
+      "arm64": {
+        "url": "https://gh-proxy.org/https://github.com/dodorz/tslt/releases/download/$version/tslt-$version-arm64.zip"
+      }
+    }
+  }
+}
