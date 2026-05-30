@@ -1,33 +1,26 @@
 {
-  "homepage": "https://github.com/blackboxo/CleanMyWechat",
-  "description": "A cleaning tool for Wechat files",
   "version": "3.0",
-  "license": "MIT",
-  "architecture": {
-    "64bit": {
-      "url": "https://gh-proxy.org/https://github.com/blackboxo/CleanMyWechat/releases/download/v3.0/CleanMyWechat.zip",
-      "hash": "56cd02a89ab89c561844fcf4f6d080a9d4668a74aef6a672607d0460c02c4d8d"
-    }
-  },
-  "extract_dir": "CleanMyWechat",
-  "pre_install": [
-    "if (!(Test-Path $persist_dir\\config.json)) {",
-    "    New-Item -Path $persist_dir\\config.json -Value $NULL -ItemType File -Force | Out-Null",
-    "}"
+  "description": "自动删除 PC 端微信缓存数据，包括从所有聊天中自动下载的大量文件、视频、图片等数据内容，解放你的空间。",
+  "homepage": "https://github.com/blackboxo/CleanMyWechat",
+  "license": "Freeware",
+  "url": "https://gh-proxy.org/https://github.com/blackboxo/CleanMyWechat/releases/download/v3.0/CleanMyWechat.zip",
+  "hash": "56cd02a89ab89c561844fcf4f6d080a9d4668a74aef6a672607d0460c02c4d8d",
+  "extract_dir": "dist",
+  "notes": "We don't persist 'config.json'. Please backup it if needed",
+  "bin": [
+    [
+      "main.exe",
+      "CleanMyWechat"
+    ]
   ],
-  "persist": "config.json",
   "shortcuts": [
     [
-      "start.exe",
+      "main.exe",
       "CleanMyWechat"
     ]
   ],
   "checkver": "github",
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://gh-proxy.org/https://github.com/blackboxo/CleanMyWechat/releases/download/v$version/CleanMyWechat.zip"
-      }
-    }
+    "url": "https://gh-proxy.org/https://github.com/blackboxo/CleanMyWechat/releases/download/v$version/CleanMyWechat.zip"
   }
 }
