@@ -1,32 +1,37 @@
 {
-  "version": "0.13.3",
-  "description": "OpenWork - AI 驱动的智能办公助手。An open-source alternative to Claude Cowork, powered by opencode.",
-  "homepage": "https://github.com/different-ai/openwork",
+  "homepage": "https://openwork.software/",
+  "version": "0.17.0",
+  "description": "An open-source alternative to Claude Cowork, powered by opencode ",
   "license": "MIT",
   "architecture": {
     "64bit": {
-      "url": "https://gh-proxy.org/https://github.com/different-ai/openwork/releases/download/v0.13.3/openwork-desktop-windows-x64.msi",
-      "hash": "ca643bb3c4d24aca8ae28dd7d676c7afcbd720ad5946c405da3ec37f45db93d2"
+      "url": "https://gh-proxy.org/https://github.com/different-ai/openwork/releases/download/v0.17.0/openwork-win-x64-0.17.0.exe#/dl.7z",
+      "hash": "187b76563b197e34b7a0b5b6f4b9e66a6fb41a14cfcb4f3cdae2a222be0b53c6",
+      "pre_install": [
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\" -Removal",
+        "Remove-Item \"$dir\\`$*\" -Force -Recurse"
+      ],
+      "post_install": "New-Item $env:AppData\\com.differentai.openwork -ItemType Junction -Target \"$persist_dir\\data\" | Out-Null"
     }
   },
-  "installer": {
-    "script": "Start-Process msiexec.exe -ArgumentList '/i', \\\"$dir\\openwork-desktop-windows-x64.msi\\\", '/quiet', '/norestart' -Wait -NoNewWindow"
-  },
+  "persist": "data",
+  "shortcuts": [
+    [
+      "OpenWork.exe",
+      "OpenWork"
+    ]
+  ],
   "uninstaller": {
-    "script": "Start-Process msiexec.exe -ArgumentList '/x', (Get-ChildItem \\\"$dir\\openwork-desktop-windows-x64.msi\\\" -ErrorAction SilentlyContinue | Select-Object -First 1).Name, '/quiet', '/norestart' -Wait -NoNewWindow"
+    "script": "Remove-Item $env:APPDATA\\com.differentai.openwork -Force -Recurse"
   },
-  "bin": "openwork.exe",
   "checkver": {
     "github": "https://github.com/different-ai/openwork"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://gh-proxy.org/https://github.com/different-ai/openwork/releases/download/v$version/openwork-desktop-windows-x64.msi"
+        "url": "https://gh-proxy.org/https://github.com/different-ai/openwork/releases/download/v$version/openwork-win-x64-$version.exe#/dl.7z"
       }
-    },
-    "hash": {
-      "url": "https://gh-proxy.org/https://github.com/different-ai/openwork/releases/download/v$version/openwork-desktop-windows-x64.msi.sha256"
     }
   }
 }
