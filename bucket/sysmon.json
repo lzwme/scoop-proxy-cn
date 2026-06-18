@@ -1,39 +1,32 @@
 {
-  "version": "15.2",
+  "homepage": "https://docs.microsoft.com/en-us/sysinternals/",
   "description": "Monitors and reports key system activity via the Windows event log.",
-  "homepage": "https://learn.microsoft.com/sysinternals/downloads/sysmon",
   "license": {
     "identifier": "Freeware",
-    "url": "https://learn.microsoft.com/sysinternals/license-terms"
+    "url": "https://docs.microsoft.com/en-us/sysinternals/license-terms"
   },
+  "version": "15.21",
   "url": "https://download.sysinternals.com/files/Sysmon.zip",
-  "hash": "9c7bba9c88023abd33188cff4d3562278e0b7ddccb7935b6a6530887f9e054b1",
-  "architecture": {
-    "64bit": {
-      "bin": [
-        [
-          "sysmon64.exe",
-          "sysmon"
-        ]
-      ]
-    },
-    "32bit": {
-      "bin": "sysmon.exe"
-    },
-    "arm64": {
-      "bin": [
-        [
-          "sysmon64a.exe",
-          "sysmon"
-        ]
-      ]
-    }
-  },
+  "hash": "6d48089c7fae14944c82b06767b79ccba3cc26d13218a4227ed28c90f80d0f0e",
   "checkver": {
-    "url": "https://raw.githubusercontent.com/MicrosoftDocs/sysinternals/main/sysinternals/downloads/sysmon.md",
-    "regex": "#.*?v([\\d.]+)"
+    "url": "https://docs.microsoft.com/en-us/sysinternals/downloads/sysmon",
+    "re": "Sysmon\\s(?:v|V)?([\\d.]+)"
   },
   "autoupdate": {
     "url": "https://download.sysinternals.com/files/Sysmon.zip"
+  },
+  "architecture": {
+    "32bit": {
+      "bin": "Sysmon.exe"
+    },
+    "64bit": {
+      "bin": [
+        [
+          "Sysmon64.exe",
+          "Sysmon"
+        ],
+        "Sysmon64.exe"
+      ]
+    }
   }
 }
