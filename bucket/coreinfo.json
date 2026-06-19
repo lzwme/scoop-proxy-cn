@@ -1,26 +1,39 @@
 {
-  "homepage": "https://docs.microsoft.com/en-us/sysinternals/",
-  "description": "Coreinfo is a new command-line utility that shows you the mapping between logical processors and the physical processor, NUMA node, and socket on which they reside, as well as the cache’s assigned to each logical processor.",
+  "version": "4.01",
+  "description": "A command-line utility that shows you the mapping between logical processors and the physical processor.",
+  "homepage": "https://learn.microsoft.com/sysinternals/downloads/coreinfo",
   "license": {
     "identifier": "Freeware",
-    "url": "https://docs.microsoft.com/en-us/sysinternals/license-terms"
+    "url": "https://learn.microsoft.com/sysinternals/license-terms"
   },
-  "version": "4.01",
   "url": "https://download.sysinternals.com/files/Coreinfo.zip",
   "hash": "5de9656002628025bef65c83838bba14263c033106ac54d58c100df859278c2f",
-  "checkver": {
-    "url": "https://docs.microsoft.com/en-us/sysinternals/downloads/coreinfo",
-    "re": "Coreinfo\\s(?:v|V)?([\\d.]+)"
-  },
-  "autoupdate": {
-    "url": "https://download.sysinternals.com/files/Coreinfo.zip"
-  },
   "architecture": {
+    "64bit": {
+      "bin": [
+        [
+          "Coreinfo64.exe",
+          "Coreinfo"
+        ]
+      ]
+    },
     "32bit": {
       "bin": "Coreinfo.exe"
     },
-    "64bit": {
-      "bin": "Coreinfo.exe"
+    "arm64": {
+      "bin": [
+        [
+          "Coreinfo64a.exe",
+          "Coreinfo"
+        ]
+      ]
     }
+  },
+  "checkver": {
+    "url": "https://gh-proxy.org/https://raw.githubusercontent.com/MicrosoftDocs/sysinternals/main/sysinternals/downloads/coreinfo.md",
+    "regex": "#.*?v([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://download.sysinternals.com/files/Coreinfo.zip"
   }
 }
