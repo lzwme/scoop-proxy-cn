@@ -1,11 +1,18 @@
 {
-  "version": "3.2.0",
+  "version": "3.4.2",
   "description": "Input Method Editor word library converter",
   "homepage": "https://github.com/studyzy/imewlconverter",
   "license": "GPL-3.0-only",
-  "url": "https://github.com/studyzy/imewlconverter/releases/download/v3.2.0/imewlconverter_Windows.zip",
-  "hash": "bd4b65b194bc92db96f89e4edc3c72444298eb144a530250f968a7b1991b22d4",
-  "extract_dir": "publish",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/studyzy/imewlconverter/releases/download/v3.4.2/imewlconverter_win-x64.zip",
+      "hash": "e768de227c70c11cf7413dbe3652672a653ff94d46964a1cb3755de904123214"
+    },
+    "32bit": {
+      "url": "https://github.com/studyzy/imewlconverter/releases/download/v3.4.2/imewlconverter_win-x86.zip",
+      "hash": "dc4bb80241a92f8564a936355d2f605c25106d916a380376a673fafbb83680ed"
+    }
+  },
   "shortcuts": [
     [
       "深蓝词库转换.exe",
@@ -14,6 +21,13 @@
   ],
   "checkver": "github",
   "autoupdate": {
-    "url": "https://github.com/studyzy/imewlconverter/releases/download/v$version/imewlconverter_Windows.zip"
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/studyzy/imewlconverter/releases/download/v$version/imewlconverter_win-x64.zip"
+      },
+      "32bit": {
+        "url": "https://github.com/studyzy/imewlconverter/releases/download/v$version/imewlconverter_win-x86.zip"
+      }
+    }
   }
 }
