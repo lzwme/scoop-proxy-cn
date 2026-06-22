@@ -29,7 +29,7 @@
   "shortcuts": [
     [
       "2ship.exe",
-      "2Ship2Harkinian [win][mm]"
+      "The Legend of Zelda - Majora's Mask [n64][mm]"
     ]
   ],
   "persist": [
@@ -39,8 +39,8 @@
   ],
   "uninstaller": {
     "script": [
-      "'2ship2harkinian.json' | ForEach-Object {",
-      "   Copy-Item -Force \"$dir\\$_\" \"$persist_dir\\$_.bak\"",
+      "if (Test-Path \"$dir\\2ship2harkinian.json\") {",
+      "    Copy-Item -Force \"$dir\\2ship2harkinian.json\" \"$persist_dir\\2ship2harkinian.json.bak\"",
       "}"
     ]
   },

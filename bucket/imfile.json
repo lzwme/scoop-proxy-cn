@@ -2,42 +2,15 @@
   "version": "2.0.5",
   "description": "A full-featured download manager.",
   "homepage": "https://imfile.io/",
-  "license": {
-    "identifier": "MIT license",
-    "url": "https://github.com/imfile-io/imfile-desktop#MIT-1-ov-file"
-  },
   "architecture": {
     "64bit": {
-      "url": "https://github.com/imfile-io/imfile-desktop/releases/download/v2.0.5/imFile-Setup-2.0.5.exe#/dl.7z",
-      "hash": "sha512:272cef839cd9531881fc5512e4f695b0951edc8e161260b670815fe9e6c80f58ac45c85f3d991ccc791a404540692b5c9e3623575619a22d44f4d28dd0a84d43",
-      "pre_install": [
-        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
-        "Remove-Item \"$dir\\`$*\" -Force -Recurse"
-      ]
+      "url": "https://github.com/imfile-io/imfile-desktop/releases/download/v2.0.5/imFile-2.0.5-x64.zip",
+      "hash": "ebc950c85c6d808a784443ce5638bdd628600ffac45db832c8ff7262c33ed788"
     },
     "arm64": {
-      "url": "https://github.com/imfile-io/imfile-desktop/releases/download/v2.0.5/imFile-Setup-2.0.5-arm64.exe#/dl.7z",
-      "hash": "sha512:272cef839cd9531881fc5512e4f695b0951edc8e161260b670815fe9e6c80f58ac45c85f3d991ccc791a404540692b5c9e3623575619a22d44f4d28dd0a84d43",
-      "pre_install": [
-        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-arm64.7z\" \"$dir\"",
-        "Remove-Item \"$dir\\`$*\" -Force -Recurse"
-      ]
+      "url": "https://github.com/imfile-io/imfile-desktop/releases/download/v2.0.5/imFile-2.0.5-arm64.zip",
+      "hash": "95840bd09be49cc807e45de54a6518ec312a75d620ec64f7cba3d85f10407e05"
     }
-  },
-  "installer": {
-    "script": [
-      "# handle runtime cache",
-      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/AppsUtils.psm1)",
-      "Mount-ExternalRuntimeData -Source \"$persist_dir\" -Target \"$env:APPDATA\\imFile\"",
-      "Remove-Module -Name AppsUtils"
-    ]
-  },
-  "uninstaller": {
-    "script": [
-      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/AppsUtils.psm1)",
-      "Dismount-ExternalRuntimeData -Target \"$env:APPDATA\\imFile\"",
-      "Remove-Module -Name AppsUtils"
-    ]
   },
   "shortcuts": [
     [
@@ -46,22 +19,16 @@
     ]
   ],
   "checkver": {
-    "github": "https://api.github.com/repos/imfile-io/imfile-desktop/releases",
-    "jp": "$[0].tag_name",
-    "regex": "v([\\d.]+)"
+    "github": "https://github.com/imfile-io/imfile-desktop"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://github.com/imfile-io/imfile-desktop/releases/download/v$version/imFile-Setup-$version.exe#/dl.7z"
+        "url": "https://github.com/imfile-io/imfile-desktop/releases/download/v$version/imFile-$version-x64.zip"
       },
       "arm64": {
-        "url": "https://github.com/imfile-io/imfile-desktop/releases/download/v$version/imFile-Setup-$version-arm64.exe#/dl.7z"
+        "url": "https://github.com/imfile-io/imfile-desktop/releases/download/v$version/imFile-$version-arm64.zip"
       }
-    },
-    "hash": {
-      "url": "$baseurl/latest.yml",
-      "regex": "sha512:\\s+$base64"
     }
   }
 }

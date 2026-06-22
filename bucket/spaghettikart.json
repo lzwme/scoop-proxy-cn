@@ -15,44 +15,28 @@
     }
   },
   "pre_install": [
-    "if (!(Test-Path \"$persist_dir\\spaghettify.cfg.json\")) {",
-    "    New-Item -ItemType File -ErrorAction SilentlyContinue \"$dir\\spaghettify.cfg.json\" | Out-Null",
-    "}",
-    "if (!(Test-Path \"$persist_dir\\default.sav\")) {",
-    "    New-Item -ItemType File -ErrorAction SilentlyContinue \"$dir\\default.sav\" | Out-Null",
-    "}",
-    "if (!(Test-Path \"$persist_dir\\imgui.ini\")) {",
-    "    New-Item -ItemType File -ErrorAction SilentlyContinue \"$dir\\imgui.ini\" | Out-Null",
+    "$files = @('spaghettify.cfg.json', 'default.sav', 'imgui.ini')",
+    "foreach ($file in $files) {",
+    "    if (!(Test-Path \"$persist_dir\\$file\")) {",
+    "        New-Item -ItemType File -ErrorAction SilentlyContinue \"$dir\\$file\" | Out-Null",
+    "    }",
     "}"
   ],
   "post_install": [
-    "'spaghettify.cfg.json' | ForEach-Object {",
-    "   if (Test-Path \"$persist_dir\\$_.bak\") {",
-    "       Copy-Item -Force \"$persist_dir\\$_.bak\" \"$dir\\$_\"",
-    "   } else {",
-    "       New-Item -ErrorAction SilentlyContinue -ItemType File \"$dir\\$_\" | Out-Null",
-    "   }",
-    "}",
-    "'default.sav' | ForEach-Object {",
-    "   if (Test-Path \"$persist_dir\\$_.bak\") {",
-    "       Copy-Item -Force \"$persist_dir\\$_.bak\" \"$dir\\$_\"",
-    "   } else {",
-    "       New-Item -ErrorAction SilentlyContinue -ItemType File \"$dir\\$_\" | Out-Null",
-    "   }",
-    "}",
-    "'imgui.ini' | ForEach-Object {",
-    "   if (Test-Path \"$persist_dir\\$_.bak\") {",
-    "       Copy-Item -Force \"$persist_dir\\$_.bak\" \"$dir\\$_\"",
-    "   } else {",
-    "       New-Item -ErrorAction SilentlyContinue -ItemType File \"$dir\\$_\" | Out-Null",
-    "   }",
+    "$files = @('spaghettify.cfg.json', 'default.sav', 'imgui.ini')",
+    "foreach ($file in $files) {",
+    "    if (Test-Path \"$persist_dir\\$file.bak\") {",
+    "        Copy-Item -Force \"$persist_dir\\$file.bak\" \"$dir\\$file\"",
+    "    } else {",
+    "        New-Item -ErrorAction SilentlyContinue -ItemType File \"$dir\\$file\" | Out-Null",
+    "    }",
     "}"
   ],
   "bin": "Spaghettify.exe",
   "shortcuts": [
     [
       "Spaghettify.exe",
-      "SpaghettiKart [win][mk64]"
+      "Mario Kart 64 [n64][mk64]"
     ]
   ],
   "persist": [
@@ -64,14 +48,9 @@
   ],
   "uninstaller": {
     "script": [
-      "'spaghettify.cfg.json' | ForEach-Object {",
-      "   Copy-Item -Force \"$dir\\$_\" \"$persist_dir\\$_.bak\"",
-      "}",
-      "'default.sav' | ForEach-Object {",
-      "   Copy-Item -Force \"$dir\\$_\" \"$persist_dir\\$_.bak\"",
-      "}",
-      "'imgui.ini' | ForEach-Object {",
-      "   Copy-Item -Force \"$dir\\$_\" \"$persist_dir\\$_.bak\"",
+      "$files = @('spaghettify.cfg.json', 'default.sav', 'imgui.ini')",
+      "foreach ($file in $files) {",
+      "    Copy-Item -Force \"$dir\\$file\" \"$persist_dir\\$file.bak\"",
       "}"
     ]
   },
