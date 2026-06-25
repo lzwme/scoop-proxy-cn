@@ -1,0 +1,28 @@
+{
+  "version": "0.0.3",
+  "description": "Windows 扩展名关联与文件打开工具",
+  "homepage": "https://github.com/dodorz/F4Menu",
+  "license": "MIT",
+  "url": "https://github.com/dodorz/F4Menu/releases/download/0.0.3/F4Menu.exe#/F4Menu.exe",
+  "hash": "030190214528f5ae113035318adf3caca9422e82f9eb3857f02b4b90f191224d",
+  "bin": "F4Menu.exe",
+  "persist": "F4Menu.ini",
+  "pre_install": [
+    "if (!(Test-Path \"$persist_dir\\F4Menu.ini\")) {",
+    "    Set-Content -Path \"$persist_dir\\F4Menu.ini\" -Value @(",
+    "        '[Options]'",
+    "        'Language=Chs'",
+    "        'MaxFiles=100'",
+    "        ''",
+    "        '[General]'",
+    "        'Count=0'",
+    "    ) -Encoding UTF8",
+    "}"
+  ],
+  "checkver": {
+    "github": "https://github.com/dodorz/F4Menu"
+  },
+  "autoupdate": {
+    "url": "https://github.com/dodorz/F4Menu/releases/download/$version/F4Menu.exe#/F4Menu.exe"
+  }
+}
