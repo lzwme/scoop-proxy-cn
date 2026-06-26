@@ -1,7 +1,7 @@
 {
-  "version": "1.127.0-fcff1a7",
+  "version": "1.127.0-1782374470674",
   "description": "Visual Studio Code is a lightweight but powerful source code editor (Insiders, Portable Edition).",
-  "homepage": "https://code.visualstudio.com/",
+  "homepage": "https://code.visualstudio.com/insiders",
   "license": {
     "identifier": "Freeware",
     "url": "https://code.visualstudio.com/License/"
@@ -14,12 +14,12 @@
   ],
   "architecture": {
     "64bit": {
-      "url": "https://vscode.download.prss.microsoft.com/dbazure/download/insider/fcff1a779c023e586c6d44a18c04a04166b59f37/VSCode-win32-x64-1.127.0-insider.zip",
-      "hash": "4bdd9dc77df1720ce37498e7c2035ff6e581fc0e5d14c3df5d0a12d2a4b3d75c"
+      "url": "https://vscode.download.prss.microsoft.com/dbazure/download/insider/3cf8af2ee6b3acc2ea190f0e6fbf3072b680511d/VSCode-win32-x64-1.127.0-insider.zip",
+      "hash": "f655f10bb553ab58110c96482527dd14e38a69c605484ea57619e7ef812ba466"
     },
     "arm64": {
-      "url": "https://vscode.download.prss.microsoft.com/dbazure/download/insider/fcff1a779c023e586c6d44a18c04a04166b59f37/VSCode-win32-arm64-1.127.0-insider.zip",
-      "hash": "02f562363a3f3fc5f77d8c2888a957b527d958396b4e4735d53f44b9edfcc7a0"
+      "url": "https://vscode.download.prss.microsoft.com/dbazure/download/insider/3cf8af2ee6b3acc2ea190f0e6fbf3072b680511d/VSCode-win32-arm64-1.127.0-insider.zip",
+      "hash": "da758ed26a53e5857773e8246eaef7df9c532412dfc74671297526d845ee1b66"
     }
   },
   "post_install": [
@@ -64,23 +64,26 @@
   },
   "checkver": {
     "url": "https://update.code.visualstudio.com/api/update/win32-x64-archive/insider/latest",
-    "jsonpath": "$..['version', 'productVersion']",
-    "regex": "^\\[\"(?<commit>(?<commitShort>[0-9a-f]{7})[0-9a-f]*)\",\"(?<productVersion>.+)-insider\"",
-    "replace": "${productVersion}-${commitShort}"
+    "script": [
+      "$release = $page | ConvertFrom-Json -ErrorAction Stop",
+      "Write-Output \"$($release.url), $($release.timestamp)\""
+    ],
+    "regex": "insider/(?<commit>[^/]+)/VSCode-win32-x64-(?<prefix>[\\d.]+)[^\\d]+(?<suffix>[\\d.]+)",
+    "replace": "${prefix}-${suffix}"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
         "url": "https://vscode.download.prss.microsoft.com/dbazure/download/insider/$matchCommit/VSCode-win32-x64-$matchHead-insider.zip",
         "hash": {
-          "url": "https://update.code.visualstudio.com/api/update/win32-x64-archive/insider/latest",
+          "url": "https://update.code.visualstudio.com/api/versions/$matchHead-insider/win32-x64-archive/insider",
           "jsonpath": "$.sha256hash"
         }
       },
       "arm64": {
         "url": "https://vscode.download.prss.microsoft.com/dbazure/download/insider/$matchCommit/VSCode-win32-arm64-$matchHead-insider.zip",
         "hash": {
-          "url": "https://update.code.visualstudio.com/api/update/win32-arm64-archive/insider/latest",
+          "url": "https://update.code.visualstudio.com/api/versions/$matchHead-insider/win32-arm64-archive/insider",
           "jsonpath": "$.sha256hash"
         }
       }
