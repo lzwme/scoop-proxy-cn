@@ -1,24 +1,26 @@
 {
-  "version": "10.9.2",
+  "version": "11.1.0",
   "homepage": "https://poi.moe/",
   "description": "Scalable KanColle browser and tool.",
   "license": "MIT License",
-  "url": "https://npm.taobao.org/mirrors/poi/v10.9.2/poi-setup-10.9.2.exe#/dl.7z",
-  "hash": "11c9c48828c8df8d99821d37c71f3fba4c8a7daa717731a204ae03df02f4a08f",
   "architecture": {
     "64bit": {
+      "url": "https://github.com/poooi/poi/releases/download/v11.1.0/poi-setup-11.1.0.exe#/dl.7z",
+      "hash": "5acc973e437deb68d07b0ae487db57b5bc5fe1d1125bf8052fba97b674d42c97",
       "installer": {
         "script": [
           "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
-          "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninst*\" -Force -Recurse"
+          "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$R0\" -Force -Recurse"
         ]
       }
     },
-    "32bit": {
+    "arm64": {
+      "url": "https://github.com/poooi/poi/releases/download/v11.1.0/poi-setup-11.1.0.exe#/dl.7z",
+      "hash": "5acc973e437deb68d07b0ae487db57b5bc5fe1d1125bf8052fba97b674d42c97",
       "installer": {
         "script": [
-          "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-32.7z\" \"$dir\"",
-          "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninst*\" -Force -Recurse"
+          "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-arm64.7z\" \"$dir\"",
+          "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$R0\" -Force -Recurse"
         ]
       }
     }
@@ -33,6 +35,13 @@
     "github": "https://github.com/poooi/poi"
   },
   "autoupdate": {
-    "url": "https://npm.taobao.org/mirrors/poi/v$version/poi-setup-$version.exe#/dl.7z"
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/poooi/poi/releases/download/v$version/poi-setup-$version.exe#/dl.7z"
+      },
+      "arm64": {
+        "url": "https://github.com/poooi/poi/releases/download/v$version/poi-setup-$version.exe#/dl.7z"
+      }
+    }
   }
 }
