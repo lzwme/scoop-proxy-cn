@@ -1,11 +1,14 @@
 {
   "homepage": "https://work.weixin.qq.com/",
-  "description": "企业微信",
-  "version": "5.0.9.6019",
-  "license": "Freeware",
-  "url": "https://dldir1.qq.com/wework/work_weixin/WeCom_5.0.9.6019.exe#/wechat.7z",
-  "hash": "157dfd5c3509257fe0d12109c3e979735573cec8dd437b2fc77eb0c6c37466dc",
-  "post_install": "Start-Process -Wait \"$dir\\$version\\wxdriveinstaller.exe\" -Verb RunAs",
+  "description": "Messaging and calling application for business",
+  "version": "5.0.9.6029",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://work.weixin.qq.com/eula"
+  },
+  "url": "https://dldir1.qq.com/wework/work_weixin/WeCom_5.0.9.6029.exe#/dl.7z",
+  "hash": "2489ce17551b973b14435a64e71d02731324d4a05dc76f6c76f15616bf273bff",
+  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\",\"$dir\\Uninstall*\" -Force -Recurse",
   "shortcuts": [
     [
       "WXWork.exe",
@@ -13,10 +16,10 @@
     ]
   ],
   "checkver": {
-    "url": "https://gh-proxy.org/https://raw.githubusercontent.com/kkzzhizhou/scoop-zapps/master/versions/WechatWork.latest",
+    "script": "return (iwr -useb 'https://work.weixin.qq.com/wework_admin/commdownload?platform=win&from=wwindex' -Method HEAD -MaximumRedirection 0 -SkipHttpErrorCheck -ErrorAction:SilentlyContinue).Headers['Location']",
     "regex": "WeCom_([\\d.]+).exe"
   },
   "autoupdate": {
-    "url": "https://dldir1.qq.com/wework/work_weixin/WeCom_$version.exe#/wechat.7z"
+    "url": "https://dldir1.qq.com/wework/work_weixin/WeCom_$version.exe#/dl.7z"
   }
 }
