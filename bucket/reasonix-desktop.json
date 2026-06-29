@@ -1,7 +1,7 @@
 {
   "version": "1.13.0",
-  "description": "DeepSeek-native AI coding agent for your terminal. Engineered around prefix-cache stability — leave it running.",
-  "homepage": "https://github.com/esengine/DeepSeek-Reasonix",
+  "description": "Reasonix Desktop, official GUI for Reasonix, a DeepSeek-native AI coding agent built to reduce API costs through aggressive context caching.",
+  "homepage": "https://reasonix.io",
   "license": "MIT",
   "architecture": {
     "64bit": {
@@ -13,7 +13,6 @@
       "hash": "c306bb05cc1e27b9ca03c7191a81790efb380d19e3d77c0ce54b634e5b5c8581"
     }
   },
-  "bin": "Reasonix.exe",
   "shortcuts": [
     [
       "Reasonix.exe",
@@ -21,8 +20,9 @@
     ]
   ],
   "checkver": {
-    "url": "https://github.com/esengine/DeepSeek-Reasonix/releases/latest",
-    "regex": "/releases/tag/desktop-(?:v|V)?([\\d.]+)"
+    "github": "https://api.github.com/repos/esengine/DeepSeek-Reasonix/releases",
+    "jsonpath": "$[*].tag_name",
+    "regex": "\"desktop-v([\\d.]+)\""
   },
   "autoupdate": {
     "architecture": {
