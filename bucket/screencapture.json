@@ -1,25 +1,19 @@
 {
-  "version": "2.4.4",
-  "description": "A multifunctional screen capture program",
   "homepage": "https://github.com/xland/ScreenCapture",
-  "license": {
-    "identifier": "MIT license",
-    "url": "https://github.com/xland/ScreenCapture#MIT-1-ov-file"
-  },
-  "url": "https://gh-proxy.org/https://github.com/xland/ScreenCapture/releases/download/2.4.4/ScreenCapture.exe",
-  "hash": "0b0659eaff05440fb8c828d85101b3b4b7c62136df16aec7734bd4522f126041",
+  "description": "A multifunctional screen capture program",
+  "license": "MIT",
+  "version": "2.4.7",
+  "url": "https://gh-proxy.org/https://github.com/xland/ScreenCapture/releases/download/2.4.7/ScreenCapture.exe",
+  "hash": "44bfcd1dfbc1bd673876f01edd6fefc73df3c323f60249a61c13b7e1d757f826",
+  "bin": "ScreenCapture.exe",
   "shortcuts": [
     [
       "ScreenCapture.exe",
       "ScreenCapture"
     ]
   ],
-  "checkver": {
-    "github": "https://api.github.com/repos/xland/ScreenCapture/releases",
-    "jp": "$[0].assets[*].browser_download_url",
-    "regex": "/releases/download/([\\d.]+)/(?<file>.*?(?:exe|7z))"
-  },
+  "checkver": "github",
   "autoupdate": {
-    "url": "https://gh-proxy.org/https://github.com/xland/ScreenCapture/releases/download/$version/$matchFile"
+    "url": "https://gh-proxy.org/https://github.com/xland/ScreenCapture/releases/download/$version/ScreenCapture.exe"
   }
 }
