@@ -1,8 +1,11 @@
 {
   "version": "2.0.1",
-  "description": "A simple terminal tool to browse and download files from GitHub, GitLab, Codeberg, Gitea, and Forgejo",
-  "homepage": "https://github.com/abhixdd/ghgrab",
+  "description": "A simple, pretty terminal tool that lets you browse and download files from GitHub, GitLab, Codeberg, Gitea, and Forgejo without leaving your CLI.",
+  "homepage": "https://ghgrab.readthedocs.io",
   "license": "MIT",
+  "suggest": {
+    "vcredist": "extras/vcredist2022"
+  },
   "architecture": {
     "64bit": {
       "url": "https://gh-proxy.org/https://github.com/abhixdd/ghgrab/releases/download/v2.0.1/ghgrab-win32.exe#/ghgrab.exe",
@@ -10,7 +13,9 @@
     }
   },
   "bin": "ghgrab.exe",
-  "checkver": "github",
+  "checkver": {
+    "github": "https://github.com/abhixdd/ghgrab"
+  },
   "autoupdate": {
     "architecture": {
       "64bit": {
@@ -19,7 +24,7 @@
     },
     "hash": {
       "url": "$baseurl/checksums.json",
-      "regex": "$basename.*?$sha256"
+      "jsonpath": "$.['$basename']"
     }
   }
 }
