@@ -1,9 +1,9 @@
-Remove-NetFirewallRule -Description "Work with Clash for Windows." -ErrorAction SilentlyContinue
+Remove-NetFirewallRule -Description "Work with Clash for Windows from scoop bucket Scoop4kariiin." -ErrorAction SilentlyContinue
 'TCP', 'UDP' | ForEach-Object {
     New-NetFirewallRule `
         -DisplayName "Clash for Windows" `
         -Profile "Private, Public" `
-        -Description "Work with Clash for Windows." `
+        -Description "Work with Clash for Windows from scoop bucket Scoop4kariiin." `
         -Direction Inbound `
         -Protocol $_ `
         -Action Allow `
@@ -13,7 +13,7 @@ Remove-NetFirewallRule -Description "Work with Clash for Windows." -ErrorAction 
     New-NetFirewallRule `
         -DisplayName "Clash Core" `
         -Profile "Private, Public" `
-        -Description "Work with Clash for Windows." `
+        -Description "Work with Clash for Windows from scoop bucket Scoop4kariiin." `
         -Direction Inbound `
         -Protocol $_ `
         -Action Allow `
