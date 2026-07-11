@@ -3,10 +3,10 @@
   "description": "Nintendo 64 emulator",
   "homepage": "https://www.pj64-emu.com/",
   "license": {
-    "url": "https://github.com/project64/project64/blob/develop/license.md",
-    "identifier": "GPL-2.0"
+    "identifier": "GPL-2.0",
+    "url": "https://github.com/project64/project64/blob/develop/license.md"
   },
-  "url": "https://www.pj64-emu.com/file/setup-project64-Dev-4-0-0-6732-06f9772/",
+  "url": "https://www.pj64-emu.com/file/setup-project64-Dev-4-0-0-6732-06f9772/#/setup-project64-Dev-4-0-0-6732-06f9772.exe",
   "hash": "7f30cc82c7f654b776b3405c0e197b8f4d99aeb4bce03cf05e0b8bc51d21a313",
   "bin": [
     [
@@ -17,7 +17,7 @@
   "shortcuts": [
     [
       "Project64.exe",
-      "Project64 (dev)"
+      "Project64 (development)"
     ]
   ],
   "persist": [
@@ -31,10 +31,11 @@
   ],
   "checkver": {
     "url": "https://www.pj64-emu.com/nightly-builds",
-    "regex": "((?<major>[\\d]+)\\.(?<minor>[\\d]+)\\.(?<patch>[\\d]+)-(?<build>[\\d]+)-(?<commit>[\\da-f]+))"
+    "regex": "href=\"/file/project64-win32-dev-(?<major>[\\d]+)-(?<minor>[\\d]+)-(?<patch>[\\d]+)-(?<build>[\\d]+)-(?<commit>[\\da-f]+).*btn zip",
+    "replace": "${major}.${minor}.${patch}-${build}-${commit}"
   },
   "autoupdate": {
-    "url": "https://www.pj64-emu.com/file/setup-project64-Dev-$dashVersion/"
+    "url": "https://www.pj64-emu.com/file/setup-project64-Dev-$dashVersion/#/setup-project64-Dev-$dashVersion.exe"
   },
   "innosetup": true
 }
