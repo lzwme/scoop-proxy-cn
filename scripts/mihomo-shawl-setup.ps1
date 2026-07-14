@@ -76,7 +76,7 @@ switch ($Phase) {
             sc.exe config mihomo-shawl start= auto | Out-Null
 
             # 配置网络入站防火墙规则 (管理员上下文直接执行)
-            Remove-NetFirewallRule -DisplayName 'Mihomo-In-TCP', 'Mihomo-In-UDP', 'Mihomo-Out' -ErrorAction SilentlyContinue | Out-Null
+            Remove-NetFirewallRule -DisplayName 'Mihomo-In-TCP', 'Mihomo-In-UDP' -ErrorAction SilentlyContinue | Out-Null
             New-NetFirewallRule -DisplayName 'Mihomo-In-TCP' -Direction Inbound -Program $RealMihomoExe -Action Allow -Profile Any -Protocol TCP -ErrorAction SilentlyContinue | Out-Null
             New-NetFirewallRule -DisplayName 'Mihomo-In-UDP' -Direction Inbound -Program $RealMihomoExe -Action Allow -Profile Any -Protocol UDP -ErrorAction SilentlyContinue | Out-Null
             Write-Host 'Mihomo Windows service registered and firewall rules configured successfully.' -ForegroundColor Green
@@ -88,7 +88,7 @@ switch ($Phase) {
             $joinedArgs = ($argsList | ForEach-Object { "'$_'" }) -join ' '
             $cmdString = "sc.exe delete mihomo-shawl | Out-Null; & '$servicePath' " + $joinedArgs + `
                 "; sc.exe config mihomo-shawl start= auto | Out-Null" + `
-                "; Remove-NetFirewallRule -DisplayName 'Mihomo-In-TCP','Mihomo-In-UDP','Mihomo-Out' -ErrorAction SilentlyContinue" + `
+                "; Remove-NetFirewallRule -DisplayName 'Mihomo-In-TCP','Mihomo-In-UDP' -ErrorAction SilentlyContinue" + `
                 "; New-NetFirewallRule -DisplayName 'Mihomo-In-TCP' -Direction Inbound -Program '$RealMihomoExe' -Action Allow -Profile Any -Protocol TCP -ErrorAction SilentlyContinue | Out-Null" + `
                 "; New-NetFirewallRule -DisplayName 'Mihomo-In-UDP' -Direction Inbound -Program '$RealMihomoExe' -Action Allow -Profile Any -Protocol UDP -ErrorAction SilentlyContinue | Out-Null"
 
@@ -99,10 +99,6 @@ switch ($Phase) {
                 Write-Warning 'UAC elevation denied. Service was not registered and firewall rules were not added.'
             }
         }
-        Write-Host ''
-        Write-Host 'INFO: If your TUN/Mixed mode requires outbound rule, run PowerShell as Administrator and execute:' -ForegroundColor Cyan
-        Write-Host "New-NetFirewallRule -DisplayName 'Mihomo-Out' -Direction Outbound -Program '$RealMihomoExe' -Action Allow -Profile Any" -ForegroundColor Gray
-        Write-Host ''
     }
 
     'uninstall' {
@@ -124,7 +120,7 @@ switch ($Phase) {
             # 清理可能残留的后台进程与关联防火墙规则
             Write-Host 'Stopping any remaining Mihomo processes...' -ForegroundColor Yellow
             Stop-Process -Name 'mihomo', 'mihomo-service' -Force -ErrorAction SilentlyContinue | Out-Null
-            Remove-NetFirewallRule -DisplayName 'Mihomo-In-TCP', 'Mihomo-In-UDP', 'Mihomo-Out' -ErrorAction SilentlyContinue | Out-Null
+            Remove-NetFirewallRule -DisplayName 'Mihomo-In-TCP', 'Mihomo-In-UDP' -ErrorAction SilentlyContinue | Out-Null
         } else {
             Write-Host 'Not running as Administrator. Requesting elevation via UAC to stop/uninstall service, terminate processes, and remove firewall rules...' -ForegroundColor Yellow
 
@@ -139,7 +135,7 @@ switch ($Phase) {
                 }
             }
             $elevatedCmds += "Stop-Process -Name 'mihomo','mihomo-service' -Force -ErrorAction SilentlyContinue"
-            $elevatedCmds += "Remove-NetFirewallRule -DisplayName 'Mihomo-In-TCP','Mihomo-In-UDP','Mihomo-Out' -ErrorAction SilentlyContinue"
+            $elevatedCmds += "Remove-NetFirewallRule -DisplayName 'Mihomo-In-TCP','Mihomo-In-UDP' -ErrorAction SilentlyContinue"
             $cmdString = $elevatedCmds -join '; '
             try {
                 Start-Process powershell -ArgumentList '-NoProfile', '-WindowStyle', 'Hidden', '-Command', $cmdString -Verb RunAs -Wait -ErrorAction Stop
