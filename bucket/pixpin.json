@@ -1,18 +1,24 @@
 {
-  "version": "3.2.3.1",
-  "description": "Screenshots, screen recording, OCR tool.",
-  "homepage": "https://pixpin.cn/",
-  "license": {
-    "identifier": "Proprietary",
-    "url": "https://pixpin.cn/docs/policy/tos_zh_CN"
-  },
-  "architecture": {
-    "64bit": {
-      "url": "https://download.pixpin.cn/PixPin_cn_zh-cn_3.2.3.1.zip#/dl.zip",
-      "hash": "52f469aa83d8f6bf8615cb68b9afb95f22d7c766dc513471c8f14bf39801be31"
-    }
-  },
+  "version": "3.3.5.7",
+  "description": "An all-in-one, free screenshot tool with annotation, pinning, OCR and recording features.",
+  "homepage": "https://pixpin.com/",
+  "license": "Unknown",
+  "url": "https://down.pixpin.cn/PixPin_win_3.3.5.7.zip",
+  "hash": "22eedc554a2e4cd1b1e1cdfc350189c797b2b1322d48066051c87c47848eb31b",
   "extract_dir": "PixPin",
+  "post_install": [
+    "$ConfigPath = Join-Path -Path \"$persist_dir\\Config\" -ChildPath \"PixPinConfig.json\"",
+    "if (-not (Test-Path $ConfigPath)) {",
+    "    $CurrentUnixTime = [int][Math]::Floor((Get-Date -Date (Get-Date).ToUniversalTime() -UFormat %s))",
+    "    $ConfigContent = @{",
+    "        'System.Update.UpgradeMode#s.win' = @{",
+    "            v = 0",
+    "            t = $CurrentUnixTime",
+    "        }",
+    "    }",
+    "    $ConfigContent | ConvertTo-Json -Depth 5 -Compress | Out-File -FilePath $ConfigPath -Encoding UTF8 -Force",
+    "}"
+  ],
   "shortcuts": [
     [
       "PixPin.exe",
@@ -23,26 +29,13 @@
     "Config",
     "Data",
     "History",
-    "OcrModel"
-  ],
-  "post_install": [
-    "$configPath = \"$persist_dir\\Config\\PixPinConfig.json\"",
-    "if (Test-Path $configPath) {",
-    "    return",
-    "}",
-    "$timestamp = [DateTimeOffset]::Now.ToUnixTimeSeconds()",
-    "$content = '{\"System.Update.UpgradeMode#s.win\":{\"t\":' + $timestamp + ',\"v\":0}}'",
-    "$content | Set-Content -Path $configPath -Encoding UTF8"
+    "Temp"
   ],
   "checkver": {
-    "url": "https://pixpin.cn/download/",
-    "regex": "PixPin_cn_zh-cn_(\\d+(?:\\.\\d+)*)"
+    "url": "https://pixpin.com/download/",
+    "regex": "PixPin_win_([\\d.]+)\\.zip"
   },
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://download.pixpin.cn/PixPin_cn_zh-cn_$version.zip#/dl.zip"
-      }
-    }
+    "url": "https://down.pixpin.cn/PixPin_win_$version.zip"
   }
 }
