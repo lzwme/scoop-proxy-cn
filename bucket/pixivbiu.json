@@ -1,40 +1,37 @@
 {
   "version": "3.0.1",
-  "description": "Pixiv 辅助工具",
-  "homepage": "https://biu.tls.moe/",
-  "license": {
-    "identifier": "MIT license",
-    "url": "https://github.com/txperl/PixivBiu/blob/master/LICENSE"
-  },
+  "homepage": "https://github.com/txperl/PixivBiu",
+  "description": "A Pixiv search assistant with member-free sorting by favorites, proxy-free browsing, and multiple image downloads",
+  "license": "MIT",
   "architecture": {
     "64bit": {
       "url": "https://gh-proxy.org/https://github.com/txperl/PixivBiu/releases/download/v3.0.1/PixivBiu_3.0.1_windows_amd64.zip",
       "hash": "694690f5cace26f30e70fff68b63d484a73a9257193b2fcb371dad167c3ba646"
     },
-    "arm64": {
+    "32bit": {
       "url": "https://gh-proxy.org/https://github.com/txperl/PixivBiu/releases/download/v3.0.1/PixivBiu_3.0.1_windows_arm64.zip",
       "hash": "1e489e561f4e7144c005ec98dee614fa919c958d54a6b74edb08a590cbbb515e"
     }
   },
-  "bin": "pixivbiu.exe",
+  "persist": [
+    "config.yml",
+    "usr",
+    "downloads"
+  ],
   "shortcuts": [
     [
-      "pixivbiu.exe",
+      "PixivBiu.exe",
       "PixivBiu"
     ]
   ],
-  "persist": "usr",
-  "checkver": {
-    "github": "https://api.github.com/repos/txperl/PixivBiu/releases/latest",
-    "jsonpath": "$.tag_name",
-    "regex": "v([\\w.]+)"
-  },
+  "bin": "PixivBiu.exe",
+  "checkver": "github",
   "autoupdate": {
     "architecture": {
       "64bit": {
         "url": "https://gh-proxy.org/https://github.com/txperl/PixivBiu/releases/download/v$version/PixivBiu_$version_windows_amd64.zip"
       },
-      "arm64": {
+      "32bit": {
         "url": "https://gh-proxy.org/https://github.com/txperl/PixivBiu/releases/download/v$version/PixivBiu_$version_windows_arm64.zip"
       }
     }
