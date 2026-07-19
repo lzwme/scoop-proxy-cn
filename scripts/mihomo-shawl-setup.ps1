@@ -80,21 +80,50 @@ switch ($Phase) {
             New-NetFirewallRule -DisplayName 'Mihomo-In-TCP' -Direction Inbound -Program $RealMihomoExe -Action Allow -Profile Any -Protocol TCP -ErrorAction SilentlyContinue | Out-Null
             New-NetFirewallRule -DisplayName 'Mihomo-In-UDP' -Direction Inbound -Program $RealMihomoExe -Action Allow -Profile Any -Protocol UDP -ErrorAction SilentlyContinue | Out-Null
             Write-Host 'Mihomo Windows service registered and firewall rules configured successfully.' -ForegroundColor Green
+
+            $hasConfig = $PersistDir -and (Test-Path "$PersistDir\config.yaml") -and ((Get-Item "$PersistDir\config.yaml").Length -gt 0)
+            if ($hasConfig) {
+                $svc = Get-Service -Name 'mihomo-shawl' -ErrorAction SilentlyContinue
+                if ($svc -and $svc.Status -eq 'Running') {
+                    Restart-Service -Name 'mihomo-shawl' -Force -ErrorAction SilentlyContinue
+                    Write-Host 'Existing config.yaml detected - service restarted.' -ForegroundColor Green
+                } else {
+                    Start-Service -Name 'mihomo-shawl' -ErrorAction SilentlyContinue
+                    Write-Host 'Existing config.yaml detected - service started.' -ForegroundColor Green
+                }
+            } else {
+                Write-Host 'No existing config.yaml content found - service registered but NOT started.' -ForegroundColor Yellow
+                Write-Host 'Please edit config.yaml, then run "mihomo-helper start".' -ForegroundColor Yellow
+            }
         } else {
             Write-Host 'Not running as Administrator. Requesting UAC elevation to configure Windows service and firewall rules...' -ForegroundColor Yellow
 
             # 此处须提前拼合参数。因 PowerShell 中 '+' 的运算优先级高于 '-join'，
             # 直接在长字符串中使用会使后续追加的所有防火墙配置被合入 join 拼接符内导致丢失。
             $joinedArgs = ($argsList | ForEach-Object { "'$_'" }) -join ' '
+            $hasConfig = $PersistDir -and (Test-Path "$PersistDir\config.yaml") -and ((Get-Item "$PersistDir\config.yaml").Length -gt 0)
+            $serviceStartCmd = if ($hasConfig) {
+                "; `$svc = Get-Service -Name 'mihomo-shawl' -ErrorAction SilentlyContinue" +
+                "; if (`$svc -and `$svc.Status -eq 'Running') { Restart-Service -Name 'mihomo-shawl' -Force -ErrorAction SilentlyContinue } else { Start-Service -Name 'mihomo-shawl' -ErrorAction SilentlyContinue }"
+            } else {
+                ''
+            }
+
             $cmdString = "sc.exe delete mihomo-shawl | Out-Null; & '$servicePath' " + $joinedArgs + `
                 "; sc.exe config mihomo-shawl start= auto | Out-Null" + `
                 "; Remove-NetFirewallRule -DisplayName 'Mihomo-In-TCP','Mihomo-In-UDP' -ErrorAction SilentlyContinue" + `
                 "; New-NetFirewallRule -DisplayName 'Mihomo-In-TCP' -Direction Inbound -Program '$RealMihomoExe' -Action Allow -Profile Any -Protocol TCP -ErrorAction SilentlyContinue | Out-Null" + `
-                "; New-NetFirewallRule -DisplayName 'Mihomo-In-UDP' -Direction Inbound -Program '$RealMihomoExe' -Action Allow -Profile Any -Protocol UDP -ErrorAction SilentlyContinue | Out-Null"
+                "; New-NetFirewallRule -DisplayName 'Mihomo-In-UDP' -Direction Inbound -Program '$RealMihomoExe' -Action Allow -Profile Any -Protocol UDP -ErrorAction SilentlyContinue | Out-Null" + `
+                $serviceStartCmd
 
             try {
                 Start-Process powershell -ArgumentList '-NoProfile', '-WindowStyle', 'Hidden', '-Command', $cmdString -Verb RunAs -Wait -ErrorAction Stop
-                Write-Host 'Mihomo Windows service registered and firewall rules configured successfully.' -ForegroundColor Green
+                if ($hasConfig) {
+                    Write-Host 'Mihomo Windows service registered, firewall rules configured, and service (re)started.' -ForegroundColor Green
+                } else {
+                    Write-Host 'Mihomo Windows service registered and firewall rules configured. Service NOT started (no existing config.yaml).' -ForegroundColor Yellow
+                    Write-Host 'Please edit config.yaml, then run "mihomo-helper start".' -ForegroundColor Yellow
+                }
             } catch {
                 Write-Warning 'UAC elevation denied. Service was not registered and firewall rules were not added.'
             }

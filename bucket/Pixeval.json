@@ -1,30 +1,49 @@
 {
-  "version": "4.3.23",
+  "version": "5.0.0",
   "description": "Wow. Yet another Pixiv client!",
   "homepage": "https://github.com/Pixeval/Pixeval",
   "license": "GPL-3.0",
   "architecture": {
     "64bit": {
-      "url": "https://github.com/Pixeval/Pixeval/releases/download/4.3.23/Pixeval_4.3.23.0_x64.msix#/dl.7z",
-      "hash": "4da8526f9c589ae08af8f7611fa0185f475065120dd7c55b2a86da0b23c25c08"
+      "url": "https://github.com/Pixeval/Pixeval/releases/download/5.0.0/Pixeval-5.0.0-windows-x64.zip",
+      "hash": "7b7d595f370fba0c3583891dd6aa196467f74695a4a447bd58c0fee946c33000"
+    },
+    "32bit": {
+      "url": "https://github.com/Pixeval/Pixeval/releases/download/5.0.0/Pixeval-5.0.0-windows-x86.zip",
+      "hash": "300db68bc361b1568f8051254b95df42d7a79846442dab66ff6fc44e261bfeb0"
+    },
+    "arm64": {
+      "url": "https://github.com/Pixeval/Pixeval/releases/download/5.0.0/Pixeval-5.0.0-windows-arm64.zip",
+      "hash": "5c6dd51ddb2d32e535d381e312bac5a25a0bb5c07d5fb3187149a929b4650ebb"
     }
   },
-  "bin": "Pixeval.exe",
+  "bin": [
+    [
+      "Pixeval.Desktop.exe",
+      "Pixeval"
+    ]
+  ],
   "shortcuts": [
     [
-      "Pixeval.exe",
+      "Pixeval.Desktop.exe",
       "Pixeval"
     ]
   ],
   "checkver": {
     "github": "https://api.github.com/repos/Pixeval/Pixeval/releases/latest",
-    "jp": "$.assets[*].browser_download_url",
-    "regex": "/releases/download/([\\d.]+)/Pixeval_([\\d.]+).0_x64.msix"
+    "jp": "$.tag_name",
+    "regex": "([\\d.]+)"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://github.com/Pixeval/Pixeval/releases/download/$version/Pixeval_$version.0_x64.msix#/dl.7z"
+        "url": "https://github.com/Pixeval/Pixeval/releases/download/$version/Pixeval-$version-windows-x64.zip"
+      },
+      "32bit": {
+        "url": "https://github.com/Pixeval/Pixeval/releases/download/$version/Pixeval-$version-windows-x86.zip"
+      },
+      "arm64": {
+        "url": "https://github.com/Pixeval/Pixeval/releases/download/$version/Pixeval-$version-windows-arm64.zip"
       }
     }
   }

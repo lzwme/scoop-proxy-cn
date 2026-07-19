@@ -1,62 +1,39 @@
 {
-  "version": "3.4.7",
-  "description": "跨平台桌面端视频资源播放器,免费高颜值.",
-  "homepage": "https://github.com/Hiram-Wong/zyfun",
-  "license": {
-    "identifier": "AGPL-3.0 license",
-    "url": "https://github.com/Hiram-Wong/zyfun#AGPL-3.0-1-ov-file"
-  },
+  "homepage": "https://zyplayer.fun/",
+  "license": "MIT",
+  "version": "2.8.8",
   "architecture": {
     "64bit": {
-      "url": "https://github.com/Hiram-Wong/zyfun/releases/download/v3.4.7/zyfun-win-3.4.7-x64-setup.exe#/dl.7z",
-      "hash": "sha512:63b5a10cea30cde3ebdb8c744a0a869dae0a734626759f1a087b5d43ae8ce1156b7d80a7e2406eaefea7d580a51441d202321fc933287809be42d9ff16f16e42",
-      "pre_install": [
-        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
-        "Remove-Item \"$dir\\`$*\" -Recurse"
-      ]
-    },
-    "arm64": {
-      "url": "https://github.com/Hiram-Wong/zyfun/releases/download/v3.4.7/zyfun-win-3.4.7-arm64-setup.exe#/dl.7z",
-      "hash": "sha512:63b5a10cea30cde3ebdb8c744a0a869dae0a734626759f1a087b5d43ae8ce1156b7d80a7e2406eaefea7d580a51441d202321fc933287809be42d9ff16f16e42",
-      "pre_install": [
-        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-arm64.7z\" \"$dir\"",
-        "Remove-Item \"$dir\\`$*\" -Recurse"
-      ]
+      "url": "https://github.com/Hunlongyu/ZY-Player/releases/download/v2.8.8/ZY-Player-Setup-2.8.8.exe#/dl.7z",
+      "hash": "sha512:9d8427c82e448a2c1f2e98a2a460bcbeaee4ef6343f8a3e81024854d18f4cd23f51bb994ff5ae1dec3d8b4dea7d84ee4fa75f71dc85e675e3e7a361e8b5c265c",
+      "installer": {
+        "script": [
+          "Expand-7ZipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\" -Removal",
+          "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall*\" -Force -Recurse"
+        ]
+      }
     }
   },
-  "installer": {
-    "script": [
-      "ensure \"$persist_dir\" | Out-Null",
-      "New-Item \"$env:APPDATA\\zyplayer\" -ItemType Junction -Target \"$persist_dir\" | Out-Null"
-    ]
-  },
-  "uninstaller": {
-    "script": "Remove-Item \"$env:APPDATA\\zyplayer\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
-  },
-  "bin": "zyfun.exe",
+  "bin": "ZY Player.exe",
   "shortcuts": [
     [
-      "zyfun.exe",
-      "ZYFun"
+      "ZY Player.exe",
+      "ZY Player"
     ]
   ],
   "checkver": {
-    "github": "https://api.github.com/repos/Hiram-Wong/ZyPlayer/releases",
-    "jp": "$[0].tag_name",
-    "regex": "v([\\d.]+)"
+    "github": "https://github.com/cuiocean/ZY-Player"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://github.com/Hiram-Wong/zyfun/releases/download/v$version/zyfun-win-$version-x64-setup.exe#/dl.7z"
-      },
-      "arm64": {
-        "url": "https://github.com/Hiram-Wong/zyfun/releases/download/v$version/zyfun-win-$version-arm64-setup.exe#/dl.7z"
+        "url": "https://github.com/Hunlongyu/ZY-Player/releases/download/v$version/ZY-Player-Setup-$version.exe#/dl.7z",
+        "hash": {
+          "url": "$baseurl/latest.yml",
+          "regex": "sha512:\\s+$base64"
+        }
       }
-    },
-    "hash": {
-      "url": "$baseurl/latest.yml",
-      "regex": "sha512:\\s+$base64"
     }
-  }
+  },
+  "notes": "We don't persist your ZY Player data, they are still storaged in '%APPDATA%\\zy'."
 }
