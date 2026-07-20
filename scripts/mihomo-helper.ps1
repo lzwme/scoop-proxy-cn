@@ -9,6 +9,8 @@ param(
 )
 
 $ServiceName = 'mihomo-shawl'
+$script:EditorStdOutLog = Join-Path $env:TEMP 'mihomo-helper-editor-stdout.log'
+$script:EditorStdErrLog = Join-Path $env:TEMP 'mihomo-helper-editor-stderr.log'
 
 function Test-Admin {
     ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
@@ -117,7 +119,11 @@ function Invoke-AssociatedEditor {
     }
 
     try {
-        Start-Process -FilePath $exe -ArgumentList $argString -ErrorAction Stop | Out-Null
+        Start-Process -FilePath $exe `
+            -ArgumentList $argString `
+            -RedirectStandardOutput $script:EditorStdOutLog `
+            -RedirectStandardError $script:EditorStdErrLog `
+            -ErrorAction Stop | Out-Null
         return $true
     } catch {
         return $false
@@ -154,7 +160,11 @@ function Open-ConfigFile {
     $codeCmd = Get-Command 'code' -ErrorAction SilentlyContinue
     if ($codeCmd) {
         try {
-            Start-Process -FilePath $codeCmd.Source -ArgumentList "`"$FilePath`"" -ErrorAction Stop | Out-Null
+            Start-Process -FilePath $codeCmd.Source `
+                -ArgumentList "`"$FilePath`"" `
+                -RedirectStandardOutput $script:EditorStdOutLog `
+                -RedirectStandardError $script:EditorStdErrLog `
+                -ErrorAction Stop | Out-Null
             Write-Host "Opened with VS Code." -ForegroundColor Green
             return $true
         } catch {
@@ -171,7 +181,11 @@ function Open-ConfigFile {
     foreach ($candidate in $vscodeCandidates) {
         if ($candidate -and (Test-Path -Path $candidate -PathType Leaf)) {
             try {
-                Start-Process -FilePath $candidate -ArgumentList "`"$FilePath`"" -ErrorAction Stop | Out-Null
+                Start-Process -FilePath $candidate `
+                    -ArgumentList "`"$FilePath`"" `
+                    -RedirectStandardOutput $script:EditorStdOutLog `
+                    -RedirectStandardError $script:EditorStdErrLog `
+                    -ErrorAction Stop | Out-Null
                 Write-Host "Opened with VS Code." -ForegroundColor Green
                 return $true
             } catch {
@@ -422,6 +436,8 @@ switch ($Action) {
         $configPath = Join-Path $PSScriptRoot 'config.yaml'
         Write-Host "Target config file: $configPath" -ForegroundColor DarkGray
         Open-ConfigFile -FilePath $configPath | Out-Null
+        Start-Sleep -Milliseconds 500
+        Remove-Item -Path $script:EditorStdOutLog, $script:EditorStdErrLog -ErrorAction SilentlyContinue
     }
     'reload' {
         Invoke-MihomoReload
