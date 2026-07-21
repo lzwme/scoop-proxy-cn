@@ -33,15 +33,34 @@ switch ($Phase) {
             Copy-Item $controlSource -Destination "$Dir\mihomo-helper.ps1" -Force
         }
 
-        # 3. 预创建关键持久化文件与目录，避免 Scoop 建立软链接时因目标缺失而报错
-        if (!(Test-Path "$PersistDir")) {
-            New-Item -Path "$PersistDir" -ItemType Directory | Out-Null
+        # 3. 预创建关键持久化文件与目录
+        # 预先确保持久化中 config、ui 等文件夹存在
+        foreach ($folder in @('', 'config', 'ui', 'proxies', 'rules', 'logs')) {
+            $targetFolder = if ($folder) { "$PersistDir\$folder" } else { "$PersistDir" }
+            if (!(Test-Path $targetFolder)) {
+                New-Item -Path $targetFolder -ItemType Directory | Out-Null
+            }
+        }
+
+        # [自动迁移逻辑]：检测是否存在旧版的扁平化 config.yaml，并将其安全地移动到 config 文件夹下
+        $oldConfig = "$PersistDir\config.yaml"
+        $newConfig = "$PersistDir\config\config.yaml"
+        if (Test-Path $oldConfig) {
+            if (!(Test-Path $newConfig)) {
+                Move-Item -Path $oldConfig -Destination $newConfig -Force
+            } else {
+                # 如果新旧位置同时存在，保留原有的旧文件并覆盖默认新文件
+                Remove-Item $newConfig -Force -ErrorAction SilentlyContinue
+                Move-Item -Path $oldConfig -Destination $newConfig -Force
+            }
+        }
+
+        # 补全缺少的空文件
+        if (!(Test-Path $newConfig)) {
+            New-Item -Path $newConfig -ItemType File | Out-Null
         }
         if (!(Test-Path "$PersistDir\cache.db")) {
             New-Item -Path "$PersistDir\cache.db" -ItemType File | Out-Null
-        }
-        if (!(Test-Path "$PersistDir\config.yaml")) {
-            New-Item -Path "$PersistDir\config.yaml" -ItemType File | Out-Null
         }
     }
 
@@ -66,7 +85,7 @@ switch ($Phase) {
             '--',
             "$Dir\mihomo.exe",
             '-d', '.',
-            '-f', 'config.yaml'
+            '-f', 'config/config.yaml'
         )
 
         if ($isAdmin) {
@@ -81,7 +100,8 @@ switch ($Phase) {
             New-NetFirewallRule -DisplayName 'Mihomo-In-UDP' -Direction Inbound -Program $RealMihomoExe -Action Allow -Profile Any -Protocol UDP -ErrorAction SilentlyContinue | Out-Null
             Write-Host 'Mihomo Windows service registered and firewall rules configured successfully.' -ForegroundColor Green
 
-            $hasConfig = $PersistDir -and (Test-Path "$PersistDir\config.yaml") -and ((Get-Item "$PersistDir\config.yaml").Length -gt 0)
+            # 检测 config 文件夹下的配置文件
+            $hasConfig = $PersistDir -and (Test-Path "$PersistDir\config\config.yaml") -and ((Get-Item "$PersistDir\config\config.yaml").Length -gt 0)
             if ($hasConfig) {
                 $svc = Get-Service -Name 'mihomo-shawl' -ErrorAction SilentlyContinue
                 if ($svc -and $svc.Status -eq 'Running') {
@@ -101,7 +121,7 @@ switch ($Phase) {
             # 此处须提前拼合参数。因 PowerShell 中 '+' 的运算优先级高于 '-join'，
             # 直接在长字符串中使用会使后续追加的所有防火墙配置被合入 join 拼接符内导致丢失。
             $joinedArgs = ($argsList | ForEach-Object { "'$_'" }) -join ' '
-            $hasConfig = $PersistDir -and (Test-Path "$PersistDir\config.yaml") -and ((Get-Item "$PersistDir\config.yaml").Length -gt 0)
+            $hasConfig = $PersistDir -and (Test-Path "$PersistDir\config\config.yaml") -and ((Get-Item "$PersistDir\config\config.yaml").Length -gt 0)
             $serviceStartCmd = if ($hasConfig) {
                 "; `$svc = Get-Service -Name 'mihomo-shawl' -ErrorAction SilentlyContinue" +
                 "; if (`$svc -and `$svc.Status -eq 'Running') { Restart-Service -Name 'mihomo-shawl' -Force -ErrorAction SilentlyContinue } else { Start-Service -Name 'mihomo-shawl' -ErrorAction SilentlyContinue }"

@@ -255,7 +255,7 @@ function Get-MihomoConfigValue {
 }
 
 function Invoke-MihomoReload {
-    $configPath = Join-Path $PSScriptRoot 'config.yaml'
+    $configPath = Join-Path $PSScriptRoot 'config\config.yaml'
     if (!(Test-Path -Path $configPath -PathType Leaf)) {
         Write-Host "Config file not found: $configPath" -ForegroundColor Red
         return
@@ -264,11 +264,9 @@ function Invoke-MihomoReload {
     $fileInfo = Get-Item -Path $configPath
     if ($fileInfo.Length -eq 0) {
         Write-Host "Config file '$configPath' is 0 bytes." -ForegroundColor Red
-        Write-Host "This can happen if your editor's 'safe save' (write-to-temp-then-replace) broke the" -ForegroundColor Yellow
-        Write-Host "hard link between the installed copy and the persisted copy." -ForegroundColor Yellow
         try {
             $scoopRoot = Split-Path (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent) -Parent
-            $persistConfig = Join-Path $scoopRoot 'persist\mihomo-shawl-service\config.yaml'
+            $persistConfig = Join-Path $scoopRoot 'persist\mihomo-shawl-service\config\config.yaml'
             if (Test-Path -Path $persistConfig -PathType Leaf) {
                 $persistSize = (Get-Item -Path $persistConfig).Length
                 Write-Host "Persisted copy: $persistConfig ($persistSize bytes)" -ForegroundColor DarkGray
@@ -433,7 +431,7 @@ switch ($Action) {
         }
     }
     'edit' {
-        $configPath = Join-Path $PSScriptRoot 'config.yaml'
+        $configPath = Join-Path $PSScriptRoot 'config\config.yaml'
         Write-Host "Target config file: $configPath" -ForegroundColor DarkGray
         Open-ConfigFile -FilePath $configPath | Out-Null
         Start-Sleep -Milliseconds 500
