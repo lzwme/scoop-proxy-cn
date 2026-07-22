@@ -12,8 +12,9 @@
     ]
   ],
   "checkver": {
-    "url": "https://fe.sctrip.asia/sf6cm/update.html",
-    "regex": "id=\"updateTrayVersion\">v?([\\d.]+)"
+    "url": "https://fe.sctrip.asia/sf6cm/api/updates",
+    "jsonpath": "$.trayVersion",
+    "regex": "v?([\\d.]+)"
   },
   "autoupdate": {
     "url": "https://sf6cm.oss-cn-beijing.aliyuncs.com/downloads/SF6CM_Tray_v$version.zip"
