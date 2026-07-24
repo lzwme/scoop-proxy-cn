@@ -1,45 +1,36 @@
 {
-  "version": "3.1.0.0",
-  "homepage": "https://kurtzimmermann.com/",
-  "description": "An advanced Registry editor with many features. Developed by Kurt Zimmermann.",
-  "license": {
-    "identifier": "Freeware",
-    "url": "https://kurtzimmermann-com.translate.goog/datenschutz_en.html?_x_tr_sl=auto&_x_tr_tl=en-US&_x_tr_hl=en-US"
-  },
-  "notes": [
-    "For a guide on how to use this app, click the link below:",
-    "https://kurtzimmermann-com.translate.goog/rchelp_de.html?_x_tr_sl=auto&_x_tr_tl=en-US&_x_tr_hl=en-US"
-  ],
+  "homepage": "https://kurtzimmermann.com",
+  "version": "3.1.0.1",
+  "license": "freeware",
   "architecture": {
-    "32bit": {
-      "url": "https://kurtzimmermann.com/files/RegCoolX32.zip",
-      "hash": "ab86fbcccfe566e9ec665524184178481cb3f40fb01adadb9d083269455601bb"
-    },
     "64bit": {
       "url": "https://kurtzimmermann.com/files/RegCoolX64.zip",
-      "hash": "5ee5bfbd37f41e769e46f521ddcff50216b9ff60fa9cc633aa2acc7d98569342"
+      "hash": "df6d481f75f957e1e9e6faab70e074b6ed1380213bdf4c5dccdc1a008e1418be"
+    },
+    "32bit": {
+      "url": "https://kurtzimmermann.com/files/RegCoolX32.zip",
+      "hash": "44a5d81bed71e0720fb009fda78bcc47895c440604eb4d1e40f0a248323de4ec"
     }
   },
-  "pre_install": "Remove-Item \"$dir\\Updater.exe\" | Out-Null",
   "bin": "RegCool.exe",
+  "persist": "Settings",
   "shortcuts": [
     [
       "RegCool.exe",
       "RegCool"
     ]
   ],
-  "persist": "Settings",
   "checkver": {
-    "url": "https://www.majorgeeks.com/files/details/regcool.html",
-    "regex": "RegCool\\s([\\d.]+)"
+    "url": "https://kurtzimmermann.com/downrc_en.html",
+    "regex": "Version ([\\d.]+)"
   },
   "autoupdate": {
     "architecture": {
-      "32bit": {
-        "url": "https://kurtzimmermann.com/files/RegCoolX32.zip"
-      },
       "64bit": {
         "url": "https://kurtzimmermann.com/files/RegCoolX64.zip"
+      },
+      "32bit": {
+        "url": "https://kurtzimmermann.com/files/RegCoolX32.zip"
       }
     }
   }
