@@ -13,11 +13,21 @@
       "hash": "69705615176366cfdb6df45c75733b9c69abde67b7f44c40e12c274cb3db9465"
     }
   },
+  "pre_install": [
+    ". \"$bucketsdir\\$bucket\\bin\\helpers.ps1\"",
+    "Persist-Files @('settings', 'ribbonsettings', 'mru')"
+  ],
   "shortcuts": [
     [
       "BowPad.exe",
       "BowPad"
     ]
+  ],
+  "persist": [
+    "backup",
+    "ribbonsettings",
+    "settings",
+    "mru"
   ],
   "checkver": "github",
   "autoupdate": {

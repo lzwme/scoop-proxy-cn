@@ -1,0 +1,24 @@
+{
+  "version": "0.10.1",
+  "description": "A cute cat(1) for the terminal with advanced code viewing, Markdown rendering, syntax highlighting, images view and more",
+  "homepage": "https://github.com/guilhermeprokisch/see",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/guilhermeprokisch/see/releases/download/v0.10.1/see-cat-x86_64-pc-windows-msvc.zip",
+      "hash": "ac1a341084f58f36cfd423776722db1f1afa93a33bed2a7de09bcdaa310b788c"
+    }
+  },
+  "bin": "see.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/guilhermeprokisch/see/releases/download/v$version/see-cat-x86_64-pc-windows-msvc.zip"
+      }
+    },
+    "hash": {
+      "url": "$url.sha256"
+    }
+  }
+}
