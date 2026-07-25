@@ -8,19 +8,69 @@
     Public entry points:
       - Invoke-PersistExternalInstall
       - Invoke-PersistExternalUninstall
+      - Invoke-PersistExternalReset
+
+    LEGAL & LICENSING NOTICE:
+    Copyright (C) 2026 YourGitHubName. All rights reserved.
+
+    This core implementation and all its defined functions are proprietary intellectual
+    property and are strictly licensed under the GNU General Public License v3.0 (GPL-3.0).
+
+    This file is EXCEPTED from the project's public domain (Unlicense) terms. You may
+    NOT extract, modify, or reuse these functions in any closed-source or non-GPL
+    compatible projects. See https://gnu.org for full terms.
 #>
 
-Set-StrictMode -Version Latest
+# Capture absolute path of this script at top-level execution scope
+$script:PersistExternalScriptPath = $PSCommandPath
+if (-not $script:PersistExternalScriptPath) {
+    $script:PersistExternalScriptPath = $MyInvocation.MyCommand.Path
+}
 
 # ---------------------------------------------------------------------------
-# 0. Compatibility layer: prefer Scoop native warn/error functions;
-#    fallback to Write-Warning/Error if running standalone (e.g. Pester tests).
+# 0. Compatibility layer: prefer Scoop native warn/error/info functions
 # ---------------------------------------------------------------------------
 if (-not (Get-Command 'warn' -ErrorAction SilentlyContinue)) {
     function warn($msg) { Write-Warning $msg }
 }
 if (-not (Get-Command 'error' -ErrorAction SilentlyContinue)) {
     function error($msg) { Write-Error $msg }
+}
+if (-not (Get-Command 'info' -ErrorAction SilentlyContinue)) {
+    function info($msg) { Write-Host "INFO  $msg" -ForegroundColor DarkGray }
+}
+
+# Auto-bootstrap Scoop environment if running in a raw PowerShell session
+function Initialize-ScoopEnvironment {
+    [CmdletBinding()]
+    param()
+
+    # Skip if Scoop core functions are already loaded in current scope
+    if ((Get-Command 'Select-CurrentVersion' -ErrorAction SilentlyContinue) -and (Get-Command 'add_alias' -ErrorAction SilentlyContinue)) {
+        return
+    }
+
+    # Resolve Scoop root directory
+    $scoopRoot = $env:SCOOP
+    if (-not $scoopRoot -and $script:PersistExternalScriptPath) {
+        # Resolve 4 levels up: scripts -> <bucket> -> buckets -> <ScoopRoot>
+        $parentDir = Split-Path (Split-Path (Split-Path (Split-Path $script:PersistExternalScriptPath)))
+        if ($parentDir -and (Test-Path -LiteralPath $parentDir)) {
+            $scoopRoot = $parentDir
+        }
+    }
+    if (-not $scoopRoot) {
+        $scoopRoot = Join-Path $HOME 'scoop'
+    }
+
+    # Load all required core Scoop libraries into caller scope
+    $libDir = Join-Path $scoopRoot 'apps\scoop\current\lib'
+    foreach ($lib in 'core.ps1', 'buckets.ps1', 'versions.ps1', 'manifest.ps1', 'commands.ps1') {
+        $libPath = Join-Path $libDir $lib
+        if (Test-Path -LiteralPath $libPath) {
+            . $libPath
+        }
+    }
 }
 
 # Normalize trailing path separators (preserve root paths like "C:\")
@@ -193,7 +243,12 @@ function Save-ExternalLinkRecord {
         [Parameter(Mandatory)][array]$Records
     )
     $path = Get-ExternalLinkRecordPath -Dir $Dir
-    $Records | ConvertTo-Json -Depth 5 | Out-File -FilePath $path -Force -Encoding utf8
+    $json = $Records | ConvertTo-Json -Depth 5
+    if (Get-Command 'Out-UTF8File' -ErrorAction SilentlyContinue) {
+        $json | Out-UTF8File -FilePath $path
+    } else {
+        [System.IO.File]::WriteAllText($path, $json, [System.Text.Encoding]::UTF8)
+    }
 }
 
 function Read-ExternalLinkRecord {
@@ -328,7 +383,11 @@ function New-ExternalPersistLink {
     $linkType = if ($isDirTarget) { 'Junction' } else { 'SymbolicLink' }
 
     if ($isDirTarget) {
-        New-Item -ItemType Junction -Path $Source -Target $PersistTarget -Force | Out-Null
+        if (Get-Command 'New-DirectoryJunction' -ErrorAction SilentlyContinue) {
+            New-DirectoryJunction $Source $PersistTarget | Out-Null
+        } else {
+            New-Item -ItemType Junction -Path $Source -Target $PersistTarget -Force | Out-Null
+        }
     } else {
         if (-not (Test-CanCreateSymlink)) {
             throw "persist_external: Symlink creation requires Administrator privilege or Developer Mode (Target: $Source)"
@@ -342,6 +401,44 @@ function New-ExternalPersistLink {
 # ---------------------------------------------------------------------------
 # 6. Public entry points
 # ---------------------------------------------------------------------------
+function Initialize-PersistExternalAlias {
+    [CmdletBinding()]
+    param()
+
+    . Initialize-ScoopEnvironment
+
+    $aliasName = 'persist-external-reset'
+    $shimPath = Join-Path (shimdir $false) "scoop-$aliasName.ps1"
+
+    # Skip if alias shim already exists
+    if (Test-Path -LiteralPath $shimPath) {
+        return
+    }
+
+    # Use captured top-level script path
+    $scriptPath = $script:PersistExternalScriptPath
+    if (-not $scriptPath -or -not (Test-Path -LiteralPath $scriptPath)) {
+        if ($PSScriptRoot) {
+            $scriptPath = Join-Path $PSScriptRoot 'persist-external.ps1'
+        }
+    }
+
+    if (-not $scriptPath -or -not (Test-Path -LiteralPath $scriptPath)) {
+        warn "persist_external: Could not resolve script path to register alias '$aliasName'."
+        return
+    }
+
+    $command = ". `"$scriptPath`"; Invoke-PersistExternalReset @args"
+    $description = 'Reset persist_external links for installed apps'
+
+    try {
+        add_alias $aliasName $command $description
+        info "persist_external: Automatically registered Scoop alias '$aliasName'."
+    } catch {
+        warn "persist_external: Skip registering alias '$aliasName': $_"
+    }
+}
+
 function Invoke-PersistExternalInstall {
     [CmdletBinding()]
     param(
@@ -349,6 +446,8 @@ function Invoke-PersistExternalInstall {
         [Parameter(Mandatory)][string]$PersistDir,
         [Parameter(Mandatory)][string]$Dir
     )
+
+    Initialize-PersistExternalAlias
 
     $defs = Get-PersistExternalDefinition -Manifest $Manifest
     if (-not $defs) { return }
@@ -411,5 +510,63 @@ function Invoke-PersistExternalUninstall {
         } elseif ($null -ne (Get-Item -LiteralPath $r.Source -Force -ErrorAction SilentlyContinue)) {
             warn "persist_external: '$($r.Source)' is not expected link, skipped to protect real data"
         }
+    }
+}
+
+# ---------------------------------------------------------------------------
+# 7. Public entry point for resetting persist_external links
+# ---------------------------------------------------------------------------
+function Invoke-PersistExternalReset {
+    [CmdletBinding()]
+    param(
+        [Parameter(Position = 0)]
+        [string]$AppName,
+        [switch]$Global
+    )
+
+    . Initialize-ScoopEnvironment
+
+    # Re-register Scoop alias if missing
+    Initialize-PersistExternalAlias
+
+    $isGlobal = [bool]$Global
+
+    $appsToProcess = @()
+    if ($AppName -and $AppName -ne '*') {
+        $appsToProcess += $AppName
+    } else {
+        $appsToProcess = installed_apps $isGlobal
+    }
+
+    foreach ($app in $appsToProcess) {
+        $version = Select-CurrentVersion -AppName $app -Global:$isGlobal
+        if (-not $version) {
+            if ($AppName -and $AppName -ne '*') {
+                warn "persist_external: App '$app' is not installed $(if ($isGlobal) { 'globally' } else { 'locally' })."
+            }
+            continue
+        }
+
+        $dir = currentdir $app $isGlobal
+        $recordPath = Get-ExternalLinkRecordPath -Dir $dir
+
+        # Only target apps that have generated .scoop-persist-external.json
+        if (-not (Test-Path -LiteralPath $recordPath)) {
+            if ($AppName -and $AppName -ne '*') {
+                info "persist_external: App '$app' does not have an external persist record (.scoop-persist-external.json)."
+            }
+            continue
+        }
+
+        $manifest = installed_manifest $app $version $isGlobal
+        if (-not $manifest) {
+            warn "persist_external: Manifest for '$app' ($version) could not be loaded."
+            continue
+        }
+
+        $persistDir = persistdir $app $isGlobal
+
+        Write-Host "Resetting persist_external links for '$app' ($version)..."
+        Invoke-PersistExternalInstall -Manifest $manifest -PersistDir $persistDir -Dir $dir
     }
 }
