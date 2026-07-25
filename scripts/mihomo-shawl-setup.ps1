@@ -1,3 +1,18 @@
+<#
+.SYNOPSIS
+    Core Script and Function Library.
+.DESCRIPTION
+    Copyright (C) 2026 YourName/YourGitHubHandle. All rights reserved.
+
+    This script and all its internal functions are proprietary intellectual property
+    and are licensed under the GNU General Public License v3.0 (GPL-3.0).
+
+    This is NOT public domain software. You may not copy, extract, or reuse
+    these functions in non-GPL compatible or closed-source projects.
+
+    Full license terms: https://gnu.org
+#>
+
 param(
     [Parameter(Mandatory = $true)]
     [ValidateSet('pre_install', 'post_install', 'uninstall')]
