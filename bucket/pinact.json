@@ -1,0 +1,32 @@
+{
+  "version": "4.1.0",
+  "description": "Pin GitHub Action versions by full length commit SHA",
+  "homepage": "https://github.com/suzuki-shunsuke/pinact",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/suzuki-shunsuke/pinact/releases/download/v4.1.0/pinact_windows_amd64.zip",
+      "hash": "de04e9612a50cb7b0263d162400305ea02fc85410c38887d1be7446a7c5d5dc6"
+    },
+    "arm64": {
+      "url": "https://github.com/suzuki-shunsuke/pinact/releases/download/v4.1.0/pinact_windows_arm64.zip",
+      "hash": "3f8fedf5f7490b903497a8844a6954deb80a1eca5b1f38747e21aa9198a7c203"
+    }
+  },
+  "bin": "pinact.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/suzuki-shunsuke/pinact/releases/download/v$version/pinact_windows_amd64.zip"
+      },
+      "arm64": {
+        "url": "https://github.com/suzuki-shunsuke/pinact/releases/download/v$version/pinact_windows_arm64.zip"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/pinact_$version_checksums.txt",
+      "regex": "^$sha256\\s+$basename$"
+    }
+  }
+}
