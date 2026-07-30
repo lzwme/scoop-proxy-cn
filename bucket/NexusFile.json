@@ -1,7 +1,8 @@
 {
   "version": "5.4.1",
-  "license": "unknown",
-  "homepage": "http://www.xiles.net/",
+  "description": "A dual pane file manager, which is simple but has powerful features.",
+  "homepage": "https://www.xiles.app/",
+  "license": "Freeware",
   "architecture": {
     "64bit": {
       "url": "https://s3.ap-northeast-2.amazonaws.com/net.xiles.public/download/nexusfile_5.4.1_64bit_beta.zip",
@@ -13,15 +14,16 @@
     }
   },
   "extract_dir": "nexusfile",
-  "bin": "NexusFile.exe",
-  "persist": "userdata",
   "shortcuts": [
     [
-      "NexusFile.exe",
+      "nexusfile.exe",
       "NexusFile"
     ]
   ],
-  "checkver": "nexusfile_([\\d.]+)\\.zip",
+  "persist": "userdata",
+  "checkver": {
+    "regex": "nexusfile_([\\d.]+).zip"
+  },
   "autoupdate": {
     "architecture": {
       "64bit": {

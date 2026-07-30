@@ -1,0 +1,26 @@
+{
+  "version": "1.26.2",
+  "description": "Terminal Markdown previewer",
+  "homepage": "https://leaf.rivolink.mg",
+  "license": "MIT",
+  "suggest": {
+    "vcredist": "extras/vcredist2022"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://gh-proxy.org/https://github.com/RivoLink/leaf/releases/download/1.26.2/leaf-windows-x86_64.exe#/leaf.exe",
+      "hash": "57ba484cd8c1d7c013adfbe75d918659cd4bf96994c3ff1ebf7a7e01b2c46af7"
+    }
+  },
+  "bin": "leaf.exe",
+  "checkver": {
+    "github": "https://github.com/RivoLink/leaf"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://gh-proxy.org/https://github.com/RivoLink/leaf/releases/download/$version/leaf-windows-x86_64.exe#/leaf.exe"
+      }
+    }
+  }
+}
