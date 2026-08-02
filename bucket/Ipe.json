@@ -1,30 +1,46 @@
 {
-  "homepage": "http://ipe.otfried.org/",
   "version": "7.2.29",
-  "license": "GPL-3.0-only",
+  "description": "A drawing editor for creating figures in PDF format.",
+  "homepage": "https://ipe.otfried.org/",
+  "license": "GPL-3.0-or-later",
   "architecture": {
     "64bit": {
-      "url": "https://github.com/otfried/ipe/releases/download/v7.2.29/ipepresenter-7.2.29-win64.zip",
-      "hash": "4f95ac57364596efc0c9aca08a414677a28a8f822abd85d396106fe28fb80186"
-    },
-    "32bit": {
-      "url": "https://github.com/otfried/ipe/releases/download/v7.2.26/ipe-7.2.26-win32.zip",
-      "hash": ""
+      "url": "https://github.com/otfried/ipe/releases/download/v7.2.29/ipe-7.2.29-win64.zip",
+      "hash": "a4848ed0870b5d0a43e7009a6f4a2027d15b9d93c9e75c73ad9e77554c3e9852"
     }
   },
-  "bin": "bin\\ipe.exe",
+  "extract_dir": "ipe-7.2.29",
+  "bin": [
+    "bin\\ipe.exe",
+    "bin\\ipe6upgrade.exe",
+    "bin\\ipecurl.exe",
+    "bin\\ipeextract.exe",
+    "bin\\ipepresenter.exe",
+    "bin\\iperender.exe",
+    "bin\\ipescript.exe",
+    "bin\\ipetoipe.exe",
+    "bin\\pdftoipe.exe"
+  ],
   "shortcuts": [
     [
       "bin\\ipe.exe",
       "Ipe"
+    ],
+    [
+      "bin\\ipepresenter.exe",
+      "IpePresenter"
     ]
   ],
-  "checkver": "The current version of Ipe is <span class=\"tex-bf\">Ipe ([\\d.]+)",
+  "checkver": {
+    "url": "https://ipe.otfried.org/",
+    "regex": "ipe-([\\d.]+)-win64\\.zip"
+  },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://github.com/otfried/ipe/releases/download/v$version/ipepresenter-$version-win64.zip"
+        "url": "https://github.com/otfried/ipe/releases/download/v$version/ipe-$version-win64.zip"
       }
-    }
+    },
+    "extract_dir": "ipe-$version"
   }
 }

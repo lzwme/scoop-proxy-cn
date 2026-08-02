@@ -1,26 +1,23 @@
 {
   "version": "6.4.8",
-  "description": "rsync is a file transfer program capable of efficient remote update via a fast differencing algorithm.",
+  "description": "Rsync client package for Windows",
   "homepage": "https://itefix.net/cwrsync",
-  "license": {
-    "identifier": "BSD-2-Clause",
-    "url": "https://github.com/itefixnet/cwrsync-client/blob/main/LICENSE"
-  },
+  "license": "GPL-3.0-or-later",
   "architecture": {
     "64bit": {
-      "url": "https://github.com/itefixnet/cwrsync-client/releases/download/v6.4.8/cwrsync_6.4.8_x64_free.zip",
+      "url": "https://itefix.net/sites/default/files/2026-06/cwrsync_6.4.8_x64_free.zip",
       "hash": "8798363513b05c355ad87f8f3efbb15b7b6433996b652efec712efd52d7c8336"
     }
   },
-  "bin": "bin\\rsync.exe",
+  "bin": [
+    "cwrsync.cmd",
+    [
+      "bin/rsync.exe",
+      "rsync"
+    ]
+  ],
   "checkver": {
-    "github": "https://github.com/itefixnet/cwrsync-client"
-  },
-  "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://github.com/itefixnet/cwrsync-client/releases/download/v$version/cwrsync_$version_x64_free.zip"
-      }
-    }
+    "url": "https://itefix.net/cwrsync",
+    "regex": "cwrsync_([0-9.]+)_x64_free\\.zip"
   }
 }
