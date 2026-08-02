@@ -1,17 +1,35 @@
 {
   "version": "4.5.0.4500",
-  "description": "EverEdit, 轻量级文本编辑器!",
-  "homepage": "http://www.everedit.cn/",
-  "license": "BSD-3-Clause",
-  "url": "https://xmod-my.sharepoint.cn/:u:/g/personal/admin_xmod_partner_onmschina_cn/EZE8DdLifBNCmiFjBsisUEIBLTHGOHsfUx3qyo7OdXT8Uw?download=1#/dl.7z",
-  "persist": [
-    "history.ini",
-    "tool"
-  ],
+  "description": "Lightweight and powerful text editor for Windows",
+  "homepage": "https://www.everedit.net/",
+  "license": "Proprietary",
+  "architecture": {
+    "64bit": {
+      "url": "https://files.everedit.cn/everedit_win64_4500_portable.zip",
+      "hash": "7484f920ba01af31616a46fa1158d33a6ccff5a8263f533b0cf8e3dce4494cdb"
+    }
+  },
+  "bin": "EverEdit.exe",
   "shortcuts": [
     [
       "EverEdit.exe",
       "EverEdit"
     ]
-  ]
+  ],
+  "persist": [
+    "setting.ini",
+    "key.ini",
+    "template.ini"
+  ],
+  "checkver": {
+    "url": "https://www.everedit.net/download",
+    "regex": "([0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+) \\(64bit\\)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://www.everedit.cn/latest.php?cpu=x64&portable=1"
+      }
+    }
+  }
 }
