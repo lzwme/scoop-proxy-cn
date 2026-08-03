@@ -1,0 +1,40 @@
+{
+  "version": "0.1.26",
+  "description": "Open-source, ready-to-use AI agent desktop client",
+  "homepage": "https://cindy.cn/",
+  "license": "Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://gh-proxy.org/https://github.com/makecindy/cindy/releases/download/v0.1.26/cindy-0.1.26-win32-x64-cn.exe#/dl.7z",
+      "hash": "8e2e5a7d5ed7af104db3168bb623cdc37d97c882822af3d6df46b9c8b502bd22",
+      "installer": {
+        "script": [
+          "Expand-7ZipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\" -Removal",
+          "Remove-Item \"$dir\\`$PLUGINSDIR\",\"$dir\\`$R0\"  -Force -Recurse"
+        ]
+      }
+    }
+  },
+  "bin": [
+    [
+      "Cindy.exe",
+      "CindyCN"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "Cindy.exe",
+      "Cindy CN"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/makecindy/cindy"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://gh-proxy.org/https://github.com/makecindy/cindy/releases/download/v$version/cindy-$version-win32-x64-cn.exe#/dl.7z"
+      }
+    }
+  }
+}
