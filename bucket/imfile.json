@@ -1,16 +1,43 @@
 {
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "A full-featured download manager.",
   "homepage": "https://imfile.io/",
+  "license": {
+    "identifier": "MIT license",
+    "url": "https://github.com/imfile-io/imfile-desktop#MIT-1-ov-file"
+  },
   "architecture": {
     "64bit": {
-      "url": "https://gh-proxy.org/https://github.com/imfile-io/imfile-desktop/releases/download/v2.2.0/imFile-2.2.0-x64.zip",
-      "hash": "5b2711ef06ea6b0368b497f8d136491976892e797910a820914c5a2cb5cfa267"
+      "url": "https://gh-proxy.org/https://github.com/imfile-io/imfile-desktop/releases/download/v2.2.1/imFile-Setup-2.2.1.exe#/dl.7z",
+      "hash": "sha512:0b02ec726cc0bf724526393f764b31ab1a80c065556d551b882c893fd2db2645d5428a025a69ffcefee2395fb9e70f30afaf74d122c0e73e8e5b86e3700e9de5",
+      "pre_install": [
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+        "Remove-Item \"$dir\\`$*\" -Force -Recurse"
+      ]
     },
     "arm64": {
-      "url": "https://gh-proxy.org/https://github.com/imfile-io/imfile-desktop/releases/download/v2.2.0/imFile-2.2.0-arm64.zip",
-      "hash": "3810dfacf78b35030e0ce4a839df5619e5a6f34db446d05671af1fff8d89beaf"
+      "url": "https://gh-proxy.org/https://github.com/imfile-io/imfile-desktop/releases/download/v2.2.1/imFile-Setup-2.2.1-arm64.exe#/dl.7z",
+      "hash": "sha512:0b02ec726cc0bf724526393f764b31ab1a80c065556d551b882c893fd2db2645d5428a025a69ffcefee2395fb9e70f30afaf74d122c0e73e8e5b86e3700e9de5",
+      "pre_install": [
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-arm64.7z\" \"$dir\"",
+        "Remove-Item \"$dir\\`$*\" -Force -Recurse"
+      ]
     }
+  },
+  "installer": {
+    "script": [
+      "# handle runtime cache",
+      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/AppsUtils.psm1)",
+      "Mount-ExternalRuntimeData -Source \"$persist_dir\" -Target \"$env:APPDATA\\imFile\"",
+      "Remove-Module -Name AppsUtils"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/AppsUtils.psm1)",
+      "Dismount-ExternalRuntimeData -Target \"$env:APPDATA\\imFile\"",
+      "Remove-Module -Name AppsUtils"
+    ]
   },
   "shortcuts": [
     [
@@ -19,16 +46,22 @@
     ]
   ],
   "checkver": {
-    "github": "https://github.com/imfile-io/imfile-desktop"
+    "github": "https://api.github.com/repos/imfile-io/imfile-desktop/releases",
+    "jp": "$[0].tag_name",
+    "regex": "v([\\d.]+)"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://gh-proxy.org/https://github.com/imfile-io/imfile-desktop/releases/download/v$version/imFile-$version-x64.zip"
+        "url": "https://gh-proxy.org/https://github.com/imfile-io/imfile-desktop/releases/download/v$version/imFile-Setup-$version.exe#/dl.7z"
       },
       "arm64": {
-        "url": "https://gh-proxy.org/https://github.com/imfile-io/imfile-desktop/releases/download/v$version/imFile-$version-arm64.zip"
+        "url": "https://gh-proxy.org/https://github.com/imfile-io/imfile-desktop/releases/download/v$version/imFile-Setup-$version-arm64.exe#/dl.7z"
       }
+    },
+    "hash": {
+      "url": "$baseurl/latest.yml",
+      "regex": "sha512:\\s+$base64"
     }
   }
 }
