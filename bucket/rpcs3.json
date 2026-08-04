@@ -1,6 +1,6 @@
 {
-  "version": "0.0.42-19681",
-  "description": "Open-source Sony PlayStation 3 emulator",
+  "version": "0.0.42-19694",
+  "description": "Sony PlayStation 3 emulator",
   "homepage": "https://rpcs3.net/",
   "license": {
     "identifier": "GPL-2.0",
@@ -17,12 +17,12 @@
   },
   "architecture": {
     "64bit": {
-      "url": "https://github.com/RPCS3/rpcs3-binaries-win/releases/download/build-a0bebfa5ca2f310c648e882b0a79af6b0ebb66d0/rpcs3-v0.0.42-19681-a0bebfa5_win64_msvc.7z",
-      "hash": "5a6d357eeef95516514605914cceebce34fa7edc1106e0d5e3ea9d8b5b78eebd"
+      "url": "https://github.com/RPCS3/rpcs3-binaries-win/releases/download/build-4214dff35ef923232372e21e5d5bc55c54c79a6e/rpcs3-v0.0.42-19694-4214dff3_win64_msvc.7z",
+      "hash": "0b35c8487a1437e1a61308245775957514316280b56986767ae9d0141f957d4a"
     },
     "arm64": {
-      "url": "https://github.com/RPCS3/rpcs3-binaries-win-arm64/releases/download/build-a0bebfa5ca2f310c648e882b0a79af6b0ebb66d0/rpcs3-v0.0.42-19681-a0bebfa5_win64_aarch64_clang.7z",
-      "hash": "df89b387ba736f9be129e7cc2dee03487e5db287d59d25aef161b91bf3119559"
+      "url": "https://github.com/RPCS3/rpcs3-binaries-win-arm64/releases/download/build-4214dff35ef923232372e21e5d5bc55c54c79a6e/rpcs3-v0.0.42-19694-4214dff3_win64_aarch64_clang.7z",
+      "hash": "3bd7b425e926de5e54f8c6e2340d66e4ca176a1822d4a8b7e91b93406459cac5"
     }
   },
   "pre_install": [
@@ -37,7 +37,7 @@
   "shortcuts": [
     [
       "rpcs3.exe",
-      "RPCS3"
+      "Sony PlayStation 3 [ps3][rpcs3]"
     ]
   ],
   "persist": [
@@ -59,7 +59,7 @@
   ],
   "checkver": {
     "url": "https://api.github.com/repos/RPCS3/rpcs3-binaries-win/releases/latest",
-    "jsonpath": "$.assets[?(@.name =~ /rpcs3-v[a-f\\d.-]+_win64_msvc\\.7z/)].browser_download_url",
+    "jsonpath": "$.assets[?(@.name =~ /rpcs3-v[a-f\\d.-]+_win64_msvc\\.7z$/)].browser_download_url",
     "regex": "releases/download/(?<build>build-[a-f\\d]+)/rpcs3-v(?<version>[\\d.-]+)-(?<commit>[a-f\\d]+)_win64_msvc\\.7z"
   },
   "autoupdate": {
