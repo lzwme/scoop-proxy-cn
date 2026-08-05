@@ -3,6 +3,9 @@
   "description": "An IThumbnailProvider for Windows explorer that uses FFmpeg to generate thumbnails for various video files.",
   "homepage": "https://github.com/megakraken/FFmpegThumbnails",
   "license": "GPL-2.0",
+  "suggest": {
+    "FFmpeg": "ffmpeg"
+  },
   "architecture": {
     "64bit": {
       "url": "https://gh-proxy.org/https://github.com/megakraken/FFmpegThumbnails/releases/download/v1.2.0/FFmpegThumbnails.exe",
@@ -15,23 +18,19 @@
       "FFmpegThumbnails"
     ]
   ],
-  "suggest": {
-    "FFmpeg": [
-      "ffmpeg",
-      "3rd/ffmpeg-full"
-    ]
-  },
   "checkver": {
     "github": "https://github.com/megakraken/FFmpegThumbnails"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://gh-proxy.org/https://github.com/megakraken/FFmpegThumbnails/releases/download/v$version/FFmpegThumbnails.exe"
+        "url": "https://gh-proxy.org/https://github.com/megakraken/FFmpegThumbnails/releases/download/v$version/FFmpegThumbnails.exe",
+        "hash": {
+          "mode": "extract",
+          "url": "https://github.com/megakraken/FFmpegThumbnails/releases/expanded_assets/v$version",
+          "regex": "FFmpegThumbnails\\.exe.*?sha256:([a-f0-9]{64})"
+        }
       }
-    },
-    "hash": {
-      "mode": "download"
     }
   }
 }
