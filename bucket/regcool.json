@@ -1,36 +1,45 @@
 {
-  "homepage": "https://kurtzimmermann.com",
   "version": "3.1.0.3",
-  "license": "freeware",
+  "homepage": "https://kurtzimmermann.com/",
+  "description": "An advanced Registry editor with many features. Developed by Kurt Zimmermann.",
+  "license": {
+    "identifier": "Freeware",
+    "url": "https://kurtzimmermann-com.translate.goog/datenschutz_en.html?_x_tr_sl=auto&_x_tr_tl=en-US&_x_tr_hl=en-US"
+  },
+  "notes": [
+    "For a guide on how to use this app, click the link below:",
+    "https://kurtzimmermann-com.translate.goog/rchelp_de.html?_x_tr_sl=auto&_x_tr_tl=en-US&_x_tr_hl=en-US"
+  ],
   "architecture": {
-    "64bit": {
-      "url": "https://kurtzimmermann.com/files/RegCoolX64.zip",
-      "hash": "2da28551cafa663a1bcab3bddaca07325485d203d193b10cf0d8036c113e0e58"
-    },
     "32bit": {
       "url": "https://kurtzimmermann.com/files/RegCoolX32.zip",
       "hash": "83db8632da2bd372c3623f122deb8e5ce15b71517c7d97336ff0e8618435a78a"
+    },
+    "64bit": {
+      "url": "https://kurtzimmermann.com/files/RegCoolX64.zip",
+      "hash": "2da28551cafa663a1bcab3bddaca07325485d203d193b10cf0d8036c113e0e58"
     }
   },
+  "pre_install": "Remove-Item \"$dir\\Updater.exe\" | Out-Null",
   "bin": "RegCool.exe",
-  "persist": "Settings",
   "shortcuts": [
     [
       "RegCool.exe",
       "RegCool"
     ]
   ],
+  "persist": "Settings",
   "checkver": {
-    "url": "https://kurtzimmermann.com/downrc_en.html",
-    "regex": "Version ([\\d.]+)"
+    "url": "https://www.majorgeeks.com/files/details/regcool.html",
+    "regex": "RegCool\\s([\\d.]+)"
   },
   "autoupdate": {
     "architecture": {
-      "64bit": {
-        "url": "https://kurtzimmermann.com/files/RegCoolX64.zip"
-      },
       "32bit": {
         "url": "https://kurtzimmermann.com/files/RegCoolX32.zip"
+      },
+      "64bit": {
+        "url": "https://kurtzimmermann.com/files/RegCoolX64.zip"
       }
     }
   }
