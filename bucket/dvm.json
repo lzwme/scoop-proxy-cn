@@ -1,31 +1,51 @@
 {
   "version": "1.10.0",
-  "description": "Easy way to manage multiple active deno versions.",
+  "description": "🦕Deno Version Manager - Easy way to manage multiple active deno versions.",
   "homepage": "https://github.com/justjavac/dvm",
   "license": "MIT",
   "architecture": {
     "64bit": {
-      "url": "https://cdn.jsdelivr.net/gh/justjavac/dvm_releases/dvm-x86_64-pc-windows-msvc.zip",
-      "hash": "63aa4aacc2503182d0cebe059f49bdff01e36bf5eae1441efd380f7f9f0532dd"
+      "url": "https://github.com/justjavac/dvm/releases/download/v1.10.0/dvm-x86_64-pc-windows-msvc.zip",
+      "hash": "cd58f1c62ef2b40c7f4efa1f75bf36f9003c7dea715c734d81c87f2e3cb06f42"
     }
   },
   "installer": {
     "script": [
-      "New-Item -Type Directory \"$dir\\bin\" -Force | Out-Null",
-      "Move-Item \"$dir\\dvm.exe\" \"$dir\\bin\" -Force | Out-Null"
+      "if (Test-Path \"$persist_dir\\.dvm\") {",
+      "    ensure \"$persist_dir\\.dvm\\bin\" | Out-Null",
+      "    $targetPath = \"$persist_dir\\.dvm\\bin\"",
+      "} else {",
+      "    ensure \"$dir\\.dvm\\bin\" | Out-Null",
+      "    $targetPath = \"$dir\\.dvm\\bin\"",
+      "}",
+      "if (!(Test-Path \"$persist_dir\\.deno\")) {",
+      "    ensure \"$dir\\.deno\" | Out-Null",
+      "}",
+      "Copy-Item \"$dir\\dvm.exe\" \"$targetPath\" -Force | Out-Null",
+      "Invoke-ExternalCommand -Path \"$persist_dir\\.dvm\\bin\\dvm.exe\" -Args \"completions powershell\" -LogPath \"$dir\\dvm-completion.psm1\" | Out-Null",
+      "info \"To activate completions, invoke 'Import-Module dvm-completion'\""
     ]
   },
-  "env_set": {
-    "DVM_DIR": "$dir\\versions",
-    "DENO_INSTALL": "$dir"
+  "psmodule": {
+    "name": "dvm-completion"
   },
-  "env_add_path": "bin",
-  "persist": "versions",
+  "env_add_path": [
+    ".dvm\\bin",
+    ".deno\\bin"
+  ],
+  "env_set": {
+    "DVM_DIR": "$dir\\.dvm",
+    "DENO_INSTALL_ROOT": "$dir\\.deno"
+  },
+  "persist": [
+    ".dvm",
+    ".deno"
+  ],
   "checkver": "github",
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://cdn.jsdelivr.net/gh/justjavac/dvm_releases/dvm-x86_64-pc-windows-msvc.zip"
+        "url": "https://github.com/justjavac/dvm/releases/download/v$version/dvm-x86_64-pc-windows-msvc.zip"
       }
     }
   }
