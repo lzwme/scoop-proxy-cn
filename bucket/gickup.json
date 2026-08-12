@@ -1,16 +1,12 @@
 {
   "version": "0.10.45",
-  "description": "A backup tool for your cloud git repositories",
-  "homepage": "https://github.com/cooperspencer/gickup",
+  "description": "A tool that allows you to clone/mirror repositories from one host to another.",
+  "homepage": "https://gickup.dev",
   "license": "Apache-2.0",
   "architecture": {
     "64bit": {
       "url": "https://gh-proxy.org/https://github.com/cooperspencer/gickup/releases/download/v0.10.45/gickup_0.10.45_windows_amd64.zip",
       "hash": "1f6bda4b893f05e2368ca83a02b82ddbafccc6a8406bd6236f480b7deb040546"
-    },
-    "32bit": {
-      "url": "https://gh-proxy.org/https://github.com/cooperspencer/gickup/releases/download/v0.10.45/gickup_0.10.45_windows_386.zip",
-      "hash": "96ba206d2209be848c513ae1f00537a9f0b79cd039bdc9a2e31ba1d4eaa8d4ba"
     },
     "arm64": {
       "url": "https://gh-proxy.org/https://github.com/cooperspencer/gickup/releases/download/v0.10.45/gickup_0.10.45_windows_arm64.zip",
@@ -18,14 +14,13 @@
     }
   },
   "bin": "gickup.exe",
-  "checkver": "github",
+  "checkver": {
+    "github": "https://github.com/cooperspencer/gickup"
+  },
   "autoupdate": {
     "architecture": {
       "64bit": {
         "url": "https://gh-proxy.org/https://github.com/cooperspencer/gickup/releases/download/v$version/gickup_$version_windows_amd64.zip"
-      },
-      "32bit": {
-        "url": "https://gh-proxy.org/https://github.com/cooperspencer/gickup/releases/download/v$version/gickup_$version_windows_386.zip"
       },
       "arm64": {
         "url": "https://gh-proxy.org/https://github.com/cooperspencer/gickup/releases/download/v$version/gickup_$version_windows_arm64.zip"
