@@ -1,0 +1,24 @@
+{
+  "version": "0.9.0",
+  "description": "Sed and awk for tabular data",
+  "homepage": "https://github.com/excelano/xled",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://gh-proxy.org/https://github.com/excelano/xled/releases/download/v0.9.0/xled-x86_64-pc-windows-msvc.zip",
+      "hash": "5c8fad252e6705f0b958250745f96d0ec21777fb950b27325614404f6eef4ce4"
+    }
+  },
+  "bin": "xled.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://gh-proxy.org/https://github.com/excelano/xled/releases/download/v$version/xled-x86_64-pc-windows-msvc.zip"
+      }
+    },
+    "hash": {
+      "url": "$url.sha256"
+    }
+  }
+}
