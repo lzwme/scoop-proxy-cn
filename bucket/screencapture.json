@@ -1,25 +1,19 @@
 {
-  "version": "2.5.1",
-  "description": "A multifunctional screen capture program",
   "homepage": "https://github.com/xland/ScreenCapture",
-  "license": {
-    "identifier": "MIT license",
-    "url": "https://github.com/xland/ScreenCapture#MIT-1-ov-file"
-  },
-  "url": "https://github.com/xland/ScreenCapture/releases/download/2.5.1/ScreenCapture.exe",
-  "hash": "2914722283baa2f4c21ab9d65b0055f16bb7480bac446abb5f63d9928adbf135",
+  "description": "A multifunctional screen capture program",
+  "license": "MIT",
+  "version": "2.5.3",
+  "url": "https://github.com/xland/ScreenCapture/releases/download/2.5.3/ScreenCapture.exe",
+  "hash": "cc7aa4861f152066e8bf352167f4fdec6ebe7f0e5b165729aeec63a934df2652",
+  "bin": "ScreenCapture.exe",
   "shortcuts": [
     [
       "ScreenCapture.exe",
       "ScreenCapture"
     ]
   ],
-  "checkver": {
-    "github": "https://api.github.com/repos/xland/ScreenCapture/releases",
-    "jp": "$[0].assets[*].browser_download_url",
-    "regex": "/releases/download/([\\d.]+)/(?<file>.*?(?:exe|7z))"
-  },
+  "checkver": "github",
   "autoupdate": {
-    "url": "https://github.com/xland/ScreenCapture/releases/download/$version/$matchFile"
+    "url": "https://github.com/xland/ScreenCapture/releases/download/$version/ScreenCapture.exe"
   }
 }
