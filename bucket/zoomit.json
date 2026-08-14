@@ -1,21 +1,29 @@
 {
-  "homepage": "https://docs.microsoft.com/en-us/sysinternals/",
+  "version": "12.2",
   "description": "Presentation utility for zooming and drawing on the screen.",
+  "homepage": "https://learn.microsoft.com/sysinternals/downloads/ZoomIt",
   "license": {
     "identifier": "Freeware",
-    "url": "https://docs.microsoft.com/en-us/sysinternals/license-terms"
+    "url": "https://learn.microsoft.com/sysinternals/license-terms"
   },
-  "version": "12.11",
   "url": "https://download.sysinternals.com/files/ZoomIt.zip",
-  "hash": "adf6a271081ebefa9796691f7316bd45aa39cfe63e9c68ade269e1cf6d8b7d69",
-  "checkver": {
-    "url": "https://docs.microsoft.com/en-us/sysinternals/downloads/zoomIt",
-    "re": "ZoomIt\\s(?:v|V)?([\\d.]+)"
-  },
-  "autoupdate": {
-    "url": "https://download.sysinternals.com/files/ZoomIt.zip"
-  },
+  "hash": "bd0e755ee635f761d89f0825c340ba9d6a0cc97e8f3c35458b473b5f7563c6e9",
   "architecture": {
+    "64bit": {
+      "bin": [
+        [
+          "ZoomIt64.exe",
+          "ZoomIt"
+        ]
+      ],
+      "shortcuts": [
+        [
+          "ZoomIt64.exe",
+          "SysInternals/ZoomIt",
+          "/accepteula"
+        ]
+      ]
+    },
     "32bit": {
       "bin": "ZoomIt.exe",
       "shortcuts": [
@@ -26,15 +34,27 @@
         ]
       ]
     },
-    "64bit": {
-      "bin": "ZoomIt.exe",
+    "arm64": {
+      "bin": [
+        [
+          "ZoomIt64a.exe",
+          "ZoomIt"
+        ]
+      ],
       "shortcuts": [
         [
-          "ZoomIt.exe",
+          "ZoomIt64a.exe",
           "SysInternals/ZoomIt",
           "/accepteula"
         ]
       ]
     }
+  },
+  "checkver": {
+    "url": "https://gh-proxy.org/https://raw.githubusercontent.com/MicrosoftDocs/sysinternals/main/sysinternals/downloads/zoomit.md",
+    "regex": "#.*?v([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://download.sysinternals.com/files/ZoomIt.zip"
   }
 }
