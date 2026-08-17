@@ -1,11 +1,21 @@
 {
-  "homepage": "https://www.colorpilot.com/exif.html",
-  "description": "EXIF/IPTC data viewer, EXIF data editor & creator",
   "version": "6.29.0",
+  "description": "Exif Pilot. EXIF/IPTC data viewer, EXIF data editor & creator",
+  "homepage": "https://www.colorpilot.com/exif.html",
   "license": "freeware",
-  "url": "https://www.two-pilots.com/colorpilot.com/load/exif.exe",
-  "hash": "2fde849f1eabd6bede8463101031570965e1d749cedc28c399eb6e67fb43d2ce",
+  "changelog": "https://www.colorpilot.com/exif_history.html",
+  "architecture": {
+    "64bit": {
+      "url": "https://www.two-pilots.com/colorpilot.com/load/exif_64.exe",
+      "hash": "c6aa51824b5b0ed31fcd6a7324953751b19036d9f17c6126b49a37481a5da196"
+    },
+    "32bit": {
+      "url": "https://www.two-pilots.com/colorpilot.com/load/exif.exe",
+      "hash": "131b2772c5eb8b9c9b2a18a41ffd577eba69d8cef37cd03a858054ee3c5be05f"
+    }
+  },
   "innosetup": true,
+  "pre_install": "if(!(Test-Path \"$dir/ExifPilot.tags\")) { Add-Content \"$dir/ExifPilot.tags\" $null }",
   "persist": "ExifPilot.tags",
   "shortcuts": [
     [
@@ -18,6 +28,13 @@
     "regex": ":: Version ([\\d.]+)"
   },
   "autoupdate": {
-    "url": "https://www.two-pilots.com/colorpilot.com/load/exif.exe"
+    "architecture": {
+      "64bit": {
+        "url": "https://www.two-pilots.com/colorpilot.com/load/exif_64.exe"
+      },
+      "32bit": {
+        "url": "https://www.two-pilots.com/colorpilot.com/load/exif.exe"
+      }
+    }
   }
 }

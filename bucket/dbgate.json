@@ -1,16 +1,16 @@
 {
-  "version": "5.5.6",
+  "version": "7.2.5",
   "description": "Database manager for MySQL, PostgreSQL, SQL Server, MongoDB, SQLite and others.",
   "homepage": "https://dbgate.org/",
   "license": "GPL-3.0-or-later",
   "architecture": {
     "64bit": {
-      "url": "https://github.com/dbgate/dbgate/releases/latest/download/dbgate-windows-latest.zip",
-      "hash": "65afad3afc1fb3c9f2989a7b8d86ae3969cd9506a0ae3815c2c2e0af6b5ab3e1"
+      "url": "https://gh-proxy.org/https://github.com/dbgate/dbgate/releases/download/v7.2.5/dbgate-7.2.5-win_x64.zip",
+      "hash": "0864432985b45ae876fcb67ed07f2ef15864637b4bf9551774f6f5db893d15fe"
     },
     "arm64": {
-      "url": "https://gh-proxy.org/https://github.com/dbgate/dbgate/releases/download/v5.5.6/dbgate-5.5.6-win_arm64.zip",
-      "hash": "5b7fa93942ebcba4b66d7322fd8436fd2c7f87becec5d446c9b69966491b27fd"
+      "url": "https://gh-proxy.org/https://github.com/dbgate/dbgate/releases/download/v7.2.5/dbgate-7.2.5-win_arm64.zip",
+      "hash": "2f821553799450423b7d74c9128f748ddb7b57630dc06f9b8778aeba577c5165"
     }
   },
   "bin": "DbGate.exe",
@@ -19,5 +19,18 @@
       "DbGate.exe",
       "DbGate"
     ]
-  ]
+  ],
+  "checkver": {
+    "github": "https://github.com/dbgate/dbgate"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://gh-proxy.org/https://github.com/dbgate/dbgate/releases/download/v$version/dbgate-$version-win_x64.zip"
+      },
+      "arm64": {
+        "url": "https://gh-proxy.org/https://github.com/dbgate/dbgate/releases/download/v$version/dbgate-$version-win_arm64.zip"
+      }
+    }
+  }
 }
