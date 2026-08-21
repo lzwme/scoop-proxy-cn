@@ -1,40 +1,18 @@
 {
-  "version": "0.7.1",
-  "description": "⚡️A native, local-first alternative to Logitech Options+, written in Rust 🦀 — remap buttons, DPI, and SmartShift over HID++. No account, no telemetry.",
-  "homepage": "https://openlogi.org/",
-  "license": {
-    "identifier": "MIT",
-    "url": "https://github.com/AprilNEA/OpenLogi?tab=MIT-2-ov-file"
-  },
+  "version": "0.7.3",
+  "description": "A local-first alternative to Logitech Options+, written in Rust. Remap buttons, drive DPI and SmartShift over HID++. No account, no telemetry.",
+  "homepage": "https://openlogi.org",
+  "license": "MIT|Apache-2.0",
   "architecture": {
     "64bit": {
-      "url": "https://gh-proxy.org/https://github.com/AprilNEA/OpenLogi/releases/download/v0.7.1/OpenLogi-v0.7.1-windows-x86_64.msi",
-      "hash": "f3150298b173fa596b9c6cad8d73344ababbecee13eca2cec5d3d3c1338d1205"
+      "url": "https://gh-proxy.org/https://github.com/AprilNEA/OpenLogi/releases/download/v0.7.3/OpenLogi-v0.7.3-windows-x86_64.zip",
+      "hash": "611fa94e43cc82628dd558d6bbed14f658e2f1602b6c8fefdedcb450465900f6"
     },
     "arm64": {
-      "url": "https://gh-proxy.org/https://github.com/AprilNEA/OpenLogi/releases/download/v0.7.1/OpenLogi-v0.7.1-windows-arm64.msi",
-      "hash": "ed2eb9ab506a3f0bbf3122f04f81c23c3eff002764ec020d6ef71def22a01570"
+      "url": "https://gh-proxy.org/https://github.com/AprilNEA/OpenLogi/releases/download/v0.7.3/OpenLogi-v0.7.3-windows-arm64.zip",
+      "hash": "a6a12a0f6f1b9fa37acfdd1785f0c677c5e28392d768b8b25e880b9e908e3b51"
     }
   },
-  "extract_dir": "LocalApp\\Programs\\OpenLogi",
-  "installer": {
-    "script": [
-      "# handle runtime cache",
-      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/AppsUtils.psm1)",
-      "Mount-ExternalRuntimeData -Source \"$persist_dir\\appdata\" -Target \"$env:USERPROFILE\\.local\"",
-      "Mount-ExternalRuntimeData -Source \"$persist_dir\\userdata\" -Target \"$env:USERPROFILE\\.config\\openlogi\"",
-      "Remove-Module -Name AppsUtils"
-    ]
-  },
-  "uninstaller": {
-    "script": [
-      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/AppsUtils.psm1)",
-      "Dismount-ExternalRuntimeData -Target \"$env:USERPROFILE\\.local\"",
-      "Dismount-ExternalRuntimeData -Target \"$env:USERPROFILE\\.config\\openlogi\"",
-      "Remove-Module -Name AppsUtils"
-    ]
-  },
-  "bin": "OpenLogi.exe",
   "shortcuts": [
     [
       "OpenLogi.exe",
@@ -42,18 +20,19 @@
     ]
   ],
   "checkver": {
-    "github": "https://api.github.com/repos/AprilNEA/OpenLogi/releases",
-    "jp": "$[0].tag_name",
-    "regex": "v([\\d.]+)"
+    "github": "https://github.com/AprilNEA/OpenLogi"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://gh-proxy.org/https://github.com/AprilNEA/OpenLogi/releases/download/v$version/OpenLogi-v$version-windows-x86_64.msi"
+        "url": "https://gh-proxy.org/https://github.com/AprilNEA/OpenLogi/releases/download/v$version/OpenLogi-v$version-windows-x86_64.zip"
       },
       "arm64": {
-        "url": "https://gh-proxy.org/https://github.com/AprilNEA/OpenLogi/releases/download/v$version/OpenLogi-v$version-windows-arm64.msi"
+        "url": "https://gh-proxy.org/https://github.com/AprilNEA/OpenLogi/releases/download/v$version/OpenLogi-v$version-windows-arm64.zip"
       }
+    },
+    "hash": {
+      "url": "https://gh-proxy.org/https://github.com/AprilNEA/OpenLogi/releases/download/v$version/SHA256SUMS"
     }
   }
 }
