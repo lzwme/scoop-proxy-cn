@@ -42,10 +42,14 @@ switch ($Phase) {
             Rename-Item "$Dir\shawl.exe" -NewName 'mihomo-service.exe'
         }
 
-        # 2. 复制控制脚本至安装目录。利用 Select-Object -ExpandProperty 规避空引用异常
+        # 2. 复制控制脚本及安装脚本至安装目录。利用 Select-Object -ExpandProperty 规避空引用异常
         $controlSource = Resolve-Path "$bucketsdir\*\scripts\mihomo-helper.ps1" -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Path -First 1
         if ($controlSource) {
             Copy-Item $controlSource -Destination "$Dir\mihomo-helper.ps1" -Force
+        }
+        $setupSource = Resolve-Path "$bucketsdir\*\scripts\mihomo-shawl-setup.ps1" -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Path -First 1
+        if ($setupSource) {
+            Copy-Item $setupSource -Destination "$Dir\mihomo-shawl-setup.ps1" -Force
         }
 
         # 3. 预创建关键持久化文件与目录

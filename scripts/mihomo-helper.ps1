@@ -16,7 +16,7 @@
 [CmdletBinding()]
 param(
     [Parameter(Position = 0)]
-    [ValidateSet('start', 'stop', 'restart', 'status', 'enable', 'disable', 'log', 'edit', 'reload', 'help')]
+    [ValidateSet('start', 'stop', 'restart', 'status', 'enable', 'disable', 'repair', 'install', 'log', 'edit', 'reload', 'help')]
     [string]$Action = 'status',
 
     [Parameter()]
@@ -38,11 +38,12 @@ function Show-Help {
     Write-Host ""
     Write-Host "Available Actions:" -ForegroundColor DarkGray
     Write-Host "  status   " -NoNewline; Write-Host "- Show service registration and status (Default)" -ForegroundColor Gray
-    Write-Host "  start    " -NoNewline; Write-Host "- Start the service (Requires Admin)" -ForegroundColor Gray
+    Write-Host "  start    " -NoNewline; Write-Host "- Start the service (Auto-recovers service if missing) (Requires Admin)" -ForegroundColor Gray
     Write-Host "  stop     " -NoNewline; Write-Host "- Stop the service (Requires Admin)" -ForegroundColor Gray
-    Write-Host "  restart  " -NoNewline; Write-Host "- Restart the service (Requires Admin)" -ForegroundColor Gray
+    Write-Host "  restart  " -NoNewline; Write-Host "- Restart the service (Auto-recovers service if missing) (Requires Admin)" -ForegroundColor Gray
     Write-Host "  enable   " -NoNewline; Write-Host "- Set service to start automatically on boot (Requires Admin)" -ForegroundColor Gray
     Write-Host "  disable  " -NoNewline; Write-Host "- Set service to manual start (Requires Admin)" -ForegroundColor Gray
+    Write-Host "  repair   " -NoNewline; Write-Host "- Re-register service and restore firewall rules (e.g. after OS upgrade) (Requires Admin)" -ForegroundColor Gray
     Write-Host "  log      " -NoNewline; Write-Host "- View log files" -ForegroundColor Gray
     Write-Host "  edit     " -NoNewline; Write-Host "- Open config.yaml with the best available editor" -ForegroundColor Gray
     Write-Host "  reload   " -NoNewline; Write-Host "- Reload config.yaml via mihomo's RESTful API (no restart needed)" -ForegroundColor Gray
@@ -51,6 +52,97 @@ function Show-Help {
     Write-Host "Options:" -ForegroundColor DarkGray
     Write-Host "  -Tail    " -NoNewline; Write-Host "- Tail the log dynamically (only works with 'log' action)" -ForegroundColor Gray
     Write-Host ""
+}
+
+# ---------------------------------------------------------------------------
+# Helpers for Service Management & Auto-Recovery
+# ---------------------------------------------------------------------------
+
+# Resolves the underlying physical directory if the path is a Junction link (e.g. Scoop 'current').
+# Windows Firewall kernel rule matching requires the real physical executable path.
+function Get-PhysicalDirectory {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Path
+    )
+
+    try {
+        $item = Get-Item -LiteralPath $Path -ErrorAction Stop
+        if ($item.LinkType -eq 'Junction' -and $item.Target) {
+            $target = if ($item.Target -is [array] -or $item.Target -is [System.Collections.IList]) {
+                $item.Target[0]
+            } else {
+                [string]$item.Target
+            }
+            if ($target -and (Test-Path $target)) {
+                return $target
+            }
+        }
+    } catch { }
+
+    return $Path
+}
+
+# Registers the Windows Service via Shawl and restores firewall inbound rules.
+function Install-MihomoServiceRegistration {
+    param(
+        [switch]$StartAfterInstall
+    )
+
+    $dir = $PSScriptRoot
+    $realDir = Get-PhysicalDirectory -Path $dir
+    $servicePath = Join-Path $dir 'mihomo-service.exe'
+    $mihomoExe = Join-Path $dir 'mihomo.exe'
+    $realMihomoExe = Join-Path $realDir 'mihomo.exe'
+    $logDir = Join-Path $dir 'logs'
+
+    if (!(Test-Path $servicePath) -or !(Test-Path $mihomoExe)) {
+        Write-Host "Executable files ('mihomo-service.exe' or 'mihomo.exe') not found in '$dir'." -ForegroundColor Red
+        return $false
+    }
+
+    if (!(Test-Path $logDir)) {
+        New-Item -Path $logDir -ItemType Directory -Force | Out-Null
+    }
+
+    $argsList = @(
+        'add',
+        '--name', $ServiceName,
+        '--cwd', "$dir",
+        '--log-dir', "$logDir",
+        '--log-rotate', 'bytes=10485760',
+        '--log-retain', '8',
+        '--stop-timeout', '5000',
+        '--',
+        "$mihomoExe",
+        '-d', '.',
+        '-f', 'config/config.yaml'
+    )
+
+    Write-Host "Registering Windows service '$ServiceName' via Shawl..." -ForegroundColor Cyan
+    sc.exe delete $ServiceName 2>$null | Out-Null
+    & "$servicePath" $argsList | Out-Null
+    sc.exe config $ServiceName start= auto | Out-Null
+
+    Write-Host "Configuring Windows firewall rules for '$realMihomoExe'..." -ForegroundColor Cyan
+    Remove-NetFirewallRule -DisplayName 'Mihomo-In-TCP', 'Mihomo-In-UDP' -ErrorAction SilentlyContinue | Out-Null
+    New-NetFirewallRule -DisplayName 'Mihomo-In-TCP' -Direction Inbound -Program $realMihomoExe -Action Allow -Profile Any -Protocol TCP -ErrorAction SilentlyContinue | Out-Null
+    New-NetFirewallRule -DisplayName 'Mihomo-In-UDP' -Direction Inbound -Program $realMihomoExe -Action Allow -Profile Any -Protocol UDP -ErrorAction SilentlyContinue | Out-Null
+
+    Write-Host "Mihomo Windows service registered and firewall rules configured successfully." -ForegroundColor Green
+
+    if ($StartAfterInstall) {
+        $configPath = Join-Path $dir 'config\config.yaml'
+        $hasConfig = (Test-Path $configPath) -and ((Get-Item $configPath).Length -gt 0)
+        if ($hasConfig) {
+            Start-Service -Name $ServiceName -ErrorAction SilentlyContinue
+            Write-Host "Service '$ServiceName' started." -ForegroundColor Green
+        } else {
+            Write-Host "No config content found in '$configPath' - service registered but NOT started." -ForegroundColor Yellow
+            Write-Host "Please edit config.yaml, then run 'mihomo-helper start'." -ForegroundColor Yellow
+        }
+    }
+    return $true
 }
 
 # ---------------------------------------------------------------------------
@@ -369,7 +461,7 @@ function Invoke-MihomoReload {
 }
 
 # 需要管理员权限的动作队列
-$ElevatedActions = @('start', 'stop', 'restart', 'enable', 'disable')
+$ElevatedActions = @('start', 'stop', 'restart', 'enable', 'disable', 'repair', 'install')
 
 # 自提权机制（Self-Elevation）
 if ($Action -in $ElevatedActions -and -not (Test-Admin)) {
@@ -396,7 +488,8 @@ switch ($Action) {
 
         $service = Get-Service -Name $ServiceName -ErrorAction SilentlyContinue
         if (!$service) {
-            Write-Host "Service '$ServiceName' is not registered." -ForegroundColor Red
+            Write-Host "Service '$ServiceName' is not registered (may have been cleared after Windows Update)." -ForegroundColor Red
+            Write-Host "Run 'mihomo-helper repair' to re-register the service and restore firewall rules." -ForegroundColor Yellow
             return
         }
         $statusColor = if ($service.Status -eq 'Running') { 'Green' } else { 'Yellow' }
@@ -405,21 +498,63 @@ switch ($Action) {
         Write-Host "Start Type:   " -NoNewline; Write-Host $service.StartType -ForegroundColor Cyan
     }
     'start' {
+        $service = Get-Service -Name $ServiceName -ErrorAction SilentlyContinue
+        if (!$service) {
+            Write-Host "Service '$ServiceName' is not registered. Attempting auto-recovery..." -ForegroundColor Yellow
+            $installed = Install-MihomoServiceRegistration -StartAfterInstall
+            if (!$installed) {
+                Write-Host "Failed to automatically register service '$ServiceName'." -ForegroundColor Red
+            }
+            return
+        }
         Start-Service -Name $ServiceName -ErrorAction Stop
+        Write-Host "Service '$ServiceName' started." -ForegroundColor Green
     }
     'stop' {
+        $service = Get-Service -Name $ServiceName -ErrorAction SilentlyContinue
+        if (!$service) {
+            Write-Host "Service '$ServiceName' is not registered." -ForegroundColor Red
+            return
+        }
         Stop-Service -Name $ServiceName -Force -ErrorAction Stop
+        Write-Host "Service '$ServiceName' stopped." -ForegroundColor Yellow
     }
     'restart' {
+        $service = Get-Service -Name $ServiceName -ErrorAction SilentlyContinue
+        if (!$service) {
+            Write-Host "Service '$ServiceName' is not registered. Attempting auto-recovery..." -ForegroundColor Yellow
+            $installed = Install-MihomoServiceRegistration -StartAfterInstall
+            if (!$installed) {
+                Write-Host "Failed to automatically register service '$ServiceName'." -ForegroundColor Red
+            }
+            return
+        }
         Restart-Service -Name $ServiceName -Force -ErrorAction Stop
+        Write-Host "Service '$ServiceName' restarted." -ForegroundColor Green
     }
     'enable' {
+        $service = Get-Service -Name $ServiceName -ErrorAction SilentlyContinue
+        if (!$service) {
+            Write-Host "Service '$ServiceName' is not registered. Attempting auto-recovery..." -ForegroundColor Yellow
+            Install-MihomoServiceRegistration | Out-Null
+        }
         sc.exe config $ServiceName start= auto | Out-Null
         Write-Host "Service configured to start automatically on boot." -ForegroundColor Green
     }
     'disable' {
+        $service = Get-Service -Name $ServiceName -ErrorAction SilentlyContinue
+        if (!$service) {
+            Write-Host "Service '$ServiceName' is not registered." -ForegroundColor Red
+            return
+        }
         sc.exe config $ServiceName start= demand | Out-Null
         Write-Host "Service configured to manual start." -ForegroundColor Yellow
+    }
+    'repair' {
+        Install-MihomoServiceRegistration -StartAfterInstall
+    }
+    'install' {
+        Install-MihomoServiceRegistration -StartAfterInstall
     }
     'log' {
         $logDir = Join-Path $PSScriptRoot "logs"
