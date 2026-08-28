@@ -131,6 +131,38 @@ function Test-ValidateParameter {
     if ($ProxyUseDefaultCredentials -and $null -ne $ProxyCredential) {
         Deny-Install "ProxyUseDefaultCredentials is conflict with ProxyCredential. Don't use the -ProxyCredential and -ProxyUseDefaultCredentials together."
     }
+
+    if (-not (Test-Path $SCOOP_DIR -IsValid)) {
+        Deny-Install "'$SCOOP_DIR' is not a valid path, please specify another path."
+    }
+
+    if (-not (Test-Path $SCOOP_GLOBAL_DIR -IsValid)) {
+        Deny-Install "'$SCOOP_GLOBAL_DIR' is not a valid path, please specify another path."
+    }
+
+    if (-not (Test-Path $SCOOP_CACHE_DIR -IsValid)) {
+        Deny-Install "'$SCOOP_CACHE_DIR' is not a valid path, please specify another path."
+    }
+
+    if (Test-Path $SCOOP_DIR -PathType Leaf) {
+        Deny-Install "'$SCOOP_DIR' is a file, please remove it or specify another path."
+    }
+
+    if ((Test-Path $SCOOP_DIR -PathType Container) -and (Test-Path "$SCOOP_DIR\*")) {
+        Deny-Install "'$SCOOP_DIR' exists and is not empty, please specify another path."
+    }
+
+    if (Test-Path $SCOOP_GLOBAL_DIR -PathType Leaf) {
+        Deny-Install "'$SCOOP_GLOBAL_DIR' is a file, please remove it or specify another path."
+    }
+
+    if ((Test-Path $SCOOP_GLOBAL_DIR -PathType Container) -and (Test-Path "$SCOOP_GLOBAL_DIR\*")) {
+        Deny-Install "'$SCOOP_GLOBAL_DIR' exists and is not empty, please specify another path."
+    }
+
+    if (Test-Path $SCOOP_CACHE_DIR -PathType Leaf) {
+        Deny-Install "'$SCOOP_CACHE_DIR' is a file, please remove it or specify another path."
+    }
 }
 
 function Test-IsAdministrator {
@@ -680,6 +712,33 @@ function Write-DebugInfo {
     Write-Verbose "SCOOP_CONFIG_HOME: $SCOOP_CONFIG_HOME"
 }
 
+function Test-ShouldRunInstall {
+    param(
+        [String] $InvocationName
+    )
+
+    # not dot-sourced, run the install flow
+    if ($InvocationName -ne '.') {
+        return $true
+    }
+
+    # dot-sourced, but not in CI, don't run the install flow
+    if (-not $env:CI) {
+        return $false
+    }
+
+    # dot-sourced, in CI, determined by env SCOOP_NOINSTALL
+    $should = $true
+    if ($null -ne $env:SCOOP_NOINSTALL) {
+        $value = $env:SCOOP_NOINSTALL.ToString().Trim().ToLowerInvariant()
+        if ($value -in @('1', 'true', 'yes', 'on')) {
+            $should = $false
+        }
+    }
+
+    return $should
+}
+
 # Prepare variables
 $IS_EXECUTED_FROM_IEX = ($null -eq $MyInvocation.MyCommand.Path)
 
@@ -710,7 +769,12 @@ $SCOOP_MAIN_BUCKET_GIT_REPO = 'https://github.com/ScoopInstaller/Main.git'
 # not when dot-sourced. Dot-sourcing the installer will not trigger the
 # installation, and only the functions will be loaded, e.g., for testing.
 # Downstreams can call `Install-Scoop` explicitly to start the installation.
-if ($MyInvocation.InvocationName -ne '.') {
+# In CI, dot-sourced execution is allowed by default as GitHub Actions executors
+# run the job step in a dot-sourced session. To disable the install flow in CI,
+# set `SCOOP_NOINSTALL=true` to force dot-sourced CI sessions to only
+# load functions.
+$shouldRunInstall = Test-ShouldRunInstall -InvocationName $MyInvocation.InvocationName
+if ($shouldRunInstall) {
     $oldErrorActionPreference = $ErrorActionPreference
     try {
         $ErrorActionPreference = 'Stop'
