@@ -1,25 +1,26 @@
 {
-  "version": "0.3.7",
+  "version": "5.3.4",
   "description": "An intelligent and versatile general-purpose SQL client and reporting tool for databases which integrates ChatGPT capabilities.",
   "no": "https://github.com/ViCrack/scoop-bucket/blob/16f7fc72202815c38a0d7d0e66f0a9eb4980dba5/bucket/chat2db.json",
   "homepage": "https://github.com/chat2db/Chat2DB",
   "license": "Apache-2.0",
   "architecture": {
     "64bit": {
-      "url": "https://github.com/chat2db/Chat2DB/releases/download/v0.3.7/Chat2DB-Setup-0.3.7.exe",
-      "hash": "f5ee97eca19b31f8cd5e085d4c53ab07552a3176a4720fa62db029107a236473"
+      "url": "https://github.com/chat2db/Chat2DB/releases/download/v5.3.4/Chat2DB-Community-5.3.4.msi",
+      "hash": "e23ba2ae99142f980b5b2ea73a2f4c6948fb3016bc5c5b628103259f58e25417"
     }
   },
   "installer": {
     "script": [
-      "Expand-7zipArchive -Path \"$dir\\Chat2DB-Setup-$version.exe\" -Removal",
-      "Expand-7zipArchive -Path \"$dir\\`$PLUGINSDIR\\app-64.7z\" -DestinationPath $dir"
+      "$nsis = Get-ChildItem \"$dir\" -Filter \"Chat2DB-Setup-*.exe\" | Select-Object -First 1",
+      "if ($nsis) {",
+      "    Expand-7zipArchive -Path $nsis.FullName -Removal",
+      "    Expand-7zipArchive -Path \"$dir\\`$PLUGINSDIR\\app-64.7z\" -DestinationPath $dir",
+      "    Remove-Item \"$dir\\`$PLUGINSDIR\" -Force -Recurse -ErrorAction SilentlyContinue",
+      "    Remove-Item \"$dir\\`$R0\" -Force -Recurse -ErrorAction SilentlyContinue",
+      "}"
     ]
   },
-  "post_install": [
-    "Remove-Item \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
-    "Remove-Item \"$dir\\`$R0\" -Force -Recurse"
-  ],
   "bin": "chat2db.exe",
   "shortcuts": [
     [
@@ -31,7 +32,7 @@
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://github.com/chat2db/Chat2DB/releases/download/v$version/Chat2DB-Setup-$version.exe"
+        "url": "https://github.com/chat2db/Chat2DB/releases/download/v$version/Chat2DB-Community-$version.msi"
       }
     }
   }
