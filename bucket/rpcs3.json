@@ -1,6 +1,6 @@
 {
-  "version": "0.0.42-19930",
-  "description": "Sony PlayStation 3 emulator",
+  "version": "0.0.42-19931",
+  "description": "Open-source Sony PlayStation 3 emulator",
   "homepage": "https://rpcs3.net/",
   "license": {
     "identifier": "GPL-2.0",
@@ -17,12 +17,12 @@
   },
   "architecture": {
     "64bit": {
-      "url": "https://gh-proxy.org/https://github.com/RPCS3/rpcs3-binaries-win/releases/download/build-33a723affa1554ef310a138d3c8810b29c3aa43c/rpcs3-v0.0.42-19930-33a723af_win64_msvc.7z",
-      "hash": "39e00cdabb3310c3dc44de9176614a5bec196141e811df433a7fa8c5979cf417"
+      "url": "https://gh-proxy.org/https://github.com/RPCS3/rpcs3-binaries-win/releases/download/build-de6c1b526d930e938b06b237731cbbf491076783/rpcs3-v0.0.42-19931-de6c1b52_win64_msvc.7z",
+      "hash": "aff731bba71dc222327a0db4c843b3de1220a9419e47a0ff450497bf578e0520"
     },
     "arm64": {
-      "url": "https://gh-proxy.org/https://github.com/RPCS3/rpcs3-binaries-win-arm64/releases/download/build-33a723affa1554ef310a138d3c8810b29c3aa43c/rpcs3-v0.0.42-19930-33a723af_win64_aarch64_clang.7z",
-      "hash": "55ab12757c34b3c9f75791da9244bdd18a511416669c3a08695bb890db824e19"
+      "url": "https://gh-proxy.org/https://github.com/RPCS3/rpcs3-binaries-win-arm64/releases/download/build-de6c1b526d930e938b06b237731cbbf491076783/rpcs3-v0.0.42-19931-de6c1b52_win64_aarch64_clang.7z",
+      "hash": "ce006d6f296fef4c9f117bea4e7bd0915b1124c599cf4931217e3786645b291d"
     }
   },
   "pre_install": [
@@ -37,7 +37,7 @@
   "shortcuts": [
     [
       "rpcs3.exe",
-      "Sony PlayStation 3 [ps3][rpcs3]"
+      "RPCS3"
     ]
   ],
   "persist": [
@@ -59,7 +59,7 @@
   ],
   "checkver": {
     "url": "https://api.github.com/repos/RPCS3/rpcs3-binaries-win/releases/latest",
-    "jsonpath": "$.assets[?(@.name =~ /rpcs3-v[a-f\\d.-]+_win64_msvc\\.7z$/)].browser_download_url",
+    "jsonpath": "$.assets[?(@.name =~ /rpcs3-v[a-f\\d.-]+_win64_msvc\\.7z/)].browser_download_url",
     "regex": "releases/download/(?<build>build-[a-f\\d]+)/rpcs3-v(?<version>[\\d.-]+)-(?<commit>[a-f\\d]+)_win64_msvc\\.7z"
   },
   "autoupdate": {
