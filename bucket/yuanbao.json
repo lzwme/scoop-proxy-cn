@@ -1,45 +1,51 @@
 {
-  "version": "2.84.1",
-  "description": "腾讯元宝，腾讯的一款 AI 智能助手。An AI assistant by Tencent.",
+  "version": "2.84.1.621",
+  "description": "Yuanbao (Tencent Yuanbao). An AI assistant and chat client.",
   "homepage": "https://yuanbao.tencent.com/",
-  "license": "Unknown",
+  "license": "Proprietary",
   "architecture": {
     "64bit": {
       "url": "https://cdn-hybrid-prod.hunyuan.tencent.com/Desktop/official/a26f6c2d166f0001f6ae00d1503565ed/yuanbao_2.84.1.621_x64.exe#/dl.7z",
       "hash": "582fe48d01f1d497bbd2f7d7a10064bbad089a419ad282eeba4907646c5368ab"
     }
   },
-  "pre_install": [
-    "(Get-ChildItem $dir '*.7z').Fullname | Rename-Item -NewName 'app.7z'",
-    "Expand-7zipArchive \"$dir\\app.7z\" \"$dir\"",
-    "Remove-Item \"$dir\\`$PLUGINSDIR\",\"$dir\\app.7z\",\"$dir\\plugin_compress.ini\" -Force -Recurse",
-    "$contentDir=Get-ChildItem -Name -Path \"$dir\" -Directory | Where-Object { $_ -match \"^\\d+(\\.\\d+)+$\" }",
-    "7z.exe a -tzip -mx=6 \"$dir\\$contentDir\\content.pkg\" \"$dir\\$contentDir\\content.pkg.nsisbin\\*\" | Out-Null"
-  ],
+  "installer": {
+    "script": [
+      "$payload = Get-ChildItem -LiteralPath $dir -Filter 'install*.7z' | Select-Object -First 1",
+      "if (!$payload) { abort 'Could not find the Yuanbao application payload.' }",
+      "Expand-7ZipArchive -Path $payload.FullName -DestinationPath $dir -Removal",
+      "$verdir = Get-ChildItem -LiteralPath $dir -Directory | Where-Object { $_.Name -match '^\\d+(?:\\.\\d+)+$' } | Select-Object -First 1",
+      "if (!$verdir) { abort 'Could not find the Yuanbao application directory.' }",
+      "$pkg = Get-ChildItem -LiteralPath $verdir.FullName -Directory | Where-Object { $_.Name -like '*.nsisbin' } | Select-Object -First 1",
+      "if ($pkg) {",
+      "    Compress-Archive -Path (Join-Path $pkg.FullName '*') -DestinationPath (Join-Path $verdir.FullName 'content.pkg') -CompressionLevel Optimal",
+      "    Remove-Item -LiteralPath $pkg.FullName -Recurse -Force",
+      "}",
+      "Remove-Item -LiteralPath (Join-Path $dir 'plugin_compress.ini'), (Join-Path $dir 'yuanbao_new.exe') -Force -ErrorAction SilentlyContinue",
+      "Remove-Item -LiteralPath (Join-Path $dir '$PLUGINSDIR'), (Join-Path $dir '$WINDIR'), (Join-Path $dir '$R8'), (Join-Path $dir '$0') -Recurse -Force -ErrorAction SilentlyContinue"
+    ]
+  },
+  "bin": "yuanbao.exe",
   "shortcuts": [
     [
       "yuanbao.exe",
-      "yuanbao"
+      "Yuanbao"
     ]
   ],
   "checkver": {
-    "script": [
-      ". \"$pwd\\bin\\utils.ps1\"",
-      "$InstallerInfo = get_installer_info 'Tencent/Yuanbao'",
-      "\"ver:$($InstallerInfo.PackageVersion);\"",
-      "\"x64:$($InstallerInfo.x64_exe.InstallerUrl);\""
-    ],
-    "regex": "ver:(?<version>[^;]+)(?:; x64:(?<x64>[^;]*))?(?:; x86:(?<x86>[^;]*))?(?:; arm64:(?<arm64>[^;]*))?"
+    "url": "https://yuanbao.tencent.com/api/info/public/general",
+    "regex": "\"windows\":\"https://cdn-hybrid-prod\\.hunyuan\\.tencent\\.com/(?<url>Desktop/official/[a-f0-9]+/yuanbao_(?<version>[\\d.]+)_x64\\.exe)\""
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "$matchX64#/dl.7z",
+        "url": "https://cdn-hybrid-prod.hunyuan.tencent.com/$matchUrl#/dl.7z",
         "hash": {
-          "url": "https://raw.githubusercontent.com/microsoft/winget-pkgs/master/manifests/t/Tencent/Yuanbao/$version/Tencent.Yuanbao.installer.yaml",
-          "regex": "Architecture: x64[\\s\\S]+?InstallerSha256:\\s?(.+)"
+          "url": "https://yuanbao.tencent.com/api/info/public/general",
+          "regex": "\"windows\":\"https://cdn-hybrid-prod\\.hunyuan\\.tencent\\.com/Desktop/official/([a-f0-9]{32})/"
         }
       }
     }
-  }
+  },
+  "notes": "App data is stored outside the Scoop directory, in '%APPDATA%\\Tencent\\Yuanbao'."
 }
