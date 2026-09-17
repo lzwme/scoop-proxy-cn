@@ -1,0 +1,30 @@
+{
+  "version": "0.2.0",
+  "description": "Simple, private file sharing with end-to-end encryption",
+  "homepage": "https://wormhole.app",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/byronwade/Wormhole/releases/download/v0.2.0/Wormhole_0.2.0_x64-setup.exe#/dl.7z",
+      "hash": "51165fb22d10b727d641c10c12bf88b2641bd1aa439a1efdd57efdc6088252b2"
+    }
+  },
+  "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
+  "bin": "wormhole-desktop.exe",
+  "shortcuts": [
+    [
+      "wormhole-desktop.exe",
+      "Wormhole"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/byronwade/Wormhole"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/byronwade/Wormhole/releases/download/v$version/Wormhole_${version}_x64-setup.exe#/dl.7z"
+      }
+    }
+  }
+}
