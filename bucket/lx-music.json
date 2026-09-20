@@ -1,13 +1,16 @@
 {
-  "homepage": "https://github.com/lyswhut/lx-music-desktop",
-  "description": "一个基于 electron 的音乐软件",
   "version": "2.12.6",
+  "description": "An electron-based music player",
+  "homepage": "https://github.com/lyswhut/lx-music-desktop",
   "license": "Apache-2.0",
-  "notes": "Changing music download folder is HIGHLY recommended.",
   "architecture": {
     "64bit": {
       "url": "https://gh-proxy.org/https://github.com/lyswhut/lx-music-desktop/releases/download/v2.12.6/lx-music-desktop-v2.12.6-win_x64-green.7z",
       "hash": "a07d2a15dbcf06ce689bf8b99c64241b06deb28fdfb6ffe79b6dcdfbb0d157a5"
+    },
+    "arm64": {
+      "url": "https://gh-proxy.org/https://github.com/lyswhut/lx-music-desktop/releases/download/v2.12.6/lx-music-desktop-v2.12.6-win_arm64-green.7z",
+      "hash": "e657c9db17be85fdc6cd6b6b15de6f51a2e98cb869bb0f7ad77201b06641d01c"
     }
   },
   "shortcuts": [
@@ -16,8 +19,17 @@
       "洛雪音乐助手"
     ]
   ],
-  "checkver": "github",
+  "checkver": {
+    "github": "https://github.com/lyswhut/lx-music-desktop"
+  },
   "autoupdate": {
-    "url": "https://gh-proxy.org/https://github.com/lyswhut/lx-music-desktop/releases/download/v$version/lx-music-desktop-v$version-win_x64-green.7z"
+    "architecture": {
+      "64bit": {
+        "url": "https://gh-proxy.org/https://github.com/lyswhut/lx-music-desktop/releases/download/v$version/lx-music-desktop-v$version-win_x64-green.7z"
+      },
+      "arm64": {
+        "url": "https://gh-proxy.org/https://github.com/lyswhut/lx-music-desktop/releases/download/v$version/lx-music-desktop-v$version-win_arm64-green.7z"
+      }
+    }
   }
 }
