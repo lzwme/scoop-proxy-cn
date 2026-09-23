@@ -1,0 +1,29 @@
+{
+  "version": "3.8.0",
+  "homepage": "https://gaiasky.space/",
+  "license": "MPL-2.0",
+  "url": "https://gaia.ari.uni-heidelberg.de/gaiasky/releases/3.8.0.aa0f9c68c/gaiasky_windows-x64_3_8_0.zip",
+  "hash": "47a5a1cc6b5f91ccb8e3f0bd98bd35995f743ed4a67b2b7ea1a217d75fc27a4b",
+  "extract_dir": "gaiasky",
+  "bin": [
+    "gaiasky.exe",
+    "gaiaskyvr.exe"
+  ],
+  "shortcuts": [
+    [
+      "gaiasky.exe",
+      "Gaia Sky"
+    ],
+    [
+      "gaiaskyvr.exe",
+      "Gaia Sky VR"
+    ]
+  ],
+  "checkver": {
+    "url": "https://gaia.ari.uni-heidelberg.de/gaiasky/releases/",
+    "regex": "href=\"3\\.8\\.0\\.([a-f0-9]+)/\""
+  },
+  "autoupdate": {
+    "url": "https://gaia.ari.uni-heidelberg.de/gaiasky/releases/3.8.0.$match1/gaiasky_windows-x64_$underscoreVersion.zip"
+  }
+}
