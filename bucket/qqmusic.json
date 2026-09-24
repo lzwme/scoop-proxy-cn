@@ -1,35 +1,25 @@
 {
   "version": "2261",
-  "description": "一款带有精彩音乐推荐功能的播放器",
-  "homepage": "https://y.qq.com",
-  "license": {
-    "identifier": "Proprietary",
-    "url": "http://y.qq.com/y/static/tips/service_tips.html"
-  },
+  "homepage": "https://y.qq.com/",
+  "license": "Freeware",
   "url": "https://sw.pcmgr.qq.com/ded05b0d903766ba6a8b57f9a59170ac/6a9a40b0/spcmgr/download/QQMusic_Setup_2261.exe#/dl.7z",
   "hash": "2459e2c771e2d996a96b1b7505bc624d13d4de8c9f7bc5d6c338ab5f50ddb35c",
   "post_install": "Copy-Item \"$dir\\QQMusic.tpc\" \"$dir\\instok\"",
   "shortcuts": [
     [
       "QQMusic.exe",
-      "QQ音乐"
-    ],
-    [
-      "QQMusic.exe",
-      "QQ Music"
+      "QQMusic"
     ]
   ],
   "checkver": {
     "script": [
-      "$res = Invoke-WebRequest -UseBasicParsing -Uri 'https://luban.m.qq.com/api/public/software-manager/softwareProxy' -Body 'cmdid=3318&jprxReq[req][soft_id_list]=10' -Method 'POST'",
-      "$content = $res.Content | ConvertFrom-Json",
-      "$verName = $content.resp.soft_list[0].ver_name",
-      "$fileName = $content.resp.soft_list[0].file_name",
-      "Write-Output \"$verName|$fileName\""
+      "$res = Invoke-WebRequest -UseBasicParsing -Uri 'https://luban.m.qq.com/api/public/software-manager/softwareProxy' -Body 'cmdid=3318&jprxReq%5Breq%5D%5Bsoft_id_list%5D%5B%5D=10' -Method 'POST'",
+      "Write-Output $res.Content"
     ],
-    "regex": "(?<version>[\\d.]+)\\|(?<id>.*)"
+    "jsonpath": "$.resp.soft_list[0].download_https_url",
+    "regex": "//(?<url>.+)/QQMusic_Setup_(\\d+)\\.exe"
   },
   "autoupdate": {
-    "url": "https://webcdn.m.qq.com/spcmgr/download/$matchId#/dl.7z"
+    "url": "https://$matchUrl/QQMusic_Setup_$version.exe#/dl.7z"
   }
 }
