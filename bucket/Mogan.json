@@ -1,29 +1,40 @@
 {
   "version": "2026.3.6",
-  "description": "A user-friendly distribution of GNU TeXmacs.",
-  "homepage": "https://mogan.app/",
+  "description": "Structured STEM suite",
+  "homepage": "https://mogan.app",
   "license": "GPL-3.0-or-later",
-  "architecture": {
-    "64bit": {
-      "url": "https://gh-proxy.org/https://github.com/XmacsLabs/mogan/releases/download/v2026.3.6/MoganSTEM-v2026.3.6-64bit-installer.exe#/dl.7z",
-      "hash": "d47b3ba744e9ab758c8650d94d8ad60dd79448db0ae51edf876c89d13eb437cd"
-    }
-  },
-  "bin": "bin\\MoganSTEM.exe",
+  "url": "https://gh-proxy.org/https://github.com/XmacsLabs/mogan/releases/download/v2026.3.6/MoganSTEM-v2026.3.6-64bit-installer.exe#/dl.7z",
+  "hash": "d47b3ba744e9ab758c8650d94d8ad60dd79448db0ae51edf876c89d13eb437cd",
   "shortcuts": [
     [
       "bin\\MoganSTEM.exe",
       "Mogan"
     ]
   ],
+  "post_install": [
+    "Write-Host 'Registering the TM(U) FileType...'",
+    "New-Item 'HKCU:\\SOFTWARE\\Classes\\.tm' -Value \"tmfile\" -Force | Out-Null",
+    "New-Item 'HKCU:\\SOFTWARE\\Classes\\.tmu' -Value \"tmfile\" -Force | Out-Null",
+    "New-Item 'HKCU:\\SOFTWARE\\Classes\\tmfile' -Value \"text/tm\" -Force | Out-Null",
+    "New-Item 'HKCU:\\SOFTWARE\\Classes\\tmfile\\DefaultIcon' -Value \"$dir\\bin\\MoganSTEM.exe\" -Force | Out-Null",
+    "New-Item 'HKCU:\\SOFTWARE\\Classes\\tmfile\\shell\\open\\command' -Value \"\"\"$dir\\bin\\MoganSTEM.exe\"\" \"\"%1\"\"\" -Force | Out-Null",
+    "Write-Host 'Done!'"
+  ],
+  "pre_uninstall": [
+    "Write-Host 'Unregistering the TM(U) FileType...'",
+    "Remove-Item 'HKCU:\\SOFTWARE\\Classes\\.tm' -Force -Recurse",
+    "Remove-Item 'HKCU:\\SOFTWARE\\Classes\\.tmu' -Force -Recurse",
+    "Remove-Item 'HKCU:\\SOFTWARE\\Classes\\tmfile' -Force -Recurse",
+    "Write-Host 'Done!'"
+  ],
+  "env_set": {
+    "TEXMACS_HOME_PATH": "$persist_dir\\data"
+  },
+  "persist": "data",
   "checkver": {
     "github": "https://github.com/XmacsLabs/mogan"
   },
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://gh-proxy.org/https://github.com/XmacsLabs/mogan/releases/download/v$version/MoganSTEM-v$version-64bit-installer.exe#/dl.7z"
-      }
-    }
+    "url": "https://gh-proxy.org/https://github.com/XmacsLabs/mogan/releases/download/v$version/MoganSTEM-v$version-64bit-installer.exe#/dl.7z"
   }
 }
