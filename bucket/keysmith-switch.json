@@ -1,0 +1,33 @@
+{
+  "version": "0.4.0",
+  "description": "Public updater artifacts for Keysmith Switch",
+  "homepage": "https://github.com/Jia-Ethan/keysmith-switch-releases",
+  "license": "Freeware",
+  "notes": "config location: C:\\Users\\<your username>\\AppData\\Local\\com.jia-ethan.keysmith-switch - https://github.com/vicrack/scoop-bucket/blob/master/bucket/keysmith-switch-releases.json https://github.com/vicrack/scoop-bucket",
+  "architecture": {
+    "64bit": {
+      "url": "https://gh-proxy.org/https://github.com/Jia-Ethan/keysmith-switch-releases/releases/download/v0.4.0/Keysmith.Switch_0.4.0_x64-setup.exe#/dl.7z",
+      "hash": "b7a7febd3aff9a66fc04f352cf8d2fb02f15b9e61653cd25d003933613f5aad9"
+    }
+  },
+  "bin": [
+    "keysmith-claude.exe",
+    "keysmith-codex.exe",
+    "keysmith-grok.exe",
+    "keysmith-zcode.exe"
+  ],
+  "shortcuts": [
+    [
+      "keysmith-switch.exe",
+      "Keysmith-switch"
+    ]
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://gh-proxy.org/https://github.com/Jia-Ethan/keysmith-switch-releases/releases/download/v$version/Keysmith.Switch_$version_x64-setup.exe#/dl.7z"
+      }
+    }
+  }
+}
