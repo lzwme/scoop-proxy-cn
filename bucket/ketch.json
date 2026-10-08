@@ -1,0 +1,42 @@
+{
+  "version": "0.3.0",
+  "description": "A fast, open-source download manager for every device you own.",
+  "homepage": "https://github.com/linroid/Ketch",
+  "license": {
+    "identifier": "Apache-2.0 license",
+    "url": "https://github.com/linroid/Ketch#Apache-2.0-1-ov-file"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/linroid/Ketch/releases/download/v0.3.0/ketch-desktop-0.3.0-windows-x64.msi",
+      "hash": "e4211fc60d6227743f537a9f452f6840998e1fe11b9715463b3e6f4d4f99e557"
+    },
+    "arm64": {
+      "url": "https://github.com/linroid/Ketch/releases/download/v0.3.0/ketch-desktop-0.3.0-windows-arm64.msi",
+      "hash": "6f219d5989d00ac73e5b5b14a26712cecb1d2dd80535b0f897af4bdb6177a6f1"
+    }
+  },
+  "extract_dir": "Ketch",
+  "bin": "Ketch.exe",
+  "shortcuts": [
+    [
+      "Ketch.exe",
+      "Ketch"
+    ]
+  ],
+  "checkver": {
+    "github": "https://api.github.com/repos/linroid/Ketch/releases",
+    "jp": "$[0].tag_name",
+    "regex": "v([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/linroid/Ketch/releases/download/v$version/ketch-desktop-$version-windows-x64.msi"
+      },
+      "arm64": {
+        "url": "https://github.com/linroid/Ketch/releases/download/v$version/ketch-desktop-$version-windows-arm64.msi"
+      }
+    }
+  }
+}
