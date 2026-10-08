@@ -1,0 +1,42 @@
+{
+  "version": "0.3.0",
+  "description": "A fast, open-source download manager for every device you own.",
+  "homepage": "https://github.com/linroid/Ketch",
+  "license": {
+    "identifier": "Apache-2.0 license",
+    "url": "https://github.com/linroid/Ketch#Apache-2.0-1-ov-file"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://gh-proxy.org/https://github.com/linroid/Ketch/releases/download/v0.3.0/ketch-desktop-0.3.0-windows-x64-portable.zip",
+      "hash": "9684f5fae4b199ca45d15b4cec319a712b394c8162934ae70528ffb3e12a5efc"
+    },
+    "arm64": {
+      "url": "https://gh-proxy.org/https://github.com/linroid/Ketch/releases/download/v0.3.0/ketch-desktop-0.3.0-windows-arm64-portable.zip",
+      "hash": "6681fb799a43f69cb17165e3a9e7c1c50885654a216010a67bd458ccff72d9ed"
+    }
+  },
+  "extract_dir": "Ketch",
+  "bin": "Ketch.exe",
+  "shortcuts": [
+    [
+      "Ketch.exe",
+      "Ketch"
+    ]
+  ],
+  "checkver": {
+    "github": "https://api.github.com/repos/linroid/Ketch/releases",
+    "jp": "$[0].tag_name",
+    "regex": "v([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://gh-proxy.org/https://github.com/linroid/Ketch/releases/download/v$version/ketch-desktop-$version-windows-x64-portable.zip"
+      },
+      "arm64": {
+        "url": "https://gh-proxy.org/https://github.com/linroid/Ketch/releases/download/v$version/ketch-desktop-$version-windows-arm64-portable.zip"
+      }
+    }
+  }
+}
