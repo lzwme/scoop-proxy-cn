@@ -1,49 +1,26 @@
 {
   "version": "2.2.0",
-  "description": "AI-native, GPU-accelerated terminal emulator with SSH, persistent sessions, split panes, and first-class AI CLI workflows",
+  "description": "AI-native, GPU-accelerated terminal emulator for Windows with SSH, persistent sessions, split panes, and first-class AI CLI workflows",
   "homepage": "https://github.com/Kuddev/pebrel",
-  "license": "GPL-3.0",
+  "license": "GPL-3.0-or-later",
+  "notes": "config location: C:\\Users\\<your username>\\\\AppData\\\\Roaming\\Pebrel - https://github.com/vicrack/scoop-bucket/blob/master/bucket/pebrel.json https://github.com/vicrack/scoop-bucket",
   "architecture": {
     "64bit": {
       "url": "https://github.com/Kuddev/pebrel/releases/download/v2.2.0/Pebrel-v2.2.0-windows-x64.zip",
       "hash": "20023c035d7aa28680345c0049781b03a0c6a430cfdf5ebf8b3bd3d04ebf4c62"
-    },
-    "arm64": {
-      "url": "https://github.com/Kuddev/pebrel/releases/download/v2.2.0/Pebrel-v2.2.0-windows-arm64.zip",
-      "hash": "780fa61cd4260b6e8a1be9ac4e6e030bcc5df90ebcb4dc9f429551c0255c5a8b"
     }
   },
-  "pre_install": "Remove-Item \"$dir\\docs\", \"$dir\\skills\" -Force -Recurse -ErrorAction SilentlyContinue",
-  "bin": "pebrel.exe",
   "shortcuts": [
     [
       "pebrel.exe",
       "Pebrel"
     ]
   ],
-  "persist": [
-    "config",
-    "data"
-  ],
-  "checkver": {
-    "url": "https://api.github.com/repos/Kuddev/pebrel/releases/latest",
-    "regex": "\"tag_name\":\\s*\"v([\\d.]+)\""
-  },
+  "checkver": "github",
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://github.com/Kuddev/pebrel/releases/download/v$version/Pebrel-v$version-windows-x64.zip",
-        "hash": {
-          "url": "https://api.github.com/repos/Kuddev/pebrel/releases/latest",
-          "find": "Pebrel-v$version-windows-x64\\.zip`: `([a-fA-F0-9]{64})"
-        }
-      },
-      "arm64": {
-        "url": "https://github.com/Kuddev/pebrel/releases/download/v$version/Pebrel-v$version-windows-arm64.zip",
-        "hash": {
-          "url": "https://api.github.com/repos/Kuddev/pebrel/releases/latest",
-          "find": "Pebrel-v$version-windows-arm64\\.zip`: `([a-fA-F0-9]{64})"
-        }
+        "url": "https://github.com/Kuddev/pebrel/releases/download/v$version/Pebrel-v$version-windows-x64.zip"
       }
     }
   }
