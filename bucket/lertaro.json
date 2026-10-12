@@ -1,19 +1,28 @@
 {
-  "version": "5.9.1",
-  "description": "适用于 Windows 的高性能本地文件检索与效率启动工具 | High-performance local file search and productivity launcher for Windows",
-  "homepage": "https://lertaro.github.io",
-  "license": "MIT",
+  "version": "5.9.3",
+  "description": "A modern, high-performance local file search and productivity tool for Windows. A sleek, customizable alternative to Everything and Listary built with C# WPF and NT Services, featuring instant NTFS MFT parsing, real-time USN monitoring, and plugin support.",
+  "homepage": "https://lertaro.github.io/",
+  "license": {
+    "identifier": "MIT license",
+    "url": "https://github.com/Lertaro/Lertaro#MIT-1-ov-file"
+  },
   "architecture": {
     "64bit": {
-      "url": "https://gh-proxy.org/https://github.com/Lertaro/Lertaro/releases/download/v5.9.1/Lertaro-Setup.exe",
-      "hash": "fed75313db8d6b6431b42e23423f039a85d4a5619194d343b63230a9000a392b"
+      "url": "https://gh-proxy.org/https://github.com/Lertaro/Lertaro/releases/download/v5.9.3/Lertaro-Setup.exe",
+      "hash": "5cde68ff06be98401daec245180a09985bbc21fb4d98af99c94e349cd9287d65"
     },
     "arm64": {
-      "url": "https://gh-proxy.org/https://github.com/Lertaro/Lertaro/releases/download/v5.9.1/Lertaro-Setup-arm64.exe",
-      "hash": "92980fb4e0f9361ef9ea920c533eb07ae094276d3155f5a0733ad03dfc5cc91c"
+      "url": "https://gh-proxy.org/https://github.com/Lertaro/Lertaro/releases/download/v5.9.3/Lertaro-Setup-arm64.exe",
+      "hash": "83db273f45fa0736b7b7d1323b083756156ec10095f063bea7ed9f2431c0f1be"
     }
   },
   "innosetup": true,
+  "bin": [
+    [
+      "Lertaro.App.exe",
+      "Lertaro"
+    ]
+  ],
   "shortcuts": [
     [
       "Lertaro.App.exe",
@@ -21,7 +30,9 @@
     ]
   ],
   "checkver": {
-    "github": "https://github.com/Lertaro/Lertaro"
+    "github": "https://api.github.com/repos/Lertaro/Lertaro/releases",
+    "jp": "$[0].tag_name",
+    "regex": "v([\\d.]+)"
   },
   "autoupdate": {
     "architecture": {
