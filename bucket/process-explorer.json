@@ -1,33 +1,58 @@
 {
-  "homepage": "https://docs.microsoft.com/en-us/sysinternals/downloads/process-explorer",
-  "description": "Process Explorer is a freeware task manager and system monitor for Microsoft Windows created by SysInternals",
   "version": "17.14",
+  "description": "Find out what files, registry keys and other objects processes have open, which DLLs they have loaded, and more.",
+  "homepage": "https://learn.microsoft.com/sysinternals/downloads/process-explorer",
   "license": {
-    "identifier": "Microsoft SysInternals EULA",
-    "url": "https://docs.microsoft.com/en-us/sysinternals/license-terms"
+    "identifier": "Freeware",
+    "url": "https://learn.microsoft.com/sysinternals/license-terms"
   },
   "url": "https://download.sysinternals.com/files/ProcessExplorer.zip",
   "hash": "746770d3f54326dd7da16c2b2815803ab131f348cba24a91cb6a38cfd2f7073f",
   "architecture": {
-    "32bit": {
-      "shortcuts": [
-        [
-          "procexp.exe",
-          "Process Explorer"
-        ]
-      ]
-    },
     "64bit": {
+      "bin": [
+        [
+          "procexp64.exe",
+          "procexp"
+        ]
+      ],
       "shortcuts": [
         [
           "procexp64.exe",
-          "Process Explorer"
+          "SysInternals/Process Explorer",
+          "/accepteula"
+        ]
+      ]
+    },
+    "32bit": {
+      "bin": "procexp.exe",
+      "shortcuts": [
+        [
+          "procexp.exe",
+          "SysInternals/Process Explorer",
+          "/accepteula"
+        ]
+      ]
+    },
+    "arm64": {
+      "bin": [
+        [
+          "procexp64a.exe",
+          "procexp"
+        ]
+      ],
+      "shortcuts": [
+        [
+          "procexp64a.exe",
+          "SysInternals/Process Explorer",
+          "/accepteula"
         ]
       ]
     }
   },
   "checkver": {
-    "re": "Process Explorer v([\\d.]+)"
+    "url": "https://raw.githubusercontent.com/MicrosoftDocs/sysinternals/main/sysinternals/downloads/process-explorer.md",
+    "regex": "#.*?v([\\d.]+)"
   },
   "autoupdate": {
     "url": "https://download.sysinternals.com/files/ProcessExplorer.zip"
