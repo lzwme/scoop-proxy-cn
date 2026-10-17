@@ -1,39 +1,33 @@
 {
-  "version": "1.18",
+  "homepage": "https://docs.microsoft.com/en-us/sysinternals/",
   "description": "Terminate local or remote processes.",
-  "homepage": "https://learn.microsoft.com/sysinternals/downloads/pskill",
   "license": {
     "identifier": "Freeware",
-    "url": "https://learn.microsoft.com/sysinternals/license-terms"
+    "url": "https://docs.microsoft.com/en-us/sysinternals/license-terms"
   },
-  "url": "https://download.sysinternals.com/files/pskill.zip",
-  "hash": "c52a78fdb46362f9394a7e67e875beb57c289e43ca0ab9f29860c5b555bdeab6",
+  "version": "1.19",
+  "url": "https://download.sysinternals.com/files/PSTools.zip",
+  "hash": "c26c6ba44997e650a733df257c8feb83898d3faef2d2e391869d107e40863553",
+  "pre_install": "Get-ChildItem \"$dir\" | Where-Object {($_.Name -notlike 'pskill*') -and ($_.Name -notlike 'Eula.txt') -and $_.Name -notlike '*.chm'} | Remove-Item",
+  "checkver": {
+    "url": "https://docs.microsoft.com/en-us/sysinternals/downloads/pskill",
+    "re": "PsKill\\s(?:v|V)?([\\d.]+)"
+  },
+  "autoupdate": {
+    "url": "https://download.sysinternals.com/files/PSTools.zip"
+  },
   "architecture": {
+    "32bit": {
+      "bin": "pskill.exe"
+    },
     "64bit": {
       "bin": [
         [
           "pskill64.exe",
           "pskill"
-        ]
-      ]
-    },
-    "32bit": {
-      "bin": "pskill.exe"
-    },
-    "arm64": {
-      "bin": [
-        [
-          "pskill64a.exe",
-          "pskill"
-        ]
+        ],
+        "pskill64.exe"
       ]
     }
-  },
-  "checkver": {
-    "url": "https://gh-proxy.org/https://raw.githubusercontent.com/MicrosoftDocs/sysinternals/main/sysinternals/downloads/pskill.md",
-    "regex": "#.*?v([\\d.]+)"
-  },
-  "autoupdate": {
-    "url": "https://download.sysinternals.com/files/pskill.zip"
   }
 }

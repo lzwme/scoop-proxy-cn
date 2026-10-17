@@ -1,6 +1,6 @@
 {
-  "version": "0.0.43-20311",
-  "description": "Open-source Sony PlayStation 3 emulator",
+  "version": "0.0.43-20320",
+  "description": "Sony PlayStation 3 emulator",
   "homepage": "https://rpcs3.net/",
   "license": {
     "identifier": "GPL-2.0",
@@ -17,12 +17,12 @@
   },
   "architecture": {
     "64bit": {
-      "url": "https://gh-proxy.org/https://github.com/RPCS3/rpcs3-binaries-win/releases/download/build-17543d27371d0c4fb20b14ef671bd31c213d406b/rpcs3-v0.0.43-20311-17543d27_win64_msvc.7z",
-      "hash": "2f485f4fb08d9d16756cb21df67322dc8c14ef9151316e70c9c17759cdda6a1e"
+      "url": "https://gh-proxy.org/https://github.com/RPCS3/rpcs3-binaries-win/releases/download/build-893d2f1d08c2f01d1b15422e7f768e1c4fa4203f/rpcs3-v0.0.43-20320-893d2f1d_win64_msvc.7z",
+      "hash": "bb0892510e317f8873d89143c88c8193564038e88b24c5bc6f60a9df341edb0f"
     },
     "arm64": {
-      "url": "https://gh-proxy.org/https://github.com/RPCS3/rpcs3-binaries-win-arm64/releases/download/build-17543d27371d0c4fb20b14ef671bd31c213d406b/rpcs3-v0.0.43-20311-17543d27_win64_aarch64_clang.7z",
-      "hash": "32fa9f0c439ce1c707290b4444ce7035b836a52a41acfc49fdb28c9c9f48c3ac"
+      "url": "https://gh-proxy.org/https://github.com/RPCS3/rpcs3-binaries-win-arm64/releases/download/build-893d2f1d08c2f01d1b15422e7f768e1c4fa4203f/rpcs3-v0.0.43-20320-893d2f1d_win64_aarch64_clang.7z",
+      "hash": "6a2d17aa6186de91cda47d833ccc5a694b65d0f2f2563d85b693988b3d2b8239"
     }
   },
   "pre_install": [
@@ -37,7 +37,7 @@
   "shortcuts": [
     [
       "rpcs3.exe",
-      "RPCS3"
+      "Sony PlayStation 3 [ps3][rpcs3]"
     ]
   ],
   "persist": [
@@ -58,9 +58,9 @@
     "patches"
   ],
   "checkver": {
-    "url": "https://api.github.com/repos/RPCS3/rpcs3-binaries-win/releases/latest",
-    "jsonpath": "$.assets[?(@.name =~ /rpcs3-v[a-f\\d.-]+_win64_msvc\\.7z/)].browser_download_url",
-    "regex": "releases/download/(?<build>build-[a-f\\d]+)/rpcs3-v(?<version>[\\d.-]+)-(?<commit>[a-f\\d]+)_win64_msvc\\.7z"
+    "url": "https://api.github.com/repos/RPCS3/rpcs3-binaries-win-arm64/releases/latest",
+    "jsonpath": "$.assets[?(@.name =~ /rpcs3-v[a-f\\d.-]+_win64_aarch64_clang\\.7z$/)].browser_download_url",
+    "regex": "releases/download/(?<build>build-[a-f\\d]+)/rpcs3-v(?<version>[\\d.-]+)-(?<commit>[a-f\\d]+)_win64_aarch64_clang\\.7z"
   },
   "autoupdate": {
     "architecture": {
