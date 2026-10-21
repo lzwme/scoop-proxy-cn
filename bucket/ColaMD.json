@@ -5,19 +5,15 @@
   "license": "MIT",
   "architecture": {
     "64bit": {
-      "url": "https://github.com/marswaveai/ColaMD/releases/download/v2.7.7/ColaMD-Setup-2.7.7.exe",
+      "url": "https://github.com/marswaveai/ColaMD/releases/download/v2.7.7/ColaMD-Setup-2.7.7.exe#/dl.7z",
       "hash": "5b8287bb936831faa245b99fc7c23e19b00f4bc74fa43e78c1d9d3e9fe809f96"
     }
   },
   "installer": {
-    "args": [
-      "/S",
-      "/D=$dir"
+    "script": [
+      "Expand-7ZipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\" -Removal",
+      "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$R0\" -Recurse -Force -ErrorAction SilentlyContinue"
     ]
-  },
-  "uninstaller": {
-    "file": "Uninstall ColaMD.exe",
-    "args": "/S"
   },
   "shortcuts": [
     [
@@ -31,7 +27,7 @@
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://github.com/marswaveai/ColaMD/releases/download/v$version/ColaMD-Setup-$version.exe"
+        "url": "https://github.com/marswaveai/ColaMD/releases/download/v$version/ColaMD-Setup-$version.exe#/dl.7z"
       }
     }
   }
