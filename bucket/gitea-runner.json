@@ -1,7 +1,7 @@
 {
   "version": "5.2.2",
-  "description": "A runner for Gitea based on act",
-  "homepage": "https://docs.gitea.com/runner/",
+  "description": "Official runner for Gitea Actions",
+  "homepage": "https://gitea.com/gitea/runner",
   "license": "MIT",
   "architecture": {
     "64bit": {
@@ -9,23 +9,20 @@
       "hash": "95affda548112f309f98841d9ddf99e3b21627db832f28940a1399c8463ed76e"
     }
   },
-  "installer": {
-    "script": "Get-Item \"$dir\\gitea-runner*.exe\" | Rename-Item -NewName 'gitea-runner.exe'"
-  },
+  "pre_install": "Get-ChildItem -LiteralPath $dir -Filter 'gitea-runner-*.exe' -File | Select-Object -First 1 | Rename-Item -NewName 'gitea-runner.exe'",
   "bin": "gitea-runner.exe",
   "checkver": {
-    "url": "https://gitea.com/api/v1/repos/gitea/runner/releases/latest",
-    "jsonpath": "$.tag_name",
-    "regex": "v([\\d\\.]+)"
+    "url": "https://gitea.com/gitea/runner/releases/latest",
+    "regex": "/tag/v([\\d.]+)"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://gitea.com/gitea/runner/releases/download/v$version/gitea-runner-$version-windows-amd64.exe.xz",
-        "hash": {
-          "url": "$url.sha256"
-        }
+        "url": "https://gitea.com/gitea/runner/releases/download/v$version/gitea-runner-$version-windows-amd64.exe.xz"
       }
+    },
+    "hash": {
+      "url": "$url.sha256"
     }
   }
 }
