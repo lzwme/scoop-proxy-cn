@@ -1,31 +1,29 @@
 {
-  "version": "20261023-gfbf93c3",
-  "description": "Fast PlayStation 1 emulator (preview build)",
-  "homepage": "https://www.duckstation.org/",
+  "version": "20261025-gdd4a0eb",
+  "description": "Sony PlayStation 1 emulator",
+  "homepage": "https://github.com/stenzek/duckstation/",
   "license": {
     "identifier": "CC-BY-NC-ND-4.0",
     "url": "https://github.com/stenzek/duckstation/blob/master/LICENSE"
   },
   "notes": [
     "ATTENTION: Duckstation requires a PSX BIOS to function.",
-    "Place the BIOS file in $persist_dir\\bios",
-    "Learn more at: https://web.archive.org/web/20210620033009/https://www.duckstation.org/wiki/BIOS"
+    "Place the BIOS file in $persist_dir\\bios"
   ],
   "suggest": {
     "Microsoft Visual C++ Runtime 2022": "extras/vcredist2022"
   },
+  "shortcuts": [
+    [
+      "duckstation-qt-x64-ReleaseLTCG.exe",
+      "Sony PlayStation [ps1][duckstation] (preview)"
+    ]
+  ],
   "architecture": {
     "64bit": {
       "url": "https://gh-proxy.org/https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-x64-release.zip",
-      "hash": "f1587323572c3865cd9ce671bb60badc5b92f99ba6a232ff39ee6e1e5c22e52b",
-      "post_install": [
-        "New-item \"$dir\\portable.txt\" -ItemType File | Out-Null",
-        "echo \"update bin/shortcuts\"",
-        "$shell = New-Object -COM WScript.Shell",
-        "$shortcut = $shell.CreateShortCut(\"$env:APPDATA\\Microsoft\\Windows\\Start Menu\\Programs\\Scoop Apps\\DuckStation (preview).lnk\")",
-        "$shortcut.TargetPath = \"$original_dir\\duckstation-qt-x64-ReleaseLTCG.exe\"",
-        "$shortcut.Save()"
-      ],
+      "hash": "71618f406345fab983bc6545309ac6296e19d224cdf9311c3daa54465f737fbd",
+      "post_install": "New-item \"$dir\\portable.txt\" -ItemType File | Out-Null",
       "bin": [
         [
           "duckstation-qt-x64-ReleaseLTCG.exe",
@@ -35,15 +33,8 @@
     },
     "arm64": {
       "url": "https://gh-proxy.org/https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-arm64-release.zip",
-      "hash": "f6a0d090e56b5ba2940cb8c953843b54ee35359b6e5c9767817642485cffa553",
-      "post_install": [
-        "New-item \"$dir\\portable.txt\" -ItemType File | Out-Null",
-        "echo \"update bin/shortcuts\"",
-        "$shell = New-Object -COM WScript.Shell",
-        "$shortcut = $shell.CreateShortCut(\"$env:APPDATA\\Microsoft\\Windows\\Start Menu\\Programs\\Scoop Apps\\DuckStation (preview).lnk\")",
-        "$shortcut.TargetPath = \"$original_dir\\duckstation-qt-ARM64-ReleaseLTCG.exe\"",
-        "$shortcut.Save()"
-      ],
+      "hash": "25dc8dfae46e68bb96164c78d9e5b7a21fdfe2c35a7a5955bb5dc8a2fb84ddac",
+      "post_install": "New-item \"$dir\\portable.txt\" -ItemType File | Out-Null",
       "bin": [
         [
           "duckstation-qt-ARM64-ReleaseLTCG.exe",
@@ -78,11 +69,6 @@
     "shaders",
     "textures",
     "settings.ini"
-  ],
-  "pre_uninstall": "Copy-Item \"$dir\\settings.ini\" \"$persist_dir\" -ErrorAction SilentlyContinue -Force",
-  "post_uninstall": [
-    "echo \"update bin/shortcuts\"",
-    "Remove-Item \"$env:APPDATA\\Microsoft\\Windows\\Start Menu\\Programs\\Scoop Apps\\DuckStation (preview).lnk\""
   ],
   "checkver": {
     "url": "https://github.com/stenzek/duckstation/releases/tag/preview",
