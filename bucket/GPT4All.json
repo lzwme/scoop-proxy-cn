@@ -1,0 +1,34 @@
+{
+  "homepage": "https://gpt4all.io/",
+  "description": "A free-to-use, locally running, privacy-aware chatbot.",
+  "license": "MIT",
+  "version": "3.10.0",
+  "url": "https://gh-proxy.org/https://github.com/nomic-ai/gpt4all/releases/download/v3.10.0/gpt4all-installer-win64-v3.10.0.exe",
+  "hash": "e284f2d72cf0026dc49c3dce8b5f1a19c088737b36e37bc8e0d48b668926ef52",
+  "installer": {
+    "args": [
+      "--root",
+      "$dir",
+      "--accept-licenses",
+      "--default-answer",
+      "--confirm-command",
+      "install"
+    ]
+  },
+  "bin": [
+    [
+      "bin\\chat.exe",
+      "gpt4all"
+    ]
+  ],
+  "shortcuts": [
+    [
+      "bin\\chat.exe",
+      "GPT4All"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/nomic-ai/gpt4all",
+    "regex": "v([\\d.]+)"
+  }
+}
