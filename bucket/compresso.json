@@ -1,22 +1,46 @@
 {
-  "version": "3.0.0",
-  "description": "Compress any video into a tiny size.",
+  "version": "4.0.0",
+  "description": "Convert any video into a tiny size.",
   "homepage": "https://github.com/codeforreal1/compressO",
-  "license": "AGPL-3.0",
+  "license": {
+    "identifier": "AGPL-3.0 license",
+    "url": "https://github.com/codeforreal1/compressO#AGPL-3.0-1-ov-file"
+  },
   "architecture": {
     "64bit": {
-      "url": "https://gh-proxy.org/https://github.com/codeforreal1/compressO/releases/download/3.0.0/CompressO_3.0.0_x64.exe#/dl.7z",
-      "hash": "d27e63d2a8eec364aae364e6b7ec34089d3fb6382ad5f28a4760b948fbf13cba"
+      "url": "https://gh-proxy.org/https://github.com/codeforreal1/compressO/releases/download/4.0.0/CompressO_4.0.0_x64.exe#/dl.7z",
+      "hash": "2b8dd7bbee514756080e9f18bfda09dd54961428f6f320c38c82d0e2a576ec24",
+      "pre_install": "Remove-Item \"$dir\\`$*\" -Force -Recurse"
     }
   },
-  "post_install": "Remove-Item -LiteralPath \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
+  "installer": {
+    "script": [
+      "# handle runtime cache",
+      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/AppsUtils.psm1)",
+      "Mount-ExternalRuntimeData -Source \"$persist_dir\\appdata\" -Target \"$env:LOCALAPPDATA\\com.compresso.app\"",
+      "Mount-ExternalRuntimeData -Source \"$persist_dir\\userdata\" -Target \"$env:APPDATA\\com.compresso.app\"",
+      "Remove-Module -Name AppsUtils"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/AppsUtils.psm1)",
+      "Dismount-ExternalRuntimeData -Target \"$env:LOCALAPPDATA\\com.compresso.app\"",
+      "Dismount-ExternalRuntimeData -Target \"$env:APPDATA\\com.compresso.app\"",
+      "Remove-Module -Name AppsUtils"
+    ]
+  },
   "shortcuts": [
     [
-      "compressO.exe",
+      "CompressO.exe",
       "CompressO"
     ]
   ],
-  "checkver": "github",
+  "checkver": {
+    "github": "https://api.github.com/repos/codeforreal1/compressO/releases",
+    "jp": "$[0].tag_name",
+    "regex": "([\\d.]+)"
+  },
   "autoupdate": {
     "architecture": {
       "64bit": {
