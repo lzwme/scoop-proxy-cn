@@ -1,0 +1,43 @@
+{
+  "version": "2026.10.0",
+  "description": "Mount a cloud storage like a USB drive",
+  "homepage": "https://www.raidrive.com",
+  "license": "Freeware",
+  "url": "https://app.raidrive.com/download/raidrive.mount/release/RaiDrive.Mount_2026.10.0_x64.exe",
+  "hash": "42367501003332f657ca448646a352a1de76629bb7921e074929af1d3e286f6c",
+  "innosetup": true,
+  "architecture": {
+    "64bit": {
+      "installer": {
+        "script": [
+          "$persistenceDir = \"$persist_dir\\RaiDrive\"",
+          "if (Test-Path \"$persistenceDir\") { Remove-Item -Recurse -Force \"$persistenceDir\" }",
+          "New-Item -ItemType Directory -Force -Path \"$persistenceDir\" | Out-Null"
+        ]
+      }
+    }
+  },
+  "bin": [
+    "RaiDrive.exe"
+  ],
+  "shortcuts": [
+    [
+      "RaiDrive.exe",
+      "RaiDrive"
+    ]
+  ],
+  "persist": [
+    "RaiDrive"
+  ],
+  "checkver": {
+    "url": "https://www.raidrive.com/release-notes/2026",
+    "regex": "([\\d.]+).*Latest"
+  },
+  "autoupdate": {
+    "url": "https://app.raidrive.com/download/raidrive.mount/release/RaiDrive.Mount_$version_x64.exe",
+    "hash": {
+      "url": "$baseurl/../RaiDrive.Mount_$version_x64.exe.sha256",
+      "regex": "([a-fA-F0-9]{64})"
+    }
+  }
+}
