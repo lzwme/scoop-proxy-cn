@@ -11,9 +11,13 @@
         .\scripts\sync-schema.ps1 -TargetPath <path>
 
     Behaviour:
-      - Fetch OK            -> write injected schema to TargetPath
-      - Fetch fail + cache  -> reuse the previously written injected schema, warn
+      - Fetch OK            -> write injected schema to TargetPath, refresh cache
+      - Fetch fail + cache  -> reuse cached injected schema, warn
       - Fetch fail, no cache-> throw (test chain fails loudly)
+
+    The cache lives outside any git worktree (LOCALAPPDATA), because TargetPath
+    is normally the scoop core clone's schema.json and Scoop-Bucket.Tests.ps1
+    restores it after the run.
 #>
 
 param(
@@ -22,6 +26,9 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
+
+$cacheDir = if ($env:LOCALAPPDATA) { $env:LOCALAPPDATA } else { [System.IO.Path]::GetTempPath() }
+$schemaCachePath = Join-Path (Join-Path $cacheDir 'muggle-scoop') 'schema.injected.json'
 
 function Get-InjectedSchemaText {
     param([string]$JsonUrl)
@@ -52,13 +59,17 @@ if ($targetDir -and -not (Test-Path -LiteralPath $targetDir)) {
 try {
     $json = Get-InjectedSchemaText -JsonUrl $OfficialUrl
     [System.IO.File]::WriteAllText($TargetPath, $json, [System.Text.Encoding]::UTF8)
+    New-Item -ItemType Directory -Path (Split-Path $schemaCachePath -Parent) -Force | Out-Null
+    [System.IO.File]::WriteAllText($schemaCachePath, $json, [System.Text.Encoding]::UTF8)
     Write-Host "sync-schema: wrote injected schema to '$TargetPath'"
 } catch {
-    if ((Test-Path -LiteralPath $TargetPath) -and
-        ([System.IO.File]::ReadAllText($TargetPath).Contains('persist_external'))) {
-        Write-Warning "sync-schema: fetch failed ($($_.Exception.Message)); reusing cached injected schema at '$TargetPath'"
+    if ((Test-Path -LiteralPath $schemaCachePath) -and
+        ([System.IO.File]::ReadAllText($schemaCachePath).Contains('persist_external'))) {
+        $cached = [System.IO.File]::ReadAllText($schemaCachePath)
+        [System.IO.File]::WriteAllText($TargetPath, $cached, [System.Text.Encoding]::UTF8)
+        Write-Warning "sync-schema: fetch failed ($($_.Exception.Message)); reusing cached injected schema at '$schemaCachePath'"
         exit 0
     } else {
-        throw "sync-schema: failed to fetch '$OfficialUrl' and no usable injected cache at '$TargetPath': $($_.Exception.Message)"
+        throw "sync-schema: failed to fetch '$OfficialUrl' and no usable injected cache at '$schemaCachePath': $($_.Exception.Message)"
     }
 }
