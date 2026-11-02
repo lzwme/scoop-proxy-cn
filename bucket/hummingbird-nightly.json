@@ -1,0 +1,62 @@
+{
+  "version": "20261101.054802",
+  "description": "Modern music player written in Rust using GPUI, focused on performance, extensibility and design (nightly build from master)",
+  "homepage": "https://git.mailliw.org/hummingbird/hummingbird",
+  "license": "Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://git.mailliw.org/hummingbird/hummingbird/releases/download/latest/Hummingbird-x86_64.exe#/Hummingbird.exe",
+      "hash": "a6b74be194003236e166555d1746d7836ef04b789d388a5e91fdee3c5edb5ecc"
+    },
+    "arm64": {
+      "url": "https://git.mailliw.org/hummingbird/hummingbird/releases/download/latest/Hummingbird-aarch64.exe#/Hummingbird.exe",
+      "hash": "b8986ed68e111f11dbd7144f72a59229078a79ef931588bcffb8cf11e0a2647f"
+    }
+  },
+  "bin": "Hummingbird.exe",
+  "persist_external": [
+    [
+      "$env:AppData\\mailliw\\hummingbird",
+      "data",
+      "directory"
+    ]
+  ],
+  "post_install": [
+    ". \"$(Find-BucketDirectory -Root -Name (coalesce $bucket 'muggle'))/scripts/persist-external.ps1\"",
+    "Invoke-PersistExternalInstall -Manifest $manifest -PersistDir $persist_dir -Dir $dir"
+  ],
+  "pre_uninstall": [
+    ". \"$(Find-BucketDirectory -Root -Name (coalesce $bucket 'muggle'))/scripts/persist-external.ps1\"",
+    "Invoke-PersistExternalUninstall -Manifest $manifest -Dir $dir"
+  ],
+  "shortcuts": [
+    [
+      "Hummingbird.exe",
+      "Hummingbird (Nightly)"
+    ]
+  ],
+  "checkver": {
+    "url": "https://git.mailliw.org/api/v1/repos/hummingbird/hummingbird/releases/tags/latest",
+    "jsonpath": "$..assets[?(@.name == 'Hummingbird-x86_64.exe')].created_at",
+    "regex": "(?<year>\\d{4})-(?<month>\\d{2})-(?<day>\\d{2})T(?<hour>\\d{2}):(?<minute>\\d{2}):(?<second>\\d{2})",
+    "replace": "${year}${month}${day}.${hour}${minute}${second}"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://git.mailliw.org/hummingbird/hummingbird/releases/download/latest/Hummingbird-x86_64.exe#/Hummingbird.exe",
+        "hash": {
+          "mode": "download",
+          "url": "$url"
+        }
+      },
+      "arm64": {
+        "url": "https://git.mailliw.org/hummingbird/hummingbird/releases/download/latest/Hummingbird-aarch64.exe#/Hummingbird.exe",
+        "hash": {
+          "mode": "download",
+          "url": "$url"
+        }
+      }
+    }
+  }
+}

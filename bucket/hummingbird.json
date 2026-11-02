@@ -1,43 +1,51 @@
 {
-  "version": "5.3.0",
-  "description": "A compression (jpg/png/webp/svg/gif/css/js/html/mp4/mov) App, it can convert different format pictures, support for macOS and Windows.",
-  "homepage": "https://arayofsunshine.dev/hummingbird",
-  "license": {
-    "identifier": "MIT license",
-    "url": "https://github.com/leibnizli/hummingbird#MIT-1-ov-file"
+  "version": "0.3.0",
+  "description": "Modern music player written in Rust using GPUI, focused on performance, extensibility and design",
+  "homepage": "https://git.mailliw.org/hummingbird/hummingbird",
+  "license": "Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://gh-proxy.org/https://github.com/hummingbird-player/hummingbird/releases/download/0.3.0/Hummingbird-x86_64.exe#/Hummingbird.exe",
+      "hash": "f6e941f690842601fb535152e1190498e21c15d61fa57b798cd917d8c5444e3e"
+    },
+    "arm64": {
+      "url": "https://gh-proxy.org/https://github.com/hummingbird-player/hummingbird/releases/download/0.3.0/Hummingbird-aarch64.exe#/Hummingbird.exe",
+      "hash": "d7a34edc79d4bb7699f0e1f18fb3f7db3ec612ca6a0d3f6b1fe863ef2c3bfe10"
+    }
   },
-  "url": "https://gh-proxy.org/https://github.com/leibnizli/hummingbird/releases/download/v5.3.0/hummingbird-Setup-5.3.0.exe#/dl.7z",
-  "hash": "sha512:80bdce51d50ea2d02582e251e8766cb01cbbdacbd65b52025250ef460b919c7a456d03dbea53cbf5542a2db57a665133938a1103c17ab9b962db5675515422e5",
-  "pre_install": [
-    "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
-    "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$R0\" -Force -Recurse"
-  ],
-  "installer": {
-    "script": [
-      "ensure \"$persist_dir\" | Out-Null",
-      "New-Item \"$env:APPDATA\\hummingbird\" -ItemType Junction -Target \"$persist_dir\" | Out-Null"
+  "bin": "Hummingbird.exe",
+  "persist_external": [
+    [
+      "$env:AppData\\mailliw\\hummingbird",
+      "data",
+      "directory"
     ]
-  },
-  "uninstaller": {
-    "script": "Remove-Item \"$env:APPDATA\\hummingbird\" -Recurse -Force -ErrorAction 'SilentlyContinue'"
-  },
+  ],
+  "post_install": [
+    ". \"$(Find-BucketDirectory -Root -Name (coalesce $bucket 'muggle'))/scripts/persist-external.ps1\"",
+    "Invoke-PersistExternalInstall -Manifest $manifest -PersistDir $persist_dir -Dir $dir"
+  ],
+  "pre_uninstall": [
+    ". \"$(Find-BucketDirectory -Root -Name (coalesce $bucket 'muggle'))/scripts/persist-external.ps1\"",
+    "Invoke-PersistExternalUninstall -Manifest $manifest -Dir $dir"
+  ],
   "shortcuts": [
     [
-      "hummingbird.exe",
-      "hummingbird"
+      "Hummingbird.exe",
+      "Hummingbird"
     ]
   ],
   "checkver": {
-    "github": "https://api.github.com/repos/leibnizli/hummingbird/releases",
-    "jp": "$[*].assets[*].browser_download_url",
-    "regex": "hummingbird-Setup-([\\d.]+)\\.exe"
+    "github": "https://github.com/hummingbird-player/hummingbird"
   },
   "autoupdate": {
-    "url": "https://gh-proxy.org/https://github.com/leibnizli/hummingbird/releases/download/v$version/hummingbird-Setup-$version.exe#/dl.7z",
-    "hash": {
-      "url": "$baseurl/latest.yml",
-      "mode": "extract",
-      "regex": "(?sm)$basename.*?sha512:\\s*?$base64"
+    "architecture": {
+      "64bit": {
+        "url": "https://gh-proxy.org/https://github.com/hummingbird-player/hummingbird/releases/download/$version/Hummingbird-x86_64.exe#/Hummingbird.exe"
+      },
+      "arm64": {
+        "url": "https://gh-proxy.org/https://github.com/hummingbird-player/hummingbird/releases/download/$version/Hummingbird-aarch64.exe#/Hummingbird.exe"
+      }
     }
   }
 }

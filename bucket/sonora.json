@@ -1,0 +1,64 @@
+{
+  "version": "0.46.0",
+  "description": "A native music streaming client, built with Rust and GPUI.",
+  "homepage": "https://sonorahq.org/",
+  "license": "GPL-3.0-or-later",
+  "architecture": {
+    "64bit": {
+      "url": "https://gh-proxy.org/https://github.com/sonorahq/sonora/releases/download/v0.46.0/sonora-v0.46.0-x86_64-pc-windows-msvc.exe#/sonora.exe",
+      "hash": "145840a4e940e8074521e7806a44bb6524f74fad4ccca6b21737f7e633ef4bdc"
+    },
+    "arm64": {
+      "url": "https://gh-proxy.org/https://github.com/sonorahq/sonora/releases/download/v0.46.0/sonora-v0.46.0-aarch64-pc-windows-msvc.exe#/sonora.exe",
+      "hash": "dd329897aa4f5c7368f9d5e878a1ee14dcbc75faf9fd5043a34b006adf1e0374"
+    }
+  },
+  "bin": "sonora.exe",
+  "shortcuts": [
+    [
+      "sonora.exe",
+      "Sonora"
+    ]
+  ],
+  "persist_external": [
+    [
+      "$env:AppData\\sonora",
+      "config",
+      "directory"
+    ],
+    [
+      "$env:LocalAppData\\sonora",
+      "data",
+      "directory"
+    ]
+  ],
+  "post_install": [
+    ". \"$(Find-BucketDirectory -Root -Name (coalesce $bucket 'muggle'))/scripts/persist-external.ps1\"",
+    "Invoke-PersistExternalInstall -Manifest $manifest -PersistDir $persist_dir -Dir $dir"
+  ],
+  "pre_uninstall": [
+    ". \"$(Find-BucketDirectory -Root -Name (coalesce $bucket 'muggle'))/scripts/persist-external.ps1\"",
+    "Invoke-PersistExternalUninstall -Manifest $manifest -Dir $dir"
+  ],
+  "checkver": {
+    "github": "https://github.com/sonorahq/sonora"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://gh-proxy.org/https://github.com/sonorahq/sonora/releases/download/v$version/sonora-v$version-x86_64-pc-windows-msvc.exe#/sonora.exe",
+        "hash": {
+          "url": "$baseurl/SHA256SUMS",
+          "regex": "$sha256\\s+$basename"
+        }
+      },
+      "arm64": {
+        "url": "https://gh-proxy.org/https://github.com/sonorahq/sonora/releases/download/v$version/sonora-v$version-aarch64-pc-windows-msvc.exe#/sonora.exe",
+        "hash": {
+          "url": "$baseurl/SHA256SUMS",
+          "regex": "$sha256\\s+$basename"
+        }
+      }
+    }
+  }
+}
