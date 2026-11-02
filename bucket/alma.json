@@ -1,20 +1,48 @@
 {
-  "version": "0.4.337",
-  "description": "Elegant AI Provider Orchestration",
-  "homepage": "https://alma.now/",
-  "license": "Proprietary",
+  "version": "0.4.379",
+  "description": "GUI client for herdr: Claude Code, Codex and pi agent sessions as clean chats.",
+  "homepage": "https://alma.now",
+  "license": "MIT",
   "architecture": {
     "64bit": {
-      "url": "https://github.com/yetone/alma-releases/releases/download/v0.4.337/alma-0.4.337-win-x64.exe#/dl.7z",
-      "hash": "sha512:4086a9502a097c7ab702478fd40522a43581851ad321b38e387df17a9ca9f84a357d44e01498ac1993dcc6482d477f1b469d6b738f9ae0e5bfdd803439940a87",
-      "installer": {
-        "script": [
-          "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
-          "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$R0\" -Force -Recurse"
-        ]
-      }
+      "url": "https://github.com/yetone/alma-releases/releases/download/v0.4.379/alma-0.4.379-win-x64.exe#/dl.7z",
+      "hash": "sha512:b8c9c2ee230c4981a3af7c513d98ef46c0104b6cbe3258987437236fb2bffbd5eb0ef252d1f3f2e5443aadce8d7f962d91d2eabe5fd901209509c45d84574fd6",
+      "pre_install": [
+        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\" -Removal",
+        "Remove-Item \"$dir\\`$*\", \"$dir\\Uninst*\" -Recurse"
+      ]
     }
   },
+  "persist_external": [
+    [
+      "$env:AppData\\alma",
+      "data",
+      "directory"
+    ],
+    [
+      "$env:USERPROFILE\\.config\\alma",
+      "config",
+      "directory"
+    ],
+    [
+      "$env:USERPROFILE\\.alma",
+      "activity",
+      "directory"
+    ],
+    [
+      "$env:USERPROFILE\\.cache\\alma",
+      "cache",
+      "directory"
+    ]
+  ],
+  "post_install": [
+    ". \"$(Find-BucketDirectory -Root -Name (coalesce $bucket 'muggle'))/scripts/persist-external.ps1\"",
+    "Invoke-PersistExternalInstall -Manifest $manifest -PersistDir $persist_dir -Dir $dir"
+  ],
+  "pre_uninstall": [
+    ". \"$(Find-BucketDirectory -Root -Name (coalesce $bucket 'muggle'))/scripts/persist-external.ps1\"",
+    "Invoke-PersistExternalUninstall -Manifest $manifest -Dir $dir"
+  ],
   "shortcuts": [
     [
       "Alma.exe",
@@ -27,12 +55,12 @@
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://github.com/yetone/alma-releases/releases/download/v$version/alma-$version-win-x64.exe#/dl.7z",
-        "hash": {
-          "url": "$baseurl/latest.yml",
-          "find": "sha512:\\s+(.*)"
-        }
+        "url": "https://github.com/yetone/alma-releases/releases/download/v$version/alma-$version-win-x64.exe#/dl.7z"
       }
+    },
+    "hash": {
+      "url": "$baseurl/latest.yml",
+      "regex": "$basename\\s+sha512:\\s+$base64"
     }
   }
 }
