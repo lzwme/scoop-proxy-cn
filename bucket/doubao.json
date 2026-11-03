@@ -1,10 +1,13 @@
 {
-  "version": "2.33.5",
+  "version": "2.34.6",
   "description": "LLM client by douyin",
   "homepage": "https://doubao.com",
-  "license": "freeware",
-  "url": "https://lf-flow-web-cdn.doubao.com/obj/flow-doubao/doubao_pc/2.33.5/Doubao_installer_2.33.5.exe#/dl.7z",
-  "hash": "07781878cd2d6c9a8cb142f8cb842afa7baf40c84a18d5d76a7c8d9f6eaece54",
+  "license": "Proprietary",
+  "url": "https://lf-flow-web-cdn.doubao.com/obj/flow-doubao/doubao_pc/2.34.6/Doubao_installer_2.34.6.exe",
+  "hash": "c41e682a64cd75c4f1d6ef00404cb6977a01c7dc50d5a0e0c756f920549bda8d",
+  "installer": {
+    "script": "Expand-7zipArchive -Path \"$dir\\Doubao_installer_$version.exe\" -DestinationPath \"$dir\" -Removal"
+  },
   "shortcuts": [
     [
       "Doubao.exe",
@@ -12,19 +15,10 @@
     ]
   ],
   "checkver": {
-    "script": [
-      ". \"$pwd\\bin\\utils.ps1\"",
-      "$dl_info = get_installer_info 'ByteDance/Doubao'",
-      "\"ver:$($dl_info.PackageVersion);\"",
-      "\"x64:$($dl_info.x64_exe.InstallerUrl);\""
-    ],
-    "regex": "ver:(?<version>.+?); x64:(?<x64>.+?);"
+    "url": "https://www.doubao.com/samantha/desktop/get_latest_version?platform=windows&app_version=1.0.0",
+    "regex": "\"newest_version\":\"([\\d.]+)\""
   },
   "autoupdate": {
-    "url": "$matchX64#/dl.7z",
-    "hash": {
-      "url": "https://raw.githubusercontent.com/microsoft/winget-pkgs/master/manifests/b/ByteDance/Doubao/$version/ByteDance.Doubao.installer.yaml",
-      "regex": "Architecture: x64[\\s\\S]+?InstallerSha256:\\s?(.+)"
-    }
+    "url": "https://lf-flow-web-cdn.doubao.com/obj/flow-doubao/doubao_pc/$version/Doubao_installer_$version.exe"
   }
 }

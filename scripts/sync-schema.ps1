@@ -3,21 +3,11 @@
     ---------------
     Builds the manifest schema used by Scoop-Bucket.Tests.ps1.
 
-    Fetches the official Scoop schema (master) at test time and injects the
-    bucket-specific `persist_external` property, so the bucket no longer holds
-    a static schema copy that drifts from upstream. See docs/adr/0001.
+    Fetches the official Scoop schema (master) and injects the bucket-specific
+    `persist_external` property. See docs/adr/0001.
 
     Usage:
         .\scripts\sync-schema.ps1 -TargetPath <path>
-
-    Behaviour:
-      - Fetch OK            -> write injected schema to TargetPath, refresh cache
-      - Fetch fail + cache  -> reuse cached injected schema, warn
-      - Fetch fail, no cache-> throw (test chain fails loudly)
-
-    The cache lives outside any git worktree (LOCALAPPDATA), because TargetPath
-    is normally the scoop core clone's schema.json and Scoop-Bucket.Tests.ps1
-    restores it after the run.
 #>
 
 param(
@@ -41,9 +31,33 @@ function Get-InjectedSchemaText {
         $schema = Get-Content -LiteralPath $tmp -Raw | ConvertFrom-Json
         $properties = $schema.properties
         if (-not ($properties.PSObject.Properties.Name -contains 'persist_external')) {
-            $properties | Add-Member -NotePropertyName 'persist_external' `
-                -NotePropertyValue @{ '$ref' = '#/definitions/stringOrArrayOfStringsOrAnArrayOfArrayOfStrings' } `
-                -Force
+            $definitions = $schema.definitions
+            if (-not ($definitions.PSObject.Properties.Name -contains 'persistExternalEntry')) {
+                $definitions | Add-Member -NotePropertyName 'persistExternalEntry' -NotePropertyValue @{
+                    oneOf = @(
+                        @{ type = 'string' },
+                        @{
+                            type            = 'array'
+                            minItems        = 2
+                            maxItems        = 3
+                            additionalItems = $false
+                            items           = @(
+                                @{ type = 'string' },
+                                @{ type = 'string' },
+                                @{ enum = @('dir', 'directory') }
+                            )
+                        }
+                    )
+                } -Force
+            }
+            $properties | Add-Member -NotePropertyName 'persist_external' -NotePropertyValue @{
+                'description' = 'Bucket-specific: external data directories this bucket persists through junctions into the persist directory.'
+                '$type'       = 'array'
+                anyOf         = @(
+                    @{ '$ref' = '#/definitions/persistExternalEntry' },
+                    @{ type = 'array'; minItems = 1; items = @{ '$ref' = '#/definitions/persistExternalEntry' } }
+                )
+            } -Force
         }
         return ($schema | ConvertTo-Json -Depth 20)
     } finally {
