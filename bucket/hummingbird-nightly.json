@@ -1,16 +1,16 @@
 {
-  "version": "20261101.054802",
+  "version": "20261101.225013",
   "description": "Modern music player written in Rust using GPUI, focused on performance, extensibility and design (nightly build from master)",
   "homepage": "https://git.mailliw.org/hummingbird/hummingbird",
   "license": "Apache-2.0",
   "architecture": {
     "64bit": {
       "url": "https://git.mailliw.org/hummingbird/hummingbird/releases/download/latest/Hummingbird-x86_64.exe#/Hummingbird.exe",
-      "hash": "a6b74be194003236e166555d1746d7836ef04b789d388a5e91fdee3c5edb5ecc"
+      "hash": "9fafe761a64596470f8a49ba02dacffdf8a09b8b748d055b26c56e0eabcac7fe"
     },
     "arm64": {
       "url": "https://git.mailliw.org/hummingbird/hummingbird/releases/download/latest/Hummingbird-aarch64.exe#/Hummingbird.exe",
-      "hash": "b8986ed68e111f11dbd7144f72a59229078a79ef931588bcffb8cf11e0a2647f"
+      "hash": "018c4d1301dfa1d3ead8181042228c5a240f2abc2b3b752f0e5b130e0a83bd12"
     }
   },
   "bin": "Hummingbird.exe",
@@ -27,7 +27,7 @@
   ],
   "pre_uninstall": [
     ". \"$(Find-BucketDirectory -Root -Name (coalesce $bucket 'muggle'))/scripts/persist-external.ps1\"",
-    "Invoke-PersistExternalUninstall -Manifest $manifest -Dir $dir"
+    "Invoke-PersistExternalUninstall -Manifest $manifest -Dir $dir -PersistDir $persist_dir"
   ],
   "shortcuts": [
     [
