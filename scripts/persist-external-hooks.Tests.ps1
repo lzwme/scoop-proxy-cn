@@ -1,25 +1,24 @@
 # Contract tests for the persist_external hooks as written into bucket manifests.
-# The manifest is the interface users install with; a hook string that names a
-# missing function or parameter fails at scoop install time, so the contract is
-# pinned here, in CI. Runs offline: reads only bucket/*.json and the script AST.
+# The manifest is the interface users install with. Canonical hooks call the functions
+# bare and let them read $dir/$persist_dir/$manifest from the hook scope (ADR-0005).
+# These tests keep the hook text and the script in sync.
 #
 # Facts are resolved at discovery time and handed to each It as plain values:
 # Pester 5 does not expose file-scope variables inside It bodies.
 
 $repoRoot = Split-Path $PSScriptRoot -Parent
 
-function Get-PersistExternalFunctions {
+function Get-PersistExternalFunctionNames {
     param([string]$FilePath)
     $tokens = $null
     $errors = $null
     $ast = [System.Management.Automation.Language.Parser]::ParseFile($FilePath, [ref]$tokens, [ref]$errors)
     if ($errors.Count -gt 0) { throw "Failed to parse $FilePath" }
-    $map = @{}
+    $names = [System.Collections.Generic.HashSet[string]]::new()
     foreach ($fn in $ast.FindAll({ $args[0] -is [System.Management.Automation.Language.FunctionDefinitionAst] }, $true)) {
-        if ($fn.Name -notlike 'Invoke-PersistExternal*') { continue }
-        $map[$fn.Name] = @($fn.Body.ParamBlock.Parameters | ForEach-Object { $_.Name.VariablePath.UserPath })
+        if ($fn.Name -like 'Invoke-PersistExternal*') { [void]$names.Add($fn.Name) }
     }
-    return $map
+    return $names
 }
 
 function Get-ManifestStageText {
@@ -29,7 +28,7 @@ function Get-ManifestStageText {
     return ([string]::Join("`n", @($all | Where-Object { $_ -is [string] })))
 }
 
-$fnMap = Get-PersistExternalFunctions -FilePath (Join-Path $PSScriptRoot 'persist-external.ps1')
+$fnNames = Get-PersistExternalFunctionNames -FilePath (Join-Path $PSScriptRoot 'persist-external.ps1')
 
 $dotSourceCases = @()
 $functionCases = @()
@@ -49,17 +48,11 @@ foreach ($file in Get-ChildItem -LiteralPath (Join-Path $repoRoot 'bucket') -Fil
 
     foreach ($hook in $hooks) {
         $fnName = [regex]::Match($hook, 'Invoke-PersistExternal\w+').Value
-        $declaredParams = if ($fnMap.ContainsKey($fnName)) { $fnMap[$fnName] } else { @() }
-        $badParams = @(
-            foreach ($m in [regex]::Matches($hook, '(?<=\s)-(?<param>\w+)')) {
-                if ($m.Groups['param'].Value -notin $declaredParams) { $m.Groups['param'].Value }
-            }
-        )
         $functionCases += @{
-            Name      = $file.Name
-            Hook      = $hook
-            FnExists  = $fnMap.ContainsKey($fnName)
-            BadParams = $badParams
+            Name         = $file.Name
+            Hook         = $hook
+            FnExists     = $fnNames.Contains($fnName)
+            HasArguments = ($hook -replace '^Invoke-PersistExternal\w+', '').Trim() -ne ''
         }
     }
 
@@ -94,9 +87,9 @@ Describe 'persist_external hook contract' {
             $FnExists | Should -BeTrue
         }
 
-        It '<Name>: <Hook> passes only declared parameters' -TestCases $functionCases {
-            param($Name, $Hook, $BadParams)
-            $BadParams | Should -BeNullOrEmpty -Because "undeclared: $($BadParams -join ', ')"
+        It '<Name>: <Hook> calls the function without arguments' -TestCases $functionCases {
+            param($Name, $Hook, $HasArguments)
+            $HasArguments | Should -BeFalse -Because 'hooks read $dir/$persist_dir/$manifest from hook scope'
         }
     }
 

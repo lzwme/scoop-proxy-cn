@@ -474,30 +474,56 @@ function Initialize-PersistExternalAlias {
 
 function Invoke-PersistExternalInstall {
     [CmdletBinding()]
+    # Legacy names are aliases on differently-named parameters: a parameter named
+    # Manifest/Dir/PersistDir would shadow the hook-scope variable of the same name.
     param(
-        [Parameter(Mandatory)]$Manifest,
-        [Parameter(Mandatory)][string]$PersistDir,
-        [string]$Dir
+        [Alias('Manifest')]$LegacyManifest,
+        [Alias('PersistDir')][string]$LegacyPersistDir,
+        [Alias('Dir')][string]$LegacyDir
     )
+
+    $hookManifest = if ($PSBoundParameters.ContainsKey('LegacyManifest')) { $LegacyManifest } else { $manifest }
+    if ($null -eq $hookManifest) {
+        throw 'persist_external: $manifest is not defined. Call this function from a Scoop hook or pass -Manifest.'
+    }
+
+    $hookPersistDir = if ($PSBoundParameters.ContainsKey('LegacyPersistDir')) { $LegacyPersistDir } else { $persist_dir }
+    if (-not $hookPersistDir) {
+        throw 'persist_external: $persist_dir is not defined. Call this function from a Scoop hook or pass -PersistDir.'
+    }
+
+    $hookDir = if ($PSBoundParameters.ContainsKey('LegacyDir')) { $LegacyDir } else { $dir }
 
     Initialize-PersistExternalAlias
 
-    Invoke-PersistExternalReconcile -Manifest $Manifest -PersistDir $PersistDir -Dir $Dir
+    Invoke-PersistExternalReconcile -Manifest $hookManifest -PersistDir $hookPersistDir -Dir $hookDir
 }
 
 function Invoke-PersistExternalUninstall {
     [CmdletBinding()]
+    # Same alias trick as Invoke-PersistExternalInstall.
     param(
-        [Parameter(Mandatory)]$Manifest,
-        [Parameter(Mandatory)][string]$Dir,
-        [string]$PersistDir
+        [Alias('Manifest')]$LegacyManifest,
+        [Alias('Dir')][string]$LegacyDir,
+        [Alias('PersistDir')][string]$LegacyPersistDir
     )
 
-    if (-not $PersistDir) {
-        $PersistDir = Resolve-ExternalPersistDir -Dir $Dir
+    $hookManifest = if ($PSBoundParameters.ContainsKey('LegacyManifest')) { $LegacyManifest } else { $manifest }
+    if ($null -eq $hookManifest) {
+        throw 'persist_external: $manifest is not defined. Call this function from a Scoop hook or pass -Manifest.'
     }
 
-    Invoke-PersistExternalReconcile -Manifest $Manifest -PersistDir $PersistDir -Dir $Dir -Remove
+    $hookDir = if ($PSBoundParameters.ContainsKey('LegacyDir')) { $LegacyDir } else { $dir }
+    if (-not $hookDir) {
+        throw 'persist_external: $dir is not defined. Call this function from a Scoop hook or pass -Dir.'
+    }
+
+    $hookPersistDir = if ($PSBoundParameters.ContainsKey('LegacyPersistDir')) { $LegacyPersistDir } else { $persist_dir }
+    if (-not $hookPersistDir) {
+        $hookPersistDir = Resolve-ExternalPersistDir -Dir $hookDir
+    }
+
+    Invoke-PersistExternalReconcile -Manifest $hookManifest -PersistDir $hookPersistDir -Dir $hookDir -Remove
 }
 
 # ---------------------------------------------------------------------------
