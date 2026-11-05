@@ -1,9 +1,3 @@
-# Runtime tests for the persist_external hook scope contract.
-# Canonical hooks dot-source the script and call the functions bare; the functions must
-# resolve $dir, $persist_dir and $manifest from the calling hook scope. Manifests saved by
-# older installs still pass the same values as -Manifest/-Dir/-PersistDir and must work.
-# Runs offline: uses temp folders and junctions only.
-#
 # Helpers live in BeforeAll: Pester 5 does not expose file-scope functions inside It bodies.
 
 

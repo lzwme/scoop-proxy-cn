@@ -1,8 +1,3 @@
-# Contract tests for the persist_external hooks as written into bucket manifests.
-# The manifest is the interface users install with. Canonical hooks call the functions
-# bare and let them read $dir/$persist_dir/$manifest from the hook scope (ADR-0005).
-# These tests keep the hook text and the script in sync.
-#
 # Facts are resolved at discovery time and handed to each It as plain values:
 # Pester 5 does not expose file-scope variables inside It bodies.
 

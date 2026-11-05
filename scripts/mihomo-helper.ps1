@@ -46,11 +46,6 @@ function Show-Help {
     Write-Host ""
 }
 
-# ---------------------------------------------------------------------------
-# Helpers for Service Management & Auto-Recovery
-# ---------------------------------------------------------------------------
-
-# Resolves the underlying physical directory if the path is a Junction link (e.g. Scoop 'current').
 # Windows Firewall kernel rule matching requires the real physical executable path.
 function Get-PhysicalDirectory {
     param(
@@ -75,7 +70,6 @@ function Get-PhysicalDirectory {
     return $Path
 }
 
-# Registers the Windows Service via Shawl and restores firewall inbound rules.
 function Install-MihomoServiceRegistration {
     param(
         [switch]$StartAfterInstall
@@ -137,14 +131,6 @@ function Install-MihomoServiceRegistration {
     return $true
 }
 
-# ---------------------------------------------------------------------------
-# Helpers for the 'edit' action: locate a usable editor for config.yaml
-# ---------------------------------------------------------------------------
-
-# Reads the user's explicitly-configured default app for a given file
-# extension (e.g. '.yaml') from the registry, and returns the raw
-# "shell\open\command" string (e.g. '"C:\Path\App.exe" "%1"').
-# Returns $null if no explicit association is found or it can't be resolved.
 function Get-FileAssociationCommand {
     param(
         [Parameter(Mandatory = $true)]
@@ -179,9 +165,6 @@ function Get-FileAssociationCommand {
     }
 }
 
-# Parses a "shell\open\command" style string, verifies the target
-# executable actually exists, and launches it with the given file.
-# Returns $true on successful launch, $false otherwise.
 function Invoke-AssociatedEditor {
     param(
         [Parameter(Mandatory = $true)]
@@ -229,10 +212,6 @@ function Invoke-AssociatedEditor {
     }
 }
 
-# Attempts to open $FilePath with, in order:
-#   1) the user's explicit default app for .yaml / .yml
-#   2) VS Code (PATH, then common install locations)
-#   3) notepad.exe
 function Open-ConfigFile {
     param(
         [Parameter(Mandatory = $true)]
@@ -244,7 +223,6 @@ function Open-ConfigFile {
         return $false
     }
 
-    # 1) User's explicit default association for .yaml / .yml
     foreach ($ext in @('.yaml', '.yml')) {
         $cmdTemplate = Get-FileAssociationCommand -Extension $ext
         if ($cmdTemplate) {
@@ -255,7 +233,6 @@ function Open-ConfigFile {
         }
     }
 
-    # 2) VS Code via PATH
     $codeCmd = Get-Command 'code' -ErrorAction SilentlyContinue
     if ($codeCmd) {
         try {
@@ -267,11 +244,9 @@ function Open-ConfigFile {
             Write-Host "Opened with VS Code." -ForegroundColor Green
             return $true
         } catch {
-            # fall through to next strategy
         }
     }
 
-    # 2b) VS Code via common install locations (in case it's not on PATH)
     $vscodeCandidates = @(
         "$env:LOCALAPPDATA\Programs\Microsoft VS Code\Code.exe",
         "$env:ProgramFiles\Microsoft VS Code\Code.exe",
@@ -293,7 +268,6 @@ function Open-ConfigFile {
         }
     }
 
-    # 3) notepad.exe fallback
     try {
         Start-Process -FilePath 'notepad.exe' -ArgumentList "`"$FilePath`"" -ErrorAction Stop | Out-Null
         Write-Host "Opened with Notepad (fallback)." -ForegroundColor Yellow
@@ -304,21 +278,12 @@ function Open-ConfigFile {
     }
 }
 
-# ---------------------------------------------------------------------------
-# Helpers for the 'reload' action: hot-reload config.yaml via mihomo's API
-# Ref: https://wiki.metacubex.one/api/#_7  (运行配置 -> /configs -> PUT)
-# ---------------------------------------------------------------------------
-
-# Extracts a top-level (non-indented) scalar value from config.yaml lines,
-# e.g. 'external-controller: 127.0.0.1:9090' or 'secret: "xxxx"  # comment'.
-# This is intentionally a lightweight line parser (not a full YAML parser) -
-# it only needs to read two simple, always-top-level scalar keys.
-# NOTE: 'Lines' is deliberately NOT Mandatory - PowerShell's implicit
-# mandatory-parameter validation throws an unfriendly binder error on an
-# empty string/array before this function body ever runs. We handle
-# empty/null input explicitly instead, so callers always get a clean $null.
 function Get-MihomoConfigValue {
     param(
+        [AllowNull()]
+        [AllowEmptyString()]
+        [AllowEmptyCollection()]
+        [Parameter(Mandatory = $true)]
         [string[]]$Lines,
         [Parameter(Mandatory = $true)]
         [string]$Key
@@ -375,7 +340,6 @@ function Invoke-MihomoReload {
                 }
             }
         } catch {
-            # best-effort hint only; ignore failures
         }
         return
     }
@@ -452,10 +416,8 @@ function Invoke-MihomoReload {
     }
 }
 
-# 需要管理员权限的动作队列
 $ElevatedActions = @('start', 'stop', 'restart', 'enable', 'disable', 'repair', 'install')
 
-# 自提权机制（Self-Elevation）
 if ($Action -in $ElevatedActions -and -not (Test-Admin)) {
     Write-Host "Action '$Action' requires Administrator privileges. Requesting UAC elevation..." -ForegroundColor Yellow
     try {

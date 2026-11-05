@@ -1,15 +1,3 @@
-<#
-    sync-schema.ps1
-    ---------------
-    Builds the manifest schema used by Scoop-Bucket.Tests.ps1.
-
-    Fetches the official Scoop schema (master) and injects the bucket-specific
-    `persist_external` property. See docs/adr/0001.
-
-    Usage:
-        .\scripts\sync-schema.ps1 -TargetPath <path>
-#>
-
 param(
     [Parameter(Mandatory = $true)][string]$TargetPath,
     [string]$OfficialUrl = 'https://raw.githubusercontent.com/ScoopInstaller/Scoop/master/schema.json'
