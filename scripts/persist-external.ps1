@@ -8,15 +8,11 @@
     Licensed under the MIT License (see LICENSE in the repository root).
 #>
 
-# Capture absolute path of this script at top-level execution scope
 $script:PersistExternalScriptPath = $PSCommandPath
 if (-not $script:PersistExternalScriptPath) {
     $script:PersistExternalScriptPath = $MyInvocation.MyCommand.Path
 }
 
-# ---------------------------------------------------------------------------
-# 0. Compatibility layer: prefer Scoop native warn/error/info functions
-# ---------------------------------------------------------------------------
 if (-not (Get-Command 'warn' -ErrorAction SilentlyContinue)) {
     function warn($msg) { Write-Warning $msg }
 }
@@ -27,17 +23,14 @@ if (-not (Get-Command 'info' -ErrorAction SilentlyContinue)) {
     function info($msg) { Write-Host "INFO  $msg" -ForegroundColor DarkGray }
 }
 
-# Auto-bootstrap Scoop environment if running in a raw PowerShell session
 function Initialize-ScoopEnvironment {
     [CmdletBinding()]
     param()
 
-    # Skip if Scoop core functions are already loaded in current scope
     if ((Get-Command 'Select-CurrentVersion' -ErrorAction SilentlyContinue) -and (Get-Command 'add_alias' -ErrorAction SilentlyContinue)) {
         return
     }
 
-    # Resolve Scoop root directory
     $scoopRoot = $env:SCOOP
     if (-not $scoopRoot -and $script:PersistExternalScriptPath) {
         $parentDir = Split-Path (Split-Path (Split-Path (Split-Path $script:PersistExternalScriptPath)))
@@ -49,7 +42,6 @@ function Initialize-ScoopEnvironment {
         $scoopRoot = Join-Path $HOME 'scoop'
     }
 
-    # Load all required core Scoop libraries into caller scope
     $libDir = Join-Path $scoopRoot 'apps\scoop\current\lib'
     foreach ($lib in 'core.ps1', 'buckets.ps1', 'versions.ps1', 'manifest.ps1', 'commands.ps1') {
         $libPath = Join-Path $libDir $lib
@@ -66,9 +58,6 @@ function ConvertTo-TrimmedPath {
     return $Path
 }
 
-# ---------------------------------------------------------------------------
-# 1. Path resolution: expand $env:VAR
-# ---------------------------------------------------------------------------
 function Convert-ExternalPath {
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$RawPath)
@@ -92,9 +81,6 @@ function Convert-ExternalPath {
     return [System.IO.Path]::GetFullPath($p)
 }
 
-# ---------------------------------------------------------------------------
-# 2. Parse Manifest definitions
-# ---------------------------------------------------------------------------
 function Get-PersistExternalDefinition {
     [CmdletBinding()]
     param([Parameter(Mandatory)]$Manifest)
@@ -131,9 +117,6 @@ function Get-PersistExternalDefinition {
     return $result
 }
 
-# ---------------------------------------------------------------------------
-# 3. Persistence record (.scoop-persist-external.json)
-# ---------------------------------------------------------------------------
 function Get-ExternalLinkRecordPath {
     param([Parameter(Mandatory)][string]$PersistDir)
     Join-Path $PersistDir '.scoop-persist-external.json'
@@ -207,10 +190,6 @@ function Resolve-ExternalPersistDir {
     Join-Path (Join-Path $scoopRoot 'persist') (Split-Path -Leaf $appDir)
 }
 
-# ---------------------------------------------------------------------------
-# 4. Safe link removal
-#    Remove ReadOnly attribute and call .NET API to prevent Remove-Item recursion risk
-# ---------------------------------------------------------------------------
 function Remove-ReparsePointSafe {
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Path)
@@ -220,7 +199,6 @@ function Remove-ReparsePointSafe {
     $item = Get-Item -LiteralPath $CleanPath -Force -ErrorAction SilentlyContinue
     if ($null -eq $item) { return $false }
 
-    # Safety check: never delete non-link items
     if (-not $item.LinkType) { return $false }
 
     # Remove ReadOnly attribute to prevent UnauthorizedAccessException
@@ -237,9 +215,6 @@ function Remove-ReparsePointSafe {
     return $true
 }
 
-# ---------------------------------------------------------------------------
-# 5. Core linking logic
-# ---------------------------------------------------------------------------
 function New-ExternalPersistLink {
     [CmdletBinding()]
     param(
@@ -258,7 +233,6 @@ function New-ExternalPersistLink {
     $sourceIsLink = ($null -ne $sourceItem) -and [bool]$sourceItem.LinkType
     $sourceIsRealData = ($null -ne $sourceItem) -and (-not $sourceItem.LinkType)
 
-    # 1. Idempotency check: skip if already linked to target
     if ($sourceIsLink) {
         $currentTarget = @($sourceItem.Target)[0]
         if ($currentTarget) {
@@ -271,7 +245,6 @@ function New-ExternalPersistLink {
         }
     }
 
-    # 2. Target in persist directory does not exist
     if ($null -eq $targetItem) {
         $targetParent = Split-Path $PersistTarget -Parent
         if (-not (Test-Path -LiteralPath $targetParent)) {
@@ -279,7 +252,6 @@ function New-ExternalPersistLink {
         }
 
         if ($sourceIsRealData) {
-            # Only migrate real data, never run Move-Item on dangling links
             Move-Item -LiteralPath $Source -Destination $PersistTarget -Force
             $sourceItem = $null
             $sourceIsRealData = $false
@@ -294,7 +266,6 @@ function New-ExternalPersistLink {
         $targetItem = Get-Item -LiteralPath $PersistTarget -Force -ErrorAction Stop
     }
 
-    # 3. Handle conflict: real data exists in both source and persist dir
     if ($sourceIsRealData) {
         $backup = "$Source.pre-persist-backup-$(Get-Date -Format 'yyyyMMddHHmmss')"
         warn "persist_external: '$Source' conflicts with existing persist data, backed up to '$backup'"
@@ -303,12 +274,10 @@ function New-ExternalPersistLink {
         $sourceIsRealData = $false
     }
 
-    # 4. Clean dangling or old links in source
     if ($null -ne (Get-Item -LiteralPath $Source -Force -ErrorAction SilentlyContinue)) {
         Remove-ReparsePointSafe -Path $Source | Out-Null
     }
 
-    # 5. Ensure source parent directory exists
     $sourceParent = Split-Path $Source -Parent
     if (-not (Test-Path -LiteralPath $sourceParent)) {
         New-Item -ItemType Directory -Path $sourceParent -Force | Out-Null
@@ -318,7 +287,6 @@ function New-ExternalPersistLink {
         throw "persist_external: '$PersistTarget' is a file; only directories are supported."
     }
 
-    # 6. Create the junction
     if (Get-Command 'New-DirectoryJunction' -ErrorAction SilentlyContinue) {
         New-DirectoryJunction $Source $PersistTarget | Out-Null
     } else {
@@ -327,9 +295,6 @@ function New-ExternalPersistLink {
 
 }
 
-# ---------------------------------------------------------------------------
-# 6. Reconcile (sole owner of the link record)
-# ---------------------------------------------------------------------------
 function Remove-ExternalLink {
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$Source)
@@ -400,7 +365,6 @@ function Invoke-PersistExternalReconcile {
     if (Test-Path -LiteralPath $PersistDir) {
         $existingItems = Get-ChildItem -LiteralPath $PersistDir -Force -ErrorAction SilentlyContinue
         foreach ($item in $existingItems) {
-            # Skip internal record file
             if ($item.Name -eq '.scoop-persist-external.json') { continue }
 
             $itemPath = ConvertTo-TrimmedPath -Path $item.FullName
@@ -416,7 +380,6 @@ function Invoke-PersistExternalReconcile {
             New-ExternalPersistLink -Source $d.Source -PersistTarget $d.Target
             $records += $d.Source
         } catch {
-            # Log error on individual failure and continue processing remaining items
             error "persist_external: Failed to process '$($d.Source)': $_"
         }
     }
@@ -432,9 +395,6 @@ function Invoke-PersistExternalReconcile {
     }
 }
 
-# ---------------------------------------------------------------------------
-# 7. Public entry points
-# ---------------------------------------------------------------------------
 function Initialize-PersistExternalAlias {
     [CmdletBinding()]
     param()
@@ -444,7 +404,6 @@ function Initialize-PersistExternalAlias {
     $aliasName = 'persist-external-reset'
     $shimPath = Join-Path (shimdir $false) "scoop-$aliasName.ps1"
 
-    # Skip if alias shim already exists
     if (Test-Path -LiteralPath $shimPath) {
         return
     }
@@ -474,8 +433,6 @@ function Initialize-PersistExternalAlias {
 
 function Invoke-PersistExternalInstall {
     [CmdletBinding()]
-    # Legacy names are aliases on differently-named parameters: a parameter named
-    # Manifest/Dir/PersistDir would shadow the hook-scope variable of the same name.
     param(
         [Alias('Manifest')]$LegacyManifest,
         [Alias('PersistDir')][string]$LegacyPersistDir,
@@ -501,7 +458,6 @@ function Invoke-PersistExternalInstall {
 
 function Invoke-PersistExternalUninstall {
     [CmdletBinding()]
-    # Same alias trick as Invoke-PersistExternalInstall.
     param(
         [Alias('Manifest')]$LegacyManifest,
         [Alias('Dir')][string]$LegacyDir,
@@ -526,9 +482,6 @@ function Invoke-PersistExternalUninstall {
     Invoke-PersistExternalReconcile -Manifest $hookManifest -PersistDir $hookPersistDir -Dir $hookDir -Remove
 }
 
-# ---------------------------------------------------------------------------
-# 8. Reset entry point
-# ---------------------------------------------------------------------------
 function Invoke-PersistExternalReset {
     [CmdletBinding()]
     param(
@@ -539,7 +492,6 @@ function Invoke-PersistExternalReset {
 
     . Initialize-ScoopEnvironment
 
-    # Re-register Scoop alias if missing
     Initialize-PersistExternalAlias
 
     $isGlobal = [bool]$Global
@@ -568,7 +520,6 @@ function Invoke-PersistExternalReset {
             continue
         }
 
-        # Only target apps that declare persist_external in their manifest
         if (-not $manifest.persist_external) {
             if ($AppName -and $AppName -ne '*') {
                 info "persist_external: App '$app' does not declare persist_external."

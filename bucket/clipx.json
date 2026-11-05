@@ -4,18 +4,14 @@
   "version": "2.0.1.2",
   "architecture": {
     "64bit": {
-      "url": "https://clipx.org/installer.php?arch=x64&v=stable#/dl.7z",
+      "url": "https://clipx.org/dist/stable64/clipx-2.0.1.2-setup-x64.exe#/dl.7z",
       "hash": "7c40d2d741a758ee85fd7068eab0ffb2c02fdc90ad6d05cf953a125a9e92d195"
     },
     "32bit": {
-      "url": "https://clipx.org/installer.php?arch=x86&v=stable#/dl.7z",
+      "url": "https://clipx.org/dist/stable32/clipx-2.0.1.2-setup-x86.exe#/dl.7z",
       "hash": "51bfe1faad81a1d0887910a2145847b7706e5c020fe6da8d6747b49cbc870389"
     }
   },
-  "installer": {
-    "script": "Remove-Item \"$dir\\`$PLUGINSDIR\" -Recurse -Force -ErrorAction SilentlyContinue"
-  },
-  "bin": "clipx.exe",
   "shortcuts": [
     [
       "clipx.exe",
@@ -24,15 +20,15 @@
   ],
   "checkver": {
     "url": "https://clipx.org/download.php",
-    "regex": "ClipX ([\\d.]+)"
+    "regex": "Latest \\(([\\d.]+)\\) is stable"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://clipx.org/installer.php?arch=x64&v=stable#/dl.7z"
+        "url": "https://clipx.org/dist/stable64/clipx-$version-setup-x64.exe#/dl.7z"
       },
       "32bit": {
-        "url": "https://clipx.org/installer.php?arch=x86&v=stable#/dl.7z"
+        "url": "https://clipx.org/dist/stable32/clipx-$version-setup-x86.exe#/dl.7z"
       }
     }
   }
