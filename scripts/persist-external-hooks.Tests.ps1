@@ -35,9 +35,12 @@ foreach ($file in Get-ChildItem -LiteralPath (Join-Path $repoRoot 'bucket') -Fil
     $hooks = @([regex]::Matches($stageText, 'Invoke-PersistExternal\w+[^\n"]*') | ForEach-Object { $_.Value })
 
     if ($hooks.Count -gt 0) {
+        $dotSources = ([regex]::Matches($stageText, 'scripts[\\/]+persist-external\.ps1')).Count
+        $guards = ([regex]::Matches($stageText, 'if \(!\$helper\)')).Count
         $dotSourceCases += @{
             Name         = $file.Name
-            HasDotSource = [bool]($stageText -match 'scripts[\\/]+persist-external\.ps1')
+            HasDotSource = $dotSources -gt 0
+            GuardedEvery = $guards -ge $dotSources
         }
     }
 
@@ -75,6 +78,11 @@ Describe 'persist_external hook contract' {
         It '<Name>: dot-sources persist-external.ps1' -TestCases $dotSourceCases {
             param($Name, $HasDotSource)
             $HasDotSource | Should -BeTrue
+        }
+
+        It '<Name>: guards every dot-source' -TestCases $dotSourceCases {
+            param($Name, $GuardedEvery)
+            $GuardedEvery | Should -BeTrue -Because 'a hook that dot-sources without a guard fails with an opaque dot-source error'
         }
 
         It '<Name>: <Hook> calls a function the script defines' -TestCases $functionCases {
