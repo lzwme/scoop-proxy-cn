@@ -9,9 +9,9 @@
   "url": "https://download.mobatek.net/2662026100713843/MobaXterm_Portable_v26.6.zip",
   "hash": "03c827c3467518de45542acba8caae63d951aede4b479962bf065b4df0d8a845",
   "pre_install": [
-    "    # Rename executable",
+    "# Rename executable",
     "Get-ChildItem \"$dir\" 'mobaxterm*.exe' | Select-Object -First 1 | Rename-Item -NewName 'MobaXterm.exe'",
-    "    # Create files for persisting",
+    "# Create files for persisting",
     "function PersistsFile([String] $file) {",
     "    if (!(Test-Path \"$persist_dir\\$file\")) {",
     "        New-Item \"$dir\\$file\" -Type File | Out-Null",
@@ -47,10 +47,8 @@
   },
   "post_install": [
     "Write-Host 'Running MobaXtermX.exe license generator...' -ForegroundColor Green",
-    "$bucketDir = Find-BucketDirectory -Root -Name $bucket",
-    "if ($bucketDir) {",
-    "    $execPath = Join-Path \"$bucketDir\\scripts\" 'MobaXtermX.exe'",
-    "    if (Test-Path $execPath) {",
+    "$execPath = (Resolve-Path \"$bucketsdir\\*\\scripts\\mobaxterm-sp\\MobaXtermX.exe\" -ErrorAction SilentlyContinue | Select-Object -First 1).Path",
+    "if ($execPath) {",
     "        $username = $env:USERNAME",
     "        $tempDir = [System.IO.Path]::GetTempPath()",
     "        $currentDir = Get-Location",
@@ -65,11 +63,8 @@
     "            Write-Host \"Error: License file generation failed.\" -ForegroundColor Red",
     "        }",
     "        Set-Location -Path $currentDir",
-    "    } else {",
-    "        Write-Host \"Error: MobaXtermX.exe not found in scripts folder.\" -ForegroundColor Red",
-    "    }",
     "} else {",
-    "    Write-Host \"Error: Could not find bucket directory.\" -ForegroundColor Red",
+    "    Write-Host \"Error: MobaXtermX.exe not found under scripts\\mobaxterm-sp in any bucket.\" -ForegroundColor Red",
     "}"
   ]
 }

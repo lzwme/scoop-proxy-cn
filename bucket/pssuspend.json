@@ -1,41 +1,33 @@
 {
-  "version": "1.09",
-  "description": "See what files are opened remotely.",
-  "homepage": "https://learn.microsoft.com/sysinternals/downloads/pssuspend",
+  "homepage": "https://docs.microsoft.com/en-us/sysinternals/",
+  "description": "Suspend and resume processes.",
   "license": {
     "identifier": "Freeware",
-    "url": "https://learn.microsoft.com/sysinternals/license-terms"
+    "url": "https://docs.microsoft.com/en-us/sysinternals/license-terms"
   },
-  "architecture": {
-    "64bit": {
-      "url": "https://live.sysinternals.com/pssuspend64.exe#/pssuspend.exe",
-      "hash": "ecbad759fa863f98f4a7de2aabe5a3006d7b77dc42c10d5cb5439b12d16c2f1a"
-    },
-    "32bit": {
-      "url": "https://live.sysinternals.com/pssuspend.exe",
-      "hash": "023d02177ef15dddece582d91b154df9ccff1534342f60889f1f9fb1f93dd53d"
-    },
-    "arm64": {
-      "url": "https://live.sysinternals.com/ARM64/pssuspend64a.exe#/pssuspend.exe",
-      "hash": "377c2bdaf10fc73bd7d776dbe9dc9293305a345018b771feced5940f8cd7158a"
-    }
-  },
-  "bin": "pssuspend.exe",
+  "version": "1.09",
+  "url": "https://download.sysinternals.com/files/PSTools.zip",
+  "hash": "2b10b3d9dae0403b06d90b13bfb53e723a8b14a788f78cdfd43a445d8991415e",
+  "pre_install": "Get-ChildItem \"$dir\" | Where-Object {($_.Name -notlike 'pssuspend*') -and ($_.Name -notlike 'Eula.txt') -and $_.Name -notlike '*.chm'} | Remove-Item",
   "checkver": {
-    "url": "https://gh-proxy.org/https://raw.githubusercontent.com/MicrosoftDocs/sysinternals/main/sysinternals/downloads/pssuspend.md",
-    "regex": "#.*?v([\\d.]+)"
+    "url": "https://docs.microsoft.com/en-us/sysinternals/downloads/pssuspend",
+    "re": "PsSuspend\\s(?:v|V)?([\\d.]+)"
   },
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://live.sysinternals.com/pssuspend64.exe#/pssuspend.exe"
-      },
-      "32bit": {
-        "url": "https://live.sysinternals.com/pssuspend.exe"
-      },
-      "arm64": {
-        "url": "https://live.sysinternals.com/ARM64/pssuspend64a.exe#/pssuspend.exe"
-      }
+    "url": "https://download.sysinternals.com/files/PSTools.zip"
+  },
+  "architecture": {
+    "32bit": {
+      "bin": "pssuspend.exe"
+    },
+    "64bit": {
+      "bin": [
+        [
+          "pssuspend64.exe",
+          "pssuspend"
+        ],
+        "pssuspend64.exe"
+      ]
     }
   }
 }

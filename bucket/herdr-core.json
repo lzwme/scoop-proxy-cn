@@ -1,7 +1,7 @@
 {
   "version": "0.1.18",
-  "description": "Runs programs and coding agents in terminals that stay alive after you leave, letting agents start one another and any shell or app attach to them",
-  "homepage": "https://github.com/herdrdev/herdr-core",
+  "description": "Persistent terminal runtime for coding agents that powers the Herdr App.",
+  "homepage": "https://herdr.dev/core/",
   "license": "Apache-2.0",
   "architecture": {
     "64bit": {
@@ -10,15 +10,10 @@
     }
   },
   "bin": [
-    "herdr-core.exe",
     [
       "herdr-core.exe",
       "hc"
     ]
-  ],
-  "notes": [
-    "Herdr (herdr-app) looks for herdr-core on PATH first, so it uses this one instead of installing its own",
-    "Update with Scoop: `hc update` (even from Herdr's prompt) replaces the files in the versioned folder, and Scoop loses track of the version"
   ],
   "checkver": {
     "url": "https://releases.herdr.dev/core/latest.json",
@@ -30,7 +25,7 @@
         "url": "https://releases.herdr.dev/core/$version/herdr-core-windows-x86_64.zip",
         "hash": {
           "url": "https://releases.herdr.dev/core/latest.json",
-          "jsonpath": "$.targets['windows-x86_64'].sha256"
+          "jsonpath": "$.targets.windows-x86_64.sha256"
         }
       }
     }
