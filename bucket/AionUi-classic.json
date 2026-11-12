@@ -1,0 +1,35 @@
+{
+  "version": "2.1.47",
+  "description": "Free, local, open-source GUI app for LLMs — Chat UI, Multi-agent, Multi-LLMs & apikey polling, Workspace, MCP, Remote WebUi Mode (classic GitHub Release build)",
+  "homepage": "https://www.aionui.com/",
+  "license": "Apache-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/iOfficeAI/AionUi/releases/download/v2.1.47-final/AionUi-2.1.47-win-x64.exe#/dl.7z",
+      "hash": "b5bf4e897d8e3c8038663217b828553286d5e2b23a2991f6dbaa29c7146ce586",
+      "installer": {
+        "script": [
+          "Expand-7ZipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\" -Removal",
+          "Remove-Item \"$dir\\`$PLUGINSDIR\",\"$dir\\`$R0\"  -Force -Recurse"
+        ]
+      }
+    },
+    "arm64": {
+      "url": "https://github.com/iOfficeAI/AionUi/releases/download/v2.1.47-final/AionUi-2.1.47-win-arm64.exe#/dl.7z",
+      "hash": "b094901a699426d680596621cb9f367c23508fe1351a44d4367c03e5601de4e1",
+      "installer": {
+        "script": [
+          "Expand-7ZipArchive \"$dir\\`$PLUGINSDIR\\app-arm64.7z\" \"$dir\" -Removal",
+          "Remove-Item \"$dir\\`$PLUGINSDIR\",\"$dir\\`$R0\"  -Force -Recurse"
+        ]
+      }
+    }
+  },
+  "bin": "AionUi.exe",
+  "shortcuts": [
+    [
+      "AionUi.exe",
+      "AionUi-classic"
+    ]
+  ]
+}

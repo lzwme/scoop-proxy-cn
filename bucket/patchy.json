@@ -1,0 +1,65 @@
+{
+  "version": "1.33",
+  "description": "Open-source image editor focused on PSD compatibility and workflows familiar to Adobe Photoshop users.",
+  "homepage": "https://github.com/SethRobinson/Patchy",
+  "license": {
+    "identifier": "MIT license",
+    "url": "https://github.com/SethRobinson/Patchy#MIT-1-ov-file"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/SethRobinson/Patchy/releases/download/v1.33/PatchyWindowsInstaller.exe#/dl.7z",
+      "hash": "d3e5a37e63d3e9c9ad460b2be977b5cda6cc0819f2b5f861033d15a89dbc4fb0"
+    },
+    "arm64": {
+      "url": "https://github.com/SethRobinson/Patchy/releases/download/v1.33/PatchyWindowsArm64Installer.exe#/dl.7z",
+      "hash": "1d5469969fdc0545c6e14a6e741592137e601a8cf29faa1db536412319659daf"
+    }
+  },
+  "pre_install": [
+    "Expand-7zipArchive \"$dir\\PatchyWindowsNoInstaller.zip\" \"$dir\"",
+    "Move-Item -Path \"$dir\\Patchy\\*\" -Destination \"$dir\" -Force",
+    "Remove-Item -Path \"$dir\\Patchy\" -Force -Recurse",
+    "Remove-Item -Path \"$dir\\InstallPatchy.*\", \"$dir\\UninstallPatchy.exe\", \"$dir\\*.ico\", \"$dir\\*.txt\" -Force -ErrorAction SilentlyContinue"
+  ],
+  "installer": {
+    "script": [
+      "# handle runtime cache",
+      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/AppsUtils.psm1)",
+      "Mount-ExternalRuntimeData -Source \"$persist_dir\\appdata\" -Target \"$env:APPDATA\\RTsoft\"",
+      "Remove-Module -Name AppsUtils"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/AppsUtils.psm1)",
+      "Dismount-ExternalRuntimeData -Target \"$env:APPDATA\\RTsoft\"",
+      "Remove-Module -Name AppsUtils"
+    ]
+  },
+  "bin": "patchy.exe",
+  "shortcuts": [
+    [
+      "patchy.exe",
+      "Patchy"
+    ]
+  ],
+  "checkver": {
+    "github": "https://api.github.com/repos/SethRobinson/Patchy/releases",
+    "jp": "$[0].tag_name",
+    "regex": "v([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/SethRobinson/Patchy/releases/download/v$version/PatchyWindowsInstaller.exe#/dl.7z"
+      },
+      "arm64": {
+        "url": "https://github.com/SethRobinson/Patchy/releases/download/v$version/PatchyWindowsArm64Installer.exe#/dl.7z"
+      }
+    },
+    "hash": {
+      "url": "$baseurl/SHA256SUMS.txt"
+    }
+  }
+}
