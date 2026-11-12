@@ -1,28 +1,12 @@
 {
-  "version": "2.1.47",
+  "version": "2.2.2",
   "description": "Free, local, open-source GUI app for LLMs — Chat UI, Multi-agent, Multi-LLMs & apikey polling, Workspace, MCP, Remote WebUi Mode",
   "homepage": "https://www.aionui.com/",
   "license": "Apache-2.0",
   "architecture": {
     "64bit": {
-      "url": "https://gh-proxy.org/https://github.com/iOfficeAI/AionUi/releases/download/v2.1.47-final/AionUi-2.1.47-win-x64.exe#/dl.7z",
-      "hash": "b5bf4e897d8e3c8038663217b828553286d5e2b23a2991f6dbaa29c7146ce586",
-      "installer": {
-        "script": [
-          "Expand-7ZipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\" -Removal",
-          "Remove-Item \"$dir\\`$PLUGINSDIR\",\"$dir\\`$R0\"  -Force -Recurse"
-        ]
-      }
-    },
-    "arm64": {
-      "url": "https://gh-proxy.org/https://github.com/iOfficeAI/AionUi/releases/download/v2.1.47-final/AionUi-2.1.47-win-arm64.exe#/dl.7z",
-      "hash": "b094901a699426d680596621cb9f367c23508fe1351a44d4367c03e5601de4e1",
-      "installer": {
-        "script": [
-          "Expand-7ZipArchive \"$dir\\`$PLUGINSDIR\\app-arm64.7z\" \"$dir\" -Removal",
-          "Remove-Item \"$dir\\`$PLUGINSDIR\",\"$dir\\`$R0\"  -Force -Recurse"
-        ]
-      }
+      "url": "https://static.aionui.com/releases/$version/AionUi-$version-win-x64.exe",
+      "hash": "0ad9fb6e6619067706af0d5ee7e3588311b14b2fa2047db4d0633cf8e0adf88e"
     }
   },
   "bin": "AionUi.exe",
@@ -33,20 +17,13 @@
     ]
   ],
   "checkver": {
-    "url": "https://github.com/iOfficeAI/AionUi",
-    "script": [
-      "$releases = Invoke-RestMethod 'https://api.github.com/repos/iOfficeAI/AionUi/releases'",
-      "($releases | Where-Object { -not $_.prerelease -and ($_.assets.name -like 'AionUi-*-win-x64.exe') } | Select-Object -First 1).tag_name"
-    ],
-    "regex": "v?(?<version>[\\d.]+)(?<tag>.*)"
+    "url": "https://static.aionui.com/releases/latest.yml",
+    "regex": "version:\\s*['\"]?([^'\"\\r\\n]+?)['\"]?\\s*$"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://gh-proxy.org/https://github.com/iOfficeAI/AionUi/releases/download/v$version$matchTag/AionUi-$version-win-x64.exe#/dl.7z"
-      },
-      "arm64": {
-        "url": "https://gh-proxy.org/https://github.com/iOfficeAI/AionUi/releases/download/v$version$matchTag/AionUi-$version-win-arm64.exe#/dl.7z"
+        "url": "https://static.aionui.com/releases/$version/AionUi-$version-win-x64.exe"
       }
     }
   }
