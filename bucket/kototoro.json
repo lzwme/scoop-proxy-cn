@@ -1,50 +1,19 @@
 {
-  "version": "2.4.4",
+  "version": "2.4.5",
   "description": "Manga, Novel, and Video reader for Android",
   "homepage": "https://github.com/Kototoro-app/Kototoro",
-  "license": {
-    "identifier": "Apache-2.0 license",
-    "url": "https://github.com/Kototoro-app/Kototoro#Apache-2.0-1-ov-file"
-  },
-  "architecture": {
-    "64bit": {
-      "url": "https://github.com/Kototoro-app/Kototoro/releases/download/v2.4.4/Kototoro-2.4.4-windows-x64-release.msi",
-      "hash": "17f1a835cc6502d8358cf49f28178f1b7276127c7e8da8d9b96bbe144081c691"
-    }
-  },
-  "extract_dir": "Kototoro-App",
-  "installer": {
-    "script": [
-      "# handle runtime cache",
-      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/AppsUtils.psm1)",
-      "Mount-ExternalRuntimeData -Source \"$persist_dir\\appdata\" -Target \"$env:LOCALAPPDATA\\Kototoro\"",
-      "Remove-Module -Name AppsUtils"
-    ]
-  },
-  "uninstaller": {
-    "script": [
-      "Import-Module $(Join-Path $(Find-BucketDirectory -Root -Name spc) scripts/AppsUtils.psm1)",
-      "Dismount-ExternalRuntimeData -Target \"$env:LOCALAPPDATA\\Kototoro\"",
-      "Remove-Module -Name AppsUtils"
-    ]
-  },
-  "bin": "Kototoro.exe",
+  "license": "Apache-2.0",
+  "url": "https://github.com/Kototoro-app/Kototoro/releases/download/v2.4.5/Kototoro-2.4.5-windows-x64-release.zip",
+  "hash": "92bd848f4f2aa02998234c32b66d80f2acd860a70fdc4918161208e90bb978cd",
+  "extract_dir": "Kototoro",
   "shortcuts": [
     [
       "Kototoro.exe",
       "Kototoro"
     ]
   ],
-  "checkver": {
-    "github": "https://api.github.com/repos/Kototoro-app/Kototoro/releases",
-    "jp": "$[0].tag_name",
-    "regex": "v([\\d.]+)"
-  },
+  "checkver": "github",
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://github.com/Kototoro-app/Kototoro/releases/download/v$version/Kototoro-$version-windows-x64-release.msi"
-      }
-    }
+    "url": "https://github.com/Kototoro-app/Kototoro/releases/download/v$version/Kototoro-$version-windows-x64-release.zip"
   }
 }
