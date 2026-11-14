@@ -1,19 +1,18 @@
 {
-  "version": "0.4.579",
+  "version": "0.4.586",
   "description": "Elegant AI Provider Orchestration",
   "homepage": "https://alma.now/",
   "license": "Proprietary",
-  "##": "0.4.5xx 起上游改用自研 almapack 打包: 安装包内是平铺的应用文件, 不再有 electron-builder 的 $PLUGINSDIR/app-64.7z. pre_install 兼容两种布局",
   "architecture": {
     "64bit": {
-      "url": "https://gh-proxy.org/https://github.com/yetone/alma-releases/releases/download/v0.4.579/alma-0.4.579-win-x64.exe#/dl.7z",
-      "hash": "e7edf3afe02fb3d34f0451de8f7ee400955c7d491bec27d9b9ac33f8b7d15763",
-      "pre_install": [
-        "$archive = \"$dir\\`$PLUGINSDIR\\app-64.7z\"",
-        "if (Test-Path $archive) { Expand-7zipArchive $archive $dir }",
-        "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$R0\", \"$dir\\Uninstall.exe\" -Force -Recurse -ErrorAction SilentlyContinue",
-        "if (!(Test-Path \"$dir\\Alma.exe\")) { throw 'Alma.exe not found after extraction' }"
-      ]
+      "url": "https://gh-proxy.org/https://github.com/yetone/alma-releases/releases/download/v0.4.586/alma-0.4.586-win-x64.exe#/dl.7z",
+      "hash": "6b49adfdf2ebb5331af209b06bef8f64b46ab92ea1c737f7b09026a96292e283",
+      "installer": {
+        "script": [
+          "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
+          "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$R0\" -Force -Recurse"
+        ]
+      }
     }
   },
   "shortcuts": [
@@ -26,23 +25,10 @@
     "github": "https://github.com/yetone/alma-releases"
   },
   "autoupdate": {
-    "url": "https://gh-proxy.org/https://github.com/yetone/alma-releases/releases/download/v$version/alma-$version-win-x64.exe#/dl.7z",
-    "hash": {
-      "mode": "extract",
-      "url": "https://github.com/yetone/alma-releases/releases/expanded_assets/v$version",
-      "regex": "alma-$version-win-x64\\.exe.*?sha256:$sha256"
+    "architecture": {
+      "64bit": {
+        "url": "https://gh-proxy.org/https://github.com/yetone/alma-releases/releases/download/v$version/alma-$version-win-x64.exe#/dl.7z"
+      }
     }
-  },
-  "post_uninstall": [
-    "$shim = Join-Path $env:LOCALAPPDATA 'Alma\\bin'",
-    "$key = [Microsoft.Win32.Registry]::CurrentUser.OpenSubKey('Environment', $true)",
-    "if ($key) {",
-    "    $raw = $key.GetValue('Path', '', [Microsoft.Win32.RegistryValueOptions]::DoNotExpandEnvironmentNames)",
-    "    $cur = @($raw -split ';' | Where-Object { $_ })",
-    "    $new = @($cur | Where-Object { $_.TrimEnd('\\') -ne $shim.TrimEnd('\\') })",
-    "    if ($new.Count -ne $cur.Count) { $key.SetValue('Path', ($new -join ';'), $key.GetValueKind('Path')) }",
-    "    $key.Close()",
-    "}",
-    "Remove-Item $shim -Recurse -Force -ErrorAction SilentlyContinue"
-  ]
+  }
 }
