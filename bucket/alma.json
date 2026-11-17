@@ -1,18 +1,19 @@
 {
-  "version": "0.4.695",
+  "version": "0.4.714",
   "description": "Elegant AI Provider Orchestration",
   "homepage": "https://alma.now/",
   "license": "Proprietary",
+  "##": "0.4.5xx 起上游改用自研 almapack 打包: 安装包内是平铺的应用文件, 不再有 electron-builder 的 $PLUGINSDIR/app-64.7z. pre_install 兼容两种布局",
   "architecture": {
     "64bit": {
-      "url": "https://gh-proxy.org/https://github.com/yetone/alma-releases/releases/download/v0.4.695/alma-0.4.695-win-x64.exe#/dl.7z",
-      "hash": "sha512:cd9918fe141ee948b22f87d7a8fd7759b836a78546f1348639520ff549aad5f089664e909f0b986b3ea4a3f8451b73f98cbd3088a7966ddf212bcd3caef7098c",
-      "installer": {
-        "script": [
-          "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
-          "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$R0\" -Force -Recurse"
-        ]
-      }
+      "url": "https://gh-proxy.org/https://github.com/yetone/alma-releases/releases/download/v0.4.714/alma-0.4.714-win-x64.exe#/dl.7z",
+      "hash": "edfd208e31f24e9ff95e335de6d6128b36f91522aa9a16d61ca4eb65c49cd3e4",
+      "pre_install": [
+        "$archive = \"$dir\\`$PLUGINSDIR\\app-64.7z\"",
+        "if (Test-Path $archive) { Expand-7zipArchive $archive $dir }",
+        "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$R0\", \"$dir\\Uninstall.exe\" -Force -Recurse -ErrorAction SilentlyContinue",
+        "if (!(Test-Path \"$dir\\Alma.exe\")) { throw 'Alma.exe not found after extraction' }"
+      ]
     }
   },
   "shortcuts": [
@@ -25,14 +26,23 @@
     "github": "https://github.com/yetone/alma-releases"
   },
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://gh-proxy.org/https://github.com/yetone/alma-releases/releases/download/v$version/alma-$version-win-x64.exe#/dl.7z",
-        "hash": {
-          "url": "$baseurl/latest.yml",
-          "find": "sha512:\\s+(.*)"
-        }
-      }
+    "url": "https://gh-proxy.org/https://github.com/yetone/alma-releases/releases/download/v$version/alma-$version-win-x64.exe#/dl.7z",
+    "hash": {
+      "mode": "extract",
+      "url": "https://github.com/yetone/alma-releases/releases/expanded_assets/v$version",
+      "regex": "alma-$version-win-x64\\.exe.*?sha256:$sha256"
     }
-  }
+  },
+  "post_uninstall": [
+    "$shim = Join-Path $env:LOCALAPPDATA 'Alma\\bin'",
+    "$key = [Microsoft.Win32.Registry]::CurrentUser.OpenSubKey('Environment', $true)",
+    "if ($key) {",
+    "    $raw = $key.GetValue('Path', '', [Microsoft.Win32.RegistryValueOptions]::DoNotExpandEnvironmentNames)",
+    "    $cur = @($raw -split ';' | Where-Object { $_ })",
+    "    $new = @($cur | Where-Object { $_.TrimEnd('\\') -ne $shim.TrimEnd('\\') })",
+    "    if ($new.Count -ne $cur.Count) { $key.SetValue('Path', ($new -join ';'), $key.GetValueKind('Path')) }",
+    "    $key.Close()",
+    "}",
+    "Remove-Item $shim -Recurse -Force -ErrorAction SilentlyContinue"
+  ]
 }
