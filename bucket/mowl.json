@@ -1,10 +1,10 @@
 {
-  "version": "1.8.5",
+  "version": "2.0.0",
   "description": "Mowl is a minimalist, portable WYSIWYG Markdown editor.",
   "homepage": "https://github.com/naderi/mowl/",
   "license": "MIT",
-  "url": "https://gh-proxy.org/https://github.com/naderi/mowl/releases/download/v1.8.5/Mowl.exe",
-  "hash": "62c79ff21908aa3834ae26368f48fec98236b0ceb656692f072de2eed3e53974",
+  "url": "https://gh-proxy.org/https://github.com/naderi/mowl/releases/download/v2.0.0/Mowl.exe",
+  "hash": "574569f6c011ca5da8c3ea0939c253b268b00c20b7ce521c4e12bc32deaf5163",
   "pre_install": "if (!(Test-Path \"$persist_dir\\settings.toml\")) { New-Item \"$dir\\settings.toml\" | Out-Null }",
   "shortcuts": [
     [
@@ -12,7 +12,10 @@
       "Mowl"
     ]
   ],
-  "persist": "settings.toml",
+  "persist": [
+    "settings.toml",
+    "Themes"
+  ],
   "checkver": "GitHub",
   "autoupdate": {
     "url": "https://gh-proxy.org/https://github.com/naderi/mowl/releases/download/v$version/Mowl.exe"

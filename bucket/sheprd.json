@@ -1,29 +1,64 @@
 {
   "version": "20261118.1",
-  "description": "Native GPUI client for an installed Herdr daemon",
-  "homepage": "https://github.com/penso/herdr-gpui",
+  "description": "Native client for Sheprd (formerly Herdr UI) on macOS, Linux, and Windows, built with Rust and GPUI. View terminal sessions, workspaces, Git worktrees, and agent activity through your local daemon.",
+  "homepage": "https://sheprd.org",
   "license": "Apache-2.0",
   "architecture": {
     "64bit": {
-      "url": "https://gh-proxy.org/https://github.com/penso/herdr-gpui/releases/download/v20261118.1/Sheprd-20261118.1-x86_64-pc-windows-msvc.zip",
-      "hash": "e1578a298876fe18ea5fb033175833263f0b444219186d4874be7b5bf89f3238"
+      "url": "https://gh-proxy.org/https://github.com/sheprd-labs/sheprd/releases/download/v20261118.1/Sheprd-20261118.1-x86_64-pc-windows-msvc.zip",
+      "hash": "e1578a298876fe18ea5fb033175833263f0b444219186d4874be7b5bf89f3238",
+      "extract_dir": "Sheprd-20261118.1-x86_64-pc-windows-msvc"
     },
     "arm64": {
-      "url": "https://gh-proxy.org/https://github.com/penso/herdr-gpui/releases/download/v20261118.1/Sheprd-20261118.1-aarch64-pc-windows-msvc.zip",
-      "hash": "0d5bacb518ec63a03b68f86e72f51a4f91ec840e27838aab281dad41239880bc"
+      "url": "https://gh-proxy.org/https://github.com/sheprd-labs/sheprd/releases/download/v20261118.1/Sheprd-20261118.1-aarch64-pc-windows-msvc.zip",
+      "hash": "0d5bacb518ec63a03b68f86e72f51a4f91ec840e27838aab281dad41239880bc",
+      "extract_dir": "Sheprd-20261118.1-aarch64-pc-windows-msvc"
     }
   },
-  "bin": "sheprd.exe",
+  "bin": [
+    "sheprd.exe",
+    [
+      "herdr-gpui.exe",
+      "herdr-gpui"
+    ]
+  ],
+  "persist_external": [
+    [
+      "$env:LocalAppData\\herdr\\gpui",
+      "gpui-state",
+      "directory"
+    ]
+  ],
+  "post_install": [
+    "$helper = (Resolve-Path \"$bucketsdir/*/scripts/persist-external.ps1\" -ErrorAction SilentlyContinue | Select-Object -First 1).Path",
+    "if (!$helper) { throw 'persist_external: persist-external.ps1 not found under scripts/ in any bucket' }",
+    ". $helper",
+    "Invoke-PersistExternalInstall"
+  ],
+  "pre_uninstall": [
+    "$helper = (Resolve-Path \"$bucketsdir/*/scripts/persist-external.ps1\" -ErrorAction SilentlyContinue | Select-Object -First 1).Path",
+    "if (!$helper) { throw 'persist_external: persist-external.ps1 not found under scripts/ in any bucket' }",
+    ". $helper",
+    "Invoke-PersistExternalUninstall"
+  ],
+  "shortcuts": [
+    [
+      "sheprd-launcher.exe",
+      "Sheprd"
+    ]
+  ],
   "checkver": {
-    "github": "https://github.com/penso/herdr-gpui"
+    "github": "https://github.com/sheprd-labs/sheprd"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://gh-proxy.org/https://github.com/penso/herdr-gpui/releases/download/v$version/Sheprd-$version-x86_64-pc-windows-msvc.zip"
+        "url": "https://gh-proxy.org/https://github.com/sheprd-labs/sheprd/releases/download/v$version/Sheprd-$version-x86_64-pc-windows-msvc.zip",
+        "extract_dir": "Sheprd-$version-x86_64-pc-windows-msvc"
       },
       "arm64": {
-        "url": "https://gh-proxy.org/https://github.com/penso/herdr-gpui/releases/download/v$version/Sheprd-$version-aarch64-pc-windows-msvc.zip"
+        "url": "https://gh-proxy.org/https://github.com/sheprd-labs/sheprd/releases/download/v$version/Sheprd-$version-aarch64-pc-windows-msvc.zip",
+        "extract_dir": "Sheprd-$version-aarch64-pc-windows-msvc"
       }
     }
   }
