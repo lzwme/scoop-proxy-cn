@@ -105,7 +105,7 @@ export const CONFIG = {
     `littleli/Scoop-littleli`,
     `ChinLong/scoop-customize`,
     `Darkatse/Scoop-KanColle`,
-    `aliesbelik/poldi`,
+    // `aliesbelik/poldi`,
     `MCOfficer/scoop-bucket`,
     `KnotUntied/scoop-fonts`,
     `beerpiss/scoop-bucket`,
