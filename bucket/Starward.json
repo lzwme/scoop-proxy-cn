@@ -1,32 +1,20 @@
 {
-  "version": "0.19.0",
-  "description": "Game Launcher for miHoYo",
-  "homepage": "https://github.com/Scighost/Starward",
-  "license": "MIT",
+  "version": "0.19.2",
+  "description": "Game Launcher for miHoYo - 米家游戏启动器",
+  "homepage": "https://starward.scighost.com/",
+  "license": "MIT license",
   "architecture": {
     "64bit": {
-      "url": "https://gh-proxy.org/https://github.com/Scighost/Starward/releases/download/0.19.0/Starward_Portable_0.19.0_x64.7z",
-      "hash": "5a297a78de29988909cd8ddb885c9d3c72d9f4b2c49ac0833b9c0b22c990baf8"
-    },
-    "arm64": {
-      "url": "https://gh-proxy.org/https://github.com/Scighost/Starward/releases/download/0.19.0/Starward_Portable_0.19.0_arm64.7z",
-      "hash": "0c6b568cd1ccb2c8f9a0377dec6fa1414c76813e471397800677f778255a3ca9"
+      "url": "https://gh-proxy.org/https://github.com/Scighost/Starward/releases/download/0.19.2/Starward_Portable_0.19.2_x64.7z",
+      "hash": "7df722994f21c5e826bdd0f0808a826bcf715513ef2698eef0c734c4ea134469",
+      "extract_dir": "Starward"
     }
   },
-  "extract_dir": "Starward",
-  "depends": "main/sqlite",
   "pre_install": [
-    "if (-not (Test-Path \"$dir\\config.ini\"))",
-    "{",
-    "  New-Item \"$dir\\config.ini\" -ItemType File | Out-Null",
-    "  Add-Content \"$dir\\config.ini\" \"Language=\"",
-    "  Add-Content \"$dir\\config.ini\" \"UserDataFolder=$persist_dir\\data\"",
-    "}"
+    "New-Item -Path \"$dir\" -Name \"config.ini\" -ItemType \"file\" -Force | out-null",
+    "New-Item -Path \"$dir\" -Name \"StarwardDatabase.db\" -ItemType \"file\" -Force | out-null"
   ],
-  "post_install": [
-    "sqlite3 \"$dir\\data\\StarwardDatabase.db\" \"CREATE TABLE IF NOT EXISTS Setting (Key TEXT PRIMARY KEY, Value TEXT);\"",
-    "sqlite3 \"$dir\\data\\StarwardDatabase.db\" \"INSERT OR REPLACE INTO Setting (Key, Value) VALUES ('DefaultGameInstallationPath', '$persist_dir\\games');\""
-  ],
+  "bin": "Starward.exe",
   "shortcuts": [
     [
       "Starward.exe",
@@ -34,21 +22,15 @@
     ]
   ],
   "persist": [
-    "data",
-    "games",
-    "config.ini"
+    "config.ini",
+    "StarwardDatabase.db",
+    "DatabaseBackup",
+    "bg"
   ],
   "checkver": {
     "github": "https://github.com/Scighost/Starward"
   },
   "autoupdate": {
-    "architecture": {
-      "64bit": {
-        "url": "https://gh-proxy.org/https://github.com/Scighost/Starward/releases/download/$version/Starward_Portable_$version_x64.7z"
-      },
-      "arm64": {
-        "url": "https://gh-proxy.org/https://github.com/Scighost/Starward/releases/download/$version/Starward_Portable_$version_arm64.7z"
-      }
-    }
+    "url": "https://gh-proxy.org/https://github.com/Scighost/Starward/releases/download/$version/Starward_Portable_$version_x64.7z"
   }
 }
