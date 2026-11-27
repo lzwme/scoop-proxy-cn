@@ -1,26 +1,26 @@
 {
-  "version": "4437-b123d9d",
-  "description": "Experimental PlayStation Vita emulator",
+  "version": "4447-e4a96e85",
+  "description": "Sony PlayStation Vita emulator",
   "homepage": "https://vita3k.org",
   "license": "GPL-2.0-only",
-  "suggest": {
-    "vcredist": "extras/vcredist2022",
-    "PS Vita Firmware": "games/psv-system-software"
-  },
   "notes": [
     "ATTENTION: Vita3K requires official PS Vita firmware to function.",
     "Install the psv-system-software package.",
     "You must still manually load PSVUPDAT.PUP and PSP2UPDAT.PUP through Vita3K",
     "See the quickstart guide for further instructions: https://vita3k.org/quickstart"
   ],
+  "suggest": {
+    "vcredist": "extras/vcredist2022",
+    "PS Vita Firmware": "emulators/psv-system-software"
+  },
   "architecture": {
     "64bit": {
-      "url": "https://gh-proxy.org/https://github.com/Vita3K/Vita3K/releases/download/continuous/windows-latest.zip",
-      "hash": "26c5ded576834d1e4108c361119e2436671f709ac13866a8be51c1fc44e16829"
+      "url": "https://gh-proxy.org/https://github.com/Vita3K/Vita3K-builds/releases/download/4447/vita3k-4447-e4a96e85-windows-x86_64.7z",
+      "hash": "769d2a145aab2ff3a14563095a42308aa79ad958f4eddf97e54c9f985f7548d6"
     },
     "arm64": {
-      "url": "https://gh-proxy.org/https://github.com/Vita3K/Vita3K/releases/download/continuous/windows-arm64-latest.zip",
-      "hash": "af46008e4c8060b4ae7293d7556165a0abbb8af170910036762677b356003eff"
+      "url": "https://gh-proxy.org/https://github.com/Vita3K/Vita3K-builds/releases/download/4447/vita3k-4447-e4a96e85-windows-arm64.7z",
+      "hash": "a7230336df4ad176af53a43cf59aa403b85c0d98b56e71244c82796b13a0e219"
     }
   },
   "pre_install": [
@@ -28,11 +28,10 @@
     "   New-Item \"$dir\\config.yml\" | Out-Null",
     "}"
   ],
-  "bin": "Vita3K.exe",
   "shortcuts": [
     [
       "Vita3K.exe",
-      "Vita3K"
+      "Sony PlayStation Vita [vita][vita3k]"
     ]
   ],
   "persist": [
@@ -40,30 +39,17 @@
     "config.yml"
   ],
   "checkver": {
-    "script": [
-      "$url = 'https://github.com/Vita3K/Vita3K/releases/tag/continuous'",
-      "$build_regex = 'Vita3K Build: (\\d+)'",
-      "$commit_regex = 'Corresponding commit: ([a-f0-9]{7})'",
-      "",
-      "$cont = (Invoke-WebRequest $url -UseBasicParsing).Content",
-      "",
-      "if(!($cont -match $build_regex)) { error \"Could match '$build_regex' on '$url'\"; break }",
-      "$build_number = $matches[1]",
-      "if(!($cont -match $commit_regex)) { error \"Could match '$commit_regex' on '$url'\"; break }",
-      "$commit_sha = $matches[1]",
-      "",
-      "$script_ver = \"$build_number-$commit_sha\"",
-      "Write-Output $script_ver"
-    ],
-    "regex": "(\\d+-[a-f0-9]{7})"
+    "url": "https://api.github.com/repos/Vita3K/Vita3K-builds/releases/latest",
+    "jsonpath": "$.assets[?(@.name =~ /vita3k-[\\d]+-[a-f\\d]+-windows-x86_64\\.7z$/)].browser_download_url",
+    "regex": "releases/download/(?<build>\\d+)/vita3k-(?<version>\\d+-[a-f\\d]{8})-windows-x86_64\\.7z"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://gh-proxy.org/https://github.com/Vita3K/Vita3K/releases/download/continuous/windows-latest.zip"
+        "url": "https://gh-proxy.org/https://github.com/Vita3K/Vita3K-builds/releases/download/$matchBuild/vita3k-$version-windows-x86_64.7z"
       },
       "arm64": {
-        "url": "https://gh-proxy.org/https://github.com/Vita3K/Vita3K/releases/download/continuous/windows-arm64-latest.zip"
+        "url": "https://gh-proxy.org/https://github.com/Vita3K/Vita3K-builds/releases/download/$matchBuild/vita3k-$version-windows-arm64.7z"
       }
     }
   }
