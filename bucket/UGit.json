@@ -1,29 +1,25 @@
 {
-  "version": "5.55.1",
-  "homepage": "https://ugit.qq.com/",
-  "license": "unknown",
-  "url": "https://ugit.qq.com/downloads/ugit_public/UGitSetup.exe#/dl.7z",
-  "hash": "92d0b1d253bb0c67efad0a089ed6ba860b7346962acb1a143787216bcf9a357e",
-  "installer": {
-    "script": [
-      "$nupkg = (Get-ChildItem \"$dir\" 'UGit-*-full.nupkg' | Select-Object -First 1).FullName",
-      "Expand-7ZipArchive \"$nupkg\" \"$dir\"",
-      "Move-Item \"$dir\\lib\\net45\\*\" \"$dir\""
-    ]
+  "version": "5.9",
+  "description": "Undo your last oopsie in git.",
+  "homepage": "https://bhupesh.me/undo-your-last-git-mistake-with-ugit/",
+  "license": "MIT",
+  "suggest": {
+    "git": "main/git",
+    "fzf": "main/fzf"
   },
-  "post_install": "Remove-Item \"$dir\\package\",\"$dir\\_rels\",\"$dir\\lib\",\"$dir\\UGit.nuspec\",\"$dir\\[Content_Types].xml\",\"$dir\\*.nupkg\" -Recurse",
-  "bin": "UGit.exe",
-  "shortcuts": [
-    [
-      "UGit.exe",
-      "UGit"
-    ]
+  "notes": [
+    "Git's garbage collector prunes reflog entries —",
+    "increase the default expiry limits in your global .gitconfig:",
+    "'git config --global gc.reflogExpire 200'",
+    "'git config --global gc.reflogExpireUnreachable 90'"
   ],
+  "url": "https://github.com/Bhupesh-V/ugit/releases/download/v5.9/ugit",
+  "hash": "bacb73e70c997a3790c6bdebcaa6253381aae6214eaceb1ffd797d989708699b",
+  "bin": "ugit",
   "checkver": {
-    "url": "https://ugit.qq.com/changelog.json",
-    "regex": "\"version\": \"v([\\d.]+)\""
+    "github": "https://github.com/Bhupesh-V/ugit"
   },
   "autoupdate": {
-    "url": "https://ugit.qq.com/downloads/ugit_public/UGitSetup.exe#/dl.7z"
+    "url": "https://github.com/Bhupesh-V/ugit/releases/download/v$version/ugit"
   }
 }
